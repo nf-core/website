@@ -16,13 +16,9 @@
 
     export let md;
 
-    // replace > ⚠️ with :::warning amd add ::: at the end
-    // md = md.replace(/(> ⚠️)(.*)(\n|\.$)/g, ':::note \n $2 \n:::\n');
     if (md) {
         // replace newline with <br>
         md = md.replace(/(\n)/g, '  \n');
-        // escape *
-        md = md.replace(/(\*.)/g, '\\$1');
     }
 </script>
 

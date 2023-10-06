@@ -54,12 +54,17 @@ if (!activeItem) {
                 <i class={activeItem.icon ? activeItem.icon : 'fa-regular fa-book'}></i>
                 {activeItem.label}
             </button>
-            <div class="dropdown-menu" aria-labelledby="tabs">
+            <div class="dropdown-menu py-1" aria-labelledby="tabs">
                 {
                     items.map((item) => {
                         return (
-                            <a class={'dropdown-item ' + (item.active ? 'active' : '')} href={item.href} rel="prefetch">
-                                <i class={item.icon ? item.icon : 'fa-regular fa-book'} /> {item.label}
+                            <a
+                                class={'dropdown-item px-2 ' + (item.active ? 'active' : '')}
+                                href={item.href}
+                                rel="prefetch"
+                            >
+                                <i class:list={['fa-fw', item.icon, { 'fa-regular fa-book': !item.icon }]} />{' '}
+                                {item.label}
                             </a>
                         );
                     })
@@ -70,7 +75,8 @@ if (!activeItem) {
     </div>
 </div>
 <style>
-    .nav-item i {
+    .nav-item i,
+    .dropdown i {
         margin-right: 0.5rem;
     }
 </style>
