@@ -8,13 +8,13 @@
         "start": "astro dev",
         "build-preview": "astro build && astro preview",
         "build-cache": "npm run build-pipeline-json && npm run build-component-json && npm run build-md-cache",
-        "build-md-cache": "node bin/build-cache.js && tar -cJf .cache.tar.xz --no-xattrs .cache && node bin/build-content-collection",
+        "build-md-cache": "node bin/build-cache.js && tar -cvJf .cache.tar.xz .cache && node bin/build-content-collection",
         "build-cache-no-tar": "npm run build-pipeline-json && npm run build-component-json && node bin/build-cache.js && node bin/build-content-collection",
         "build-cache-force": "npm run build-pipeline-json && npm run build-component-json && npm run build-md-cache",
         "build": "tar -xf .cache.tar.xz && node bin/build-content-collection &&  NODE_OPTIONS='--max-old-space-size=4096' astro build",
         "build-without-cache": "npm run build-cache-no-tar && astro build",
         "preview": "astro preview",
-        "build-pipeline-json": "node bin/pipelines.json.js && tar -cJf .cache.tar.xz --no-xattrs .cache",
+        "build-pipeline-json": "node bin/pipelines.json.js && tar -cvJf .cache.tar.xz .cache",
         "build-component-json": "node bin/components.json.js"
     },
     "dependencies": {
