@@ -10,7 +10,9 @@ export function getStaticPaths() {
     var paths: { params: { pipeline: string; version: string }; props: { versions: string[]; md_files: string[] } }[] =
         [];
     pipelines_json.remote_workflows.forEach((pipeline) => {
-        pipeline.releases.forEach((release) => {
+        const releases = pipeline.releases;
+        const extended_releases = [...releases, { tag_name: 'latest', doc_files: releases[0].doc_files }];
+        extended_releases.forEach((release) => {
             const md_files = release.doc_files.map((file) =>
                 file.replace('docs/', '').replace('.mdx', '').replace('.md', ''),
             );
@@ -20,7 +22,7 @@ export function getStaticPaths() {
                     version: release.tag_name,
                 },
                 props: {
-                    versions: pipeline.releases.map((release) => release.tag_name),
+                    versions: releases.map((release) => release.tag_name),
                     md_files: md_files,
                     description: pipeline.description,
                 },
@@ -39,8 +41,9 @@ let headings: {
 let { versions, md_files, description } = Astro.props;
 
 let schema = { definitions: [], properties: [] };
+const version_tag_name = version === 'latest' ? versions[0] : version;
 
-const cache_key = `.cache/${pipeline}/${version}/nextflow_schema.json`;
+const cache_key = `.cache/${pipeline}/${version_tag_name}/nextflow_schema.json`;
 //check if the schema is cached
 
 if (existsSync(cache_key)) {
@@ -64,6 +67,7 @@ if (schema.definitions && Object.keys(schema.definitions).length > 0) {
 
 <PipelinePageLayout
     pipeline={pipeline}
+    meta_title={pipeline + ': Parameters'}
     subtitle={description}
     headings={headings}
     version={version}
