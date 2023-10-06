@@ -70770,6 +70770,188 @@
       ]
     },
     {
+      "name": "propr_logratio",
+      "path": "modules/nf-core/propr/logratio/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "propr_logratio",
+        "description": "Transform the data matrix using centered logratio transformation (CLR) or additive logratio transformation (ALR)",
+        "keywords": [
+          "alr",
+          "clr",
+          "logratio",
+          "boxcox",
+          "transformation",
+          "propr"
+        ],
+        "tools": [
+          {
+            "propr": {
+              "description": "Logratio methods for omics data",
+              "homepage": "https://github.com/tpq/propr",
+              "documentation": "https://rdrr.io/cran/propr/man/propr.html",
+              "tool_dev_url": "https://github.com/tpq/propr",
+              "doi": "10.1038/s41598-017-16520-0",
+              "licence": [
+                "GPL-2"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing additional information.\nmeta.id can be used to name the output files.\n[id: 'test', ...]\n"
+            }
+          },
+          {
+            "count": {
+              "type": "file",
+              "description": "Count matrix, where rows = variables or genes, columns = samples or cells.\nThis matrix should not contain zeros. Otherwise, they will be first replaced by the minimun value.\nYou may want to handle the zeros with a different method beforehand.\n",
+              "pattern": "*.{csv,tsv}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing additional information.\nmeta.id can be used to name the output files.\n[id: 'test', ...]\n"
+            }
+          },
+          {
+            "logratio": {
+              "type": "file",
+              "description": "ALR/CLR transformed data matrix. With rows = variables or genes, columns = samples or cells.",
+              "pattern": "*.logratio.tsv"
+            }
+          },
+          {
+            "session_info": {
+              "type": "file",
+              "description": "dump of R SessionInfo",
+              "pattern": "*.R_sessionInfo.log"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@suzannejin",
+          "@oprana22"
+        ]
+      }
+    },
+    {
+      "name": "propr_propd",
+      "path": "modules/nf-core/propr/propd/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "propr_propd",
+        "description": "Perform differential proportionality analysis",
+        "keywords": [
+          "differential",
+          "proportionality",
+          "logratio",
+          "expression",
+          "propr"
+        ],
+        "tools": [
+          {
+            "propr": {
+              "description": "Logratio methods for omics data",
+              "homepage": "https://github.com/tpq/propr",
+              "documentation": "https://rdrr.io/cran/propr/man/propr.html",
+              "tool_dev_url": "https://github.com/tpq/propr",
+              "doi": "10.1038/s41598-017-16520-0",
+              "licence": [
+                "GPL-2"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing additional information.\nThis can be used at the workflow level to pass optional parameters to the module.\n[id: 'test', ...]\n"
+            }
+          },
+          {
+            "count": {
+              "type": "file",
+              "description": "Count matrix, where rows = variables or genes, columns = samples or cells.\nThis matrix should not contain zeros. One should plug this module after another one that handles the zeros.\n",
+              "pattern": "*.{csv,tsv}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy map containing study-wide metadata related to the sample sheet and matrix\n"
+            }
+          },
+          {
+            "samplesheet": {
+              "type": "file",
+              "description": "CSV or TSV format sample sheet with sample metadata\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing additional information.\nThis can be used at the workflow level to pass optional parameters to the module.\n[id: 'test', ...]\n"
+            }
+          },
+          {
+            "propd": {
+              "type": "file",
+              "description": "R propd object",
+              "pattern": "*.propd.rds"
+            }
+          },
+          {
+            "results": {
+              "type": "file",
+              "description": "Results table",
+              "pattern": "*.propd.tsv"
+            }
+          },
+          {
+            "fdr": {
+              "type": "file",
+              "description": "(optional) propr fdr table",
+              "pattern": "*.fdr.tsv"
+            }
+          },
+          {
+            "session_info": {
+              "type": "file",
+              "description": "dump of R SessionInfo",
+              "pattern": "*.R_sessionInfo.log"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@suzannejin"
+        ]
+      }
+    },
+    {
       "name": "proteus_readproteingroups",
       "path": "modules/nf-core/proteus/readproteingroups/meta.yml",
       "type": "module",
@@ -71619,6 +71801,79 @@
               "type": "file",
               "description": "Fasta file purged of duplicated haplotigs",
               "pattern": "*.purged.fa"
+            }
+          }
+        ],
+        "authors": [
+          "@mahesh-panchal"
+        ]
+      }
+    },
+    {
+      "name": "purgedups_histplot",
+      "path": "modules/nf-core/purgedups/histplot/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "purgedups_histplot",
+        "description": "Plots the read coverage from a purge dups statistics file and cutoffs.",
+        "keywords": [
+          "Read coverage histogram",
+          "Duplication purging",
+          "Read depth"
+        ],
+        "tools": [
+          {
+            "purgedups": {
+              "description": "Purge_dups is a package used to purge haplotigs and overlaps in an assembly based on read depth",
+              "homepage": "https://github.com/dfguan/purge_dups",
+              "documentation": "https://github.com/dfguan/purge_dups",
+              "tool_dev_url": "https://github.com/dfguan/purge_dups",
+              "doi": "10.1093/bioinformatics/btaa025",
+              "licence": "['MIT']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "statfile": {
+              "type": "file",
+              "description": "A Purge dups statistic file",
+              "pattern": "*.stat"
+            }
+          },
+          {
+            "cutoff": {
+              "type": "file",
+              "description": "A Purge dups cutoff file",
+              "pattern": "*.cutoffs"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "png": {
+              "type": "file",
+              "description": "A png file of the read depth coverage.",
+              "pattern": "*.png"
             }
           }
         ],
