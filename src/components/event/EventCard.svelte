@@ -23,7 +23,7 @@
         let duration: string;
         if (event.start_date === event.end_date) {
             duration =
-                new Date(event.start).toLocaleString('en-US', {
+                new Date(event.start + 'Z').toLocaleString('en-US', {
                     year: 'numeric',
                     month: 'short',
                     day: 'numeric',
@@ -32,14 +32,14 @@
                     hour12: false,
                 }) +
                 '-' +
-                new Date(event.end).toLocaleString('en-US', {
+                new Date(event.end + 'Z').toLocaleString('en-US', {
                     hour: 'numeric',
                     minute: 'numeric',
                     hour12: false,
                 });
         } else {
             duration =
-                new Date(event.start).toLocaleString('en-US', {
+                new Date(event.start + 'Z').toLocaleString('en-US', {
                     year: 'numeric',
                     month: 'short',
                     day: 'numeric',
@@ -48,7 +48,7 @@
                     hour12: false,
                 }) +
                 '<wbr> - <wbr>' +
-                new Date(event.end).toLocaleString('en-US', {
+                new Date(event.end + 'Z').toLocaleString('en-US', {
                     year: 'numeric',
                     month: 'short',
                     day: 'numeric',

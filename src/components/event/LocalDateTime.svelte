@@ -8,7 +8,7 @@
         minute: 'numeric',
         hour12: false,
     };
-    date = new Date(date);
+    date = new Date(date + 'Z');
 </script>
 
 <span>{date.toLocaleString('en-US', date_options)}</span>

@@ -18,7 +18,7 @@
         event.data.eventCountDown = formatDistanceToNow(event.data.start);
         if (event.data.start_date === event.data.end_date) {
             event.data.duration =
-                new Date(event.data.start).toLocaleString('en-US', {
+                new Date(event.data.start + 'Z').toLocaleString('en-US', {
                     year: 'numeric',
                     month: 'short',
                     day: 'numeric',
@@ -27,14 +27,14 @@
                     hour12: false,
                 }) +
                 '-' +
-                new Date(event.data.end).toLocaleString('en-US', {
+                new Date(event.data.end + 'Z').toLocaleString('en-US', {
                     hour: 'numeric',
                     minute: 'numeric',
                     hour12: false,
                 });
         } else {
             event.data.duration =
-                new Date(event.data.start).toLocaleString('en-US', {
+                new Date(event.data.start + 'Z').toLocaleString('en-US', {
                     year: 'numeric',
                     month: 'short',
                     day: 'numeric',
@@ -43,7 +43,7 @@
                     hour12: false,
                 }) +
                 ' - ' +
-                new Date(event.data.end).toLocaleString('en-US', {
+                new Date(event.data.end + 'Z').toLocaleString('en-US', {
                     year: 'numeric',
                     month: 'short',
                     day: 'numeric',
