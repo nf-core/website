@@ -1282,6 +1282,25 @@ div.mermaid {
     filter: brightness(0.8) contrast(1.2); // dim images a bit https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/
   }
 
+  .btn-outline-success:not(:disabled):not(.disabled).active,
+  .btn-outline-success:not(:disabled):not(.disabled):active,
+  .btn-success:not(:disabled):not(.disabled).active,
+  .btn-success:not(:disabled):not(.disabled):active,
+  .btn-outline-success:not(:disabled):not(.disabled).focus,
+  .btn-outline-success:not(:disabled):not(.disabled):focus,
+  .btn-success:not(:disabled):not(.disabled).focus,
+  .btn-success:not(:disabled):not(.disabled):focus {
+    background-color: $nf-core-color-dark;
+    border-color: shade-color($nf-core-color-dark, 5%);
+    color: $white;
+  }
+  .btn-success:not(:disabled):not(.disabled){
+    background-color: $nf-core-color-dark;
+    border-color: shade-color($nf-core-color-dark, 5%);
+    color: $white;
+  }
+
+
   .bg-success,
   .text-bg-success {
     background-color: $nf-core-color-dark !important;
