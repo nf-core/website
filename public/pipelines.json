@@ -4276,7 +4276,7 @@
             "forks_count": 20,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 27,
+            "open_issues_count": 28,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -4289,7 +4289,7 @@
             ],
             "visibility": "public",
             "forks": 20,
-            "open_issues": 27,
+            "open_issues": 28,
             "watchers": 28,
             "default_branch": "master",
             "network_count": 20,
@@ -6207,12 +6207,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/fetchngs",
             "created_at": "2021-06-03T09:26:41Z",
-            "updated_at": "2023-10-08T18:30:54Z",
+            "updated_at": "2023-10-10T07:21:44Z",
             "pushed_at": "2023-10-09T10:37:49Z",
             "homepage": "https://nf-co.re/fetchngs",
             "size": 3083,
-            "stargazers_count": 85,
-            "watchers_count": 85,
+            "stargazers_count": 86,
+            "watchers_count": 86,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": true,
@@ -6239,7 +6239,7 @@
             "visibility": "public",
             "forks": 46,
             "open_issues": 17,
-            "watchers": 85,
+            "watchers": 86,
             "default_branch": "master",
             "network_count": 46,
             "subscribers_count": 64,
@@ -14438,6 +14438,76 @@
             ]
         },
         {
+            "id": 696584150,
+            "node_id": "R_kgDOKYUH1g",
+            "name": "readsimulator",
+            "full_name": "nf-core/readsimulator",
+            "private": false,
+            "description": null,
+            "fork": false,
+            "url": "https://api.github.com/repos/nf-core/readsimulator",
+            "created_at": "2023-09-26T03:28:00Z",
+            "updated_at": "2023-10-10T08:12:48Z",
+            "pushed_at": "2023-10-09T23:52:53Z",
+            "homepage": null,
+            "size": 2329,
+            "stargazers_count": 0,
+            "watchers_count": 0,
+            "language": "Nextflow",
+            "has_issues": true,
+            "has_projects": true,
+            "has_downloads": true,
+            "has_wiki": false,
+            "has_pages": false,
+            "has_discussions": false,
+            "forks_count": 0,
+            "archived": false,
+            "disabled": false,
+            "open_issues_count": 0,
+            "allow_forking": true,
+            "is_template": false,
+            "web_commit_signoff_required": false,
+            "topics": [],
+            "visibility": "public",
+            "forks": 0,
+            "open_issues": 0,
+            "watchers": 0,
+            "default_branch": "dev",
+            "network_count": 0,
+            "subscribers_count": 2,
+            "open_pr_count": 0,
+            "contributors": [
+                {
+                    "name": "a4000",
+                    "count": 8,
+                    "avatar_url": "https://avatars.githubusercontent.com/u/43841526?v=4"
+                }
+            ],
+            "releases": [
+                {
+                    "tag_name": "dev",
+                    "published_at": "2023-10-09T23:52:32Z",
+                    "tag_sha": "085444fc8139cb26745f4dbbc2da0028954bd4ee",
+                    "has_schema": true,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/usage.md"
+                    ],
+                    "components": {
+                        "modules": [
+                            "art_illumina",
+                            "bowtie2_align",
+                            "bowtie2_build",
+                            "custom_dumpsoftwareversions",
+                            "fastqc",
+                            "multiqc",
+                            "samtools_index"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
             "id": 509073309,
             "node_id": "R_kgDOHlfXnQ",
             "name": "rnadnavar",
@@ -16547,7 +16617,7 @@
             "url": "https://api.github.com/repos/nf-core/rnasplice",
             "created_at": "2022-08-22T14:25:09Z",
             "updated_at": "2023-08-04T14:55:39Z",
-            "pushed_at": "2023-10-09T13:32:40Z",
+            "pushed_at": "2023-10-10T08:09:07Z",
             "homepage": "https://nf-co.re/rnasplice",
             "size": 167341,
             "stargazers_count": 9,
@@ -16613,6 +16683,49 @@
                 }
             ],
             "releases": [
+                {
+                    "tag_name": "1.0.0",
+                    "published_at": "2023-10-10T08:09:08Z",
+                    "tag_sha": "8fb78b2329622d4d2f3983a2e7f007ebad13392c",
+                    "has_schema": true,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/usage.md"
+                    ],
+                    "components": {
+                        "modules": [
+                            "cat_fastq",
+                            "custom_dumpsoftwareversions",
+                            "custom_getchromsizes",
+                            "fastqc",
+                            "gffread",
+                            "gunzip",
+                            "multiqc",
+                            "rsem_preparereference",
+                            "salmon_index",
+                            "salmon_quant",
+                            "samtools_flagstat",
+                            "samtools_idxstats",
+                            "samtools_index",
+                            "samtools_sort",
+                            "samtools_stats",
+                            "star_align",
+                            "star_genomegenerate",
+                            "subread_featurecounts",
+                            "trimgalore",
+                            "ucsc_bedclip",
+                            "ucsc_bedgraphtobigwig",
+                            "umitools_extract",
+                            "untar"
+                        ],
+                        "subworkflows": [
+                            "bam_sort_stats_samtools",
+                            "bam_stats_samtools",
+                            "bedgraph_bedclip_bedgraphtobigwig",
+                            "fastq_fastqc_umitools_trimgalore"
+                        ]
+                    }
+                },
                 {
                     "tag_name": "dev",
                     "published_at": "2023-10-09T11:53:50Z",
