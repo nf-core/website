@@ -2,6 +2,7 @@
 import { Icon } from 'astro-icon';
 
 import Profile from '@components/GitHubProfilePictureExtended.svelte';
+import { YouTube } from '@astro-community/astro-embed-youtube';
 
 const { title, color, proj_url, leaders, slack, intro_video } = Astro.props;
 
@@ -69,14 +70,7 @@ const slack_clean = slack ? slack.replace('#', '') : '';
             {
                 intro_video && (
                     <div class="col-md-6">
-                        <div class="ratio ratio-16x9">
-                            <iframe
-                                src={`https://www.youtube.com/embed/${intro_video}`}
-                                title="YouTube video player"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen
-                            />
-                        </div>
+                        <YouTube id={intro_video} poster={`https://img.youtube.com/vi/${intro_video}/hqdefault.jpg`} />
                     </div>
                 )
             }
