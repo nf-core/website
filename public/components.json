@@ -17580,6 +17580,189 @@
       }
     },
     {
+      "name": "cnvnator_cnvnator",
+      "path": "modules/nf-core/cnvnator/cnvnator/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "cnvnator_cnvnator",
+        "description": "CNVnator is a command line tool for CNV/CNA analysis from depth-of-coverage by mapped reads.",
+        "keywords": [
+          "cnvnator",
+          "cnv",
+          "cna"
+        ],
+        "tools": [
+          {
+            "cnvnator": {
+              "description": "Tool for calling copy number variations.",
+              "homepage": "https://github.com/abyzovlab/CNVnator",
+              "documentation": "https://github.com/abyzovlab/CNVnator/blob/master/README.md",
+              "tool_dev_url": "https://github.com/abyzovlab/CNVnator",
+              "licence": "['MIT']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "Sorted BAM/CRAM/SAM file",
+              "pattern": "*.bam"
+            }
+          },
+          {
+            "bai": {
+              "type": "file",
+              "description": "Sorted BAM/CRAM/SAM file",
+              "pattern": "*.bam"
+            }
+          },
+          {
+            "root": {
+              "type": "file",
+              "description": "ROOT file",
+              "pattern": "*.root"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Path to a directory containing fasta files or a fasta file",
+              "pattern": "*.fa"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "Path to a fasta file index",
+              "pattern": "*.fai"
+            }
+          }
+        ],
+        "output": [
+          {
+            "output_meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "root": {
+              "type": "file",
+              "description": "A ROOT file",
+              "pattern": "*.root"
+            }
+          },
+          {
+            "tab": {
+              "type": "file",
+              "description": "A tab file containing cnvnator calls",
+              "pattern": "*.tab"
+            }
+          }
+        ],
+        "authors": [
+          "@ramprasadn"
+        ]
+      }
+    },
+    {
+      "name": "cnvnator_convert2vcf",
+      "path": "modules/nf-core/cnvnator/convert2vcf/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "cnvnator_convert2vcf",
+        "description": "convert2vcf.pl is command line tool to convert CNVnator calls to vcf format.",
+        "keywords": [
+          "cnvnator",
+          "cnv",
+          "cna"
+        ],
+        "tools": [
+          {
+            "cnvnator": {
+              "description": "Tool for calling copy number variations.",
+              "homepage": "https://github.com/abyzovlab/CNVnator",
+              "documentation": "https://github.com/abyzovlab/CNVnator/blob/master/README.md",
+              "tool_dev_url": "https://github.com/abyzovlab/CNVnator",
+              "licence": "['MIT']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "calls": {
+              "type": "file",
+              "description": "A tab file containing CNVnator calls",
+              "pattern": "*.tab"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "CNVnator calls in vcf format",
+              "pattern": "*.vcf"
+            }
+          }
+        ],
+        "authors": [
+          "@ramprasadn"
+        ]
+      }
+    },
+    {
       "name": "cnvpytor_callcnvs",
       "path": "modules/nf-core/cnvpytor/callcnvs/meta.yml",
       "type": "module",
@@ -20321,7 +20504,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "2.4.1"
+          "version": "2.5.0"
         },
         {
           "name": "molkart",
@@ -24978,6 +25161,74 @@
         ],
         "authors": [
           "@Joon-Klaps"
+        ]
+      }
+    },
+    {
+      "name": "emboss_revseq",
+      "path": "modules/nf-core/emboss/revseq/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "emboss_revseq",
+        "description": "the revseq program from emboss reverse complements a nucleotide sequence",
+        "keywords": [
+          "nucleotides",
+          "reverse complement",
+          "sequences"
+        ],
+        "tools": [
+          {
+            "emboss": {
+              "description": "The European Molecular Biology Open Software Suite",
+              "homepage": "https://www.ebi.ac.uk/Tools/sfc/emboss_seqret/",
+              "documentation": "https://emboss.bioinformatics.nl/cgi-bin/emboss/help/seqret",
+              "tool_dev_url": "http://emboss.open-bio.org/",
+              "doi": "10.1016/s0168-9525(00)02024-2 ",
+              "licence": [
+                "GPL"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "sequences": {
+              "type": "file",
+              "description": "Input sequences",
+              "pattern": "*.{fasta,fna,fa,fst,aln,phy}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "revseq": {
+              "type": "file",
+              "description": "File with reverse complemented sequences",
+              "pattern": "*.{fasta,fna,fa,fst,aln,phy}"
+            }
+          }
+        ],
+        "authors": [
+          "@erikrikarddaniel"
         ]
       }
     },
@@ -60494,7 +60745,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "2.4.1"
+          "version": "2.5.0"
         },
         {
           "name": "molkart",
@@ -89460,6 +89711,139 @@
               "type": "file",
               "description": "The merged VCF file",
               "pattern": "*.vcf"
+            }
+          }
+        ],
+        "authors": [
+          "@nvnieuwk"
+        ]
+      }
+    },
+    {
+      "name": "survivor_simsv",
+      "path": "modules/nf-core/survivor/simsv/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "survivor_simsv",
+        "description": "Simulate an SV VCF file based on a reference genome",
+        "keywords": [
+          "structural variants",
+          "simulation",
+          "sv",
+          "vcf"
+        ],
+        "tools": [
+          {
+            "survivor": {
+              "description": "Toolset for SV simulation, comparison and filtering",
+              "homepage": "https://github.com/fritzsedlazeck/SURVIVOR/wiki",
+              "documentation": "https://github.com/fritzsedlazeck/SURVIVOR/wiki",
+              "tool_dev_url": "https://github.com/fritzsedlazeck/SURVIVOR",
+              "doi": "10.1038/NCOMMS14061",
+              "licence": "['MIT']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing fasta information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "The reference genome",
+              "pattern": "*.{fasta,fna,fa}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing fasta index information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "The index of the reference genome",
+              "pattern": "*.fai"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing parameters information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "parameters": {
+              "type": "file",
+              "description": "A text file containing the parameters to be used for the simulation. Gets automatically generated using defaults when this is not supplied",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "snp_mutation_frequency": {
+              "type": "float",
+              "description": "The SNP mutation frequency in the output VCF (0-1)"
+            }
+          },
+          {
+            "sim_reads": {
+              "type": "integer",
+              "description": "Whether or not to simulate reads (1==yes, else no)"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "parameters": {
+              "type": "file",
+              "description": "The created parameters file",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "A VCF containing the simulated variants",
+              "pattern": "*.vcf"
+            }
+          },
+          {
+            "bed": {
+              "type": "file",
+              "description": "A BED file of the simulated structural variants",
+              "pattern": "*.bed"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "A Fasta file file containing the variants from the output VCF",
+              "pattern": "*.fasta"
+            }
+          },
+          {
+            "insertions": {
+              "type": "file",
+              "description": "A Fasta file file containing insertion sequences",
+              "pattern": "*.insertions.fa"
             }
           }
         ],
