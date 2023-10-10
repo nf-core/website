@@ -20,7 +20,9 @@
     size={50}
 >
     <div class={'ms-2 d-inline-block text-start d-flex flex-column px-2 ' + extra_classes}>
-        <slot />
+        <slot>
+            <div>@{username}</div>
+        </slot>
         {@html affiliation_str}
     </div>
 </GitHubProfilePicture>

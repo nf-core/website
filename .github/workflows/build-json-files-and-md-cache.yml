@@ -39,6 +39,7 @@ jobs:
       - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
         name: Install dependencies
         run: npm ci
+
       - name: create pipeline.json
         run: npm run build-pipeline-json
         env:

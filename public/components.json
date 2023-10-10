@@ -222,6 +222,100 @@
       }
     },
     {
+      "name": "abritamr_run",
+      "path": "modules/nf-core/abritamr/run/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "abritamr_run",
+        "description": "A NATA accredited tool for reporting the presence of antimicrobial resistance genes in bacterial genomes",
+        "keywords": [
+          "bacteria",
+          "fasta",
+          "antibiotic resistance"
+        ],
+        "tools": [
+          {
+            "abritamr": {
+              "description": "A pipeline for running AMRfinderPlus and collating results into functional classes",
+              "homepage": "https://github.com/MDU-PHL/abritamr",
+              "documentation": "https://github.com/MDU-PHL/abritamr",
+              "tool_dev_url": "https://github.com/MDU-PHL/abritamr",
+              "doi": "10.1038/s41467-022-35713-4",
+              "licence": "['GPL v3']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Assembled contigs in FASTA format",
+              "pattern": "*.{fasta,fasta.gz,fa,fa.gz,fna,fna.gz,faa,faa.gz}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "matches": {
+              "type": "file",
+              "description": "Tab-delimited file, with a row per sequence, and columns representing functional drug classes",
+              "pattern": "*.summary_matches.txt"
+            }
+          },
+          {
+            "partials": {
+              "type": "file",
+              "description": "Tab-delimited file, with a row per sequence, and columns representing partial hits to functional drug classes",
+              "pattern": "*.summary_partials.txt"
+            }
+          },
+          {
+            "virulence": {
+              "type": "string",
+              "description": "Tab-delimited file, with a row per sequence, and columns representing AMRFinderPlus virulence gene classification",
+              "pattern": "*.summary_virulence.txt"
+            }
+          },
+          {
+            "txt": {
+              "type": "string",
+              "description": "Tab-delimited file, combining non-empty summary files",
+              "pattern": "*.abritamr.txt"
+            }
+          },
+          {
+            "out": {
+              "type": "string",
+              "description": "raw output from AMRFinder plus (per sequence)",
+              "pattern": "*.amrfinder.txt"
+            }
+          }
+        ],
+        "authors": [
+          "@rpetit3"
+        ]
+      }
+    },
+    {
       "name": "adapterremoval",
       "path": "modules/nf-core/adapterremoval/meta.yml",
       "type": "module",
@@ -2870,7 +2964,13 @@
         "authors": [
           "@MarieLataretu"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "readsimulator",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "artic_guppyplex",
@@ -6476,11 +6576,33 @@
               "description": "BCF merged output file => when `--output-type u` is used",
               "pattern": "*.bcf"
             }
+          },
+          {
+            "hap": {
+              "type": "file",
+              "description": "hap format used by IMPUTE2 and SHAPEIT",
+              "pattern": "*.hap.gz"
+            }
+          },
+          {
+            "legend": {
+              "type": "file",
+              "description": "legend format used by IMPUTE2 and SHAPEIT",
+              "pattern": "*.legend.gz"
+            }
+          },
+          {
+            "sample": {
+              "type": "file",
+              "description": "sample format used by IMPUTE2 and SHAPEIT",
+              "pattern": "*.samples"
+            }
           }
         ],
         "authors": [
           "@nvnieuwk",
-          "@ramprasadn"
+          "@ramprasadn",
+          "@atrigila"
         ]
       }
     },
@@ -9221,7 +9343,7 @@
             }
           },
           {
-            "map": {
+            "mapped": {
               "type": "file",
               "description": "File containing the description of overlaps found between the features in A and the features in B, with statistics",
               "pattern": "*.${extension}"
@@ -12238,6 +12360,10 @@
           "version": "1.0.3"
         },
         {
+          "name": "readsimulator",
+          "version": "dev"
+        },
+        {
           "name": "taxprofiler",
           "version": "1.1.0"
         },
@@ -12347,6 +12473,10 @@
         {
           "name": "marsseq",
           "version": "1.0.3"
+        },
+        {
+          "name": "readsimulator",
+          "version": "dev"
         },
         {
           "name": "taxprofiler",
@@ -12912,6 +13042,10 @@
         {
           "name": "callingcards",
           "version": "dev"
+        },
+        {
+          "name": "sammyseq",
+          "version": "dev"
         }
       ]
     },
@@ -13033,6 +13167,10 @@
         },
         {
           "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sammyseq",
           "version": "dev"
         },
         {
@@ -13280,6 +13418,10 @@
         {
           "name": "callingcards",
           "version": "dev"
+        },
+        {
+          "name": "sammyseq",
+          "version": "dev"
         }
       ]
     },
@@ -13378,6 +13520,10 @@
       "pipelines": [
         {
           "name": "callingcards",
+          "version": "dev"
+        },
+        {
+          "name": "sammyseq",
           "version": "dev"
         }
       ]
@@ -14200,7 +14346,7 @@
       "pipelines": [
         {
           "name": "bamtofastq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "circdna",
@@ -14256,11 +14402,15 @@
         },
         {
           "name": "rnasplice",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
           "version": "1.0.0"
+        },
+        {
+          "name": "sammyseq",
+          "version": "dev"
         },
         {
           "name": "sarek",
@@ -20059,7 +20209,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "callingcards",
@@ -20103,7 +20253,7 @@
         },
         {
           "name": "fetchngs",
-          "version": "1.10.0"
+          "version": "1.10.1"
         },
         {
           "name": "funcscan",
@@ -20230,6 +20380,10 @@
           "version": "1.1.1"
         },
         {
+          "name": "readsimulator",
+          "version": "dev"
+        },
+        {
           "name": "rnadnavar",
           "version": "dev"
         },
@@ -20243,11 +20397,15 @@
         },
         {
           "name": "rnasplice",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
           "version": "1.0.0"
+        },
+        {
+          "name": "sammyseq",
+          "version": "dev"
         },
         {
           "name": "sarek",
@@ -20401,7 +20559,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "viralrecon",
@@ -20584,7 +20742,7 @@
       "pipelines": [
         {
           "name": "fetchngs",
-          "version": "1.10.0"
+          "version": "1.10.1"
         }
       ]
     },
@@ -21972,6 +22130,10 @@
         {
           "name": "nascent",
           "version": "2.1.1"
+        },
+        {
+          "name": "sammyseq",
+          "version": "dev"
         }
       ]
     },
@@ -23688,7 +23850,9 @@
         "name": "dshbio_filterbed",
         "description": "Filter features in gzipped BED format",
         "keywords": [
-          "bed"
+          "bed",
+          "filter",
+          "feature"
         ],
         "tools": [
           {
@@ -23752,7 +23916,9 @@
         "name": "dshbio_filtergff3",
         "description": "Filter features in gzipped GFF3 format",
         "keywords": [
-          "gff3"
+          "gff3",
+          "filter",
+          "feature"
         ],
         "tools": [
           {
@@ -23816,7 +23982,9 @@
         "name": "dshbio_splitbed",
         "description": "Split features in gzipped BED format",
         "keywords": [
-          "bed"
+          "bed",
+          "split",
+          "feature"
         ],
         "tools": [
           {
@@ -23880,7 +24048,9 @@
         "name": "dshbio_splitgff3",
         "description": "Split features in gzipped GFF3 format",
         "keywords": [
-          "gff3"
+          "gff3",
+          "split",
+          "feature"
         ],
         "tools": [
           {
@@ -27338,7 +27508,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "callingcards",
@@ -27461,6 +27631,10 @@
           "version": "1.1.1"
         },
         {
+          "name": "readsimulator",
+          "version": "dev"
+        },
+        {
           "name": "rnadnavar",
           "version": "dev"
         },
@@ -27474,11 +27648,15 @@
         },
         {
           "name": "rnasplice",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
           "version": "1.0.0"
+        },
+        {
+          "name": "sammyseq",
+          "version": "dev"
         },
         {
           "name": "sarek",
@@ -39657,7 +39835,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
@@ -42717,11 +42895,15 @@
         },
         {
           "name": "rnasplice",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
           "version": "1.0.0"
+        },
+        {
+          "name": "sammyseq",
+          "version": "dev"
         },
         {
           "name": "scrnaseq",
@@ -58030,19 +58212,6 @@
               "description": "Latin name of the species for which a mitochondrial genome should be fetched",
               "pattern": "[A-Z]?[a-z]* [a-z]*"
             }
-          },
-          {
-            "email": {
-              "type": "string",
-              "description": "Email address for NCBI query"
-            }
-          },
-          {
-            "min_length": {
-              "type": "integer",
-              "description": "Minimum length of the mitochondrial genome",
-              "pattern": "[0-9]*"
-            }
           }
         ],
         "output": [
@@ -60225,7 +60394,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "callingcards",
@@ -60380,6 +60549,10 @@
           "version": "1.1.1"
         },
         {
+          "name": "readsimulator",
+          "version": "dev"
+        },
+        {
           "name": "rnadnavar",
           "version": "dev"
         },
@@ -60389,11 +60562,15 @@
         },
         {
           "name": "rnasplice",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
           "version": "1.0.0"
+        },
+        {
+          "name": "sammyseq",
+          "version": "dev"
         },
         {
           "name": "sarek",
@@ -67335,6 +67512,10 @@
           "version": "3.12.0"
         },
         {
+          "name": "sammyseq",
+          "version": "dev"
+        },
+        {
           "name": "ssds",
           "version": "dev"
         },
@@ -69745,6 +69926,79 @@
       }
     },
     {
+      "name": "pneumocat",
+      "path": "modules/nf-core/pneumocat/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "pneumocat",
+        "description": "Determine Streptococcus pneumoniae serotype from Illumina paired-end reads",
+        "keywords": [
+          "fastq",
+          "serotype",
+          "Streptococcus pneumoniae"
+        ],
+        "tools": [
+          {
+            "pneumocat": {
+              "description": "PneumoCaT (Pneumococcal Capsular Typing) uses a two-step step approach to assign capsular type to S.pneumoniae genomic data (Illumina)",
+              "homepage": "https://github.com/ukhsa-collaboration/PneumoCaT",
+              "documentation": "https://github.com/ukhsa-collaboration/PneumoCaT",
+              "tool_dev_url": "https://github.com/ukhsa-collaboration/PneumoCaT",
+              "doi": "10.7717/peerj.2477",
+              "licence": "['GPL v3']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "reads": {
+              "type": "file",
+              "description": "Input Illunina paired-end FASTQ files",
+              "pattern": "*.{fq.gz,fastq.gz}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "xml": {
+              "type": "file",
+              "description": "The predicted serotype in XML format",
+              "pattern": "*.xml"
+            }
+          },
+          {
+            "txt": {
+              "type": "file",
+              "description": "A detailed description of the predicted serotype",
+              "pattern": "*.txt"
+            }
+          }
+        ],
+        "authors": [
+          "@rpetit3"
+        ]
+      }
+    },
+    {
       "name": "porechop_abi",
       "path": "modules/nf-core/porechop/abi/meta.yml",
       "type": "module",
@@ -70603,6 +70857,188 @@
       ]
     },
     {
+      "name": "propr_logratio",
+      "path": "modules/nf-core/propr/logratio/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "propr_logratio",
+        "description": "Transform the data matrix using centered logratio transformation (CLR) or additive logratio transformation (ALR)",
+        "keywords": [
+          "alr",
+          "clr",
+          "logratio",
+          "boxcox",
+          "transformation",
+          "propr"
+        ],
+        "tools": [
+          {
+            "propr": {
+              "description": "Logratio methods for omics data",
+              "homepage": "https://github.com/tpq/propr",
+              "documentation": "https://rdrr.io/cran/propr/man/propr.html",
+              "tool_dev_url": "https://github.com/tpq/propr",
+              "doi": "10.1038/s41598-017-16520-0",
+              "licence": [
+                "GPL-2"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing additional information.\nmeta.id can be used to name the output files.\n[id: 'test', ...]\n"
+            }
+          },
+          {
+            "count": {
+              "type": "file",
+              "description": "Count matrix, where rows = variables or genes, columns = samples or cells.\nThis matrix should not contain zeros. Otherwise, they will be first replaced by the minimun value.\nYou may want to handle the zeros with a different method beforehand.\n",
+              "pattern": "*.{csv,tsv}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing additional information.\nmeta.id can be used to name the output files.\n[id: 'test', ...]\n"
+            }
+          },
+          {
+            "logratio": {
+              "type": "file",
+              "description": "ALR/CLR transformed data matrix. With rows = variables or genes, columns = samples or cells.",
+              "pattern": "*.logratio.tsv"
+            }
+          },
+          {
+            "session_info": {
+              "type": "file",
+              "description": "dump of R SessionInfo",
+              "pattern": "*.R_sessionInfo.log"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@suzannejin",
+          "@oprana22"
+        ]
+      }
+    },
+    {
+      "name": "propr_propd",
+      "path": "modules/nf-core/propr/propd/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "propr_propd",
+        "description": "Perform differential proportionality analysis",
+        "keywords": [
+          "differential",
+          "proportionality",
+          "logratio",
+          "expression",
+          "propr"
+        ],
+        "tools": [
+          {
+            "propr": {
+              "description": "Logratio methods for omics data",
+              "homepage": "https://github.com/tpq/propr",
+              "documentation": "https://rdrr.io/cran/propr/man/propr.html",
+              "tool_dev_url": "https://github.com/tpq/propr",
+              "doi": "10.1038/s41598-017-16520-0",
+              "licence": [
+                "GPL-2"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing additional information.\nThis can be used at the workflow level to pass optional parameters to the module.\n[id: 'test', ...]\n"
+            }
+          },
+          {
+            "count": {
+              "type": "file",
+              "description": "Count matrix, where rows = variables or genes, columns = samples or cells.\nThis matrix should not contain zeros. One should plug this module after another one that handles the zeros.\n",
+              "pattern": "*.{csv,tsv}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy map containing study-wide metadata related to the sample sheet and matrix\n"
+            }
+          },
+          {
+            "samplesheet": {
+              "type": "file",
+              "description": "CSV or TSV format sample sheet with sample metadata\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing additional information.\nThis can be used at the workflow level to pass optional parameters to the module.\n[id: 'test', ...]\n"
+            }
+          },
+          {
+            "propd": {
+              "type": "file",
+              "description": "R propd object",
+              "pattern": "*.propd.rds"
+            }
+          },
+          {
+            "results": {
+              "type": "file",
+              "description": "Results table",
+              "pattern": "*.propd.tsv"
+            }
+          },
+          {
+            "fdr": {
+              "type": "file",
+              "description": "(optional) propr fdr table",
+              "pattern": "*.fdr.tsv"
+            }
+          },
+          {
+            "session_info": {
+              "type": "file",
+              "description": "dump of R SessionInfo",
+              "pattern": "*.R_sessionInfo.log"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@suzannejin"
+        ]
+      }
+    },
+    {
       "name": "proteus_readproteingroups",
       "path": "modules/nf-core/proteus/readproteingroups/meta.yml",
       "type": "module",
@@ -70654,7 +71090,7 @@
           {
             "contrast_variable": {
               "type": "string",
-              "description": "The column in the sample sheet that should be used to define groups for\ncomparison\n"
+              "description": "The column in the sample sheet that should be used to define groups for comparison\n"
             }
           }
         ],
@@ -71452,6 +71888,79 @@
               "type": "file",
               "description": "Fasta file purged of duplicated haplotigs",
               "pattern": "*.purged.fa"
+            }
+          }
+        ],
+        "authors": [
+          "@mahesh-panchal"
+        ]
+      }
+    },
+    {
+      "name": "purgedups_histplot",
+      "path": "modules/nf-core/purgedups/histplot/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "purgedups_histplot",
+        "description": "Plots the read coverage from a purge dups statistics file and cutoffs.",
+        "keywords": [
+          "Read coverage histogram",
+          "Duplication purging",
+          "Read depth"
+        ],
+        "tools": [
+          {
+            "purgedups": {
+              "description": "Purge_dups is a package used to purge haplotigs and overlaps in an assembly based on read depth",
+              "homepage": "https://github.com/dfguan/purge_dups",
+              "documentation": "https://github.com/dfguan/purge_dups",
+              "tool_dev_url": "https://github.com/dfguan/purge_dups",
+              "doi": "10.1093/bioinformatics/btaa025",
+              "licence": "['MIT']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "statfile": {
+              "type": "file",
+              "description": "A Purge dups statistic file",
+              "pattern": "*.stat"
+            }
+          },
+          {
+            "cutoff": {
+              "type": "file",
+              "description": "A Purge dups cutoff file",
+              "pattern": "*.cutoffs"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "png": {
+              "type": "file",
+              "description": "A png file of the read depth coverage.",
+              "pattern": "*.png"
             }
           }
         ],
@@ -73608,7 +74117,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -74835,7 +75344,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -74944,7 +75453,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -75853,7 +76362,7 @@
       "pipelines": [
         {
           "name": "bamtofastq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "hlatyping",
@@ -76276,7 +76785,7 @@
       "pipelines": [
         {
           "name": "bamtofastq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "callingcards",
@@ -76341,6 +76850,10 @@
         {
           "name": "rnavar",
           "version": "1.0.0"
+        },
+        {
+          "name": "sammyseq",
+          "version": "dev"
         },
         {
           "name": "sarek",
@@ -76707,7 +77220,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "callingcards",
@@ -76767,11 +77280,15 @@
         },
         {
           "name": "rnasplice",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
           "version": "1.0.0"
+        },
+        {
+          "name": "sammyseq",
+          "version": "dev"
         },
         {
           "name": "smrnaseq",
@@ -76935,7 +77452,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "callingcards",
@@ -76991,11 +77508,15 @@
         },
         {
           "name": "rnasplice",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
           "version": "1.0.0"
+        },
+        {
+          "name": "sammyseq",
+          "version": "dev"
         },
         {
           "name": "smrnaseq",
@@ -77188,7 +77709,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "callingcards",
@@ -77255,6 +77776,10 @@
           "version": "1.1.1"
         },
         {
+          "name": "readsimulator",
+          "version": "dev"
+        },
+        {
           "name": "rnadnavar",
           "version": "dev"
         },
@@ -77268,11 +77793,15 @@
         },
         {
           "name": "rnasplice",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
           "version": "1.0.0"
+        },
+        {
+          "name": "sammyseq",
+          "version": "dev"
         },
         {
           "name": "sarek",
@@ -77485,7 +78014,7 @@
       "pipelines": [
         {
           "name": "bamtofastq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "callingcards",
@@ -77824,7 +78353,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
@@ -77941,7 +78470,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "callingcards",
@@ -78005,11 +78534,15 @@
         },
         {
           "name": "rnasplice",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
           "version": "1.0.0"
+        },
+        {
+          "name": "sammyseq",
+          "version": "dev"
         },
         {
           "name": "sarek",
@@ -78164,7 +78697,7 @@
       "pipelines": [
         {
           "name": "bamtofastq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "circdna",
@@ -86817,6 +87350,72 @@
       }
     },
     {
+      "name": "spring_decompress",
+      "path": "modules/nf-core/spring/decompress/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "spring_decompress",
+        "description": "Fast, efficient, lossless decompression of FASTQ files.",
+        "keywords": [
+          "FASTQ",
+          "decompression",
+          "lossless"
+        ],
+        "tools": [
+          {
+            "spring": {
+              "description": "SPRING is a compression tool for Fastq files (containing up to 4.29 Billion reads)",
+              "homepage": "https://github.com/shubhamchandak94/Spring",
+              "documentation": "https://github.com/shubhamchandak94/Spring/blob/master/README.md",
+              "tool_dev_url": "https://github.com/shubhamchandak94/Spring",
+              "doi": "10.1093/bioinformatics/bty1015",
+              "licence": "['Free for non-commercial use']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "spring": {
+              "type": "file",
+              "description": "Spring file to decompress.",
+              "pattern": "*.{spring}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "fastq": {
+              "type": "file",
+              "description": "Decompressed FASTQ file(s).",
+              "pattern": "*.{fastq.gz}"
+            }
+          }
+        ],
+        "authors": [
+          "@xec-cm"
+        ]
+      }
+    },
+    {
       "name": "sratools_fasterqdump",
       "path": "modules/nf-core/sratools/fasterqdump/meta.yml",
       "type": "module",
@@ -86899,7 +87498,7 @@
       "pipelines": [
         {
           "name": "fetchngs",
-          "version": "1.10.0"
+          "version": "1.10.1"
         }
       ]
     },
@@ -86985,7 +87584,7 @@
       "pipelines": [
         {
           "name": "fetchngs",
-          "version": "1.10.0"
+          "version": "1.10.1"
         }
       ]
     },
@@ -87527,7 +88126,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
@@ -87641,7 +88240,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
@@ -87769,6 +88368,73 @@
           "@vivian-chen16",
           "@maxulysse",
           "@joaodemeirelles"
+        ]
+      }
+    },
+    {
+      "name": "stecfinder",
+      "path": "modules/nf-core/stecfinder/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "stecfinder",
+        "description": "Serotype STEC samples from paired-end reads or assemblies",
+        "keywords": [
+          "serotype",
+          "Escherichia coli",
+          "fastq",
+          "fasta"
+        ],
+        "tools": [
+          {
+            "stecfinder": {
+              "description": "Cluster informed Shigatoxin producing E. coli (STEC) serotyping tool from Illumina reads and assemblies",
+              "homepage": "https://github.com/LanLab/STECFinder",
+              "documentation": "https://github.com/LanLab/STECFinder",
+              "tool_dev_url": "https://github.com/LanLab/STECFinder",
+              "doi": "10.3389/fcimb.2021.772574",
+              "licence": "['GPL v3']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "seqs": {
+              "type": "file",
+              "description": "Illumina paired-end reads or an assembly",
+              "pattern": "*.{fastq.gz,fasta.gz,fna.gz}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "tsv": {
+              "type": "file",
+              "description": "A tab-delimited report of results",
+              "pattern": "*.tsv"
+            }
+          }
+        ],
+        "authors": [
+          "@rpetit3"
         ]
       }
     },
@@ -88598,7 +89264,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -91230,7 +91896,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "ssds",
@@ -91329,6 +91995,10 @@
           "version": "dev"
         },
         {
+          "name": "sammyseq",
+          "version": "dev"
+        },
+        {
           "name": "variantcatalogue",
           "version": "dev"
         },
@@ -91402,6 +92072,184 @@
         ],
         "authors": [
           "@timslittle"
+        ]
+      }
+    },
+    {
+      "name": "truvari_bench",
+      "path": "modules/nf-core/truvari/bench/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "truvari_bench",
+        "description": "Given baseline and comparison sets of variants, calculate the recall/precision/f-measure",
+        "keywords": [
+          "structural variants",
+          "sv",
+          "vcf",
+          "benchmark",
+          "comparison"
+        ],
+        "tools": [
+          {
+            "truvari": {
+              "description": "Structural variant comparison tool for VCFs",
+              "homepage": "https://github.com/ACEnglish/truvari",
+              "documentation": "https://github.com/acenglish/truvari/wiki",
+              "tool_dev_url": "https://github.com/ACEnglish/truvari",
+              "doi": "10.1186/s13059-022-02840-6",
+              "licence": "['MIT']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "Input SV VCF file",
+              "pattern": "*.vcf.gz"
+            }
+          },
+          {
+            "tbi": {
+              "type": "file",
+              "description": "Input SV VCF index file",
+              "pattern": "*.vcf.gz.tbi"
+            }
+          },
+          {
+            "truth_vcf": {
+              "type": "file",
+              "description": "Input VCF file with truth SVs",
+              "pattern": "*.vcf.gz"
+            }
+          },
+          {
+            "tbi": {
+              "type": "file",
+              "description": "Input VCF index file with truth SVs",
+              "pattern": "*.vcf.gz.tbi"
+            }
+          },
+          {
+            "bed": {
+              "type": "file",
+              "description": "BED file containing regions to compare",
+              "pattern": "*.bed"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing fasta information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Reference FASTA file",
+              "pattern": "*.{fasta,fa,fna}"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing fasta index information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "Reference FASTA index file",
+              "pattern": "*.fai"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "fn_vcf": {
+              "type": "file",
+              "description": "VCF file with false negatives",
+              "pattern": "*.fn.vcf.gz"
+            }
+          },
+          {
+            "fn_tbi": {
+              "type": "file",
+              "description": "VCF index file with false negatives",
+              "pattern": "*.fn.vcf.gz.tbi"
+            }
+          },
+          {
+            "fp_vcf": {
+              "type": "file",
+              "description": "VCF file with false positives",
+              "pattern": "*.fp.vcf.gz"
+            }
+          },
+          {
+            "fp_tbi": {
+              "type": "file",
+              "description": "VCF index file with false positives",
+              "pattern": "*.fp.vcf.gz.tbi"
+            }
+          },
+          {
+            "tp_base_vcf": {
+              "type": "file",
+              "description": "VCF file with base true positives",
+              "pattern": "*.tp-base.vcf.gz"
+            }
+          },
+          {
+            "tp_base_tbi": {
+              "type": "file",
+              "description": "VCF index file with base true positives",
+              "pattern": "*.tp-base.vcf.gz.tbi"
+            }
+          },
+          {
+            "tp_comp_vcf": {
+              "type": "file",
+              "description": "VCF file with compared true positives",
+              "pattern": "*.tp-comp.vcf.gz"
+            }
+          },
+          {
+            "tp_comp_tbi": {
+              "type": "file",
+              "description": "VCF index file with compared true positives",
+              "pattern": "*.tp-comp.vcf.gz.tbi"
+            }
+          },
+          {
+            "summary": {
+              "type": "file",
+              "description": "Summary JSON file with results from the benchmark",
+              "pattern": "*.summary.json"
+            }
+          }
+        ],
+        "authors": [
+          "@nvnieuwk"
         ]
       }
     },
@@ -91484,7 +92332,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -91585,7 +92433,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "ssds",
@@ -92607,7 +93455,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -93005,11 +93853,15 @@
         },
         {
           "name": "rnasplice",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
           "version": "1.0.0"
+        },
+        {
+          "name": "sammyseq",
+          "version": "dev"
         },
         {
           "name": "sarek",
@@ -97541,6 +98393,10 @@
           "version": "3.12.0"
         },
         {
+          "name": "sammyseq",
+          "version": "dev"
+        },
+        {
           "name": "viralrecon",
           "version": "2.6.0"
         }
@@ -98237,7 +99093,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "smrnaseq",
@@ -98387,6 +99243,10 @@
         },
         {
           "name": "rnasplice",
+          "version": "1.0.0"
+        },
+        {
+          "name": "sammyseq",
           "version": "dev"
         },
         {
@@ -99197,7 +100057,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -100018,7 +100878,13 @@
         "authors": [
           "@jfy133"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "sammyseq",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "fastq_align_chromap",
@@ -100823,7 +101689,7 @@
       "pipelines": [
         {
           "name": "fetchngs",
-          "version": "1.10.0"
+          "version": "1.10.1"
         }
       ]
     },
@@ -101181,7 +102047,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -101574,7 +102440,13 @@
         "authors": [
           "@adamrtalbot"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "multiple_impute_glimpse2",
