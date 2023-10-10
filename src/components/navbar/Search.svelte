@@ -93,18 +93,19 @@
     :global(.DocSearch-Hit-source) {
         font-size: 1rem;
     }
-    :global([data-bs-theme='dark'] .DocSearch-Modal, [data-bs-theme='dark'] .DocSearch-Hit-source) {
-        background: $body-secondary-bg-dark;
-    }
+
     :global(.DocSearch-Container) {
-        @include media-breakpoint-down(lg) {
+        @include media-breakpoint-down(xl) {
             padding-top: 3rem;
         }
     }
     :global(.double-navbar ~ .DocSearch-Container) {
-        @include media-breakpoint-down(lg) {
+        @include media-breakpoint-down(xl) {
             padding-top: 5rem;
         }
+    }
+    :global([data-bs-theme='dark'] .DocSearch-Modal, [data-bs-theme='dark'] .DocSearch-Hit-source) {
+        background: $body-secondary-bg-dark;
     }
     :global([data-bs-theme='dark'] .DocSearch-Button-Key, [data-bs-theme='dark'] .DocSearch-Commands-Key) {
         background: $black;

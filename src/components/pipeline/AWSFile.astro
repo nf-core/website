@@ -5,7 +5,6 @@ import { formatDistanceToNow } from 'date-fns';
 import prettyBytes from 'pretty-bytes';
 
 const { item } = Astro.props;
-
 const fileIcon = icons.getClass(item.name);
 ---
 
@@ -15,7 +14,7 @@ const fileIcon = icons.getClass(item.name);
             {fileIcon ? <span class={fileIcon + ' file-icon me-2'} /> : <i class="fa-regular fa-file me-2" />}
             <span>{item.name}</span>
         </span>
-        <span class="col">{formatDistanceToNow(item.lastModified)}</span>
+        <span class="col">{formatDistanceToNow(new Date(item.lastModified))}</span>
         <span class="col-1 text-end">{prettyBytes(item.size)}</span>
     </div>
 </a>
