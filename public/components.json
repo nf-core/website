@@ -6570,11 +6570,33 @@
               "description": "BCF merged output file => when `--output-type u` is used",
               "pattern": "*.bcf"
             }
+          },
+          {
+            "hap": {
+              "type": "file",
+              "description": "hap format used by IMPUTE2 and SHAPEIT",
+              "pattern": "*.hap.gz"
+            }
+          },
+          {
+            "legend": {
+              "type": "file",
+              "description": "legend format used by IMPUTE2 and SHAPEIT",
+              "pattern": "*.legend.gz"
+            }
+          },
+          {
+            "sample": {
+              "type": "file",
+              "description": "sample format used by IMPUTE2 and SHAPEIT",
+              "pattern": "*.samples"
+            }
           }
         ],
         "authors": [
           "@nvnieuwk",
-          "@ramprasadn"
+          "@ramprasadn",
+          "@atrigila"
         ]
       }
     },
@@ -58168,19 +58190,6 @@
               "description": "Latin name of the species for which a mitochondrial genome should be fetched",
               "pattern": "[A-Z]?[a-z]* [a-z]*"
             }
-          },
-          {
-            "email": {
-              "type": "string",
-              "description": "Email address for NCBI query"
-            }
-          },
-          {
-            "min_length": {
-              "type": "integer",
-              "description": "Minimum length of the mitochondrial genome",
-              "pattern": "[0-9]*"
-            }
           }
         ],
         "output": [
@@ -92033,6 +92042,184 @@
         ],
         "authors": [
           "@timslittle"
+        ]
+      }
+    },
+    {
+      "name": "truvari_bench",
+      "path": "modules/nf-core/truvari/bench/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "truvari_bench",
+        "description": "Given baseline and comparison sets of variants, calculate the recall/precision/f-measure",
+        "keywords": [
+          "structural variants",
+          "sv",
+          "vcf",
+          "benchmark",
+          "comparison"
+        ],
+        "tools": [
+          {
+            "truvari": {
+              "description": "Structural variant comparison tool for VCFs",
+              "homepage": "https://github.com/ACEnglish/truvari",
+              "documentation": "https://github.com/acenglish/truvari/wiki",
+              "tool_dev_url": "https://github.com/ACEnglish/truvari",
+              "doi": "10.1186/s13059-022-02840-6",
+              "licence": "['MIT']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "Input SV VCF file",
+              "pattern": "*.vcf.gz"
+            }
+          },
+          {
+            "tbi": {
+              "type": "file",
+              "description": "Input SV VCF index file",
+              "pattern": "*.vcf.gz.tbi"
+            }
+          },
+          {
+            "truth_vcf": {
+              "type": "file",
+              "description": "Input VCF file with truth SVs",
+              "pattern": "*.vcf.gz"
+            }
+          },
+          {
+            "tbi": {
+              "type": "file",
+              "description": "Input VCF index file with truth SVs",
+              "pattern": "*.vcf.gz.tbi"
+            }
+          },
+          {
+            "bed": {
+              "type": "file",
+              "description": "BED file containing regions to compare",
+              "pattern": "*.bed"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing fasta information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Reference FASTA file",
+              "pattern": "*.{fasta,fa,fna}"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing fasta index information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "Reference FASTA index file",
+              "pattern": "*.fai"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "fn_vcf": {
+              "type": "file",
+              "description": "VCF file with false negatives",
+              "pattern": "*.fn.vcf.gz"
+            }
+          },
+          {
+            "fn_tbi": {
+              "type": "file",
+              "description": "VCF index file with false negatives",
+              "pattern": "*.fn.vcf.gz.tbi"
+            }
+          },
+          {
+            "fp_vcf": {
+              "type": "file",
+              "description": "VCF file with false positives",
+              "pattern": "*.fp.vcf.gz"
+            }
+          },
+          {
+            "fp_tbi": {
+              "type": "file",
+              "description": "VCF index file with false positives",
+              "pattern": "*.fp.vcf.gz.tbi"
+            }
+          },
+          {
+            "tp_base_vcf": {
+              "type": "file",
+              "description": "VCF file with base true positives",
+              "pattern": "*.tp-base.vcf.gz"
+            }
+          },
+          {
+            "tp_base_tbi": {
+              "type": "file",
+              "description": "VCF index file with base true positives",
+              "pattern": "*.tp-base.vcf.gz.tbi"
+            }
+          },
+          {
+            "tp_comp_vcf": {
+              "type": "file",
+              "description": "VCF file with compared true positives",
+              "pattern": "*.tp-comp.vcf.gz"
+            }
+          },
+          {
+            "tp_comp_tbi": {
+              "type": "file",
+              "description": "VCF index file with compared true positives",
+              "pattern": "*.tp-comp.vcf.gz.tbi"
+            }
+          },
+          {
+            "summary": {
+              "type": "file",
+              "description": "Summary JSON file with results from the benchmark",
+              "pattern": "*.summary.json"
+            }
+          }
+        ],
+        "authors": [
+          "@nvnieuwk"
         ]
       }
     },
