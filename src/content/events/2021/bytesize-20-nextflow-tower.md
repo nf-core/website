@@ -3,9 +3,9 @@ title: 'Bytesize 20: Nextflow Tower'
 subtitle: Evan Floden - Seqera Labs, Spain
 type: talk
 start_date: '2021-09-21'
-start_time: '13:00 CEST'
+start_time: '13:00+02:00'
 end_date: '2021-09-21'
-end_time: '13:30 CEST'
+end_time: '13:30+02:00'
 youtube_embed: https://youtu.be/zS_hbXQmHbI
 location_url:
   - https://youtu.be/zS_hbXQmHbI
@@ -25,7 +25,9 @@ It is our hope that these talks / videos will build an archive of training mater
 This week, Evan Floden ([@evanfloden](http://github.com/evanfloden/)) will provide some updates on Nextflow Tower (<https://tower.nf>), including the new Community Showcase with nf-core pipelines, a first look at the datasets feature, the upcoming CLI, and some automations for triggering the execution of pipelines.
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been modified for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:41](https://youtu.be/zS_hbXQmHbI?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=41) What I’m going to talk about today is a little bit about [Nextflow Tower](https://landing.tower.nf/), the new features that are coming out, and some of the things we are excited about. If you are interested in a general overview, get in touch with us. We can set up a demo and also go into specific use cases.
 

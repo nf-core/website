@@ -8,7 +8,7 @@ import ConfigListing from '@components/ConfigListing.svelte';
 export interface Props {
     title: string;
     description: string;
-    filter: { name: string; class?: string }[];
+    filter: { name: string; count?: number }[];
     displayStyle: { name: string; icon: string }[];
     sortBy: string[];
     pipelines?: {
@@ -40,18 +40,37 @@ export interface Props {
         content: string;
         config: {};
     }[];
+    mainpage_container?: boolean;
+    viewTransitions?: boolean;
 }
 
-const { title, description, filter, displayStyle, sortBy, pipelines, components, configs } = Astro.props;
+const {
+    title,
+    description,
+    filter = [],
+    displayStyle,
+    sortBy,
+    pipelines,
+    components,
+    configs,
+    mainpage_container = false,
+    viewTransitions = false,
+} = Astro.props;
 ---
 
-<PageLayout title={title} subtitle={description}>
-    <FilterBar filter={filter} displayStyle={displayStyle} sortBy={sortBy} client:load />
-    {!components && <PipelinesListing pipelines={pipelines} client:load />}
-    {components && <ComponentListing components={components} client:load />}
-    {configs && <ConfigListing configs={configs} client:load />}
-
-    <slot />
+<PageLayout
+    title={title}
+    subtitle={description}
+    mainpage_container={mainpage_container}
+    viewTransitions={viewTransitions}
+>
+    <div class="container-fluid main-content pt-md-2 p-1">
+        <slot />
+        <FilterBar displayStyle={displayStyle} filter={filter} sortBy={sortBy} client:load />
+        {!components && !configs && <PipelinesListing filters={filter} pipelines={pipelines} client:load />}
+        {components && <ComponentListing components={components} client:load />}
+        {configs && <ConfigListing configs={configs} client:load />}
+    </div>
 </PageLayout>
 
 <style lang="scss"></style>

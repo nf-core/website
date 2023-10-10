@@ -3,9 +3,9 @@ title: 'Bytesize 4: GitHub contribution basics'
 subtitle: Alexander Peltzer - Boehringer Ingelheim Pharma GmbH & Co. KG, Germany
 type: talk
 start_date: '2021-02-23'
-start_time: '13:00 CET'
+start_time: '13:00+01:00'
 end_date: '2021-02-23'
-end_time: '13:30 CET'
+end_time: '13:30+01:00'
 youtube_embed: https://youtu.be/gTEXDXWf4hE
 location_url:
   - https://doi.org/10.6084/m9.figshare.14160680.v1
@@ -37,7 +37,9 @@ The talk will be live-streamed on YouTube:
 
 <details markdown="1"><summary>Video transcription</summary>
 
-**Note: This text has been edited to make it more suitable for reading.**
+:::note
+This text has been edited to make it more suitable for reading.
+:::
 
 We're going to cover a bit of GitHub contribution basics today, as well as some basic introduction into git for beginners. This won't cover everything, so it's targeted towards beginners in that sense, but there are most likely parts that we cannot cover today because of the limited time that we have.
 

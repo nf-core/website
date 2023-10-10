@@ -3,9 +3,9 @@ title: 'Bytesize 2: How nf-core configs work'
 subtitle: Maxime Garcia - SciLifeLab / Karolinska Institutet, Sweden
 type: talk
 start_date: '2021-02-09'
-start_time: '13:00 CET'
+start_time: '13:00+01:00'
 end_date: '2021-02-09'
-end_time: '13:30 CET'
+end_time: '13:30+01:00'
 youtube_embed: https://youtu.be/cXBYusdjrc0
 location_url:
   - https://doi.org/10.6084/m9.figshare.14160347.v1
@@ -36,7 +36,9 @@ The talk will be presented on Zoom and live-streamed on YouTube:
 - YouTube: <https://youtu.be/cXBYusdjrc0>
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: This text has been edited to make it more suitable for readers.**
+:::note
+This text has been edited to make it more suitable for readers.
+:::
 
 OK, so hello everyone, Maxime here.
 I am working for the Swedish Childhood Tumor Biobank which is located at Karolinska Institutet and I am sitting half-time at the National Genomics Infrastructure at SciLifeLab.

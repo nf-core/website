@@ -2,13 +2,12 @@
 title: Hackathon - October 2022 (Barcelona)
 subtitle: A hybrid hackathon held in Barcelona and online
 type: hackathon
-start_announcement: '2022-08-02 12:00 CEST'
+start_announcement: '2022-08-02T12:00+02:00'
 start_date: '2022-10-10'
-start_time: '11:00 CEST'
+start_time: '11:00+02:00'
 end_date: '2022-10-12'
-end_time: '13:00 CEST'
+end_time: '13:00+02:00'
 location_name: Barcelona, Spain
-location_url: https://app.gather.town/app/X08wvNfA0ndXyDDE/Nextflow%20summit
 ---
 
 # Welcome

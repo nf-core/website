@@ -37,7 +37,7 @@ const headings = [
     },
     {
         text: 'Gather Town',
-        slug: 'gather',
+        slug: 'gather-town',
         depth: 1,
         fa_icon: 'fa fa-grapes  fa-rotate-270',
     },
@@ -47,9 +47,6 @@ const headings = [
 <MarkdownTocLayout title={title} subtitle={subtitle} headings={headings} md_github_url="">
     <p>We use a few different tools to organise the nf-core community - you are welcome to join us at any or all!</p>
     <p class="text-center">
-        <a href="https://nf-co.re/join/slack" class="mb-2 me-3 btn btn-lg btn-dark" style="background-color: #4a154b;">
-            <i class="fab fa-slack"></i> Slack
-        </a>
         <a href="https://github.com/nf-core" class="mb-2 me-3 btn btn-lg btn-dark border-white">
             <i class="fab fa-github"></i> GitHub
         </a>
@@ -64,18 +61,21 @@ const headings = [
             <i class="fab fa-mastodon"></i> mastodon
         </a>
         <a
-            href="https://www.youtube.com/c/nf-core"
+            href="https://www.youtube.com/@nf-core"
             class="mb-2 me-3 btn btn-lg btn-danger"
             style="background-color: #EA3C1E;"
         >
             <i class="fab fa-youtube"></i> YouTube
+        </a>
+        <a href="/join/slack" class="mb-2 me-3 btn btn-lg btn-dark" style="background-color: #611f69;">
+            <i class="fab fa-slack"></i> Slack
         </a>
     </p>
 
     <p class="text-info small">
         <i class="fas fa-exclamation-triangle me-1"></i>
         All nf-core community members are expected to adhere to the nf-core <a
-            href="/code_of_conduct"
+            href="/code_of_conduct/"
             class="text-info link-underline">code of conduct</a
         >
     </p>
@@ -103,13 +103,13 @@ const headings = [
         to people running nf-core pipelines, as well as discussing development ideas.
     </p>
     <p>
-        Once you have registered, you can access the nf-core slack at [](https://nfcore.slack.com/)
+        Once you have registered, you can access the nf-core slack at <a href="https://nfcore.slack.com/"
+            >https://nfcore.slack.com/</a
+        >
         <em class="small text-muted">(NB: No hyphen!)</em>
     </p>
     <p>
-        <a class="btn btn-success me-2" href="https://nf-co.re/join/slack"
-            ><i class="fab fa-slack"></i> Get invite to nf-core Slack</a
-        >
+        <a class="btn btn-success me-2" href="/join/slack"><i class="fab fa-slack"></i> Get invite to nf-core Slack</a>
     </p>
 
     <h1 id="github" class="mt-5">
@@ -134,7 +134,7 @@ const headings = [
     </p>
 
     <p>
-        <a href="https://github.com/nf-core" class="mb-2 btn btn-dark">
+        <a href="https://github.com/nf-core" class="mb-2 btn btn-dark border-white">
             <i class="fab fa-github"></i> nf-core on GitHub
         </a>
     </p>
@@ -170,9 +170,9 @@ const headings = [
         <a href="#youtube" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
     </h1>
     <p>
-        The <a href="https://www.youtube.com/c/nf-core">nf-core</a> YouTube channel is used for tutorial videos and has a
+        The <a href="https://www.youtube.com/@nf-core">nf-core</a> YouTube channel is used for tutorial videos and has a
         playlist to collect recordings of presentations about nf-core from across the web. See <a
-            href="https://www.youtube.com/c/nf-core">https://www.youtube.com/c/nf-core</a
+            href="https://www.youtube.com/@nf-core">https://www.youtube.com/@nf-core</a
         >
     </p>
     <script src="https://apis.google.com/js/platform.js"></script>

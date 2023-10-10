@@ -2,9 +2,18 @@
 import pipelines_json from '@public/pipelines.json';
 import ListingLayout from '@layouts/ListingLayout.astro';
 
-const pipelines = pipelines_json.remote_workflows;
+const pipelines = pipelines_json.remote_workflows.sort((a, b) => {
+    if (a.releases.length == 1 && b.releases.length > 1) return 1;
+    if (a.releases.length > 1 && b.releases.length == 1) return -1;
+    if (a.releases.length == 1 && b.releases.length == 1) return 0;
+    const a_date = new Date(a.releases[0].published_at);
+    const b_date = new Date(b.releases[0].published_at);
+    if (a_date > b_date) return -1;
+    if (a_date < b_date) return 1;
+    return 0;
+});
 const title = 'Pipelines';
-const description = `We currently have ${pipelines.length} pipelines available.`;
+const description = `Browse the  ${pipelines.length} pipelines that are currently available as part of nf-core.`;
 
 const num_released = pipelines.filter((p) => p.releases.length > 1 && !p.archived).length;
 const num_dev = pipelines.filter((p) => p.releases.length == 1 && !p.archived).length;
@@ -20,11 +29,12 @@ const num_archived = pipelines.filter((p) => p.archived).length;
         { name: 'Under development', count: num_dev },
         { name: 'Archived', count: num_archived },
     ]}
-    sortBy={['Last release', 'Alphabetical', 'Stars']}
+    sortBy={['Last release', 'Name', 'Stars']}
     displayStyle={[
         { name: 'grid', icon: 'fa-regular fa-grid-2' },
         { name: 'table', icon: 'fa-regular fa-bars' },
     ]}
+    viewTransitions={false}
 />
 
 <style></style>

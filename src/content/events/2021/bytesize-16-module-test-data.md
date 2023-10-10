@@ -3,9 +3,9 @@ title: 'Bytesize 16: Modules test data'
 subtitle: Kevin Menden - QBiC Tübingen, Germany
 type: talk
 start_date: '2021-06-08'
-start_time: '13:00 CEST'
+start_time: '13:00+02:00'
 end_date: '2021-06-08'
-end_time: '13:30 CEST'
+end_time: '13:30+02:00'
 youtube_embed: https://youtu.be/QXfAerydAT0
 location_url:
   - https://youtu.be/QXfAerydAT0
@@ -30,7 +30,9 @@ This will cover:
 - How to use existing and add new test data for nf-core/modules
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited to make it reader-friendly**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:53](https://youtu.be/QXfAerydAT0?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=53) Thanks for the introduction. Today we will talk about nf-core/modules and test data for these. Specifically, I will be talking about how to use the test data that we have, to create tests for your modules. I will also cover what to do if you don’t find the data you need for the specific module that you want to add to the nf-core/modules repository.
 

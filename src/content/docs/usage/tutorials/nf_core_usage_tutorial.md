@@ -86,7 +86,13 @@ pip install --upgrade --force-reinstall git+https://github.com/nf-core/tools.git
 If using conda, first set up Bioconda as described in the [bioconda docs](https://bioconda.github.io/#usage) (especially setting the channel order), create and activate an environment and then install nf-core:
 
 ```bash
-conda install -c bioconda nf-core
+conda install nf-core
+```
+
+To update the package you can run the following command
+
+```bash
+conda update nf-core
 ```
 
 The nf-core/tools source code is available at [https://github.com/nf-core/tools](https://github.com/nf-core/tools) - if you prefer, you can clone this repository and install the code locally:
@@ -107,7 +113,7 @@ You will also need to install [Prettier](https://prettier.io/) for formatting yo
 To do so, you can either use the following command with conda:
 
 ```bash
-conda install -c conda-forge prettier
+conda install prettier
 ```
 
 Or use the Visual Studio Code extension [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) also available in the pack of useful extension [NF-core](https://marketplace.visualstudio.com/items?itemName=nf-core.nf-core-extensionpack).
@@ -293,9 +299,7 @@ Not everything always runs smoothly and you might be getting some errors when ru
 Here is a bytesize talk with a step by step explanation on how to troubleshoot failing pipelines.
 
 <!-- markdownlint-disable -->
-<div class="ratio ratio-16x9">
-<iframe src="https://www.youtube.com/embed/z9n2F4ByIkY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/z9n2F4ByIkY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <!-- markdownlint-restore -->
 
 ## Conclusion
@@ -304,6 +308,6 @@ We hope that this _nf-core_ tutorial has been helpful!
 Remember that there is more in-depth documentation on many of these topics available on the [nf-core website](https://nf-co.re).
 If in doubt, please ask for help on Slack.
 
-If you have any suggestions for how to improve this tutorial, or spot any mistakes, please create an issue or pull request on the [nf-core/nf-co.re repository](https://github.com/nf-core/nf-co.re).
+If you have any suggestions for how to improve this tutorial, or spot any mistakes, please create an issue or pull request on the [nf-core/website repository](https://github.com/nf-core/website).
 
 > [Phil Ewels](https://github.com/ewels/), [Maxime Garcia](https://github.com/MaxUlysse), [Gisela Gabernet](https://github.com/ggabernet), [Friederike Hanssen](https://github.com/FriederikeHanssen) for _nf-core_, March 2022

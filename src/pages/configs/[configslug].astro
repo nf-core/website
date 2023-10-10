@@ -1,5 +1,5 @@
 ---
-import { markdown } from '@astropub/md';
+import Markdown from '@components/markdown/Markdown.svelte';
 import MarkdownWrapper from '@components/markdown/MarkdownWrapper.svelte';
 import octokit from '@components/octokit';
 import SidebarStatsRow from '@components/sidebar/SidebarStatsRow.astro';
@@ -38,7 +38,14 @@ export async function getStaticPaths() {
                 ? fileContent.match(/executor\s*{\s*name\s*=\s*(.*)\s*}/)[1]
                 : '';
         }
-
+        // handle ternary operators in config.executor
+        if (config.executor.includes('?') && config.executor.includes(':')) {
+            config.executor = config.executor
+                .match(/{.*\?(.*)\:(.*)}/)
+                ?.slice(1, 3)
+                .map((item) => item.trim().replace(/'/g, ''))
+                .join(', ');
+        }
         //remove double and quotes
         Object.keys(config).forEach((key) => {
             config[key] = config[key].replaceAll(/'|"/g, '');
@@ -80,13 +87,13 @@ export async function getStaticPaths() {
                 raw_config: Buffer.from(config.data.content, 'base64').toString(),
                 path: markdown.path.replace('docs/', 'conf/').replace('.md', '.config'),
             };
-        })
+        }),
     );
-    return await configs.map((config) => {
+    return await configs.flatMap((config) => {
         return [
             {
                 params: {
-                    configslug: config.name.replace('.md', ''),
+                    configslug: config.name.replace('.mdx', '').replace('.md', ''),
                 },
                 props: {
                     content: config.content,
@@ -112,35 +119,31 @@ const gh_url = 'https://github.com/nf-core/configs/blob/master/docs/' + configsl
 ---
 
 <PageLayout
-    title={configslug}
+    title={'nf-core/configs: ' + configslug}
     subtitle={config.config_profile_description}
     mainpage_container={true}
     md_github_url={gh_url}
     subfooter={true}
+    docSearchTags={[{ name: 'page_type', content: 'Config' }]}
 >
     <div class="row">
-        <div class="col-12 col-md-10">
+        <div class="col-12 col-md-9">
             <div class="markdown-content">
-                <MarkdownWrapper headings={} client:idle>
-                    {
-                        async () => {
-                            const html = await markdown(content);
-                            return html;
-                        }
-                    }
+                <MarkdownWrapper headings={[]} client:idle>
+                    <Markdown md={content} />
                 </MarkdownWrapper>
             </div>
             <h1>Config file</h1>
+            <p class="my-3">
+                <a href={'https://github.com/nf-core/configs/tree/master/' + path} target="_blank">
+                    <i class="fab fa-github me-2"></i>See config file on GitHub
+                </a>
+            </p>
             <div class="config-code">
-                {
-                    async () => {
-                        const html = await markdown(raw_config);
-                        return html;
-                    }
-                }
+                <Markdown md={raw_config} />
             </div>
         </div>
-        <div class="col-none col-md-2 sidebar">
+        <div class="col-none col-md-3 sidebar">
             {
                 config.executor && (
                     <SidebarStatsRow

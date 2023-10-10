@@ -4,7 +4,8 @@
   display: none;
 }
 
-pre[data-theme='dark'] {
+pre[data-theme='dark'],
+div[data-rehype-pretty-code-title][data-theme='dark'] {
   display: none;
 }
 body {
@@ -46,6 +47,10 @@ strong {
   font-size: 90%;
 }
 
+.font-sans-serif {
+  font-family: $font-family-sans-serif;
+}
+
 blockquote {
   margin: 1rem 0 2rem;
   padding: 0.5rem 1rem;
@@ -82,11 +87,6 @@ img {
   text-decoration: underline;
 }
 
-.btn-light {
-  background-color: rgba($gray-200, 0.75);
-  color: $gray-800;
-}
-
 .card p:last-child {
   margin-bottom: 0;
 }
@@ -116,6 +116,9 @@ section:before {
   background-color: rgba($gray-200, 0.75);
 }
 
+.bg-youtube {
+  background-color: #ea3c1e !important;
+}
 .toast {
   background-color: rgba($gray-100, 0.9);
   position: fixed;
@@ -163,27 +166,27 @@ section:before {
 }
 
 // buttons
-.btn-outline-success:not(:disabled):not(.disabled) {
-  border-color: $nf-core-color;
-  color: $nf-core-color;
-}
 
-.btn-outline-success:not(:disabled):not(.disabled):hover,
-.btn-check:checked + .btn-outline-success:not(:disabled):not(.disabled) {
-  background-color: $nf-core-color;
+// make hover and active states more obvious for outline buttons
+.btn-outline-success:not(:disabled):not(.disabled):hover:not(.active) {
+  background-color: shade-color($nf-core-color, 15%);
   color: $white;
 }
 
-.btn-success:not(:disabled):not(.disabled) {
-  background-color: $nf-core-color;
-  border-color: $nf-core-color;
-  color: $white;
+.btn-outline-primary:not(:disabled):not(.disabled):hover:not(.active) {
+  background-color: shade-color($primary, 15%);
 }
-
-.btn-success:not(:disabled):not(.disabled):hover {
-  background-color: $nf-core-color;
-  border-color: shade-color($nf-core-color, 5%);
-  color: $white;
+.btn-outline-secondary:not(:disabled):not(.disabled):hover:not(.active) {
+  background-color: shade-color($secondary, 15%);
+}
+.btn-outline-info:not(:disabled):not(.disabled):hover:not(.active) {
+  background-color: shade-color($info, 15%);
+}
+.btn-outline-warning:not(:disabled):not(.disabled):hover:not(.active) {
+  background-color: shade-color($warning, 15%);
+}
+.btn-outline-danger:not(:disabled):not(.disabled):hover:not(.active) {
+  background-color: shade-color($danger, 15%);
 }
 
 .btn-outline-success:not(:disabled):not(.disabled).active,
@@ -242,6 +245,9 @@ section:before {
   cursor: not-allowed;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
 // code
 code:not(pre code),
 .code:not(pre .code) {
@@ -251,6 +257,10 @@ code:not(pre code),
   color: inherit;
 }
 
+.mainpage-heading code:not(pre code) {
+  background-color: rgba($white, 0.1) !important;
+  color: $white !important;
+}
 @include media-breakpoint-down(md) {
   pre,
   code,
@@ -259,36 +269,21 @@ code:not(pre code),
   }
 }
 
-.main-content pre{
+.main-content pre {
   border-radius: 3px;
   font-size: 14px;
   code {
     border: 1px solid $border-color;
-    display: block;
+    display: flow-root;
     overflow-x: auto;
     padding: 1em;
-
-    .copy-button {
-      margin-top: 0.4rem;
-      margin-right: 0.4rem;
-      display: none;
-
-      &:focus {
-        // color: $success;
-        box-shadow: none;
-      }
-    }
-
-    &:hover .copy-button {
-      display: block;
-    }
   }
 }
 
 .sticky-top-under {
-        top: 4rem;
-        position: sticky;
-    }
+  top: 4rem;
+  position: sticky;
+}
 
 /*
  * Main pages
@@ -317,21 +312,6 @@ code:not(pre code),
   .main-content {
     margin-bottom: 2rem;
   }
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {
-  color: $success !important; // TODO: resolve this with bootstrap variables (not working as of 5.3alpha1)
 }
 
 .main-content h1 {
@@ -384,17 +364,32 @@ h4:focus .header-link,
   }
 }
 
-.markdown-content {
+.markdown-content h5 {
+  color: var(--bs-body-color);
+  font-family: $font-family-sans-serif;
+  margin-top: 1rem;
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-base * 1.1;
+}
+
+.markdown-content,
+.events,
+.card {
   h1,
   h2,
   h3,
   h4,
   h5,
-  h6 {
+  h6,
+  .title {
     scroll-margin-top: 4rem;
 
-    :hover .fa-link {
+    :hover .invisible {
       visibility: visible !important;
+      &:not(.fa-link)::before {
+        content: '\f0c1';
+        color: $gray-600;
+      }
     }
   }
 }
@@ -478,17 +473,22 @@ h4:focus .header-link,
 
 .pipeline .pipeline-topic,
 .module .module-topic,
+.subworkflow .subworkflow-topic,
 .search-page-result .pipeline-topic {
   background-color: $gray-100;
   color: $success;
   font-weight: 400;
 }
 
-.mainpage-heading .pipeline-topic,
-.mainpage-heading .module-topic {
-  background-color: rgba($white, 0.1);
-  color: rgba($white, 0.9);
-  font-weight: 400;
+.mainpage-heading {
+  .topic,
+  .pipeline-topic,
+  .module-topic,
+  .subworkflow-topic {
+    background-color: rgba($white, 0.1);
+    color: rgba($white, 0.9);
+    font-weight: 400;
+  }
 }
 
 .pipelines-container-list .col:first-child .pipeline.card {
@@ -1111,8 +1111,9 @@ Launch Page
 }
 
 .breadcrumb-item:not(.active) {
-  & a, & span{
-  color: $gray-600 !important;
+  & a,
+  & span {
+    color: $gray-600 !important;
   }
 }
 
@@ -1135,18 +1136,9 @@ Launch Page
   overflow-x: scroll;
 }
 
-// nf-cordle
-.tile {
-  color: $gray-100;
-}
-
-.tile[data-state='active'] {
-  color: inherit;
-}
-
 .sidebar-nav {
   @include media-breakpoint-up(lg) {
-    height: 100vh;
+    height: 90vh;
     overflow: auto;
   }
 
@@ -1191,14 +1183,20 @@ Launch Page
   }
 }
 
+.sidebar-left {
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
+}
+
 .admonition {
+  margin-top: 0.5rem;
   p {
     margin-bottom: 0;
   }
 
-  .admonition-body svg {
-    width: 1.5rem;
-    height: 1.5rem;
+  .admonition-body .title svg {
+    width: 1.2rem;
+    height: 1.2rem;
     fill: currentColor;
   }
 
@@ -1209,6 +1207,39 @@ Launch Page
 
 div[data-rehype-pretty-code-fragment] {
   margin-bottom: 1rem;
+  display: block;
+}
+
+.main-content div[data-rehype-pretty-code-fragment] pre .copy-code-button {
+  margin-top: 0.6rem;
+  margin-right: 0.5rem;
+}
+
+.main-content div[data-rehype-pretty-code-fragment]:has(div[data-rehype-pretty-code-title]) pre .copy-code-button {
+  margin-top: 0.6rem;
+}
+
+div[data-rehype-pretty-code-title] {
+  border: 1px solid $border-color;
+  padding: 0.5rem;
+  margin-bottom: -1px;
+}
+
+div[data-rehype-pretty-code-title][data-theme='light'] {
+  border: 1px solid $border-color;
+  background-color: $card-cap-bg;
+}
+
+div.mermaid {
+  text-align: center;
+  padding: 1rem 0 2rem;
+}
+
+.bg-success-light {
+  background-color: tint-color($success-dark, 15%);
+  a {
+    color: $link-color;
+  }
 }
 
 ////////////////////////////
@@ -1229,17 +1260,44 @@ div[data-rehype-pretty-code-fragment] {
   }
 
   .hide-light {
-    display: inline;
-  }
-  pre[data-theme='dark'] {
-    display: inline;
+    display: inline-block;
+    &:not(svg) {
+      display: block;
+    }
   }
 
-  pre[data-theme='light'] {
+  pre[data-theme='dark'] {
+    display: block;
+  }
+
+  pre[data-theme='light'],
+  div[data-rehype-pretty-code-title][data-theme='light'] {
     display: none;
+  }
+  div[data-rehype-pretty-code-title][data-theme='dark'] {
+    display: block;
+    border: 1px solid $border-color-dark;
   }
   img {
     filter: brightness(0.8) contrast(1.2); // dim images a bit https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/
+  }
+
+  .btn-outline-success:not(:disabled):not(.disabled).active,
+  .btn-outline-success:not(:disabled):not(.disabled):active,
+  .btn-success:not(:disabled):not(.disabled).active,
+  .btn-success:not(:disabled):not(.disabled):active,
+  .btn-outline-success:not(:disabled):not(.disabled).focus,
+  .btn-outline-success:not(:disabled):not(.disabled):focus,
+  .btn-success:not(:disabled):not(.disabled).focus,
+  .btn-success:not(:disabled):not(.disabled):focus {
+    background-color: $nf-core-color-dark;
+    border-color: shade-color($nf-core-color-dark, 5%);
+    color: $white;
+  }
+  .btn-success:not(:disabled):not(.disabled){
+    background-color: $nf-core-color-dark;
+    border-color: shade-color($nf-core-color-dark, 5%);
+    color: $white;
   }
 
   .bg-success,
@@ -1268,37 +1326,31 @@ div[data-rehype-pretty-code-fragment] {
     }
   }
 
+  .btn-light {
+    background-color: $black;
+    border-color: tint-color($black, 25%);
+    color: $white;
+    &:hover {
+      background-color: tint-color($black, 25%);
+      border-color: tint-color($black, 25%);
+      color: $white;
+    }
+  }
+
   .mainpage-heading,
   .mainpage-heading h1 {
     color: $gray-100 !important;
   }
 
-  .main-content pre code{
+  .main-content pre code {
     border: 1px solid $border-color-dark;
   }
 
-  div[data-rehype-pretty-code-title] {
-    padding-left: 1rem;
-    padding-right: 1rem;
+  .markdown-content img[alt='Workflow'] {
+    background-color: $white;
   }
-
   .border-success {
     border-color: $nf-core-color-dark;
-  }
-
-  .bg-success-light {
-    background-color: tint-color($success-dark, 25%);
-  }
-
-  .admonition-note {
-    border-color: $secondary;
-    background-color: $secondary-bg-subtle;
-    color: $body-color;
-
-    .title {
-      color: $white;
-      background-color: $secondary;
-    }
   }
 
   footer .nav-btn:hover {

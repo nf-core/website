@@ -3,9 +3,9 @@ title: 'Bytesize 21: nf-core/mhcquant'
 subtitle: Leon Bichmann - University of Tuebingen, Germany
 type: talk
 start_date: '2021-09-28'
-start_time: '13:00 CEST'
+start_time: '13:00+02:00'
 end_date: '2021-09-28'
-end_time: '13:30 CEST'
+end_time: '13:30+02:00'
 embed_at: 'mhcquant'
 youtube_embed: https://youtu.be/NCKkSssE_4w
 location_url:
@@ -29,7 +29,9 @@ This week, Leon Bichmann ([@Leon-Bichmann](https://github.com/Leon-Bichmann/)) w
 nfcore/mhcquant is a bioinformatics analysis pipeline used for quantitative processing of data dependent (DDA) peptidomics data. It was specifically designed to analyse immunopeptidomics data, which deals with the analysis of affinity purified, unspecifically cleaved peptides that have recently been discussed intensively in the context of cancer vaccines.
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:41](https://youtu.be/NCKkSssE_4w?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=41) Thanks for inviting me to present the nf-core/mhcquant pipeline that I developed during my PhD. nf-core/mhcquant is an automated pipeline to analyse mass spectrometry data for the discovery of epitopes that can be used for the design of vaccines.
 

@@ -1,11 +1,11 @@
 ---
-import { markdown } from '@astropub/md';
+import Markdown from '@components/markdown/Markdown.svelte';
 import ComponentParamTable from '@components/component/ComponentParamTable.astro';
 import SidebarStats from '@components/sidebar/SidebarStats.astro';
 import ComponentPageLayout from '@layouts/ComponentPageLayout.astro';
 import components_json from '@public/components.json';
 export function getStaticPaths() {
-    return components_json.subworkflows.map((subworkflow) => {
+    return components_json.subworkflows.flatMap((subworkflow) => {
         return [
             {
                 params: {
@@ -22,7 +22,12 @@ const { subworkflowslug } = Astro.params;
 const { subworkflow } = Astro.props;
 ---
 
-<ComponentPageLayout name={subworkflow.name} description={subworkflow.meta.description} type="subworkflows">
+<ComponentPageLayout
+    name={subworkflow.name}
+    description={subworkflow.meta.description}
+    type="subworkflows"
+    topics={subworkflow.meta.keywords}
+>
     <div class="row">
         <div class="col-12 col-md-10">
             <div class="mb-5">
@@ -33,12 +38,7 @@ const { subworkflow } = Astro.props;
                     >
                 </h2>
                 <div class="">
-                    {
-                        async () => {
-                            const html = await markdown(subworkflow.meta.description);
-                            return html;
-                        }
-                    }
+                    <Markdown md={subworkflow.meta.description} />
                 </div>
             </div>
             <div class="subworkflow-params">
@@ -61,7 +61,7 @@ const { subworkflow } = Astro.props;
 
         <div class="col-none col-md-2">
             <SidebarStats
-                component_type={'subworkflow'}
+                component_type={'subworkflows'}
                 contributors={subworkflow.meta.authors}
                 included_pipelines={subworkflow.pipelines}
                 included_modules={subworkflow.meta.modules}

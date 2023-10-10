@@ -3,9 +3,9 @@ title: 'Bytesize 9: JSON-schema: What, why and how'
 subtitle: Matthias Hörtenhuber - Karolinska Institutet, Sweden
 type: talk
 start_date: '2021-04-20'
-start_time: '13:00 CEST'
+start_time: '13:00+02:00'
 end_date: '2021-04-20'
-end_time: '13:30 CEST'
+end_time: '13:30+02:00'
 youtube_embed: https://youtu.be/PU6vAj_7WRM
 location_url:
   - https://youtu.be/PU6vAj_7WRM
@@ -37,7 +37,9 @@ The talk will be presented on Zoom and live-streamed on YouTube:
 - Slides: <https://doi.org/10.6084/m9.figshare.14453214.v1>
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited to make it reader-friendly**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:36](https://youtu.be/PU6vAj_7WRM?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=36) Welcome everybody, today's topic is JSON schema, what it is, why we chose to use it, and how it can be utilised.
 

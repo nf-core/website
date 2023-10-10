@@ -1,10 +1,9 @@
 ---
 import PageLayout from '@layouts/PageLayout.astro';
-import FooterPrevNext from '@components/footer/FooterPrevNext.astro';
 import MarkdownWrapper from '@components/markdown/MarkdownWrapper.svelte';
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
 import SidebarToc from '@components/sidebar/SidebarToc.svelte';
-import { CollectionEntry, getCollection } from 'astro:content';
+import 'katex/dist/katex.min.css';
 
 export interface Props {
     title: string;
@@ -14,47 +13,30 @@ export interface Props {
     event_header?: object[];
     left_sidebar?: boolean;
     sections?: { section_name: string; children: {}[] }[] | never[];
+    viewTransitions?: boolean;
+    meta_title?: string;
+    docSearchTags?: {
+        name: string;
+        content: string;
+    }[];
+    minHeadingDepth?: number;
+    maxHeadingDepth?: number;
 }
 
-let { title, subtitle, md_github_url, event_header, headings, left_sidebar, sections } = Astro.props;
-
-let prev_page: CollectionEntry<'docs'> | null = null;
-let next_page: CollectionEntry<'docs'> | null = null;
-if (Astro.url.pathname.startsWith('/docs/')) {
-    const docs = await getCollection('docs');
-    const subpages = docs.filter((doc) => {
-        return doc.slug.split('/').length === 2;
-    });
-    sections = [
-        { section_name: 'Usage', children: [] },
-        { section_name: 'Contributing', children: [] },
-    ];
-    subpages.map((doc) => {
-        if (doc.slug.startsWith('usage/')) {
-            let index = sections.findIndex((section) => section.section_name === 'Usage');
-            sections[index].children.push({ title: doc.data.title, slug: '/docs/' + doc.slug + '/' });
-        }
-        if (doc.slug.startsWith('contributing/')) {
-            let index = sections.findIndex((section) => section.section_name === 'Contributing');
-            sections[index].children.push({ title: doc.data.title, slug: '/docs/' + doc.slug + '/' });
-        }
-    });
-    // find the index of the current page and use that to get the previous and next page
-    const url = Astro.url.pathname.replace('/docs/', '').replace(/\/$/, '');
-    const current_page_index = docs.findIndex(
-        (page) => page.slug === Astro.url.pathname.replace('/docs/', '').replace(/\/$/, '')
-    );
-    if (current_page_index === -1) {
-        console.error('Could not find current page ' + Astro.url.pathname + ' in docs collection');
-    } else {
-        prev_page = docs[current_page_index - 1];
-        prev_page =
-            prev_page && prev_page.slug?.split('/').slice(-2)[0] === url.split('/').slice(-2)[0] ? prev_page : null;
-        next_page = docs[current_page_index + 1];
-        next_page =
-            next_page && next_page.slug?.split('/').slice(-2)[0] === url.split('/').slice(-2)[0] ? next_page : null;
-    }
-}
+const {
+    title,
+    subtitle,
+    md_github_url,
+    event_header,
+    headings,
+    left_sidebar,
+    sections = [],
+    viewTransitions = false,
+    meta_title = '',
+    docSearchTags = [],
+    minHeadingDepth = 1,
+    maxHeadingDepth = 4,
+} = Astro.props;
 ---
 
 <script>
@@ -81,46 +63,47 @@ if (Astro.url.pathname.startsWith('/docs/')) {
 </script>
 <PageLayout
     title={title}
+    meta_title={meta_title}
     subtitle={subtitle}
     md_github_url={md_github_url}
     event_header={event_header}
-    subfooter={md_github_url ? true : false}
+    subfooter={md_github_url && !Astro.url.pathname.startsWith('/docs/') ? true : false}
     mainpage_container={true}
     navTocHeadings={headings}
+    sections={sections}
+    docSearchTags={docSearchTags}
+    viewTransitions={viewTransitions}
+    mermaid={true}
 >
     <div class="row">
         {
             left_sidebar && (
-                <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left">
+                <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left pt-1">
                     <SidebarNav items={sections} />
                 </div>
             )
         }
         <div class:list={['col-12', { 'col-md-10': !left_sidebar, 'col-md-8': left_sidebar }]}>
-            <div class="markdown-content">
+            <div class="markdown-content" transition:animate="morph">
                 <MarkdownWrapper headings={headings} client:idle>
                     <slot />
                 </MarkdownWrapper>
             </div>
         </div>
         <div class="col-12 col-md-2 toc">
-            <SidebarToc headings={headings} client:idle />
+            <SidebarToc
+                headings={headings}
+                minHeadingDepth={minHeadingDepth}
+                maxHeadingDepth={maxHeadingDepth}
+                client:idle
+            />
         </div>
     </div>
-    {
-        Astro.url.pathname.startsWith('/docs/') && (
-            <FooterPrevNext
-                slot="pre-footer"
-                md_github_url={md_github_url}
-                prev_page={prev_page}
-                next_page={next_page}
-            />
-        )
-    }
+    <slot name="pre-footer" slot="pre-footer" />
 </PageLayout>
 <style lang="scss">
-    .sidebar-left {
-        max-height: calc(100vh - 4rem);
-        overflow-y: auto;
+    .markdown-content :global(img[loading='lazy']) {
+        aspect-ratio: attr(width) / attr(height);
+        height: auto;
     }
 </style>

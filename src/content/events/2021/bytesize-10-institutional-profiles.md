@@ -3,9 +3,9 @@ title: 'Bytesize 10: Making a new institutional profile'
 subtitle: James A. Fellows Yates - LMU Munich / MPI-EVA
 type: talk
 start_date: '2021-04-27'
-start_time: '13:00 CEST'
+start_time: '13:00+02:00'
 end_date: '2021-04-27'
-end_time: '13:30 CEST'
+end_time: '13:30+02:00'
 youtube_embed: https://youtu.be/Ym1s6sKGzkw
 location_url:
   - https://www.bilibili.com/video/BV1BA411V78U
@@ -43,7 +43,9 @@ You can see the slides on HackMD: <https://hackmd.io/@jfy133/Hyc_WvXU_> (shown b
 </div>
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited to make it reader-friendly**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:54](https://youtu.be/Ym1s6sKGzkw?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=54) Thank you very much. As mentioned, the overview of today’s talk is that we will be recapping the benefits of using nf-core institutional profiles, and I will describe the information you should generally gather before writing one.
 

@@ -3,9 +3,9 @@ title: 'Bytesize 17: Pytest workflow'
 subtitle: Edmund Miller - University of Texas at Dallas
 type: talk
 start_date: '2021-06-15'
-start_time: '13:00 CEST'
+start_time: '13:00+02:00'
 end_date: '2021-06-15'
-end_time: '13:30 CEST'
+end_time: '13:30+02:00'
 youtube_embed: https://youtu.be/pjhscKyWH74
 location_url:
   - https://youtu.be/pjhscKyWH74
@@ -32,7 +32,9 @@ This will cover:
 - How we test nf-core pipelines
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:52](https://youtu.be/pjhscKyWH74?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=52) Let’s get started with pytest workflows.
 

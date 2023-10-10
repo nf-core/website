@@ -1,0 +1,182 @@
+---
+import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
+import pipelines_json from '@public/pipelines.json';
+import { S3Client, ListObjectsV2Command } from '@aws-sdk/client-s3';
+import AWSFile from '@components/pipeline/AWSFile.astro';
+import AWSFilePreview from '@components/pipeline/AWSFilePreview.astro';
+
+let { pipeline, version, path, bucketContents = [], commonPrefixes = [] } = Astro.props;
+
+export interface Props {
+    pipeline: string;
+    version: string;
+    path: string;
+    bucketContents: { Key: string; LastModified: Date; ETag: string; Size: number; StorageClass: string }[];
+    commonPrefixes: { Prefix: string }[];
+}
+
+path = pipeline + '/' + path;
+
+const meta = pipelines_json.remote_workflows.find((p) => p.name === pipeline);
+const versions = meta?.releases.map((release) => release.tag_name);
+const md_files = meta?.releases.reduce((result, release) => {
+    if (release.tag_name === version) {
+        result = release.doc_files.map((file) => file.replace('docs/', '').replace('.mdx', '').replace('.md', ''));
+    }
+    return result;
+}, []);
+
+const releaseSHA = meta?.releases.find((release) => release.tag_name === version)?.tag_sha;
+const bucketName = 'nf-core-awsmegatests';
+const prefix = `${pipeline}/results-${releaseSHA}/`;
+const baseURL = `/${pipeline}/${version}/`;
+const pathParts = path.split('/');
+let filename = Astro.url.searchParams.get('file');
+const description = meta?.description;
+const depth = pathParts.length;
+let awsResponse;
+let isTruncated = commonPrefixes.length === 0;
+
+if (bucketContents.length === 0 && commonPrefixes.length === 0) {
+    let client = new S3Client({
+        region: 'eu-west-1',
+        signer: { sign: async (request) => request },
+    });
+
+    while (isTruncated) {
+        awsResponse = await client.send(
+            new ListObjectsV2Command({
+                Bucket: bucketName,
+                ContinuationToken: awsResponse?.NextContinuationToken,
+                Prefix: path + '/',
+                Delimiter: '/',
+            }),
+        );
+
+        if (awsResponse.KeyCount === 0) {
+            break;
+        }
+        if (awsResponse.Contents) {
+            bucketContents.push(...awsResponse.Contents);
+        }
+        if (awsResponse.CommonPrefixes) {
+            commonPrefixes.push(...awsResponse.CommonPrefixes);
+        }
+
+        isTruncated = awsResponse.IsTruncated;
+    }
+}
+let directories: { name: string | undefined; path: string; depth: number; size: number; lastModified: Date }[] = [];
+let files: { name: string | undefined; path: string; depth: number; size: number; lastModified: Date }[] = [];
+if (!isTruncated) {
+    directories = commonPrefixes.map((item) => {
+        return {
+            name: item.Prefix.replace(path + '/', ''),
+            path: item.Prefix,
+            depth: item.Prefix.replace(prefix, '').split('/').length,
+            size: 0,
+            lastModified: new Date(),
+        };
+    });
+
+    files = bucketContents
+        .filter((item) => item.Key !== path + '/')
+        .map((item) => {
+            return {
+                name: item.Key.replace(path + '/', ''),
+                path: item.Key,
+                depth: item.Key.replace(prefix, '').split('/').length + 1,
+                size: item.Size,
+                lastModified: item.LastModified,
+            };
+        });
+}
+---
+
+<PipelinePageLayout
+    pipeline={pipeline}
+    meta_title={pipeline + ': Results'}
+    subtitle={description}
+    version={version}
+    versions={versions}
+    tabItems={md_files}
+    releaseSHA={releaseSHA}
+>
+    <div class="mt-3">
+        {
+            directories.length === 0 && files.length === 0 && (
+                <div class="alert alert-warning mt-3 " role="alert">
+                    <h4 class="text-warning">No AWS results found!</h4>
+                    <p>
+                        It seems like there is not yet any AWS results for this version of {pipeline}. Please check
+                        newer releases of this pipeline.
+                    </p>
+                </div>
+            )
+        }
+        {
+            (directories.length > 0 || files.length > 0) && (
+                <div>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <span>
+                                    <i class="fa-brands fa-aws me-2" />
+                                    {bucketName}
+                                </span>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <span>{pipeline}</span>
+                            </li>
+                            {path &&
+                                pathParts.slice(1, -1).map((item, i) => (
+                                    <li class="breadcrumb-item">
+                                        <a href={baseURL + 'results/' + pathParts.slice(0, i + 2).join('/') + '/'}>
+                                            {item}
+                                        </a>
+                                    </li>
+                                ))}
+                            <li class="breadcrumb-item active">
+                                <span>{pathParts.slice(-1) + '/'}</span>
+                            </li>
+                        </ol>
+                    </nav>
+                    <div class="file-browser list-group">
+                        <li class="list-group-item fw-bold">
+                            <div class="row">
+                                <span class="col">Name</span>
+                                <span class="col">Last Modified</span>
+                                <span class="col-1">Size</span>
+                            </div>
+                        </li>
+                        {depth > 2 && (
+                            <a
+                                href={baseURL + 'results/' + pathParts.slice(0, -1).join('/') + '/'}
+                                class="list-group-item list-group-item-action"
+                            >
+                                <span class="">
+                                    <i class="fa-regular fa-folder-open me-2" />
+                                    ..
+                                </span>
+                            </a>
+                        )}
+                        {directories &&
+                            directories.map((item) => (
+                                <a
+                                    href={baseURL + 'results/' + path + '/' + item.name}
+                                    class="list-group-item list-group-item-action"
+                                >
+                                    <span class="">
+                                        <i class="fa-solid fa-folder me-2" />
+                                        {item.name}
+                                    </span>
+                                </a>
+                            ))}
+                        {files && files.map((item) => <AWSFile item={item} />)}
+                    </div>
+                    {filename && <AWSFilePreview file={files.find((file) => file.name === filename)} />}
+                </div>
+            )
+        }
+    </div>
+</PipelinePageLayout>

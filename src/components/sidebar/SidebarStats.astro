@@ -1,6 +1,6 @@
 ---
 import SidebarStatsRow from '@components/sidebar/SidebarStatsRow.astro';
-
+import GitHubUser from '@components/GitHubProfilePicture.svelte';
 const { component_type, contributors, included_pipelines, included_modules, included_subworkflows } = Astro.props;
 
 export interface Props {
@@ -15,7 +15,7 @@ export interface Props {
 }
 ---
 
-<div class="sidebar">
+<div class="sidebar overflow-y-auto">
     {
         included_pipelines && (
             <SidebarStatsRow
@@ -29,7 +29,7 @@ export interface Props {
                     {included_pipelines.map((pipeline) => (
                         <a
                             href={'/' + pipeline.name + '/' + pipeline.version + '/'}
-                            class="badge text-bg-warning me-2 text-decoration-none"
+                            class="badge fw-normal border border-warning-subtle bg-warning-subtle text-body me-2 text-decoration-none"
                             data-bs-toggle="tooltip"
                             data-bs-placement="top"
                             title={'most recent pipeline version with this module:\n' + pipeline.version}
@@ -54,7 +54,7 @@ export interface Props {
                     {included_subworkflows.map((module) => (
                         <a
                             href={'/subworkflows/' + module.replace('/', '_')}
-                            class="badge text-bg-info me-2 text-decoration-none"
+                            class="badge fw-normal border border-info-subtle bg-info-subtle text-body me-2 text-decoration-none"
                         >
                             {module}
                         </a>
@@ -76,7 +76,7 @@ export interface Props {
                     {included_modules.map((module) => (
                         <a
                             href={'/modules/' + module.replace('/', '_') + '/'}
-                            class="badge text-bg-info me-2 text-decoration-none"
+                            class="badge fw-normal border border-info-subtle bg-info-subtle text-body me-2 text-decoration-none"
                         >
                             {module}
                         </a>
@@ -99,10 +99,14 @@ export interface Props {
                                     rel="noopener noreferrer"
                                     class="me-2 mb-2"
                                 >
-                                    <img src={'https://github.com/' + contributor + '.png?size=50'} alt={contributor} />
+                                    <GitHubUser
+                                        name={contributor}
+                                        image={`https://github.com/${contributor}.png`}
+                                        size={50}
+                                    />
                                 </a>
                             )
-                        )
+                        ),
                     )
             }
         </div>
@@ -114,13 +118,18 @@ export interface Props {
             >
             <a
                 class="btn btn-sm btn-outline-secondary"
-                href={'https://github.com/nf-core/' + component_type + '/issues'}
-                ><i class="fab fa-github me-1"></i> Open an issue on GitHub</a
+                href={'https://github.com/nf-core/' +
+                    (component_type === 'subworkflows' ? 'modules' : component_type) +
+                    '/issues'}><i class="fab fa-github me-1"></i> Open an issue on GitHub</a
             >
         </div>
     </SidebarStatsRow>
 </div>
 <style lang="scss">
+    .sidebar {
+        max-height: calc(100vh - 5rem);
+        overflow-y: auto;
+    }
     a.badge:hover {
         text-decoration: underline !important;
     }

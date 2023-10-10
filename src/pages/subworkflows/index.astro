@@ -15,10 +15,11 @@ import pipelines from '@public/pipelines.json';
     components={subworkflows}
     pipelines={pipelines.remote_workflows}
     filter={[]}
-    sortBy={['Alphabetical', '# Pipeline integrations']}
+    sortBy={['Name', '# Pipeline integrations']}
     displayStyle={[
         { name: 'grid', icon: 'fa-regular fa-grid-2' },
         { name: 'table', icon: 'fa-regular fa-bars' },
     ]}
+    viewTransitions={true}
 />
 <style></style>

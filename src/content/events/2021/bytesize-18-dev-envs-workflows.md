@@ -3,9 +3,9 @@ title: 'Bytesize 18: Development environments & workflows II'
 subtitle: Maxime Garcia - SciLifeLab / Karolinska Institutet, Sweden
 type: talk
 start_date: '2021-06-22'
-start_time: '13:00 CEST'
+start_time: '13:00+02:00'
 end_date: '2021-06-22'
-end_time: '13:30 CEST'
+end_time: '13:30+02:00'
 youtube_embed: https://youtu.be/OF55x-FT5WE
 location_url:
   - https://youtu.be/OF55x-FT5WE
@@ -31,7 +31,9 @@ This will cover:
 - Pipeline testing
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:34](https://youtu.be/OF55x-FT5WE?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=34) Hi everyone, the talk today will build on [Bytesize#11](https://nf-co.re/events/2021/bytesize-11-dev-envs-workflows).
 

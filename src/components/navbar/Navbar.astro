@@ -4,47 +4,58 @@ import NavbarToc from '@components/navbar/NavbarToc.svelte';
 import NavbarDocsNav from '@components/navbar/NavbarDocsNav.svelte';
 import NavbarDocsNavTitle from '@components/navbar/NavbarDocsNavTitle.astro';
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
-import NfCoreLogoDarkbg from '@assets/logos/nf-core-logo-darkbg.svg';
-import NfCoreLogo from '@assets/logos/nf-core-logo.svg';
-import { getCollection } from 'astro:content';
+import NfCoreLogoDarkbg from '/images/logo/nf-core-logo-darkbg.svg?raw';
+import NfCoreLogo from '/images/logo/nf-core-logo.svg?raw';
+import IconSocial from '@components/IconSocial.astro';
+import ThemeSwitch from '@components/ThemeSwitch.svelte';
+import Icon from 'astro-icon';
+import Search from '@components/navbar/Search.svelte';
 
 export interface Props {
     navTocHeadings?: object[];
     title?: string;
+    sections?: { section_name: string; children: {}[] }[] | never[];
 }
-let sections: { section_name: string; children: {}[] } | never[] = [];
-if (Astro.url.pathname.startsWith('/docs/')) {
-    const docs = await getCollection('docs');
-    const subpages = docs.filter((doc) => {
-        return doc.slug.split('/').length === 2;
+const { navTocHeadings = [], title, sections = [] } = Astro.props;
+let navbarTitle = [];
+
+if (sections?.length > 0) {
+    // construct the breadcrumb for the navbarNav element
+    let url = Astro.url.pathname;
+    const maxDepth = Math.max(3, url.split('/').length - 3);
+
+    const currentSection = sections.find((section) => {
+        return section.children.find((child) => {
+            return child.slug.startsWith(url.split('/').slice(0, maxDepth).join('/'));
+        });
     });
-    sections = [
-        { section_name: 'Usage', children: [] },
-        { section_name: 'Contributing', children: [] },
-    ];
-    subpages.map((doc) => {
-        if (doc.slug.startsWith('usage/')) {
-            let index = sections.findIndex((section) => section.section_name === 'Usage');
-            sections[index].children.push({ title: doc.data.title, slug: '/docs/' + doc.slug });
-        }
-        if (doc.slug.startsWith('contributing/')) {
-            let index = sections.findIndex((section) => section.section_name === 'Contributing');
-            sections[index].children.push({ title: doc.data.title, slug: '/docs/' + doc.slug });
-        }
-    });
+    const shortenedURL = url.replace(currentSection?.section_slug, '');
+    const currentChild = shortenedURL
+        ? currentSection?.children.find((child) => {
+              return url.startsWith(child.slug);
+          })?.title
+        : '';
+
+    navbarTitle = currentChild ? [currentSection?.section_name, currentChild] : [currentSection?.section_name];
 }
-const { navTocHeadings = [], title } = Astro.props;
 ---
 
 <nav
-    class="navbar fixed-top navbar-expand-md bg-body-secondary text-body-secondary shadow-sm d-print-none py-0 py-md-2"
+    class="navbar fixed-top navbar-expand-xl bg-body-secondary text-body-secondary shadow-sm d-print-none py-0 py-xl-2"
 >
     <div class="container">
-        <a class="navbar-brand d-md-none" href="/">
-            <img height="25px" src={NfCoreLogo.src} class="hide-dark" alt="nf-core logo" />
-            <img height="25px" src={NfCoreLogoDarkbg.src} class="hide-light" alt="nf-core logo" />
+        <a class="navbar-brand d-xl-none" href="/">
+            <div class="hide-dark">
+                <Fragment set:html={NfCoreLogo} />
+            </div>
+            <div class="hide-light">
+                <Fragment set:html={NfCoreLogoDarkbg} />
+            </div>
         </a>
         {navTocHeadings.length > 0 && <NavbarToc headings={navTocHeadings} client:visible />}
+        <div class:list={['align-self-center d-xl-none', { 'me-5': navTocHeadings.length === 0 }]}>
+            <Search id="docsearch-mobile" client:visible />
+        </div>
         <button
             class="navbar-toggler border-0"
             type="button"
@@ -56,41 +67,73 @@ const { navTocHeadings = [], title } = Astro.props;
         >
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse justify-content-md-center align-items-md-stretch" id="navbarCollapse">
+        <div class="collapse navbar-collapse justify-content-xl-center align-items-xl-stretch" id="navbarCollapse">
             <ul class="navbar-nav">
-                <li class="nav-item p-1">
+                <li class="nav-item p-1 px-3 px-xl-1">
                     <a class="nav-link" href="/">Home</a>
                 </li>
-                <li class="nav-item p-1">
+                <li class="nav-item p-1 px-3 px-xl-1">
                     <a class="nav-link" href="/pipelines/">Pipelines</a>
                 </li>
-                <li class="nav-item p-1 dropdown">
-                    <a class="nav-link dropdown-toggle" href="/about/" role="button" data-bs-toggle="dropdown">
-                        Resources
-                    </a>
-                    <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-sm">
+                <li class="nav-item p-1 px-3 px-xl-1 dropdown">
+                    <span class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"> Resources</span>
+                    <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
+                        <li><span class="dropdown-header">Configs & tools</span></li>
                         <li><a class="dropdown-item" href="/configs/">Shared Configs</a></li>
                         <li><a class="dropdown-item" href="/tools/">Tools</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><span class="dropdown-header">Components</span></li>
                         <li><a class="dropdown-item" href="/modules/">Modules</a></li>
                         <li><a class="dropdown-item" href="/subworkflows/">Subworkflows</a></li>
                     </ul>
                 </li>
-                <li class="nav-item p-1">
+                <li class="nav-item p-1 px-3 px-xl-1">
                     <a class="nav-link" href="/docs/">Docs</a>
                 </li>
-                <li class="nav-item p-1">
-                    <a class="nav-link" href="/events/">
-                        <EventIndicator client:idle />
-                        Events
-                    </a>
+                <li class="nav-item p-1 px-3 px-xl-1 d-flex align-items-center">
+                    <EventIndicator client:idle>
+                        <Icon name="circle" />
+                    </EventIndicator>
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle" href="/events/" role="button" data-bs-toggle="dropdown">
+                            Events</a
+                        >
+                        <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
+                            <li>
+                                <a class="dropdown-item" href="/events/bytesize/"
+                                    ><i class="fa-solid fa-apple-core me-2"></i>bytesize</a
+                                >
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/events/hackathon/"
+                                    ><i class="fa-solid fa-laptop-code me-2"></i>hackathon</a
+                                >
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/events/talk/"
+                                    ><i class="fa-solid fa-presentation me-2"></i>talk</a
+                                >
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/events/training/"
+                                    ><i class="fa-solid fa-chalkboard-teacher me-2"></i>training</a
+                                >
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/events/">All events</a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
-                <li class="nav-item p-1 dropdown">
+                <li class="nav-item p-1 px-3 px-xl-1 dropdown">
                     <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"> About</a>
-                    <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-sm">
+                    <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
                         <li><span class="dropdown-header">Community</span></li>
                         <!-- <li><a class="dropdown-item" href="/contributors/">Blog</a></li> -->
-                        <li><a class="dropdown-item" href="/contributors/">Contributors</a></li>
                         <li><a class="dropdown-item" href="/about/">About nf-core</a></li>
+                        <li><a class="dropdown-item" href="/governance/">Governance</a></li>
+                        <li><a class="dropdown-item" href="/contributors/">Contributors</a></li>
+                        <li><a class="dropdown-item" href="/marketing/">Marketing</a></li>
                         <li><a class="dropdown-item" href="/code_of_conduct/">Code of conduct</a></li>
                         <li><hr class="dropdown-divider" /></li>
                         <li><span class="dropdown-header">Initiatives</span></li>
@@ -102,16 +145,71 @@ const { navTocHeadings = [], title } = Astro.props;
                     </ul>
                 </li>
             </ul>
-            <hr class="d-md-none" />
-            <a class="d-md-none btn d-block btn-success mb-3" href="/join/"> Join nf-core</a>
-            <a class="d-none d-lg-block btn btn-success ms-auto align-self-center" href="/join/"> Join nf-core</a>
+            <div class="align-self-center d-none d-xl-block ms-auto pe-3">
+                <Search id="docsearch-desktop" client:only="svelte" />
+            </div>
+            <div class="d-none d-xl-block align-self-center px-2 py-1">
+                <ThemeSwitch client:load>
+                    <i class="icon" slot="light"><Icon name="sun" width={'14pt'} /></i>
+                    <i class="icon" slot="dark"><Icon name="moon" width={'14pt'} /></i>
+                </ThemeSwitch>
+            </div>
+            <div class="vr d-none d-xl-inline mx-1 mx-xxl-3"></div>
+            <hr class="d-xl-none" />
+            <div
+                class="social-icons d-print-none d-flex align-items-center d-xl-block align-self-center mb-3 mb-xl-0 px-3 px-xl-1"
+            >
+                <IconSocial
+                    href="https://github.com/nf-core/"
+                    title="GitHub"
+                    icon="fa-brands:github"
+                    icon_dark="fa-brands:github"
+                    additionalClass="text-body monochrome me-1"
+                />
+                <IconSocial
+                    href="https://twitter.com/nf_core"
+                    icon="logos:twitter"
+                    title="Twitter"
+                    additionalClass="monochrome me-1"
+                />
+                <!-- <IconSocial
+                    marginLeft="0"
+                    marginRight="1rem"
+                    href="https://mstdn.science/@nf_core"
+                    title="Mastodon"
+                    icon="logos:mastodon-icon"
+                    additionalClass="monochrome me-1"
+                /> -->
+                <IconSocial
+                    href="https://www.youtube.com/@nf-core"
+                    icon="mdi:youtube"
+                    title="YouTube"
+                    additionalClass="monochrome me-1"
+                    color="red"
+                />
+                <IconSocial
+                    href="/join/slack/"
+                    title="Slack"
+                    icon="logos:slack-icon"
+                    additionalClass="monochrome me-1"
+                />
+                <div class="d-xl-none ms-auto px-2 py-1">
+                    <ThemeSwitch client:load>
+                        <i class="icon" slot="light"><Icon name="sun" width={'14pt'} /></i>
+                        <i class="icon" slot="dark"><Icon name="moon" width={'14pt'} /></i>
+                    </ThemeSwitch>
+                </div>
+            </div>
+            <div class="d-none d-xl-block vr mx-1 mx-xxl-3"></div>
+            <a class="d-xl-none btn d-block btn-success mb-3 mx-3 mx-xl-1" href="/join/"> Join nf-core</a>
+            <a class="d-none d-xl-block btn btn-success align-self-center" href="/join/"> Join nf-core</a>
         </div>
     </div>
 </nav>
 {
-    Astro.url.pathname.includes('/docs/') && (
+    sections && sections.length > 0 && (
         <NavbarDocsNav client:visible>
-            <NavbarDocsNavTitle slot="title" title={title} />
+            <NavbarDocsNavTitle slot="title" title={navbarTitle.flat()} />
             <SidebarNav slot="menu" items={sections} />
         </NavbarDocsNav>
     )
@@ -124,9 +222,13 @@ const { navTocHeadings = [], title } = Astro.props;
         .navbar-brand {
             margin-top: 0.25rem;
             margin-bottom: 0.25rem;
+
+            :global(svg) {
+                height: 25px;
+            }
         }
         // add wider margins on larger screens
-        @include media-breakpoint-up(md) {
+        @include media-breakpoint-up(xl) {
             padding: 0.2rem 1rem;
             .navbar-nav > li > a {
                 margin-left: 1rem;
@@ -134,10 +236,16 @@ const { navTocHeadings = [], title } = Astro.props;
                 transition: ease-in-out color 0.1s;
             }
         }
-        @include media-breakpoint-down(md) {
+        @include media-breakpoint-down(xl) {
+            .container {
+                padding-left: 0;
+                padding-right: 0;
+            }
             .navbar-brand {
+                left: 0;
                 margin-left: 0;
                 margin-right: 0;
+                max-width: 5rem;
             }
         }
         li .dropdown-menu {
@@ -145,13 +253,23 @@ const { navTocHeadings = [], title } = Astro.props;
             border-top-right-radius: 0;
             border-top: 0;
             margin-top: calc($navbar-padding-y/3);
-            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
         }
-        .collapse.show li .dropdown-menu {
-            background-color: transparent;
+
+        .collapse.show {
+            max-height: 80vh;
+            overflow-y: auto;
+            li .dropdown-menu {
+                border: none;
+            }
         }
         .navbar-toggler:focus-within {
             box-shadow: none;
+        }
+    }
+    .icon :global(svg) {
+        fill: $navbar-light-color;
+        :global(.active) & {
+            fill: $white;
         }
     }
 </style>

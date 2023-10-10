@@ -1,6 +1,6 @@
 ---
 import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
-import { Markdown } from '@astropub/md';
+import Markdown from '@components/markdown/Markdown.svelte';
 import { getGitHubFile } from '@components/octokit';
 
 let headings: {
@@ -52,7 +52,7 @@ const md_content = await getGitHubFile('tools', 'README.md', 'master')
         return content;
     });
 
-const max_heading_depth = 2;
+const max_heading_depth = 3;
 
 // filter out headings that are higher than max_heading_depth
 headings = headings.filter((h) => h.depth <= max_heading_depth);
@@ -68,15 +68,17 @@ const md_github_url = 'https://github.com/nf-core/tools/blob/master/README.md';
     md_github_url={md_github_url}
     headings={headings}
     left_sidebar={true}
-    sections={[
-        {
-            section_name: 'Tools',
-            children: [
-                { title: 'Introduction', slug: '/tools/', order: 1 },
-                { title: 'API', slug: 'api/', order: 2 },
-            ],
-        },
+    sections={{
+        section_name: 'Tools',
+        children: [
+            { title: 'Introduction', slug: '/tools/', order: 1 },
+            { title: 'API', slug: 'api/', order: 2 },
+        ],
+    }}
+    docSearchTags={[
+        { name: 'page_type', content: 'Tools' },
+        { name: 'page_rank', content: '7' },
     ]}
 >
-    <Markdown of={md_content} />
+    <Markdown md={md_content} />
 </MarkdownTocLayout>

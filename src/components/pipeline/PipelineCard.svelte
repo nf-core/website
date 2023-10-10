@@ -1,6 +1,11 @@
 <script>
-    import { formatDistanceToNow } from 'date-fns';
+    import ListingCard from '@components/ListingCard.svelte';
+    import Markdown from '@components/markdown/Markdown.svelte';
+    import { formatDistanceToNow, add } from 'date-fns';
+    import { Confetti } from 'svelte-confetti';
+
     export let pipeline;
+
     const name = pipeline.name;
     const body = pipeline.description;
     const stars = pipeline.stargazers_count;
@@ -8,46 +13,47 @@
     const releases = pipeline.releases;
     const archived = pipeline.archived;
     const released = releases.length > 1;
-    var latest_release, tag_name, release_date_ago;
+    let latestRelease, tagName, releaseDateAgo, recentRelease;
+    const lastChangesAge = formatDistanceToNow(new Date(releases[0].published_at), {
+        addSuffix: true,
+    });
     if (released) {
-        latest_release = releases[0];
-        tag_name = latest_release.tag_name;
-        release_date_ago = formatDistanceToNow(new Date(latest_release.published_at));
+        latestRelease = releases[0];
+        tagName = latestRelease.tag_name;
+        releaseDateAgo = formatDistanceToNow(new Date(latestRelease.published_at), {
+            addSuffix: true,
+        });
+        // Check if release is less than 1 day old
+        recentRelease =
+            new Date(latestRelease.published_at).getTime() > add(new Date().getTime(), { days: -1 }).getTime();
     }
 </script>
 
-<div class="card flex-fill m-2">
-    <div class="card-header border-bottom-0 bg-transparent">
-        <h2 class="mb-0 d-flex justify-content-between align-items-center">
-            <a href={'/' + pipeline.name + '/' + (released ? tag_name : 'dev') + '/'}
+<ListingCard {recentRelease}>
+    <div slot="card-header">
+        <div class="d-flex flex-wrap justify-content-between align-items-center">
+            <a class="text-decoration-none" href={'/' + pipeline.name + '/' + (released ? tagName : 'dev') + '/'}
                 >{name}
                 {#if archived}
-                    <i class="fa-solid fa-archive text-info" />
+                    <i class="fa-solid fa-xs fa-archive text-info" title="archived" data-bs-toggle="tooltip" />
                 {:else if released}
-                    <i class="fa-solid fa-check text-success" title="released" data-bs-toggle="tooltip" />
+                    <i class="fa-solid fa-xs fa-check text-success" title="released" data-bs-toggle="tooltip" />
                 {:else}
-                    <i class="fa-solid fa-wrench text-warning" />
+                    <i
+                        class="fa-solid fa-xs fa-wrench text-warning"
+                        title="under development"
+                        data-bs-toggle="tooltip"
+                    />
                 {/if}
             </a>
-            <small class="gh-stats text-small">
-                <span>
-                    {#if released}
-                        <a
-                            href={'https://github.com/nf-core/' + name + '/releases/tag/' + tag_name}
-                            style={{ cursor: 'pointer' }}
-                            class="text-body-secondary text-decoration-none"
-                        >
-                            <i class="fa-regular fa-tag ms-3 me-1" />
-                            {tag_name}
-                        </a>
-                    {/if}
-                </span>
+
+            <small class="gh-stats fs-5">
                 <a
                     href={'https://github.com/nf-core/' + name + '/stargazers'}
                     target="_blank"
                     rel="noreferrer"
                     class="stargazers text-decoration-none mt-2 ms-2 text-warning"
-                    title=""
+                    title={stars + ' stargazers on GitHub'}
                     data-bs-toggle="tooltip"
                     data-html="true"
                     data-bs-original-title={stars + ' stargazers on GitHub'}
@@ -58,44 +64,65 @@
                     {stars}
                 </a>
             </small>
-        </h2>
+        </div>
     </div>
-    <div class="card-body pt-0 d-flex flex-column">
-        <p class="topics mt-0 mb-0">
+    <div slot="card-body" class="d-flex flex-column justify-content-between h-100">
+        <div class="recent-release-badge text-center">
+            {#if recentRelease}
+                <a
+                    href={'https://github.com/nf-core/' + name + '/releases/tag/' + tagName}
+                    class="text-decoration-none badge text-bg-success fs-6 mb-0 rounded-top-0"
+                    >New release! <Confetti x={[-1.5, 1.75]} amount="100" rounded="true" /></a
+                >
+            {/if}
+        </div>
+        {#if body}
+            <div class="description flex-grow-1" class:pt-1={recentRelease}><Markdown md={body} /></div>
+        {/if}
+        <p class="topics mb-3">
             {#each topics as topic}
-                <span class="badge bg-body-tertiary text-success me-2">{topic}</span>
+                <span class="badge fw-normal bg-body-tertiary text-success me-2">{topic}</span>
             {/each}
         </p>
-        {#if body}
-            <p class="description flex-grow-1 mb-0">{body}</p>
-        {/if}
 
         {#if released}
-            <p class="text-body-secondary align">Last release {release_date_ago}</p>
+            <p class="release">
+                <a
+                    role="button"
+                    href={'https://github.com/nf-core/' + name + '/releases/tag/' + tagName}
+                    style={{ cursor: 'pointer' }}
+                    class="btn btn-outline-secondary"
+                >
+                    <i class="fa-regular fa-tag me-1" />
+                    {tagName}
+                </a>
+                <span class="text-body-secondary text-small"> released {releaseDateAgo}</span>
+            </p>
+        {:else}
+            <p class="release">
+                <span class="text-body-secondary text-small"> last changes {lastChangesAge}</span>
+            </p>
         {/if}
     </div>
-</div>
+</ListingCard>
 
-<style>
-    p {
-        margin-top: 0.5rem;
-    }
-    /* .link-card:is(:hover, :focus-within) {
-        background-position: 0;
-    }
-    .link-card:is(:hover, :focus-within) h2 {
-        color: rgb(var(--accent));
-    } */
-    .card {
-        max-width: 40rem;
-    }
+<style lang="scss">
     .badge.text-success {
         font-weight: 400;
     }
     .gh-stats {
         float: right;
     }
-    .gh-stats a:hover .fa-regular {
-        font-weight: 900;
+    .gh-stats a,
+    .release a {
+        &:hover {
+            text-decoration: underline !important;
+            .fa-regular {
+                font-weight: 900;
+            }
+        }
+    }
+    .recent-release-badge {
+        margin-top: -1px;
     }
 </style>

@@ -1,7 +1,8 @@
 #! /usr/bin/env node
 import octokit from '../src/components/octokit.js';
-import { readFileSync, writeFileSync } from 'fs';
-import path from 'path';
+import { getCurrentRateLimitRemaining } from '../src/components/octokit.js';
+import { readFileSync, writeFileSync, existsSync } from 'fs';
+import path, { join } from 'path';
 import ProgressBar from 'progress';
 import { parse } from 'yaml';
 
@@ -9,13 +10,22 @@ import { parse } from 'yaml';
 // get current path
 const __dirname = path.resolve();
 
+console.log(await getCurrentRateLimitRemaining());
 // write the components.json file
-const writeComponentsJson = async () => {
+export const writeComponentsJson = async () => {
+  //check if components.json exists
+  if (!existsSync(join(__dirname, '/public/components.json'))) {
+    // create empty components.json with empty modules and subworkflos array
+    const components = { modules: [], subworkflows: [] };
+    const json = JSON.stringify(components, null, 4);
+    await writeFileSync(path.join(__dirname, '/public/components.json'), json, 'utf8');
+  }
   const componentsJson = readFileSync(path.join(__dirname, '/public/components.json'));
   const components = JSON.parse(componentsJson);
 
   const pipelinesJson = readFileSync(path.join(__dirname, '/public/pipelines.json'));
   const pipelines = JSON.parse(pipelinesJson);
+
   // get meta.yml from nf-core/modules using octokit and git trees
   const tree = await octokit
     .request('GET /repos/{owner}/{repo}/git/trees/{tree_sha}', {
@@ -24,22 +34,19 @@ const writeComponentsJson = async () => {
       tree_sha: 'master',
       recursive: 'true',
     })
-    .then((response) => {
-      return response.data.tree;
-    });
+    .then((response) => response.data.tree);
+
   let modules = tree
-    .filter((file) => {
-      return file.path.includes('meta.yml') && !file.path.includes('subworkflows/');
-    })
-    .map((file) => {
-      return {
-        name: file.path.replace('modules/nf-core/', '').replace('/meta.yml', '').replace('/', '_'),
-        path: file.path,
-        type: 'module',
-      };
-    });
+    .filter((file) => file.path.includes('meta.yml') && !file.path.includes('subworkflows/'))
+    .map((file) => ({
+      name: file.path.replace('modules/nf-core/', '').replace('/meta.yml', '').replace('/', '_'),
+      path: file.path,
+      type: 'module',
+    }));
+
   let bar = new ProgressBar('  fetching module meta.ymls [:bar] :percent :etas', { total: modules.length });
 
+  // Fetch content for modules concurrently
   for (const module of modules) {
     const content = await octokit
       .request('GET /repos/{owner}/{repo}/contents/{path}', {
@@ -47,13 +54,10 @@ const writeComponentsJson = async () => {
         repo: 'modules',
         path: module.path,
       })
-      .then((response) => {
-        const content = parse(Buffer.from(response.data.content, 'base64').toString());
-        return content;
-      });
+      .then((response) => parse(Buffer.from(response.data.content, 'base64').toString()));
+
     module['meta'] = content;
 
-    // update elements in components.modules if it exists, add it otherwise
     const index = components.modules.findIndex((m) => m.name === module.name);
     if (index > -1) {
       components.modules[index] = module;
@@ -62,38 +66,19 @@ const writeComponentsJson = async () => {
     }
     bar.tick();
   }
-  // get pipelines that use this module
-  for (const pipeline of pipelines.remote_workflows) {
-    const release = pipeline.releases[0];
-    if (release.components && release.components.modules) {
-      for (const module of release.components.modules) {
-        const index = components.modules.findIndex((m) => m.name === module);
-        if (index > -1) {
-          const entry = { name: pipeline.name, version: release.tag_name };
-          if (components.modules[index].pipelines) {
-            components.modules[index].pipelines.push(entry);
-          } else {
-            components.modules[index].pipelines = [entry];
-          }
-        }
-      }
-    }
-  }
 
-  // get subworkflows
+  // Fetch subworkflows concurrently
   const subworkflows = tree
-    .filter((file) => {
-      return (
-        file.path.includes('meta.yml') && file.path.includes('subworkflows/') && !file.path.includes('homer/groseq')
-      ); // TODO: remove the last exception and fix that subworkflow name
-    })
-    .map((file) => {
-      return {
-        name: file.path.replace('subworkflows/nf-core/', '').replace('/meta.yml', ''),
-        path: file.path,
-        type: 'subworkflow',
-      };
-    });
+    .filter(
+      (file) =>
+        file.path.includes('meta.yml') && file.path.includes('subworkflows/') && !file.path.includes('homer/groseq'),
+    )
+    .map((file) => ({
+      name: file.path.replace('subworkflows/nf-core/', '').replace('/meta.yml', ''),
+      path: file.path,
+      type: 'subworkflow',
+    }));
+
   bar = new ProgressBar('  fetching subworkflow meta.ymls [:bar] :percent :etas', { total: subworkflows.length });
 
   for (const subworkflow of subworkflows) {
@@ -103,13 +88,10 @@ const writeComponentsJson = async () => {
         repo: 'modules',
         path: subworkflow.path,
       })
-      .then((response) => {
-        const content = parse(Buffer.from(response.data.content, 'base64').toString());
-        return content;
-      });
+      .then((response) => parse(Buffer.from(response.data.content, 'base64').toString()));
+
     subworkflow['meta'] = content;
 
-    // update elements in components.subworkflows if it exists, add it otherwise
     if (!components.subworkflows) {
       components.subworkflows = [];
     }
@@ -120,7 +102,6 @@ const writeComponentsJson = async () => {
       components.subworkflows.push(subworkflow);
     }
 
-    // add subworkflow to module which is part of it
     if (content.modules) {
       for (const module of content.modules) {
         const index = components.modules.findIndex((m) => m.name === module);
@@ -137,24 +118,58 @@ const writeComponentsJson = async () => {
 
     bar.tick();
   }
-  // get pipelines that use this subworkflow
+  // Update pipelines that use modules and subworkflows
   for (const pipeline of pipelines.remote_workflows) {
     const release = pipeline.releases[0];
-    if (release.components && release.components.subworkflows) {
-      for (const subworkflow of release.components.subworkflows) {
-        const index = components.subworkflows.findIndex((m) => m.name === subworkflow);
-        if (index > -1) {
-          const entry = { name: pipeline.name, version: release.tag_name };
-          if (components.subworkflows[index].pipelines) {
-            components.subworkflows[index].pipelines.push(entry);
-          } else {
-            components.subworkflows[index].pipelines = [entry];
+
+    if (release.components && release.components.modules) {
+      await Promise.all(
+        release.components.modules.map(async (module) => {
+          const index = components.modules.findIndex((m) => m.name === module);
+          if (index > -1) {
+            const entry = { name: pipeline.name, version: release.tag_name };
+            if (components.modules[index].pipelines) {
+              components.modules[index].pipelines.push(entry);
+            } else {
+              components.modules[index].pipelines = [entry];
+            }
           }
-        }
-      }
+        }),
+      );
+    }
+
+    if (release.components && release.components.subworkflows) {
+      await Promise.all(
+        release.components.subworkflows.map(async (subworkflow) => {
+          const index = components.subworkflows.findIndex((m) => m.name === subworkflow);
+          if (index > -1) {
+            const entry = { name: pipeline.name, version: release.tag_name };
+            if (components.subworkflows[index].pipelines) {
+              components.subworkflows[index].pipelines.push(entry);
+            } else {
+              components.subworkflows[index].pipelines = [entry];
+            }
+          }
+        }),
+      );
     }
   }
-
+  // sort the modules and subworkflows by name
+  components.modules.sort((a, b) => {
+    if (a.name < b.name) {
+      return -1;
+    } else {
+      return 1;
+    }
+  });
+  components.subworkflows.sort((a, b) => {
+    if (a.name < b.name) {
+      return -1;
+    } else {
+      return 1;
+    }
+  });
+  console.log('  writing components.json');
   // write the components.json file
   writeFileSync(path.join(__dirname, '/public/components.json'), JSON.stringify(components, null, 2));
 };

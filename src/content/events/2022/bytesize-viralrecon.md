@@ -3,9 +3,9 @@ title: 'Bytesize: nf-core/viralrecon'
 subtitle: Sara Monzón and Sarai Varona - Instituto de Salud Carlos III, Madrid, Spain
 type: talk
 start_date: '2022-06-07'
-start_time: '13:00 CEST'
+start_time: '13:00+02:00'
 end_date: '2022-06-07'
-end_time: '13:30 CEST'
+end_time: '13:30+02:00'
 embed_at: 'viralrecon'
 youtube_embed: https://www.youtube.com/watch?v=K1ThKn4p4u0
 location_url:
@@ -26,7 +26,9 @@ It is our hope that these talks / videos will build an archive of training mater
 This week, Sara Monzón ([@saramonzon](https://github.com/saramonzon)) will talk about the newest developments in the nf-core/viralrecon pipeline.
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://www.youtube.com/watch?v=K1ThKn4p4u0&t=1)
 (host) Hello, everyone. My name is Franziska Bonath. I'm the host of today's Bytesize Talk. And with me are Sarah Monzón and Sarai Varona from the Institute of Health, Carlos III. They are talking today about the nf-core pipeline viralrecon - updates and use cases. And up to you.

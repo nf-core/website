@@ -3,9 +3,9 @@ title: 'Bytesize 7: Making the CI tests pass'
 subtitle: Phil Ewels - SciLifeLab, Sweden
 type: talk
 start_date: '2021-03-16'
-start_time: '13:00 CET'
+start_time: '13:00+01:00'
 end_date: '2021-03-16'
-end_time: '13:30 CET'
+end_time: '13:30+01:00'
 youtube_embed: https://youtu.be/U9LG_mMQFMY
 location_url:
   - https://youtu.be/U9LG_mMQFMY
@@ -37,7 +37,10 @@ The talk will be presented on Zoom and live-streamed on YouTube:
 
 <details markdown="1"><summary>Video transcription</summary>
 
-**Note: This text has been edited to make it suitable for reading**
+:::note
+This text has been edited to make it suitable for reading
+:::
+
 The talk today is going to be less slides and more focused on a live demonstration because it’s probably best to learn this by doing. So please bear with me.
 
 So a quick introduction. What is CI? CI stands for continuous integration, and basically that’s just another way of saying automated tests.

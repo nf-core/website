@@ -1,11 +1,11 @@
 ---
 title: Introduction to nf-core/eager
 subtitle: Introductory practical workshop to nf-core/eager
-type: tutorial
+type: training
 start_date: '2020-12-11'
-start_time: '14:00 CET'
+start_time: '14:00+01:00'
 end_date: '2020-12-11'
-end_time: '16:00 CET'
+end_time: '16:00+01:00'
 location_name: https://meet.jit.si
 location_url: '#organisational-details'
 ---

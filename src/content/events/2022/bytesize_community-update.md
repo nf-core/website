@@ -3,9 +3,9 @@ title: 'Bytesize: community updates Sep 2022'
 subtitle: Phil Ewels
 type: talk
 start_date: '2022-09-27'
-start_time: '13:00 CEST'
+start_time: '13:00+02:00'
 end_date: '2022-09-27'
-end_time: '13:30 CEST'
+end_time: '13:30+02:00'
 youtube_embed: https://www.youtube.com/watch?v=KXXeAcHnDBo
 location_url:
   - https://www.youtube.com/watch?v=KXXeAcHnDBo
@@ -32,7 +32,9 @@ The nf-core core team recently met for their first ever retreat. A lot of topics
   - nf-core website updates
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://www.youtube.com/watch?v=KXXeAcHnDBo&t=1)
 

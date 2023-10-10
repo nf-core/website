@@ -1,22 +1,13 @@
 ---
 import Icon from 'astro-icon';
-import NfCoreLogoDarkbg from '@assets/logos/nf-core-logo-darkbg.svg';
-import NfCoreLogo from '@assets/logos/nf-core-logo.svg';
+import NfCoreLogoDarkbg from '/images/logo/nf-core-logo-darkbg.svg?raw';
+import NfCoreLogo from '/images/logo/nf-core-logo.svg?raw';
 import ContributorCarousel from '@components/ContributorCarousel.svelte';
 import EventBanner from '@components/event/EventBanner.astro';
 import HomepageCard from '@components/homepage/HomepageCard.astro';
-import HomepageVideos from '@components/homepage/HomepageVideos.astro';
+import HomepageVideosEvents from '@components/homepage/HomepageVideosEvents.astro';
 import BaseLayout from '@layouts/BaseLayout.astro';
-import FuzzySearch from '@components/FuzzySearch.svelte';
-
-import pipelines_json from '@public/pipelines.json';
-const pipelines = pipelines_json.remote_workflows;
-const pipeline_links = pipelines.map((pipeline) => {
-    return {
-        name: pipeline.name,
-        href: pipeline.name + '/' + pipeline.releases[0].tag_name,
-    };
-});
+import { Code } from 'astro/components';
 ---
 
 <BaseLayout>
@@ -24,19 +15,20 @@ const pipeline_links = pipelines.map((pipeline) => {
         <EventBanner />
         <div class="homepage-header-contents col-md-5">
             <h1>
-                <img src={NfCoreLogo.src} class="hide-dark" />
-                <img src={NfCoreLogoDarkbg.src} class="hide-light" />
+                <div class="hide-dark">
+                    <Fragment set:html={NfCoreLogo} />
+                </div>
+                <div class="hide-light">
+                    <Fragment set:html={NfCoreLogoDarkbg} />
+                </div>
             </h1>
             <p class="lead font-weight-normal">
                 A community effort to collect a curated set of analysis pipelines built using Nextflow.
             </p>
             <div class="homepage-cta-flex mb-5">
-                <a class="homepage-cta" href="/pipelines">View Pipelines</a>
+                <a class="homepage-cta text-decoration-none" href="/pipelines/">View Pipelines</a>
             </div>
         </div>
-    </div>
-    <div class="d-flex justify-content-center mb-4">
-        <FuzzySearch possibleResults={pipeline_links} placeholder="Search Pipelines" client:idle />
     </div>
 
     <div class="triangle-up text-bg-success"></div>
@@ -44,21 +36,22 @@ const pipeline_links = pipelines.map((pipeline) => {
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-4 col-xl-3 py-3 py-md-5 px-md-4">
-                    <i class="fa-duotone fa-industry-alt fa-3x mb-2"></i>
+                    <Icon name="industry-alt" class="text-white" height="60pt" />
                     <h3 class="text-white">For facilities</h3>
                     <p class="lead">
                         Highly optimised pipelines with excellent reporting. Validated releases ensure reproducibility.
                     </p>
                 </div>
                 <div class="col-md-4 col-xl-3 py-3 py-md-5 px-md-4">
-                    <i class="fa-duotone fa-users fa-3x mb-2"></i>
+                    <Icon name="users" class="text-white" height="60pt" />
+
                     <h3 class="text-white">For users</h3>
                     <p class="lead">
                         Portable, documented and easy&nbsp;to&nbsp;use workflows.<br />Pipelines that you can trust.
                     </p>
                 </div>
                 <div class="col-md-4 col-xl-3 py-3 py-md-5 px-md-4">
-                    <i class="fa-duotone fa-laptop-code fa-3x mb-2"></i>
+                    <Icon name="laptop-code" class="text-white" height="60pt" />
                     <h3 class="text-white">For developers</h3>
                     <p class="lead">
                         Companion templates and tools help to validate your code and simplify common tasks.
@@ -91,15 +84,15 @@ const pipeline_links = pipelines.map((pipeline) => {
 
     <div id="features" class="container homepage-feature-boxes pb-5">
         <h3 class="mb-4 text-center">Fully featured pipelines</h3>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-4">
             <div class="col">
-                <HomepageCard title="Documentation" fontawesome="fa-solid fa-books text-success">
+                <HomepageCard title="Documentation" icon="books" icon_class="text-success icon-lg">
                     Extensive documentation covering installation, usage and description of output files ensures that
                     you won't be left in the dark.
                 </HomepageCard>
             </div>
             <div class="col">
-                <HomepageCard title="Portable and reproducible" fontawesome="fas fa-server text-success">
+                <HomepageCard title="Portable and reproducible" icon="server-regular-lights" icon_class="text-success">
                     Pipelines follow best-practices to ensure maximum portability and reproducibility. The large
                     community makes the pipelines exceptionally well tested and easy to run.
                 </HomepageCard>
@@ -117,17 +110,16 @@ const pipeline_links = pipelines.map((pipeline) => {
                     testing to ensure that nothing has broken.
                 </HomepageCard>
             </div>
-
-            <div class="col">
-                <HomepageCard title="Packaged software" fontawesome="fa-duotone fa-box-alt docker">
-                    Pipeline dependencies are automatically downloaded and handled using Docker, Singularity, Conda or
-                    others. No need for any software installations.
-                </HomepageCard>
-            </div>
             <div class="col">
                 <HomepageCard title="Cloud-ready" icon="logos:aws" icon_dark="mdi:aws">
                     Pipelines are tested on AWS after every release. You can even browse results live on the website and
                     use outputs for your own benchmarking.
+                </HomepageCard>
+            </div>
+            <div class="col">
+                <HomepageCard title="Packaged software" icon="box-alt" icon_class="docker">
+                    Pipeline dependencies are automatically downloaded and handled using Docker, Singularity, Conda or
+                    others. No need for any software installations.
                 </HomepageCard>
             </div>
         </div>
@@ -136,13 +128,13 @@ const pipeline_links = pipelines.map((pipeline) => {
     <div class="bg-body-tertiary pt-4 pb-5">
         <div id="developers" class="container homepage-feature-boxes">
             <h3 class="mb-4 text-center">Developers: Not just another registry</h3>
-            <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-4">
                 <div class="col">
                     <HomepageCard
                         title="Develop with the community"
                         fontawesome="fa-duotone fa-people-carry text-secondary"
                         btn_txt="Join Slack"
-                        btn_href="join"
+                        btn_href="join/"
                     >
                         Come and talk to us <em>before</em> you start writing a pipeline to find collaborators and check
                         that your pipeline is suitable for nf-core.
@@ -153,11 +145,11 @@ const pipeline_links = pipelines.map((pipeline) => {
                         title="Start from the template"
                         fontawesome="fa-solid fa-wand-magic-sparkles text-secondary"
                         btn_txt="Read the docs"
-                        btn_href="contributing/adding_pipelines"
+                        btn_href="docs/contributing/adding_pipelines/"
                     >
                         All pipelines, modules and subworkflows must be based on our template and be created using
                         <code>nf-core</code>
-                        <a href="/tools">tools</a>. An automated sync keeps pipelines up to date.
+                        <a href="/tools/">tools</a>. An automated sync keeps pipelines up to date.
                     </HomepageCard>
                 </div>
                 <div class="col">
@@ -165,7 +157,7 @@ const pipeline_links = pipelines.map((pipeline) => {
                         title="Collaborate, don't duplicate"
                         fontawesome="fa-duotone fa-code-merge text-secondary"
                         btn_txt="See the guidelines"
-                        btn_href="contributing/guidelines"
+                        btn_href="docs/contributing/guidelines/"
                     >
                         We only allow one pipeline per data type / analysis type. If a similar pipeline exists we'll ask
                         you to add to that instead of making a new workflow.
@@ -176,17 +168,7 @@ const pipeline_links = pipelines.map((pipeline) => {
     </div>
 
     <div class="bg-body-secondary py-5">
-        <HomepageVideos
-            videos={[
-                ['gUM9acK25tQ', 'Introduction to nf-core', '1:01'],
-                ['cXBYusdjrc0', 'Bytesize: How nf-core configs work', '15:00'],
-                ['FFTNVbdD5pQ', 'Bytesize: Pipeline code walkthrough', '20:00'],
-                ['OvtCc855Vek', 'Tutorial: Running pipelines', '17:00'],
-                ['-GcuxoIpfOc', 'BovReg: A longer introduction to nf-core', '45:00'],
-                ['hCGuF9bA9ho', 'BovReg: nf-core pipelines', '60:00'],
-                ['lUJ1L-qDeXM', 'BovReg: Developing with nf-core', '50:00'],
-            ]}
-        />
+        <HomepageVideosEvents />
     </div>
 
     <div class="bg-dark py-5">
@@ -210,28 +192,28 @@ const pipeline_links = pipelines.map((pipeline) => {
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <div class="card text-white bg-secondary border-secondary" style="--bs-bg-opacity: .3;">
-                        <div class="card-body" id="homepage-code-example">
-                            <div data-rehype-pretty-code-fragment="">
-                                <pre
-                                    data-language="bash"
-                                    data-theme="default"><code data-language="bash" data-theme="default"><span class="line"><span style="color: #616E88"># Install nextflow</span></span>
-<span class="line"><span style="color: #D8DEE9FF">curl -s https://get.nextflow.io </span><span style="color: #81A1C1">|</span><span style="color: #D8DEE9FF"> bash</span></span>
-<span class="line"><span style="color: #D8DEE9FF">mv nextflow </span><span style="color: #81A1C1">~</span><span style="color: #D8DEE9FF">/bin/</span></span>
-<span class="line" />
-<span class="line"><span style="color: #616E88"># Launch the RNAseq pipeline</span></span>
-<span class="line"><span style="color: #D8DEE9FF">nextflow run nf-core/rnaseq \</span></span>
-<span class="line"><span style="color: #D8DEE9FF">    --input samplesheet.csv \</span></span>
-<span class="line"><span style="color: #D8DEE9FF">    --output ./results/ \</span></span>
-<span class="line"><span style="color: #D8DEE9FF">    --genome GRCh37 \</span></span>
-<span class="line"><span style="color: #D8DEE9FF">    -profile docker</span></span>
-<span class="line" />
-<span class="line"><span style="color: #616E88"># Install nf-core tools</span></span>
-<span class="line"><span style="color: #D8DEE9FF">pip install nf-core</span></span>
-<span class="line" />
-<span class="line"><span style="color: #616E88"># List all nf-core pipelines and show available updates</span></span>
-<span class="line"><span style="color: #D8DEE9FF">nf-core list</span></span></code></pre>
-                            </div>
+                    <div class="card border-secondary rounded-0">
+                        <div class="card-body bg-dark p-0" id="homepage-code-example">
+                            <Code
+                                lang="bash"
+                                theme="github-dark-dimmed"
+                                code={`# Install nextflow
+curl -s https://get.nextflow.io | bash
+mv nextflow ~/bin/
+
+# Launch the RNAseq pipeline
+nextflow run nf-core/rnaseq \\
+    --input samplesheet.csv \\
+    --output ./results/ \\
+    --genome GRCh37 \\
+    -profile docker
+
+# Install nf-core tools
+pip install nf-core
+
+# List all nf-core pipelines and show available updates
+nf-core list`}
+                            />
                         </div>
                     </div>
                 </div>
@@ -239,8 +221,7 @@ const pipeline_links = pipelines.map((pipeline) => {
         </div>
     </div>
     <div class="bg-body-secondary py-5">
-        <div class="container my-5 text-center">
-            <p class="lead"></p>
+        <div class="container text-center">
             <div class="row">
                 <div class="col-md-4 px-md-5 mb-5 mb-md-0">
                     <h3>See what's available</h3>
@@ -248,7 +229,7 @@ const pipeline_links = pipelines.map((pipeline) => {
                         Check out the available pipelines to see if we have what you need. Each comes with release
                         details, keywords and a description.
                     </p>
-                    <a class="btn btn-lg btn-success arrow-hover" href="/pipelines"
+                    <a class="btn btn-lg btn-success arrow-hover" href="/pipelines/"
                         ><span><i class="fas fa-toolbox me-1"></i> Available pipelines</span>
                     </a>
                 </div>
@@ -258,7 +239,7 @@ const pipeline_links = pipelines.map((pipeline) => {
                         Read the quickstart tutorial to learn how to get set up with the required software and tools,
                         and how to launch a nf-core pipeline.
                     </p>
-                    <a class="btn btn-lg btn-success arrow-hover" href="/usage/introduction"
+                    <a class="btn btn-lg btn-success arrow-hover" href="/docs/usage/introduction/"
                         ><span><i class="fa-duotone fa-graduation-cap me-1"></i> Quickstart Tutorial</span>
                     </a>
                 </div>
@@ -268,7 +249,7 @@ const pipeline_links = pipelines.map((pipeline) => {
                         If you're interested in contributing to nf-core, take a look at the developer documentation to
                         see what's required.
                     </p>
-                    <a class="btn btn-lg btn-success arrow-hover" href="/docs/contributing/adding_pipelines"
+                    <a class="btn btn-lg btn-success arrow-hover" href="/docs/contributing/adding_pipelines/"
                         ><span><i class="fa-duotone fa-code me-1"></i> Developer docs</span>
                     </a>
                 </div>
@@ -277,105 +258,130 @@ const pipeline_links = pipelines.map((pipeline) => {
     </div>
 
     <ContributorCarousel client:idle />
-</BaseLayout>
 
-<style lang="scss">
-    @import '@styles/_variables.scss';
-    .homepage-header .homepage-header-contents {
-        margin: 4rem auto 0;
-        padding: 0;
-        text-align: center;
-    }
-    .homepage-header-fa-background {
-        position: absolute;
-        top: 10px;
-        left: 30px;
-        font-size: 16em;
-        opacity: 0.2;
-    }
-
-    /* Fancy call to action button on homepage
-Based on https://codepen.io/wintr/pen/beBJBb */
-    .homepage-cta-flex {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 2rem;
-    }
-    .homepage-cta {
-        width: 100px;
-        height: 100px;
-        line-height: 20px;
-        padding: 30px 0;
-        text-align: center;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        position: relative;
-        transition: 0.3s all ease;
-        font-size: 14px;
-        color: $nf-core-color;
-        font-weight: bold;
-        z-index: 0;
-
-        &:after {
-            transition: 0.3s all ease;
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            border-radius: 3px;
-            border: 2px solid $nf-core-color;
-        }
-        &:before {
-            content: '';
-            position: absolute;
-            border-radius: 3px;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            -webkit-transform: rotate(45deg);
-            transform: rotate(45deg);
-            background: $gray-500;
-            opacity: 0.15;
-            z-index: -1;
-            transition: 0.3s all ease;
-        }
-        &:hover,
-        &:focus {
-            color: $nf-core-color;
-            text-decoration: none;
-        }
-        &:hover:after,
-        &:focus:after {
-            -webkit-transform: rotate(45deg);
-            transform: rotate(45deg);
-        }
-        &:active {
-            -webkit-transform: scale(1);
-            transform: scale(1);
-            color: $body-bg;
-        }
-        &:active:before {
-            background-color: $nf-core-color;
-        }
-        &:active:after {
-            border-color: $nf-core-color;
-        }
-    }
-
-    .homepage-intro {
-        .container .row div {
+    <style lang="scss">
+        @import '@styles/_variables.scss';
+        .homepage-header .homepage-header-contents {
+            margin: 4rem auto 0;
+            padding: 0;
             text-align: center;
         }
-    }
-</style>
-<style lang="scss" is:global>
-    #homepage-code-example {
-        pre {
-            background-color: transparent !important;
+        .homepage-header-fa-background {
+            position: absolute;
+            top: 10px;
+            left: 30px;
+            font-size: 16em;
+            opacity: 0.2;
         }
-    }
-</style>
+
+        /* Fancy call to action button on homepage
+Based on https://codepen.io/wintr/pen/beBJBb */
+        .homepage-cta-flex {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        .homepage-cta {
+            width: 100px;
+            height: 100px;
+            line-height: 20px;
+            padding: 30px 0;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            transition: 0.3s all ease;
+            font-size: 14px;
+            color: $nf-core-color;
+            font-weight: bold;
+            z-index: 0;
+
+            &:after {
+                transition: 0.3s all ease;
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                right: 0;
+                border-radius: 3px;
+                border: 2px solid $nf-core-color;
+            }
+            &:before {
+                content: '';
+                position: absolute;
+                border-radius: 3px;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                right: 0;
+                -webkit-transform: rotate(45deg);
+                transform: rotate(45deg);
+                background: $gray-500;
+                opacity: 0.15;
+                z-index: -1;
+                transition: 0.3s all ease;
+            }
+            &:hover,
+            &:focus {
+                color: $nf-core-color;
+                text-decoration: none;
+            }
+            &:hover:after,
+            &:focus:after {
+                -webkit-transform: rotate(45deg);
+                transform: rotate(45deg);
+            }
+            &:active {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+                color: $body-bg;
+            }
+            &:active:before {
+                background-color: $nf-core-color;
+            }
+            &:active:after {
+                border-color: $nf-core-color;
+            }
+        }
+
+        .homepage-intro {
+            .container .row div {
+                text-align: center;
+            }
+        }
+        #homepage-code-example {
+            & :global(pre) {
+                padding: 1rem;
+                margin: 0;
+            }
+        }
+        .icon-lg :global(svg) {
+            height: 60pt;
+            fill: $white;
+        }
+        .mb-3 :global(svg) {
+            padding-bottom: 0.35rem;
+        }
+        .mb-1 :global(svg) {
+            padding-bottom: 0.25rem;
+        }
+
+        svg.text-white {
+            fill: $white;
+            :global(.fa-secondary) {
+                opacity: 0.4;
+            }
+        }
+        svg[astro-icon='users'] {
+            margin-bottom: 0.25rem;
+        }
+        svg[astro-icon='industry-alt'] {
+            margin-bottom: 0.35rem;
+        }
+        svg[astro-icon='laptop-code'] {
+            margin-bottom: 0.55rem;
+        }
+    </style>
+</BaseLayout>

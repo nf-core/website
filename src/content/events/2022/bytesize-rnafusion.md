@@ -3,9 +3,9 @@ title: 'Bytesize: nf-core/rnafusion'
 subtitle: Annick Renevey - Karolinska Institutet
 type: talk
 start_date: '2022-09-13'
-start_time: '13:00 CEST'
+start_time: '13:00+02:00'
 end_date: '2022-09-13'
-end_time: '13:30 CEST'
+end_time: '13:30+02:00'
 embed_at: 'rnafusion'
 youtube_embed: https://www.youtube.com/watch?v=iP47pokiPB4
 location_url:
@@ -26,7 +26,9 @@ It is our hope that these talks / videos will build an archive of training mater
 This week, Annick Renevey ([@rannick](https://github.com/rannick)) will introduce the nf-core/rnafusion pipeline!
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://www.youtube.com/watch?v=iP47pokiPB4&t=1)
 (Maxime) Hello everyone, Maxim here. I'd like to welcome Annick Renevey from Clinical Genomics, Karolinska Instituted. She's going to talk about the rnausion pipeline, which is a pipeline I personally like a lot, because I used to work on this one. I'm still helping out a bit, but she's doing a way better job tham I was doing at the time. Thank you Annick for that already!

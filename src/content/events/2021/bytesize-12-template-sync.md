@@ -3,9 +3,9 @@ title: 'Bytesize 12: Template sync - how to merge automated PRs'
 subtitle: Phil Ewels - SciLifeLab, Sweden
 type: talk
 start_date: '2021-05-11'
-start_time: '13:00 CEST'
+start_time: '13:00+02:00'
 end_date: '2021-05-11'
-end_time: '13:30 CEST'
+end_time: '13:30+02:00'
 youtube_embed: https://youtu.be/-CZKoo5Y_08
 location_url:
   - https://youtu.be/-CZKoo5Y_08
@@ -40,7 +40,9 @@ The talk will be presented on Zoom and live-streamed on YouTube:
 - FigShare: <https://doi.org/10.6084/m9.figshare.14572866.v1>
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited to make it reader-friendly**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:46](https://youtu.be/-CZKoo5Y_08?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=46) Hi everyone, I’ll be going over how template synchronization works. This talk is targeted at pipeline developers within the nf-core ecosystem and for those who are interested in building their own pipeline based on the nf-core toolsets.
 

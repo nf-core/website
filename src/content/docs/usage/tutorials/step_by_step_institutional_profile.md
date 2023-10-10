@@ -70,7 +70,7 @@ You should note down if there are any special options that your cluster's schedu
 
 nf-core _highly_ recommends the use of container engines or software environment for running truly reproducible pipelines (rather than locally installed tools). This means the actual tools with compatible versions used within the pipeline are contained in a singular 'image' file.
 
-You should find out what container engines/environments your cluster offers. For nf-core pipelines to work, you need one of any listed on the [installation](https://nf-co.re/docs/usage/installation) page.
+You should find out what container engines/environments your cluster offers. For nf-core pipelines to work, you need one of any listed on the [installation](https://nf-co.re/docs/usage/installation/) page.
 
 If you need to somehow 'load' any of the software prior use (e.g. `module load <software>` on some clusters), you should also note that down.
 
@@ -532,7 +532,9 @@ profiles {
 
 You can see here we have moved the `params` block into each of the _internal profiles_, and updated the `config_profile_description` and `max_*` parameters accordingly.
 
-> :warning: Important: you should **not** define scopes both in the global profile AND in the internal profile. Internal profiles do _not_ inherit directives/settings defined in scopes in the base config, so anything defined in the base global profile file will be _ignored_ in the internal profile. See the [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html#config-profiles) for more information.
+:::warning
+Important: you should **not** define scopes both in the global profile AND in the internal profile. Internal profiles do _not_ inherit directives/settings defined in scopes in the base config, so anything defined in the base global profile file will be _ignored_ in the internal profile. See the [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html#config-profiles) for more information.
+:::
 
 ### Writing the documentation file
 
@@ -544,7 +546,9 @@ You can look at some of the other configs to see what this describes, but typica
 
 Once all of your files are prepared, it's time to test your global institutional profile. All nf-core pipelines come with a special parameter called `--custom_config_base`. This allows you to override the pipeline run from loading the nf-core/configs from the nf-core repository, and you can instead get it to look in your fork.
 
-> Note: At this stage don't get disheartened if you hit errors and problems along the way. This often requires a lot of trial and error, as you learn about the particulars of your particular cluster. All are different, and all require TLC to get everything optimal!
+:::note
+At this stage don't get disheartened if you hit errors and problems along the way. This often requires a lot of trial and error, as you learn about the particulars of your particular cluster. All are different, and all require TLC to get everything optimal!
+:::
 
 To test your config, pick your pipeline of choice, and run the given pipeline's integrated mini-test profile but using your config. For example:
 

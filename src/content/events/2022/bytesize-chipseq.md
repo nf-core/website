@@ -3,9 +3,9 @@ title: 'Bytesize: nf-core/chipseq'
 subtitle: Jose Espinosa-Carrasco - Center for Genomic Regulation, Barcelona
 type: talk
 start_date: '2022-07-26'
-start_time: '13:00 CEST'
+start_time: '13:00+02:00'
 end_date: '2022-07-26'
-end_time: '13:30 CEST'
+end_time: '13:30+02:00'
 embed_at: 'chipseq'
 youtube_embed: https://www.youtube.com/watch?v=59I-4wB1z4c
 location_url:
@@ -26,7 +26,9 @@ It is our hope that these talks / videos will build an archive of training mater
 This week, Jose Espinosa-Carrasco ([@JoseEspinosa](https://github.com/JoseEspinosa)) will talk about new developments in the nf-core/chipseq pipeline.
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://www.youtube.com/watch?v=59I-4wB1z4c&t=1)
 I'm jose Espinosa-Carrasco from the comparative bioinformatics group, the CRG, and today I will introduce you to the nf-core chipseq pipeline.

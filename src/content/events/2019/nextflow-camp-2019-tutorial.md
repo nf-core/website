@@ -1,11 +1,11 @@
 ---
 title: 'Getting started with nf-core'
 subtitle: 'Tutorial at the Nextflow Camp 2019'
-type: tutorial
+type: training
 start_date: '2019-09-19'
-start_time: '11:15'
+start_time: '11:15+01:00'
 end_date: '2019-09-19'
-end_time: '13:00'
+end_time: '13:00+01:00'
 address: Carrer del Dr. Aiguader, 88, 08003 Barcelona, Spain
 location_name: Centre for Genomic Regulation, Barcelona
 location_url: https://www.crg.eu/

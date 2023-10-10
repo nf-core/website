@@ -3,9 +3,9 @@ title: 'Bytesize 5: DSL2 module development'
 subtitle: Harshil Patel - Francis Crick Institiute, UK
 type: talk
 start_date: '2021-03-02'
-start_time: '13:00 CET'
+start_time: '13:00+01:00'
 end_date: '2021-03-02'
-end_time: '13:30 CET'
+end_time: '13:30+01:00'
 youtube_embed: https://youtu.be/ggGGhTMgyHI
 location_url:
   - https://doi.org/10.6084/m9.figshare.14160116.v1
@@ -35,7 +35,9 @@ The talk will be live-streamed on YouTube:
 
 <details markdown="1"><summary>Video transcription</summary>
 
-**Note: This text has been edited to make it more suitable for reading.**
+:::note
+This text has been edited to make it more suitable for reading.
+:::
 
 [00:00](https://www.youtube.com/watch?v=ggGGhTMgyHI)
 Hi everyone, so this is our fifth byte-sized talk which I think have been really really useful of late, especially sort of summarizing what we're doing on nf core in small bite-sized chunks so people can get more familiar with what we're doing. It also acts as sort of a persistent archive of how to do things on nf-core and and hopefully also with Nextflow and git like Alex's talk [https://www.youtube.com/watch?v=gTEXDXWf4hE] last week and other things so thank you all for joining.

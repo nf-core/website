@@ -1,7 +1,8 @@
 ---
 import SchemaListing from '@components/schema/SchemaListing.svelte';
 import SchemaListingToc from '@components/schema/SchemaListingToc.svelte';
-import cache from 'bin/cache.js';
+import { promises, access, existsSync } from 'fs';
+import F_OK from 'fs';
 import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
 import pipelines_json from '@public/pipelines.json';
 
@@ -9,15 +10,19 @@ export function getStaticPaths() {
     var paths: { params: { pipeline: string; version: string }; props: { versions: string[]; md_files: string[] } }[] =
         [];
     pipelines_json.remote_workflows.forEach((pipeline) => {
-        pipeline.releases.forEach((release) => {
-            const md_files = release.doc_files.map((file) => file.replace('docs/', '').replace('.md', ''));
+        const releases = pipeline.releases;
+        const extended_releases = [...releases, { tag_name: 'latest', doc_files: releases[0].doc_files }];
+        extended_releases.forEach((release) => {
+            const md_files = release.doc_files.map((file) =>
+                file.replace('docs/', '').replace('.mdx', '').replace('.md', ''),
+            );
             paths.push({
                 params: {
                     pipeline: pipeline.name,
                     version: release.tag_name,
                 },
                 props: {
-                    versions: pipeline.releases.map((release) => release.tag_name),
+                    versions: releases.map((release) => release.tag_name),
                     md_files: md_files,
                     description: pipeline.description,
                 },
@@ -35,21 +40,16 @@ let headings: {
 
 let { versions, md_files, description } = Astro.props;
 
-const cache_key = `${pipeline}/${version}/nextflow_schema.json`;
-let schema = await cache
-    .get(cache_key)
-    .then((response) => {
-        if (response !== undefined) {
-            return JSON.parse(response);
-        } else {
-            return { definitions: [], properties: [] };
-        }
-    })
-    .catch((error) => {
-        console.log(error);
-        return { definitions: [], properties: [] };
-    });
+let schema = { definitions: [], properties: [] };
+const version_tag_name = version === 'latest' ? versions[0] : version;
 
+const cache_key = `.cache/${pipeline}/${version_tag_name}/nextflow_schema.json`;
+//check if the schema is cached
+
+if (existsSync(cache_key)) {
+    schema = await promises.readFile(cache_key);
+    schema = JSON.parse(Buffer.from(schema, 'base64').toString('utf-8'));
+}
 if (schema.definitions && Object.keys(schema.definitions).length > 0) {
     headings = Object.entries(schema.definitions).map(([key, value]) => {
         return {
@@ -57,6 +57,7 @@ if (schema.definitions && Object.keys(schema.definitions).length > 0) {
             text: value.title,
             depth: 1,
             fa_icon: value.fa_icon,
+            hidden: value.properties && Object.values(value.properties).every((prop) => prop.hidden),
         };
     });
 } else if (schema.properties && Object.keys(schema.properties).length > 0) {
@@ -66,6 +67,7 @@ if (schema.definitions && Object.keys(schema.definitions).length > 0) {
 
 <PipelinePageLayout
     pipeline={pipeline}
+    meta_title={pipeline + ': Parameters'}
     subtitle={description}
     headings={headings}
     version={version}
@@ -74,18 +76,6 @@ if (schema.definitions && Object.keys(schema.definitions).length > 0) {
 >
     <div class="row">
         <div class="col-12 col-md-10">
-            {
-                Object.keys(schema.definitions).length === 0 && (
-                    <div class="alert alert-warning mt-3 " role="alert">
-                        <h4 class="text-warning">No nextflow_schema.json file found!</h4>
-                        <p>
-                            It seems like there is no nextflow_schema.json file with parameters defined for this version
-                            of the pipeline. Try a newer version.
-                        </p>
-                    </div>
-                )
-            }
-
             <SchemaListing {schema} client:load />
         </div>
         <div class="col-12 col-md-2 toc order-first order-md-last pe-0">

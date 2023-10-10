@@ -3,9 +3,9 @@ title: 'Bytesize 14: Graphic design / pipeline diagrams'
 subtitle: Zandra Fagernäs - MPI-SHH
 type: talk
 start_date: '2021-05-25'
-start_time: '13:00 CEST'
+start_time: '13:00+02:00'
 end_date: '2021-05-25'
-end_time: '13:30 CEST'
+end_time: '13:30+02:00'
 youtube_embed: https://youtu.be/5jZPucWXnno
 location_url:
   - https://www.bilibili.com/video/BV1Z54y1V78h
@@ -37,7 +37,9 @@ The talk will be presented on Zoom and live-streamed on YouTube.
 - Bilibili: <https://www.bilibili.com/video/BV1Z54y1V78h>
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited to make it reader-friendly**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:40](https://youtu.be/5jZPucWXnno?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=40) I would like to begin by thanking the organisers for inviting me to give this talk. I will be going through what we did for the nf-core/eager pipeline and why we made the specific choices that we did.
 

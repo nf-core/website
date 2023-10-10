@@ -3,9 +3,9 @@ title: 'Bytesize 13: Tuning pipeline performance'
 subtitle: Gisela Gabernet - QBiC Tübingen, Germany
 type: talk
 start_date: '2021-05-18'
-start_time: '13:00 CEST'
+start_time: '13:00+02:00'
 end_date: '2021-05-18'
-end_time: '13:30 CEST'
+end_time: '13:30+02:00'
 youtube_embed: https://youtu.be/Qw1gLpYtMec
 location_url:
   - https://www.bilibili.com/video/BV1z64y1k7a3
@@ -37,7 +37,9 @@ The talk will be presented on Zoom and live-streamed on YouTube:
 - Bilibili: <https://www.bilibili.com/video/BV1z64y1k7a3>
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited to make it reader-friendly**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:47](https://youtu.be/Qw1gLpYtMec?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=47) I will talk about tuning pipeline performance and specify the resource requirements for your pipelines. So, here’s the background, maybe you are a pipeline developer of a Nextflow pipeline and you’d like to incorporate your pipeline into nf-core or maybe you’ve found an nf-core pipeline that you would like to use to work with your own data.
 

@@ -1,6 +1,5 @@
 ---
-import EventListing from '@components/event/EventListing.svelte';
-import PageLayout from '@layouts/PageLayout.astro';
+import EventLayout from '@layouts/EventLayout.astro';
 import { getCollection } from 'astro:content';
 
 let events = await getCollection('events');
@@ -9,66 +8,14 @@ events = events.filter((event) => {
     return event.slug.split('/').length === 2;
 });
 
-events
-    .map((event) => {
-        event.data.start = new Date(event.data.start_date + ' ' + event.data.start_time);
-        event.data.end = new Date(event.data.end_date + ' ' + event.data.end_time);
-        if (event.data.start_date === event.data.end_date) {
-            event.data.duration =
-                event.data.start.toLocaleString('en-US', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                    hour: 'numeric',
-                    minute: 'numeric',
-                    hour12: false,
-                }) +
-                '-' +
-                event.data.end.toLocaleString('en-US', {
-                    hour: 'numeric',
-                    minute: 'numeric',
-                    hour12: false,
-                });
-        } else {
-            event.data.duration =
-                event.data.start.toLocaleString('en-US', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                    hour: 'numeric',
-                    minute: 'numeric',
-                    hour12: false,
-                }) +
-                ' - ' +
-                event.data.end.toLocaleString('en-US', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                    hour: 'numeric',
-                    minute: 'numeric',
-                    hour12: false,
-                });
-        }
-    })
-    .sort((a, b) => {
-        return new Date(a.data.start) - new Date(b.data.start);
-    });
-
-const searchEvents = (search) => {
-    const searchTerms = search.toLowerCase().split(' ');
-    return events.filter((event) => {
-        const eventString = JSON.stringify(event.data).toLowerCase();
-        return searchTerms.every((term) => eventString.includes(term));
-    });
-};
-
-const filterEvents = (type) => {
-    return events.filter((event) => event.data.type === type);
-};
 const title = 'Events';
 const subtitle = 'Details of past and future events around nf-core.';
+const event_types = ['bytesize', 'talk', 'training', 'hackathon'];
+const filters = event_types.map((type) => {
+    return {
+        name: type,
+    };
+});
 ---
 
-<PageLayout title={title} subtitle={subtitle}>
-    <EventListing {events} client:load />
-</PageLayout>
+<EventLayout {events} {title} {subtitle} currentFilters={filters} />

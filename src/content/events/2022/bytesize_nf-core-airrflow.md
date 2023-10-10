@@ -3,9 +3,9 @@ title: 'Bytesize: nf-core/airrflow'
 subtitle: Gisela Gabernet, QBiC, University of Tübingen
 type: talk
 start_date: '2022-10-25'
-start_time: '13:00 CEST'
+start_time: '13:00+02:00'
 end_date: '2022-10-25'
-end_time: '13:30 CEST'
+end_time: '13:30+02:00'
 youtube_embed: https://www.youtube.com/watch?v=CrJgxVRVlqY
 location_url:
   - https://doi.org/10.6084/m9.figshare.21407004.v1
@@ -26,7 +26,9 @@ This week, Gisela Gabernet ([@ggabernet](https://github.com/ggabernet)) will tal
 nf-core/airrflow is a bioinformatics best-practice pipeline to analyze B-cell or T-cell bulk repertoire sequencing data. It makes use of the [Immcantation](https://immcantation.readthedocs.io/) toolset and requires as input targeted amplicon sequencing data of the V, D, J and C regions of the B/T-cell receptor with multiplex PCR or 5' RACE protocol.
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://www.youtube.com/watch?v=CrJgxVRVlqY&t=1)
 Hello everyone, my name is Franziska Bonath and I'm very happy that Gisela is with us today from the University of Tübingen and she is giving us an overview of what nf-core/airrflow can do.

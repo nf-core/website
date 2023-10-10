@@ -1,21 +1,73 @@
 #! /usr/bin/env node
-import octokit, { getDocFiles } from '../src/components/octokit.js';
-import { readFileSync, writeFileSync } from 'fs';
-import path from 'path';
+import octokit, { getDocFiles, getCurrentRateLimitRemaining, getGitHubFile } from '../src/components/octokit.js';
+import { promises as fs, writeFileSync, existsSync } from 'fs';
+import yaml from 'js-yaml';
+import path, { join } from 'path';
 import ProgressBar from 'progress';
+import cache from './cache.js';
 
 // get current path
 const __dirname = path.resolve();
 
+console.log(await getCurrentRateLimitRemaining());
+//check if pipelines.json exists
+if (!existsSync(join(__dirname, 'public/pipelines.json'))) {
+  // create empty pipelines.json with empty remote_workflows array
+  const pipelines = { remote_workflows: [] };
+  const json = JSON.stringify(pipelines, null, 4);
+  await writeFileSync(path.join(__dirname, '/public/pipelines.json'), json, 'utf8');
+}
 // write the pipelines.json file
-const writePipelinesJson = async () => {
-  const pipelinesJson = readFileSync(path.join(__dirname, '/public/pipelines.json'));
-  const namesJson = readFileSync(path.join(__dirname, '/public/pipeline_names.json'));
+export const writePipelinesJson = async () => {
+  const pipelinesJsonPromise = fs.readFile(join(__dirname, 'public/pipelines.json'), 'utf8');
+  const ignoredTopicsPromise = fs.readFile(join(__dirname, 'src/config/ignored_repos.yaml'), 'utf8');
+  const [pipelinesJson, ignoredTopicsYaml] = await Promise.all([pipelinesJsonPromise, ignoredTopicsPromise]);
+
   const pipelines = JSON.parse(pipelinesJson);
-  const names = JSON.parse(namesJson).pipeline;
+
+  // get ignored_repos from ignored_reops.yml
+  const ignored_repos = yaml.load(ignoredTopicsYaml).ignore_repos;
+
+  // get all repos for the nf-core org
+  let names = [];
+  let active_names = [];
+
+  await octokit
+    .paginate(octokit.rest.repos.listForOrg, {
+      org: 'nf-core',
+      type: 'public',
+      per_page: 100,
+    })
+    .then((response) => {
+      names.push(
+        response
+          .filter((repo) => !ignored_repos.includes(repo.name))
+          .map((repo) => repo.name)
+          .sort(),
+      );
+      active_names.push(
+        response
+          .filter((repo) => !ignored_repos.includes(repo.name) && !repo.archived)
+          .map((repo) => repo.name)
+          .sort(),
+      );
+    });
+  names = names.flat();
+  active_names = active_names.flat();
+  // write pipeline_names.json
+  await fs.writeFile(
+    join(__dirname, '/public/pipeline_names.json'),
+    JSON.stringify({ pipeline: active_names }, null),
+    'utf8',
+  );
+
+  // get ignored_topics from ignored_reops.yml
+  const ignored_topics = yaml.load(ignoredTopicsYaml).ignore_topics;
+
   let bar = new ProgressBar('  fetching pipelines [:bar] :percent :etas', { total: names.length });
+
   // go through names and add or update pipelines in pipelines.json
-  for (const name of names) {
+  for (const name of names.flat()) {
     // get the details from the github repo description
     const data = await octokit.rest.repos
       .get({
@@ -33,7 +85,8 @@ const writePipelinesJson = async () => {
 
         return response.data;
       });
-
+    // remove ignored topics
+    data['topics'] = data['topics'].filter((topic) => !ignored_topics.includes(topic));
     // get number of open pull requests
     let { data: pull_requests } = await octokit.rest.pulls.list({
       owner: 'nf-core',
@@ -48,7 +101,6 @@ const writePipelinesJson = async () => {
       repo: name,
       per_page: 100,
     });
-
     data['contributors'] = contributors
       .filter((contrtibutor) => contrtibutor.login !== 'nf-core-bot')
       .map((contributor) => {
@@ -64,21 +116,25 @@ const writePipelinesJson = async () => {
     // remove releases that are already in the pipelines.json file
     const index = pipelines.remote_workflows.findIndex((workflow) => workflow.name === name);
     let new_releases = releases;
+
     let old_releases = [];
     if (index > -1) {
       old_releases = pipelines.remote_workflows[index].releases.filter((release) => release.tag_name !== 'dev');
       const existing_releases = old_releases.map((release) => release.tag_name);
       new_releases = new_releases.filter((release) => !existing_releases.includes(release.tag_name));
     }
-
-    // get sha of release commit
+    // get sha for each release (needed for aws viewer)
     for (const release of new_releases) {
       const { data: commit } = await octokit.rest.repos.getCommit({
         owner: 'nf-core',
         repo: name,
         ref: release.tag_name,
       });
-      release['sha'] = commit.sha;
+      release.tag_sha = commit.sha;
+      // check if schema file exists for release
+      release.has_schema = await getGitHubFile(name, 'nextflow_schema.json', release.tag_name).then((response) => {
+        return response ? true : false;
+      });
     }
 
     // get last push to dev branch
@@ -90,67 +146,122 @@ const writePipelinesJson = async () => {
     if (dev_branch.length > 0) {
       new_releases = [
         ...new_releases,
-        { tag_name: 'dev', published_at: dev_branch[0].commit.author.date, sha: dev_branch[0].sha },
+        {
+          tag_name: 'dev',
+          published_at: dev_branch[0].commit.author.date,
+          tag_sha: dev_branch[0].sha,
+          has_schema: await getGitHubFile(name, 'nextflow_schema.json', 'dev').then((response) => {
+            return response ? true : false;
+          }),
+        },
       ];
     } else {
       console.log(`No commits to dev branch found for ${name}`);
     }
-    new_releases = new_releases.map(async (release) => {
-      const { tag_name, published_at, sha } = release;
-      const doc_files = await getDocFiles(name, release.tag_name);
+    new_releases = await Promise.all(
+      new_releases.map(async (release) => {
+        const { tag_name, published_at, tag_sha, has_schema } = release;
+        const doc_files = await getDocFiles(name, release.tag_name);
 
-      let components = await octokit
-        .request('GET /repos/{owner}/{repo}/contents/{path}?ref={ref}', {
-          owner: 'nf-core',
-          repo: name,
-          path: 'modules.json',
-          ref: tag_name,
-        })
-        .catch((error) => {
-          if (error.status === 404) {
-            // console.log(`modules.json not found in ${name} ${tag_name}`);
-            return;
-          } else {
-            console.log(error);
-            return;
-          }
-        })
-        .then((response) => {
-          if (response) {
-            const modules_json = JSON.parse(Buffer.from(response.data.content, 'base64').toString());
-            if (modules_json.repos['nf-core/modules']) {
-              if (modules_json.repos['nf-core/modules'].modules) {
-                return { modules: Object.keys(modules_json.repos['nf-core/modules'].modules) };
-              }
-              return { modules: Object.keys(modules_json.repos['nf-core/modules']) };
-            } else if (modules_json.repos['https://github.com/nf-core/modules.git']) {
-              if (modules_json.repos['https://github.com/nf-core/modules.git'].subworkflows) {
-                return {
-                  modules: Object.keys(modules_json.repos['https://github.com/nf-core/modules.git'].modules['nf-core']),
-                  subworkflows: Object.keys(
-                    modules_json.repos['https://github.com/nf-core/modules.git'].subworkflows['nf-core']
-                  ),
-                };
-              } else {
-                return {
-                  modules: Object.keys(modules_json.repos['https://github.com/nf-core/modules.git'].modules['nf-core']),
-                };
+        let components = await octokit
+          .request('GET /repos/{owner}/{repo}/contents/{path}?ref={ref}', {
+            owner: 'nf-core',
+            repo: name,
+            path: 'modules.json',
+            ref: tag_name,
+          })
+          .catch((error) => {
+            if (error.status === 404) {
+              // console.log(`modules.json not found in ${name} ${tag_name}`);
+              return;
+            } else {
+              console.log(error);
+              return;
+            }
+          })
+          .then((response) => {
+            if (response) {
+              const modules_json = JSON.parse(Buffer.from(response.data.content, 'base64').toString());
+              if (modules_json.repos['nf-core/modules']) {
+                if (modules_json.repos['nf-core/modules'].modules) {
+                  return { modules: Object.keys(modules_json.repos['nf-core/modules'].modules) };
+                }
+                return { modules: Object.keys(modules_json.repos['nf-core/modules']) };
+              } else if (modules_json.repos['https://github.com/nf-core/modules.git']) {
+                if (
+                  modules_json.repos['https://github.com/nf-core/modules.git'].subworkflows &&
+                  modules_json.repos['https://github.com/nf-core/modules.git'].subworkflows['nf-core']
+                ) {
+                  return {
+                    modules: Object.keys(
+                      modules_json.repos['https://github.com/nf-core/modules.git'].modules['nf-core'],
+                    ),
+                    subworkflows: Object.keys(
+                      modules_json.repos['https://github.com/nf-core/modules.git'].subworkflows['nf-core'],
+                    ),
+                  };
+                } else {
+                  return {
+                    modules: Object.keys(
+                      modules_json.repos['https://github.com/nf-core/modules.git'].modules['nf-core'],
+                    ),
+                  };
+                }
               }
             }
-          }
-        });
-      if (components && components.modules) {
-        components.modules = components.modules.map((component) => {
-          return component.replace('/', '_');
-        });
-      }
-      return { tag_name, published_at, sha, doc_files, components };
-    });
+          });
+        if (components && components.modules) {
+          components.modules = components.modules.map((component) => {
+            return component.replace('/', '_');
+          });
+        }
 
+        // cache release body except for dev
+        if (release.tag_name !== 'dev') {
+          const cache_key = `${name}/${release.tag_name}/body`;
+          // const is_cached = cache.getSync(cache_key, false) && cache.getSync(cache_key, false).length > 0;
+          const is_cached = false;
+          if (!is_cached) {
+            // wrap github urls in markdown links if they are to the same repo and not already inside a link
+            release.body = release.body.replaceAll(
+              /(?<!\]\()https:\/\/github\.com\/nf-core\/([^\/]+)\/([^\/]+)\/([^\/\n]*)(?![\)\]])/g,
+              (match, p1, p2, p3) => {
+                console.log('match', match);
+                if (p1 === name && ['pull', 'issues', 'compare'].includes(p2)) {
+                  const prefix = p2 !== 'compare' ? '#' : '';
+                  console.log(`[${prefix}${p3}](${match})`);
+                  return `[${prefix}${p3}](${match})`;
+                }
+                return match;
+              },
+            );
+            // replace usernames with links to github profiles
+            release.body = release.body.replaceAll(/@(\w+([-]\w+)*)/g, (match, p1) => {
+              return `[${match}](https://github.com/${p1})`;
+            });
+            cache.set(cache_key, release.body);
+          }
+        }
+        return { tag_name, published_at, tag_sha, has_schema, doc_files, components };
+      }),
+    );
+
+    // Assign new_releases to data.releases
     data['releases'] = [...old_releases, ...new_releases];
-    // resolve the promises
+
+    // Resolve the promises
     data['releases'] = await Promise.all(data['releases']);
 
+    // sort the releases by date except for dev, which should always be last
+    data.releases.sort((a, b) => {
+      if (a.tag_name === 'dev') {
+        return 1;
+      } else if (b.tag_name === 'dev') {
+        return -1;
+      } else {
+        return new Date(b.published_at) - new Date(a.published_at);
+      }
+    });
     if (!pipelines.remote_workflows) {
       pipelines.remote_workflows = [];
     }
@@ -161,10 +272,15 @@ const writePipelinesJson = async () => {
       pipelines.remote_workflows.push(data);
     }
     bar.tick();
-    // write the pipelines.json file
   }
 
+  // sort the pipelines by name
+  pipelines.remote_workflows.sort((a, b) => {
+    return a.name.localeCompare(b.name);
+  });
   const json = JSON.stringify(pipelines, null, 4);
+
+  console.log('Writing pipelines.json');
   await writeFileSync(path.join(__dirname, '/public/pipelines.json'), json, 'utf8');
 };
 

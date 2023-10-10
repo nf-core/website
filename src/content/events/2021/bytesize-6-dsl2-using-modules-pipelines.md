@@ -3,9 +3,9 @@ title: 'Bytesize 6: All about modules'
 subtitle: Friederike Hanssen / Kevin Menden - QBiC Tübingen, Germany
 type: talk
 start_date: '2021-03-09'
-start_time: '13:00 CET'
+start_time: '13:00+01:00'
 end_date: '2021-03-09'
-end_time: '13:30 CET'
+end_time: '13:30+01:00'
 youtube_embed:
   - https://www.youtube.com/embed/tWvou0xj9wA
   - https://www.youtube.com/embed/Wc4A2tQ6WWY
@@ -36,7 +36,9 @@ The first talk will describe how to use DSL2 modules when writing an nf-core pip
 
 <details markdown="1"><summary>Video transcription</summary>
 
-**Note: This text has been edited to make it more suitable for reading.**
+:::note
+This text has been edited to make it more suitable for reading.
+:::
 
 #### DSL2 - Using modules in a pipeline
 

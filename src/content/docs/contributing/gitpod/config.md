@@ -1,5 +1,7 @@
 ---
-title: 3 - Configuration
+title: Configuration
+subtitle: Configuring your Gitpod environment
+weight: 3
 ---
 
 ## Configuration of Gitpod
@@ -17,7 +19,7 @@ For example, check out the nf-core modules `.gitpod.yml` file [here](https://git
 There are a few more common adaptations to `./gitpod.yml` files, which include:
 
 1. **github**: this allows configuration of Github. e.g. allowing Gitpod to create prebuilds for branches.
-2. **ports**: this opens a port to serve traffic to a public URL. This is used within the nf-core webpage yml (see: https://github.com/nf-core/nf-co.re/blob/master/.gitpod.yml).
+2. **ports**: this opens a port to serve traffic to a public URL. This is used within the nf-core webpage yml (see: https://github.com/nf-core/website/blob/main/.gitpod.yml).
 3. **tasks**: this tells Gitpod to run particular jobs. Usually you will see the following:
 
 `- init:` sections that can be used to install packages as a pre-build, so it doesn't have to run each time you open an environment.

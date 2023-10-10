@@ -8,7 +8,7 @@
     let event_location = '';
     if (typeof frontmatter.location_url === 'string') {
         event_location = frontmatter.location_url;
-    } else {
+    } else if (frontmatter.location_url) {
         event_location = frontmatter.location_url.join(', ');
     }
     const calendar_event = {
@@ -18,6 +18,13 @@
         end: frontmatter.end,
         location: event_location,
     };
+
+    if (calendar_event.start === undefined) {
+        calendar_event.start = new Date(calendar_event.start_date + 'T' + calendar_event.start_time);
+    }
+    if (calendar_event.end === undefined) {
+        calendar_event.end = new Date(calendar_event.end_date + 'T' + calendar_event.end_time);
+    }
 
     const googleCalendar = new GoogleCalendar(calendar_event).render();
     const outlookCalendar = new OutlookCalendar(calendar_event).render();

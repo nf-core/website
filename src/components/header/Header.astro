@@ -1,22 +1,27 @@
 ---
 import EventHeader from '@components/event/EventHeader.astro';
+import Markdown from '@components/markdown/Markdown.svelte';
 
-let {
-    title,
-    subtitle = false,
-    header_html,
-    md_github_url,
-    header_btn_url,
-    header_btn_text,
-    event_header,
-} = Astro.props;
+let { title, subtitle, header_html, md_github_url, header_btn_url, header_btn_text, event_header, topics } =
+    Astro.props;
+
+export interface Props {
+    title: string;
+    subtitle?: string;
+    header_html?: string;
+    md_github_url?: string;
+    header_btn_url?: string;
+    header_btn_text?: string;
+    event_header?: any;
+    topics?: string[];
+}
 title = title.replace('nf-core/', 'nf-core/<wbr>');
 ---
 
 <div class="mainpage-heading pb-1 text-bg-success">
     <div class="container">
-        <h1 class="display-2 d-flex justify-content-between mb-0 mb-md-1">
-            <span set:html={title} />
+        <h1 class="display-2 d-flex justify-content-between mb-2">
+            <span class="title" set:html={title} />
             <div>
                 {
                     md_github_url && (
@@ -39,7 +44,17 @@ title = title.replace('nf-core/', 'nf-core/<wbr>');
                 }
             </div>
         </h1>
-        {subtitle && <p class="lead mb-2 mb-md-3">{subtitle}</p>}
+        {
+            subtitle && (
+                <div class="lead mb-0 subtitle">
+                    <Markdown md={subtitle} />
+                </div>
+            )
+        }
+
+        <div class="mb-2 mb-md-3 topics">
+            {topics && topics.map((topic) => <span class="badge topic me-2">{topic}</span>)}
+        </div>
         {event_header && <EventHeader frontmatter={event_header} />}
         {header_html && { header_html }}
     </div>
@@ -49,7 +64,6 @@ title = title.replace('nf-core/', 'nf-core/<wbr>');
 <style lang="scss">
     @import '@styles/_variables.scss';
     .mainpage-heading {
-        background-color: $success !important;
         & h1,
         & p {
             color: $white !important;
@@ -72,12 +86,15 @@ title = title.replace('nf-core/', 'nf-core/<wbr>');
             ::after {
                 clip-path: polygon(100% 0%, 100% 95%, 50% 100%, 0 95%, 0% 0%);
             }
+            & :global(p) {
+                margin-bottom: 0.5rem;
+            }
         }
         .mainpage-heading h1 {
             font-size: 3rem;
         }
     }
     .triangle-down {
-        background-color: $success !important;
+        background-color: $success;
     }
 </style>
