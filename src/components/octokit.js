@@ -35,7 +35,7 @@ export const getGitHubFile = async (repo, path, ref) => {
       if (path.endsWith('.md') || path.endsWith('.mdx')) {
         const parent_directory = path.split('/').slice(0, -1).join('/');
         // add github url to image links in markdown if they are relative
-        content = content.replaceAll(/!\[(.*?)\]\((.*?)\)/g, (match, p1, p2) => {
+        content = content.replaceAll(/!\[([^\]\[]*\[?[^\]\[]*\]?[^\]\[]*)\]\((.*?)\)/g, (match, p1, p2) => {
           if (p2.startsWith('http')) {
             return match;
           } else {
@@ -58,14 +58,17 @@ export const getGitHubFile = async (repo, path, ref) => {
             return `<source${p1}src="https://raw.githubusercontent.com/nf-core/${repo}/${ref}/${parent_directory}/${p2}"`;
           }
         });
-        // prefix links to CONTRIBUTING.md and CITATIONS.md with github url
-        content = content.replaceAll(/\[(.*?)\]\((\.github\/CONTRIBUTING\.md|CITATIONS\.md)\)/g, (match, p1, p2) => {
-          if (p2.startsWith('http')) {
-            return match;
-          } else {
-            return `[${p1}](https://github.com/nf-core/${repo}/blob/${ref}/${p2})`;
-          }
-        });
+        // prefix links to CONTRIBUTING.md, CITATIONS.md, CHANGELOG.md with github url
+        content = content.replaceAll(
+          /\[(.*?)\]\((\.github\/CONTRIBUTING\.md|CITATIONS\.md|CHANGELOG\.md)\)/g,
+          (match, p1, p2) => {
+            if (p2.startsWith('http')) {
+              return match;
+            } else {
+              return `[${p1}](https://github.com/nf-core/${repo}/blob/${ref}/${p2})`;
+            }
+          },
+        );
         // prefix links to files in the assets directory with github url
         content = content.replaceAll(/\[(.*?)\]\((assets\/.*?)\)/g, (match, p1, p2) => {
           if (p2.startsWith('http')) {

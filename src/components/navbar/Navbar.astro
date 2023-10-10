@@ -52,8 +52,8 @@ if (sections?.length > 0) {
                 <Fragment set:html={NfCoreLogoDarkbg} />
             </div>
         </a>
-        {navTocHeadings.length > 0 && <NavbarToc headings={navTocHeadings} client:only="svelte" />}
-        <div class="align-self-center d-xl-none">
+        {navTocHeadings.length > 0 && <NavbarToc headings={navTocHeadings} client:visible />}
+        <div class:list={['align-self-center d-xl-none', { 'me-5': navTocHeadings.length === 0 }]}>
             <Search id="docsearch-mobile" client:visible />
         </div>
         <button
@@ -69,13 +69,13 @@ if (sections?.length > 0) {
         </button>
         <div class="collapse navbar-collapse justify-content-xl-center align-items-xl-stretch" id="navbarCollapse">
             <ul class="navbar-nav">
-                <li class="nav-item p-1">
+                <li class="nav-item p-1 px-3 px-xl-1">
                     <a class="nav-link" href="/">Home</a>
                 </li>
-                <li class="nav-item p-1">
+                <li class="nav-item p-1 px-3 px-xl-1">
                     <a class="nav-link" href="/pipelines/">Pipelines</a>
                 </li>
-                <li class="nav-item p-1 dropdown">
+                <li class="nav-item p-1 px-3 px-xl-1 dropdown">
                     <span class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"> Resources</span>
                     <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
                         <li><span class="dropdown-header">Configs & tools</span></li>
@@ -87,10 +87,10 @@ if (sections?.length > 0) {
                         <li><a class="dropdown-item" href="/subworkflows/">Subworkflows</a></li>
                     </ul>
                 </li>
-                <li class="nav-item p-1">
+                <li class="nav-item p-1 px-3 px-xl-1">
                     <a class="nav-link" href="/docs/">Docs</a>
                 </li>
-                <li class="nav-item p-1 d-flex align-items-center">
+                <li class="nav-item p-1 px-3 px-xl-1 d-flex align-items-center">
                     <EventIndicator client:idle>
                         <Icon name="circle" />
                     </EventIndicator>
@@ -125,7 +125,7 @@ if (sections?.length > 0) {
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item p-1 dropdown">
+                <li class="nav-item p-1 px-3 px-xl-1 dropdown">
                     <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"> About</a>
                     <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
                         <li><span class="dropdown-header">Community</span></li>
@@ -133,6 +133,7 @@ if (sections?.length > 0) {
                         <li><a class="dropdown-item" href="/about/">About nf-core</a></li>
                         <li><a class="dropdown-item" href="/governance/">Governance</a></li>
                         <li><a class="dropdown-item" href="/contributors/">Contributors</a></li>
+                        <li><a class="dropdown-item" href="/marketing/">Marketing</a></li>
                         <li><a class="dropdown-item" href="/code_of_conduct/">Code of conduct</a></li>
                         <li><hr class="dropdown-divider" /></li>
                         <li><span class="dropdown-header">Initiatives</span></li>
@@ -153,9 +154,11 @@ if (sections?.length > 0) {
                     <i class="icon" slot="dark"><Icon name="moon" width={'14pt'} /></i>
                 </ThemeSwitch>
             </div>
-            <div class="vr d-none d-lg-inline mx-1 mx-xxl-3"></div>
+            <div class="vr d-none d-xl-inline mx-1 mx-xxl-3"></div>
             <hr class="d-xl-none" />
-            <div class="social-icons d-print-none d-flex align-items-center d-xl-block align-self-center mb-3 mb-xl-0">
+            <div
+                class="social-icons d-print-none d-flex align-items-center d-xl-block align-self-center mb-3 mb-xl-0 px-3 px-xl-1"
+            >
                 <IconSocial
                     href="https://github.com/nf-core/"
                     title="GitHub"
@@ -198,7 +201,7 @@ if (sections?.length > 0) {
                 </div>
             </div>
             <div class="d-none d-xl-block vr mx-1 mx-xxl-3"></div>
-            <a class="d-xl-none btn d-block btn-success mb-3" href="/join/"> Join nf-core</a>
+            <a class="d-xl-none btn d-block btn-success mb-3 mx-3 mx-xl-1" href="/join/"> Join nf-core</a>
             <a class="d-none d-xl-block btn btn-success align-self-center" href="/join/"> Join nf-core</a>
         </div>
     </div>
@@ -219,12 +222,13 @@ if (sections?.length > 0) {
         .navbar-brand {
             margin-top: 0.25rem;
             margin-bottom: 0.25rem;
+
             :global(svg) {
                 height: 25px;
             }
         }
         // add wider margins on larger screens
-        @include media-breakpoint-up(lg) {
+        @include media-breakpoint-up(xl) {
             padding: 0.2rem 1rem;
             .navbar-nav > li > a {
                 margin-left: 1rem;
@@ -232,11 +236,16 @@ if (sections?.length > 0) {
                 transition: ease-in-out color 0.1s;
             }
         }
-        @include media-breakpoint-down(lg) {
+        @include media-breakpoint-down(xl) {
+            .container {
+                padding-left: 0;
+                padding-right: 0;
+            }
             .navbar-brand {
                 left: 0;
                 margin-left: 0;
                 margin-right: 0;
+                max-width: 5rem;
             }
         }
         li .dropdown-menu {
