@@ -131,7 +131,7 @@
                     />
                 </div>
                 <div class="flex-grow-1">
-                    {#each events as event}
+                    {#each events as event (event.slug)}
                         <div class="w-100 row align-items-center">
                             <div class="col-8 py-lg-2 text-lg-start">
                                 <h5 class="pt-2 pb-0 pb-lg-1">
@@ -205,7 +205,7 @@
                 <div class="pt-2 pb-1 mb-2 overflow-hidden mainpage-subheader-heading-header bg-body-tertiary">
                     <h5 class="pt-2 font-weight-light text-center text-sucess">{heading_title}</h5>
                 </div>
-                {#each events as event}
+                {#each events as event (event.slug)}
                     <div class="text-center">
                         <h4 class="pt-2 pb-0">
                             <a href={'events/' + event.slug + '/'} class="text-success text-decoration-none"
