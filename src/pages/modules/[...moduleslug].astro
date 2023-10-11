@@ -177,7 +177,7 @@ function truncatURLs(url) {
                                                             {tool[toolName].tool_dev_url}
                                                         </a>
                                                     )}
-                                                {tool[toolName].doi && (
+                                                {tool[toolName].doi && tool[toolName].doi.startsWith('10.') && (
                                                     <a
                                                         href={'https://doi.org/' + tool[toolName].doi}
                                                         title="DOI"
@@ -187,6 +187,11 @@ function truncatURLs(url) {
                                                     >
                                                         <i class="fa-regular fa-newspaper fa-fw" /> {tool[toolName].doi}
                                                     </a>
+                                                )}
+                                                {tool[toolName].doi && tool[toolName].doi === 'no DOI available' && (
+                                                    <span class="btn btn-outline-secondary disabled">
+                                                        no DOI available
+                                                    </span>
                                                 )}
                                             </div>
                                         </div>
