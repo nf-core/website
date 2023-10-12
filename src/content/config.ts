@@ -55,6 +55,7 @@ const tools = defineCollection({
     }),
 });
 
+const tools = defineCollection({});
 const pipelines = defineCollection({});
 
 export const collections = {

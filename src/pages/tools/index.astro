@@ -2,13 +2,14 @@
 import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
 import Markdown from '@components/markdown/Markdown.svelte';
 import { getGitHubFile } from '@components/octokit';
+import { getCollection, CollectionEntry } from 'astro:content';
 
 let headings: {
     depth: number;
     text: string;
     slug: string;
 }[] = [];
-
+console.log(await getCollection('tools'));
 const md_content = await getGitHubFile('tools', 'README.md', 'master')
     .catch((error) => {
         console.log(error);
