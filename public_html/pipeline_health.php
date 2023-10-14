@@ -650,6 +650,7 @@ class PipelineHealth extends RepoHealth {
     // JSON Schema / DSL2 modules directory
     public $has_json_schema;
     public $has_dsl2_modules_dir;
+    public $has_nf_test;
     // Variables for release tests
     public $has_release;
     public $last_release;
@@ -677,6 +678,10 @@ class PipelineHealth extends RepoHealth {
             $this->has_dsl2_modules_dir = $this->check_url(
                 'https://github.com/nf-core/' . $this->name . '/tree/dev/modules',
             );
+            $this->has_nf_test = $this->check_url(
+                'https://github.com/nf-core/' . $this->name . '/tree/dev/nf-test.config',
+            );
+
         }
 
         // Check last release, with caching
@@ -688,6 +693,7 @@ class PipelineHealth extends RepoHealth {
                 $files_404_cache = json_decode(file_get_contents($check_404_cache));
                 $this->has_json_schema = $files_404_cache->json_schema;
                 $this->has_dsl2_modules_dir = $files_404_cache->dsl2_modules_dir;
+                $this->has_nf_test = $files_404_cache->nf_test;
             } else {
                 // Check if the files exist
                 $this->has_json_schema = $this->check_url(
@@ -700,10 +706,14 @@ class PipelineHealth extends RepoHealth {
                 $this->has_dsl2_modules_dir = $this->check_url(
                     'https://github.com/nf-core/' . $this->name . '/tree/' . $this->last_release->tag_name . '/modules',
                 );
+                $this->has_nf_test = $this->check_url(
+                    'https://github.com/nf-core/' . $this->name . '/tree/' . $this->last_release->tag_name . '/nf-test.config',
+                );
                 // Save the cache
                 $files_404_cache = [
                     'json_schema' => $this->has_json_schema,
                     'dsl2_modules_dir' => $this->has_dsl2_modules_dir,
+                    'nf_test' => $this->has_nf_test,
                 ];
                 $this->_save_cache_data($check_404_cache, $files_404_cache);
             }
@@ -988,6 +998,7 @@ $pipeline_test_names =
         'master_is_release' => 'Master = release',
         'has_json_schema' => 'JSON Schema',
         'has_dsl2_modules_dir' => 'DSL2',
+        'has_nf_test' => 'nf-test',
     ] + $base_test_names;
 $pipeline_test_descriptions =
     [
@@ -997,6 +1008,7 @@ $pipeline_test_descriptions =
         'has_json_schema' => 'Has a nextflow_schema.json file (in last release, dev if no release)',
         'has_dsl2_modules_dir' =>
             'Has a modules directory, suggesting that it\'s a DSL2 pipeline (in last release, dev if no release)',
+        'has_nf_test' => 'Uses nf-test',
     ] + $base_test_descriptions;
 $pipeline_test_descriptions['repo_url'] = 'URL should be set to https://nf-co.re/[PIPELINE-NAME]';
 $pipeline_test_urls =
@@ -1006,6 +1018,7 @@ $pipeline_test_urls =
         'master_is_release' => 'https://github.com/nf-core/{repo}/compare/{latest-tag}...master',
         'has_json_schema' => 'https://github.com/nf-core/{repo}',
         'has_dsl2_modules_dir' => 'https://github.com/nf-core/{repo}',
+        'has_nf_test' => 'https://github.com/nf-core/{repo}',
     ] + $base_test_urls;
 $pipeline_merge_table_col_headings = $base_merge_table_col_headings;
 
