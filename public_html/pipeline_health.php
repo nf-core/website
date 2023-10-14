@@ -696,6 +696,7 @@ class PipelineHealth extends RepoHealth {
                 $this->has_json_schema = $files_404_cache->json_schema;
                 $this->has_dsl2_modules_dir = $files_404_cache->dsl2_modules_dir;
                 $this->has_nf_test = $files_404_cache->nf_test;
+                $this->has_nf_test_dev = $files_404_cache->nf_test_dev;
             } else {
                 // Check if the files exist
                 $this->has_json_schema = $this->check_url(
@@ -719,7 +720,7 @@ class PipelineHealth extends RepoHealth {
                     'json_schema' => $this->has_json_schema,
                     'dsl2_modules_dir' => $this->has_dsl2_modules_dir,
                     'nf_test' => $this->has_nf_test,
-                    'nf_test' => $this->has_nf_test_dev,
+                    'nf_test_dev' => $this->has_nf_test_dev,
                 ];
                 $this->_save_cache_data($check_404_cache, $files_404_cache);
             }
