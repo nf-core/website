@@ -651,6 +651,7 @@ class PipelineHealth extends RepoHealth {
     public $has_json_schema;
     public $has_dsl2_modules_dir;
     public $has_nf_test;
+    public $has_nf_test_dev;
     // Variables for release tests
     public $has_release;
     public $last_release;
@@ -681,6 +682,7 @@ class PipelineHealth extends RepoHealth {
             $this->has_nf_test = $this->check_url(
                 'https://github.com/nf-core/' . $this->name . '/tree/dev/nf-test.config',
             );
+            $this->has_nf_test_dev = $this->has_nf_test;
 
         }
 
@@ -709,11 +711,15 @@ class PipelineHealth extends RepoHealth {
                 $this->has_nf_test = $this->check_url(
                     'https://github.com/nf-core/' . $this->name . '/tree/' . $this->last_release->tag_name . '/nf-test.config',
                 );
+                $this->has_nf_test_dev = $this->check_url(
+                'https://github.com/nf-core/' . $this->name . '/tree/dev/nf-test.config',
+            );
                 // Save the cache
                 $files_404_cache = [
                     'json_schema' => $this->has_json_schema,
                     'dsl2_modules_dir' => $this->has_dsl2_modules_dir,
                     'nf_test' => $this->has_nf_test,
+                    'nf_test' => $this->has_nf_test_dev,
                 ];
                 $this->_save_cache_data($check_404_cache, $files_404_cache);
             }
@@ -999,6 +1005,7 @@ $pipeline_test_names =
         'has_json_schema' => 'JSON Schema',
         'has_dsl2_modules_dir' => 'DSL2',
         'has_nf_test' => 'nf-test',
+        'has_nf_test_dev' => 'nf-test in dev',
     ] + $base_test_names;
 $pipeline_test_descriptions =
     [
@@ -1009,6 +1016,7 @@ $pipeline_test_descriptions =
         'has_dsl2_modules_dir' =>
             'Has a modules directory, suggesting that it\'s a DSL2 pipeline (in last release, dev if no release)',
         'has_nf_test' => 'Uses nf-test',
+        'has_nf_test_dev' => 'Uses nf-test in dev branch',
     ] + $base_test_descriptions;
 $pipeline_test_descriptions['repo_url'] = 'URL should be set to https://nf-co.re/[PIPELINE-NAME]';
 $pipeline_test_urls =
@@ -1019,6 +1027,7 @@ $pipeline_test_urls =
         'has_json_schema' => 'https://github.com/nf-core/{repo}',
         'has_dsl2_modules_dir' => 'https://github.com/nf-core/{repo}',
         'has_nf_test' => 'https://github.com/nf-core/{repo}',
+        'has_nf_test_dev' => 'https://github.com/nf-core/{repo}',
     ] + $base_test_urls;
 $pipeline_merge_table_col_headings = $base_merge_table_col_headings;
 
