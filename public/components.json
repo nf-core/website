@@ -22214,6 +22214,101 @@
       ]
     },
     {
+      "name": "deeptmhmm",
+      "path": "modules/nf-core/deeptmhmm/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "deeptmhmm",
+        "description": "A Deep Learning Model for Transmembrane Topology Prediction and Classification",
+        "keywords": [
+          "transmembrane",
+          "protein",
+          "classification"
+        ],
+        "tools": [
+          {
+            "deeptmhmm": {
+              "description": "Deep Learning model for Transmembrane Helices protein domain prediction through the BioLib Python Client",
+              "homepage": "https://dtu.biolib.com/DeepTMHMM",
+              "documentation": "https://dtu.biolib.com/DeepTMHMM",
+              "doi": "10.1101/2022.04.08.487609",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Database of sequences in FASTA format",
+              "pattern": "*.{fasta,fa,fasta.gz,fa.gz}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "gff3": {
+              "type": "file",
+              "description": "Predicted topologies (inside, outside, TMhelix) in general Feature Format Version 3",
+              "pattern": "biolib_results/TMRs.gff3"
+            }
+          },
+          {
+            "line3": {
+              "type": "file",
+              "description": "Predicted topologies and information of protein sequences in three lines (name, sequence, topology)",
+              "pattern": "biolib_results/predicted_topologies.3line"
+            }
+          },
+          {
+            "md": {
+              "type": "file",
+              "description": "Markdown results file",
+              "pattern": "biolib_results/deeptmhmm_results.md"
+            }
+          },
+          {
+            "csv": {
+              "type": "file",
+              "description": "CSV file with per-residue predictions for the likelihood of each amino acid being in structural regions such as Beta-sheet, Periplasm, Membrane, Inside, Outside or Signal (only when querying against genomic fasta)",
+              "pattern": "biolib_results/*_probs.csv"
+            }
+          },
+          {
+            "png": {
+              "type": "file",
+              "description": "Most likely topology probability line plots (only when querying against genomic fasta)",
+              "pattern": "biolib_results/plot.png"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@vagkaratzas"
+        ]
+      }
+    },
+    {
       "name": "deeptools_bamcoverage",
       "path": "modules/nf-core/deeptools/bamcoverage/meta.yml",
       "type": "module",
@@ -29003,7 +29098,7 @@
           },
           {
             "mode": {
-              "type": "value",
+              "type": "string",
               "description": "Flye mode depending on the input data (source and error rate)",
               "pattern": "--pacbio-raw|--pacbio-corr|--pacbio-hifi|--nano-raw|--nano-corr|--nano-hq"
             }
@@ -39864,6 +39959,144 @@
               "type": "file",
               "description": "The assembly as modified by gfastats",
               "pattern": "*.{fasta,fastq,gfa}.gz"
+            }
+          }
+        ],
+        "authors": [
+          "@mahesh-panchal"
+        ]
+      }
+    },
+    {
+      "name": "gfatools_gfa2fa",
+      "path": "modules/nf-core/gfatools/gfa2fa/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gfatools_gfa2fa",
+        "description": "Converts GFA or rGFA files to FASTA",
+        "keywords": [
+          "gfa",
+          "rgfa",
+          "fasta",
+          "assembly",
+          "genome graph",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "gfatools": {
+              "description": "Tools for manipulating sequence graphs in the GFA and rGFA formats",
+              "homepage": "https://github.com/lh3/gfatools",
+              "documentation": "https://github.com/lh3/gfatools",
+              "tool_dev_url": "https://github.com/lh3/gfatools",
+              "doi": "no DOI available",
+              "licence": "['Unknown']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "gfa": {
+              "type": "file",
+              "description": "GFA or rGFA file",
+              "pattern": "*.gfa"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "FASTA file",
+              "pattern": "*.fasta"
+            }
+          }
+        ],
+        "authors": [
+          "@mahesh-panchal"
+        ]
+      }
+    },
+    {
+      "name": "gfatools_stat",
+      "path": "modules/nf-core/gfatools/stat/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gfatools_stat",
+        "description": "Summary statistics for GFA files",
+        "keywords": [
+          "summary",
+          "statistics",
+          "gfa",
+          "rgfa",
+          "graph",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "gfatools": {
+              "description": "Tools for manipulating sequence graphs in the GFA and rGFA formats",
+              "homepage": "https://github.com/lh3/gfatools",
+              "documentation": "https://github.com/lh3/gfatools",
+              "tool_dev_url": "https://github.com/lh3/gfatools",
+              "doi": "no DOI available",
+              "licence": "['Unknown']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "gfa": {
+              "type": "file",
+              "description": "GFA or rGFA file",
+              "pattern": "*.gfa"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "stats": {
+              "type": "file",
+              "description": "Summary statistics of the GFA file",
+              "pattern": "*.stats"
             }
           }
         ],
@@ -57304,7 +57537,7 @@
           },
           {
             "txt": {
-              "type": "txt",
+              "type": "file",
               "description": "Combined MetaPhlAn3 table",
               "pattern": "*.txt"
             }
@@ -64365,6 +64598,72 @@
           "version": "1.0.0"
         }
       ]
+    },
+    {
+      "name": "pairtools_merge",
+      "path": "modules/nf-core/pairtools/merge/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "pairtools_merge",
+        "description": "Merge multiple pairs/pairsam files",
+        "keywords": [
+          "merge",
+          "pairs",
+          "pairsam"
+        ],
+        "tools": [
+          {
+            "pairtools": {
+              "description": "CLI tools to process mapped Hi-C data",
+              "homepage": "http://pairtools.readthedocs.io/",
+              "documentation": "http://pairtools.readthedocs.io/",
+              "tool_dev_url": "https://github.com/mirnylab/pairtools",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "allpairs": {
+              "type": "file",
+              "description": "All pair files to merge"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "pairs": {
+              "type": "file",
+              "description": "Merged pairs file",
+              "pattern": "*.{pairs.gz}"
+            }
+          }
+        ],
+        "authors": [
+          "@nservant"
+        ]
+      }
     },
     {
       "name": "pairtools_parse",
@@ -81100,6 +81399,214 @@
         ],
         "authors": [
           "@ramprasadn"
+        ]
+      }
+    },
+    {
+      "name": "sentieon_tnhaplotyper2",
+      "path": "modules/nf-core/sentieon/tnhaplotyper2/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "sentieon_tnhaplotyper2",
+        "description": "Tnhaplotyper2 performs somatic variant calling on the tumor-normal matched pairs.",
+        "keywords": [
+          "tnseq",
+          "tnhaplotyper2",
+          "sentieon",
+          "variant_calling"
+        ],
+        "tools": [
+          {
+            "sentieon": {
+              "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
+              "homepage": "https://www.sentieon.com/",
+              "documentation": "https://www.sentieon.com/"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information.\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "meta5": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "meta6": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "meta7": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "meta8": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "input": {
+              "type": "file",
+              "description": "BAM/CRAM file from alignment",
+              "pattern": "*.{bam,cram}"
+            }
+          },
+          {
+            "input_index": {
+              "type": "file",
+              "description": "BAI/CRAI file from alignment",
+              "pattern": "*.{bai,crai}"
+            }
+          },
+          {
+            "intervals": {
+              "type": "file",
+              "description": "Bed file with the genomic regions included in the library (optional)"
+            }
+          },
+          {
+            "dict": {
+              "type": "file",
+              "description": "GATK sequence dictionary",
+              "pattern": "*.dict"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Genome fasta file",
+              "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "Index of the genome fasta file",
+              "pattern": "*.fai"
+            }
+          },
+          {
+            "germline_resource": {
+              "type": "file",
+              "description": "Population vcf of germline sequencing, containing allele fractions.",
+              "pattern": "*.vcf.gz"
+            }
+          },
+          {
+            "germline_resource_tbi": {
+              "type": "file",
+              "description": "Index file for the germline resource.",
+              "pattern": "*.vcf.gz.tbi"
+            }
+          },
+          {
+            "panel_of_normals": {
+              "type": "file",
+              "description": "vcf file to be used as a panel of normals.",
+              "pattern": "*.vcf.gz"
+            }
+          },
+          {
+            "panel_of_normals_tbi": {
+              "type": "file",
+              "description": "Index for the panel of normals.",
+              "pattern": "*.vcf.gz.tbi"
+            }
+          },
+          {
+            "emit_orientation_data": {
+              "type": "boolean",
+              "description": "If true, the module will run the sentieon algorithm TNhaplotyper2 followed by the sentieon algorithm OrientationBias."
+            }
+          },
+          {
+            "emit_contamination_data": {
+              "type": "boolean",
+              "description": "If true, the module will run the sentieon algorithm TNhaplotyper2 followed by the sentieon algorithm ContaminationModel."
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "orientation_data": {
+              "type": "file",
+              "description": "TSV file from Sentieon's algorithm OrientationBias",
+              "pattern": "*.orientation_data.tsv"
+            }
+          },
+          {
+            "contamination_data": {
+              "type": "file",
+              "description": "TSV file from Sentieon's algorithm ContaminationModel",
+              "pattern": "*.contamination_data.tsv"
+            }
+          },
+          {
+            "contamination_segments": {
+              "type": "file",
+              "description": "Tumour segments file from Sentieon's algorithm ContaminationModel",
+              "pattern": "*.segments"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "VCF file",
+              "pattern": "*.{vcf.gz}"
+            }
+          },
+          {
+            "index": {
+              "type": "file",
+              "description": "Index of the VCF file",
+              "pattern": "*.vcf.gz.tbi"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@asp8200"
         ]
       }
     },
@@ -103332,6 +103839,122 @@
         ],
         "authors": [
           "@LouisLeNezet"
+        ]
+      }
+    },
+    {
+      "name": "nextflowpipelineutils",
+      "path": "subworkflows/nf-core/nextflowpipelineutils/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "nextflow_pipeline_utils",
+        "description": "Subworkflow with functionality that may be useful for any Nextflow pipeline",
+        "keywords": [
+          "utility",
+          "pipeline",
+          "initialise",
+          "version"
+        ],
+        "components": [],
+        "input": [
+          {
+            "print_version": {
+              "type": "boolean",
+              "description": "Print the version of the pipeline and exit\n"
+            }
+          },
+          {
+            "dump_parameters": {
+              "type": "boolean",
+              "description": "Dump the parameters of the pipeline to a JSON file\n"
+            }
+          },
+          {
+            "output_directory": {
+              "type": "directory",
+              "description": "Path to output dir to write JSON file to.",
+              "pattern": "results/"
+            }
+          },
+          {
+            "check_conda_channel": {
+              "type": "boolean",
+              "description": "Check if the conda channel priority is correct.\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "out": {
+              "type": "boolean",
+              "description": "Dummy output for making using in process chaining.\n"
+            }
+          }
+        ],
+        "authors": [
+          "@adamrtalbot",
+          "@drpatelh"
+        ]
+      }
+    },
+    {
+      "name": "nfvalidation_plugin_utils",
+      "path": "subworkflows/nf-core/nfvalidation_plugin_utils/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "nfvalidationpluginutils",
+        "description": "Sort SAM/BAM/CRAM file",
+        "keywords": [
+          "sort",
+          "bam",
+          "sam",
+          "cram"
+        ],
+        "components": [
+          "samtools/sort",
+          "samtools/index"
+        ],
+        "input": [
+          {
+            "ch_bam": {
+              "type": "file",
+              "description": "The input channel containing the BAM/CRAM/SAM files\nStructure: [ val(meta), path(bam) ]\n",
+              "pattern": "*.{bam/cram/sam}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "bam": {
+              "type": "file",
+              "description": "Channel containing BAM files\nStructure: [ val(meta), path(bam) ]\n",
+              "pattern": "*.bam"
+            }
+          },
+          {
+            "bai": {
+              "type": "file",
+              "description": "Channel containing indexed BAM (BAI) files\nStructure: [ val(meta), path(bai) ]\n",
+              "pattern": "*.bai"
+            }
+          },
+          {
+            "csi": {
+              "type": "file",
+              "description": "Channel containing CSI files\nStructure: [ val(meta), path(csi) ]\n",
+              "pattern": "*.csi"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@adamrtalbot"
         ]
       }
     },
