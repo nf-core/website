@@ -26,20 +26,20 @@
 
 <div class="accordion my-2">
     <div class="accordion-item">
-        <h2 class="accordion-button bg-body-secondary" data-bs-toggle="collapse" data-bs-target={'#' + id.replaceAll('_', '-')}
-            aria-controls={'#' + id.replaceAll('_', '-')} id={id.replaceAll('_', '-') + '_acc'}>
+        <h2 class="accordion-button bg-body-secondary" data-bs-toggle="collapse" data-bs-target={'#' + id.replaceAll('_', '-') + '_body'}
+            aria-controls={'#' + id.replaceAll('_', '-') + '_body'} id={id.replaceAll('_', '-')}>
             <a
                 class="text-decoration-none text-success"
                 aria-hidden="true"
                 tabindex="-1"
-                href={'#' + id.replaceAll('_', '-') + '_acc'}
+                href={'#' + id.replaceAll('_', '-')}
                 ><i class="ms-1 fas invisible" aria-hidden="true" />{#if definition.fa_icon}
                     <i class="fa fa-fw me-2 {definition.fa_icon}" />
                 {/if}
                 {definition.title}
             </a>
         </h2>
-        <div id={id.replaceAll('_', '-')} class="accordion-collapse collapse show">
+        <div id={id.replaceAll('_', '-') + '_body'} class="accordion-collapse collapse show">
           <div class="accordion-body">
             <p class="mb-0">{definition.description ? definition.description : ''}</p>
             {#if definition.properties}
