@@ -24,30 +24,33 @@
     });
 </script>
 
-<div class="card my-2" class:collapse={hidden} class:show={$showHidden}>
-    <div class="card-header position-sticky bg-body-secondary">
-        <h2 class="card-title text-success scroll-target my-1" id={id.replaceAll('_', '-')}>
+<div class="accordion my-2">
+    <div class="accordion-item">
+        <h2 class="accordion-button bg-body-secondary" data-bs-toggle="collapse" data-bs-target={'#' + id.replaceAll('_', '-')}
+            aria-controls={'#' + id.replaceAll('_', '-')} id={id.replaceAll('_', '-') + '_acc'}>
             <a
                 class="text-decoration-none text-success"
                 aria-hidden="true"
                 tabindex="-1"
-                href={'#' + id.replaceAll('_', '-')}
+                href={'#' + id.replaceAll('_', '-') + '_acc'}
                 ><i class="ms-1 fas invisible" aria-hidden="true" />{#if definition.fa_icon}
                     <i class="fa fa-fw me-2 {definition.fa_icon}" />
                 {/if}
                 {definition.title}
             </a>
         </h2>
-    </div>
-    <div class="card-body pb-0">
-        <p class="mb-0">{definition.description ? definition.description : ''}</p>
-        {#if definition.properties}
-            <div class="properties">
-                {#each Object.entries(definition.properties) as [title, property] (title)}
-                    <SchemaListingElement {title} {property} />
-                {/each}
-            </div>
-        {/if}
+        <div id={id.replaceAll('_', '-')} class="accordion-collapse collapse show">
+          <div class="accordion-body">
+            <p class="mb-0">{definition.description ? definition.description : ''}</p>
+            {#if definition.properties}
+                <div class="properties">
+                    {#each Object.entries(definition.properties) as [title, property] (title)}
+                        <SchemaListingElement {title} {property} />
+                    {/each}
+                </div>
+            {/if}
+          </div>
+        </div>
     </div>
 </div>
 
@@ -55,4 +58,12 @@
     .properties > :global(.row) {
         margin-top: -1px; // avoid doubled borders
     }
+    .accordion-button {
+        font-size: 2rem;
+        font-weight: 500;
+    }
+    .accordion-button.collapsed {
+        background: #EAECEF;
+    }
 </style>
+
