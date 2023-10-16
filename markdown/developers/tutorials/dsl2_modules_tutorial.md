@@ -329,7 +329,7 @@ workflow test_fgbio_fastqtobam {
 In order to carry out the test, _pytest-workflow_ will search for information stored in 2 files.
 
 ```bash
-modules/tests/config/pytest_software.yml
+modules/tests/config/pytest_modules.yml
 modules/tests/software/fgbio/fastqtobam/test.yml
 ```
 
@@ -351,7 +351,7 @@ This process will run the test workflow, generate the outputs and update the `te
 
 ### Check pytest YAML
 
-Before running some local tests, we should make sure the `pytest_software.yml` looks like we expect, i.e. contains the following lines
+Before running some local tests, we should make sure the `pytest_modules.yml` looks like we expect, i.e. contains the following lines
 
 ```yaml
 fgbio_fastqtobam:
