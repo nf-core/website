@@ -26,7 +26,7 @@
 
 <div class="accordion my-2">
     <div class="accordion-item">
-        <h2 class="accordion-button bg-body-secondary" data-bs-toggle="collapse" data-bs-target={'#' + id.replaceAll('_', '-') + '_body'}
+        <h2 class="accordion-button bg-body-secondary scroll-target" data-bs-toggle="collapse" data-bs-target={'#' + id.replaceAll('_', '-') + '_body'}
             aria-controls={'#' + id.replaceAll('_', '-') + '_body'} id={id.replaceAll('_', '-')}>
             <a
                 class="text-decoration-none text-success"
