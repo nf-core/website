@@ -198,6 +198,13 @@ nextflow run MY_WORKFLOW -profile test,docker --outdir <OUTDIR>
 Note that if you do need to adjust this `nextflow run` command, you'll need to update it
 in the `.github/workflows/` YAML files too.
 
+### Test standards summary
+
+- The `test` profile must exist and work
+- The test should be as comprehensive as possible
+- The test should run as much of the pipeline as possible
+- The test dataset should be as small as possible, but big enough to test the pipeline
+
 ## Adding your pipeline to the nf-core organisation
 
 Ok, so you're essentially finished. Your pipeline is written, the tests pass and
