@@ -131,6 +131,9 @@ to make sure that your workflow passes all of the nf-core compatibility tests.
 The automated tests on Github Actions also run this, so you should get a
 notification from GitHub if something breaks.
 
+When testing the pipeline you can add the `debug` profile (`-profile debug`) to the Nextflow command line,
+to enable warnings about process selectors, show additional debug output and disable cleanup.
+
 ## Running with test data
 
 Whilst the linting tests are good, they're not sufficient by themselves.

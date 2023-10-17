@@ -48,6 +48,9 @@ If you're new to working with git, you can view the [GitHub pull requests docume
 
 ## Testing
 
+You can optionally test your changes by running the pipeline locally. Then it is recommended to use the `debug` profile to
+receive warnings about process selectors and other debug info. Example: `nextflow run . -profile debug,test,docker --outdir <OUTDIR>`.
+
 When you create a pull request with changes, [GitHub Actions](https://github.com/features/actions) will run automatic tests.
 Typically, pull-requests are only fully reviewed when these tests are passing, though of course, we can help out before then.
 
