@@ -61635,6 +61635,71 @@
       }
     },
     {
+      "name": "muscle5_super5",
+      "path": "modules/nf-core/muscle5/super5/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "muscle5_super5",
+        "description": "Muscle is a program for creating multiple alignments of amino acid or nucleotide sequences. This particular module uses the super5 algorithm for very big alignments. It can permutate the guide tree according to a set of flags.",
+        "keywords": [
+          "align",
+          "msa",
+          "multiple sequence alignment"
+        ],
+        "tools": [
+          {
+            "muscle -super5": {
+              "description": "Muscle v5 is a major re-write of MUSCLE based on new algorithms.",
+              "homepage": "https://drive5.com/muscle5/",
+              "documentation": "https://drive5.com/muscle5/manual/",
+              "doi": "10.1101/2021.06.20.449169",
+              "licence": "[http://www.drive5.com/muscle/manual/license.html]"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Input sequences for alignment must be in FASTA format",
+              "pattern": "*.{fasta,fa,fna}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "aligned_fasta": {
+              "type": "file",
+              "description": "Multiple sequence alignment produced in FASTA format",
+              "pattern": "*.{aln}"
+            }
+          }
+        ],
+        "authors": [
+          "@alessiovignoli"
+        ]
+      }
+    },
+    {
       "name": "mykrobe_predict",
       "path": "modules/nf-core/mykrobe/predict/meta.yml",
       "type": "module",
@@ -64221,6 +64286,74 @@
         ],
         "authors": [
           "@marrip"
+        ]
+      }
+    },
+    {
+      "name": "openms_decoydatabase",
+      "path": "modules/nf-core/openms/decoydatabase/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "openms_decoydatabase",
+        "description": "Create a decoy peptide database from a standard FASTA database.",
+        "keywords": [
+          "decoy",
+          "database",
+          "openms",
+          "proteomics",
+          "fasta"
+        ],
+        "tools": [
+          {
+            "openms": {
+              "description": "OpenMS is an open-source software C++ library for LC-MS data management and analyses",
+              "homepage": "https://openms.de",
+              "documentation": "https://openms.readthedocs.io/en/latest/index.html",
+              "tool_dev_url": "https://github.com/OpenMS/OpenMS",
+              "doi": "10.1038/nmeth.3959",
+              "licence": "['BSD']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Fasta file containing protein sequences",
+              "pattern": "*.{fasta}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Fasta file containing proteins and decoy proteins",
+              "pattern": "*.{fasta}"
+            }
+          }
+        ],
+        "authors": [
+          "@jonasscheid"
         ]
       }
     },
@@ -68330,7 +68463,8 @@
         "description": "changes name of sample in the vcf file",
         "keywords": [
           "picard",
-          "picard/renamesampleinvcf"
+          "picard/renamesampleinvcf",
+          "vcf"
         ],
         "tools": [
           {
@@ -103894,6 +104028,34 @@
         "authors": [
           "@adamrtalbot",
           "@drpatelh"
+        ]
+      }
+    },
+    {
+      "name": "nfcore_pipeline_utils",
+      "path": "subworkflows/nf-core/nfcore_pipeline_utils/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "NFCORE_PIPELINE_UTILS",
+        "description": "Subworkflow with utility functions specific to the nf-core pipeline template",
+        "keywords": [
+          "utility",
+          "pipeline",
+          "initialise",
+          "version"
+        ],
+        "components": [],
+        "input": [],
+        "output": [
+          {
+            "success": {
+              "type": "boolean",
+              "description": "Dummy output to indicate success\n"
+            }
+          }
+        ],
+        "authors": [
+          "@adamrtalbot"
         ]
       }
     },
