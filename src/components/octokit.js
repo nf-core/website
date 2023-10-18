@@ -77,8 +77,13 @@ export const getGitHubFile = async (repo, path, ref) => {
             return `[${p1}](https://github.com/nf-core/${repo}/blob/${ref}/${p2})`;
           }
         });
-        // remove github warning and everything before from docs
-        content = content.replace(/(.*?)(## :warning:)(.*?)usage\)/s, '');
+        // replace the gh syntax for admonitions with ours
+        if (content.match(/>\s\*\*.+\*\*\n>\s.+/)) {
+          content = content.replace(/\w+/, match => {
+            return match.toLowerCase();
+          });
+          content = content.replace(/>\s\*\*/, '').replace(/\*\*/, '').replace(/^/,':::').replace(/>\s/, '').replace(/$/,'\n:::');
+        }
         // remove blockquote ending in "files._" from the start of the document
         content = content.replace(/(.*?)(files\._)/s, '');
         // cleanup heading
