@@ -26,7 +26,11 @@ Gitpod will contain a preconfigured Nextflow development environment and has the
 
 Simply click the link and log in using your GitHub account to start the tutorial:
 
-(link to non-existing gitpod)
+<p class="text-center">
+  <a href="https://www.gitpod.io/#https://github.com/nf-core/basic_training" class="btn btn-lg btn-success" target="_blank">
+    Launch GitPod
+  </a>
+</p>
 
 For more information about gitpod, including how to make your own gitpod environement, see the gitpod bytesize talk on youtube (link to the bytesize talk)
 
