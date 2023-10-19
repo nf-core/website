@@ -39837,14 +39837,14 @@
           {
             "treatment_bam": {
               "type": "file",
-              "description": "Coordinate sorted BAM/SAM file from treatment sample",
+              "description": "Coordinate sorted BAM/SAM file from treatment sample or list of BAM/SAM files from biological replicates",
               "pattern": "*.{bam,sam}"
             }
           },
           {
             "control_bam": {
               "type": "file",
-              "description": "Coordinate sorted BAM/SAM file from control sample",
+              "description": "Coordinate sorted BAM/SAM file from control sample or list of BAM/SAM files from control samples",
               "pattern": "*.{bam,sam}"
             }
           },
@@ -39931,7 +39931,8 @@
           }
         ],
         "authors": [
-          "@JoseEspinosa"
+          "@JoseEspinosa",
+          "@samuelruizperez"
         ]
       }
     },
@@ -47141,6 +47142,85 @@
         ],
         "authors": [
           "@rpetit3"
+        ]
+      }
+    },
+    {
+      "name": "htseq_count",
+      "path": "modules/nf-core/htseq/count/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "htseq_count",
+        "description": "count how many reads map to each feature",
+        "keywords": [
+          "htseq",
+          "count",
+          "gtf",
+          "annotation"
+        ],
+        "tools": [
+          {
+            "htseq/count": {
+              "description": "HTSeq is a Python library to facilitate processing and analysis of data from high-throughput sequencing (HTS) experiments.",
+              "homepage": "https://htseq.readthedocs.io/en/latest/",
+              "documentation": "https://htseq.readthedocs.io/en/latest/index.html",
+              "doi": "10.1093/bioinformatics/btu638",
+              "licence": "['GPL v3']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": ".gtf file information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "input": {
+              "type": "file",
+              "description": "Sorted BAM/CRAM/SAM file",
+              "pattern": "*.{bam,cram,sam}"
+            }
+          },
+          {
+            "index": {
+              "type": "file",
+              "description": "Contains indexed bam file",
+              "pattern": "*.bai"
+            }
+          },
+          {
+            "gtf": {
+              "type": "file",
+              "description": "Contains the features in the GTF format",
+              "pattern": "*.gtf"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "txt": {
+              "type": "file",
+              "description": "File containing feature counts output",
+              "pattern": ".txt"
+            }
+          }
+        ],
+        "authors": [
+          "@zehrahazalsezer"
         ]
       }
     },
