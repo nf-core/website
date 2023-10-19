@@ -77,13 +77,21 @@ export const getGitHubFile = async (repo, path, ref) => {
             return `[${p1}](https://github.com/nf-core/${repo}/blob/${ref}/${p2})`;
           }
         });
-        // replace the gh syntax for admonitions with ours
-        if (content.match(/>\s\*\*.+\*\*\n>\s.+/)) {
-          content = content.replace(/\w+/, match => {
-            return match.toLowerCase();
-          });
-          content = content.replace(/>\s\*\*/, '').replace(/\*\*/, '').replace(/^/,':::').replace(/>\s/, '').replace(/$/,'\n:::');
-        }
+
+        // convert github style admonitions to docusaurus admonitions
+        output = output.replace(/> \[!(NOTE|WARNING|IMPORTANT)\]\s*\n((?:> [^\n]*\s*?)+)/g, (match, type, content) => {
+          const cleanedContent = content.replace(/> /g, '').trim();
+          const admonitionType = type.toLowerCase();
+
+          if (admonitionType === 'important') {
+            return `:::info{title=Important}\n${cleanedContent}\n:::\n\n`;
+          }
+
+          return `:::${admonitionType}\n${cleanedContent}\n:::\n\n`;
+        });
+
+        // remove github warning and everything before from docs
+        content = content.replace(/(.*?)(## :warning:)(.*?)usage\)/s, '');
         // remove blockquote ending in "files._" from the start of the document
         content = content.replace(/(.*?)(files\._)/s, '');
         // cleanup heading
