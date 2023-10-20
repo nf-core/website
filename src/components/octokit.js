@@ -79,16 +79,19 @@ export const getGitHubFile = async (repo, path, ref) => {
         });
 
         // convert github style admonitions to docusaurus admonitions
-        output = output.replace(/> \[!(NOTE|WARNING|IMPORTANT)\]\s*\n((?:> [^\n]*\s*?)+)/g, (match, type, content) => {
-          const cleanedContent = content.replace(/> /g, '').trim();
-          const admonitionType = type.toLowerCase();
+        content = content.replace(
+          /> \[!(NOTE|WARNING|IMPORTANT)\]\s*\n((?:> [^\n]*\s*?)+)/g,
+          (match, type, content) => {
+            const cleanedContent = content.replace(/> /g, '').trim();
+            const admonitionType = type.toLowerCase();
 
-          if (admonitionType === 'important') {
-            return `:::info{title=Important}\n${cleanedContent}\n:::\n\n`;
-          }
+            if (admonitionType === 'important') {
+              return `:::info{title=Important}\n${cleanedContent}\n:::\n\n`;
+            }
 
-          return `:::${admonitionType}\n${cleanedContent}\n:::\n\n`;
-        });
+            return `:::${admonitionType}\n${cleanedContent}\n:::\n\n`;
+          },
+        );
 
         // remove github warning and everything before from docs
         content = content.replace(/(.*?)(## :warning:)(.*?)usage\)/s, '');
