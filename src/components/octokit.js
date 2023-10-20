@@ -70,7 +70,7 @@ export const getGitHubFile = async (repo, path, ref) => {
           },
         );
         // prefix links to files in the assets directory with github url
-        content = content.replaceAll(/\[(.*?)\]\((assets\/.*?)\)/g, (match, p1, p2) => {
+        content = content.replaceAll(/\[(.*?)\]\(((\.\.\/)*assets\/.*?)\)/g, (match, p1, p2) => {
           if (p2.startsWith('http')) {
             return match;
           } else {
