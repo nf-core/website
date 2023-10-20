@@ -62,7 +62,7 @@ const { subworkflow } = Astro.props;
         <div class="col-none col-md-2">
             <SidebarStats
                 component_type={'subworkflows'}
-                contributors={subworkflow.meta.maintainers}
+                contributors={subworkflow.meta.maintainers || subworkflow.meta.authors}
                 included_pipelines={subworkflow.pipelines}
                 included_modules={subworkflow.meta.modules}
             />
