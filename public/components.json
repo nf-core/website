@@ -2966,6 +2966,10 @@
         {
           "name": "rnafusion",
           "version": "2.4.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "2.4.0"
         }
       ]
     },
@@ -10974,10 +10978,16 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing genome information\ne.g. [ id:'genome' ]\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "Reference genome in FASTA format (optional)",
-              "pattern": "*.{fa,fasta}"
+              "pattern": "*.{fa,fasta,fna}"
             }
           }
         ],
@@ -10991,15 +11001,22 @@
           {
             "bam": {
               "type": "file",
-              "description": "BAM/CRAM file with duplicate reads marked/removed",
-              "pattern": "*.{bam,cram}"
+              "description": "BAM file with duplicate reads marked/removed",
+              "pattern": "*.bam"
             }
           },
           {
             "bam_index": {
               "type": "file",
               "description": "BAM index file",
-              "pattern": "*.{bai}"
+              "pattern": "*.bai"
+            }
+          },
+          {
+            "cram": {
+              "type": "file",
+              "description": "CRAM file with duplicate reads marked/removed",
+              "pattern": "*.cram"
             }
           },
           {
@@ -67341,9 +67358,6 @@
         ],
         "authors": [
           "@jonasscheid"
-        ],
-        "maintainers": [
-            "@jonasscheid"
         ]
       }
     },
