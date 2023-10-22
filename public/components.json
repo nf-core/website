@@ -2974,6 +2974,10 @@
         {
           "name": "rnafusion",
           "version": "2.4.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "2.4.0"
         }
       ]
     },
@@ -12701,7 +12705,7 @@
             "fasta": {
               "type": "file",
               "description": "Input fasta file containing queries sequences",
-              "pattern": "*.{fa,fasta}"
+              "pattern": "*.{fa,fasta,fa.gz,fasta.gz}"
             }
           },
           {
@@ -12720,17 +12724,17 @@
             }
           },
           {
-            "versions": {
-              "type": "file",
-              "description": "File containing software versions",
-              "pattern": "versions.yml"
-            }
-          },
-          {
             "csv": {
               "type": "file",
               "description": "File containing blastp hits",
               "pattern": "*.csv"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
             }
           }
         ],
