@@ -350,17 +350,7 @@ We recently decided to use nf-test instead of pytest for testing modules. This i
 
 #### Steps for creating nf-test for a simple un-chained module
 
-- Install or update to the latest version of [nf-test](https://code.askimed.com/nf-test/installation/) using `curl`
-
-```bash
-curl -fsSL https://code.askimed.com/install/nf-test | bash
-```
-
-:::note
-The install step will copy the nf-test executable file in the current directory. If you want to use it globally, move the nf-test file to a directory accessible by your $PATH variable.
-:::
-
-- Or install via conda and make sure to update to the latest version
+- Install and update to the latest version of [nf-test](https://code.askimed.com/nf-test/installation/)
 
 ```bash
 conda install -c bioconda nf-test
