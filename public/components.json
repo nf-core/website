@@ -16256,6 +16256,218 @@
       }
     },
     {
+      "name": "cellrangeratac_count",
+      "path": "modules/nf-core/cellrangeratac/count/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "cellrangeratac_count",
+        "description": "Module to use Cell Ranger's ATAC pipelines analyze sequencing data produced from Chromium Single Cell ATAC.",
+        "keywords": [
+          "align",
+          "count",
+          "reference"
+        ],
+        "tools": [
+          {
+            "cellranger-atac": {
+              "description": "Cell Ranger ATAC is a set of analysis pipelines that process Chromium Single Cell ATAC data.",
+              "homepage": "https://support.10xgenomics.com/single-cell-atac/software/pipelines/latest/what-is-cell-ranger-atac",
+              "documentation": "https://support.10xgenomics.com/single-cell-atac/software/pipelines/latest/what-is-cell-ranger-atac",
+              "tool_dev_url": "https://support.10xgenomics.com/single-cell-atac/software/pipelines/latest/what-is-cell-ranger-atac",
+              "licence": "10x Genomics EULA"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "reads": {
+              "type": "file",
+              "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data,\nrespectively, plus an additional FastQ for the barcodes\n"
+            }
+          },
+          {
+            "reference": {
+              "type": "directory",
+              "description": "Directory containing all the reference indices needed by Cell Ranger ATAC"
+            }
+          }
+        ],
+        "output": [
+          {
+            "outs": {
+              "type": "file",
+              "description": "Files containing the outputs of Cell Ranger ATAC",
+              "pattern": "sample-${meta.gem}/outs/*"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software version",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@ggabernet",
+          "@Emiller88",
+          "@heylf"
+        ]
+      }
+    },
+    {
+      "name": "cellrangeratac_mkfastq",
+      "path": "modules/nf-core/cellrangeratac/mkfastq/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "cellrangeratac_mkfastq",
+        "description": "Module to create fastqs needed by the 10x Genomics Cell Ranger ATAC tool. Uses the cellranger-atac mkfastq command.",
+        "keywords": [
+          "reference",
+          "mkfastq",
+          "fastq",
+          "illumina",
+          "bcl2fastq"
+        ],
+        "tools": [
+          {
+            "cellranger-atac": {
+              "description": "Cell Ranger ATAC by 10x Genomics is a set of analysis pipelines that process Chromium single-cell data to align reads, generate feature-barcode matrices, perform clustering and other secondary analysis, and more.",
+              "homepage": "https://support.10xgenomics.com/single-cell-atac/software/pipelines/latest/what-is-cell-ranger-atac",
+              "documentation": "https://support.10xgenomics.com/single-cell-atac/software/pipelines/latest/what-is-cell-ranger-atac",
+              "tool_dev_url": "https://support.10xgenomics.com/single-cell-atac/software/pipelines/latest/what-is-cell-ranger-atac",
+              "licence": "10x Genomics EULA"
+            }
+          }
+        ],
+        "input": [
+          {
+            "bcl": {
+              "type": "file",
+              "description": "Base call files",
+              "pattern": "*.bcl.bgzf"
+            }
+          },
+          {
+            "csv": {
+              "type": "file",
+              "description": "Sample sheet",
+              "pattern": "*.csv"
+            }
+          }
+        ],
+        "output": [
+          {
+            "fastq": {
+              "type": "file",
+              "description": "Unaligned FastQ files",
+              "pattern": "*.fastq.gz"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software version",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@ggabernet",
+          "@Emiller88",
+          "@RHReynolds",
+          "@heylf"
+        ]
+      }
+    },
+    {
+      "name": "cellrangeratac_mkref",
+      "path": "modules/nf-core/cellrangeratac/mkref/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "cellrangeratac_mkref",
+        "description": "Module to build the reference needed by the 10x Genomics Cell Ranger ATAC tool. Uses the cellranger-atac mkref command.",
+        "keywords": [
+          "reference",
+          "mkref",
+          "index"
+        ],
+        "tools": [
+          {
+            "cellranger-atac": {
+              "description": "Cell Ranger ATAC is a set of analysis pipelines that process Chromium Single Cell ATAC data.",
+              "homepage": "https://support.10xgenomics.com/single-cell-atac/software/pipelines/latest/what-is-cell-ranger-atac",
+              "documentation": "https://support.10xgenomics.com/single-cell-atac/software/pipelines/latest/what-is-cell-ranger-atac",
+              "tool_dev_url": "https://support.10xgenomics.com/single-cell-atac/software/pipelines/latest/what-is-cell-ranger-atac",
+              "licence": "10x Genomics EULA"
+            }
+          }
+        ],
+        "input": [
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Reference genome FASTA file",
+              "pattern": "*.{fasta,fa}"
+            }
+          },
+          {
+            "gtf": {
+              "type": "file",
+              "description": "Reference transcriptome GTF file",
+              "pattern": "*.gtf"
+            }
+          },
+          {
+            "motifs": {
+              "type": "file",
+              "description": "Sequence motif file (e.g., of transcription factors)",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "reference_config": {
+              "type": "file",
+              "description": "JSON-like config file holding organism, genome, reference fasta path, reference annotation gtf path, contigs that should be excluded and sequence format motif file path",
+              "pattern": "config"
+            }
+          },
+          {
+            "reference_name": {
+              "type": "string",
+              "description": "The name to give the new reference folder",
+              "pattern": "str"
+            }
+          }
+        ],
+        "output": [
+          {
+            "reference": {
+              "type": "directory",
+              "description": "Folder called regarding reference_name containing all the reference indices needed by Cell Ranger ATAC"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software version",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@ggabernet",
+          "@heylf"
+        ]
+      }
+    },
+    {
       "name": "centrifuge_centrifuge",
       "path": "modules/nf-core/centrifuge/centrifuge/meta.yml",
       "type": "module",
