@@ -371,7 +371,7 @@ mkdir modules/nf-core/<module>/tests
 - Generate a test file from template for your module using nf-test
 
 ```bash
-./nf-test generate process modules/nf-core/<module>/main.nf
+nf-test generate process modules/nf-core/<module>/main.nf
 ```
 
 - Move the generated test file to the tests directory
