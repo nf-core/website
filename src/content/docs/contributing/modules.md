@@ -343,7 +343,7 @@ if you have a module named `build` this can conflict with some pytest internal b
 
 We recently decided to use nf-test instead of pytest for testing modules. This is because nf-test is more flexible and allows us to test modules in a more realistic way. You can find more information at [nf-test official docs](https://code.askimed.com/nf-test/) and [in this bytesize talk](https://nf-co.re/events/2022/bytesize_nftest).
 
-#### Philosophy of nf-tests:
+#### Philosophy of nf-tests
 
 - Each module contains a `tests/` folder beside the `main.nf` containing the test files
 - Test files come with a [snapshot](https://code.askimed.com/nf-test/docs/assertions/snapshots/) of module output channels
