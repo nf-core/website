@@ -344,8 +344,9 @@ if you have a module named `build` this can conflict with some pytest internal b
 We recently decided to use nf-test instead of pytest for testing modules. This is because nf-test is more flexible and allows us to test modules in a more realistic way. You can find more information at [nf-test official docs](https://code.askimed.com/nf-test/) and [in this bytesize talk](https://nf-co.re/events/2022/bytesize_nftest).
 
 #### Philopsohy of nf-tests:
-* Each module to now contain a `tests/` folder beside the `main.nf` containing the test files
-* Test files to come with a [snapshot](https://code.askimed.com/nf-test/docs/assertions/snapshots/) of module output channels
+
+- Each module to now contain a `tests/` folder beside the `main.nf` containing the test files
+- Test files to come with a [snapshot](https://code.askimed.com/nf-test/docs/assertions/snapshots/) of module output channels
 
 #### Steps for creating nf-test for a simple un-chained module
 
@@ -453,6 +454,17 @@ nf-test test --tag "<module>" --profile docker
 nf-test test --tag "<module>" --profile docker
 ```
 
+- Create a new `tags.yml` in the `modules/nf-core/<module>/tests/` folder and add only the corresponding module tag from `tests/config/pytest_modules.yml`
+
+```yaml
+<module>:
+  - modules/nf-core/<module>/**
+```
+
+:::note
+Remove the corresponding tags from `tests/config/pytest_modules.yml` so that py-tests for the module will be skipped on github CI
+:::
+
 - create PR and add the `nf-test` label to it.
 
 #### Steps for creating nf-test for chained modules
@@ -461,7 +473,7 @@ nf-test test --tag "<module>" --profile docker
 
 - For modules that involve running more than one process to generate required test-data (aka chained modules), nf-test provides a [setup](https://code.askimed.com/nf-test/docs/testcases/setup/) method.
 
-- For example, the module `abricate/summary` requires the process `abricate/run` to be run prior and takes its output as input. The setup method is to be declared before the primary `when` block in the test file as shown below:
+- For example, the module `abricate/summary` requires the process `abricate/run` to be run prior and takes its output as input. The `setup` method is to be declared before the primary `when` block in the test file as shown below:
 
 ```groovy
 setup {
@@ -483,7 +495,7 @@ setup {
 ```
 
 :::note
-The setup method can run more than one process each enclosed in their `run` block
+The setup method can run more than one process each enclosed in their own `run` block
 :::
 
 - Then, the output of setup process/es can be provided as input in the `process` section of `when` block
@@ -565,17 +577,26 @@ nf-test test --tag "<tool>/<sub-tool>" --profile docker
 nf-test test --tag "<tool>/<sub-tool>" --profile docker
 ```
 
+- Create a new `tags.yml` in the `modules/nf-core/<module>/tests/` folder and add only the corresponding module tag from `tests/config/pytest_modules.yml`
+
+```yaml
+<tool>/<sub-tool>:
+  - modules/nf-core/<tool>/<sub-tool>/**
+  - modules/nf-core/<tool>/<sub-tool>/**
+```
+
+:::note
+Remove the corresponding tags from `tests/config/pytest_modules.yml` so that py-tests for the module will be skipped on github CI
+:::
+
 - create PR and add the `nf-test` label to it.
 
 :::info
-The implementation of nf-test in nf-core is still evolving. Things might still change and the information might here might be outdated. Please report any issues you encounter [on the nf-core/website repository](https://github.com/nf-core/website/issues/new?assignees=&labels=bug&projects=&template=bug_report.md). Additionally, nf-core/tools will help you create nf-tests in the future, making some of the steps here obsolete.
+The implementation of nf-test in nf-core is still evolving. Things might still change and the information might here might be outdated. Please report any issues you encounter [on the nf-core/website repository](https://github.com/nf-core/website/issues/new?assignees=&labels=bug&projects=&template=bug_report.md) and the `nf-test` channel on nf-core slack. Additionally, nf-core/tools will help you create nf-tests in the future, making some of the steps here obsolete.
 
 <!-- NOTE: update when nf-core/tools gets nf-test support -->
 
 :::
-
-#### nf-test FAQ's
-
 
 ### Uploading to `nf-core/modules`
 
@@ -750,7 +771,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
     resulting in, for instance,
 
     ```yaml
-    'FASTQC':
+    "FASTQC":
       fastqc: 0.11.9
       samtools: 1.12
     ```
