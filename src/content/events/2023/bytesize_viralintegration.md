@@ -4,9 +4,10 @@ subtitle: Alyssa Briggs, The University of Texas at Dallas
 type: talk
 start_date: '2023-10-24'
 start_time: '14:30+02:00'
+youtube_embed: https://www.youtube.com/watch?v=rLG6YKE52Mo
 end_date: '2023-10-24'
 end_time: '15:00+02:00'
-location_url: https://kth-se.zoom.us/j/68390542812
+location_url: https://www.youtube.com/watch?v=rLG6YKE52Mo
 ---
 
 # nf-core/bytesize
