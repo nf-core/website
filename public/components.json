@@ -2982,6 +2982,10 @@
         {
           "name": "rnafusion",
           "version": "2.4.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "2.4.0"
         }
       ]
     },
@@ -5005,6 +5009,10 @@
       },
       "pipelines": [
         {
+          "name": "bacass",
+          "version": "2.1.0"
+        },
+        {
           "name": "funcscan",
           "version": "1.1.3"
         },
@@ -5069,6 +5077,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "bacass",
+          "version": "2.1.0"
+        },
         {
           "name": "funcscan",
           "version": "1.1.3"
@@ -15009,7 +15021,13 @@
         "maintainers": [
           "@scorreard"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "bacass",
+          "version": "2.1.0"
+        }
+      ]
     },
     {
       "name": "cat_cat",
@@ -21696,6 +21714,10 @@
         {
           "name": "atacseq",
           "version": "2.1.2"
+        },
+        {
+          "name": "bacass",
+          "version": "2.1.0"
         },
         {
           "name": "bamtofastq",
@@ -29285,6 +29307,10 @@
           "version": "3.1.0"
         },
         {
+          "name": "bacass",
+          "version": "2.1.0"
+        },
+        {
           "name": "demultiplex",
           "version": "1.3.2"
         },
@@ -29430,7 +29456,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "bamtofastq",
@@ -45493,6 +45519,10 @@
           "version": "2.1.2"
         },
         {
+          "name": "bacass",
+          "version": "2.1.0"
+        },
+        {
           "name": "chipseq",
           "version": "2.0.0"
         },
@@ -46801,6 +46831,144 @@
         ],
         "maintainers": [
           "@nvnieuwk"
+        ]
+      }
+    },
+    {
+      "name": "happy_sompy",
+      "path": "modules/nf-core/happy/sompy/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "happy_sompy",
+        "description": "Hap.py is a tool to compare diploid genotypes at haplotype level. som.py is a part of hap.py compares somatic variations.",
+        "keywords": [
+          "happy",
+          "sompy",
+          "benchmark",
+          "haplotype",
+          "validation",
+          "somatic variants"
+        ],
+        "tools": [
+          {
+            "sompy": {
+              "description": "Haplotype VCF comparison tools somatic variant comparison",
+              "homepage": "https://www.illumina.com/products/by-type/informatics-products/basespace-sequence-hub/apps/hap-py-benchmarking.html",
+              "documentation": "https://github.com/Illumina/hap.py/blob/master/doc/sompy.md",
+              "tool_dev_url": "https://github.com/Illumina/hap.py",
+              "licence": "['BSD-2-clause']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "query_vcf": {
+              "type": "file",
+              "description": "VCF/GVCF file to query",
+              "pattern": "*.{gvcf,vcf}.gz"
+            }
+          },
+          {
+            "truth_vcf": {
+              "type": "file",
+              "description": "gold standard VCF file",
+              "pattern": "*.{gvcf,vcf}.gz"
+            }
+          },
+          {
+            "regions_bed": {
+              "type": "file",
+              "description": "Sparse regions to restrict the analysis to",
+              "pattern": "*.bed"
+            }
+          },
+          {
+            "targets_bed": {
+              "type": "file",
+              "description": "Dense regions to restrict the analysis to",
+              "pattern": "*.bed"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "FASTA file of the reference genome",
+              "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "fasta_fai": {
+              "type": "file",
+              "description": "The index of the reference FASTA",
+              "pattern": "*.fai"
+            }
+          },
+          {
+            "false_positives_bed": {
+              "type": "file",
+              "description": "False positive / confident call regions. Calls outside these regions will be labelled as UNK.",
+              "pattern": "*.{bed,bed.gz}"
+            }
+          },
+          {
+            "stratification_tsv": {
+              "type": "file",
+              "description": "Ambiguous region bed file(s)",
+              "pattern": "*.bed"
+            }
+          },
+          {
+            "bams": {
+              "type": "file",
+              "description": "one or more BAM files for feature table extraction",
+              "pattern": "*.bam"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "features": {
+              "type": "file",
+              "description": "One or more than one (if AF count is on ) CSV file containing feature information",
+              "pattern": "*.features.csv"
+            }
+          },
+          {
+            "metrics": {
+              "type": "file",
+              "description": "One or more than one (if AF count is on ) JSON file with metrics",
+              "pattern": "*.metrics.json"
+            }
+          },
+          {
+            "stats": {
+              "type": "file",
+              "description": "One or more than one (if AF count is on ) CSV file with benchmark stats",
+              "pattern": "*.stats.csv"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@kubranarci"
         ]
       }
     },
@@ -53382,7 +53550,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "hgtseq",
@@ -61121,7 +61289,13 @@
         "maintainers": [
           "@avantonder"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "bacass",
+          "version": "2.1.0"
+        }
+      ]
     },
     {
       "name": "minimap2_align",
@@ -61231,6 +61405,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "bacass",
+          "version": "2.1.0"
+        },
         {
           "name": "circdna",
           "version": "1.0.4"
@@ -63877,7 +64055,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "bamtofastq",
@@ -65141,6 +65319,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "bacass",
+          "version": "2.1.0"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -74270,6 +74452,10 @@
       },
       "pipelines": [
         {
+          "name": "bacass",
+          "version": "2.1.0"
+        },
+        {
           "name": "taxprofiler",
           "version": "1.1.1"
         }
@@ -74979,7 +75165,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "funcscan",
@@ -77188,7 +77374,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "genomeassembler",
@@ -77472,6 +77658,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "bacass",
+          "version": "2.1.0"
+        },
         {
           "name": "crisprseq",
           "version": "2.0.0"
@@ -82099,7 +82289,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "bamtofastq",
@@ -82708,7 +82898,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "callingcards",
@@ -96387,6 +96577,72 @@
       ]
     },
     {
+      "name": "tcoffee_seqreformat",
+      "path": "modules/nf-core/tcoffee/seqreformat/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "tcoffee_seqreformat",
+        "description": "Reformats files with t-coffee",
+        "keywords": [
+          "reformatting",
+          "alignment",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "tcoffee": {
+              "description": "A collection of tools for Computing, Evaluating and Manipulating Multiple Alignments of DNA, RNA, Protein Sequences and Structures.",
+              "homepage": "http://www.tcoffee.org/Projects/tcoffee/",
+              "documentation": "https://tcoffee.readthedocs.io/en/latest/tcoffee_main_documentation.html",
+              "tool_dev_url": "https://github.com/cbcrg/tcoffee",
+              "doi": "10.1006/jmbi.2000.4042",
+              "licence": "['GPL v3']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Input file to be reformatted",
+              "pattern": "*"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "formatted_file": {
+              "type": "file",
+              "description": "Formatted file",
+              "pattern": "*"
+            }
+          }
+        ],
+        "authors": [
+          "@luisas"
+        ]
+      }
+    },
+    {
       "name": "tiara_tiara",
       "path": "modules/nf-core/tiara/tiara/meta.yml",
       "type": "module",
@@ -99135,6 +99391,10 @@
         {
           "name": "atacseq",
           "version": "2.1.2"
+        },
+        {
+          "name": "bacass",
+          "version": "2.1.0"
         },
         {
           "name": "chipseq",
@@ -108266,7 +108526,13 @@
         "maintainers": [
           "@Joon-Klaps"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "bacass",
+          "version": "2.1.0"
+        }
+      ]
     },
     {
       "name": "initialise",
