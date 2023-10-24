@@ -339,6 +339,198 @@ For docker/singularity, setting the environment variable `TMPDIR=~` is an exampl
 if you have a module named `build` this can conflict with some pytest internal behaviour. This results in no tests being run (i.e. receiving a message of `collected 0 items`). In this case rename the `tests/<module>/build` directory to `tests/<module>/build_test`, and update the corresponding `test.yml` accordingly. An example can be seen with the [`bowtie2/build` module tests](https://github.com/nf-core/modules/tree/master/tests/modules/nf-core/bowtie2/build_test).
 :::
 
+### Migrating from pytest to nf-test
+
+We recently decided to use nf-test instead of pytest for testing modules. This is because nf-test is more flexible and allows us to test modules in a more realistic way. You can find more information about nf-test [in the bytesize talk](https://nf-co.re/events/2022/bytesize_nftest).
+
+#### steps for a simple un-chained module
+
+- Install or update to the latest version of `nf-test`
+
+```bash
+curl -fsSL https://code.askimed.com/install/nf-test | bash
+```
+
+:::note
+The install step will copy the nf-test executable file in the current directory. If you want to use it globally, move the nf-test file to a directory accessible by your $PATH variable.
+:::
+
+- Git checkout a new branch for your module tests
+
+```bash
+git checkout -b <branch>
+```
+
+- Create a new test directory for your module
+
+```bash
+mkdir modules/nf-core/<module>/tests
+```
+
+- Generate a test file for your module using nf-test
+
+```bash
+./nf-test generate process modules/nf-core/<module>/main.nf
+```
+
+- Move the generated test file to the test directory
+
+```bash
+mv modules/nf-core/<module>/main.nf.test modules/nf-core/<module>/tests/
+```
+
+- Open the `main.nf.test` file and change the path for the script to a relative path `../main.nf`
+
+```diff title="main.nf.test"
+nextflow_process {
+     name "Test Process MODULE"
+-    script "modules/nf-core/paraclu/main.nf"
++    script "../main.nf"
+     process "MODULE"
+```
+
+- Then add tags to identify this modules
+
+```groovy
+tag "modules"
+tag "modules_nfcore"
+```
+
+```groovy
+tag "tool"
+tag "tool/sub-tool" (optional)
+```
+
+- set outdir
+
+```groovy=
+params {
+    outdir   = "$outputDir"
+    }
+```
+
+:::note
+multiple tags are allowed for a test
+:::
+
+- get the current inputs for the process from tests/modules/nf-core/module/main.nf and provide as positional inputs `input[0]` in nf-test file
+
+- include the following assertion block for the then block
+
+```groovy
+assertAll(
+            { assert process.success },
+            { assert snapshot(process.out).match() }
+            )
+```
+
+- Run the test to create the snapshot
+
+```bash
+nf-test test --tag "<module>" --profile docker
+```
+
+- Re-run the test again to check if snapshots match
+
+```bash
+nf-test test --tag "<module>" --profile docker
+```
+
+- create PR and add the nf-test label to it.
+
+:::info
+The implementation of nf-test in nf-core is still in flux. Things might still change and the information might here might be outdated. Please report any issues you encounter [on the nf-core/website repository](https://github.com/nf-core/website/issues/new?assignees=&labels=bug&projects=&template=bug_report.md). Additionally, nf-core/tools will help you create nf-tests in the future, making some of the steps here obsolete.
+
+<!-- NOTE: update when nf-core/tools gets nf-test support -->
+
+:::
+
+#### Chained modules
+
+```groovy
+setup {
+
+            run("ABRICATE_RUN") {
+                script "../../run/main.nf"
+                process {
+                    """
+                    input[0] =  Channel.fromList([
+                        tuple([ id:'test1', single_end:false ], // meta map
+                            file(params.test_data['bacteroides_fragilis']['genome']['genome_fna_gz'], checkIfExists: true)),
+                        tuple([ id:'test2', single_end:false ],
+                            file(params.test_data['haemophilus_influenzae']['genome']['genome_fna_gz'], checkIfExists: true))
+                    ])
+                    """
+                }
+            }
+        }
+```
+
+```groovy=
+input[0] = ABRICATE_RUN.out.report.collect{ meta, report -> report }.map{ report -> [[ id: 'test_summary'], report]}
+```
+
+- include the following assertion block for the then block
+
+```groovy=
+assertAll(
+            { assert process.success },
+            { assert snapshot(process.out).match() }
+            )
+```
+
+```groovy=
+nextflow_process {
+
+    name "Test Process ABRICATE_SUMMARY"
+    script "../main.nf"
+    process "ABRICATE_SUMMARY"
+    tag "abricate"
+    tag "abricate/summary"
+    tag "modules_nfcore"
+
+    test("Should run without failures") {
+
+        setup {
+            run("ABRICATE_RUN") {
+                script "../../run/main.nf"
+                process {
+                """
+                input[0] = Channel.fromList([
+                                tuple([ id:'test1', single_end:false ], // meta map
+                                    file(params.test_data['bacteroides_fragilis']['genome']['genome_fna_gz'], checkIfExists: true)),
+                                tuple([ id:'test2', single_end:false ],
+                                    file(params.test_data['haemophilus_influenzae']['genome']['genome_fna_gz'], checkIfExists: true))
+                            ])
+                """
+            }
+            }
+        }
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = ABRICATE_RUN.out.report.collect{ meta, report -> report }.map{ report -> [[ id: 'test_summary'], report]}
+                """
+            }
+        }
+
+        then {
+            assertAll(
+            { assert process.success },
+            { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+}
+
+```
+
 ### Uploading to `nf-core/modules`
 
 [Fork](https://help.github.com/articles/fork-a-repo/) the `nf-core/modules` repository to your own GitHub account. Within the local clone of your fork add the module file to the `modules/` directory. Please try and keep PRs as atomic as possible to aid the reviewing process - ideally, one module addition/update per PR.
