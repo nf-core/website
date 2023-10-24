@@ -345,12 +345,12 @@ We recently decided to use nf-test instead of pytest for testing modules. This i
 
 #### Philopsohy of nf-tests:
 
-- Each module to now contain a `tests/` folder beside the `main.nf` containing the test files
-- Test files to come with a [snapshot](https://code.askimed.com/nf-test/docs/assertions/snapshots/) of module output channels
+- Each module contains a `tests/` folder beside the `main.nf` containing the test files
+- Test files come with a [snapshot](https://code.askimed.com/nf-test/docs/assertions/snapshots/) of module output channels
 
 #### Steps for creating nf-test for a simple un-chained module
 
-- Install or update to the latest version of [nf-test](https://code.askimed.com/nf-test/installation/)
+- Install or update to the latest version of [nf-test](https://code.askimed.com/nf-test/installation/) using `curl`
 
 ```bash
 curl -fsSL https://code.askimed.com/install/nf-test | bash
@@ -359,6 +359,12 @@ curl -fsSL https://code.askimed.com/install/nf-test | bash
 :::note
 The install step will copy the nf-test executable file in the current directory. If you want to use it globally, move the nf-test file to a directory accessible by your $PATH variable.
 :::
+
+- Or install via conda and make sure to update to the latest version
+
+```bash
+conda install -c bioconda nf-test
+```
 
 - Git checkout a new branch for your module tests
 
