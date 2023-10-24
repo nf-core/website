@@ -343,7 +343,7 @@ if you have a module named `build` this can conflict with some pytest internal b
 
 We recently decided to use nf-test instead of pytest for testing modules. This is because nf-test is more flexible and allows us to test modules in a more realistic way. You can find more information at [nf-test official docs](https://code.askimed.com/nf-test/) and [in this bytesize talk](https://nf-co.re/events/2022/bytesize_nftest).
 
-#### Philopsohy of nf-tests:
+#### Philosophy of nf-tests:
 
 - Each module contains a `tests/` folder beside the `main.nf` containing the test files
 - Test files come with a [snapshot](https://code.askimed.com/nf-test/docs/assertions/snapshots/) of module output channels
@@ -439,7 +439,7 @@ input[2] = [
            ]
 ```
 
-- Next, in the `then` block we can write our assertions that are used verify the test. A test can have multiple assertions but, we recommend enclosing all assertions in a `assertAll()` block as shown below:
+- Next, in the `then` block we can write our assertions that are used to verify the test. A test can have multiple assertions but, we recommend enclosing all assertions in a `assertAll()` block as shown below:
 
 ```groovy
 assertAll(
@@ -510,7 +510,7 @@ The setup method can run more than one process each enclosed in their own `run` 
 input[0] = ABRICATE_RUN.out.report.collect{ meta, report -> report }.map{ report -> [[ id: 'test_summary'], report]}
 ```
 
-- Next, in the `then` block we can write our assertions that are used verify the test. A test can have multiple assertions but, we recommend enclosing all assertions in a `assertAll()` block as shown below:
+- Next, in the `then` block we can write our assertions that are used to verify the test. A test can have multiple assertions but, we recommend enclosing all assertions in a `assertAll()` block as shown below:
 
 ```groovy=
 assertAll(
