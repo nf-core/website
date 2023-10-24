@@ -341,11 +341,15 @@ if you have a module named `build` this can conflict with some pytest internal b
 
 ### Migrating from pytest to nf-test
 
-We recently decided to use nf-test instead of pytest for testing modules. This is because nf-test is more flexible and allows us to test modules in a more realistic way. You can find more information about nf-test [in the bytesize talk](https://nf-co.re/events/2022/bytesize_nftest).
+We recently decided to use nf-test instead of pytest for testing modules. This is because nf-test is more flexible and allows us to test modules in a more realistic way. You can find more information at [nf-test official docs](https://code.askimed.com/nf-test/) and [in this bytesize talk](https://nf-co.re/events/2022/bytesize_nftest).
 
-#### steps for a simple un-chained module
+#### Philopsohy of nf-tests:
+* Each module to now contain a `tests/` folder beside the `main.nf` containing the test files
+* Test files to come with a [snapshot](https://code.askimed.com/nf-test/docs/assertions/snapshots/) of module output channels
 
-- Install or update to the latest version of `nf-test`
+#### Steps for creating nf-test for a simple un-chained module
+
+- Install or update to the latest version of [nf-test](https://code.askimed.com/nf-test/installation/)
 
 ```bash
 curl -fsSL https://code.askimed.com/install/nf-test | bash
@@ -361,19 +365,19 @@ The install step will copy the nf-test executable file in the current directory.
 git checkout -b <branch>
 ```
 
-- Create a new test directory for your module
+- Create a new tests directory within your module directory
 
 ```bash
 mkdir modules/nf-core/<module>/tests
 ```
 
-- Generate a test file for your module using nf-test
+- Generate a test file from template for your module using nf-test
 
 ```bash
 ./nf-test generate process modules/nf-core/<module>/main.nf
 ```
 
-- Move the generated test file to the test directory
+- Move the generated test file to the tests directory
 
 ```bash
 mv modules/nf-core/<module>/main.nf.test modules/nf-core/<module>/tests/
@@ -389,7 +393,7 @@ nextflow_process {
      process "MODULE"
 ```
 
-- Then add tags to identify this modules
+- Then add tags to identify this module
 
 ```groovy
 tag "modules"
@@ -401,7 +405,17 @@ tag "tool"
 tag "tool/sub-tool" (optional)
 ```
 
-- set outdir
+:::note
+multiple tags are allowed for a test
+:::
+
+- Provide a test name preferably indicating the test-data and file-format used. Example: `test("homo_sapiens - [bam, bai, bed] - fasta - fai")`
+
+:::note
+multiple tests are allowed in a single test file
+:::
+
+- set outdir param
 
 ```groovy=
 params {
@@ -409,13 +423,16 @@ params {
     }
 ```
 
-:::note
-multiple tags are allowed for a test
-:::
+- If migrating an existing module, get the inputs from current pytest files `tests/modules/nf-core/module/main.nf` and provide as positional inputs `input[0]` in nf-test file
 
-- get the current inputs for the process from tests/modules/nf-core/module/main.nf and provide as positional inputs `input[0]` in nf-test file
+```groovy
+input[2] = [
+            [id:"ref"],
+            file(params.test_data['homo_sapiens']['genome']['genome_fasta_fai'], checkIfExists: true)
+           ]
+```
 
-- include the following assertion block for the then block
+- Next, in the `then` block we can write our assertions that are used verify the test. A test can have multiple assertions but, we recommend enclosing all assertions in a `assertAll()` block as shown below:
 
 ```groovy
 assertAll(
@@ -424,28 +441,27 @@ assertAll(
             )
 ```
 
-- Run the test to create the snapshot
+- Run the test to create a snapshot of your module test. This will create a `.nf.test.snap` file
 
 ```bash
 nf-test test --tag "<module>" --profile docker
 ```
 
-- Re-run the test again to check if snapshots match
+- Re-run the test again to verify if snapshots match
 
 ```bash
 nf-test test --tag "<module>" --profile docker
 ```
 
-- create PR and add the nf-test label to it.
+- create PR and add the `nf-test` label to it.
 
-:::info
-The implementation of nf-test in nf-core is still in flux. Things might still change and the information might here might be outdated. Please report any issues you encounter [on the nf-core/website repository](https://github.com/nf-core/website/issues/new?assignees=&labels=bug&projects=&template=bug_report.md). Additionally, nf-core/tools will help you create nf-tests in the future, making some of the steps here obsolete.
+#### Steps for creating nf-test for chained modules
 
-<!-- NOTE: update when nf-core/tools gets nf-test support -->
+- Follow the steps listed above for simple modules for test generation, tags and test-name
 
-:::
+- For modules that involve running more than one process to generate required test-data (aka chained modules), nf-test provides a [setup](https://code.askimed.com/nf-test/docs/testcases/setup/) method.
 
-#### Chained modules
+- For example, the module `abricate/summary` requires the process `abricate/run` to be run prior and takes its output as input. The setup method is to be declared before the primary `when` block in the test file as shown below:
 
 ```groovy
 setup {
@@ -466,11 +482,17 @@ setup {
         }
 ```
 
+:::note
+The setup method can run more than one process each enclosed in their `run` block
+:::
+
+- Then, the output of setup process/es can be provided as input in the `process` section of `when` block
+
 ```groovy=
 input[0] = ABRICATE_RUN.out.report.collect{ meta, report -> report }.map{ report -> [[ id: 'test_summary'], report]}
 ```
 
-- include the following assertion block for the then block
+- Next, in the `then` block we can write our assertions that are used verify the test. A test can have multiple assertions but, we recommend enclosing all assertions in a `assertAll()` block as shown below:
 
 ```groovy=
 assertAll(
@@ -479,17 +501,20 @@ assertAll(
             )
 ```
 
+- the `main.nf.test` file for chained modules will finally look as shown below:
+
 ```groovy=
 nextflow_process {
 
     name "Test Process ABRICATE_SUMMARY"
     script "../main.nf"
     process "ABRICATE_SUMMARY"
+    tag "modules"
+    tag "modules_nfcore"
     tag "abricate"
     tag "abricate/summary"
-    tag "modules_nfcore"
 
-    test("Should run without failures") {
+    test("bacteroides_fragilis - genome_fna_gz") {
 
         setup {
             run("ABRICATE_RUN") {
@@ -524,12 +549,33 @@ nextflow_process {
             { assert snapshot(process.out).match() }
             )
         }
-
     }
-
 }
-
 ```
+
+- Run the test to create a snapshot of your module test. This will create a `.nf.test.snap` file
+
+```bash
+nf-test test --tag "<tool>/<sub-tool>" --profile docker
+```
+
+- Re-run the test again to verify if snapshots match
+
+```bash
+nf-test test --tag "<tool>/<sub-tool>" --profile docker
+```
+
+- create PR and add the `nf-test` label to it.
+
+:::info
+The implementation of nf-test in nf-core is still evolving. Things might still change and the information might here might be outdated. Please report any issues you encounter [on the nf-core/website repository](https://github.com/nf-core/website/issues/new?assignees=&labels=bug&projects=&template=bug_report.md). Additionally, nf-core/tools will help you create nf-tests in the future, making some of the steps here obsolete.
+
+<!-- NOTE: update when nf-core/tools gets nf-test support -->
+
+:::
+
+#### nf-test FAQ's
+
 
 ### Uploading to `nf-core/modules`
 
