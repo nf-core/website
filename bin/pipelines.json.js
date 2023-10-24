@@ -226,10 +226,8 @@ export const writePipelinesJson = async () => {
             release.body = release.body.replaceAll(
               /(?<!\]\()https:\/\/github\.com\/nf-core\/([^\/]+)\/([^\/]+)\/([^\/\n]*)(?![\)\]])/g,
               (match, p1, p2, p3) => {
-                console.log('match', match);
                 if (p1 === name && ['pull', 'issues', 'compare'].includes(p2)) {
                   const prefix = p2 !== 'compare' ? '#' : '';
-                  console.log(`[${prefix}${p3}](${match})`);
                   return `[${prefix}${p3}](${match})`;
                 }
                 return match;
