@@ -3,8 +3,9 @@
 
 # Temporary oldsite redirections
 /logo/*  https://oldsite.nf-co.re/logo/:splat 200
-/tools/docs/* https://oldsite.nf-co.re/tools/docs/:splat 200
-/tools-docs/lint_tests/* https://oldsite.nf-co.re/tools/docs/latest/pipeline_lint_tests/index.html
+
+/tools-docs/lint_tests/* https://oldsite.nf-co.re/tools/docs/latest/pipeline_lint_tests/:splat
+/tools/docs/* https://oldsite.nf-co.re/tools/docs/:splat
 /pipeline_schema_builder/* https://oldsite.nf-co.re/pipeline_schema_builder/:splat 200
 /launch/* https://oldsite.nf-co.re/launch/:splat 200
 /assets/* https://oldsite.nf-co.re/assets/:splat 200
