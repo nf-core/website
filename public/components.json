@@ -2994,6 +2994,10 @@
         {
           "name": "rnafusion",
           "version": "2.4.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "2.4.0"
         }
       ]
     },
@@ -9090,7 +9094,7 @@
       "pipelines": [
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         },
         {
           "name": "radseq",
@@ -9270,7 +9274,7 @@
       "pipelines": [
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         }
       ]
     },
@@ -9465,7 +9469,7 @@
       "pipelines": [
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         },
         {
           "name": "hicar",
@@ -9724,7 +9728,7 @@
       "pipelines": [
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         },
         {
           "name": "nascent",
@@ -10163,7 +10167,7 @@
       "pipelines": [
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         },
         {
           "name": "nascent",
@@ -13125,7 +13129,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         },
         {
           "name": "hic",
@@ -13244,7 +13248,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         },
         {
           "name": "hic",
@@ -15222,7 +15226,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         },
         {
           "name": "genomeannotator",
@@ -22284,7 +22288,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         },
         {
           "name": "hic",
@@ -24143,7 +24147,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         }
       ]
     },
@@ -24233,7 +24237,7 @@
       "pipelines": [
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         }
       ]
     },
@@ -24333,7 +24337,7 @@
       "pipelines": [
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         }
       ]
     },
@@ -24443,7 +24447,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         },
         {
           "name": "ssds",
@@ -24543,7 +24547,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         }
       ]
     },
@@ -24627,7 +24631,7 @@
       "pipelines": [
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         }
       ]
     },
@@ -29712,7 +29716,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         },
         {
           "name": "fastquorum",
@@ -45762,7 +45766,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         },
         {
           "name": "differentialabundance",
@@ -56411,7 +56415,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         },
         {
           "name": "hicar",
@@ -58734,10 +58738,6 @@
       "pipelines": [
         {
           "name": "mcmicro",
-          "version": "dev"
-        },
-        {
-          "name": "molkart",
           "version": "dev"
         }
       ]
@@ -67794,6 +67794,76 @@
       }
     },
     {
+      "name": "openms_peakpickerhires",
+      "path": "modules/nf-core/openms/peakpickerhires/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "openms_peakpickerhires",
+        "description": "A tool for peak detection in high-resolution profile data (Orbitrap or FTICR)",
+        "keywords": [
+          "peak picking",
+          "mzml",
+          "openms",
+          "proteomics"
+        ],
+        "tools": [
+          {
+            "openms": {
+              "description": "OpenMS is an open-source software C++ library for LC-MS data management and analyses",
+              "homepage": "https://openms.de",
+              "documentation": "https://openms.readthedocs.io/en/latest/index.html",
+              "tool_dev_url": "https://github.com/OpenMS/OpenMS",
+              "doi": "10.1038/nmeth.3959",
+              "licence": "['BSD']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "mzml": {
+              "type": "file",
+              "description": "Mass spectrometer output file in mzML format",
+              "pattern": "*.{mzML}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "mzml": {
+              "type": "file",
+              "description": "Peak-picked mass spectrometer output file in mzML format",
+              "pattern": "*.{mzML}"
+            }
+          }
+        ],
+        "authors": [
+          "@jonasscheid"
+        ],
+        "maintainers": [
+          "@jonasscheid"
+        ]
+      }
+    },
+    {
       "name": "optitype",
       "path": "modules/nf-core/optitype/meta.yml",
       "type": "module",
@@ -71931,7 +72001,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         },
         {
           "name": "methylseq",
@@ -74877,7 +74947,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         },
         {
           "name": "methylseq",
@@ -81606,7 +81676,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         },
         {
           "name": "mag",
@@ -82054,7 +82124,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         },
         {
           "name": "hgtseq",
@@ -82292,7 +82362,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         },
         {
           "name": "hgtseq",
@@ -82565,7 +82635,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         },
         {
           "name": "hgtseq",
@@ -83162,7 +83232,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         },
         {
           "name": "hgtseq",
@@ -83352,7 +83422,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         },
         {
           "name": "hgtseq",
@@ -83577,7 +83647,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         },
         {
           "name": "hgtseq",
@@ -84050,7 +84120,7 @@
       "pipelines": [
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         }
       ]
     },
@@ -96222,7 +96292,7 @@
       "pipelines": [
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         },
         {
           "name": "nanoseq",
@@ -98075,7 +98145,7 @@
       "pipelines": [
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         },
         {
           "name": "hicar",
@@ -98179,7 +98249,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         },
         {
           "name": "hicar",
@@ -99646,7 +99716,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         },
         {
           "name": "demultiplex",
@@ -105360,7 +105430,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         },
         {
           "name": "metatdenovo",
@@ -105516,7 +105586,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2"
+          "version": "3.2.1"
         },
         {
           "name": "metatdenovo",
