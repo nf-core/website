@@ -2998,6 +2998,10 @@
         {
           "name": "rnafusion",
           "version": "2.4.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "2.4.0"
         }
       ]
     },
@@ -28079,6 +28083,93 @@
       ]
     },
     {
+      "name": "estsfs",
+      "path": "modules/nf-core/estsfs/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "estsfs",
+        "description": "estimation of the unfolded site frequency spectrum",
+        "keywords": [
+          "site frequency spectrum",
+          "ancestral alleles",
+          "derived alleles"
+        ],
+        "tools": [
+          {
+            "estsfs": {
+              "description": "est-sfs ( Keightley and Jackson, 2018) is a stand-alone implementation of a method to infer the unfolded site frequency spectrum (the uSFS) and ancestral state probabilities by maximum likelihood (ML).",
+              "homepage": "https://sourceforge.net/projects/est-usfs/",
+              "documentation": "https://sourceforge.net/projects/est-usfs/",
+              "tool_dev_url": "https://sourceforge.net/projects/est-usfs/files/est-sfs-release-2.04.tar.gz",
+              "doi": "10.1534/genetics.118.301120",
+              "licence": "['Free for Academic Use']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test']`\n"
+            }
+          },
+          {
+            "e_config": {
+              "type": "file",
+              "description": "config file for est-sfs",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "data": {
+              "type": "file",
+              "description": "input data file for est-sfs",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "seed": {
+              "type": "file",
+              "description": "text file containing random number seed",
+              "pattern": "*.txt"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test']`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "sfs_out": {
+              "type": "file",
+              "description": "output file consists of the comma-separated estimated uSFS vector",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "pvalues_out": {
+              "type": "file",
+              "description": "this file contains the estimated ancestral state probabilities for each site",
+              "pattern": "*.txt"
+            }
+          }
+        ],
+        "authors": [
+          "@BioInf2305"
+        ]
+      }
+    },
+    {
       "name": "expansionhunter",
       "path": "modules/nf-core/expansionhunter/meta.yml",
       "type": "module",
@@ -52364,6 +52455,77 @@
       ]
     },
     {
+      "name": "kaiju_mkfmi",
+      "path": "modules/nf-core/kaiju/mkfmi/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "kaiju_mkfmi",
+        "description": "Make Kaiju FMI-index file from a protein FASTA file",
+        "keywords": [
+          "classify",
+          "metagenomics",
+          "fastq",
+          "taxonomic profiling",
+          "database",
+          "index"
+        ],
+        "tools": [
+          {
+            "kaiju": {
+              "description": "Fast and sensitive taxonomic classification for metagenomics",
+              "homepage": "https://bioinformatics-centre.github.io/kaiju/",
+              "documentation": "https://github.com/bioinformatics-centre/kaiju/blob/master/README.md",
+              "tool_dev_url": "https://github.com/bioinformatics-centre/kaiju",
+              "doi": "10.1038/ncomms11257",
+              "licence": [
+                "GNU GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Uncompressed Protein FASTA file (mandatory)",
+              "pattern": "*.{fa,faa,fasta}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "fmi": {
+              "type": "file",
+              "description": "Kaiju FM-index file",
+              "pattern": "*.{fmi}"
+            }
+          }
+        ],
+        "authors": [
+          "@alxndrdiaz"
+        ]
+      }
+    },
+    {
       "name": "kalign_align",
       "path": "modules/nf-core/kalign/align/meta.yml",
       "type": "module",
@@ -52749,7 +52911,11 @@
         "name": "kallistobustools_ref",
         "description": "index creation for kb count quantification of single-cell data.",
         "keywords": [
-          "kallisto-bustools",
+          "scRNA-seq",
+          "count",
+          "single-cell",
+          "kallisto",
+          "bustools",
           "index"
         ],
         "tools": [
@@ -52781,7 +52947,7 @@
           },
           {
             "workflow_mode": {
-              "type": "value",
+              "type": "string",
               "description": "String value defining workflow to use, can be one of \"standard\", \"lamanno\", \"nucleus\"",
               "pattern": "{standard,lamanno,nucleus}"
             }
@@ -67715,6 +67881,83 @@
               "type": "file",
               "description": "Fasta file containing proteins and decoy proteins",
               "pattern": "*.{fasta}"
+            }
+          }
+        ],
+        "authors": [
+          "@jonasscheid"
+        ],
+        "maintainers": [
+          "@jonasscheid"
+        ]
+      }
+    },
+    {
+      "name": "openms_idfilter",
+      "path": "modules/nf-core/openms/idfilter/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "openms_idfilter",
+        "description": "Filters peptide/protein identification results by different criteria.",
+        "keywords": [
+          "filter",
+          "idXML",
+          "openms",
+          "proteomics"
+        ],
+        "tools": [
+          {
+            "openms": {
+              "description": "OpenMS is an open-source software C++ library for LC-MS data management and analyses",
+              "homepage": "https://openms.de",
+              "documentation": "https://openms.readthedocs.io/en/latest/index.html",
+              "tool_dev_url": "https://github.com/OpenMS/OpenMS",
+              "doi": "10.1038/nmeth.3959",
+              "licence": "['BSD']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "id_file": {
+              "type": "file",
+              "description": "Peptide-spectrum matches.",
+              "pattern": "*.{idXML,consensusXML}"
+            }
+          },
+          {
+            "filter": {
+              "type": "file",
+              "description": "Optional idXML file to filter on/out peptides or proteins",
+              "patter": "*.{idXML,fasta}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "id_file": {
+              "type": "file",
+              "description": "Filtered peptide-spectrum matches.",
+              "pattern": "*.{idXML,consensusXML}"
             }
           }
         ],
