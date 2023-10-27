@@ -3430,7 +3430,7 @@
             "forks_count": 27,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 9,
+            "open_issues_count": 8,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -3442,7 +3442,7 @@
             ],
             "visibility": "public",
             "forks": 27,
-            "open_issues": 9,
+            "open_issues": 8,
             "watchers": 51,
             "default_branch": "master",
             "network_count": 27,
@@ -5220,7 +5220,7 @@
             "url": "https://api.github.com/repos/nf-core/differentialabundance",
             "created_at": "2022-10-12T08:49:25Z",
             "updated_at": "2023-10-04T13:47:08Z",
-            "pushed_at": "2023-10-26T09:53:26Z",
+            "pushed_at": "2023-10-27T07:43:17Z",
             "homepage": "https://nf-co.re/differentialabundance",
             "size": 7226,
             "stargazers_count": 27,
@@ -5235,7 +5235,7 @@
             "forks_count": 21,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 27,
+            "open_issues_count": 26,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -5253,21 +5253,21 @@
             ],
             "visibility": "public",
             "forks": 21,
-            "open_issues": 27,
+            "open_issues": 26,
             "watchers": 27,
             "default_branch": "master",
             "network_count": 21,
             "subscribers_count": 127,
-            "open_pr_count": 3,
+            "open_pr_count": 2,
             "contributors": [
                 {
                     "name": "WackerO",
-                    "count": 129,
+                    "count": 132,
                     "avatar_url": "https://avatars.githubusercontent.com/u/43847497?v=4"
                 },
                 {
                     "name": "pinin4fjords",
-                    "count": 101,
+                    "count": 119,
                     "avatar_url": "https://avatars.githubusercontent.com/u/5775915?v=4"
                 },
                 {
@@ -5307,6 +5307,40 @@
                 }
             ],
             "releases": [
+                {
+                    "tag_name": "1.3.1",
+                    "published_at": "2023-10-27T07:43:17Z",
+                    "tag_sha": "44c449be0a703c64a7c323a2b431ec6627194f00",
+                    "has_schema": true,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/usage.md"
+                    ],
+                    "components": {
+                        "modules": [
+                            "affy_justrma",
+                            "atlasgeneannotationmanipulation_gtf2featureannotation",
+                            "custom_dumpsoftwareversions",
+                            "custom_matrixfilter",
+                            "custom_tabulartogseacls",
+                            "custom_tabulartogseagct",
+                            "deseq2_differential",
+                            "geoquery_getgeo",
+                            "gsea_gsea",
+                            "gunzip",
+                            "limma_differential",
+                            "proteus_readproteingroups",
+                            "rmarkdownnotebook",
+                            "shinyngs_app",
+                            "shinyngs_staticdifferential",
+                            "shinyngs_staticexploratory",
+                            "shinyngs_validatefomcomponents",
+                            "untar",
+                            "zip"
+                        ],
+                        "subworkflows": []
+                    }
+                },
                 {
                     "tag_name": "1.3.0",
                     "published_at": "2023-10-24T13:11:49Z",
