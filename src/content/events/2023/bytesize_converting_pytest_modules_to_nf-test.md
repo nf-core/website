@@ -1,5 +1,5 @@
 ---
-title: Converting pytest modules to nf-test
+title: Bytesize: Converting pytest modules to nf-test
 subtitle: Adam Talbot (Seqera) and Sateesh Peri (MemVerge)
 type: talk
 start_date: '2023-10-31'
