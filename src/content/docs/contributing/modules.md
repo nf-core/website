@@ -395,9 +395,6 @@ nextflow_process {
 ```groovy
 tag "modules"
 tag "modules_nfcore"
-```
-
-```groovy
 tag "tool"
 tag "tool/sub-tool" (optional)
 ```
@@ -411,14 +408,6 @@ multiple tags are allowed for a test
 :::note
 multiple tests are allowed in a single test file
 :::
-
-- set outdir param
-
-```groovy=
-params {
-    outdir   = "$outputDir"
-    }
-```
 
 - If migrating an existing module, get the inputs from current pytest files `tests/modules/nf-core/module/main.nf` and provide as positional inputs `input[0]` in nf-test file
 
@@ -541,9 +530,6 @@ nextflow_process {
         }
 
         when {
-            params {
-                outdir = "$outputDir"
-            }
             process {
                 """
                 input[0] = ABRICATE_RUN.out.report.collect{ meta, report -> report }.map{ report -> [[ id: 'test_summary'], report]}
@@ -577,8 +563,8 @@ nf-test test --tag "<tool>/<sub-tool>" --profile docker
 
 ```yaml
 <tool>/<sub-tool>:
-  - modules/nf-core/<tool>/<sub-tool>/**
-  - modules/nf-core/<tool>/<sub-tool>/**
+  - modules/nf-core/<tool>/<sub-tool-1>/**
+  - modules/nf-core/<tool>/<sub-tool-2>/**
 ```
 
 :::note
