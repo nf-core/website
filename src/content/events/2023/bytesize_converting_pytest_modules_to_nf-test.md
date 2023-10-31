@@ -4,9 +4,10 @@ subtitle: 'Adam Talbot (Seqera) and Sateesh Peri (MemVerge)'
 type: talk
 start_date: '2023-10-31'
 start_time: '13:00+01:00'
+youtube_embed: https://youtu.be/MuwluoKFnwM
 end_date: '2023-10-31'
 end_time: '13:30+01:00'
-location_url: https://kth-se.zoom.us/j/68390542812
+location_url: https://youtu.be/MuwluoKFnwM
 ---
 
 # nf-core/bytesize
