@@ -1,0 +1,26 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import { getCollection } from 'astro:content';
+
+const blog_posts = await getCollection('blog');
+---
+
+<PageLayout
+    title="nf-core blog"
+    subtitle="News and updates from the nf-core community."
+    mainpage_container={true}
+    subfooter={false}
+    docSearchTags={[{ name: 'page_type', content: 'Config' }]}
+>
+    {blog_posts}
+    {
+        blog_posts &&
+            blog_posts.map((post) => {
+                <div class="card">
+                    <div class="card-body">
+                        <h2>{post.data.title}</h2>
+                    </div>
+                </div>;
+            })
+    }
+</PageLayout>

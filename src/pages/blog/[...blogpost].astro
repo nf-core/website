@@ -1,0 +1,30 @@
+---
+import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+    const blog_posts = await getCollection('blog');
+    return blog_posts.map((blog_post) => ({
+        params: {
+            blog_post: blog_post.slug,
+        },
+        props: {
+            blog_post: blog_post,
+        },
+    }));
+}
+const title = Astro.props.blog_post.data.title;
+const subtitle = Astro.props.blog_post.data.subtitle;
+const { headings, Content } = await Astro.props.blog_post.render();
+const md_github_url = 'https://github.com/nf-core/website/blob/main/src/content/blog/' + Astro.props.blog_post.id;
+---
+
+<MarkdownTocLayout
+    title={title}
+    subtitle={subtitle}
+    md_github_url={md_github_url}
+    headings={headings}
+    left_sidebar={false}
+>
+    <Content />
+</MarkdownTocLayout>
