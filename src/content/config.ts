@@ -54,6 +54,7 @@ const blog = defineCollection({
         subtitle: z.string(),
         headerImage: z.string().url().optional(),
         label: z.array(z.string()),
+        pubDate: z.date(),
     }),
 });
 

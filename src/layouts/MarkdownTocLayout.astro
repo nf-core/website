@@ -21,6 +21,7 @@ export interface Props {
     }[];
     minHeadingDepth?: number;
     maxHeadingDepth?: number;
+    image?: string;
 }
 
 const {
@@ -36,6 +37,7 @@ const {
     docSearchTags = [],
     minHeadingDepth = 1,
     maxHeadingDepth = 4,
+    image,
 } = Astro.props;
 ---
 
@@ -74,6 +76,7 @@ const {
     docSearchTags={docSearchTags}
     viewTransitions={viewTransitions}
     mermaid={true}
+    image={image}
 >
     <div class="row">
         {
