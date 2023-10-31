@@ -385,21 +385,18 @@ mv modules/nf-core/<module>/main.nf.test modules/nf-core/<module>/tests/
 ```diff title="main.nf.test"
 nextflow_process {
      name "Test Process MODULE"
--    script "modules/nf-core/paraclu/main.nf"
+-    script "modules/nf-core/<tool>/main.nf"
 +    script "../main.nf"
      process "MODULE"
 ```
 
 - Then add tags to identify this module
 
-```groovy
+```groovy title="main.nf.test"
 tag "modules"
 tag "modules_nfcore"
-```
-
-```groovy
-tag "tool"
-tag "tool/sub-tool" (optional)
+tag "<tool>"
+tag "<tool>/<sub-tool>" (optional)
 ```
 
 :::note
@@ -411,14 +408,6 @@ multiple tags are allowed for a test
 :::note
 multiple tests are allowed in a single test file
 :::
-
-- set outdir param
-
-```groovy=
-params {
-    outdir   = "$outputDir"
-    }
-```
 
 - If migrating an existing module, get the inputs from current pytest files `tests/modules/nf-core/module/main.nf` and provide as positional inputs `input[0]` in nf-test file
 
@@ -435,7 +424,7 @@ input[2] = [
 assertAll(
             { assert process.success },
             { assert snapshot(process.out).match() }
-            )
+          )
 ```
 
 - Run the test to create a snapshot of your module test. This will create a `.nf.test.snap` file
@@ -541,9 +530,6 @@ nextflow_process {
         }
 
         when {
-            params {
-                outdir = "$outputDir"
-            }
             process {
                 """
                 input[0] = ABRICATE_RUN.out.report.collect{ meta, report -> report }.map{ report -> [[ id: 'test_summary'], report]}
@@ -577,8 +563,8 @@ nf-test test --tag "<tool>/<sub-tool>" --profile docker
 
 ```yaml
 <tool>/<sub-tool>:
-  - modules/nf-core/<tool>/<sub-tool>/**
-  - modules/nf-core/<tool>/<sub-tool>/**
+  - modules/nf-core/<tool>/<sub-tool-1>/**
+  - modules/nf-core/<tool>/<sub-tool-2>/**
 ```
 
 :::note
