@@ -18,17 +18,13 @@ You will need three things: a working version of [Nextflow](#nextflow), the [pip
 ## Nextflow
 
 First of all, you need to have Nextflow installed on your system.
-Go to the Nextflow releases page on GitHub: [https://github.com/nextflow-io/nextflow/releases](https://github.com/nextflow-io/nextflow/releases).
-Each release has a drop-down list with associated _Assets_.
-One of these should have the suffix `-all`, _e.g._ `nextflow-19.10.0-all`.
-Download this file and transfer it to your offline system.
-Run it to install Nextflow (it is a very large _bash_ file). See the [Nextflow installation docs](https://www.nextflow.io/docs/latest/getstarted.html#installation) for more installation details and options.
+We do this by installing it locally on a machine that _does_ have an internet connection, and then transferring to the offline system.
 
-Once installed, you can stop Nextflow from looking for updates online by adding the following environment variable in your `~/.bashrc` file:
-
-```bash
-export NXF_OFFLINE='TRUE'
-```
+* Start by [installing Nextflow locally](https://nextflow.io/docs/latest/getstarted.html#installation) (do _not_ use the `-all` package, as this does not allow the use of custom plugins).
+* Kick off a pipeline locally so that Nextflow fetches the required plugins. It does not need to run to completion.
+* Copy the Nextflow binary and `$HOME/.nextflow` folder to your offline environment.
+* In your Nextflow configuration file, specify each plugin that you downloaded, both name and version, including default plugins. This will prevent Nextflow from trying to download newer versions of plugins.
+* Add the following environment variable in your `~/.bashrc` file: `export NXF_OFFLINE='TRUE'`
 
 ## Pipeline code
 
