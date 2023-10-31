@@ -385,18 +385,18 @@ mv modules/nf-core/<module>/main.nf.test modules/nf-core/<module>/tests/
 ```diff title="main.nf.test"
 nextflow_process {
      name "Test Process MODULE"
--    script "modules/nf-core/paraclu/main.nf"
+-    script "modules/nf-core/<tool>/main.nf"
 +    script "../main.nf"
      process "MODULE"
 ```
 
 - Then add tags to identify this module
 
-```groovy
+```groovy title="main.nf.test"
 tag "modules"
 tag "modules_nfcore"
-tag "tool"
-tag "tool/sub-tool" (optional)
+tag "<tool>"
+tag "<tool>/<sub-tool>" (optional)
 ```
 
 :::note
@@ -424,7 +424,7 @@ input[2] = [
 assertAll(
             { assert process.success },
             { assert snapshot(process.out).match() }
-            )
+          )
 ```
 
 - Run the test to create a snapshot of your module test. This will create a `.nf.test.snap` file
