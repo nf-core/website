@@ -48,6 +48,15 @@ const about = defineCollection({
     }),
 });
 
+const blog = defineCollection({
+    schema: z.object({
+        title: z.string(),
+        subtitle: z.string(),
+        headerImage: z.string().url().optional(),
+        label: z.array(z.string()),
+    }),
+});
+
 const pipelines = defineCollection({});
 
 export const collections = {
@@ -55,4 +64,5 @@ export const collections = {
     docs: docs,
     about: about,
     pipelines: pipelines,
+    blog: blog,
 };
