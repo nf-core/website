@@ -26,7 +26,7 @@ blogPosts = blogPosts.filter((post) => {
                     <div class="card-body">
                         <h2>{post.data.title}</h2>
                         <p class="card-text">{post.data.subtitle}</p>
-                        <a href={post.slug} class="ms-auto btn btn-outline-success stretched-link">
+                        <a href={'blog/' + post.slug} class="ms-auto btn btn-outline-success stretched-link">
                             Read article
                         </a>
                     </div>
@@ -36,7 +36,7 @@ blogPosts = blogPosts.filter((post) => {
     </div>
 </PageLayout>
 
-<style>
+<style lang="scss">
     @import '@styles/_variables.scss';
     .card {
         width: 32rem;

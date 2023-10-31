@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content';
 export async function GET(context) {
   const blogPosts = await getCollection('blog');
   return rss({
-    title: 'nf-core: Events',
+    title: 'nf-core blog',
     description: 'News and updates from the nf-core community.',
     site: context.site,
     stylesheet: '/rss/styles.xsl',
