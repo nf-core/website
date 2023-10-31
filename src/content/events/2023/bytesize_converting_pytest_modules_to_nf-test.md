@@ -3,9 +3,9 @@ title: 'Bytesize: Converting pytest modules to nf-test'
 subtitle: 'Adam Talbot (Seqera) and Sateesh Peri (MemVerge)'
 type: talk
 start_date: '2023-10-31'
-start_time: '13:00+02:00'
+start_time: '13:00+01:00'
 end_date: '2023-10-31'
-end_time: '13:30+02:00'
+end_time: '13:30+01:00'
 location_url: https://kth-se.zoom.us/j/68390542812
 ---
 
