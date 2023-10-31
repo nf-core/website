@@ -2,7 +2,13 @@
 import PageLayout from '@layouts/PageLayout.astro';
 import { getCollection } from 'astro:content';
 
-const blog_posts = await getCollection('blog');
+let blogPosts = await getCollection('blog');
+
+// filter out posts that have a pubDate later than today
+blogPosts = blogPosts.filter((post) => {
+    const pubDate = new Date(post.data.pubDate);
+    return pubDate < new Date();
+});
 ---
 
 <PageLayout
@@ -10,17 +16,34 @@ const blog_posts = await getCollection('blog');
     subtitle="News and updates from the nf-core community."
     mainpage_container={true}
     subfooter={false}
-    docSearchTags={[{ name: 'page_type', content: 'Config' }]}
+    docSearchTags={[{ name: 'page_type', content: 'Blog' }]}
 >
-    {blog_posts}
-    {
-        blog_posts &&
-            blog_posts.map((post) => {
-                <div class="card">
+    <div class="d-flex flex-wrap">
+        {
+            blogPosts.map((post) => (
+                <div class="card m-xl-3 m-1">
+                    <img src={post.data.headerImage} class="card-img-top" alt="..." />
                     <div class="card-body">
                         <h2>{post.data.title}</h2>
+                        <p class="card-text">{post.data.subtitle}</p>
+                        <a href={post.slug} class="ms-auto btn btn-outline-success stretched-link">
+                            Read article
+                        </a>
                     </div>
-                </div>;
-            })
-    }
+                </div>
+            ))
+        }
+    </div>
 </PageLayout>
+
+<style>
+    @import '@styles/_variables.scss';
+    .card {
+        width: 32rem;
+    }
+    @include media-breakpoint-down(md) {
+        .card {
+            width: 100%;
+        }
+    }
+</style>

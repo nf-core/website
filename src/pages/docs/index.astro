@@ -1,6 +1,8 @@
 ---
 import PageLayout from '@layouts/PageLayout.astro';
-import { getCollection, CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
 let docs = await getCollection('docs');
 let usageDocs: CollectionEntry<'docs'>[] = [];
 let contributingDocs: CollectionEntry<'docs'>[] = [];
