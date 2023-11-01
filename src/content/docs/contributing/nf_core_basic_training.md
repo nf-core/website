@@ -5,7 +5,60 @@ subtitle: A guide to create Nextflow pipelines using nf-core tools
 
 # Introduction
 
-## Objectives / Overview (which is better?)
+This training course aims to demonstrate how to build an nf-core pipeline using the nf-core pipeline template and nf-core modules as well as custom, local modules. Be aware that we are not going to explain any fundamental Nextflow concepts, as such we advise anyone taking this course to have completed the [Basic Nextflow Training Workshop](https://training.nextflow.io/).
+
+```md
+During this course we are going to build a Simple RNA-Seq workflow.
+This workflow is by no means ment to be a useful bioinformatics workflow,
+but should only teach the objectives of the course, so please,
+**DO NOT use this workflow to analyse RNA sequencing data**!
+```
+
+## Overview
+
+### Layout of the pipeline
+
+The course is going to build an (totally unscientific and useless) RNA seq pipeline that does the following:
+
+1. Indexing of a transcriptome file
+2. Quality control
+3. Quantification of transcripts
+4. [whatever the custom script does]
+5. Generation of a MultiQC report
+
+### Outline of the Course
+
+The following sections will be handled in the course:
+
+**1. Setting up the gitpod environment for the course**
+
+The course is using gitpod in order to avoid the time expense for downloading and installing tools and data.
+
+**2. Exploring the nf-core tools command**
+
+A very basic walk-through of what can be done with nf-core tools
+
+**3. Creating a new nf-core pipeline from the nf-core template**
+
+**4. Exploring the nf-core template**
+
+a) The git repository
+
+b) running the pipeline
+
+c) linting the pipeline
+
+d) walk-through of the template files
+
+**5. Building a nf-core pipeline using the template**
+
+a) Adding a nf-core module to your pipeline
+
+b) Adding a local custom module to your pipeline
+
+c) Working with Nextflow schema
+
+d) Linting your modules
 
 ## Prerequisites
 
