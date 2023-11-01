@@ -3022,6 +3022,10 @@
         {
           "name": "rnafusion",
           "version": "2.4.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "2.4.0"
         }
       ]
     },
@@ -8932,7 +8936,8 @@
           "@matthdsm"
         ],
         "maintainers": [
-          "@matthdsm"
+          "@matthdsm",
+          "@maxulysse"
         ]
       },
       "pipelines": [
@@ -83161,6 +83166,13 @@
               "type": "file",
               "description": "BAM index file (optional)",
               "pattern": "*.csi"
+            }
+          },
+          {
+            "crai": {
+              "type": "file",
+              "description": "CRAM index file (optional)",
+              "pattern": "*.crai"
             }
           }
         ],
