@@ -174,7 +174,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 
 9. Check that the new module you've added follows the [new module guidelines](#new-module-guidelines-and-pr-review-checklist)
 
-10. Run [`prettier`](https://nf-co.re/docs/contributing/code_formating) on all edited and generated files:
+10. Run [`prettier`](/docs/contributing/code_formatting) on all edited and generated files:
 
     ```bash
     prettier -w .
