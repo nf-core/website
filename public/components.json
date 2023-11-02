@@ -3026,6 +3026,10 @@
         {
           "name": "rnafusion",
           "version": "2.4.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "2.4.0"
         }
       ]
     },
@@ -13678,6 +13682,13 @@
             }
           },
           {
+            "mode": {
+              "type": "string",
+              "description": "The mode to run Busco in. One of genome, proteins, or transcriptome",
+              "pattern": "{genome,proteins,transcriptome}"
+            }
+          },
+          {
             "lineage": {
               "type": "string",
               "description": "The BUSCO lineage to use, or \"auto\" to automatically select lineage"
@@ -16760,7 +16771,7 @@
           },
           {
             "fasta_ext": {
-              "type": "value",
+              "type": "string",
               "description": "The file-type extension suffix of the input FASTA files (e.g., fasta, fna, fa, fas)"
             }
           },
@@ -40962,6 +40973,13 @@
               "description": "GeneScope histogram summary",
               "pattern": "*_summary.txt"
             }
+          },
+          {
+            "kmer_cov": {
+              "type": "float",
+              "description": "Average kmer coverage value extracted from summary file",
+              "pattern": "[0-9.]+"
+            }
           }
         ],
         "authors": [
@@ -44049,7 +44067,7 @@
           },
           {
             "taxon": {
-              "type": "val",
+              "type": "string",
               "description": "The taxon to search. An NCBI taxon ID, or the name of a taxon at any rank.\n"
             }
           },
@@ -44087,7 +44105,8 @@
           "@alxndrdiaz"
         ],
         "maintainers": [
-          "@alxndrdiaz"
+          "@alxndrdiaz",
+          "@muffato"
         ]
       }
     },
@@ -51004,7 +51023,7 @@
       "type": "module",
       "meta": {
         "name": "interproscan",
-        "description": "Produces protein annotations and predictions from a FASTA file",
+        "description": "Produces protein annotations and predictions from an amino acids FASTA file",
         "keywords": [
           "annotation",
           "fasta",
@@ -51032,8 +51051,8 @@
           {
             "fasta": {
               "type": "file",
-              "description": "Input fasta file containing query sequences",
-              "pattern": "*.{fa,fasta}"
+              "description": "Input fasta file containing the amino acid query sequences",
+              "pattern": "*.{fa,fasta,fa.gz,fasta.gz}"
             }
           },
           {
@@ -51085,7 +51104,8 @@
           "@toniher"
         ],
         "maintainers": [
-          "@toniher"
+          "@toniher",
+          "@vagkaratzas"
         ]
       }
     },
@@ -52710,7 +52730,8 @@
         "description": "Computes equivalence classes for reads and quantifies abundances",
         "keywords": [
           "quant",
-          "kallisto"
+          "kallisto",
+          "pseudoalignment"
         ],
         "tools": [
           {
@@ -52740,7 +52761,7 @@
           },
           {
             "index": {
-              "type": "index",
+              "type": "file",
               "description": "Kallisto genome index.",
               "pattern": "*.idx"
             }
@@ -87141,7 +87162,13 @@
         "maintainers": [
           "@FriederikeHanssen"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "callingcards",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "seqkit_stats",
