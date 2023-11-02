@@ -5085,6 +5085,76 @@
             ]
         },
         {
+            "id": 711957906,
+            "node_id": "R_kgDOKm-dkg",
+            "name": "detaxizer",
+            "full_name": "nf-core/detaxizer",
+            "private": false,
+            "description": "A pipeline to check for certain taxa in fastq files and optionally  filter out this taxonomic group",
+            "fork": false,
+            "url": "https://api.github.com/repos/nf-core/detaxizer",
+            "created_at": "2023-10-30T14:11:55Z",
+            "updated_at": "2023-11-02T08:58:34Z",
+            "pushed_at": "2023-11-02T09:08:12Z",
+            "homepage": null,
+            "size": 2293,
+            "stargazers_count": 0,
+            "watchers_count": 0,
+            "language": "Nextflow",
+            "has_issues": true,
+            "has_projects": true,
+            "has_downloads": true,
+            "has_wiki": true,
+            "has_pages": false,
+            "has_discussions": false,
+            "forks_count": 0,
+            "archived": false,
+            "disabled": false,
+            "open_issues_count": 0,
+            "allow_forking": true,
+            "is_template": false,
+            "web_commit_signoff_required": false,
+            "topics": [],
+            "visibility": "public",
+            "forks": 0,
+            "open_issues": 0,
+            "watchers": 0,
+            "default_branch": "master",
+            "network_count": 0,
+            "subscribers_count": 1,
+            "open_pr_count": 0,
+            "contributors": [
+                {
+                    "name": "jannikseidelQBiC",
+                    "count": 1,
+                    "avatar_url": "https://avatars.githubusercontent.com/u/127119345?v=4"
+                }
+            ],
+            "releases": [
+                {
+                    "tag_name": "dev",
+                    "published_at": "2023-11-02T08:20:38Z",
+                    "tag_sha": "ca633ceea62ed2336edbeedc8f962aaab2f3d6a0",
+                    "has_schema": true,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/usage.md"
+                    ],
+                    "components": {
+                        "modules": [
+                            "blast_blastn",
+                            "blast_makeblastdb",
+                            "custom_dumpsoftwareversions",
+                            "fastp",
+                            "fastqc",
+                            "kraken2_kraken2",
+                            "multiqc"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
             "id": 220470325,
             "node_id": "MDEwOlJlcG9zaXRvcnkyMjA0NzAzMjU=",
             "name": "diaproteomics",
@@ -6553,7 +6623,7 @@
             "forks_count": 48,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 19,
+            "open_issues_count": 20,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -6568,7 +6638,7 @@
             ],
             "visibility": "public",
             "forks": 48,
-            "open_issues": 19,
+            "open_issues": 20,
             "watchers": 91,
             "default_branch": "master",
             "network_count": 48,
