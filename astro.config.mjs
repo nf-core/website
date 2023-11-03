@@ -23,6 +23,8 @@ import remarkDirective from 'remark-directive';
 import emoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
+import remarkDescription from 'astro-remark-description';
+import { el } from 'date-fns/locale';
 
 const latestToolsRelease = await fetch('https://api.github.com/repos/nf-core/tools/releases/latest')
     .then((res) => res.json())
@@ -87,7 +89,46 @@ export default defineConfig({
             theme: githubDarkDimmed,
             wrap: false,
         },
-        remarkPlugins: [emoji, remarkGfm, remarkDirective, admonitionsPlugin, mermaid, remarkMath],
+        remarkPlugins: [
+            emoji,
+            remarkGfm,
+            remarkDirective,
+            admonitionsPlugin,
+            mermaid,
+            remarkMath,
+            [
+                remarkDescription,
+                {
+                    name: 'excerpt',
+                    node: (node, i, parent) => {
+                        // check if parent has a child that is an html comment with the text 'end of excerpt'
+                        if (
+                            parent?.children?.some(
+                                (child) =>
+                                    (child.type === 'html' && child.value === '<!-- end of excerpt -->') ||
+                                    (child.type === 'mdxFlowExpression' && child?.value === '/* end of excerpt */'),
+                            )
+                        ) {
+                            const sibling = parent?.children[i + 1];
+
+                            return (
+                                (sibling?.type === 'html' && sibling?.value === '<!-- end of excerpt -->') ||
+                                (sibling?.type === 'mdxFlowExpression' && sibling?.value === '/* end of excerpt */')
+                            );
+                        } else {
+                            // return the first paragraph otherwise
+
+                            // get the index of the first paragraph
+                            const firstParagraphIndex = parent?.children.findIndex(
+                                (child) => child.type === 'paragraph',
+                            );
+                            // if the node is the first paragraph, return true
+                            return i === firstParagraphIndex;
+                        }
+                    },
+                },
+            ],
+        ],
         // NOTE: Also update the plugins in `src/components/Markdown.svelte`!
         rehypePlugins: [
             rehypeSlug,

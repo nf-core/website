@@ -1,6 +1,8 @@
 ---
 import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
 import { getCollection } from 'astro:content';
+import SidebarStatsRow from '@components/sidebar/SidebarStatsRow.astro';
+import GitHubProfilePictureExtended from '@components/GitHubProfilePictureExtended.svelte';
 
 export async function getStaticPaths() {
     const blogPost = await getCollection('blog');
@@ -19,14 +21,36 @@ const headerImage = post.data.headerImage;
 
 <MarkdownTocLayout
     title={title}
-    meta_title={'Blog:' + title}
     subtitle={subtitle}
+    meta_title={'Blog:' + title}
     md_github_url={md_github_url}
     headings={headings}
     image={`/og.png?title=${encodeURIComponent(title)}&background_image=${encodeURIComponent(
         headerImage ? headerImage : '',
     )}}`}
-    ,
+    viewTransitions={true}
+    left_sidebar={true}
 >
     <Content />
+    <div slot="right-sidebar" class="d-flex flex-column align-items-end">
+        <div class="col mb-1">
+            <h6 class="text-body-secondary my-1">Written by</h6>
+            <div class="d-flex flex-column">
+                {
+                    post.data.authors.map((author) => {
+                        return <GitHubProfilePictureExtended username={author} size={40} />;
+                    })
+                }
+            </div>
+        </div>
+        <SidebarStatsRow lastChild={true} content={[{ title: 'Published on' }]}>
+            {
+                post.data.pubDate.toLocaleDateString('en-GB', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                })
+            }
+        </SidebarStatsRow>
+    </div>
 </MarkdownTocLayout>

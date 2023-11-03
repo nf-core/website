@@ -5,12 +5,14 @@ export interface Props {
     items: {
         section_name: string;
         section_slug?: string;
-        children: {
-            title: string;
-            slug: string;
-            order?: number;
-        }[];
-    };
+        children:
+            | {
+                  title: string;
+                  slug: string;
+                  order?: number;
+              }[]
+            | [];
+    }[];
     minimal?: boolean;
 }
 

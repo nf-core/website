@@ -49,13 +49,24 @@ const about = defineCollection({
 });
 
 const blog = defineCollection({
-    schema: z.object({
-        title: z.string(),
-        subtitle: z.string(),
-        headerImage: z.string().url().optional(),
-        label: z.array(z.string()),
-        pubDate: z.date(),
-    }),
+    schema: z
+        .object({
+            title: z.string(),
+            subtitle: z.string(),
+            headerImage: z.string().url().optional(),
+            headerImageAlt: z.string().optional(),
+            label: z.array(z.string()),
+            pubDate: z.date(),
+            authors: z.array(z.string()),
+        })
+        .refine((data) => {
+            // Check if headerImage is present but headerImageAlt is not
+            if (data.headerImage && !data.headerImageAlt) {
+                throw new Error('Please provide alt text for your `headerImage` in `headerImageAlt`.');
+            }
+            // Return true if the validation should pass
+            return true;
+        }),
 });
 
 const pipelines = defineCollection({});
