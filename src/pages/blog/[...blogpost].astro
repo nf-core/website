@@ -32,17 +32,14 @@ const headerImage = post.data.headerImage;
     left_sidebar={true}
 >
     <Content />
-    <div slot="right-sidebar" class="d-flex flex-column align-items-end">
-        <div class="col mb-1">
-            <h6 class="text-body-secondary my-1">Written by</h6>
-            <div class="d-flex flex-column">
-                {
-                    post.data.authors.map((author) => {
-                        return <GitHubProfilePictureExtended username={author} size={40} />;
-                    })
-                }
-            </div>
-        </div>
+    <div slot="right-sidebar" class="d-flex flex-column align-items-start">
+        <SidebarStatsRow lastChild={true} content={[{ title: 'Written by' }]}>
+            {
+                post.data.authors.map((author) => {
+                    return <GitHubProfilePictureExtended username={author} size={40} />;
+                })
+            }
+        </SidebarStatsRow>
         <SidebarStatsRow lastChild={true} content={[{ title: 'Published on' }]}>
             {
                 post.data.pubDate.toLocaleDateString('en-GB', {
