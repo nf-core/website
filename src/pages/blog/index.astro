@@ -1,13 +1,29 @@
 ---
 import PageLayout from '@layouts/PageLayout.astro';
 import { getCollection } from 'astro:content';
+import SidebarNav from '@components/sidebar/SidebarNav.astro';
+import GitHubProfilePictureExtended from '@components/GitHubProfilePictureExtended.svelte';
+import GitHubProfilePicture from '@components/GitHubProfilePicture.svelte';
 
 let blogPosts = await getCollection('blog');
 
 // filter out posts that have a pubDate later than today
-blogPosts = blogPosts.filter((post) => {
-    const pubDate = new Date(post.data.pubDate);
-    return pubDate < new Date();
+blogPosts = blogPosts
+    .filter((post) => {
+        const pubDate = new Date(post.data.pubDate);
+        return pubDate < new Date();
+    })
+    .sort((a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate));
+
+// get years of all posts
+const years = [...new Set(blogPosts.map((post) => new Date(post.data.pubDate).getFullYear()))].sort((a, b) => b - a);
+
+const sections = years.map((year) => {
+    return {
+        section_name: year,
+        section_slug: '#year-' + year,
+        children: [],
+    };
 });
 ---
 
@@ -18,21 +34,63 @@ blogPosts = blogPosts.filter((post) => {
     subfooter={false}
     docSearchTags={[{ name: 'page_type', content: 'Blog' }]}
 >
-    <div class="d-flex flex-wrap">
-        {
-            blogPosts.map((post) => (
-                <div class="card m-xl-3 m-1">
-                    <img src={post.data.headerImage} class="card-img-top" alt="..." />
-                    <div class="card-body">
-                        <h2>{post.data.title}</h2>
-                        <p class="card-text">{post.data.subtitle}</p>
-                        <a href={'blog/' + post.slug} class="ms-auto btn btn-outline-success stretched-link">
-                            Read article
-                        </a>
+    <div class="row">
+        <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left pt-1">
+            <SidebarNav items={sections} minimal={true} />
+        </div>
+
+        <div class="col">
+            {blogPosts.length === 0 && <div class="">Nothing to see her yet! Come back soon</div>}
+            {
+                years.map((year) => (
+                    <div id={'year-' + year} class="d-flex align-items-start flex-wrap">
+                        {blogPosts
+                            .filter((post) => new Date(post.data.pubDate).getFullYear() === year)
+                            .map((post) => (
+                                <div class="card m-xl-3 m-1">
+                                    {post.data.headerImage && (
+                                        <img
+                                            src={post.data.headerImage}
+                                            class="card-img-top"
+                                            alt={post.data.headerImageAlt}
+                                        />
+                                    )}
+                                    <div class="card-body">
+                                        <h2>{post.data.title}</h2>
+                                        <p class="card-text">
+                                            {async () => {
+                                                const { remarkPluginFrontmatter } = await post.render();
+                                                return remarkPluginFrontmatter.excerpt;
+                                            }}
+                                        </p>
+                                        <a href={post.slug} class="stretched-link" />
+                                    </div>
+                                    <div class="card-footer d-flex align-items-center justify-space-between">
+                                        <div class="me-auto">
+                                            {post.data.authors.length > 2 &&
+                                                post.data.authors.map((author) => (
+                                                    <GitHubProfilePicture
+                                                        image={'https://github.com/' + author + '.png'}
+                                                        name={author}
+                                                        circle={true}
+                                                        size={40}
+                                                    />
+                                                ))}
+                                            {post.data.authors.length <= 2 &&
+                                                post.data.authors.map((author) => (
+                                                    <GitHubProfilePictureExtended username={author} size={40} />
+                                                ))}
+                                        </div>
+                                        <span class="text-body-secondary text-small">
+                                            published at {new Date(post.data.pubDate).toLocaleDateString()}
+                                        </span>
+                                    </div>
+                                </div>
+                            ))}
                     </div>
-                </div>
-            ))
-        }
+                ))
+            }
+        </div>
     </div>
 </PageLayout>
 
@@ -40,6 +98,13 @@ blogPosts = blogPosts.filter((post) => {
     @import '@styles/_variables.scss';
     .card {
         width: 32rem;
+        img {
+            object-fit: cover;
+            max-height: 15rem;
+        }
+        .card-footer :global(a) {
+            margin-bottom: 0 !important;
+        }
     }
     @include media-breakpoint-down(md) {
         .card {
