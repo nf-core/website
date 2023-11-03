@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
 import GitHubProfilePictureExtended from '@components/GitHubProfilePictureExtended.svelte';
 import GitHubProfilePicture from '@components/GitHubProfilePicture.svelte';
+import { Image } from 'astro:assets';
 
 let blogPosts = await getCollection('blog');
 
@@ -49,10 +50,12 @@ const sections = years.map((year) => {
                             .map((post) => (
                                 <div class="card m-xl-3 m-1">
                                     {post.data.headerImage && (
-                                        <img
+                                        <Image
                                             src={post.data.headerImage}
-                                            class="card-img-top"
-                                            alt={post.data.headerImageAlt}
+                                            class="card-img-top object-fit-cover"
+                                            alt={post.data.headerImageAlt || ''}
+                                            height={240}
+                                            width={512}
                                         />
                                     )}
                                     <div class="card-body">
@@ -98,10 +101,6 @@ const sections = years.map((year) => {
     @import '@styles/_variables.scss';
     .card {
         width: 32rem;
-        img {
-            object-fit: cover;
-            max-height: 15rem;
-        }
         .card-footer :global(a) {
             margin-bottom: 0 !important;
         }
