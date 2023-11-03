@@ -3034,6 +3034,10 @@
         {
           "name": "rnafusion",
           "version": "2.4.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "2.4.0"
         }
       ]
     },
@@ -22161,7 +22165,7 @@
         },
         {
           "name": "quantms",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "radseq",
@@ -33422,6 +33426,14 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
         }
       ]
     },
@@ -33924,6 +33936,14 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
+        },
         {
           "name": "rnadnavar",
           "version": "dev"
@@ -37558,6 +37578,14 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
         }
       ]
     },
@@ -39964,6 +39992,359 @@
           "version": "3.3.2"
         }
       ]
+    },
+    {
+      "name": "gatk4spark_applybqsr",
+      "path": "modules/nf-core/gatk4spark/applybqsr/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gatk4spark_applybqsr",
+        "description": "Apply base quality score recalibration (BQSR) to a bam file",
+        "keywords": [
+          "bam",
+          "base quality score recalibration",
+          "bqsr",
+          "cram",
+          "gatk4spark"
+        ],
+        "tools": [
+          {
+            "gatk4": {
+              "description": "Developed in the Data Sciences Platform at the Broad Institute, the toolkit offers a wide variety of tools\nwith a primary focus on variant discovery and genotyping. Its powerful processing engine\nand high-performance computing features make it capable of taking on projects of any size.\n",
+              "homepage": "https://gatk.broadinstitute.org/hc/en-us",
+              "documentation": "https://gatk.broadinstitute.org/hc/en-us/categories/360002369672s",
+              "doi": "10.1158/1538-7445.AM2017-3590",
+              "licence": [
+                "Apache-2.0"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "input": {
+              "type": "file",
+              "description": "BAM/CRAM file from alignment",
+              "pattern": "*.{bam,cram}"
+            }
+          },
+          {
+            "input_index": {
+              "type": "file",
+              "description": "BAI/CRAI file from alignment",
+              "pattern": "*.{bai,crai}"
+            }
+          },
+          {
+            "bqsr_table": {
+              "type": "file",
+              "description": "Recalibration table from gatk4_baserecalibrator"
+            }
+          },
+          {
+            "intervals": {
+              "type": "file",
+              "description": "Bed file with the genomic regions included in the library (optional)"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "The reference fasta file",
+              "pattern": "*.fasta"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "Index of reference fasta file",
+              "pattern": "*.fasta.fai"
+            }
+          },
+          {
+            "dict": {
+              "type": "file",
+              "description": "GATK sequence dictionary",
+              "pattern": "*.dict"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "Recalibrated BAM file",
+              "pattern": "*.{bam}"
+            }
+          },
+          {
+            "cram": {
+              "type": "file",
+              "description": "Recalibrated CRAM file",
+              "pattern": "*.{cram}"
+            }
+          }
+        ],
+        "authors": [
+          "@yocra3",
+          "@FriederikeHanssen",
+          "@maxulysse"
+        ],
+        "maintainers": [
+          "@yocra3",
+          "@FriederikeHanssen",
+          "@maxulysse"
+        ]
+      }
+    },
+    {
+      "name": "gatk4spark_baserecalibrator",
+      "path": "modules/nf-core/gatk4spark/baserecalibrator/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gatk4spark_baserecalibrator",
+        "description": "Generate recalibration table for Base Quality Score Recalibration (BQSR)",
+        "keywords": [
+          "base quality score recalibration",
+          "table",
+          "bqsr",
+          "gatk4spark",
+          "sort"
+        ],
+        "tools": [
+          {
+            "gatk4": {
+              "description": "Developed in the Data Sciences Platform at the Broad Institute, the toolkit offers a wide variety of tools\nwith a primary focus on variant discovery and genotyping. Its powerful processing engine\nand high-performance computing features make it capable of taking on projects of any size.\n",
+              "homepage": "https://gatk.broadinstitute.org/hc/en-us",
+              "documentation": "https://gatk.broadinstitute.org/hc/en-us/categories/360002369672s",
+              "doi": "10.1158/1538-7445.AM2017-3590",
+              "licence": [
+                "Apache-2.0"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "input": {
+              "type": "file",
+              "description": "BAM/CRAM file from alignment",
+              "pattern": "*.{bam,cram}"
+            }
+          },
+          {
+            "input_index": {
+              "type": "file",
+              "description": "BAI/CRAI file from alignment",
+              "pattern": "*.{bai,crai}"
+            }
+          },
+          {
+            "intervals": {
+              "type": "file",
+              "description": "Bed file with the genomic regions included in the library (optional)"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "The reference fasta file",
+              "pattern": "*.fasta"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "Index of reference fasta file",
+              "pattern": "*.fasta.fai"
+            }
+          },
+          {
+            "dict": {
+              "type": "file",
+              "description": "GATK sequence dictionary",
+              "pattern": "*.dict"
+            }
+          },
+          {
+            "known_sites": {
+              "type": "file",
+              "description": "VCF files with known sites for indels / snps (optional)",
+              "pattern": "*.vcf.gz"
+            }
+          },
+          {
+            "known_sites_tbi": {
+              "type": "file",
+              "description": "Tabix index of the known_sites (optional)",
+              "pattern": "*.vcf.gz.tbi"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "table": {
+              "type": "file",
+              "description": "Recalibration table from BaseRecalibrator",
+              "pattern": "*.{table}"
+            }
+          }
+        ],
+        "authors": [
+          "@yocra3",
+          "@FriederikeHanssen",
+          "@maxulysse"
+        ],
+        "maintainers": [
+          "@yocra3",
+          "@FriederikeHanssen",
+          "@maxulysse"
+        ]
+      }
+    },
+    {
+      "name": "gatk4spark_markduplicates",
+      "path": "modules/nf-core/gatk4spark/markduplicates/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gatk4spark_markduplicates",
+        "description": "This tool locates and tags duplicate reads in a BAM or SAM file, where duplicate reads are defined as originating from a single fragment of DNA.",
+        "keywords": [
+          "bam",
+          "gatk4spark",
+          "markduplicates",
+          "sort"
+        ],
+        "tools": [
+          {
+            "gatk4": {
+              "description": "Developed in the Data Sciences Platform at the Broad Institute, the toolkit offers a wide variety of tools with a primary focus on variant discovery and genotyping. Its powerful processing engine and high-performance computing features make it capable of taking on projects of any size.",
+              "homepage": "https://gatk.broadinstitute.org/hc/en-us",
+              "documentation": "https://gatk.broadinstitute.org/hc/en-us/articles/360037052812-MarkDuplicates-Picard-",
+              "tool_dev_url": "https://github.com/broadinstitute/gatk",
+              "doi": "10.1158/1538-7445.AM2017-3590",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "Sorted BAM file",
+              "pattern": "*.{bam}"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "The reference fasta file",
+              "pattern": "*.fasta"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "Index of reference fasta file",
+              "pattern": "*.fasta.fai"
+            }
+          },
+          {
+            "dict": {
+              "type": "file",
+              "description": "GATK sequence dictionary",
+              "pattern": "*.dict"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "output": {
+              "type": "file",
+              "description": "Marked duplicates BAM/CRAM file",
+              "pattern": "*.{bam,cram}"
+            }
+          },
+          {
+            "bam_index": {
+              "type": "file",
+              "description": "Optional BAM index file",
+              "pattern": "*.bai"
+            }
+          }
+        ],
+        "authors": [
+          "@ajodeh-juma",
+          "@FriederikeHanssen",
+          "@maxulysse",
+          "@SusiJo"
+        ],
+        "maintainers": [
+          "@ajodeh-juma",
+          "@FriederikeHanssen",
+          "@maxulysse",
+          "@SusiJo"
+        ]
+      }
     },
     {
       "name": "gatk_indelrealigner",
@@ -62348,6 +62729,13 @@
             }
           },
           {
+            "input_mode": {
+              "type": "string",
+              "description": "Specifies type of input - reads or contigs",
+              "pattern": "{r,c}"
+            }
+          },
+          {
             "code": {
               "type": "integer",
               "description": "Mitochndrial code for annotation",
@@ -64678,7 +65066,7 @@
         },
         {
           "name": "quantms",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "radseq",
