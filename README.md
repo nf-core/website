@@ -99,6 +99,20 @@ label: ["Category1", "Category2"]  // This is optional and can include multiple 
 > [!NOTE]
 > The blog post will be visible on the website only if a rebuild of the site occurs after the date and time specified in the `pubDate` field.
 
+By default the first paragraph of the blog post will be used as the preview text on the blog page. If you want to use a different paragraph, add the following comment after the paragraph you want to use:
+
+```markdown
+<!-- end of excerpt -->
+```
+
+or for MDX
+
+<!-- prettier-ignore-start -->
+```mdx
+/* end of excerpt */
+```
+<!-- prettier-ignore-end -->
+
 ## Community
 
 If you have any questions or issues please send us a message on [Slack](https://nf-co.re/join/slack).
