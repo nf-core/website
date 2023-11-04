@@ -3038,6 +3038,10 @@
         {
           "name": "rnafusion",
           "version": "2.4.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "2.4.0"
         }
       ]
     },
@@ -15338,7 +15342,7 @@
         },
         {
           "name": "smrnaseq",
-          "version": "2.2.3"
+          "version": "2.2.4"
         },
         {
           "name": "taxprofiler",
@@ -22217,7 +22221,7 @@
         },
         {
           "name": "smrnaseq",
-          "version": "2.2.3"
+          "version": "2.2.4"
         },
         {
           "name": "spatialtranscriptomics",
@@ -29727,7 +29731,7 @@
         },
         {
           "name": "smrnaseq",
-          "version": "2.2.3"
+          "version": "2.2.4"
         },
         {
           "name": "taxprofiler",
@@ -30011,7 +30015,7 @@
         },
         {
           "name": "smrnaseq",
-          "version": "2.2.3"
+          "version": "2.2.4"
         },
         {
           "name": "spatialtranscriptomics",
@@ -33434,6 +33438,14 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
         }
       ]
     },
@@ -33936,6 +33948,14 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
+        },
         {
           "name": "rnadnavar",
           "version": "dev"
@@ -37571,6 +37591,14 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
+        },
         {
           "name": "rnadnavar",
           "version": "dev"
@@ -65114,7 +65142,7 @@
         },
         {
           "name": "smrnaseq",
-          "version": "2.2.3"
+          "version": "2.2.4"
         },
         {
           "name": "spatialtranscriptomics",
@@ -82878,7 +82906,7 @@
         },
         {
           "name": "smrnaseq",
-          "version": "2.2.3"
+          "version": "2.2.4"
         },
         {
           "name": "viralrecon",
@@ -83112,7 +83140,7 @@
         },
         {
           "name": "smrnaseq",
-          "version": "2.2.3"
+          "version": "2.2.4"
         },
         {
           "name": "ssds",
@@ -83413,7 +83441,7 @@
         },
         {
           "name": "smrnaseq",
-          "version": "2.2.3"
+          "version": "2.2.4"
         },
         {
           "name": "ssds",
@@ -83997,7 +84025,7 @@
         },
         {
           "name": "smrnaseq",
-          "version": "2.2.3"
+          "version": "2.2.4"
         },
         {
           "name": "viralintegration",
@@ -84191,7 +84219,7 @@
         },
         {
           "name": "smrnaseq",
-          "version": "2.2.3"
+          "version": "2.2.4"
         },
         {
           "name": "taxprofiler",
@@ -106303,7 +106331,7 @@
         },
         {
           "name": "smrnaseq",
-          "version": "2.2.3"
+          "version": "2.2.4"
         },
         {
           "name": "viralrecon",
@@ -106463,7 +106491,7 @@
         },
         {
           "name": "smrnaseq",
-          "version": "2.2.3"
+          "version": "2.2.4"
         },
         {
           "name": "viralrecon",
@@ -109901,6 +109929,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -109935,6 +109967,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -110008,8 +110044,171 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
+    },
+    {
+      "name": "utils_nextflow_pipeline",
+      "path": "subworkflows/nf-core/utils_nextflow_pipeline/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "UTILS_NEXTFLOW_PIPELINE",
+        "description": "Subworkflow with functionality that may be useful for any Nextflow pipeline",
+        "keywords": [
+          "utility",
+          "pipeline",
+          "initialise",
+          "version"
+        ],
+        "components": [],
+        "input": [
+          {
+            "print_version": {
+              "type": "boolean",
+              "description": "Print the version of the pipeline and exit\n"
+            }
+          },
+          {
+            "dump_parameters": {
+              "type": "boolean",
+              "description": "Dump the parameters of the pipeline to a JSON file\n"
+            }
+          },
+          {
+            "output_directory": {
+              "type": "directory",
+              "description": "Path to output dir to write JSON file to.",
+              "pattern": "results/"
+            }
+          },
+          {
+            "check_conda_channel": {
+              "type": "boolean",
+              "description": "Check if the conda channel priority is correct.\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "out": {
+              "type": "boolean",
+              "description": "Dummy output for making using in process chaining.\n"
+            }
+          }
+        ],
+        "authors": [
+          "@adamrtalbot",
+          "@drpatelh"
+        ],
+        "maintainers": [
+          "@adamrtalbot",
+          "@drpatelh"
+        ]
+      }
+    },
+    {
+      "name": "utils_nfcore_pipeline",
+      "path": "subworkflows/nf-core/utils_nfcore_pipeline/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "UTILS_NFCORE_PIPELINE",
+        "description": "Subworkflow with utility functions specific to the nf-core pipeline template",
+        "keywords": [
+          "utility",
+          "pipeline",
+          "initialise",
+          "version"
+        ],
+        "components": [],
+        "input": [],
+        "output": [
+          {
+            "success": {
+              "type": "boolean",
+              "description": "Dummy output to indicate success\n"
+            }
+          }
+        ],
+        "authors": [
+          "@adamrtalbot"
+        ],
+        "maintainers": [
+          "@adamrtalbot"
+        ]
+      }
+    },
+    {
+      "name": "utils_nfvalidation_plugin",
+      "path": "subworkflows/nf-core/utils_nfvalidation_plugin/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "UTILS_NFVALIDATION_PLUGIN",
+        "description": "Use nf-validation to initiate and validate a pipeline",
+        "keywords": [
+          "utility",
+          "pipeline",
+          "initialise",
+          "validation"
+        ],
+        "components": [],
+        "input": [
+          {
+            "print_help": {
+              "type": "boolean",
+              "description": "Print help message and exit\n"
+            }
+          },
+          {
+            "workflow_command": {
+              "type": "string",
+              "description": "The command to run the workflow e.g. \"nextflow run main.nf\"\n"
+            }
+          },
+          {
+            "pre_help_text": {
+              "type": "string",
+              "description": "Text to print before the help message\n"
+            }
+          },
+          {
+            "post_help_text": {
+              "type": "string",
+              "description": "Text to print after the help message\n"
+            }
+          },
+          {
+            "validate_params": {
+              "type": "boolean",
+              "description": "Validate the parameters and error if invalid.\n"
+            }
+          },
+          {
+            "schema_filename": {
+              "type": "string",
+              "description": "The filename of the schema to validate against.\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "summary_params": {
+              "type": "file",
+              "description": "A Groovy map constructed from parameters.\nStructure: [ val(meta), path(bam) ]\n",
+              "pattern": "*.bam"
+            }
+          }
+        ],
+        "authors": [
+          "@adamrtalbot"
+        ],
+        "maintainers": [
+          "@adamrtalbot"
+        ]
+      }
     },
     {
       "name": "vcf_annotate_ensemblvep",
