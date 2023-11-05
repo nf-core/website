@@ -3042,6 +3042,10 @@
         {
           "name": "rnafusion",
           "version": "2.4.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "2.4.0"
         }
       ]
     },
@@ -3214,6 +3218,53 @@
         "maintainers": [
           "@praveenraj2018",
           "@rannick"
+        ]
+      }
+    },
+    {
+      "name": "arriba_download",
+      "path": "modules/nf-core/arriba/download/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "arriba_download",
+        "description": "Arriba is a command-line tool for the detection of gene fusions from RNA-Seq data.",
+        "keywords": [
+          "fusion",
+          "arriba",
+          "reference"
+        ],
+        "tools": [
+          {
+            "arriba": {
+              "description": "Fast and accurate gene fusion detection from RNA-Seq data",
+              "homepage": "https://github.com/suhrig/arriba",
+              "documentation": "https://arriba.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/suhrig/arriba",
+              "doi": "10.1101/gr.257246.119",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "output": [
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "reference": {
+              "type": "directory",
+              "description": "Folder with arriba references",
+              "pattern": "*"
+            }
+          }
+        ],
+        "authors": [
+          "@peterpru"
         ]
       }
     },
@@ -33446,6 +33497,14 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
         }
       ]
     },
@@ -33948,6 +34007,14 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
+        },
         {
           "name": "rnadnavar",
           "version": "dev"
@@ -37591,6 +37658,14 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
+        },
         {
           "name": "rnadnavar",
           "version": "dev"
@@ -109933,6 +110008,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -109967,6 +110046,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -110041,6 +110124,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
