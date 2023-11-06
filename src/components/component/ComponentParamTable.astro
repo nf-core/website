@@ -1,7 +1,7 @@
 ---
 const { name, icon, params } = Astro.props;
 
-import Markdown from '@components/markdown/Markdown.svelte';
+import { Markdown } from '@astropub/md';
 export interface Props {
     name: string;
     icon: string;
@@ -52,7 +52,7 @@ export interface Props {
                     </div>
 
                     <div class={'col-12 description py-1 small col-md-' + (pattern ? '5' : '7')}>
-                        <Markdown md={description.replace(/(\n)/g, '  \n').replace(/\*./g, '\\*.')} />
+                        <Markdown of={description.replace(/(\n)/g, '  \n').replace(/\*./g, '\\*.')} />
                     </div>
                     <div class={'col-12 col-md-' + (pattern ? '4' : '1') + ' ms-auto'}>
                         {pattern && <code class="float-end pattern">{pattern}</code>}

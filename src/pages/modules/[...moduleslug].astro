@@ -1,5 +1,5 @@
 ---
-import Markdown from '@components/markdown/Markdown.svelte';
+import { Markdown } from '@astropub/md';
 import ComponentParamTable from '@components/component/ComponentParamTable.astro';
 import SidebarStats from '@components/sidebar/SidebarStats.astro';
 import ComponentPageLayout from '@layouts/ComponentPageLayout.astro';
@@ -55,7 +55,7 @@ function truncatURLs(url) {
                     >
                 </h2>
                 <div class="">
-                    <Markdown md={module.meta.description} />
+                    <Markdown of={module.meta.description} />
                 </div>
             </div>
             <div class="module-params">

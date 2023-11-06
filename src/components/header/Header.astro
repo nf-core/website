@@ -1,6 +1,6 @@
 ---
 import EventHeader from '@components/event/EventHeader.astro';
-import Markdown from '@components/markdown/Markdown.svelte';
+import { Markdown } from '@astropub/md';
 
 let { title, subtitle, header_html, md_github_url, header_btn_url, header_btn_text, event_header, topics } =
     Astro.props;
@@ -47,7 +47,7 @@ title = title.replace('nf-core/', 'nf-core/<wbr>');
         {
             subtitle && (
                 <div class="lead mb-0 subtitle">
-                    <Markdown md={subtitle} />
+                    <Markdown of={subtitle} />
                 </div>
             )
         }

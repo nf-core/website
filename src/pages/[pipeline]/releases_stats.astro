@@ -3,7 +3,7 @@ import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
 import pipelines_json from '@public/pipelines.json';
 import { formatDistance } from 'date-fns';
 import cache from 'bin/cache.js';
-import Markdown from '@components/markdown/Markdown.svelte';
+import { Markdown } from '@astropub/md';
 import PipelineSidebar from '@components/pipeline/PipelineSidebar.astro';
 export function getStaticPaths() {
     var paths: {
@@ -126,7 +126,7 @@ for (const release of releases) {
                                                     View on GitHub
                                                 </a>
                                             </div>
-                                            {gh_releases[i] ? <Markdown md={gh_releases[i]} /> : ''}
+                                            {gh_releases[i] ? <Markdown of={gh_releases[i]} /> : ''}
                                         </div>
                                     </div>
                                 </div>
