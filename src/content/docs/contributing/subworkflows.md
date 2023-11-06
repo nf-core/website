@@ -411,6 +411,7 @@ mkdir subworkflows/nf-core/<subworkflow>/tests
 ```bash
 nf-test generate workflow subworkflows/nf-core/<subworkflow>/main.nf
 ```
+
 :::note
 we use `workflow` instead of `process` as it is a subworkflow not a module
 :::
@@ -473,6 +474,7 @@ assertAll(
             { assert snapshot(workflow.out).match() }
           )
 ```
+
 :::note
 It's `workflow.` and whereas with modules it's `process.`.
 :::
@@ -504,7 +506,6 @@ Remove the corresponding tags from `tests/config/pytest_modules.yml` so that py-
 The tag has to contain both `subworkflows/<subworkflow>` and not just `<subworkflow>` as supposed with modules
 :::
 
-
 - create PR and add the `nf-test` label to it.
 
 #### Steps for creating nf-test for subworkflow chained with modules
@@ -527,7 +528,6 @@ The implementation of nf-test in nf-core is still evolving. Things might still c
 <!-- NOTE: update when nf-core/tools gets nf-test support -->
 
 :::
-
 
 ### Using a stub test when required test data is too big
 
