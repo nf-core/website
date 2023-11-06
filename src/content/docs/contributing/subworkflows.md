@@ -377,6 +377,159 @@ If a new test dataset is added to [`tests/config/test_data.config`](https://gith
 
 For example: the nf-core/test-datasets file `genomics/sarscov2/genome/genome.fasta` labelled as `genome_fasta`, or `genomics/sarscov2/genome/genome.fasta.fai` as `genome_fasta_fai`.
 
+### Migrating from pytest to nf-test
+
+We recently decided to use nf-test instead of pytest for testing modules & subworkflows. This is because nf-test is more flexible and allows us to test subworkflows in a more realistic way. You can find more information at [nf-test official docs](https://code.askimed.com/nf-test/) and [in this bytesize talk](https://nf-co.re/events/2022/bytesize_nftest).
+
+#### Philosophy of nf-tests
+
+- Each subworkflow contains a `tests/` folder beside the `main.nf` containing the test files
+- Test files come with a [snapshot](https://code.askimed.com/nf-test/docs/assertions/snapshots/) of subworkflows output channels
+
+#### Steps for creating nf-test for a subworkflow
+
+- Install and update to the latest version of [nf-test](https://code.askimed.com/nf-test/installation/)
+
+```bash
+conda install -c bioconda nf-test
+```
+
+- Git checkout a new branch for your subworkflow tests
+
+```bash
+git checkout -b <branch>
+```
+
+- Create a new tests directory within your subworkflow directory
+
+```bash
+mkdir subworkflows/nf-core/<subworkflow>/tests
+```
+
+- Generate a test file from template for your subworkflow using nf-test
+
+```bash
+nf-test generate workflow subworkflows/nf-core/<subworkflow>/main.nf
+```
+
+:::note
+We use `workflow` instead of `process` as it is a subworkflow not a module.
+:::
+
+- Move the generated test file to the tests directory
+
+```bash
+mv subworkflows/nf-core/<subworkflow>/main.nf.test subworkflows/nf-core/<subworkflow>/tests/
+```
+
+- Open the `main.nf.test` file and change the path for the script to a relative path `../main.nf`
+
+```diff title="main.nf.test"
+nextflow_workflow {
+     name "Test Workflow SUBWORKFLOW"
+-    script "subworkflows/nf-core/<subworkflow>/main.nf"
++    script "../main.nf"
+     process "SUBWORKFLOW"
+```
+
+- Then add tags to identify this module
+
+```groovy title="main.nf.test"
+tag "subworkflows"
+tag "subworkflows_nfcore"
+tag "subworkflows/<subworkflow>"
+tag "<subworkflow>"
+tag "<tool1>"
+tag "<tool1/sub-tool1>"
+tag "<tool2>"
+tag "<tool2/sub-tool2>"
+```
+
+:::note
+We require to have `tag subworkflows/<subworkflow>` so it's picked up correctly during CI testing.
+:::
+:::note
+Include the used tools and modules in the tags.
+:::
+
+- Provide a test name preferably indicating the test-data and file-format used. Example: `test("homo_sapiens - [bam, bai, bed] - fasta - fai")`
+
+:::note
+Multiple tests are allowed in a single test file.
+:::
+
+- If migrating an existing subworkflow, get the inputs from current pytest files `tests/subworkflow/nf-core/subworkflow/main.nf` and provide as positional inputs `input[0]` in nf-test file
+
+```groovy
+input[0] = [
+            [id:"ref"],
+            file(params.test_data['homo_sapiens']['genome']['genome_fasta_fai'], checkIfExists: true)
+           ]
+```
+
+- Next, in the `then` block we can write our assertions that are used to verify the test. A test can have multiple assertions but, we recommend enclosing all assertions in a `assertAll()` block as shown below:
+
+```groovy
+assertAll(
+            { assert workflow.success },
+            { assert snapshot(workflow.out).match() }
+          )
+```
+
+:::note
+It's `workflow.` whereas with modules it's `process.`.
+:::
+
+- Run the test to create a snapshot of your module test. This will create a `.nf.test.snap` file
+
+```bash
+nf-test test --tag "<subworkflow>" --profile docker --update-snapshot
+```
+
+- Re-run the test again to verify if snapshots match
+
+```bash
+nf-test test --tag "<subworkflow>" --profile docker
+```
+
+- Create a new `tags.yml` in the `subworkflows/nf-core/<subworkflow>/tests/` folder and add only the corresponding subworkflow tag from `tests/config/pytest_modules.yml`
+
+```yaml
+subworkflows/<subworkflow>:
+  - subworkflows/nf-core/<subworkflow>/**
+```
+
+:::note
+Remove the corresponding tags from `tests/config/pytest_modules.yml` so that py-tests for the subworkflow will be skipped on github CI
+:::
+
+:::note
+The tag has to contain both `subworkflows/<subworkflow>` and not just `<subworkflow>` in contrast to modules.
+:::
+
+- create PR and add the `nf-test` label to it.
+
+#### Steps for creating nf-test for subworkflow chained with modules
+
+- Follow the steps listed above for simple subworkflows for test generation, tags and test-name
+
+- For subworkflows that involve running a module in advance to generate required test-data, nf-test provides a [setup](https://code.askimed.com/nf-test/docs/testcases/setup/) method.
+
+- Implementing [setup](https://code.askimed.com/nf-test/docs/testcases/setup/) with a subworkflow is very similar as with modules. For this [see docs of nf-test with chained modules](./modules#steps-for-creating-nf-test-for-chained-modules)
+
+:::note
+Remove the corresponding tags from `tests/config/pytest_modules.yml` so that py-tests for the module will be skipped on github CI
+:::
+
+- create PR and add the `nf-test` label to it.
+
+:::info
+The implementation of nf-test in nf-core is still evolving. Things might still change and the information might here might be outdated. Please report any issues you encounter [on the nf-core/website repository](https://github.com/nf-core/website/issues/new?assignees=&labels=bug&projects=&template=bug_report.md) and the `nf-test` channel on nf-core slack. Additionally, nf-core/tools will help you create nf-tests in the future, making some of the steps here obsolete.
+
+<!-- NOTE: update when nf-core/tools gets nf-test support -->
+
+:::
+
 ### Using a stub test when required test data is too big
 
 If the subworkflow absolutely cannot run using tiny test data, there is a possibility to add [stub-run](https://www.nextflow.io/docs/edge/process.html#stub) to the `test.yml`. In this case it is required to test the subworkflow using larger scale data and document how this is done. In addition, an extra script-block labeled `stub:` must be added, and this block must create dummy versions of all expected output files as well as the `versions.yml`. An example for modules is found in the [ascat module](https://github.com/nf-core/modules/blob/master/tests/modules/nf-core/ascat/main.nf). In the `test.yml` the `-stub-run` argument is written as well as the md5sums for each of the files that are added in the stub-block. This causes the stub-code block to be activated when the unit test is run ([example](https://github.com/nf-core/modules/blob/master/tests/modules/nf-core/ascat/test.yml)):
