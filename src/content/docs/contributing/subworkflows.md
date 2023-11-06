@@ -443,13 +443,10 @@ tag "<tool1>"
 tag "<tool1/sub-tool1>"
 tag "<tool2>"
 tag "<tool2/sub-tool2>"
-tag "<module2>"
 ```
-
 :::note
-We require to have `tag subworkflows/<subworkflow>` as so it's picked up correctly.
+We require to have `tag subworkflows/<subworkflow>` so it's picked up correctly during CI testing.
 :::
-
 :::note
 Include the used tools and modules in the tags.
 :::
@@ -479,7 +476,7 @@ assertAll(
 ```
 
 :::note
-It's `workflow.` and whereas with modules it's `process.`.
+It's `workflow.` whereas with modules it's `process.`.
 :::
 
 - Run the test to create a snapshot of your module test. This will create a `.nf.test.snap` file
@@ -502,7 +499,7 @@ subworkflows/<subworkflow>:
 ```
 
 :::note
-Remove the corresponding tags from `tests/config/pytest_modules.yml` so that py-tests for the module will be skipped on github CI
+Remove the corresponding tags from `tests/config/pytest_modules.yml` so that py-tests for the subworkflow will be skipped on github CI
 :::
 
 :::note
