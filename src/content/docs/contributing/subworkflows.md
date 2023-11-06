@@ -413,13 +413,13 @@ nf-test generate workflow subworkflows/nf-core/<subworkflow>/main.nf
 ```
 
 :::note
-we use `workflow` instead of `process` as it is a subworkflow not a module
+We use `workflow` instead of `process` as it is a subworkflow not a module.
 :::
 
 - Move the generated test file to the tests directory
 
 ```bash
-mv subworkflows/nf-core/<subworkflows>/main.nf.test subworkflows/nf-core/<subworkflows>/tests/
+mv subworkflows/nf-core/<subworkflow>/main.nf.test subworkflows/nf-core/<subworkflow>/tests/
 ```
 
 - Open the `main.nf.test` file and change the path for the script to a relative path `../main.nf`
@@ -440,27 +440,30 @@ tag "subworkflows_nfcore"
 tag "subworkflows/<subworkflow>"
 tag "<subworkflow>"
 tag "<tool1>"
+tag "<tool1/sub-tool1>"
 tag "<tool2>"
+tag "<tool2/sub-tool2>"
+tag "<module2>"
 ```
 
 :::note
-We require to have `tag subworkflows/<subworkflow>` as so it's picked up correctly
+We require to have `tag subworkflows/<subworkflow>` as so it's picked up correctly.
 :::
 
 :::note
-Include the used tools in the tags
+Include the used tools and modules in the tags.
 :::
 
 - Provide a test name preferably indicating the test-data and file-format used. Example: `test("homo_sapiens - [bam, bai, bed] - fasta - fai")`
 
 :::note
-multiple tests are allowed in a single test file
+Multiple tests are allowed in a single test file.
 :::
 
 - If migrating an existing subworkflow, get the inputs from current pytest files `tests/subworkflow/nf-core/subworkflow/main.nf` and provide as positional inputs `input[0]` in nf-test file
 
 ```groovy
-input[2] = [
+input[0] = [
             [id:"ref"],
             file(params.test_data['homo_sapiens']['genome']['genome_fasta_fai'], checkIfExists: true)
            ]
@@ -503,7 +506,7 @@ Remove the corresponding tags from `tests/config/pytest_modules.yml` so that py-
 :::
 
 :::note
-The tag has to contain both `subworkflows/<subworkflow>` and not just `<subworkflow>` as supposed with modules
+The tag has to contain both `subworkflows/<subworkflow>` and not just `<subworkflow>` in contrast to modules.
 :::
 
 - create PR and add the `nf-test` label to it.
