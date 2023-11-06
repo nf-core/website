@@ -23,6 +23,7 @@ import remarkDirective from 'remark-directive';
 import emoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
+import markdownIntegration from '@astropub/md';
 
 const latestToolsRelease = await fetch('https://api.github.com/repos/nf-core/tools/releases/latest')
     .then((res) => res.json())
@@ -53,6 +54,7 @@ export default defineConfig({
             },
         }),
         mdx(),
+        markdownIntegration(),
     ],
     build: {
         inlineStylesheets: 'auto',

@@ -1,5 +1,5 @@
 ---
-import Markdown from '@components/markdown/Markdown.svelte';
+import { Markdown } from '@astropub/md';
 import MarkdownWrapper from '@components/markdown/MarkdownWrapper.svelte';
 import octokit from '@components/octokit';
 import SidebarStatsRow from '@components/sidebar/SidebarStatsRow.astro';
@@ -110,9 +110,10 @@ let { content, config, raw_config, path } = Astro.props;
 
 // remove nf-core/configs (with or without :) from markdown heading
 
-content = content.replace(/nf-core\/configs(:)?\s*/g, '');
+content = content?.replace(/nf-core\/configs(:)?\s*/g, '');
+
 //wrap raw_config as markdown code-block
-raw_config = '```nextflow title="' + path.split('/').pop() + '"\n' + raw_config + '\n```';
+raw_config = '```groovy title="' + path.split('/').pop() + '"\n' + raw_config + '\n```';
 const contact = config.config_profile_contact.match(/@(\w+)/) ? config.config_profile_contact.match(/@(\w+)/)[1] : '';
 
 const gh_url = 'https://github.com/nf-core/configs/blob/master/docs/' + configslug + '.md';
@@ -130,7 +131,7 @@ const gh_url = 'https://github.com/nf-core/configs/blob/master/docs/' + configsl
         <div class="col-12 col-md-9">
             <div class="markdown-content">
                 <MarkdownWrapper headings={[]} client:idle>
-                    <Markdown md={content} />
+                    <Markdown of={content} />
                 </MarkdownWrapper>
             </div>
             <h1>Config file</h1>
@@ -140,7 +141,7 @@ const gh_url = 'https://github.com/nf-core/configs/blob/master/docs/' + configsl
                 </a>
             </p>
             <div class="config-code">
-                <Markdown md={raw_config} />
+                <Markdown of={raw_config} />
             </div>
         </div>
         <div class="col-none col-md-3 sidebar">
