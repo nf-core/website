@@ -146,7 +146,7 @@ export default defineConfig({
                                 {
                                     id: 'csv',
                                     scopeName: 'text.csv',
-                                    path: './public/csv.tmLanguage.json',
+                                    path: '../../public/csv.tmLanguage.json',
                                 },
                             ],
                         }),
