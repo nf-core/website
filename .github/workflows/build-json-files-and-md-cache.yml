@@ -1,9 +1,11 @@
 name: build json files and md-cache
 
 on:
-  schedule: # every day at 7am
-    - cron: '0 7 * * *'
+  schedule: # every day at 2am and 2pm
+    - cron: '0 2,14 * * *'
   workflow_dispatch:
+  repository_dispatch:
+    types: [update-website]
 
 jobs:
   build-component-json:
