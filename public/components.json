@@ -802,6 +802,70 @@
       }
     },
     {
+      "name": "agat_convertspgff2tsv",
+      "path": "modules/nf-core/agat/convertspgff2tsv/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "agat_convertspgff2tsv",
+        "description": "Converts a GFF/GTF file into a TSV file\n",
+        "keywords": [
+          "genome",
+          "gff",
+          "gtf",
+          "conversion",
+          "tsv"
+        ],
+        "tools": [
+          {
+            "agat": {
+              "description": "AGAT is a toolkit for manipulation and getting information from GFF/GTF files",
+              "homepage": "https://github.com/NBISweden/AGAT",
+              "documentation": "https://agat.readthedocs.io/",
+              "tool_dev_url": "https://github.com/NBISweden/AGAT",
+              "doi": "10.5281/zenodo.3552717",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "gff": {
+              "type": "file",
+              "description": "Annotation file in GFF3/GTF format",
+              "pattern": "*.{gff, gtf}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "tsv": {
+              "type": "file",
+              "description": "Annotation file in TSV format",
+              "pattern": "*.{gtf}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@rannick"
+        ]
+      }
+    },
+    {
       "name": "agat_convertspgxf2gxf",
       "path": "modules/nf-core/agat/convertspgxf2gxf/meta.yml",
       "type": "module",
@@ -2959,6 +3023,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "rnafusion",
+          "version": "2.4.0"
+        },
         {
           "name": "rnafusion",
           "version": "2.4.0"
@@ -12797,6 +12865,10 @@
           "version": "dev"
         },
         {
+          "name": "phageannotator",
+          "version": "dev"
+        },
+        {
           "name": "viralrecon",
           "version": "2.6.0"
         }
@@ -12942,6 +13014,10 @@
       "pipelines": [
         {
           "name": "detaxizer",
+          "version": "dev"
+        },
+        {
+          "name": "phageannotator",
           "version": "dev"
         },
         {
@@ -33517,6 +33593,14 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
         }
       ]
     },
@@ -34019,6 +34103,14 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
+        },
         {
           "name": "rnadnavar",
           "version": "dev"
@@ -37678,6 +37770,14 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
+        },
         {
           "name": "rnadnavar",
           "version": "dev"
@@ -45251,6 +45351,217 @@
         ],
         "maintainers": [
           "@nvnieuwk"
+        ]
+      }
+    },
+    {
+      "name": "gridss_gridssgenerateponbedpe",
+      "path": "modules/nf-core/gridss/gridssgenerateponbedpe/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gridss_gridssgenerateponbedpe",
+        "description": "GRIDSS is a module software suite containing tools useful for the detection of genomic rearrangements.",
+        "keywords": [
+          "gridss",
+          "structural variants",
+          "bedpe",
+          "bed",
+          "vcf"
+        ],
+        "tools": [
+          {
+            "gridss": {
+              "description": "GRIDSS: the Genomic Rearrangement IDentification Software Suite",
+              "documentation": "https://github.com/PapenfussLab/gridss/wiki/GRIDSS-Documentation",
+              "tool_dev_url": "https://github.com/PapenfussLab/gridss",
+              "doi": "10.1186/s13059-021-02423-x",
+              "licence": "['GPL v3']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test']\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test']\n"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference fai information\ne.g. [ id:'test']\n"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing bwa generated index information\ne.g. [ id:'test']\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "GRIDSS generated vcf file",
+              "pattern": "*.vcf"
+            }
+          },
+          {
+            "bedpe": {
+              "type": "file",
+              "description": "GRIDSS generated bedpe file",
+              "pattern": "*.bedpe"
+            }
+          },
+          {
+            "bed": {
+              "type": "file",
+              "description": "GRIDSS generated bed file",
+              "pattern": "*.bed"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "The reference fasta",
+              "pattern": "*.{fa,fna,fasta}"
+            }
+          },
+          {
+            "fasta_fai": {
+              "type": "file",
+              "description": "The index of the reference fasta",
+              "pattern": "*.fai"
+            }
+          },
+          {
+            "bwa_index": {
+              "type": "directory",
+              "description": "OPTIONAL - The BWA index created from the reference fasta, will be generated by Gridss in the setupreference step"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "bedpe": {
+              "type": "file",
+              "description": "GRIDSS generated breakpoint pon bedpe file",
+              "pattern": "*.bedpe"
+            }
+          },
+          {
+            "bed": {
+              "type": "file",
+              "description": "GRIDSS generated breakpoint pon bed file",
+              "pattern": "*.bed"
+            }
+          }
+        ],
+        "authors": [
+          "@kubranarci"
+        ]
+      }
+    },
+    {
+      "name": "gridss_gridsssomaticfilter",
+      "path": "modules/nf-core/gridss/gridsssomaticfilter/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gridss_gridsssomaticfilter",
+        "description": "GRIDSS is a module software suite containing tools useful for the detection of genomic rearrangements.",
+        "keywords": [
+          "gridss",
+          "structural variants",
+          "somatic variants",
+          "vcf"
+        ],
+        "tools": [
+          {
+            "gridss": {
+              "description": "GRIDSS: the Genomic Rearrangement IDentification Software Suite",
+              "documentation": "https://github.com/PapenfussLab/gridss/wiki/GRIDSS-Documentation",
+              "tool_dev_url": "https://github.com/PapenfussLab/gridss",
+              "doi": "10.1186/s13059-021-02423-x",
+              "licence": "['GPL v3']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test']\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing information for PONDIR\ne.g. [ id:'test']\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "Input VCF file, must be generated with GRIDSS",
+              "pattern": "*.{vcf,vcf.gz}"
+            }
+          },
+          {
+            "pondir": {
+              "type": "directory",
+              "description": "Directory containing Panel Of Normal bed/bedpe used to filter FP somatic events. Use gridss.GeneratePonBedpe to generate the PON."
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test']\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "high_conf_sv": {
+              "type": "file",
+              "description": "VCF file including high confidence somatic SVs",
+              "pattern": "*.vcf.bgz"
+            }
+          },
+          {
+            "all_sv": {
+              "type": "file",
+              "description": "VCF file including all somatic SVs",
+              "pattern": "*.vcf.bgz"
+            }
+          }
+        ],
+        "authors": [
+          "@kubranarci"
         ]
       }
     },
@@ -62321,6 +62632,12 @@
             "reads": {
               "type": "file",
               "description": "List of input FASTA or FASTQ files of size 1 and 2 for single-end\nand paired-end data, respectively.\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test_ref']\n"
             }
           },
           {
@@ -110044,6 +110361,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -110078,6 +110399,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -110160,6 +110485,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
