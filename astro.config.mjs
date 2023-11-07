@@ -24,6 +24,7 @@ import emoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import markdownIntegration from '@astropub/md';
+import { getHighlighter, BUNDLED_LANGUAGES } from 'shiki';
 
 const latestToolsRelease = await fetch('https://api.github.com/repos/nf-core/tools/releases/latest')
     .then((res) => res.json())
@@ -134,9 +135,21 @@ export default defineConfig({
                     langPrefix: 'language-',
                     keepBackground: true,
                     theme: {
-                        dark: 'github-dark-dimmed',
+                        dark: 'github-dark',
                         light: 'github-light',
                     },
+                    getHighlighter: (options) =>
+                        getHighlighter({
+                            ...options,
+                            langs: [
+                                ...BUNDLED_LANGUAGES,
+                                {
+                                    id: 'csv',
+                                    scopeName: 'text.csv',
+                                    path: '../../public/csv.tmLanguage.json',
+                                },
+                            ],
+                        }),
                 },
             ],
             rehypeKatex,
