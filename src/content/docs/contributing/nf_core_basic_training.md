@@ -222,7 +222,11 @@ This is important, because this shared git history with unmodified nf-core templ
 
 The main thing to remember with this is that:
 
-Never make changes to the TEMPLATE branch, otherwise it will interfere with the synchronisation with nf-core updates. Develop your code on either master or dev branches. Also, when creating a new repository on GitHub, do create it as an empty repository without a README or any other file. Then push the repo with the template of your new pipeline from your local clone.
+Never make changes to the TEMPLATE branch, otherwise it will interfere with the synchronisation of nf-core updates. 
+
+Ideally code should be developed on feature branches (i.e. a new branch made with `git checkout -b my_new_feature`), and when ready merged into the `dev` branch upon a successful code review. The `dev` branch is then merged to the `master` branch when a stable release of the workflow is ready to be made.  
+
+When creating a new repository on GitHub, create it as an empty repository without a README or any other file. Then push the repo with the template of your new pipeline from your local clone.
 
 ( OLD: When creating a new repository on https://github.com or equivalent, don’t initialise it - leave it bare and push everything from your local clone
 Develop your code on either the master or dev branches and leave TEMPLATE alone.)
@@ -338,29 +342,31 @@ These are the files in detail:
 
 5. **bin/**
 
-   The `bin` directory contains executable scripts which are automatically added to the path by nextflow. As such, they can be called by name without using their absolut or relativ path. The python script `check_samplesheet.py` is part of the nf-core template, since typically, nf-core pipelines require a samplesheet as one of their inputs.
+   The `bin` directory contains custom executable scripts, and is automatically added to the `PATH` by Nextflow allowing these scripts to become findable by Nextflow. As such, they can be called by name without using their absolute or relative path. The python script `check_samplesheet.py` is part of the nf-core template, since typically, nf-core pipelines require a samplesheet as one of their inputs.
 
 6. **conf/** and **nextflow.config**
 
-   The `nextflow.config` file is the main config file, it includes all the configurations in `conf/`. Importantly, `conf/` contains the `test.config` file, which is used for pipeline testing. In this course we are not going to touch config files, but they have been extensively covered in the following bytesize talks: [How nf-core configs work (nf-core/bytesize #2)](https://www.youtube.com/watch?v=cXBYusdjrc0&list=PL3xpfTVZLcNiF4hgkW0yXeNzr0d35qlIB&index=8&pp=gAQBiAQB), [Making a new institutional config profile (nf-core/bytesize #10)](https://www.youtube.com/watch?v=Ym1s6sKGzkw&list=PL3xpfTVZLcNiF4hgkW0yXeNzr0d35qlIB&index=9&pp=gAQBiAQB), [nf-core/bytesize: Using nf-core configs in custom pipelines](https://www.youtube.com/watch?v=zgcrI_0SUgg&list=PL3xpfTVZLcNiF4hgkW0yXeNzr0d35qlIB&index=40&pp=gAQBiAQB)
+   The `nextflow.config` file is the main config file. In addition to supplying default parameters, it imports all the configurations in `conf/`. Importantly, `conf/` contains the `test.config` file, which is used for pipeline testing. In this course we are not going to touch config files, but they have been extensively covered in the following bytesize talks: [How nf-core configs work (nf-core/bytesize #2)](https://www.youtube.com/watch?v=cXBYusdjrc0&list=PL3xpfTVZLcNiF4hgkW0yXeNzr0d35qlIB&index=8&pp=gAQBiAQB), [Making a new institutional config profile (nf-core/bytesize #10)](https://www.youtube.com/watch?v=Ym1s6sKGzkw&list=PL3xpfTVZLcNiF4hgkW0yXeNzr0d35qlIB&index=9&pp=gAQBiAQB), [nf-core/bytesize: Using nf-core configs in custom pipelines](https://www.youtube.com/watch?v=zgcrI_0SUgg&list=PL3xpfTVZLcNiF4hgkW0yXeNzr0d35qlIB&index=40&pp=gAQBiAQB)
 
 7. **docs/**
 
-   This directory contains additional information to the README file. The most important files are the `output.md` and the `usage.md` files. `usage.md` should descripe what exactly is needed to run the pipeline and `output.md` should descripe all outputs that can be expected. Importantly, for nf-core pipelines, the information from these two files will automatically be displayed on the nf-core website page of the pipeline.
+   This directory contains additional information to the README file. The most important files are the `output.md` and the `usage.md` files. `usage.md` should describe what exactly is needed to run the pipeline and `output.md` should describe all outputs that can be expected. Importantly, for nf-core pipelines, the information from these two files will automatically be displayed on the nf-core website page of the pipeline.
 
 8. **lib/**
 
-   This directory contains groovy functions and classes that can be imported into the `main.nf` file.
+   This directory contains groovy functions and classes that are imported into the `main.nf` file to provide additional functionality not native to Nextflow.
 
 9. **modules/local**
 
-   This is were all your custom non-nf-core modules go, we will see an example later in the course
+   This is where all your custom non-nf-core modules go. We will cover when and how to make local modules later in the course.
 
 10. **modules/nf-core**
 
     All nf-core modules that are installed using the nf-core tooling will automatically show up in this directory. Keep them here, it is important for automatic updates.
 
 11. **modules.json**
+
+This file keeps track of modules installed using nf-core tools from the nf-core/modules repository. This file should only be updated using nf-core tools, and never manually.
 
 12. **nextflow_schema.json**
 
@@ -382,6 +388,8 @@ These are the files in detail:
     d) _.editorconfig_
 
     e) _.gitpod.yml_
+
+This file provides settings to create a Cloud development environment in your browser using Gitpod. It comes installed with the tools necessary to develop and test nf-core pipelines, modules, and subworkflows, allowing you to develop from anywhere without installing anything locally.
 
     f) _.nf-core.yml_
 
