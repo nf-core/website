@@ -5,6 +5,23 @@ subtitle: A guide to create Nextflow pipelines using nf-core tools
 
 # Introduction
 
+## Scope
+
+- How do I create a pipeline using nf-core tools?
+- How do I incorporate modules from nf-core modules?
+- How can I use custom code in my pipeline?
+
+:::note
+### Learning objectives
+
+- The learner will create a simple pipeline using the nf-core template.
+- The learner will identify key files in the pipeline.
+- The learner will lint their pipeline code to identify work to be done.
+- The learner will incorporate modules from nf-core/modules into their pipeline.
+- The learner will add custom code as a local module into their pipeline.
+- The learner will build an nf-core schema to describe and validate pipeline parameters.
+:::
+
 This training course aims to demonstrate how to build an nf-core pipeline using the nf-core pipeline template and nf-core modules as well as custom, local modules. Be aware that we are not going to explain any fundamental Nextflow concepts, as such we advise anyone taking this course to have completed the [Basic Nextflow Training Workshop](https://training.nextflow.io/).
 
 ```md
@@ -802,7 +819,7 @@ versions (file) │File containing software versions │versions.yml
 2. Is there any version of `salmon/quant` already installed locally?
    <details>
       <summary>solution 2</summary>
-      
+
       ```
       nf-core modules list local
       ```
@@ -1046,4 +1063,17 @@ Here in the schema editor you can edit:
 
       </details>
 
+:::
+
+:::note
+### Key points
+
+- `nf-core create <pipeline>` creates a pipeline from the nf-core template.
+- `nf-core lint` lints the pipeline code for things that must be completed.
+- `nf-core modules list local` lists modules currently installed into your pipeline.
+- `nf-core modules list remote` lists modules available to install into your pipeline.
+- `nf-core modules install <tool/subtool>` installs the tool module into your pipeline.
+- `nf-core modules create` creates a module locally to add custom code into your pipeline.
+- `nf-core modules lint --all` lints your module code for things that must be completed.
+- `nf-core schema build` opens an interface to allow you to describe your pipeline parameters and set default values, and which values are valid.
 :::
