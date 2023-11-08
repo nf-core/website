@@ -3126,6 +3126,10 @@
         {
           "name": "rnafusion",
           "version": "2.4.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "2.4.0"
         }
       ]
     },
@@ -12829,18 +12833,30 @@
             "fasta": {
               "type": "file",
               "description": "Input fasta file containing queries sequences",
-              "pattern": "*.{fa,fasta}"
+              "pattern": "*.{fa,fasta,fa.gz,fasta.gz}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing db information\ne.g. [ id:'test2', single_end:false ]\n"
             }
           },
           {
             "db": {
               "type": "directory",
-              "description": "Directory containing blast database",
+              "description": "Directory containing the blast database",
               "pattern": "*"
             }
           }
         ],
         "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
           {
             "txt": {
               "type": "file",
@@ -12858,8 +12874,7 @@
         ],
         "authors": [
           "@joseespinosa",
-          "@drpatelh",
-          "@vagkaratzas"
+          "@drpatelh"
         ],
         "maintainers": [
           "@joseespinosa",
@@ -12921,10 +12936,23 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing db information\ne.g. [ id:'test2', single_end:false ]\n"
+            }
+          },
+          {
             "db": {
               "type": "directory",
-              "description": "Directory containing blast database",
+              "description": "Directory containing the blast database",
               "pattern": "*"
+            }
+          },
+          {
+            "out_ext": {
+              "type": "string",
+              "description": "Specify the type of output file to be generated. `xml` corresponds to BLAST xml format.\n`tsv` corresponds to BLAST tabular format. `csv` corresponds to BLAST comma separated format.\n",
+              "pattern": "xml|tsv|csv"
             }
           }
         ],
@@ -12936,9 +12964,23 @@
             }
           },
           {
+            "xml": {
+              "type": "file",
+              "description": "File containing blastp hits in XML format",
+              "pattern": "*.{xml}"
+            }
+          },
+          {
+            "tsv": {
+              "type": "file",
+              "description": "File containing blastp hits in tabular format",
+              "pattern": "*.{tsv}"
+            }
+          },
+          {
             "csv": {
               "type": "file",
-              "description": "File containing blastp hits",
+              "description": "File containing blastp hits in comma separated format",
               "pattern": "*.csv"
             }
           },
@@ -12985,14 +13027,26 @@
         ],
         "input": [
           {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "Input fasta file",
-              "pattern": "*.{fa,fasta}"
+              "pattern": "*.{fa,fasta,fa.gz,fasta.gz}"
             }
           }
         ],
         "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
           {
             "db": {
               "type": "directory",
@@ -13010,8 +13064,7 @@
         ],
         "authors": [
           "@joseespinosa",
-          "@drpatelh",
-          "@vagkaratzas"
+          "@drpatelh"
         ],
         "maintainers": [
           "@joseespinosa",
@@ -13071,18 +13124,30 @@
             "fasta": {
               "type": "file",
               "description": "Input fasta file containing queries sequences",
-              "pattern": "*.{fa,fasta}"
+              "pattern": "*.{fa,fasta,fa.gz,fasta.gz}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing db information\ne.g. [ id:'test2', single_end:false ]\n"
             }
           },
           {
             "db": {
               "type": "directory",
-              "description": "Directory containing blast database",
+              "description": "Directory containing the blast database",
               "pattern": "*"
             }
           }
         ],
         "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
           {
             "txt": {
               "type": "file",
@@ -13100,8 +13165,7 @@
         ],
         "authors": [
           "@yumisims",
-          "@gq2",
-          "@vagkaratzas"
+          "@gq2"
         ],
         "maintainers": [
           "@yumisims",
@@ -25389,14 +25453,20 @@
             "fasta": {
               "type": "file",
               "description": "Input fasta file containing query sequences",
-              "pattern": "*.{fa,fasta}"
+              "pattern": "*.{fa,fasta,fa.gz,fasta.gz}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing db information\ne.g. [ id:'test2', single_end:false ]\n"
             }
           },
           {
             "db": {
-              "type": "directory",
-              "description": "Directory containing the protein blast database",
-              "pattern": "*"
+              "type": "file",
+              "description": "File of the indexed DIAMOND database",
+              "pattern": "*.dmnd"
             }
           },
           {
@@ -25409,11 +25479,17 @@
           {
             "blast_columns": {
               "type": "string",
-              "description": "Optional space separated list of DIAMOND tabular BLAST output keywords\nused for in conjunction with the 'txt' out_ext option (--outfmt 6). See\nDIAMOND documnetation for more information.\n"
+              "description": "Optional space separated list of DIAMOND tabular BLAST output keywords\nused for in conjunction with the 'txt' out_ext option (--outfmt 6). Options:\nqseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore\n"
             }
           }
         ],
         "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
           {
             "blast": {
               "type": "file",
@@ -25477,7 +25553,8 @@
         ],
         "maintainers": [
           "@spficklin",
-          "@jfy133"
+          "@jfy133",
+          "@vagkaratzas"
         ]
       }
     },
@@ -25519,14 +25596,20 @@
             "fasta": {
               "type": "file",
               "description": "Input fasta file containing query sequences",
-              "pattern": "*.{fa,fasta}"
+              "pattern": "*.{fa,fasta,fa.gz,fasta.gz}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing db information\ne.g. [ id:'test2', single_end:false ]\n"
             }
           },
           {
             "db": {
-              "type": "directory",
-              "description": "Directory containing the nucelotide blast database",
-              "pattern": "*"
+              "type": "file",
+              "description": "File of the indexed DIAMOND database",
+              "pattern": "*.dmnd"
             }
           },
           {
@@ -25535,9 +25618,21 @@
               "description": "Specify the type of output file to be generated. `blast` corresponds to\nBLAST pairwise format. `xml` corresponds to BLAST xml format.\n`txt` corresponds to to BLAST tabular format. `tsv` corresponds to\ntaxonomic classification format.\n",
               "pattern": "blast|xml|txt|daa|sam|tsv|paf"
             }
+          },
+          {
+            "blast_columns": {
+              "type": "string",
+              "description": "Optional space separated list of DIAMOND tabular BLAST output keywords\nused for in conjunction with the 'txt' out_ext option (--outfmt 6). Options:\nqseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore\n"
+            }
           }
         ],
         "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
           {
             "blast": {
               "type": "file",
@@ -25588,17 +25683,17 @@
             }
           },
           {
-            "versions": {
-              "type": "file",
-              "description": "File containing software versions",
-              "pattern": "versions.yml"
-            }
-          },
-          {
             "log": {
               "type": "file",
               "description": "Log file containing stdout information",
               "pattern": "*.{log}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
             }
           }
         ],
@@ -25610,7 +25705,8 @@
         "maintainers": [
           "@spficklin",
           "@jfy133",
-          "@mjamy"
+          "@mjamy",
+          "@vagkaratzas"
         ]
       },
       "pipelines": [
@@ -25649,19 +25745,31 @@
         ],
         "input": [
           {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "Input fasta file",
-              "pattern": "*.{fa,fasta}"
+              "pattern": "*.{fa,fasta,fa.gz,fasta.gz}"
             }
           }
         ],
         "output": [
           {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
             "db": {
               "type": "file",
               "description": "File of the indexed DIAMOND database",
-              "pattern": "*.{dmnd}"
+              "pattern": "*.dmnd"
             }
           },
           {
@@ -25676,7 +25784,8 @@
           "@spficklin"
         ],
         "maintainers": [
-          "@spficklin"
+          "@spficklin",
+          "@vagkaratzas"
         ]
       }
     },
@@ -33621,6 +33730,14 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
         }
       ]
     },
@@ -34123,6 +34240,14 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
+        },
         {
           "name": "rnadnavar",
           "version": "dev"
@@ -37806,6 +37931,14 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
+        },
         {
           "name": "rnadnavar",
           "version": "dev"
@@ -110425,6 +110558,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -110459,6 +110596,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -110553,6 +110694,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
