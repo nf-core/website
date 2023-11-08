@@ -85,11 +85,6 @@ export default defineConfig({
     },
     markdown: {
         syntaxHighlight: false,
-        shikiConfig: {
-            langs: [],
-            theme: githubDarkDimmed,
-            wrap: false,
-        },
         remarkPlugins: [emoji, remarkGfm, remarkDirective, admonitionsPlugin, mermaid, remarkMath],
         // NOTE: Also update the plugins in `src/components/Markdown.svelte`!
         rehypePlugins: [
