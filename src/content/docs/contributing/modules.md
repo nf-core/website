@@ -416,7 +416,7 @@ multiple tags are allowed for a test
 :::
 
 -  Provide a test name preferably indicating the test-data and file-format used. Example: `test("homo_sapiens - [bam, bai, bed] - fasta - fai")`
-  - For a single test, you can simply replace 'Should run without failures' boilerplate name.  
+  - For a single test, you can simply replace the 'Should run without failures' boilerplate name.  
 
 :::note
 multiple tests are allowed in a single test file
