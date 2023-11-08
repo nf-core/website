@@ -343,9 +343,11 @@ if you have a module named `build` this can conflict with some pytest internal b
 
 We recently decided to use nf-test instead of pytest for testing modules. This is because nf-test is more flexible and allows us to test modules in a more realistic way. You can find more information at [nf-test official docs](https://code.askimed.com/nf-test/) and [in this bytesize talk](https://nf-co.re/events/2022/bytesize_nftest).
 
+A simple example of a nf-test directory in nf-core/modules can be found [here](https://github.com/nf-core/modules/tree/master/modules/nf-core/fastqc/tests).
+
 #### Philosophy of nf-tests
 
-- Each module contains a `tests/` folder beside the `main.nf` containing the test files
+- Each module contains a `tests/` folder beside the `main.nf` of the module itself, containing the test files
 - Test files come with a [snapshot](https://code.askimed.com/nf-test/docs/assertions/snapshots/) of module output channels
 
 #### Steps for creating nf-test for a simple un-chained module
@@ -380,6 +382,8 @@ nf-test generate process modules/nf-core/<module>/main.nf
 mv modules/nf-core/<module>/main.nf.test modules/nf-core/<module>/tests/
 ```
 
+- If your module needs a `nextflow.config` file to run (e.g. for `ext.args` specification), create or copy this to the tests directory
+
 - Open the `main.nf.test` file and change the path for the script to a relative path `../main.nf`
 
 ```diff title="main.nf.test"
@@ -390,9 +394,17 @@ nextflow_process {
      process "MODULE"
 ```
 
-- Then add tags to identify this module
+- (optional) If your module needs a `nextflow.config` specify the location of the config
 
 ```groovy title="main.nf.test"
+process "MODULE"
+config "./nextflow.config"
+```
+
+- Then add tags to identify this module (below the line starting 'process')
+
+```groovy title="main.nf.test"
+process "MODULE"
 tag "modules"
 tag "modules_nfcore"
 tag "<tool>"
@@ -403,7 +415,8 @@ tag "<tool>/<sub-tool>" (optional)
 multiple tags are allowed for a test
 :::
 
-- Provide a test name preferably indicating the test-data and file-format used. Example: `test("homo_sapiens - [bam, bai, bed] - fasta - fai")`
+-  Provide a test name preferably indicating the test-data and file-format used. Example: `test("homo_sapiens - [bam, bai, bed] - fasta - fai")`
+  - For a single test, you can simply replace 'Should run without failures' boilerplate name.  
 
 :::note
 multiple tests are allowed in a single test file
