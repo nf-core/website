@@ -162,7 +162,8 @@ This should open a command prompt similar to this:
 ? Description test pipeline for demo
 ? Author FBo
 ? Do you want to customize which parts of the template are used? No
-INFO     Creating new nf-core pipeline: 'nf-core/demotest'                                                                                     INFO     Initialising pipeline git repository
+INFO     Creating new nf-core pipeline: 'nf-core/demotest'
+INFO     Initialising pipeline git repository
 INFO     Done. Remember to add a remote and push to GitHub:
           cd /workspace/basic_training/nf-core-demotest
           git remote add origin git@github.com:USERNAME/REPO_NAME.git
