@@ -1,7 +1,6 @@
 ---
 import * as icons from 'file-icons-js';
 import 'file-icons-js/css/style.css';
-// import { Code } from 'astro/components';
 import { Markdown } from '@astropub/md';
 import CopyButton from '@components/CopyButton.svelte';
 import Admonition from '@components/Admonition.astro';
@@ -35,7 +34,6 @@ let tooBig = file.size > 5500000;
 if (!tooBig && hasPreview) {
     content = await fetch(hrefPrefix + file.path).then((r) => r.text());
 }
-console.log('``` ' + extension + '\n' + content + '\n' + '```');
 ---
 
 <script>
@@ -102,7 +100,6 @@ console.log('``` ' + extension + '\n' + content + '\n' + '```');
         }
         {
             ['json', 'yaml', 'yml'].includes(extension) && (
-                // <Code lang={extension} code={content} />
                 <Markdown of={'``` ' + extension + '\n' + content + '\n' + '```'} />
             )
         }
