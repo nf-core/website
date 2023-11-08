@@ -18,7 +18,7 @@ You don't need to install the `nf-core` command line tools to run nf-core pipeli
 Nextflow runs on most POSIX systems (Linux, macOS, etc) and can typically be installed by running these commands:
 
 ```console
-# Make sure that Java v8+ is installed:
+# Make sure that Java v11+ is installed:
 java -version
 
 # Install Nextflow
