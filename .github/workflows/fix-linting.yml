@@ -26,7 +26,15 @@ jobs:
 
       # Install and run pre-commit
       - uses: actions/setup-python@v3
-      - uses: pre-commit/action@v3.0.0
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - name: Install pre-commit
+        run: pip install pre-commit
+
+      - name: Run pre-commit
+        id: prettier_status
+        run: pre-commit run --all-files
 
       - name: Commit & push changes
         if: steps.prettier_status.outputs.result == 'fail'
