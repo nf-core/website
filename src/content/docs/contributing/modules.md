@@ -657,15 +657,15 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
       <summary>Rationale</summary>
       A disadvantage of passing arguments via ext.args is that it splits up how information is passed to a module, which can be difficult to understand where module inputs are defined.
 
-      The justification behind using the `ext.args` is to provide more flexibility to users. As `ext.args` is derived from the configuration (e.g. `modules.config`), advanced users can overwrite the default `ext.args` and supply their own arguments to modify the behaviour of a module. This can increase the capabilities of a pipeline beyond what the original developers intended.
+    The justification behind using the `ext.args` is to provide more flexibility to users. As `ext.args` is derived from the configuration (e.g. `modules.config`), advanced users can overwrite the default `ext.args` and supply their own arguments to modify the behaviour of a module. This can increase the capabilities of a pipeline beyond what the original developers intended.
 
-      Initially these were passed via the main workflow script using custom functions (e.g. `addParams`) and other additional nf-core custom methods, but this had a syntax overhead and other limitations that were found to be more difficult to use and understand by pipeline developers. Therefore using the 'native' `ext` functionality provided by Nextflow was easier to understand, maintain and use.
+    Initially these were passed via the main workflow script using custom functions (e.g. `addParams`) and other additional nf-core custom methods, but this had a syntax overhead and other limitations that were found to be more difficult to use and understand by pipeline developers. Therefore using the 'native' `ext` functionality provided by Nextflow was easier to understand, maintain and use.
 
-      Note that sample-specific parameters can still be provided to an instance of a process by storing these in `meta`, and providing these to the `ext.args` definition in `modules.config`. A closure is used to make Nextflow evaluate the code in the code in the string.
+    Note that sample-specific parameters can still be provided to an instance of a process by storing these in `meta`, and providing these to the `ext.args` definition in `modules.config`. A closure is used to make Nextflow evaluate the code in the code in the string.
 
-      ```nextflow
-      ext.args = { "--id ${meta.id}" }
-      ```
+    ```nextflow
+    ext.args = { "--id ${meta.id}" }
+    ```
 
       </details>
 
@@ -702,27 +702,27 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
       <summary>Rationale</summary>
       Modules should be written to allow as much flexibility to pipeline developers as possible.
 
-      Hardcoding `meta` fields in a module will reduce the freedom of developers to use their own names for metadata, which would make more sense in that particular context.
+    Hardcoding `meta` fields in a module will reduce the freedom of developers to use their own names for metadata, which would make more sense in that particular context.
 
-      As all non-mandatory arguments must go via `$args`, pipeline developers can insert such `meta` information into `$args` with whatever name they wish.
+    As all non-mandatory arguments must go via `$args`, pipeline developers can insert such `meta` information into `$args` with whatever name they wish.
 
-      So, in the module code we DO NOT do:
+    So, in the module code we DO NOT do:
 
-      ```bash
-      my_command -r ${meta.strand} input.txt output.txt
-      ```
+    ```bash
+    my_command -r ${meta.strand} input.txt output.txt
+    ```
 
-      ... but rather, in `modules.conf`
+    ... but rather, in `modules.conf`
 
-      ```nextflow
-      ext.args = { "--r ${meta.<pipeline_authors_choice_of_name>}" }
-      ```
+    ```nextflow
+    ext.args = { "--r ${meta.<pipeline_authors_choice_of_name>}" }
+    ```
 
-      ... and then in the module code `main.nf`:
+    ... and then in the module code `main.nf`:
 
-      ```bash
-      my_command $args input.txt output.txt
-      ```
+    ```bash
+    my_command $args input.txt output.txt
+    ```
 
       </details>
 
