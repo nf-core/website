@@ -629,7 +629,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 3.  All _non-mandatory_ command-line tool _non-file_ arguments MUST be provided as a string via the `$task.ext.args` variable.
 
-    - The value of `task.ext.args` is supplied from the `modules.config` file by assigning a string value to `ext.args`.
+    - The value of `task.ext.args` is supplied from the `modules.config` file by assigning a closure that returns a string value to `ext.args`. The closure is necessary to update parameters supplied in a config with `-c`.
 
       ```groovy title="<module>.nf"
       script:
@@ -644,10 +644,10 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
       ```groovy title="modules.config"
           withName: <module> {
-              ext.args = [                                                          // Assign either a string, or closure which returns a string
+              ext.args = { [                                                        // Assign a closure which returns a string
                   '--quiet',
                   params.fastqc_kmer_size ? "-k ${params.fastqc_kmer_size}" : ''    // Parameter dependent values can be provided like so
-              ].join(' ')                                                           // Join converts the list here to a string.
+              ].join(' ') }                                                         // Join converts the list here to a string.
               ext.prefix = { "${meta.id}" }                                         // A closure can be used to access variables defined in the script
           }
       }
