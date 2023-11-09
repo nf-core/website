@@ -21,6 +21,8 @@ Different pipelines may have different workflows, but the following steps will c
 5. Add any necessary parameters for the module with defaults to `nextflow.config`
 6. Insert any pipeline level parameters (`params.*`) into the `ext.args` of corresponding `conf/modules.config`
    - In some cases these may need to be passed directly to the module itself, e.g. `FASTP( reads, params.save_trimmed_fail, params.save_merged)`
+   - Ensure all directives which use `params.*` supply the value as a closure (i.e., enclosed within `{}`, e.g., `ext.args = { "--option $params.option" }`).
+     This ensures parameters supplied in a config `-c` are correctly resolved.
 7. Update the `nextflow_schema.json` to include new parameters with
 
    ```bash
