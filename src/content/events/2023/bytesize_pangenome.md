@@ -4,9 +4,10 @@ subtitle: Simon Heumos, QBiC, University of Tübingen
 type: talk
 start_date: '2023-11-07'
 start_time: '13:00+01:00'
+youtube_embed: https://www.youtube.com/watch?v=cTfPWKzTqms
 end_date: '2023-11-07'
 end_time: '13:30+01:00'
-location_url: https://kth-se.zoom.us/j/68390542812
+location_url: https://www.youtube.com/watch?v=cTfPWKzTqms
 ---
 
 # nf-core/bytesize
