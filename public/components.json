@@ -3134,6 +3134,18 @@
         {
           "name": "rnafusion",
           "version": "2.4.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "2.4.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "2.4.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "2.4.0"
         }
       ]
     },
@@ -26591,6 +26603,107 @@
       }
     },
     {
+      "name": "eggnogmapper",
+      "path": "modules/nf-core/eggnogmapper/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "eggnogmapper",
+        "description": "Fast genome-wide functional annotation through orthology assignment.",
+        "keywords": [
+          "annotation",
+          "orthology",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "eggnogmapper": {
+              "description": "Fast genome-wide functional annotation through orthology assignment.",
+              "homepage": "https://github.com/eggnogdb/eggnog-mapper",
+              "documentation": "https://github.com/eggnogdb/eggnog-mapper/wiki",
+              "tool_dev_url": "https://github.com/eggnogdb/eggnog-mapper",
+              "doi": "10.1093/molbev/msab293",
+              "licence": "['AGPL v3']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Database of sequences in FASTA format",
+              "pattern": "*.{fasta,fa,fasta.gz,fa.gz}"
+            }
+          },
+          {
+            "eggnog_db": {
+              "type": "file",
+              "description": "The eggnog database file (e.g. eggnog-mapper/data/eggnog.db)",
+              "pattern": "*.db"
+            }
+          },
+          {
+            "eggnog_data_dir": {
+              "type": "directory",
+              "description": "Directory containing eggnog database files (e.g. eggnog-mapper/data)",
+              "pattern": "*"
+            }
+          },
+          {
+            "eggnog_diamond_db": {
+              "type": "file",
+              "description": "The eggnog Diamond protein database file (e.g. eggnog-mapper/data/eggnog_proteins.dmnd)",
+              "pattern": "*.dmnd"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "annotations": {
+              "type": "file",
+              "description": "TSV with the results from the annotation phase",
+              "pattern": "*.emapper.annotations"
+            }
+          },
+          {
+            "seed_orthologs": {
+              "type": "file",
+              "description": "TSV with the results from parsing the hits, linking queries with seed orthologs (with commented metadata)",
+              "pattern": "*.emapper.seed_orthologs"
+            }
+          },
+          {
+            "hits": {
+              "type": "file",
+              "description": "TSV with the results from the Diamond search phase",
+              "pattern": "*.emapper.hits"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@vagkaratzas"
+        ]
+      }
+    },
+    {
       "name": "eido_convert",
       "path": "modules/nf-core/eido/convert/meta.yml",
       "type": "module",
@@ -33750,6 +33863,30 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
         }
       ]
     },
@@ -34252,6 +34389,30 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
+        },
         {
           "name": "rnadnavar",
           "version": "dev"
@@ -37951,6 +38112,30 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
+        },
         {
           "name": "rnadnavar",
           "version": "dev"
@@ -73841,6 +74026,57 @@
       ]
     },
     {
+      "name": "pigz_uncompress",
+      "path": "modules/nf-core/pigz/uncompress/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "pigz_uncompress",
+        "description": "write your description here",
+        "keywords": [
+          "uncompress",
+          "gzip",
+          "parallelized"
+        ],
+        "tools": [
+          {
+            "pigz": {
+              "description": "Parallel implementation of the gzip algorithm.",
+              "homepage": "https://zlib.net/pigz/",
+              "documentation": "https://zlib.net/pigz/pigz.pdf"
+            }
+          }
+        ],
+        "input": [
+          {
+            "zip": {
+              "type": "file",
+              "description": "Gzipped file",
+              "pattern": "*.{gzip}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "file": {
+              "type": "file",
+              "description": "File to compress",
+              "pattern": "*"
+            }
+          }
+        ],
+        "authors": [
+          "@lrauschning"
+        ]
+      }
+    },
+    {
       "name": "pilon",
       "path": "modules/nf-core/pilon/meta.yml",
       "type": "module",
@@ -102132,6 +102368,116 @@
       }
     },
     {
+      "name": "vcf2cytosure",
+      "path": "modules/nf-core/vcf2cytosure/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "vcf2cytosure",
+        "description": "Convert VCF with structural variations to CytoSure format",
+        "keywords": [
+          "structural_variants",
+          "array_cgh",
+          "vcf",
+          "cytosure"
+        ],
+        "tools": [
+          {
+            "vcf2cytosure": {
+              "description": "Convert VCF with structural variations to CytoSure format",
+              "homepage": "https://github.com/NBISweden/vcf2cytosure",
+              "documentation": "https://github.com/NBISweden/vcf2cytosure",
+              "tool_dev_url": "https://github.com/NBISweden/vcf2cytosure",
+              "licence": "['MIT']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "sv_vcf": {
+              "type": "file",
+              "description": "VCF file with structural variants",
+              "pattern": "*.{vcf,vcf.gz}"
+            }
+          },
+          {
+            "coverage_bed": {
+              "type": "file",
+              "description": "Bed file with coverage data",
+              "pattern": "*.bed"
+            }
+          },
+          {
+            "cns": {
+              "type": "file",
+              "description": "CN file from CNVkit, not compatible with coverage_bed file"
+            }
+          },
+          {
+            "snv_vcf": {
+              "type": "file",
+              "description": "VCF file with SNVs to calculate probe coverage,\nnot compatible with coverage_bed\npattern: \"*.{vcf,vcf.gz}\"\n"
+            }
+          },
+          {
+            "blacklilst_bed": {
+              "type": "file",
+              "description": "Bed file with regions to exclude",
+              "pattern": "*.bed"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "cgh": {
+              "type": "file",
+              "description": "SV:s in CytoSure format",
+              "pattern": "*.cgh"
+            }
+          }
+        ],
+        "authors": [
+          "@jemten"
+        ]
+      }
+    },
+    {
       "name": "vcf2db",
       "path": "modules/nf-core/vcf2db/meta.yml",
       "type": "module",
@@ -110594,6 +110940,18 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -110628,6 +110986,18 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -110730,6 +111100,18 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
