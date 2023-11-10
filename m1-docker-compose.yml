@@ -1,14 +1,14 @@
 version: '3.8'
 services:
   db:
-    image: mariadb
+    image: mysql
     ports:
       - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: typist0tulip7console-PIMENTO4cosmic
-      MYSQL_DATABASE: nfcore
-      MYSQL_USER: nfcore_admin
-      MYSQL_PASSWORD: PEBBLY8exhibit_mead1cilium6despise
+      MYSQL_DATABASE: nfcore_db
+      MYSQL_USER: nfcore_db_user
+      MYSQL_PASSWORD: abaci!journey0sylvan*FLUB
     volumes:
       - ./.mysql-data/db:/var/lib/mysql
   web:
