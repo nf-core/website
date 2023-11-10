@@ -39,161 +39,92 @@ $slack_users = $stats_json->slack->user_counts->{$latest_slack_update};
 $twitter_datekeys = array_keys(get_object_vars($stats_json->twitter->followers_count));
 $twitter_users = $stats_json->twitter->followers_count->{max($twitter_datekeys)};
 
+$config = parse_ini_file('../config.ini');
+$conn = mysqli_connect($config['host'], $config['username'], $config['password'], $config['dbname'], $config['port']);
+// get stats for pipelines
+$sql = 'SELECT timestamp,
+                SUM(views) AS sum_total_views,
+                SUM(views_uniques) AS sum_total_views_uniques,
+                SUM(clones) AS sum_total_clones,
+                SUM(clones_uniques) AS sum_total_clones_uniques,
+                MIN(timestamp) AS min_timestamp FROM github_traffic_stats
+            INNER JOIN nfcore_pipelines ON github_traffic_stats.pipeline_id = nfcore_pipelines.id GROUP BY timestamp ORDER BY timestamp ASC';
+$pipeline_metrics = [];
+if ($result = mysqli_query($conn, $sql)) {
+    if (mysqli_num_rows($result) > 0) {
+        $pipeline_metrics = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        // Free result set
+        mysqli_free_result($result);
+    }
+}
+$view_counts = [];
+$clone_counts = [];
+# get views per day
+$sql = 'SELECT timestamp, SUM(views) AS sum_total_views, SUM(views_uniques) AS sum_total_views_unique FROM github_traffic_stats
+            INNER JOIN nfcore_pipelines ON github_traffic_stats.pipeline_id = nfcore_pipelines.id GROUP BY timestamp ORDER BY timestamp ASC';
+if ($result = mysqli_query($conn, $sql)) {
+    if (mysqli_num_rows($result) > 0) {
+        $view_counts = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        // Free result set
+        mysqli_free_result($result);
+    }
+}
+$sql = 'SELECT timestamp, SUM(clones) AS sum_total_clones, SUM(clones_uniques) AS sum_total_clones_unique FROM github_traffic_stats
+            INNER JOIN nfcore_pipelines ON github_traffic_stats.pipeline_id = nfcore_pipelines.id GROUP BY timestamp ORDER BY timestamp ASC';
+if ($result = mysqli_query($conn, $sql)) {
+    if (mysqli_num_rows($result) > 0) {
+        $clone_counts = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        // Free result set
+        mysqli_free_result($result);
+    }
+}
+// get all repos
+$sql = 'SELECT * FROM nfcore_pipelines';
+$gh_repos = [];
+if ($result = mysqli_query($conn, $sql)) {
+    if (mysqli_num_rows($result) > 0) {
+        $gh_repos = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        // Free result set
+        mysqli_free_result($result);
+    }
+}
+// get unique contributor names from github_pipeline_contrib_stats table from the mysql database
+$sql = 'SELECT DISTINCT author, avatar_url, SUM(week_commits) AS total_sum_commits
+FROM github_pipeline_contrib_stats GROUP BY author,avatar_url  ORDER BY total_sum_commits DESC';
+$gh_contributors_db = [];
+if ($result = mysqli_query($conn, $sql)) {
+    if (mysqli_num_rows($result) > 0) {
+        $gh_contributors_db = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        // Free result set
+        mysqli_free_result($result);
+    }
+} else {
+    echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+}
+
+// echo '<pre>' . print_r($gh_contributors_db, true) . '</pre>';
+// get maximum total_sum_commits from $gh_contributors_db
+$max_total_sum_commits = max(array_column($gh_contributors_db, 'total_sum_commits'));
+$total_sum_commits = array_sum(array_column($gh_contributors_db, 'total_sum_commits'));
+$metrics_since = min(array_column($pipeline_metrics, 'min_timestamp'));
+$total_sum_clones = array_sum(array_column($pipeline_metrics, 'sum_total_clones'));
+$total_sum_views = array_sum(array_column($pipeline_metrics, 'sum_total_views'));
+$total_sum_clones_uniques = array_sum(array_column($pipeline_metrics, 'sum_total_clones_uniques'));
+$total_sum_views_uniques = array_sum(array_column($pipeline_metrics, 'sum_total_views_uniques'));
+# echo '<pre>'.print_r($stats, true).'</pre>';
+// print_r($gh_contributors_db);
 // Get unique contributors - commits and issues
-$gh_contributors = (array) $stats_json->gh_contributors;
-$gh_contributor_commits = array_keys($gh_contributors);
+$gh_contributors = [];
+$gh_contributor_commits = [];
+foreach( $gh_contributors_db as $contributor ) {
+    $gh_contributor_commits[] = $contributor['author'];
+    $gh_contributors[$contributor['author']] = $contributor['total_sum_commits'];
+}
 $gh_contributor_issues = array_keys($issues_json['authors']);
 foreach ($issues_json['authors'] as $author => $info) {
-    if (!isset($gh_contributors[$author])) {
         $gh_contributors[$author] = $info['first_contribution'];
-    }
-    $gh_contributors[$author] = min($gh_contributors[$author], $info['first_contribution']);
 }
 
-# echo '<pre>'.print_r($stats, true).'</pre>';
-
-// This is horrible, I know sorry. I'm in a rush :(
-$stats_total_allrepos = [
-    'clones_count' => [],
-    'clones_uniques' => [],
-    'views_count' => [],
-    'views_uniques' => [],
-];
-
-// Run everything twice - keep pipelines and core repos seperate
-foreach (['pipelines', 'core_repos'] as $repo_type):
-    $stats = $stats_json->{$repo_type};
-    $stats_total[$repo_type] = [
-        'releases' => 0,
-        'stargazers' => 0,
-        'watchers' => 0,
-        'network_forks' => 0,
-        'clones_count' => [],
-        'clones_uniques' => [],
-        'views_count' => [],
-        'views_uniques' => [],
-        'clones_count_since' => false,
-        'clones_count_total' => 0,
-        'clones_uniques_since' => false,
-        'clones_uniques_total' => 0,
-        'views_count_since' => false,
-        'views_count_total' => 0,
-        'views_uniques_since' => false,
-        'views_uniques_total' => 0,
-        'unique_committers' => [],
-        'total_commits' => 0,
-    ];
-
-    $trows[$repo_type] = [];
-    foreach ($stats as $repo_name => $repo):
-
-        // Exit quietly if something has gone wrong
-        if (!isset($repo->repo_metrics)) {
-            echo '<!-- ERROR: $repo->repo_metrics not set for "' . $repo_name . '" -->';
-            continue;
-        }
-        if (!isset($repo->repo_metrics->{$stats_json->updated})) {
-            echo '<!-- ERROR: $repo->repo_metrics->' . $stats_json->updated . ' not set for "' . $repo_name . '" -->';
-            continue;
-        }
-        // Ok, continue!
-        $metrics = $repo->repo_metrics->{$stats_json->updated};
-        $stats_total[$repo_type]['releases'] += isset($repo->num_releases) ? $repo->num_releases : 0;
-        $stats_total[$repo_type]['stargazers'] += $metrics->stargazers_count;
-        $stats_total[$repo_type]['watchers'] += $metrics->subscribers_count;
-        $stats_total[$repo_type]['network_forks_count'] += $metrics->network_forks_count;
-
-        foreach (['clones_count', 'clones_uniques', 'views_count', 'views_uniques'] as $key) {
-            if (isset($repo->{$key})) {
-                foreach ($repo->{$key} as $timestamp => $count) {
-                    if (!isset($stats_total_allrepos[$key][$timestamp])) {
-                        $stats_total_allrepos[$key][$timestamp] = 0;
-                    }
-                    $stats_total_allrepos[$key][$timestamp] += $count;
-                    if (!isset($stats_total[$repo_type][$key][$timestamp])) {
-                        $stats_total[$repo_type][$key][$timestamp] = 0;
-                    }
-                    $stats_total[$repo_type][$key][$timestamp] += $count;
-                    if (!$stats_total[$repo_type][$key . '_since']) {
-                        $stats_total[$repo_type][$key . '_since'] = strtotime($timestamp);
-                    }
-                    $stats_total[$repo_type][$key . '_since'] = min(
-                        strtotime($timestamp),
-                        $stats_total[$repo_type][$key . '_since'],
-                    );
-                }
-            }
-            $stats_total[$repo_type][$key . '_total'] += $repo->{$key . '_total'};
-        }
-
-        $total_commits = 0;
-        foreach ($repo->contributors as $contributor) {
-            $gh_username = $contributor->author->login;
-            $stats_total[$repo_type]['unique_committers'][$gh_username] = 0;
-            $stats_total['total']['unique_committers'][$gh_username] = 0;
-            $stats_total[$repo_type]['total_commits'] += $contributor->total;
-            $total_commits += $contributor->total;
-        }
-        ob_start();
-        ?>
-        <tr>
-            <td><?php
-            if ($metrics->archived) {
-                echo '<small class="status-icon text-warning ms-2 fas fa-archive" data-bs-toggle="tooltip" aria-hidden="true" title="This repo has been archived and is no longer being maintained."></small>';
-            } elseif ($repo_type == 'pipelines') {
-                // Edge case where a new pipeline is added but stats hasn't rerun yet
-                if (!isset($repo->num_releases)) {
-                    $repo->num_releases = 0;
-                }
-                if ($repo->num_releases) {
-                    echo '<small class="status-icon text-success ms-2 fas fa-check" data-bs-toggle="tooltip" aria-hidden="true" title="This pipeline is released, tested and good to go."></small>';
-                } else {
-                    echo '<small class="status-icon text-danger ms-2 fas fa-wrench" data-bs-toggle="tooltip" aria-hidden="true" title="This pipeline is under active development. Once released on GitHub, it will be production-ready."></small>';
-                }
-            }
-            $alink = '<a href="' . $metrics->html_url . '" target="_blank">';
-            if ($repo_type == 'pipelines') {
-                $alink = '<a href="/' . $metrics->name . '/releases_stats">';
-            }
-            ?></td>
-            <td><?php echo $alink .
-                '<span class="d-none d-lg-inline">nf-core/</span>' .
-                $metrics->name .
-                '</a>'; ?></td>
-            <td data-text="<?php echo strtotime($metrics->created_at); ?>"><?php echo time_ago(
-    $metrics->created_at,
-    false,
-); ?></td>
-            <?php if ($repo_type == 'pipelines'): ?><td class=""><?php echo $repo->num_releases; ?></td><?php endif; ?>
-            <td class=""><?php echo $repo->num_contributors; ?></td>
-            <td class=""><?php echo $total_commits; ?></td>
-            <td class=""><?php echo $metrics->stargazers_count; ?></td>
-            <td class=""><?php echo $metrics->subscribers_count; ?></td>
-            <td class=""><?php echo $metrics->network_forks_count; ?></td>
-            <td class=""><?php echo $repo->clones_count_total; ?></td>
-            <td class=""><?php echo $repo->clones_uniques_total; ?></td>
-            <td class=""><?php echo $repo->views_count_total; ?></td>
-            <td class=""><?php echo $repo->views_uniques_total; ?></td>
-        </tr>
-<?php
-$trows[$repo_type][] = ob_get_contents();
-ob_end_clean();
-
-    endforeach;
-endforeach;
-
-foreach (array_keys($stats_total['pipelines']) as $akey) {
-    if ($akey == 'unique_committers') {
-        continue;
-    }
-    $stats_total['total'][$akey] = $stats_total['pipelines'][$akey] + $stats_total['core_repos'][$akey];
-}
-
-//
-//
-// TOP CARD DECK
-//
-//
 ?>
 
 <h1>Introduction</h1>
@@ -365,8 +296,8 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
 <div class="card-group text-center stats_keynumbers">
     <div class="card bg-body">
         <div class="card-body">
-            <p class="card-text display-4"><?php echo count(get_object_vars($stats_json->pipelines)) +
-                count(get_object_vars($stats_json->core_repos)); ?></p>
+            <p class="card-text display-4"><?php echo count($pipelines) +
+                count($pipelines); ?></p>
             <p class="card-text text-muted">Repositories</p>
         </div>
         <div class="bg-icon"><i class="far fa-folder"></i></div>
@@ -383,7 +314,7 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
     <div class="card bg-body">
         <div class="card-body">
             <p class="card-text display-4"><?php echo round_nicely(
-                $stats_total['pipelines']['total_commits'] + $stats_total['core_repos']['total_commits'],
+                $total_sum_commits,
             ); ?></p>
             <p class="card-text text-muted">Commits</p>
         </div>
@@ -420,28 +351,17 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
         <div class="row">
             <div class="col-6 border-end border-secondary">
                 <span class="text-body lead"><?php echo round_nicely(
-                    $stats_total['pipelines']['clones_count_total'] + $stats_total['core_repos']['clones_count_total'],
+                   $total_sum_clones,
                 ); ?></span>
-                <br>Clones since <?php echo date(
-                    'F Y',
-                    min(
-                        $stats_total['pipelines']['clones_count_since'],
-                        $stats_total['core_repos']['clones_count_since'],
-                    ),
-                ); ?>
+                <br>Clones since <?php
+                    echo date('F Y', strtotime($metrics_since));
+                ; ?>
             </div>
             <div class="col-6" data-bs-toggle="tooltip" title="Note: Unique per repository. Will double-count the same person cloning two different repositories.">
                 <span class="text-body lead"><?php echo round_nicely(
-                    $stats_total['pipelines']['clones_uniques_total'] +
-                        $stats_total['core_repos']['clones_uniques_total'],
+                    $total_sum_clones_uniques,
                 ); ?></span>
-                <br>Unique cloners since <?php echo date(
-                    'F Y',
-                    min(
-                        $stats_total['pipelines']['clones_uniques_since'],
-                        $stats_total['core_repos']['clones_uniques_since'],
-                    ),
-                ); ?>
+                <br>Unique cloners since <?php echo date('F Y', strtotime($metrics_since)); ?>
             </div>
         </div>
     </div>
@@ -462,28 +382,15 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
         <div class="row align-items-center">
             <div class="col-6 border-end border-secondary">
                 <span class="text-body lead"><?php echo round_nicely(
-                    $stats_total['pipelines']['views_count_total'] + $stats_total['core_repos']['views_count_total'],
+                    $total_sum_views,
                 ); ?></span>
-                <br>Views since <?php echo date(
-                    'F Y',
-                    min(
-                        $stats_total['pipelines']['views_count_since'],
-                        $stats_total['core_repos']['views_count_since'],
-                    ),
-                ); ?>
+                <br>Views since <?php echo date('F Y', strtotime($metrics_since)); ?>
             </div>
             <div class="col-6" data-bs-toggle="tooltip" title="Note: Unique per repository. Will double-count the same person viewing two different repositories.">
                 <span class="text-body lead"><?php echo round_nicely(
-                    $stats_total['pipelines']['views_uniques_total'] +
-                        $stats_total['core_repos']['views_uniques_total'],
+                    $total_sum_views_uniques,
                 ); ?></span>
-                <br>Unique visitors since <?php echo date(
-                    'F Y',
-                    min(
-                        $stats_total['pipelines']['views_uniques_since'],
-                        $stats_total['core_repos']['views_uniques_since'],
-                    ),
-                ); ?>
+                <br>Unique visitors since <?php echo date('F Y', strtotime($metrics_since)); ?>
             </div>
         </div>
     </div>
@@ -1452,14 +1359,8 @@ foreach (['pipelines', 'core_repos'] as $repo_type): ?>
                     yAxisID: 'y-axis-count',
                     data: [
                         <?php
-                        ksort($stats_total_allrepos['clones_count']);
-                        foreach ($stats_total_allrepos['clones_count'] as $timestamp => $count) {
-                            $timestamp = strtotime($timestamp);
-                            // Skip zeros (anything before 2010)
-                            if ($timestamp < 1262304000) {
-                                continue;
-                            }
-                            echo '{ x: "' . date('Y-m-d', $timestamp) . '", y: ' . $count . ' },' . "\n\t\t\t";
+                        foreach( $clone_counts as $idx => $count ){
+                            echo '{ x: "' . date('Y-m-d', strtotime($count['timestamp'])) . '", y: ' . $count['sum_total_clones']  . ' },' . "\n\t\t\t";
                         }
                         ?>
                     ]
@@ -1473,14 +1374,8 @@ foreach (['pipelines', 'core_repos'] as $repo_type): ?>
                     yAxisID: 'y-axis-uniques',
                     data: [
                         <?php
-                        ksort($stats_total_allrepos['clones_uniques']);
-                        foreach ($stats_total_allrepos['clones_uniques'] as $timestamp => $count) {
-                            $timestamp = strtotime($timestamp);
-                            // Skip zeros (anything before 2010)
-                            if ($timestamp < 1262304000) {
-                                continue;
-                            }
-                            echo '{ x: "' . date('Y-m-d', $timestamp) . '", y: ' . $count . ' },' . "\n\t\t\t";
+                        foreach( $clone_counts as $idx => $count ){
+                            echo '{ x: "' . date('Y-m-d', strtotime($count['timestamp'])) . '", y: ' . $count['sum_total_clones_unique']  . ' },' . "\n\t\t\t";
                         }
                         ?>
                     ]
@@ -1533,15 +1428,19 @@ foreach (['pipelines', 'core_repos'] as $repo_type): ?>
                     yAxisID: 'y-axis-count',
                     data: [
                         <?php
-                        ksort($stats_total_allrepos['views_count']);
-                        foreach ($stats_total_allrepos['views_count'] as $timestamp => $count) {
-                            $timestamp = strtotime($timestamp);
-                            // Skip zeros (anything before 2010)
-                            if ($timestamp < 1262304000) {
-                                continue;
-                            }
-                            echo '{ x: "' . date('Y-m-d', $timestamp) . '", y: ' . $count . ' },' . "\n\t\t\t";
+                        // add data point for each timestamp in view_count
+                        foreach( $view_counts as $idx => $count ){
+                            echo '{ x: "' . date('Y-m-d', strtotime($count['timestamp'])) . '", y: ' . $count['sum_total_views']  . ' },' . "\n\t\t\t";
                         }
+                        // ksort($stats_total_allrepos['views_count']);
+                        // foreach ($stats_total_allrepos['views_count'] as $timestamp => $count) {
+                        //     $timestamp = strtotime($timestamp);
+                        //     // Skip zeros (anything before 2010)
+                        //     if ($timestamp < 1262304000) {
+                        //         continue;
+                        //     }
+                        //     echo '{ x: "' . date('Y-m-d', $timestamp) . '", y: ' . $count . ' },' . "\n\t\t\t";
+                        // }
                         ?>
                     ]
                 },
@@ -1554,14 +1453,8 @@ foreach (['pipelines', 'core_repos'] as $repo_type): ?>
                     yAxisID: 'y-axis-uniques',
                     data: [
                         <?php
-                        ksort($stats_total_allrepos['views_uniques']);
-                        foreach ($stats_total_allrepos['views_uniques'] as $timestamp => $count) {
-                            $timestamp = strtotime($timestamp);
-                            // Skip zeros (anything before 2010)
-                            if ($timestamp < 1262304000) {
-                                continue;
-                            }
-                            echo '{ x: "' . date('Y-m-d', $timestamp) . '", y: ' . $count . ' },' . "\n\t\t\t";
+                        foreach( $view_counts as $idx => $count ){
+                            echo '{ x: "' . date('Y-m-d', strtotime($count['timestamp'])) . '", y: ' . $count['sum_total_views_unique']  . ' },' . "\n\t\t\t";
                         }
                         ?>
                     ]
