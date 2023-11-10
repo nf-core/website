@@ -3146,6 +3146,10 @@
         {
           "name": "rnafusion",
           "version": "2.4.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "2.4.0"
         }
       ]
     },
@@ -33887,6 +33891,14 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
         }
       ]
     },
@@ -34389,6 +34401,14 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
+        },
         {
           "name": "rnadnavar",
           "version": "dev"
@@ -38112,6 +38132,14 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
+        },
         {
           "name": "rnadnavar",
           "version": "dev"
@@ -54024,6 +54052,18 @@
               "description": "Optional tab separated file with chromosome names and lengths.",
               "pattern": "*.tsv"
             }
+          },
+          {
+            "fragment_length": {
+              "type": "integer",
+              "description": "For single-end mode only, the estimated average fragment length."
+            }
+          },
+          {
+            "fragment_length_sd": {
+              "type": "integer",
+              "description": "For single-end mode only, the estimated standard deviation of the fragment length."
+            }
           }
         ],
         "output": [
@@ -68154,8 +68194,8 @@
           {
             "reads": {
               "type": "file",
-              "description": "Uncompressed FASTQ or FASTA file",
-              "pattern": "*.{fasta,fna,fas,fa,fastq,fq}"
+              "description": "FASTQ or FASTA file (ideally uncompressed, but not required)",
+              "pattern": "*.{fasta,fna,fas,fa,fastq,fq,fasta.gz,fna.gz,fas.gz,fa.gz,fastq.gz,fq.gz}"
             }
           },
           {
@@ -110952,6 +110992,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -110986,6 +111030,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -111100,6 +111148,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
