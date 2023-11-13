@@ -123,7 +123,7 @@ class RepoHealth {
     public $repo_keywords;
     public $repo_description;
     public $repo_url;
-    public $team_all;
+    public $team_contributors;
     public $team_core;
 
     // Branch test vars
@@ -273,7 +273,7 @@ class RepoHealth {
         }
     }
     public function test_teams() {
-        $this->team_all = isset($this->gh_teams['all']) ? $this->gh_teams['all']->push : false;
+        $this->team_contributors = isset($this->gh_teams['contributors']) ? $this->gh_teams['contributors']->push : false;
         $this->team_core = isset($this->gh_teams['core']) ? $this->gh_teams['core']->admin : false;
     }
     public function test_branch_exists() {
@@ -427,7 +427,7 @@ class RepoHealth {
     }
 
     private function fix_teams() {
-        $this->fix_team('all');
+        $this->fix_team('contributors');
         $this->fix_team('core');
     }
     private function fix_team($team) {
@@ -438,7 +438,7 @@ class RepoHealth {
             if ($team == 'core') {
                 $payload = ['permission' => 'admin'];
             }
-            if ($team == 'all') {
+            if ($team == 'contributors') {
                 $payload = ['permission' => 'push'];
             }
             $gh_edit_team_url = 'https://api.github.com/teams/' . $gh_team_ids[$team] . '/repos/nf-core/' . $this->name;
@@ -900,7 +900,7 @@ $base_test_names = [
     'repo_keywords' => 'Keywords',
     'repo_description' => 'Description',
     'repo_url' => 'Repo URL',
-    'team_all' => 'Team all',
+    'team_contributors' => 'Team contributors',
     'team_core' => 'Team core',
     'branch_master_exists' => 'master: exists',
     'branch_dev_exists' => 'dev: exists',
@@ -929,7 +929,7 @@ $base_test_descriptions = [
     'repo_keywords' => 'Minimum keywords set',
     'repo_description' => 'Description must be set',
     'repo_url' => 'URL should be set to https://nf-co.re',
-    'team_all' => 'Write access for nf-core/all',
+    'team_contributors' => 'Write access for nf-core/contributors',
     'team_core' => 'Admin access for nf-core/core',
     'branch_master_exists' => 'master branch: branch must exist',
     'branch_dev_exists' => 'dev branch: branch must exist',
@@ -958,7 +958,7 @@ $base_test_urls = [
     'repo_keywords' => 'https://github.com/nf-core/{repo}',
     'repo_description' => 'https://github.com/nf-core/{repo}',
     'repo_url' => 'https://github.com/nf-core/{repo}',
-    'team_all' => 'https://github.com/nf-core/{repo}/settings/collaboration',
+    'team_contributors' => 'https://github.com/nf-core/{repo}/settings/collaboration',
     'team_core' => 'https://github.com/nf-core/{repo}/settings/collaboration',
     'branch_master_exists' => 'https://github.com/nf-core/{repo}/branches',
     'branch_dev_exists' => 'https://github.com/nf-core/{repo}/branches',
@@ -978,7 +978,7 @@ $base_test_urls = [
     'branch_template_restrict_push' => 'https://github.com/nf-core/{repo}/settings/branches',
 ];
 $base_merge_table_col_headings = [
-    'Team access' => ['team_all', 'team_core'],
+    'Team access' => ['team_contributors', 'team_core'],
     'Branches exist' => ['branch_master_exists', 'branch_dev_exists', 'branch_template_exists'],
     'Branch protection: master' => [
         'branch_master_strict_updates',
