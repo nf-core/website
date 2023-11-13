@@ -864,7 +864,7 @@ function get_gh_team_repos($team) {
     }
 }
 $gh_team_ids = [];
-get_gh_team_repos('all');
+get_gh_team_repos('contributors');
 get_gh_team_repos('core');
 
 // Loop through pipelines
