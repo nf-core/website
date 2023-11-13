@@ -223,9 +223,9 @@ This is important, because this shared git history with unmodified nf-core templ
 
 The main thing to remember with this is that:
 
-Never make changes to the TEMPLATE branch, otherwise it will interfere with the synchronisation of nf-core updates. 
+Never make changes to the TEMPLATE branch, otherwise it will interfere with the synchronisation of nf-core updates.
 
-Ideally code should be developed on feature branches (i.e. a new branch made with `git checkout -b my_new_feature`), and when ready merged into the `dev` branch upon a successful code review. The `dev` branch is then merged to the `master` branch when a stable release of the workflow is ready to be made.  
+Ideally code should be developed on feature branches (i.e. a new branch made with `git checkout -b my_new_feature`), and when ready merged into the `dev` branch upon a successful code review. The `dev` branch is then merged to the `master` branch when a stable release of the workflow is ready to be made.
 
 When creating a new repository on GitHub, create it as an empty repository without a README or any other file. Then push the repo with the template of your new pipeline from your local clone.
 
