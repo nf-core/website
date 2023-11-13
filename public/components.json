@@ -3174,6 +3174,10 @@
         {
           "name": "rnafusion",
           "version": "2.4.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "2.4.0"
         }
       ]
     },
@@ -22240,7 +22244,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         },
         {
           "name": "atacseq",
@@ -23034,7 +23038,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         },
         {
           "name": "crisprseq",
@@ -28436,7 +28440,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         },
         {
           "name": "phyloplace",
@@ -28527,7 +28531,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         },
         {
           "name": "phyloplace",
@@ -30224,7 +30228,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         },
         {
           "name": "atacseq",
@@ -31600,6 +31604,151 @@
         ],
         "maintainers": [
           "@mirpedrol"
+        ]
+      }
+    },
+    {
+      "name": "foldseek_createdb",
+      "path": "modules/nf-core/foldseek/createdb/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "foldseek_createdb",
+        "description": "Create a database from protein structures",
+        "keywords": [
+          "protein",
+          "structure",
+          "comparisons"
+        ],
+        "tools": [
+          {
+            "foldseek": {
+              "description": "Foldseek: fast and accurate protein structure search",
+              "homepage": "https://search.foldseek.com/search",
+              "documentation": "https://github.com/steineggerlab/foldseek",
+              "tool_dev_url": "https://github.com/steineggerlab/foldseek",
+              "doi": "10.1038/s41587-023-01773-0",
+              "licence": "['GPL v3']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "pdb": {
+              "type": "file",
+              "description": "Protein structure(s) in PDB, mmCIF or mmJSON format (also works with folder input)",
+              "pattern": "*.{pdb,mmcif,mmjson}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "db": {
+              "type": "directory",
+              "description": "Directory containing pdb database files",
+              "pattern": "*"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@vagkaratzas"
+        ]
+      }
+    },
+    {
+      "name": "foldseek_easysearch",
+      "path": "modules/nf-core/foldseek/easysearch/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "foldseek_easysearch",
+        "description": "Search for protein structural hits against a foldseek database of protein structures",
+        "keywords": [
+          "protein",
+          "structure",
+          "comparisons"
+        ],
+        "tools": [
+          {
+            "foldseek": {
+              "description": "Foldseek: fast and accurate protein structure search",
+              "homepage": "https://search.foldseek.com/search",
+              "documentation": "https://github.com/steineggerlab/foldseek",
+              "tool_dev_url": "https://github.com/steineggerlab/foldseek",
+              "doi": "10.1038/s41587-023-01773-0",
+              "licence": "['GPL v3']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "pdb": {
+              "type": "file",
+              "description": "Protein structure(s) in PDB, mmCIF or mmJSON format to compare against a foldseek database (also works with folder input)",
+              "pattern": "*.{pdb,mmcif,mmjson}"
+            }
+          },
+          {
+            "meta_db": {
+              "type": "map",
+              "description": "Groovy Map containing sample information for the foldseek db\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "db": {
+              "type": "directory",
+              "description": "foldseek database from protein structures",
+              "pattern": "*"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "aln": {
+              "type": "file",
+              "description": "Structural comparisons file output\nQuery, Target, Identity, Alignment length, Mismatches, Gap openings,\nQuery start, Query end, Target start, Target end, E-value, Bit score\n",
+              "pattern": "*.{m8}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@vagkaratzas"
         ]
       }
     },
@@ -33184,7 +33333,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         },
         {
           "name": "phyloplace",
@@ -33261,7 +33410,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         },
         {
           "name": "phyloplace",
@@ -33376,7 +33525,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         },
         {
           "name": "phyloplace",
@@ -33812,6 +33961,14 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
+        },
         {
           "name": "rnadnavar",
           "version": "dev"
@@ -34473,6 +34630,14 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
+        },
         {
           "name": "rnadnavar",
           "version": "dev"
@@ -38252,6 +38417,14 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
+        },
         {
           "name": "rnadnavar",
           "version": "dev"
@@ -50026,7 +50199,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         },
         {
           "name": "phyloplace",
@@ -50104,7 +50277,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         },
         {
           "name": "phyloplace",
@@ -50191,7 +50364,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         },
         {
           "name": "phyloplace",
@@ -50273,7 +50446,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         },
         {
           "name": "phyloplace",
@@ -55449,7 +55622,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         },
         {
           "name": "bacass",
@@ -58172,7 +58345,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         },
         {
           "name": "multiplesequencealign",
@@ -65960,7 +66133,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         },
         {
           "name": "bacass",
@@ -101654,7 +101827,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         },
         {
           "name": "atacseq",
@@ -104599,7 +104772,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         },
         {
           "name": "crisprseq",
@@ -104677,7 +104850,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         }
       ]
     },
@@ -104919,7 +105092,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         }
       ]
     },
@@ -108961,7 +109134,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         },
         {
           "name": "phyloplace",
@@ -111188,6 +111361,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -111222,6 +111399,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -111364,6 +111545,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
