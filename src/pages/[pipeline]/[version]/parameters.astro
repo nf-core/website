@@ -5,7 +5,6 @@ import { promises, existsSync } from 'fs';
 import { z } from 'zod';
 import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
 import pipelines_json from '@public/pipelines.json';
-import { boolean, string } from 'astro/zod';
 
 export function getStaticPaths() {
     var paths: {
@@ -45,7 +44,10 @@ let headings: {
 
 let { versions, md_files, description } = Astro.props;
 
-let schema = { definitions: [{ title: string, fa_icon: string, properties: [{ hidden: boolean }] }], properties: [] };
+let schema: { definitions: { title: string; fa_icon: string; properties: [{ hidden: boolean }] }[]; properties: [] } = {
+    definitions: [],
+    properties: [],
+};
 const version_tag_name = version === 'latest' ? versions[0] : version;
 
 const cache_key = `.cache/${pipeline}/${version_tag_name}/nextflow_schema.json`;
@@ -59,9 +61,9 @@ if (schema.definitions && Object.keys(schema.definitions).length > 0) {
     headings = Object.entries(schema.definitions).map(([key, value]) => {
         return {
             slug: key.replaceAll('_', '-'),
-            text: z.string().parse(value.title),
+            text: value.title,
             depth: 1,
-            fa_icon: z.string().parse(value.fa_icon),
+            fa_icon: value.fa_icon,
             hidden: value.properties && Object.values(value.properties).every((prop) => prop.hidden),
         };
     });
