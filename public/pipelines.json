@@ -3289,6 +3289,47 @@
             ],
             "releases": [
                 {
+                    "tag_name": "2.1.0",
+                    "published_at": "2023-11-14T12:59:23Z",
+                    "tag_sha": "04f7539e8020e4d19fa26c3d6011921617636b30",
+                    "has_schema": true,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/output/screening.md",
+                        "docs/output/targeted.md",
+                        "docs/usage.md",
+                        "docs/usage/screening.md",
+                        "docs/usage/targeted.md"
+                    ],
+                    "components": {
+                        "modules": [
+                            "bowtie2_align",
+                            "bowtie2_build",
+                            "bwa_index",
+                            "bwa_mem",
+                            "cat_fastq",
+                            "crisprcleanr_normalize",
+                            "custom_dumpsoftwareversions",
+                            "cutadapt",
+                            "fastqc",
+                            "mageck_count",
+                            "mageck_mle",
+                            "mageck_test",
+                            "medaka",
+                            "minimap2_align",
+                            "minimap2_index",
+                            "multiqc",
+                            "pear",
+                            "racon",
+                            "samtools_index",
+                            "seqtk_seq",
+                            "vsearch_cluster",
+                            "vsearch_sort"
+                        ],
+                        "subworkflows": []
+                    }
+                },
+                {
                     "tag_name": "2.0.0",
                     "published_at": "2023-07-05T08:16:07Z",
                     "tag_sha": "a797392406f9afec4e41fcc06bed0825f95e6bec",
@@ -5351,7 +5392,7 @@
             "url": "https://api.github.com/repos/nf-core/differentialabundance",
             "created_at": "2022-10-12T08:49:25Z",
             "updated_at": "2023-11-09T16:37:39Z",
-            "pushed_at": "2023-11-14T07:54:36Z",
+            "pushed_at": "2023-11-14T14:01:03Z",
             "homepage": "https://nf-co.re/differentialabundance",
             "size": 7276,
             "stargazers_count": 29,
@@ -5366,7 +5407,7 @@
             "forks_count": 22,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 29,
+            "open_issues_count": 30,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -5384,12 +5425,12 @@
             ],
             "visibility": "public",
             "forks": 22,
-            "open_issues": 29,
+            "open_issues": 30,
             "watchers": 29,
             "default_branch": "master",
             "network_count": 22,
             "subscribers_count": 124,
-            "open_pr_count": 4,
+            "open_pr_count": 5,
             "contributors": [
                 {
                     "name": "WackerO",
@@ -12265,7 +12306,7 @@
             "forks_count": 2,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 4,
+            "open_issues_count": 3,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -12280,7 +12321,7 @@
             ],
             "visibility": "public",
             "forks": 2,
-            "open_issues": 4,
+            "open_issues": 3,
             "watchers": 2,
             "default_branch": "dev",
             "network_count": 2,
@@ -13446,7 +13487,7 @@
             "watchers": 7,
             "default_branch": "master",
             "network_count": 1,
-            "subscribers_count": 227,
+            "subscribers_count": 225,
             "open_pr_count": 0,
             "contributors": [
                 {
