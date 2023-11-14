@@ -29,6 +29,11 @@ let {
     sections = [],
     docSearchTags = [],
 } = Astro.props;
+
+if (version === 'latest') {
+    version = versions[0];
+}
+
 const url = Astro.url.pathname;
 const baseUrl = '/' + pipeline + '/' + version;
 let allTabItems: { label: string; href: string; active: boolean; icon?: string }[] = [];
@@ -125,15 +130,12 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
                                 data-bs-toggle="dropdown"
                                 aria-expanded="false"
                             >
-                                {version === 'latest' ? versions[0] : version}
+                                {version}
                             </button>
 
                             <ul class="dropdown-menu dropdown-menu-end w-100 pipeline-versions">
                                 {versions &&
                                     versions.map((v) => {
-                                        if (version === 'latest') {
-                                            version = versions[0];
-                                        }
                                         let url = Astro.url.pathname.replace(
                                             `${pipeline}/${version}`,
                                             `${pipeline}/${v}`,
