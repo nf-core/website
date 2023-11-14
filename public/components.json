@@ -3194,6 +3194,10 @@
         {
           "name": "rnafusion",
           "version": "2.4.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "2.4.0"
         }
       ]
     },
@@ -13445,7 +13449,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "cutandrun",
@@ -13564,7 +13568,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "cutandrun",
@@ -14285,7 +14289,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "hgtseq",
@@ -14432,7 +14436,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "hgtseq",
@@ -15549,7 +15553,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "cutandrun",
@@ -21843,7 +21847,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -22300,7 +22304,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "demultiplex",
@@ -23058,7 +23062,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "hicar",
@@ -27785,7 +27789,7 @@
       "path": "modules/nf-core/ensemblvep/download/meta.yml",
       "type": "module",
       "meta": {
-        "name": "ENSEMBLVEP_DOWNLOAD",
+        "name": "ensemblvep_download",
         "description": "Ensembl Variant Effect Predictor (VEP). The cache downloading options are controlled through `task.ext.args`.",
         "keywords": [
           "annotation",
@@ -27945,7 +27949,7 @@
       "path": "modules/nf-core/ensemblvep/vep/meta.yml",
       "type": "module",
       "meta": {
-        "name": "ENSEMBLVEP_VEP",
+        "name": "ensemblvep_vep",
         "description": "Ensembl Variant Effect Predictor (VEP). The output-file-format is controlled through `task.ext.args`.",
         "keywords": [
           "annotation",
@@ -30280,7 +30284,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "cutandrun",
@@ -34176,6 +34180,14 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
         }
       ]
     },
@@ -34678,6 +34690,14 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
+        },
         {
           "name": "rnadnavar",
           "version": "dev"
@@ -38497,6 +38517,14 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
+        },
         {
           "name": "rnadnavar",
           "version": "dev"
@@ -58558,7 +58586,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -58647,7 +58675,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -58736,7 +58764,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -60922,7 +60950,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -63609,7 +63637,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "isoseq",
@@ -63697,7 +63725,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "radseq",
@@ -66147,7 +66175,7 @@
       "path": "modules/nf-core/multiqc/meta.yml",
       "type": "module",
       "meta": {
-        "name": "MultiQC",
+        "name": "multiqc",
         "description": "Aggregate results from bioinformatics analyses across many samples into a single report",
         "keywords": [
           "QC",
@@ -66277,7 +66305,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "demultiplex",
@@ -72050,7 +72078,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -80145,7 +80173,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -83838,10 +83866,6 @@
           "version": "dev"
         },
         {
-          "name": "crisprseq",
-          "version": "2.0.0"
-        },
-        {
           "name": "cutandrun",
           "version": "3.2.1"
         },
@@ -84798,7 +84822,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "cutandrun",
@@ -87478,7 +87502,7 @@
       "path": "modules/nf-core/sentieon/gvcftyper/meta.yml",
       "type": "module",
       "meta": {
-        "name": "SENTIEON_GVCFTYPER",
+        "name": "sentieon_gvcftyper",
         "description": "Perform joint genotyping on one or more samples pre-called with Sentieon's Haplotyper.\n",
         "keywords": [
           "joint genotyping",
@@ -89657,7 +89681,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "metatdenovo",
@@ -93154,7 +93178,7 @@
       "path": "modules/nf-core/snpeff/download/meta.yml",
       "type": "module",
       "meta": {
-        "name": "SNPEFF_DOWNLOAD",
+        "name": "snpeff_download",
         "description": "Genetic variant annotation and functional effect prediction toolbox",
         "keywords": [
           "annotation",
@@ -93229,7 +93253,7 @@
       "path": "modules/nf-core/snpeff/snpeff/meta.yml",
       "type": "module",
       "meta": {
-        "name": "SNPEFF_SNPEFF",
+        "name": "snpeff_snpeff",
         "description": "Genetic variant annotation and functional effect prediction toolbox",
         "keywords": [
           "annotation",
@@ -104963,7 +104987,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -105128,7 +105152,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -111568,6 +111592,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -111602,6 +111630,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -111764,6 +111796,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
