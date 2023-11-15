@@ -3,8 +3,6 @@ title: Basic training to create an nf-core pipeline
 subtitle: A guide to create Nextflow pipelines using nf-core tools
 ---
 
-# Introduction
-
 ## Scope
 
 - How do I create a pipeline using nf-core tools?
@@ -47,39 +45,43 @@ The course is going to build an (totally unscientific and useless) RNA seq pipel
 
 The following sections will be handled in the course:
 
-**1. Setting up the gitpod environment for the course**
+1. **Setting up the gitpod environment for the course**
 
-The course is using gitpod in order to avoid the time expense for downloading and installing tools and data.
+  The course is using gitpod in order to avoid the time expense for downloading and installing tools and data.
 
-**2. Exploring the nf-core tools command**
+2. **Exploring the nf-core tools command**
 
-A very basic walk-through of what can be done with nf-core tools
+  A very basic walk-through of what can be done with nf-core tools
 
-**3. Creating a new nf-core pipeline from the nf-core template**
+3. **Creating a new nf-core pipeline from the nf-core template**
 
-**4. Exploring the nf-core template**
+4. **Exploring the nf-core template**
 
-a) The git repository
+  a) The git repository
 
-b) running the pipeline
+  b) running the pipeline
 
-c) linting the pipeline
+  c) linting the pipeline
 
-d) walk-through of the template files
+  d) walk-through of the template files
 
-**5. Building a nf-core pipeline using the template**
+5. **Building a nf-core pipeline using the template**
 
-a) Adding a nf-core module to your pipeline
+  a) Adding a nf-core module to your pipeline
 
-b) Adding a local custom module to your pipeline
+  b) Adding a local custom module to your pipeline
 
-c) Working with Nextflow schema
+  c) Working with Nextflow schema
 
-d) Linting your modules
+  d) Linting your modules
 
-## Prerequisites
+## Preparation
 
-## Follow the training videos
+### Prerequisites
+
+- Familiarity with Nextflow syntax and configuration.
+
+### Follow the training videos
 
 This training can be followed either based on this documentation alone, or via a training video hosted on youtube. You can find the youtube video in the Youtube playlist below:
 
@@ -107,6 +109,7 @@ check the [nf-core Gitpod documentation](gitpod/index) or [Gitpod's own document
 
 <details>
 <summary> Expand this section for instructions to explore your Gitpod environment</summary>
+
 #### Explore your Gitpod interface
 
 You should now see something similar to the following:
@@ -149,7 +152,7 @@ If you have lost your environment, you can find the main scripts used in this tu
 To save any file locally from the explorer panel, right-click the file and select Download.
 </details>
 
-# Explore nf-core/tools
+## Explore nf-core/tools
 
 The nf-core/tools package is already installed in the gitpod environment. Now you can check out which pipelines, subworkflows and modules are available via tools. To see all available commands of nf-core tools, run the following:
 
