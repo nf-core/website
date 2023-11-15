@@ -74,7 +74,7 @@ export const getGitHubFile = async (repo, path, ref) => {
           if (p2.startsWith('http')) {
             return match;
           } else {
-            return `[${p1}](https://github.com/nf-core/${repo}/blob/${ref}/${p2.replace('../assets/','assets/')})`;
+            return `[${p1}](https://github.com/nf-core/${repo}/blob/${ref}/${p2.replace('../assets/', 'assets/')})`;
           }
         });
 
@@ -92,6 +92,9 @@ export const getGitHubFile = async (repo, path, ref) => {
             return `:::${admonitionType}\n${cleanedContent}\n:::\n\n`;
           },
         );
+
+        // remove .md(x) from links with anchor tags
+        content = content.replaceAll(/\[([^\]\[]*)\]\((.*?)\.mdx?#(.*?)\)/g, '[$1]($2#$3)');
 
         // remove github warning and everything before from docs
         content = content.replace(/(.*?)(## :warning:)(.*?)usage\)/s, '');
