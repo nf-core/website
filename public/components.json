@@ -3198,6 +3198,10 @@
         {
           "name": "rnafusion",
           "version": "2.4.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "2.4.0"
         }
       ]
     },
@@ -9265,6 +9269,94 @@
         ],
         "maintainers": [
           "@ashotmarg"
+        ]
+      }
+    },
+    {
+      "name": "bedgovcf",
+      "path": "modules/nf-core/bedgovcf/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "bedgovcf",
+        "description": "Convert a BED file to a VCF file according to a YAML config",
+        "keywords": [
+          "bed",
+          "vcf",
+          "conversion",
+          "variants"
+        ],
+        "tools": [
+          {
+            "bedgovcf": {
+              "description": "A simple tool to convert BED files to VCF files",
+              "homepage": "https://github.com/nvnieuwk/bedgovcf",
+              "documentation": "https://github.com/nvnieuwk/bedgovcf",
+              "tool_dev_url": "https://github.com/nvnieuwk/bedgovcf",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "bed": {
+              "type": "file",
+              "description": "The BED file to convert to VCF",
+              "pattern": "*.bed"
+            }
+          },
+          {
+            "config": {
+              "type": "file",
+              "description": "The config file to use for the conversion",
+              "pattern": "*.{yml,yaml}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing fasta index information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "The fasta index file",
+              "pattern": "*.fai"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "The converted VCF file",
+              "pattern": "*.vcf.gz"
+            }
+          }
+        ],
+        "authors": [
+          "@nvnieuwk"
         ]
       }
     },
@@ -23905,7 +23997,9 @@
               "documentation": "https://github.com/Merck/deepbgc",
               "tool_dev_url": "https://github.com/Merck/deepbgc",
               "doi": "10.1093/nar/gkz654",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -23964,7 +24058,9 @@
               "documentation": "https://github.com/Merck/deepbgc",
               "tool_dev_url": "https://github.com/Merck/deepbgc",
               "doi": "10.1093/nar/gkz654",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -34188,6 +34284,14 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
         }
       ]
     },
@@ -34690,6 +34794,14 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
+        },
         {
           "name": "rnadnavar",
           "version": "dev"
@@ -38517,6 +38629,14 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.3.2"
+        },
         {
           "name": "rnadnavar",
           "version": "dev"
@@ -111596,6 +111716,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -111630,6 +111754,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -111796,6 +111924,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
