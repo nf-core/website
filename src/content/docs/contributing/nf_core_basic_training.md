@@ -147,9 +147,10 @@ Alternatively, you can start a new workspace by following the Gitpod URL: <https
 
 If you have lost your environment, you can find the main scripts used in this tutorial in the `nf-training` directory.
 
-## Saving files from Gitpod to your local machine
+#### Saving files from Gitpod to your local machine
 
 To save any file locally from the explorer panel, right-click the file and select Download.
+
 </details>
 
 ## Explore nf-core/tools
@@ -162,7 +163,7 @@ nf-core --help
 
 We will touch on most of the commands for developers later throughout this tutorial.
 
-# Create a pipeline from template
+## Create a pipeline from template
 
 To get started with your new pipeline, run the create command:
 
@@ -310,7 +311,7 @@ When creating a new repository on GitHub, create it as an empty repository witho
    </details>
    :::
 
-## Run the new pipeline
+### Run the new pipeline
 
 The new pipeline should run with Nextflow, right out of the box. Let’s try:
 
@@ -321,7 +322,7 @@ nextflow run nf-core-demotest/ -profile test,docker --outdir test_results
 
 This basic template pipeline contains already the FastQC and MultiQC modules, which do run on a selection of test data.
 
-## Template code walk through
+### Template code walk through
 
 Now let us have a look at the files that were generated within the `nf-core-demotest` directory when we created this pipeline. You can see all files and directories either on the left hand side in the Explorer, or by running the command:
 
@@ -701,11 +702,11 @@ nf-core lint
 
    :::
 
-# Adding Modules to a pipeline
+## Adding Modules to a pipeline
 
-## Adding an existing nf-core module
+### Adding an existing nf-core module
 
-### Identify available nf-core modules
+#### Identify available nf-core modules
 
 The nf-core pipeline template comes with a few nf-core/modules pre-installed. You can list these with the command below:
 
@@ -771,7 +772,7 @@ You can list all of the modules available on nf-core/modules via the command bel
 nf-core modules list remote
 ```
 
-### Install a remote nf-core module
+#### Install a remote nf-core module
 
 To install a remote nf-core module from the website, you can first get information about a tool, including the installation command by executing:
 
@@ -980,9 +981,9 @@ comparison to simple nextflow pipeline from the basic Nextflow training would be
 
 :::
 
-## Adding a remote module
+### Adding a local module
 
-If there is no nf-core module available for the software you want to include, the nf-core tools package can also aid in the generation of a remote module that is specific for your pipeline. To add a remote module run the following:
+If there is no nf-core module available for the software you want to include, the nf-core tools package can also aid in the generation of a local module that is specific for your pipeline. To add a local module run the following:
 
 ```
 nf-core modules create
@@ -990,7 +991,7 @@ nf-core modules create
 
 Open ./modules/local/demo/module.nf and start customising this to your needs whilst working your way through the extensive TODO comments!
 
-### Making a remote module for a custom script
+### Making a local module for a custom script
 
 :::tip{title="Exercise 6 - Adding a custom module"}
 In the directory `exercise_6` you will find the custom script `print_hello.py`, which will be used for this and the next exercise.
@@ -1019,7 +1020,7 @@ As well as the pipeline template you can lint individual or all modules with a s
 nf-core modules lint --all
 ```
 
-# Nextflow Schema
+## Nextflow Schema
 
 All nf-core pipelines can be run with --help to see usage instructions. We can try this with the demo pipeline that we just created:
 
@@ -1028,7 +1029,7 @@ cd ../
 nextflow run nf-core-demo/ --help
 ```
 
-## Working with Nextflow schema
+### Working with Nextflow schema
 
 If you peek inside the nextflow_schema.json file you will see that it is quite an intimidating thing. The file is large and complex, and very easy to break if edited manually.
 
