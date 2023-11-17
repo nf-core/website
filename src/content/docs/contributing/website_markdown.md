@@ -165,7 +165,7 @@ echo "Third line lucky!"
 ```nextflow title="main.nf"
 // My awesome workflow
 ```
-```
+````
 
 ```nextflow title="main.nf"
 // My awesome workflow
@@ -177,7 +177,7 @@ echo "Third line lucky!"
 ```nextflow caption="This one is really special"
 // My awesome workflow
 ```
-```
+````
 
 ```nextflow caption="This one is really special"
 // My awesome workflow
