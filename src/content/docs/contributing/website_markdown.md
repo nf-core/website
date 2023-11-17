@@ -1,5 +1,5 @@
 ---
-title: Special content elements
+title: Markdown on the nf-core website
 subtitle: Guides on special content elements on nf-co.re
 ---
 
@@ -117,7 +117,11 @@ Curiously enough, the only thing that went through the mind of the bowl of petun
 Curiously enough, the only thing that went through the mind of the bowl of petunias as it fell was Oh no, not again.
 :::
 
-# Code blocks with file names
+# Code blocks
+
+We use [rehype-pretty-code](https://rehype-pretty-code.netlify.app/) to generate code blocks on the website. This allows us to add line numbers, highlight lines, add file names to code blocks, etc. See the [rehype-pretty-code documentation](https://rehype-pretty-code.netlify.app/) for more information.
+
+## Code blocks with file names
 
 You can add a file name to a code block by adding a `title` attribute to the code block, e.g.:
 
