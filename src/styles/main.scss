@@ -1312,13 +1312,13 @@ div.mermaid {
     }
   }
 
-  pre[data-theme='dark']
+  pre[data-theme='dark'],
   div[data-rehype-pretty-code-caption][data-theme='dark'] {
     display: block;
   }
 
   pre[data-theme='light'],
-  div[data-rehype-pretty-code-title][data-theme='light']
+  div[data-rehype-pretty-code-title][data-theme='light'],
   div[data-rehype-pretty-code-caption][data-theme='light'] {
     display: none;
   }
