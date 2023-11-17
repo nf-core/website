@@ -41,8 +41,10 @@ export const get: APIRoute = async ({ params, request }) => {
         flex-grow: 8;
         width: 100%;
         height: 25%;
+        padding-left 1rem;
+        padding-right: 1rem;
         background-color:#1a9655;">
-            <h1>${args.title}</h1>
+            <h1 style="text-align:center;">${args.title}</h1>
         </div>
         <span style="font-size: 32px;text-align:center; align-self:center; position:absolute; margin-top:-7.5rem;">
             Community built pipelines using Nextflow.
