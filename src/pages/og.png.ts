@@ -29,7 +29,7 @@ export const get: APIRoute = async ({ params, request }) => {
         color: #F8F9FA;
         background-color: #212529;
         border-top: 5pt solid #1a9655;
-        background-image: url('https://raw.githubusercontent.com/nf-core/website/new-og-img/public/images/og-image-bg.png');
+        background-image: url('https://raw.githubusercontent.com/nf-core/website/new-og-img/public/images/og-img-bg.svg');
         ">
 
         <div style="display:flex; flex-direction:column; width:75%; height:100%;">
@@ -52,6 +52,7 @@ export const get: APIRoute = async ({ params, request }) => {
             padding; 1rem;
             background: '#2c2c2c';
             border: 2pt solid '#222529'">
+            ${category}
         </span>
     </div>
     <style>
