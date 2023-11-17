@@ -105,7 +105,7 @@ Another thing that got forgotten was the fact that against all probability a spe
 
 ## Custom icon and title
 
-When changing both title and icon, the order is important. You need to first specify the icon and then the title, e.g.:
+When changing both title and icon, the <span class="fw-semibold">order is important</span>. You need to first specify the icon and then the title, e.g.:
 
 ```md
 :::warning{.fa-flower-daffodil title="I wonder if it will be friends with me?"}
@@ -182,19 +182,19 @@ The icon next to the title is based on the file extension.
 ## Code block captions
 
 ````md
-```nextflow caption="Caption me this!"
+```groovy caption="Caption me this!"
 // My awesome workflow
 ```
 ````
 
-```nextflow caption="Caption me this!"
+```groovy caption="Caption me this!"
 // My awesome workflow
 ```
 
 ## Putting it all together
 
 ````md
-```nextflow showLineNumbers {1, 5-7} title="main.nf" caption="This one is really special"
+```groovy showLineNumbers {1, 5-7} title="main.nf" caption="This one is really special"
 // My awesome workflow
 
 process {
@@ -206,7 +206,7 @@ process {
 ```
 ````
 
-```nextflow showLineNumbers {1, 5-7} title="main.nf" caption="This one is really special"
+```groovy showLineNumbers{1989} {1, 5-7} title="main.nf" caption="This one is really special"
 // My awesome workflow
 
 process {
@@ -219,7 +219,7 @@ process {
 
 # Mermaid diagrams
 
-[Mermaid](https://mermaid.js.org/intro/) is a simple markdown-like script language for generating charts from text via javascript. It supports many different types of diagrams, including flowcharts, sequence diagrams, gantt charts and class diagrams. To display them correctly on an nf-co.re page, you need to wrap them in a code block with the language set to `mermaid`,e.g.:
+[Mermaid](https://mermaid.js.org/intro/) is a simple markdown-like script language for generating charts from text via javascript. It supports many different types of diagrams, including flowcharts, sequence diagrams, gantt charts and class diagrams. To display them correctly on an nf-co.re page, you need to wrap them in a code block with the language set to `mermaid`,e.g.,:
 
 ````md
 ```mermaid

@@ -277,8 +277,8 @@ code:not(pre code),
     border: 1px solid $border-color;
     display: flow-root;
     overflow-x: auto;
-    padding-top: 1em;
-    padding-bottom: 1em;
+    padding-top: 0.75em;
+    padding-bottom: 0.75em;
     &:not([data-line-numbers]) > span {
       padding-left: 1.5em;
       padding-right: 1.5em;
@@ -286,23 +286,26 @@ code:not(pre code),
     &[data-line-numbers]{
       counter-reset: line;
 
+
     & > [data-line]::before {
       counter-increment: line;
       content: counter(line);
       display: inline-block;
-      width: 1rem;
+      width: 1.75rem;
       margin-right: 1rem;
+      padding-right: 0.5rem;
       text-align: right;
       color: $gray-400;
+      border-right: 1px solid $gray-400;
     }
     & > [data-line][data-highlighted-line]::before {
       color: $gray-600;
     }
     &[data-line-numbers-max-digits='2'] > [data-line]::before {
-      width: 2rem;
+      width: 2.25rem;
     }
     &[data-line-numbers-max-digits='2'] > [data-highlighted-line][data-line]::before{
-        width: calc(2rem - 2px); // 2px for border offset
+        width: calc(2.25rem - 2px); // 2px for border offset
       }
 
     &[data-line-numbers-max-digits='3'] > [data-line]::before {
@@ -310,6 +313,12 @@ code:not(pre code),
     }
     &[data-line-numbers-max-digits='3'] > [data-highlighted-line][data-line]::before{
         width: calc(3rem - 2px); // 2px for border offset
+      }
+      &[data-line-numbers-max-digits='4'] > [data-line]::before {
+      width: 3.5rem;
+    }
+    &[data-line-numbers-max-digits='4'] > [data-highlighted-line][data-line]::before{
+        width: calc(3.5rem - 2px); // 2px for border offset
       }
   }
   }
@@ -1257,8 +1266,8 @@ div[data-rehype-pretty-code-fragment] {
 }
 
 .main-content div[data-rehype-pretty-code-fragment] pre .copy-code-button {
-  margin-top: 0.6rem;
-  margin-right: 0.5rem;
+  margin-top: 0.75rem;
+  margin-right: 0.7rem;
 }
 
 .main-content div[data-rehype-pretty-code-fragment]:has(div[data-rehype-pretty-code-title]) pre .copy-code-button {
@@ -1417,9 +1426,9 @@ div.mermaid {
   }
   .main-content pre code {
     &[data-line-numbers]{
-
     & > [data-line]::before {
-      color: $gray-600;
+      border-color: $border-color-dark;
+      color: $border-color-dark;
     }
     & > [data-line][data-highlighted-line]::before {
       color: $gray-500;
