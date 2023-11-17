@@ -12,6 +12,10 @@ console.log('rendering og image');
 export const get: APIRoute = async ({ params, request }) => {
     const searchParams = new URL(request.url).searchParams;
     const args = Object.fromEntries(searchParams);
+    let subtitle = args.subtitle || '';
+    subtitle = subtitle.indexOf('. ') > -1 ? subtitle.substring(0, subtitle.indexOf('. ')) : subtitle;
+    const text = args.title.length > 25 && subtitle ? args.title : args.title + ' - ' + subtitle;
+    const category = args.category || 'nf-core';
     const html_string = `
     <div class="container"
         style="height: 100%;
@@ -19,33 +23,35 @@ export const get: APIRoute = async ({ params, request }) => {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-between;
+        justify-content: space-around;
         font-size: 32px;
         font-weight: 600;
         color: #F8F9FA;
         background-color: #212529;
         border-top: 5pt solid #1a9655;
+        background-image: url('https://raw.githubusercontent.com/nf-core/website/new-og-img/public/images/og-image-bg.png');
         ">
-        <div style="display:flex; align-items: center; flex-grow:5;">
-            <img src="https://raw.githubusercontent.com/nf-core/website/main/public/images/logo/nf-core-logo-darkbg.png" width="709" height="165"/>
-        </div>
 
-        <div style="display:flex; flex-direction:column; width:100%; height:30%;">
-            <svg fill="#fff" xmlns="http://www.w3.org/2000/svg"  width="100%" height="25%"><path d="M 0 300 L 400 300 L 200 00 z"
-                    fill="#1a9655" /></svg>
+        <div style="display:flex; flex-direction:column; width:75%; height:100%;">
 
         <div style="display:flex;
-        width: 100%;
-        align-items:center;
+        width: 75%;
+        align-items:start;
         justify-content:center;
-        flex-grow: 8;
-        width: 100%;
-        height: 25%;
-        background-color:#1a9655;">
-            <h1>${args.title}</h1>
+        padding-left 1rem;
+        padding-right: 1rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;">
+            <h1 style="color: #F8F9FA;">${text}</h1>
         </div>
-        <span style="font-size: 32px;text-align:center; align-self:center; position:absolute; margin-top:-7.5rem;">
-            Community built pipelines using Nextflow.
+        <span style="font-size: 28px; border-bottom-left-radius: 6px;
+            border-bottom-left-radius 6px
+            border-bottom-right-radius 6px;
+            border-top-left-radius 6px;
+            border-top-right-radius 6px;
+            padding; 1rem;
+            background: '#2c2c2c';
+            border: 2pt solid '#222529'">
         </span>
     </div>
     <style>
