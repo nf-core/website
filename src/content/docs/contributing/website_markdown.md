@@ -161,15 +161,23 @@ echo "Third line lucky!"
 
 ## File names
 
+You can add a file name to a code block by adding a `title` attribute to the code block, e.g.:
+
 ````md
-```nextflow title="main.nf"
-// My awesome workflow
+```groovy title="nextflow.config"
+params {
+  input = null
+}
 ```
 ````
 
-```nextflow title="main.nf"
-// My awesome workflow
+```groovy title="nextflow.config"
+params {
+  input = null
+}
 ```
+
+The icon next to the title is based on the file extension.
 
 ## Code block captions
 
@@ -208,27 +216,6 @@ process {
   """
 }
 ```
-
-
-## Code blocks with file names
-
-You can add a file name to a code block by adding a `title` attribute to the code block, e.g.:
-
-````md
-```groovy title="nextflow.config"
-params {
-  input = null
-}
-```
-````
-
-```groovy title="nextflow.config"
-params {
-  input = null
-}
-```
-
-The icon next to the title is based on the file extension.
 
 # Mermaid diagrams
 
