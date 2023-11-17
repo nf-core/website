@@ -140,7 +140,7 @@ echo "Code line numbers!"
 ## Highlight lines
 
 ````md
-```bash {1-3,4}
+```bash {1-3,5}
 # This line is highlighted
 echo "Me too"
 echo "Third line lucky!"
@@ -150,7 +150,7 @@ echo "Third line lucky!"
 ```
 ````
 
-```bash {1-3,4}
+```bash {1-3,5}
 # This line is highlighted
 echo "Me too"
 echo "Third line lucky!"
@@ -182,12 +182,12 @@ The icon next to the title is based on the file extension.
 ## Code block captions
 
 ````md
-```nextflow caption="This one is really special"
+```nextflow caption="Caption me this!"
 // My awesome workflow
 ```
 ````
 
-```nextflow caption="This one is really special"
+```nextflow caption="Caption me this!"
 // My awesome workflow
 ```
 
