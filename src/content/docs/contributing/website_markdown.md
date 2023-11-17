@@ -119,7 +119,96 @@ Curiously enough, the only thing that went through the mind of the bowl of petun
 
 # Code blocks
 
-We use [rehype-pretty-code](https://rehype-pretty-code.netlify.app/) to generate code blocks on the website. This allows us to add line numbers, highlight lines, add file names to code blocks, etc. See the [rehype-pretty-code documentation](https://rehype-pretty-code.netlify.app/) for more information.
+We use [rehype-pretty-code](https://rehype-pretty-code.netlify.app/) to generate code blocks on the website. This allows us to add line numbers, highlight lines, add file names to code blocks, etc. These directives can be mixed and matched.
+
+See the [rehype-pretty-code documentation](https://rehype-pretty-code.netlify.app/) for more information.
+
+## Line numbers
+
+````md
+```bash showLineNumbers
+echo "Look ma!"
+echo "Code line numbers!"
+```
+````
+
+```bash showLineNumbers
+echo "Look ma!"
+echo "Code line numbers!"
+```
+
+## Line numbers
+
+````md
+```bash {1-3,4}
+# This line is highlighted
+echo "Me too"
+echo "Third line lucky!"
+# This line is not highlighted
+# This is again!
+# ok, nothing to see from here on..
+```
+````
+
+```bash {1-3,4}
+# This line is highlighted
+echo "Me too"
+echo "Third line lucky!"
+# This line is not highlighted
+# This is again!
+# ok, nothing to see from here on..
+```
+
+## File names
+
+````md
+```nextflow title="main.nf"
+// My awesome workflow
+```
+```
+
+```nextflow title="main.nf"
+// My awesome workflow
+```
+
+## Code block captions
+
+````md
+```nextflow caption="This one is really special"
+// My awesome workflow
+```
+```
+
+```nextflow caption="This one is really special"
+// My awesome workflow
+```
+
+## Putting it all together
+
+````md
+```nextflow showLineNumbers {1, 5-7} title="main.nf" caption="This one is really special"
+// My awesome workflow
+
+process {
+  script:
+  """
+  echo "This is awesome!"
+  """
+}
+```
+````
+
+```nextflow showLineNumbers {1, 5-7} title="main.nf" caption="This one is really special"
+// My awesome workflow
+
+process {
+  script:
+  """
+  echo "This is awesome!"
+  """
+}
+```
+
 
 ## Code blocks with file names
 
