@@ -19,10 +19,13 @@ import { YouTube } from '@astro-community/astro-embed-youtube';
 
 Join us in person for the November 2023 nf-core hackathon!
 
-This hackathon will be held in advance of the _**Nextflow Summit 2023**_ in Boston, America 🇺🇸. You can find out more information about the summit at https://summit.nextflow.io.
+This hackathon will be held in advance of the _**Nextflow Summit 2023**_ in Boston, America 🇺🇸.
+You can find out more information about the summit at https://summit.nextflow.io.
+
+Join the [nf-core Slack](https://nf-co.re/join) and the [#hackathon-nov-2023](https://nfcore.slack.com/archives/C064HR4HS9Kadd) channel for more information and discussion.
 
 :::info{.fa-globe title="In-person event"}
-The Boston nf-core hackathon will be in person only, without the hybrid / online features that we have used in other events (eg. Gather Town).
+The Boston nf-core hackathon will be in person only, without the hybrid / online features that we have used in other events (e.g., Gather Town).
 Anyone is free to join remotely, as we will be using the same GitHub Project boards and Slack communication as usual, but please be aware that we won't actively be trying to run this as a hybrid event.
 :::
 
@@ -115,11 +118,14 @@ Ensure you have read/signed up/joined/installed the following resources before t
 
 # Groups
 
-To keep work and discussion during the hackathon manageable, we will organise everyone into groups.
-You are free to change groups as you wish during the hackathon.
+This nf-core hackathon does not have formalized projects.
+Instead, we have GitHub issues that are categorized into groups.
+The groups are used to help organise issues, discussion, and reporting during the hackathon.
+You are not restricted to staying in any single group and are free to change groups as you wish during the hackathon.
 
-We will coordinate our work and the issues we are working on using a single GitHub project board (we'll post a link here closer to the time).
-There will be a separate tab for each group where will have collated a list of relevant issues.
+We will coordinate our work and the issues we are working on using a single [GitHub project board](https://github.com/orgs/nf-core/projects/56).
+There will be a separate tab for each group where will collate relevant issues.
+You are welcome to add your own issues to the project board so others can join you.
 
 <HackathonGroup title="Beginners"  slack="#hackathon-nov-2023-beginners" leaders={{
     'vdauwera': 'Geraldine Van der Auwera'
@@ -133,7 +139,7 @@ There will be a separate tab for each group where will have collated a list of r
 
 </HackathonGroup>
 
-<HackathonGroup title="Pipelines" color="#bf4b8a" slack="#hackathon-nov-2023-pipelines" leaders={{
+<HackathonGroup title="Pipelines" color="#bf4b8a" proj_url="https://github.com/orgs/nf-core/projects/56/views/2" slack="#hackathon-nov-2023-pipelines" leaders={{
     'ggabernet': 'Gisela Gabernet'
 }}>
     The pipelines group will focus on any pipeline-related work.
@@ -152,7 +158,22 @@ There will be a separate tab for each group where will have collated a list of r
 
 </HackathonGroup>
 
-<HackathonGroup title="Modules" color="#1f6feb" slack="#hackathon-nov-2023-modules" leaders={{
+<HackathonGroup title="nf-test" color="#238636" proj_url="https://github.com/orgs/nf-core/projects/56/views/9" slack="#hackathon-nov-2023-nf-test" leaders={{
+    'sateeshperi': 'Sateesh Peri'
+}}>
+    nf-test is a testing framework for Nextflow code.
+    We want to start using it for all nf-core pipelines and modules.
+    Some proof-of-concept work has already been done, with standardised implementation
+    patterns mostly worked out, but there's still a lot of work to add this in for all components.
+
+    Suggested projects / teams:
+
+    - Implementing nf-test within pipelines
+    - Implementing nf-test within modules
+
+</HackathonGroup>
+
+<HackathonGroup title="Modules" color="#1f6feb" proj_url="https://github.com/orgs/nf-core/projects/56/views/3" slack="#hackathon-nov-2023-modules" leaders={{
     'FriederikeHanssen': 'Friederike Hanssen'
 }}>
     The modules group welcomes anyone who wants to work on current or new modules + subworkflows
@@ -166,18 +187,16 @@ There will be a separate tab for each group where will have collated a list of r
 
 </HackathonGroup>
 
-<HackathonGroup title="Ops" color="#9e6a03" slack="#hackathon-nov-2023-ops" leaders={{
+<HackathonGroup title="Ops" color="#9e6a03" proj_url="https://github.com/orgs/nf-core/projects/56/views/5" slack="#hackathon-nov-2023-ops" leaders={{
     'emiller88': 'Edmund Miller',
     'maxulysse': 'Maxime U Garcia'
 }}>
-    The modules group welcomes anyone who wants to work on current or new modules + subworkflows
-    at [nf-core/modules](https://github.com/nf-core/modules).
+    The ops group welcomes anyone who wants to work on nf-core ops.
 
     Suggested projects / teams:
 
-    - Implementing nf-test for modules
-    - Creating new modules, see issue list
-    - Stubs for all modules
+    - Replace pipeline health
+    - Add ops for Slack
 
 </HackathonGroup>
 
