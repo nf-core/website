@@ -43,6 +43,8 @@ export const get: APIRoute = async ({ params, request }) => {
         height: 25%;
         padding-left 1rem;
         padding-right: 1rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
         background-color:#1a9655;">
             <h1 style="text-align:center;">${args.title}</h1>
         </div>
