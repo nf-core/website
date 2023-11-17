@@ -137,7 +137,7 @@ echo "Look ma!"
 echo "Code line numbers!"
 ```
 
-## Line numbers
+## Highlight lines
 
 ````md
 ```bash {1-3,4}
