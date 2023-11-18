@@ -22,7 +22,7 @@ export const get: APIRoute = async ({ params, request }) => {
         align-items: center;
         justify-content: space-around;
         font-size: 32px;
-        font-family: 'inter';
+
         color: #F8F9FA;
         background-color: #212528;
         background-image: url('https://raw.githubusercontent.com/nf-core/website/new-og-img/public/images/og-img-bg.png');">
@@ -43,7 +43,7 @@ export const get: APIRoute = async ({ params, request }) => {
                         font-family: 'mavenpro';">
                         ${args.title}
                     </h1>
-                    <div style="font-weight: 400;">${args.subtitle? args.subtitle: ''}</div>
+                    <div style="font-weight: 400;font-family: 'inter';">${args.subtitle? args.subtitle: ''}</div>
                 </div>
                 <div
                     style="font-size: 28px;
@@ -52,6 +52,7 @@ export const get: APIRoute = async ({ params, request }) => {
                         border-top-left-radius: 6px;
                         border-top-right-radius: 6px;
                         font-weight: 400;
+                        font-family: 'inter';
                         padding: 1rem;
                         padding-top: 0.5rem;
                         padding-bottom: 0.5rem;
