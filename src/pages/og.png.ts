@@ -49,10 +49,10 @@ export const get: APIRoute = async ({ params, request }) => {
                 </div>
                 <div
                     style="font-size: 28px;
-                        border-bottom-left-radius: 6px;
-                        border-bottom-right-radius: 6px;
-                        border-top-left-radius: 6px;
-                        border-top-right-radius: 6px;
+                        border-bottom-left-radius: 18px;
+                        border-bottom-right-radius: 18px;
+                        border-top-left-radius: 18px;
+                        border-top-right-radius: 18px;
                         font-weight: 400;
                         font-family: 'inter';
                         padding: 1rem;

@@ -44,7 +44,7 @@ let {
     docSearchTags = [],
 } = Astro.props;
 const category = docSearchTags.find((tag) => tag.name === 'page_type')?.content;
-image += category;
+image += category ? category : '';
 ---
 
 <!doctype html>
