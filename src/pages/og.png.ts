@@ -42,10 +42,10 @@ export const get: APIRoute = async ({ params, request }) => {
                 <h1 style="margin-bottom: 1rem;
                     font-family: 'mavenpro';
                     font-size: 64px;
-                    font-weight: 500;">
+                    font-weight: 600;">
                     ${args.title}
                 </h1>
-                <div style="font-weight: 400;font-family: 'inter';">${args.subtitle? args.subtitle: ''}</div>
+                <div style="font-weight: 400;">${args.subtitle? args.subtitle: ''}</div>
             </div>
             <div
                 style="font-size: 28px;
@@ -53,7 +53,7 @@ export const get: APIRoute = async ({ params, request }) => {
                     border-bottom-right-radius: 6px;
                     border-top-left-radius: 6px;
                     border-top-right-radius: 6px;
-                    font-family: 'inter';
+                    font-weight: 400;
                     padding: 1rem;
                     padding-top: 0.5rem;
                     padding-bottom: 0.5rem;
