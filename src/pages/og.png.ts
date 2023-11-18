@@ -43,7 +43,7 @@ export const get: APIRoute = async ({ params, request }) => {
                         font-family: 'MavenPro';">
                         ${args.title}
                     </h1>
-                    <div style="font-weight: 400;font-family: 'inter';">${args.subtitle? args.subtitle: ''}</div>
+                    <div style="font-weight: 400;">${args.subtitle? args.subtitle: ''}</div>
                 </div>
                 <div
                     style="font-size: 28px;
@@ -87,7 +87,7 @@ async function generateImage(jsx: any, { width, height, debug }: ImageOptions) {
         'https://fonts.gstatic.com/s/mavenpro/v32/7Auup_AqnyWWAxW2Wk3swUz56MS91Eww8cLx1nejpBh8CvRBOA.woff',
     ).then((res) => res.arrayBuffer());
     const inter = await fetch(
-        `https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZJhjp-Ek-_EeAmM.woff`,
+        `https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hjp-Ek-_EeA.woff`,
     ).then((res) => res.arrayBuffer());
     const svg = await satori(jsx, {
         debug: debug,
