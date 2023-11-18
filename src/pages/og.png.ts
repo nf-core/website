@@ -22,7 +22,7 @@ export const get: APIRoute = async ({ params, request }) => {
         align-items: center;
         justify-content: space-around;
         font-size: 32px;
-        font-weight: 600;
+        font-family: 'inter';
         color: #F8F9FA;
         background-color: #212528;
         background-image: url('https://raw.githubusercontent.com/nf-core/website/new-og-img/public/images/og-img-bg.png');">
@@ -39,8 +39,13 @@ export const get: APIRoute = async ({ params, request }) => {
         padding-top: 9rem;
         padding-bottom: 0.5rem;">
             <div style="display: flex;flex-direction: column;">
-                <h1 style="margin-bottom: 1rem;">${args.title}</h1>
-                <div style="font-weight: 300;">${args.subtitle? args.subtitle: ''}</div>
+                <h1 style="margin-bottom: 1rem;
+                    font-family: 'mavenpro';
+                    font-size: 64px;
+                    font-weight: 500;">
+                    ${args.title}
+                </h1>
+                <div style="font-weight: 400;font-family: 'inter';">${args.subtitle? args.subtitle: ''}</div>
             </div>
             <div
                 style="font-size: 28px;
@@ -48,20 +53,17 @@ export const get: APIRoute = async ({ params, request }) => {
                     border-bottom-right-radius: 6px;
                     border-top-left-radius: 6px;
                     border-top-right-radius: 6px;
+                    font-family: 'inter';
                     padding: 1rem;
+                    padding-top: 0.5rem;
+                    padding-bottom: 0.5rem;
                     background: #2c2c2c;
                     border: 3pt solid #757575;">
                 ${args.category ? args.category : 'nf-co.re'}
             </div>
         </div>
 
-    </div>
-    <style>
-    h1 {
-        font-size: 64px;
-        font-weight: 500;
-    }
-    </style>`;
+    </div>`;
 
     const imageOptions = { site: request.url, width: 1200, height: 630, debug: false };
     const jsx = html(html_string);
@@ -87,17 +89,27 @@ async function generateImage(jsx: any, { width, height, debug }: ImageOptions) {
     const mavenpro = await fetch(
         'https://fonts.gstatic.com/s/mavenpro/v32/7Auup_AqnyWWAxW2Wk3swUz56MS91Eww8cLx1nejpBh8CvRBOA.woff',
     ).then((res) => res.arrayBuffer());
+    const inter = await fetch(
+        `https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZJhjp-Ek-_EeAmM.woff`,
+    ).then((res) => res.arrayBuffer());
     const svg = await satori(jsx, {
         debug: debug,
         width: width,
         height: height,
         fonts: [
             {
-                name: 'Roboto',
+                name: 'mavenpro',
                 data: mavenpro,
                 weight: 700,
                 style: 'normal',
             },
+            {
+                name: 'inter',
+                data: inter,
+                weight: 400,
+                style: 'normal',
+            }
+
         ],
     });
 
