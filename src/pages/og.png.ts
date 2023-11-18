@@ -35,19 +35,19 @@ export const get: APIRoute = async ({ params, request }) => {
         flex-direction: column;
         align-items: flex-start;
         justify-content: space-around;
-        padding-right: 22rem;
+        padding-right: 23rem;
         padding-top: 5rem;
         padding-bottom: 0.5rem;">
             <h1 style="color: #F8F9FA;">${args.text}</h1>
             <div
                 style="font-size: 28px;
-                    border-bottom-left-radius: 16px;
-                    border-bottom-right-radius: 16px;
-                    border-top-left-radius: 16px;
-                    border-top-right-radius: 16px;
+                    border-bottom-left-radius: 6px;
+                    border-bottom-right-radius: 6px;
+                    border-top-left-radius: 6px;
+                    border-top-right-radius: 6px;
                     padding: 1rem;
                     background: #2c2c2c;
-                    border: 5pt solid #757575;">
+                    border: 3pt solid #757575;">
                 ${args.category}
             </div>
         </div>
