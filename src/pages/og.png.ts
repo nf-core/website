@@ -18,33 +18,33 @@ export const get: APIRoute = async ({ params, request }) => {
         height: 100%;
         width: 100%;
         display: flex;
-        flexDirection: column;
-        alignItems: center;
-        justifyContent: space-around;
-        fontSize: 32px;
-        fontWeight: 600;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        font-size: 32px;
+        font-weight: 600;
         color: #F8F9FA;
-        backgroundColor: #212529;
-        borderTop: 5pt solid #1a9655;
-        backgroundImage: url('https://raw.githubusercontent.com/nf-core/website/new-og-img/public/images/og-img-bg.png');">
+        background-color: #212529;
+        border-top: 5pt solid #1a9655;
+        background-image: url('https://raw.githubusercontent.com/nf-core/website/new-og-img/public/images/og-img-bg.png');">
 
 
         <div style="display: flex;
         width: 100%;
         height: 100%;
-        flexDirection: column;
-        alignItems: flex-start;
-        justifyContent: space-around;
-        paddingRight: 22rem;
-        paddingTop: 5rem;
-        paddingBottom: 0.5rem;">
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-around;
+        padding-right: 22rem;
+        padding-top: 5rem;
+        padding-bottom: 0.5rem;">
             <h1 style="color: #F8F9FA;">${args.text}</h1>
             <div
-                style="fontSize: 28px;
-                    borderBottomLeftRadius: 16px;
-                    borderBottomRightRadius: 16px;
-                    borderTopLeftRadius: 16px;
-                    borderTopRightRadius: 16px;
+                style="font-size: 28px;
+                    border-bottom-left-radius: 16px;
+                    border-bottom-right-radius: 16px;
+                    border-top-left-radius: 16px;
+                    border-top-right-radius: 16px;
                     padding: 1rem;
                     background: #2c2c2c;
                     border: 5pt solid #757575;">
