@@ -40,7 +40,7 @@ export const get: APIRoute = async ({ params, request }) => {
                     <h1 style="margin-bottom: 1rem;
                         font-size: 64px;
                         font-weight: 700;"
-                        font-family: 'MavenPro';">
+                        font-family: 'mavenpro';">
                         ${args.title}
                     </h1>
                     <div style="font-weight: 400;">${args.subtitle? args.subtitle: ''}</div>
@@ -95,7 +95,7 @@ async function generateImage(jsx: any, { width, height, debug }: ImageOptions) {
         height: height,
         fonts: [
             {
-                name: 'MavenPro',
+                name: 'mavenpro',
                 data: mavenpro,
                 weight: 700,
                 style: 'normal',
