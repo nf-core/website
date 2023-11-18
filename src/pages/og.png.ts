@@ -12,10 +12,6 @@ console.log('rendering og image');
 export const get: APIRoute = async ({ params, request }) => {
     const searchParams = new URL(request.url).searchParams;
     const args = Object.fromEntries(searchParams);
-    let subtitle = args.subtitle || '';
-    subtitle = subtitle.indexOf('. ') > -1 ? subtitle.substring(0, subtitle.indexOf('. ')) : subtitle;
-    const text = args.title.length > 25 && subtitle ? args.title : args.title + ' - ' + subtitle;
-    const category = args.category || 'nf-core';
     const html_string = `
     <div class="container"
         style="
@@ -30,19 +26,19 @@ export const get: APIRoute = async ({ params, request }) => {
         color: #F8F9FA;
         backgroundColor: #212529;
         borderTop: 5pt solid #1a9655;
-        backgroundImage: url('https://raw.githubusercontent.com/nf-core/website/new-og-img/public/images/og-img-bg.svg');">
+        backgroundImage: url('https://raw.githubusercontent.com/nf-core/website/new-og-img/public/images/og-img-bg.png');">
 
 
         <div style="display: flex;
-        width: 75%;
+        width: 100%;
         height: 100%;
         flexDirection: column;
         alignItems: flex-start;
         justifyContent: space-around;
-        paddingRight: 1rem;
+        paddingRight: 22rem;
         paddingTop: 5rem;
         paddingBottom: 0.5rem;">
-            <h1 style="color: #F8F9FA;">${text}</h1>
+            <h1 style="color: #F8F9FA;">${args.text}</h1>
             <div
                 style="fontSize: 28px;
                     borderBottomLeftRadius: 16px;
@@ -52,7 +48,7 @@ export const get: APIRoute = async ({ params, request }) => {
                     padding: 1rem;
                     background: #2c2c2c;
                     border: 5pt solid #757575;">
-                ${category}
+                ${args.category}
             </div>
         </div>
 
