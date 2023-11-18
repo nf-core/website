@@ -39,8 +39,8 @@ export const get: APIRoute = async ({ params, request }) => {
         padding-top: 9rem;
         padding-bottom: 0.5rem;">
             <div style="display: flex;flex-direction: column;">
-                <h1 style="color: #F8F9FA;">${args.title}</h1>
-                <div style="font-weight: 300;">${args.subtitle}</div>
+                <h1 style="margin-bottom: 1rem;">${args.title}</h1>
+                <div style="font-weight: 300;">${args.subtitle? args.subtitle: ''}</div>
             </div>
             <div
                 style="font-size: 28px;
@@ -51,7 +51,7 @@ export const get: APIRoute = async ({ params, request }) => {
                     padding: 1rem;
                     background: #2c2c2c;
                     border: 3pt solid #757575;">
-                ${args.category}
+                ${args.category ? args.category : 'nf-co.re'}
             </div>
         </div>
 
