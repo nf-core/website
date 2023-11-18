@@ -26,43 +26,40 @@ export const get: APIRoute = async ({ params, request }) => {
         color: #F8F9FA;
         background-color: #212528;
         background-image: url('https://raw.githubusercontent.com/nf-core/website/new-og-img/public/images/og-img-bg.png');">
-
-
-        <div style="display: flex;
-        width: 100%;
-        height: 100%;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: space-around;
-        padding-right: 26rem;
-        padding-left: 2rem;
-        padding-top: 9rem;
-        padding-bottom: 0.5rem;">
-            <div style="display: flex;flex-direction: column;">
-                <h1 style="margin-bottom: 1rem;
-                    font-size: 64px;
-                    font-weight: 700;"
-                    font-family: 'MavenPro';">
-                    ${args.title}
-                </h1>
-                <div style="font-weight: 400;">${args.subtitle? args.subtitle: ''}</div>
+            <div style="display: flex;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-around;
+            padding-right: 26rem;
+            padding-left: 2rem;
+            padding-top: 9rem;
+            padding-bottom: 0.5rem;">
+                <div style="display: flex;flex-direction: column;">
+                    <h1 style="margin-bottom: 1rem;
+                        font-size: 64px;
+                        font-weight: 700;"
+                        font-family: 'MavenPro';">
+                        ${args.title}
+                    </h1>
+                    <div style="font-weight: 400;font-family: 'inter';">${args.subtitle? args.subtitle: ''}</div>
+                </div>
+                <div
+                    style="font-size: 28px;
+                        border-bottom-left-radius: 6px;
+                        border-bottom-right-radius: 6px;
+                        border-top-left-radius: 6px;
+                        border-top-right-radius: 6px;
+                        font-weight: 400;
+                        padding: 1rem;
+                        padding-top: 0.5rem;
+                        padding-bottom: 0.5rem;
+                        background: #2c2c2c;
+                        border: 3pt solid #757575;">
+                    ${args.category ? args.category : 'nf-co.re'}
+                </div>
             </div>
-            <div
-                style="font-size: 28px;
-                    border-bottom-left-radius: 6px;
-                    border-bottom-right-radius: 6px;
-                    border-top-left-radius: 6px;
-                    border-top-right-radius: 6px;
-                    font-weight: 400;
-                    padding: 1rem;
-                    padding-top: 0.5rem;
-                    padding-bottom: 0.5rem;
-                    background: #2c2c2c;
-                    border: 3pt solid #757575;">
-                ${args.category ? args.category : 'nf-co.re'}
-            </div>
-        </div>
-
     </div>`;
 
     const imageOptions = { site: request.url, width: 1200, height: 630, debug: false };
