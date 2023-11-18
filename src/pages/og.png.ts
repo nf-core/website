@@ -18,42 +18,44 @@ export const get: APIRoute = async ({ params, request }) => {
     const category = args.category || 'nf-core';
     const html_string = `
     <div class="container"
-        style="height: 100%;
+        style="
+        height: 100%;
         width: 100%;
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-around;
-        font-size: 32px;
-        font-weight: 600;
+        flexDirection: column;
+        alignItems: center;
+        justifyContent: space-around;
+        fontSize: 32px;
+        fontWeight: 600;
         color: #F8F9FA;
-        background-color: #212529;
-        border-top: 5pt solid #1a9655;
-        background-image: url('https://raw.githubusercontent.com/nf-core/website/new-og-img/public/images/og-img-bg.svg');
-        ">
+        backgroundColor: #212529;
+        borderTop: 5pt solid #1a9655;
+        backgroundImage: url('https://raw.githubusercontent.com/nf-core/website/new-og-img/public/images/og-img-bg.svg');">
 
-        <div style="display:flex; flex-direction:column; width:75%; height:100%;">
 
-        <div style="display:flex;
+        <div style="display: flex;
         width: 75%;
-        align-items:start;
-        justify-content:center;
-        padding-left 1rem;
-        padding-right: 1rem;
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;">
+        height: 100%;
+        flexDirection: column;
+        alignItems: flex-start;
+        justifyContent: space-around;
+        paddingRight: 1rem;
+        paddingTop: 5rem;
+        paddingBottom: 0.5rem;">
             <h1 style="color: #F8F9FA;">${text}</h1>
+            <div
+                style="fontSize: 28px;
+                    borderBottomLeftRadius: 16px;
+                    borderBottomRightRadius: 16px;
+                    borderTopLeftRadius: 16px;
+                    borderTopRightRadius: 16px;
+                    padding: 1rem;
+                    background: #2c2c2c;
+                    border: 5pt solid #757575;">
+                ${category}
+            </div>
         </div>
-        <span style="font-size: 28px; border-bottom-left-radius: 6px;
-            border-bottom-left-radius 6px
-            border-bottom-right-radius 6px;
-            border-top-left-radius 6px;
-            border-top-right-radius 6px;
-            padding; 1rem;
-            background: '#2c2c2c';
-            border: 2pt solid '#222529'">
-            ${category}
-        </span>
+
     </div>
     <style>
     h1 {
