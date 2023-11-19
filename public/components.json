@@ -3242,6 +3242,10 @@
         {
           "name": "rnafusion",
           "version": "2.4.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "2.4.0"
         }
       ]
     },
@@ -34403,6 +34407,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -35128,6 +35136,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -39007,6 +39019,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -58967,9 +58983,67 @@
             }
           },
           {
-            "addsequences": {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "add": {
               "type": "file",
-              "description": "FASTA file containing sequences to align to the sequences in `fasta`",
+              "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--add`",
+              "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "addfragments": {
+              "type": "file",
+              "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--addfragments`",
+              "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "addfull": {
+              "type": "file",
+              "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--addfull`",
+              "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "meta5": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "addprofile": {
+              "type": "file",
+              "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--addprofile`",
+              "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "meta6": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "addlong": {
+              "type": "file",
+              "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--addlong`",
               "pattern": "*.{fa,fasta}"
             }
           }
@@ -59000,7 +59074,8 @@
           "@MillironX"
         ],
         "maintainers": [
-          "@MillironX"
+          "@MillironX",
+          "@Joon-Klaps"
         ]
       },
       "pipelines": [
@@ -112552,6 +112627,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -112586,6 +112665,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -112796,6 +112879,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
