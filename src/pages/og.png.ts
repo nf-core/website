@@ -12,7 +12,7 @@ initSatori(YOGA);
 console.log('rendering og image');
 export const GET: APIRoute = async ({ params, request }) => {
     const searchParams = new URL(request.url).searchParams;
-    const args = Object.fromEntries(searchParams);
+    let args = Object.fromEntries(searchParams);
     let subtitle = '';
     if (args !== undefined) {
         subtitle = args.subtitle
@@ -27,7 +27,7 @@ export const GET: APIRoute = async ({ params, request }) => {
             subtitle = subtitle.substring(0, subtitle.lastIndexOf(' '));
         }
     } else {
-        let args = {
+        args = {
             title: 'nf-core',
             subtitle: 'A community effort to collect a curated set of analysis pipelines built using Nextflow.',
         };
