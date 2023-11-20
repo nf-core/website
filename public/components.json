@@ -3250,6 +3250,10 @@
         {
           "name": "rnafusion",
           "version": "2.4.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "2.4.0"
         }
       ]
     },
@@ -15733,7 +15737,7 @@
         },
         {
           "name": "pixelator",
-          "version": "1.0.1"
+          "version": "1.0.2"
         },
         {
           "name": "rnadnavar",
@@ -15957,7 +15961,9 @@
               "documentation": "https://cellpose.readthedocs.io/en/latest/command.html",
               "tool_dev_url": "https://github.com/MouseLand/cellpose",
               "doi": "10.1038/s41592-022-01663-4",
-              "licence": "BSD 3-Clause"
+              "licence": [
+                "BSD 3-Clause"
+              ]
             }
           }
         ],
@@ -16002,13 +16008,22 @@
               "description": "labelled mask output from cellpose in tif format",
               "pattern": "*.{tif, tiff}"
             }
+          },
+          {
+            "flows": {
+              "type": "file",
+              "description": "cell flow output from cellpose",
+              "pattern": "*.{tif}"
+            }
           }
         ],
         "authors": [
-          "@josenimo"
+          "@josenimo",
+          "@FlowWuenne"
         ],
         "maintainers": [
-          "@josenimo"
+          "@josenimo",
+          "@FlowWuenne"
         ]
       },
       "pipelines": [
@@ -22590,7 +22605,7 @@
         },
         {
           "name": "pixelator",
-          "version": "1.0.1"
+          "version": "1.0.2"
         },
         {
           "name": "proteinfold",
@@ -34419,6 +34434,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -35144,6 +35163,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -39031,6 +39054,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -112651,6 +112678,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -112685,6 +112716,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -112903,6 +112938,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
