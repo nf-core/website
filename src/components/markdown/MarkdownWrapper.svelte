@@ -4,6 +4,7 @@
     import 'file-icons-js/css/style.css';
     import mermaid from 'mermaid';
     import { onMount } from 'svelte';
+    import CopyButton from '@components/CopyButton.svelte';
 
     export let headings: { text: string; slug: string; depth: number; fa_icon?: string }[] = [];
     // find current heading in viewport with IntersectionObserver
@@ -49,7 +50,9 @@
         );
         headings.forEach((heading) => {
             const element = document.querySelector('#' + heading.slug);
-            observer.observe(element);
+            if (element) {
+                observer.observe(element);
+            }
         });
 
         // Add "Copy code" button in code blocks
@@ -58,43 +61,47 @@
         document
             .querySelectorAll("div[data-rehype-pretty-code-fragment] pre:not([data-language='console'])")
             .forEach((block) => {
-                // only add button if browser supports Clipboard API
-                if (navigator.clipboard) {
-                    let button = document.createElement('button');
-                    button.classList.add(
-                        'copy-code-button',
-                        'btn',
-                        'btn-sm',
-                        'btn-outline-secondary',
-                        'position-absolute',
-                        'top-0',
-                        'end-0',
-                        'opacity-50',
-                    );
-                    button.innerHTML = copyButtonLabel;
-                    button.title = 'Copy to clipboard';
-                    // add data-bs-toggle="tooltip" to enable Bootstrap tooltips
-                    button.setAttribute('data-bs-toggle', 'tooltip');
-                    block.classList.add('position-relative');
-                    block.appendChild(button);
-                    button.addEventListener('click', async (e) => {
-                        await copyCode(block, e.currentTarget);
+                // // only add button if browser supports Clipboard API
+                // if (navigator.clipboard) {
+                //     let button = document.createElement('button');
+                //     button.classList.add(
+                //         'copy-code-button',
+                //         'btn',
+                //         'btn-sm',
+                //         'btn-outline-secondary',
+                //         'position-absolute',
+                //         'top-0',
+                //         'end-0',
+                //         'opacity-50',
+                //         'bg-body'
+                //     );
+                //     button.innerHTML = copyButtonLabel;
+                //     button.title = 'Copy to clipboard';
+                //     // add data-bs-toggle="tooltip" to enable Bootstrap tooltips
+                //     button.setAttribute('data-bs-toggle', 'tooltip');
+
+                //     block.appendChild(button);
+                //     button.addEventListener('click', async (e) => {
+                //         await copyCode(block, e.currentTarget);
+                //     });
+                // }
+                block.classList.add('position-relative');
+                const copyText = block.querySelector('code')?.innerText;
+                if (copyText) {
+                    const copyCodeComponent = new CopyButton({
+                        target: block, // Specify the target element for the Svelte component
+                        props: {
+                            text: copyText,
+                            label: copyButtonLabel,
+                            copiedLabel: copiedButtonLabel,
+                            classes:
+                                'copy-code-button btn btn-sm btn-outline-secondary position-absolute top-0 end-0 opacity-50',
+                            copiedClasses:
+                                'copy-code-button btn btn-sm btn-outline-success position-absolute top-0 end-0',
+                        },
                     });
                 }
             });
-        async function copyCode(block, button) {
-            let code = block.querySelector('code').innerText;
-            await navigator.clipboard.writeText(code);
-            // visual feedback that task is completed
-            button.innerHTML = copiedButtonLabel;
-            button.classList.replace('btn-outline-secondary', 'btn-outline-success');
-            button.classList.remove('opacity-50');
-            setTimeout(() => {
-                button.innerHTML = copyButtonLabel;
-                button.classList.replace('btn-outline-success', 'btn-outline-secondary');
-                button.classList.add('opacity-50');
-            }, 1500);
-        }
         // Add file icon to code block titles
         document.querySelectorAll('div[data-rehype-pretty-code-title]').forEach((block) => {
             const title = block.textContent;
@@ -102,10 +109,10 @@
             let icon: HTMLElement;
             if (fileIcon) {
                 icon = document.createElement('span');
-                icon.classList.add('mx-2', fileIcon);
+                icon.classList.add('ms-1', 'me-2', fileIcon);
             } else {
                 icon = document.createElement('i');
-                icon.classList.add('fa-regular', 'fa-file-code', 'mx-2');
+                icon.classList.add('fa-regular', 'fa-file-code', 'ms-1', 'me-2');
             }
             block.prepend(icon);
         });

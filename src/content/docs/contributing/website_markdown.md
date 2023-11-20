@@ -1,5 +1,5 @@
 ---
-title: Special content elements
+title: Markdown on the nf-core website
 subtitle: Guides on special content elements on nf-co.re
 ---
 
@@ -105,7 +105,7 @@ Another thing that got forgotten was the fact that against all probability a spe
 
 ## Custom icon and title
 
-When changing both title and icon, the order is important. You need to first specify the icon and then the title, e.g.:
+When changing both title and icon, the <span class="fw-semibold">order is important</span>. You need to first specify the icon and then the title, e.g.:
 
 ```md
 :::warning{.fa-flower-daffodil title="I wonder if it will be friends with me?"}
@@ -117,7 +117,49 @@ Curiously enough, the only thing that went through the mind of the bowl of petun
 Curiously enough, the only thing that went through the mind of the bowl of petunias as it fell was Oh no, not again.
 :::
 
-# Code blocks with file names
+# Code blocks
+
+We use [rehype-pretty-code](https://rehype-pretty-code.netlify.app/) to generate code blocks on the website. This allows us to add line numbers, highlight lines, add file names to code blocks, etc. These directives can be mixed and matched.
+
+See the [rehype-pretty-code documentation](https://rehype-pretty-code.netlify.app/) for more information.
+
+## Line numbers
+
+````md
+```bash showLineNumbers
+echo "Look ma!"
+echo "Code line numbers!"
+```
+````
+
+```bash showLineNumbers
+echo "Look ma!"
+echo "Code line numbers!"
+```
+
+## Highlight lines
+
+````md
+```bash {1-3,5}
+# This line is highlighted
+echo "Me too"
+echo "Third line lucky!"
+# This line is not highlighted
+# This is again!
+# ok, nothing to see from here on..
+```
+````
+
+```bash {1-3,5}
+# This line is highlighted
+echo "Me too"
+echo "Third line lucky!"
+# This line is not highlighted
+# This is again!
+# ok, nothing to see from here on..
+```
+
+## File names
 
 You can add a file name to a code block by adding a `title` attribute to the code block, e.g.:
 
@@ -137,9 +179,47 @@ params {
 
 The icon next to the title is based on the file extension.
 
+## Code block captions
+
+````md
+```groovy caption="Caption me this!"
+// My awesome workflow
+```
+````
+
+```groovy caption="Caption me this!"
+// My awesome workflow
+```
+
+## Putting it all together
+
+````md
+```groovy showLineNumbers {1, 5-7} title="main.nf" caption="This one is really special"
+// My awesome workflow
+
+process {
+  script:
+  """
+  echo "This is awesome!"
+  """
+}
+```
+````
+
+```groovy showLineNumbers{1989} {1, 5-7} title="main.nf" caption="This one is really special"
+// My awesome workflow
+
+process {
+  script:
+  """
+  echo "This is awesome!"
+  """
+}
+```
+
 # Mermaid diagrams
 
-[Mermaid](https://mermaid.js.org/intro/) is a simple markdown-like script language for generating charts from text via javascript. It supports many different types of diagrams, including flowcharts, sequence diagrams, gantt charts and class diagrams. To display them correctly on an nf-co.re page, you need to wrap them in a code block with the language set to `mermaid`,e.g.:
+[Mermaid](https://mermaid.js.org/intro/) is a simple markdown-like script language for generating charts from text via javascript. It supports many different types of diagrams, including flowcharts, sequence diagrams, gantt charts and class diagrams. To display them correctly on an nf-co.re page, you need to wrap them in a code block with the language set to `mermaid`,e.g.,:
 
 ````md
 ```mermaid
