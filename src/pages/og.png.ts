@@ -50,7 +50,7 @@ export const get: APIRoute = async ({ params, request }) => {
                         ${args.title}
                     </h1>
                     <div style="font-weight: 400;font-family: 'inter';">${
-                        subtitle === 'undefined' ? '' : subtitle
+                        String(subtitle) === 'undefined' ? '' : subtitle
                     }</div>
                 </div>
                 <div
