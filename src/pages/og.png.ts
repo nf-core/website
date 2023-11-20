@@ -17,7 +17,10 @@ export const get: APIRoute = async ({ params, request }) => {
         args.subtitle?.indexOf('. ') === -1
             ? args.subtitle
             : args.subtitle.substring(0, args.subtitle.indexOf('. ') + 1);
-
+    // shorten to max 104 chars including the title, which is counted double
+    if (subtitle && subtitle.length + args.title.length * 2 > 104) {
+        subtitle = subtitle.substring(0, 104 - args.title.length * 2) + '...';
+    }
     const html_string = `
     <div class="container"
         style="
@@ -50,7 +53,7 @@ export const get: APIRoute = async ({ params, request }) => {
                         ${args.title}
                     </h1>
                     <div style="font-weight: 400;font-family: 'inter';">${
-                        String(subtitle) === 'undefined' ? '' : subtitle
+                        String(subtitle) === 'placeholder' ? '' : subtitle
                     }</div>
                 </div>
                 <div
