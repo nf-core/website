@@ -1,6 +1,7 @@
 // @ts-ignore: no types
 import { html } from 'satori-html';
 import satori, { init as initSatori } from 'satori/wasm';
+import type { APIRoute } from 'astro';
 import sharp from 'sharp';
 // @ts-ignore: no types
 import initYoga from 'yoga-wasm-web/asm';
@@ -12,8 +13,11 @@ console.log('rendering og image');
 export const get: APIRoute = async ({ params, request }) => {
     const searchParams = new URL(request.url).searchParams;
     const args = Object.fromEntries(searchParams);
-    let subtitle = args.subtitle ? args.subtitle : '';
-    subtitle = subtitle?.indexOf('.') === -1 ? subtitle : subtitle.substring(0, subtitle.indexOf('.'));
+    const subtitle = args.subtitle
+        ? args.subtitle?.indexOf('.') === -1
+            ? args.subtitle
+            : args.subtitle.substring(0, args.subtitle.indexOf('.'))
+        : '';
     const html_string = `
     <div class="container"
         style="
