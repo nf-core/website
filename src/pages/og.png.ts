@@ -13,8 +13,6 @@ console.log('rendering og image');
 export const get: APIRoute = async ({ params, request }) => {
     const searchParams = new URL(request.url).searchParams;
     const args = Object.fromEntries(searchParams);
-    const subtitle =
-        args.subtitle?.indexOf('.') === -1 ? args.subtitle : args.subtitle.substring(0, args.subtitle.indexOf('.'));
     const html_string = `
     <div class="container"
         style="
@@ -46,7 +44,7 @@ export const get: APIRoute = async ({ params, request }) => {
                         font-family: 'mavenpro';">
                         ${args.title}
                     </h1>
-                    <div style="font-weight: 400;font-family: 'inter';">${args.subtitle ? subtitle : ''}</div>
+                    <div style="font-weight: 400;font-family: 'inter';">${args.subtitle ? args.subtitle : ''}</div>
                 </div>
                 <div
                     style="font-size: 28px;
