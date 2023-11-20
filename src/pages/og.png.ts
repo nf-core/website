@@ -14,7 +14,7 @@ export const GET: APIRoute = async ({ params, request }) => {
     const searchParams = new URL(request.url).searchParams;
     let args = Object.fromEntries(searchParams);
     let subtitle = '';
-    if (args !== undefined) {
+    if (args.title !== undefined) {
         subtitle = args.subtitle
             ? args.subtitle?.indexOf('. ') !== -1
                 ? args.subtitle.substring(0, args.subtitle.indexOf('. ') + 1)
