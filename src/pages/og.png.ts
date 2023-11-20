@@ -10,13 +10,14 @@ const YOGA = initYoga();
 initSatori(YOGA);
 
 console.log('rendering og image');
-export const get: APIRoute = async ({ params, request }) => {
+export const GET: APIRoute = async ({ params, request }) => {
     const searchParams = new URL(request.url).searchParams;
     const args = Object.fromEntries(searchParams);
-    let subtitle =
-        args.subtitle?.indexOf('. ') !== -1
+    let subtitle = args.subtitle
+        ? args.subtitle?.indexOf('. ') !== -1
             ? args.subtitle.substring(0, args.subtitle.indexOf('. ') + 1)
-            : args.subtitle;
+            : args.subtitle
+        : '';
     // shorten to max 104 chars including the title, which is counted double
     if (subtitle && subtitle.length + args.title.length * 2 > 104) {
         subtitle = subtitle.substring(0, 104 - args.title.length * 2);
