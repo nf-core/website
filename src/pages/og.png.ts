@@ -52,9 +52,11 @@ export const get: APIRoute = async ({ params, request }) => {
                         font-family: 'mavenpro';">
                         ${args.title}
                     </h1>
-                    <div style="font-weight: 400;font-family: 'inter';">${
-                        String(subtitle) === 'placeholder' ? ' ' : subtitle
-                    }</div>
+                    ${
+                        String(subtitle) === 'placeholder'
+                            ? ''
+                            : `<div style="font-weight: 400;font-family: 'inter';">${subtitle}</div>`
+                    }
                 </div>
                 <div
                     style="font-size: 28px;
