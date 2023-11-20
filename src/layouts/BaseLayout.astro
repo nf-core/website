@@ -43,8 +43,14 @@ let {
     viewTransitions = false,
     docSearchTags = [],
 } = Astro.props;
-const category = docSearchTags.find((tag) => tag.name === 'page_type')?.content;
-image += category ? category : '';
+
+const pageTypeTag = docSearchTags.find((tag) => tag.name === 'page_type');
+const pageSubtypeTag = docSearchTags.find((tag) => tag.name === 'page_subtype');
+
+let category = pageTypeTag?.content || '';
+category += pageSubtypeTag && pageSubtypeTag?.content ? `/${pageSubtypeTag.content}` : '';
+
+image += category;
 ---
 
 <!doctype html>
