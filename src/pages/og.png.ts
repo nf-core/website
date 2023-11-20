@@ -36,7 +36,7 @@ export const get: APIRoute = async ({ params, request }) => {
 
         color: #F8F9FA;
         background-color: #212528;
-        background-image: url('https://raw.githubusercontent.com/nf-core/website/new-og-img/public/images/og-img-bg.png');">
+        background-image: url('https://raw.githubusercontent.com/nf-core/website/main/public/images/og-img-bg.png');">
             <div style="display: flex;
             width: 100%;
             height: 100%;
