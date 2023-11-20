@@ -27,9 +27,8 @@ export const GET: APIRoute = async ({ params, request }) => {
             subtitle = subtitle.substring(0, subtitle.lastIndexOf(' '));
         }
     } else {
-        args = {
-            title: 'nf-core',
-            subtitle: 'A community effort to collect a curated set of analysis pipelines built using Nextflow.',
+        args.title = 'nf-core';
+        args.subtitle = 'A community effort to collect a curated set of analysis pipelines built using Nextflow.';
         };
     }
     const html_string = `
