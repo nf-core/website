@@ -25,14 +25,17 @@ export interface Props {
     viewTransitions?: boolean;
     docSearchTags?: {
         name: string;
-        content: string;
+        content: string | string[];
     }[];
 }
+// get entry for page_type in docsearchtags
 
-const {
+let {
     title = SITE_TITLE,
     subtitle = SITE_DESCRIPTION,
-    image = `/og.png?title=${encodeURIComponent(title ? title : SITE_TITLE)}`,
+    image = `/og.png?title=${encodeURIComponent(title ? title : SITE_TITLE)}&subtitle=${encodeURIComponent(
+        subtitle ? subtitle : '',
+    )}&category=`,
     md_github_url,
     subfooter = false,
     navTocHeadings = [],
@@ -40,6 +43,14 @@ const {
     viewTransitions = false,
     docSearchTags = [],
 } = Astro.props;
+
+const pageTypeTag = docSearchTags.find((tag) => tag.name === 'page_type');
+const pageSubtypeTag = docSearchTags.find((tag) => tag.name === 'page_subtype');
+
+let category = pageTypeTag?.content || '';
+category += pageSubtypeTag && pageSubtypeTag?.content ? `/${pageSubtypeTag.content}` : '';
+
+image += category;
 ---
 
 <!doctype html>
