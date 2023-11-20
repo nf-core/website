@@ -34,7 +34,7 @@ let {
     title = SITE_TITLE,
     subtitle = SITE_DESCRIPTION,
     image = `/og.png?title=${encodeURIComponent(title ? title : SITE_TITLE)}&subtitle=${encodeURIComponent(
-        subtitle ? subtitle : SITE_DESCRIPTION,
+        subtitle ? subtitle : 'undefined',
     )}&category=`,
     md_github_url,
     subfooter = false,
