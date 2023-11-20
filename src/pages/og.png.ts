@@ -53,7 +53,7 @@ export const get: APIRoute = async ({ params, request }) => {
                         ${args.title}
                     </h1>
                     <div style="font-weight: 400;font-family: 'inter';">${
-                        String(subtitle) === 'placeholder' ? '' : subtitle
+                        String(subtitle) === 'placeholder' ? ' ' : subtitle
                     }</div>
                 </div>
                 <div
