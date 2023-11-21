@@ -415,6 +415,16 @@ tag "<tool>/<sub-tool>" (optional)
 multiple tags are allowed for a test
 :::
 
+- When your test data is too big, the tests take too long or require too much resources, you can opt to run your tests in stub mode by adding the following option:
+
+```groovy title="main.nf.test"
+options "-stub"
+```
+
+:::note
+this can be added at the top of `main.nf.test` to have all tests run in stub mode or this can also be added to a single test
+:::
+
 - Provide a test name preferably indicating the test-data and file-format used. Example: `test("homo_sapiens - [bam, bai, bed] - fasta - fai")`
 - For a single test, you can simply replace the 'Should run without failures' boilerplate name.
 
