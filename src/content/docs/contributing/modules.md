@@ -352,10 +352,10 @@ A simple example of a nf-test directory in nf-core/modules can be found [here](h
 
 #### Steps for creating nf-test for a simple un-chained module
 
-- Install and update to the latest version of [nf-test](https://code.askimed.com/nf-test/installation/)
+- Install the dev version of nf-core tools, which comes with nf-test included
 
 ```bash
-conda install -c bioconda nf-test
+pip install --upgrade --force-reinstall git+https://github.com/nf-core/tools.git@dev
 ```
 
 - Git checkout a new branch for your module tests
@@ -370,7 +370,7 @@ git checkout -b <branch>
 mkdir modules/nf-core/<module>/tests
 ```
 
-- Generate a test file from template for your module using nf-test
+- Generate a test file from the nf-test template for your module using nf-test
 
 ```bash
 nf-test generate process modules/nf-core/<module>/main.nf
@@ -382,7 +382,7 @@ nf-test generate process modules/nf-core/<module>/main.nf
 mv modules/nf-core/<module>/main.nf.test modules/nf-core/<module>/tests/
 ```
 
-- If your module needs a `nextflow.config` file to run (e.g. for `ext.args` specification), create or copy this to the tests directory
+- (optional) If your module needs a `nextflow.config` file to run (e.g. for `ext.args` specification), create or copy this to the module's `tests/` directory
 
 - Open the `main.nf.test` file and change the path for the script to a relative path `../main.nf`
 
@@ -401,10 +401,10 @@ process "MODULE"
 config "./nextflow.config"
 ```
 
-- Then add tags to identify this module (below the line starting 'process')
+- Then add tags to identify this module (below the line starting with `process``)
 
 ```groovy title="main.nf.test"
-process "MODULE"
+process "<TOOL>_<SUB-TOOL>"
 tag "modules"
 tag "modules_nfcore"
 tag "<tool>"
@@ -450,28 +450,28 @@ assertAll(
           )
 ```
 
+- Create a new `tags.yml` in the `modules/nf-core/<tool>/<subtool>/tests/` folder and add only the corresponding module tag from `tests/config/pytest_modules.yml`
+
+```yaml
+<tool>/<subtool>:
+  - modules/nf-core/<tool>/<subtool>/**
+```
+
 - Run the test to create a snapshot of your module test. This will create a `.nf.test.snap` file
 
 ```bash
-nf-test test --tag "<module>" --profile docker
-```
-
-- Re-run the test again to verify if snapshots match
-
-```bash
-nf-test test --tag "<module>" --profile docker
-```
-
-- Create a new `tags.yml` in the `modules/nf-core/<module>/tests/` folder and add only the corresponding module tag from `tests/config/pytest_modules.yml`
-
-```yaml
-<module>:
-  - modules/nf-core/<module>/**
+nf-core modules test <tool>/<subtool>
 ```
 
 :::note
 Remove the corresponding tags from `tests/config/pytest_modules.yml` so that py-tests for the module will be skipped on github CI
 :::
+
+- Check if everything is according to the nf-core guidelines with:
+
+```bash
+nf-core modules lint <tool>/<subtool>
+```
 
 - create PR and add the `nf-test` label to it.
 
