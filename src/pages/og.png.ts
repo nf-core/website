@@ -29,6 +29,7 @@ export const GET: APIRoute = async ({ params, request }) => {
     } else {
         args.title = 'nf-core';
         args.subtitle = 'A community effort to collect a curated set of analysis pipelines built using Nextflow.';
+        subtitle = args.subtitle;
     }
     const html_string = `
     <div class="container"
