@@ -88,6 +88,8 @@
                 block.classList.add('position-relative');
                 const copyText = block.querySelector('code')?.innerText;
                 if (copyText) {
+                    // check if block has only one child, i.e. is a single line code block, so we need less top and bottom margin for button
+                    const SingleLine = block.childElementCount === 1 ? 'single-line' : '';
                     const copyCodeComponent = new CopyButton({
                         target: block, // Specify the target element for the Svelte component
                         props: {
@@ -95,9 +97,11 @@
                             label: copyButtonLabel,
                             copiedLabel: copiedButtonLabel,
                             classes:
-                                'copy-code-button btn btn-sm btn-outline-secondary position-absolute top-0 end-0 opacity-50',
+                                SingleLine +
+                                ' copy-code-button btn btn-sm btn-outline-secondary position-absolute top-0 end-0 opacity-50',
                             copiedClasses:
-                                'copy-code-button btn btn-sm btn-outline-success position-absolute top-0 end-0',
+                                SingleLine +
+                                ' copy-code-button btn btn-sm btn-outline-success position-absolute top-0 end-0',
                         },
                     });
                 }
