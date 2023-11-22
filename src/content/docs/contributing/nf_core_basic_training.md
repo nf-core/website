@@ -229,8 +229,61 @@ Ideally code should be developed on feature branches (i.e. a new branch made wit
 
 When creating a new repository on GitHub, create it as an empty repository without a README or any other file. Then push the repo with the template of your new pipeline from your local clone.
 
-( OLD: When creating a new repository on https://github.com or equivalent, don’t initialise it - leave it bare and push everything from your local clone
-Develop your code on either the master or dev branches and leave TEMPLATE alone.)
+:::tip{title="Exercise 1 - Getting around the git environment"}
+
+1. Create and switch to a new git branch called `demo`.
+   <details>
+   <summary>solution 1</summary>
+
+   ```bash
+   git checkout -b demo
+   ```
+
+   </details>
+
+2. Display all available git branches.
+   <details>
+   <summary>solution 2</summary>
+
+   ```bash
+   git branch
+   ```
+
+   </details>
+
+3. Create a directory within the new pipeline directory called `results` and add it to the `.gitignore` file.
+   <details>
+   <summary>solution 3</summary>
+
+   ```bash
+   mkdir results
+   ```
+
+   ```groovy title=".gitignore"
+   .nextflow*
+    work/
+    data/
+    results/
+    .DS_Store
+    testing/
+    testing*
+    *.pyc
+    results/
+   ```
+
+   </details>
+
+4. Commit the changes you have made.
+   <details>
+   <summary>solution 4</summary>
+
+   ```bash
+   git add .
+   git commit -m "creating results dir and adding it to gitignore"
+   ```
+
+   </details>
+   :::
 
 ## Run the new pipeline
 
@@ -390,7 +443,7 @@ This file keeps track of modules installed using nf-core tools from the nf-core/
 
     e) _.gitpod.yml_
 
-This file provides settings to create a Cloud development environment in your browser using Gitpod. It comes installed with the tools necessary to develop and test nf-core pipelines, modules, and subworkflows, allowing you to develop from anywhere without installing anything locally.
+    This file provides settings to create a Cloud development environment in your browser using Gitpod. It comes installed with the tools necessary to develop and test nf-core pipelines, modules, and subworkflows, allowing you to develop from anywhere without installing anything locally.
 
     f) _.nf-core.yml_
 
@@ -399,6 +452,43 @@ This file provides settings to create a Cloud development environment in your br
     h) _.prettierignore_
 
     i) _.prettierrc.yml_
+
+:::tip{title="Exercise 2 - Test your knowledge of the nf-core pipeline structure"}
+
+1. In which directory can you find the main script of the nf-core module `fastqc`
+   <details>
+      <summary>solution 1</summary>
+
+   ```
+   modules/nf-core/fastqc/
+   ```
+
+      </details>
+
+2. Which file contains the main workflow of your new pipeline?
+   <details>
+      <summary>solution 2</summary>
+
+   ```
+   workflows/demotest.nf
+   ```
+
+      </details>
+
+3. `check_samplesheet.py` is a script that can be called by any module of your pipeline, where is it located?
+   <details>
+      <summary>solution 3</summary>
+
+   ```
+   bin/
+   ```
+
+   This directory can also contain a custom scripts that you may wish to call from within a custom module.
+
+      </details>
+
+[MORE QUESTIONS CAN BE ADDED HERE]
+:::
 
 ## Customising the template
 
@@ -514,6 +604,78 @@ nf-core lint
 [...]
 ```
 
+:::tip{title="Exercise 3 - ToDos and linting"}
+
+1. Add the following bullet point list to the README file, where the ToDo indicates to describe the default steps to execute the pipeline
+
+   ```groovy title="pipeline overview"
+   - Indexing of a transcriptome file
+   - Quality control
+   - Quantification of transcripts
+   - [whatever the custom script does]
+   - Generation of a MultiQC report
+   ```
+
+   <details>
+      <summary>solution 1</summary>
+
+   ```bash title="README.md"
+   [...]
+
+   ## Introduction
+
+   **nf-core/a** is a bioinformatics pipeline that ...
+
+   <!-- TODO nf-core:
+   Complete this sentence with a 2-3 sentence summary of what types of data the pipeline ingests, a brief overview of the
+   major pipeline sections and the types of output it produces. You\'re giving an overview to someone new to nf-core here,
+   in 15-20 seconds. For an example, see https://github.com/nf-core/rnaseq/blob/master/README.md#introduction -->
+
+   <!-- TODO nf-core: Include a figure that guides the user through the major workflow steps. Many nf-core
+     workflows use the "tube map" design for that. See https://nf-co.re/docs/contributing/design_guidelines#examples for examples.
+     -->
+
+   Default steps:
+      - Indexing of a transcriptome file
+    - Quality control
+    - Quantification of transcripts
+    - [whatever the custom script does]
+    - Generation of a MultiQC report
+
+   1. Read QC ([`FastQC`](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/))
+   2. Present QC for raw reads ([`MultiQC`](http://multiqc.info/))
+
+   [...]
+
+   ```
+
+      </details>
+
+2. Lint the changes you have made
+   <details>
+      <summary>solution 2</summary>
+
+   ```bash
+   nf-core lint
+   ```
+
+   You should see that we now get one less `warning` in our lint overview, since we removed one of the TODO items.
+
+      </details>
+
+3. Commit your changes
+   <details>
+      <summary>solution 3</summary>
+
+   ```bash
+   git add .
+   git commit -m "adding pipeline overview to pipeline README"
+   ```
+
+      </details>
+
+   :::
+
 # Adding Modules to a pipeline
 
 ## Adding an existing nf-core module
@@ -601,29 +763,52 @@ nf-core modules info salmon/index
 
     nf-core/tools version 2.10 - https://nf-co.re
 
-
-╭─ Module: salmon/index  ───────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-│ 🌐 Repository: https://github.com/nf-core/modules.git                                                                             │
-│ 🔧 Tools: salmon                                                                                                                  │
-│ 📖 Description: Create index for salmon                                                                                           │
+╭─ Module: salmon/index ───────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ 🌐 Repository: https://github.com/nf-core/modules.git │
+│ 🔧 Tools: salmon │
+│ 📖 Description: Create index for salmon │
 ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-                             ╷                                                                                              ╷
- 📥 Inputs                   │Description                                                                                   │Pattern
+╷ ╷
+📥 Inputs │Description │Pattern
 ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━╸
-  genome_fasta  (file)       │Fasta file of the reference genome                                                            │
+genome_fasta (file) │Fasta file of the reference genome │
 ╶────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────┼───────╴
-  transcriptome_fasta  (file)│Fasta file of the reference transcriptome                                                     │
-                             ╵                                                                                              ╵
-                    ╷                                                                                                  ╷
- 📤 Outputs         │Description                                                                                       │     Pattern
+transcriptome_fasta (file)│Fasta file of the reference transcriptome │
+╵ ╵
+╷ ╷
+📤 Outputs │Description │ Pattern
 ╺━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━╸
-  index  (directory)│Folder containing the star index files                                                            │      salmon
+index (directory)│Folder containing the star index files │ salmon
 ╶───────────────────┼───────────────────────────────────────────────────────────────────────���──────────────────────────┼────────────╴
-  versions  (file)  │File containing software versions                                                                 │versions.yml
-                    ╵                                                                                                  ╵
+versions (file) │File containing software versions │versions.yml
+╵ ╵
 
- 💻  Installation command: nf-core modules install salmon/index
+💻 Installation command: nf-core modules install salmon/index
+
 ```
+
+:::tip{title="Exercise 4 - Identification of available nf-core modules"}
+
+1. Check which versions are available for the nf-core module `salmon/quant`.
+   <details>
+      <summary>solution 1</summary>
+
+   ```
+   nf-core modules info salmon/quant
+   ```
+
+    </details>
+
+2. Is there any version of `salmon/quant` already installed locally?
+   <details>
+      <summary>solution 2</summary>
+      
+      ```
+      nf-core modules list local
+      ```
+
+      </details>
+   :::
 
 The out put from the info command will among other things give you the nf-core/tools installation command, lets see what it is doing:
 
@@ -685,6 +870,91 @@ INFO     Use the following statement to include this module:
 exercise to add a different module would be nice! => salmon/quant!
 comparison to simple nextflow pipeline from the basic Nextflow training would be nice!)
 
+:::tip{title="Exercise 5 - Installing a remote module from nf-core"}
+
+1.  Install the nf-core module `salmon/quant` version `?`
+    <details>
+       <summary>solution 1</summary>
+
+        ```
+        ```
+
+       </details>
+
+2.  Which file(s) were/are added and what does it / do they do?
+    <details>
+       <summary>solution 2</summary>
+
+        ```
+        ```
+
+       </details>
+
+3.  Import the installed `salmon/quant` pipeline into your main workflow.
+    <details>
+       <summary>solution 3</summary>
+
+        ```
+        ```
+
+       </details>
+
+4.  Call the `SALMON_QUANT` process in your workflow
+    <details>
+       <summary>solution 4</summary>
+
+        ```
+        ```
+
+       </details>
+
+5.  Add required parameters for `salmon/quant`to the `SALMON_QUANT` process
+    <details>
+       <summary>solution 5</summary>
+
+        ```
+        ```
+
+       </details>
+
+6.  Include the quantification results in the multiQC input
+    <details>
+       <summary>solution 6</summary>
+
+        ```
+        ```
+
+       </details>
+
+7.  Lint your pipeline
+    <details>
+       <summary>solution 7</summary>
+
+        ```
+        ```
+
+       </details>
+
+8.  Run the pipeline and inspect the results
+    <details>
+       <summary>solution 8</summary>
+
+        ```
+        ```
+
+       </details>
+
+9.  Commit the changes
+    <details>
+       <summary>solution 9</summary>
+
+        ```
+        ```
+
+       </details>
+
+:::
+
 ## Adding a remote module
 
 If there is no nf-core module available for the software you want to include, the nf-core tools package can also aid in the generation of a remote module that is specific for your pipeline. To add a remote module run the following:
@@ -696,6 +966,25 @@ nf-core modules create
 Open ./modules/local/demo/module.nf and start customising this to your needs whilst working your way through the extensive TODO comments!
 
 ### Making a remote module for a custom script
+
+:::tip{title="Exercise 6 - Adding a custom module"}
+In the directory `exercise_6` you will find the custom script `print_hello.py`, which will be used for this and the next exercise.
+
+1.  Create a local module that runs the `print_hello.py` script
+2.  Add the module to your main workflow
+3.  Run the pipeline
+4.  Lint the pipeline
+5.  Commit your changes
+    <details>
+    <summary>solution 1</summary>
+
+    ```
+
+    ```
+
+      </details>
+
+:::
 
 ## Lint all modules
 
@@ -751,6 +1040,10 @@ Here in the schema editor you can edit:
 - Special formats for strings, such as file-path
 - Additional fields for files such as mime-type
 
-```
+:::tip{title="Exercise 7 - Using nextflow schema to add command line parameters"}
 
-```
+1.  Feed a string to your custom script from exercise 6 from the command line. Use `nf-core schema build` to add the parameter to the `nextflow.config` file.
+
+      </details>
+
+:::
