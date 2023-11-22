@@ -1268,10 +1268,16 @@ div[data-rehype-pretty-code-fragment] {
 .main-content div[data-rehype-pretty-code-fragment] pre .copy-code-button {
   margin-top: 0.75rem;
   margin-right: 0.7rem;
+  &:hover{
+    opacity: 1 !important;
+  }
+  &.single-line{
+    margin-top: 0.425rem;
+  }
 }
 
 .main-content div[data-rehype-pretty-code-fragment]:has(div[data-rehype-pretty-code-title]) pre .copy-code-button {
-  margin-top: 0.6rem;
+  margin-top: 0.75rem;
 }
 
 div[data-rehype-pretty-code-title] {
