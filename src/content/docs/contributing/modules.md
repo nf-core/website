@@ -388,7 +388,7 @@ mv modules/nf-core/<tool>/<subtool>_old/environment.yml modules/nf-core/<tool>/<
 
 - (optional) If your module needs a `nextflow.config` file to run (e.g. for `ext.args` specification), create or copy this to the module's `tests/` directory
 
-- (optional) If your module needs a `nextflow.config` specify the location of the config
+- (optional) If your module needs a `nextflow.config` specify the location of the config in the `main.nf.test` file
 
 ```groovy title="main.nf.test"
 process "MODULE"
