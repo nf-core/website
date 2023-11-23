@@ -3270,6 +3270,10 @@
         {
           "name": "rnafusion",
           "version": "2.4.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "2.4.0"
         }
       ]
     },
@@ -8437,6 +8441,13 @@
               "type": "file",
               "description": "New header to add to the VCF",
               "pattern": "*.{header.txt}"
+            }
+          },
+          {
+            "samples": {
+              "type": "file",
+              "description": "File containing sample names to update (one sample per line)",
+              "pattern": "*.{samples.txt}"
             }
           },
           {
@@ -25583,7 +25594,7 @@
             }
           },
           {
-            "sample": {
+            "samplesheet": {
               "type": "file",
               "description": "CSV or TSV format sample sheet with sample metadata\n"
             }
@@ -25595,21 +25606,27 @@
             }
           },
           {
-            "control_genes": {
-              "type": "file",
-              "description": "Text file listing control genes, one per line\n"
-            }
-          },
-          {
-            "control_genes_meta": {
+            "meta3": {
               "type": "file",
               "description": "Meta map describing control genes, e.g. [ id: 'ERCC' ]\n"
             }
           },
           {
-            "sizefactors_from_controls": {
-              "type": "boolean",
-              "description": "Specify if any supplied control genes should just be stripped to\nprevent bias in conventional normalisation (default), or used to\ngenerate the size factors (supplied via task.ext.args like\n'--sizefactors_from_controls TRUE').\n"
+            "control_genes_file": {
+              "type": "file",
+              "description": "Text file listing control genes, one per line\n"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy map containing study-wide metadata related to the transcript\nlengths file\n"
+            }
+          },
+          {
+            "transcript_lengths_file": {
+              "type": "file",
+              "description": "Optional file of transcript lengths, with the same sample columns as\ncounts. If supplied, lengths will be supplied to DESeq2 to correct for\ndifferences in average transcript lengths across samples.\n"
             }
           }
         ],
@@ -34477,6 +34494,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -35202,6 +35223,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -39109,6 +39134,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -98983,7 +99012,9 @@
         "name": "svdb_query",
         "description": "Query a structural variant database, using a vcf file as query",
         "keywords": [
-          "structural variants"
+          "structural variants",
+          "query",
+          "svdb"
         ],
         "tools": [
           {
@@ -99024,10 +99055,17 @@
             }
           },
           {
-            "vcf_db": {
+            "vcf_dbs": {
               "type": "file",
-              "description": "database vcf file",
+              "description": "path to a database vcf, or a comma separated list of vcfs",
               "pattern": "*.{vcf,vcf.gz}"
+            }
+          },
+          {
+            "bedpe_dbs": {
+              "type": "file",
+              "description": "path to a SV database of the following format chrA-posA-chrB-posB-type-count-frequency, or a comma separated list of files",
+              "pattern": "*.{bedpe}"
             }
           }
         ],
@@ -99066,9 +99104,6 @@
           }
         ],
         "authors": [
-          "@ramprasadn"
-        ],
-        "maintainers": [
           "@ramprasadn"
         ]
       },
@@ -112850,6 +112885,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -112884,6 +112923,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -113122,6 +113165,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
