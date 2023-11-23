@@ -364,15 +364,17 @@ pip install --upgrade --force-reinstall git+https://github.com/nf-core/tools.git
 git checkout -b <branch>
 ```
 
-We will use the template provided by nf-core/tools.
+To create the necessary files for nf-test and ensure a smooth transition, we will use the template provided by nf-core/tools.
 
-- First rename the current module directory to `<module>_old`.
+Here are the steps to follow:
+
+- Rename the current module directory to `<module>_old` to avoid conflicts with the new module.
 
 ```bash
 mv modules/nf-core/<tool>/<subtool> modules/nf-core/<tool>/<subtool>_old
 ```
 
--create a new module with the same name as the old one using nf-core/tools.
+- Create a new module with the same name as the old one using nf-core/tools.
 
 ```bash
 nf-core modules create <tool>/<subtool>
@@ -429,7 +431,7 @@ assertAll(
           )
 ```
 
-- Run the test to create a snapshot of your module test. This will create a `.nf.test.snap` file
+- Run the test to create a snapshot of your module test. This will create a `main.nf.test.snap` file
 
 ```bash
 nf-core modules test <tool>/<subtool>
@@ -455,7 +457,7 @@ rm -r modules/nf-core/<tool>/<subtool>_old
 nf-core modules lint <tool>/<subtool>
 ```
 
-- create PR and add the `nf-test` label to it.
+- create a PR and add the `nf-test` label to it.
 
 #### Steps for creating nf-test for chained modules
 
@@ -555,18 +557,12 @@ nextflow_process {
 - Run the test to create a snapshot of your module test. This will create a `.nf.test.snap` file
 
 ```bash
-nf-test test --tag "<tool>/<sub-tool>" --profile docker
+nf-core modules test <tool>/<sub-tool>
 ```
 
-- Re-run the test again to verify if snapshots match
+- Add the corresponding module tag from `tests/config/pytest_modules.yml` to the `tags.yml` in `modules/nf-core/<module>/tests/`.
 
-```bash
-nf-test test --tag "<tool>/<sub-tool>" --profile docker
-```
-
-- Create a new `tags.yml` in the `modules/nf-core/<module>/tests/` folder and add only the corresponding module tag from `tests/config/pytest_modules.yml`
-
-```yaml
+```yaml title="tags.yml"
 <tool>/<sub-tool>:
   - modules/nf-core/<tool>/<sub-tool-1>/**
   - modules/nf-core/<tool>/<sub-tool-2>/**
@@ -579,7 +575,7 @@ Remove the corresponding tags from `tests/config/pytest_modules.yml` so that py-
 - create PR and add the `nf-test` label to it.
 
 :::info
-The implementation of nf-test in nf-core is still evolving. Things might still change and the information might here might be outdated. Please report any issues you encounter [on the nf-core/website repository](https://github.com/nf-core/website/issues/new?assignees=&labels=bug&projects=&template=bug_report.md) and the `nf-test` channel on nf-core slack. Additionally, nf-core/tools will help you create nf-tests in the future, making some of the steps here obsolete.
+The implementation of nf-test in nf-core is still evolving. Things might still change and the information might here might be outdated. Please report any issues you encounter [on the nf-core/website repository](https://github.com/nf-core/website/issues/new?assignees=&labels=bug&projects=&template=bug_report.md) and the `nf-test` channel on nf-core slack.
 
 <!-- NOTE: update when nf-core/tools gets nf-test support -->
 
