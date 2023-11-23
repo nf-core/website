@@ -431,6 +431,16 @@ assertAll(
           )
 ```
 
+:::tip{title="pytest vs. nf-test assertions"}
+
+| pytest                           | nf-test                                                                                       | description                                                                           |
+| -------------------------------- | --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `md5sum                          | `assert snapshot(path(process.out.npl.get(0).get(1))).match(){:groovy}`                       | extract the file of a meta tuple from the npl channel, and check the snapshot matches |
+| contains                         | `assert path(process.out.npo.get(0).get(1)).getText().contains("Nonpareil version"){:groovy}` | check to see if it contains a given string                                            |
+| assert filename == expected_name | `assert snapshot(file(process.out.log.get(0).get(1)).name).match("log"){:groovy}`             | check to see if the filename is "log"                                                 |
+
+:::
+
 - Run the test to create a snapshot of your module test. This will create a `main.nf.test.snap` file
 
 ```bash
