@@ -446,7 +446,7 @@ rm -r tests/modules/nf-core/<tool>/<subtool>
 - Remove the old module
 
 ```bash
-rm -r modules/nf-core/<tool>/<subtool>
+rm -r modules/nf-core/<tool>/<subtool>_old
 ```
 
 - Check if everything is according to the nf-core guidelines with:
