@@ -443,6 +443,12 @@ nf-core modules test <tool>/<subtool>
 rm -r tests/modules/nf-core/<tool>/<subtool>
 ```
 
+- Remove the old module
+
+```bash
+rm -r modules/nf-core/<tool>/<subtool>
+```
+
 - Check if everything is according to the nf-core guidelines with:
 
 ```bash
