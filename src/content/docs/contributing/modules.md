@@ -358,41 +358,35 @@ A simple example of a nf-test directory in nf-core/modules can be found [here](h
 pip install --upgrade --force-reinstall git+https://github.com/nf-core/tools.git@dev
 ```
 
-- Git checkout a new branch for your module tests
+- Git checkout a new branch for your module tests.
 
 ```bash
 git checkout -b <branch>
 ```
 
-- Create a new tests directory within your module directory
+We will use the template provided by nf-core/tools.
+
+- First rename the current module directory to `<module>_old`.
 
 ```bash
-mkdir modules/nf-core/<module>/tests
+mv modules/nf-core/<tool>/<subtool> modules/nf-core/<tool>/<subtool>_old
 ```
 
-- Generate a test file from the nf-test template for your module using nf-test
+-create a new module with the same name as the old one using nf-core/tools.
 
 ```bash
-nf-test generate process modules/nf-core/<module>/main.nf
+nf-core modules create <tool>/<subtool>
 ```
 
-- Move the generated test file to the tests directory
+- Move the old `main.nf`, `meta.yml` and `environment.yml` files to the new directory.
 
 ```bash
-mv modules/nf-core/<module>/main.nf.test modules/nf-core/<module>/tests/
+mv modules/nf-core/<tool>/<subtool>_old/main.nf modules/nf-core/<tool>/<subtool>/main.nf
+mv modules/nf-core/<tool>/<subtool>_old/meta.yml modules/nf-core/<tool>/<subtool>/meta.yml
+mv modules/nf-core/<tool>/<subtool>_old/environment.yml modules/nf-core/<tool>/<subtool>/environment.yml
 ```
 
 - (optional) If your module needs a `nextflow.config` file to run (e.g. for `ext.args` specification), create or copy this to the module's `tests/` directory
-
-- Open the `main.nf.test` file and change the path for the script to a relative path `../main.nf`
-
-```diff title="main.nf.test"
-nextflow_process {
-     name "Test Process MODULE"
--    script "modules/nf-core/<tool>/main.nf"
-+    script "../main.nf"
-     process "MODULE"
-```
 
 - (optional) If your module needs a `nextflow.config` specify the location of the config
 
@@ -400,20 +394,6 @@ nextflow_process {
 process "MODULE"
 config "./nextflow.config"
 ```
-
-- Then add tags to identify this module (below the line starting with `process``)
-
-```groovy title="main.nf.test"
-process "<TOOL>_<SUB-TOOL>"
-tag "modules"
-tag "modules_nfcore"
-tag "<tool>"
-tag "<tool>/<sub-tool>" (optional)
-```
-
-:::note
-multiple tags are allowed for a test
-:::
 
 - When your test data is too big, the tests take too long or require too much resources, you can opt to run your tests in stub mode by adding the following option:
 
@@ -426,7 +406,6 @@ this can be added at the top of `main.nf.test` to have all tests run in stub mod
 :::
 
 - Provide a test name preferably indicating the test-data and file-format used. Example: `test("homo_sapiens - [bam, bai, bed] - fasta - fai")`
-- For a single test, you can simply replace the 'Should run without failures' boilerplate name.
 
 :::note
 multiple tests are allowed in a single test file
@@ -435,7 +414,7 @@ multiple tests are allowed in a single test file
 - If migrating an existing module, get the inputs from current pytest files `tests/modules/nf-core/module/main.nf` and provide as positional inputs `input[0]` in nf-test file
 
 ```groovy
-input[2] = [
+input[0] = [
             [id:"ref"],
             file(params.test_data['homo_sapiens']['genome']['genome_fasta_fai'], checkIfExists: true)
            ]
@@ -450,22 +429,19 @@ assertAll(
           )
 ```
 
-- Create a new `tags.yml` in the `modules/nf-core/<tool>/<subtool>/tests/` folder and add only the corresponding module tag from `tests/config/pytest_modules.yml`
-
-```yaml
-<tool>/<subtool>:
-  - modules/nf-core/<tool>/<subtool>/**
-```
-
 - Run the test to create a snapshot of your module test. This will create a `.nf.test.snap` file
 
 ```bash
 nf-core modules test <tool>/<subtool>
 ```
 
-:::note
-Remove the corresponding tags from `tests/config/pytest_modules.yml` so that py-tests for the module will be skipped on github CI
-:::
+- Remove the corresponding tags from `tests/config/pytest_modules.yml` so that py-tests for the module will be skipped on github CI.
+
+- Remove the corresponding pytest files in `tests/modules/nf-core`
+
+```bash
+rm -r tests/modules/nf-core/<tool>/<subtool>
+```
 
 - Check if everything is according to the nf-core guidelines with:
 
