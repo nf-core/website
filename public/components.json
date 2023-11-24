@@ -3278,6 +3278,10 @@
         {
           "name": "rnafusion",
           "version": "2.4.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "2.4.0"
         }
       ]
     },
@@ -5032,7 +5036,9 @@
               "homepage": "https://github.com/SchapiroLabor/Background_subtraction",
               "documentation": "https://github.com/SchapiroLabor/Background_subtraction/blob/master/README.md",
               "tool_dev_url": "https://github.com/SchapiroLabor/Background_subtraction",
-              "licence": "MIT licence"
+              "licence": [
+                "MIT licence"
+              ]
             }
           }
         ],
@@ -5040,7 +5046,7 @@
           {
             "meta": {
               "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
             }
           },
           {
@@ -5053,7 +5059,7 @@
           {
             "meta2": {
               "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
             }
           },
           {
@@ -5068,7 +5074,7 @@
           {
             "meta": {
               "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
             }
           },
           {
@@ -5088,7 +5094,7 @@
           {
             "meta2": {
               "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
             }
           },
           {
@@ -23925,9 +23931,9 @@
           {
             "deeparg": {
               "description": "A deep learning based approach to predict Antibiotic Resistance Genes (ARGs) from metagenomes",
-              "homepage": "https://bench.cs.vt.edu/deeparg",
-              "documentation": "https://bitbucket.org/gusphdproj/deeparg-ss/src/master/",
-              "tool_dev_url": "https://bitbucket.org/gusphdproj/deeparg-ss/src/master/",
+              "homepage": "https://github.com/gaarangoa/deeparg",
+              "documentation": "https://github.com/gaarangoa/deeparg",
+              "tool_dev_url": "https://github.com/gaarangoa/deeparg",
               "doi": "10.1186/s40168-018-0401-z",
               "licence": [
                 "MIT"
@@ -23986,9 +23992,9 @@
           {
             "deeparg": {
               "description": "A deep learning based approach to predict Antibiotic Resistance Genes (ARGs) from metagenomes",
-              "homepage": "https://bench.cs.vt.edu/deeparg",
-              "documentation": "https://bitbucket.org/gusphdproj/deeparg-ss/src/master/",
-              "tool_dev_url": "https://bitbucket.org/gusphdproj/deeparg-ss/src/master/",
+              "homepage": "https://github.com/gaarangoa/deeparg",
+              "documentation": "https://github.com/gaarangoa/deeparg",
+              "tool_dev_url": "https://github.com/gaarangoa/deeparg",
               "doi": "10.1186/s40168-018-0401-z",
               "licence": [
                 "MIT"
@@ -34506,6 +34512,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -35231,6 +35241,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -39146,6 +39160,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -74705,7 +74723,7 @@
             }
           },
           {
-            "dict": {
+            "reference_dict": {
               "type": "file",
               "description": "picard dictionary file",
               "pattern": "*.{dict}"
@@ -82417,6 +82435,7 @@
         "name": "rseqc_innerdistance",
         "description": "Calculate inner distance between read pairs.",
         "keywords": [
+          "read_pairs",
           "fragment_size",
           "inner_distance"
         ],
@@ -112891,6 +112910,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -112925,6 +112948,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -113171,6 +113198,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
