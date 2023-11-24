@@ -388,10 +388,10 @@ We recently decided to use nf-test instead of pytest for testing modules & subwo
 
 #### Steps for creating nf-test for a subworkflow
 
-- Install and update to the latest version of [nf-test](https://code.askimed.com/nf-test/installation/)
+- Install the dev version of nf-core tools, which comes with nf-test included
 
 ```bash
-conda install -c bioconda nf-test
+pip install --upgrade --force-reinstall git+https://github.com/nf-core/tools.git@dev
 ```
 
 - Git checkout a new branch for your subworkflow tests
@@ -400,57 +400,29 @@ conda install -c bioconda nf-test
 git checkout -b <branch>
 ```
 
-- Create a new tests directory within your subworkflow directory
+To create the necessary files for nf-test and ensure a smooth transition, we will use the template provided by nf-core/tools.
+
+Here are the steps to follow:
+
+- Rename the current module directory to `<subworkflow>_old` to avoid conflicts with the new subworkflow.
 
 ```bash
-mkdir subworkflows/nf-core/<subworkflow>/tests
+mv subworkflow/nf-core/<subworkflow> subworkflow/nf-core/<subworkflow>_old
 ```
 
-- Generate a test file from template for your subworkflow using nf-test
+- Create a new subworkflow with the same name as the old one using nf-core/tools.
 
 ```bash
-nf-test generate workflow subworkflows/nf-core/<subworkflow>/main.nf
+nf-core subworkflows create <subworkflow>
 ```
 
-:::note
-We use `workflow` instead of `process` as it is a subworkflow not a module.
-:::
-
-- Move the generated test file to the tests directory
+- Move the old `main.nf`, `meta.yml` and `environment.yml` files to the new directory.
 
 ```bash
-mv subworkflows/nf-core/<subworkflow>/main.nf.test subworkflows/nf-core/<subworkflow>/tests/
+mv modules/nf-core/<subworkflow>_old/main.nf modules/nf-core/<subworkflow>/main.nf
+mv modules/nf-core/<subworkflow>_old/meta.yml modules/nf-core/<subworkflow>/meta.yml
+mv modules/nf-core/<subworkflow>_old/environment.yml modules/nf-core/<subworkflow>/environment.yml
 ```
-
-- Open the `main.nf.test` file and change the path for the script to a relative path `../main.nf`
-
-```diff title="main.nf.test"
-nextflow_workflow {
-     name "Test Workflow SUBWORKFLOW"
--    script "subworkflows/nf-core/<subworkflow>/main.nf"
-+    script "../main.nf"
-     process "SUBWORKFLOW"
-```
-
-- Then add tags to identify this module
-
-```groovy title="main.nf.test"
-tag "subworkflows"
-tag "subworkflows_nfcore"
-tag "subworkflows/<subworkflow>"
-tag "<subworkflow>"
-tag "<tool1>"
-tag "<tool1/sub-tool1>"
-tag "<tool2>"
-tag "<tool2/sub-tool2>"
-```
-
-:::note
-We require to have `tag subworkflows/<subworkflow>` so it's picked up correctly during CI testing.
-:::
-:::note
-Include the used tools and modules in the tags.
-:::
 
 - Provide a test name preferably indicating the test-data and file-format used. Example: `test("homo_sapiens - [bam, bai, bed] - fasta - fai")`
 
@@ -480,34 +452,35 @@ assertAll(
 It's `workflow.` whereas with modules it's `process.`.
 :::
 
-- Run the test to create a snapshot of your module test. This will create a `.nf.test.snap` file
+- Run the test to create a snapshot of your subworkflow test. This will create a `main.nf.test.snap` file
 
 ```bash
-nf-test test --tag "<subworkflow>" --profile docker --update-snapshot
-```
-
-- Re-run the test again to verify if snapshots match
-
-```bash
-nf-test test --tag "<subworkflow>" --profile docker
-```
-
-- Create a new `tags.yml` in the `subworkflows/nf-core/<subworkflow>/tests/` folder and add only the corresponding subworkflow tag from `tests/config/pytest_modules.yml`
-
-```yaml
-subworkflows/<subworkflow>:
-  - subworkflows/nf-core/<subworkflow>/**
+nf-core subworkflows test <subworkflow>
 ```
 
 :::note
-Remove the corresponding tags from `tests/config/pytest_modules.yml` so that py-tests for the subworkflow will be skipped on github CI
+The tag in `tags.yml` has to contain both `subworkflows/<subworkflow>` and not just `<subworkflow>` in contrast to modules.
 :::
 
-:::note
-The tag has to contain both `subworkflows/<subworkflow>` and not just `<subworkflow>` in contrast to modules.
-:::
+Time for some cleanup!
 
-- create PR and add the `nf-test` label to it.
+- Remove the corresponding tags from `tests/config/pytest_modules.yml` so that py-tests for the subworkflow will be skipped on github CI.
+
+- Remove the corresponding pytest files in `tests/subworkflow/nf-core`
+
+- Remove the old subworkflow
+
+```bash
+rm -r subworkflows/nf-core/<subworkflow>_old
+```
+
+- Check if everything is according to the nf-core guidelines with:
+
+```bash
+nf-core subworkflowss lint <subworkflows>
+```
+
+- create a PR and add the `nf-test` label to it.
 
 #### Steps for creating nf-test for subworkflow chained with modules
 
@@ -515,7 +488,7 @@ The tag has to contain both `subworkflows/<subworkflow>` and not just `<subworkf
 
 - For subworkflows that involve running a module in advance to generate required test-data, nf-test provides a [setup](https://code.askimed.com/nf-test/docs/testcases/setup/) method.
 
-- Implementing [setup](https://code.askimed.com/nf-test/docs/testcases/setup/) with a subworkflow is very similar as with modules. For this [see docs of nf-test with chained modules](./modules#steps-for-creating-nf-test-for-chained-modules)
+- Implementing [setup](https://code.askimed.com/nf-test/docs/testcases/setup/) with a subworkflow is very similar as with modules. For this [see docs of nf-test with chained modules](#steps-for-creating-nf-test-for-chained-modules)
 
 :::note
 Remove the corresponding tags from `tests/config/pytest_modules.yml` so that py-tests for the module will be skipped on github CI
@@ -524,7 +497,7 @@ Remove the corresponding tags from `tests/config/pytest_modules.yml` so that py-
 - create PR and add the `nf-test` label to it.
 
 :::info
-The implementation of nf-test in nf-core is still evolving. Things might still change and the information might here might be outdated. Please report any issues you encounter [on the nf-core/website repository](https://github.com/nf-core/website/issues/new?assignees=&labels=bug&projects=&template=bug_report.md) and the `nf-test` channel on nf-core slack. Additionally, nf-core/tools will help you create nf-tests in the future, making some of the steps here obsolete.
+The implementation of nf-test in nf-core is still evolving. Things might still change and the information might here might be outdated. Please report any issues you encounter [on the nf-core/website repository](https://github.com/nf-core/website/issues/new?assignees=&labels=bug&projects=&template=bug_report.md) and the `nf-test` channel on nf-core slack.
 
 <!-- NOTE: update when nf-core/tools gets nf-test support -->
 
