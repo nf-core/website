@@ -3282,6 +3282,10 @@
         {
           "name": "rnafusion",
           "version": "2.4.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "2.4.0"
         }
       ]
     },
@@ -34516,6 +34520,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -35241,6 +35249,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -38160,10 +38172,22 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "The reference fasta file",
               "pattern": "*.fasta"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test', single_end:false ]\n"
             }
           },
           {
@@ -38174,6 +38198,12 @@
             }
           },
           {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
             "dict": {
               "type": "file",
               "description": "GATK sequence dictionary",
@@ -38181,9 +38211,21 @@
             }
           },
           {
+            "meta5": {
+              "type": "map",
+              "description": "Groovy Map containing dbsnp information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
             "dbsnp": {
               "type": "file",
               "description": "VCF file containing known sites (optional)"
+            }
+          },
+          {
+            "meta6": {
+              "type": "map",
+              "description": "Groovy Map containing dbsnp information\ne.g. [ id:'test', single_end:false ]\n"
             }
           },
           {
@@ -39160,6 +39202,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -82350,6 +82396,7 @@
         "description": "Infer strandedness from sequencing reads",
         "keywords": [
           "rnaseq",
+          "strandedness",
           "experiment"
         ],
         "tools": [
@@ -82849,7 +82896,9 @@
         "description": "Calculate read duplication rate",
         "keywords": [
           "rnaseq",
-          "duplication"
+          "duplication",
+          "sequence-based",
+          "mapping-based"
         ],
         "tools": [
           {
@@ -112914,6 +112963,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -112948,6 +113001,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -113198,6 +113255,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
