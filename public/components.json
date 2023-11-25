@@ -56,7 +56,7 @@
           },
           {
             "results": {
-              "type": "files",
+              "type": "file",
               "description": "List containing abacas output files\n[ 'test.abacas.bin', 'test.abacas.fasta', 'test.abacas.gaps',\n'test.abacas.gaps.tab', 'test.abacas.nucmer.delta',\n'test.abacas.nucmer.filtered.delta', 'test.abacas.nucmer.tiling',\n'test.abacas.tab', 'test.abacas.unused.contigs.out',\n'test.abacas.MULTIFASTA.fa' ]\n",
               "pattern": "*.{abacas}*"
             }
@@ -3023,6 +3023,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "rnafusion",
+          "version": "2.4.0"
+        },
         {
           "name": "rnafusion",
           "version": "2.4.0"
@@ -34540,6 +34544,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -35265,6 +35273,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -39226,6 +39238,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -113008,6 +113024,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -113042,6 +113062,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -113304,6 +113328,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
