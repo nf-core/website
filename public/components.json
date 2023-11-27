@@ -3314,6 +3314,10 @@
         {
           "name": "rnafusion",
           "version": "2.4.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "2.4.0"
         }
       ]
     },
@@ -31245,8 +31249,9 @@
         "name": "fgbio_fastqtobam",
         "description": "Using the fgbio tools, converts FASTQ files sequenced into unaligned BAM or CRAM files possibly moving the UMI barcode into the RX field of the reads\n",
         "keywords": [
-          "fastqtobam",
-          "fgbio"
+          "unaligned",
+          "bam",
+          "cram"
         ],
         "tools": [
           {
@@ -31301,11 +31306,13 @@
         ],
         "authors": [
           "@lescai",
-          "@matthdsm"
+          "@matthdsm",
+          "@nvnieuwk"
         ],
         "maintainers": [
           "@lescai",
-          "@matthdsm"
+          "@matthdsm",
+          "@nvnieuwk"
         ]
       },
       "pipelines": [
@@ -34580,6 +34587,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -35305,6 +35316,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -39286,6 +39301,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -113108,6 +113127,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -113142,6 +113165,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -113424,6 +113451,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
