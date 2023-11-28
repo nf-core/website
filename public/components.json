@@ -863,7 +863,13 @@
         "authors": [
           "@rannick"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnafusion",
+          "version": "3.0.0"
+        }
+      ]
     },
     {
       "name": "agat_convertspgxf2gxf",
@@ -3318,6 +3324,10 @@
         {
           "name": "rnafusion",
           "version": "2.4.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.0"
         }
       ]
     },
@@ -15691,7 +15701,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.4.0"
+          "version": "3.0.0"
         },
         {
           "name": "sarek",
@@ -15818,7 +15828,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.4.0"
+          "version": "3.0.0"
         },
         {
           "name": "rnaseq",
@@ -22710,7 +22720,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.4.0"
+          "version": "3.0.0"
         },
         {
           "name": "rnaseq",
@@ -30408,7 +30418,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.4.0"
+          "version": "3.0.0"
         },
         {
           "name": "rnaseq",
@@ -30672,7 +30682,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.4.0"
+          "version": "3.0.0"
         },
         {
           "name": "rnaseq",
@@ -34591,6 +34601,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -35428,6 +35442,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -35521,7 +35539,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.4.0"
+          "version": "3.0.0"
         },
         {
           "name": "rnavar",
@@ -36586,7 +36604,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.4.0"
+          "version": "3.0.0"
         },
         {
           "name": "rnavar",
@@ -38958,6 +38976,10 @@
           "version": "dev"
         },
         {
+          "name": "rnafusion",
+          "version": "3.0.0"
+        },
+        {
           "name": "rnavar",
           "version": "1.0.0"
         },
@@ -39301,6 +39323,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -55340,10 +55366,6 @@
       },
       "pipelines": [
         {
-          "name": "rnafusion",
-          "version": "2.4.0"
-        },
-        {
           "name": "rnaseq",
           "version": "3.13.2"
         }
@@ -66067,12 +66089,6 @@
             }
           },
           {
-            "meta2": {
-              "type": "map",
-              "description": "Groovy Map containing bed information\ne.g. [ id:'test' ]\n"
-            }
-          },
-          {
             "bed": {
               "type": "file",
               "description": "BED file with intersected intervals",
@@ -66080,9 +66096,9 @@
             }
           },
           {
-            "meta3": {
+            "meta2": {
               "type": "map",
-              "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
+              "description": "Groovy Map containing bed information\ne.g. [ id:'test' ]\n"
             }
           },
           {
@@ -67561,7 +67577,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.4.0"
+          "version": "3.0.0"
         },
         {
           "name": "rnasplice",
@@ -74475,7 +74491,13 @@
         "maintainers": [
           "@FerriolCalvet"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnafusion",
+          "version": "3.0.0"
+        }
+      ]
     },
     {
       "name": "picard_collectmultiplemetrics",
@@ -74837,7 +74859,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.4.0"
+          "version": "3.0.0"
         },
         {
           "name": "variantcatalogue",
@@ -75519,10 +75541,6 @@
         {
           "name": "rnadnavar",
           "version": "dev"
-        },
-        {
-          "name": "rnafusion",
-          "version": "2.4.0"
         },
         {
           "name": "rnaseq",
@@ -81132,10 +81150,6 @@
       },
       "pipelines": [
         {
-          "name": "rnafusion",
-          "version": "2.4.0"
-        },
-        {
           "name": "rnaseq",
           "version": "3.13.2"
         }
@@ -85271,7 +85285,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.4.0"
+          "version": "3.0.0"
         },
         {
           "name": "rnavar",
@@ -86254,7 +86268,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.4.0"
+          "version": "3.0.0"
         },
         {
           "name": "rnaseq",
@@ -86850,7 +86864,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.4.0"
+          "version": "3.0.0"
         },
         {
           "name": "rnaseq",
@@ -87253,7 +87267,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.4.0"
+          "version": "3.0.0"
         },
         {
           "name": "sarek",
@@ -97332,7 +97346,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.4.0"
+          "version": "3.0.0"
         },
         {
           "name": "rnaseq",
@@ -97450,7 +97464,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.4.0"
+          "version": "3.0.0"
         },
         {
           "name": "rnaseq",
@@ -98292,7 +98306,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.4.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -98398,7 +98412,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.4.0"
+          "version": "3.0.0"
         },
         {
           "name": "rnaseq",
@@ -113131,6 +113145,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -113165,6 +113183,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -113451,6 +113473,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
