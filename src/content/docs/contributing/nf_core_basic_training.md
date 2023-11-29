@@ -160,6 +160,12 @@ nf-core lint
 
 # Adding Modules to a pipeline
 
+A module is a  single `process` built to be reusable and self-contained so it can be used within different Nextflow pipelines. They encapsulate a specific function or task, for example running a single tool such as [`FastQC`](https://github.com/nf-core/modules/blob/master/modules/nf-core/fastqc/main.nf). You can import and use modules like functions in a Nextflow subworkflow, this makes your workflow more readable and maintainable.
+
+In nf-core modules are also standarised, i.e. they follow certain rules to optimise reusability  and compatibility between pipelines. Each module consists of two files: a `main.nf` script containing the module's code and a `meta.yml` file that provides general information about the module and defines its inputs and outputs, although this last one can be optional. You might also find other optional files such as `environment.yml`, which contains the packages to be installed with `conda` and a folder called `tests`, which contains the necessary files to perform validation on the module with [`nf-test`](https://code.askimed.com/nf-test/).
+
+You can find a list of nf-core modules available in the [`modules/`](https://github.com/nf-core/modules/tree/master/modules) directory of nf-core/modules along with the required documentation and tests.
+
 ## Adding an existing nf-core module
 
 ### Identify available nf-core modules
@@ -213,6 +219,83 @@ nf-core modules create
 Open ./modules/local/demo/module.nf and start customising this to your needs whilst working your way through the extensive TODO comments!
 
 ### Making a remote module for a custom script
+
+To generate a module for a custom script you need to follow the same steps when adding a remote module. Then, you can supply the command for your script in the `script` block but your script needs to be present and *executable* in the `bin` folder of the pipeline. In the nf-core pipelines, this folder is in the main directory and you can see in [`rnaseq`](https://github.com/nf-core/rnaseq). Let's look at a example in this pipeline, for instance [`tximport.r`](https://github.com/nf-core/rnaseq/blob/master/bin/tximport.r). This is an Rscript present in the [`bin`](https://github.com/nf-core/rnaseq/tree/master/bin) of the pipeline. We can find the module that runs this script in [`modules/local/tximport`](https://github.com/nf-core/rnaseq/blob/master/modules/local/tximport/main.nf). As we can see the script is being called in the `script` block, note that `tximport.r` is being executed as if it was called from the command line and therefore needs to be *executable*.
+
+Let's create a simple custom script that converts a MAF file to a BED file called `maf2bed.py`:
+
+```
+#!/usr/bin/env python
+"""
+Author: Raquel Manzano - @RaqManzano
+Script: Convert MAF to BED format keeping ref and alt info
+"""
+import argparse
+import pandas as pd
+
+
+def argparser():
+    parser = argparse.ArgumentParser(description="")
+    parser.add_argument("-maf", "--mafin", help="MAF input file", required=True)
+    parser.add_argument("-bed", "--bedout", help="BED input file", required=True)
+    parser.add_argument(
+        "--extra", help="Extra columns to keep (space separated list)", nargs="+", required=False, default=[]
+    )
+    return parser.parse_args()
+
+
+def maf2bed(maf_file, bed_file, extra):
+    maf = pd.read_csv(maf_file, sep="\t", comment="#")
+    bed = maf[["Chromosome", "Start_Position", "End_Position"] + extra]
+    bed.to_csv(bed_file, sep="\t", index=False, header=False)
+
+
+def main():
+    args = argparser()
+    maf2bed(maf_file=args.mafin, bed_file=args.bedout, extra=args.extra)
+
+
+if __name__ == "__main__":
+    main()
+
+```
+
+Now, let's go back to our module:
+
+
+
+```
+process CUSTOM_SCRIPT {
+    tag "$meta.id"
+    label 'process_single'
+
+    conda "anaconda::pandas=1.4.3"
+    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+        'https://depot.galaxyproject.org/singularity/pandas:1.4.3' :
+        'quay.io/biocontainers/pandas:1.4.3' }"
+
+    input:
+    tuple val(meta), path(maf)
+
+    output:
+    tuple val(meta), path('*.bed') , emit: bed
+    path "versions.yml"            , emit: versions
+
+    when:
+    task.ext.when == null || task.ext.when
+
+    script: // This script is bundled with the pipeline in bin
+    def args = task.ext.args ?: ''
+    def prefix = task.ext.prefix ?: "${meta.id}"
+
+    """
+maf2bed.py --mafin $maf --bedout ${prefix}.bed
+    """
+```
+
+We are now able to use our custom script through the module
+
+
 
 ## Lint all modules
 
