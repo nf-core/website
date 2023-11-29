@@ -3358,6 +3358,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.0"
         }
       ]
     },
@@ -18631,7 +18635,9 @@
               "documentation": "http://www.clustal.org/omega/",
               "tool_dev_url": "http://www.clustal.org/omega/",
               "doi": "10.1038/msb.2011.75",
-              "licence": "['GPL v2']"
+              "licence": [
+                "GPL v2"
+              ]
             }
           }
         ],
@@ -18686,10 +18692,12 @@
           }
         ],
         "authors": [
-          "@luisas"
+          "@luisas",
+          "@joseespinosa"
         ],
         "maintainers": [
-          "@luisas"
+          "@luisas",
+          "@joseespinosa"
         ]
       },
       "pipelines": [
@@ -29501,7 +29509,9 @@
               "documentation": "https://github.com/refresh-bio/FAMSA",
               "tool_dev_url": "https://github.com/refresh-bio/FAMSA",
               "doi": "10.1038/srep33964",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -29556,10 +29566,12 @@
           }
         ],
         "authors": [
-          "@luisas"
+          "@luisas",
+          "@JoseEspinosa"
         ],
         "maintainers": [
-          "@luisas"
+          "@luisas",
+          "@JoseEspinosa"
         ]
       },
       "pipelines": [
@@ -34738,6 +34750,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -35463,6 +35479,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -39464,6 +39484,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -68206,7 +68230,9 @@
               "homepage": "https://drive5.com/muscle5/",
               "documentation": "https://drive5.com/muscle5/manual/",
               "doi": "10.1101/2021.06.20.449169",
-              "licence": "[http://www.drive5.com/muscle/manual/license.html]"
+              "licence": [
+                "Public Domain"
+              ]
             }
           }
         ],
@@ -68240,7 +68266,7 @@
             }
           },
           {
-            "aligned_fasta": {
+            "alignment": {
               "type": "file",
               "description": "Multiple sequence alignment produced in FASTA format",
               "pattern": "*.{aln}"
@@ -68248,10 +68274,12 @@
           }
         ],
         "authors": [
-          "@alessiovignoli"
+          "@alessiovignoli",
+          "@JoseEspinosa"
         ],
         "maintainers": [
-          "@alessiovignoli"
+          "@alessiovignoli",
+          "@JoseEspinosa"
         ]
       },
       "pipelines": [
@@ -99322,6 +99350,138 @@
       }
     },
     {
+      "name": "svanalyzer_svbenchmark",
+      "path": "modules/nf-core/svanalyzer/svbenchmark/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "svanalyzer_svbenchmark",
+        "description": "SVbenchmark compares a set of “test” structural variants in VCF format to a known truth set (also in VCF format) and outputs estimates of sensitivity and specificity.",
+        "keywords": [
+          "structural variant",
+          "sv",
+          "benchmarking"
+        ],
+        "tools": [
+          {
+            "svanalyzer": {
+              "description": "SVanalyzer: tools for the analysis of structural variation in genomes",
+              "homepage": "https://svanalyzer.readthedocs.io/en/latest/index.html",
+              "documentation": "https://svanalyzer.readthedocs.io/en/latest/index.html",
+              "tool_dev_url": "https://github.com/nhansen/SVanalyzer",
+              "license": "['CC0']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing test sample information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing truth sample information\ne.g. `[ id:'test2' ]`\n"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference genome information\ne.g. `[ id:'test3' ]`\n"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing bed file information\ne.g. `[ id:'test4' ]`\n"
+            }
+          },
+          {
+            "test": {
+              "type": "file",
+              "description": "A VCF-formatted file of structural variants to test (required)",
+              "pattern": "*.{vcf,vcf.gz}"
+            }
+          },
+          {
+            "truth": {
+              "type": "file",
+              "description": "A VCF-formatted file of variants to compare against (required)",
+              "pattern": "*.{vcf,vcf.gz}"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "The reference FASTA file for the supplied VCF file or files (required)",
+              "pattern": "*.{fa,fasta,fa.gz,fasta.gz}"
+            }
+          },
+          {
+            "bed": {
+              "type": "file",
+              "description": "BED File of regions from which to include variants. Used to filter both test and truth variants.",
+              "pattern": "*.{bed}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information inherited from test vcf\ne.g. `[ id:'test']`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "fns": {
+              "type": "file",
+              "description": "VCF file with False Negatives",
+              "pattern": "*.{vcf.gz}"
+            }
+          },
+          {
+            "fps": {
+              "type": "file",
+              "description": "VCF file with False Positives",
+              "pattern": "*.{vcf.gz}"
+            }
+          },
+          {
+            "distances": {
+              "type": "file",
+              "description": "TSV file with genomic distances and size differences between structural variants compared",
+              "pattern": "*.{distances}"
+            }
+          },
+          {
+            "log": {
+              "type": "file",
+              "description": "LOG file of the run",
+              "pattern": "*.{log}"
+            }
+          },
+          {
+            "report": {
+              "type": "file",
+              "description": "Text file reporting RECALL, PRECISION and F1.",
+              "pattern": "*.{report}"
+            }
+          }
+        ],
+        "authors": [
+          "@kubranarci"
+        ]
+      }
+    },
+    {
       "name": "svdb_merge",
       "path": "modules/nf-core/svdb/merge/meta.yml",
       "type": "module",
@@ -113353,6 +113513,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -113387,6 +113551,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -113685,6 +113853,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
