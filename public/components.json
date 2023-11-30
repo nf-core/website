@@ -867,7 +867,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "3.0.0"
+          "version": "3.0.1"
         }
       ]
     },
@@ -3362,6 +3362,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -7249,13 +7253,13 @@
           },
           {
             "vcfs": {
-              "type": "files",
+              "type": "list",
               "description": "List containing 2 or more vcf files\ne.g. [ 'file1.vcf', 'file2.vcf' ]\n"
             }
           },
           {
             "tbi": {
-              "type": "files",
+              "type": "list",
               "description": "List containing 2 or more index files (optional)\ne.g. [ 'file1.tbi', 'file2.tbi' ]\n"
             }
           }
@@ -7423,7 +7427,9 @@
               "documentation": "https://samtools.github.io/bcftools/bcftools.html#convert",
               "tool_dev_url": "https://github.com/samtools/bcftools",
               "doi": "10.1093/gigascience/giab008",
-              "licence": "['GPL']"
+              "licence": [
+                "GPL"
+              ]
             }
           }
         ],
@@ -7750,13 +7756,13 @@
           },
           {
             "vcfs": {
-              "type": "files",
+              "type": "list",
               "description": "List containing 2 or more vcf files\ne.g. [ 'file1.vcf', 'file2.vcf' ]\n"
             }
           },
           {
             "tbis": {
-              "type": "files",
+              "type": "list",
               "description": "List containing the tbi index files corresponding to the vcfs input files\ne.g. [ 'file1.vcf.tbi', 'file2.vcf.tbi' ]\n"
             }
           }
@@ -8602,7 +8608,10 @@
         "name": "bcftools_roh",
         "description": "A program for detecting runs of homo/autozygosity. Only bi-allelic sites are considered.",
         "keywords": [
-          "roh"
+          "roh",
+          "biallelic",
+          "homozygosity",
+          "autozygosity"
         ],
         "tools": [
           {
@@ -15735,7 +15744,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "sarek",
@@ -15862,7 +15871,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "rnaseq",
@@ -15919,7 +15928,9 @@
               "documentation": "https://github.com/weizhongli/cdhit/wiki",
               "tool_dev_url": "https://github.com/weizhongli/cdhit",
               "doi": "10.1093/bioinformatics/btl158",
-              "licence": "['GPL v2']"
+              "licence": [
+                "GPL v2"
+              ]
             }
           }
         ],
@@ -15946,13 +15957,6 @@
             }
           },
           {
-            "versions": {
-              "type": "file",
-              "description": "File containing software versions",
-              "pattern": "versions.yml"
-            }
-          },
-          {
             "fasta": {
               "type": "file",
               "description": "fasta file of the representative sequences for each cluster",
@@ -15965,13 +15969,22 @@
               "description": "List of clusters",
               "pattern": "*.{clstr}"
             }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
           }
         ],
         "authors": [
-          "@timslittle"
+          "@timslittle",
+          "@Puumanamana"
         ],
         "maintainers": [
-          "@timslittle"
+          "@timslittle",
+          "@Puumanamana"
         ]
       },
       "pipelines": [
@@ -22853,7 +22866,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "rnaseq",
@@ -30039,6 +30052,84 @@
       }
     },
     {
+      "name": "fastavalidator",
+      "path": "modules/nf-core/fastavalidator/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "fastavalidator",
+        "description": "\"Python C-extension for a simple validator for fasta files. The module emits the validated file or an\nerror log upon validation failure.\"\n",
+        "keywords": [
+          "fasta",
+          "validation",
+          "genome"
+        ],
+        "tools": [
+          {
+            "fasta_validate": {
+              "description": "\"Python C-extension for a simple C code to validate a fasta file. It only checks a few things,\nand by default only sets its response via the return code,\nso you will need to check that!\"\n",
+              "homepage": "https://github.com/linsalrob/py_fasta_validator",
+              "documentation": "https://github.com/linsalrob/py_fasta_validator",
+              "tool_dev_url": "https://github.com/linsalrob/py_fasta_validator",
+              "doi": "10.5281/zenodo.5002710",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing file information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Input fasta file",
+              "pattern": "*.fasta"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing file information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "success_log": {
+              "type": "file",
+              "description": "Log file for successful validation",
+              "pattern": "*.success.log"
+            }
+          },
+          {
+            "error_log": {
+              "type": "file",
+              "description": "Log file for failed validation",
+              "pattern": "*.error.log"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@gallvp"
+        ],
+        "maintainers": [
+          "@gallvp"
+        ]
+      }
+    },
+    {
       "name": "fastawindows",
       "path": "modules/nf-core/fastawindows/meta.yml",
       "type": "module",
@@ -30555,7 +30646,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "rnaseq",
@@ -30819,7 +30910,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "rnaseq",
@@ -34754,6 +34845,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -35607,6 +35702,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -35700,7 +35799,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "rnavar",
@@ -36765,7 +36864,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "rnavar",
@@ -39138,7 +39237,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "rnavar",
@@ -39484,6 +39583,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -44600,6 +44703,155 @@
       ]
     },
     {
+      "name": "getorganelle_config",
+      "path": "modules/nf-core/getorganelle/config/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "getorganelle_config",
+        "description": "Downloads databases needed for running getorganelle",
+        "keywords": [
+          "assembly",
+          "organelle",
+          "mitochondria",
+          "download",
+          "database"
+        ],
+        "tools": [
+          {
+            "getorganelle": {
+              "description": "Get organelle genomes from genome skimming data",
+              "homepage": "https://github.com/Kinggerm/GetOrganelle",
+              "documentation": "https://github.com/Kinggerm/GetOrganelle",
+              "tool_dev_url": "https://github.com/Kinggerm/GetOrganelle",
+              "doi": "10.1186/s13059-020-02154-5",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "organelle_type": {
+              "type": "string",
+              "description": "Type of database, esp. embplant_pt (embryophyta plant plastome), other_pt (non-embryophyta plant plastome), embplant_mt (plant mitochondrion), embplant_nr (plant nuclear ribosomal RNA), animal_mt (animal mitochondrion), and fungus_mt (fungus mitochondrion), fungus_nr (fungus nuclear ribosomal RNA)\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "organelle_type": {
+              "type": "string",
+              "description": "Type of database, esp. embplant_pt (embryophyta plant plastome), other_pt (non-embryophyta plant plastome), embplant_mt (plant mitochondrion), embplant_nr (plant nuclear ribosomal RNA), animal_mt (animal mitochondrion), and fungus_mt (fungus mitochondrion), fungus_nr (fungus nuclear ribosomal RNA)\n"
+            }
+          },
+          {
+            "db": {
+              "type": "directory",
+              "description": "Downloaded database for GetOrganelle"
+            }
+          }
+        ],
+        "authors": [
+          "@erinyoung"
+        ]
+      }
+    },
+    {
+      "name": "getorganelle_fromreads",
+      "path": "modules/nf-core/getorganelle/fromreads/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "getorganelle_fromreads",
+        "description": "Assembles organelle genomes from genomic data",
+        "keywords": [
+          "assembly",
+          "organelle",
+          "mitochondria",
+          "illumina"
+        ],
+        "tools": [
+          {
+            "getorganelle": {
+              "description": "Get organelle genomes from genome skimming data",
+              "homepage": "https://github.com/Kinggerm/GetOrganelle",
+              "documentation": "https://github.com/Kinggerm/GetOrganelle",
+              "tool_dev_url": "https://github.com/Kinggerm/GetOrganelle",
+              "doi": "10.1186/s13059-020-02154-5",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "fastq": {
+              "type": "file",
+              "description": "Input fastq files",
+              "pattern": "*.{fastq.gz}"
+            }
+          },
+          {
+            "organelle_type": {
+              "type": "string",
+              "description": "Type of database, esp. embplant_pt (embryophyta plant plastome), other_pt (non-embryophyta plant plastome), embplant_mt (plant mitochondrion), embplant_nr (plant nuclear ribosomal RNA), animal_mt (animal mitochondrion), and fungus_mt (fungus mitochondrion), fungus_nr (fungus nuclear ribosomal RNA)\n"
+            }
+          },
+          {
+            "db": {
+              "type": "directory",
+              "description": "GetOrganelle database"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Complete or partial organelle sequences",
+              "pattern": "*.fasta.gz"
+            }
+          },
+          {
+            "etc": {
+              "type": "file",
+              "description": "Other output files"
+            }
+          }
+        ],
+        "authors": [
+          "@erinyoung"
+        ]
+      }
+    },
+    {
       "name": "gfaffix",
       "path": "modules/nf-core/gfaffix/meta.yml",
       "type": "module",
@@ -48128,6 +48380,84 @@
           "version": "1.1.5"
         }
       ]
+    },
+    {
+      "name": "gt_gff3",
+      "path": "modules/nf-core/gt/gff3/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gt_gff3",
+        "description": "GenomeTools gt-gff3 utility to parse, possibly transform, and output GFF3 files",
+        "keywords": [
+          "genome",
+          "gff3",
+          "annotation"
+        ],
+        "tools": [
+          {
+            "gt": {
+              "description": "The GenomeTools genome analysis system",
+              "homepage": "https://genometools.org/index.html",
+              "documentation": "https://genometools.org/documentation.html",
+              "tool_dev_url": "https://github.com/genometools/genometools",
+              "doi": "10.1109/TCBB.2013.68",
+              "licence": [
+                "ISC"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "gff3": {
+              "type": "file",
+              "description": "Input gff3 file",
+              "pattern": "*.{gff,gff3}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "gt_gff3": {
+              "type": "file",
+              "description": "Parsed gff3 file produced only if there is no parsing error",
+              "pattern": "*.gt.gff3"
+            }
+          },
+          {
+            "error_log": {
+              "type": "file",
+              "description": "Error log if gt-gff3 failed to parse the input gff3 file",
+              "pattern": "*.error.log"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@gallvp"
+        ],
+        "maintainers": [
+          "@gallvp"
+        ]
+      }
     },
     {
       "name": "gtdbtk_classifywf",
@@ -67778,7 +68108,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "rnasplice",
@@ -74702,7 +75032,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "3.0.0"
+          "version": "3.0.1"
         }
       ]
     },
@@ -75068,7 +75398,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "variantcatalogue",
@@ -85498,7 +85828,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "rnavar",
@@ -86481,7 +86811,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "rnaseq",
@@ -87077,7 +87407,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "rnaseq",
@@ -87480,7 +87810,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "sarek",
@@ -97559,7 +97889,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "rnaseq",
@@ -97677,7 +98007,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "rnaseq",
@@ -98519,7 +98849,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.0"
+          "version": "3.0.1"
         }
       ]
     },
@@ -98625,7 +98955,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "rnaseq",
@@ -113517,6 +113847,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -113551,6 +113885,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -113853,6 +114191,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
