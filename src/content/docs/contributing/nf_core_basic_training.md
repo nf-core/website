@@ -629,7 +629,7 @@ nf-core modules info salmon/index
  💻  Installation command: nf-core modules install salmon/index
 ```
 
-The out put from the info command will among other things give you the nf-core/tools installation command, lets see what it is doing:
+The output from the info command will among other things give you the nf-core/tools installation command, lets see what it is doing:
 
 ```bash
 nf-core modules install salmon/index
@@ -684,6 +684,29 @@ INFO     Use the following statement to include this module:
 
  include { SALMON_INDEX } from '../modules/nf-core/salmon/index/main'
 ```
+
+The module is now installed into the folder `modules/nf-core`. Now open the file `workflow/demotest.nf`. You will find already several `include` statements there from the installed modules (`MultiQC` and `FastQC`):
+
+```bash
+
+include { FASTQC  } from '../modules/nf-core/fastqc/main'
+include { MULTIQC } from '../modules/nf-core/multiqc/main'
+```
+
+Now add the above line underneath it:
+
+```bash
+
+include { FASTQC  } from '../modules/nf-core/fastqc/main'
+include { MULTIQC } from '../modules/nf-core/multiqc/main'
+include { SALMON_INDEX } from '../modules/nf-core/salmon/index/main'
+
+```
+
+This makes the module now available in the workflow script and it can be called with the right input data.
+
+
+
 
 (lots of steps missing here)
 exercise to add a different module would be nice! => salmon/quant!
