@@ -705,6 +705,7 @@ include { SALMON_INDEX } from '../modules/nf-core/salmon/index/main'
 
 This makes the module now available in the workflow script and it can be called with the right input data.
 
+<!-- TODO/TODISCUSS here the user now needs to know about how to get their fasta. We could do this here or add a new point for this above -->
 
 
 
