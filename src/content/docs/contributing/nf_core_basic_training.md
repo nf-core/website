@@ -5,7 +5,7 @@ subtitle: A guide to create Nextflow pipelines using nf-core tools
 
 # Introduction
 
-This training course aims to demonstrate how to build an nf-core pipeline using the nf-core pipeline template and nf-core modules as well as custom, local modules. Be aware that we are not going to explain any fundamental Nextflow concepts, as such we advise anyone taking this course to have completed the [Basic Nextflow Training Workshop](https://training.nextflow.io/).
+This training course aims to demonstrate how to build an nf-core pipeline using the nf-core pipeline template and nf-core modules and subworkflows as well as custom, local modules. Be aware that we are not going to explain any fundamental Nextflow concepts, as such we advise anyone taking this course to have completed the [Basic Nextflow Training Workshop](https://training.nextflow.io/).
 
 ```md
 During this course we are going to build a Simple RNA-Seq workflow.
@@ -514,7 +514,9 @@ nf-core lint
 [...]
 ```
 
-# Adding Modules to a pipeline
+# Building a pipeline from (existing) components
+
+Nextflow pipelines can be build in a very modular fashion. In nf-core, we have simple building blocks available: nf-core/modules. They are wrappers around usually individual tools. In addition, we have subworkflows: smaller pre-build pipeline chunks. You can think about the modules as Lego bricks and subworkflows as pre-build chunks that can be added to various sets. These components are centrally available for all Nextflow pipelines. To make working with them easy, we have can use `nf-core/tools`
 
 ## Adding an existing nf-core module
 
@@ -584,9 +586,11 @@ You can list all of the modules available on nf-core/modules via the command bel
 nf-core modules list remote
 ```
 
+In addition, all modules are listed on the website: [https://nf-co.re/modules](https://nf-co.re/modules)
+
 ### Install a remote nf-core module
 
-To install a remote nf-core module from the website, you can first get information about a tool, including the installation command by executing:
+To install a remote nf-core module, you can first get information about a tool, including the installation command by executing:
 
 ```bash
 nf-core modules info salmon/index
@@ -687,13 +691,13 @@ comparison to simple nextflow pipeline from the basic Nextflow training would be
 
 ## Adding a remote module
 
-If there is no nf-core module available for the software you want to include, the nf-core tools package can also aid in the generation of a remote module that is specific for your pipeline. To add a remote module run the following:
+If there is no nf-core module available for the software you want to include, you can add the module to the nf-core/modules repository. It will then become available to the wider Nextflow Community. See how to [here](https://nf-co.re/docs/contributing/tutorials/dsl2_modules_tutorial). If the module is very pipeline specific, you can also add a local module. The nf-core tools package can aid in the generation of a module template. To add a bare-bone local module run the following:
 
 ```
 nf-core modules create
 ```
 
-Open ./modules/local/demo/module.nf and start customising this to your needs whilst working your way through the extensive TODO comments!
+Open ./modules/local/demo/module.nf and start customising this to your needs whilst working your way through the extensive TODO comments! For further help and guidelines for the modules code, check out the [modules specific documentation](https://nf-co.re/docs/contributing/tutorials/dsl2_modules_tutorial).
 
 ### Making a remote module for a custom script
 
