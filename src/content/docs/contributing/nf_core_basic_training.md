@@ -722,7 +722,7 @@ workflow DEMOTEST {
     )
     ch_versions = ch_versions.mix(FASTQC.out.versions.first())
 
-    BWA_INDEX()
+    SALMON_INDEX()
 ```
 
 Now we are still missing an input for our module. In order to build an index, we require the reference fasta. Luckily, the template pipeline has this already all configured, and we can access it by just using `params.fasta` and `view` it to  insppect the channel content. (We will see later how to add more input files.)
@@ -733,10 +733,10 @@ Now we are still missing an input for our module. In order to build an index, we
 
     fasta.view()
 
-    BWA_INDEX(
+    SALMON_INDEX(
         fasta.map{it -> [id:it.getName(), it]}
     )
-    ch_versions = ch_versions.mix(BWA_INDEX.out.versions.first())
+    ch_versions = ch_versions.mix(SALMON_INDEX.out.versions.first())
 
 ```
 
@@ -744,6 +744,13 @@ Now what is happening here:
 
 To pass over our input FastA file, we need to do a small channel manipulation. nf-core/modules typically take the input together with a `meta` map. This is just a hashmap that contains relevant information for the analysis, that should be passed around the pipeline. There are a couple of keys that we share across all modules, such as `id`. So in order, to have a valid input for our module, we just use the fasta file name (`it.getName()`) as our `id`. In addition, we collect the versions of the tools that are run in the module. This will allow us later to track all tools and all versions allow us to generate a report.
 
+How test your pipeline:
+
+```bash
+nextflow run main.nf -profile test,docker --outdir results
+```
+
+You should now see that `SALMON_INDEX` is run.
 
 (lots of steps missing here)
 exercise to add a different module would be nice! => salmon/quant!
