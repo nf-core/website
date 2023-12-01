@@ -1,8 +1,8 @@
 ---
 import SchemaListing from '@components/schema/SchemaListing.svelte';
-import SchemaListingToc from '@components/schema/SchemaListingToc.svelte';
+import SidebarToc from '@components/sidebar/SidebarToc.svelte';
 import { promises, existsSync } from 'fs';
-import { z } from 'zod';
+import SchemaListingTocButtons from '@components/schema/SchemaListingTocButtons.svelte';
 import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
 import pipelines_json from '@public/pipelines.json';
 
@@ -80,13 +80,16 @@ if (schema.definitions && Object.keys(schema.definitions).length > 0) {
     version={version}
     versions={versions}
     tabItems={md_files}
+    showHiddenBtn={true}
 >
     <div class="row">
         <div class="col-12 col-md-10">
             <SchemaListing {schema} client:load />
         </div>
         <div class="col-12 col-md-2 toc order-first order-md-last pe-0">
-            <SchemaListingToc headings={headings} client:idle />
+            <SidebarToc {headings} client:idle>
+                <SchemaListingTocButtons client:visible />
+            </SidebarToc>
         </div>
     </div>
 </PipelinePageLayout>

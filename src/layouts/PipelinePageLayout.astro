@@ -13,6 +13,7 @@ export interface Props {
     headings?: { text: string; slug: string; depth: number; fa_icon?: string }[];
     tabItems?: string[];
     md_github_url?: string;
+    showHiddenBtn?: boolean;
     sections?: { section_name: string; children: {}[] }[] | never[];
     docSearchTags?: { name: string; content: string | string[] }[];
 }
@@ -26,6 +27,7 @@ let {
     versions = [],
     tabItems = [],
     md_github_url = '',
+    showHiddenBtn = false,
     sections = [],
     docSearchTags = [],
 } = Astro.props;
@@ -107,6 +109,7 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
     subfooter={md_github_url !== ''}
     topics={topics}
     sections={sections}
+    {showHiddenBtn}
     viewTransitions={true}
     docSearchTags={[
         ...docSearchTags,
