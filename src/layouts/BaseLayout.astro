@@ -20,6 +20,7 @@ export interface Props {
     image?: string;
     md_github_url?: string;
     subfooter?: boolean;
+    showHiddenBtn?: boolean;
     navTocHeadings?: object[];
     sections?: { section_name: string; children: {}[] }[] | never[];
     viewTransitions?: boolean;
@@ -38,12 +39,12 @@ let {
     )}&category=`,
     md_github_url,
     subfooter = false,
+    showHiddenBtn = false,
     navTocHeadings = [],
     sections = [],
     viewTransitions = false,
     docSearchTags = [],
 } = Astro.props;
-
 const pageTypeTag = docSearchTags.find((tag) => tag.name === 'page_type');
 const pageSubtypeTag = docSearchTags.find((tag) => tag.name === 'page_subtype');
 
@@ -66,7 +67,7 @@ image += category;
     </head>
 
     <body tabindex="0">
-        <Navbar navTocHeadings={navTocHeadings} title={title} sections={sections} />
+        <Navbar navTocHeadings={navTocHeadings} title={title} sections={sections} {showHiddenBtn} />
         <div class:list={['content', { 'double-navbar': sections.length > 0 }]}>
             <slot />
         </div>
