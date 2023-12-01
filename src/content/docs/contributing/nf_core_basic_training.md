@@ -705,8 +705,44 @@ include { SALMON_INDEX } from '../modules/nf-core/salmon/index/main'
 
 This makes the module now available in the workflow script and it can be called with the right input data.
 
-<!-- TODO/TODISCUSS here the user now needs to know about how to get their fasta. We could do this here or add a new point for this above -->
+<!-- TODO/TO DISCUSS here the user now needs to know about how to get their fasta. We could do this here or add a new point for this above -->
 
+We can now call the module in our workflow. Let's place it after FastQC:
+
+```bash
+
+workflow DEMOTEST {
+
+    ...
+    //
+    // MODULE: Run FastQC
+    //
+    FASTQC (
+        INPUT_CHECK.out.reads
+    )
+    ch_versions = ch_versions.mix(FASTQC.out.versions.first())
+
+    BWA_INDEX()
+```
+
+Now we are still missing an input for our module. In order to build an index, we require the reference fasta. Luckily, the template pipeline has this already all configured, and we can access it by just using `params.fasta` and `view` it to  insppect the channel content. (We will see later how to add more input files.)
+
+
+```bash
+    fasta  = Channel.fromPath(params.fasta)
+
+    fasta.view()
+
+    BWA_INDEX(
+        fasta.map{it -> [id:it.getName(), it]}
+    )
+    ch_versions = ch_versions.mix(BWA_INDEX.out.versions.first())
+
+```
+
+Now what is happening here:
+
+To pass over our input FastA file, we need to do a small channel manipulation. nf-core/modules typically take the input together with a `meta` map. This is just a hashmap that contains relevant information for the analysis, that should be passed around the pipeline. There are a couple of keys that we share across all modules, such as `id`. So in order, to have a valid input for our module, we just use the fasta file name (`it.getName()`) as our `id`. In addition, we collect the versions of the tools that are run in the module. This will allow us later to track all tools and all versions allow us to generate a report.
 
 
 (lots of steps missing here)
