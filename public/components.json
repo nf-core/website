@@ -3400,6 +3400,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -9787,7 +9791,7 @@
           },
           {
             "input_2": {
-              "type": "file(s)",
+              "type": "list",
               "description": "The input file(s) to find the closest features from",
               "pattern": "*.{bed,vcf,gff}(.gz)?"
             }
@@ -9839,7 +9843,10 @@
         "description": "Returns all intervals in a genome that are not covered by at least one interval in the input BED/GFF/VCF file.",
         "keywords": [
           "bed",
-          "complement"
+          "gff",
+          "vcf",
+          "complement",
+          "intervals"
         ],
         "tools": [
           {
@@ -9938,7 +9945,10 @@
               "documentation": "https://bedtools.readthedocs.io/en/latest/content/bedtools-suite.html",
               "tool_dev_url": "https://github.com/arq5x/bedtools2",
               "doi": "10.1093/bioinformatics/btq033",
-              "licence": "['GPL v2', 'MIT']"
+              "licence": [
+                "GPL v2",
+                "MIT"
+              ]
             }
           }
         ],
@@ -11166,7 +11176,10 @@
             "bedtools": {
               "description": "A powerful toolset for genome arithmetic",
               "documentation": "https://bedtools.readthedocs.io/en/latest/content/tools/sort.html",
-              "licence": "['MIT', 'GPL v2']"
+              "licence": [
+                "MIT",
+                "GPL v2"
+              ]
             }
           }
         ],
@@ -11201,7 +11214,7 @@
           },
           {
             "beds": {
-              "type": "file",
+              "type": "list",
               "description": "list of split BED files",
               "pattern": "*.bed"
             }
@@ -22963,6 +22976,10 @@
           "version": "dev"
         },
         {
+          "name": "rangeland",
+          "version": "dev"
+        },
+        {
           "name": "raredisease",
           "version": "1.1.1"
         },
@@ -31007,6 +31024,10 @@
           "version": "dev"
         },
         {
+          "name": "rangeland",
+          "version": "dev"
+        },
+        {
           "name": "raredisease",
           "version": "1.1.1"
         },
@@ -34995,6 +35016,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -35720,6 +35745,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -39761,6 +39790,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -65019,7 +65052,13 @@
         "maintainers": [
           "@FloWuenne"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "molkart",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "mindagap_mindagap",
@@ -68380,6 +68419,10 @@
         },
         {
           "name": "radseq",
+          "version": "dev"
+        },
+        {
+          "name": "rangeland",
           "version": "dev"
         },
         {
@@ -114364,6 +114407,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -114398,6 +114445,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -114736,6 +114787,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
