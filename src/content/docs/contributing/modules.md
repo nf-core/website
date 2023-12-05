@@ -811,18 +811,36 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
     If the HEREDOC cannot be used because the script is not bash, the versions.yml must be written directly e.g. [ascat module](https://github.com/nf-core/modules/blob/master/modules/nf-core/ascat/main.nf).
 
-9.  The process definition MUST NOT change the `when` statement. `when` conditions can instead be supplied using the `process.ext.when` directive in a configuration file.
+9.  The process definition MUST NOT change the `when` statement. `when` conditions can instead be supplied using the `process.ext.when` directive in
+    a configuration file.
 
-```groovy
-process {
-    withName: 'FOO' {
-        ext.when = !params.skip_module
+    ```groovy
+    process {
+        withName: 'FOO' {
+            ext.when = !params.skip_module
+        }
+        withName: 'BAR' {
+            ext.when = { meta.single_end }
+        }
     }
-    withName: 'BAR' {
-        ext.when = { meta.single_end }
-    }
-}
-```
+    ```
+
+10. In some cases, STDOUT and STDERR need to be saved to file, for example for reporting purposes. Use the shell command `tee` to redirect the
+    streams to both file and it's original stream. This allows for the streams to be captured by the workflow managers stream logging capabilities
+    and print them to screen when Nextflow encounters an error. In particular, when using `process.scratch`, the log files may not be preserved when
+    the workflow manager relinquishes the job allocation.
+
+    ```nextflow
+    script:
+    """
+    tool \\
+      --input $input \\
+      --threads $task.cpus \\
+      --output_prefix $prefix \\
+      2> >( tee ${prefix}.stderr.log >&2 ) \\
+      | tee ${prefix}.stdout.log
+    """
+    ```
 
 ### Naming conventions
 
