@@ -10,6 +10,7 @@ subtitle: A guide to create Nextflow pipelines using nf-core tools
 - How can I use custom code in my pipeline?
 
 :::note
+
 ### Learning objectives
 
 - The learner will create a simple pipeline using the nf-core template.
@@ -18,6 +19,7 @@ subtitle: A guide to create Nextflow pipelines using nf-core tools
 - The learner will incorporate modules from nf-core/modules into their pipeline.
 - The learner will add custom code as a local module into their pipeline.
 - The learner will build an nf-core schema to describe and validate pipeline parameters.
+
 :::
 
 This training course aims to demonstrate how to build an nf-core pipeline using the nf-core pipeline template and nf-core modules as well as custom, local modules. Be aware that we are not going to explain any fundamental Nextflow concepts, as such we advise anyone taking this course to have completed the [Basic Nextflow Training Workshop](https://training.nextflow.io/).
@@ -47,33 +49,33 @@ The following sections will be handled in the course:
 
 1. **Setting up the gitpod environment for the course**
 
-  The course is using gitpod in order to avoid the time expense for downloading and installing tools and data.
+The course is using gitpod in order to avoid the time expense for downloading and installing tools and data.
 
 2. **Exploring the nf-core tools command**
 
-  A very basic walk-through of what can be done with nf-core tools
+A very basic walk-through of what can be done with nf-core tools
 
 3. **Creating a new nf-core pipeline from the nf-core template**
 
 4. **Exploring the nf-core template**
 
-  a) The git repository
+   a) The git repository
 
-  b) running the pipeline
+   b) running the pipeline
 
-  c) linting the pipeline
+   c) linting the pipeline
 
-  d) walk-through of the template files
+   d) walk-through of the template files
 
 5. **Building a nf-core pipeline using the template**
 
-  a) Adding a nf-core module to your pipeline
+   a) Adding a nf-core module to your pipeline
 
-  b) Adding a local custom module to your pipeline
+   b) Adding a local custom module to your pipeline
 
-  c) Working with Nextflow schema
+   c) Working with Nextflow schema
 
-  d) Linting your modules
+   d) Linting your modules
 
 ## Preparation
 
@@ -829,9 +831,9 @@ versions (file) │File containing software versions │versions.yml
    <details>
       <summary>solution 2</summary>
 
-      ```
-      nf-core modules list local
-      ```
+   ```
+   nf-core modules list local
+   ```
 
       </details>
    :::
@@ -1075,6 +1077,7 @@ Here in the schema editor you can edit:
 :::
 
 :::note
+
 ### Key points
 
 - `nf-core create <pipeline>` creates a pipeline from the nf-core template.
@@ -1085,4 +1088,5 @@ Here in the schema editor you can edit:
 - `nf-core modules create` creates a module locally to add custom code into your pipeline.
 - `nf-core modules lint --all` lints your module code for things that must be completed.
 - `nf-core schema build` opens an interface to allow you to describe your pipeline parameters and set default values, and which values are valid.
+
 :::
