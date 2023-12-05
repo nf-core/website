@@ -3,7 +3,24 @@ title: Basic training to create an nf-core pipeline
 subtitle: A guide to create Nextflow pipelines using nf-core tools
 ---
 
-# Introduction
+## Scope
+
+- How do I create a pipeline using nf-core tools?
+- How do I incorporate modules from nf-core modules?
+- How can I use custom code in my pipeline?
+
+:::note
+
+### Learning objectives
+
+- The learner will create a simple pipeline using the nf-core template.
+- The learner will identify key files in the pipeline.
+- The learner will lint their pipeline code to identify work to be done.
+- The learner will incorporate modules from nf-core/modules into their pipeline.
+- The learner will add custom code as a local module into their pipeline.
+- The learner will build an nf-core schema to describe and validate pipeline parameters.
+
+:::
 
 This training course aims to demonstrate how to build an nf-core pipeline using the nf-core pipeline template and nf-core modules as well as custom, local modules. Be aware that we are not going to explain any fundamental Nextflow concepts, as such we advise anyone taking this course to have completed the [Basic Nextflow Training Workshop](https://training.nextflow.io/).
 
@@ -30,54 +47,58 @@ The course is going to build an (totally unscientific and useless) RNA seq pipel
 
 The following sections will be handled in the course:
 
-**1. Setting up the gitpod environment for the course**
+1. **Setting up the gitpod environment for the course**
 
 The course is using gitpod in order to avoid the time expense for downloading and installing tools and data.
 
-**2. Exploring the nf-core tools command**
+2. **Exploring the nf-core tools command**
 
 A very basic walk-through of what can be done with nf-core tools
 
-**3. Creating a new nf-core pipeline from the nf-core template**
+3. **Creating a new nf-core pipeline from the nf-core template**
 
-**4. Exploring the nf-core template**
+4. **Exploring the nf-core template**
 
-a) The git repository
+   a) The git repository
 
-b) running the pipeline
+   b) running the pipeline
 
-c) linting the pipeline
+   c) linting the pipeline
 
-d) walk-through of the template files
+   d) walk-through of the template files
 
-**5. Building a nf-core pipeline using the template**
+5. **Building a nf-core pipeline using the template**
 
-a) Adding a nf-core module to your pipeline
+   a) Adding a nf-core module to your pipeline
 
-b) Adding a local custom module to your pipeline
+   b) Adding a local custom module to your pipeline
 
-c) Working with Nextflow schema
+   c) Working with Nextflow schema
 
-d) Linting your modules
+   d) Linting your modules
 
-## Prerequisites
+## Preparation
 
-## Follow the training videos
+### Prerequisites
+
+- Familiarity with Nextflow syntax and configuration.
+
+### Follow the training videos
 
 This training can be followed either based on this documentation alone, or via a training video hosted on youtube. You can find the youtube video in the Youtube playlist below:
 
 (no such video yet)
 
-# Using gitpod
+### Gitpod
 
-For this tutorial we are going to use Gitpod, which is best for first-timers as this platform contains all the programs and data required.
-Gitpod will contain a preconfigured Nextflow development environment and has the following requirements:
+For this tutorial we will use Gitpod, which runs in the learners web browser. The Gitpod environment contains a preconfigured Nextflow development environment
+which includes a terminal, file editor, file browser, Nextflow, and nf-core tools. To use Gitpod, you will need:
 
 - A GitHub account
 - Web browser (Google Chrome, Firefox)
 - Internet connection
 
-Simply click the link and log in using your GitHub account to start the tutorial:
+Click the link and log in using your GitHub account to start the tutorial:
 
 <p class="text-center">
   <a href="https://www.gitpod.io/#https://github.com/nf-core/basic_training" class="btn btn-lg btn-success" target="_blank">
@@ -85,9 +106,13 @@ Simply click the link and log in using your GitHub account to start the tutorial
   </a>
 </p>
 
-For more information about gitpod, including how to make your own gitpod environement, see the gitpod bytesize talk on youtube (link to the bytesize talk)
+For more information about Gitpod, including how to make your own Gitpod environement, see the Gitpod bytesize talk on youtube (link to the bytesize talk),
+check the [nf-core Gitpod documentation](gitpod/index) or [Gitpod's own documentation](https://www.gitpod.io/docs).
 
-## Explore your Gitpod interface
+<details>
+<summary> Expand this section for instructions to explore your Gitpod environment</summary>
+
+#### Explore your Gitpod interface
 
 You should now see something similar to the following:
 
@@ -113,9 +138,10 @@ Runtime: Groovy 3.0.19 on OpenJDK 64-Bit Server VM 17.0.8-internal+0-adhoc..src
 Encoding: UTF-8 (UTF-8)
 ```
 
-## Reopening a Gitpod session
+#### Reopening a Gitpod session
 
-You can reopen an environment from <https://gitpod.io/workspaces>. Find your previous environment in the list, then select the ellipsis (three dots icon) and select Open.
+When a Gitpod session is not used for a while, i.e., goes idle, it will timeout and close the interface.
+You can reopen the environment from <https://gitpod.io/workspaces>. Find your previous environment in the list, then select the ellipsis (three dots icon) and select Open.
 
 If you have saved the URL for your previous Gitpod environment, you can simply open it in your browser.
 
@@ -123,11 +149,13 @@ Alternatively, you can start a new workspace by following the Gitpod URL: <https
 
 If you have lost your environment, you can find the main scripts used in this tutorial in the `nf-training` directory.
 
-## Saving files from Gitpod to your local machine
+#### Saving files from Gitpod to your local machine
 
-To save any file from the explorer panel, right-click the file and select Download.
+To save any file locally from the explorer panel, right-click the file and select Download.
 
-# Explore nf-core/tools
+</details>
+
+## Explore nf-core/tools
 
 The nf-core/tools package is already installed in the gitpod environment. Now you can check out which pipelines, subworkflows and modules are available via tools. To see all available commands of nf-core tools, run the following:
 
@@ -137,7 +165,7 @@ nf-core --help
 
 We will touch on most of the commands for developers later throughout this tutorial.
 
-# Create a pipeline from template
+## Create a pipeline from template
 
 To get started with your new pipeline, run the create command:
 
@@ -285,7 +313,7 @@ When creating a new repository on GitHub, create it as an empty repository witho
    </details>
    :::
 
-## Run the new pipeline
+### Run the new pipeline
 
 The new pipeline should run with Nextflow, right out of the box. Let’s try:
 
@@ -296,7 +324,7 @@ nextflow run nf-core-demotest/ -profile test,docker --outdir test_results
 
 This basic template pipeline contains already the FastQC and MultiQC modules, which do run on a selection of test data.
 
-## Template code walk through
+### Template code walk through
 
 Now let us have a look at the files that were generated within the `nf-core-demotest` directory when we created this pipeline. You can see all files and directories either on the left hand side in the Explorer, or by running the command:
 
@@ -676,11 +704,11 @@ nf-core lint
 
    :::
 
-# Adding Modules to a pipeline
+## Adding Modules to a pipeline
 
-## Adding an existing nf-core module
+### Adding an existing nf-core module
 
-### Identify available nf-core modules
+#### Identify available nf-core modules
 
 The nf-core pipeline template comes with a few nf-core/modules pre-installed. You can list these with the command below:
 
@@ -746,7 +774,7 @@ You can list all of the modules available on nf-core/modules via the command bel
 nf-core modules list remote
 ```
 
-### Install a remote nf-core module
+#### Install a remote nf-core module
 
 To install a remote nf-core module from the website, you can first get information about a tool, including the installation command by executing:
 
@@ -802,10 +830,10 @@ versions (file) │File containing software versions │versions.yml
 2. Is there any version of `salmon/quant` already installed locally?
    <details>
       <summary>solution 2</summary>
-      
-      ```
-      nf-core modules list local
-      ```
+
+   ```
+   nf-core modules list local
+   ```
 
       </details>
    :::
@@ -955,9 +983,9 @@ comparison to simple nextflow pipeline from the basic Nextflow training would be
 
 :::
 
-## Adding a remote module
+### Adding a local module
 
-If there is no nf-core module available for the software you want to include, the nf-core tools package can also aid in the generation of a remote module that is specific for your pipeline. To add a remote module run the following:
+If there is no nf-core module available for the software you want to include, the nf-core tools package can also aid in the generation of a local module that is specific for your pipeline. To add a local module run the following:
 
 ```
 nf-core modules create
@@ -965,7 +993,7 @@ nf-core modules create
 
 Open ./modules/local/demo/module.nf and start customising this to your needs whilst working your way through the extensive TODO comments!
 
-### Making a remote module for a custom script
+### Making a local module for a custom script
 
 :::tip{title="Exercise 6 - Adding a custom module"}
 In the directory `exercise_6` you will find the custom script `print_hello.py`, which will be used for this and the next exercise.
@@ -994,7 +1022,7 @@ As well as the pipeline template you can lint individual or all modules with a s
 nf-core modules lint --all
 ```
 
-# Nextflow Schema
+## Nextflow Schema
 
 All nf-core pipelines can be run with --help to see usage instructions. We can try this with the demo pipeline that we just created:
 
@@ -1003,7 +1031,7 @@ cd ../
 nextflow run nf-core-demo/ --help
 ```
 
-## Working with Nextflow schema
+### Working with Nextflow schema
 
 If you peek inside the nextflow_schema.json file you will see that it is quite an intimidating thing. The file is large and complex, and very easy to break if edited manually.
 
@@ -1045,5 +1073,20 @@ Here in the schema editor you can edit:
 1.  Feed a string to your custom script from exercise 6 from the command line. Use `nf-core schema build` to add the parameter to the `nextflow.config` file.
 
       </details>
+
+:::
+
+:::note
+
+### Key points
+
+- `nf-core create <pipeline>` creates a pipeline from the nf-core template.
+- `nf-core lint` lints the pipeline code for things that must be completed.
+- `nf-core modules list local` lists modules currently installed into your pipeline.
+- `nf-core modules list remote` lists modules available to install into your pipeline.
+- `nf-core modules install <tool/subtool>` installs the tool module into your pipeline.
+- `nf-core modules create` creates a module locally to add custom code into your pipeline.
+- `nf-core modules lint --all` lints your module code for things that must be completed.
+- `nf-core schema build` opens an interface to allow you to describe your pipeline parameters and set default values, and which values are valid.
 
 :::
