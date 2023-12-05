@@ -2,9 +2,9 @@
 title: 'Bytesize: Nextflow Executors'
 subtitle: Maxime Garcia, Seqera
 type: talk
-start_date: 'TBD'
+start_date: '2023-12-05'
 start_time: '13:00+01:00'
-end_date: 'TBD'
+end_date: '2023-12-05'
 end_time: '13:30+01:00'
 location_url: https://kth-se.zoom.us/j/68390542812
 ---
