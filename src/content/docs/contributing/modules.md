@@ -842,6 +842,23 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
     """
     ```
 
+11. Occasionally, some tools do not exit with the expected exit code 0 upon successful use of the tool. In these cases one can use
+    the `||` operator to run another useful command when the exit code is not 0 (for example, testing if a file is not size 0).
+
+    ```nextflow
+    script:
+    """
+    tool \\
+      --input $input \\
+      --summary ${prefix}.summary \\
+      || test -s ${prefix}.summary
+    """
+    ```
+
+    See the [Bash manual on file operators](https://tldp.org/LDP/abs/html/fto.html) for examples of properties of files which could be tested.
+    Alternate suggestions include using `grep -c` to search for a valid string match, or other tool which will appropriately
+    error when expected output is not successfully created.
+
 ### Naming conventions
 
 1. The directory structure for the module name must be all lowercase e.g. [`modules/nf-core/bwa/mem/`](https://github.com/nf-core/modules/tree/master/modules/nf-core/bwa/mem/). The name of the software (i.e. `bwa`) and tool (i.e. `mem`) MUST be all one word.
