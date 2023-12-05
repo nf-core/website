@@ -845,7 +845,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 11. Occasionally, some tools do not exit with the expected exit code 0 upon successful use of the tool. In these cases one can use
     the `||` operator to run another useful command when the exit code is not 0 (for example, testing if a file is not size 0).
 
-    ```nextflow {4}
+    ```nextflow {6}
     script:
     """
     tool \\
