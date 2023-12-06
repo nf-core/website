@@ -368,29 +368,14 @@ To create the necessary files for nf-test and ensure a smooth transition, we wil
 
 Here are the steps to follow:
 
-- Rename the current module directory to `<module>_old` to avoid conflicts with the new module.
+- Use nf-core/tools to create a new module with the same name as the old one with the option `--migrate-pytest`.
+  This command will rename the current module directory to `<module>_old` to avoid conflicts with the new module, create a new module, and copy the `main.nf`, `meta.yml` and `environment.yml` files over to preserve the original module code.
 
 ```bash
-mv modules/nf-core/<tool>/<subtool> modules/nf-core/<tool>/<subtool>_old
+nf-core modules create <tool>/<subtool> --migrate-pytest
 ```
 
-- Create a new module with the same name as the old one using nf-core/tools.
-
-```bash
-nf-core modules create <tool>/<subtool>
-```
-
-- Move the old `main.nf`, `meta.yml` and `environment.yml` files to the new directory.
-
-```bash
-mv modules/nf-core/<tool>/<subtool>_old/main.nf modules/nf-core/<tool>/<subtool>/main.nf
-mv modules/nf-core/<tool>/<subtool>_old/meta.yml modules/nf-core/<tool>/<subtool>/meta.yml
-mv modules/nf-core/<tool>/<subtool>_old/environment.yml modules/nf-core/<tool>/<subtool>/environment.yml
-```
-
-- (optional) If your module needs a `nextflow.config` file to run (e.g. for `ext.args` specification), create or copy this to the module's `tests/` directory
-
-- (optional) If your module needs a `nextflow.config` specify the location of the config in the `main.nf.test` file
+- (optional) If your module has a `nextflow.config` file to run (e.g. for `ext.args` specification), the command will also copy it to the module's `tests/` directory and the path will be added to the `main.nf.test` file.
 
 ```groovy title="main.nf.test"
 process "MODULE"
@@ -406,6 +391,8 @@ options "-stub"
 :::note
 this can be added at the top of `main.nf.test` to have all tests run in stub mode or this can also be added to a single test
 :::
+
+- When using the `--migrate-pytest` option you will be asked if you want to delete the old module directory and see the content of the old pytests in the terminal, or to keep the old module directory. For the following steps, use the information from the pytest tests to create the new nf-test tests.
 
 - Provide a test name preferably indicating the test-data and file-format used. Example: `test("homo_sapiens - [bam, bai, bed] - fasta - fai")`
 
@@ -446,6 +433,8 @@ assertAll(
 ```bash
 nf-core modules test <tool>/<subtool>
 ```
+
+If you chose to not remove the old module directory with nf-core/tools:
 
 - Remove the corresponding tags from `tests/config/pytest_modules.yml` so that py-tests for the module will be skipped on github CI.
 
