@@ -411,7 +411,7 @@ Here are the steps to follow:
 nf-core subworkflows create <subworkflow> --migrate-pytest
 ```
 
-- Using the `--migrate-pytest` option you will be asked if you want to delete the old subworkflow directory and se the content of the old pytests in the screen, or keep the old subworkflow directory. For the following steps, use the information from the pytest tests to create the new nf-test tests.
+- When using the `--migrate-pytest` option you will be asked if you want to delete the old subworkflow directory and see the content of the old pytests in the terminal, or to keep the old subworkflow directory. For the following steps, use the information from the pytest tests to create the new nf-test tests.
 
 - Provide a test name preferably indicating the test-data and file-format used. Example: `test("homo_sapiens - [bam, bai, bed] - fasta - fai")`
 
@@ -452,7 +452,7 @@ The tag in `tags.yml` has to contain both `subworkflows/<subworkflow>` and not j
 :::
 
 Time for some cleanup!
-If you choosed to not remove the old module directory with nf-core/tools:
+If you chose to not remove the old module directory with nf-core/tools:
 
 - Remove the corresponding tags from `tests/config/pytest_modules.yml` so that py-tests for the subworkflow will be skipped on github CI.
 
