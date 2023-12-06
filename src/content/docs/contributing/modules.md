@@ -392,7 +392,7 @@ options "-stub"
 this can be added at the top of `main.nf.test` to have all tests run in stub mode or this can also be added to a single test
 :::
 
-- Using the `--migrate-pytest` option you will be asked if you want to delete the old module directory and se the content of the old pytests in the screen, or keep the old module directory. For the following steps, use the information from the pytest tests to create the new nf-test tests.
+- When using the `--migrate-pytest` option you will be asked if you want to delete the old module directory and see the content of the old pytests in the terminal, or to keep the old module directory. For the following steps, use the information from the pytest tests to create the new nf-test tests.
 
 - Provide a test name preferably indicating the test-data and file-format used. Example: `test("homo_sapiens - [bam, bai, bed] - fasta - fai")`
 
@@ -434,7 +434,7 @@ assertAll(
 nf-core modules test <tool>/<subtool>
 ```
 
-If you choosed to not remove the old module directory with nf-core/tools:
+If you chose to not remove the old module directory with nf-core/tools:
 
 - Remove the corresponding tags from `tests/config/pytest_modules.yml` so that py-tests for the module will be skipped on github CI.
 
