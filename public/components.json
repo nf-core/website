@@ -3416,6 +3416,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -24660,7 +24664,9 @@
               "documentation": "https://github.com/vanvalenlab/intro-to-deepcell/tree/master/pretrained_models",
               "tool_dev_url": "https://githu/b.com/vanvalenlab/deepcell-tf",
               "doi": "10.1038/s41587-021-01094-0",
-              "licence": "APACHE2"
+              "licence": [
+                "APACHE2"
+              ]
             }
           }
         ],
@@ -24677,6 +24683,19 @@
               "description": "Multichannel image file",
               "pattern": "*.{tiff,tif,h5,hdf5}"
             }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "membrane_img": {
+              "type": "file",
+              "description": "Optional membrane image to be provided separately.",
+              "pattern": "*.{tiff,tif,h5,hdf5}"
+            }
           }
         ],
         "output": [
@@ -24687,17 +24706,17 @@
             }
           },
           {
-            "versions": {
-              "type": "file",
-              "description": "File containing software versions",
-              "pattern": "versions.yml"
-            }
-          },
-          {
             "mask": {
               "type": "file",
               "description": "File containing the mask.",
               "pattern": "*.{tif, tiff}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
             }
           }
         ],
@@ -29779,7 +29798,9 @@
               "documentation": "https://github.com/refresh-bio/FAMSA",
               "tool_dev_url": "https://github.com/refresh-bio/FAMSA",
               "doi": "10.1038/srep33964",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -29821,10 +29842,12 @@
           }
         ],
         "authors": [
-          "@luisas"
+          "@luisas",
+          "@JoseEspinosa"
         ],
         "maintainers": [
-          "@luisas"
+          "@luisas",
+          "@JoseEspinosa"
         ]
       },
       "pipelines": [
@@ -31055,10 +31078,6 @@
         },
         {
           "name": "radseq",
-          "version": "dev"
-        },
-        {
-          "name": "rangeland",
           "version": "dev"
         },
         {
@@ -35066,6 +35085,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -35791,6 +35814,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -39848,6 +39875,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -104948,6 +104979,10 @@
           "version": "1.0.0"
         },
         {
+          "name": "rangeland",
+          "version": "dev"
+        },
+        {
           "name": "raredisease",
           "version": "1.1.1"
         },
@@ -114656,6 +114691,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -114690,6 +114729,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -115044,6 +115087,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
