@@ -815,9 +815,9 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
     ```
 
 10. In some cases, STDOUT and STDERR need to be saved to file, for example for reporting purposes. Use the shell command `tee` to redirect the
-    streams to both file and it's original stream. This allows for the streams to be captured by the workflow managers stream logging capabilities
+    streams to both file and it's original stream. This allows for the streams to be captured by the job scheduler's stream logging capabilities
     and print them to screen when Nextflow encounters an error. In particular, when using `process.scratch`, the log files may not be preserved when
-    the workflow manager relinquishes the job allocation.
+    the job scheduler relinquishes the job allocation.
 
     ```nextflow {7-8}
     script:
