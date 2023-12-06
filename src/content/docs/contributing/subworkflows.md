@@ -404,25 +404,14 @@ To create the necessary files for nf-test and ensure a smooth transition, we wil
 
 Here are the steps to follow:
 
-- Rename the current module directory to `<subworkflow>_old` to avoid conflicts with the new subworkflow.
+- Use nf-core/tools to create a new subworkflow with the same name as the old one with the option `--migrate-pytest`.
+  This command will rename the current subworkflow directory to `<subworkflow>_old` to avoid conflicts with the new subworkflow, create a new subworkflow, and copy the `main.nf` and `meta.yml` files over to preserve the original subworkflow code.
 
 ```bash
-mv subworkflow/nf-core/<subworkflow> subworkflow/nf-core/<subworkflow>_old
+nf-core subworkflows create <subworkflow> --migrate-pytest
 ```
 
-- Create a new subworkflow with the same name as the old one using nf-core/tools.
-
-```bash
-nf-core subworkflows create <subworkflow>
-```
-
-- Move the old `main.nf`, `meta.yml` and `environment.yml` files to the new directory.
-
-```bash
-mv modules/nf-core/<subworkflow>_old/main.nf modules/nf-core/<subworkflow>/main.nf
-mv modules/nf-core/<subworkflow>_old/meta.yml modules/nf-core/<subworkflow>/meta.yml
-mv modules/nf-core/<subworkflow>_old/environment.yml modules/nf-core/<subworkflow>/environment.yml
-```
+- Using the `--migrate-pytest` option you will be asked if you want to delete the old subworkflow directory and se the content of the old pytests in the screen, or keep the old subworkflow directory. For the following steps, use the information from the pytest tests to create the new nf-test tests.
 
 - Provide a test name preferably indicating the test-data and file-format used. Example: `test("homo_sapiens - [bam, bai, bed] - fasta - fai")`
 
@@ -463,6 +452,7 @@ The tag in `tags.yml` has to contain both `subworkflows/<subworkflow>` and not j
 :::
 
 Time for some cleanup!
+If you choosed to not remove the old module directory with nf-core/tools:
 
 - Remove the corresponding tags from `tests/config/pytest_modules.yml` so that py-tests for the subworkflow will be skipped on github CI.
 
