@@ -3412,6 +3412,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -26384,6 +26388,27 @@
               "description": "Input fasta file",
               "pattern": "*.{fa,fasta,fa.gz,fasta.gz}"
             }
+          },
+          {
+            "taxonmap": {
+              "type": "file",
+              "description": "Optional mapping file of NCBI protein accession numbers to taxon ids (gzip compressed), required for taxonomy functionality.",
+              "pattern": "*.gz"
+            }
+          },
+          {
+            "taxonnodes": {
+              "type": "file",
+              "description": "Optional NCBI taxonomy nodes.dmp file, required for taxonomy functionality.",
+              "pattern": "*.dmp"
+            }
+          },
+          {
+            "taxonnames": {
+              "type": "file",
+              "description": "Optional NCBI taxonomy names.dmp file, required for taxonomy functionality.",
+              "pattern": "*.dmp"
+            }
           }
         ],
         "output": [
@@ -26413,7 +26438,8 @@
         ],
         "maintainers": [
           "@spficklin",
-          "@vagkaratzas"
+          "@vagkaratzas",
+          "@jfy133"
         ]
       }
     },
@@ -35036,6 +35062,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -35761,6 +35791,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -39814,6 +39848,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -45648,8 +45686,15 @@
           {
             "gtf": {
               "type": "file",
-              "description": "GTF file resulting from the conversion of the GFF input file",
+              "description": "GTF file resulting from the conversion of the GFF input file if '-T' argument is present",
               "pattern": "*.{gtf}"
+            }
+          },
+          {
+            "gffread_gff": {
+              "type": "file",
+              "description": "GFF3 file resulting from the conversion of the GFF input file if '-T' argument is absent",
+              "pattern": "*.{gff3}"
             }
           },
           {
@@ -79692,6 +79737,89 @@
       ]
     },
     {
+      "name": "presto_filterseq",
+      "path": "modules/nf-core/presto/filterseq/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "presto_filterseq",
+        "description": "Filter reads by quality score.",
+        "keywords": [
+          "immcantation",
+          "airrseq",
+          "genomics",
+          "immunoinformatics"
+        ],
+        "tools": [
+          {
+            "presto": {
+              "description": "A bioinformatics toolkit for processing high-throughput lymphocyte receptor sequencing data.",
+              "homepage": "https://immcantation.readthedocs.io",
+              "documentation": "https://presto.readthedocs.io",
+              "tool_dev_url": "https://bitbucket.org/kleinstein/presto",
+              "doi": "10.1093/bioinformatics/btu138",
+              "licence": [
+                "AGPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "reads": {
+              "type": "file",
+              "description": "fastq file",
+              "pattern": "*.{fastq}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "reads": {
+              "type": "file",
+              "description": "filtered fastq file",
+              "pattern": "*.{fastq}"
+            }
+          },
+          {
+            "logs": {
+              "type": "file",
+              "description": "command logs",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "log_tab": {
+              "type": "file",
+              "description": "parsed log table",
+              "pattern": "*.tab"
+            }
+          }
+        ],
+        "authors": [
+          "@ggabernet"
+        ]
+      }
+    },
+    {
       "name": "pretextmap",
       "path": "modules/nf-core/pretextmap/meta.yml",
       "type": "module",
@@ -85468,13 +85596,13 @@
           },
           {
             "save_cliprejects": {
-              "type": "value",
+              "type": "boolean",
               "description": "Save filtered reads to a file"
             }
           },
           {
             "save_clipstats": {
-              "type": "value",
+              "type": "boolean",
               "description": "Save clipping stats to a file"
             }
           }
@@ -86236,7 +86364,8 @@
         "description": "Create a sequence dictionary file from a FASTA file",
         "keywords": [
           "dict",
-          "fasta"
+          "fasta",
+          "sequence"
         ],
         "tools": [
           {
@@ -86973,7 +87102,7 @@
           },
           {
             "readgroup": {
-              "type": "stdout",
+              "type": "file",
               "description": "File containing readgroup string(s)"
             }
           },
@@ -114523,6 +114652,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -114557,6 +114690,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -114907,6 +115044,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
