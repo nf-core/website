@@ -618,7 +618,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
     - The value of `task.ext.args` is supplied from the `modules.config` file by assigning a closure that returns a string value to `ext.args`. The closure is necessary to update parameters supplied in a config with `-c`.
 
-      ```groovy title="<module>.nf"
+      ```groovy {2} title="<module>.nf"
       script:
       def args = task.ext.args ?: ''
       def prefix = task.ext.prefix ?: "${meta.id}"
@@ -629,7 +629,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
       """
       ```
 
-      ```groovy title="modules.config"
+      ```groovy {2-5} title="modules.config"
           withName: <module> {
               ext.args = { [                                                        // Assign a closure which returns a string
                   '--quiet',
@@ -770,7 +770,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
     specified to provide this information e.g. [homer/annotatepeaks module](https://github.com/nf-core/modules/blob/master/modules/nf-core/homer/annotatepeaks/main.nf).
     Please include the accompanying comments above the software packing directives and beside the version string.
 
-    ```nextflow
+    ```nextflow {4,15,21}
     process TOOL {
         ...
 
@@ -819,7 +819,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
     and print them to screen when Nextflow encounters an error. In particular, when using `process.scratch`, the log files may not be preserved when
     the workflow manager relinquishes the job allocation.
 
-    ```nextflow
+    ```nextflow {7-8}
     script:
     """
     tool \\
