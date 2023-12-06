@@ -746,7 +746,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         fastqc: \$( fastqc --version | sed -e "s/FastQC v//g" )
-        samtools: \$( samtools --version 2>&1 | sed 's/^.*samtools //; s/Using.*\$// )
+        samtools: \$( samtools --version |& sed '1!d ; s/samtools //' )
     END_VERSION
     ```
 
@@ -760,6 +760,25 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
     All reported versions MUST be without a leading `v` or similar (i.e. must start with a numeric character), or for
     unversioned software, a Git SHA commit id (40 character hexadecimal string).
+
+    <details>
+    <summary>Tips for extracting the version string</summary>
+    `sed` is a powerful stream editor that can be used to manipulate the input text into the desired output.
+    Start by piping the output of the version command to `sed` and try to select the line with the version number:
+
+    ```bash
+    tool --version | sed '1!d'
+    ```
+
+    - `sed '1!d'` Extracts only line 1 of the output printed by `tools --version`.
+    - If the line extraction doesn't work, then it's likely the version information is written to stderr, rather than stdout.
+      In this case capture stderr using `|&` which is shorthand for `2>&1 |`.
+    - `sed 's/pattern/replacement/'` can be used to remove parts of a string. `.` matches any character, `+` matches 1 or more times.
+    - You can separate `sed` commands using `;`. Often the pattern : `sed filter line ; replace string` is enough to get the version number.
+    - It is not necessary to use `echo`, `head`, `tail`, or `grep`.
+    - Use `|| true` for tools that exit with a non-zero error code: `command --version || true` or `command --version | sed ... || true`.
+    - The line to process can also be selected using a pattern instead of a number: `sed -nr '/pattern/p'`.
+    </details>
 
     We chose a [HEREDOC](https://tldp.org/LDP/abs/html/here-docs.html) over piping into the versions file
     line-by-line as we believe the latter makes it easy to accidentally overwrite the file. Moreover, the exit status
