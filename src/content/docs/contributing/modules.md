@@ -776,8 +776,8 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
     - `sed 's/pattern/replacement/'` can be used to remove parts of a string. `.` matches any character, `+` matches 1 or more times.
     - You can separate `sed` commands using `;`. Often the pattern : `sed filter line ; replace string` is enough to get the version number.
     - It is not necessary to use `echo`, `head`, `tail`, or `grep`.
-    - Use `|| true` for tools that exit with a non-zero error code: `command --version || true` or `command --version | sed ... || true`.
-    - The line to process can also be selected using a pattern instead of a number: `sed -nr '/pattern/p'`.
+    - Use `|| true` for tools that exit with a non-zero error code: `command --version || true{:bash}` or `command --version | sed ... || true{:bash}`.
+    - The line to process can also be selected using a pattern instead of a number: `sed -nr '/pattern/p'{:bash}`.
     </details>
 
     We chose a [HEREDOC](https://tldp.org/LDP/abs/html/here-docs.html) over piping into the versions file
