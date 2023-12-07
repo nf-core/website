@@ -3420,6 +3420,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -9862,6 +9866,7 @@
           "gff",
           "vcf",
           "complement",
+          "bedtools",
           "intervals"
         ],
         "tools": [
@@ -35093,6 +35098,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -35818,6 +35827,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -39883,6 +39896,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -80582,6 +80599,89 @@
       }
     },
     {
+      "name": "proteinortho",
+      "path": "modules/nf-core/proteinortho/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "proteinortho",
+        "description": "Proteinortho is a tool to detect orthologous genes within different species.",
+        "keywords": [
+          "orthology",
+          "co-orthology",
+          "homology",
+          "sequence similarity",
+          "spectral clustering",
+          "comparative genomics",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "proteinortho": {
+              "description": "Proteinortho is a tool to detect orthologous genes within different species.",
+              "homepage": "https://gitlab.com/paulklemm_PHD/proteinortho",
+              "documentation": "https://gitlab.com/paulklemm_PHD/proteinortho#proteinortho",
+              "tool_dev_url": "https://gitlab.com/paulklemm_PHD/proteinortho",
+              "doi": "10.1186/1471-2105-12-124",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "fasta_files": {
+              "type": "file",
+              "description": "Input fasta files (proteomes or transcriptomes), at least 2 are needed",
+              "pattern": "*.{fa,fasta,faa,fna,fn}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "orthologgroups": {
+              "type": "file",
+              "description": "Orthology table",
+              "pattern": "*.proteinortho.tsv"
+            }
+          },
+          {
+            "orthologgraph": {
+              "type": "file",
+              "description": "Orthology graph",
+              "pattern": "*.proteinortho-graph"
+            }
+          },
+          {
+            "blastgraph": {
+              "type": "file",
+              "description": "BLAST graph",
+              "pattern": "*.blast-graph"
+            }
+          }
+        ],
+        "authors": [
+          "@pmjklemm"
+        ],
+        "maintainers": [
+          "@pmjklemm"
+        ]
+      }
+    },
+    {
       "name": "proteus_readproteingroups",
       "path": "modules/nf-core/proteus/readproteingroups/meta.yml",
       "type": "module",
@@ -109280,6 +109380,150 @@
       }
     },
     {
+      "name": "xz_compress",
+      "path": "modules/nf-core/xz/compress/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "xz_compress",
+        "description": "Compresses files with xz.",
+        "keywords": [
+          "xz",
+          "compression",
+          "archive"
+        ],
+        "tools": [
+          {
+            "xz": {
+              "description": "xz is a general-purpose data compression tool with command line syntax similar to gzip and bzip2.",
+              "homepage": "https://tukaani.org/xz/",
+              "documentation": "https://tukaani.org/xz/man/xz.1.html",
+              "tool_dev_url": "https://github.com/tukaani-project/xz",
+              "licence": [
+                "GNU LGPLv2.1",
+                "GNU GPLv2",
+                "GNU GPLv3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "raw_file": {
+              "type": "file",
+              "description": "File to be compressed",
+              "pattern": "*.*"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "archive": {
+              "type": "file",
+              "description": "The compressed file",
+              "pattern": "*.xz"
+            }
+          }
+        ],
+        "authors": [
+          "@leoisl"
+        ],
+        "maintainers": [
+          "@leoisl"
+        ]
+      }
+    },
+    {
+      "name": "xz_decompress",
+      "path": "modules/nf-core/xz/decompress/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "xz_decompress",
+        "description": "Decompresses files with xz.",
+        "keywords": [
+          "xz",
+          "decompression",
+          "compression"
+        ],
+        "tools": [
+          {
+            "xz": {
+              "description": "xz is a general-purpose data compression tool with command line syntax similar to gzip and bzip2.",
+              "homepage": "https://tukaani.org/xz/",
+              "documentation": "https://tukaani.org/xz/man/xz.1.html",
+              "tool_dev_url": "https://github.com/tukaani-project/xz",
+              "licence": [
+                "GNU LGPLv2.1",
+                "GNU GPLv2",
+                "GNU GPLv3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "archive": {
+              "type": "file",
+              "description": "File to be decompressed",
+              "pattern": "*.{xz}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "file": {
+              "type": "file",
+              "description": "The decompressed file",
+              "pattern": "*.*"
+            }
+          }
+        ],
+        "authors": [
+          "@leoisl"
+        ],
+        "maintainers": [
+          "@leoisl"
+        ]
+      }
+    },
+    {
       "name": "yahs",
       "path": "modules/nf-core/yahs/meta.yml",
       "type": "module",
@@ -114713,6 +114957,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -114747,6 +114995,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -115109,6 +115361,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
