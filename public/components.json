@@ -1896,7 +1896,10 @@
               "documentation": "http://www.popgen.dk/angsd/",
               "tool_dev_url": "https://github.com/ANGSD/angsd",
               "doi": "10.1186/s12859-014-0356-4",
-              "licence": "['GPL v3, MIT']"
+              "licence": [
+                "GPL v3",
+                "MIT"
+              ]
             }
           }
         ],
@@ -3360,6 +3363,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         },
         {
           "name": "rnafusion",
@@ -17462,6 +17469,143 @@
       ]
     },
     {
+      "name": "checkm2_databasedownload",
+      "path": "modules/nf-core/checkm2/databasedownload/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "checkm2_databasedownload",
+        "description": "CheckM2 database download",
+        "keywords": [
+          "checkm",
+          "mag",
+          "metagenome",
+          "quality",
+          "completeness",
+          "contamination",
+          "bins"
+        ],
+        "tools": [
+          {
+            "checkm2": {
+              "description": "CheckM2 - Rapid assessment of genome bin quality using machine learning",
+              "homepage": "https://github.com/chklovski/CheckM2",
+              "doi": "10.1038/s41592-023-01940-w",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing database information\ne.g. `[ id:'test', version:1 ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@dialvarezs"
+        ]
+      }
+    },
+    {
+      "name": "checkm2_predict",
+      "path": "modules/nf-core/checkm2/predict/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "checkm2_predict",
+        "description": "CheckM2 bin quality prediction",
+        "keywords": [
+          "checkm",
+          "mag",
+          "metagenome",
+          "quality",
+          "completeness",
+          "contamination",
+          "bins"
+        ],
+        "tools": [
+          {
+            "checkm2": {
+              "description": "CheckM2 - Rapid assessment of genome bin quality using machine learning",
+              "homepage": "https://github.com/chklovski/CheckM2",
+              "doi": "10.1038/s41592-023-01940-w",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "dbmeta": {
+              "type": "map",
+              "description": "Groovy Map containing database information\ne.g. `[ id:'test', version:1 ]`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "One or multiple FASTA files of each bin",
+              "pattern": "*.{fasta,fna,fa}"
+            }
+          },
+          {
+            "db": {
+              "type": "file",
+              "description": "CheckM2 database"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "checkm_output": {
+              "type": "directory",
+              "description": "CheckM2 output directory",
+              "pattern": "${prefix}/"
+            }
+          },
+          {
+            "checkm_tsv": {
+              "type": "file",
+              "description": "CheckM2 summary completeness statistics table",
+              "pattern": "*.tsv"
+            }
+          }
+        ],
+        "authors": [
+          "@dialvarezs"
+        ]
+      }
+    },
+    {
       "name": "checkm_lineagewf",
       "path": "modules/nf-core/checkm/lineagewf/meta.yml",
       "type": "module",
@@ -29902,13 +30046,13 @@
           },
           {
             "image": {
-              "type": "image",
+              "type": "file",
               "description": "Obtained from cellpose documentation: Inputs\nYou can use tiffs or PNGs or JPEGs. We use the image loader from scikit-image.\nSingle plane images can read into data as nY x nX x channels or channels x nY x nX.\nThen the channels settings will take care of reshaping the input appropriately for the network.\nNote the model also rescales the input for each channel so that 0 = 1st percentile of image values and 1 = 99th percentile.\n"
             }
           },
           {
             "image_metadata": {
-              "type": "csv",
+              "type": "file",
               "description": "This file will let Cellpose know which channels to use for segmentation.\nThe default will be channel 0.\n"
             }
           },
@@ -35082,6 +35226,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -35807,6 +35955,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -39880,6 +40032,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -62112,7 +62268,13 @@
         "name": "mash_sketch",
         "description": "Creates vastly reduced representations of sequences using MinHash",
         "keywords": [
-          "mash/sketch"
+          "mash",
+          "mash/sketch",
+          "minhash",
+          "reduced",
+          "representations",
+          "sequences",
+          "sketch"
         ],
         "tools": [
           {
@@ -67397,7 +67559,9 @@
               "documentation": "https://github.com/motu-tool/mOTUs/wiki",
               "tool_dev_url": "https://github.com/motu-tool/mOTUs",
               "doi": "10.1186/s40168-022-01410-z",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -81422,7 +81586,9 @@
               "documentation": "https://github.com/dfguan/purge_dups",
               "tool_dev_url": "https://github.com/dfguan/purge_dups",
               "doi": "10.1093/bioinformatics/btaa025",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -81737,7 +81903,9 @@
               "documentation": "https://github.com/dfguan/purge_dups",
               "tool_dev_url": "https://github.com/dfguan/purge_dups",
               "doi": "10.1093/bioinformatics/btaa025",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -114953,6 +115121,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -114987,6 +115159,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -115357,6 +115533,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
