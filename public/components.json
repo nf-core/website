@@ -3435,6 +3435,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -35230,6 +35234,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -35955,6 +35963,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -40032,6 +40044,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -47560,18 +47576,6 @@
             "target": {
               "type": "string",
               "description": "The contrast level of the target samples, e.g. \"treated\"\n"
-            }
-          },
-          {
-            "organism": {
-              "type": "string",
-              "description": "The name of the analyzed organism consisting of the first letter of the genus and the entire species name, e.g. for homo sapiens: hsapiens\n"
-            }
-          },
-          {
-            "sources": {
-              "type": "string",
-              "description": "Comma-separated list of data sources to search for pathways, e.g. 'GO,REAC'. Check https://rdrr.io/cran/gprofiler2/man/gost.html for a list of available sources\n"
             }
           },
           {
@@ -115125,6 +115129,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -115159,6 +115167,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -115533,6 +115545,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
