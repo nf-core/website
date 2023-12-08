@@ -3424,6 +3424,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -32928,7 +32932,9 @@
               "documentation": "https://github.com/andersen-lab/Freyja/wiki",
               "tool_dev_url": "https://github.com/andersen-lab/Freyja",
               "doi": "10.1038/s41586-022-05049-6",
-              "licence": "['BSD-2-Clause']"
+              "licence": [
+                "BSD-2-Clause"
+              ]
             }
           }
         ],
@@ -32947,12 +32953,6 @@
             }
           },
           {
-            "meta2": {
-              "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-            }
-          },
-          {
             "depths": {
               "type": "file",
               "description": "File containing depth of the variants",
@@ -32966,22 +32966,10 @@
             }
           },
           {
-            "meta3": {
-              "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-            }
-          },
-          {
             "barcodes": {
               "type": "file",
               "description": "File containing lineage defining barcodes",
               "pattern": "*barcodes.csv"
-            }
-          },
-          {
-            "meta4": {
-              "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
             }
           },
           {
@@ -33050,7 +33038,9 @@
               "documentation": "https://github.com/andersen-lab/Freyja/wiki",
               "tool_dev_url": "https://github.com/andersen-lab/Freyja",
               "doi": "10.1038/s41586-022-05049-6",
-              "licence": "['BSD-2-Clause']"
+              "licence": [
+                "BSD-2-Clause"
+              ]
             }
           }
         ],
@@ -33069,12 +33059,6 @@
             }
           },
           {
-            "meta2": {
-              "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-            }
-          },
-          {
             "depths": {
               "type": "file",
               "description": "File containing depth of the variants",
@@ -33082,22 +33066,10 @@
             }
           },
           {
-            "meta3": {
-              "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-            }
-          },
-          {
             "barcodes": {
               "type": "file",
               "description": "File containing lineage defining barcodes",
               "pattern": "*barcodes.csv"
-            }
-          },
-          {
-            "meta4": {
-              "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
             }
           },
           {
@@ -33158,7 +33130,9 @@
               "documentation": "https://github.com/andersen-lab/Freyja/wiki",
               "tool_dev_url": "https://github.com/andersen-lab/Freyja",
               "doi": "10.1038/s41586-022-05049-6",
-              "licence": "['BSD-2-Clause']"
+              "licence": [
+                "BSD-2-Clause"
+              ]
             }
           }
         ],
@@ -33228,7 +33202,9 @@
               "documentation": "https://github.com/andersen-lab/Freyja/wiki",
               "tool_dev_url": "https://github.com/andersen-lab/Freyja",
               "doi": "10.1038/s41586-022-05049-6",
-              "licence": "['BSD-2-Clause']"
+              "licence": [
+                "BSD-2-Clause"
+              ]
             }
           }
         ],
@@ -35102,6 +35078,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -35827,6 +35807,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -39896,6 +39880,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -114961,6 +114949,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -114995,6 +114987,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -115361,6 +115357,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
