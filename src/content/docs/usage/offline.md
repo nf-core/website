@@ -29,7 +29,7 @@ We do this by installing it locally on a machine that _does_ have an internet co
 - In your Nextflow configuration file, specify each plugin that you downloaded, both name and version, including default plugins. This will prevent Nextflow from trying to download newer versions of plugins.
 - Add the following environment variable in your `~/.bashrc` file:
   ```bash title=".bashrc"
-  export NXF_OFFLINE='TRUE'
+  export NXF_OFFLINE='true'
   ```
 
 ## Pipeline code
