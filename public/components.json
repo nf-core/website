@@ -3475,6 +3475,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -33000,14 +33004,28 @@
             }
           },
           {
-            "input": {
+            "input_1": {
               "type": "file",
               "description": "BAM/CRAM/SAM file",
               "pattern": "*.{bam,cram,sam}"
             }
           },
           {
-            "input_index": {
+            "input_1_index": {
+              "type": "file",
+              "description": "BAM/CRAM/SAM index file",
+              "pattern": "*.{bai,crai}"
+            }
+          },
+          {
+            "input_2": {
+              "type": "file",
+              "description": "BAM/CRAM/SAM file",
+              "pattern": "*.{bam,cram,sam}"
+            }
+          },
+          {
+            "input_2_index": {
               "type": "file",
               "description": "BAM/CRAM/SAM index file",
               "pattern": "*.{bai,crai}"
@@ -33021,10 +33039,22 @@
             }
           },
           {
+            "ref_meta": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test_reference' ]\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "reference fasta file",
               "pattern": ".{fa,fa.gz,fasta,fasta.gz}"
+            }
+          },
+          {
+            "ref_idx_meta": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test_reference' ]\n"
             }
           },
           {
@@ -33035,6 +33065,12 @@
             }
           },
           {
+            "samples_meta": {
+              "type": "map",
+              "description": "Groovy Map containing meta information for the samples file.\ne.g. [ id:'test_samples' ]\n"
+            }
+          },
+          {
             "samples": {
               "type": "file",
               "description": "Optional - Limit analysis to samples listed (one per line) in the FILE.",
@@ -33042,10 +33078,22 @@
             }
           },
           {
+            "populations_meta": {
+              "type": "map",
+              "description": "Groovy Map containing meta information for the populations file.\ne.g. [ id:'test_populations' ]\n"
+            }
+          },
+          {
             "populations": {
               "type": "file",
               "description": "Optional - Each line of FILE should list a sample and a population which it is part of.",
               "pattern": "*.txt"
+            }
+          },
+          {
+            "cnv_meta": {
+              "type": "map",
+              "description": "Groovy Map containing meta information for the cnv file.\ne.g. [ id:'test_cnv' ]\n"
             }
           },
           {
@@ -33064,10 +33112,10 @@
             }
           },
           {
-            "version": {
+            "versions": {
               "type": "file",
               "description": "File containing software version",
-              "pattern": "*.{version.txt}"
+              "pattern": "versions.yml"
             }
           },
           {
@@ -35324,6 +35372,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -36049,6 +36101,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -40166,6 +40222,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -70046,6 +70106,19 @@
               "description": "List of accessions (one per line) to download",
               "pattern": "*.txt"
             }
+          },
+          {
+            "taxids": {
+              "type": "file",
+              "description": "List of taxids (one per line) to download",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "groups": {
+              "type": "string",
+              "description": "NCBI taxonomic groups to download. Can be a comma-separated list. Options are ['all', 'archaea', 'bacteria', 'fungi', 'invertebrate', 'metagenomes', 'plant', 'protozoa', 'vertebrate_mammalian', 'vertebrate_other', 'viral']"
+            }
           }
         ],
         "output": [
@@ -74313,6 +74386,76 @@
           }
         ],
         "authors": [
+          "@bsiranosian"
+        ]
+      }
+    },
+    {
+      "name": "parabricks_indexgvcf",
+      "path": "modules/nf-core/parabricks/indexgvcf/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "parabricks_indexgvcf",
+        "description": "NVIDIA Clara Parabricks GPU-accelerated gvcf indexing tool.",
+        "keywords": [
+          "vcf",
+          "gvcf",
+          "tbi",
+          "idx",
+          "index",
+          "GPU-accelerated"
+        ],
+        "tools": [
+          {
+            "parabricks": {
+              "description": "NVIDIA Clara Parabricks GPU-accelerated genomics tools",
+              "homepage": "https://www.nvidia.com/en-us/clara/genomics/",
+              "documentation": "https://docs.nvidia.com/clara/parabricks/",
+              "licence": [
+                "custom"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing gvcf information\n"
+            }
+          },
+          {
+            "gvcf": {
+              "type": "file",
+              "description": "gvcf file to be indexed",
+              "pattern": "*.{vcf,vcf.gz}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing output information\n"
+            }
+          },
+          {
+            "gvcf_index": {
+              "type": "file",
+              "description": "Indexed gvcf file",
+              "pattern": "*.g.vcf"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@Furentsu",
           "@bsiranosian"
         ]
       }
@@ -81324,7 +81467,7 @@
               "homepage": "https://gitlab.com/paulklemm_PHD/proteinortho",
               "documentation": "https://gitlab.com/paulklemm_PHD/proteinortho#proteinortho",
               "tool_dev_url": "https://gitlab.com/paulklemm_PHD/proteinortho",
-              "doi": "10.1186/1471-2105-12-124",
+              "doi": "10.3389/fbinf.2023.1322477",
               "licence": [
                 "GPL v3"
               ]
@@ -102929,6 +103072,82 @@
       ]
     },
     {
+      "name": "tcoffee_alncompare",
+      "path": "modules/nf-core/tcoffee/alncompare/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "tcoffee_alncompare",
+        "description": "Compares 2 alternative MSAs to evaluate them.",
+        "keywords": [
+          "alignment",
+          "MSA",
+          "evaluation"
+        ],
+        "tools": [
+          {
+            "tcoffee": {
+              "description": "A collection of tools for Multiple Alignments of DNA, RNA, Protein Sequence",
+              "homepage": "http://www.tcoffee.org/Projects/tcoffee/",
+              "documentation": "https://tcoffee.readthedocs.io/en/latest/tcoffee_main_documentation.html",
+              "tool_dev_url": "https://github.com/cbcrg/tcoffee",
+              "doi": "10.1006/jmbi.2000.4042",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', ... ]\n"
+            }
+          },
+          {
+            "msa": {
+              "type": "file",
+              "description": "fasta file containing the alignment to be evaluated",
+              "pattern": "*.{aln,fa,fasta,fas}"
+            }
+          },
+          {
+            "ref_msa": {
+              "type": "file",
+              "description": "fasta file containing the reference alignment used for the evaluation",
+              "pattern": "*.{aln,fa,fasta,fas}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "scores": {
+              "type": "file",
+              "description": "a file containing the score of the alignment",
+              "pattern": "*.scores"
+            }
+          }
+        ],
+        "authors": [
+          "@l-mansouri",
+          "@luisas"
+        ]
+      }
+    },
+    {
       "name": "tcoffee_seqreformat",
       "path": "modules/nf-core/tcoffee/seqreformat/meta.yml",
       "type": "module",
@@ -115750,6 +115969,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -115784,6 +116007,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -116198,6 +116425,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
