@@ -3479,6 +3479,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -5395,7 +5399,13 @@
         "maintainers": [
           "@CarsonJM"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "bakta_bakta",
@@ -35376,6 +35386,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -36101,6 +36115,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -40222,6 +40240,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -54821,7 +54843,13 @@
           "@margotl9",
           "@CarsonJM"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "instrain_profile",
@@ -54914,7 +54942,13 @@
         "maintainers": [
           "@mrolm"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "interproscan",
@@ -103148,6 +103182,88 @@
       }
     },
     {
+      "name": "tcoffee_irmsd",
+      "path": "modules/nf-core/tcoffee/irmsd/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "tcoffee_irmsd",
+        "description": "Computes irmsd score for a given alignment and the structures.",
+        "keywords": [
+          "alignment",
+          "MSA",
+          "evaluation"
+        ],
+        "tools": [
+          {
+            "tcoffee": {
+              "description": "A collection of tools for Multiple Alignments of DNA, RNA, Protein Sequence",
+              "homepage": "http://www.tcoffee.org/Projects/tcoffee/",
+              "documentation": "https://tcoffee.readthedocs.io/en/latest/tcoffee_main_documentation.html",
+              "tool_dev_url": "https://github.com/cbcrg/tcoffee",
+              "doi": "10.1006/jmbi.2000.4042",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', ... ]\n"
+            }
+          },
+          {
+            "msa": {
+              "type": "file",
+              "description": "fasta file containing the alignment to be evaluated",
+              "pattern": "*.{aln,fa,fasta,fas}"
+            }
+          },
+          {
+            "template": {
+              "type": "file",
+              "description": "Template file matching the structures to the sequences in the alignment",
+              "pattern": "*"
+            }
+          },
+          {
+            "structures": {
+              "type": "directory",
+              "description": "Directory containing the structures file matching the sequences in the alignment in PDB format",
+              "pattern": "*"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "irmsd": {
+              "type": "file",
+              "description": "File containing the irmsd of the alignment",
+              "pattern": "*"
+            }
+          }
+        ],
+        "authors": [
+          "@luisas"
+        ]
+      }
+    },
+    {
       "name": "tcoffee_seqreformat",
       "path": "modules/nf-core/tcoffee/seqreformat/meta.yml",
       "type": "module",
@@ -115973,6 +116089,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -116007,6 +116127,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -116425,6 +116549,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
