@@ -3483,6 +3483,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -16688,30 +16692,39 @@
               "homepage": "https://support.10xgenomics.com/single-cell-vdj/software/pipelines/latest/what-is-cell-ranger",
               "documentation": "https://support.10xgenomics.com/single-cell-vdj/software/pipelines/latest/advanced/references",
               "tool_dev_url": "https://support.10xgenomics.com/single-cell-vdj/software/pipelines/latest/advanced/references",
-              "licence": "10x Genomics EULA"
+              "licence": [
+                "10x Genomics EULA"
+              ]
             }
           }
         ],
         "input": [
           {
-            "fasta": {
-              "type": "file",
-              "description": "Reference genome FASTA file",
-              "pattern": "*.{fasta,fa}"
+            "reference_name": {
+              "type": "string",
+              "description": "The name to give the new reference folder, e.g. `my_vdj_ref`. This flag is required",
+              "pattern": "str"
             }
           },
           {
             "genes": {
               "type": "file",
-              "description": "Reference transcriptome GTF file",
+              "description": "Reference transcriptome GTF file (optional)",
               "pattern": "*.gtf"
             }
           },
           {
-            "genome": {
-              "type": "string",
-              "description": "The name to give the new reference folder, e.g. `my_vdj_ref`",
-              "pattern": "str"
+            "fasta": {
+              "type": "file",
+              "description": "Reference genome FASTA file (optional)",
+              "pattern": "*.{fasta,fa}"
+            }
+          },
+          {
+            "seqs": {
+              "type": "file",
+              "description": "Reference genome FASTA file from the 10X Genomics fetch-imgt workflow (optional)",
+              "pattern": "*.{fasta,fa}"
             }
           }
         ],
@@ -20622,6 +20635,78 @@
         "maintainers": [
           "@sima-r",
           "@ramprasadn"
+        ]
+      }
+    },
+    {
+      "name": "cobs_classicconstruct",
+      "path": "modules/nf-core/cobs/classicconstruct/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "cobs_classicconstruct",
+        "description": "Builds a classic bloom filter COBS index",
+        "keywords": [
+          "COBS",
+          "index",
+          "k-mer index",
+          "bloom filter"
+        ],
+        "tools": [
+          {
+            "cobs": {
+              "description": "Compact Bit-Sliced Signature Index (for Genomic k-Mer Data or q-Grams)",
+              "homepage": "https://panthema.net/cobs",
+              "documentation": "https://github.com/iqbal-lab-org/cobs",
+              "tool_dev_url": "https://github.com/iqbal-lab-org/cobs",
+              "doi": "10.1007/978-3-030-32686-9_21",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "input": {
+              "type": "file",
+              "description": "The file or directory to be indexed.\nCOBS can read:\n  1. FASTA files (*.fa, *.fasta, *.fna, *.ffn, *.faa, *.frn, *.fa.gz, *.fasta.gz, *.fna.gz, *.ffn.gz, *.faa.gz, *.frn.gz),\n  2. FASTQ files (*.fq, *.fastq, *.fq.gz., *.fastq.gz),\n  3. \"Multi-FASTA\" and \"Multi-FASTQ\" files (*.mfasta, *.mfastq),\n  4. McCortex files (*.ctx),\n  5. or text files (*.txt).\nYou can either recursively scan a directory for all files matching any of these files,\nor pass a *.list file which lists all paths COBS should index.\n",
+              "pattern": "*.*"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "index": {
+              "type": "file",
+              "description": "The COBS classic index",
+              "pattern": "*.index.cobs_classic"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@leoisl"
+        ],
+        "maintainers": [
+          "@leoisl"
         ]
       }
     },
@@ -35390,6 +35475,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -36115,6 +36204,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -40240,6 +40333,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -68460,6 +68557,85 @@
           "version": "3.4.0"
         }
       ]
+    },
+    {
+      "name": "mtmalign_align",
+      "path": "modules/nf-core/mtmalign/align/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "mtmalign_align",
+        "description": "Aligns protein structures using mTM-align",
+        "keywords": [
+          "alignment",
+          "MSA",
+          "genomics",
+          "structure"
+        ],
+        "tools": [
+          {
+            "mTM-align": {
+              "description": "Algorithm for structural multiple sequence alignments",
+              "homepage": "http://yanglab.nankai.edu.cn/mTM-align/",
+              "documentation": "http://yanglab.nankai.edu.cn/mTM-align/help/",
+              "tool_dev_url": "http://yanglab.nankai.edu.cn/mTM-align/",
+              "doi": "10.1093/bioinformatics/btx828",
+              "licence": [
+                "None"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test']`\n"
+            }
+          },
+          {
+            "pdbs": {
+              "type": "file",
+              "description": "Input protein structures in PDB format. They should contain exactly one chain!",
+              "pattern": "*.{pdb}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test']`\n"
+            }
+          },
+          {
+            "alignment": {
+              "type": "file",
+              "description": "Alignment in FASTA format.",
+              "pattern": "*.aln"
+            }
+          },
+          {
+            "structure": {
+              "type": "file",
+              "description": "Overlaid structures in PDB format.",
+              "pattern": "${prefix}.pdb"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@lrauschning"
+        ],
+        "maintainers": [
+          "@lrauschning"
+        ]
+      }
     },
     {
       "name": "mtnucratio",
@@ -103179,7 +103355,13 @@
           "@l-mansouri",
           "@luisas"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "multiplesequencealign",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "tcoffee_irmsd",
@@ -103261,7 +103443,13 @@
         "authors": [
           "@luisas"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "multiplesequencealign",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "tcoffee_seqreformat",
@@ -116093,6 +116281,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -116127,6 +116319,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -116549,6 +116745,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
