@@ -1,0 +1,327 @@
+# nf-test Assertions
+
+This document details various assertions used in nf-test for testing Nextflow pipelines. It serves as a guide for implementing effective testing strategies in pipeline development.
+
+> **[nf-test official documentation](https://code.askimed.com/nf-test/docs/getting-started/)**
+
+## Snapshots
+
+### Introduction
+Snapshots are used to compare the current output of a process, workflow, or function against a reference snapshot file (`*.nf.test.snap`).
+
+### Using Snapshots
+Create snapshots using the `snapshot` keyword. The `match` method checks if the snapshot corresponds to the expected data in the snap file. For example:
+
+```groovy
+// Create a snapshot of a workflow channel
+assert snapshot(workflow.out.channel1).match('channel1')
+
+// Snapshot all output channels of a process
+assert snapshot(process.out).match()
+
+// Snapshot a specific file
+assert snapshot(path(process.out.get(0))).match()
+
+// Snapshot the result of a function
+assert snapshot(function.result).match()
+```
+
+The first test run generates a json snapshot file. Subsequent runs compare against this file. Commit snapshot files with code changes and review them in your code review process.
+
+### File Paths
+nf-test replaces paths in snapshots with a unique fingerprint (md5 sum by default) to ensure file content consistency.
+
+### Additional Reading
+- [Updating Snapshots](https://code.askimed.com/nf-test/docs/assertions/snapshots/#updating-snapshots)
+- [Cleaning Obsolete Snapshots](https://code.askimed.com/nf-test/docs/assertions/snapshots/#cleaning-obsolete-snapshots)
+- [Constructing Complex Snapshots](https://code.askimed.com/nf-test/docs/assertions/snapshots/#constructing-complex-snapshots)
+
+---
+
+## Using `contains` to Assert an Item in the Channel is Present
+Groovy's `contains` and `collect` methods assert the presence of items in channel output. 
+
+```groovy
+// Example channel with tuples
+def exampleChannel = [
+  ['Bonjour', '/.nf-test/tests/c563c/work/65/b62f/Bonjour.json'],
+  ['Hello', '/.nf-test/tests/c563c/work/65/fa20/Hello.json'],
+  ['Hola', '/.nf-test/tests/c563c/work/65/85d0/Hola.json']
+]
+
+// Asserting a tuple's presence
+testData = exampleChannel.collect { greeting, jsonPath -> [greeting, path(jsonPath).json] } 
+assert testData.contains(['Hello', path('./myTestData/Hello.json').json])
+
+// Asserting a subset (greeting only)
+testData = exampleChannel.collect { greeting, _ -> greeting } 
+assert testData.contains('Hello')
+```
+
+---
+
+### Indexing
+Accessing elements in output channels:
+
+```groovy
+log.get(0).get(1)` is equivalent to `log[0][1]
+```
+
+---
+
+## nf-core guidelines for assertions
+
+
+1. **Encapsulate Assertions in `assertAll()`**: Group all assertions within `assertAll()` for comprehensive testing.
+2. **Minimum Requirement - Process Success + version.yml file**: Always check if the process completes successfully and make at least a snapshot of the version.yml
+
+```groovy
+assertAll(
+    { assert process.success },
+    { assert snapshot(process.out.version).match("version") }
+)
+```
+
+4. **Capture as much as possible**: Best case scenario: make a snapshots to verify the complete output of your process. The absolute minimum is to check that the [output file exists](#file-exists-check), but try to check also for substrings, number of lines or similar.
+
+```groovy
+assertAll(
+    { assert process.success },
+    { assert snapshot(process.out).match() }
+)
+```
+> `process.out` will capture all the output channels both named and index based
+
+
+
+
+
+### Additional cases:
+5. **Handling Inconsistent md5sum**: Use specific content checks for elements with inconsistent md5sums.
+6. **Module/Process Truth Verification**: Ensure snapshots accurately reflect the module/process functionality.
+
+---
+
+## Different Types of Assertions
+
+### Simple & Straight-Forward 
+#### Snapshot Entire Output Channel
+
+*Motivation*: Make sure all outputs are stable over changes.
+
+```groovy {3}
+assertAll(
+    { assert process.success },
+    { assert snapshot(process.out).match() }
+)
+```
+
+*Explanation*: Verifies process completion and output against a snapshot.
+
+### Complex - Handling Inconsistent md5sum in Output Elements
+#### Snapshot a Specific Element in Output Channel
+
+*Motivation*: Create the snapshot for one specific output.
+```groovy
+assert snapshot(process.out.versions).match("versions")
+```
+*Explanation*: Checks a specific element, in this case `versions`, in the output channel of a process against a predefined snapshot named "versions".
+
+#### File Exists Check
+
+*Motivation*: Snapshots of an output are unstable, i.e. they change between test runs, for example because they include a timestamp/file-path in the content.
+
+* [BCLCONVERT](https://github.com/nf-core/modules/blob/master/modules/nf-core/bclconvert/tests/main.nf.test)
+
+```groovy!
+assert file(process.out.interop[0][1].find { file(it).name == "IndexMetricsOut.bin" }).exists()
+```
+*Explanation*: Verifies the existence of a specific file, `IndexMetricsOut.bin`, in the output of a process.
+
+
+#### Snapshot Sorted List & Exclude a Specific File
+
+
+*Motivation*: I want to create a snapshot of different outputs, including several log files. I can't snapshot the whole output, because one file is changing between test runs.
+
+* [BCLCONVERT](https://github.com/nf-core/modules/blob/master/modules/nf-core/bclconvert/tests/main.nf.test)
+
+```groovy!
+assertAll(
+                { assert process.success },
+                { assert snapshot(
+                    process.out.reports,
+                    process.out.versions,
+                    process.out.fastq,
+                    process.out.undetermined,
+                    file(process.out.logs.get(0).get(1)).list().sort(),
+                    process.out.interop.get(0).get(1).findAll { file(it).name != "IndexMetricsOut.bin" },
+                    ).match()
+                },
+                { assert file(process.out.interop.get(0).get(1).find { file(it).name == "IndexMetricsOut.bin" }).exists() }
+            )
+```
+*Explanation*: This creates a snapshot for all output files and of a sorted list from a log directory while excluding a specific file, `IndexMetricsOut.bin`, in the comparison. The existence of this excluded file is checked in the end.
+
+
+#### File Contains Check
+
+* [BISMARK_ALIGN](https://github.com/nf-core/modules/blob/master/modules/nf-core/bismark/align/tests/main.nf.test)
+
+```groovy
+with(process.out.report) {
+    with(get(0)) {
+        assert get(1).endsWith("hisat2_SE_report.txt")
+        assert path(get(1)).readLines().last().contains("Bismark completed in")
+    }
+}
+```
+*Explanation*: This checks if the last line of a report file contains a specific string and if the file name ends with "hisat2_SE_report.txt".
+
+#### Snapshot Selective Portion of a File
+
+*Motivation*: We can't make a snapshot of the whole file, because they are not stable, but we know a portion of the content should be stable, e.g. the timestamp is added in the 6th line, so we want to only snapshot the content of the first 5 lines.
+
+```groovy
+assert snapshot(file(process.out.aligned[0][1]).readLines()[0..4]).match()
+```
+*Explanation*: Creates a snapshot of a specific portion (first five lines) of a file for comparison.
+
+#### Snapshot Selective Portion of a File & number of lines
+
+
+*Motivation*: We can't make a snapshot of the whole file, because they are not stable, but we know a portion of the content should be stable and the number of lines in it as well.
+
+```groovy
+def lines = path(process.out.file_out[0][1]).linesGzip
+assertAll(
+    { assert process.success },
+    { assert snapshot(lines[0..5]).match("test_cat_zipped_zipped_lines") },
+    { assert snapshot(lines.size()).match("test_cat_zipped_zipped_size") }
+)
+```
+*Explanation*: Verifies the content of the first six lines of a gzipped file, and the total number of lines in the file.
+
+#### ReadLines & Contains
+
+*Motivation*: We can't make a snapshot of the complete file, but we want to make sure that a specific substring is always present.
+
+* [sratoolsncbisettings](https://github.com/nf-core/modules/blob/master/modules/nf-core/custom/sratoolsncbisettings/tests/main.nf.test)
+```groovy
+with(process.out.ncbi_settings) {
+    assert path(get(0)).readLines().any { it.contains('/LIBS/GUID') }
+    assert path(get(0)).readLines().any { it.contains('/libs/cloud/report_instance_identity') }
+}
+```
+*Explanation*: Checks if specific strings, `/LIBS/GUID` and `/libs/cloud/report_instance_identity` exist within the lines of an output file.
+
+#### Snapshot an Element in Tuple Output
+
+*Motivation*: We can't snapshot the whole tuple, but on element of the tuple has stable snapshots.
+
+```groovy
+assert snapshot(file(process.out.deletions[0][1])).match("deletions")
+```
+*Explanation*: Validates an element within a tuple output against a snapshot.
+
+#### Snapshot Published File in Outdir
+
+*Motivation*: I want to check a specific file in the output is saved correctly and is stable between tests.
+
+```groovy
+params {
+    outdir = "$outputDir"
+}
+```
+
+```groovy
+assert snapshot(path("$outputDir/kallisto/test/abundance.tsv")).match("abundance_tsv_single")
+```
+*Explanation*: Confirms that a file saved in the specified output directory matches the expected snapshot.
+
+#### Assert File Name and Type
+
+*Motivation*: I don't know the exact location, know that at least the file type is fixed.
+
+```groovy
+assert process.out.classified_reads_fastq[0][1][0] ==~ ".*/test.classified_1.fastq.gz"
+```
+*Explanation*: Ensures that a file from the output matches a specific pattern, indicating its type and name.
+
+#### Snapshot Selective File Names & Content
+
+*Motivation*: I want to include in the snapshot-
+* the names of the files in `npa` & `npc` output channels
+* The first line of the file in `npo` out channel
+* The md5sum of the file in `npl` out channel
+
+```groovy
+assert snapshot(
+    file(process.out.npa[0][1]).name,
+    file(process.out.npc[0][1]).name,
+    path(process.out.npo[0][1]).readLines()[0],
+    path(process.out.npl[0][1])
+).match()
+```
+*Explanation*: Compares specific filenames and content of multiple files in a process output against predefined snapshots.
+
+#### Snapshot the Last 4 Lines of a Gzipped File in the gzip output channel
+
+```groovy
+path(process.out.gzip[0][1]).linesGzip[-4..-1]
+```
+*Explanation*: Retrieves and allows the inspection of the last four lines of a gzipped file from the output channel.
+
+#### Assert a contains check in a gzipped file
+
+*Motivation*: I want to check the presence of a specific string or data pattern within a gzipped file
+
+```groovy!
+{ assert path(process.out.vcf[0][1]).linesGzip.toString().contains("MT192765.1\t10214\t.\tATTTAC\tATTAC\t29.8242") }
+```
+*Explanation*: check if a specific string (`"MT192765.1\t10214\t.\tATTTAC\tATTAC\t29.8242"`) is present in the content of a gzipped file, specified by `path(process.out.vcf[0][1]).linesGzip.toString()`. 
+
+---
+## Useful nf-test operators and functions
+
+## Regular Expressions
+
+The operator `==~` can be used to check if a string matches a regular expression:
+
+```groovy
+assert "/my/full/path/to/process/dir/example.vcf.pgen" ==~ ".*/example.vcf.pgen"
+```
+
+---
+
+## Using `with()`
+
+Instead of writing:
+```groovy
+assert process.out.imputed_plink2.size() == 1
+        assert process.out.imputed_plink2[0][0] == "example.vcf"
+        assert process.out.imputed_plink2[0][1]    ==~ ".*/example.vcf.pgen"
+        assert process.out.imputed_plink2[0][2]    ==~ ".*/example.vcf.psam"
+        assert process.out.imputed_plink2[0][3]    ==~ ".*/example.vcf.pvar"
+}
+```
+You can improve readability with the `with()` command:
+
+```groovy
+assert process.out.imputed_plink2
+with(process.out.imputed_plink2) {
+    assert size() == 1
+    with(get(0)) {
+        assert get(0) == "example.vcf"
+        assert get(1) ==~ ".*/example.vcf.pgen"
+        assert get(2) ==~ ".*/example.vcf.psam"
+        assert get(3) ==~ ".*/example.vcf.pvar"
+    }
+}
+```
+
+---
+
+## Known Issues
+
+* Mismatched hashes on Docker/Singularity/Conda: Be aware of environment-specific issues when using nf-test.
