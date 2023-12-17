@@ -111,7 +111,7 @@ assertAll(
 
 ### Snapshot Entire Output Channel
 
-_Motivation_: Make sure all outputs are stable over changes.
+_Motivation:_ Make sure all outputs are stable over changes.
 
 ```groovy {3}
 assertAll(
@@ -120,23 +120,23 @@ assertAll(
 )
 ```
 
-_Explanation_: Verifies process completion and output against a snapshot.
+_Explanation:_ Verifies process completion and output against a snapshot.
 
 ## Complex - Handling Inconsistent md5sum in Output Elements
 
 ### Snapshot a Specific Element in Output Channel
 
-_Motivation_: Create the snapshot for one specific output.
+_Motivation:_ Create the snapshot for one specific output.
 
 ```groovy
 assert snapshot(process.out.versions).match("versions")
 ```
 
-_Explanation_: Checks a specific element, in this case `versions`, in the output channel of a process against a predefined snapshot named "versions".
+_Explanation:_ Checks a specific element, in this case `versions`, in the output channel of a process against a predefined snapshot named "versions".
 
 ### File Exists Check
 
-_Motivation_: Snapshots of an output are unstable, i.e. they change between test runs, for example because they include a timestamp/file-path in the content.
+_Motivation:_ Snapshots of an output are unstable, i.e. they change between test runs, for example because they include a timestamp/file-path in the content.
 
 - [BCLCONVERT](https://github.com/nf-core/modules/blob/master/modules/nf-core/bclconvert/tests/main.nf.test)
 
@@ -144,11 +144,11 @@ _Motivation_: Snapshots of an output are unstable, i.e. they change between test
 assert file(process.out.interop[0][1].find { file(it).name == "IndexMetricsOut.bin" }).exists()
 ```
 
-_Explanation_: Verifies the existence of a specific file, `IndexMetricsOut.bin`, in the output of a process.
+_Explanation:_ Verifies the existence of a specific file, `IndexMetricsOut.bin`, in the output of a process.
 
 ### Snapshot Sorted List & Exclude a Specific File
 
-_Motivation_: I want to create a snapshot of different outputs, including several log files. I can't snapshot the whole output, because one file is changing between test runs.
+_Motivation:_ I want to create a snapshot of different outputs, including several log files. I can't snapshot the whole output, because one file is changing between test runs.
 
 - [BCLCONVERT](https://github.com/nf-core/modules/blob/master/modules/nf-core/bclconvert/tests/main.nf.test)
 
@@ -168,13 +168,11 @@ assertAll(
             )
 ```
 
-_Explanation_: This creates a snapshot for all output files and of a sorted list from a log directory while excluding a specific file, `IndexMetricsOut.bin`, in the comparison. The existence of this excluded file is checked in the end.
+_Explanation:_ This creates a snapshot for all output files and of a sorted list from a log directory while excluding a specific file, `IndexMetricsOut.bin`, in the comparison. The existence of this excluded file is checked in the end.
 
 ### File Contains Check
 
-- [BISMARK_ALIGN](https://github.com/nf-core/modules/blob/master/modules/nf-core/bismark/align/tests/main.nf.test)
-
-```groovy
+```groovy {4} {title="bismark/align/tests/main.nf.test"}
 with(process.out.report) {
     with(get(0)) {
         assert get(1).endsWith("hisat2_SE_report.txt")
@@ -183,21 +181,21 @@ with(process.out.report) {
 }
 ```
 
-_Explanation_: This checks if the last line of a report file contains a specific string and if the file name ends with "hisat2_SE_report.txt".
+_Explanation:_ This checks if the last line of a report file contains a specific string and if the file name ends with "hisat2_SE_report.txt".
 
 ### Snapshot Selective Portion of a File
 
-_Motivation_: We can't make a snapshot of the whole file, because they are not stable, but we know a portion of the content should be stable, e.g. the timestamp is added in the 6th line, so we want to only snapshot the content of the first 5 lines.
+_Motivation:_ We can't make a snapshot of the whole file, because they are not stable, but we know a portion of the content should be stable, e.g. the timestamp is added in the 6th line, so we want to only snapshot the content of the first 5 lines.
 
 ```groovy
 assert snapshot(file(process.out.aligned[0][1]).readLines()[0..4]).match()
 ```
 
-_Explanation_: Creates a snapshot of a specific portion (first five lines) of a file for comparison.
+_Explanation:_ Creates a snapshot of a specific portion (first five lines) of a file for comparison.
 
 ### Snapshot Selective Portion of a File & number of lines
 
-_Motivation_: We can't make a snapshot of the whole file, because they are not stable, but we know a portion of the content should be stable and the number of lines in it as well.
+_Motivation:_ We can't make a snapshot of the whole file, because they are not stable, but we know a portion of the content should be stable and the number of lines in it as well.
 
 ```groovy
 def lines = path(process.out.file_out[0][1]).linesGzip
@@ -208,11 +206,11 @@ assertAll(
 )
 ```
 
-_Explanation_: Verifies the content of the first six lines of a gzipped file, and the total number of lines in the file.
+_Explanation:_ Verifies the content of the first six lines of a gzipped file, and the total number of lines in the file.
 
 ### ReadLines & Contains
 
-_Motivation_: We can't make a snapshot of the complete file, but we want to make sure that a specific substring is always present.
+_Motivation:_ We can't make a snapshot of the complete file, but we want to make sure that a specific substring is always present.
 
 - [sratoolsncbisettings](https://github.com/nf-core/modules/blob/master/modules/nf-core/custom/sratoolsncbisettings/tests/main.nf.test)
 
@@ -223,21 +221,21 @@ with(process.out.ncbi_settings) {
 }
 ```
 
-_Explanation_: Checks if specific strings, `/LIBS/GUID` and `/libs/cloud/report_instance_identity` exist within the lines of an output file.
+_Explanation:_ Checks if specific strings, `/LIBS/GUID` and `/libs/cloud/report_instance_identity` exist within the lines of an output file.
 
 ### Snapshot an Element in Tuple Output
 
-_Motivation_: We can't snapshot the whole tuple, but on element of the tuple has stable snapshots.
+_Motivation:_ We can't snapshot the whole tuple, but on element of the tuple has stable snapshots.
 
 ```groovy
 assert snapshot(file(process.out.deletions[0][1])).match("deletions")
 ```
 
-_Explanation_: Validates an element within a tuple output against a snapshot.
+_Explanation:_ Validates an element within a tuple output against a snapshot.
 
 ### Snapshot Published File in Outdir
 
-_Motivation_: I want to check a specific file in the output is saved correctly and is stable between tests.
+_Motivation:_ I want to check a specific file in the output is saved correctly and is stable between tests.
 
 ```groovy
 params {
@@ -249,21 +247,21 @@ params {
 assert snapshot(path("$outputDir/kallisto/test/abundance.tsv")).match("abundance_tsv_single")
 ```
 
-_Explanation_: Confirms that a file saved in the specified output directory matches the expected snapshot.
+_Explanation:_ Confirms that a file saved in the specified output directory matches the expected snapshot.
 
 ### Assert File Name and Type
 
-_Motivation_: I don't know the exact location, know that at least the file type is fixed.
+_Motivation:_ I don't know the exact location, know that at least the file type is fixed.
 
 ```groovy
 assert process.out.classified_reads_fastq[0][1][0] ==~ ".*/test.classified_1.fastq.gz"
 ```
 
-_Explanation_: Ensures that a file from the output matches a specific pattern, indicating its type and name.
+_Explanation:_ Ensures that a file from the output matches a specific pattern, indicating its type and name.
 
 ### Snapshot Selective File Names & Content
 
-_Motivation_: I want to include in the snapshot:
+_Motivation:_ I want to include in the snapshot:
 
 - the names of the files in `npa` & `npc` output channels
 - The first line of the file in `npo` out channel
@@ -278,7 +276,7 @@ assert snapshot(
 ).match()
 ```
 
-_Explanation_: Compares specific filenames and content of multiple files in a process output against predefined snapshots.
+_Explanation:_ Compares specific filenames and content of multiple files in a process output against predefined snapshots.
 
 ### Snapshot the Last 4 Lines of a Gzipped File in the gzip output channel
 
@@ -286,17 +284,17 @@ _Explanation_: Compares specific filenames and content of multiple files in a pr
 path(process.out.gzip[0][1]).linesGzip[-4..-1]
 ```
 
-_Explanation_: Retrieves and allows the inspection of the last four lines of a gzipped file from the output channel.
+_Explanation:_ Retrieves and allows the inspection of the last four lines of a gzipped file from the output channel.
 
 ### Assert a contains check in a gzipped file
 
-_Motivation_: I want to check the presence of a specific string or data pattern within a gzipped file
+_Motivation:_ I want to check the presence of a specific string or data pattern within a gzipped file
 
 ```groovy!
 { assert path(process.out.vcf[0][1]).linesGzip.toString().contains("MT192765.1\t10214\t.\tATTTAC\tATTAC\t29.8242") }
 ```
 
-_Explanation_: check if a specific string (`"MT192765.1\t10214\t.\tATTTAC\tATTAC\t29.8242"`) is present in the content of a gzipped file, specified by `path(process.out.vcf[0][1]).linesGzip.toString()`.
+_Explanation:_ check if a specific string (`"MT192765.1\t10214\t.\tATTTAC\tATTAC\t29.8242"`) is present in the content of a gzipped file, specified by `path(process.out.vcf[0][1]).linesGzip.toString()`.
 
 ## Useful nf-test operators and functions
 
