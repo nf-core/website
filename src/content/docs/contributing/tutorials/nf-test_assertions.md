@@ -1,4 +1,7 @@
-# nf-test Assertions
+---
+title: nf-test Assertions
+description: A guide to using nf-test assertions for testing nf-core pipelines.
+---
 
 This document details various assertions used in nf-test for testing Nextflow pipelines. It serves as a guide for implementing effective testing strategies in pipeline development.
 
