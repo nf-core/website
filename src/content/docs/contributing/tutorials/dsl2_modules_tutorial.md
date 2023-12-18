@@ -82,7 +82,7 @@ One parameter you have to specify during the creation is the `process resource l
 For now can just select the default and continue.
 
 In the next step you have to specify if you need a `meta map` with sample-specific information. Our test module will need a meta map, so select yes for the moment. If you want to know what exactly meta maps are check out the documentation [here](https://nf-co.re/docs/contributing/modules#what-is-the-meta-map).
-Magic will happen now: nf-core tools will create the following entries for the code of the module itself
+Magic will happen now: nf-core tools will create the following entries for the code of the module itself and also for the testing of the module
 
 ```console
 modules
@@ -90,22 +90,10 @@ modules
         └── fgbio
             └── demofastqtobam
                 ├── main.nf
-                └── meta.yml
-```
-
-And also the following for the testing of the module
-
-```console
-tests
-├── modules
-│   └── fgbio
-│       └── demofastqtobam
-│           ├── main.nf
-│           ├── nextflow.config
-│           └── test.yml
-└── config
-    └── pytest_modules.yml
-
+                ├── meta.yml
+                └── tests
+                    ├── main.nf.test
+                    └── tags.yml
 ```
 
 Each of the files is pre-filled according to a defined nf-core template.
@@ -396,7 +384,7 @@ For more information on fixing linting errors in your code both locally and dire
 ## Test your code
 
 Once your code is polished, following any suggestions from linting, you should test the code and make sure everything works as expected.
-This can also be done automatically, using the [pytest-workflow](https://pytest-workflow.readthedocs.io/en/stable/) tool.
+This can also be done automatically, using [nf-test](https://code.askimed.com/nf-test/).
 
 ### Create a test workflow
 

@@ -51,15 +51,16 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 
 1. Install the latest version of [`nf-core/tools`](https://github.com/nf-core/tools#installation) (`>=2.7`)
 2. Install [`Nextflow`](https://www.nextflow.io/docs/latest/getstarted.html#installation) (`>=21.04.0`)
-3. Install any of [`Docker`](https://docs.docker.com/engine/installation/), [`Singularity`](https://www.sylabs.io/guides/3.0/user-guide/) or [`Conda`](https://conda.io/miniconda.html)
-4. Setup up [pre-commit](https://pre-commit.com/) (comes packaged with [`nf-core/tools`](https://github.com/nf-core/tools#installation), watch the [pre-commit bytesize talk](https://www.youtube.com/watch?v=08d6zv6zvdM&t=215) if you want to know more about it) to ensure that your code is linted and formatted correctly before you commit it to the repository
+3. Install [`nf-test`](https://code.askimed.com/nf-test/installation/)
+4. Install any of [`Docker`](https://docs.docker.com/engine/installation/), [`Singularity`](https://www.sylabs.io/guides/3.0/user-guide/) or [`Conda`](https://conda.io/miniconda.html)
+5. Setup up [pre-commit](https://pre-commit.com/) (comes packaged with [`nf-core/tools`](https://github.com/nf-core/tools#installation), watch the [pre-commit bytesize talk](https://www.youtube.com/watch?v=08d6zv6zvdM&t=215) if you want to know more about it) to ensure that your code is linted and formatted correctly before you commit it to the repository
 
    ```bash
    pre-commit install
    ```
 
-5. [Fork and clone the nf-core/modules repo locally](#uploading-to-nf-coremodules)
-6. Set up git on your computer by adding a new git remote of the main nf-core git repo called `upstream`
+6. [Fork and clone the nf-core/modules repo locally](#uploading-to-nf-coremodules)
+7. Set up git on your computer by adding a new git remote of the main nf-core git repo called `upstream`
 
    ```bash
    git remote add upstream https://github.com/nf-core/modules.git
@@ -71,7 +72,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
    git checkout -b fastqc
    ```
 
-7. Create a module using the [nf-core DSL2 module template](https://github.com/nf-core/tools/blob/master/nf_core/module-template/modules/main.nf):
+8. Create a module using the [nf-core DSL2 module template](https://github.com/nf-core/tools/blob/master/nf_core/module-template/modules/main.nf):
 
    ```console
    $ nf-core modules create fastqc --author @joebloggs --label process_low --meta
@@ -82,19 +83,18 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
                                          `._,._,'
 
-    nf-core/tools version 2.8 - https://nf-co.re
+    nf-core/tools version 2.11 - https://nf-co.re
 
-    INFO     Using Bioconda package: 'bioconda::fastqc=0.11.9'                                                                                                           create.py:130
-    INFO     Using Docker container: 'biocontainers/fastqc:0.11.9--hdfd78af_1'                                                                                   create.py:190
-    INFO     Using Singularity container: 'https://depot.galaxyproject.org/singularity/fastqc:0.11.9--hdfd78af_1'                                                        create.py:191
-    INFO     Created / edited following files:                                                                                                                           create.py:269
-            ./modules/fastqc/main.nf
-             ./modules/fastqc/meta.yml
-             ./tests/modules/fastqc/main.nf
-             ./tests/modules/fastqc/test.yml
-             ./tests/modules/fastqc/nextflow.config
-             ./tests/config/pytest_modules.yml
-
+    INFO     Using Bioconda package: 'bioconda::fastqc=0.12.1'
+    INFO     Using Docker container: 'biocontainers/fastqc:0.12.1--hdfd78af_0'
+    INFO     Using Singularity container: 'https://depot.galaxyproject.org/singularity/fastqc:0.12.1--hdfd78af_0'
+    INFO     Created component template: 'fastqc'
+    INFO     Created following files:
+             modules/nf-core/fastqc/main.nf
+             modules/nf-core/fastqc/meta.yml
+             modules/nf-core/fastqc/environment.yml
+             modules/nf-core/fastqc/tests/tags.yml
+             modules/nf-core/fastqc/tests/main.nf.test
    ```
 
    All of the files required to add the module to `nf-core/modules` will be created/edited in the appropriate places. There are at most 5 files to modify:
@@ -107,37 +107,18 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 
       This file will be used to store general information about the module and author details - the majority of which will already be auto-filled. However, you will need to add a brief description of the files defined in the `input` and `output` section of the main script since these will be unique to each module. We check it's formatting and validity based on a [JSON schema](https://github.com/nf-core/modules/blob/master/.yaml-schema.json) during linting (and in the pre-commit hook).
 
-   3. [`./tests/modules/fastqc/main.nf`](https://github.com/nf-core/modules/blob/master/tests/modules/nf-core/fastqc/main.nf)
+   3. [`./modules/nf-core/fastqc/tests/main.nf.test`](https://github.com/nf-core/modules/blob/master/modules/nf-core/fastqc/tests/main.nf.test)
 
       Every module MUST have a test workflow. This file will define one or more Nextflow `workflow` definitions that will be used to unit test the output files created by the module. By default, one `workflow` definition will be added but please feel free to add as many as possible so we can ensure that the module works on different data types / parameters e.g. separate `workflow` for single-end and paired-end data.
 
-      When writing multiple tests, a common practice is to alias process names to differentiate them between tests. When using an alias, add a suffix to the process name so the CI tests can still find the output in the folder named after the tool, e.g.
-
-      ```groovy
-      include { FASTQC as FASTQC_POST } from '../../.....' // Good: Output folder is still 'fastqc'
-      include { FASTQC as POST_FQC    } from '../../.....' // Bad: Generates problems with CI tests - Output folder is 'post'
-      ```
-
       Minimal test data required for your module may already exist within the [nf-core/modules repository](https://github.com/nf-core/modules/blob/master/tests/config/test_data.config), in which case you may just have to change a couple of paths in this file - see the [Test data](#test-data) section for more info and guidelines for adding new standardised data if required.
 
-   4. [`./tests/modules/fastqc/nextflow.config`](https://github.com/nf-core/modules/blob/master/tests/modules/nf-core/amps/nextflow.config)
+      Refer to the section [writing nf-test tests](#writing-nf-test-tests) for more information on how to write nf-tests
 
-      Some modules MAY require additional parameters added to the test command to successfully run. These can be specified with an `ext.args` variable within the process scope of the `nextflow.config` file that exists alongside the test files themselves (and is automatically loaded when the test workflow `main.nf` is executed).
-
-   5. [`./tests/modules/fastqc/test.yml`](https://github.com/nf-core/modules/blob/master/tests/modules/nf-core/fastqc/test.yml)
-
-      This file will contain all of the details required to unit test the main script in the point above using [pytest-workflow](https://pytest-workflow.readthedocs.io/). If possible, any outputs produced by the test workflow(s) MUST be included and listed in this file along with an appropriate check e.g. md5sum. The different test options are listed in the [pytest-workflow docs](https://pytest-workflow.readthedocs.io/en/stable/#test-options).
-
-      As highlighted in the next point, we have added a command to make it much easier to test the workflow(s) defined for the module and to automatically create the `test.yml` with the md5sum hashes for all of the outputs generated by the module.
-
-      `md5sum` checks are the preferable choice of test to determine file changes, however, this may not be possible for all outputs generated by some tools e.g. if they include time stamps or command-related headers. Please do your best to avoid just checking for the file being present e.g. it may still be possible to check that the file contains the appropriate text snippets.
-
-      > Leave the `versions.yml` entry _without_ a MD5 checksum. Its content will change every time we bump the version of the software.
-
-8. Create a yaml file containing information required for module unit testing
+4. Create a snapshot of the tests
 
    ```console
-   $ nf-core modules create-test-yml fastqc
+   $ nf-core modules test fastqc
 
                                           ,--./,-.
           ___     __   __   __   ___     /,-._.--~\
@@ -145,42 +126,67 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
     | \| |       \__, \__/ |  \ |___     \`-._,-`-,
                                           `._,._,'
 
-    nf-core/tools version 2.8 - https://nf-co.re
+    nf-core/tools version 2.11 - https://nf-co.re
 
 
-    INFO     Press enter to use default values (shown in brackets) or type your own responses
-    Test YAML output path (- for stdout) (tests/modules/nf-core/fastqc/test.yml):
-    File exists! 'tests/modules/nf-core/fastqc/test.yml' Overwrite? [y/n]: y
-    INFO     Looking for test workflow entry points: 'tests/modules/nf-core/fastqc/main.nf'
-    ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-    INFO     Building test meta for entry point 'test_fastqc_paired_end'
-    Test name (fastqc test_fastqc_paired_end):
-    Test command (nextflow run ./tests/modules/nf-core/fastqc -entry test_fastqc_paired_end -c ./tests/config/nextflow.config -c ./tests/modules/nf-core/fastqc/nextflow.config):
-    Test tags (comma separated) (fastqc):
-    Test output folder with results (leave blank to run test):
-    ? Choose software profile Docker
-    INFO     Running 'fastqc' test with command:
-            nextflow run ./tests/modules/nf-core/fastqc -entry test_fastqc_paired_end -c ./tests/config/nextflow.config -c ./tests/modules/nf-core/fastqc/nextflow.config --outdir /tmp/tmpzznl9oxd -work-dir
-            /tmp/tmpb0r4zt6i
-    INFO     Repeating test ...
-    INFO     Test workflow finished!
-    ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-    INFO     Writing to 'tests/modules/nf-core/fastqc/test.yml'
+    INFO     Generating nf-test snapshot
+    ╭────────────────────────────────────────────────────────── nf-test output ──────────────────────────────────────────────────────────╮
+    │                                                                                                                                    │
+    │ 🚀 nf-test 0.8.2                                                                                                                   │
+    │ https://code.askimed.com/nf-test                                                                                                   │
+    │ (c) 2021 - 2023 Lukas Forer and Sebastian Schoenherr                                                                               │
+    │                                                                                                                                    │
+    │ Found 1 files in test directory.                                                                                                   │
+    │                                                                                                                                    │
+    │ Test Workflow FASTQ_FASTQC_UMITOOLS_FASTP                                                                                          │
+    │                                                                                                                                    │
+    │   Test [f702dde6] 'sarscov2 paired-end [fastq]' PASSED (46.176s)                                                                   │
+    │                                                                                                                                    │
+    │ Test Process FASTQC                                                                                                                │
+    │                                                                                                                                    │
+    │   Test [e588093e] 'Single-Read' PASSED (26.528s)                                                                                   │
+    │                                                                                                                                    │
+    │                                                                                                                                    │
+    │ SUCCESS: Executed 2 tests in 72.706s                                                                                               │
+    │                                                                                                                                    │
+    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+    INFO     Generating nf-test snapshot again to check stability
+    ╭────────────────────────────────────────────────────────── nf-test output ──────────────────────────────────────────────────────────╮
+    │                                                                                                                                    │
+    │ 🚀 nf-test 0.8.2                                                                                                                   │
+    │ https://code.askimed.com/nf-test                                                                                                   │
+    │ (c) 2021 - 2023 Lukas Forer and Sebastian Schoenherr                                                                               │
+    │                                                                                                                                    │
+    │ Found 1 files in test directory.                                                                                                   │
+    │                                                                                                                                    │
+    │ Test Workflow FASTQ_FASTQC_UMITOOLS_FASTP                                                                                          │
+    │                                                                                                                                    │
+    │   Test [f702dde6] 'sarscov2 paired-end [fastq]' PASSED (39.268s)                                                                   │
+    │                                                                                                                                    │
+    │ Test Process FASTQC                                                                                                                │
+    │                                                                                                                                    │
+    │   Test [e588093e] 'Single-Read' PASSED (26.016s)                                                                                   │
+    │                                                                                                                                    │
+    │                                                                                                                                    │
+    │ SUCCESS: Executed 2 tests in 65.286s                                                                                               │
+    │                                                                                                                                    │
+    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+    INFO     All tests passed!
    ```
 
    :::note
-   See docs for [running tests manually](#running-tests-manually) if you would like to run the tests manually.
+   See the [nf-test docs](https://code.askimed.com/nf-test/) if you would like to run the tests manually.
    :::
 
-9. Check that the new module you've added follows the [new module guidelines](#new-module-guidelines-and-pr-review-checklist)
+5. Check that the new module you've added follows the [new module guidelines](#new-module-guidelines-and-pr-review-checklist)
 
-10. Run [`prettier`](/docs/contributing/code_formatting) on all edited and generated files:
+6. Run [`prettier`](/docs/contributing/code_formatting) on all edited and generated files:
 
     ```bash
     prettier -w .
     ```
 
-11. Lint the module locally to check that it adheres to nf-core guidelines before submission
+7. Lint the module locally to check that it adheres to nf-core guidelines before submission
 
     ```console
     $ nf-core modules lint fastqc
@@ -222,7 +228,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
     ╰───────────────────────╯
     ```
 
-12. Once ready, the code can be pushed and a pull request (PR) created
+8. Once ready, the code can be pushed and a pull request (PR) created
 
     On a regular basis you can pull upstream changes into this branch and it is recommended to do so before pushing and creating a pull request - see below. Rather than merging changes directly from upstream the rebase strategy is recommended so that your changes are applied on top of the latest master branch from the nf-core repo. This can be performed as follows
 
@@ -263,83 +269,7 @@ In order to test that each module added to `nf-core/modules` is actually working
 
 - It may not be possible to add test data for some modules e.g. if the input data is too large or requires a local database. In these scenarios, it is recommended to use the Nextflow [`stub`](https://www.nextflow.io/docs/latest/process.html#stub) feature to test the module. Please refer to the [`gtdbtk/classify`](https://github.com/nf-core/modules/blob/79d38a306bdaf07000e0d6f300684d3ed38c8919/modules/gtdbtk/classifywf/main.nf#L66) module and its corresponding [test script](https://github.com/nf-core/modules/blob/79d38a306bdaf07000e0d6f300684d3ed38c8919/tests/modules/gtdbtk/classifywf/main.nf#L20) to understand how to use this feature for your module development.
 
-### Running tests manually
-
-As outlined in the [nf-core modules create](#nf-core-modules-create) section we have made it quite trivial to create an initial yaml file (via the `nf-core modules create-test-yml` command) containing a listing of all of the module output files and their associated md5sums. However, md5sum checks may not be appropriate for all output files if for example they contain timestamps. This is why it is a good idea to re-run the tests locally with `pytest-workflow` before you create your pull request adding the module. If your files do indeed have timestamps or other issues that prevent you from using the md5sum check, then you can edit the `test.yml` file to instead check that the file contains some specific content or as a last resort, if it exists. The different test options are listed in the [pytest-workflow docs](https://pytest-workflow.readthedocs.io/en/stable/#test-options).
-
-Please follow the steps below to run the tests locally:
-
-1. Install [`Nextflow`](https://www.nextflow.io/docs/latest/getstarted.html#installation) (`>=21.04.0`)
-
-2. Install any of [`Docker`](https://docs.docker.com/engine/installation/), [`Singularity`](https://www.sylabs.io/guides/3.0/user-guide/) or [`Conda`](https://conda.io/miniconda.html)
-
-3. Install [`pytest-workflow`](https://pytest-workflow.readthedocs.io/en/stable/#installation)
-
-4. Start running your own tests using the appropriate [`tag`](https://github.com/nf-core/modules/blob/20d8250d9f39ddb05dfb437603aaf99b5c0b2b41/tests/modules/fastqc/test.yml) defined in the `test.yml`:
-
-   - Run the test with the helper tool `nf-core modules test` from the modules directory.
-
-     ```console
-     $ cd /path/to/git/clone/of/nf-core/modules/
-     $ nf-core modules test fastqc
-
-                                              ,--./,-.
-              ___     __   __   __   ___     /,-._.--~\
-        |\ | |__  __ /  ` /  \ |__) |__         }  {
-        | \| |       \__, \__/ |  \ |___     \`-._,-`-,
-                                              `._,._,'
-
-        nf-core/tools version 2.8 - https://nf-co.re
-
-        INFO Press enter to use default values (shown in brackets) or type your own responses
-        ? Choose software profile Docker
-        INFO Setting environment variable '$PROFILE' to 'docker'
-        ───────────────────────────────────────────────────────────────────────────────────────────────────── fastqc ──────────────────────────────────────────────────────────────────────────────────────────────────────
-        INFO Running pytest for module 'fastqc'
-        =============================================================================================== test session starts ===============================================================================================
-        platform linux -- Python 3.11.3, pytest-7.3.1, pluggy-1.0.0
-        rootdir: /home/james/git/jfy133/nf-core-modules
-        configfile: pytest.ini
-        plugins: workflow-2.0.1
-        collecting ...
-        collected 1882 items
-
-        fastqc single-end:
-        command: nextflow run ./tests/modules/fastqc/ -entry test_fastqc_single_end -c ./tests/config/nextflow.config -c ./tests/modules/fastqc/nextflow.config -c ./tests/modules/fastqc/nextflow.config
-        directory: /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_single-end
-        stdout: /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_single-end/log.out
-        stderr: /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_single-end/log.err
-        'fastqc single-end' done.
-
-        fastqc paired-end:
-        command: nextflow run ./tests/modules/fastqc/ -entry test_fastqc_paired_end -c ./tests/config/nextflow.config -c ./tests/modules/fastqc/nextflow.config -c ./tests/modules/fastqc/nextflow.config
-        directory: /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_paired-end
-        stdout: /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_paired-end/log.out
-        stderr: /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_paired-end/log.err
-        'fastqc paired-end' done.
-
-        tests/test_versions_yml.py ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 17%]
-        ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 38%]
-        ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 59%]
-        sssssssssssssssssssssssssssssssssssss..sssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 80%]
-        ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 98%]
-        tests/modules/fastqc/test.yml ........
-        Keeping temporary directories and logs. Use '--kwd' or '--keep-workflow-wd' to disable this behaviour.
-        ============================= 10 passed, 751 skipped, 479 warnings in 50.76s =============================
-
-        - See [docs on running pytest-workflow](https://pytest-workflow.readthedocs.io/en/stable/#running-pytest-workflow) for more info.
-        - If the module is also used in subworkflows, all subworkflow tests containing the module will also be executed.
-     ```
-
-:::info
-For docker/singularity, setting the environment variable `TMPDIR=~` is an example of a location the containers can mount (you can change this as you prefer). If you get test failures such as with Nextflow errors that end in `work doesn't exist in container`, check your container can mount your `TMPDIR`.
-:::
-
-:::warning
-if you have a module named `build` this can conflict with some pytest internal behaviour. This results in no tests being run (i.e. receiving a message of `collected 0 items`). In this case rename the `tests/<module>/build` directory to `tests/<module>/build_test`, and update the corresponding `test.yml` accordingly. An example can be seen with the [`bowtie2/build` module tests](https://github.com/nf-core/modules/tree/master/tests/modules/nf-core/bowtie2/build_test).
-:::
-
-### Migrating from pytest to nf-test
+### Writing nf-test tests
 
 We recently decided to use nf-test instead of pytest for testing modules. This is because nf-test is more flexible and allows us to test modules in a more realistic way. You can find more information at [nf-test official docs](https://code.askimed.com/nf-test/) and [in this bytesize talk](https://nf-co.re/events/2022/bytesize_nftest).
 
@@ -350,32 +280,17 @@ A simple example of a nf-test directory in nf-core/modules can be found [here](h
 - Each module contains a `tests/` folder beside the `main.nf` of the module itself, containing the test files
 - Test files come with a [snapshot](https://code.askimed.com/nf-test/docs/assertions/snapshots/) of module output channels
 
-#### Steps for creating nf-test for a simple un-chained module
+#### nf-test guidelines for a simple un-chained module
 
-- Install the dev version of nf-core tools, which comes with nf-test included
+- Some modules MAY require additional parameters added to the test command to successfully run. These can be specified with an `ext.args` variable within the process scope of the `nextflow.config` file that exists alongside the test files themselves (and is automatically loaded when the test workflow `main.nf` is executed).
 
-```bash
-pip install --upgrade --force-reinstall git+https://github.com/nf-core/tools.git@dev
-```
-
-- Git checkout a new branch for your module tests.
+If your module requires a a `nextflow.config` file to run, create the file to the module's `tests/` directory and add the additional parameters there.
 
 ```bash
-git checkout -b <branch>
+touch modules/nf-core/fastqc/tests/nextflow.config
 ```
 
-To create the necessary files for nf-test and ensure a smooth transition, we will use the template provided by nf-core/tools.
-
-Here are the steps to follow:
-
-- Use nf-core/tools to create a new module with the same name as the old one with the option `--migrate-pytest`.
-  This command will rename the current module directory to `<module>_old` to avoid conflicts with the new module, create a new module, and copy the `main.nf`, `meta.yml` and `environment.yml` files over to preserve the original module code.
-
-```bash
-nf-core modules create <tool>/<subtool> --migrate-pytest
-```
-
-- (optional) If your module has a `nextflow.config` file to run (e.g. for `ext.args` specification), the command will also copy it to the module's `tests/` directory and the path will be added to the `main.nf.test` file.
+Then add the path to the `main.nf.test` file.
 
 ```groovy title="main.nf.test"
 process "MODULE"
@@ -392,75 +307,7 @@ options "-stub"
 this can be added at the top of `main.nf.test` to have all tests run in stub mode or this can also be added to a single test
 :::
 
-- When using the `--migrate-pytest` option you will be asked if you want to delete the old module directory and see the content of the old pytests in the terminal, or to keep the old module directory. For the following steps, use the information from the pytest tests to create the new nf-test tests.
-
-- Provide a test name preferably indicating the test-data and file-format used. Example: `test("homo_sapiens - [bam, bai, bed] - fasta - fai")`
-
-:::note
-multiple tests are allowed in a single test file
-:::
-
-- If migrating an existing module, get the inputs from current pytest files `tests/modules/nf-core/module/main.nf` and provide as positional inputs `input[0]` in nf-test file
-
-```groovy
-input[0] = [
-            [id:"ref"],
-            file(params.test_data['homo_sapiens']['genome']['genome_fasta_fai'], checkIfExists: true)
-           ]
-```
-
-- Next, in the `then` block we can write our assertions that are used to verify the test. A test can have multiple assertions but, we recommend enclosing all assertions in a `assertAll()` block as shown below:
-
-```groovy
-assertAll(
-            { assert process.success },
-            { assert snapshot(process.out).match() }
-          )
-```
-
-:::tip{title="pytest vs. nf-test assertions"}
-
-| pytest     | nf-test                                                                                       | description                                                                           |
-| ---------- | --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| `md5sum`   | `assert snapshot(path(process.out.npl.get(0).get(1))).match(){:groovy}`                       | extract the file of a meta tuple from the npl channel, and check the snapshot matches |
-| `contains` | `assert path(process.out.npo.get(0).get(1)).getText().contains("Nonpareil version"){:groovy}` | check to see if it contains a given string                                            |
-| `path`     | `assert snapshot(file(process.out.log.get(0).get(1)).name).match("log"){:groovy}`             | check to see if the filename is "log"                                                 |
-
-:::
-
-- Run the test to create a snapshot of your module test. This will create a `main.nf.test.snap` file
-
-```bash
-nf-core modules test <tool>/<subtool>
-```
-
-If you chose to not remove the old module directory with nf-core/tools:
-
-- Remove the corresponding tags from `tests/config/pytest_modules.yml` so that py-tests for the module will be skipped on github CI.
-
-- Remove the corresponding pytest files in `tests/modules/nf-core`
-
-```bash
-rm -r tests/modules/nf-core/<tool>/<subtool>
-```
-
-- Remove the old module
-
-```bash
-rm -r modules/nf-core/<tool>/<subtool>_old
-```
-
-- Check if everything is according to the nf-core guidelines with:
-
-```bash
-nf-core modules lint <tool>/<subtool>
-```
-
-- create a PR and add the `nf-test` label to it.
-
-#### Steps for creating nf-test for chained modules
-
-- Follow the steps listed above for simple modules for test generation, tags and test-name
+#### nf-test guidelines for a chained module
 
 - For modules that involve running more than one process to generate required test-data (aka chained modules), nf-test provides a [setup](https://code.askimed.com/nf-test/docs/testcases/setup/) method.
 
@@ -552,6 +399,106 @@ nextflow_process {
     }
 }
 ```
+
+### Migrating from pytest to nf-test
+
+#### Steps for creating nf-test for a simple un-chained module
+
+- Git checkout a new branch for your module tests.
+
+```bash
+git checkout -b <branch>
+```
+
+To create the necessary files for nf-test and ensure a smooth transition, we will use the template provided by nf-core/tools.
+
+Here are the steps to follow:
+
+- Use nf-core/tools to create a new module with the same name as the old one with the option `--migrate-pytest`.
+  This command will rename the current module directory to `<module>_old` to avoid conflicts with the new module, create a new module, and copy the `main.nf`, `meta.yml` and `environment.yml` files over to preserve the original module code.
+
+```bash
+nf-core modules create <tool>/<subtool> --migrate-pytest
+```
+
+- (optional) If your module has a `nextflow.config` file to run (e.g. for `ext.args` specification), the command will also copy it to the module's `tests/` directory and the path will be added to the `main.nf.test` file.
+
+```groovy title="main.nf.test"
+process "MODULE"
+config "./nextflow.config"
+```
+
+- When using the `--migrate-pytest` option you will be asked if you want to delete the old module directory and see the content of the old pytests in the terminal, or to keep the old module directory. For the following steps, use the information from the pytest tests to create the new nf-test tests.
+
+- Provide a test name preferably indicating the test-data and file-format used. Example: `test("homo_sapiens - [bam, bai, bed] - fasta - fai")`
+
+:::note
+multiple tests are allowed in a single test file
+:::
+
+- If migrating an existing module, get the inputs from current pytest files `tests/modules/nf-core/module/main.nf` and provide as positional inputs `input[0]` in nf-test file
+
+```groovy
+input[0] = [
+            [id:"ref"],
+            file(params.test_data['homo_sapiens']['genome']['genome_fasta_fai'], checkIfExists: true)
+           ]
+```
+
+- Next, in the `then` block we can write our assertions that are used to verify the test. A test can have multiple assertions but, we recommend enclosing all assertions in a `assertAll()` block as shown below:
+
+```groovy
+assertAll(
+            { assert process.success },
+            { assert snapshot(process.out).match() }
+          )
+```
+
+:::tip{title="pytest vs. nf-test assertions"}
+
+| pytest     | nf-test                                                                                       | description                                                                           |
+| ---------- | --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `md5sum`   | `assert snapshot(path(process.out.npl.get(0).get(1))).match(){:groovy}`                       | extract the file of a meta tuple from the npl channel, and check the snapshot matches |
+| `contains` | `assert path(process.out.npo.get(0).get(1)).getText().contains("Nonpareil version"){:groovy}` | check to see if it contains a given string                                            |
+| `path`     | `assert snapshot(file(process.out.log.get(0).get(1)).name).match("log"){:groovy}`             | check to see if the filename is "log"                                                 |
+
+:::
+
+- Run the test to create a snapshot of your module test. This will create a `main.nf.test.snap` file
+
+```bash
+nf-core modules test <tool>/<subtool>
+```
+
+If you chose to not remove the old module directory with nf-core/tools:
+
+- Remove the corresponding tags from `tests/config/pytest_modules.yml` so that py-tests for the module will be skipped on github CI.
+
+- Remove the corresponding pytest files in `tests/modules/nf-core`
+
+```bash
+rm -r tests/modules/nf-core/<tool>/<subtool>
+```
+
+- Remove the old module
+
+```bash
+rm -r modules/nf-core/<tool>/<subtool>_old
+```
+
+- Check if everything is according to the nf-core guidelines with:
+
+```bash
+nf-core modules lint <tool>/<subtool>
+```
+
+- create a PR and add the `nf-test` label to it.
+
+#### Steps for creating nf-test for chained modules
+
+- Follow the steps listed above for simple modules for test generation, tags and test-name
+
+- Refer to the section [nf-test guidelines for a chained module](#nf-test-guidelines-for-a-chained-module)
 
 - Run the test to create a snapshot of your module test. This will create a `.nf.test.snap` file
 
