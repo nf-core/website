@@ -307,6 +307,8 @@ options "-stub"
 this can be added at the top of `main.nf.test` to have all tests run in stub mode or this can also be added to a single test
 :::
 
+- You can find examples of different nf-tests assertions on [this tutorial](https://nf-co.re/docs/contributing/tutorials/nf-test_assertions).
+
 #### nf-test guidelines for a chained module
 
 - For modules that involve running more than one process to generate required test-data (aka chained modules), nf-test provides a [setup](https://code.askimed.com/nf-test/docs/testcases/setup/) method.

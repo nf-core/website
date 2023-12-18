@@ -258,6 +258,8 @@ process "SUBWORKFLOW"
 config "./nextflow.config"
 ```
 
+- You can find examples of different nf-tests assertions on [this tutorial](https://nf-co.re/docs/contributing/tutorials/nf-test_assertions).
+
 #### Guidelines for creating nf-test for subworkflow chained with modules
 
 - For subworkflows that involve running a module in advance to generate required test-data, nf-test provides a [setup](https://code.askimed.com/nf-test/docs/testcases/setup/) method.
