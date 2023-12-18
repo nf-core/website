@@ -3515,6 +3515,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -35582,6 +35586,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -36307,6 +36315,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -40464,6 +40476,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -93049,6 +93065,78 @@
       }
     },
     {
+      "name": "seqkit_sort",
+      "path": "modules/nf-core/seqkit/sort/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "seqkit_sort",
+        "description": "Sorts sequences by id/name/sequence/length",
+        "keywords": [
+          "genomics",
+          "fasta",
+          "fastq",
+          "sort"
+        ],
+        "tools": [
+          {
+            "seqkit": {
+              "description": "A cross-platform and ultrafast toolkit for FASTA/Q file manipulation",
+              "homepage": "https://bioinf.shenwei.me/seqkit/",
+              "documentation": "https://bioinf.shenwei.me/seqkit/usage/",
+              "tool_dev_url": "https://github.com/shenwei356/seqkit",
+              "doi": "10.1371/journal.pone.0163962",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "fastx": {
+              "type": "file",
+              "description": "Input fasta/fastq file",
+              "pattern": "*.{fsa,fas,fa,fasta,fastq,fq,fsa.gz,fas.gz,fa.gz,fasta.gz,fastq.gz,fq.gz}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "fastx": {
+              "type": "file",
+              "description": "Output fasta/fastq file",
+              "pattern": "*.{fasta.gz,fastq.gz}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@GallVp"
+        ],
+        "maintainers": [
+          "@GallVp"
+        ]
+      }
+    },
+    {
       "name": "seqkit_split2",
       "path": "modules/nf-core/seqkit/split2/meta.yml",
       "type": "module",
@@ -116668,6 +116756,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -116702,6 +116794,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -117156,6 +117252,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
