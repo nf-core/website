@@ -47,9 +47,10 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 
 1. Install the latest version of [`nf-core/tools`](https://github.com/nf-core/tools#installation) (`>=2.7`)
 2. Install [`Nextflow`](https://www.nextflow.io/docs/latest/getstarted.html#installation) (`>=21.10.3`)
-3. Install any of [`Docker`](https://docs.docker.com/engine/installation/), [`Singularity`](https://www.sylabs.io/guides/3.0/user-guide/) or [`Conda`](https://conda.io/miniconda.html)
-4. [Fork and clone the nf-core/modules repo locally](#uploading-to-nf-coremodules)
-5. Set up git on your computer by adding a new git remote of the main nf-core git repo called `upstream`
+3. Install [`nf-test`](https://code.askimed.com/nf-test/installation/)
+4. Install any of [`Docker`](https://docs.docker.com/engine/installation/), [`Singularity`](https://www.sylabs.io/guides/3.0/user-guide/) or [`Conda`](https://conda.io/miniconda.html)
+5. [Fork and clone the nf-core/modules repo locally](#uploading-to-nf-coremodules)
+6. Set up git on your computer by adding a new git remote of the main nf-core git repo called `upstream`
 
    ```bash
    git remote add upstream https://github.com/nf-core/modules.git
@@ -61,7 +62,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
    git checkout -b bam_sort_stats_samtools
    ```
 
-6. Create a subworkflow using the [nf-core DSL2 subworkflow template](https://github.com/nf-core/tools/blob/master/nf_core/subworkflow-template/subworkflows/main.nf) in the root of the clone of the nf-core/modules repository:
+7. Create a subworkflow using the [nf-core DSL2 subworkflow template](https://github.com/nf-core/tools/blob/master/nf_core/subworkflow-template/subworkflows/main.nf) in the root of the clone of the nf-core/modules repository:
 
    ```console
    $ nf-core subworkflows create bam_sort_stats_samtools --author @joebloggs
@@ -72,18 +73,16 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
        | \| |       \__, \__/ |  \ |___     \`-._,-`-,
                                              `._,._,'
 
-       nf-core/tools version 2.8 - https://nf-co.re
+       nf-core/tools version 2.11 - https://nf-co.re
 
 
    INFO     Repository type: modules
    INFO     Press enter to use default values (shown in brackets) or type your own responses. ctrl+click underlined text to open links.
-   INFO     Created / edited following files:
-              ./subworkflows/nf-core/bam_sort_stats_samtools/main.nf
-              ./subworkflows/nf-core/bam_sort_stats_samtools/meta.yml
-              ./tests/subworkflows/nf-core/bam_sort_stats_samtools/main.nf
-              ./tests/subworkflows/nf-core/bam_sort_stats_samtools/test.yml
-              ./tests/subworkflows/nf-core/bam_sort_stats_samtools/nextflow.config
-              ./tests/config/pytest_modules.yml
+   INFO     Created following files:
+              subworkflows/nf-core/bam_sort_stats_samtools/main.nf
+              subworkflows/nf-core/bam_sort_stats_samtools/meta.yml
+              subworkflows/nf-core/bam_sort_stats_samtools/tests/tags.yml
+              subworkflows/nf-core/bam_sort_stats_samtools/tests/main.nf.test
    ```
 
 All of the files required to add the subworkflow to `nf-core/modules` will be created/edited in the appropriate places. There are at most 5 files to modify:
@@ -96,35 +95,18 @@ All of the files required to add the subworkflow to `nf-core/modules` will be cr
 
    This file will be used to store general information about the subworkflow and author details. You will need to add a brief description of the files defined in the `input` and `output` section of the main script since these will be unique to each subworkflow.
 
-3. [`./tests/subworkflows/nf-core/bam_sort_stats_samtools/main.nf`](https://github.com/nf-core/modules/blob/master/tests/subworkflows/nf-core/bam_sort_stats_samtools/main.nf)
+3. [`./subworkflows/nf-core/bam_sort_stats_samtools/tests/main.nf.test`](https://github.com/nf-core/modules/blob/master/subworkflows/nf-core/bam_sort_stats_samtools/tests/main.nf.test)
 
    Every subworkflow MUST have a test workflow. This file will define one or more Nextflow `workflow` definitions that will be used to unit test the output files created by the subworkflow. By default, one `workflow` definition will be added but please feel free to add as many as possible so we can ensure that the subworkflow works on different data types / parameters e.g. separate `workflow` for single-end and paired-end data.
 
-   When writing multiple tests, a common practice is to alias process names to differentiate them between tests. When using an alias, add a suffix to the process name so the CI tests can still find the output in the folder named after the tool, e.g.
-
-   ```groovy
-   include { BAM_SORT_STATS_SAMTOOLS as BAM_SORT_STATS_SAMTOOLS_SINGLE_END } from '../../../../subworkflows/nf-core/bam_sort_stats_samtools/main' // Good: Output folder is still 'fastqc'
-   include { BAM_SORT_STATS_SAMTOOLS as SINGLE_END_BAM_SORT_STATS_SAMTOOLS } from '../../../../subworkflows/nf-core/bam_sort_stats_samtools/main' // Bad: Generates problems with CI tests - Output folder is 'post'
-   ```
-
    Minimal test data required for your subworkflow may already exist within the [nf-core/modules repository](https://github.com/nf-core/modules/blob/master/tests/config/test_data.config), in which case you may just have to change a couple of paths in this file - see the [Test data](#test-data) section for more info and guidelines for adding new standardised data if required.
 
-4. [`./tests/subworkflows/nf-core/bam_sort_stats_samtools/nextflow.config`](https://github.com/nf-core/modules/blob/master//tests/subworkflows/nf-core/bam_sort_stats_samtools/nextflow.config)
+   Refer to the section [writing nf-test tests](#writing-nf-test-tests) for more information on how to write nf-tests
 
-   Some subworkflows MAY require additional parameters added to the test command to successfully run. These can be specified with an `ext.args` variable within the process scope of the `nextflow.config` file that exists alongside the test files themselves (and is automatically loaded when the test workflow `main.nf` is executed).
-
-5. [`./tests/subworkflows/nf-core/bam_sort_stats_samtools/test.yml`](https://github.com/nf-core/modules/blob/master/tests/subworkflows/nf-core/bam_sort_stats_samtools/test.yml)
-
-   This file will contain all of the details required to unit test the main script in the point above using [pytest-workflow](https://pytest-workflow.readthedocs.io/). If possible, any outputs produced by the test workflow(s) MUST be included and listed in this file along with an appropriate check e.g. md5sum. The different test options are listed in the [pytest-workflow docs](https://pytest-workflow.readthedocs.io/en/stable/#test-options).
-
-   As highlighted in the next point, we have added a command to make it much easier to test the workflow(s) defined for the subworkflow and to automatically create the `test.yml` with the md5sum hashes for all of the outputs generated by the subworkflow.
-
-   `md5sum` checks are the preferable choice of test to determine file changes, however, this may not be possible for all outputs generated by some tools e.g. if they include time stamps or command-related headers. Please do your best to avoid just checking for the file being present e.g. it may still be possible to check that the file contains the appropriate text snippets.
-
-6. Create a yaml file containing information required for subworkflow unit testing
+4. Create a snapshot file for subworkflow testing
 
    ```console
-   $ nf-core subworkflows create-test-yml bam_sort_stats_samtools
+   $ nf-core subworkflows test bam_sort_stats_samtools
 
                                              ,--./,-.
              ___     __   __   __   ___     /,-._.--~\
@@ -135,42 +117,58 @@ All of the files required to add the subworkflow to `nf-core/modules` will be cr
        nf-core/tools version 2.8 - https://nf-co.re
 
 
-   INFO     Press enter to use default values (shown in brackets) or type your own
-      responses
-   Test YAML output path (- for stdout) (tests/subworkflows/nf-core/bam_sort_stats_samtools/test.yml):
-   INFO     Looking for test workflow entry points: 'tests/subworkflows/nf-core/bam_sort_stats_samtools/main.nf'
-   INFO     Building test meta for entry point 'test_bam_sort_stats_samtools_single_end'
-   Test name (bam_sort_stats_samtools test_bam_sort_stats_samtools_single_end):
-   Test command (nextflow run ./tests/subworkflows/nf-core/bam_sort_stats_samtools -entry
-      test_bam_sort_stats_samtools_single_end -c ./tests/config/nextflow.config):
-   Test tags (comma separated):
-   Test output folder with results (leave blank to run test):
-   ? Choose software profile Docker
-   INFO     Setting env var '$PROFILE' to 'docker'
-   INFO     Running 'bam_sort_stats_samtools' test with command:
-         nextflow run ./tests/subworkflows/nf-core/bam_sort_stats_samtools -entry
-            test_bam_sort_stats_samtools_single_end
-            -c ./tests/config/nextflow.config --outdir /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/tmping28ow_
-            -work-dir /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/tmportf0uab
+   INFO     Generating nf-test snapshot
+   ╭────────────────────────────────────────────────────────── nf-test output ──────────────────────────────────────────────────────────╮
+    │                                                                                                                                    │
+    │ 🚀 nf-test 0.8.2                                                                                                                   │
+    │ https://code.askimed.com/nf-test                                                                                                   │
+    │ (c) 2021 - 2023 Lukas Forer and Sebastian Schoenherr                                                                               │
+    │                                                                                                                                    │
+    │ Found 1 files in test directory.                                                                                                   │
+    │                                                                                                                                    │
+    │ Test Workflow BAM_SORT_STATS_SAMTOOLS                                                                                              │
+    │                                                                                                                                    │
+    │   Test [4510cb97] 'test_bam_sort_stats_samtools_single_end' PASSED (469.169s)                                                      │
+    │   Test [ea818516] 'test_bam_sort_stats_samtools_paired_end' PASSED (18.328s)                                                       │
+    │                                                                                                                                    │
+    │                                                                                                                                    │
+    │ SUCCESS: Executed 2 tests in 487.499s                                                                                              │
+    │                                                                                                                                    │
+    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+    INFO     Generating nf-test snapshot again to check stability
+    ╭────────────────────────────────────────────────────────── nf-test output ──────────────────────────────────────────────────────────╮
+    │                                                                                                                                    │
+    │ 🚀 nf-test 0.8.2                                                                                                                   │
+    │ https://code.askimed.com/nf-test                                                                                                   │
+    │ (c) 2021 - 2023 Lukas Forer and Sebastian Schoenherr                                                                               │
+    │                                                                                                                                    │
+    │ Found 1 files in test directory.                                                                                                   │
+    │                                                                                                                                    │
+    │ Test Workflow BAM_SORT_STATS_SAMTOOLS                                                                                              │
+    │                                                                                                                                    │
+    │   Test [4510cb97] 'test_bam_sort_stats_samtools_single_end' PASSED (17.28s)                                                        │
+    │   Test [ea818516] 'test_bam_sort_stats_samtools_paired_end' PASSED (16.62s)                                                        │
+    │                                                                                                                                    │
+    │                                                                                                                                    │
+    │ SUCCESS: Executed 2 tests in 33.902s                                                                                               │
+    │                                                                                                                                    │
+    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+    INFO     All tests passed!
    ```
 
    :::note
-   See docs for [running tests manually](#running-tests-manually) if you would like to run the tests manually.
+   See the [nf-test docs](https://code.askimed.com/nf-test/) if you would like to run the tests manually.
    :::
 
-7. Run [`prettier`](https://nf-co.re/docs/contributing/code_formating) on all edited and generated files
+5. Run [`prettier`](https://nf-co.re/docs/contributing/code_formating) on all edited and generated files
    prettier -w .
 
-8. Check that the new subworkflow you've added follows the [new subworkflow guidelines](#new-subworkflow-guidelines-and-pr-review-checklist)
+6. Check that the new subworkflow you've added follows the [new subworkflow guidelines](#new-subworkflow-guidelines-and-pr-review-checklist)
 
-<!-- TODO: nf-core: Update these guidelines as we develop them -->
-
-    (COMMAND NOT IMPLEMENTED IN NF-CORE/TOOLS YET!!) Lint the subworkflow locally to check that it adheres to nf-core guidelines before submission
-
-    <!-- TODO: nf-core: Update these guidelines as we develop them -->
+7. Lint the subworkflow locally to check that it adheres to nf-core guidelines before submission
 
     ```console
-    $ nf-core subworkflows lint
+    $ nf-core subworkflows lint bam_sort_stats_samtools
 
                                           ,--./,-.
           ___     __   __   __   ___     /,-._.--~\
@@ -178,10 +176,19 @@ All of the files required to add the subworkflow to `nf-core/modules` will be cr
     | \| |       \__, \__/ |  \ |___     \`-._,-`-,
                                           `._,._,'
 
-    nf-core/tools version 2.7.dev0 - https://nf-co.re
+    nf-core/tools version 2.11 - https://nf-co.re
 
 
-    INFO     Repository type: modules
+    INFO     Linting modules repo: '.'
+    INFO     Linting subworkflow: 'bam_sort_stats_samtools'
+
+    ╭───────────────────────╮
+    │ LINT RESULTS SUMMARY  │
+    ├───────────────────────┤
+    │ [✔]  40 Tests Passed  │
+    │ [!]   0 Test Warnings │
+    │ [✗]   0 Tests Failed  │
+    ╰───────────────────────╯
     ```
 
 9. Once ready, the code can be pushed and a pull request (PR) created
@@ -225,47 +232,145 @@ In order to test that each subworkflow added to `nf-core/modules` is actually wo
 
 - It may not be possible to add test data for some subworkflows e.g. if the input data is too large or requires a local database. In these scenarios, it is recommended to use the Nextflow [`stub`](https://www.nextflow.io/docs/latest/process.html#stub) feature to test the subworkflow. Please refer to the [`gtdbtk/classify`](https://github.com/nf-core/modules/blob/79d38a306bdaf07000e0d6f300684d3ed38c8919/modules/gtdbtk/classifywf/main.nf#L66) module and its corresponding [test script](https://github.com/nf-core/modules/blob/79d38a306bdaf07000e0d6f300684d3ed38c8919/tests/modules/gtdbtk/classifywf/main.nf#L20) to understand how to use this feature for your subworkflow development.
 
-### Running tests manually
+### Writing nf-test tests
 
-As outlined in the [nf-core subworkflows create](#nf-core-subworkflows-create) section we have made it quite trivial to create an initial yaml file (via the `nf-core subworkflows create-test-yml` command) containing a listing of all of the subworkflow output files and their associated md5sums. However, md5sum checks may not be appropriate for all output files if for example they contain timestamps. This is why it is a good idea to re-run the tests locally with `pytest-workflow` before you create your pull request adding the subworkflow. If your files do indeed have timestamps or other issues that prevent you from using the md5sum check, then you can edit the `test.yml` file to instead check that the file contains some specific content or as a last resort, if it exists. The different test options are listed in the [pytest-workflow docs](https://pytest-workflow.readthedocs.io/en/stable/#test-options).
+We recently decided to use nf-test instead of pytest for testing modules & subworkflows. This is because nf-test is more flexible and allows us to test subworkflows in a more realistic way. You can find more information at [nf-test official docs](https://code.askimed.com/nf-test/) and [in this bytesize talk](https://nf-co.re/events/2022/bytesize_nftest).
 
-Please follow the steps below to run the tests locally:
+#### Philosophy of nf-tests
 
-1. Install [`Nextflow`](https://www.nextflow.io/docs/latest/getstarted.html#installation) (`>=21.10.3`)
+- Each subworkflow contains a `tests/` folder beside the `main.nf` containing the test files
+- Test files come with a [snapshot](https://code.askimed.com/nf-test/docs/assertions/snapshots/) of subworkflows output channels
 
-2. Install any of [`Docker`](https://docs.docker.com/engine/installation/), [`Singularity`](https://www.sylabs.io/guides/3.0/user-guide/) or [`Conda`](https://conda.io/miniconda.html)
+#### Guidelines for creating nf-test for a subworkflow
 
-3. Install [`pytest-workflow`](https://pytest-workflow.readthedocs.io/en/stable/#installation)
+- Some subworkflows MAY require additional parameters added to the test command to successfully run. These can be specified with an `ext.args` variable within the process scope of the `nextflow.config` file that exists alongside the test files themselves (and is automatically loaded when the test workflow `main.nf` is executed).
 
-4. Start running your own tests using the appropriate [`tag`](https://github.com/nf-core/modules/blob/20d8250d9f39ddb05dfb437603aaf99b5c0b2b41/tests/modules/fastqc/test.yml) defined in the `test.yml`:
+If your subworkflow requires a a `nextflow.config` file to run, create the file to the subworkflow's `tests/` directory and add the additional parameters there.
 
-   - Run the test with the helper tool `nf-core subworkflows test` from the modules directory.
+```bash
+touch subworkflows/nf-core/bam_sort_stats_samtools/tests/nextflow.config
+```
 
-    <!-- TODO: nf-core: Update these guidelines as we develop them -->
+Then add the path to the `main.nf.test` file.
 
-   ```console
-   $ cd /path/to/git/clone/of/nf-core/modules/
-   $ nf-core subworkflows test bam_sort_stats_samtools
+```groovy title="main.nf.test"
+process "SUBWORKFLOW"
+config "./nextflow.config"
+```
 
-                                          ,--./,-.
-          ___     __   __   __   ___     /,-._.--~\
-    |\ | |__  __ /  ` /  \ |__) |__         }  {
-    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
-                                          `._,._,'
+#### Guidelines for creating nf-test for subworkflow chained with modules
 
-    nf-core/tools version 2.8 - https://nf-co.re
+- For subworkflows that involve running a module in advance to generate required test-data, nf-test provides a [setup](https://code.askimed.com/nf-test/docs/testcases/setup/) method.
 
+- Implementing [setup](https://code.askimed.com/nf-test/docs/testcases/setup/) with a subworkflow is very similar as with modules. For this [see docs of nf-test with chained modules](#steps-for-creating-nf-test-for-chained-modules)
 
-    INFO     Press enter to use default values (shown in brackets) or type your own responses
-    ? Choose software profile Docker
-    INFO     Setting environment variable '$PROFILE' to 'conda'
-    NFO     Running pytest for subworkflow 'bam_sort_stats_samtools'
-   ```
+### Using a stub test when required test data is too big
 
-   - See [docs on running pytest-workflow](https://pytest-workflow.readthedocs.io/en/stable/#running-pytest-workflow) for more info.
+If the subworkflow absolutely cannot run using tiny test data, there is a possibility to add [stub-run](https://www.nextflow.io/docs/edge/process.html#stub) to the `test.yml`. In this case it is required to test the subworkflow using larger scale data and document how this is done. In addition, an extra script-block labeled `stub:` must be added, and this block must create dummy versions of all expected output files as well as the `versions.yml`. An example for modules is found in the [ascat module](https://github.com/nf-core/modules/blob/master/tests/modules/nf-core/ascat/main.nf). In the `test.yml` the `-stub-run` argument is written as well as the md5sums for each of the files that are added in the stub-block. This causes the stub-code block to be activated when the unit test is run ([example](https://github.com/nf-core/modules/blob/master/tests/modules/nf-core/ascat/test.yml)):
+
+```bash
+nextflow run tests/subworkflows/nf-core/<name_of_subworkflow> -entry test_<name_of_subworkflow> -c tests/config/nextflow.config -stub-run
+```
+
+### Migrating from pytest to nf-test
+
+#### Steps for creating nf-test for a subworkflow
+
+- Git checkout a new branch for your subworkflow tests
+
+```bash
+git checkout -b <branch>
+```
+
+To create the necessary files for nf-test and ensure a smooth transition, we will use the template provided by nf-core/tools.
+
+Here are the steps to follow:
+
+- Use nf-core/tools to create a new subworkflow with the same name as the old one with the option `--migrate-pytest`.
+  This command will rename the current subworkflow directory to `<subworkflow>_old` to avoid conflicts with the new subworkflow, create a new subworkflow, and copy the `main.nf` and `meta.yml` files over to preserve the original subworkflow code.
+
+```bash
+nf-core subworkflows create <subworkflow> --migrate-pytest
+```
+
+- When using the `--migrate-pytest` option you will be asked if you want to delete the old subworkflow directory and see the content of the old pytests in the terminal, or to keep the old subworkflow directory. For the following steps, use the information from the pytest tests to create the new nf-test tests.
+
+- Provide a test name preferably indicating the test-data and file-format used. Example: `test("homo_sapiens - [bam, bai, bed] - fasta - fai")`
 
 :::note
-For docker/singularity, setting the environment variable `TMPDIR=~` is an example of a location the containers can mount (you can change this as you prefer). If you get test failures such as with Nextflow errors that end in `work doesn't exist in container`, check your container can mount your `TMPDIR`.
+Multiple tests are allowed in a single test file.
+:::
+
+- If migrating an existing subworkflow, get the inputs from current pytest files `tests/subworkflow/nf-core/subworkflow/main.nf` and provide as positional inputs `input[0]` in nf-test file
+
+```groovy
+input[0] = [
+            [id:"ref"],
+            file(params.test_data['homo_sapiens']['genome']['genome_fasta_fai'], checkIfExists: true)
+           ]
+```
+
+- Next, in the `then` block we can write our assertions that are used to verify the test. A test can have multiple assertions but, we recommend enclosing all assertions in a `assertAll()` block as shown below:
+
+```groovy
+assertAll(
+            { assert workflow.success },
+            { assert snapshot(workflow.out).match() }
+          )
+```
+
+:::note
+It's `workflow.` whereas with modules it's `process.`.
+:::
+
+- Run the test to create a snapshot of your subworkflow test. This will create a `main.nf.test.snap` file
+
+```bash
+nf-core subworkflows test <subworkflow>
+```
+
+:::note
+The tag in `tags.yml` has to contain both `subworkflows/<subworkflow>` and not just `<subworkflow>` in contrast to modules.
+:::
+
+Time for some cleanup!
+If you chose to not remove the old module directory with nf-core/tools:
+
+- Remove the corresponding tags from `tests/config/pytest_modules.yml` so that py-tests for the subworkflow will be skipped on github CI.
+
+- Remove the corresponding pytest files in `tests/subworkflow/nf-core`
+
+- Remove the old subworkflow
+
+```bash
+rm -r subworkflows/nf-core/<subworkflow>_old
+```
+
+- Check if everything is according to the nf-core guidelines with:
+
+```bash
+nf-core subworkflowss lint <subworkflows>
+```
+
+- create a PR and add the `nf-test` label to it.
+
+#### Steps for creating nf-test for subworkflow chained with modules
+
+- Follow the steps listed above for simple subworkflows for test generation, tags and test-name
+
+- Refer to the section [guidelines for creating nf-test for subworkflow chained with modules](guidelines-for-creating-nf-test-for-subworkflow-chained-with-modules)
+
+:::note
+Remove the corresponding tags from `tests/config/pytest_modules.yml` so that py-tests for the module will be skipped on github CI
+:::
+
+- create PR and add the `nf-test` label to it.
+
+:::info
+The implementation of nf-test in nf-core is still evolving. Things might still change and the information might here might be outdated. Please report any issues you encounter [on the nf-core/website repository](https://github.com/nf-core/website/issues/new?assignees=&labels=bug&projects=&template=bug_report.md) and the `nf-test` channel on nf-core slack.
+
+<!-- NOTE: update when nf-core/tools gets nf-test support -->
+
 :::
 
 ### Uploading to `nf-core/modules`
@@ -376,130 +481,6 @@ This system uses Nextflow's native [`publishDir`](https://www.nextflow.io/docs/l
 If a new test dataset is added to [`tests/config/test_data.config`](https://github.com/nf-core/modules/blob/master/tests/config/test_data.config), check that the config name of the added file(s) follows the scheme of the entire file name with dots replaced with underscores.
 
 For example: the nf-core/test-datasets file `genomics/sarscov2/genome/genome.fasta` labelled as `genome_fasta`, or `genomics/sarscov2/genome/genome.fasta.fai` as `genome_fasta_fai`.
-
-### Migrating from pytest to nf-test
-
-We recently decided to use nf-test instead of pytest for testing modules & subworkflows. This is because nf-test is more flexible and allows us to test subworkflows in a more realistic way. You can find more information at [nf-test official docs](https://code.askimed.com/nf-test/) and [in this bytesize talk](https://nf-co.re/events/2022/bytesize_nftest).
-
-#### Philosophy of nf-tests
-
-- Each subworkflow contains a `tests/` folder beside the `main.nf` containing the test files
-- Test files come with a [snapshot](https://code.askimed.com/nf-test/docs/assertions/snapshots/) of subworkflows output channels
-
-#### Steps for creating nf-test for a subworkflow
-
-- Install the dev version of nf-core tools, which comes with nf-test included
-
-```bash
-pip install --upgrade --force-reinstall git+https://github.com/nf-core/tools.git@dev
-```
-
-- Git checkout a new branch for your subworkflow tests
-
-```bash
-git checkout -b <branch>
-```
-
-To create the necessary files for nf-test and ensure a smooth transition, we will use the template provided by nf-core/tools.
-
-Here are the steps to follow:
-
-- Use nf-core/tools to create a new subworkflow with the same name as the old one with the option `--migrate-pytest`.
-  This command will rename the current subworkflow directory to `<subworkflow>_old` to avoid conflicts with the new subworkflow, create a new subworkflow, and copy the `main.nf` and `meta.yml` files over to preserve the original subworkflow code.
-
-```bash
-nf-core subworkflows create <subworkflow> --migrate-pytest
-```
-
-- When using the `--migrate-pytest` option you will be asked if you want to delete the old subworkflow directory and see the content of the old pytests in the terminal, or to keep the old subworkflow directory. For the following steps, use the information from the pytest tests to create the new nf-test tests.
-
-- Provide a test name preferably indicating the test-data and file-format used. Example: `test("homo_sapiens - [bam, bai, bed] - fasta - fai")`
-
-:::note
-Multiple tests are allowed in a single test file.
-:::
-
-- If migrating an existing subworkflow, get the inputs from current pytest files `tests/subworkflow/nf-core/subworkflow/main.nf` and provide as positional inputs `input[0]` in nf-test file
-
-```groovy
-input[0] = [
-            [id:"ref"],
-            file(params.test_data['homo_sapiens']['genome']['genome_fasta_fai'], checkIfExists: true)
-           ]
-```
-
-- Next, in the `then` block we can write our assertions that are used to verify the test. A test can have multiple assertions but, we recommend enclosing all assertions in a `assertAll()` block as shown below:
-
-```groovy
-assertAll(
-            { assert workflow.success },
-            { assert snapshot(workflow.out).match() }
-          )
-```
-
-:::note
-It's `workflow.` whereas with modules it's `process.`.
-:::
-
-- Run the test to create a snapshot of your subworkflow test. This will create a `main.nf.test.snap` file
-
-```bash
-nf-core subworkflows test <subworkflow>
-```
-
-:::note
-The tag in `tags.yml` has to contain both `subworkflows/<subworkflow>` and not just `<subworkflow>` in contrast to modules.
-:::
-
-Time for some cleanup!
-If you chose to not remove the old module directory with nf-core/tools:
-
-- Remove the corresponding tags from `tests/config/pytest_modules.yml` so that py-tests for the subworkflow will be skipped on github CI.
-
-- Remove the corresponding pytest files in `tests/subworkflow/nf-core`
-
-- Remove the old subworkflow
-
-```bash
-rm -r subworkflows/nf-core/<subworkflow>_old
-```
-
-- Check if everything is according to the nf-core guidelines with:
-
-```bash
-nf-core subworkflowss lint <subworkflows>
-```
-
-- create a PR and add the `nf-test` label to it.
-
-#### Steps for creating nf-test for subworkflow chained with modules
-
-- Follow the steps listed above for simple subworkflows for test generation, tags and test-name
-
-- For subworkflows that involve running a module in advance to generate required test-data, nf-test provides a [setup](https://code.askimed.com/nf-test/docs/testcases/setup/) method.
-
-- Implementing [setup](https://code.askimed.com/nf-test/docs/testcases/setup/) with a subworkflow is very similar as with modules. For this [see docs of nf-test with chained modules](#steps-for-creating-nf-test-for-chained-modules)
-
-:::note
-Remove the corresponding tags from `tests/config/pytest_modules.yml` so that py-tests for the module will be skipped on github CI
-:::
-
-- create PR and add the `nf-test` label to it.
-
-:::info
-The implementation of nf-test in nf-core is still evolving. Things might still change and the information might here might be outdated. Please report any issues you encounter [on the nf-core/website repository](https://github.com/nf-core/website/issues/new?assignees=&labels=bug&projects=&template=bug_report.md) and the `nf-test` channel on nf-core slack.
-
-<!-- NOTE: update when nf-core/tools gets nf-test support -->
-
-:::
-
-### Using a stub test when required test data is too big
-
-If the subworkflow absolutely cannot run using tiny test data, there is a possibility to add [stub-run](https://www.nextflow.io/docs/edge/process.html#stub) to the `test.yml`. In this case it is required to test the subworkflow using larger scale data and document how this is done. In addition, an extra script-block labeled `stub:` must be added, and this block must create dummy versions of all expected output files as well as the `versions.yml`. An example for modules is found in the [ascat module](https://github.com/nf-core/modules/blob/master/tests/modules/nf-core/ascat/main.nf). In the `test.yml` the `-stub-run` argument is written as well as the md5sums for each of the files that are added in the stub-block. This causes the stub-code block to be activated when the unit test is run ([example](https://github.com/nf-core/modules/blob/master/tests/modules/nf-core/ascat/test.yml)):
-
-```bash
-nextflow run tests/subworkflows/nf-core/<name_of_subworkflow> -entry test_<name_of_subworkflow> -c tests/config/nextflow.config -stub-run
-```
 
 ## What is the `meta` map?
 

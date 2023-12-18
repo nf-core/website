@@ -22,15 +22,15 @@ This should run the test data through nf-core rnaseq, using docker with your res
 
 Using this Gitpod method makes it easy to run and test nf-core pipelines quickly, but it lacks the parallelization required to run real datasets.
 
-## Testing your module with pytest
+## Testing your module with nf-test
 
 With DSL2, much of pipeline writing is spent writing reusable [modules](https://nf-co.re/modules).
-If you enter the [Gitpod environment for modules](https://gitpod.io/#https://github.com/nf-core/modules), you can run the pytest function in order to debug a particular module.
+If you enter the [Gitpod environment for modules](https://gitpod.io/#https://github.com/nf-core/modules), you can run nf-test in order to debug a particular module.
 
-You can learn more about `pytest` in [this nf-core bytesize talk](https://nf-co.re/events/2021/bytesize-17-pytest-workflow).
+You can learn more about `nf-test` in [this nf-core bytesize talk](https://nf-co.re/events/2022/bytesize_nftest).
 
-Once you are in the environment, try running an example pytest for an existing module:
+Once you are in the environment, try running an example nf-test for an existing module:
 
 ```bash
-PROFILE=docker pytest --tag <module_name> --symlink --keep-workflow-wd --git-aware
+nf-test test --tag <module_name> --profile docker
 ```
