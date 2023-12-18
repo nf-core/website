@@ -1253,7 +1253,7 @@ Launch Page
 div[data-rehype-pretty-code-fragment] {
   margin-bottom: 1rem;
   [data-highlighted-line] {
-    background-color: tint-color($gray-500,80%);
+    background-color: tint-color($success-text-emphasis-dark,80%);
     border-left: 2px solid $success-text-emphasis-dark;
   }
   [data-highlighted-chars] {
@@ -1451,7 +1451,7 @@ div.mermaid {
 
 }
   div[data-rehype-pretty-code-fragment] [data-highlighted-line]{
-    background-color: shade-color($gray-100,75%);
+    background-color: shade-color($success-text-emphasis-dark,70%);
     border-left: 2px solid $success-text-emphasis-dark;
   }
 }
