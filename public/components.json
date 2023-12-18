@@ -3519,6 +3519,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -13966,7 +13970,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.0"
+          "version": "2.1.1"
         },
         {
           "name": "cutandrun",
@@ -14089,7 +14093,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.0"
+          "version": "2.1.1"
         },
         {
           "name": "cutandrun",
@@ -14806,7 +14810,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.0"
+          "version": "2.1.1"
         },
         {
           "name": "hgtseq",
@@ -14953,7 +14957,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.0"
+          "version": "2.1.1"
         },
         {
           "name": "hgtseq",
@@ -16070,7 +16074,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.0"
+          "version": "2.1.1"
         },
         {
           "name": "cutandrun",
@@ -22773,7 +22777,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.1.0"
+          "version": "2.1.1"
         }
       ]
     },
@@ -23242,7 +23246,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.0"
+          "version": "2.1.1"
         },
         {
           "name": "demultiplex",
@@ -24000,7 +24004,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.0"
+          "version": "2.1.1"
         },
         {
           "name": "hicar",
@@ -31367,7 +31371,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.0"
+          "version": "2.1.1"
         },
         {
           "name": "cutandrun",
@@ -35590,6 +35594,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -36315,6 +36323,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -40476,6 +40488,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -61130,7 +61146,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.1.0"
+          "version": "2.1.1"
         }
       ]
     },
@@ -61219,7 +61235,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.1.0"
+          "version": "2.1.1"
         }
       ]
     },
@@ -61308,7 +61324,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.1.0"
+          "version": "2.1.1"
         }
       ]
     },
@@ -63500,7 +63516,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.1.0"
+          "version": "2.1.1"
         }
       ]
     },
@@ -66253,7 +66269,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.0"
+          "version": "2.1.1"
         },
         {
           "name": "isoseq",
@@ -66341,7 +66357,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.1.0"
+          "version": "2.1.1"
         },
         {
           "name": "radseq",
@@ -69169,7 +69185,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.0"
+          "version": "2.1.1"
         },
         {
           "name": "demultiplex",
@@ -75794,7 +75810,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.1.0"
+          "version": "2.1.1"
         }
       ]
     },
@@ -84198,7 +84214,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.0"
+          "version": "2.1.1"
         }
       ]
     },
@@ -88864,7 +88880,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.0"
+          "version": "2.1.1"
         },
         {
           "name": "cutandrun",
@@ -93813,7 +93829,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.1.0"
+          "version": "2.1.1"
         },
         {
           "name": "metatdenovo",
@@ -105097,6 +105113,152 @@
       }
     },
     {
+      "name": "truvari_consistency",
+      "path": "modules/nf-core/truvari/consistency/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "truvari_consistency",
+        "description": "Over multiple vcfs, calculate their intersection/consistency.",
+        "keywords": [
+          "structural variants",
+          "sv",
+          "vcf",
+          "intersection",
+          "comparison"
+        ],
+        "tools": [
+          {
+            "truvari": {
+              "description": "Structural variant comparison tool for VCFs",
+              "homepage": "https://github.com/ACEnglish/truvari",
+              "documentation": "https://github.com/acenglish/truvari/wiki",
+              "tool_dev_url": "https://github.com/ACEnglish/truvari",
+              "doi": "10.1186/s13059-022-02840-6",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "vcfs": {
+              "type": "file",
+              "description": "two or more VCF files to compare",
+              "pattern": "*.{vcf,gz}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "consistency": {
+              "type": "file",
+              "description": "Output report in txt or json format",
+              "pattern": "*.{txt,json}"
+            }
+          }
+        ],
+        "authors": [
+          "@kubranarci"
+        ],
+        "maintainers": [
+          "@kubranarci"
+        ]
+      }
+    },
+    {
+      "name": "truvari_segment",
+      "path": "modules/nf-core/truvari/segment/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "truvari_segment",
+        "description": "Normalization of SVs into disjointed genomic regions",
+        "keywords": [
+          "structural variants",
+          "sv",
+          "vcf",
+          "benchmark",
+          "normalization"
+        ],
+        "tools": [
+          {
+            "truvari": {
+              "description": "Structural variant comparison tool for VCFs",
+              "homepage": "https://github.com/ACEnglish/truvari",
+              "documentation": "https://github.com/acenglish/truvari/wiki",
+              "tool_dev_url": "https://github.com/ACEnglish/truvari",
+              "doi": "10.1186/s13059-022-02840-6",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "Input VCF file",
+              "pattern": "*.{vcf,gz}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "Segmented VCF file",
+              "pattern": "*.{vcf}"
+            }
+          }
+        ],
+        "authors": [
+          "@kubranarci"
+        ],
+        "maintainers": [
+          "@kubranarci"
+        ]
+      }
+    },
+    {
       "name": "ucsc_bedclip",
       "path": "modules/nf-core/ucsc/bedclip/meta.yml",
       "type": "module",
@@ -109671,7 +109833,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.0"
+          "version": "2.1.1"
         }
       ]
     },
@@ -109836,7 +109998,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.1.0"
+          "version": "2.1.1"
         }
       ]
     },
@@ -116760,6 +116922,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -116794,6 +116960,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -117252,6 +117422,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
