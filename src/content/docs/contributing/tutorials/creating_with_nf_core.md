@@ -1021,32 +1021,30 @@ $ nf-core modules create
     | \| |       \__, \__/ |  \ |___     \`-._,-`-,
                                           `._,._,'
 
-    nf-core/tools version 2.6 - https://nf-co.re
+    nf-core/tools version 2.11 - https://nf-co.re
 
 
-INFO     Repository type: modules                                                                                         create.py:99
-INFO     Press enter to use default values (shown in brackets) or type your own responses. ctrl+click underlined text to create.py:103
-         open links.
-Name of tool/subtool: demo/module
-WARNING  Could not find Conda dependency using the Anaconda API: 'demo'                                                  create.py:174
-Do you want to enter a different Bioconda package name? [y/n]: n
-WARNING  Could not find Conda dependency using the Anaconda API: 'demo'                                                  create.py:181
-         Building module without tool software and meta, you will need to enter this information manually.
-GitHub Username: (@author): @drpatelh
-INFO     Provide an appropriate resource label for the process, taken from the nf-core pipeline template.                create.py:224
+INFO     Repository type: modules
+INFO     Press enter to use default values (shown in brackets) or type your own responses. ctrl+click underlined text to open links.
+Name of tool/subtool: test
+INFO     Using Bioconda package: 'bioconda::test=0.1'
+INFO     Could not find a Docker/Singularity container (Unexpected response code `204` for
+         https://api.biocontainers.pro/ga4gh/trs/v2/tools/test/versions/test-0.1)
+GitHub Username: (@myuser):
+INFO     Provide an appropriate resource label for the process, taken from the nf-core pipeline template.
          For example: process_single, process_low, process_medium, process_high, process_long
 ? Process resource label: process_single
-INFO     Where applicable all sample-specific information e.g. 'id', 'single_end', 'read_group' MUST be provided as an   create.py:238
-         input via a Groovy Map called 'meta'. This information may not be required in some instances, for example
-         indexing reference genome files.
-Will the module require a meta map of sample information? [y/n] (y): y
-INFO     Created / edited following files:                                                                               create.py:276
-           ./modules/nf-core/demo/module/main.nf
-           ./modules/nf-core/demo/module/meta.yml
-           ./tests/modules/nf-core/demo/module/main.nf
-           ./tests/modules/nf-core/demo/module/test.yml
-           ./tests/modules/nf-core/demo/module/nextflow.config
-           ./tests/config/pytest_modules.yml
+INFO     Where applicable all sample-specific information e.g. 'id', 'single_end', 'read_group' MUST be provided as an input via a
+         Groovy Map called 'meta'. This information may not be required in some instances, for example indexing reference genome
+         files.
+Will the module require a meta map of sample information? [y/n] (y):
+INFO     Created component template: 'test'
+INFO     Created following files:
+           modules/nf-core/test/main.nf
+           modules/nf-core/test/meta.yml
+           modules/nf-core/test/environment.yml
+           modules/nf-core/test/tests/tags.yml
+           modules/nf-core/test/tests/main.nf.test
 ```
 
 You will see that when you create a module in a clone of the modules repository more files are added than if you create a local module in the pipeline as we did in the previous section. See the [DSL2 modules docs](https://nf-co.re/docs/contributing/modules) on the nf-core website for further information.
