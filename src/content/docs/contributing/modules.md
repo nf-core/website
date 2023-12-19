@@ -115,7 +115,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 
       Refer to the section [writing nf-test tests](#writing-nf-test-tests) for more information on how to write nf-tests
 
-4. Create a snapshot of the tests
+9. Create a snapshot of the tests
 
    ```console
    $ nf-core modules test fastqc
@@ -178,15 +178,15 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
    See the [nf-test docs](https://code.askimed.com/nf-test/) if you would like to run the tests manually.
    :::
 
-5. Check that the new module you've added follows the [new module guidelines](#new-module-guidelines-and-pr-review-checklist)
+10. Check that the new module you've added follows the [new module guidelines](#new-module-guidelines-and-pr-review-checklist)
 
-6. Run [`prettier`](/docs/contributing/code_formatting) on all edited and generated files:
+11. Run [`prettier`](/docs/contributing/code_formatting) on all edited and generated files:
 
     ```bash
     prettier -w .
     ```
 
-7. Lint the module locally to check that it adheres to nf-core guidelines before submission
+12. Lint the module locally to check that it adheres to nf-core guidelines before submission
 
     ```console
     $ nf-core modules lint fastqc
@@ -228,7 +228,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
     ╰───────────────────────╯
     ```
 
-8. Once ready, the code can be pushed and a pull request (PR) created
+13. Once ready, the code can be pushed and a pull request (PR) created
 
     On a regular basis you can pull upstream changes into this branch and it is recommended to do so before pushing and creating a pull request - see below. Rather than merging changes directly from upstream the rebase strategy is recommended so that your changes are applied on top of the latest master branch from the nf-core repo. This can be performed as follows
 
@@ -315,7 +315,7 @@ this can be added at the top of `main.nf.test` to have all tests run in stub mod
 
 - For example, the module `abricate/summary` requires the process `abricate/run` to be run prior and takes its output as input. The `setup` method is to be declared before the primary `when` block in the test file as shown below:
 
-```groovy
+```groovy title="main.nf.test"
 setup {
 
             run("ABRICATE_RUN") {
@@ -340,22 +340,22 @@ The setup method can run more than one process each enclosed in their own `run` 
 
 - Then, the output of setup process/es can be provided as input in the `process` section of `when` block
 
-```groovy=
+```groovy title="main.nf.test"
 input[0] = ABRICATE_RUN.out.report.collect{ meta, report -> report }.map{ report -> [[ id: 'test_summary'], report]}
 ```
 
 - Next, in the `then` block we can write our assertions that are used to verify the test. A test can have multiple assertions but, we recommend enclosing all assertions in a `assertAll()` block as shown below:
 
-```groovy=
+```groovy title="main.nf.test"
 assertAll(
             { assert process.success },
             { assert snapshot(process.out).match() }
-            )
+          )
 ```
 
 - the `main.nf.test` file for chained modules will finally look as shown below:
 
-```groovy=
+```groovy title="main.nf.test"
 nextflow_process {
 
     name "Test Process ABRICATE_SUMMARY"
@@ -394,8 +394,8 @@ nextflow_process {
 
         then {
             assertAll(
-            { assert process.success },
-            { assert snapshot(process.out).match() }
+                { assert process.success },
+                { assert snapshot(process.out).match() }
             )
         }
     }
@@ -440,7 +440,7 @@ multiple tests are allowed in a single test file
 
 - If migrating an existing module, get the inputs from current pytest files `tests/modules/nf-core/module/main.nf` and provide as positional inputs `input[0]` in nf-test file
 
-```groovy
+```groovy title="main.nf.test"
 input[0] = [
             [id:"ref"],
             file(params.test_data['homo_sapiens']['genome']['genome_fasta_fai'], checkIfExists: true)
@@ -449,22 +449,12 @@ input[0] = [
 
 - Next, in the `then` block we can write our assertions that are used to verify the test. A test can have multiple assertions but, we recommend enclosing all assertions in a `assertAll()` block as shown below:
 
-```groovy
+```groovy title="main.nf.test"
 assertAll(
             { assert process.success },
             { assert snapshot(process.out).match() }
           )
 ```
-
-:::tip{title="pytest vs. nf-test assertions"}
-
-| pytest     | nf-test                                                                                       | description                                                                           |
-| ---------- | --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| `md5sum`   | `assert snapshot(path(process.out.npl.get(0).get(1))).match(){:groovy}`                       | extract the file of a meta tuple from the npl channel, and check the snapshot matches |
-| `contains` | `assert path(process.out.npo.get(0).get(1)).getText().contains("Nonpareil version"){:groovy}` | check to see if it contains a given string                                            |
-| `path`     | `assert snapshot(file(process.out.log.get(0).get(1)).name).match("log"){:groovy}`             | check to see if the filename is "log"                                                 |
-
-:::
 
 - Run the test to create a snapshot of your module test. This will create a `main.nf.test.snap` file
 
