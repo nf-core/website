@@ -3523,6 +3523,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -35598,6 +35602,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -36323,6 +36331,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -40488,6 +40500,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -70454,6 +70470,154 @@
           "version": "2.6.0"
         }
       ]
+    },
+    {
+      "name": "narfmap_align",
+      "path": "modules/nf-core/narfmap/align/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "narfmap_align",
+        "description": "Performs fastq alignment to a reference using NARFMAP",
+        "keywords": [
+          "alignment",
+          "map",
+          "fastq",
+          "bam",
+          "sam"
+        ],
+        "tools": [
+          {
+            "narfmap": {
+              "description": "narfmap is a fork of the Dragen mapper/aligner Open Source Software.",
+              "homepage": "https://github.com/emiller88/narfmap",
+              "documentation": "https://github.com/Emiller88/NARFMAP/blob/main/doc/usage.md#basic-command-line-usage",
+              "tool_dev_url": "https://github.com/emiller88/narfmap",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "reads": {
+              "type": "file",
+              "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data,\nrespectively.\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "hashmap": {
+              "type": "file",
+              "description": "NARFMAP hash table",
+              "pattern": "Directory containing NARFMAP hash table *.{cmp,.bin,.txt}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "bam": {
+              "type": "file",
+              "description": "Output BAM file containing read alignments",
+              "pattern": "*.{bam}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@Emiller88"
+        ],
+        "maintainers": [
+          "@Emiller88"
+        ]
+      }
+    },
+    {
+      "name": "narfmap_hashtable",
+      "path": "modules/nf-core/narfmap/hashtable/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "narfmap_hashtable",
+        "description": "Create DRAGEN hashtable for reference genome",
+        "keywords": [
+          "index",
+          "fasta",
+          "genome",
+          "reference"
+        ],
+        "tools": [
+          {
+            "narfmap": {
+              "description": "narfmap is a fork of the Dragen mapper/aligner Open Source Software.",
+              "homepage": "https://github.com/emiller88/narfmap",
+              "documentation": "https://github.com/Emiller88/NARFMAP/blob/main/doc/usage.md#basic-command-line-usage",
+              "tool_dev_url": "https://github.com/emiller88/narfmap",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Input genome fasta file"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "hashmap": {
+              "type": "file",
+              "description": "NARFMAP hash table",
+              "pattern": "*.{cmp,.bin,.txt}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@Emiller88"
+        ],
+        "maintainers": [
+          "@Emiller88"
+        ]
+      }
     },
     {
       "name": "ncbigenomedownload",
@@ -116926,6 +117090,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -116960,6 +117128,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -117422,6 +117594,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
