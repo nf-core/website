@@ -384,7 +384,7 @@ For more information on fixing linting errors in your code both locally and dire
 ## Test your code
 
 Once your code is polished, following any suggestions from linting, you should test the code and make sure everything works as expected.
-This can also be done automatically, using [nf-test](https://code.askimed.com/nf-test/).
+This can also be done automatically, using [nf-test](https://nf-co.re/tools#run-the-tests-for-a-module-using-pytest).
 
 ### Create a test workflow
 

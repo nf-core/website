@@ -287,7 +287,7 @@ A simple example of a nf-test directory in nf-core/modules can be found [here](h
 If your module requires a a `nextflow.config` file to run, create the file to the module's `tests/` directory and add the additional parameters there.
 
 ```bash
-touch modules/nf-core/fastqc/tests/nextflow.config
+touch modules/nf-core/<tool>/<subtool>/tests/nextflow.config
 ```
 
 Then add the path to the `main.nf.test` file.
