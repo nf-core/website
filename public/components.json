@@ -251,7 +251,9 @@
               "documentation": "https://github.com/MDU-PHL/abritamr",
               "tool_dev_url": "https://github.com/MDU-PHL/abritamr",
               "doi": "10.1038/s41467-022-35713-4",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -271,12 +273,6 @@
           }
         ],
         "output": [
-          {
-            "meta": {
-              "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-            }
-          },
           {
             "versions": {
               "type": "file",
@@ -3363,6 +3359,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         },
         {
           "name": "rnafusion",
@@ -23325,6 +23325,10 @@
           "version": "dev"
         },
         {
+          "name": "metaboigniter",
+          "version": "2.0.0"
+        },
+        {
           "name": "metapep",
           "version": "dev"
         },
@@ -35606,6 +35610,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -36331,6 +36339,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -40500,6 +40512,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -117094,6 +117110,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -117128,6 +117148,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -117594,6 +117618,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
