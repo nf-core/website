@@ -167,31 +167,31 @@ All of the files required to add the subworkflow to `nf-core/modules` will be cr
 
 7. Lint the subworkflow locally to check that it adheres to nf-core guidelines before submission
 
-    ```console
-    $ nf-core subworkflows lint bam_sort_stats_samtools
+   ```console
+   $ nf-core subworkflows lint bam_sort_stats_samtools
 
-                                          ,--./,-.
-          ___     __   __   __   ___     /,-._.--~\
-    |\ | |__  __ /  ` /  \ |__) |__         }  {
-    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
-                                          `._,._,'
+                                         ,--./,-.
+         ___     __   __   __   ___     /,-._.--~\
+   |\ | |__  __ /  ` /  \ |__) |__         }  {
+   | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                         `._,._,'
 
-    nf-core/tools version 2.11 - https://nf-co.re
+   nf-core/tools version 2.11 - https://nf-co.re
 
 
-    INFO     Linting modules repo: '.'
-    INFO     Linting subworkflow: 'bam_sort_stats_samtools'
+   INFO     Linting modules repo: '.'
+   INFO     Linting subworkflow: 'bam_sort_stats_samtools'
 
-    ╭───────────────────────╮
-    │ LINT RESULTS SUMMARY  │
-    ├───────────────────────┤
-    │ [✔]  40 Tests Passed  │
-    │ [!]   0 Test Warnings │
-    │ [✗]   0 Tests Failed  │
-    ╰───────────────────────╯
-    ```
+   ╭───────────────────────╮
+   │ LINT RESULTS SUMMARY  │
+   ├───────────────────────┤
+   │ [✔]  40 Tests Passed  │
+   │ [!]   0 Test Warnings │
+   │ [✗]   0 Tests Failed  │
+   ╰───────────────────────╯
+   ```
 
-9. Once ready, the code can be pushed and a pull request (PR) created
+8. Once ready, the code can be pushed and a pull request (PR) created
 
    On a regular basis you can pull upstream changes into this branch and it is recommended to do so before pushing and creating a pull request - see below. Rather than merging changes directly from upstream the rebase strategy is recommended so that your changes are applied on top of the latest master branch from the nf-core repo. This can be performed as follows:
 
