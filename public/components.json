@@ -372,12 +372,6 @@
         ],
         "output": [
           {
-            "meta": {
-              "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-            }
-          },
-          {
             "singles_truncated": {
               "type": "file",
               "description": "Adapter trimmed FastQ files of either single-end reads, or singleton\n'orphaned' reads from merging of paired-end data (i.e., one of the pair\nwas lost due to filtering thresholds).\n",
@@ -392,17 +386,10 @@
             }
           },
           {
-            "pair1_truncated": {
+            "paired_truncated": {
               "type": "file",
-              "description": "Adapter trimmed R1 FastQ files of paired-end reads that did not merge\nwith their respective R2 pair due to long templates. The respective pair\nis stored in 'pair2_truncated'.\n",
-              "pattern": "*.pair1.truncated.fastq.gz"
-            }
-          },
-          {
-            "pair2_truncated": {
-              "type": "file",
-              "description": "Adapter trimmed R2 FastQ files of paired-end reads that did not merge\nwith their respective R1 pair due to long templates. The respective pair\nis stored in 'pair1_truncated'.\n",
-              "pattern": "*.pair2.truncated.fastq.gz"
+              "description": "Adapter trimmed R{1,2} FastQ files of paired-end reads that did not merge\nwith their respective R{1,2} pair due to long templates. The respective pair\nis stored in 'pair{1,2}_truncated'.\n",
+              "pattern": "*.pair{1,2}.truncated.fastq.gz"
             }
           },
           {
@@ -420,7 +407,14 @@
             }
           },
           {
-            "log": {
+            "paired_interleaved": {
+              "type": "file",
+              "description": "Write paired-end reads to a single file, interleaving mate 1 and mate 2 reads\n",
+              "pattern": "*.paired.fastq.gz"
+            }
+          },
+          {
+            "settings": {
               "type": "file",
               "description": "AdapterRemoval log file",
               "pattern": "*.settings"
@@ -3359,6 +3353,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         },
         {
           "name": "rnafusion",
@@ -16929,6 +16927,281 @@
           "@ggabernet",
           "@Emiller88",
           "@klkeys"
+        ]
+      }
+    },
+    {
+      "name": "cellrangerarc_count",
+      "path": "modules/nf-core/cellrangerarc/count/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "cellrangerarc_count",
+        "description": "Module to use Cell Ranger's ARC pipelines analyze sequencing data produced from Chromium Single Cell ARC. Uses the cellranger-arc count command.",
+        "keywords": [
+          "align",
+          "count",
+          "reference"
+        ],
+        "tools": [
+          {
+            "cellrangerarc": {
+              "description": "Cell Ranger ARC is a set of analysis pipelines that process Chromium Single Cell ARC data.",
+              "homepage": "https://support.10xgenomics.com/single-cell-multiome-atac-gex/software/pipelines/latest/what-is-cell-ranger-arc",
+              "documentation": "https://support.10xgenomics.com/single-cell-multiome-atac-gex/software/pipelines/latest/what-is-cell-ranger-arc",
+              "tool_dev_url": "https://support.10xgenomics.com/single-cell-multiome-atac-gex/software/pipelines/latest/what-is-cell-ranger-arc",
+              "licence": [
+                "10x Genomics EULA"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "lib_csv": {
+              "type": "file",
+              "description": "Path to a 3-column CSV file declaring FASTQ paths, sample names and library types of input ATAC and GEX FASTQs.\n"
+            }
+          },
+          {
+            "reference": {
+              "type": "directory",
+              "description": "Directory containing all the reference indices needed by Cell Ranger ARC"
+            }
+          }
+        ],
+        "output": [
+          {
+            "outs": {
+              "type": "file",
+              "description": "Files containing the outputs of Cell Ranger ARC",
+              "pattern": "${meta.id}/outs/*"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software version",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@ggabernet",
+          "@Emiller88",
+          "@heylf"
+        ]
+      }
+    },
+    {
+      "name": "cellrangerarc_mkfastq",
+      "path": "modules/nf-core/cellrangerarc/mkfastq/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "cellrangerarc_mkfastq",
+        "description": "Module to create fastqs needed by the 10x Genomics Cell Ranger Arc tool. Uses the cellranger-arc mkfastq command.",
+        "keywords": [
+          "reference",
+          "mkfastq",
+          "fastq",
+          "illumina",
+          "bcl2fastq"
+        ],
+        "tools": [
+          {
+            "cellrangerarc": {
+              "description": "Cell Ranger Arc by 10x Genomics is a set of analysis pipelines that process Chromium single-cell data to align reads, generate feature-barcode matrices, perform clustering and other secondary analysis, and more.",
+              "homepage": "https://support.10xgenomics.com/single-cell-multiome-atac-gex/software/pipelines/latest/what-is-cell-ranger-arc",
+              "documentation": "https://support.10xgenomics.com/single-cell-multiome-atac-gex/software/pipelines/latest/what-is-cell-ranger-arc",
+              "tool_dev_url": "https://support.10xgenomics.com/single-cell-multiome-atac-gex/software/pipelines/latest/what-is-cell-ranger-arc",
+              "licence": [
+                "10x Genomics EULA"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "bcl": {
+              "type": "file",
+              "description": "Base call files",
+              "pattern": "*.bcl.bgzf"
+            }
+          },
+          {
+            "csv": {
+              "type": "file",
+              "description": "Sample sheet",
+              "pattern": "*.csv"
+            }
+          }
+        ],
+        "output": [
+          {
+            "fastq": {
+              "type": "file",
+              "description": "Unaligned FastQ files",
+              "pattern": "*.fastq.gz"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software version",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@ggabernet",
+          "@Emiller88",
+          "@RHReynolds",
+          "@heylf"
+        ]
+      }
+    },
+    {
+      "name": "cellrangerarc_mkgtf",
+      "path": "modules/nf-core/cellrangerarc/mkgtf/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "cellrangerarc_mkgtf",
+        "description": "Module to build a filtered gtf needed by the 10x Genomics Cell Ranger Arc tool. Uses the cellranger-arc mkgtf command.",
+        "keywords": [
+          "reference",
+          "mkref",
+          "index"
+        ],
+        "tools": [
+          {
+            "cellrangerarc": {
+              "description": "Cell Ranger Arc by 10x Genomics is a set of analysis pipelines that process Chromium single-cell data to align reads, generate feature-barcode matrices, perform clustering and other secondary analysis, and more.",
+              "homepage": "https://support.10xgenomics.com/single-cell-multiome-atac-gex/software/pipelines/latest/what-is-cell-ranger-arc",
+              "documentation": "https://support.10xgenomics.com/single-cell-multiome-atac-gex/software/pipelines/latest/what-is-cell-ranger-arc",
+              "tool_dev_url": "https://support.10xgenomics.com/single-cell-multiome-atac-gex/software/pipelines/latest/what-is-cell-ranger-arc",
+              "licence": [
+                "10x Genomics EULA"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "gtf": {
+              "type": "file",
+              "description": "The reference GTF transcriptome file",
+              "pattern": "*.gtf"
+            }
+          }
+        ],
+        "output": [
+          {
+            "gtf": {
+              "type": "directory",
+              "description": "The filtered GTF transcriptome file",
+              "pattern": "*.filtered.gtf"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software version",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@ggabernet",
+          "@Emiller88",
+          "@heylf"
+        ]
+      }
+    },
+    {
+      "name": "cellrangerarc_mkref",
+      "path": "modules/nf-core/cellrangerarc/mkref/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "cellrangerarc_mkref",
+        "description": "Module to build the reference needed by the 10x Genomics Cell Ranger Arc tool. Uses the cellranger-arc mkref command.",
+        "keywords": [
+          "reference",
+          "mkref",
+          "index"
+        ],
+        "tools": [
+          {
+            "cellrangerarc": {
+              "description": "Cell Ranger Arc is a set of analysis pipelines that process Chromium Single Cell Arc data.",
+              "homepage": "https://support.10xgenomics.com/single-cell-multiome-atac-gex/software/pipelines/latest/what-is-cell-ranger-arc",
+              "documentation": "https://support.10xgenomics.com/single-cell-multiome-atac-gex/software/pipelines/latest/what-is-cell-ranger-arc",
+              "tool_dev_url": "https://support.10xgenomics.com/single-cell-multiome-atac-gex/software/pipelines/latest/what-is-cell-ranger-arc",
+              "licence": [
+                "10x Genomics EULA"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Reference genome FASTA file",
+              "pattern": "*.{fasta,fa}"
+            }
+          },
+          {
+            "gtf": {
+              "type": "file",
+              "description": "Reference transcriptome GTF file",
+              "pattern": "*.gtf"
+            }
+          },
+          {
+            "motifs": {
+              "type": "file",
+              "description": "Sequence motif file (e.g., from transcription factors)",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "reference_config": {
+              "type": "file",
+              "description": "JSON-like file holding organism, genome, reference fasta path, reference annotation gtf path, contigs that should be excluded and sequence format motif file path",
+              "pattern": "config"
+            }
+          },
+          {
+            "reference_name": {
+              "type": "string",
+              "description": "The name to give the new reference folder",
+              "pattern": "str"
+            }
+          }
+        ],
+        "output": [
+          {
+            "reference": {
+              "type": "directory",
+              "description": "Folder called like the reference_name containing all the reference indices needed by Cell Ranger Arc"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software version",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@ggabernet",
+          "@heylf"
         ]
       }
     },
@@ -35638,6 +35911,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -36363,6 +36640,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -40548,6 +40829,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -117249,6 +117534,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -117283,6 +117572,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -117765,6 +118058,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
