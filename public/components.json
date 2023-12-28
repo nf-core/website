@@ -937,6 +937,77 @@
       }
     },
     {
+      "name": "agat_spaddintrons",
+      "path": "modules/nf-core/agat/spaddintrons/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "agat_spaddintrons",
+        "description": "Add intron features to gtf/gff file without intron features.",
+        "keywords": [
+          "gtf",
+          "gff",
+          "introns"
+        ],
+        "tools": [
+          {
+            "agat": {
+              "description": "Another Gff Analysis Toolkit (AGAT). Suite of tools to handle gene annotations in any GTF/GFF format.",
+              "homepage": "https://agat.readthedocs.io/en/latest/",
+              "documentation": "https://agat.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/NBISweden/AGAT",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "gff": {
+              "type": "file",
+              "description": "Input gtf/gff file",
+              "pattern": "*.{gff,gff3,gtf}"
+            }
+          },
+          {
+            "config": {
+              "type": "file",
+              "description": "Optional input agat config file",
+              "pattern": "*.{yaml,yml}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "gff": {
+              "type": "file",
+              "description": "Output gff3 file with introns",
+              "pattern": "*.gff"
+            }
+          }
+        ],
+        "authors": [
+          "@anoronh4"
+        ],
+        "maintainers": [
+          "@anoronh4"
+        ]
+      }
+    },
+    {
       "name": "agat_spstatistics",
       "path": "modules/nf-core/agat/spstatistics/meta.yml",
       "type": "module",
@@ -3353,6 +3424,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         },
         {
           "name": "rnafusion",
@@ -36011,6 +36086,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -36736,6 +36815,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -40973,6 +41056,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -117780,6 +117867,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -117814,6 +117905,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -118348,6 +118443,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
