@@ -1225,7 +1225,8 @@
         "description": "Generates a count of coverage of alleles",
         "keywords": [
           "allele",
-          "count"
+          "count",
+          "coverage"
         ],
         "tools": [
           {
@@ -1234,7 +1235,9 @@
               "homepage": "https://github.com/cancerit/alleleCount",
               "documentation": "https://github.com/cancerit/alleleCount",
               "tool_dev_url": "https://github.com/cancerit/alleleCount",
-              "licence": "A-GPL 3.0"
+              "licence": [
+                "GPL 3.0"
+              ]
             }
           }
         ],
@@ -1288,7 +1291,7 @@
             }
           },
           {
-            "alleleCount": {
+            "allelecount": {
               "type": "file",
               "description": "Allele count file",
               "pattern": "*.{alleleCount}"
@@ -3424,6 +3427,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         },
         {
           "name": "rnafusion",
@@ -23555,6 +23562,107 @@
       }
     },
     {
+      "name": "custom_catadditionalfasta",
+      "path": "modules/nf-core/custom/catadditionalfasta/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "custom_catadditionalfasta",
+        "description": "Custom module to Add a new fasta file to an old one and update an associated GTF",
+        "keywords": [
+          "fasta",
+          "gtf",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "custom": {
+              "description": "Custom module to Add a new fasta file to an old one and update an associated GTF",
+              "tool_dev_url": "https://github.com/nf-core/modules/blob/master/modules/nf-core/custom/catadditionalfasta/main.nf",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing fasta information\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing additional fasta information\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "FASTA-format sequence file",
+              "pattern": "*.{fasta,fa}"
+            }
+          },
+          {
+            "gtf": {
+              "type": "file",
+              "description": "GTF-format annotation file for fasta",
+              "pattern": "*.gtf"
+            }
+          },
+          {
+            "add_fasta": {
+              "type": "file",
+              "description": "FASTA-format file of additional sequences",
+              "pattern": "*.fa"
+            }
+          },
+          {
+            "biotype": {
+              "type": "string",
+              "description": "Biotype to apply to new GTF entries"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing fasta information\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "FASTA-format combined sequence file",
+              "pattern": "*.{fasta,fa}"
+            }
+          },
+          {
+            "gtf": {
+              "type": "file",
+              "description": "GTF-format combined annotation file",
+              "pattern": "*.gtf"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
+        ]
+      }
+    },
+    {
       "name": "custom_dumpsoftwareversions",
       "path": "modules/nf-core/custom/dumpsoftwareversions/meta.yml",
       "type": "module",
@@ -36106,6 +36214,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -36831,6 +36943,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -41080,6 +41196,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -117911,6 +118031,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -117945,6 +118069,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -118491,6 +118619,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
