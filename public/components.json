@@ -3699,6 +3699,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -36266,6 +36270,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -36991,6 +36999,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -41268,6 +41280,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -77170,6 +77186,174 @@
           "version": "2.0.0"
         }
       ]
+    },
+    {
+      "name": "pharokka_installdatabases",
+      "path": "modules/nf-core/pharokka/installdatabases/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "pharokka_installdatabases",
+        "description": "Install databases necessary for Pharokka's functional analysis",
+        "keywords": [
+          "pharokka",
+          "prokka",
+          "bakta",
+          "phage",
+          "function",
+          "install",
+          "database"
+        ],
+        "tools": [
+          {
+            "pharokka": {
+              "description": "Fast Phage Annotation Program",
+              "homepage": "https://pharokka.readthedocs.io",
+              "documentation": "https://pharokka.readthedocs.io",
+              "tool_dev_url": "https://github.com/gbouras13/pharokka",
+              "doi": "10.1093/bioinformatics/btac776",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "output": [
+          {
+            "pharokka_db": {
+              "type": "directory",
+              "description": "Directory pointing to Pharokka's database",
+              "pattern": "${prefix}/"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@CarsonJM"
+        ],
+        "maintainers": [
+          "@CarsonJM"
+        ]
+      }
+    },
+    {
+      "name": "pharokka_pharokka",
+      "path": "modules/nf-core/pharokka/pharokka/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "pharokka_pharokka",
+        "description": "Functional annotation of phages",
+        "keywords": [
+          "pharokka",
+          "phage",
+          "function",
+          "prokka",
+          "bakta"
+        ],
+        "tools": [
+          {
+            "pharokka": {
+              "description": "Fast Phage Annotation Program",
+              "homepage": "https://pharokka.readthedocs.io",
+              "documentation": "https://pharokka.readthedocs.io",
+              "tool_dev_url": "https://github.com/gbouras13/pharokka",
+              "doi": "10.1093/bioinformatics/btac776",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "phage_fasta": {
+              "type": "file",
+              "description": "A FASTA file containing phage sequence(s)",
+              "pattern": "*.{fasta,fna,fa}"
+            }
+          },
+          {
+            "pharokka_db": {
+              "type": "file",
+              "description": "Directory containing Pharokka's database"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "log": {
+              "type": "file",
+              "description": "Log file containing all logging output",
+              "pattern": "*.log"
+            }
+          },
+          {
+            "cds_functions": {
+              "type": "file",
+              "description": "A file that includes count of CDSs, tRNAs, CRISPRs, tmRNAs, and PHROG functions assigned to CDSs",
+              "pattern": "*_cds_functions.tsv"
+            }
+          },
+          {
+            "card": {
+              "type": "file",
+              "description": "OPTIONAL - A file containing any CARD database hits",
+              "pattern": "*top_hits_card.tsv"
+            }
+          },
+          {
+            "vfdb": {
+              "type": "file",
+              "description": "OPTIONAL - A file containing any VFDB database hits",
+              "pattern": "*top_hits_vfdb.tsv"
+            }
+          },
+          {
+            "mash": {
+              "type": "file",
+              "description": "OPTIONAL - File containing top hits to INPHARED database",
+              "pattern": "*_top_hits_mash_inphared.tsv"
+            }
+          },
+          {
+            "reoriented": {
+              "type": "file",
+              "description": "OPTIONAL - FASTA file reoriented to start with the large terminase subunit",
+              "pattern": "*_genome_terminase_reoriented.fasta"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@CarsonJM"
+        ],
+        "maintainers": [
+          "@CarsonJM"
+        ]
+      }
     },
     {
       "name": "phispy",
@@ -118155,6 +118339,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -118189,6 +118377,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -118763,6 +118955,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
