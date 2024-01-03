@@ -1,6 +1,6 @@
 ---
 import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
-import { Icon } from 'astro-icon';
+import { Icon } from 'astro-icon/components';
 
 const title = 'Join nf-core';
 const subtitle = 'Read about the different ways you can get involved with nf-core';
@@ -39,7 +39,7 @@ const headings = [
         text: 'Gather Town',
         slug: 'gather-town',
         depth: 1,
-        fa_icon: 'fa fa-grapes  fa-rotate-270',
+        fa_icon: 'fa fa-grapes fa-rotate-270',
     },
 ];
 ---
@@ -74,14 +74,14 @@ const headings = [
 
     <p class="text-info small">
         <i class="fas fa-exclamation-triangle me-1"></i>
-         All nf-core community members are expected to adhere to the nf-core <a
+        All nf-core community members are expected to adhere to the nf-core <a
             href="/code_of_conduct/"
             class="text-info link-underline">code of conduct</a
         >
     </p>
     <div class="alert alert-info text-center">
         <Icon name="file-icons:nextflow" class="icon-sm text-success me-3" />
-         If your question is about Nextflow and not directly related to nf-core, please use the <a
+        If your question is about Nextflow and not directly related to nf-core, please use the <a
             class="link-underline"
             href="https://nextflow.io/slack-invite.html">Slack community chat</a
         > or the <a class="link-underline" href="https://github.com/nextflow-io/nextflow/discussions"
@@ -91,7 +91,7 @@ const headings = [
 
     <h1 id="slack" class="mt-5">
         <span class="join-pull-img bg-body"><Icon name="logos:slack-icon" size="120px" /></span>
-         Slack
+        Slack
         <a href="#slack" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
     </h1>
     <p class="text-info small">
@@ -109,17 +109,19 @@ const headings = [
         <em class="small text-muted">(NB: No hyphen!)</em>
     </p>
     <p>
-        <a class="btn btn-success me-2" href="/join/slack"><i class="fab fa-slack"></i> Get invite to nf-core Slack</a>
+        <a class="btn btn-success me-2" href="/join/slack"
+            ><i class="fab fa-slack"></i> Get an invite to nf-core Slack</a
+        >
     </p>
 
     <h1 id="github" class="mt-5">
         <span class="join-pull-img bg-body"><Icon name="fa:github" class="text-body" size="120px" /></span>
-         GitHub organisation
+        GitHub organisation
         <a href="#github" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
     </h1>
     <p class="text-info small">
         <i class="fas fa-bug me-1"></i>
-         If you encounter a bug or have a suggestion, please create an issue on the repository for that pipeline.
+        If you encounter a bug or have a suggestion, please create an issue on the repository for that pipeline.
     </p>
     <p>
         We use GitHub to manage all of the code written for nf-core. It's a fantastic platform and provides a huge
@@ -135,37 +137,37 @@ const headings = [
 
     <p>
         <a href="https://github.com/nf-core" class="mb-2 btn btn-dark border-white">
-            <i class="fab fa-github"></i> nf-core on GitHub
+            <i class="fab fa-github me-1"></i> nf-core on GitHub
         </a>
     </p>
 
     <h1 id="twitter" class="mt-5">
         <span class="join-pull-img bg-body"><Icon name="logos:twitter" size="120px" /></span>
-         Twitter
+        Twitter
         <a href="#twitter" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
     </h1>
     <p>
-        The <a href="https://twitter.com/nf_core">@nf_core</a> twitter account sends automated tweets whenever a new
-        pipeline release is tagged. Relevant news and events are also tweeted.
+        The <a href="https://twitter.com/nf_core">@nf_core</a> twitter account sends automated tweets whenever a new pipeline
+        release is tagged. Relevant news and events are also tweeted.
     </p>
     <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw" class="btn btn-dark bg-twitter border-0">
-        <i class="fab fa-twitter"></i>Follow @nf_core</a
+        <i class="fab fa-twitter me-1"></i>Follow @nf_core</a
     >
 
     <h1 id="mastodon" class="mt-5">
         <span class="join-pull-img bg-body"><Icon name="logos:mastodon-icon" size="120px" /></span>
-         Mastodon
+        Mastodon
         <a href="#mastodon" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
     </h1>
     <p>
-        Our mastodon account <a rel="me" href="https://mstdn.science/@nf_core">@nf_core@mstdn.science</a> toots about
-        pipeline releases and engages with the Mastodon Nextflow / open-science community.
+        Our mastodon account <a rel="me" href="https://mstdn.science/@nf_core">@nf_core@mstdn.science</a> toots about pipeline
+        releases and engages with the Mastodon Nextflow / open-science community.
     </p>
     <p>Feel free to follow if you use Mastodon, whatever server you're using!</p>
 
     <h1 id="youtube" class="mt-5">
         <span class="join-pull-img bg-body"><Icon name="logos:youtube-icon" class="text-body" size="120px" /></span>
-         YouTube
+        YouTube
         <a href="#youtube" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
     </h1>
     <p>
@@ -179,9 +181,9 @@ const headings = [
 
     <h1 id="gather-town" class="mt-5">
         <span class="join-pull-img bg-body">
-            <Icon name="gather-town" alt="Gather.town logo" height="120px" />
+            <Icon name="gather-town" alt="Gather.town logo" height="120px" width="120px" />
         </span>
-         Gather Town
+        Gather Town
         <a href="#gather-town" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
     </h1>
     <p>

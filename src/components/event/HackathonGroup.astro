@@ -1,5 +1,5 @@
 ---
-import { Icon } from 'astro-icon';
+import { Icon } from 'astro-icon/components';
 
 import Profile from '@components/GitHubProfilePictureExtended.svelte';
 import { YouTube } from '@astro-community/astro-embed-youtube';
@@ -48,10 +48,10 @@ const slack_clean = slack ? slack.replace('#', '') : '';
                     slack && (
                         <a
                             href={`https://nfcore.slack.com/channels/${slack_clean}`}
-                            class="badge rounded-pill text-bg-success text-decoration-none mb-3"
+                            class="badge rounded-pill text-bg-success text-decoration-none d-inline-flex align-items-center"
                         >
-                            <Icon name="mdi:slack" width="12pt" /> Slack:
-                            <code class="text-bg-success">#{slack_clean}</code>
+                            <Icon name="mdi:slack" width="12pt" height="10pt" /> Slack:
+                            <code class="text-bg-success pb-0">#{slack_clean}</code>
                         </a>
                     )
                 }
