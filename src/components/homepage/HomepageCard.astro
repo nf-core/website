@@ -37,7 +37,17 @@ const { title, icon, icon_color, icon_class = '', icon_dark = '', fontawesome, b
                     />
                 )
             }
-            {icon_dark && <Icon name={icon_dark} color="white" class={'hide-light ' + icon_class} />}
+            {
+                icon_dark && (
+                    <Icon
+                        name={icon_dark}
+                        color="white"
+                        class={'hide-light ' + icon_class}
+                        height="6rem"
+                        width="7rem"
+                    />
+                )
+            }
             <i class={fontawesome + ' fa-5x'}></i>
         </div>
     </div>
