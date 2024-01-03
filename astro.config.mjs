@@ -24,6 +24,7 @@ import emoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import markdownIntegration from '@astropub/md';
+import icon from "astro-icon";
 import { getHighlighter, BUNDLED_LANGUAGES } from 'shiki';
 
 const latestToolsRelease = await fetch('https://api.github.com/repos/nf-core/tools/releases/latest')
@@ -46,6 +47,7 @@ export default defineConfig({
     },
     integrations: [
         svelte(),
+        icon(),
         sitemap(),
         prefetch(),
         partytown({
