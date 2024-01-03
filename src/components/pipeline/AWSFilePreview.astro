@@ -31,11 +31,10 @@ const hasPreview = [
     'config',
     'nf',
 ].includes(extension);
-let tooBig = file.size > 5500000;
+let tooBig = (extension !== 'html' && file.size > 5500000) || file.size > 550000000;
 if (!tooBig && hasPreview) {
     content = await fetch(hrefPrefix + file.path).then((r) => r.text());
 }
-console.log('``` ' + extension + '\n' + content + '\n' + '```');
 ---
 
 <script>
