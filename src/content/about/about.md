@@ -97,20 +97,20 @@ You will soon be able to explore and download these pipeline results on the nf-c
 
 We also thank the following organisations for supporting nf-core through providing us 'open source plans' of their services:
 
-<div class="row my-5">
-  <div class="col-lg-4" style="align-self:center;">
+<div class="row row-cols-1 row-cols-lg-3 my-5">
+  <div class="col" style="align-self:center;">
     <a href="https://www.docker.com/" target="_blank">
-      <img src="/images/docker-horizontal.png" alt="Docker">
+      <img src="/images/docker-horizontal.png" alt="Docker" class="w-75">
     </a>
   </div>
-  <div class="col-lg-4" style="align-self:center;">
+  <div class="col" style="align-self:center;">
     <a href="https://gitpod.io/" target="_blank">
-      <img src="/images/contributors/colour/gitpod.svg" alt="Gitpod" class="darkmode-image w-100">
+      <img src="/images/contributors/colour/gitpod.svg" alt="Gitpod" class="darkmode-image w-75">
     </a>
   </div>
-  <div class="col-lg-4" style="align-self:center;">
+  <div class="col" style="align-self:center;">
     <a href="https://hackmd.io/" target="_blank">
-      <img src="/images/contributors/colour/hackmd.svg" alt="HackMD" class="darkmode-image w-100">
+      <img src="/images/contributors/colour/hackmd.svg" alt="HackMD" class="darkmode-image w-75">
     </a>
   </div>
 </div>
