@@ -4,7 +4,7 @@ repos:
     hooks:
       - id: prettier
         additional_dependencies:
-          - prettier@3.0.3
-          - prettier-plugin-svelte@^3.0.3
-          - prettier-plugin-astro@^0.12.1
+          - prettier@3.1.1
+          - prettier-plugin-svelte@^3.1.2
+          - prettier-plugin-astro@^0.12.3
         files: \.(astro|svelte|mdx|md|yml|yaml)$
