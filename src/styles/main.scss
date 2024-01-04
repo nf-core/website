@@ -262,6 +262,10 @@ code:not(pre code),
   background-color: rgba($white, 0.1) !important;
   color: $white !important;
 }
+.mainpage-heading [data-rehype-pretty-code-figure] span {
+  background-color: transparent !important;
+  color: $white !important;}
+
 @include media-breakpoint-down(md) {
   pre,
   code,
