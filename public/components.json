@@ -3727,6 +3727,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -36322,6 +36326,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -37047,6 +37055,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -41352,6 +41364,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -74245,6 +74261,78 @@
           }
         ],
         "authors": [
+          "@jonasscheid"
+        ]
+      }
+    },
+    {
+      "name": "openms_idripper",
+      "path": "modules/nf-core/openms/idripper/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "openms_idripper",
+        "description": "Split a merged identification file into their originating identification files",
+        "keywords": [
+          "split",
+          "idXML",
+          "openms",
+          "proteomics"
+        ],
+        "tools": [
+          {
+            "openms": {
+              "description": "OpenMS is an open-source software C++ library for LC-MS data management and analyses",
+              "homepage": "https://openms.de",
+              "documentation": "https://openms.readthedocs.io/en/latest/index.html",
+              "tool_dev_url": "https://github.com/OpenMS/OpenMS",
+              "doi": "10.1038/nmeth.3959",
+              "licence": [
+                "BSD"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "merged_idxml": {
+              "type": "file",
+              "description": "Merged idXML file",
+              "pattern": "*.{idXML}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "idxmls": {
+              "type": "file",
+              "description": "Multiple idXML files",
+              "pattern": "*.{idXML}"
+            }
+          }
+        ],
+        "authors": [
+          "@jonasscheid"
+        ],
+        "maintainers": [
           "@jonasscheid"
         ]
       }
@@ -118457,6 +118545,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -118491,6 +118583,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -119093,6 +119189,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
