@@ -3731,6 +3731,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -13004,7 +13008,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.5.0"
+          "version": "2.6.0"
         }
       ]
     },
@@ -13107,7 +13111,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.5.0"
+          "version": "2.6.0"
         }
       ]
     },
@@ -13196,7 +13200,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.5.0"
+          "version": "2.6.0"
         }
       ]
     },
@@ -13265,7 +13269,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.5.0"
+          "version": "2.6.0"
         }
       ]
     },
@@ -13383,7 +13387,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.5.0"
+          "version": "2.6.0"
         }
       ]
     },
@@ -13491,7 +13495,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.5.0"
+          "version": "2.6.0"
         }
       ]
     },
@@ -13589,7 +13593,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.5.0"
+          "version": "2.6.0"
         }
       ]
     },
@@ -15724,7 +15728,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.5.0"
+          "version": "2.6.0"
         }
       ]
     },
@@ -15791,7 +15795,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.5.0"
+          "version": "2.6.0"
         }
       ]
     },
@@ -16166,6 +16170,10 @@
       },
       "pipelines": [
         {
+          "name": "createtaxdb",
+          "version": "dev"
+        },
+        {
           "name": "marsseq",
           "version": "1.0.3"
         },
@@ -16302,7 +16310,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.5.0"
+          "version": "2.6.0"
         },
         {
           "name": "nascent",
@@ -23918,7 +23926,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.5.0"
+          "version": "2.6.0"
         },
         {
           "name": "mhcquant",
@@ -27437,7 +27445,13 @@
           "@vagkaratzas",
           "@jfy133"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "createtaxdb",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "dragmap_align",
@@ -31954,10 +31968,6 @@
           "version": "dev"
         },
         {
-          "name": "createtaxdb",
-          "version": "dev"
-        },
-        {
           "name": "crisprseq",
           "version": "2.1.1"
         },
@@ -32027,7 +32037,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.5.0"
+          "version": "2.6.0"
         },
         {
           "name": "multiplesequencealign",
@@ -36330,6 +36340,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -37055,6 +37069,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -41364,6 +41382,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -57809,7 +57831,13 @@
         "authors": [
           "@alxndrdiaz"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "createtaxdb",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "kalign_align",
@@ -62423,7 +62451,13 @@
         "maintainers": [
           "@jfy133"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "createtaxdb",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "malt_run",
@@ -66633,7 +66667,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.5.0"
+          "version": "2.6.0"
         }
       ]
     },
@@ -66736,7 +66770,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.5.0"
+          "version": "2.6.0"
         }
       ]
     },
@@ -70277,7 +70311,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.5.0"
+          "version": "2.6.0"
         },
         {
           "name": "mhcquant",
@@ -74325,6 +74359,79 @@
             "idxmls": {
               "type": "file",
               "description": "Multiple idXML files",
+              "pattern": "*.{idXML}"
+            }
+          }
+        ],
+        "authors": [
+          "@jonasscheid"
+        ],
+        "maintainers": [
+          "@jonasscheid"
+        ]
+      }
+    },
+    {
+      "name": "openms_idscoreswitcher",
+      "path": "modules/nf-core/openms/idscoreswitcher/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "openms_idscoreswitcher",
+        "description": "Switches between different scores of peptide or protein hits in identification data",
+        "keywords": [
+          "switch",
+          "score",
+          "idXML",
+          "openms",
+          "proteomics"
+        ],
+        "tools": [
+          {
+            "openms": {
+              "description": "OpenMS is an open-source software C++ library for LC-MS data management and analyses",
+              "homepage": "https://openms.de",
+              "documentation": "https://openms.readthedocs.io/en/latest/index.html",
+              "tool_dev_url": "https://github.com/OpenMS/OpenMS",
+              "doi": "10.1038/nmeth.3959",
+              "licence": [
+                "BSD"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "idxml": {
+              "type": "file",
+              "description": "Identification file containing a primary PSM score",
+              "pattern": "*.{idXML}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "idxml": {
+              "type": "file",
+              "description": "Identification file containing a new primary PSM score\nobtained from a specified meta value\n",
               "pattern": "*.{idXML}"
             }
           }
@@ -79351,7 +79458,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.5.0"
+          "version": "2.6.0"
         },
         {
           "name": "pathogensurveillance",
@@ -82417,7 +82524,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.5.0"
+          "version": "2.6.0"
         },
         {
           "name": "nascent",
@@ -85037,7 +85144,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.5.0"
+          "version": "2.6.0"
         },
         {
           "name": "raredisease",
@@ -85131,7 +85238,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.5.0"
+          "version": "2.6.0"
         }
       ]
     },
@@ -89325,7 +89432,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.5.0"
+          "version": "2.6.0"
         },
         {
           "name": "nanoseq",
@@ -89783,7 +89890,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.5.0"
+          "version": "2.6.0"
         },
         {
           "name": "nanoseq",
@@ -90302,7 +90409,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.5.0"
+          "version": "2.6.0"
         },
         {
           "name": "nanoseq",
@@ -90908,7 +91015,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.5.0"
+          "version": "2.6.0"
         },
         {
           "name": "nanoseq",
@@ -91098,7 +91205,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.5.0"
+          "version": "2.6.0"
         },
         {
           "name": "nanoseq",
@@ -106215,7 +106322,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.5.0"
+          "version": "2.6.0"
         },
         {
           "name": "rnaseq",
@@ -108389,6 +108496,10 @@
         {
           "name": "hgtseq",
           "version": "1.1.0"
+        },
+        {
+          "name": "methylseq",
+          "version": "2.6.0"
         },
         {
           "name": "multiplesequencealign",
@@ -118549,6 +118660,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -118583,6 +118698,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -119189,6 +119308,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
