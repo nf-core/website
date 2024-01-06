@@ -41,15 +41,15 @@ Amongst other things, the CZI EOSS grant money has enabled the nf-core community
 - Run organised mentorship programmes
 - Hiring local community advocates from geographical areas where we currently lack representation
 
-The CZI grant employs personnel based at the [SciLifeLab National Genomics Infrastructure](https://ngisweden.scilifelab.se/), the [Quantitative Biology Center](http://qbic.life/) in Tübingen Germany, and [Seqera Labs](https://seqera.io/).
+The CZI grant employs personnel based at the [SciLifeLab National Genomics Infrastructure](https://ngisweden.scilifelab.se/), the [Quantitative Biology Center](http://qbic.life/) in Tübingen Germany, and [Seqera](https://seqera.io/).
 
 <div class="clearfix"></div>
 
-## Seqera Labs
+## Seqera
 
-<img src="/images/contributors/colour/seqera.svg" alt="Seqera Labs" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
+<img src="/images/contributors/colour/seqera.svg" alt="Seqera" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
 
-Seqera Labs is the leading provider of open source workflow orchestration software needed for data pipeline processing, cloud infrastructure, and secure collaboration.
+Seqera is the leading provider of open source workflow orchestration software needed for data pipeline processing, cloud infrastructure, and secure collaboration.
 
 Seqera is the company behind Nextflow and has supported the nf-core community since its inception.
 
