@@ -27,11 +27,12 @@ title = title.replace('nf-core/', 'nf-core/<wbr>');
                     md_github_url && (
                         <a
                             href={md_github_url}
-                            class="edit-md-btn btn btn-sm btn-outline-light d-none d-md-inline-block ms-2 d-print-none align-self-start"
+                            class="edit-md-btn btn btn-sm btn-outline-light d-none d-md-inline-block ms-2 d-print-none align-self-start text-nowrap"
                             title="Edit this page on GitHub"
                             data-bs-toggle="tooltip"
                         >
-                            <i class="fas fa-pencil-alt" /> Edit
+                            <i class="fas fa-pencil-alt me-2" />
+                            Edit
                         </a>
                     )
                 }
@@ -73,7 +74,6 @@ title = title.replace('nf-core/', 'nf-core/<wbr>');
         cursor: default;
         h1,
         h1 {
-            color: $white !important;
             text-decoration: none;
         }
         code {
