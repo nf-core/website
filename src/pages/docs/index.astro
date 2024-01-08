@@ -1,11 +1,11 @@
 ---
 import PageLayout from '@layouts/PageLayout.astro';
-import { getCollection, CollectionEntry } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 let docs = await getCollection('docs');
 let usageDocs: CollectionEntry<'docs'>[] = [];
 let contributingDocs: CollectionEntry<'docs'>[] = [];
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
-let sections = [
+let sections: { section_name: string; children: { title: string; slug: string }[] }[] = [
     { section_name: 'Usage', children: [] },
     { section_name: 'Contributing', children: [] },
 ];

@@ -21,7 +21,7 @@ export interface Props {
     md_github_url?: string;
     subfooter?: boolean;
     showHiddenBtn?: boolean;
-    navTocHeadings?: object[];
+    navTocHeadings?: ({ text: string; slug: string; depth: number; fa_icon?: string } | undefined)[];
     sections?: { section_name: string; children: {}[] }[] | never[];
     viewTransitions?: boolean;
     docSearchTags?: {
