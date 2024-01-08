@@ -9,10 +9,14 @@
         path: string;
         type: string;
         meta: {
-            description: string;
             name: string;
+            description: string;
+            keywords: string[];
+            components?: string[];
+            input: {}[];
+            output: {}[];
         };
-        pipelines: {
+        pipelines?: {
             name: string;
             version: string;
         }[];
