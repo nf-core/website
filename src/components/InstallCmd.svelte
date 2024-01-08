@@ -4,7 +4,6 @@
     export let flatTop: boolean = false;
     export let flatBottom: boolean = false;
 
-    let Tooltip: any;
     $: copied = false;
 
     const copyToClipboard = (text: string) => {
@@ -24,7 +23,7 @@
     {/if}
     <input
         type="text"
-        class="form-control input code bg-body"
+        class="form-control input code bg-body overflow-x-auto"
         class:border-start-0={icon}
         class:rounded-top-0={flatTop}
         class:rounded-bottom-0={flatBottom}
@@ -38,7 +37,6 @@
         class="btn btn-secondary border copy-txt"
         class:text-bg-success={copied}
         class:rounded-top-0={flatTop}
-        data-bs-target="#module-install-cmd-text"
         data-bs-toggle="tooltip"
         data-bs-placement="left"
         title="Copy to clipboard"
@@ -50,9 +48,11 @@
 
 <style lang="scss">
     @import '@styles/_variables.scss';
-
-    input:focus {
-        box-shadow: none;
+    input {
+        border-color: $border-color;
+        &:focus {
+            box-shadow: none;
+        }
     }
     .module-install-cmd {
         margin-bottom: -1px;
@@ -60,6 +60,7 @@
     .btn.copy-txt {
         background-color: $border-color;
         color: $body-color;
+        border-top-right-radius: 3px;
         &:hover {
             background-color: $secondary;
             color: $white;
@@ -70,6 +71,9 @@
     }
 
     :global([data-bs-theme='dark']) {
+        input {
+            border-color: $border-color-dark;
+        }
         & .btn.copy-txt {
             background-color: $border-color-dark;
             color: $body-color-dark;

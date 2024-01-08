@@ -59,38 +59,14 @@
         const copyButtonLabel = "<i class='fa-regular fa-clipboard'></i>";
         const copiedButtonLabel = `<span class='font-sans-serif'><i class='fa-regular fa-clipboard-check me-2 '></i> Copied</span>`;
         document
-            .querySelectorAll("div[data-rehype-pretty-code-fragment] pre:not([data-language='console'])")
+            .querySelectorAll("figure[data-rehype-pretty-code-figure] pre:not([data-language='console'])")
             .forEach((block) => {
-                // // only add button if browser supports Clipboard API
-                // if (navigator.clipboard) {
-                //     let button = document.createElement('button');
-                //     button.classList.add(
-                //         'copy-code-button',
-                //         'btn',
-                //         'btn-sm',
-                //         'btn-outline-secondary',
-                //         'position-absolute',
-                //         'top-0',
-                //         'end-0',
-                //         'opacity-50',
-                //         'bg-body'
-                //     );
-                //     button.innerHTML = copyButtonLabel;
-                //     button.title = 'Copy to clipboard';
-                //     // add data-bs-toggle="tooltip" to enable Bootstrap tooltips
-                //     button.setAttribute('data-bs-toggle', 'tooltip');
-
-                //     block.appendChild(button);
-                //     button.addEventListener('click', async (e) => {
-                //         await copyCode(block, e.currentTarget);
-                //     });
-                // }
                 block.classList.add('position-relative');
                 const copyText = block.querySelector('code')?.innerText;
                 if (copyText) {
                     // check if block has only one child, i.e. is a single line code block, so we need less top and bottom margin for button
                     const SingleLine = block.childElementCount === 1 ? 'single-line' : '';
-                    const copyCodeComponent = new CopyButton({
+                    new CopyButton({
                         target: block, // Specify the target element for the Svelte component
                         props: {
                             text: copyText,

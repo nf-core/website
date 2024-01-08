@@ -18,7 +18,6 @@ export function getStaticPaths() {
         ];
     });
 }
-const { subworkflowslug } = Astro.params;
 const { subworkflow } = Astro.props;
 ---
 
@@ -64,7 +63,7 @@ const { subworkflow } = Astro.props;
                 component_type={'subworkflows'}
                 contributors={subworkflow.meta.maintainers || subworkflow.meta.authors}
                 included_pipelines={subworkflow.pipelines}
-                included_modules={subworkflow.meta.modules}
+                included_components={subworkflow.meta.components}
             />
         </div>
     </div>
