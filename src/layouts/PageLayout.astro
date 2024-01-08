@@ -22,6 +22,7 @@ let {
     sections = [],
     viewTransitions = false,
     docSearchTags = [],
+    mermaid = false,
 } = Astro.props;
 
 export interface Props {
@@ -30,12 +31,20 @@ export interface Props {
     subtitle?: string;
     image?: string;
     header_html?: string;
-    event_header?: object[];
+    event_header?: {
+        title: string;
+        subtitle: string;
+        type: string;
+        start_date: string;
+        end_date: string;
+        start_time: string;
+        end_time: string;
+    };
     md_github_url?: string;
     header_btn_url?: string;
     header_btn_text?: string;
     mainpage_container?: boolean;
-    navTocHeadings?: object[];
+    navTocHeadings?: ({ text: string; slug: string; depth: number; fa_icon?: string } | undefined)[];
     subfooter?: boolean;
     showHiddenBtn?: boolean;
     frontmatter?: any;
@@ -46,6 +55,7 @@ export interface Props {
         name: string;
         content: string | string[];
     }[];
+    mermaid?: boolean;
 }
 if (frontmatter) {
     title = frontmatter.title || title;
