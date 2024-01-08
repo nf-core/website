@@ -40,7 +40,9 @@ const latestTollsURL = `/tools/docs/'+${latestToolsRelease}`;
 export default defineConfig({
     site: 'https://nf-co.re/',
     output: 'hybrid',
-    adapter: netlify(),
+    adapter: netlify(
+        {cacheOnDemandPages: true},
+    ),
     redirects: {
         [latestTollsURL]: 'https://oldsite.nf-co.re/tools/docs/latest/',
         ...latestPipelineReleases,
