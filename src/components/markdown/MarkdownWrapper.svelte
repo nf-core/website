@@ -83,7 +83,7 @@
                 }
             });
         // Add file icon to code block titles
-        document.querySelectorAll('div[data-rehype-pretty-code-title]').forEach((block) => {
+        document.querySelectorAll('[data-rehype-pretty-code-title]').forEach((block) => {
             const title = block.textContent;
             const fileIcon = icons.getClass(title);
             let icon: HTMLElement;
