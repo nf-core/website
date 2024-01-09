@@ -6,6 +6,19 @@
     export let title;
     export let property;
     const id = title.replace(' ', '-');
+
+    const pattern = property.pattern;
+    let longPattern = [];
+    // explicitely handle patterns which are an enum work around, i.e. they have multiple values, eg. "^(foo|bar)$"
+    if (
+        pattern &&
+        pattern.startsWith('^(') &&
+        (pattern.endsWith(')$') || pattern.endsWith(')*$')) &&
+        pattern.includes('|')
+    ) {
+        longPattern = pattern.match(/\b(\w+)\b/g);
+    }
+    longPattern = longPattern.length ? '<code>' + longPattern.join('</code>, <code>') + '</code>' : '';
 </script>
 
 <div
@@ -49,12 +62,21 @@
                 default: <code>{property.default}</code>
             </div>
         {/if}
+        {#if property.pattern && !longPattern.length}
+            <div class="default w-100 text-end text-body-secondary overflow-x-scroll">
+                pattern: <code>{property.pattern}</code>
+            </div>
+        {/if}
     </div>
     {#if property.help_text}
-        <div class="row d-flex mt-2 mx-0 w-100 px-0 gx-3 gx-md-4">
+        <div class="row d-flex mt-2 mx-0 w-100 px-0 gx-3 gx-md-4 help-text">
             <Collapsible>
                 <div {id} class="p-2 px-3 text-body bg-secondary-subtle border border-secondary rounded-3">
                     <Markdown md={property.help_text} />
+                    {#if longPattern.length}
+                        This parameter must be a combination of the following values:
+                        {@html longPattern}
+                    {/if}
                 </div>
             </Collapsible>
         </div>
@@ -68,5 +90,9 @@
     }
     .property {
         margin-bottom: -1pt;
+    }
+
+    .help-text :global(pre code) {
+        padding-left: 1rem;
     }
 </style>
