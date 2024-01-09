@@ -71,7 +71,7 @@
     {#if property.help_text}
         <div class="row d-flex mt-2 mx-0 w-100 px-0 gx-3 gx-md-4 help-text">
             <Collapsible>
-                <div {id} class="p-2 px-3 text-body bg-secondary-subtle border border-secondary rounded-3">
+                <div {id} class="p-2 px-3 border border-secondary rounded-3">
                     <Markdown md={property.help_text} />
                     {#if longPattern.length}
                         This parameter must be a combination of the following values:
@@ -84,9 +84,9 @@
 </div>
 
 <style lang="scss">
-    .rounded-3 {
-        border-top-right-radius: 0 !important;
-        margin-top: -1pt; // avoid doubled borders
+    .help-text .rounded-3 {
+        border-top-left-radius: 0 !important;
+        margin-top: -0.75pt; // avoid doubled borders
     }
     .property {
         margin-bottom: -1pt;
