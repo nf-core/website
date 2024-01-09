@@ -1,7 +1,7 @@
 <script lang="ts">
     import { showHelp } from '@components/store';
     export let buttonText: string = 'Help text';
-    export let buttonClass: string = 'btn-outline-secondary ms-auto';
+    export let buttonClass: string = 'btn-outline-secondary me-auto';
     export let textClass: string = '';
     $: show = $showHelp;
 </script>
