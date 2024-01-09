@@ -3759,6 +3759,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -33340,6 +33344,77 @@
       }
     },
     {
+      "name": "foldcomp_compress",
+      "path": "modules/nf-core/foldcomp/compress/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "foldcomp_compress",
+        "description": "Efficient compression tool for protein structures",
+        "keywords": [
+          "protein",
+          "structure",
+          "compression"
+        ],
+        "tools": [
+          {
+            "foldcomp": {
+              "description": "Foldcomp: a library and format for compressing and indexing large protein structure sets",
+              "homepage": "https://github.com/steineggerlab/foldcomp",
+              "documentation": "https://github.com/steineggerlab/foldcomp",
+              "tool_dev_url": "https://github.com/steineggerlab/foldcomp",
+              "doi": "10.1093/bioinformatics/btad153",
+              "licence": [
+                "GPL v3-or-later"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "pdb": {
+              "type": "file",
+              "description": "Protein structure(s) in PDB or CIF format to compress (also works with folder input)",
+              "pattern": "*.{pdb,cif}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "fcz": {
+              "type": "file",
+              "description": "Either single compressed protein structure (if input was file) or folder with all compressed protein structures (if input was directory)\n",
+              "pattern": "{*_fcz,*.fcz}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      }
+    },
+    {
       "name": "foldseek_createdb",
       "path": "modules/nf-core/foldseek/createdb/meta.yml",
       "type": "module",
@@ -36392,6 +36467,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -37117,6 +37196,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -41454,6 +41537,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -76115,6 +76202,88 @@
         "maintainers": [
           "@bsiranosian",
           "@adamrtalbot"
+        ]
+      }
+    },
+    {
+      "name": "parabricks_genotypegvcf",
+      "path": "modules/nf-core/parabricks/genotypegvcf/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "parabricks_genotypegvcf",
+        "description": "NVIDIA Clara Parabricks GPU-accelerated joint genotyping, replicating GATK GenotypeGVCFs",
+        "keywords": [
+          "joint-genotyping",
+          "gvcf",
+          "vcf",
+          "genotypegvcf",
+          "germline"
+        ],
+        "tools": [
+          {
+            "parabricks": {
+              "description": "NVIDIA Clara Parabricks GPU-accelerated genomics tools",
+              "homepage": "https://www.nvidia.com/en-us/clara/genomics/",
+              "documentation": "https://docs.nvidia.com/clara/parabricks/4.2.0/index.html",
+              "licence": [
+                "custom"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "ref_meta": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\n[ id:'test']\n"
+            }
+          },
+          {
+            "input": {
+              "type": "file",
+              "description": "gvcf file for samples to be jointly genotyped.",
+              "pattern": "*.{g.vcf,g.vcf.gz}"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "reference fasta - must be unzipped.",
+              "pattern": "*.fasta"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "vcf file after gvcf conversion.",
+              "pattern": "*.vcf"
+            }
+          }
+        ],
+        "authors": [
+          "@Furentsu",
+          "@bsiranosian"
         ]
       }
     },
@@ -118792,6 +118961,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -118826,6 +118999,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -119460,6 +119637,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
