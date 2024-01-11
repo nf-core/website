@@ -1,6 +1,7 @@
 <script>
     import { ICalendar, GoogleCalendar, OutlookCalendar } from 'datebook/dist/datebook.min.mjs';
-    import { saveAs } from 'file-saver';
+    import pkg from 'file-saver';
+    const { saveAs } = pkg;
 
     export let frontmatter = {};
     export let add_class = 'btn-outline-success';

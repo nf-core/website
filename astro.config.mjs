@@ -1,9 +1,10 @@
 import admonitionsPlugin from './bin/remark-admonitions.js';
-import { mermaid } from './bin/remark-mermaid.ts';
+// import { mermaid } from './bin/remark-mermaid.ts';
+import mermaid from 'remark-mermaid';
 import pipelines_json from '/public/pipelines.json';
 import githubDarkDimmed from '/public/themes/github-dark-dimmed.json';
 import mdx from '@astrojs/mdx';
-import netlify from '@astrojs/netlify/functions';
+import netlify from '@astrojs/netlify';
 import partytown from '@astrojs/partytown';
 import prefetch from '@astrojs/prefetch';
 import sitemap from '@astrojs/sitemap';
@@ -102,7 +103,7 @@ export default defineConfig({
             theme: githubDarkDimmed,
             wrap: false,
         },
-        remarkPlugins: [emoji, remarkGfm, remarkDirective, admonitionsPlugin, mermaid, remarkMath],
+        remarkPlugins: [emoji, remarkGfm, remarkDirective, admonitionsPlugin, [mermaid,{simple:true}], remarkMath],
         // NOTE: Also update the plugins in `src/components/Markdown.svelte`!
         rehypePlugins: [
             rehypeSlug,
