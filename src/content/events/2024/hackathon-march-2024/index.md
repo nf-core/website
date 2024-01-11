@@ -15,7 +15,7 @@ import_typeform: true
 Join us online March 18-20, 2024, for the nf-core hackathon! 🗓️
 
 The nf-core hackathon is free and is being held online (we will be back in [Gather](https://gather.town/)).
-Some community members are also hosting [local sites](#local-events).
+Some community members are also hosting [local sites](#local-sites).
 
 :::info
 The event will be free and we welcome everyone!
