@@ -45,7 +45,6 @@ In 2024 we hope to replicate and build on that success! 🚀
 
 Hacking in person is a lot of fun. Although the hackathon is online, to get the best of both worlds, we are encouraging everyone to create local sites where people can gather to hack together. Be it with your group, institute, city, or region, local sites will be a lot of fun!
 
-
 > Reminder: Even if you are attending a local site you will still join everyone online in Gather.
 
 :::info
