@@ -61,7 +61,6 @@ More information about organising a local site coming soon!
 | --------------- | --------- | ----------------------------------------- | ----------------------------------------- |
 | 🇧🇷 Brazil       | Natal     | Federal University of Rio Grande do Norte | [Read more](br-ufrn.md)                   |
 | 🇫🇷 France       | Rennes    | IGDR                                      | [Read more](france-igdr.md)               |
-| 🇩🇪 Germany      | Tübingen  | QBiC                                      | [Read more](germany-qbic.md)              |
 | 🇩🇪 Germany      | Leipzig   | MPI-EVA                                   | [Read more](germany-mpi-eva.md)           |
 | 🇮🇹 Italy        | Pavia     | Department of Biology and Biotechnology   | [Read more](italy-unipv.md)               |
 | 🇵🇱 Poland       | Kraków    | Ardigen                                   | [Read more](krakow-ardigen.md)            |
