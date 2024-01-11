@@ -18,7 +18,7 @@
             });
 
             for (const graph of graphs) {
-                const content = graph.getAttribute('data-content');
+                const content = graph.textContent;
                 if (!content) continue;
                 let svg = document.createElement('svg');
                 const id = (svg.id = 'mermaid-' + Math.round(Math.random() * 100000));
