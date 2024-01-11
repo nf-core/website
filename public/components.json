@@ -3775,6 +3775,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -24366,7 +24370,7 @@
       "path": "modules/nf-core/custom/sratoolsncbisettings/meta.yml",
       "type": "module",
       "meta": {
-        "name": "sratoolsncbisettings",
+        "name": "custom_sratoolsncbisettings",
         "description": "Test for the presence of suitable NCBI settings or create them on the fly.",
         "keywords": [
           "NCBI",
@@ -24382,7 +24386,9 @@
               "homepage": "https://github.com/ncbi/sra-tools",
               "documentation": "https://github.com/ncbi/sra-tools/wiki",
               "tool_dev_url": "https://github.com/ncbi/sra-tools",
-              "licence": "['Public Domain']"
+              "licence": [
+                "Public Domain"
+              ]
             }
           }
         ],
@@ -36575,6 +36581,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -37300,6 +37310,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -41653,6 +41667,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -109930,7 +109948,9 @@
               "homepage": "https://github.com/quinlan-lab/vcf2db",
               "documentation": "https://github.com/quinlan-lab/vcf2db",
               "tool_dev_url": "https://github.com/quinlan-lab/vcf2db",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -119199,6 +119219,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -119233,6 +119257,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -119883,6 +119911,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
