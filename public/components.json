@@ -3771,6 +3771,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -6647,7 +6651,9 @@
               "description": "Demultiplexes sequencing data and converts base calls into FASTQ files for secondary analysis",
               "homepage": "https://go.elementbiosciences.com/bases2fastq-download",
               "documentation": "https://www.elementbiosciences.com/resources/user-guides/workflow/bases2fastq",
-              "licence": "http://go.elembio.link/eula"
+              "licence": [
+                "http://go.elembio.link/eula"
+              ]
             }
           }
         ],
@@ -33423,6 +33429,74 @@
       }
     },
     {
+      "name": "foldcomp_decompress",
+      "path": "modules/nf-core/foldcomp/decompress/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "foldcomp_decompress",
+        "description": "Decompression tool for foldcomp compressed structures",
+        "keywords": [
+          "protein",
+          "structure",
+          "compression"
+        ],
+        "tools": [
+          {
+            "foldcomp": {
+              "description": "Foldcomp: a library and format for compressing and indexing large protein structure sets",
+              "homepage": "https://github.com/steineggerlab/foldcomp",
+              "documentation": "https://github.com/steineggerlab/foldcomp",
+              "tool_dev_url": "https://github.com/steineggerlab/foldcomp",
+              "doi": "10.1093/bioinformatics/btad153",
+              "licence": [
+                "GPL v3-or-later"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "fcz": {
+              "type": "file",
+              "description": "Foldcomp compressed protein structure(s) (also works with folder input)",
+              "pattern": "*{*,*.fcz}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "pdb": {
+              "type": "file",
+              "description": "Either single protein structure (if input was file) or folder with all decompressed protein structures (if input was directory)\n",
+              "pattern": "{*_pdb,*.pdb,*.cif}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@vagkaratzas"
+        ]
+      }
+    },
+    {
       "name": "foldseek_createdb",
       "path": "modules/nf-core/foldseek/createdb/meta.yml",
       "type": "module",
@@ -34718,7 +34792,9 @@
               "documentation": "https://github.com/pirovc/ganon",
               "tool_dev_url": "https://github.com/pirovc/ganon",
               "doi": "10.1093/bioinformatics/btaa458",
-              "licence": "['MIT License']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -34811,7 +34887,9 @@
               "documentation": "https://github.com/pirovc/ganon",
               "tool_dev_url": "https://github.com/pirovc/ganon",
               "doi": "10.1093/bioinformatics/btaa458",
-              "licence": "['MIT License']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -34830,7 +34908,7 @@
             }
           },
           {
-            "dbs": {
+            "db": {
               "type": "file",
               "description": "Ganon database files from build or build-custom",
               "pattern": "*.{ibf,tax}"
@@ -34866,10 +34944,10 @@
             }
           },
           {
-            "lca": {
+            "one": {
               "type": "file",
-              "description": "Information about the lowest common ancestor match of a given read",
-              "pattern": "*.lca"
+              "description": "Information about a single (best) match of a given read after EM or LCA algorithms",
+              "pattern": "*.one"
             }
           },
           {
@@ -34932,7 +35010,9 @@
               "documentation": "https://github.com/pirovc/ganon",
               "tool_dev_url": "https://github.com/pirovc/ganon",
               "doi": "10.1093/bioinformatics/btaa458",
-              "licence": "['MIT License']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -34951,7 +35031,7 @@
             }
           },
           {
-            "dbs": {
+            "db": {
               "type": "file",
               "description": "Ganon database files from build or build-custom",
               "pattern": "*.{ibf,tax}"
@@ -35019,7 +35099,9 @@
               "documentation": "https://github.com/pirovc/ganon",
               "tool_dev_url": "https://github.com/pirovc/ganon",
               "doi": "10.1093/bioinformatics/btaa458",
-              "licence": "['MIT License']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -36489,6 +36571,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -37214,6 +37300,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -41563,6 +41653,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -96308,7 +96402,9 @@
               "description": "Tool for demultiplexing sequencing data generated on Singular Genomics' sequencing instruments.",
               "homepage": "https://github.com/Singular-Genomics/singular-demux",
               "documentation": "https://github.com/Singular-Genomics/singular-demux#sgdemux",
-              "licence": "['For Singular G4™ Sequencing Platform only']"
+              "licence": [
+                "For Singular G4™ Sequencing Platform only"
+              ]
             }
           }
         ],
@@ -116033,6 +116129,94 @@
       }
     },
     {
+      "name": "fasta_explore_search_plot_tidk",
+      "path": "subworkflows/nf-core/fasta_explore_search_plot_tidk/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "fasta_explore_search_plot_tidk",
+        "description": "Uses Telomere Identification toolKit (TIDK) to identify the frequency of telomeric repeats\nalong a sliding window for each sequence in the input fasta file. Results are presented in\nTSV and SVG formats. The user can specify an a priori sequence for identification.\nPossible a posteriori sequences are also explored and the most frequent sequence is\nused for identification similar to the a priori sequence. seqkit/seq and seqkit/sort modules are\nalso included to filter out small sequences and sort sequences by length.\n",
+        "keywords": [
+          "genomics",
+          "telomere",
+          "repeat",
+          "search",
+          "plot"
+        ],
+        "components": [
+          "seqkit/seq",
+          "seqkit/sort",
+          "tidk/explore",
+          "tidk/plot",
+          "tidk/search"
+        ],
+        "input": [
+          {
+            "ch_fasta": {
+              "type": "file",
+              "description": "Input assembly\nStructure: [ val(meta), path(fasta) ]\n",
+              "pattern": "*.{fsa/fa/fasta}"
+            }
+          },
+          {
+            "ch_apriori_sequence": {
+              "type": "string",
+              "description": "A priori sequence\nStructure: [ val(meta), val(sequence) ]\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "apriori_tsv": {
+              "type": "file",
+              "description": "Frequency table for the identification of the a priori sequence\nStructure: [ val(meta), path(tsv) ]\n",
+              "pattern": "*.tsv"
+            }
+          },
+          {
+            "apriori_svg": {
+              "type": "file",
+              "description": "Frequency graph for the identification of the a priori sequence\nStructure: [ val(meta), path(svg) ]\n",
+              "pattern": "*.svg"
+            }
+          },
+          {
+            "aposteriori_sequence": {
+              "type": "file",
+              "description": "The most frequent a posteriori sequence\nStructure: [ val(meta), path(txt) ]\n",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "aposteriori_tsv": {
+              "type": "file",
+              "description": "Frequency table for the identification of the a aposteriori sequence\nStructure: [ val(meta), path(tsv) ]\n",
+              "pattern": "*.tsv"
+            }
+          },
+          {
+            "aposteriori_svg": {
+              "type": "file",
+              "description": "Frequency graph for the identification of the a aposteriori sequence\nStructure: [ val(meta), path(svg) ]\n",
+              "pattern": "*.svg"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@GallVp"
+        ],
+        "maintainers": [
+          "@GallVp"
+        ]
+      }
+    },
+    {
       "name": "fasta_index_dna",
       "path": "subworkflows/nf-core/fasta_index_dna/meta.yml",
       "type": "subworkflow",
@@ -119011,6 +119195,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -119045,6 +119233,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -119691,6 +119883,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
