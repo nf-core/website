@@ -3,11 +3,14 @@
 .hide-light {
   display: none;
 }
-
-pre[data-theme='dark'],
-div[data-rehype-pretty-code-title][data-theme='dark'] {
-  display: none;
+figure[data-rehype-pretty-code-figure]{
+code[data-theme*=' '],
+code[data-theme*=' '] span {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
 }
+}
+
 body {
   font-feature-settings: 'ss03'; // curved r https://rsms.me/inter/#features/ss03
   text-rendering: optimizeLegibility; // enables kerning and ligatures for smaller font sizes
@@ -261,6 +264,7 @@ code:not(pre code),
   background-color: rgba($white, 0.1) !important;
   color: $white !important;
 }
+
 @include media-breakpoint-down(md) {
   pre,
   code,
@@ -270,13 +274,66 @@ code:not(pre code),
 }
 
 .main-content pre {
-  border-radius: 3px;
   font-size: 14px;
   code {
+    border-radius: 3px;
     border: 1px solid $border-color;
     display: flow-root;
     overflow-x: auto;
-    padding: 1em;
+    padding-top: 0.75em;
+    padding-bottom: 0.75em;
+    &[data-line-numbers] {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    &:not([data-line-numbers]) > span {
+      padding-left: 1.5em;
+      padding-right: 1.5em;
+    }
+    &[data-line-numbers]{
+      counter-reset: line;
+
+    & > [data-line]::before {
+      counter-increment: line;
+      content: counter(line);
+      display: inline-block;
+      width: 1.75rem;
+      margin-right: 1rem;
+      padding-right: 0.5rem;
+      text-align: right;
+      color: $gray-400;
+      border-right: 1px solid $gray-400;
+    }
+    & > [data-line]:first-child::before {
+      padding-top: 0.45rem;
+    }
+    & > [data-line]:last-child::before {
+      padding-bottom: 0.25rem;
+    }
+    & > [data-line][data-highlighted-line]::before {
+      color: $gray-600;
+    }
+    // handle offset for line numbers with more than 1 digit
+    &[data-line-numbers-max-digits='2'] > [data-line]::before {
+      width: 2.25rem;
+    }
+    &[data-line-numbers-max-digits='2'] > [data-highlighted-line][data-line]::before{
+        width: calc(2.25rem - 2px); // 2px for border offset
+      }
+
+    &[data-line-numbers-max-digits='3'] > [data-line]::before {
+      width: 3rem;
+    }
+    &[data-line-numbers-max-digits='3'] > [data-highlighted-line][data-line]::before{
+        width: calc(3rem - 2px); // 2px for border offset
+      }
+      &[data-line-numbers-max-digits='4'] > [data-line]::before {
+      width: 3.5rem;
+    }
+    &[data-line-numbers-max-digits='4'] > [data-highlighted-line][data-line]::before{
+        width: calc(3.5rem - 2px); // 2px for border offset
+      }
+  }
   }
 }
 
@@ -1205,27 +1262,58 @@ Launch Page
   }
 }
 
-div[data-rehype-pretty-code-fragment] {
-  margin-bottom: 1rem;
-  display: block;
+figure[data-rehype-pretty-code-figure] [data-theme*=' ']:not([data-rehype-pretty-code-title]) {
+  [data-highlighted-line] {
+    background-color: tint-color($success-text-emphasis-dark,80%);
+    border-left: 2px solid $success-text-emphasis-dark;
+    span{
+      background-color: tint-color($success-text-emphasis-dark,80%);
+    }
+  }
+  [data-highlighted-chars] {
+    background-color: tint-color($gray-500,80%);
+  }
+  [data-rehype-pretty-code-caption]{
+    margin-top: -0.75rem;
+    font-size: $small-font-size;
+    color: $secondary;
+  }
 }
 
-.main-content div[data-rehype-pretty-code-fragment] pre .copy-code-button {
-  margin-top: 0.6rem;
-  margin-right: 0.5rem;
+.main-content figure[data-rehype-pretty-code-figure] pre .copy-code-button {
+  margin-top: 0.75rem;
+  margin-right: 0.7rem;
+  &:hover{
+    opacity: 1 !important;
+  }
+  &.single-line{
+    margin-top: 0.425rem;
+  }
 }
 
-.main-content div[data-rehype-pretty-code-fragment]:has(div[data-rehype-pretty-code-title]) pre .copy-code-button {
-  margin-top: 0.6rem;
+.main-content figure[data-rehype-pretty-code-figure]:has([data-rehype-pretty-code-title]) pre {
+  code{
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  }
+  .copy-code-button {
+    margin-top: 0.75rem;
+  }
 }
 
-div[data-rehype-pretty-code-title] {
+[data-rehype-pretty-code-title] {
   border: 1px solid $border-color;
-  padding: 0.5rem;
+  padding: 0.4rem;
+  padding-left: 0.5rem;
   margin-bottom: -1px;
+  font-size: 0.9rem;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
-div[data-rehype-pretty-code-title][data-theme='light'] {
+[data-rehype-pretty-code-title][data-theme*=' '] {
   border: 1px solid $border-color;
   background-color: $card-cap-bg;
 }
@@ -1265,17 +1353,14 @@ div.mermaid {
       display: block;
     }
   }
-
-  pre[data-theme='dark'] {
-    display: block;
+  figure[data-rehype-pretty-code-figure]{
+  code[data-theme*=' '],
+  code[data-theme*=' '] span {
+    color: var(--shiki-dark);
+    background-color: var(--shiki-dark-bg);
   }
-
-  pre[data-theme='light'],
-  div[data-rehype-pretty-code-title][data-theme='light'] {
-    display: none;
-  }
-  div[data-rehype-pretty-code-title][data-theme='dark'] {
-    display: block;
+}
+  [data-rehype-pretty-code-title][data-theme*=' '] {
     border: 1px solid $border-color-dark;
   }
   img {
@@ -1340,6 +1425,11 @@ div.mermaid {
   .mainpage-heading,
   .mainpage-heading h1 {
     color: $gray-100 !important;
+    text-wrap: balance;
+  }
+
+  .lead {
+    text-wrap: balance;
   }
 
   .main-content pre code {
@@ -1367,4 +1457,27 @@ div.mermaid {
     background-color: $gray-800;
     color: $body-color-dark;
   }
+  .main-content pre code {
+    &[data-line-numbers]{
+    & > [data-line]::before {
+      border-color: $border-color-dark;
+      color: $border-color-dark;
+    }
+    & > [data-line][data-highlighted-line]::before {
+      color: $gray-500;
+    }
+  }
+
 }
+  figure[data-rehype-pretty-code-figure] [data-theme*=' '] [data-highlighted-line]{
+    background-color: shade-color($success-text-emphasis-dark,70%);
+    border-left: 2px solid shade-color($success-text-emphasis-dark,25%);
+    span {
+      &:first-child{
+        padding-top: 0;
+      }
+      background-color: shade-color($success-text-emphasis-dark,70%);
+    }
+  }
+}
+

@@ -8,7 +8,7 @@ import NfCoreLogoDarkbg from '/images/logo/nf-core-logo-darkbg.svg?raw';
 import NfCoreLogo from '/images/logo/nf-core-logo.svg?raw';
 import IconSocial from '@components/IconSocial.astro';
 import ThemeSwitch from '@components/ThemeSwitch.svelte';
-import Icon from 'astro-icon';
+import { Icon } from 'astro-icon/components';
 import Search from '@components/navbar/Search.svelte';
 import { getCollection } from 'astro:content';
 
@@ -16,10 +16,10 @@ export interface Props {
     navTocHeadings?: object[];
     title?: string;
     sections?: { section_name: string; children: {}[] }[] | never[];
+    showHiddenBtn?: boolean;
 }
-const { navTocHeadings = [], title, sections = [] } = Astro.props;
+const { navTocHeadings = [], title, sections = [], showHiddenBtn = false } = Astro.props;
 let navbarTitle = [];
-
 if (sections?.length > 0) {
     // construct the breadcrumb for the navbarNav element
     let url = Astro.url.pathname;
@@ -36,7 +36,6 @@ if (sections?.length > 0) {
               return url.startsWith(child.slug);
           })?.title
         : '';
-
     navbarTitle = currentChild ? [currentSection?.section_name, currentChild] : [currentSection?.section_name];
 }
 
@@ -62,7 +61,11 @@ newBlogPost = await getCollection('blog').then((posts) => {
                 <Fragment set:html={NfCoreLogoDarkbg} />
             </div>
         </a>
-        {navTocHeadings.length > 0 && <NavbarToc headings={navTocHeadings} client:visible />}
+        {
+            navTocHeadings.length > 0 && (
+                <NavbarToc headings={navTocHeadings} showHiddenBtn={showHiddenBtn} client:visible />
+            )
+        }
         <div class:list={['align-self-center d-xl-none', { 'me-5': navTocHeadings.length === 0 }]}>
             <Search id="docsearch-mobile" client:visible />
         </div>

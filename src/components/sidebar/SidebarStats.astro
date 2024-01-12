@@ -1,7 +1,7 @@
 ---
 import SidebarStatsRow from '@components/sidebar/SidebarStatsRow.astro';
 import GitHubUser from '@components/GitHubProfilePicture.svelte';
-const { component_type, contributors, included_pipelines, included_modules, included_subworkflows } = Astro.props;
+const { component_type, contributors, included_pipelines, included_components, included_subworkflows } = Astro.props;
 
 export interface Props {
     component_type: string;
@@ -10,7 +10,7 @@ export interface Props {
         name: string;
         version: string;
     }[];
-    included_modules?: string[];
+    included_components?: string[];
     included_subworkflows?: string[];
 }
 ---
@@ -64,16 +64,16 @@ export interface Props {
         )
     }
     {
-        included_modules && (
+        included_components && (
             <SidebarStatsRow
                 content={[
                     {
-                        title: 'included modules',
+                        title: 'included modules and subworkflows',
                     },
                 ]}
             >
                 <div class="mb-2">
-                    {included_modules.map((module) => (
+                    {included_components.map((module) => (
                         <a
                             href={'/modules/' + module.replace('/', '_') + '/'}
                             class="badge fw-normal border border-info-subtle bg-info-subtle text-body me-2 text-decoration-none"
@@ -85,7 +85,7 @@ export interface Props {
             </SidebarStatsRow>
         )
     }
-    <SidebarStatsRow content={[{ title: 'mantainer' + (contributors.length > 1 ? 's' : '') }]}>
+    <SidebarStatsRow content={[{ title: 'maintainer' + (contributors.length > 1 ? 's' : '') }]}>
         <div class="contrib-avatars d-flex flex-wrap">
             {
                 contributors &&

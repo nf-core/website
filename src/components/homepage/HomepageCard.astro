@@ -1,5 +1,5 @@
 ---
-import { Icon } from 'astro-icon';
+import { Icon } from 'astro-icon/components';
 
 const { title, icon, icon_color, icon_class = '', icon_dark = '', fontawesome, btn_txt, btn_href } = Astro.props;
 ---
@@ -26,8 +26,28 @@ const { title, icon, icon_color, icon_class = '', icon_dark = '', fontawesome, b
             </div>
         </div>
         <div class="icons d-flex align-items-center ms-3">
-            {icon && <Icon name={icon} color={icon_color} class={(icon_dark && 'hide-dark ') + icon_class} />}
-            {icon_dark && <Icon name={icon_dark} color="white" class={'hide-light ' + icon_class} />}
+            {
+                icon && (
+                    <Icon
+                        name={icon}
+                        color={icon_color}
+                        class={(icon_dark && 'hide-dark ') + icon_class}
+                        height="6rem"
+                        width="7rem"
+                    />
+                )
+            }
+            {
+                icon_dark && (
+                    <Icon
+                        name={icon_dark}
+                        color="white"
+                        class={'hide-light ' + icon_class}
+                        height="6rem"
+                        width="7rem"
+                    />
+                )
+            }
             <i class={fontawesome + ' fa-5x'}></i>
         </div>
     </div>
@@ -60,54 +80,66 @@ const { title, icon, icon_color, icon_class = '', icon_dark = '', fontawesome, b
         }
     }
     // @keyframes fade {
-    //         from {
-    //             opacity: 1;
-    //         }
-    //         50% {
-    //             opacity: 0;
-    //         }
-    //         to {
-    //             opacity: 1;
-    //         }
+    //     from {
+    //         opacity: 1;
     //     }
+    //     50% {
+    //         opacity: 0;
+    //     }
+    //     to {
+    //         opacity: 1;
+    //     }
+    // }
 
-    //     @-webkit-keyframes fade {
-    //         from {
-    //             opacity: 1;
-    //         }
-    //         30% {
-    //             opacity: 0;
-    //         }
-    //         60% {
-    //             opacity: 0;
-    //         }
-    //         to {
-    //             opacity: 1;
-    //         }
+    // @-webkit-keyframes fade {
+    //     from {
+    //         opacity: 1;
     //     }
-    //     :global(svg .lights:nth-of-type(4n + 1)) {
-    //     fill: $danger;
+    //     30% {
+    //         opacity: 0;
+    //     }
+    //     60% {
+    //         opacity: 0;
+    //     }
+    //     to {
+    //         opacity: 1;
+    //     }
+    // }
+
+    // // turn first all lights off after 30 seconds
+    // :global(svg .lights) {
     //     opacity: 0;
-    //     animation: fade 1000ms ease alternate infinite;;
-    //     -webkit-animation: fade 4000m ease alternate infinite;;
-
+    //     animation: fade 1000ms ease infinite;
+    //     -webkit-animation: fade 1000ms ease infinite;
+    //     animation-delay: 30s; // Add animation delay of 10 seconds
+    //     -webkit-animation-delay: 30s; // Add animation delay of 10 seconds
     // }
     // :global(svg .lights:nth-of-type(2n + 1)) {
-    //     fill: $danger;
-    //     animation: fade 3000ms ease alternate infinite;;
-    //     -webkit-animation: fade 4000ms ease alternate infinite;;
-
+    //     opacity: 0;
+    //     animation: fade 1000ms ease alternate infinite;
+    //     -webkit-animation: fade 1000ms ease alternate infinite;
+    //     animation-delay: 40s; // Add animation delay of 10 seconds
+    //     -webkit-animation-delay: 40s; // Add animation delay of 10 seconds
     // }
+    // :global(svg .lights:nth-of-type(2n - 1)) {
+    //     opacity: 0;
+    //     animation: fade 2000ms ease alternate infinite;
+    //     -webkit-animation: fade 2000ms ease alternate infinite;
+    //     animation-delay: 40s; // Add animation delay of 10 seconds
+    //     -webkit-animation-delay: 40s; // Add animation delay of 10 seconds
+    // // }
     // :global(svg .lights:nth-of-type(3n + 1)) {
-    //     fill:  $body-bg-dark;
-    //     animation: fade 3000ms ease alternate infinite;;
-    //     -webkit-animation: fade 4000ms ease alternate infinite;;
-
+    //     fill:  $body-bg-dark !important;
+    //     animation: fade 3000ms ease alternate infinite;
+    //     -webkit-animation: fade 3000ms ease alternate infinite;
+    //     animation-delay: 40s; // Add animation delay of 10 seconds
+    //     -webkit-animation-delay: 40s; // Add animation delay of 10 seconds
     // }
     // :global(svg .lights:nth-of-type(5n + 1)) {
     //     fill:  $danger;
-    //     animation: fade 2000ms ease alternate infinite;;
-    //     -webkit-animation: fade 2000ms ease alternate infinite;;
-
+    //     animation: fade 4000ms ease alternate infinite;
+    //     -webkit-animation: fade 4000ms ease alternate infinite;
+    //     animation-delay: 40s; // Add animation delay of 10 seconds
+    //     -webkit-animation-delay: 40s; // Add animation delay of 10 seconds
     // }
 </style>
