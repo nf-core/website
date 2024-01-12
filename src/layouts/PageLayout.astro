@@ -22,7 +22,7 @@ let {
     sections = [],
     viewTransitions = false,
     docSearchTags = [],
-    mermaid = false,
+    doubleNavbar = true,
 } = Astro.props;
 
 export interface Props {
@@ -55,7 +55,7 @@ export interface Props {
         name: string;
         content: string | string[];
     }[];
-    mermaid?: boolean;
+    doubleNavbar?: boolean;
 }
 if (frontmatter) {
     title = frontmatter.title || title;
@@ -81,6 +81,7 @@ if (frontmatter) {
     sections={sections}
     viewTransitions={viewTransitions}
     docSearchTags={docSearchTags}
+    doubleNavbar={doubleNavbar}
 >
     <div class="mainpage">
         <Header

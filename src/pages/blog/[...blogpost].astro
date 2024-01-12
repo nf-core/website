@@ -65,6 +65,7 @@ console.log(
     left_sidebar={true}
     sections={sections}
     viewTransitions={true}
+    doubleNavbar={false}
 >
     <div class="image-container d-flex align-items-center">
         {
@@ -118,8 +119,14 @@ console.log(
         </SidebarStatsRow>
     </div>
 </MarkdownTocLayout>
-<style>
+<style lang="scss">
+    @import '@styles/_variables.scss';
     .image-container {
         height: 512px;
+    }
+    @include media-breakpoint-down(xl) {
+        .image-container {
+            height: 260px;
+        }
     }
 </style>

@@ -30,6 +30,7 @@ export interface Props {
     minHeadingDepth?: number;
     maxHeadingDepth?: number;
     image?: string;
+    doubleNavbar?: boolean;
 }
 
 const {
@@ -46,6 +47,7 @@ const {
     minHeadingDepth = 1,
     maxHeadingDepth = 4,
     image,
+    doubleNavbar = true,
 } = Astro.props;
 ---
 
@@ -83,8 +85,8 @@ const {
     sections={sections}
     docSearchTags={docSearchTags}
     viewTransitions={viewTransitions}
-    mermaid={true}
     image={image}
+    doubleNavbar={doubleNavbar}
 >
     <div class="row">
         {
