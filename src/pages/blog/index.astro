@@ -28,7 +28,7 @@ const sections = years.map((year) => {
             .map((post) => {
                 return {
                     title: post.data.title,
-                    slug: post.slug,
+                    slug: '/blog/' + post.slug,
                     pubDate: post.data.pubDate,
                 };
             }),
