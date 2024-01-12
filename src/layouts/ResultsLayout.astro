@@ -11,8 +11,8 @@ export interface Props {
     pipeline: string;
     version: string;
     path: string;
-    bucketContents: { Key: string; LastModified: Date; ETag: string; Size: number; StorageClass: string }[];
-    commonPrefixes: { Prefix: string }[];
+    bucketContents?: { Key: string; LastModified: Date; ETag: string; Size: number; StorageClass: string }[];
+    commonPrefixes?: { Prefix: string }[];
 }
 
 path = pipeline + '/' + path;
@@ -100,7 +100,6 @@ if (!isTruncated) {
     version={version}
     versions={versions}
     tabItems={md_files}
-    releaseSHA={releaseSHA}
 >
     <div class="mt-3">
         {
