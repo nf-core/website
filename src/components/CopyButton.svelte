@@ -33,7 +33,7 @@
 >
 
 <style lang="scss">
-    @import 'src/styles/_variables.scss';
+    @import '@styles/_variables.scss';
     .copy-url {
         background: $body-bg;
     }
