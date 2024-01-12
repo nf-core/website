@@ -63,7 +63,7 @@
 <div class="map m-auto" use:mapAction />
 
 <style lang="scss">
-    @import '@styles/_variables.scss';
+    @import 'src/styles/_variables.scss';
     .map {
         height: 480px;
         width: 90%;
