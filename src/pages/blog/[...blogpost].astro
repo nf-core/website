@@ -46,11 +46,6 @@ const title = post.data.title;
 const subtitle = post.data.subtitle;
 const md_github_url = 'https://github.com/nf-core/website/blob/main/src/content/blog/' + post.id;
 const headerImage = post.data.headerImage;
-console.log(
-    `/og.png?title=${encodeURIComponent(title)}&subtitle=${encodeURIComponent(
-        subtitle,
-    )}&category=blog&authors=${encodeURIComponent(post.data.authors.join(','))}`,
-);
 ---
 
 <MarkdownTocLayout
