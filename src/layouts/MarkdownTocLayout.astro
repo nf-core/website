@@ -107,8 +107,9 @@ const {
                 minHeadingDepth={minHeadingDepth}
                 maxHeadingDepth={maxHeadingDepth}
                 client:idle
-            />
-            <slot name="right-sidebar" />
+            >
+                <slot name="right-sidebar" />
+            </SidebarToc>
         </div>
     </div>
     <slot name="pre-footer" slot="pre-footer" />
