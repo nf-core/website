@@ -1,10 +1,11 @@
 import admonitionsPlugin from './bin/remark-admonitions.js';
-import mermaid from 'remark-mermaid';
+import { mermaid } from './bin/remark-mermaid.ts';
 import pipelines_json from '/public/pipelines.json';
 import githubDarkDimmed from '/public/themes/github-dark-dimmed.json';
 import mdx from '@astrojs/mdx';
-import netlify from '@astrojs/netlify';
+import netlify from '@astrojs/netlify/functions';
 import partytown from '@astrojs/partytown';
+import prefetch from '@astrojs/prefetch';
 import sitemap from '@astrojs/sitemap';
 import svelte from '@astrojs/svelte';
 import yaml from '@rollup/plugin-yaml';
@@ -38,10 +39,7 @@ const latestTollsURL = `/tools/docs/'+${latestToolsRelease}`;
 export default defineConfig({
     site: 'https://nf-co.re/',
     output: 'hybrid',
-    prefetch: true,
-    adapter: netlify({
-        cacheOnDemandPages: true,
-    }),
+    adapter: netlify(),
     redirects: {
         [latestTollsURL]: 'https://oldsite.nf-co.re/tools/docs/latest/',
         ...latestPipelineReleases,
@@ -61,6 +59,7 @@ export default defineConfig({
             }
         }),
         sitemap(),
+        prefetch(),
         partytown({
             // Adds dataLayer.push as a forwarding-event.
             config: {
@@ -91,6 +90,11 @@ export default defineConfig({
             preserveSymlinks: true,
         },
     },
+    image: {
+        service: {
+            entrypoint: 'astro/assets/services/sharp',
+        },
+    },
     markdown: {
         syntaxHighlight: false,
         shikiConfig: {
@@ -98,7 +102,7 @@ export default defineConfig({
             theme: githubDarkDimmed,
             wrap: false,
         },
-        remarkPlugins: [emoji, remarkGfm, remarkDirective, admonitionsPlugin, [mermaid,{simple:true}], remarkMath],
+        remarkPlugins: [emoji, remarkGfm, remarkDirective, admonitionsPlugin, mermaid, remarkMath],
         // NOTE: Also update the plugins in `src/components/Markdown.svelte`!
         rehypePlugins: [
             rehypeSlug,

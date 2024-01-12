@@ -47,7 +47,7 @@
 </div>
 
 <style lang="scss">
-    @import 'src/styles/_variables.scss';
+    @import '@styles/_variables.scss';
     input {
         border-color: $border-color;
         &:focus {

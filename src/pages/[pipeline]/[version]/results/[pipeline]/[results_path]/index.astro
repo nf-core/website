@@ -12,7 +12,6 @@ export async function getStaticPaths() {
         };
         props: {
             content: { Key: string; LastModified: Date; ETag: string; Size: number; StorageClass: string }[];
-            commonPrefixes: { Prefix: string }[];
         };
     }[] = [];
 
