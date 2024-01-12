@@ -4,6 +4,7 @@
 
     export let username: string;
     export let affiliation: string = '';
+    export let size: number = 50;
 
     const affiliation_str =
         affiliation.length > 0
@@ -17,7 +18,7 @@
     image={'https://github.com/' + username + '.png'}
     name={username}
     circle={true}
-    size={50}
+    {size}
 >
     <div class={'ms-2 d-inline-block text-start d-flex flex-column px-2 ' + extra_classes}>
         <slot>
