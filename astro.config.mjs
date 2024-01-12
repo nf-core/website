@@ -89,11 +89,6 @@ export default defineConfig({
             preserveSymlinks: true,
         },
     },
-    image: {
-        service: {
-            entrypoint: 'astro/assets/services/sharp',
-        },
-    },
     markdown: {
         syntaxHighlight: false,
         shikiConfig: {
