@@ -39,7 +39,7 @@ if (!tooBig && hasPreview) {
 
 <script>
     //scroll to file-preview
-    document.addEventListener('astro:page-load', () => {
+    window.addEventListener('load', () => {
         const filePreview = document.getElementById('file-preview');
         if (filePreview) {
             filePreview.scrollIntoView();

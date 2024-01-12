@@ -32,7 +32,7 @@
 {/if}
 
 <style lang="scss">
-    @import 'src/styles/_variables.scss';
+    @import '@styles/_variables.scss';
     .docs-nav {
         margin-top: 3rem;
         z-index: 1029; // reduce z-index by one to have navbarToc on top
