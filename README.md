@@ -53,7 +53,7 @@ We follow Astro's [file structure](https://docs.astro.build/guides/project-struc
 The main files are:
 
 - `src/pages/` - Astro pages
-- `src/content/` - [Astro content collections](https://docs.astro.build/en/guides/content-collections/) (markdown files for events, docs)
+- `src/content/` - [Astro content collections](https://docs.astro.build/en/guides/content-collections/) (markdown files for events, docs, blog)
 - `src/components/` - Astro/Svelte components
 - `src/layouts/` - HTML layouts
 - `src/styles/` - (S)CSS stylesheets
@@ -79,6 +79,39 @@ Tools docs are built using GitHub Actions on the nf-core/tools repo using Sphinx
 ## Contribution guidelines
 
 If you are looking forward to contribute to the website or add your institution to the official list of contributors, please have a look at the [CONTRIBUTING.md](./.github/CONTRIBUTING.md).
+
+### Crafting a Blog Post
+
+To publish a new blog post on the website, you'll need to create a Markdown file within the `src/content/blog/` directory. In this file, include the following frontmatter at the beginning:
+
+```yaml
+---
+title: "Your Blog Post Title"
+subtitle: "A brief overview of your post's content"
+headerImage: "Direct URL to an optional header image"
+headerImageAlt: "Descriptive alt text for the header image (mandatory if a header image is used)"
+pubDate: "Scheduled publication date and time (the post will go live post-website rebuild if the current date surpasses this timestamp). Format: YYYY-MM-DDTHH:MM:SS.000+HH:MM"
+authors: ["Author's Name"]  // Use a list format even if there is only one author.
+label: ["Category1", "Category2"]  // This is optional and can include multiple categories.
+---
+```
+
+> [!NOTE]
+> The blog post will be visible on the website only if a rebuild of the site occurs after the date and time specified in the `pubDate` field.
+
+By default the first paragraph of the blog post will be used as the preview text on the blog page. If you want to use a different paragraph, add the following comment after the paragraph you want to use:
+
+```markdown
+<!-- end of excerpt -->
+```
+
+or for MDX
+
+<!-- prettier-ignore-start -->
+```mdx
+/* end of excerpt */
+```
+<!-- prettier-ignore-end -->
 
 ## Community
 

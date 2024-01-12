@@ -1,0 +1,128 @@
+---
+import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
+import { getCollection } from 'astro:content';
+import SidebarStatsRow from '@components/sidebar/SidebarStatsRow.astro';
+import GitHubProfilePictureExtended from '@components/GitHubProfilePictureExtended.svelte';
+import { Image } from 'astro:assets';
+
+export async function getStaticPaths() {
+    const blogPost = await getCollection('blog');
+    return blogPost.map((post) => ({
+        params: { blogpost: post.slug },
+        props: { post },
+    }));
+}
+
+let blogPosts = await getCollection('blog');
+// filter out posts that have a pubDate later than today
+blogPosts = blogPosts
+    .filter((post) => {
+        const pubDate = new Date(post.data.pubDate);
+        return pubDate < new Date();
+    })
+    .sort((a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate));
+
+// get years of all posts
+const years = [...new Set(blogPosts.map((post) => new Date(post.data.pubDate).getFullYear()))].sort((a, b) => b - a);
+
+const sections = years.map((year) => {
+    return {
+        section_name: year,
+        section_slug: '/blog/#year-' + year,
+        children: blogPosts
+            .filter((post) => new Date(post.data.pubDate).getFullYear() === year)
+            .map((post) => {
+                return {
+                    title: post.data.title,
+                    slug: post.slug,
+                    pubDate: post.data.pubDate,
+                };
+            }),
+    };
+});
+const { post } = Astro.props;
+const { headings, Content } = await post.render();
+const title = post.data.title;
+const subtitle = post.data.subtitle;
+const md_github_url = 'https://github.com/nf-core/website/blob/main/src/content/blog/' + post.id;
+const headerImage = post.data.headerImage;
+---
+
+<MarkdownTocLayout
+    title={title}
+    subtitle={subtitle}
+    md_github_url={md_github_url}
+    headings={headings}
+    image={`/og.png?title=${encodeURIComponent(title)}&subtitle=${encodeURIComponent(
+        subtitle,
+    )}&category=blog&authors=${encodeURIComponent(post.data.authors.join(','))}`}
+    viewTransitions={true}
+    leftSidebar={true}
+    sections={sections}
+    viewTransitions={true}
+    doubleNavbar={false}
+    sidebarTitle="Blog posts"
+>
+    <div class="image-container d-flex align-items-center">
+        {
+            post.data.headerImage && (
+                <Image
+                    src={post.data.headerImage}
+                    alt={post.data.headerImageAlt || ''}
+                    class="object-fit-cover mb-3 d-flex m-auto w-100 h-100 py-2"
+                    width={728}
+                    height={360}
+                    transition:name="cover-image"
+                />
+            )
+        }
+    </div>
+    <Content />
+    <div class="author-list d-md-none d-flex flex-wrap justify-content-between">
+        <SidebarStatsRow lastChild={true} content={[{ title: 'Published on' }]}>
+            {
+                post.data.pubDate.toLocaleDateString('en-GB', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                })
+            }
+        </SidebarStatsRow>
+        <SidebarStatsRow lastChild={true} content={[{ title: 'Written by' }]}>
+            {
+                post.data.authors.map((author) => {
+                    return <GitHubProfilePictureExtended username={author} size={40} />;
+                })
+            }
+        </SidebarStatsRow>
+    </div>
+    <div slot="right-sidebar" class="d-flex flex-column align-items-start">
+        <SidebarStatsRow lastChild={true} content={[{ title: 'Written by' }]}>
+            {
+                post.data.authors.map((author) => {
+                    return <GitHubProfilePictureExtended username={author} size={40} />;
+                })
+            }
+        </SidebarStatsRow>
+        <SidebarStatsRow lastChild={true} content={[{ title: 'Published on' }]}>
+            {
+                post.data.pubDate.toLocaleDateString('en-GB', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                })
+            }
+        </SidebarStatsRow>
+    </div>
+</MarkdownTocLayout>
+<style lang="scss">
+    @import '@styles/_variables.scss';
+    .image-container {
+        height: 512px;
+    }
+    @include media-breakpoint-down(xl) {
+        .image-container {
+            height: 260px;
+        }
+    }
+</style>
