@@ -14,6 +14,7 @@ export interface Props {
     tabItems?: string[];
     md_github_url?: string;
     showHiddenBtn?: boolean;
+    viewTransitionsAnimation?: string;
     sections?: { section_name: string; children: {}[] }[] | never[];
     docSearchTags?: { name: string; content: string | string[] }[];
 }
@@ -30,6 +31,7 @@ let {
     showHiddenBtn = false,
     sections = [],
     docSearchTags = [],
+    viewTransitionsAnimation = 'slide',
 } = Astro.props;
 
 if (version === 'latest') {
@@ -165,7 +167,7 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
         )
     }
 
-    <div transition:animate="slide">
+    <div transition:animate={viewTransitionsAnimation}>
         <slot />
     </div>
 </PageLayout>
