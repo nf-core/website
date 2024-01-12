@@ -34,6 +34,7 @@ const sections = years.map((year) => {
     mainpage_container={true}
     subfooter={false}
     docSearchTags={[{ name: 'page_type', content: 'Blog' }]}
+    viewTransitions={true}
 >
     <div class="row">
         <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left pt-1">
@@ -56,17 +57,18 @@ const sections = years.map((year) => {
                                             alt={post.data.headerImageAlt || ''}
                                             height={240}
                                             width={512}
+                                            transition:name="cover-image"
                                         />
                                     )}
                                     <div class="card-body">
-                                        <h2>{post.data.title}</h2>
+                                        <h2 transition:name="title">{post.data.title}</h2>
                                         <p class="card-text">
                                             {async () => {
                                                 const { remarkPluginFrontmatter } = await post.render();
                                                 return remarkPluginFrontmatter.excerpt;
                                             }}
                                         </p>
-                                        <a href={'/blog/'+post.slug} class="stretched-link" />
+                                        <a href={'/blog/' + post.slug} class="stretched-link" />
                                     </div>
                                     <div class="card-footer d-flex align-items-center justify-space-between">
                                         <div class="me-auto">

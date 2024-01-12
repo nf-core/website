@@ -76,9 +76,9 @@
                     >
                         <i class="fa-solid fa-arrow-up-to-line" aria-hidden="true" /> Back to top
                     </a>
-
-                    <slot />
                 </div>
+
+                <slot />
             </nav>
         </div>
     </div>

@@ -18,10 +18,10 @@ export interface Props {
 title = title.replace('nf-core/', 'nf-core/<wbr>');
 ---
 
-<div class="mainpage-heading pb-1 text-bg-success">
+<div class="mainpage-heading pb-1 text-bg-success" transition:animate="morph">
     <div class="container">
         <h1 class="display-2 d-flex justify-content-between mb-2">
-            <span class="title" set:html={title} />
+            <span class="title" transition:name="title" set:html={title} />
             <div>
                 {
                     md_github_url && (
