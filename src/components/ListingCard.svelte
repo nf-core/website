@@ -14,7 +14,7 @@
 </div>
 
 <style lang="scss">
-    @import '@styles/_variables.scss';
+    @import 'src/styles/_variables.scss';
     .card {
         width: 32rem;
     }
