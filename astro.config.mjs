@@ -39,7 +39,9 @@ export default defineConfig({
     site: 'https://nf-co.re/',
     output: 'hybrid',
     prefetch: true,
-    adapter: netlify(),
+    adapter: netlify({
+        cacheOnDemandPages: true,
+    }),
     redirects: {
         [latestTollsURL]: 'https://oldsite.nf-co.re/tools/docs/latest/',
         ...latestPipelineReleases,
