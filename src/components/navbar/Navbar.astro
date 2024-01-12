@@ -15,7 +15,15 @@ import { getCollection } from 'astro:content';
 export interface Props {
     navTocHeadings?: object[];
     title?: string;
-    sections?: { section_name: string; children: {}[] }[] | never[];
+    sections?: {
+        section_name: string;
+        section_slug?: string;
+        children: {
+            title: string;
+            slug: string;
+            order?: number;
+        }[];
+    }[];
     showHiddenBtn?: boolean;
 }
 const { navTocHeadings = [], title, sections = [], showHiddenBtn = false } = Astro.props;
@@ -36,9 +44,11 @@ if (sections?.length > 0) {
               return url.startsWith(child.slug);
           })?.title
         : '';
-    navbarTitle = currentChild ? [currentSection?.section_name, currentChild] : [currentSection?.section_name];
+    if (currentSection) {
+        navbarTitle = currentChild ? [currentSection?.section_name, currentChild] : [currentSection?.section_name];
+    }
 }
-
+console.log('sections', sections);
 let newBlogPost = false;
 newBlogPost = await getCollection('blog').then((posts) => {
     return posts.some(
@@ -91,13 +101,13 @@ newBlogPost = await getCollection('blog').then((posts) => {
                 <li class="nav-item p-1 px-3 px-xl-1 dropdown">
                     <span class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"> Resources</span>
                     <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
-                        <li><span class="dropdown-header">Configs & tools</span></li>
-                        <li><a class="dropdown-item" href="/configs/">Shared Configs</a></li>
-                        <li><a class="dropdown-item" href="/tools/">Tools</a></li>
-                        <li><hr class="dropdown-divider" /></li>
                         <li><span class="dropdown-header">Components</span></li>
                         <li><a class="dropdown-item" href="/modules/">Modules</a></li>
                         <li><a class="dropdown-item" href="/subworkflows/">Subworkflows</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><span class="dropdown-header">Configs & tools</span></li>
+                        <li><a class="dropdown-item" href="/configs/">Shared configs</a></li>
+                        <li><a class="dropdown-item" href="/tools/">Tools</a></li>
                     </ul>
                 </li>
                 <li class="nav-item p-1 px-3 px-xl-1">
@@ -150,7 +160,7 @@ newBlogPost = await getCollection('blog').then((posts) => {
                                 >Blog {
                                     newBlogPost && (
                                         <span class="float-end border border-primary text-primary rounded-pill px-2 small">
-                                            new
+                                            new post
                                         </span>
                                     )
                                 }</a
@@ -231,7 +241,7 @@ newBlogPost = await getCollection('blog').then((posts) => {
         </div>
     </div>
     {
-        sections && sections.length > 0 && (
+        sections && sections.length > 0 && navbarTitle[0] !== undefined && (
             <NavbarDocsNav client:visible>
                 <NavbarDocsNavTitle slot="title" title={navbarTitle.flat()} />
                 <SidebarNav slot="menu" items={sections} />
