@@ -15,7 +15,6 @@ export const GET: APIRoute = async ({ params, request }) => {
             'downloadUrlAll': version['assets'][1]['browser_download_url'],
             'sha256': version['assets'][0]['browser_download_url']
         }));
-        console.log(formattedVersions);
         return new Response(
             JSON.stringify({
                 'versions': formattedVersions
