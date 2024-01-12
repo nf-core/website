@@ -23,7 +23,15 @@ const sections = years.map((year) => {
     return {
         section_name: year,
         section_slug: '#year-' + year,
-        children: [],
+        children: blogPosts
+            .filter((post) => new Date(post.data.pubDate).getFullYear() === year)
+            .map((post) => {
+                return {
+                    title: post.data.title,
+                    slug: post.slug,
+                    pubDate: post.data.pubDate,
+                };
+            }),
     };
 });
 ---
@@ -38,7 +46,8 @@ const sections = years.map((year) => {
 >
     <div class="row">
         <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left pt-1">
-            <SidebarNav items={sections} minimal={true} />
+            <strong class="h6 p-2 text-body">Blog posts</strong>
+            <SidebarNav items={sections} />
         </div>
 
         <div class="col">
@@ -62,7 +71,8 @@ const sections = years.map((year) => {
                                     )}
                                     <div class="card-body">
                                         <h2 transition:name="title">{post.data.title}</h2>
-                                        <p class="card-text">
+                                        <p class="lead">{post.data.subtitle}</p>
+                                        <p class="card-text small">
                                             {async () => {
                                                 const { remarkPluginFrontmatter } = await post.render();
                                                 return remarkPluginFrontmatter.excerpt;
