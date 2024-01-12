@@ -57,10 +57,11 @@ const headerImage = post.data.headerImage;
         subtitle,
     )}&category=blog&authors=${encodeURIComponent(post.data.authors.join(','))}`}
     viewTransitions={true}
-    left_sidebar={true}
+    leftSidebar={true}
     sections={sections}
     viewTransitions={true}
     doubleNavbar={false}
+    sidebarTitle="Blog posts"
 >
     <div class="image-container d-flex align-items-center">
         {
