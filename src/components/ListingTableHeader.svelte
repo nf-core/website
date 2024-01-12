@@ -38,7 +38,7 @@
 </th>
 
 <style lang="scss">
-    @import '@styles/_variables.scss';
+    @import 'src/styles/_variables.scss';
     .sortable {
         cursor: pointer;
         &:hover {
