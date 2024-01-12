@@ -5,6 +5,7 @@ import type { APIRoute } from 'astro';
 import sharp from 'sharp';
 // @ts-ignore: no types
 import initYoga from 'yoga-wasm-web/asm';
+import GitHubProfilePicture from '@components/GitHubProfilePicture.svelte';
 
 const YOGA = initYoga();
 initSatori(YOGA);
@@ -17,6 +18,7 @@ export const GET: APIRoute = async ({ params, request }) => {
         args.backgroundImage ||
         'https://raw.githubusercontent.com/nf-core/website/main/public/images/logo/nf-core-logo-darkbg.png';
     let subtitle = '';
+    const authors = args.authors ? args.authors.split(',') : [];
     if (args.title !== undefined) {
         subtitle = args.subtitle
             ? args.subtitle?.indexOf('. ') !== -1
@@ -71,20 +73,25 @@ export const GET: APIRoute = async ({ params, request }) => {
                             : `<div style="font-weight: 400;font-family: 'inter'; text-wrap: balance;">${subtitle}</div>`
                     }
                 </div>
-                <div
-                    style="font-size: 28px;
-                        border-bottom-left-radius: 18px;
-                        border-bottom-right-radius: 18px;
-                        border-top-left-radius: 18px;
-                        border-top-right-radius: 18px;
-                        font-weight: 400;
-                        font-family: 'inter';
-                        padding: 1rem;
-                        padding-top: 0.5rem;
-                        padding-bottom: 0.5rem;
-                        background: #2c2c2c;
-                        border: 3pt solid #757575;">
-                    ${args.category ? args.category : 'nf-co.re'}
+                <div style="display: flex;flex-direction: column;align-items: flex-start;justify-content: space-between;">
+                    <div
+                        style="font-size: 28px;
+                            border-bottom-left-radius: 18px;
+                            border-bottom-right-radius: 18px;
+                            border-top-left-radius: 18px;
+                            border-top-right-radius: 18px;
+                            font-weight: 400;
+                            font-family: 'inter';
+                            padding: 1rem;
+                            padding-top: 0.5rem;
+                            padding-bottom: 0.5rem;
+                            background: #2c2c2c;
+                            border: 3pt solid #757575;">
+                        ${args.category ? args.category : 'nf-co.re'}
+                    </div>
+                    <div style="display: flex;flex-direction: row;align-items: center;justify-content: flex-start; margin-top:1rem">Written by:
+                        ${authors.map((author) => `<img  src="https://github.com/${author}.png" style="margin-left:0.75rem" width="50px" height="50px" />`).join('')}
+                    </div>
                 </div>
             </div>
     </div>`;
