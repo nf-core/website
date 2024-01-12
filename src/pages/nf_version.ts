@@ -13,10 +13,12 @@ export const GET: APIRoute = async ({ params, request }) => {
             isEdge: version['prerelease'],
             downloadUrl: version['assets'][0]['browser_download_url'],
             downloadUrlAll: version['assets'][1]['browser_download_url'],
-            sha256: version['assets'][0]['browser_download_url'],
+            published_at: version['published_at'],
         }));
         return new Response(
             JSON.stringify({
+                latestVersion: formattedVersions[0],
+                latestStableVersion: formattedVersions.find((version: any) => !version.isEdge),
                 versions: formattedVersions,
             }),
             {
