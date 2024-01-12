@@ -9,7 +9,7 @@
 {/if}
 
 <style lang="scss">
-    @import 'src/styles/_variables.scss';
+    @import '@styles/_variables.scss';
     .event-indicator :global(svg[astro-icon]) {
         fill: $danger;
         width: 10pt;
