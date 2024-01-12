@@ -21,4 +21,8 @@ Contact:
 
 ## Schedule
 
+- 2024-03-18 - 0900-1700: Alpha 2, Milky Way
+- 2024-03-19 - 0900-1700: Gamma 7, Stockholm
+- 2024-03-20 - 0900-1700: Alpha 2, Milky Way
+
 _Details to be confirmed_
