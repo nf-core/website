@@ -9,8 +9,16 @@ export interface Props {
     title: string;
     subtitle: string;
     md_github_url: string;
-    headings: { text: string; slug: string; depth: number; fa_icon?: string }[];
-    event_header?: object[];
+    headings: ({ text: string; slug: string; depth: number; fa_icon?: string } | undefined)[];
+    event_header?: {
+        title: string;
+        subtitle: string;
+        type: string;
+        start_date: string;
+        end_date: string;
+        start_time: string;
+        end_time: string;
+    };
     left_sidebar?: boolean;
     sections?: { section_name: string; children: {}[] }[] | never[];
     viewTransitions?: boolean;

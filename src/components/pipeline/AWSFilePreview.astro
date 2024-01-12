@@ -2,6 +2,7 @@
 import * as icons from 'file-icons-js';
 import 'file-icons-js/css/style.css';
 // import { Code } from 'astro/components';
+import { Markdown } from '@astropub/md';
 import CopyButton from '@components/CopyButton.svelte';
 import Admonition from '@components/Admonition.astro';
 
@@ -10,7 +11,7 @@ const hrefPrefix = 'https://nf-core-awsmegatests.s3-eu-west-1.amazonaws.com/';
 const { file } = Astro.props;
 
 let content = '';
-const extension = file.name.split('.').pop();
+const extension: string = file.name.split('.').pop();
 const fileIcon = icons.getClass(file.name);
 const hasPreview = [
     'json',
@@ -27,6 +28,8 @@ const hasPreview = [
     'jpeg',
     'gif',
     'svg',
+    'config',
+    'nf',
 ].includes(extension);
 let tooBig = file.size > 5500000;
 if (!tooBig && hasPreview) {
@@ -98,20 +101,16 @@ if (!tooBig && hasPreview) {
         }
         {
             ['json', 'yaml', 'yml'].includes(extension) && (
-            // <Code lang={extension} code={content} />
-                <pre>
-                    <code class={'language-' + (extension === 'json' ? 'json' : 'yaml')}>{content}</code>
-                </pre>
+                // <Code lang={extension} code={content} />
+                <Markdown of={'``` ' + extension + '\n' + content + '\n' + '```'} />
             )
         }
         {
             ['log', 'txt', 'csv', 'tsv'].includes(extension) && (
-            // <Code lang="console" code={content} />
-                <pre>
-                    <code class="language-console">{content}</code>
-                </pre>
+                <Markdown of={'``` ' + extension + '\n' + content + '\n' + '```'} />
             )
         }
+        {['config', 'nf'].includes(extension) && <Markdown of={'``` groovy' + '\n' + content + '\n' + '```'} />}
         {
             extension === 'pdf' && (
                 <object data={hrefPrefix + file.path} type="application/pdf" width="100%" height="1000px">
@@ -150,6 +149,12 @@ if (!tooBig && hasPreview) {
         }
         & .img-wrapper {
             background-color: $white;
+        }
+        & :global(figure[data-rehype-pretty-code-figure]) {
+            margin-bottom: 0;
+            & :global(pre) {
+                margin-bottom: 0;
+            }
         }
     }
 </style>

@@ -1,14 +1,16 @@
 ---
 import SchemaListing from '@components/schema/SchemaListing.svelte';
-import SchemaListingToc from '@components/schema/SchemaListingToc.svelte';
-import { promises, access, existsSync } from 'fs';
-import F_OK from 'fs';
+import SidebarToc from '@components/sidebar/SidebarToc.svelte';
+import { promises, existsSync } from 'fs';
+import SchemaListingTocButtons from '@components/schema/SchemaListingTocButtons.svelte';
 import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
 import pipelines_json from '@public/pipelines.json';
 
 export function getStaticPaths() {
-    var paths: { params: { pipeline: string; version: string }; props: { versions: string[]; md_files: string[] } }[] =
-        [];
+    var paths: {
+        params: { pipeline: string; version: string };
+        props: { versions: string[]; md_files: string[]; description: string | null };
+    }[] = [];
     pipelines_json.remote_workflows.forEach((pipeline) => {
         const releases = pipeline.releases;
         const extended_releases = [...releases, { tag_name: 'latest', doc_files: releases[0].doc_files }];
@@ -33,22 +35,27 @@ export function getStaticPaths() {
 }
 const { pipeline, version } = Astro.params;
 let headings: {
-    depth: number;
-    text: string;
     slug: string;
+    text: string;
+    depth: number;
+    fa_icon: string;
+    hidden: boolean;
 }[] = [];
 
 let { versions, md_files, description } = Astro.props;
 
-let schema = { definitions: [], properties: [] };
+let schema: { definitions: { title: string; fa_icon: string; properties: [{ hidden: boolean }] }[]; properties: [] } = {
+    definitions: [],
+    properties: [],
+};
 const version_tag_name = version === 'latest' ? versions[0] : version;
 
 const cache_key = `.cache/${pipeline}/${version_tag_name}/nextflow_schema.json`;
 //check if the schema is cached
 
 if (existsSync(cache_key)) {
-    schema = await promises.readFile(cache_key);
-    schema = JSON.parse(Buffer.from(schema, 'base64').toString('utf-8'));
+    let schema_buffer = await promises.readFile(cache_key, 'utf-8');
+    schema = JSON.parse(schema_buffer);
 }
 if (schema.definitions && Object.keys(schema.definitions).length > 0) {
     headings = Object.entries(schema.definitions).map(([key, value]) => {
@@ -73,13 +80,16 @@ if (schema.definitions && Object.keys(schema.definitions).length > 0) {
     version={version}
     versions={versions}
     tabItems={md_files}
+    showHiddenBtn={true}
 >
     <div class="row">
         <div class="col-12 col-md-10">
             <SchemaListing {schema} client:load />
         </div>
         <div class="col-12 col-md-2 toc order-first order-md-last pe-0">
-            <SchemaListingToc headings={headings} client:idle />
+            <SidebarToc {headings} client:idle>
+                <SchemaListingTocButtons client:visible />
+            </SidebarToc>
         </div>
     </div>
 </PipelinePageLayout>

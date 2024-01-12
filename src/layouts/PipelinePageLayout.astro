@@ -13,6 +13,7 @@ export interface Props {
     headings?: { text: string; slug: string; depth: number; fa_icon?: string }[];
     tabItems?: string[];
     md_github_url?: string;
+    showHiddenBtn?: boolean;
     sections?: { section_name: string; children: {}[] }[] | never[];
     docSearchTags?: { name: string; content: string | string[] }[];
 }
@@ -26,9 +27,15 @@ let {
     versions = [],
     tabItems = [],
     md_github_url = '',
+    showHiddenBtn = false,
     sections = [],
     docSearchTags = [],
 } = Astro.props;
+
+if (version === 'latest') {
+    version = versions[0];
+}
+
 const url = Astro.url.pathname;
 const baseUrl = '/' + pipeline + '/' + version;
 let allTabItems: { label: string; href: string; active: boolean; icon?: string }[] = [];
@@ -102,6 +109,7 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
     subfooter={md_github_url !== ''}
     topics={topics}
     sections={sections}
+    {showHiddenBtn}
     viewTransitions={true}
     docSearchTags={[
         ...docSearchTags,
@@ -125,15 +133,12 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
                                 data-bs-toggle="dropdown"
                                 aria-expanded="false"
                             >
-                                {version === 'latest' ? versions[0] : version}
+                                {version}
                             </button>
 
                             <ul class="dropdown-menu dropdown-menu-end w-100 pipeline-versions">
                                 {versions &&
                                     versions.map((v) => {
-                                        if (version === 'latest') {
-                                            version = versions[0];
-                                        }
                                         let url = Astro.url.pathname.replace(
                                             `${pipeline}/${version}`,
                                             `${pipeline}/${v}`,

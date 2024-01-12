@@ -1,13 +1,16 @@
 ---
 import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
-import Markdown from '@components/markdown/Markdown.svelte';
+import { Markdown } from '@astropub/md';
 import { getGitHubFile } from '@components/octokit';
 
-let headings: {
-    depth: number;
-    text: string;
-    slug: string;
-}[] = [];
+let headings: (
+    | {
+          depth: number;
+          text: string;
+          slug: string;
+      }
+    | undefined
+)[] = [];
 
 const md_content = await getGitHubFile('tools', 'README.md', 'master')
     .catch((error) => {
@@ -16,20 +19,23 @@ const md_content = await getGitHubFile('tools', 'README.md', 'master')
     })
     .then(async (response) => {
         let content = response;
-        if (content === undefined) {
+        if (content === undefined || content === null) {
             console.log(`Couldn't get tools README`);
+            return;
         }
         content = content.replace(/(.*?)(\*\*)(.*?)(\*\*)/s, '');
         const text_content = content.replace(/```(.*?)```/gs, '');
         // get headings and their depth for table of contents
-        headings = text_content.match(/^(#{1,6})\s(.*)$/gm);
-        if (headings === null) {
-            headings = [];
+        let headingsTMP = text_content.match(/^(#{1,6})\s(.*)$/gm);
+        if (headingsTMP === null) {
             return content;
         }
-        headings = headings.map((heading) => {
-            const depth = heading.match(/^(#{1,6})/)[0].length;
-            let text = heading.match(/^(#{1,6})\s(.*)$/)[2];
+        headings = headingsTMP.map((heading) => {
+            const depth = heading.match(/^(#{1,6})/)?.[0].length || 0;
+            let text = heading.match(/^(#{1,6})\s(.*)$/)?.[2];
+            if (text === undefined) {
+                return;
+            }
             // remove html comments
             text = text.replace(/<!--(.*?)-->/g, '');
             // check if exactly two backticks are used to wrap text
@@ -55,7 +61,7 @@ const md_content = await getGitHubFile('tools', 'README.md', 'master')
 const max_heading_depth = 3;
 
 // filter out headings that are higher than max_heading_depth
-headings = headings.filter((h) => h.depth <= max_heading_depth);
+headings = headings.filter((h) => h !== undefined && h.depth <= max_heading_depth);
 
 const title = 'nf-core/tools';
 const subtitle = 'The nf-core companion tool, to help with common tasks.';
@@ -73,5 +79,5 @@ const md_github_url = 'https://github.com/nf-core/tools/blob/master/README.md';
         { name: 'page_rank', content: '7' },
     ]}
 >
-    <Markdown md={md_content} />
+    <Markdown of={md_content || ''} />
 </MarkdownTocLayout>

@@ -43,7 +43,7 @@ test('dark mode', async ({ page }) => {
     await page.getByRole('button', { name: 'dark' }).click();
     const bodyBackgroundColorDark = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
     //check if background-color changed
-    await expect.soft(bodyBackgroundColorLight).not.toEqual(bodyBackgroundColorDark);
+    expect.soft(bodyBackgroundColorLight).not.toEqual(bodyBackgroundColorDark);
     //////
     // NOTE: This part of the test is currently disabled because it fails on chromium
     //////

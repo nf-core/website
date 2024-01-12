@@ -24,7 +24,8 @@ import emoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import remarkDescription from 'astro-remark-description';
-import { el } from 'date-fns/locale';
+import markdownIntegration from '@astropub/md';
+import icon from "astro-icon";
 
 const latestToolsRelease = await fetch('https://api.github.com/repos/nf-core/tools/releases/latest')
     .then((res) => res.json())
@@ -46,6 +47,18 @@ export default defineConfig({
     },
     integrations: [
         svelte(),
+        icon({
+            include:{
+            // only include a subset of icons
+            "file-icons":["nextflow"],
+            logos:["twitter","mastodon-icon","slack-icon","aws","microsoft-azure","github-actions", "youtube-icon"],
+            fa:["github"],
+            "fa-brands":["github"],
+            "line-md":["check-list-3-twotone"],
+            "mdi":["aws","slack","youtube"],
+            octicon:["link-external-16","table-16"],
+            }
+        }),
         sitemap(),
         prefetch(),
         partytown({
@@ -55,6 +68,7 @@ export default defineConfig({
             },
         }),
         mdx(),
+        markdownIntegration(),
     ],
     build: {
         inlineStylesheets: 'auto',
@@ -171,12 +185,12 @@ export default defineConfig({
             [
                 rehypePrettyCode,
                 {
-                    langPrefix: 'language-',
+                    defaultLang: 'plaintext',
                     keepBackground: true,
                     theme: {
-                        dark: 'github-dark-dimmed',
+                        dark: 'github-dark',
                         light: 'github-light',
-                    },
+                    }
                 },
             ],
             rehypeKatex,

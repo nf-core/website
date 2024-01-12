@@ -1,5 +1,5 @@
 ---
-import Icon from 'astro-icon';
+import { Icon } from 'astro-icon/components';
 import NfCoreLogoDarkbg from '/images/logo/nf-core-logo-darkbg.svg?raw';
 import NfCoreLogo from '/images/logo/nf-core-logo.svg?raw';
 import ContributorCarousel from '@components/ContributorCarousel.svelte';
@@ -36,14 +36,14 @@ import { Code } from 'astro/components';
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-4 col-xl-3 py-3 py-md-5 px-md-4">
-                    <Icon name="industry-alt" class="text-white" height="60pt" />
+                    <Icon name="industry-alt" class="text-white" height="60pt" width="80pt" />
                     <h3 class="text-white">For facilities</h3>
                     <p class="lead">
                         Highly optimised pipelines with excellent reporting. Validated releases ensure reproducibility.
                     </p>
                 </div>
                 <div class="col-md-4 col-xl-3 py-3 py-md-5 px-md-4">
-                    <Icon name="users" class="text-white" height="60pt" />
+                    <Icon name="users" class="text-white" height="60pt" width="80pt" />
 
                     <h3 class="text-white">For users</h3>
                     <p class="lead">
@@ -51,7 +51,7 @@ import { Code } from 'astro/components';
                     </p>
                 </div>
                 <div class="col-md-4 col-xl-3 py-3 py-md-5 px-md-4">
-                    <Icon name="laptop-code" class="text-white" height="60pt" />
+                    <Icon name="laptop-code" class="text-white" height="60pt" width="80pt" />
                     <h3 class="text-white">For developers</h3>
                     <p class="lead">
                         Companion templates and tools help to validate your code and simplify common tasks.
@@ -60,7 +60,7 @@ import { Code } from 'astro/components';
             </div>
             <div>
                 <p class="d-flex position-relative justify-content-center text-white m-0 pb-3">
-                    <Icon name="nature_biotech" class="float-start me-3" width="60px" />
+                    <Icon name="logos/nature_biotech" class="float-start me-3" height="60px" width="60px" />
                     <a
                         class="text-white stretched-link text-decoration-none d-flex flex-column justify-content-center"
                         href="https://doi.org/10.1038/s41587-020-0439-x"
@@ -69,7 +69,7 @@ import { Code } from 'astro/components';
                         nf-core is published in Nature Biotechnology!
                         <span class="underline m-auto"
                             ><em>Nat Biotechnol</em>
-                            <strong>38</strong>, 276–278 (2020).
+                            <strong> 38</strong>, 276–278 (2020).
                         </span>
                     </a>
                 </p>
@@ -359,6 +359,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
         }
         .icon-lg :global(svg) {
             height: 60pt;
+            width: 60pt;
             fill: $white;
         }
         .mb-3 :global(svg) {
@@ -374,13 +375,13 @@ Based on https://codepen.io/wintr/pen/beBJBb */
                 opacity: 0.4;
             }
         }
-        svg[astro-icon='users'] {
+        svg[data-icon='users'] {
             margin-bottom: 0.25rem;
         }
-        svg[astro-icon='industry-alt'] {
+        svg[data-icon='industry-alt'] {
             margin-bottom: 0.35rem;
         }
-        svg[astro-icon='laptop-code'] {
+        svg[data-icon='laptop-code'] {
             margin-bottom: 0.55rem;
         }
     </style>

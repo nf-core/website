@@ -1,11 +1,10 @@
 repos:
   - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: 'v3.0.2'
+    rev: 'v3.1.0'
     hooks:
       - id: prettier
         additional_dependencies:
-          - prettier@2.7.1
-          - prettier-plugin-svelte@^2.7.1
-          - prettier-plugin-astro@^0.10.0
-        args: [--plugin=prettier-plugin-svelte, --plugin=prettier-plugin-astro]
+          - prettier@3.1.1
+          - prettier-plugin-svelte@^3.1.2
+          - prettier-plugin-astro@^0.12.3
         files: \.(astro|svelte|mdx|md|yml|yaml)$
