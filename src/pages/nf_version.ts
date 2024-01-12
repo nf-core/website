@@ -9,27 +9,29 @@ export const GET: APIRoute = async ({ params, request }) => {
         }
         const versions = await response.json();
         const formattedVersions = versions.map((version: any) => ({
-            'version': version['tag_name'],
-            'isEdge': version['prerelease'],
-            'downloadUrl': version['assets'][0]['browser_download_url'],
-            'downloadUrlAll': version['assets'][1]['browser_download_url'],
-            'sha256': version['assets'][0]['browser_download_url']
+            version: version['tag_name'],
+            isEdge: version['prerelease'],
+            downloadUrl: version['assets'][0]['browser_download_url'],
+            downloadUrlAll: version['assets'][1]['browser_download_url'],
+            sha256: version['assets'][0]['browser_download_url'],
         }));
         return new Response(
             JSON.stringify({
-                'versions': formattedVersions
-            }),{
-      headers: {
-        "content-type": "application/json;charset=UTF-8",
-      },
-    }
+                versions: formattedVersions,
+            }),
+            {
+                status: 200,
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            },
         );
     } catch (error) {
         return new Response(
             JSON.stringify({
-                'error': error.message
+                error: error.message,
             }),
-            { status: 500 }
+            { status: 500 },
         );
     }
-}
+};

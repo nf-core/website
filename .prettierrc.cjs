@@ -7,7 +7,7 @@ module.exports = {
 
     printWidth: 120,
 
-    plugins: [import('prettier-plugin-astro'), import('prettier-plugin-svelte')],
+    plugins: ['prettier-plugin-astro', 'prettier-plugin-svelte'],
     overrides: [
         {
             files: '*.astro',
