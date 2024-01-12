@@ -19,7 +19,7 @@ export interface Props {
         start_time: string;
         end_time: string;
     };
-    left_sidebar?: boolean;
+    leftSidebar?: boolean;
     sections?: { section_name: string; children: {}[] }[] | never[];
     viewTransitions?: boolean;
     meta_title?: string;
@@ -31,6 +31,7 @@ export interface Props {
     maxHeadingDepth?: number;
     image?: string;
     doubleNavbar?: boolean;
+    sidebarTitle?: string;
 }
 
 const {
@@ -39,7 +40,7 @@ const {
     md_github_url,
     event_header,
     headings,
-    left_sidebar,
+    leftSidebar,
     sections = [],
     viewTransitions = false,
     meta_title = '',
@@ -48,6 +49,7 @@ const {
     maxHeadingDepth = 4,
     image,
     doubleNavbar = true,
+    sidebarTitle = '',
 } = Astro.props;
 ---
 
@@ -90,13 +92,18 @@ const {
 >
     <div class="row">
         {
-            left_sidebar && (
+            leftSidebar && (
                 <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left pt-1">
+                    {sidebarTitle && (
+                        <div class="sidebar-title">
+                            <strong class="h6 p-2 text-body">{sidebarTitle}</strong>
+                        </div>
+                    )}
                     <SidebarNav items={sections} />
                 </div>
             )
         }
-        <div class:list={['col-12', { 'col-md-10': !left_sidebar, 'col-md-8': left_sidebar }]}>
+        <div class:list={['col-12', { 'col-md-10': !leftSidebar, 'col-md-8': leftSidebar }]}>
             <div class="markdown-content" transition:animate="morph">
                 <MarkdownWrapper headings={headings} client:idle>
                     <slot />
