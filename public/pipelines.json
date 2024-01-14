@@ -2763,9 +2763,9 @@
             "url": "https://api.github.com/repos/nf-core/circrna",
             "created_at": "2021-02-10T14:28:49Z",
             "updated_at": "2024-01-12T18:17:59Z",
-            "pushed_at": "2024-01-13T10:45:51Z",
+            "pushed_at": "2024-01-13T16:45:28Z",
             "homepage": "https://nf-co.re/circrna",
-            "size": 64413,
+            "size": 64426,
             "stargazers_count": 31,
             "watchers_count": 31,
             "language": "Nextflow",
@@ -2778,7 +2778,7 @@
             "forks_count": 15,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 9,
+            "open_issues_count": 8,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -2795,13 +2795,13 @@
             ],
             "visibility": "public",
             "forks": 15,
-            "open_issues": 9,
+            "open_issues": 8,
             "watchers": 31,
             "default_branch": "dev",
             "custom_properties": {},
             "network_count": 15,
             "subscribers_count": 80,
-            "open_pr_count": 7,
+            "open_pr_count": 6,
             "contributors": [
                 {
                     "name": "BarryDigby",
@@ -2810,7 +2810,7 @@
                 },
                 {
                     "name": "nictru",
-                    "count": 33,
+                    "count": 38,
                     "avatar_url": "https://avatars.githubusercontent.com/u/52698566?v=4"
                 },
                 {
@@ -2842,8 +2842,8 @@
             "releases": [
                 {
                     "tag_name": "dev",
-                    "published_at": "2023-11-27T18:33:32Z",
-                    "tag_sha": "a5fddaef9c3f22725e8a1d955ddcc3ba5fb731f7",
+                    "published_at": "2024-01-13T15:32:24Z",
+                    "tag_sha": "e30a895da35cb56f2b4d02326e873f73b8b48df1",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -2851,16 +2851,21 @@
                     ],
                     "components": {
                         "modules": [
+                            "bedtools_intersect",
+                            "bedtools_sort",
                             "bowtie_align",
                             "bowtie_build",
                             "bowtie2_align",
                             "bowtie2_build",
                             "bwa_index",
+                            "cat_cat",
                             "cat_fastq",
                             "circexplorer2_annotate",
                             "circexplorer2_parse",
+                            "csvtk_split",
                             "custom_dumpsoftwareversions",
                             "fastqc",
+                            "gawk",
                             "hisat2_align",
                             "hisat2_build",
                             "hisat2_extractsplicesites",
@@ -4658,7 +4663,7 @@
             "url": "https://api.github.com/repos/nf-core/demultiplex",
             "created_at": "2020-03-05T15:48:10Z",
             "updated_at": "2023-12-15T12:16:29Z",
-            "pushed_at": "2024-01-13T05:27:09Z",
+            "pushed_at": "2024-01-13T23:03:48Z",
             "homepage": "https://nf-co.re/demultiplex",
             "size": 13039,
             "stargazers_count": 30,
