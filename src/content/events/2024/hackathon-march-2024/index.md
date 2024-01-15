@@ -53,9 +53,9 @@ More information about organising a local site coming soon!
 
 <div class="table-responsive" markdown="1">
 
-| Country   | City      | Location   | Event page                        |
-| --------- | --------- | ---------- | --------------------------------- |
-| 🇸🇪 Sweden | Stockholm | SciLifeLab | [Read more](sweden-scilifelab.md) |
+| Country   | City      | Location   | Event page                          |
+| --------- | --------- | ---------- | ----------------------------------- |
+| 🇸🇪 Sweden | Stockholm | SciLifeLab | [Read more](./sweden-scilifelab.md) |
 
 </div>
 
