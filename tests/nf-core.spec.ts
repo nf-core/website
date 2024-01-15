@@ -53,3 +53,17 @@ test('dark mode', async ({ page }) => {
     // const bodyBackgroundColorDark2 = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
     // await expect.soft(bodyBackgroundColorDark).toEqual(bodyBackgroundColorDark2);
 });
+test('nested event pages', async ({ page }) => {
+    await page.goto('/events/hackathon');
+    // click on "Hackathon - March 2024 (Online)" link
+    await page.waitForSelector('.events');
+    await page.getByRole('link', { name: 'Hackathon - March 2024 (Online)' }).click();
+    await expect.soft(page).toHaveTitle('Hackathon - March 2024 (Online)');
+    // check if markdown is rendered correctly
+    await expect.soft(page.locator('.markdown-content')).toContainText('Local sites');
+    // click on first "read more" link inside table
+    await page.locator('.table-responsive').locator('a').first().click();
+    await expect.soft(page.locator('.markdown-content')).toContainText('Local event');
+
+    //
+});
