@@ -17,16 +17,13 @@ export const GET: APIRoute = async ({ params, request }) => {
         }));
         return new Response(
             JSON.stringify({
-                latestVersion: formattedVersions[0],
-                latestStableVersion: formattedVersions.find((version: any) => !version.isEdge),
-                versions: formattedVersions,
-            }),
-            {
-                status: 200,
-                headers: {
-                    'Content-Type': 'application/json',
+                latest:{
+                    stable: formattedVersions.find((version: any) => !version.isEdge),
+                    edge: formattedVersions.find((version: any) => version.isEdge),
+                    everything: formattedVersions[0],
                 },
-            },
+                versions: formattedVersions,
+            })
         );
     } catch (error) {
         return new Response(
