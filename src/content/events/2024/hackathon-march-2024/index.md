@@ -55,7 +55,7 @@ More information about organising a local site coming soon!
 
 | Country   | City      | Location   | Event page                                               |
 | --------- | --------- | ---------- | -------------------------------------------------------- |
-| 🇸🇪 Sweden | Stockholm | SciLifeLab | [Read more](./hackathon-march-2023/sweden-scilifelab.md) |
+| 🇸🇪 Sweden | Stockholm | SciLifeLab | [Read more](./hackathon-march-2024/sweden-scilifelab.md) |
 
 </div>
 
