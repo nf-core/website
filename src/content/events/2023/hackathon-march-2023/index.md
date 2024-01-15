@@ -66,8 +66,8 @@ For the most recent information about your site as well as the contact details o
 
 <div class="table-responsive" markdown="1">
 
-| Country         | City      |  Location                                 | Event page                                                       |
-| --------------- | --------- | ----------------------------------------- | ---------------------------------------------------------------- |
+| Country         | City      |  Location                                 | Event page                                  |
+| --------------- | --------- | ----------------------------------------- | ------------------------------------------- |
 | 🇧🇷 Brazil       | Natal     | Federal University of Rio Grande do Norte | [Read more](./br-ufrn.md)                   |
 | 🇫🇷 France       | Rennes    | IGDR                                      | [Read more](./france-igdr.md)               |
 | 🇩🇪 Germany      | Tübingen  | QBiC                                      | [Read more](./germany-qbic.md)              |
