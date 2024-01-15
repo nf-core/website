@@ -3803,6 +3803,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -36651,6 +36655,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -37376,6 +37384,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -41757,6 +41769,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -100852,7 +100868,7 @@
       "type": "module",
       "meta": {
         "name": "spaceranger_count",
-        "description": "Module to use the 10x Spaceranger pipeline to proces 10x spatial transcriptomics data",
+        "description": "Module to use the 10x Space Ranger pipeline to process 10x spatial transcriptomics data",
         "keywords": [
           "align",
           "count",
@@ -100932,7 +100948,7 @@
           {
             "reference": {
               "type": "directory",
-              "description": "Folder containing all the reference indices needed by Spaceranger"
+              "description": "Folder containing all the reference indices needed by Space Ranger"
             }
           },
           {
@@ -100953,8 +100969,8 @@
           {
             "outs": {
               "type": "file",
-              "description": "Files containing the outputs of Cell Ranger, see official 10X Genomics documentation for a complete list",
-              "pattern": "${meta.id}/outs/*"
+              "description": "Files containing the outputs of Space Ranger, see official 10X Genomics documentation for a complete list",
+              "pattern": "outs/*"
             }
           },
           {
@@ -100985,7 +101001,7 @@
       "type": "module",
       "meta": {
         "name": "spaceranger_mkgtf",
-        "description": "Module to build a filtered GTF needed by the 10x Genomics Cell Ranger tool. Uses the cellranger mkgtf command.",
+        "description": "Module to build a filtered GTF needed by the 10x Genomics Space Ranger tool. Uses the spaceranger mkgtf command.",
         "keywords": [
           "reference",
           "mkref",
@@ -101044,7 +101060,7 @@
       "type": "module",
       "meta": {
         "name": "spaceranger_mkref",
-        "description": "Module to build the reference needed by the 10x Genomics Spaceranger tool. Uses the spaceranger mkref command.",
+        "description": "Module to build the reference needed by the 10x Genomics Space Ranger tool. Uses the spaceranger mkref command.",
         "keywords": [
           "reference",
           "mkref",
@@ -101091,7 +101107,7 @@
           {
             "reference": {
               "type": "directory",
-              "description": "Folder containing all the reference indices needed by Cell Ranger"
+              "description": "Folder containing all the reference indices needed by Space Ranger"
             }
           },
           {
@@ -119379,6 +119395,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -119413,6 +119433,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -120091,6 +120115,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
