@@ -74,12 +74,12 @@ When site registration closes, we will open participant registration with your s
 | --------- | --------- | ---------- | -------------------------------------------------------- |
 | 🇪🇸 Spain  | Barcelona | CRG        | [Read more](./hackathon-march-2024/bcn-crg.md)           |
 | 🇸🇪 Sweden | Stockholm | SciLifeLab | [Read more](./hackathon-march-2024/sweden-scilifelab.md) |
+| 🇫🇷 France | Rennes    | IGDR       | [Read more](./hackathon-march-2024/france-igdr.md)       |
 
 </div>
 
 <!--
 | 🇧🇷 Brazil       | Natal     | Federal University of Rio Grande do Norte | [Read more](br-ufrn.md)                   |
-| 🇫🇷 France       | Rennes    | IGDR                                      | [Read more](france-igdr.md)               |
 | 🇩🇪 Germany      | Leipzig   | MPI-EVA                                   | [Read more](germany-mpi-eva.md)           |
 | 🇮🇹 Italy        | Pavia     | Department of Biology and Biotechnology   | [Read more](italy-unipv.md)               |
 | 🇵🇱 Poland       | Kraków    | Ardigen                                   | [Read more](krakow-ardigen.md)            |
