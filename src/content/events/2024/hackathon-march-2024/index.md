@@ -72,10 +72,10 @@ When site registration closes, we will open participant registration with your s
 
 | Country   | City      | Location                                | Event page                          |
 | --------- | --------- | --------------------------------------- | ----------------------------------- |
-| 🇪🇸 Spain  | Barcelona | CRG                                     | [Read more](./bcn-crg.md)           |
-| 🇸🇪 Sweden | Stockholm | SciLifeLab                              | [Read more](./sweden-scilifelab.md) |
-| 🇫🇷 France | Rennes    | IGDR                                    | [Read more](./france-igdr.md)       |
-| 🇮🇹 Italy  | Pavia     | Dept. Biology and Biotechnology - UniPV | [Read more](./italy-unipv.md)       |
+| 🇪🇸 Spain  | Barcelona | CRG                                     | [Read more](./hackathon-march-2024/bcn-crg.md)           |
+| 🇸🇪 Sweden | Stockholm | SciLifeLab                              | [Read more](./hackathon-march-2024/sweden-scilifelab.md) |
+| 🇫🇷 France | Rennes    | IGDR                                    | [Read more](./hackathon-march-2024/france-igdr.md)       |
+| 🇮🇹 Italy  | Pavia     | Dept. Biology and Biotechnology - UniPV | [Read more](./ihackathon-march-2024/taly-unipv.md)       |
 
 </div>
 
