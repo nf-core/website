@@ -54,7 +54,7 @@ In March 2023 we tried something new: distributed local sites.
 It was a massive success, with many people volunteering to organise local groups and great feedback all around.
 In 2024 we hope to replicate and build on that success! 🚀
 
-Although the hackathon is online, to get the best of both worlds, we encourage everyone to create local site or attend a site nearby so everyone. Be it with your group, institute, city, or region, local sites will be a lot of fun!
+Although the hackathon is online, to get the best of both worlds, we encourage everyone to create a local site or attend a nearby site. Be it with your group, institute, city, or region, local sites will be a lot of fun!
 
 > Reminder: Even if you are attending a local site you will still join everyone online in Gather.
 
@@ -64,7 +64,7 @@ Anyone can organise a local site. It can be as simple as booking a room and gett
 
 If you would like to create a local site, please join the local [site organisers Slack channel](https://nfcore.slack.com/archives/C06E1CY29H9) and tell us about your plans. Then, make a pull request to add your site to the table below.
 
-When site registration closes, we will open participant registration with your site listed as an attendance option.
+When site registration closes, we will open participant registration with your site listed as an attendance option and you will be updated with the list of participants.
 
 ## Local sites
 
