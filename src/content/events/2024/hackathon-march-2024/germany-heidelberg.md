@@ -9,7 +9,7 @@ end_time: '18:00+02:00'
 location_name: Heidelberh
 address: .., .. Heidelberg, Germany
 location_url: https://www.ghga.de/events
-location_latlng: [ , ]
+# location_latlng: [ , ]
 ---
 
 Local event to be held at Heidelberg, Germany.
