@@ -67,7 +67,7 @@ Primary contact: [<i class="fab fa-slack"></i> Louis Le Nézet](https://nfcore.s
 
 ### Registration
 
-Please use the **main registration form** (*soon available*) to sign up and select the location you want.
+Please use the **main registration form** (_soon available_) to sign up and select the location you want.
 We will therefore be able to plan everything based on the number of persons coming.
 
 ### Location
