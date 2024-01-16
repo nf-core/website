@@ -70,12 +70,12 @@ When site registration closes, we will open participant registration with your s
 
 <div class="table-responsive" markdown="1">
 
-| Country   | City      | Location                                  | Event page                                               |
-| --------- | --------- | ----------------------------------------- | -------------------------------------------------------- |
-| 🇪🇸 Spain  | Barcelona | CRG                                       | [Read more](./bcn-crg.md)           |
-| 🇸🇪 Sweden | Stockholm | SciLifeLab                                | [Read more](./sweden-scilifelab.md) |
-| 🇫🇷 France | Rennes    | IGDR                                      | [Read more](./france-igdr.md)       |
-| 🇮🇹 Italy  | Pavia     | Dept. Biology and Biotechnology - UniPV   | [Read more](./italy-unipv.md)                            |
+| Country   | City      | Location                                | Event page                          |
+| --------- | --------- | --------------------------------------- | ----------------------------------- |
+| 🇪🇸 Spain  | Barcelona | CRG                                     | [Read more](./bcn-crg.md)           |
+| 🇸🇪 Sweden | Stockholm | SciLifeLab                              | [Read more](./sweden-scilifelab.md) |
+| 🇫🇷 France | Rennes    | IGDR                                    | [Read more](./france-igdr.md)       |
+| 🇮🇹 Italy  | Pavia     | Dept. Biology and Biotechnology - UniPV | [Read more](./italy-unipv.md)       |
 
 </div>
 
