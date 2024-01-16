@@ -3811,6 +3811,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -36667,6 +36671,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -37392,6 +37400,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -41781,6 +41793,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -103857,6 +103873,96 @@
       }
     },
     {
+      "name": "survivor_stats",
+      "path": "modules/nf-core/survivor/stats/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "survivor_stats",
+        "description": "Report multipe stats over a VCF file",
+        "keywords": [
+          "survivor",
+          "statistics",
+          "vcf",
+          "structural variants"
+        ],
+        "tools": [
+          {
+            "survivor": {
+              "description": "Toolset for SV simulation, comparison and filtering",
+              "homepage": "https://github.com/fritzsedlazeck/SURVIVOR/wiki",
+              "documentation": "https://github.com/fritzsedlazeck/SURVIVOR/wiki",
+              "tool_dev_url": "https://github.com/fritzsedlazeck/SURVIVOR",
+              "doi": "10.1038/NCOMMS14061",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "VCF file to filter",
+              "pattern": "*.{vcf}"
+            }
+          },
+          {
+            "minsv": {
+              "type": "integer",
+              "description": "Min SV size (-1 to disable)"
+            }
+          },
+          {
+            "maxsv": {
+              "type": "integer",
+              "description": "Max SV size (-1 to disable)"
+            }
+          },
+          {
+            "minnumreads": {
+              "type": "integer",
+              "description": "Min number of reads support [RE flag (-1 to disable)]"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "stats": {
+              "type": "file",
+              "description": "File containing statistics given input VCF file",
+              "pattern": "*.{stats}"
+            }
+          }
+        ],
+        "authors": [
+          "@kubranarci"
+        ],
+        "maintainers": [
+          "@kubranarci"
+        ]
+      }
+    },
+    {
       "name": "svaba",
       "path": "modules/nf-core/svaba/meta.yml",
       "type": "module",
@@ -119508,6 +119614,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -119542,6 +119652,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -120228,6 +120342,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
