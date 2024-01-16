@@ -72,6 +72,7 @@ When site registration closes, we will open participant registration with your s
 
 | Country   | City      | Location   | Event page                                               |
 | --------- | --------- | ---------- | -------------------------------------------------------- |
+| 🇪🇸 Spain  | Barcelona | CRG        | [Read more](./hackathon-march-2024/bcn-crg.md)           |
 | 🇸🇪 Sweden | Stockholm | SciLifeLab | [Read more](./hackathon-march-2024/sweden-scilifelab.md) |
 
 </div>
@@ -85,7 +86,6 @@ When site registration closes, we will open participant registration with your s
 | 🇸🇳 Senegal      | Dakar     | Institut Pasteur de Dakar                 | [Read more](senegal-pasteur-dakar.md)     |
 | 🇷🇸 Serbia       | Belgrade  | APIS Assay Technologies - Startit Centar  | [Read more](rs-apis-belgrade.md)          |
 | 🇿🇦 South Africa | Cape Town | Stellenbosch University                   | [Read more](south-africa-stellenbosch.md) |
-| 🇪🇸 Spain        | Barcelona | CRG                                       | [Read more](spain-crg.md)                 |
 | 🇬🇧 UK           | Cambridge | Wellcome Trust Genome Campus              | [Read more](uk-wellcome-campus.md)        |
 | 🇬🇧 UK           | Edinburgh | MRC Institute of Genetics and Cancer      | [Read more](uk-igc-edinburgh.md)          |
 | 🇬🇧 UK           | London    | Google Academy                            | [Read more](uk-google.md)                 |
