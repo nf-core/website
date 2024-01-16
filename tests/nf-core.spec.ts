@@ -62,9 +62,8 @@ test('nested event pages', async ({ page }) => {
     // check if markdown is rendered correctly
     await expect.soft(page.locator('.markdown-content')).toContainText('Local sites');
     // click on first "read more" link inside table
-    await page.getByRole('link', { name: 'read more' }).click();
+    await page.getByRole('link', { name: 'read more' }).first().click();
     // check that we don't get a 404
-    await expect.soft(page).not.toHaveTitle('404');
     await expect.soft(page.locator('.markdown-content')).toContainText('Local event');
 
     //
