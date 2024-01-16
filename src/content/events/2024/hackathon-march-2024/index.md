@@ -70,11 +70,11 @@ When site registration closes, we will open participant registration with your s
 
 <div class="table-responsive" markdown="1">
 
-| Country   | City      | Location   | Event page                                               |
-| --------- | --------- | ---------- | -------------------------------------------------------- |
-| 🇩🇪 Germany| Heidelberg| GHGA       | [Read more](./hackathon-march-2024/germany-heidelberg.md)                       |
-| 🇪🇸 Spain  | Barcelona | CRG        | [Read more](./hackathon-march-2024/bcn-crg.md)           |
-| 🇸🇪 Sweden | Stockholm | SciLifeLab | [Read more](./hackathon-march-2024/sweden-scilifelab.md) |
+| Country    | City       | Location   | Event page                                                |
+| ---------- | ---------- | ---------- | --------------------------------------------------------- |
+| 🇩🇪 Germany | Heidelberg | GHGA       | [Read more](./hackathon-march-2024/germany-heidelberg.md) |
+| 🇪🇸 Spain   | Barcelona  | CRG        | [Read more](./hackathon-march-2024/bcn-crg.md)            |
+| 🇸🇪 Sweden  | Stockholm  | SciLifeLab | [Read more](./hackathon-march-2024/sweden-scilifelab.md)  |
 
 </div>
 
