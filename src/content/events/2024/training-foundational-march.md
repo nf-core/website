@@ -7,22 +7,17 @@ start_time: '15:00+01:00'
 end_date: '2023-03-05'
 end_time: '18:00+01:00'
 location_name: YouTube
-location_url: https://www.youtube.com/nf-core
 import_typeform: true
 ---
 
 # Welcome
 
-Join us from March 5-6 2023 for the Community Nextflow Foundational Training event!
+Join us from **March 5-6** for the Community Nextflow Foundational Training event!
 
 The training is entirely virtual and free and will cover the fundamentals of using Nextflow.
 While the training will offer something for all skill levels it will be especially useful for those who are new to Nextflow and the nf-core community, or if you are thinking about joining the [nf-core Hackathon](https://nf-co.re/events/2024/hackathon-march-2024) for the first time.
 
 Prior knowledge of Nextflow is not required but will make it easier to understand new concepts.
-
-# Registration
-
-To register for the event and to be kept up to date with the latest information and links please fill out the form below.
 
 # Registration
 
