@@ -77,6 +77,7 @@ When site registration closes, we will open participant registration with your s
 | 🇮🇹 Italy   | Pavia      | Dept. Biology and Biotechnology - UniPV | [Read more](./hackathon-march-2024/italy-unipv.md)        |
 | 🇪🇸 Spain   | Barcelona  | CRG                                     | [Read more](./hackathon-march-2024/bcn-crg.md)            |
 | 🇸🇪 Sweden  | Stockholm  | SciLifeLab                              | [Read more](./hackathon-march-2024/sweden-scilifelab.md)  |
+| 🇧🇪 Belgium      | Ghent     | Ghent University                          | [Read more](./hackathon-march-2024/belgium-ghent-university.md)  |
 
 </div>
 
@@ -93,7 +94,6 @@ When site registration closes, we will open participant registration with your s
 | 🇺🇸 USA          | Dallas    | University of Texas at Dallas             | [Read more](usa-university-texas.md)      |
 | 🇺🇸 USA          | San Jose  | Quilt Co-Working Space                    | [Read more](usa-san-jose.md)              |
 | 🇺🇸 USA          | Wyoming   | The University of Wyoming                 | [Read more](usa-university-wyoming.md)    |
-| 🇧🇪 Belgium      | Ghent     | Ghent University                          | [Read more](belgium-ghent-university.md)  |
 -->
 
 # Schedule
