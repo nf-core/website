@@ -1,5 +1,5 @@
 ---
-title: Hackathon - March 2024 (Barcelona)
+title: Hackathon - March 2024 (Ghent)
 subtitle: Local node of the nf-core hackathon at Ghent University, Belgium.
 type: hackathon
 start_date: '2024-03-18'
