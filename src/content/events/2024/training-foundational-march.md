@@ -4,7 +4,7 @@ subtitle: An online Community Foundational Nextflow training event
 type: training
 start_date: '2024-03-05'
 start_time: '15:00+01:00'
-end_date: '2023-03-05'
+end_date: '2024-03-06'
 end_time: '18:00+01:00'
 location_name: YouTube
 import_typeform: true
