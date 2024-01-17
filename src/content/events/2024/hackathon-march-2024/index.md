@@ -70,19 +70,19 @@ When site registration closes, we will open participant registration with your s
 
 <div class="table-responsive" markdown="1">
 
-| Country    | City       | Location   | Event page                                                |
-| ---------- | ---------- | ---------- | --------------------------------------------------------- |
-| 🇩🇪 Germany | Heidelberg | GHGA       | [Read more](./hackathon-march-2024/germany-heidelberg.md) |
-| 🇪🇸 Spain   | Barcelona  | CRG        | [Read more](./hackathon-march-2024/bcn-crg.md)            |
-| 🇸🇪 Sweden  | Stockholm  | SciLifeLab | [Read more](./hackathon-march-2024/sweden-scilifelab.md)  |
-| 🇫🇷 France  | Rennes     | IGDR       | [Read more](./hackathon-march-2024/france-igdr.md)        |
+| Country    | City       | Location                                | Event page                                                |
+| ---------- | ---------- | --------------------------------------- | --------------------------------------------------------- |
+| 🇫🇷 France  | Rennes     | IGDR                                    | [Read more](./hackathon-march-2024/france-igdr.md)        |
+| 🇩🇪 Germany | Heidelberg | GHGA                                    | [Read more](./hackathon-march-2024/germany-heidelberg.md) |
+| 🇮🇹 Italy   | Pavia      | Dept. Biology and Biotechnology - UniPV | [Read more](./hackathon-march-2024/italy-unipv.md)        |
+| 🇪🇸 Spain   | Barcelona  | CRG                                     | [Read more](./hackathon-march-2024/bcn-crg.md)            |
+| 🇸🇪 Sweden  | Stockholm  | SciLifeLab                              | [Read more](./hackathon-march-2024/sweden-scilifelab.md)  |
 
 </div>
 
 <!--
 | 🇧🇷 Brazil       | Natal     | Federal University of Rio Grande do Norte | [Read more](br-ufrn.md)                   |
 | 🇩🇪 Germany      | Leipzig   | MPI-EVA                                   | [Read more](germany-mpi-eva.md)           |
-| 🇮🇹 Italy        | Pavia     | Department of Biology and Biotechnology   | [Read more](italy-unipv.md)               |
 | 🇵🇱 Poland       | Kraków    | Ardigen                                   | [Read more](krakow-ardigen.md)            |
 | 🇸🇳 Senegal      | Dakar     | Institut Pasteur de Dakar                 | [Read more](senegal-pasteur-dakar.md)     |
 | 🇷🇸 Serbia       | Belgrade  | APIS Assay Technologies - Startit Centar  | [Read more](rs-apis-belgrade.md)          |
