@@ -1,7 +1,6 @@
 import * as dotenv from 'dotenv';
 import { Octokit } from 'octokit';
 
-
 if (!import.meta.env) {
   dotenv.config();
 }
@@ -29,32 +28,14 @@ export async function getCurrentRateLimitRemaining() {
 }
 
 export const getGitHubFile = async (repo, path, ref) => {
-  // console.log(`Getting ${path} from ${repo} ${ref}`);
-  const response = await octokit
-    .request('GET /repos/nf-core/{repo}/contents/{path}?ref={ref}', {
-      repo: repo,
-      path: path,
-      ref: ref,
-    })
-    .catch((error) => {
-      if (error.status === 404) {
-        console.log(`File ${path} not found in ${repo} ${ref}`);
-        console.log(error.request.url);
-        return;
-      } else {
-        console.log(`something else happened for ${path} in ${repo} ${ref}`, error);
-        return;
-      }
-    })
-    .then((response) => {
-      if (response == null) {
-        return;
-      }
-      let content = Buffer.from(response.data.content, 'base64').toString('utf-8');
+  try {
+    const response = await fetch(`https://raw.githubusercontent.com/nf-core/${repo}/${ref}/${path}`);
+    if (response.ok) {
+      let content = await response.text();
       if (path.endsWith('.md') || path.endsWith('.mdx')) {
         const parent_directory = path.split('/').slice(0, -1).join('/');
         // add github url to image links in markdown if they are relative
-        content = content.replaceAll(/!\[(.*?)\]\((.*?)\)/g, (match, p1, p2) => {
+        content = content.replaceAll(/!\[([^\]\[]*\[?[^\]\[]*\]?[^\]\[]*)\]\((.*?)\)/g, (match, p1, p2) => {
           if (p2.startsWith('http')) {
             return match;
           } else {
@@ -77,16 +58,46 @@ export const getGitHubFile = async (repo, path, ref) => {
             return `<source${p1}src="https://raw.githubusercontent.com/nf-core/${repo}/${ref}/${parent_directory}/${p2}"`;
           }
         });
-        // add github url infront of relative links to markdown files other than starting with usage, output, results or release_stats
-        content = content.replaceAll(/\[(.*?)\]\((?!usage|output|results|release_stats)(.*?)\)/g, (match, p1, p2) => {
+        // prefix links to CONTRIBUTING.md, CITATIONS.md, CHANGELOG.md with github url
+        content = content.replaceAll(
+          /\[(.*?)\]\((\.github\/CONTRIBUTING\.md|CITATIONS\.md|CHANGELOG\.md)\)/g,
+          (match, p1, p2) => {
+            if (p2.startsWith('http')) {
+              return match;
+            } else {
+              return `[${p1}](https://github.com/nf-core/${repo}/blob/${ref}/${p2})`;
+            }
+          },
+        );
+        // prefix links to files in the assets directory with github url
+        content = content.replaceAll(/\[(.*?)\]\(((\.\.\/)*assets\/.*?)\)/g, (match, p1, p2) => {
           if (p2.startsWith('http')) {
             return match;
           } else {
-            return `[${p1}](https://github.com/nf-core/${repo}/blob/${ref}/${p2})`;
+            return `[${p1}](https://github.com/nf-core/${repo}/blob/${ref}/${p2.replace('../assets/', 'assets/')})`;
           }
         });
+
+        // convert github style admonitions to docusaurus admonitions
+        content = content.replace(
+          /> \[!(NOTE|WARNING|IMPORTANT)\]\s*\n((?:> [^\n]*\s*?)+)/g,
+          (match, type, content) => {
+            const cleanedContent = content.replace(/> /g, '').trim();
+            const admonitionType = type.toLowerCase();
+
+            if (admonitionType === 'important') {
+              return `:::info{title=Important}\n${cleanedContent}\n:::\n\n`;
+            }
+
+            return `:::${admonitionType}\n${cleanedContent}\n:::\n\n`;
+          },
+        );
+
+        // remove .md(x) from links with anchor tags
+        content = content.replaceAll(/\[([^\]\[]*)\]\((.*?)\.mdx?#(.*?)\)/g, '[$1]($2#$3)');
+
         // remove github warning and everything before from docs
-        content = content.replace(/(.*?)(## :warning:)(.*?)(f)/s, '');
+        content = content.replace(/(.*?)(## :warning:)(.*?)usage\)/s, '');
         // remove blockquote ending in "files._" from the start of the document
         content = content.replace(/(.*?)(files\._)/s, '');
         // cleanup heading
@@ -97,8 +108,20 @@ export const getGitHubFile = async (repo, path, ref) => {
         content = content.replace(/```nextflow/g, '```groovy');
       }
       return content;
-    });
-  return response;
+    } else {
+      // console.log(`File ${path} not found in ${repo} ${ref}`);
+      console.log(response.url);
+      return null;
+    }
+  } catch (error) {
+    if (error.status === 404) {
+      console.log(`File ${path} not found in ${repo} ${ref}`);
+      console.log(error.request.url);
+    } else {
+      console.log(error);
+    }
+    return null;
+  }
 };
 export const getDocFiles = async (pipeline, version) => {
   const getFilesInDir = async (directory) => {

@@ -1,28 +1,37 @@
 name: build json files and md-cache
 
 on:
-  schedule: # every day at 7am
-    - cron: '0 7 * * *'
+  schedule: # every day at 2am and 2pm
+    - cron: '0 2,14 * * *'
   workflow_dispatch:
+  repository_dispatch:
+    types: [update-website]
 
 jobs:
   build-component-json:
     runs-on: ubuntu-latest
     environment: static-file-build
+    if: (github.event_name == 'schedule' && github.repository == 'nf-core/website') || (github.event_name != 'schedule')
 
     steps:
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
       # Set up the main website repo
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
         with:
           fetch-depth: 0 # Don't do a shallow clone
+          token: ${{secrets.NF_CORE_BOT_AUTH_TOKEN}} # Needed for pushing back to the repo
 
       # install npm dependencies
       - name: Set up node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@b39b52d1213e96004bfcb1c61a8a6fa8ab84f3e8 # v4
         with:
-          node-version: 16.x
+          node-version: 20
           cache: 'npm'
-      - run: npm install
+
+      - name: Install dependencies
+        run: npm ci
 
       - name: create pipeline.json
         run: npm run build-pipeline-json
@@ -34,14 +43,59 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PIPLINE_JSON_BUILD_TOKEN }}
 
-
       - name: make md cache
-        run: node bin/build-cache.js && tar -czvf .cache.tar.gz .cache
+        run: node bin/build-cache.js && tar -cvJf .cache.tar.xz .cache
         env:
           GITHUB_TOKEN: ${{ secrets.CREATE_CACHE_MD_TOKEN }}
 
-      # Commit and push the changes
+      # check lines if too many lines of code have been changed in /public/pipelines.json and /pulic/components.json
+      # also check if .cache.tar.xz is smaller than before (shouldn't happen)
+      - name: check lines
+        run: |
+          diff_output=$(git diff --shortstat public/pipelines.json public/components.json)
+          lines_added=$(echo $diff_output | awk '{print $4}')
+          lines_removed=$(echo $diff_output | awk '{print $6}')
+          changes=$((lines_added - lines_removed))
+
+          if (($changes < -100)) || (($changes > 100)); then
+            file_size_before=$(echo $diff_output | awk '{print $4}')
+            file_size_after=$(echo $diff_output | awk '{print $6}')
+            changes=true
+          fi
+
+          if [ ! $changes ]; then
+            diff_output=$(git diff --stat .cache.tar.xz)
+            file_size_before=$(echo $diff_output | awk '{print $4}')
+            file_size_after=$(echo $diff_output | awk '{print $6}')
+            changes_tmp=$((file_size_before - file_size_after))
+            if ((changes_tmp > 0)); then
+              changes=true
+            else
+              changes=false
+            fi
+          fi
+
+          echo "changes=$changes" >> "$GITHUB_OUTPUT"
+
+      # Commit and push the changes if there are not too many lines changed
       - name: Commit and push changes
-        uses: EndBug/add-and-commit@v9
+        if: ${{ !steps.check_lines.outputs.changes }}
+        run: |
+          git config user.email "core@nf-co.re"
+          git config user.name "nf-core-bot"
+          git config push.default upstream
+          git status
+          git diff --quiet || (git commit -am "[automated] Update json files and markdown cache" && git push)
+
+      # Create a PR if there are too many lines changed
+      - name: Create PR with changes
+        if: ${{ steps.check_lines.outputs.changes }}
+        uses: peter-evans/create-pull-request@153407881ec5c347639a548ade7d8ad1d6740e38 # v5
         with:
-          default_author: github_actions
+          token: ${{ secrets.CREATE_PR_TOKEN }}
+          commit-message: 'chore: update pipeline.json and component.json'
+          title: 'chore: update pipeline.json and component.json'
+          body: 'This PR was automatically created by a GitHub Action because there were too many lines changed in the pipeline.json and component.json files.'
+          branch: 'chore/update-pipeline-json-and-component-json'
+          delete-branch: true
+          draft: false

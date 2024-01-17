@@ -79,12 +79,12 @@ Hardcoded pipeline defaults are first, then the user's home directory, then the 
 then every `-c` file in the order supplied, and finally command line `--<parameter>` options.
 
 :::warning
-For Nextflow DSL2 nf-core pipelines - parameters defined in the parameter block in `custom.config` files **WILL NOT** override defaults in `nextflow.config`! Please use `-params-file` in these cases
+For Nextflow DSL2 nf-core pipelines - parameters defined in the parameter block in `custom.config` files **WILL NOT** override defaults in `nextflow.config`! Please use `-params-file` in `yaml` or `json` format in these cases:
 
-```groovy
+```json title="nf-params.json"
 {
-   "<parameter1_name>": 1,
-   "<parameter2_name>": '<string>'
+  "<parameter1_name>": 1,
+  "<parameter2_name>": "<string>"
 }
 ```
 
@@ -135,7 +135,7 @@ To tune workflow resources to better match your requirements, we can tweak these
 
 By default, most process resources are specified using process _labels_, for example with the following base config:
 
-```nextflow
+```groovy
 process {
   withLabel:process_low {
     cpus = { check_max( 2 * task.attempt, 'cpus' ) }
@@ -164,7 +164,7 @@ You don't need to copy all of the labels into your own custom config file, only 
 
 If you want to give more memory to _all_ large tasks across most nf-core pipelines, would would specify in a custom config file:
 
-```nextflow
+```groovy
 process {
   withLabel:process_high {
     memory = 200.GB
@@ -174,7 +174,7 @@ process {
 
 You can be more specific than this by targeting a given process name instead of it's label using `withName`. You can see the process names in your console log when the pipeline is running For example:
 
-```nextflow
+```groovy
 process {
   withName: STAR_ALIGN {
     cpus = 32
@@ -184,7 +184,7 @@ process {
 
 In some cases, a pipeline may use a tool multiple times in the workflow. In this case you will want to specify the whole execution 'path' of the module.
 
-```nextflow
+```groovy
 process {
     withName: 'NFCORE_RNASEQ:RNASEQ:ALIGN_STAR:STAR_ALIGN' {
         memory = 100.GB
@@ -245,7 +245,7 @@ In this case, a user can override the default container used by the pipeline by 
 
    - For Docker:
 
-     ```nextflow
+     ```groovy
      process {
          withName: PANGOLIN {
              container = 'quay.io/biocontainers/pangolin:3.1.17--pyhdfd78af_1'
@@ -255,7 +255,7 @@ In this case, a user can override the default container used by the pipeline by 
 
    - For Singularity:
 
-     ```nextflow
+     ```groovy
      process {
          withName: PANGOLIN {
              container = 'https://depot.galaxyproject.org/singularity/pangolin:3.1.17--pyhdfd78af_1'
@@ -265,7 +265,7 @@ In this case, a user can override the default container used by the pipeline by 
 
    - For Conda (note you must check against e.g. [bioconda](https://bioconda.github.io), and this does not contain the build tag):
 
-     ```nextflow
+     ```groovy
      process {
          withName: PANGOLIN {
              conda = 'bioconda::pangolin=3.1.17'

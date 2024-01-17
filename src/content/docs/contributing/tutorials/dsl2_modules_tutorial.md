@@ -82,7 +82,7 @@ One parameter you have to specify during the creation is the `process resource l
 For now can just select the default and continue.
 
 In the next step you have to specify if you need a `meta map` with sample-specific information. Our test module will need a meta map, so select yes for the moment. If you want to know what exactly meta maps are check out the documentation [here](https://nf-co.re/docs/contributing/modules#what-is-the-meta-map).
-Magic will happen now: nf-core tools will create the following entries for the code of the module itself
+Magic will happen now: nf-core tools will create the following entries for the code of the module itself and also for the testing of the module
 
 ```console
 modules
@@ -90,22 +90,10 @@ modules
         └── fgbio
             └── demofastqtobam
                 ├── main.nf
-                └── meta.yml
-```
-
-And also the following for the testing of the module
-
-```console
-tests
-├── modules
-│   └── fgbio
-│       └── demofastqtobam
-│           ├── main.nf
-│           ├── nextflow.config
-│           └── test.yml
-└── config
-    └── pytest_modules.yml
-
+                ├── meta.yml
+                └── tests
+                    ├── main.nf.test
+                    └── tags.yml
 ```
 
 Each of the files is pre-filled according to a defined nf-core template.
@@ -396,7 +384,7 @@ For more information on fixing linting errors in your code both locally and dire
 ## Test your code
 
 Once your code is polished, following any suggestions from linting, you should test the code and make sure everything works as expected.
-This can also be done automatically, using the [pytest-workflow](https://pytest-workflow.readthedocs.io/en/stable/) tool.
+This can also be done automatically, using [nf-test](https://nf-co.re/tools#run-the-tests-for-a-module-using-pytest).
 
 ### Create a test workflow
 
@@ -409,143 +397,16 @@ tests
 │       └── demofastqtobam
 │           ├── main.nf
 │           ├── nextflow.config
-│           └── test.yml
-└── config
-    └── pytest_modules.yml
+│           └── tests
+                ├── main.nf.test
+                └── tags.yml
 ```
 
-You should first open `tests/modules/fgbio/demofastqtobam/main.nf` and create a short test workflow, with available test data.
+#### Create a test snapshot
 
-> :soon: this example is using available test data, chosen for Sarek functionalities. It will be updated according to the new [scheme](https://github.com/nf-core/modules/blob/master/tests/config/test_data.config)
+We are using nf-test as our testing framework. You can find more information at [nf-test official docs](https://code.askimed.com/nf-test/) and [in this bytesize talk](https://nf-co.re/events/2022/bytesize_nftest).
 
-In our test workflow we have to define the two mandatory inputs.
-We know the test data is using QIAseq library preparation, and therefore we need to specify read structure string as an optional input, via the `args` variable.
-
-For this we update the `nextflow.config` to pass the string to the module via `ext.args` (the publishDir declaration is from the modules template, so can be left as is - it does not affect the passing of arguments).
-
-```nextflow
-process {
-
-    publishDir = { "${params.outdir}/${task.process.tokenize(':')[-1].tokenize('_')[0].toLowerCase()}" }
-
-    withName: "test_fgbio_fastqtobam_paired_umi:FGBIO_DEMOFASTQTOBAM" {
-        ext.args = "--read-structures +T 12M11S+T"
-    }
-}
-```
-
-> 💡 Note that in a pipeline context, you should define parameter values in the pipeline-level nextflow config and replace the `+T 12M11S+T` string with a parameter, such as `--read-structures ${params.read_structure_string}` to source the value from there.
-
-Next we prepare our input tuple, to point to the correct test data
-
-```nextflow
-input = [ [id: 'test'], //meta map
-                  [ file('https://raw.githubusercontent.com/nf-core/test-datasets/sarek/testdata/umi-dna/qiaseq/SRR7545951-small_1.fastq.gz'), file('https://raw.githubusercontent.com/nf-core/test-datasets/sarek/testdata/umi-dna/qiaseq/SRR7545951-small_2.fastq.gz') ] ]
-```
-
-Our test workflow will be very simple, and most of the code has been written by nf-core tools already. It will look like this
-
-```nextflow
-#!/usr/bin/env nextflow
-
-nextflow.enable.dsl = 2
-params.read_structure = "+T 12M11S+T"
-
-include { FGBIO_DEMOFASTQTOBAM } from '../../../../modules/fgbio/demofastqtobam/main.nf'
-
-workflow test_fgbio_fastqtobam {
-
-    input = [
-        [ id:'test', single_end:false ], // meta map
-        [
-            file(params.test_data['homo_sapiens']['illumina']['test_umi_1_fastq_gz'], checkIfExists: true),
-            file(params.test_data['homo_sapiens']['illumina']['test_umi_2_fastq_gz'], checkIfExists: true)
-        ]
-    ]
-
-    FGBIO_FASTQTOBAM ( input )
-}
-```
-
-### Create test YAML
-
-In order to carry out the test, _pytest-workflow_ will search for information stored in 2 files.
-
-```bash
-modules/tests/config/pytest_software.yml
-modules/tests/software/fgbio/demofastqtobam/test.yml
-```
-
-We can modify these files using _nf-core tools_, moving into the parent modules directory and using a simple command:
-
-```bash
-nf-core modules create-test-yml -t fgbio/demofastqtobam
-```
-
-The tool will prompt us to make sure we want to overwrite the existing .yml file, and we can choose _yes_. We can leave defaults for entry points, test name and command.
-
-We are then prompted for the software profile, and we have to choose between _Conda_, _Docker_ or _Singularity_, i.e. the three conteinerised solution included in the module `main.nf`.
-
-In the example below we have chosen Conda.
-
-![create_yaml](/assets/markdown_assets/contributing/dsl2_modules_tutorial/dsl2-mod_05_create_test_yaml.png)
-
-This process will run the test workflow, generate the outputs and update the `test.yml` file accordingly.
-
-### Check pytest YAML
-
-:::warning
-This should be already updated for you when building the template - you shouldn't have to touch these sections!
-:::
-
-Before running some local tests, we should make sure the `pytest_software.yml` looks like we expect, i.e. contains the following lines
-
-```yaml
-fgbio_demofastqtobam:
-  - modules/fgbio/demofastqtobam/**
-  - tests/modules/fgbio/demofastqtobam/**
-```
-
-These lines will instruct the pre-configure GitHub Action workflow to run a pytest-workflow run also for our module, using the code stored at `modules/fgbio/demofastqtobam/**` and the test at `tests/modules/fgbio/demofastqtobam/**`.
-
-### Run tests locally
-
-Now we are ready to run some tests using _pytest-workflow_ in order to anticipate what will happen with :octocat: actions.
-
-We will follow the instructions on _nf-core_ [modules repository](https://github.com/nf-core/modules#running-tests-manually).
-
-We will run one or more of the following, depending on the software profile available on our development environment:
-
-```bash
-cd /path/to/git/clone/of/nf-core/modules/
-PROFILE=docker pytest --tag fgbio_fastqtobam --symlink --keep-workflow-wd
-```
-
-or if we use _singularity_
-
-```bash
-cd /path/to/git/clone/of/nf-core/modules/
-TMPDIR=~ PROFILE=singularity pytest --tag fgbio_fastqtobam --symlink --keep-workflow-wd
-```
-
-or _Conda_
-
-```bash
-cd /path/to/git/clone/of/nf-core/modules/
-PROFILE=conda pytest --tag fgbio_fastqtobam --symlink --keep-workflow-wd
-```
-
-Hopefully everything runs smoothly, and we are then ready to open a pull request, and contribute to the nf-core community.
-
-To save you having to install `pytest-workflow` separately it was added as a dependency for nf-core/tools (`>= 1.13.2`). However, if you find that you don't have a `pytest` command in your nf-core environment, or you're notified there's no `--symlinks` option, you could try and install a later version of nf-core/tools to see if that works instead.
-
-The minimum Nextflow version required to run the tests can be found in [this `nextflow.config` file](https://github.com/nf-core/modules/blob/master/tests/config/nextflow.config#L39) in the nf-core/modules repository.
-
-If the version of Nextflow you are using is older than the version specified there you may get an error such as `Nextflow version 20.10.0 does not match workflow required version: >=20.11.0-edge`. The error will be reported in `log.err` in the directory where the outputs from the tests were generated. See the Nextflow [releases](https://github.com/nextflow-io/nextflow/releases) and [installation](https://www.nextflow.io/docs/latest/getstarted.html#installation) pages to install a later version.
-
-```bash
-NXF_VER="22.10.1" PROFILE=docker pytest --tag fgbio_fastqtobam --symlink --keep-workflow-wd
-```
+First, we need to create
 
 Once all your tests are passing - it's time to submit the module to nf-core/modules!
 

@@ -131,6 +131,9 @@ to make sure that your workflow passes all of the nf-core compatibility tests.
 The automated tests on Github Actions also run this, so you should get a
 notification from GitHub if something breaks.
 
+When testing the pipeline you can add the `debug` profile (`-profile debug`) to the Nextflow command line,
+to enable warnings about process selectors, show additional debug output and disable cleanup.
+
 ## Running with test data
 
 Whilst the linting tests are good, they're not sufficient by themselves.
@@ -197,6 +200,13 @@ nextflow run MY_WORKFLOW -profile test,docker --outdir <OUTDIR>
 
 Note that if you do need to adjust this `nextflow run` command, you'll need to update it
 in the `.github/workflows/` YAML files too.
+
+### Test standards summary
+
+- The `test` profile must exist and work
+- The test should be as comprehensive as possible
+- The test should run as much of the pipeline as possible
+- The test dataset should be as small as possible, but big enough to test the pipeline
 
 ## Adding your pipeline to the nf-core organisation
 

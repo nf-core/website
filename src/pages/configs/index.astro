@@ -34,6 +34,13 @@ function parseConfig(fileContent) {
             ? fileContent.match(/executor\s*{\s*name\s*=\s*(.*)\s*/)[1]
             : '';
     }
+    if (config.executor.includes('?') && config.executor.includes(':')) {
+        config.executor = config.executor
+            .match(/{.*\?(.*)\:(.*)}/)
+            ?.slice(1, 3)
+            .map((item) => item.trim().replace(/'/g, ''))
+            .join(', ');
+    }
     //remove double and quotes
     Object.keys(config).forEach((key) => {
         config[key] = config[key].replace(/'|"/g, '');
@@ -76,7 +83,7 @@ const configs = await Promise.all(
             content: Buffer.from(content.data.content, 'base64').toString(),
             config: parseConfig(Buffer.from(config.data.content, 'base64').toString()),
         };
-    })
+    }),
 );
 const title = 'nf-core/configs';
 const description = 'Browse the ' + configs.length + ' configs that are currently available as part of nf-core.';

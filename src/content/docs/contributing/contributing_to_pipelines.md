@@ -25,7 +25,7 @@ The main steps involved in adding a new nf-core pipeline covered below are:
 ## Join the community
 
 At its heart, nf-core is a community. To contribute to a pipeline, you should be part of that community!
-Please request to join the [nf-core GitHub organisation](https://github.com/nf-core/nf-co.re/issues/3))
+Please request to join the [nf-core GitHub organisation](https://github.com/nf-core/website/issues/3))
 and join the nf-core [Slack](https://nf-co.re/join/slack).
 
 Each nf-core pipeline has its own Slack channel that can be found by searching the channel list.
@@ -47,6 +47,9 @@ If you'd like to write some code for an nf-core pipeline, the standard workflow 
 If you're new to working with git, you can view the [GitHub pull requests documentation](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests) or other [excellent `git` resources](https://try.github.io/) to get started.
 
 ## Testing
+
+You can optionally test your changes by running the pipeline locally. Then it is recommended to use the `debug` profile to
+receive warnings about process selectors and other debug info. Example: `nextflow run . -profile debug,test,docker --outdir <OUTDIR>`.
 
 When you create a pull request with changes, [GitHub Actions](https://github.com/features/actions) will run automatic tests.
 Typically, pull-requests are only fully reviewed when these tests are passing, though of course, we can help out before then.

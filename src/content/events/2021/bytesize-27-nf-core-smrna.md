@@ -3,9 +3,9 @@ title: 'Bytesize 27: nf-core/smrnaseq'
 subtitle: Lorena Pantano - NextRNA Therapeutics, USA
 type: talk
 start_date: '2021-11-09'
-start_time: '13:00 CET'
+start_time: '13:00+01:00'
 end_date: '2021-11-09'
-end_time: '13:30 CET'
+end_time: '13:30+01:00'
 embed_at: 'smrnaseq'
 youtube_embed: https://youtu.be/4YLQ2VwpCJE
 location_url:

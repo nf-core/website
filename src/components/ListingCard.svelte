@@ -1,5 +1,5 @@
 <script lang="ts">
-    export let recentRelease: boolean;
+    export let recentRelease: boolean = false;
 </script>
 
 <div class="card m-2">

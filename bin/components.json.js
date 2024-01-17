@@ -47,33 +47,31 @@ export const writeComponentsJson = async () => {
   let bar = new ProgressBar('  fetching module meta.ymls [:bar] :percent :etas', { total: modules.length });
 
   // Fetch content for modules concurrently
-  await Promise.all(
-    modules.map(async (module) => {
-      const content = await octokit
-        .request('GET /repos/{owner}/{repo}/contents/{path}', {
-          owner: 'nf-core',
-          repo: 'modules',
-          path: module.path,
-        })
-        .then((response) => parse(Buffer.from(response.data.content, 'base64').toString()));
+  for (const module of modules) {
+    const content = await octokit
+      .request('GET /repos/{owner}/{repo}/contents/{path}', {
+        owner: 'nf-core',
+        repo: 'modules',
+        path: module.path,
+      })
+      .then((response) => parse(Buffer.from(response.data.content, 'base64').toString()));
 
-      module['meta'] = content;
+    module['meta'] = content;
 
-      const index = components.modules.findIndex((m) => m.name === module.name);
-      if (index > -1) {
-        components.modules[index] = module;
-      } else {
-        components.modules.push(module);
-      }
-      bar.tick();
-    })
-  );
+    const index = components.modules.findIndex((m) => m.name === module.name);
+    if (index > -1) {
+      components.modules[index] = module;
+    } else {
+      components.modules.push(module);
+    }
+    bar.tick();
+  }
 
   // Fetch subworkflows concurrently
   const subworkflows = tree
     .filter(
       (file) =>
-        file.path.includes('meta.yml') && file.path.includes('subworkflows/') && !file.path.includes('homer/groseq')
+        file.path.includes('meta.yml') && file.path.includes('subworkflows/') && !file.path.includes('homer/groseq'),
     )
     .map((file) => ({
       name: file.path.replace('subworkflows/nf-core/', '').replace('/meta.yml', ''),
@@ -83,46 +81,43 @@ export const writeComponentsJson = async () => {
 
   bar = new ProgressBar('  fetching subworkflow meta.ymls [:bar] :percent :etas', { total: subworkflows.length });
 
-  await Promise.all(
-    subworkflows.map(async (subworkflow) => {
-      const content = await octokit
-        .request('GET /repos/{owner}/{repo}/contents/{path}', {
-          owner: 'nf-core',
-          repo: 'modules',
-          path: subworkflow.path,
-        })
-        .then((response) => parse(Buffer.from(response.data.content, 'base64').toString()));
+  for (const subworkflow of subworkflows) {
+    const content = await octokit
+      .request('GET /repos/{owner}/{repo}/contents/{path}', {
+        owner: 'nf-core',
+        repo: 'modules',
+        path: subworkflow.path,
+      })
+      .then((response) => parse(Buffer.from(response.data.content, 'base64').toString()));
 
-      subworkflow['meta'] = content;
+    subworkflow['meta'] = content;
 
-      if (!components.subworkflows) {
-        components.subworkflows = [];
-      }
-      const index = components.subworkflows.findIndex((m) => m.name === subworkflow.name);
-      if (index > -1) {
-        components.subworkflows[index] = subworkflow;
-      } else {
-        components.subworkflows.push(subworkflow);
-      }
+    if (!components.subworkflows) {
+      components.subworkflows = [];
+    }
+    const index = components.subworkflows.findIndex((m) => m.name === subworkflow.name);
+    if (index > -1) {
+      components.subworkflows[index] = subworkflow;
+    } else {
+      components.subworkflows.push(subworkflow);
+    }
 
-      if (content.modules) {
-        for (const module of content.modules) {
-          const index = components.modules.findIndex((m) => m.name === module);
-          if (index > -1) {
-            const entry = subworkflow.name;
-            if (components.modules[index].subworkflows) {
-              components.modules[index].subworkflows.push(entry);
-            } else {
-              components.modules[index].subworkflows = [entry];
-            }
+    if (content.modules) {
+      for (const module of content.modules) {
+        const index = components.modules.findIndex((m) => m.name === module);
+        if (index > -1) {
+          const entry = subworkflow.name;
+          if (components.modules[index].subworkflows) {
+            components.modules[index].subworkflows.push(entry);
+          } else {
+            components.modules[index].subworkflows = [entry];
           }
         }
       }
+    }
 
-      bar.tick();
-    })
-  );
-
+    bar.tick();
+  }
   // Update pipelines that use modules and subworkflows
   for (const pipeline of pipelines.remote_workflows) {
     const release = pipeline.releases[0];
@@ -139,7 +134,7 @@ export const writeComponentsJson = async () => {
               components.modules[index].pipelines = [entry];
             }
           }
-        })
+        }),
       );
     }
 
@@ -155,7 +150,7 @@ export const writeComponentsJson = async () => {
               components.subworkflows[index].pipelines = [entry];
             }
           }
-        })
+        }),
       );
     }
   }

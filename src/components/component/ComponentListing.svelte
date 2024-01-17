@@ -9,22 +9,18 @@
         path: string;
         type: string;
         meta: {
-            description: string;
             name: string;
+            description: string;
+            keywords: string[];
+            components?: string[];
+            input: {}[];
+            output: {}[];
         };
-        pipelines: {
+        pipelines?: {
             name: string;
             version: string;
         }[];
     }[] = [];
-
-    let pageSize: number = 12;
-    let lastPage: number = Math.ceil(components.length / pageSize);
-    const updatePageSize = () => {
-        pageSize = $DisplayStyle === 'grid' ? 12 : 25;
-        lastPage = Math.ceil(components.length / pageSize);
-    };
-    updatePageSize();
 
     const searchComponents = (component) => {
         if ($SearchQuery === '') {
@@ -67,18 +63,30 @@
     function searchFilterSortComponents(components) {
         return components.sort(sortComponents).filter(searchComponents);
     }
+
+    $: filteredComponents = searchFilterSortComponents(components) || [];
+
+    let pageSize: number = 12;
+    let lastPage = Math.ceil(components.length / pageSize);
+    const updatePageSize = () => {
+        pageSize = $DisplayStyle === 'grid' ? 12 : 25;
+        let currentComponents = filteredComponents || components;
+        lastPage = Math.ceil(currentComponents.length / pageSize);
+    };
+    updatePageSize();
+
+    $: paginatedItems = filteredComponents.slice(($currentPage - 1) * pageSize, $currentPage * pageSize);
+
     SortBy.subscribe(() => {
         filteredComponents = searchFilterSortComponents(components);
     });
     SearchQuery.subscribe(() => {
         filteredComponents = searchFilterSortComponents(components);
+        updatePageSize();
     });
     DisplayStyle.subscribe(() => {
         updatePageSize();
     });
-    $: filteredComponents = searchFilterSortComponents(components);
-
-    $: paginatedItems = filteredComponents.slice(($currentPage - 1) * pageSize, $currentPage * pageSize);
 </script>
 
 <div class={`listing d-flex flex-wrap w-100 justify-content-center ${components[0].type}`}>
@@ -102,11 +110,13 @@
             </thead>
             <tbody>
                 {#each paginatedItems as component (component.name)}
-                    <tr class="position-relative">
-                        <td class="name">
-                            <a class="stretched-link" href={'/' + component.type + 's/' + component.name + '/'}
-                                >{@html component.name.replace('_', '_<wbr>')}</a
-                            >
+                    <tr>
+                        <td class=" name p-0">
+                            <div class="position-relative p-3">
+                                <a class="stretched-link" href={'/' + component.type + 's/' + component.name + '/'}
+                                    >{@html component.name.replace('_', '_<wbr>')}</a
+                                >
+                            </div>
                         </td>
                         <td class="text-small">
                             {component.meta.description}
@@ -129,7 +139,9 @@
         </table>
     {/if}
 </div>
-<PaginationNav {lastPage} />
+{#if lastPage > 0}
+    <PaginationNav {lastPage} />
+{/if}
 
 <style>
     .name {

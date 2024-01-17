@@ -3,9 +3,9 @@ title: nf-core at Nextflow Camp 2018
 subtitle: First presentation of nf-core, at the Nextflow Camp 2018
 type: talk
 start_date: '2018-11-22'
-start_time: '15:20 CST'
+start_time: '15:20+01:00'
 end_date: '2018-11-22'
-end_time: '15:50 CST'
+end_time: '15:50+01:00'
 address: Carrer del Dr. Aiguader, 88, 08003 Barcelona, Spain
 location_name: Centre for Genomic Regulation, Barcelona
 location_url: https://www.crg.eu/

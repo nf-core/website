@@ -3,9 +3,9 @@ title: 'Bytesize 26: nf-core/metaboigniter'
 subtitle: Payam Emami - NBIS, Sweden
 type: talk
 start_date: '2021-11-02'
-start_time: '13:00 CET'
+start_time: '13:00+01:00'
 end_date: '2021-11-02'
-end_time: '13:30 CET'
+end_time: '13:30+01:00'
 embed_at: 'metaboigniter'
 youtube_embed: https://youtu.be/hPBrlwbsvsk
 location_url:

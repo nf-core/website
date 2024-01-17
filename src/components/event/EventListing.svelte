@@ -2,14 +2,15 @@
     import FilterBar from '@components/FilterBar.svelte';
     import EventCard from '@components/event/EventCard.svelte';
     import { CurrentFilter, SearchQuery, EventIsOngoing } from '@components/store';
+    import { onMount } from 'svelte';
 
     export let events = [];
-    export let filters: string[] = [];
+    export let currentFilters: { name: string }[];
     export let currentEvents;
 
     let filteredEvents = events;
     const filterByType = (event) => {
-        if ($CurrentFilter.includes(event.data.type)) {
+        if ($CurrentFilter.find((f) => f.name === event.data.type)) {
             return true;
         }
         return false;
@@ -35,25 +36,34 @@
 
     $: filteredEvents = events;
 
-    CurrentFilter.subscribe(() => {
-        filteredEvents = events.filter(filterByType).filter(searchEvents);
-    });
-
-    SearchQuery.subscribe(() => {
-        filteredEvents = events.filter(filterByType).filter(searchEvents);
-    });
-
-    $: futureEvents = filteredEvents.filter((event) => {
-        const today = new Date();
-        return event.data.start > today;
-    });
+    $: futureEvents = filteredEvents
+        .filter((event) => {
+            const today = new Date();
+            return event.data.start > today;
+        })
+        .sort((a, b) => {
+            if (a.data.start < b.data.start) {
+                return -1;
+            }
+            return 1;
+        });
 
     $: pastEvents = filteredEvents
         .filter((event) => {
             const today = new Date();
             return event.data.end < today;
         })
-        .reverse();
+        .sort((a, b) => {
+            if (a.data.end < b.data.end) {
+                return 1;
+            }
+            return -1;
+        });
+
+    currentEvents = filteredEvents.filter((event) => {
+        const today = new Date();
+        return event.data.start < today && event.data.end > today;
+    });
 
     $: if (currentEvents.length > 0) {
         EventIsOngoing.set(true);
@@ -73,22 +83,13 @@
         talk: 'fa-solid fa-presentation',
         training: 'fa-solid fa-chalkboard-teacher',
     };
-    const event_types = [...new Set(events.map((event) => event.data.type))]
-        .map((type) => {
-            return {
-                name: type,
-                class: event_type_classes[type],
-                icon: event_type_icons[type],
-            };
-        })
-        .sort((a, b) => {
-            if (a.name < b.name) {
-                return -1;
-            }
-            return 1;
-        });
-
-    CurrentFilter.set(event_types);
+    const event_types = Object.keys(event_type_classes).map((type) => {
+        return {
+            name: type,
+            class: event_type_classes[type],
+            icon: event_type_icons[type],
+        };
+    });
 
     function hasYearChanged(events, idx) {
         if (idx === 0 || events[idx].data.start.getFullYear() !== events[idx - 1].data.start.getFullYear()) {
@@ -96,10 +97,21 @@
         }
         return false;
     }
+
+    onMount(() => {
+        CurrentFilter.set(currentFilters);
+        CurrentFilter.subscribe(() => {
+            filteredEvents = events.filter(filterByType).filter(searchEvents);
+        });
+
+        SearchQuery.subscribe(() => {
+            filteredEvents = events.filter(filterByType).filter(searchEvents);
+        });
+    });
 </script>
 
 <div>
-    <FilterBar filter={filters} displayStyle={[]} sortBy={[]} />
+    <FilterBar filter={event_types} displayStyle={[]} sortBy={[]} />
     <div class="events">
         {#if currentEvents.length > 0}
             <div class="mb-3 col-12">

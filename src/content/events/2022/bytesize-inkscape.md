@@ -3,9 +3,9 @@ title: 'Bytesize: nf-core/inkscape and tube map diagrams'
 subtitle: James Fellows Yates - Max Planck Institute for Evolutionary Anthropology, Leipzig, Germany
 type: talk
 start_date: '2022-07-12'
-start_time: '13:00 CEST'
+start_time: '13:00+02:00'
 end_date: '2022-07-12'
-end_time: '13:45 CEST'
+end_time: '13:45+02:00'
 youtube_embed: https://www.youtube.com/watch?v=0vKhfedYKGo
 location_url:
   - https://www.youtube.com/watch?v=0vKhfedYKGo

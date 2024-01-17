@@ -1,7 +1,7 @@
 ---
 const { name, icon, params } = Astro.props;
 
-import { markdown } from '@astropub/md';
+import { Markdown } from '@astropub/md';
 export interface Props {
     name: string;
     icon: string;
@@ -10,7 +10,7 @@ export interface Props {
 ---
 
 <h2 id={name.toLowerCase()} class="text-success ms-n3">
-    <i class="fad fa-sign-in fa-fw"></i>
+    <i class={`fad ${icon} fa-fw`}></i>
     {name}
     <a href={'#' + name.toLowerCase()} class="header-link scroll_to_link"
         ><span class="fas fa-link" aria-hidden="true"></span>
@@ -52,12 +52,7 @@ export interface Props {
                     </div>
 
                     <div class={'col-12 description py-1 small col-md-' + (pattern ? '5' : '7')}>
-                        {async () => {
-                            //replace new lines with 2 spaces to force line break
-                            //replace *. with \*. to prevent markdown from interpreting it as italics
-                            const html = await markdown(description.replace(/(\n)/g, '  \n').replace(/\*./g, '\\*.'));
-                            return html;
-                        }}
+                        <Markdown of={description.replace(/(\n)/g, '  \n').replace(/\*./g, '\\*.')} />
                     </div>
                     <div class={'col-12 col-md-' + (pattern ? '4' : '1') + ' ms-auto'}>
                         {pattern && <code class="float-end pattern">{pattern}</code>}
