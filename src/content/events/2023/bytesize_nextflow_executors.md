@@ -4,9 +4,10 @@ subtitle: Maxime Garcia, Seqera
 type: talk
 start_date: '2024-01-16'
 start_time: '13:00+01:00'
+youtube_embed: https://www.youtube.com/watch?v=ncYcxyiGyds
 end_date: '2024-01-16'
 end_time: '13:30+01:00'
-location_url: https://kth-se.zoom.us/j/68390542812
+location_url: https://www.youtube.com/watch?v=ncYcxyiGyds
 ---
 
 # nf-core/bytesize
