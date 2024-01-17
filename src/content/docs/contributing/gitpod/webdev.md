@@ -6,7 +6,7 @@ weight: 4
 
 ## How to develop Markdown for the website
 
-To develop code for the nf-core website, click the green Gitpod button in upper right of the screen of the [website repository](https://github.com/nf-core/nf-co.re) (or just click the [following link](https://gitpod.io/#https://github.com/nf-core/nf-co.re)).
+To develop code for the nf-core website, click the green Gitpod button in upper right of the screen of the [website repository](https://github.com/nf-core/website) (or just click the [following link](https://gitpod.io/#https://github.com/nf-core/website)).
 This will open a Gitpod environment for the website. You'll need to sign in with either Github, GitLab or Bitbucket.
 
 > Some website content is held within other repos (e.g. pipeline docs are in pipeline repositories).
@@ -35,7 +35,7 @@ Note that the URL within the _Simple Browser_ can also be opened up directly in 
 We use Gitpod prebuilds to make this environment as fast to load as possible.
 However, note that you may find some things that do not work in the preview as they do on the main site.
 A notable example is that the pipelines, modules and community statistics pages will be empty.
-To get this stuff to work, please see the [First-run](https://github.com/nf-core/nf-co.re#first-run) instructions on the website repo readme.
+To get this stuff to work, please see the [First-run](https://github.com/nf-core/website#first-run) instructions on the website repo readme.
 
 > Remember that Gitpod environments are not secure. Please do not save any secrets in a `config.ini` within Gitpod.
 

@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=yaml-schema.json
 # nf-core contributors. Add yourself below to be featured on the website
 # ----------------------------------------------------------------------
 # Note that image_fn should correspond to logos in:
@@ -66,10 +67,10 @@ contributors:
     location: [48.1144085, 9.797852]
     twitter: Boehringer
 
-  - full_name: Seqera Labs
+  - full_name: Seqera
     short_name: Seqera
     description: >
-      Seqera Labs is simplfying data analysis pipelines across cluster and cloud. As the maintainers of the Nextflow project we
+      Seqera is simplfying data analysis pipelines across cluster and cloud. As the maintainers of the Nextflow project we
       focus on enabling high-throughput computing solutions that streamline complex pipelines.
     address: Carrer D'Avila, 19, Local 2, 08005 Barcelona, Spain
     url: http://www.seqera.io
@@ -903,9 +904,8 @@ contributors:
     address: 10055 Barnes Canyon Road Suite 100 San Diego, CA 92121
     url: https://www.elementbiosciences.com/
     image_fn: elembio.svg
-    contact: Edmund Miller
-    contact_email: edmund.miller@elembio.com
-    contact_github: emiller88
+    contact: Bryan Lajoie
+    contact_github: blajoie
     location: [32.898670, -117.199420]
     twitter: elembio
 
@@ -933,7 +933,7 @@ contributors:
     affiliation: Digital Biology
     image_fn: HEALXLOGO.svg
     contact: Jonathan Manning
-    contact_email: jonathan.manning@healx.io
+    contact_email: jonathan.manning@seqera.io
     contact_github: pinin4fjords
     location: [52.19631682472531, 0.12972942680431776]
     twitter: healx
@@ -965,3 +965,58 @@ contributors:
     contact_github: https://github.com/stfc
     location: [53.34340, -2.64121]
     twitter: HartreeCentre
+
+  - full_name: Sydney Informatics Hub
+    short_name: SIH
+    description: >
+      Sydney Informatics Hub is a core research facility at the University of Sydney. We work towards enabling excellence in data and compute intensive research. We provide support, training, and expertise in statistics, data science, artificial intelligence, bioinformatics, software engineering, simulation, visualisation, and research computing.
+    address: University of Sydney, City Rd & Butlin Ave, Darlington, NSW, Australia
+    url: https://www.sydney.edu.au/research/facilities/sydney-informatics-hub.html
+    affiliation: University of Sydney
+    image_fn: SIH.svg
+    contact: Georgie Samaha
+    contact_email: sih_info@sydney.edu.au
+    contact_github: Sydney-Informatics-Hub
+    location: [-33.88839664786049, 151.1873279393093]
+    twitter: Sydney_CRF
+
+  - full_name: Stellenbosch University, Bioinformatics research unit
+    short_name: SUN
+    description: >
+      As tuberculosis research in South Africa has become increasingly reliant on molecular biotechnologies, the volume of data produced has grown considerably. The South African Tuberculosis Bioinformatics Initiative (SATBBI) was created in response to this growth, creating a group of bioinformatics researchers engaged with the tuberculosis research community in South Africa.
+    address: Francie Van Zijl Dr, Tygerberg, Cape Town, 7505, South Africa
+    url: http://www.sun.ac.za/english/faculty/healthsciences/Molecular_Biology_Human_Genetics/bioinformatics
+    affiliation: Stellenbosch University
+    image_fn: SUN.svg
+    contact: Abhinav Sharma
+    contact_email: abhinavsharma@sun.ac.za
+    contact_github: https://github.com/SATBBI
+    location: [-33.907562, 18.614187]
+    twitter: SuMBHG
+
+  - full_name: University of Magallanes
+    short_name: UMAG
+    description: >
+      University of Magallanes if a public chilean university, located in the Magallanes region.
+    address: Av Bulnes 01855, Punta Arenas, Magallanes, 62000, Chile
+    url: http://umag.cl/en/
+    affiliation: Department of Computer Engineering
+    image_fn: UMAG.svg
+    contact: Diego Alvarez
+    contact_email: diego.alvarez@umag.cl
+    contact_github: dialvarezs
+    location: [-53.136143662331556, -70.8809399083617]
+
+  - full_name: KU Leuven, Rega Institute for Medical Research
+    short_name: KUL
+    description: >
+      The Rega Institute for Medical Research is a Belgian scientific establishment that is part of the Catholic University of Leuven (Leuven) in central Belgium. The Rega Institute is an interfacultary biomedical research institute consists of departments of medicine and pharmacology.
+    address: Herestraat 49, 3000 Leuven, Belgium
+    url: https://rega.kuleuven.be/
+    affiliation: Department of Microbiology, Immunology and Transplantation
+    image_fn: KUL.svg
+    contact: Joon Klaps
+    contact_email: joon.klaps@kuleuven.be
+    contact_github: Joon-Klaps
+    location: [50.87979627450289, 4.669408520123431]
+    twitter: KU_Leuven

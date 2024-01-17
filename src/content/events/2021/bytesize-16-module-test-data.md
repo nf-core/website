@@ -3,9 +3,9 @@ title: 'Bytesize 16: Modules test data'
 subtitle: Kevin Menden - QBiC Tübingen, Germany
 type: talk
 start_date: '2021-06-08'
-start_time: '13:00 CEST'
+start_time: '13:00+02:00'
 end_date: '2021-06-08'
-end_time: '13:30 CEST'
+end_time: '13:30+02:00'
 youtube_embed: https://youtu.be/QXfAerydAT0
 location_url:
   - https://youtu.be/QXfAerydAT0

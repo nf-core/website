@@ -5,26 +5,37 @@ import TabBar from '@components/TabBar.astro';
 import pipelines_json from '@public/pipelines.json';
 
 export interface Props {
-    pipeline?: string;
+    pipeline: string | undefined;
+    meta_title: string;
     subtitle?: string | null;
     version?: string;
     versions?: string[];
     headings?: { text: string; slug: string; depth: number; fa_icon?: string }[];
     tabItems?: string[];
     md_github_url?: string;
+    showHiddenBtn?: boolean;
     sections?: { section_name: string; children: {}[] }[] | never[];
+    docSearchTags?: { name: string; content: string | string[] }[];
 }
 
-const {
+let {
     pipeline,
+    meta_title = pipeline,
     subtitle,
     headings,
     version,
     versions = [],
     tabItems = [],
     md_github_url = '',
+    showHiddenBtn = false,
     sections = [],
+    docSearchTags = [],
 } = Astro.props;
+
+if (version === 'latest') {
+    version = versions[0];
+}
+
 const url = Astro.url.pathname;
 const baseUrl = '/' + pipeline + '/' + version;
 let allTabItems: { label: string; href: string; active: boolean; icon?: string }[] = [];
@@ -45,7 +56,7 @@ allTabItems = tabItems
 allTabItems.unshift({
     label: 'Introduction',
     href: `/${pipeline}/${version}/`,
-    active: url === `/${pipeline}/${version}/`,
+    active: url === `/${pipeline}/${version}/` || url === `/${pipeline}/${version}`,
     icon: 'fa-solid fa-sign-in',
 });
 
@@ -58,7 +69,7 @@ if (hasSchema) {
     allTabItems.push({
         label: 'Parameters',
         href: `/${pipeline}/${version}/parameters/`,
-        active: Astro.url.pathname.endsWith('/parameters/'),
+        active: url.includes('/parameters'),
         icon: 'fa-regular fa-list',
     });
 }
@@ -77,7 +88,7 @@ if (versions.filter((v) => v !== 'dev').length > 0) {
     allTabItems.push({
         label: 'Releases',
         href: `/${pipeline}/releases_stats/`,
-        active: url === `/${pipeline}/releases_stats/`,
+        active: url.includes(`/${pipeline}/releases_stats`),
         icon: 'fa-regular fa-chart-line',
     });
 }
@@ -90,6 +101,7 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
 
 <PageLayout
     title={'nf-core/' + pipeline}
+    meta_title={meta_title}
     subtitle={subtitle}
     mainpage_container={true}
     navTocHeadings={headings}
@@ -97,13 +109,20 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
     subfooter={md_github_url !== ''}
     topics={topics}
     sections={sections}
+    {showHiddenBtn}
+    viewTransitions={true}
+    docSearchTags={[
+        ...docSearchTags,
+        { name: 'version', content: latestVersion === version ? [version, 'latest'] : version },
+        { name: 'page_type', content: 'Pipeline' },
+    ]}
 >
     <SubHeader pipeline={pipeline} version={version} latestVersion={latestVersion} gh_url={gh_url} slot="sub-header" />
     {
         tabItems.length > 0 && (
             <TabBar items={allTabItems}>
                 {!Astro.url.pathname.endsWith('/releases_stats/') && (
-                    <div class="input-group input-group-sm justify-content-end justify-content-md-center">
+                    <div class="input-group input-group-sm justify-content-end justify-content-lg-center">
                         <label class="input-group-text" for="version_select">
                             <i class="fas fa-tags" />
                         </label>
@@ -117,12 +136,12 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
                                 {version}
                             </button>
 
-                            <ul class="dropdown-menu dropdown-menu-end w-100">
+                            <ul class="dropdown-menu dropdown-menu-end w-100 pipeline-versions">
                                 {versions &&
                                     versions.map((v) => {
                                         let url = Astro.url.pathname.replace(
                                             `${pipeline}/${version}`,
-                                            `${pipeline}/${v}`
+                                            `${pipeline}/${v}`,
                                         );
                                         if (url.includes('/results/')) {
                                             url = `/${pipeline}/${v}/results/`;
@@ -146,35 +165,8 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
         )
     }
 
-    <div>
+    <div transition:animate="slide">
         <slot />
     </div>
-    <script>
-        // taken from https://github.com/JuanM04/portfolio/blob/983b0ed0eabdac37bf8b7912d3e8128a443192b9/src/pages/docs/%5B...documentSlug%5D.astro#L74-L103
-        async function renderDiagrams(graphs) {
-            const { default: mermaid } = await import('mermaid');
-            mermaid.initialize({
-                startOnLoad: false,
-                fontFamily: 'var(--sans-font)',
-                // @ts-ignore This works, but TS expects a enum for some reason
-                theme: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default',
-            });
-
-            for (const graph of graphs) {
-                const content = graph.getAttribute('data-content');
-                if (!content) continue;
-                let svg = document.createElement('svg');
-                const id = (svg.id = 'mermaid-' + Math.round(Math.random() * 100000));
-                graph.appendChild(svg);
-                mermaid.render(id, content).then((result) => {
-                    graph.innerHTML = result.svg;
-                });
-            }
-        }
-        const graphs = document.getElementsByClassName('mermaid');
-        if (document.getElementsByClassName('mermaid').length > 0) {
-            renderDiagrams(graphs);
-        }
-    </script>
 </PageLayout>
 <style lang="scss"></style>

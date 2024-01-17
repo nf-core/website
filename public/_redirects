@@ -1,5 +1,19 @@
-/logo/*  https://oldsite.nf-co.re/logo/:splat
-/tools/docs/* https://oldsite.nf-co.re/tools/docs//:splat
+# Slack invite URL
+/join/slack https://join.slack.com/t/nfcore/shared_invite/zt-28iojs6f6-~_C8qfihr_rpAwmYopsqqQ
+
+# Temporary oldsite redirections
+/logo/*  https://oldsite.nf-co.re/logo/:splat 200
+
+/tools-docs/lint_tests/* https://oldsite.nf-co.re/tools/docs/latest/pipeline_lint_tests/:splat
+/tools/docs/* https://oldsite.nf-co.re/tools/docs/:splat
+/pipeline_schema_builder/* https://oldsite.nf-co.re/pipeline_schema_builder/:splat 200
+/launch/* https://oldsite.nf-co.re/launch/:splat 200
+/assets/* https://oldsite.nf-co.re/assets/:splat 200
+
+# New site July 2023 - URL changes
 /community /contributors
-/pipeline_schema_builder/* https://oldsite.nf-co.re/pipeline_schema_builder/:splat
-/launch/* https://oldsite.nf-co.re/launch/:splat
+/usage/* /docs/usage/:splat
+/developers/* /docs/contributing/:splat
+/contributing/* /docs/contributing/:splat
+/assets/img/* /images/:splat
+

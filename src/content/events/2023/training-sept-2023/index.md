@@ -1,11 +1,11 @@
 ---
 title: Community Advanced Nextflow Training - September 2023
-subtitle: A global online advanced Nextflow training event
+subtitle: Join us for the first ever Advanced community training! Become a Nextflow expert!
 type: training
 start_date: '2023-09-27'
-start_time: '15:00 CEST'
+start_time: '15:00+02:00'
 end_date: '2023-09-28'
-end_time: '19:00 CEST'
+end_time: '19:00+02:00'
 location_name: YouTube
 import_typeform: true
 ---
@@ -20,11 +20,19 @@ Please note that this is not an introductory workshop and experience writing Nex
 
 # Accessing the streams
 
-To make the workshops available to everyone they will be streamed on the [nf-core YouTube channel](https://www.youtube.com/c/nf-core).
+To make the workshops available to everyone they will be streamed on the [Advanced Nextflow training playlist on the nf-core YouTube channel](https://www.youtube.com/playlist?list=PL3xpfTVZLcNhPoEl8cT15MdIBfX9kFJCj).
+
+A link to each stream will also be posted in the [`#sept23-advanced-training`](https://nfcore.slack.com/archives/C05U1A096EQ) Slack channel.
 
 # Attending at the Wellcome Genome Campus
 
-An in-person version of advanced training will be held at the Wellcome Genome Campus, Hinxton, UK. It is open to anyone - everyone welcome! The training will take place from 10am to 4pm on both days. More information about this local event can be found [here](wgc.md).
+An in-person version of advanced training will be held on 27th September at the Wellcome Genome Campus, Hinxton, UK. It is open to anyone - everyone welcome!
+
+The schedule for the in-person Wellcome Genome Campus event will differ from the schedule shown for the online event. The same content will be covered at both events, however, the content will be condensed into one day rather than spread across two.
+
+More information about this local event can be found [here](/events/2023/training-sept-2023/wgc).
+
+Registration for this in-person version of advanced training is now closed. Registration for the online version of the training is still open.
 
 # Schedule
 
@@ -50,11 +58,9 @@ Session 2 will cover the following topics:
 
 ## Asking questions
 
-Questions can be asked in the Slack channels created for this event. Community volunteers will monitor these channels and will answer your questions as quickly as they can. You can join the nf-core Slack [here](https://nf-co.re/join/slack).
+Questions can be asked in the nf-core [`#sept23-advanced-training`](https://nfcore.slack.com/archives/C05U1A096EQ) created for this event. Community volunteers will monitor these channels and will answer your questions as quickly as they can. You can join the nf-core Slack [here](https://nf-co.re/join/slack).
 
-The Slack channels for this event will become available closer to the event.
-
-> Please be aware that due to the size of this event there may be a delay when answering your questions.
+> Please be aware that due to the size of this event, there may be a delay when answering your questions.
 
 # Registration
 

@@ -3,9 +3,9 @@ title: 'Bytesize: Workflow safety and immutable objects'
 subtitle: Rob Syme, Seqera Labs
 type: talk
 start_date: '2023-05-23'
-start_time: '13:00 CET'
+start_time: '13:00+01:00'
 end_date: '2023-05-23'
-end_time: '13:30 CET'
+end_time: '13:30+01:00'
 youtube_embed: https://www.youtube.com/watch?v=A357C-ux6Dw
 location_url:
   - https://www.youtube.com/watch?v=A357C-ux6Dw

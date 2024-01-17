@@ -434,7 +434,7 @@ If so, the easiest solution is to start your `TEMPLATE` branch from scratch.
   - This will then replace the broken `TEMPLATE` branch on GitHub with a nice clean one, which can be viewable by checking the commit history.
 
   :::warning
-    You are irreversibly overwriting git history here - make sure that you get the branch names right!
+  You are irreversibly overwriting git history here - make sure that you get the branch names right!
   :::
 
 - We can switch back to `dev`, and run `nf-core sync` to do it's magic and get the latest version of the template.

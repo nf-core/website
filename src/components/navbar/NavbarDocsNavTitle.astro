@@ -8,14 +8,15 @@ const { title } = Astro.props;
 
 <div class="d-flex align-items-end">
     {
-        title.map((item, i) => {
+        title?.map((item, i) => {
+            if (!item) return;
             // make item title case
-            item = item.replace(/_/g, ' ').replace(/\w\S*/g, function (txt) {
+            item = item?.replace(/_/g, ' ').replace(/\w\S*/g, function (txt) {
                 return txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase();
             });
             return (
                 <span class="align-middle">
-                    {i === 0 ? '' : <i class="fa fa-chevron-right fa-w fa-xs mx-1 " />}
+                    {i === 0 ? '' : <i class="fa-solid fa-chevron-right fa-xs mx-1 " />}
                     {item}
                 </span>
             );

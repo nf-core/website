@@ -3,9 +3,9 @@ title: 'Bytesize: training translations'
 subtitle: Marcel Ribeiro-Dantas, Seqera Labs
 type: talk
 start_date: '2023-04-25'
-start_time: '13:00 CEST'
+start_time: '13:00+02:00'
 end_date: '2023-04-25'
-end_time: '13:30 CEST'
+end_time: '13:30+02:00'
 youtube_embed: https://www.youtube.com/watch?v=WfHwOrB7VfA
 location_url:
   - https://www.youtube.com/watch?v=WfHwOrB7VfA

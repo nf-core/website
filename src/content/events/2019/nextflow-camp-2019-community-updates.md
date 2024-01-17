@@ -3,9 +3,9 @@ title: 'nf-core community updates'
 subtitle: 'Presentation at the Nextflow Camp 2019'
 type: talk
 start_date: '2019-09-19'
-start_time: '09:10'
+start_time: '09:10+01:00'
 end_date: '2019-09-19'
-end_time: '09:45'
+end_time: '09:45+01:00'
 address: Carrer del Dr. Aiguader, 88, 08003 Barcelona, Spain
 location_name: Centre for Genomic Regulation, Barcelona
 location_url: https://www.crg.eu/

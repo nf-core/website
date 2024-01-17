@@ -3,9 +3,9 @@ title: 'Bytesize: community updates Sep 2022'
 subtitle: Phil Ewels
 type: talk
 start_date: '2022-09-27'
-start_time: '13:00 CEST'
+start_time: '13:00+02:00'
 end_date: '2022-09-27'
-end_time: '13:30 CEST'
+end_time: '13:30+02:00'
 youtube_embed: https://www.youtube.com/watch?v=KXXeAcHnDBo
 location_url:
   - https://www.youtube.com/watch?v=KXXeAcHnDBo

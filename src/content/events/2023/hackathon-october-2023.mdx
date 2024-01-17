@@ -1,0 +1,291 @@
+---
+title: Hackathon - October 2023 (Barcelona)
+subtitle: A hybrid hackathon held in Barcelona and online
+type: hackathon
+start_announcement: '2023-07-13T12:00+02:00'
+start_date: '2023-10-16'
+start_time: '10:00+02:00'
+end_date: '2023-10-18'
+end_time: '14:00+02:00'
+location_name: Barcelona, Spain
+location_latlng: [41.4021444, 2.191099]
+---
+
+import Profile from '@components/GitHubProfilePictureExtended.svelte';
+import HackathonGroup from '@components/event/HackathonGroup.astro';
+import { YouTube } from '@astro-community/astro-embed-youtube';
+
+# Welcome
+
+Join us in-person or online for the October 2023 nf-core hackathon!
+
+This hackathon will be held in advance of the _**Nextflow Summit 2023**_ in Barcelona, Spain 🇪🇸. You can find out more information about the summit at [https://summit.nextflow.io](https://summit.nextflow.io).
+
+In addition to the in-person event, we will run a free virtual option online in [gather.town](https://gather.town/).
+
+:::info
+This hackathon is not meant to be a training event.
+It is aimed at people that already have a basic understanding of Nextflow and/or nf-core.
+
+If you're interested in learning Nextflow and nf-core, there are free online workshops in September.
+For more information and the training registration link, see the
+[Community Foundational Nextflow Training](https://nf-co.re/events/2023/training-basic-2023)
+and [Community Advanced Nextflow Training](https://nf-co.re/events/2023/training-sept-2023) pages.
+:::
+
+# Logistics
+
+## Registration
+
+You can register to attend the hackathon in-person or online using the links on the Nextflow Summit website: [https://summit.nextflow.io/register](https://summit.nextflow.io/register)
+
+You can register for the nf-core hackathon or the Nextflow Summit, or both. You're welcome to attend in-person or online.
+Attendance online is free, attending in person costs €79 (€100 incl. VAT).
+
+**Registration closes September 9, or when sold out.**
+
+The 2022 Barcelona hackathon did sell out. So be sure to register early to avoid disappointment!
+
+<a class="btn btn-success btn-lg mb-3" href="https://summit.nextflow.io/register/">
+    <span>
+        <i class="fa-solid fa-id-card me-2"></i>
+        <span>Register now</span>
+    </span>
+</a>
+
+## Schedule
+
+The hackathon will run from **Monday 16th October** to **Wednesday 18th October**.
+Please see the [Summit website Hackathon Agenda](https://summit.nextflow.io/barcelona/agenda/hackathon/#events) for details.
+Note that there is a [calendar view](https://summit.nextflow.io/barcelona/agenda/calendar/)
+with links that you can use to subscribe / add to your personal calendar.
+
+## In person: Hotel SB Glow
+
+The in-person hackathon will be taking place at [Hotel SB Glow](https://goo.gl/maps/6uKCKkbciLAR5qgSA).
+More information about this venue can be found the the [Nextflow Summit website](https://summit.nextflow.io/).
+
+<YouTube id="uMLXuGfhEOo" poster="https://img.youtube.com/vi/uMLXuGfhEOo/hqdefault.jpg" />
+
+## Online: Gather.town
+
+The hackathon is also being held in a virtual venue on the platform Gather.
+If you have never used Gather before we have a [bytesize video](https://nf-co.re/events/2022/bytesize-37-gathertown) from the March 2022 hackathon that will help you to get started.
+
+We have created a safe list of registered participants that will be able to access the hackathon space.
+To join, you will need to follow these steps:
+
+1. Follow [this link](https://app.gather.town/app/br78S294XBCL487A/nf-core-hackathon) to find the Gather space
+    - Please note that the hackathon space will not open until the event.
+2. Enter the email address you used to register for the hackathon
+    - This is the same address from which you received this email
+3. Check your email for a one-time code and enter it into the Gather window
+4. Enter the space and enjoy the hackathon!
+
+# Pre-hackathon checklist
+
+Ensure you have read/signed up/joined/installed the following resources before the hackathon.
+
+-   Check you agree with the [Code of Conduct](https://nf-co.re/docs) of the event
+-   If you haven't already, set up a GitHub account and [join the nf-core GitHub organization](https://nf-co.re/join#github)
+-   [Join the nf-core slack](https://nf-co.re/join) and the [#hackathon-oct-2023](https://nfcore.slack.com/archives/C05RYJWM6AH) channel
+-   Create a [Gather](https://www.gather.town/) account using the email you used to register (see above)
+-   Have [Nextflow](https://nextflow.io/), [nf-core/tools](https://nf-co.re/tools/#installation), and one of [Docker](https://docs.docker.com/get-docker/), Singularity, or [Conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)/[Mamba](https://mamba.readthedocs.io/en/latest/installation.html) installed on your computer
+-   Familiarize yourself with the [documentation on the nf-core website](https://nf-co.re/docs)
+
+# Groups
+
+To keep things manageable everyone will be organized into groups.
+You are free to change groups at any time during the hackathon.
+
+We will coordinate our work and the issues we are working on using a single [GitHub project board](https://github.com/orgs/nf-core/projects/47).
+There is a separate tab for each group that will have a list of relevant issues for you to work on. We'll have daily presentations where group leaders share an overview of what happened in that day in their group. Everyone will use [the same slide deck](https://docs.google.com/presentation/d/1fhf_hK9gBWsqNXRBYpL9pvh4hGapEWwMShNR0qmNivA/edit?usp=sharing) and change the respective slides of their groups.
+
+## Hackathon focus: nf-test
+
+At this hackathon, our special topic is [nf-test](https://code.askimed.com/nf-test/) 🚀
+
+nf-test is a testing framework for Nextflow code.
+We want to start using it for all nf-core pipelines and modules.
+Some proof-of-concept work has already been done, with standardised implementation
+patterns mostly worked out, but there's still a lot of work to add this in for all components.
+
+There are nf-test related projects in several of the groups below.
+It would be great to move nf-test adoption forward during the event!
+
+## Meta groups
+
+These groups are here to support anyone who may need help getting started at the hackathon.
+They are not intended for focused task-specific work.
+
+<HackathonGroup title="Beginners" intro_video="ACLM3BFpHbM" leaders={{
+    'mribeirodantas': 'Marcel Ribeiro-Dantas',
+    'abhi18av': 'Abhinav Sharma',
+    'FranBonath': 'Franziska Bonath'
+}}>
+    For this hackathon, we will  have no designated beginners group but will instead
+    have a "beginners table" **on the first day**.
+    You're welcome to join to get help on how to contribute to open-source,
+    and to meet other community contribution beginners.
+
+    Please note that attendees are expected to know the basics of building with Nextflow.
+
+</HackathonGroup>
+
+<HackathonGroup
+    title="Online"
+    leaders={{
+        yuukiiwa: 'Yuk Kei',
+        louperelo: 'Louisa Perelo',
+        abhi18av: 'Abhinav Sharma',
+    }}
+>
+    If you're feeling lost in Gather.town, or just want to hang out with other online attendees, look out for Yuk Kei
+    and Louisa. They'll be able to steer you in the right direction and get you started with one of the project groups.
+</HackathonGroup>
+
+## Project groups
+
+<HackathonGroup title="Pipelines" color="#bf4b8a" intro_video="AIazn2YhW4I" proj_url="https://github.com/orgs/nf-core/projects/47/views/4" slack="#hackathon-oct-2023-pipelines" leaders={{
+    'drpatelh': 'Harshil Patel',
+    'adamrtalbot': 'Adam Talbot',
+    'MaxUlysse': 'Maxime Garcia',
+    'Emiller88': 'Edmund Miller',
+    'sateeshperi': 'Sateesh Peri',
+}}>
+    The pipelines group will focus on any pipeline-related work.
+    This could be a DSL2 conversion of a pipeline, a new or improved feature for a pipeline,
+    or an entirely new pipeline
+    (please let us register a new pipeline already before the hackathon,
+    following [our guidelines](https://nf-co.re/docs/contributing/adding_pipelines#before-you-start)).
+    These are typically led by the main pipeline developers if they also attend the hackathon.
+
+    Suggested projects / teams:
+
+    - Implementing nf-test within pipelines
+    - Adding new functionality to existing pipelines
+    - Updating pipelines to use the latest nf-core template, via template syncs
+    - Teams formed around work on specific pipelines
+    - Azure megatests roll-out in pipelines
+
+</HackathonGroup>
+
+<HackathonGroup title="Modules & Subworkflows" color="#1f6feb" intro_video="Lv2vCLJ2xiM" proj_url="https://github.com/orgs/nf-core/projects/47/views/5" slack="#hackathon-oct-2023-modules-subworkflows" leaders={{
+    'JoseEspinosa': 'Jose Espinosa-Carrasco',
+    'FriederikeHanssen': 'Friederike Hanssen'
+}}>
+    The modules group welcomes anyone who wants to work on current or new modules + subworkflows
+    at [nf-core/modules](https://github.com/nf-core/modules).
+
+    Suggested projects / teams:
+
+    - Implementing nf-test for modules
+    - Creating new modules, see issue list
+    - Stubs for all modules
+
+</HackathonGroup>
+
+<HackathonGroup title="Infrastructure" color="#9e6a03" intro_video="eOUaos_44os" proj_url="https://github.com/orgs/nf-core/projects/47/views/3" slack="#hackathon-oct-2023-infrastructure" leaders={{
+    'mashehu': 'Matthias Hörtenhuber',
+    'mirpedrol': 'Júlia Mir Pedrol',
+    'nvnieuwk': 'Nicolas Vannieuwkerke'
+}}>
+    The nf-core website and central tooling are always being improved.
+    If you'd like to make a difference to nf-core without writing any Nextflow code,
+    this is the group for you!
+
+    Suggested projects / teams:
+
+    - Subworkflows nf-core/tools infrastructure
+    - Template customisation with feature flags
+    - Stripped down/customisable nf-core pipeline template
+    - Samplesheets infrastructure
+    - New lint tests (especially for modules, eg. stubs)
+    - Google megatests
+    - nf-validation plugin
+
+</HackathonGroup>
+
+<HackathonGroup title="Nextflow development" color="#238636" intro_video="hVqS_SBRBFk" proj_url="https://github.com/orgs/nf-core/projects/47/views/2" slack="#hackathon-oct-2023-nextflowdev" leaders={{
+    'bentsherman': 'Ben Sherman',
+    'jordeu': 'Jordi Deu-Pons'
+}}>
+    New for autumn 2023! Branch out of pure nf-core and get involved in core Nextflow.
+
+    Suggested projects / teams:
+
+    - nf-prov plugin (RO-Crate / BioCompute object support)
+    - nf-quilt plugin
+    - Other Nextflow plugins
+    - Nextflow documentation
+    - New core features for Nextflow (see GitHub issues)
+
+</HackathonGroup>
+
+# Social activities
+
+During the hackathon, we will have light-hearted fun and games!
+Special edition nf-core rubber ducks and other special prizes are up for grabs for the winners!
+
+## In person:
+
+In the spirit of our past nf-core Hackathons, we're hosting a fun community cooking class.
+Embark on a tasty journey as we dive into the art of crafting the perfect Spanish paella (think of it as late lunch, dear Spaniards 😬) and other mouthwatering dishes. 🇪🇸🍴
+
+Under the expert guidance of a local chef, you'll uncover the secrets to creating these culinary delights.
+But that's not all - prepare for a cook-off showdown with your peers, making this evening a sizzling, friendly competition! 🔥👨‍🍳👩‍🍳
+
+### Venue: Espacio Paralelo
+
+The cooking class will be held at [Espacio Paralelo, Av. del Paral·lel, 140, 08015 Barcelona](https://maps.app.goo.gl/pddVAVRxvyScNG8y7), starting at **7 pm** on **October 17**.
+
+The best and fastest way to get to La Patente from the SB GLOW hotel is the metro. The trip will take you about 30 minutes.
+The activity will start at 7 pm and end at 10 pm. Please be punctual and arrive early.
+
+:::warning
+You will not have time to go back to your accomodation between the hackathon and the social event. Please plan accordingly.
+:::
+
+If you want to continue the fun, there are a number of bars and restaurants in the area:
+
+-   [Bitter Cocktail Bar](https://maps.app.goo.gl/m7WsYSaF7JX1YQsY9)
+-   [V de vermuth](https://maps.app.goo.gl/7wcvi48PYDCoGn32A)
+-   [Papagayo Cocktails](https://maps.app.goo.gl/twaXkTbqEMEMHx758)
+
+## Hybrid (in-person and online)
+
+-   nf-core quiz! Test your nf-core knowledge!
+    -   2 pm (CEST) on Tuesday, October 17th.
+-   Scavenger Hunt: [`#hackathon-oct-2023-scavengerhunt`](https://nfcore.slack.com/archives/C05RYKSDL93)
+    -   Take photos of you completing as many challenges as you can and share them on the channel!
+-   Hackathon bingo
+    -   Grab your [bingo card](https://nfcore-bingo.web.app/?game=nf-core-hackathon) and join in the fun.
+-   Hidden socks in Gather
+    -   Take screenshots of as many as you can find!
+    -   See the sock hunt information board in Gather for more information.
+
+:::tip
+All social activities are of course optional, but we hope to see as many people joining in as possible!
+:::
+
+# Safety Information at the Hackathon
+
+Please note that our [Code of Conduct](https://nf-co.re/code_of_conduct) applies to the Hackathon,
+and all participants need to abide by our guidelines to participate.
+We should all feel responsible for making nf-core events safe and fun for everyone.
+
+In addition, please respect the following at all times during the hackathon:
+
+-   Do not take photos / screenshots of groups you are working within without asking for consent of all individuals in the group.
+    Remember, not everyone wants their photographs shared on social media.
+
+## Reporting CoC Violations during the hackathon
+
+In case of an immediate perceived threat at the hackathon, please reach out to any of the following nf-core safety officers on Slack:
+
+-   <Profile username="ctuni">Cris Tuñí</Profile>
+-   <Profile username="heuermh">Michael Heuer</Profile>
+-   <Profile username="snafees">Saba Nafees</Profile>
+
+You can also report any CoC violations directly to [safety@nf-co.re](mailto:safety@nf-co.re).
+Our safety officers will contact you to follow up on your report.

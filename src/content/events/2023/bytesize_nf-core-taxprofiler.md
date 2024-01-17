@@ -3,9 +3,9 @@ title: 'Bytesize: nf-core/taxprofiler'
 subtitle: Sofia Stamouli, Karolinska Institutet
 type: talk
 start_date: '2023-01-17'
-start_time: '13:00 CET'
+start_time: '13:00+01:00'
 end_date: '2023-01-17'
-end_time: '13:30 CET'
+end_time: '13:30+01:00'
 embed_at: 'taxprofiler'
 youtube_embed: https://www.youtube.com/watch?v=p1EQtidJiUY
 location_url:

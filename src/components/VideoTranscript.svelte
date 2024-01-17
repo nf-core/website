@@ -26,7 +26,7 @@
         });
 
         const timestampLinks = Array.from(
-            document.querySelectorAll('details a[href^="https://youtu"], details a[href^="https://www.youtu"]')
+            document.querySelectorAll('details a[href^="https://youtu"], details a[href^="https://www.youtu"]'),
         );
         timestampLinks.forEach((link) => {
             let timestamp = link.href.split('&t=')[1];

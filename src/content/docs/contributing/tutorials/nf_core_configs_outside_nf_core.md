@@ -5,7 +5,7 @@ subtitle: Guidance on how to use nf-core's centralised institutional configs in 
 
 When you've been working with nf-core pipelines for a while, you often will get very used to many of the convenience functionality offered by the wider nf-core infrastrucutre.
 
-One such thing is the centralised nf-core/configs repository of pre-configured configuration files that allow nf-core pipelines to run optimally on institutional clusters via the `-profile` parameter, e.g. `-profile uppmax`.
+One such thing is the centralised nf-core/configs repository of pre-configured configuration files that allow nf-core pipelines to run optimally on institutional clusters via the `-profile` parameter, e.g. `-profile uppmax`. A list of existing institutional profiles can be seen on the [nf-core website](https://nf-co.re/configs).
 
 One great thing about nf-core/configs is that they aren't just restricted to nf-core pipelines, they can also be used in [fully fledged 'unofficial' nf-core pipelines](unofficial_pipelines.md) but also in your own custom mini-scripts and pipelines!
 
@@ -87,4 +87,4 @@ def check_max(obj, type) {
 }
 ```
 
-With this, you should be able to run `nextflow run mainf.nf -profile <your_profile>`, and your custom script/pipeline should integrate nicely with your cluster!
+With this, you should be able to run `nextflow run mainf.nf -profile <your_institutional_profile>`, and your custom script/pipeline should integrate nicely with your cluster!

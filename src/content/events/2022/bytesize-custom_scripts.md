@@ -3,9 +3,9 @@ title: 'Bytesize: using custom scripts in Nextflow pipelines'
 subtitle: Chris Hakkaart, Seqera labs
 type: talk
 start_date: '2022-11-15'
-start_time: '13:00 CET'
+start_time: '13:00+01:00'
 end_date: '2022-11-15'
-end_time: '13:30 CET'
+end_time: '13:30+01:00'
 youtube_embed: https://www.youtube.com/watch?v=3aA5-s8PAF0
 location_url:
   - https://doi.org/10.6084/m9.figshare.21572238.v1

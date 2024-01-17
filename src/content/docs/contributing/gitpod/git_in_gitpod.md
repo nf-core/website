@@ -34,7 +34,7 @@ If you don't wish to use Gitpod, you can still make changes to the website using
 For example, to make changes to a new branch for the nf-core website, you would use the following commands:
 
 ```bash
-git clone https://github.com/nf-core/nf-co.re.git
+git clone https://github.com/nf-core/website.git
 git checkout -b my_awesome_suggestion
 cd nf-co.re/
 # Now you can edit files in this directory.

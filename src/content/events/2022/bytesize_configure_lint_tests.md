@@ -3,9 +3,9 @@ title: 'Bytesize: Configuring lint tests'
 subtitle: Phil Ewels, Seqera labs
 type: talk
 start_date: '2022-11-08'
-start_time: '13:00 CET'
+start_time: '13:00+01:00'
 end_date: '2022-11-08'
-end_time: '13:30 CET'
+end_time: '13:30+01:00'
 youtube_embed: https://www.youtube.com/watch?v=DiXh3Dvpq5E
 location_url:
   - https://doi.org/10.6084/m9.figshare.21533151.v1

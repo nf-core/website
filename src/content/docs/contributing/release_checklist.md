@@ -5,7 +5,7 @@ subtitle: A step-by-step guide for releasing a nf-core pipeline
 
 ## Before you release
 
-1. Check the pipeline follows [nf-core guidelines](/docs/contributing/guidelines/index).
+1. Check the pipeline follows [nf-core guidelines](/docs/contributing/guidelines).
 2. All continuous-integration tests on the `dev` branch should be passing
    - Check the output of `nf-core lint` for warnings and address all that you can
    - Update any software dependencies that are out of date.

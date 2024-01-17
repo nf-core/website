@@ -450,7 +450,7 @@ Once resolved and checked, this PR can be merged and a new pipeline release crea
 - Use `nf-core bump-version --nextflow` to update the required version of Nextflow in your pipeline
 - Bump your pipeline's version to 1.0, ready for its first release!
 - Make sure that you're signed up to the _nf-core_ slack (get an invite on [nf-co.re](https://nf-co.re)) and drop us a line about your latest and greatest pipeline plans!
-- Ask to be a member of the _nf-core_ GitHub organisation by commenting on [this GitHub issue](https://github.com/nf-core/nf-co.re/issues/3)
+- Ask to be a member of the _nf-core_ GitHub organisation by commenting on [this GitHub issue](https://github.com/nf-core/website/issues/3)
 - If you're a twitter user, make sure to follow the [@nf_core](https://twitter.com/nf_core) account
 
 ## Conclusion
@@ -459,6 +459,6 @@ We hope that this _nf-core_ tutorial has been helpful!
 Remember that there is more in-depth documentation on many of these topics available on the [nf-core website](https://nf-co.re).
 If in doubt, please ask for help on Slack.
 
-If you have any suggestions for how to improve this tutorial, or spot any mistakes, please create an issue or pull request on the [nf-core/nf-co.re repository](https://github.com/nf-core/nf-co.re).
+If you have any suggestions for how to improve this tutorial, or spot any mistakes, please create an issue or pull request on the [nf-core/website repository](https://github.com/nf-core/website).
 
 > [Phil Ewels](https://github.com/ewels/), [Maxime Garcia](https://github.com/MaxUlysse), [Gisela Gabernet](https://github.com/ggabernet), [Friederike Hanssen](https://github.com/FriederikeHanssen) for _nf-core_, March 2022

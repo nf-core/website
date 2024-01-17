@@ -8,8 +8,12 @@
             "@layouts/*": ["src/layouts/*"],
             "@content/*": ["src/content/*"],
             "@public/*": ["public/*"],
-            "@styles/*": ["src/styles/*"],
+            "@styles/*": ["src/styles/*"]
         },
         "strictNullChecks": true
-    }
+    },
+    "exclude": [
+        "node_modules",
+        "dist",
+    ]
 }

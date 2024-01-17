@@ -3,9 +3,9 @@ title: 'Bytesize 9: JSON-schema: What, why and how'
 subtitle: Matthias Hörtenhuber - Karolinska Institutet, Sweden
 type: talk
 start_date: '2021-04-20'
-start_time: '13:00 CEST'
+start_time: '13:00+02:00'
 end_date: '2021-04-20'
-end_time: '13:30 CEST'
+end_time: '13:30+02:00'
 youtube_embed: https://youtu.be/PU6vAj_7WRM
 location_url:
   - https://youtu.be/PU6vAj_7WRM

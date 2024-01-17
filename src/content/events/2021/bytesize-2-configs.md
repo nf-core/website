@@ -3,9 +3,9 @@ title: 'Bytesize 2: How nf-core configs work'
 subtitle: Maxime Garcia - SciLifeLab / Karolinska Institutet, Sweden
 type: talk
 start_date: '2021-02-09'
-start_time: '13:00 CET'
+start_time: '13:00+01:00'
 end_date: '2021-02-09'
-end_time: '13:30 CET'
+end_time: '13:30+01:00'
 youtube_embed: https://youtu.be/cXBYusdjrc0
 location_url:
   - https://doi.org/10.6084/m9.figshare.14160347.v1
