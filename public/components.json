@@ -539,7 +539,9 @@
               "homepage": "https://dalexander.github.io/admixture/",
               "documentation": "https://dalexander.github.io/admixture/admixture-manual.pdf",
               "doi": "10.1101/gr.094052.109",
-              "licence": "['Free for Academic Use']"
+              "licence": [
+                "Free for Academic Use"
+              ]
             }
           }
         ],
@@ -573,7 +575,7 @@
           },
           {
             "K": {
-              "type": "value",
+              "type": "integer",
               "description": "Belief of the number of ancestral populations.",
               "pattern": "{*}"
             }
@@ -3427,6 +3429,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         },
         {
           "name": "rnafusion",
@@ -23898,7 +23904,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.7.1"
+          "version": "2.8.0"
         },
         {
           "name": "atacseq",
@@ -24698,7 +24704,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.1"
+          "version": "2.8.0"
         },
         {
           "name": "crisprseq",
@@ -30165,7 +30171,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.1"
+          "version": "2.8.0"
         },
         {
           "name": "phyloplace",
@@ -30256,7 +30262,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.1"
+          "version": "2.8.0"
         },
         {
           "name": "phyloplace",
@@ -32039,7 +32045,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.7.1"
+          "version": "2.8.0"
         },
         {
           "name": "atacseq",
@@ -35308,7 +35314,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.1"
+          "version": "2.8.0"
         },
         {
           "name": "phyloplace",
@@ -35385,7 +35391,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.1"
+          "version": "2.8.0"
         },
         {
           "name": "phyloplace",
@@ -35500,7 +35506,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.1"
+          "version": "2.8.0"
         },
         {
           "name": "phyloplace",
@@ -36159,6 +36165,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -37400,6 +37410,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -41793,6 +41807,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -54399,7 +54417,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.1"
+          "version": "2.8.0"
         },
         {
           "name": "phyloplace",
@@ -54477,7 +54495,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.1"
+          "version": "2.8.0"
         },
         {
           "name": "phyloplace",
@@ -54564,7 +54582,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.1"
+          "version": "2.8.0"
         },
         {
           "name": "phyloplace",
@@ -54646,7 +54664,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.1"
+          "version": "2.8.0"
         },
         {
           "name": "phyloplace",
@@ -56667,7 +56685,9 @@
               "documentation": "https://instrain.readthedocs.io/en/latest/",
               "tool_dev_url": "https://github.com/MrOlm/instrain",
               "doi": "10.1038/s41587-020-00797-0",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -56780,28 +56800,28 @@
           },
           {
             "bam": {
-              "type": "path",
+              "type": "file",
               "description": "Path to .bam file to be profiled",
               "pattern": "*.{bam,sam}"
             }
           },
           {
             "genome_fasta": {
-              "type": "path",
+              "type": "file",
               "description": "Path to .fasta file to be profiled; MUST be the .fasta file that was mapped to to create the .bam file",
               "pattern": "*.{fasta,fna,fa}"
             }
           },
           {
             "genes_fasta": {
-              "type": "path",
+              "type": "file",
               "description": "Path to .fna file of genes to be profiled (OPTIONAL)",
               "pattern": "*.{fasta,fna,fa}"
             }
           },
           {
             "stb_file": {
-              "type": "path",
+              "type": "file",
               "description": "Path to .stb (scaffold to bin) file to be profiled (OPTIONAL)",
               "pattern": "*.stb"
             }
@@ -56823,7 +56843,7 @@
           },
           {
             "profile": {
-              "type": "path",
+              "type": "directory",
               "description": "InStrain profile folder",
               "pattern": "*.IS/"
             }
@@ -59864,7 +59884,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.1"
+          "version": "2.8.0"
         },
         {
           "name": "bacass",
@@ -62660,7 +62680,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.1"
+          "version": "2.8.0"
         },
         {
           "name": "multiplesequencealign",
@@ -70774,7 +70794,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.7.1"
+          "version": "2.8.0"
         },
         {
           "name": "bacass",
@@ -80702,7 +80722,13 @@
         "authors": [
           "@lrauschning"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "ampliseq",
+          "version": "2.8.0"
+        }
+      ]
     },
     {
       "name": "pilon",
@@ -109233,7 +109259,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.1"
+          "version": "2.8.0"
         },
         {
           "name": "atacseq",
@@ -112199,7 +112225,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.1"
+          "version": "2.8.0"
         },
         {
           "name": "crisprseq",
@@ -112277,7 +112303,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.1"
+          "version": "2.8.0"
         }
       ]
     },
@@ -112519,7 +112545,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.1"
+          "version": "2.8.0"
         }
       ]
     },
@@ -116829,7 +116855,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.7.1"
+          "version": "2.8.0"
         },
         {
           "name": "phyloplace",
@@ -119618,6 +119644,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -119652,6 +119682,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -120342,6 +120376,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
