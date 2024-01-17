@@ -93,6 +93,7 @@ When site registration closes, we will open participant registration with your s
 | 🇺🇸 USA          | Dallas    | University of Texas at Dallas             | [Read more](usa-university-texas.md)      |
 | 🇺🇸 USA          | San Jose  | Quilt Co-Working Space                    | [Read more](usa-san-jose.md)              |
 | 🇺🇸 USA          | Wyoming   | The University of Wyoming                 | [Read more](usa-university-wyoming.md)    |
+| 🇧🇪 Belgium      | Ghent     | Ghent University                          | [Read more](belgium-ghent-university.md)  |
 -->
 
 # Schedule
