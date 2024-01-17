@@ -40,7 +40,7 @@ A YouTube playlists of the streams for this event will be made available closer 
 
 Training sessions will be available from 3 pm (CET) each day. Each session will be approximately 3 hours.
 
-### Session 1 (March 5)
+## Session 1 (March 5)
 
 Session 1 will provide an overview of core Nextflow concepts. You will be taken through example Nextflow pipelines and introduced to concepts that will be expanded in Sessions 2.
 
@@ -50,7 +50,7 @@ Session 1 will provide an overview of core Nextflow concepts. You will be taken 
 - Managing dependencies and containers (30 min)
 - Groovy introduction (30 min)
 
-### Session 2 (March 6)
+## Session 2 (March 6)
 
 Session 2 will provide a deeper dive into Nextflow. You will revisit concepts from Session 1 and learn more about Nextflow features and how to use them.
 
@@ -62,7 +62,7 @@ Session 2 will provide a deeper dive into Nextflow. You will revisit concepts fr
 - Troubleshooting (20 min)
 - Getting starting with Seqera Platform (20 min)
 
-## Asking questions
+# Asking questions
 
 Questions can be asked in the Slack channels created for this event. Community volunteers will monitor these channels and will answer your questions as quickly as they can. You can join the nf-core Slack [here](https://nf-co.re/join/slack).
 
