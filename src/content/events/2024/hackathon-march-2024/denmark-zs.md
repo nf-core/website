@@ -8,7 +8,7 @@ end_date: '2024-03-20'
 end_time: '17:00+02:00'
 location_name: ZS Associates
 address: Lottenborgvej 26 DK-2800 Lyngby, Denmark
-location_url: https://igdr.univ-rennes1.fr/https://www.zs.com/careers/where-we-work/europe/copenhagen
+location_url: https://www.zs.com/careers/where-we-work/europe/copenhagen
 location_latlng: [55.780384, 12.488322]
 ---
 
