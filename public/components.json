@@ -3825,6 +3825,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -18541,7 +18545,9 @@
               "documentation": "https://bitbucket.org/berkeleylab/checkv/src/master/",
               "tool_dev_url": "https://bitbucket.org/berkeleylab/checkv/src/master/",
               "doi": "10.1038/s41587-020-00774-7",
-              "licence": "['BSD License']"
+              "licence": [
+                "BSD License"
+              ]
             }
           }
         ],
@@ -18601,7 +18607,9 @@
               "documentation": "https://bitbucket.org/berkeleylab/checkv/src/master/",
               "tool_dev_url": "https://bitbucket.org/berkeleylab/checkv/src/master/",
               "doi": "10.1038/s41587-020-00774-7",
-              "licence": "['BSD License']"
+              "licence": [
+                "BSD License"
+              ]
             }
           }
         ],
@@ -18723,7 +18731,9 @@
               "documentation": "https://bitbucket.org/berkeleylab/checkv/src/master/",
               "tool_dev_url": "https://bitbucket.org/berkeleylab/checkv/src/master/",
               "doi": "10.1038/s41587-020-00774-7",
-              "licence": "['BSD License']"
+              "licence": [
+                "BSD License"
+              ]
             }
           }
         ],
@@ -36693,6 +36703,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -37418,6 +37432,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -42343,6 +42361,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -46713,7 +46735,9 @@
               "documentation": "https://portal.nersc.gov/genomad/",
               "tool_dev_url": "https://github.com/apcamargo/genomad/",
               "doi": "10.1101/2023.03.05.531206",
-              "licence": "['Lawrence Berkeley National Labs BSD variant license']"
+              "licence": [
+                "Lawrence Berkeley National Labs BSD variant license"
+              ]
             }
           }
         ],
@@ -46775,7 +46799,9 @@
               "documentation": "https://portal.nersc.gov/genomad/",
               "tool_dev_url": "https://github.com/apcamargo/genomad/",
               "doi": "10.1101/2023.03.05.531206",
-              "licence": "['Lawrence Berkeley National Labs BSD variant license']"
+              "licence": [
+                "Lawrence Berkeley National Labs BSD variant license"
+              ]
             }
           }
         ],
@@ -51085,6 +51111,101 @@
         ],
         "maintainers": [
           "@gallvp"
+        ]
+      }
+    },
+    {
+      "name": "gt_ltrharvest",
+      "path": "modules/nf-core/gt/ltrharvest/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gt_ltrharvest",
+        "description": "Predicts LTR retrotransposons using GenomeTools gt-ltrharvest utility",
+        "keywords": [
+          "genomics",
+          "genome",
+          "annotation",
+          "repeat",
+          "transposons",
+          "retrotransposons"
+        ],
+        "tools": [
+          {
+            "gt": {
+              "description": "The GenomeTools genome analysis system",
+              "homepage": "https://genometools.org/index.html",
+              "documentation": "https://genometools.org/documentation.html",
+              "tool_dev_url": "https://github.com/genometools/genometools",
+              "doi": "10.1109/TCBB.2013.68",
+              "licence": [
+                "ISC"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "index": {
+              "type": "directory",
+              "description": "Folder containing the suffixerator index files",
+              "pattern": "suffixerator"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "tabout": {
+              "type": "file",
+              "description": "Old tabular output by default or when `-tabout yes` argument is present",
+              "pattern": "*.tabout"
+            }
+          },
+          {
+            "gff3": {
+              "type": "file",
+              "description": "GFF3 output when `-tabout no` argument is present",
+              "pattern": "*.gff3"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "FASTA output when `-out` argument is present",
+              "pattern": "*.{fa,fsa,fasta}"
+            }
+          },
+          {
+            "inner_fasta": {
+              "type": "file",
+              "description": "FASTA output for inner regions when `-outinner` argument is present",
+              "pattern": "*.{fa,fsa,fasta}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@GallVp"
+        ],
+        "maintainers": [
+          "@GallVp"
         ]
       }
     },
@@ -119668,6 +119789,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -119702,6 +119827,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -120400,6 +120529,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
