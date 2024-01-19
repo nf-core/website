@@ -27,7 +27,7 @@ Some community members are also hosting [local sites](#local-sites).
 - Registration to attend the hackathon at a local site or online opens (**Feb 2, 2024**)
 - Registration to attend the hackathon at a local site closes (**March 8, 2024**)
 - Registration to attend the hackathon online closes (**March 18, 2024**)
-- Hackathon (March 18-20, 2024)
+- Hackathon (**March 18-20, 2024**)
 
 :::
 
