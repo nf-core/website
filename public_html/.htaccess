@@ -12,6 +12,12 @@
     RewriteRule ^/?usage/nf_core_tutorial$ /docs/usage/tutorials/nf_core_tutorial? [L,R=301]
     RewriteRule ^/?fetchfastq(.*)$ /fetchngs$1? [L,R=301]
 
+    # Remove trailing slashes from launch and pipeline_schema_builder URLs
+    RewriteCond %{REQUEST_URI} ^/launch/(.*)
+    RewriteRule ^(.*)/$ /launch%1 [L]
+    RewriteCond %{REQUEST_URI} ^/pipeline_schema_builder/(.*)
+    RewriteRule ^(.*)/$ /pipeline_schema_builder%1 [L]
+
     # Specific convenience URLs
     RewriteRule ^/?bilibili/?$ https://space.bilibili.com/1280248035?spm_id_from=333.788.b_765f7570696e666f.1 [R=301,L]
 
