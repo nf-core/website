@@ -80,6 +80,7 @@ When site registration closes, we will open participant registration with your s
 | 🇵🇱 Poland  | Kraków     | Ardigen                                 | [Read more](./hackathon-march-2024/krakow-ardigen.md)           |
 | 🇪🇸 Spain   | Barcelona  | CRG                                     | [Read more](./hackathon-march-2024/bcn-crg.md)                  |
 | 🇸🇪 Sweden  | Stockholm  | SciLifeLab                              | [Read more](./hackathon-march-2024/sweden-scilifelab.md)        |
+| 🇬🇧 United Kingdom | London | Cosyne Therapeutics                  | [Read more](./hackathon-march-2024/UK-London.md)                |
 
 </div>
 
