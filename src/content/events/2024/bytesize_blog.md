@@ -4,10 +4,9 @@ subtitle: Matthias Hörtenhuber, SciLifeLab Data Centre
 type: talk
 start_date: '2024-01-23'
 start_time: '13:00+02:00'
-youtube_embed: https://www.youtube.com/watch?v=rLG6YKE52Mo
 end_date: '2024-01-23'
 end_time: '13:00+02:00'
-location_url: https://www.youtube.com/watch?v=rLG6YKE52Mo
+location_url: https://kth-se.zoom.us/j/68390542812
 ---
 
 # nf-core/bytesize
