@@ -14,8 +14,6 @@ location_latlng: [51.01287821684896, 3.708004390525348]
 
 Local event to be held at Ghent University, Belgium
 
-Registrations are open! Register [here](https://event.ugent.be/registration/event/138e28ec-3e42-4370-833d-628d578e047c) to secure your spot.
-
 Contact:
 
 - [<i class="fab fa-slack"></i> Nicolas Vannieuwkerke](https://nfcore.slack.com/team/U03CKGEU3LZ)
