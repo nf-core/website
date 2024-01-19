@@ -1383,7 +1383,6 @@ path  "versions.yml"              , emit: versions
 
 ### Colon Example (Comments)
 
-
 ```nextflow
 take:
 print_version        // boolean: print version
