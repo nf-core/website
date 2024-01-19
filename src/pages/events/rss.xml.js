@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 
 export async function GET(context) {
   const events = await getCollection('events');
+
   return rss({
     title: 'nf-core: Events',
     description: 'Details of past and future nf-core meetups.',
@@ -12,7 +13,7 @@ export async function GET(context) {
       title: event.data.title,
       description: event.data.subtitle,
       link: '/events/' + event.slug,
-      pubDate: event.data.start,
+      pubDate: new Date(event.data.start_date + 'T' + event.data.start_time),
     })),
   });
 }
