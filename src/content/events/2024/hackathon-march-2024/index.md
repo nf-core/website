@@ -73,13 +73,13 @@ When site registration closes, we will open participant registration with your s
 | Country    | City       | Location                                | Event page                                                      |
 | ---------- | ---------- | --------------------------------------- | --------------------------------------------------------------- |
 | 🇧🇪 Belgium | Ghent      | Ghent University                        | [Read more](./hackathon-march-2024/belgium-ghent-university.md) |
+| 🇩🇰 Denmark | Copenhagen | ZS Associates                           | [Read more](./hackathon-march-2024/denmark-zs.md)               |
 | 🇫🇷 France  | Rennes     | IGDR                                    | [Read more](./hackathon-march-2024/france-igdr.md)              |
 | 🇩🇪 Germany | Heidelberg | GHGA                                    | [Read more](./hackathon-march-2024/germany-heidelberg.md)       |
 | 🇮🇹 Italy   | Pavia      | Dept. Biology and Biotechnology - UniPV | [Read more](./hackathon-march-2024/italy-unipv.md)              |
+| 🇵🇱 Poland  | Kraków     | Ardigen                                 | [Read more](./hackathon-march-2024/krakow-ardigen.md)           |
 | 🇪🇸 Spain   | Barcelona  | CRG                                     | [Read more](./hackathon-march-2024/bcn-crg.md)                  |
 | 🇸🇪 Sweden  | Stockholm  | SciLifeLab                              | [Read more](./hackathon-march-2024/sweden-scilifelab.md)        |
-| 🇩🇰 Denmark | Copenhagen | ZS Associates                           | [Read more](./hackathon-march-2024/denmark-zs.md)               |
-| 🇵🇱 Poland  | Kraków     | Ardigen                                 | [Read more](./hackathon-march-2024/krakow-ardigen.md)           |
 
 </div>
 
