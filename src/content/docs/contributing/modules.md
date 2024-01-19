@@ -1323,7 +1323,7 @@ The Harshil Alignment™️ format is the whitespace-happy code style that was i
 
 The Harshil Alignment™️ format involves ensuring that common punctuation across multiple lines in a group are placed in the same location as each other.
 
-There are many places where the format can be applied, however common examples are as follows:
+There are many places where the format can be applied - it's not just code, it can also applies to comment formatting - however common examples are as follows:
 
 ### Curly Bracket Example
 
@@ -1379,6 +1379,27 @@ tuple val(meta), path("*.bam")    , emit: bam     , optional:true
 tuple val(meta), path("*.log")    , emit: log
 tuple val(meta), path("*fastq.gz"), emit: fastq   , optional:true
 path  "versions.yml"              , emit: versions
+```
+
+### Colon Example (Comments)
+
+
+```nextflow
+take:
+print_version        // boolean: print version
+dump_parameters      // boolean: dump parameters
+outdir               // path: base directory used to publish pipeline results
+check_conda_channels // boolean: check conda channels
+```
+
+✅ Good
+
+```nextflow
+take:
+print_version        // boolean: print version
+dump_parameters      // boolean: dump parameters
+outdir               //    path: base directory used to publish pipeline results
+check_conda_channels // boolean: check conda channels
 ```
 
 ## Help
