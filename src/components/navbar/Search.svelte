@@ -19,7 +19,7 @@
 <div {id} />
 
 <style lang="scss">
-    @import 'src/styles/_variables.scss';
+    @import '@styles/_variables.scss';
 
     :global(:root) {
         --docsearch-text-color: #{$input-color};

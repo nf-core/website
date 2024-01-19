@@ -1,10 +1,11 @@
 import admonitionsPlugin from './bin/remark-admonitions.js';
-import mermaid from 'remark-mermaid';
+import { mermaid } from './bin/remark-mermaid.ts';
 import pipelines_json from '/public/pipelines.json';
 import githubDarkDimmed from '/public/themes/github-dark-dimmed.json';
 import mdx from '@astrojs/mdx';
-import netlify from '@astrojs/netlify';
+import netlify from '@astrojs/netlify/functions';
 import partytown from '@astrojs/partytown';
+import prefetch from '@astrojs/prefetch';
 import sitemap from '@astrojs/sitemap';
 import svelte from '@astrojs/svelte';
 import yaml from '@rollup/plugin-yaml';
@@ -22,6 +23,7 @@ import remarkDirective from 'remark-directive';
 import emoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
+import remarkDescription from 'astro-remark-description';
 import markdownIntegration from '@astropub/md';
 import icon from "astro-icon";
 
@@ -38,10 +40,7 @@ const latestTollsURL = `/tools/docs/'+${latestToolsRelease}`;
 export default defineConfig({
     site: 'https://nf-co.re/',
     output: 'hybrid',
-    prefetch: true,
-    adapter: netlify({
-        cacheOnDemandPages: true,
-    }),
+    adapter: netlify(),
     redirects: {
         [latestTollsURL]: 'https://oldsite.nf-co.re/tools/docs/latest/',
         ...latestPipelineReleases,
@@ -61,6 +60,7 @@ export default defineConfig({
             }
         }),
         sitemap(),
+        prefetch(),
         partytown({
             // Adds dataLayer.push as a forwarding-event.
             config: {
@@ -91,6 +91,12 @@ export default defineConfig({
             preserveSymlinks: true,
         },
     },
+    image: {
+        domains: ['raw.githubusercontent.com', 'unsplash.com'],
+        service: {
+            entrypoint: 'astro/assets/services/sharp',
+        },
+    },
     markdown: {
         syntaxHighlight: false,
         shikiConfig: {
@@ -98,7 +104,46 @@ export default defineConfig({
             theme: githubDarkDimmed,
             wrap: false,
         },
-        remarkPlugins: [emoji, remarkGfm, remarkDirective, admonitionsPlugin, [mermaid,{simple:true}], remarkMath],
+        remarkPlugins: [
+            emoji,
+            remarkGfm,
+            remarkDirective,
+            admonitionsPlugin,
+            mermaid,
+            remarkMath,
+            [
+                remarkDescription,
+                {
+                    name: 'excerpt',
+                    node: (node, i, parent) => {
+                        // check if parent has a child that is an html comment with the text 'end of excerpt'
+                        if (
+                            parent?.children?.some(
+                                (child) =>
+                                    (child.type === 'html' && child.value === '<!-- end of excerpt -->') ||
+                                    (child.type === 'mdxFlowExpression' && child?.value === '/* end of excerpt */'),
+                            )
+                        ) {
+                            const sibling = parent?.children[i + 1];
+
+                            return (
+                                (sibling?.type === 'html' && sibling?.value === '<!-- end of excerpt -->') ||
+                                (sibling?.type === 'mdxFlowExpression' && sibling?.value === '/* end of excerpt */')
+                            );
+                        } else {
+                            // return the first paragraph otherwise
+
+                            // get the index of the first paragraph
+                            const firstParagraphIndex = parent?.children.findIndex(
+                                (child) => child.type === 'paragraph',
+                            );
+                            // if the node is the first paragraph, return true
+                            return i === firstParagraphIndex;
+                        }
+                    },
+                },
+            ],
+        ],
         // NOTE: Also update the plugins in `src/components/Markdown.svelte`!
         rehypePlugins: [
             rehypeSlug,

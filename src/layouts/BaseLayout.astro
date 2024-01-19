@@ -22,12 +22,21 @@ export interface Props {
     subfooter?: boolean;
     showHiddenBtn?: boolean;
     navTocHeadings?: ({ text: string; slug: string; depth: number; fa_icon?: string } | undefined)[];
-    sections?: { section_name: string; children: {}[] }[] | never[];
+    sections?: {
+        section_name: string;
+        section_slug?: string;
+        children: {
+            title: string;
+            slug: string;
+            order?: number;
+        }[];
+    }[];
     viewTransitions?: boolean;
     docSearchTags?: {
         name: string;
         content: string | string[];
     }[];
+    doubleNavbar?: boolean;
 }
 // get entry for page_type in docsearchtags
 
@@ -44,6 +53,7 @@ let {
     sections = [],
     viewTransitions = false,
     docSearchTags = [],
+    doubleNavbar = true,
 } = Astro.props;
 const pageTypeTag = docSearchTags.find((tag) => tag.name === 'page_type');
 const pageSubtypeTag = docSearchTags.find((tag) => tag.name === 'page_subtype');
@@ -68,7 +78,7 @@ image += category;
 
     <body tabindex="0">
         <Navbar navTocHeadings={navTocHeadings} title={title} sections={sections} {showHiddenBtn} />
-        <div class:list={['content', { 'double-navbar': sections.length > 0 }]}>
+        <div class:list={['content', { 'double-navbar': sections.length > 0 && doubleNavbar }]}>
             <slot />
         </div>
         {subfooter && <SubFooter md_github_url={md_github_url} />}

@@ -43,7 +43,7 @@ const { versions, md_files, description } = Astro.props;
 
 const section = md_file.split('/')[0];
 // check if there are multiple files in the section
-let left_sidebar = md_files.filter((file) => file.split('/')[0] === section).length > 1;
+let leftSidebar = md_files.filter((file) => file.split('/')[0] === section).length > 1;
 
 let sections = {};
 
@@ -52,7 +52,7 @@ let url = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : Astro.url.path
 url = url.replace(/\.html\/$/, '/');
 const baseURL = url.split('/').slice(0, -2).join('/') + '/';
 
-if (left_sidebar) {
+if (leftSidebar) {
     const siblings = md_files
         .filter((file) => file.split('/')[0] === section && section !== file)
         .map((child) => {
@@ -106,18 +106,18 @@ headings = headings.filter((h) => h.depth <= max_heading_depth);
 >
     <div class="row">
         {
-            left_sidebar && (
+            leftSidebar && (
                 <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left pt-3">
                     <SidebarNav items={sections} />
                 </div>
             )
         }
-        <div class:list={['col-12 pt-3 markdown-content', { 'col-md-9': !left_sidebar, 'col-md-8': left_sidebar }]}>
+        <div class:list={['col-12 pt-3 markdown-content', { 'col-md-9': !leftSidebar, 'col-md-8': leftSidebar }]}>
             <MarkdownWrapper client:load headings={headings}>
                 <Content />
             </MarkdownWrapper>
         </div>
-        <div class:list={['col-12 toc', { 'col-md-3': !left_sidebar, 'col-md-2': left_sidebar }]}>
+        <div class:list={['col-12 toc', { 'col-md-3': !leftSidebar, 'col-md-2': leftSidebar }]}>
             <SidebarToc headings={headings} client:idle><ExpandDetailsButton client:idle /></SidebarToc>
         </div>
     </div>
