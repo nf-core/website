@@ -5,7 +5,6 @@ import githubDarkDimmed from '/public/themes/github-dark-dimmed.json';
 import mdx from '@astrojs/mdx';
 import netlify from '@astrojs/netlify/functions';
 import partytown from '@astrojs/partytown';
-import prefetch from '@astrojs/prefetch';
 import sitemap from '@astrojs/sitemap';
 import svelte from '@astrojs/svelte';
 import yaml from '@rollup/plugin-yaml';
@@ -41,6 +40,7 @@ export default defineConfig({
     site: 'https://nf-co.re/',
     output: 'hybrid',
     adapter: netlify(),
+    prefetch: true,
     redirects: {
         [latestTollsURL]: 'https://oldsite.nf-co.re/tools/docs/latest/',
         ...latestPipelineReleases,
@@ -60,7 +60,6 @@ export default defineConfig({
             }
         }),
         sitemap(),
-        prefetch(),
         partytown({
             // Adds dataLayer.push as a forwarding-event.
             config: {
