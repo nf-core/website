@@ -16,7 +16,7 @@ Local event to be held at Instituto do Cérebro, UFRN.
 
 Contact:
 
-- [<i class="fab fa-slack"></i> João Victor Cavalcante](https://nfcore.slack.com/team/U044E439ABX)
+- [<i class="fab fa-slack"></i> João Vitor Cavalcante](https://nfcore.slack.com/team/U044E439ABX)
 - [<i class="fab fa-slack"></i> Marcel Ribeiro-Dantas](https://nfcore.slack.com/team/U03932BSX1V)
 
 ## Schedule (local time)
