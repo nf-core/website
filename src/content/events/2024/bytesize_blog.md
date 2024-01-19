@@ -19,4 +19,4 @@ It is our hope that these talks / videos will build an archive of training mater
 
 ## Bytesize: nf-core blog
 
-Since the 12th of January 2024, we have an official nf-core blog on our nf-core website. While it will be used by the core team and developers to update the community about ongoing project, it is also a great way for you to get active!. Matthias Hörtenhuber ([@mashehu](https://github.com/mashehu)) will introduce us to the vision for the brand new and shiny blog, which you can access [here](https://nf-co.re/blog)
+Since the 12th of January 2024, we have an official nf-core blog at [nf-co.re/blog](https://nf-co.re/blog). While it will be used by the core team and developers to update the community about ongoing project, it is also a great way for you to get active!. Matthias Hörtenhuber ([@mashehu](https://github.com/mashehu)) will introduce us to the vision for the brand new and shiny blog and how you can contribute to it.)
