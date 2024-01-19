@@ -24,7 +24,7 @@ import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import remarkDescription from 'astro-remark-description';
 import markdownIntegration from '@astropub/md';
-import icon from "astro-icon";
+import icon from 'astro-icon';
 
 const latestToolsRelease = await fetch('https://api.github.com/repos/nf-core/tools/releases/latest')
     .then((res) => res.json())
@@ -48,16 +48,24 @@ export default defineConfig({
     integrations: [
         svelte(),
         icon({
-            include:{
-            // only include a subset of icons
-            "file-icons":["nextflow"],
-            logos:["twitter","mastodon-icon","slack-icon","aws","microsoft-azure","github-actions", "youtube-icon"],
-            fa:["github"],
-            "fa-brands":["github"],
-            "line-md":["check-list-3-twotone"],
-            "mdi":["aws","slack","youtube"],
-            octicon:["link-external-16","table-16"],
-            }
+            include: {
+                // only include a subset of icons
+                'file-icons': ['nextflow'],
+                logos: [
+                    'twitter',
+                    'mastodon-icon',
+                    'slack-icon',
+                    'aws',
+                    'microsoft-azure',
+                    'github-actions',
+                    'youtube-icon',
+                ],
+                fa: ['github'],
+                'fa-brands': ['github'],
+                'line-md': ['check-list-3-twotone'],
+                mdi: ['aws', 'slack', 'youtube'],
+                octicon: ['link-external-16', 'table-16'],
+            },
         }),
         sitemap(),
         partytown({
@@ -91,10 +99,7 @@ export default defineConfig({
         },
     },
     image: {
-        domains: ['raw.githubusercontent.com', 'unsplash.com'],
-        service: {
-            entrypoint: 'astro/assets/services/sharp',
-        },
+        // domains: ['raw.githubusercontent.com', 'unsplash.com'],
     },
     markdown: {
         syntaxHighlight: false,
@@ -139,6 +144,13 @@ export default defineConfig({
                             // if the node is the first paragraph, return true
                             return i === firstParagraphIndex;
                         }
+                    },
+                    filter: (options, { path }) => {
+                        console.log(path);
+                        if (path.startsWith('/src/content/blog')) {
+                            return false; // Return falsey value to skip
+                        }
+                        return options;
                     },
                 },
             ],
@@ -189,7 +201,7 @@ export default defineConfig({
                     theme: {
                         dark: 'github-dark',
                         light: 'github-light',
-                    }
+                    },
                 },
             ],
             rehypeKatex,
