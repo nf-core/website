@@ -20,8 +20,8 @@ Contact:
 
 ## Schedule
 
-- 2024-03-18 - 0900-1700: TBC
-- 2024-03-19 - 0900-1700: TBC
-- 2024-03-20 - 0900-1700: TBC
+- 2024-03-18 - 0900-1700: CRG Training Center
+- 2024-03-19 - 0900-1700: CRG Training Center
+- 2024-03-20 - 0900-1700: CRG Training Center
 
 _Details to be confirmed_
