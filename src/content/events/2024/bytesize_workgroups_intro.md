@@ -6,7 +6,7 @@ start_date: '2024-02-20'
 start_time: '13:00+02:00'
 end_date: '2024-02-20'
 end_time: '13:00+02:00'
-location_url: https://kth-se.zoom.us/j/68390542812
+location_url: https://seqera-io.zoom.us/j/5968645264
 ---
 
 # nf-core/bytesize
