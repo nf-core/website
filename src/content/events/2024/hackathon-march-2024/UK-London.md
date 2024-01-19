@@ -5,7 +5,7 @@ type: hackathon
 start_date: '2024-03-18'
 start_time: '10:00+00:00'
 end_date: '2024-03-20'
-end_time: '17:00+02:00'
+end_time: '17:00+00:00'
 location_name: Cosyne Therapeutics
 address: Medius House, 2 Sheraton St, London W1F 8BH
 location_url: https://maps.app.goo.gl/G327eD8PEQefbHcs8
