@@ -68,3 +68,8 @@ test('nested event pages', async ({ page }) => {
 
     //
 });
+
+test('pipeline schema builder redirect', async ({ page }) => {
+    await page.goto('/pipeline_schema_builder');
+    await expect.soft(page).toHaveTitle('Parameter Schema');
+});
