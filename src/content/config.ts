@@ -18,7 +18,7 @@ const events = defineCollection({
         end_time: z.string().refine((s) => /^(\d{2}:\d{2})([+-]\d{2}:\d{2})$/.test(s), {
             message: 'end_time must be in the format HH:MM+|-HH:MM where the +/-HH:MM is the UTC offset',
         }),
-        start_announcement: z.string().optional(),
+        announcement_start: z.string().optional(),
         location_name: z.string().optional(),
         location_url: z.string().url().or(z.string().startsWith('#')).or(z.array(z.string().url())).optional(),
         location_latlng: z.array(z.number(), z.number()).optional(),

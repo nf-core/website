@@ -16,7 +16,7 @@
             end_time: string;
             start: Date;
             end: Date;
-            start_announcement: string;
+            announcement_start: string;
             duration: string;
             eventCountDown: string;
             location_url: string;
@@ -89,8 +89,8 @@
             .filter((event) => {
                 let time_window = 1 * 24 * 60 * 60 * 1000;
                 let event_start_unix = event.data.start.getTime();
-                if (event.data.start_announcement !== undefined) {
-                    event_start_unix = new Date(event.data.start_announcement).getTime();
+                if (event.data.announcement_start !== undefined) {
+                    event_start_unix = new Date(event.data.announcement_start).getTime();
                     time_window = 0;
                 }
                 const event_end_unix = event.data.end.getTime();
@@ -98,7 +98,7 @@
                 // increase time window to a week for events longer than 5 hours
                 if (
                     event_end_unix - event_start_unix > 5 * 60 * 60 * 1000 &&
-                    event.data.start_announcement === undefined
+                    event.data.announcement_start === undefined
                 ) {
                     time_window = 7 * 24 * 60 * 60 * 1000;
                 }
