@@ -4,11 +4,29 @@
     import ExportEventButton from '@components/event/ExportEventButton.svelte';
     import VideoButton from '@components/VideoButton.svelte';
     import { onMount } from 'svelte';
-    export let events = [];
+
+    export let events: {
+        data: {
+            title: string;
+            subtitle: string;
+            type: string;
+            start_date: string;
+            start_time: string;
+            end_date: string;
+            end_time: string;
+            start: Date;
+            end: Date;
+            start_announcement: string;
+            duration: string;
+            eventCountDown: string;
+            location_url: string;
+        };
+        slug: string;
+    }[] = [];
     export let event_time_category: string = '';
 
-    export let event_type_classes: {}[] = [{}];
-    export let event_type_icons: {}[] = [{}];
+    export let event_type_classes: {} = {};
+    export let event_type_icons: {} = {};
 
     let backgroundIcon = '';
 
@@ -94,7 +112,7 @@
                 }
             })
             .sort((a, b) => {
-                return a.data.start - b.data.start;
+                return new Date(a.data.start).getTime() - new Date(b.data.start).getTime();
             });
     } else if (event_time_category === 'ongoing') {
         backgroundIcon = 'fa-broadcast-tower';
@@ -103,7 +121,7 @@
                 return event.data.start < new Date() && new Date() < event.data.end;
             })
             .sort((a, b) => {
-                return new Date(b.data.start) - new Date(a.data.start);
+                return new Date(b.data.start).getTime() - new Date(a.data.start).getTime();
             });
 
         if (events.length > 0) {
