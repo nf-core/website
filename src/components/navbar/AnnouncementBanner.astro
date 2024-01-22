@@ -1,0 +1,57 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import type { Events } from 'leaflet';
+import { Collection } from 'node_modules/yaml/dist/nodes/Collection';
+
+const events: CollectionEntry<'events'>[] = await getCollection('events');
+let announcements = events
+    .filter((event) => event.data.announcement_text && event.data.announcement_start)
+    .map((event) => {
+        event.data.start = new Date(event.data.start_date + 'T' + event.data.start_time);
+        return {
+            title: event.data.title,
+            start: event.data.announcement_start,
+            end: event.data.announcement_end || event.data.start,
+            text: event.data.announcement_text,
+            slug: 'events/' + event.slug,
+        };
+    });
+
+let blogPosts: CollectionEntry<'blog'>[] = await getCollection('blog');
+blogPosts = blogPosts
+    .filter((post) => post.data.announcement_text && post.data.announcement_start && post.data.announcement_end)
+    .map((post) => {
+        return {
+            title: post.data.title,
+            start: post.data.announcement_start,
+            end: post.data.announcement_end,
+            text: post.data.announcement_text,
+            slug: 'blog/' + post.slug,
+        };
+    });
+announcements = announcements.concat(blogPosts);
+console.log(announcements);
+const now = new Date();
+const currentAnnouncements = announcements.filter((announcement) => {
+    return (announcement.start?.getTime() ?? 0) <= now.getTime() && (announcement.end?.getTime() ?? 0) >= now.getTime();
+});
+const sortedAnnouncements = currentAnnouncements.sort((a, b) => {
+    // sort by distance to now, shortest first
+    return Math.abs(now.getTime() - (a.start?.getTime() ?? 0)) - Math.abs(now.getTime() - (b.start?.getTime() ?? 0));
+});
+
+const nextAnnouncement = sortedAnnouncements[0];
+---
+
+{
+    nextAnnouncement && (
+        <div class="announcement d-flex justify-content-center text-bg-success">
+            <div class="p-2">
+                <a class="" href={nextAnnouncement.slug}>
+                    {nextAnnouncement.text}
+                </a>
+            </div>
+        </div>
+    )
+}
