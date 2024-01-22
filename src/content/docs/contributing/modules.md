@@ -1409,7 +1409,7 @@ platforms. The recommended procedure is, once the alternative is available on nf
 top of the module code saying this module is deprecated, and an `assert` in the code body to print a deprecation
 message like so:
 
-```groovy
+```groovy title="main.nf"
 /*
 WARNING: This module has been deprecated. Please use nf-core/modules/path/to/new/module
 
