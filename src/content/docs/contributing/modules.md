@@ -1425,6 +1425,9 @@ process OLD_MODULE {
 }
 ```
 
+The purpose of the `assert` is to introduce a mechanism which stops the pipeline and alerts the developer when
+an automatic update of the module/subworkflow is performed.
+
 ## Help
 
 For further information or help, don't hesitate to get in touch on [Slack `#modules` channel](https://nfcore.slack.com/channels/modules) (you can join with [this invite](https://nf-co.re/join/slack)).
