@@ -20,8 +20,8 @@ events = events.filter((event) => {
 });
 const currentEvents = events.filter((event) => {
     let time_window = 2 * 24 * 60 * 60 * 1000; // 1 day longer as the time_window in UpcomingEvents.svelte to be sure to have all events created during the daily static build
-    const event_start_unix = event.data.start_announcement
-        ? new Date(event.data.start_announcement).getTime()
+    const event_start_unix = event.data.announcement_start
+        ? new Date(event.data.announcement_start).getTime()
         : event.data.start.getTime();
     const event_end_unix = event.data.end.getTime();
 
