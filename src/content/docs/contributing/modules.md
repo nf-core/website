@@ -1401,6 +1401,30 @@ outdir               //    path: base directory used to publish pipeline results
 check_conda_channels // boolean: check conda channels
 ```
 
+## Deprecating a module
+
+Sometimes modules or subworkflows become outdated and need to be deprecated (available, but no longer recommended).
+These modules or subworkflows should not be deleted as they could be used in private repositories, or used on other
+platforms. The recommended procedure is, once the alternative is available on nf-core modules, add a comment to the
+top of the module code saying this module is deprecated, and an `assert`` in the code body to print a deprecation
+message like so:
+
+```nextflow
+/*
+WARNING: This module has been deprecated. Please use nf-core/modules/path/to/new/module
+
+Reason:
+Add why this module is no longer fit for purpose.
+*/
+
+process OLD_MODULE {
+  ...
+
+  script:
+  assert true: "This module has been deprecated. See code for the reason and an alternative."
+}
+```
+
 ## Help
 
 For further information or help, don't hesitate to get in touch on [Slack `#modules` channel](https://nfcore.slack.com/channels/modules) (you can join with [this invite](https://nf-co.re/join/slack)).
