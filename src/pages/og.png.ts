@@ -89,9 +89,7 @@ export const GET: APIRoute = async ({ params, request }) => {
                             border: 3pt solid #757575;">
                         ${args.category ? args.category : 'nf-co.re'}
                     </div>
-                    <div style="display: flex;flex-direction: row;align-items: center;justify-content: flex-start; margin-top:1rem">Written by:
-                        ${authors.map((author) => `<img  src="https://github.com/${author}.png" style="margin-left:0.75rem" width="50px" height="50px" />`).join('')}
-                    </div>
+                    ${authors.length > 0 ? `<div style="display: flex;flex-direction: row;align-items: center;justify-content: flex-start; margin-top:1rem">Written by:${authors.map((author) => `<img  src="https://github.com/${author}.png" style="margin-left:0.75rem" width="50px" height="50px" />`).join('')}</div>` : ''}
                 </div>
             </div>
     </div>`;

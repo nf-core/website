@@ -8,6 +8,10 @@ end_date: '2024-03-20'
 end_time: '17:00+02:00'
 location_name: Gather town, Slack, and local sites.
 import_typeform: true
+announcement:
+  text: '✏️ Register your local site for the March hackathon!'
+  start: 2024-01-22T00:00:00+01:00
+  end: 2024-03-18T00:00:00+01:00
 ---
 
 # Welcome
