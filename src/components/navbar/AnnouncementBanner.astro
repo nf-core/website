@@ -1,37 +1,44 @@
 ---
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
-import type { Events } from 'leaflet';
-import { Collection } from 'node_modules/yaml/dist/nodes/Collection';
 
 const events: CollectionEntry<'events'>[] = await getCollection('events');
-let announcements = events
-    .filter((event) => event.data.announcement_text && event.data.announcement_start)
-    .map((event) => {
+type announcement = {
+    title: string;
+    start: Date;
+    end: Date;
+    text: string;
+    slug: string;
+};
+const eventAnnouncements: announcement[] = events.reduce((acc, event) => {
+    if (event.data.announcement?.text && event.data.announcement.start) {
         event.data.start = new Date(event.data.start_date + 'T' + event.data.start_time);
-        return {
+        acc.push({
             title: event.data.title,
-            start: event.data.announcement_start,
-            end: event.data.announcement_end || event.data.start,
-            text: event.data.announcement_text,
+            start: event.data.announcement.start,
+            end: event.data.announcement.end || event.data.start,
+            text: event.data.announcement.text,
             slug: 'events/' + event.slug,
-        };
-    });
+        });
+    }
+    return acc;
+}, [] as announcement[]);
 
 let blogPosts: CollectionEntry<'blog'>[] = await getCollection('blog');
-blogPosts = blogPosts
-    .filter((post) => post.data.announcement_text && post.data.announcement_start && post.data.announcement_end)
-    .map((post) => {
-        return {
+const blogPostAnnouncements: announcement[] = blogPosts.reduce((acc, post) => {
+    if (post.data.announcement?.text && post.data.announcement?.start && post.data.announcement?.end) {
+        acc.push({
             title: post.data.title,
-            start: post.data.announcement_start,
-            end: post.data.announcement_end,
-            text: post.data.announcement_text,
-            slug: 'blog/' + post.slug,
-        };
-    });
-announcements = announcements.concat(blogPosts);
-console.log(announcements);
+            start: post.data.announcement.start,
+            end: post.data.announcement.end,
+            text: post.data.announcement.text,
+            slug: `blog/${post.slug}`,
+        });
+    }
+    return acc;
+}, [] as announcement[]);
+
+const announcements = eventAnnouncements.concat(blogPostAnnouncements);
 const now = new Date();
 const currentAnnouncements = announcements.filter((announcement) => {
     return (announcement.start?.getTime() ?? 0) <= now.getTime() && (announcement.end?.getTime() ?? 0) >= now.getTime();
@@ -47,7 +54,7 @@ const nextAnnouncement = sortedAnnouncements[0];
 {
     nextAnnouncement && (
         <div class="announcement d-flex justify-content-center text-bg-success">
-            <div class="p-2">
+            <div class="p-2 text-center">
                 <a class="" href={nextAnnouncement.slug}>
                     {nextAnnouncement.text}
                 </a>

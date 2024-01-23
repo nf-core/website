@@ -2,7 +2,7 @@
 title: Hackathon - October 2022 (Barcelona)
 subtitle: A hybrid hackathon held in Barcelona and online
 type: hackathon
-announcement_start: 2022-08-02T12:00:00+02:00
+announcement.start: 2022-08-02T12:00:00+02:00
 start_date: '2022-10-10'
 start_time: '11:00+02:00'
 end_date: '2022-10-12'

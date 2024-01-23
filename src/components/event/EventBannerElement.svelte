@@ -6,6 +6,10 @@
     import { onMount } from 'svelte';
 
     export let events: {
+        id: string;
+        slug: string;
+        body: string;
+        collections: string;
         data: {
             title: string;
             subtitle: string;
@@ -16,12 +20,13 @@
             end_time: string;
             start: Date;
             end: Date;
-            announcement_start: string;
+            announcement?: {
+                start: string;
+            };
             duration: string;
             eventCountDown: string;
             location_url: string;
         };
-        slug: string;
     }[] = [];
     export let event_time_category: string = '';
 
@@ -81,7 +86,7 @@
             return event;
         })
         .sort((a, b) => {
-            return new Date(a.data.start) - new Date(b.data.start);
+            return new Date(a.data.start).getTime() - new Date(b.data.start).getTime();
         });
     if (event_time_category === 'upcoming') {
         backgroundIcon = 'fa-alarm-clock';
@@ -89,8 +94,8 @@
             .filter((event) => {
                 let time_window = 1 * 24 * 60 * 60 * 1000;
                 let event_start_unix = event.data.start.getTime();
-                if (event.data.announcement_start !== undefined) {
-                    event_start_unix = new Date(event.data.announcement_start).getTime();
+                if (event.data.announcement?.start !== undefined) {
+                    event_start_unix = new Date(event.data.announcement.start).getTime();
                     time_window = 0;
                 }
                 const event_end_unix = event.data.end.getTime();
@@ -98,7 +103,7 @@
                 // increase time window to a week for events longer than 5 hours
                 if (
                     event_end_unix - event_start_unix > 5 * 60 * 60 * 1000 &&
-                    event.data.announcement_start === undefined
+                    event.data.announcement?.start === undefined
                 ) {
                     time_window = 7 * 24 * 60 * 60 * 1000;
                 }

@@ -19,9 +19,13 @@ const events = defineCollection({
             end_time: z.string().refine((s) => /^(\d{2}:\d{2})([+-]\d{2}:\d{2})$/.test(s), {
                 message: 'end_time must be in the format HH:MM+|-HH:MM where the +/-HH:MM is the UTC offset',
             }),
-            announcement_start: z.date().optional(),
-            announcement_end: z.date().optional(),
-            announcement_text: z.string().optional(),
+            announcement: z
+                .object({
+                    text: z.string().optional(),
+                    start: z.date().optional(),
+                    end: z.date().optional(),
+                })
+                .optional(),
             location_name: z.string().optional(),
             location_url: z.string().url().or(z.string().startsWith('#')).or(z.array(z.string().url())).optional(),
             location_latlng: z.array(z.number(), z.number()).optional(),
@@ -45,15 +49,15 @@ const events = defineCollection({
                 throw new Error(`start_date ${data.start} must be before end_date ${data.end}`);
             }
 
-            // check that announcement_start is before announcement_end
-            if (data.announcement_start && data.announcement_end) {
-                if (data.announcement_start.getTime() > data.announcement_end.getTime()) {
-                    throw new Error('announcement_start must be before announcement_end');
+            // check that announcement.start is before announcement.end
+            if (data.announcement?.start && data.announcement.end) {
+                if (data.announcement.start.getTime() > data.announcement.end.getTime()) {
+                    throw new Error('announcement.start must be before announcement.end');
                 }
             }
-            // check that announcement_start is set if announcement_text is
-            if (data.announcement_text && !data.announcement_start && !data.announcement_end) {
-                throw new Error('announcement_start and announcement_end must be set if announcement_text is');
+            // check that announcement.start is set if announcement.text is
+            if (data.announcement?.text && !data.announcement.start && !data.announcement.end) {
+                throw new Error('announcement.start and announcement.end must be set if announcement.text is');
             }
             // Return true if the validation should pass
             return true;
@@ -87,24 +91,28 @@ const blog = defineCollection({
             label: z.array(z.string()),
             pubDate: z.date(),
             authors: z.array(z.string()),
-            announcement_start: z.date().optional(),
-            announcement_end: z.date().optional(),
-            announcement_text: z.string().optional(),
+            announcement: z
+                .object({
+                    text: z.string().optional(),
+                    start: z.date().optional(),
+                    end: z.date().optional(),
+                })
+                .optional(),
         })
         .refine((data) => {
             // Check if headerImage is present but headerImageAlt is not
             if (data.headerImage && !data.headerImageAlt) {
                 throw new Error('Please provide alt text for your `headerImage` in `headerImageAlt`.');
             }
-            // check that announcement_start is before announcement_end
-            if (data.announcement_start && data.announcement_end) {
-                if (data.announcement_start.getTime() > data.announcement_end.getTime()) {
-                    throw new Error('`announcement_start` must be before `announcement_end`');
+            // check that announcement.start is before announcement.end
+            if (data.announcement?.start && data.announcement.end) {
+                if (data.announcement.start.getTime() > data.announcement.end.getTime()) {
+                    throw new Error('`announcement.start` must be before `announcement.end`');
                 }
             }
-            // check that announcement_start is set if announcement_text is
-            if (data.announcement_text && !data.announcement_start && !data.announcement_end) {
-                throw new Error('`announcement_start` and `announcement_end` must be set if `announcement_text` is');
+            // check that announcement.start is set if announcement.text is
+            if (data.announcement?.text && !data.announcement.start && !data.announcement.end) {
+                throw new Error('`announcement.start` and `announcement.end` must be set if `announcement.text` is');
             }
             // Return true if the validation should pass
             return true;
