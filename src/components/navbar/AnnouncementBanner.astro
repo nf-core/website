@@ -12,7 +12,7 @@ type announcement = {
 };
 const eventAnnouncements: announcement[] = events.reduce((acc, event) => {
     if (event.data.announcement?.text && event.data.announcement.start) {
-        event.data.start = new Date(event.data.start_date + 'T' + event.data.start_time);
+        event.data.start = new Date(event.data.startDate + 'T' + event.data.startTime);
         acc.push({
             title: event.data.title,
             start: event.data.announcement.start,

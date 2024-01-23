@@ -2,12 +2,12 @@
 title: 'Bytesize: The Nextflow and nf-core community survey'
 subtitle: Phil Ewels - Seqera Labs
 type: talk
-start_date: '2022-05-24'
-start_time: '13:00+02:00'
-end_date: '2022-05-24'
-end_time: '13:30+02:00'
+startDate: '2022-05-24'
+startTime: '13:00+02:00'
+endDate: '2022-05-24'
+endTime: '13:30+02:00'
 youtube_embed: https://youtu.be/DYdPNPVa4wc
-location_url:
+locationURL:
   - https://youtu.be/DYdPNPVa4wc
   - https://doi.org/10.6084/m9.figshare.19923410.v1
 ---

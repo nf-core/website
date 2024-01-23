@@ -2,13 +2,13 @@
 title: 'Bytesize: nf-core/crisprseq'
 subtitle: Júlia Mir (QBiC, Tübingen University) and Marta Sanvincente (Pompeu Fabra University, Barcelona)
 type: talk
-start_date: '2023-02-14'
-start_time: '13:00+01:00'
-end_date: '2023-02-14'
-end_time: '13:30+01:00'
-embed_at: 'crisprseq'
+startDate: '2023-02-14'
+startTime: '13:00+01:00'
+endDate: '2023-02-14'
+endTime: '13:30+01:00'
+embedAt: 'crisprseq'
 youtube_embed: https://www.youtube.com/watch?v=x_eFQW0nNvo
-location_url:
+locationURL:
   - https://doi.org/10.6084/m9.figshare.22100045.v1
   - https://www.youtube.com/watch?v=x_eFQW0nNvo
 ---

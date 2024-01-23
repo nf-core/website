@@ -2,12 +2,12 @@
 title: 'Bytesize 5: DSL2 module development'
 subtitle: Harshil Patel - Francis Crick Institiute, UK
 type: talk
-start_date: '2021-03-02'
-start_time: '13:00+01:00'
-end_date: '2021-03-02'
-end_time: '13:30+01:00'
+startDate: '2021-03-02'
+startTime: '13:00+01:00'
+endDate: '2021-03-02'
+endTime: '13:30+01:00'
 youtube_embed: https://youtu.be/ggGGhTMgyHI
-location_url:
+locationURL:
   - https://doi.org/10.6084/m9.figshare.14160116.v1
   - https://youtu.be/ggGGhTMgyHI
   - https://www.bilibili.com/video/BV1aK4y1D7z3

@@ -2,11 +2,11 @@
 title: 'Bytesize: nf-core/differentialabundance'
 subtitle: Jonathan Manning, Seqera
 type: talk
-start_date: '2024-02-06'
-start_time: '13:00+01:00'
-end_date: '2024-02-06'
-end_time: '13:30+01:00'
-location_url: https://kth-se.zoom.us/j/68390542812
+startDate: '2024-02-06'
+startTime: '13:00+01:00'
+endDate: '2024-02-06'
+endTime: '13:30+01:00'
+locationURL: https://kth-se.zoom.us/j/68390542812
 ---
 
 # nf-core/bytesize

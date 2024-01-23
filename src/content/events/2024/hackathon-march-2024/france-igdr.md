@@ -2,14 +2,14 @@
 title: Hackathon - March 2024 (Rennes)
 subtitle: Local node of the nf-core hackathon at the Institute Genetics & Development of Rennes.
 type: hackathon
-start_date: '2024-03-18'
-start_time: '10:00+02:00'
-end_date: '2024-03-20'
-end_time: '17:00+02:00'
-location_name: Institute Genetics & Development of Rennes
+startDate: '2024-03-18'
+startTime: '10:00+02:00'
+endDate: '2024-03-20'
+endTime: '17:00+02:00'
+locationName: Institute Genetics & Development of Rennes
 address: 2 avenue du Professeur Léon Bernard, CS 34317 / 35043 Rennes Cedex, France
-location_url: https://igdr.univ-rennes1.fr/
-location_latlng: [48.117546, -1.696719]
+locationURL: https://igdr.univ-rennes1.fr/
+locationLatLng: [48.117546, -1.696719]
 ---
 
 Local event to be held at the The Institute Genetics & Development of Rennes.

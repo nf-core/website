@@ -2,14 +2,14 @@
 title: Hackathon - March 2024 (Krakow)
 subtitle: Local node of the nf-core hackathon at Ardigen, Kraków.
 type: hackathon
-start_date: '2024-03-18'
-start_time: '10:00+02:00'
-end_date: '2024-03-20'
-end_time: '17:00+02:00'
-location_name: Ardigen
+startDate: '2024-03-18'
+startTime: '10:00+02:00'
+endDate: '2024-03-20'
+endTime: '17:00+02:00'
+locationName: Ardigen
 address: Podole, 76, 30-394, Kraków, Poland
-location_url: https://ardigen.com/
-location_latlng: [50.02159965915289, 19.89199888650787]
+locationURL: https://ardigen.com/
+locationLatLng: [50.02159965915289, 19.89199888650787]
 ---
 
 Local event to be held at Ardigen, Kraków.

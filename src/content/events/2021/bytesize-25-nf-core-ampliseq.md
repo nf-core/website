@@ -2,13 +2,13 @@
 title: 'Bytesize 25: nf-core/ampliseq'
 subtitle: Daniel Straub - QBic, University of Tuebingen, Germany
 type: talk
-start_date: '2021-10-26'
-start_time: '13:00+02:00'
-end_date: '2021-10-26'
-end_time: '13:30+02:00'
-embed_at: 'ampliseq'
+startDate: '2021-10-26'
+startTime: '13:00+02:00'
+endDate: '2021-10-26'
+endTime: '13:30+02:00'
+embedAt: 'ampliseq'
 youtube_embed: https://youtu.be/a0VOEeAvETs
-location_url:
+locationURL:
   - https://youtu.be/a0VOEeAvETs
   - https://www.bilibili.com/video/BV1B44y1e7MM
   - https://doi.org/10.6084/m9.figshare.16871008.v1

@@ -2,12 +2,12 @@
 title: 'Bytesize 3: Pipeline code structure walkthrough'
 subtitle: Gisela Gabernet - QBiC Tübingen, Germany
 type: talk
-start_date: '2021-02-16'
-start_time: '13:00+01:00'
-end_date: '2021-02-16'
-end_time: '13:30+01:00'
+startDate: '2021-02-16'
+startTime: '13:00+01:00'
+endDate: '2021-02-16'
+endTime: '13:30+01:00'
 youtube_embed: https://youtu.be/FFTNVbdD5pQ
-location_url:
+locationURL:
   - https://doi.org/10.6084/m9.figshare.14160677.v1
   - https://youtu.be/FFTNVbdD5pQ
   - https://www.bilibili.com/video/BV1gp4y1h7G8

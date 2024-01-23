@@ -2,11 +2,11 @@
 title: Hackathon - October 2021
 subtitle: A virtual online hackathon to develop nf-core together
 type: hackathon
-start_date: '2021-10-27'
-start_time: '10:00+02:00'
-end_date: '2021-10-29'
-end_time: '18:00+02:00'
-location_name: Gather town and Slack.
+startDate: '2021-10-27'
+startTime: '10:00+02:00'
+endDate: '2021-10-29'
+endTime: '18:00+02:00'
+locationName: Gather town and Slack.
 ---
 
 Our October hackathon is one week away! Registration is now closed, but preliminary information should be in your inbox if you've signed up. Final details will be coming soon.

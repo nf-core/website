@@ -14,10 +14,10 @@
             title: string;
             subtitle: string;
             type: string;
-            start_date: string;
-            start_time: string;
-            end_date: string;
-            end_time: string;
+            startDate: string;
+            startTime: string;
+            endDate: string;
+            endTime: string;
             start: Date;
             end: Date;
             announcement?: {
@@ -25,7 +25,7 @@
             };
             duration: string;
             eventCountDown: string;
-            location_url: string;
+            locationURL: string;
         };
     }[] = [];
     export let event_time_category: string = '';
@@ -36,10 +36,10 @@
     let backgroundIcon = '';
 
     const event_duration = (event) => {
-        event.data.start = new Date(event.data.start_date + 'T' + event.data.start_time);
-        event.data.end = new Date(event.data.end_date + 'T' + event.data.end_time);
+        event.data.start = new Date(event.data.startDate + 'T' + event.data.startTime);
+        event.data.end = new Date(event.data.endDate + 'T' + event.data.endTime);
         event.data.eventCountDown = formatDistanceToNow(event.data.start);
-        if (event.data.start_date === event.data.end_date) {
+        if (event.data.startDate === event.data.endDate) {
             event.data.duration =
                 new Date(event.data.start).toLocaleString('en-US', {
                     year: 'numeric',
@@ -216,8 +216,8 @@
                                                 href={'events/' + event.slug + '/'}
                                                 class="btn btn-outline-success text-nowrap">Event Details</a
                                             >
-                                            {#if event.data.location_url}
-                                                <VideoButton urls={event.data.location_url} />
+                                            {#if event.data.locationURL}
+                                                <VideoButton urls={event.data.locationURL} />
                                             {/if}
                                         </div>
                                     </div>
@@ -259,8 +259,8 @@
                                 {#if event_time_category === 'upcoming'}
                                     <ExportEventButton frontmatter={event.data} />
                                 {/if}
-                                {#if event_time_category === 'ongoing' && event.data.location_url}
-                                    <VideoButton urls={event.data.location_url} />
+                                {#if event_time_category === 'ongoing' && event.data.locationURL}
+                                    <VideoButton urls={event.data.locationURL} />
                                 {/if}
                             </div>
                         </div>
