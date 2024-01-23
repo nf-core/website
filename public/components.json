@@ -3841,6 +3841,38 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -16442,7 +16474,7 @@
         },
         {
           "name": "pixelator",
-          "version": "1.0.2"
+          "version": "1.0.3"
         },
         {
           "name": "rnadnavar",
@@ -16818,7 +16850,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.5.0"
+          "version": "2.5.1"
         }
       ]
     },
@@ -16951,7 +16983,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.5.0"
+          "version": "2.5.1"
         }
       ]
     },
@@ -17026,7 +17058,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.5.0"
+          "version": "2.5.1"
         }
       ]
     },
@@ -17138,7 +17170,9 @@
               "homepage": "https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/what-is-cell-ranger",
               "documentation": "https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/using/tutorial_cp",
               "tool_dev_url": "https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/using/tutorial_cp",
-              "licence": "10X Genomics EULA"
+              "licence": [
+                "10X Genomics EULA"
+              ]
             }
           }
         ],
@@ -17150,14 +17184,133 @@
             }
           },
           {
-            "csv": {
+            "gex_fastqs": {
               "type": "file",
-              "description": "Cell Ranger config file, in modified CSV format",
+              "description": "FASTQ files for gene expression analysis",
+              "pattern": "*.fastq.gz"
+            }
+          },
+          {
+            "vdj_fastqs": {
+              "type": "file",
+              "description": "FASTQ files for V(D)J immunoprofiling analysis",
+              "pattern": "*.fastq.gz"
+            }
+          },
+          {
+            "ab_fastqs": {
+              "type": "file",
+              "description": "FASTQ files for antibody analysis",
+              "pattern": "*.fastq.gz"
+            }
+          },
+          {
+            "beam_fastqs": {
+              "type": "file",
+              "description": "FASTQ files for Barcode-Enabled Antigen Mapping (antigen analysis)",
+              "pattern": "*.fastq.gz"
+            }
+          },
+          {
+            "cmo_fastqs": {
+              "type": "file",
+              "description": "FASTQ files for cell multiplexing data",
+              "pattern": "*.fastq.gz"
+            }
+          },
+          {
+            "gex_reference": {
+              "type": "directory",
+              "description": "Folder containing Cellranger gene expression reference. Can also be a gzipped tarball",
+              "pattern": "*.tar.gz"
+            }
+          },
+          {
+            "gex_frna_probeset": {
+              "type": "file",
+              "description": "Fixed RNA profiling information containing custom probes in CSV format",
+              "pattern": "*.csv"
+            }
+          },
+          {
+            "gex_targetpanel": {
+              "type": "file",
+              "description": "Declaration of the target panel for Targeted Gene Expression analysis",
+              "pattern": "*.csv"
+            }
+          },
+          {
+            "vdj_reference": {
+              "type": "directory",
+              "description": "Folder containing Cellranger V(D)J reference. Can also be a gzipped tarball",
+              "pattern": "*.tar.gz"
+            }
+          },
+          {
+            "vdj_primer_index": {
+              "type": "file",
+              "description": "List of custom V(D)J inner enrichment primers",
+              "pattern": "*.csv"
+            }
+          },
+          {
+            "fb_reference": {
+              "type": "file",
+              "description": "The Feature Barcodes used for reference in Feature Barcoding Analysis",
+              "pattern": "*.csv"
+            }
+          },
+          {
+            "beam_antigen_panel": {
+              "type": "file",
+              "description": "The BEAM manifest in Feature Barcode CSV format",
+              "pattern": "*.csv"
+            }
+          },
+          {
+            "beam_control_panel": {
+              "type": "file",
+              "description": "The BEAM antigens set to control status, with corresponding MHC alleles, in Feature Barcode CSV format",
+              "pattern": "*.csv"
+            }
+          },
+          {
+            "cmo_reference": {
+              "type": "file",
+              "description": "Path to a custom Cell Multiplexing CSV reference IDs, or the `cmo-set` option in Cellranger",
+              "pattern": "*.csv"
+            }
+          },
+          {
+            "cmo_barcodes": {
+              "type": "file",
+              "description": "A CSV file appended to the Cellranger multi config linking samples to CMO IDs",
+              "pattern": "*.csv"
+            }
+          },
+          {
+            "cmo_barcode_assignment": {
+              "type": "file",
+              "description": "A CSV file that specifies the barcode-sample assignment in Cell Multiplexing analysis",
+              "pattern": "*.csv"
+            }
+          },
+          {
+            "frna_sampleinfo": {
+              "type": "file",
+              "description": "Sample information for fixed RNA analysis",
               "pattern": "*.csv"
             }
           }
         ],
         "output": [
+          {
+            "config": {
+              "type": "file",
+              "description": "The resolved Cellranger multi config used for analysis",
+              "pattern": "cellranger_multi_config.csv"
+            }
+          },
           {
             "outs": {
               "type": "file",
@@ -17322,7 +17475,13 @@
           "@Emiller88",
           "@heylf"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "scrnaseq",
+          "version": "2.5.1"
+        }
+      ]
     },
     {
       "name": "cellrangerarc_mkfastq",
@@ -17446,7 +17605,13 @@
           "@Emiller88",
           "@heylf"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "scrnaseq",
+          "version": "2.5.1"
+        }
+      ]
     },
     {
       "name": "cellrangerarc_mkref",
@@ -17529,7 +17694,13 @@
           "@ggabernet",
           "@heylf"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "scrnaseq",
+          "version": "2.5.1"
+        }
+      ]
     },
     {
       "name": "cellrangeratac_count",
@@ -24106,7 +24277,7 @@
         },
         {
           "name": "pixelator",
-          "version": "1.0.2"
+          "version": "1.0.3"
         },
         {
           "name": "proteinfold",
@@ -24166,7 +24337,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.5.0"
+          "version": "2.5.1"
         },
         {
           "name": "smrnaseq",
@@ -28415,7 +28586,9 @@
               "documentation": "https://github.com/eggnogdb/eggnog-mapper/wiki",
               "tool_dev_url": "https://github.com/eggnogdb/eggnog-mapper",
               "doi": "10.1093/molbev/msab293",
-              "licence": "['AGPL v3']"
+              "licence": [
+                "AGPL v3"
+              ]
             }
           }
         ],
@@ -28470,7 +28643,7 @@
             }
           },
           {
-            "seed_orthologs": {
+            "orthologs": {
               "type": "file",
               "description": "TSV with the results from parsing the hits, linking queries with seed orthologs (with commented metadata)",
               "pattern": "*.emapper.seed_orthologs"
@@ -32243,7 +32416,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.5.0"
+          "version": "2.5.1"
         },
         {
           "name": "smrnaseq",
@@ -36734,6 +36907,38 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -37459,6 +37664,38 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -41876,6 +42113,38 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -48145,7 +48414,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.5.0"
+          "version": "2.5.1"
         }
       ]
     },
@@ -52005,7 +52274,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.5.0"
+          "version": "2.5.1"
         },
         {
           "name": "taxprofiler",
@@ -58336,7 +58605,7 @@
           },
           {
             "db": {
-              "type": "files",
+              "type": "directory",
               "description": "List containing the database and nodes files for Kaiju\ne.g. [ 'database.fmi', 'nodes.dmp' ]\n"
             }
           }
@@ -58468,7 +58737,8 @@
         "description": "write your description here",
         "keywords": [
           "classify",
-          "metagenomics"
+          "metagenomics",
+          "taxonomic profiling"
         ],
         "tools": [
           {
@@ -59021,7 +59291,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.5.0"
+          "version": "2.5.1"
         }
       ]
     },
@@ -59136,7 +59406,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.5.0"
+          "version": "2.5.1"
         }
       ]
     },
@@ -62493,6 +62763,99 @@
         ],
         "maintainers": [
           "@nevinwu"
+        ]
+      }
+    },
+    {
+      "name": "ltrfinder",
+      "path": "modules/nf-core/ltrfinder/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "ltrfinder",
+        "description": "Finds full-length LTR retrotranspsons in genome sequences using the\nparallel version of LTR_Finder\n",
+        "keywords": [
+          "genomics",
+          "annotation",
+          "parallel",
+          "repeat",
+          "long terminal retrotransposon",
+          "retrotransposon"
+        ],
+        "tools": [
+          {
+            "LTR_FINDER_parallel": {
+              "description": "A Perl wrapper for LTR_FINDER",
+              "homepage": "https://github.com/oushujun/LTR_FINDER_parallel",
+              "documentation": "https://github.com/oushujun/LTR_FINDER_parallel",
+              "tool_dev_url": "https://github.com/oushujun/LTR_FINDER_parallel",
+              "doi": "10.1186/s13100-019-0193-0",
+              "licence": [
+                "MIT"
+              ]
+            }
+          },
+          {
+            "LTR_Finder": {
+              "description": "An efficient program for finding full-length LTR retrotranspsons in genome sequences",
+              "homepage": "https://github.com/xzhub/LTR_Finder",
+              "documentation": "https://github.com/xzhub/LTR_Finder",
+              "tool_dev_url": "https://github.com/xzhub/LTR_Finder",
+              "doi": "10.1093/nar/gkm286",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Genome sequences in fasta format",
+              "pattern": "*.{fsa,fa,fasta}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "scn": {
+              "type": "file",
+              "description": "Annotation in LTRharvest or LTR_FINDER format",
+              "pattern": "*.scn"
+            }
+          },
+          {
+            "gff": {
+              "type": "file",
+              "description": "Annotation in gff3 format",
+              "pattern": "*.gff3"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@GallVp"
+        ],
+        "maintainers": [
+          "@GallVp"
         ]
       }
     },
@@ -71326,7 +71689,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.5.0"
+          "version": "2.5.1"
         },
         {
           "name": "smrnaseq",
@@ -74191,6 +74554,231 @@
       }
     },
     {
+      "name": "oatk",
+      "path": "modules/nf-core/oatk/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "oatk",
+        "description": "An nf-core module for the OATK",
+        "keywords": [
+          "organelle",
+          "mitochondrion",
+          "plastid",
+          "PacBio",
+          "HiFi",
+          "assembly"
+        ],
+        "tools": [
+          {
+            "oatk": {
+              "description": "An organelle genome assembly toolkit",
+              "homepage": "https://github.com/c-zhou/oatk",
+              "documentation": "https://github.com/c-zhou/oatk",
+              "tool_dev_url": "https://github.com/c-zhou/oatk",
+              "doi": "10.5281/zenodo.10400173",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'Cladonia_norvegica' ]\n"
+            }
+          },
+          {
+            "reads": {
+              "type": "file",
+              "description": "HiFi reads in FASTA format",
+              "pattern": "*.{fasta,fasta.gz,fa,fa.gz}"
+            }
+          },
+          {
+            "mito_hmm": {
+              "type": "file",
+              "description": "mitochondria gene annotation HMM profile database",
+              "pattern": "*.{fa,fam}"
+            }
+          },
+          {
+            "mito_hmm_h3f": {
+              "type": "file",
+              "description": "mitochondria gene annotation HMM profile binary auxfile",
+              "pattern": "*.{h3f}"
+            }
+          },
+          {
+            "mito_hmm_h3i": {
+              "type": "file",
+              "description": "mitochondria gene annotation HMM profile binary auxfile",
+              "pattern": "*.{h3i}"
+            }
+          },
+          {
+            "mito_hmm_h3m": {
+              "type": "file",
+              "description": "mitochondria gene annotation HMM profile binary auxfile",
+              "pattern": "*.{h3m}"
+            }
+          },
+          {
+            "mito_hmm_h3p": {
+              "type": "file",
+              "description": "mitochondria gene annotation HMM profile binary auxfile",
+              "pattern": "*.{h3p}"
+            }
+          },
+          {
+            "pltd_hmm": {
+              "type": "file",
+              "description": "plastid gene annotation HMM profile database",
+              "pattern": "*.{fa,fam}"
+            }
+          },
+          {
+            "pltd_hmm_h3f": {
+              "type": "file",
+              "description": "plastid gene annotation HMM profile binary auxfile",
+              "pattern": "*.{h3f}"
+            }
+          },
+          {
+            "pltd_hmm_h3i": {
+              "type": "file",
+              "description": "plastid gene annotation HMM profile binary auxfile",
+              "pattern": "*.{h3i}"
+            }
+          },
+          {
+            "pltd_hmm_h3m": {
+              "type": "file",
+              "description": "plastid gene annotation HMM profile binary auxfile",
+              "pattern": "*.{h3m}"
+            }
+          },
+          {
+            "pltd_hmm_h3p": {
+              "type": "file",
+              "description": "plastid gene annotation HMM profile binary auxfile",
+              "pattern": "*.{h3p}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "mito_fasta": {
+              "type": "file",
+              "description": "the structure-solved MT contigs",
+              "pattern": "*mito.ctg.fasta"
+            }
+          },
+          {
+            "pltd_fasta": {
+              "type": "file",
+              "description": "the structure-solved PT contigs",
+              "pattern": "*pltd.ctg.fasta"
+            }
+          },
+          {
+            "mito_bed": {
+              "type": "file",
+              "description": "the gene annotation for the MT sequences",
+              "pattern": "*mito.ctg.bed"
+            }
+          },
+          {
+            "pltd_bed": {
+              "type": "file",
+              "description": "the gene annotation for the PT sequences",
+              "pattern": "*pltd.ctg.bed"
+            }
+          },
+          {
+            "mito_gfa": {
+              "type": "file",
+              "description": "the subgraph for the MT genome",
+              "pattern": "*mito.gfa"
+            }
+          },
+          {
+            "pltd_gfa": {
+              "type": "file",
+              "description": "the subgraph for the PT genome",
+              "pattern": "*pltd.gfa"
+            }
+          },
+          {
+            "annot_mito_txt": {
+              "type": "file",
+              "description": "the MT gene annotation file over all assembled sequences",
+              "pattern": "*annot_mito.txt"
+            }
+          },
+          {
+            "annot_pltd_txt": {
+              "type": "file",
+              "description": "the PT gene annotation file over all assembled sequences",
+              "pattern": "*annot_pltd.txt"
+            }
+          },
+          {
+            "clean_gfa": {
+              "type": "file",
+              "description": "the GFA file for the clean genome assembly",
+              "pattern": "*utg.clean.gfa"
+            }
+          },
+          {
+            "final_gfa": {
+              "type": "file",
+              "description": "the GFA file for the final genome assembly",
+              "pattern": "*utg.final.gfa"
+            }
+          },
+          {
+            "initial_gfa": {
+              "type": "file",
+              "description": "the GFA file for the initial genome assembly",
+              "pattern": "*utg.gfa"
+            }
+          },
+          {
+            "multiplex_gfa": {
+              "type": "file",
+              "description": "the mutliplexed GFA file",
+              "pattern": "*utg.multiplex.gfa"
+            }
+          },
+          {
+            "unzip_gfa": {
+              "type": "file",
+              "description": "the unzipped GFA file",
+              "pattern": "*utg.unzip.gfa"
+            }
+          }
+        ],
+        "authors": [
+          "@ksenia-krasheninnikova"
+        ]
+      }
+    },
+    {
       "name": "odgi_build",
       "path": "modules/nf-core/odgi/build/meta.yml",
       "type": "module",
@@ -76709,6 +77297,87 @@
         ],
         "maintainers": [
           "@bsiranosian"
+        ]
+      }
+    },
+    {
+      "name": "parabricks_dbsnp",
+      "path": "modules/nf-core/parabricks/dbsnp/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "parabricks_dbsnp",
+        "description": "NVIDIA Clara Parabricks GPU-accelerated variant calls annotation based on dbSNP database",
+        "keywords": [
+          "annotation",
+          "dbsnp",
+          "vcf",
+          "germline"
+        ],
+        "tools": [
+          {
+            "parabricks": {
+              "description": "NVIDIA Clara Parabricks GPU-accelerated genomics tools",
+              "homepage": "https://www.nvidia.com/en-us/clara/genomics/",
+              "documentation": "https://docs.nvidia.com/clara/parabricks/4.2.0/index.html",
+              "licence": [
+                "custom"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "vcf_file": {
+              "type": "file",
+              "description": "VCF file undergoing annotation.",
+              "pattern": "*.vcf"
+            }
+          },
+          {
+            "dbsnp_file": {
+              "type": "file",
+              "description": "dbSNP file required for annotation.",
+              "pattern": "*.vcf.gz"
+            }
+          },
+          {
+            "tabix_file": {
+              "type": "file",
+              "description": "dbSNP file index.",
+              "pattern": "*.vcf.gz.tbi"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "ann_vcf": {
+              "type": "file",
+              "description": "Annotated VCF file",
+              "pattern": "*.vcf"
+            }
+          }
+        ],
+        "authors": [
+          "@Furentsu"
         ]
       }
     },
@@ -87035,6 +87704,196 @@
         "maintainers": [
           "@avantonder",
           "@aunderwo"
+        ]
+      }
+    },
+    {
+      "name": "resfinder_run",
+      "path": "modules/nf-core/resfinder/run/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "resfinder_run",
+        "description": "ResFinder identifies acquired antimicrobial resistance genes in total or partial sequenced isolates of bacteria",
+        "keywords": [
+          "blastn",
+          "kma",
+          "microbes",
+          "resfinder",
+          "resistance genes"
+        ],
+        "tools": [
+          {
+            "resfinder": {
+              "description": "ResFinder identifies acquired antimicrobial resistance genes in total or partial sequenced isolates of bacteria",
+              "homepage": "https://bitbucket.org/genomicepidemiology/resfinder.git/src",
+              "documentation": "https://bitbucket.org/genomicepidemiology/resfinder/src/master/README.md",
+              "tool_dev_url": "https://bitbucket.org/genomicepidemiology/resfinder.git/src",
+              "doi": "10.1099/mgen.0.000748",
+              "licence": [
+                "APACHE-2.0"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "fastq": {
+              "type": "file",
+              "description": "fastq file(s)",
+              "pattern": "*.{fastq,fq}{.gz}"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "fasta file",
+              "pattern": "*.{fa,fna}"
+            }
+          },
+          {
+            "db_point": {
+              "type": "directory",
+              "description": "database directory containing known point mutations"
+            }
+          },
+          {
+            "db_res": {
+              "type": "directory",
+              "description": "database directory containing known resistance genes"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "json": {
+              "type": "file",
+              "description": "CGE standardized json file",
+              "pattern": "*.json"
+            }
+          },
+          {
+            "disinfinder_kma": {
+              "type": "directory",
+              "description": "directory holding kma results",
+              "pattern": "disinfinder_kma"
+            }
+          },
+          {
+            "pheno_table_species": {
+              "type": "file",
+              "description": "table with species specific AMR phenotypes",
+              "pattern": "pheno_table_species.tsv"
+            }
+          },
+          {
+            "pheno_table": {
+              "type": "file",
+              "description": "table with all AMR phenotypes",
+              "pattern": "pheno_table.tsv"
+            }
+          },
+          {
+            "pointfinder_kma": {
+              "type": "directory",
+              "description": "directory holding kma results",
+              "pattern": "pointfinder_kma"
+            }
+          },
+          {
+            "pointfinder_prediction": {
+              "type": "file",
+              "description": "tab separated table; 1 is given to a predicted resistance against an antibiotic class, 0 is given to not resistance detected",
+              "pattern": "PointFinder_prediction.txt"
+            }
+          },
+          {
+            "pointfinder_results": {
+              "type": "file",
+              "description": "tab separated table with predicted point mutations leading to antibiotic resistance",
+              "pattern": "PointFinder_results.txt"
+            }
+          },
+          {
+            "pointfinder_table": {
+              "type": "file",
+              "description": "predicted point mutations grouped into genes to which they belong",
+              "pattern": "PointFinder_table.txt"
+            }
+          },
+          {
+            "resfinder_blast": {
+              "type": "directory",
+              "description": "directory holding blast results",
+              "pattern": "resfinder_kma"
+            }
+          },
+          {
+            "resfinder_hit_in_genome_seq": {
+              "type": "file",
+              "description": "fasta sequence of resistance gene hits found in the input data (query)",
+              "pattern": "ResFinder_Hit_in_genome_seq.fsa"
+            }
+          },
+          {
+            "resfinder_kma": {
+              "type": "directory",
+              "description": "directory holding kma results",
+              "pattern": "resfinder_kma"
+            }
+          },
+          {
+            "resfinder_resistance_gene_seq": {
+              "type": "file",
+              "description": "fasta sequence of resistance gene hits found in the database (reference)",
+              "pattern": "ResFinder_Resistance_gene_seq.fsa"
+            }
+          },
+          {
+            "resfinder_results_table": {
+              "type": "file",
+              "description": "predicted resistance genes grouped by antibiotic class",
+              "pattern": "ResFinder_results_table.txt"
+            }
+          },
+          {
+            "resfinder_results_tab": {
+              "type": "file",
+              "description": "tab separated table with predicted resistance genes",
+              "pattern": "ResFinder_results_tab.txt"
+            }
+          },
+          {
+            "resfinder_results": {
+              "type": "file",
+              "description": "predicted resistance genes grouped by antibiotic class and hit alignments to reference resistance genes",
+              "pattern": "ResFinder_results.txt"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@marrip"
+        ],
+        "maintainers": [
+          "@marrip"
         ]
       }
     },
@@ -102831,7 +103690,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.5.0"
+          "version": "2.5.1"
         },
         {
           "name": "viralintegration",
@@ -105425,6 +106284,98 @@
       }
     },
     {
+      "name": "svync",
+      "path": "modules/nf-core/svync/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "svync",
+        "description": "A tool to standardize VCF files from structural variant callers",
+        "keywords": [
+          "structural variants",
+          "vcf",
+          "standardization",
+          "standardize",
+          "sv"
+        ],
+        "tools": [
+          {
+            "svync": {
+              "description": "A tool to standardize VCF files from structural variant callers",
+              "homepage": "https://github.com/nvnieuwk/svync",
+              "documentation": "https://github.com/nvnieuwk/svync",
+              "tool_dev_url": "https://github.com/nvnieuwk/svync",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "The input VCF file containing structural variants",
+              "pattern": "*.{vcf,vcf.gz}"
+            }
+          },
+          {
+            "tbi": {
+              "type": "file",
+              "description": "The index of the input VCF file containing structural variants",
+              "pattern": "*.tbi"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing config meta information\n"
+            }
+          },
+          {
+            "config": {
+              "type": "file",
+              "description": "The config stating how the standardization should happen",
+              "pattern": "*.{yml,yaml}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "The standardized VCF file",
+              "pattern": "*.vcf.gz"
+            }
+          }
+        ],
+        "authors": [
+          "@nvnieuwk"
+        ],
+        "maintainers": [
+          "@nvnieuwk"
+        ]
+      }
+    },
+    {
       "name": "tabix_bgzip",
       "path": "modules/nf-core/tabix/bgzip/meta.yml",
       "type": "module",
@@ -106461,6 +107412,80 @@
           "version": "dev"
         }
       ]
+    },
+    {
+      "name": "thermorawfileparser",
+      "path": "modules/nf-core/thermorawfileparser/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "thermorawfileparser",
+        "description": "Parses a Thermo RAW file containing mass spectra to an open file format",
+        "keywords": [
+          "raw",
+          "mzml",
+          "mgf",
+          "parquet",
+          "parser",
+          "proteomics"
+        ],
+        "tools": [
+          {
+            "thermorawfileparser": {
+              "description": "Wrapper around the .net (C#) ThermoFisher ThermoRawFileReader library for running on Linux with mono",
+              "homepage": "https://github.com/compomics/ThermoRawFileParser/blob/master/README.md",
+              "documentation": "https://github.com/compomics/ThermoRawFileParser/blob/master/README.md",
+              "tool_dev_url": "https://github.com/compomics/ThermoRawFileParser",
+              "doi": "10.1021/acs.jproteome.9b00328",
+              "licence": [
+                "Apache Software"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "raw": {
+              "type": "file",
+              "description": "Thermo RAW file",
+              "pattern": "*.{raw,RAW}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "spectra": {
+              "type": "file",
+              "description": "Mass spectra in open format",
+              "pattern": "*.{mzML,mzML.gz,mgf,mgf.gz,parquet,parquet.gz}"
+            }
+          }
+        ],
+        "authors": [
+          "@jonasscheid"
+        ],
+        "maintainers": [
+          "@jonasscheid"
+        ]
+      }
     },
     {
       "name": "tiara_tiara",
@@ -107601,7 +108626,7 @@
           {
             "reads": {
               "type": "file",
-              "description": "fasta/fastq file of reads to be assembled into a transcriptome",
+              "description": "List of input fasta/fastq reads to be assembled into a transcriptome.\n",
               "pattern": "*.{fa|fasta|fq|fastq}"
             }
           }
@@ -109509,7 +110534,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.5.0"
+          "version": "2.5.1"
         }
       ]
     },
@@ -109854,7 +110879,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.5.0"
+          "version": "2.5.1"
         }
       ]
     },
@@ -119998,6 +121023,38 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -120032,6 +121089,38 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -120746,6 +121835,38 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
