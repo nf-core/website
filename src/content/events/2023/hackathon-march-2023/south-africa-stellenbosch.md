@@ -2,14 +2,14 @@
 title: Hackathon - March 2023 (Tygerberg, South Africa)
 subtitle: Local node of the nf-core hackathon at Stellenbosch University, Tygerberg campus.
 type: hackathon
-start_date: '2023-03-27'
-start_time: '10:00+02:00'
-end_date: '2023-03-29'
-end_time: '16:00+02:00'
-location_name: Tygerberg campus, Stellenbosch University
-location_url:
+startDate: '2023-03-27'
+startTime: '10:00+02:00'
+endDate: '2023-03-29'
+endTime: '16:00+02:00'
+locationName: Tygerberg campus, Stellenbosch University
+locationURL:
   - https://www.sun.ac.za/english/faculty/healthsciences/
-# location_latlng: [xxx, xxx]
+# locationLatLng: [xxx, xxx]
 ---
 
 Local event to be held at the BMRI building, Tygerberg Campus, University of Stellenbosch.

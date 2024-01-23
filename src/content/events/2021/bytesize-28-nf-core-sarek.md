@@ -2,13 +2,13 @@
 title: 'Bytesize 28: nf-core/sarek'
 subtitle: José Fernández Navarro - BioLizard, Spain
 type: talk
-start_date: '2021-11-23'
-start_time: '13:00+01:00'
-end_date: '2021-11-23'
-end_time: '13:30+01:00'
-embed_at: 'sarek'
+startDate: '2021-11-23'
+startTime: '13:00+01:00'
+endDate: '2021-11-23'
+endTime: '13:30+01:00'
+embedAt: 'sarek'
 youtube_embed: https://youtu.be/6EIGUe5sjNo
-location_url:
+locationURL:
   - https://youtu.be/6EIGUe5sjNo
   - https://www.bilibili.com/video/BV1WR4y147PT
   - https://doi.org/10.6084/m9.figshare.17068046.v1

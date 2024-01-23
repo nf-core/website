@@ -2,12 +2,12 @@
 title: 'Bytesize: Subworkflows'
 subtitle: Maxime Garcia, Seqera labs
 type: talk
-start_date: '2022-11-22'
-start_time: '13:00+01:00'
-end_date: '2022-11-22'
-end_time: '13:30+01:00'
+startDate: '2022-11-22'
+startTime: '13:00+01:00'
+endDate: '2022-11-22'
+endTime: '13:30+01:00'
 youtube_embed: https://www.youtube.com/watch?v=-vHAXsuYQhE
-location_url:
+locationURL:
   - https://doi.org/10.6084/m9.figshare.21617526.v1
   - https://www.youtube.com/watch?v=-vHAXsuYQhE
 ---

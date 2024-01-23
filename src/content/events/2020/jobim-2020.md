@@ -2,11 +2,11 @@
 title: 'JOBIM 2020: nf-core, a community effort for collaborative, peer-reviewed analysis pipelines'
 subtitle: JOBIM 2020 (Journées Ouvertes de Biologie, Informatique et Mathématique 2020)
 type: talk
-start_date: '2020-07-01'
-start_time: '11:20+01:00'
-end_date: '2020-07-01'
-end_time: '11:40+01:00'
-location_url: https://jobim2020.sciencesconf.org/
+startDate: '2020-07-01'
+startTime: '11:20+01:00'
+endDate: '2020-07-01'
+endTime: '11:40+01:00'
+locationURL: https://jobim2020.sciencesconf.org/
 ---
 
 ## About the conference

@@ -2,14 +2,14 @@
 title: Hackathon - March 2024 (Ghent)
 subtitle: Local node of the nf-core hackathon at Ghent University, Belgium.
 type: hackathon
-start_date: '2024-03-18'
-start_time: '10:00+02:00'
-end_date: '2024-03-20'
-end_time: '18:00+02:00'
-location_name: Ghent University
+startDate: '2024-03-18'
+startTime: '10:00+02:00'
+endDate: '2024-03-20'
+endTime: '18:00+02:00'
+locationName: Ghent University
 address: Hermann von Helmholtz, campus Ardoyen, iGent, 9052 Zwijnaarde, Belgium
-location_url: https://www.ugent.be/en
-location_latlng: [51.01287821684896, 3.708004390525348]
+locationURL: https://www.ugent.be/en
+locationLatLng: [51.01287821684896, 3.708004390525348]
 ---
 
 Local event to be held at Ghent University, Belgium

@@ -10,7 +10,7 @@ let lastYoutubeUrls = bytesizes
     .slice()
     .reverse()
     .find((Bytesize) => {
-        let urls = Bytesize.data.location_url;
+        let urls = Bytesize.data.locationURL;
         if (typeof urls === 'string') {
             urls = [urls];
         }
@@ -18,7 +18,7 @@ let lastYoutubeUrls = bytesizes
         return urls.find((url) => url.startsWith('https://www.youtube.com') || url.startsWith('https://youtu.be'));
     });
 
-lastYoutubeUrls = lastYoutubeUrls?.data.location_url.find(
+lastYoutubeUrls = lastYoutubeUrls?.data.locationURL.find(
     (url) => url.startsWith('https://www.youtube.com') || url.startsWith('https://youtu.be'),
 );
 

@@ -2,14 +2,14 @@
 title: Hackathon - March 2024 (London)
 subtitle: Local node of the nf-core hackathon at Cosyne Therapeutics, London.
 type: hackathon
-start_date: '2024-03-18'
-start_time: '10:00+00:00'
-end_date: '2024-03-20'
-end_time: '17:00+00:00'
-location_name: Cosyne Therapeutics
+startDate: '2024-03-18'
+startTime: '10:00+00:00'
+endDate: '2024-03-20'
+endTime: '17:00+00:00'
+locationName: Cosyne Therapeutics
 address: Medius House, 2 Sheraton St, London W1F 8BH
-location_url: https://maps.app.goo.gl/G327eD8PEQefbHcs8
-location_latlng: [51.51565268907713, -0.13365964707324154]
+locationURL: https://maps.app.goo.gl/G327eD8PEQefbHcs8
+locationLatLng: [51.51565268907713, -0.13365964707324154]
 ---
 
 Local event to be held at the offices of Cosyne Therapeutics, in Soho London.
