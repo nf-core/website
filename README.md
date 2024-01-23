@@ -59,6 +59,16 @@ The main files are:
 - `src/styles/` - (S)CSS stylesheets
 - `public/` - Static files (images, json files etc)
 
+### Adding an announcement banner
+
+You can show a short announcement banner on the website by adding additional information to the frontmatter of either a file inside `src/content/blog` or `src/content/events`. The following fields are available:
+
+```yaml
+announcement-text: "Your announcement text"
+announcement-start: "Start date and time of the announcement. Format: YYYY-MM-DDTHH:MM:SS+HH:MM" (without quotes!)
+announcement-end: "End date and time of the announcement. Format: YYYY-MM-DDTHH:MM:SS+HH:MM" (without quotes!) This is an optional field for events, where the start date of the event is the end date of the announcement by default.
+```
+
 ### Updating the JSON files and cached markdown
 
 Much of the site is powered by the JSON files in `/public` and the cached markdown files (from the pipeline docs) in `/.cache`.
