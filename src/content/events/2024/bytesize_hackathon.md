@@ -1,13 +1,12 @@
 ---
-title: 'Bytesize: nf-core blog'
+title: 'Bytesize: nf-core hackathons'
 subtitle: Matthias Hörtenhuber, SciLifeLab Data Centre
 type: talk
-startDate: '2024-01-23'
+startDate: '2024-01-30'
 startTime: '13:00+01:00'
-youtube_embed: https://youtu.be/HjLCpDozPiw
-endDate: '2024-01-23'
+endDate: '2024-01-30'
 endTime: '13:30+01:00'
-locationURL: https://youtu.be/HjLCpDozPiw
+locationURL: https://kth-se.zoom.us/j/68390542812
 ---
 
 # nf-core/bytesize
@@ -18,6 +17,6 @@ Just **15 minutes** + questions, we will be focussing on topics about using and 
 These will be recorded and made available at <https://nf-co.re>
 It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
 
-## Bytesize: nf-core blog
+## Bytesize: nf-core hackathons
 
-Since the 12th of January 2024, we have an official nf-core blog at [nf-co.re/blog](https://nf-co.re/blog). While it will be used by the core team and developers to update the community about ongoing project, it is also a great way for you to get active! Matthias Hörtenhuber ([@mashehu](https://github.com/mashehu)) will introduce us to the vision for the brand new and shiny blog and how you can contribute to it.
+Curious what we do at nf-core hackathons? Ever wondered if you should sign up? In this weeks bytesize, Friederike Hansen ([@FriederikeHanssen](https://github.com/FriederikeHanssen)) will have all the answers for these questions and more!
