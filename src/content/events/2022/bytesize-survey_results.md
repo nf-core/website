@@ -6,7 +6,7 @@ startDate: '2022-05-24'
 startTime: '13:00+02:00'
 endDate: '2022-05-24'
 endTime: '13:30+02:00'
-youtube_embed: https://youtu.be/DYdPNPVa4wc
+youtubeEmbed: https://youtu.be/DYdPNPVa4wc
 locationURL:
   - https://youtu.be/DYdPNPVa4wc
   - https://doi.org/10.6084/m9.figshare.19923410.v1

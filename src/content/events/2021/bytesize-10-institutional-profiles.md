@@ -6,7 +6,7 @@ startDate: '2021-04-27'
 startTime: '13:00+02:00'
 endDate: '2021-04-27'
 endTime: '13:30+02:00'
-youtube_embed: https://youtu.be/Ym1s6sKGzkw
+youtubeEmbed: https://youtu.be/Ym1s6sKGzkw
 locationURL:
   - https://www.bilibili.com/video/BV1BA411V78U
   - https://youtu.be/Ym1s6sKGzkw

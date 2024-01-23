@@ -7,7 +7,7 @@ startTime: '13:00+02:00'
 endDate: '2021-10-26'
 endTime: '13:30+02:00'
 embedAt: 'ampliseq'
-youtube_embed: https://youtu.be/a0VOEeAvETs
+youtubeEmbed: https://youtu.be/a0VOEeAvETs
 locationURL:
   - https://youtu.be/a0VOEeAvETs
   - https://www.bilibili.com/video/BV1B44y1e7MM

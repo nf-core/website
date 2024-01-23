@@ -6,7 +6,7 @@ startDate: '2021-06-22'
 startTime: '13:00+02:00'
 endDate: '2021-06-22'
 endTime: '13:30+02:00'
-youtube_embed: https://youtu.be/OF55x-FT5WE
+youtubeEmbed: https://youtu.be/OF55x-FT5WE
 locationURL:
   - https://youtu.be/OF55x-FT5WE
   - https://www.bilibili.com/video/BV1Wh411679X

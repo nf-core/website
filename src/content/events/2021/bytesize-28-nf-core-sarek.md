@@ -7,7 +7,7 @@ startTime: '13:00+01:00'
 endDate: '2021-11-23'
 endTime: '13:30+01:00'
 embedAt: 'sarek'
-youtube_embed: https://youtu.be/6EIGUe5sjNo
+youtubeEmbed: https://youtu.be/6EIGUe5sjNo
 locationURL:
   - https://youtu.be/6EIGUe5sjNo
   - https://www.bilibili.com/video/BV1WR4y147PT

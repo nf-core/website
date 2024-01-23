@@ -6,7 +6,7 @@ startDate: '2021-05-04'
 startTime: '13:00+02:00'
 endDate: '2021-05-04'
 endTime: '13:30+02:00'
-youtube_embed: https://youtu.be/XB96efweCLI
+youtubeEmbed: https://youtu.be/XB96efweCLI
 locationURL:
   - https://youtu.be/XB96efweCLI
 ---
