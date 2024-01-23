@@ -2,12 +2,12 @@
 title: 'Bytesize 8: Running pipelines offline'
 subtitle: Maxime Garcia - SciLifeLab / Karolinska Institutet, Sweden
 type: talk
-start_date: '2021-04-13'
-start_time: '13:00+02:00'
-end_date: '2021-04-13'
-end_time: '13:30+02:00'
+startDate: '2021-04-13'
+startTime: '13:00+02:00'
+endDate: '2021-04-13'
+endTime: '13:30+02:00'
 youtube_embed: https://youtu.be/N1rRr4J0Lps
-location_url:
+locationURL:
   - https://youtu.be/N1rRr4J0Lps
   - https://www.bilibili.com/video/BV1AZ4y1w7hZ/
   - https://doi.org/10.6084/m9.figshare.14413046.v1

@@ -2,11 +2,11 @@
 title: 'Bytesize: nf-core blog'
 subtitle: Matthias Hörtenhuber, SciLifeLab Data Centre
 type: talk
-start_date: '2024-01-23'
-start_time: '13:00+01:00'
-end_date: '2024-01-23'
-end_time: '13:30+01:00'
-location_url: https://kth-se.zoom.us/j/68390542812
+startDate: '2024-01-23'
+startTime: '13:00+01:00'
+endDate: '2024-01-23'
+endTime: '13:30+01:00'
+locationURL: https://kth-se.zoom.us/j/68390542812
 ---
 
 # nf-core/bytesize

@@ -26,7 +26,7 @@ export interface Props {
     version: string;
 }
 const events = await getCollection('events');
-let video = events.find((event) => event.data.embed_at === pipeline)?.data.location_url;
+let video = events.find((event) => event.data.embedAt === pipeline)?.data.locationURL;
 if (typeof video === 'string') {
     video = [video];
 }

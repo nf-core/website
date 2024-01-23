@@ -2,14 +2,14 @@
 title: Hackathon - March 2023 (Stockholm)
 subtitle: Local node of the nf-core hackathon at SciLifeLab, Stockholm.
 type: hackathon
-start_date: '2023-03-27'
-start_time: '10:00+02:00'
-end_date: '2023-03-29'
-end_time: '18:00+02:00'
-location_name: SciLifeLab
+startDate: '2023-03-27'
+startTime: '10:00+02:00'
+endDate: '2023-03-29'
+endTime: '18:00+02:00'
+locationName: SciLifeLab
 address: Tomtebodavägen 23A, 17165 Solna, Sweden
-location_url: https://scilifelab.se/
-location_latlng: [59.3505174, 18.0221508]
+locationURL: https://scilifelab.se/
+locationLatLng: [59.3505174, 18.0221508]
 ---
 
 Local event to be held at SciLifeLab, Stockholm.

@@ -2,13 +2,13 @@
 title: 'Bytesize: nf-core/chipseq'
 subtitle: Jose Espinosa-Carrasco - Center for Genomic Regulation, Barcelona
 type: talk
-start_date: '2022-07-26'
-start_time: '13:00+02:00'
-end_date: '2022-07-26'
-end_time: '13:30+02:00'
-embed_at: 'chipseq'
+startDate: '2022-07-26'
+startTime: '13:00+02:00'
+endDate: '2022-07-26'
+endTime: '13:30+02:00'
+embedAt: 'chipseq'
 youtube_embed: https://www.youtube.com/watch?v=59I-4wB1z4c
-location_url:
+locationURL:
   - https://www.youtube.com/watch?v=59I-4wB1z4c
   - https://doi.org/10.6084/m9.figshare.20418171.v1
 ---

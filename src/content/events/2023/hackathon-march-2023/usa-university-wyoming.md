@@ -2,14 +2,14 @@
 title: Hackathon - March 2023 (Wyoming)
 subtitle: Local node of the nf-core hackathon at the The University of Wyoming.
 type: hackathon
-start_date: '2023-03-27'
-start_time: '10:00+02:00'
-end_date: '2023-03-29'
-end_time: '18:00+02:00'
-location_name: The University of Wyoming
+startDate: '2023-03-27'
+startTime: '10:00+02:00'
+endDate: '2023-03-29'
+endTime: '18:00+02:00'
+locationName: The University of Wyoming
 # address:
-# location_url:
-# location_latlng: [xxx, xxx]
+# locationURL:
+# locationLatLng: [xxx, xxx]
 ---
 
 Local event to be held at the The University of Wyoming.

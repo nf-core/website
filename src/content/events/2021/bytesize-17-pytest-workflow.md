@@ -2,12 +2,12 @@
 title: 'Bytesize 17: Pytest workflow'
 subtitle: Edmund Miller - University of Texas at Dallas
 type: talk
-start_date: '2021-06-15'
-start_time: '13:00+02:00'
-end_date: '2021-06-15'
-end_time: '13:30+02:00'
+startDate: '2021-06-15'
+startTime: '13:00+02:00'
+endDate: '2021-06-15'
+endTime: '13:30+02:00'
 youtube_embed: https://youtu.be/pjhscKyWH74
-location_url:
+locationURL:
   - https://youtu.be/pjhscKyWH74
   - https://www.bilibili.com/video/BV1k64y1r7WR
   - https://doi.org/10.6084/m9.figshare.14784855.v1
