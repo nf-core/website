@@ -11,6 +11,9 @@ let lastYoutubeUrls = bytesizes
     .reverse()
     .find((Bytesize) => {
         let urls = Bytesize.data.locationURL;
+        if (urls === undefined) {
+            return false;
+        }
         if (typeof urls === 'string') {
             urls = [urls];
         }
@@ -18,9 +21,9 @@ let lastYoutubeUrls = bytesizes
         return urls.find((url) => url.startsWith('https://www.youtube.com') || url.startsWith('https://youtu.be'));
     });
 
-lastYoutubeUrls = lastYoutubeUrls?.data.locationURL.find(
-    (url) => url.startsWith('https://www.youtube.com') || url.startsWith('https://youtu.be'),
-);
+lastYoutubeUrls = ([] as string[])
+    .concat(lastYoutubeUrls?.data.locationURL ?? [])
+    .find((url) => url.startsWith('https://www.youtube.com') || url.startsWith('https://youtu.be'));
 
 const latestBytesize = lastYoutubeUrls
     ?.replace('https://www.youtube.com/watch?v=', '')
