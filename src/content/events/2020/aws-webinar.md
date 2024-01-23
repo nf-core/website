@@ -2,12 +2,12 @@
 title: 'AWS In Spotlight Webinar Series'
 subtitle: 'AWS In Spotlight: Research'
 type: talk
-start_date: '2020-10-14'
-start_time: '10:00+02:00'
-end_date: '2020-10-14'
-end_time: '11:00+02:00'
-location_name: Registration
-location_url: https://pages.awscloud.com/Nordics_InSpotlight_WebinarSeries.html
+startDate: '2020-10-14'
+startTime: '10:00+02:00'
+endDate: '2020-10-14'
+endTime: '11:00+02:00'
+locationName: Registration
+locationURL: https://pages.awscloud.com/Nordics_InSpotlight_WebinarSeries.html
 ---
 
 > Researchers around the world use cloud technology to quickly analyze massive data pipelines,

@@ -2,12 +2,12 @@
 title: 'Bytesize 35: Troubleshooting a failed pipeline'
 subtitle: Phil Ewels - National Genomics Infrastructure / SciLifeLab, Sweden
 type: talk
-start_date: '2022-03-01'
-start_time: '13:00+01:00'
-end_date: '2022-03-01'
-end_time: '13:30+01:00'
+startDate: '2022-03-01'
+startTime: '13:00+01:00'
+endDate: '2022-03-01'
+endTime: '13:30+01:00'
 youtube_embed: https://youtu.be/z9n2F4ByIkY
-location_url:
+locationURL:
   - https://youtu.be/z9n2F4ByIkY
   - https://doi.org/10.6084/m9.figshare.19382933.v2
 ---

@@ -2,14 +2,14 @@
 title: Hackathon - March 2023 (Leipzig)
 subtitle: Local node of the nf-core hackathon at MPI-EVA, Leipzig.
 type: hackathon
-start_date: '2023-03-27'
-start_time: '10:00+02:00'
-end_date: '2023-03-29'
-end_time: '18:00+02:00'
-location_name: MPI-EVA
+startDate: '2023-03-27'
+startTime: '10:00+02:00'
+endDate: '2023-03-29'
+endTime: '18:00+02:00'
+locationName: MPI-EVA
 address: Deutscher Pl. 6, 04103 Leipzig
-location_url: https://www.eva.mpg.de/
-location_latlng: [51.321402, 12.395295]
+locationURL: https://www.eva.mpg.de/
+locationLatLng: [51.321402, 12.395295]
 ---
 
 Local event to be held at Max Planck Institute for Evolutionary Anthropology, Leipzig (Deutscher Pl. 6, 04103 Leipzig) in the Large Seminar room (H4.10)

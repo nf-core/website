@@ -2,12 +2,12 @@
 title: Hackathon - March 2024 (Online)
 subtitle: A virtual hackathon with local sites to develop nf-core together
 type: hackathon
-start_date: '2024-03-18'
-start_time: '11:00+02:00'
-end_date: '2024-03-20'
-end_time: '17:00+02:00'
-location_name: Gather town, Slack, and local sites.
-import_typeform: true
+startDate: '2024-03-18'
+startTime: '11:00+02:00'
+endDate: '2024-03-20'
+endTime: '17:00+02:00'
+locationName: Gather town, Slack, and local sites.
+importTypeform: true
 announcement:
   text: '✏️ Register your local site for the March hackathon!'
   start: 2024-01-22T00:00:00+01:00

@@ -2,12 +2,12 @@
 title: 'Bytesize 15: Pipeline first release'
 subtitle: Alexander Peltzer - Boehringer Ingelheim Pharma GmbH & Co. KG, Germany
 type: talk
-start_date: '2021-06-01'
-start_time: '13:00+02:00'
-end_date: '2021-06-01'
-end_time: '13:30+02:00'
+startDate: '2021-06-01'
+startTime: '13:00+02:00'
+endDate: '2021-06-01'
+endTime: '13:30+02:00'
 youtube_embed: https://youtu.be/1OwkTd-P5pQ
-location_url:
+locationURL:
   - https://youtu.be/1OwkTd-P5pQ
   - https://www.bilibili.com/video/BV185411M71d
   - https://doi.org/10.6084/m9.figshare.14717307.v1

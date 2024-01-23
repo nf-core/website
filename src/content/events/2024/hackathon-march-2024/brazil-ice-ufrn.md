@@ -2,14 +2,14 @@
 title: Hackathon - March 2024 (Natal)
 subtitle: Local node of the nf-core hackathon at Instituto do Cérebro, UFRN, Natal - Brazil
 type: hackathon
-start_date: '2024-03-18'
-start_time: '13:00+02:00'
-end_date: '2024-03-20'
-end_time: '21:00+02:00'
-location_name: Instituto do Cérebro, UFRN
+startDate: '2024-03-18'
+startTime: '13:00+02:00'
+endDate: '2024-03-20'
+endTime: '21:00+02:00'
+locationName: Instituto do Cérebro, UFRN
 address: R. do Horto - Lagoa Nova, Natal - RN, 59076-550
-location_url: https://neuro.ufrn.br/
-location_latlng: [-5.833473893839016, -35.20483247479188]
+locationURL: https://neuro.ufrn.br/
+locationLatLng: [-5.833473893839016, -35.20483247479188]
 ---
 
 Local event to be held at Instituto do Cérebro, UFRN.
