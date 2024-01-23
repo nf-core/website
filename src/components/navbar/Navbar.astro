@@ -48,7 +48,6 @@ if (sections?.length > 0) {
         navbarTitle = currentChild ? [currentSection?.section_name, currentChild] : [currentSection?.section_name];
     }
 }
-console.log('sections', sections);
 let newBlogPost = false;
 newBlogPost = await getCollection('blog').then((posts) => {
     return posts.some(
