@@ -6,7 +6,7 @@ startDate: '2021-09-14'
 startTime: '13:00+02:00'
 endDate: '2021-09-14'
 endTime: '13:30+02:00'
-youtube_embed: https://youtu.be/2-ekrRsYS00
+youtubeEmbed: https://youtu.be/2-ekrRsYS00
 locationURL:
   - https://youtu.be/2-ekrRsYS00
   - https://doi.org/10.6084/m9.figshare.16621594.v1

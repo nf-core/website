@@ -6,7 +6,7 @@ startDate: '2022-11-29'
 startTime: '13:00+01:00'
 endDate: '2022-11-29'
 endTime: '13:30+01:00'
-youtube_embed: https://www.youtube.com/watch?v=QLxXtCe1vIo
+youtubeEmbed: https://www.youtube.com/watch?v=QLxXtCe1vIo
 locationURL:
   - https://doi.org/10.6084/m9.figshare.21647114.v1
   - https://www.youtube.com/watch?v=QLxXtCe1vIo

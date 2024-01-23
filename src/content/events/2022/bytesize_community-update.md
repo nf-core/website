@@ -6,7 +6,7 @@ startDate: '2022-09-27'
 startTime: '13:00+02:00'
 endDate: '2022-09-27'
 endTime: '13:30+02:00'
-youtube_embed: https://www.youtube.com/watch?v=KXXeAcHnDBo
+youtubeEmbed: https://www.youtube.com/watch?v=KXXeAcHnDBo
 locationURL:
   - https://www.youtube.com/watch?v=KXXeAcHnDBo
   - https://doi.org/10.6084/m9.figshare.21222446.v1
