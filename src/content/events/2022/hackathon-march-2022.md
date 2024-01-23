@@ -6,7 +6,7 @@ startDate: '2022-03-16'
 startTime: '10:00+01:00'
 endDate: '2022-03-18'
 endTime: '18:00+01:00'
-youtube_embed: https://www.youtube.com/watch?v=yZ8xX4Jk4zU
+youtubeEmbed: https://www.youtube.com/watch?v=yZ8xX4Jk4zU
 locationName: Gather town and Slack.
 locationURL: https://gather.town/
 ---

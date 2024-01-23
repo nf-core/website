@@ -4,7 +4,7 @@ subtitle: Maxime Garcia, Seqera
 type: talk
 startDate: '2024-01-16'
 startTime: '13:00+01:00'
-youtube_embed: https://www.youtube.com/watch?v=ncYcxyiGyds
+youtubeEmbed: https://www.youtube.com/watch?v=ncYcxyiGyds
 endDate: '2024-01-16'
 endTime: '13:30+01:00'
 locationURL: https://www.youtube.com/watch?v=ncYcxyiGyds

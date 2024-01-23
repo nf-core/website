@@ -6,7 +6,7 @@ startDate: '2023-05-09'
 startTime: '14:00+02:00'
 endDate: '2023-05-09'
 endTime: '14:30+02:00'
-youtube_embed: https://www.youtube.com/watch?v=K8gvK1drt0w
+youtubeEmbed: https://www.youtube.com/watch?v=K8gvK1drt0w
 locationURL:
   - https://www.youtube.com/watch?v=K8gvK1drt0w
 ---

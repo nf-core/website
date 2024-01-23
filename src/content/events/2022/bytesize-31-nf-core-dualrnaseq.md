@@ -7,7 +7,7 @@ startTime: '13:00+01:00'
 endDate: '2022-02-01'
 endTime: '13:30+01:00'
 embedAt: 'dualrnaseq'
-youtube_embed: https://www.youtube.com/watch?v=-J3Cbetk8Pk
+youtubeEmbed: https://www.youtube.com/watch?v=-J3Cbetk8Pk
 locationURL:
   - https://www.youtube.com/watch?v=-J3Cbetk8Pk
   - https://doi.org/10.6084/m9.figshare.19927178.v1

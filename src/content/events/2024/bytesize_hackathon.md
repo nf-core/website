@@ -1,14 +1,12 @@
 ---
-title: 'Bytesize: The Art of a Minimal Example'
-subtitle: Phil Ewels (Seqera)
+title: 'Bytesize: nf-core hackathons'
+subtitle: Friederike Hanssen, QBiC
 type: talk
-startDate: '2023-11-14'
+startDate: '2024-01-30'
 startTime: '13:00+01:00'
-endDate: '2023-11-14'
+endDate: '2024-01-30'
 endTime: '13:30+01:00'
-youtubeEmbed: https://www.youtube.com/watch?v=Z7EhyT1m2ZQ
-locationURL:
-  - https://www.youtube.com/watch?v=Z7EhyT1m2ZQ
+locationURL: https://kth-se.zoom.us/j/68390542812
 ---
 
 # nf-core/bytesize
@@ -19,6 +17,6 @@ Just **15 minutes** + questions, we will be focussing on topics about using and 
 These will be recorded and made available at <https://nf-co.re>
 It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
 
-## Bytesize: Bytesize: The Art of a Minimal Example
+## Bytesize: nf-core hackathons
 
-We all know how difficult it is to debug a complicated pipeline, but Phil ([@ewels](https://github.com/ewels/)) is here to help! In this weeks bytesize talk, he will show us how to debug with a minimal reproducible example - a tiny pipeline that exhibits the buggy behavior.
+Curious what we do at nf-core hackathons? Ever wondered if you should sign up? In this weeks bytesize, Friederike Hansen ([@FriederikeHanssen](https://github.com/FriederikeHanssen)) will have all the answers for these questions and more!

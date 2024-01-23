@@ -6,7 +6,7 @@ startDate: '2022-07-19'
 startTime: '13:00+02:00'
 endDate: '2022-07-19'
 endTime: '13:30+02:00'
-youtube_embed: https://www.youtube.com/watch?v=egjgcmeJ0wQ
+youtubeEmbed: https://www.youtube.com/watch?v=egjgcmeJ0wQ
 locationURL:
   - https://www.youtube.com/watch?v=egjgcmeJ0wQ
   - https://doi.org/10.6084/m9.figshare.20338464.v1 (slides)

@@ -6,7 +6,7 @@ startDate: '2023-03-21'
 startTime: '13:30+01:00'
 endDate: '2023-03-21'
 endTime: '14:00+01:00'
-youtube_embed: https://www.youtube.com/watch?v=nDaRt2L-tRw&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=69
+youtubeEmbed: https://www.youtube.com/watch?v=nDaRt2L-tRw&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=69
 embedAt: 'hgtseq'
 locationURL:
   - https://www.youtube.com/watch?v=nDaRt2L-tRw&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=69

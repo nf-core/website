@@ -6,7 +6,7 @@ startDate: '2021-03-22'
 startTime: '10:00+01:00'
 endDate: '2021-03-24'
 endTime: '18:00+01:00'
-youtube_embed: https://youtu.be/cuwcgZX6Li8
+youtubeEmbed: https://youtu.be/cuwcgZX6Li8
 locationName: Zoom, Slack & YouTube.
 locationURL: '#how-it-works'
 ---
