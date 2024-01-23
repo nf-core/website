@@ -19,4 +19,8 @@ It is our hope that these talks / videos will build an archive of training mater
 
 ## Bytesize: nf-core Work Groups
 
-Nf-core is introducing a new way to find people that are interested in the same subject you are: Work Groups. They are meant to bring together developers from adjacent fields to learn from and encourage each other. Phil Ewels ([@ewels](https://github.com/ewels)) is giving us an overview of all things nf-core Work Groups.
+Introducing a brand new nf-core initiative: Work Groups.
+The nf-core community is currently organised by pipeline and analysis type, but in practice scientists often use sets of pipelines - and the way that a given pipeline is used can vary across different fields.
+Work Groups are a new way for nf-core community members to find others that are interested in the same subject / field, to learn from and encourage each other.
+
+Phil Ewels ([@ewels](https://github.com/ewels)) is giving us an overview of all things nf-core Work Groups.
