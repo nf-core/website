@@ -96,16 +96,16 @@ const blog = defineCollection({
             if (data.headerImage && !data.headerImageAlt) {
                 throw new Error('Please provide alt text for your `headerImage` in `headerImageAlt`.');
             }
-            // // check that announcement_start is before announcement_end
-            // if (data.announcement_start && data.announcement_end) {
-            //     if (data.announcement_start.getTime() > data.announcement_end.getTime()) {
-            //         throw new Error('announcement_start must be before announcement_end');
-            //     }
-            // }
-            // // check that announcement_start is set if announcement_text is
-            // if (data.announcement_text && !data.announcement_start) {
-            //     throw new Error('announcement_start must be set if announcement_text is');
-            // }
+            // check that announcement_start is before announcement_end
+            if (data.announcement_start && data.announcement_end) {
+                if (data.announcement_start.getTime() > data.announcement_end.getTime()) {
+                    throw new Error('`announcement_start` must be before `announcement_end`');
+                }
+            }
+            // check that announcement_start is set if announcement_text is
+            if (data.announcement_text && !data.announcement_start && !data.announcement_end) {
+                throw new Error('`announcement_start` and `announcement_end` must be set if `announcement_text` is');
+            }
             // Return true if the validation should pass
             return true;
         }),
