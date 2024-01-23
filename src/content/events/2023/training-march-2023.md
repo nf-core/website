@@ -2,12 +2,12 @@
 title: nf-core Training - March 2023
 subtitle: A set of global online Nextflow and nf-core training events
 type: training
-start_date: '2023-03-13'
-start_time: '15:00+01:00'
-end_date: '2023-03-16'
-end_time: '17:00+01:00'
-location_name: YouTube
-location_url: https://www.youtube.com/nf-core
+startDate: '2023-03-13'
+startTime: '15:00+01:00'
+endDate: '2023-03-16'
+endTime: '17:00+01:00'
+locationName: YouTube
+locationURL: https://www.youtube.com/nf-core
 ---
 
 # Welcome

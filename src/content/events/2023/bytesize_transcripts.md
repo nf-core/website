@@ -2,12 +2,12 @@
 title: 'Bytesize: transcripts of bytesize talks'
 subtitle: Franziska Bonath - NGI, Stockholm
 type: talk
-start_date: '2023-01-31'
-start_time: '13:00+01:00'
-end_date: '2023-01-31'
-end_time: '13:30+01:00'
+startDate: '2023-01-31'
+startTime: '13:00+01:00'
+endDate: '2023-01-31'
+endTime: '13:30+01:00'
 youtube_embed: https://www.youtube.com/watch?v=amwwmFMwOYw
-location_url:
+locationURL:
   - https://doi.org/10.6084/m9.figshare.21995243.v1
   - https://www.youtube.com/watch?v=amwwmFMwOYw
 ---

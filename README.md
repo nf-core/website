@@ -67,21 +67,21 @@ To add an event, create a new markdown (or .mdx) file in `src/content/events/` w
 title: "Event Title"
 subtitle: "A brief overview of the event"
 type: "talk"  # Can be "talk", "hackathon", "training", "bytesize"
-start_date: "YYYY-MM-DD"
-end_date: "YYYY-MM-DD"
-start_time: "HH:MM"
-end_time: "HH:MM"
+startDate: "YYYY-MM-DD"
+endDate: "YYYY-MM-DD"
+startTime: "HH:MM"
+endTime: "HH:MM"
 announcement:
   text: "Text on the announcement banner" # (optional)
   start: "YYYY-MM-DDTHH:MM:SS+HH:MM" # (required if announcement.text is used)
   end: "YYYY-MM-DDTHH:MM:SS+HH:MM" # (required if announcement.text is used)
-location_name: "Name of the location" # (optional)
-location_url: "URL to the location or to the section in the text with location description (e.g. `#gather-town`)" # (optional)
-location_latlng: [48.2082, 16.3738] # Latitude and longitude of the location as an array " (optional)
+locationName: "Name of the location" # (optional)
+locationURL: "URL to the location or to the section in the text with location description (e.g. `#gather-town`)" # (optional)
+locationLatLng: [48.2082, 16.3738] # Latitude and longitude of the location as an array " (optional)
 address: "Address of the location" (optional)
 duration: "Duration of the event in days" (optional)
-embed_at: "in case this should be shown in the sidebar of a pipeline page (e.g. for a bytesize talk about the pipeline)" (optional)
-import_typeform: true # If true, the event will be imported from a Typeform (see below)
+embedAt: "in case this should be shown in the sidebar of a pipeline page (e.g. for a bytesize talk about the pipeline)" (optional)
+importTypeform: true # If true, the event will be imported from a Typeform (see below)
 ```
 
 ## Adding a blog post
@@ -107,9 +107,10 @@ announcement:
 You can show a short announcement banner on the website by adding additional information to the frontmatter of either a file inside `src/content/blog` or `src/content/events`. The following fields are available:
 
 ```yaml
-announcement-text: "Your announcement text"
-announcement-start: "Start date and time of the announcement. Format: YYYY-MM-DDTHH:MM:SS+HH:MM" (without quotes!)
-announcement-end: "End date and time of the announcement. Format: YYYY-MM-DDTHH:MM:SS+HH:MM" (without quotes!) This is an optional field for events, where the start date of the event is the end date of the announcement by default.
+announcement:
+  text: 'Your announcement text'
+  start: YYYY-MM-DDTHH:MM:SS+HH:MM # Start date and time of the announcement (without quotes!)
+  end: YYYY-MM-DDTHH:MM:SS+HH:MM # End date and time of the announcement. (without quotes!) This is an optional field for events, where the start date of the event is the end date of the announcement by default.
 ```
 
 ### Updating the JSON files and cached markdown

@@ -2,13 +2,13 @@
 title: 'Bytesize: nf-core/viralrecon'
 subtitle: Sara Monzón and Sarai Varona - Instituto de Salud Carlos III, Madrid, Spain
 type: talk
-start_date: '2022-06-07'
-start_time: '13:00+02:00'
-end_date: '2022-06-07'
-end_time: '13:30+02:00'
-embed_at: 'viralrecon'
+startDate: '2022-06-07'
+startTime: '13:00+02:00'
+endDate: '2022-06-07'
+endTime: '13:30+02:00'
+embedAt: 'viralrecon'
 youtube_embed: https://www.youtube.com/watch?v=K1ThKn4p4u0
-location_url:
+locationURL:
   - https://www.youtube.com/watch?v=K1ThKn4p4u0
   - https://doi.org/10.6084/m9.figshare.20020703.v1
 ---

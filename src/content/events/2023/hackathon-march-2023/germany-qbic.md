@@ -2,14 +2,14 @@
 title: Hackathon - March 2023 (Tübingen)
 subtitle: Local node of the nf-core hackathon at QBiC, Tübingen.
 type: hackathon
-start_date: '2023-03-27'
-start_time: '09:30+02:00'
-end_date: '2023-03-29'
-end_time: '18:00+02:00'
-location_name: QBiC
+startDate: '2023-03-27'
+startTime: '09:30+02:00'
+endDate: '2023-03-29'
+endTime: '18:00+02:00'
+locationName: QBiC
 address: Auf der Morgenstelle 10, 72076 Tübingen, Germany
-location_url: http://qbic.life
-location_latlng: [48.5379169, 9.0339095]
+locationURL: http://qbic.life
+locationLatLng: [48.5379169, 9.0339095]
 ---
 
 Local event to be held at QBiC, Tübingen.

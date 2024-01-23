@@ -2,13 +2,13 @@
 title: Hackathon - March 2022
 subtitle: A virtual online hackathon to develop nf-core together
 type: hackathon
-start_date: '2022-03-16'
-start_time: '10:00+01:00'
-end_date: '2022-03-18'
-end_time: '18:00+01:00'
+startDate: '2022-03-16'
+startTime: '10:00+01:00'
+endDate: '2022-03-18'
+endTime: '18:00+01:00'
 youtube_embed: https://www.youtube.com/watch?v=yZ8xX4Jk4zU
-location_name: Gather town and Slack.
-location_url: https://gather.town/
+locationName: Gather town and Slack.
+locationURL: https://gather.town/
 ---
 
 # Welcome
