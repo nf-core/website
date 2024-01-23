@@ -1,6 +1,6 @@
 ---
 title: 'Bytesize: nf-core hackathons'
-subtitle: Matthias Hörtenhuber, SciLifeLab Data Centre
+subtitle: Friederike Hanssen, QBiC
 type: talk
 startDate: '2024-01-30'
 startTime: '13:00+01:00'
