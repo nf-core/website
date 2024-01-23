@@ -7,7 +7,7 @@ startTime: '13:00+02:00'
 endDate: '2022-07-26'
 endTime: '13:30+02:00'
 embedAt: 'chipseq'
-youtube_embed: https://www.youtube.com/watch?v=59I-4wB1z4c
+youtubeEmbed: https://www.youtube.com/watch?v=59I-4wB1z4c
 locationURL:
   - https://www.youtube.com/watch?v=59I-4wB1z4c
   - https://doi.org/10.6084/m9.figshare.20418171.v1

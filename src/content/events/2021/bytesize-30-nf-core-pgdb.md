@@ -7,7 +7,7 @@ startTime: '13:00+01:00'
 endDate: '2021-12-07'
 endTime: '13:30+01:00'
 embedAt: 'pgdb'
-youtube_embed: https://www.youtube.com/watch?v=vbyX3xmTT38
+youtubeEmbed: https://www.youtube.com/watch?v=vbyX3xmTT38
 locationURL:
   - https://youtu.be/vbyX3xmTT38
   - https://www.bilibili.com/video/BV1db4y1i7GM

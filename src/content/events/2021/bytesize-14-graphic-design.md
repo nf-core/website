@@ -6,7 +6,7 @@ startDate: '2021-05-25'
 startTime: '13:00+02:00'
 endDate: '2021-05-25'
 endTime: '13:30+02:00'
-youtube_embed: https://youtu.be/5jZPucWXnno
+youtubeEmbed: https://youtu.be/5jZPucWXnno
 locationURL:
   - https://www.bilibili.com/video/BV1Z54y1V78h
   - https://youtu.be/5jZPucWXnno

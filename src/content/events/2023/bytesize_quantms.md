@@ -6,7 +6,7 @@ startDate: '2023-05-30'
 startTime: '13:00+02:00'
 endDate: '2023-05-30'
 endTime: '13:30+02:00'
-youtube_embed: https://www.youtube.com/watch?v=pBzelkgrPgQ
+youtubeEmbed: https://www.youtube.com/watch?v=pBzelkgrPgQ
 embedAt: quantms
 locationURL:
   - https://www.youtube.com/watch?v=pBzelkgrPgQ

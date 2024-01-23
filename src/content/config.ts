@@ -35,6 +35,7 @@ const events = defineCollection({
             duration: z.string().optional(),
             embedAt: z.string().optional(),
             importTypeform: z.boolean().optional(),
+            youtubeEmbed: z.array(z.string().url()).optional().or(z.string().url()).optional(),
         })
         .refine((data) => {
             // create start and end date objects

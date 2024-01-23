@@ -7,7 +7,7 @@ startTime: '13:00+02:00'
 endDate: '2022-05-17'
 endTime: '13:30+02:00'
 embedAt: 'cutandrun'
-youtube_embed: https://www.youtube.com/watch?v=rj5i9deNPHA
+youtubeEmbed: https://www.youtube.com/watch?v=rj5i9deNPHA
 locationURL:
   - https://www.youtube.com/watch?v=kBoC6QBU-M0
   - https://doi.org/10.6084/m9.figshare.19923428.v1

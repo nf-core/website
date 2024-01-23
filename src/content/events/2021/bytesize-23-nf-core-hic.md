@@ -7,7 +7,7 @@ startTime: '13:00+02:00'
 endDate: '2021-10-12'
 endTime: '13:30+02:00'
 embedAt: 'hic'
-youtube_embed: https://youtu.be/AFHaX_GRNBU
+youtubeEmbed: https://youtu.be/AFHaX_GRNBU
 locationURL:
   - https://youtu.be/AFHaX_GRNBU
   - https://doi.org/10.6084/m9.figshare.16795882.v1

@@ -6,7 +6,7 @@ startDate: '2024-01-23'
 startTime: '13:00+01:00'
 endDate: '2024-01-23'
 endTime: '13:30+01:00'
-youtube_embed: https://youtu.be/HjLCpDozPiw
+youtubeEmbed: https://youtu.be/HjLCpDozPiw
 locationURL: https://youtu.be/HjLCpDozPiw
 ---
 
