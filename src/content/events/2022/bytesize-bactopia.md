@@ -2,12 +2,12 @@
 title: 'Bytesize: Bactopia & using nf-core components in non-nf-core pipelines'
 subtitle: Robert A Petit III - Wyoming Public Health Lab, USA
 type: talk
-start_date: '2022-07-19'
-start_time: '13:00+02:00'
-end_date: '2022-07-19'
-end_time: '13:30+02:00'
+startDate: '2022-07-19'
+startTime: '13:00+02:00'
+endDate: '2022-07-19'
+endTime: '13:30+02:00'
 youtube_embed: https://www.youtube.com/watch?v=egjgcmeJ0wQ
-location_url:
+locationURL:
   - https://www.youtube.com/watch?v=egjgcmeJ0wQ
   - https://doi.org/10.6084/m9.figshare.20338464.v1 (slides)
   - https://doi.org/10.6084/m9.figshare.20342808.v1 (video)

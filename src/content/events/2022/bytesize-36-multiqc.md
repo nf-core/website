@@ -2,12 +2,12 @@
 title: 'Bytesize 36: Customising your MultiQC reports'
 subtitle: Phil Ewels - National Genomics Infrastructure / SciLifeLab, Sweden
 type: talk
-start_date: '2022-03-08'
-start_time: '13:00+01:00'
-end_date: '2022-03-08'
-end_time: '13:30+01:00'
+startDate: '2022-03-08'
+startTime: '13:00+01:00'
+endDate: '2022-03-08'
+endTime: '13:30+01:00'
 youtube_embed: https://www.youtube.com/watch?v=a3_IYSMrKAk
-location_url:
+locationURL:
   - https://www.youtube.com/watch?v=a3_IYSMrKAk
   - https://doi.org/10.6084/m9.figshare.19923422.v1
 ---

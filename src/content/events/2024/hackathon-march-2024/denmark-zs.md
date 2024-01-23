@@ -2,14 +2,14 @@
 title: Hackathon - March 2024 (Copenhagen)
 subtitle: Local node of the nf-core hackathon at the ZS Associates office, in (North of) Copenhagen.
 type: hackathon
-start_date: '2024-03-18'
-start_time: '10:00+02:00'
-end_date: '2024-03-20'
-end_time: '17:00+02:00'
-location_name: ZS Associates
+startDate: '2024-03-18'
+startTime: '10:00+02:00'
+endDate: '2024-03-20'
+endTime: '17:00+02:00'
+locationName: ZS Associates
 address: Lottenborgvej 26 DK-2800 Lyngby, Denmark
-location_url: https://www.zs.com/careers/where-we-work/europe/copenhagen
-location_latlng: [55.780384, 12.488322]
+locationURL: https://www.zs.com/careers/where-we-work/europe/copenhagen
+locationLatLng: [55.780384, 12.488322]
 ---
 
 Local event to be held at the ZS Associates office, in (North of) Copenhagen.

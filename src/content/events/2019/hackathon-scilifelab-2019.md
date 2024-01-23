@@ -2,14 +2,14 @@
 title: Hackathon @ SciLifeLab
 subtitle: The 2019 nf-core hackathon held at SciLifeLab, Stockholm
 type: hackathon
-start_date: '2019-12-04'
-start_time: '09:00+02:00'
-end_date: '2019-12-06'
-end_time: '17:00+02:00'
+startDate: '2019-12-04'
+startTime: '09:00+02:00'
+endDate: '2019-12-06'
+endTime: '17:00+02:00'
 address: Tomtebodavägen 23A, 17165 Solna, Sweden
-location_name: SciLifeLab
-location_url: https://scilifelab.se/
-location_latlng: [59.3505174, 18.0221508]
+locationName: SciLifeLab
+locationURL: https://scilifelab.se/
+locationLatLng: [59.3505174, 18.0221508]
 ---
 
 Informal meetup for anyone interested in learning more about nf-core and Nextflow.

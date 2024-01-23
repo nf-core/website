@@ -2,12 +2,12 @@
 title: 'Seminario Institucional, Universidad Nacional Autónoma de México'
 subtitle: 'Open and reproducible bioinformatics with Nextflow and nf-core.'
 type: talk
-start_date: '2020-12-04'
-start_time: '12:00+01:00'
-end_date: '2020-12-04'
-end_time: '13:00+01:00'
-location_name: Zoom
-location_url: https://zoom.us/j/98115333040?pwd=bHhuOFZhSksxVndWcTNMY1VUaXlTdz09
+startDate: '2020-12-04'
+startTime: '12:00+01:00'
+endDate: '2020-12-04'
+endTime: '13:00+01:00'
+locationName: Zoom
+locationURL: https://zoom.us/j/98115333040?pwd=bHhuOFZhSksxVndWcTNMY1VUaXlTdz09
 ---
 
 ## Open and reproducible bioinformatics with Nextflow and nf-core

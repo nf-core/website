@@ -2,12 +2,12 @@
 title: 'Bytesize 37: Gather Town'
 subtitle: James A. Fellows Yates - Leibniz-HKI / MPI-EVA
 type: talk
-start_date: '2022-03-15'
-start_time: '13:00+01:00'
-end_date: '2022-03-15'
-end_time: '13:30+01:00'
+startDate: '2022-03-15'
+startTime: '13:00+01:00'
+endDate: '2022-03-15'
+endTime: '13:30+01:00'
 youtube_embed: https://www.youtube.com/watch?v=nRY1_FvL7Pk
-location_url:
+locationURL:
   - https://www.youtube.com/watch?v=nRY1_FvL7Pk
   - https://doi.org/10.6084/m9.figshare.19923416.v1
 ---
