@@ -3,6 +3,7 @@ import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
 import { getCollection } from 'astro:content';
 import { YouTube } from '@astro-community/astro-embed-youtube';
 import VideoTranscript from '@components/VideoTranscript.svelte';
+import Admonition from '@components/Admonition.astro';
 
 export async function getStaticPaths() {
     const events = await getCollection('events');
@@ -47,6 +48,24 @@ const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https
     ]}
     viewTransitions={true}
 >
+    {
+        title.trim().toLowerCase().startsWith('bytesize') && (
+            <Admonition
+                title="tip"
+                titleText="Join us for our <strong>weekly series</strong> of short talks: <strong>nf-core/bytesize</strong>."
+            >
+                <p class="small text-body-secondary">
+                    Just <strong>15 minutes</strong> + questions, we focus on topics about using and developing nf-core
+                    pipelines. These are recorded and made available at <a href="https://nf-co.re/">https://nf-co.re</a>
+                    , helping to build an archive of training material. Got an idea for a talk? Let us know on the{' '}
+                    <a href="https://nfcore.slack.com/channels/bytesize">
+                        <code>#bytesize</code>
+                    </a>{' '}
+                    Slack channel!
+                </p>
+            </Admonition>
+        )
+    }
     <Content />
     {
         id && (
