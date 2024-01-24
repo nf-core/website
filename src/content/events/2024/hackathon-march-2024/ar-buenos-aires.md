@@ -2,14 +2,14 @@
 title: Hackathon - March 2024 (Argentina)
 subtitle: Local node of the nf-core hackathon
 type: hackathon
-start_date: '2024-03-18'
-start_time: '13:00+02:00'
-end_date: '2024-03-20'
-end_time: '21:00+02:00'
-location_name: TBD
-address: TBD
-location_url: TBD
-location_latlng: TBD
+startDate: '2024-03-18'
+startTime: '13:00+02:00'
+endDate: '2024-03-20'
+endTime: '21:00+02:00'
+# locationName: TBD
+# address: TBD
+# locationURL: TBD
+# locationLatLng: TBD
 ---
 
 Local event to be held in Buenos Aires
