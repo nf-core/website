@@ -6,7 +6,7 @@ startDate: '2021-10-19'
 startTime: '13:00+02:00'
 endDate: '2021-10-19'
 endTime: '13:30+02:00'
-youtube_embed: https://youtu.be/Z_uPj7fAes8
+youtubeEmbed: https://youtu.be/Z_uPj7fAes8
 locationURL:
   - https://youtu.be/Z_uPj7fAes8
   - https://www.bilibili.com/video/BV1nq4y197FR

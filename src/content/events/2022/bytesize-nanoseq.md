@@ -7,7 +7,7 @@ startTime: '13:00+02:00'
 endDate: '2022-06-21'
 endTime: '13:30+02:00'
 embedAt: 'nanoseq'
-youtube_embed: https://www.youtube.com/watch?v=KM1A0_GD2vQ
+youtubeEmbed: https://www.youtube.com/watch?v=KM1A0_GD2vQ
 locationURL:
   - https://www.youtube.com/watch?v=KM1A0_GD2vQ
   - https://doi.org/10.6084/m9.figshare.20115506.v1

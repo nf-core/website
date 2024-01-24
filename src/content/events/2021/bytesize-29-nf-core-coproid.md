@@ -7,7 +7,7 @@ startTime: '13:00+01:00'
 endDate: '2021-11-30'
 endTime: '13:30+01:00'
 embedAt: 'coproid'
-youtube_embed: https://youtu.be/gU4jx1pb8Tw
+youtubeEmbed: https://youtu.be/gU4jx1pb8Tw
 locationURL:
   - https://youtu.be/gU4jx1pb8Tw
   - https://doi.org/10.6084/m9.figshare.17099534.v1

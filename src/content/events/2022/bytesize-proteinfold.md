@@ -7,7 +7,7 @@ startTime: '13:00+02:00'
 endDate: '2022-09-20'
 endTime: '13:30+02:00'
 embedAt: 'proteinfold'
-youtube_embed: https://www.youtube.com/watch?v=441P_GzrI-o
+youtubeEmbed: https://www.youtube.com/watch?v=441P_GzrI-o
 locationURL:
   - https://www.youtube.com/watch?v=441P_GzrI-o
   - https://doi.org/10.6084/m9.figshare.21206555.v1

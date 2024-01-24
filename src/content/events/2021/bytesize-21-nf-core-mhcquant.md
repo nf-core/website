@@ -7,7 +7,7 @@ startTime: '13:00+02:00'
 endDate: '2021-09-28'
 endTime: '13:30+02:00'
 embedAt: 'mhcquant'
-youtube_embed: https://youtu.be/NCKkSssE_4w
+youtubeEmbed: https://youtu.be/NCKkSssE_4w
 locationURL:
   - https://youtu.be/NCKkSssE_4w
   - https://www.bilibili.com/video/BV1Lh411J732/

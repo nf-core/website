@@ -6,7 +6,7 @@ startDate: '2023-01-31'
 startTime: '13:00+01:00'
 endDate: '2023-01-31'
 endTime: '13:30+01:00'
-youtube_embed: https://www.youtube.com/watch?v=amwwmFMwOYw
+youtubeEmbed: https://www.youtube.com/watch?v=amwwmFMwOYw
 locationURL:
   - https://doi.org/10.6084/m9.figshare.21995243.v1
   - https://www.youtube.com/watch?v=amwwmFMwOYw

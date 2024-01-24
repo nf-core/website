@@ -7,7 +7,7 @@ startTime: '13:00+01:00'
 endDate: '2021-11-09'
 endTime: '13:30+01:00'
 embedAt: 'smrnaseq'
-youtube_embed: https://youtu.be/4YLQ2VwpCJE
+youtubeEmbed: https://youtu.be/4YLQ2VwpCJE
 locationURL:
   - https://youtu.be/4YLQ2VwpCJE
   - https://www.bilibili.com/video/BV17U4y1M7bQ

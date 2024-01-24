@@ -6,7 +6,7 @@ startDate: '2021-09-21'
 startTime: '13:00+02:00'
 endDate: '2021-09-21'
 endTime: '13:30+02:00'
-youtube_embed: https://youtu.be/zS_hbXQmHbI
+youtubeEmbed: https://youtu.be/zS_hbXQmHbI
 locationURL:
   - https://youtu.be/zS_hbXQmHbI
   - https://zoom.us/j/94352451216

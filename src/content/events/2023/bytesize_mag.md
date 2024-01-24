@@ -6,7 +6,7 @@ startDate: '2023-02-28'
 startTime: '13:00+01:00'
 endDate: '2023-02-28'
 endTime: '13:30+01:00'
-youtube_embed: https://www.youtube.com/watch?v=IiorfDHeoLo
+youtubeEmbed: https://www.youtube.com/watch?v=IiorfDHeoLo
 embedAt: 'mag'
 locationURL:
   - https://doi.org/10.6084/m9.figshare.22210879.v1

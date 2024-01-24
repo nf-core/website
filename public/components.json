@@ -3873,6 +3873,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -36939,6 +36943,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -37664,6 +37672,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -42113,6 +42125,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -53974,11 +53990,19 @@
               "description": "Reverse overlaps",
               "pattern": "*.ovlp.reverse.bin"
             }
+          },
+          {
+            "log": {
+              "type": "file",
+              "description": "Stderr log",
+              "pattern": "*.log"
+            }
           }
         ],
         "authors": [
           "@sidorov-si",
-          "@scorreard"
+          "@scorreard",
+          "@mbeavitt"
         ],
         "maintainers": [
           "@sidorov-si",
@@ -121055,6 +121079,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -121089,6 +121117,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -121835,6 +121867,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"

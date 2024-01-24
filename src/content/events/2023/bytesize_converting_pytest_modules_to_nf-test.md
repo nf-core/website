@@ -4,7 +4,7 @@ subtitle: 'Adam Talbot (Seqera) and Sateesh Peri (MemVerge)'
 type: talk
 startDate: '2023-10-31'
 startTime: '13:00+01:00'
-youtube_embed: https://youtu.be/MuwluoKFnwM
+youtubeEmbed: https://youtu.be/MuwluoKFnwM
 endDate: '2023-10-31'
 endTime: '13:30+01:00'
 locationURL: https://youtu.be/MuwluoKFnwM

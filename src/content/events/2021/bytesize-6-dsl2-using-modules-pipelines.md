@@ -6,7 +6,7 @@ startDate: '2021-03-09'
 startTime: '13:00+01:00'
 endDate: '2021-03-09'
 endTime: '13:30+01:00'
-youtube_embed:
+youtubeEmbed:
   - https://www.youtube.com/embed/tWvou0xj9wA
   - https://www.youtube.com/embed/Wc4A2tQ6WWY
 locationURL:

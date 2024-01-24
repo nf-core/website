@@ -6,7 +6,7 @@ startDate: '2021-05-11'
 startTime: '13:00+02:00'
 endDate: '2021-05-11'
 endTime: '13:30+02:00'
-youtube_embed: https://youtu.be/-CZKoo5Y_08
+youtubeEmbed: https://youtu.be/-CZKoo5Y_08
 locationURL:
   - https://youtu.be/-CZKoo5Y_08
   - https://www.bilibili.com/video/BV1D64y127yJ/

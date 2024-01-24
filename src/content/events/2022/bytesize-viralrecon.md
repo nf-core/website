@@ -7,7 +7,7 @@ startTime: '13:00+02:00'
 endDate: '2022-06-07'
 endTime: '13:30+02:00'
 embedAt: 'viralrecon'
-youtube_embed: https://www.youtube.com/watch?v=K1ThKn4p4u0
+youtubeEmbed: https://www.youtube.com/watch?v=K1ThKn4p4u0
 locationURL:
   - https://www.youtube.com/watch?v=K1ThKn4p4u0
   - https://doi.org/10.6084/m9.figshare.20020703.v1

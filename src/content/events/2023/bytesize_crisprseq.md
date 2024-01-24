@@ -7,7 +7,7 @@ startTime: '13:00+01:00'
 endDate: '2023-02-14'
 endTime: '13:30+01:00'
 embedAt: 'crisprseq'
-youtube_embed: https://www.youtube.com/watch?v=x_eFQW0nNvo
+youtubeEmbed: https://www.youtube.com/watch?v=x_eFQW0nNvo
 locationURL:
   - https://doi.org/10.6084/m9.figshare.22100045.v1
   - https://www.youtube.com/watch?v=x_eFQW0nNvo

@@ -7,7 +7,7 @@ startTime: '13:00+02:00'
 endDate: '2021-10-05'
 endTime: '13:30+02:00'
 embedAt: 'eager'
-youtube_embed: https://youtu.be/fObuLeGhQRo
+youtubeEmbed: https://youtu.be/fObuLeGhQRo
 locationURL:
   - https://youtu.be/fObuLeGhQRo
   - https://www.bilibili.com/video/BV1q34y1U7Ak/
