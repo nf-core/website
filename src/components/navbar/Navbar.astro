@@ -61,7 +61,7 @@ newBlogPost = await getCollection('blog').then((posts) => {
 <nav
     class="navbar fixed-top navbar-expand-xl bg-body-secondary text-body-secondary shadow-sm d-print-none py-0 py-xl-2"
 >
-    <div class="container">
+    <div class="container-fluid">
         <a class="navbar-brand d-xl-none" href="/">
             <div class="hide-dark">
                 <Fragment set:html={NfCoreLogo} />
@@ -178,7 +178,7 @@ newBlogPost = await getCollection('blog').then((posts) => {
                         </li>
                     </ul>
                 </li>
-                <div class="align-self-center d-none d-xl-block ms-auto pe-3">
+                <div class="align-self-center d-none d-xl-block ms-auto">
                     <Search id="docsearch-desktop" client:only="svelte" />
                 </div>
                 <div class="d-none d-xl-block align-self-center px-2 py-1">
@@ -187,7 +187,7 @@ newBlogPost = await getCollection('blog').then((posts) => {
                         <i class="icon" slot="dark"><Icon name="moon" width={'14pt'} /></i>
                     </ThemeSwitch>
                 </div>
-                <div class="vr d-none d-xl-inline mx-1 mx-xxl-3"></div>
+                <div class="vr d-none d-xl-inline mx-1 mx-xxl-2"></div>
                 <hr class="d-xl-none" />
                 <div
                     class="social-icons d-print-none d-flex align-items-center d-xl-block align-self-center mb-3 mb-xl-0 px-3 px-xl-1"
@@ -226,6 +226,7 @@ newBlogPost = await getCollection('blog').then((posts) => {
                         icon="logos:slack-icon"
                         additionalClass="monochrome me-1"
                     />
+                    <div class="vr ms-2 me-1 d-xl-none"></div>
                     <div class="d-xl-none ms-auto px-2 py-1">
                         <ThemeSwitch client:load>
                             <i class="icon" slot="light"><Icon name="sun" width={'14pt'} /></i>
@@ -234,8 +235,13 @@ newBlogPost = await getCollection('blog').then((posts) => {
                     </div>
                 </div>
                 <div class="d-none d-xl-block vr mx-1 mx-xxl-3"></div>
-                <a class="d-xl-none btn d-block btn-success mb-3 mx-3 mx-xl-1" href="/join/"> Join nf-core</a>
-                <a class="d-none d-xl-block btn btn-success align-self-center" href="/join/"> Join nf-core</a>
+                <!-- Mobile nav -->
+                <a class="d-xl-none btn d-block btn-success mb-3 mx-3 mx-xl-1" href="/join/">Join nf-core</a>
+                <!-- Desktop nav -->
+                <a class="d-none d-xl-block btn btn-success mx-2 align-self-center" href="/join/">
+                    Join
+                    <span class="d-none d-xxl-inline">nf-core</span>
+                </a>
             </ul>
         </div>
     </div>
@@ -264,8 +270,8 @@ newBlogPost = await getCollection('blog').then((posts) => {
             @include media-breakpoint-up(xl) {
                 padding: 0.2rem 1rem;
                 .navbar-nav > li > a {
-                    margin-left: 1rem;
-                    margin-right: 1rem;
+                    margin-left: 0.6rem;
+                    margin-right: 0.6rem;
                     transition: ease-in-out color 0.1s;
                 }
             }
