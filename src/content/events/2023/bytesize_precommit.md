@@ -12,16 +12,6 @@ locationURL:
   - https://www.youtube.com/watch?v=08d6zv6zvdM
 ---
 
-# nf-core/bytesize
-
-Join us for our **weekly series** of short talks: **“nf-core/bytesize”**.
-
-Just **15 minutes** + questions, we will be focussing on topics about using and developing nf-core pipelines.
-These will be recorded and made available at <https://nf-co.re>
-It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
-
-## Bytesize: nf-core/pre-commit
-
 This week, Matthias Hörtenhuber ([@mashehu](https://github.com/mashehu)) is going to explain the use the newly added pre-commit tool added to nf-core/tools. Pre-commits were developed to inspect the snapshot that is about to be committed and helps to check formatting etc. before adding the code to the repository.
 
 <details markdown="1"><summary>Video transcription</summary>

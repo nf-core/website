@@ -14,16 +14,6 @@ locationURL:
   - https://doi.org/10.6084/m9.figshare.16750387.v1
 ---
 
-# nf-core/bytesize
-
-Join us for a special pipeline-focussed episode of our **weekly series** of short talks: **“nf-core/bytesize”**.
-
-Just **15 minutes** + questions, we will be focussing on topics about using and developing nf-core pipelines.
-These will be recorded and made available at <https://nf-co.re>
-It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
-
-## Bytesize 22: nf-core/eager
-
 This week, James Fellows Yates ([@jfy133](https://github.com/jfy133/)) will tell us all about the nf-core/eager pipeline.
 
 nf-core/eager is one of the largest and/or most complex nf-core pipelines. It is a best practise (meta)genomics primarily aimed at (but not limited to) processing ancient DNA. This talk will:
