@@ -6,7 +6,7 @@ startDate: '2022-07-05'
 startTime: '13:00+02:00'
 endDate: '2022-07-05'
 endTime: '13:30+02:00'
-youtube_embed: https://www.youtube.com/watch?v=KnYPzZ0Dd-Y
+youtubeEmbed: https://www.youtube.com/watch?v=KnYPzZ0Dd-Y
 locationURL:
   - https://www.youtube.com/watch?v=KnYPzZ0Dd-Y
   - https://doi.org/10.6084/m9.figshare.20238969.v1

@@ -6,7 +6,7 @@ startDate: '2022-02-22'
 startTime: '13:00+01:00'
 endDate: '2022-02-22'
 endTime: '13:30+01:00'
-youtube_embed: https://youtu.be/17NqUsh73BU
+youtubeEmbed: https://youtu.be/17NqUsh73BU
 locationURL:
   - https://youtu.be/17NqUsh73BU
   - https://doi.org/10.6084/m9.figshare.19263401.v1

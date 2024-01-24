@@ -6,7 +6,7 @@ startDate: '2023-04-18'
 startTime: '13:00+02:00'
 endDate: '2023-04-18'
 endTime: '13:30+02:00'
-youtube_embed: https://www.youtube.com/watch?v=OqAKuwwNFf0
+youtubeEmbed: https://www.youtube.com/watch?v=OqAKuwwNFf0
 locationURL:
   - https://doi.org/10.6084/m9.figshare.22656934.v1
   - https://www.youtube.com/watch?v=OqAKuwwNFf0

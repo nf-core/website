@@ -7,7 +7,7 @@ startTime: '13:00+01:00'
 endDate: '2023-01-17'
 endTime: '13:30+01:00'
 embedAt: 'taxprofiler'
-youtube_embed: https://www.youtube.com/watch?v=p1EQtidJiUY
+youtubeEmbed: https://www.youtube.com/watch?v=p1EQtidJiUY
 locationURL:
   - https://www.youtube.com/watch?v=p1EQtidJiUY
   - https://doi.org/10.6084/m9.figshare.21916416.v1 (video)

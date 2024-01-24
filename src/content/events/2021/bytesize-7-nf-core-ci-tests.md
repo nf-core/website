@@ -6,7 +6,7 @@ startDate: '2021-03-16'
 startTime: '13:00+01:00'
 endDate: '2021-03-16'
 endTime: '13:30+01:00'
-youtube_embed: https://youtu.be/U9LG_mMQFMY
+youtubeEmbed: https://youtu.be/U9LG_mMQFMY
 locationURL:
   - https://youtu.be/U9LG_mMQFMY
   - https://www.bilibili.com/video/BV155411P7ES

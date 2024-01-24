@@ -6,7 +6,7 @@ startDate: '2021-02-02'
 startTime: '13:00+01:00'
 endDate: '2021-02-02'
 endTime: '13:30+01:00'
-youtube_embed: https://youtu.be/ZfxOFYXmiNw
+youtubeEmbed: https://youtu.be/ZfxOFYXmiNw
 locationURL:
   - https://doi.org/10.6084/m9.figshare.14160668.v1
   - https://youtu.be/ZfxOFYXmiNw

@@ -6,7 +6,7 @@ startDate: '2022-03-15'
 startTime: '13:00+01:00'
 endDate: '2022-03-15'
 endTime: '13:30+01:00'
-youtube_embed: https://www.youtube.com/watch?v=nRY1_FvL7Pk
+youtubeEmbed: https://www.youtube.com/watch?v=nRY1_FvL7Pk
 locationURL:
   - https://www.youtube.com/watch?v=nRY1_FvL7Pk
   - https://doi.org/10.6084/m9.figshare.19923416.v1

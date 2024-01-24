@@ -6,7 +6,7 @@ startDate: '2021-06-08'
 startTime: '13:00+02:00'
 endDate: '2021-06-08'
 endTime: '13:30+02:00'
-youtube_embed: https://youtu.be/QXfAerydAT0
+youtubeEmbed: https://youtu.be/QXfAerydAT0
 locationURL:
   - https://youtu.be/QXfAerydAT0
   - https://www.bilibili.com/video/BV14y4y1u7ns

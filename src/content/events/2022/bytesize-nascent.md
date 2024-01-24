@@ -6,7 +6,7 @@ startDate: '2022-11-01'
 startTime: '13:00+01:00'
 endDate: '2022-11-01'
 endTime: '13:30+01:00'
-youtube_embed: https://www.youtube.com/watch?v=chayGGPTnfM
+youtubeEmbed: https://www.youtube.com/watch?v=chayGGPTnfM
 locationURL:
   - https://doi.org/10.6084/m9.figshare.21444867.v1
   - https://www.youtube.com/watch?v=chayGGPTnfM
