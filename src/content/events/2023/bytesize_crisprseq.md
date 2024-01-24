@@ -13,16 +13,6 @@ locationURL:
   - https://www.youtube.com/watch?v=x_eFQW0nNvo
 ---
 
-# nf-core/bytesize
-
-Join us for our **weekly series** of short talks: **“nf-core/bytesize”**.
-
-Just **15 minutes** + questions, we will be focussing on topics about using and developing nf-core pipelines.
-These will be recorded and made available at <https://nf-co.re>
-It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
-
-## Bytesize: nf-core/crisprseq
-
 This week Júlia Mir ([@mirpedrol](https://github.com/mirpedrol)) and Marta Sanvincente ([@msanvicente](https://github.com/msanvicente)) present the newly released nf-core pipeline nf-core/crisprseq.
 Nf-core/crisprseq is a bioinformatics best-practice analysis pipeline for the analysis of CRISPR edited next generation sequencing (NGS) data. It allows the evaluation of the quality of gene editing experiments using targeted NGS data.
 
