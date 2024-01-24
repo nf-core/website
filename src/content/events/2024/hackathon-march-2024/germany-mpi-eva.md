@@ -7,7 +7,7 @@ startTime: '10:00+02:00'
 endDate: '2024-03-20'
 endTime: '18:00+02:00'
 locationName: EVA
-address: Deutscher Platz 6, 04103 Leipzig
+address: Deutscher Platz 6, 04103 Leipzig, Germany
 locationURL: https://www.eva.mpg.de/index/
 locationLatLng: [51.3210835, 12.3954451]
 ---
