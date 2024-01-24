@@ -131,7 +131,7 @@
     });
 </script>
 
-<div class="listing d-flex flex-wrap w-100 justify-content-center">
+<div class="listing grid px-2 py-4">
     {#if $DisplayStyle === 'grid'}
         {#if filteredPipelines.length === 0 && $SearchQuery !== ''}
             <div class="alert alert-warning" role="alert">
@@ -139,7 +139,9 @@
             </div>
         {:else}
             {#each filteredPipelines as pipeline (pipeline.name)}
-                <PipelineCard {pipeline} />
+                <div class="g-col-12 g-col-md-6 g-col-xl-4">
+                    <PipelineCard {pipeline} />
+                </div>
             {/each}
         {/if}
     {:else}
