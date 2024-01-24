@@ -23,7 +23,7 @@ It is our hope that these talks / videos will build an archive of training mater
 
 ## Bytesize 17: Pytest workflow
 
-This week, Edmund Miller ([@Emiller88](http://github.com/Emiller88/)) will present: _**Pytest workflow**_
+This week, Edmund Miller ([@edmundmiller](http://github.com/edmundmiller/)) will present: _**Pytest workflow**_
 
 This will cover:
 
