@@ -85,6 +85,9 @@ $grid-breakpoints: (
   xxxl: 1600px,
 );
 
+// Include classes for CSS grids
+$enable-cssgrid: true;
+
 @import 'bootstrap/scss/maps';
 @import 'bootstrap/scss/mixins';
 @import 'bootstrap/scss/utilities';
