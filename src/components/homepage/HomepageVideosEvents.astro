@@ -127,10 +127,12 @@ eventPreviewPast = eventPreview
         <div class="col-lg-4">
             <h2>Latest bytesize</h2>
 
-            <p>Our weekly series of short talks about using and developing nf-core pipelines.</p>
+            <p>Our weekly series of short talks.</p>
 
             <YouTube id={latestBytesize} poster={`https://img.youtube.com/vi/${latestBytesize}/hqdefault.jpg`} />
-            <h4 class="mt-3">Find more bytesize talks: <FuzzySearch possibleResults={bytesizeSearch} client:load /></h4>
+            <div class="my-2">
+                <FuzzySearch possibleResults={bytesizeSearch} placeholder="Find another bytesize" client:load />
+            </div>
         </div>
     </div>
 
