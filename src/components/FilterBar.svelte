@@ -58,7 +58,7 @@
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
                     >
-                        Status
+                        <slot name="filter-name">Status</slot>
                     </button>
                     <ul class="dropdown-menu">
                         {#each $Filters as fil}
@@ -95,7 +95,7 @@
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
                     >
-                        Sort
+                        Sort <span class="d-none d-xl-inline">({$SortBy})</span>
                     </button>
                     <ul class="dropdown-menu">
                         {#each sortBy as sor (sor)}
