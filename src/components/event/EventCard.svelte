@@ -77,8 +77,8 @@
 <div class={'card mb-3 rounded-0 rounded-end ' + type} style="border-left-color:var(--bs-{type_class});">
     <div class="card-body">
         <div class="card-title">
-            <h4 id={'event-' + slug.split('/')[1]}>
-                <a class="text-center" href={/events/ + slug + '/'}>
+            <h4 id={'event-' + slug.split('/')[1]} class:h5={narrow}>
+                <a class="text-center" class:text-decoration-none={narrow} href={/events/ + slug + '/'}>
                     {frontmatter.title}
                 </a>
                 {#if time_category === 'current' && frontmatter.locationURL}
@@ -102,7 +102,7 @@
             </div>
         </div>
     </div>
-    <div class="card-footer p-0" class:p-md-2={!narrow}>
+    <div class="card-footer p-0" class:p-md-2={!narrow} class:d-none={narrow}>
         <div class="d-flex align-items-center justify-content-between">
             <p class="d-none text-wrap mb-0 ms-2 align-middle" class:d-md-inline-block={!narrow}>
                 {@html event_date}
