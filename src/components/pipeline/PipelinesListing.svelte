@@ -139,7 +139,7 @@
             </div>
         {:else}
             {#each filteredPipelines as pipeline (pipeline.name)}
-                <div class="g-col-12 g-col-md-6 g-col-xl-4">
+                <div class="g-col-12 g-col-md-6 g-col-xl-4 g-col-xxl-3">
                     <PipelineCard {pipeline} />
                 </div>
             {/each}
