@@ -2,7 +2,7 @@
     export let recentRelease: boolean = false;
 </script>
 
-<div class="card m-2">
+<div class="card">
     <div class="card-header" class:border-success={recentRelease}>
         <h2 class="mb-0">
             <slot name="card-header" />
@@ -14,13 +14,8 @@
 </div>
 
 <style lang="scss">
-    @import '@styles/_variables.scss';
     .card {
-        width: 32rem;
-    }
-    @include media-breakpoint-down(md) {
-        .card {
-            width: 100%;
-        }
+        width: 100%;
+        height: 100%;
     }
 </style>
