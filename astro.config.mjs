@@ -5,7 +5,6 @@ import githubDarkDimmed from '/public/themes/github-dark-dimmed.json';
 import mdx from '@astrojs/mdx';
 import netlify from '@astrojs/netlify/functions';
 import partytown from '@astrojs/partytown';
-import prefetch from '@astrojs/prefetch';
 import sitemap from '@astrojs/sitemap';
 import svelte from '@astrojs/svelte';
 import yaml from '@rollup/plugin-yaml';
@@ -25,7 +24,7 @@ import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import remarkDescription from 'astro-remark-description';
 import markdownIntegration from '@astropub/md';
-import icon from "astro-icon";
+import icon from 'astro-icon';
 
 const latestToolsRelease = await fetch('https://api.github.com/repos/nf-core/tools/releases/latest')
     .then((res) => res.json())
@@ -41,6 +40,7 @@ export default defineConfig({
     site: 'https://nf-co.re/',
     output: 'hybrid',
     adapter: netlify(),
+    prefetch: true,
     redirects: {
         [latestTollsURL]: 'https://oldsite.nf-co.re/tools/docs/latest/',
         ...latestPipelineReleases,
@@ -48,19 +48,26 @@ export default defineConfig({
     integrations: [
         svelte(),
         icon({
-            include:{
-            // only include a subset of icons
-            "file-icons":["nextflow"],
-            logos:["twitter","mastodon-icon","slack-icon","aws","microsoft-azure","github-actions", "youtube-icon"],
-            fa:["github"],
-            "fa-brands":["github"],
-            "line-md":["check-list-3-twotone"],
-            "mdi":["aws","slack","youtube"],
-            octicon:["link-external-16","table-16"],
-            }
+            include: {
+                // only include a subset of icons
+                'file-icons': ['nextflow'],
+                logos: [
+                    'twitter',
+                    'mastodon-icon',
+                    'slack-icon',
+                    'aws',
+                    'microsoft-azure',
+                    'github-actions',
+                    'youtube-icon',
+                ],
+                fa: ['github'],
+                'fa-brands': ['github'],
+                'line-md': ['check-list-3-twotone'],
+                mdi: ['aws', 'slack', 'youtube'],
+                octicon: ['link-external-16', 'table-16'],
+            },
         }),
         sitemap(),
-        prefetch(),
         partytown({
             // Adds dataLayer.push as a forwarding-event.
             config: {
@@ -91,12 +98,12 @@ export default defineConfig({
             preserveSymlinks: true,
         },
     },
-    image: {
-        domains: ['raw.githubusercontent.com', 'unsplash.com'],
-        service: {
-            entrypoint: 'astro/assets/services/sharp',
-        },
-    },
+    // image: {
+    //     domains: ['raw.githubusercontent.com', 'unsplash.com'],
+    //     service: {
+    //         entrypoint: 'astro/assets/services/sharp',
+    //     },
+    // },
     markdown: {
         syntaxHighlight: false,
         shikiConfig: {
@@ -190,7 +197,7 @@ export default defineConfig({
                     theme: {
                         dark: 'github-dark',
                         light: 'github-light',
-                    }
+                    },
                 },
             ],
             rehypeKatex,
