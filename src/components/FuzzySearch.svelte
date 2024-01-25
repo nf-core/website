@@ -23,7 +23,7 @@
 <div class="search-container dropdown">
     <input
         id="fuzzy-search"
-        class="form-control form-control"
+        class="form-control"
         type="text"
         {placeholder}
         aria-label={placeholder}
@@ -46,7 +46,6 @@
 <style lang="scss">
     .search-container {
         width: 100%;
-        max-width: 15rem;
         .dropdown-menu {
             min-width: 15rem;
         }
