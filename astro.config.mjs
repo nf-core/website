@@ -98,9 +98,12 @@ export default defineConfig({
             preserveSymlinks: true,
         },
     },
-    image: {
-        // domains: ['raw.githubusercontent.com', 'unsplash.com'],
-    },
+    // image: {
+    //     domains: ['raw.githubusercontent.com', 'unsplash.com'],
+    //     service: {
+    //         entrypoint: 'astro/assets/services/sharp',
+    //     },
+    // },
     markdown: {
         syntaxHighlight: false,
         shikiConfig: {
