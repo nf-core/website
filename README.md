@@ -6,6 +6,7 @@
 This repository contains code for the nf-core website: **<http://nf-co.re/>**
 
 ## Packages used
+
 Here's how the website is built:
 
 - Language: Javascript
