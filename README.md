@@ -6,7 +6,6 @@
 This repository contains code for the nf-core website: **<http://nf-co.re/>**
 
 ## Packages used
-
 Here's how the website is built:
 
 - Language: Javascript
@@ -53,7 +52,7 @@ We follow Astro's [file structure](https://docs.astro.build/guides/project-struc
 The main files are:
 
 - `src/pages/` - Astro pages
-- `src/content/` - [Astro content collections](https://docs.astro.build/en/guides/content-collections/) (markdown files for events, docs, blog)
+- `src/content/` - [Astro content collections](https://docs.astro.build/en/guides/content-collections/) (markdown (or mdx) files for events, docs, blog)
 - `src/components/` - Astro/Svelte components
 - `src/layouts/` - HTML layouts
 - `src/styles/` - (S)CSS stylesheets
