@@ -13,10 +13,11 @@ export async function getStaticPaths() {
         },
         props: {
             event: event,
+            events: events,
         },
     }));
 }
-const { event } = Astro.props;
+const { event, events } = Astro.props;
 const title = event.data.title;
 const subtitle = event.data.subtitle;
 let frontmatter = event.data;
@@ -33,6 +34,46 @@ if (typeof video === 'string') {
 }
 video = video?.filter((v) => v.includes('youtube.com') || v.includes('youtu.be'))[0];
 const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https://youtu.be/', '');
+
+events
+    .map((event) => {
+        if (event.data.title.toLowerCase().match('bytesize')) {
+            event.data.type = 'bytesize';
+        }
+        event.data.start = new Date(event.data.startDate + 'T' + event.data.startTime);
+        event.data.end = new Date(event.data.endDate + 'T' + event.data.endTime);
+        return event;
+    })
+    .filter((event) => event.data.type === frontmatter.type)
+    .sort((a, b) => {
+        return new Date(a.data.start) - new Date(b.data.start);
+    });
+
+const years = [...new Set(events.map((event) => event.data.start.getFullYear()))].sort((a, b) => b - a);
+
+const sections = years.map((year) => {
+    return {
+        section_name: year,
+        section_slug: '#year-' + year,
+        children: events
+            .filter((event) => event.data.start.getFullYear() === year)
+            .filter((event) => {
+                // exclude subevents based on slug and not index.md(x)
+                return (
+                    event.slug.split('/').length === 2 ||
+                    event.slug.endsWith('index.md') ||
+                    event.slug.endsWith('index.mdx')
+                );
+            })
+            .map((event, i) => {
+                return {
+                    title: event.data.title,
+                    slug: 'events/' + event.slug,
+                    order: i,
+                };
+            }),
+    };
+});
 ---
 
 {frontmatter.importTypeform && <script async src="https://embed.typeform.com/next/embed.js" />}
@@ -42,6 +83,8 @@ const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https
     md_github_url={md_github_url}
     event_header={frontmatter}
     headings={headings}
+    sections={sections}
+    leftSidebar={true}
     docSearchTags={[
         { name: 'page_type', content: 'Event' },
         { name: 'page_subtype', content: frontmatter.type },
