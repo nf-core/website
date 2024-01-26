@@ -6,14 +6,13 @@
 This repository contains code for the nf-core website: **<http://nf-co.re/>**
 
 ## Packages used
-
 Here's how the website is built:
 
 - Language: Javascript
 - Frameworks:
   - [Astro](https://astro.build/) (static site generator),
   - [Svelte](https://svelte.dev/) (interactive components),
-  - [Bootstrap 5.3](https://getbootstrap.com/docs/5.3/) (CSS framework)
+  - [Bootstrap](https://getbootstrap.com/docs/) (CSS framework)
 - Tools:
   - [npm](https://www.npmjs.com/) (package manager)
 
