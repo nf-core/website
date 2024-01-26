@@ -63,9 +63,9 @@ const headerImage = post.data.headerImage;
     doubleNavbar={false}
     sidebarTitle="Blog posts"
 >
-    <div class="image-container d-flex align-items-center">
-        {
-            post.data.headerImage && (
+    {
+        post.data.headerImage && (
+            <div class="image-container d-flex align-items-center">
                 <Image
                     src={post.data.headerImage}
                     alt={post.data.headerImageAlt || ''}
@@ -74,9 +74,9 @@ const headerImage = post.data.headerImage;
                     height={360}
                     transition:name="cover-image"
                 />
-            )
-        }
-    </div>
+            </div>
+        )
+    }
     <Content />
     <div class="author-list d-md-none d-flex flex-wrap justify-content-between">
         <SidebarStatsRow lastChild={true} content={[{ title: 'Published on' }]}>
