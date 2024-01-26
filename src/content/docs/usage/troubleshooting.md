@@ -543,6 +543,43 @@ input: '/<path>/<to>/<data>/input'
 igenomes_base: '/<path>/<to>/<data>/igenomes'
 ```
 
+## One module container fails due to Docker permissions
+
+The nf-core template `nextflow.config` contains the configuration `docker.runOptions = '-u $(id -u):$(id -g)'` for the profiles `docker` and `arm`.
+This is done to emulate the user inside the container.
+
+In some containers, this option may cause permission errors, for example when the Docker container writes to the `$HOME` directory, as the emulated user won't have a `$HOME` directory.
+
+One solution is to override this Docker option with a config file, with `docker.runOptions = ''`. However, this change will affect all the Docker containers, and can't be overriden only in one single process.
+To solve this, one option is to replace `docker.runOptions` and use `containerOptions` instead.
+
+Your `nextflow.config` file will look like this:
+
+```nextflow
+profiles {
+  docker {
+    process.containerOptions = '-u $(id -u):$(id -g)'
+  }
+  arm {
+    process.containerOptions = '-u $(id -u):$(id -g)'
+  }
+}
+```
+
+And you can override this value for a particular process selecting it by name, in the `modules.config` file:
+
+```nextflow
+process {
+  withName: <TOOL> {
+        containerOptions = ''
+    }
+}
+```
+
+:::warning
+As mentioned in the [Nextflow documentation](https://www.nextflow.io/docs/latest/process.html#containeroptions), the `containerOptions` feature is not supported by the Kubernetes and Google Life Sciences executors.
+:::
+
 ## Extra resources and getting help
 
 If you still have an issue with running the pipeline then feel free to contact us via the [Slack](https://nf-co.re/join/slack) channel or by opening an issue in the respective pipeline repository on GitHub asking for help.
