@@ -13,7 +13,7 @@ locationURL:
   - https://doi.org/10.6084/m9.figshare.14784855.v1
 ---
 
-This week, Edmund Miller ([@Emiller88](http://github.com/Emiller88/)) will present: _**Pytest workflow**_
+This week, Edmund Miller ([@edmundmiller](http://github.com/edmundmiller/)) will present: _**Pytest workflow**_
 
 This will cover:
 
