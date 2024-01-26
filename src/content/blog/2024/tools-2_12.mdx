@@ -1,0 +1,41 @@
+---
+title: 'nf-core/tools - 2.12.0'
+subtitle: 'Clean-up'
+pubDate: 2024-01-01T00:00:00+01:00
+authors:
+    - 'mashehu'
+label:
+    - 'tools'
+---
+
+import Profile from '@components/GitHubProfilePictureExtended.svelte';
+
+This release comes with a lot of neat little improvements and bug fixes.
+
+# Highlights
+
+-   More responsive nf-core-bot: If you add a `@nf-core-bot fix linting`
+    comment in a PR to fix linting errors, there will be reactions added
+    to the comment to indicate the status of the fix:
+    -   👀 fixing action has started
+    -   👍🏻 Everything looks good, nothing to fix
+    -   🎉 Fixed errors and commited the changes
+    -   😕 Something went wrong, please check the logs (also a comment with a link
+        to the logs is added)
+-   The `nf-core tui` subcommand launches a TUI (terminal user interface) to
+    intuitively explore the command line flags, built using
+    [Trogon](https://github.com/Textualize/trogon) (more TUIs to come!)
+-   If you need an svg version or a bigger png version of an nf-core pipeline logo,
+    you can now use the new `nf-core logo-create` subcommand to output one.
+-   Speaking of logos, the pipeline READMEs now use the [new(-ish) github image syntax](https://github.blog/changelog/2022-08-15-specify-theme-context-for-images-in-markdown-ga/).
+-   Every pipeline now has a GitHub Action Workflow that tests a
+    successful download with `nf-core download`.
+-   Goodbye `-profile docker, test` errors: We check now if the `-profile` parameter is
+    well formatted to avoid this common pitfall.
+-   Fun changes on the tooling side:
+    -   The longer CI tests for the tools repo are now run on self-hosted runners on
+        AWS (thanks for the sponsorship AWS!).
+    -   We now use ruff for linting and formatting, goodbye to Black, isort and pyupgrae
+        and thank you for your service!🫡.
+    -   We've got a new bot which helps us to keep the changelog up to date.
+        Big thanks to <Profile username={"vladsavelyev"} size={25}/> for the code!
