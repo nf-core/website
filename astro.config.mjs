@@ -1,9 +1,8 @@
 import admonitionsPlugin from './bin/remark-admonitions.js';
-import { mermaid } from './bin/remark-mermaid.ts';
 import pipelines_json from '/public/pipelines.json';
 import githubDarkDimmed from '/public/themes/github-dark-dimmed.json';
 import mdx from '@astrojs/mdx';
-import netlify from '@astrojs/netlify/functions';
+import netlify from '@astrojs/netlify';
 import partytown from '@astrojs/partytown';
 import sitemap from '@astrojs/sitemap';
 import svelte from '@astrojs/svelte';
@@ -22,6 +21,7 @@ import remarkDirective from 'remark-directive';
 import emoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
+import mermaid from '@dendronhq/remark-mermaid';
 import remarkDescription from 'astro-remark-description';
 import markdownIntegration from '@astropub/md';
 import icon from 'astro-icon';
@@ -40,7 +40,7 @@ export default defineConfig({
     site: 'https://nf-co.re/',
     output: 'hybrid',
     adapter: netlify(),
-    prefetch: true,
+    prefetch: false,
     redirects: {
         [latestTollsURL]: 'https://oldsite.nf-co.re/tools/docs/latest/',
         ...latestPipelineReleases,
@@ -116,47 +116,47 @@ export default defineConfig({
             remarkGfm,
             remarkDirective,
             admonitionsPlugin,
-            mermaid,
+            [mermaid, { simple: true }],
             remarkMath,
-            [
-                remarkDescription,
-                {
-                    name: 'excerpt',
-                    node: (node, i, parent) => {
-                        // check if parent has a child that is an html comment with the text 'end of excerpt'
-                        if (
-                            parent?.children?.some(
-                                (child) =>
-                                    (child.type === 'html' && child.value === '<!-- end of excerpt -->') ||
-                                    (child.type === 'mdxFlowExpression' && child?.value === '/* end of excerpt */'),
-                            )
-                        ) {
-                            const sibling = parent?.children[i + 1];
+            // [
+            //     remarkDescription,
+            //     {
+            //         name: 'excerpt',
+            //         node: (node, i, parent) => {
+            //             // check if parent has a child that is an html comment with the text 'end of excerpt'
+            //             if (
+            //                 parent?.children?.some(
+            //                     (child) =>
+            //                         (child.type === 'html' && child.value === '<!-- end of excerpt -->') ||
+            //                         (child.type === 'mdxFlowExpression' && child?.value === '/* end of excerpt */'),
+            //                 )
+            //             ) {
+            //                 const sibling = parent?.children[i + 1];
 
-                            return (
-                                (sibling?.type === 'html' && sibling?.value === '<!-- end of excerpt -->') ||
-                                (sibling?.type === 'mdxFlowExpression' && sibling?.value === '/* end of excerpt */')
-                            );
-                        } else {
-                            // return the first paragraph otherwise
+            //                 return (
+            //                     (sibling?.type === 'html' && sibling?.value === '<!-- end of excerpt -->') ||
+            //                     (sibling?.type === 'mdxFlowExpression' && sibling?.value === '/* end of excerpt */')
+            //                 );
+            //             } else {
+            //                 // return the first paragraph otherwise
 
-                            // get the index of the first paragraph
-                            const firstParagraphIndex = parent?.children.findIndex(
-                                (child) => child.type === 'paragraph',
-                            );
-                            // if the node is the first paragraph, return true
-                            return i === firstParagraphIndex;
-                        }
-                    },
-                    filter: (options, { path }) => {
-                        console.log(path);
-                        if (path.startsWith('/src/content/blog')) {
-                            return false; // Return falsey value to skip
-                        }
-                        return options;
-                    },
-                },
-            ],
+            //                 // get the index of the first paragraph
+            //                 const firstParagraphIndex = parent?.children.findIndex(
+            //                     (child) => child.type === 'paragraph',
+            //                 );
+            //                 // if the node is the first paragraph, return true
+            //                 return i === firstParagraphIndex;
+            //             }
+            //         },
+            //         filter: (options, { path }) => {
+            //             console.log(path);
+            //             if (path.startsWith('/src/content/blog')) {
+            //                 return false; // Return falsey value to skip
+            //             }
+            //             return options;
+            //         },
+            //     },
+            // ],
         ],
         // NOTE: Also update the plugins in `src/components/Markdown.svelte`!
         rehypePlugins: [
