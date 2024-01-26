@@ -31,11 +31,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.nf_core_bot_auth_token }}
 
-      - uses: actions/setup-node@b39b52d1213e96004bfcb1c61a8a6fa8ab84f3e8 # v4
-        with:
-          node-version: 20
-      - run: npm install --only=dev
-
       # Install and run pre-commit
       - uses: actions/setup-python@0a5c61591373683505ea898e09a3ea4f39ef2b9c # v5
         with:
@@ -68,23 +63,29 @@ jobs:
           git status
           git commit -m "[automated] Fix code linting"
           git push
+      - name: debug outcome value
+        run: echo ${{ steps.commit-and-push.outcome }}
 
       - name: react if linting errors were fixed
+        id: react-if-fixed
         if: ${{ steps.commit-and-push.outcome }} == 'success'
         uses: peter-evans/create-or-update-comment@23ff15729ef2fc348714a3bb66d2f655ca9066f2 # v3
         with:
           comment-id: ${{ github.event.comment.id }}
           reactions: hooray
 
+      - name: debug outcome value again
+        run: echo ${{ steps.commit-and-push.outcome }}
+
       - name: react if linting errors were not fixed
-        if: ${{ steps.commit-and-push.outcome }} == 'failure'
+        if: ${{ steps.commit-and-push.outcome }} == 'failure' && ${{ steps.react-if-fixed.outcome }} != 'success'
         uses: peter-evans/create-or-update-comment@23ff15729ef2fc348714a3bb66d2f655ca9066f2 # v3
         with:
           comment-id: ${{ github.event.comment.id }}
           reactions: confused
 
       - name: react if linting errors were not fixed
-        if: ${{ steps.commit-and-push.outcome }} == 'failure'
+        if: ${{ steps.commit-and-push.outcome }} == 'failure' && ${{ steps.react-if-fixed.outcome }} != 'success'
         uses: peter-evans/create-or-update-comment@v3
         with:
           issue-number: ${{ github.event.issue.number }}
