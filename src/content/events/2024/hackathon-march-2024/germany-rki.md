@@ -9,7 +9,7 @@ endTime: '18:00+02:00'
 locationName: RKI
 address: Seestraße 10/Nordufer 20, 13353 Berlin, Germany
 locationURL: https://www.rki.de
-locationLatLng: [52.53913,13.34729]
+locationLatLng: [52.53913, 13.34729]
 ---
 
 Local event to be held at RKI, Berlin.
@@ -28,4 +28,3 @@ Contact:
 _Details to be confirmed_
 
 ---
-
