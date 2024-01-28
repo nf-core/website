@@ -25,6 +25,7 @@ This release comes with a lot of neat little improvements and bug fixes.
 -   The `nf-core tui` subcommand launches a TUI (terminal user interface) to
     intuitively explore the command line flags, built using
     [Trogon](https://github.com/Textualize/trogon) (more TUIs to come!)
+    ![TUI demo](/images/blog/nfcoretui.gif)
 -   If you need an svg version or a bigger png version of an nf-core pipeline logo,
     you can now use the new `nf-core logo-create` subcommand to output one.
 -   Speaking of logos, the pipeline READMEs now use the [new(-ish) github image syntax](https://github.blog/changelog/2022-08-15-specify-theme-context-for-images-in-markdown-ga/).
@@ -35,7 +36,15 @@ This release comes with a lot of neat little improvements and bug fixes.
 -   Fun changes on the tooling side:
     -   The longer CI tests for the tools repo are now run on self-hosted runners on
         AWS (thanks for the sponsorship AWS!).
-    -   We now use ruff for linting and formatting, goodbye to Black, isort and pyupgrae
+    -   We now use [ruff](https://github.com/astral-sh/ruff) for linting and formatting, goodbye to Black, isort and pyupgrae
         and thank you for your service!🫡.
+        :::tip
+        - We included ruff to the pre-commit config. Use `pre-commit install` to install the git hook scripts.
+        - To lint on save with VSCode, add the following settings:
+        ```
+        foo
+        ```
+        - To run ruff manually you can use `ruff check .` and `ruff format .`.
+        :::
     -   We've got a new bot which helps us to keep the changelog up to date.
         Big thanks to <Profile username={"vladsavelyev"} size={25}/> for the code!
