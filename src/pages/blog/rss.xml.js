@@ -13,6 +13,7 @@ export async function GET(context) {
       description: post.data.subtitle,
       link: '/blog/' + post.slug,
       pubDate: post.data.pubDate,
+      content: post.body,
     })),
   });
 }
