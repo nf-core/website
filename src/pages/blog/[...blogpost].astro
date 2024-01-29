@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content';
 import SidebarStatsRow from '@components/sidebar/SidebarStatsRow.astro';
 import GitHubProfilePictureExtended from '@components/GitHubProfilePictureExtended.svelte';
 import { Image } from 'astro:assets';
-
+const images = import.meta.glob('../../assets/**');
 export async function getStaticPaths() {
     const blogPost = await getCollection('blog');
     return blogPost.map((post) => ({
@@ -20,7 +20,14 @@ blogPosts = blogPosts
         const pubDate = new Date(post.data.pubDate);
         return pubDate < new Date();
     })
-    .sort((a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate));
+    .filter((post) => {
+        if (process.env.production) {
+            return post.data.draft !== true;
+        } else {
+            return true;
+        }
+    })
+    .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
 
 // get years of all posts
 const years = [...new Set(blogPosts.map((post) => new Date(post.data.pubDate).getFullYear()))].sort((a, b) => b - a);
@@ -45,7 +52,11 @@ const { headings, Content } = await post.render();
 const title = post.data.title;
 const subtitle = post.data.subtitle;
 const md_github_url = 'https://github.com/nf-core/website/blob/main/src/content/blog/' + post.id;
-const headerImage = post.data.headerImage;
+console.log('sections_blogpost', sections);
+console.log('post.data.headerImage', post.data.headerImage);
+console.log(images['../..' + post.data.headerImage]());
+// console.log('imageHeader', imageHeader);
+console.log('images', images);
 ---
 
 <MarkdownTocLayout
@@ -64,10 +75,14 @@ const headerImage = post.data.headerImage;
     sidebarTitle="Blog posts"
 >
     {
-        post.data.headerImage && (
+        post.data.headerImage && post.data.embedHeaderImage !== undefined && post.data.embedHeaderImage !== false && (
             <div class="image-container d-flex align-items-center">
                 <Image
-                    src={post.data.headerImage}
+                    src={
+                        post.data.headerImage.startsWith('/assets/')
+                            ? images['../..' + post.data.headerImage]()
+                            : post.data.headerImage
+                    }
                     alt={post.data.headerImageAlt || ''}
                     class="object-fit-cover mb-3 d-flex m-auto w-100 h-100 py-2"
                     width={728}
