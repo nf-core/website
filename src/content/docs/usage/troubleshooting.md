@@ -278,7 +278,7 @@ docker pull nfcore/<pipeline>:dev
 
 If you work in a `dev` branch, you may also want to consider putting a request for a pull in each run you do with nextflow, by putting this line of code in your nextflow.config file:
 
-```nextflow
+```groovy
 docker {
     enabled = true
     runOptions = '--pull=always'
@@ -434,7 +434,7 @@ For example, let's say it's the `MARKDUPLICATES` process that is running out of 
   > If you think this would be useful for multiple people in your lab/institute, we highly recommend you make an institutional profile at [nf-core/configs](https://github.com/nf-core/configs). This will simplify this process in the future.
 - Within this file, add the following. Note we have increased the default `4.GB` to `16.GB`.
 
-  ```nextflow
+  ```groovy
   process {
     withName: MARKDUPLICATES {
       memory = 16.GB
@@ -450,7 +450,7 @@ For example, let's say it's the `MARKDUPLICATES` process that is running out of 
 
     - If you want this, use the following syntax instead:
 
-      ```nextflow
+      ```groovy
       memory = { check_max( 16.GB * task.attempt, 'memory' ) }
       ```
 
@@ -542,6 +542,43 @@ Where the `params.yml` file contains the pipeline params:
 input: '/<path>/<to>/<data>/input'
 igenomes_base: '/<path>/<to>/<data>/igenomes'
 ```
+
+## One module container fails due to Docker permissions
+
+The nf-core template `nextflow.config` contains the configuration `docker.runOptions = '-u $(id -u):$(id -g)'{:groovy}` for the profiles `docker` and `arm`.
+This is done to emulate the user inside the container.
+
+In some containers, this option may cause permission errors, for example when the Docker container writes to the `$HOME` directory, as the emulated user won't have a `$HOME` directory.
+
+One solution is to override this Docker option with a config file, with `docker.runOptions = ''{:groovy}`. However, this change will affect all the Docker containers, and can't be overriden only in one single process.
+To solve this, one option is to replace `docker.runOptions{:groovy}` and use `containerOptions` instead.
+
+Your new `nextflow.config` file should look like this:
+
+```groovy title="nextflow.config"
+profiles {
+  docker {
+    process.containerOptions = '-u $(id -u):$(id -g)'
+  }
+  arm {
+    process.containerOptions = '-u $(id -u):$(id -g)'
+  }
+}
+```
+
+And you can override this value for a particular process selecting it by name, in the `modules.config` file:
+
+```groovy title="modules.config"
+process {
+  withName: <TOOL> {
+        containerOptions = ''
+    }
+}
+```
+
+:::warning
+As mentioned in the [Nextflow documentation](https://www.nextflow.io/docs/latest/process.html#containeroptions), the `containerOptions` feature is not supported by the Kubernetes and Google Life Sciences executors.
+:::
 
 ## Extra resources and getting help
 
