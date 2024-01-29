@@ -6,9 +6,11 @@ authors:
     - 'mashehu'
 label:
     - 'tools'
+draft: true
 ---
 
 import Profile from '@components/GitHubProfilePictureExtended.svelte';
+import tui from '@assets/images/blog/tools-2_12/nfcoretui.gif';
 
 This release comes with a lot of neat little improvements and bug fixes.
 
@@ -25,7 +27,7 @@ This release comes with a lot of neat little improvements and bug fixes.
 -   The `nf-core tui` subcommand launches a TUI (terminal user interface) to
     intuitively explore the command line flags, built using
     [Trogon](https://github.com/Textualize/trogon) (more TUIs to come!)
-    ![TUI demo](/images/blog/nfcoretui.gif)
+    <img src={tui.src} alt="Demo gif of the TUI." />.
 -   If you need an svg version or a bigger png version of an nf-core pipeline logo,
     you can now use the new `nf-core logo-create` subcommand to output one.
 -   Speaking of logos, the pipeline READMEs now use the [new(-ish) github image syntax](https://github.blog/changelog/2022-08-15-specify-theme-context-for-images-in-markdown-ga/).
@@ -39,12 +41,14 @@ This release comes with a lot of neat little improvements and bug fixes.
     -   We now use [ruff](https://github.com/astral-sh/ruff) for linting and formatting, goodbye to Black, isort and pyupgrae
         and thank you for your service!🫡.
         :::tip
-        - We included ruff to the pre-commit config. Use `pre-commit install` to install the git hook scripts.
-        - To lint on save with VSCode, add the following settings:
+        -   We included ruff to the pre-commit config. Use `pre-commit install` to install the git hook scripts.
+        -   To lint on save with VSCode, add the following settings:
         ```
         foo
         ```
-        - To run ruff manually you can use `ruff check .` and `ruff format .`.
-        :::
+        -   To run ruff manually you can use `ruff check .` and `ruff format .`.
+            :::
     -   We've got a new bot which helps us to keep the changelog up to date.
         Big thanks to <Profile username={"vladsavelyev"} size={25}/> for the code!
+
+You can find the whole changelog [here](https://github.com/nf-core/tools/blob/2.12.0/CHANGELOG.md).
