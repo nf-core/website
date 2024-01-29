@@ -13,7 +13,6 @@ draft: true
 embedHeaderImage: false
 ---
 
-import Profile from '@components/GitHubProfilePictureExtended.svelte';
 import tui from '@assets/images/blog/tools-2_12/nfcoretui.gif';
 import fix_linting from '@assets/images/blog/tools-2_12/fix-linting.png';
 import { Image } from 'astro:assets';
@@ -46,6 +45,8 @@ This release comes with a lot of neat little improvements and bug fixes.
 
     -   The longer CI tests for the tools repo are now run on self-hosted runners on
         AWS (thanks for the sponsorship AWS!).
+    -   We've got a new bot which helps us to keep the changelog up to date.
+        Big thanks to [@vladsavelyev](https://github.com/vladsavelyev) for the code!
     -   We now use [ruff](https://github.com/astral-sh/ruff) for linting and formatting, goodbye to Black, isort and pyupgrae
         and thank you for your service!🫡.
 
@@ -68,8 +69,5 @@ This release comes with a lot of neat little improvements and bug fixes.
         -   To run ruff manually you can use `ruff check .` and `ruff format .`.
 
         :::
-
--   We've got a new bot which helps us to keep the changelog up to date.
-    Big thanks to <Profile username={"vladsavelyev"} size={25}/> for the code!
 
 You can find the whole changelog [on GitHub](https://github.com/nf-core/tools/releases/tag/2.12.0).
