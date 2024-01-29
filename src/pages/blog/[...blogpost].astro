@@ -41,7 +41,7 @@ const sections = years.map((year) => {
             .map((post) => {
                 return {
                     title: post.data.title,
-                    slug: post.slug,
+                    slug: '/blog/' + post.slug,
                     pubDate: post.data.pubDate,
                 };
             }),
@@ -135,7 +135,7 @@ const md_github_url = 'https://github.com/nf-core/website/blob/main/src/content/
             height: 260px;
         }
     }
-    :global(img) {
+    :global(.markdown-content img) {
         margin-bottom: 1rem;
     }
 </style>
