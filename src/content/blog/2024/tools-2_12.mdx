@@ -1,6 +1,6 @@
 ---
 title: 'nf-core/tools - 2.12.0'
-subtitle: 'TUI or not TUI 💀'
+subtitle: 'TUI or not TUI? That is the question.'
 pubDate: 2024-01-29T00:00:00+01:00
 headerImage: '/assets/images/blog/tools-2_12/fix-linting.png'
 headerImageAlt: 'Screenshot of the nf-core-bot fix linting comment'
@@ -43,19 +43,33 @@ This release comes with a lot of neat little improvements and bug fixes.
 -   Goodbye `-profile docker, test` errors: We check now if the `-profile` parameter is
     well formatted to avoid this common pitfall.
 -   Fun changes on the tooling side:
+
     -   The longer CI tests for the tools repo are now run on self-hosted runners on
         AWS (thanks for the sponsorship AWS!).
     -   We now use [ruff](https://github.com/astral-sh/ruff) for linting and formatting, goodbye to Black, isort and pyupgrae
         and thank you for your service!🫡.
+
         :::tip
+
         -   We included ruff to the pre-commit config. Use `pre-commit install` to install the git hook scripts.
         -   To lint on save with VSCode, add the following settings:
-        ```
-        foo
-        ```
-        -   To run ruff manually you can use `ruff check .` and `ruff format .`.
-            :::
-    -   We've got a new bot which helps us to keep the changelog up to date.
-        Big thanks to <Profile username={"vladsavelyev"} size={25}/> for the code!
 
-You can find the whole changelog [here](https://github.com/nf-core/tools/blob/2.12.0/CHANGELOG.md).
+        ```json title=".vscode/settings.json"
+        "[python]": {
+            "editor.formatOnSave": true,
+            "editor.codeActionsOnSave": {
+                "source.fixAll": true,
+                "source.organizeImports": true
+            },
+            "editor.defaultFormatter": "charliermarsh.ruff"
+        }
+        ```
+
+        -   To run ruff manually you can use `ruff check .` and `ruff format .`.
+
+        :::
+
+-   We've got a new bot which helps us to keep the changelog up to date.
+    Big thanks to <Profile username={"vladsavelyev"} size={25}/> for the code!
+
+You can find the whole changelog [on GitHub](https://github.com/nf-core/tools/releases/tag/2.12.0).

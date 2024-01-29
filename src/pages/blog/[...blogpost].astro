@@ -52,11 +52,6 @@ const { headings, Content } = await post.render();
 const title = post.data.title;
 const subtitle = post.data.subtitle;
 const md_github_url = 'https://github.com/nf-core/website/blob/main/src/content/blog/' + post.id;
-console.log('sections_blogpost', sections);
-console.log('post.data.headerImage', post.data.headerImage);
-console.log(images['../..' + post.data.headerImage]());
-// console.log('imageHeader', imageHeader);
-console.log('images', images);
 ---
 
 <MarkdownTocLayout
@@ -139,5 +134,9 @@ console.log('images', images);
         .image-container {
             height: 260px;
         }
+    }
+    :global(p),
+    :global(li) {
+        text-wrap: pretty;
     }
 </style>
