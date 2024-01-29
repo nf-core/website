@@ -87,11 +87,13 @@ const blog = defineCollection({
         .object({
             title: z.string(),
             subtitle: z.string(),
-            headerImage: z.string().url().optional(),
+            headerImage: z.string().url().optional().or(z.string().startsWith('/assets/images/blog/')).optional(),
             headerImageAlt: z.string().optional(),
             label: z.array(z.string()),
             pubDate: z.date(),
             authors: z.array(z.string()),
+            draft: z.boolean().optional(),
+            embedHeaderImage: z.boolean().optional(),
             announcement: z
                 .object({
                     text: z.string().optional(),
