@@ -18,7 +18,7 @@
     image={'https://github.com/' + username + '.png'}
     name={username}
     circle={true}
-    {size}
+    size={Math.max(size, 25)}
 >
     <div class={'ms-2 d-inline-block text-start d-flex flex-column px-2 ' + extra_classes}>
         <slot>
