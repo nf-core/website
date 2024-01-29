@@ -1189,13 +1189,13 @@ Launch Page
 }
 
 .ratio.ratio-16x9 ~ details[open] {
-  height: 50vh;
+  height: 50dvh;
   overflow-x: scroll;
 }
 
 .sidebar-nav {
   @include media-breakpoint-up(lg) {
-    height: 90vh;
+    height: 90dvh;
     overflow: auto;
   }
 
