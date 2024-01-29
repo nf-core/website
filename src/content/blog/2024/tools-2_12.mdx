@@ -1,16 +1,22 @@
 ---
 title: 'nf-core/tools - 2.12.0'
-subtitle: 'Clean-up'
-pubDate: 2024-01-01T00:00:00+01:00
+subtitle: 'TUI or not TUI 💀'
+pubDate: 2024-01-29T00:00:00+01:00
+headerImage: '/assets/images/blog/tools-2_12/fix-linting.png'
+headerImageAlt: 'Screenshot of the nf-core-bot fix linting comment'
 authors:
     - 'mashehu'
+    - 'mirpedrol'
 label:
     - 'tools'
 draft: true
+embedHeaderImage: false
 ---
 
 import Profile from '@components/GitHubProfilePictureExtended.svelte';
 import tui from '@assets/images/blog/tools-2_12/nfcoretui.gif';
+import fix_linting from '@assets/images/blog/tools-2_12/fix-linting.png';
+import { Image } from 'astro:assets';
 
 This release comes with a lot of neat little improvements and bug fixes.
 
@@ -24,10 +30,11 @@ This release comes with a lot of neat little improvements and bug fixes.
     -   🎉 Fixed errors and commited the changes
     -   😕 Something went wrong, please check the logs (also a comment with a link
         to the logs is added)
+        <Image src={fix_linting} alt="Screenshot of the nf-core-bot fix linting comment" />
 -   The `nf-core tui` subcommand launches a TUI (terminal user interface) to
     intuitively explore the command line flags, built using
     [Trogon](https://github.com/Textualize/trogon) (more TUIs to come!)
-    <img src={tui.src} alt="Demo gif of the TUI." />.
+    <img src={tui.src} alt="Demo gif of the TUI." class="img-fluid" />.
 -   If you need an svg version or a bigger png version of an nf-core pipeline logo,
     you can now use the new `nf-core logo-create` subcommand to output one.
 -   Speaking of logos, the pipeline READMEs now use the [new(-ish) github image syntax](https://github.blog/changelog/2022-08-15-specify-theme-context-for-images-in-markdown-ga/).
