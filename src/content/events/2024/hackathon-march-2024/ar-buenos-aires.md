@@ -6,10 +6,9 @@ startDate: '2024-03-18'
 startTime: '13:00+02:00'
 endDate: '2024-03-20'
 endTime: '21:00+02:00'
-# locationName: TBD
-# address: TBD
-# locationURL: TBD
-# locationLatLng: TBD
+locationName: ZS Associates
+address: Av. del Libertador 7208, C1429 CABA
+locationURL: https://www.zs.com/careers/where-we-work/latin-america/buenos-aires
 ---
 
 Local event to be held in Buenos Aires
@@ -20,8 +19,68 @@ Contact:
 
 ## Schedule (local time)
 
-- 2024-03-18 - 1300-2100: TBD
-- 2024-03-19 - 1300-2100: TBD
-- 2024-03-20 - 1300-2100: TBD
 
-_Details to be confirmed_
+<div class="table-responsive">
+    <table class="table table-hover table-sm table-bordered">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Mon. 18 Mar., 2024</th>
+                <th>Tue. 19 Mar., 2024</th>
+                <th>Wed. 20 Mar., 2024</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>9:30</td>
+                <td background-color:navy; rowspan="1">Welcome and Setup</td>
+                <td background-color:navy; rowspan="1">Daily Start</td>
+                <td background-color:navy; rowspan="1">Daily Start</td>
+            </tr>
+                <td>10:00</td>
+                <td rowspan="6">Hack!</td>
+                <td rowspan="6">Hack!</td>
+                <td rowspan="6">Hack!</td>
+            </tr>
+            <tr>
+                <td>11:00</td>
+            </tr>
+            <tr>
+                <td>12:00</td>
+            </tr>
+            <tr>
+                <td>13:00</td>
+            </tr>
+            <tr>
+                <td>14:00</td>
+            </tr>
+            <tr>
+                <td>15:00</td>
+            </tr>
+            <tr>
+                <td>16:00</td>
+                <td background-color:navy; rowspan="1">Daily sync</td>
+                <td background-color:navy; rowspan="1">Daily sync</td>
+                <td background-color:navy; rowspan="1">Final wrap-up</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+## Organisational Information
+
+### Registration
+
+Please contact the local site organizers via Slack if you would like to join this event. There is a limited number of places. We will therefore be able to plan everything based on the number of persons coming.
+
+### Location
+
+We'll be in the room "Riddersalen" at the first floor, near the canteen.
+
+### Material
+
+Please come with your computer and lots of energy for the hackathon.
+
+### Food
+
+Some food will be provided for attendees, there is also stores and supermarkets nearby.
