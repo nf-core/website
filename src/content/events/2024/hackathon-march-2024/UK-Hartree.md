@@ -9,7 +9,7 @@ endTime: '17:00+00:00'
 locationName: Hartree centre
 address: Sci-Tech Daresbury, Keckwick, Daresbury, ​​​Warrington. WA4 4AD
 locationURL: https://maps.app.goo.gl/pEB5CDxgPbg7GLXb7
-locationLatLng: [53.3433353,-2.6384581]
+locationLatLng: [53.3433353, -2.6384581]
 ---
 
 Local event to be held at UKRI's Hartree centre, Daresbury UK.
@@ -18,7 +18,6 @@ Contact:
 
 - [<i class="fab fa-slack"></i> Stephen Checkley](https://nfcore.slack.com/team/U0588A28BEW)
 - [<i class="fab fa-slack"></i> Matthew Marshall](https://nfcore.slack.com/team/U066WCT8JA2)
-
 
 <div class="table-responsive">
     <table class="table table-hover table-sm table-bordered">
