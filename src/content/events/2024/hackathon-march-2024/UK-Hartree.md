@@ -17,7 +17,7 @@ Local event to be held at UKRI's Hartree centre, Daresbury UK.
 Contact:
 
 - [<i class="fab fa-slack"></i> Stephen Checkley](https://nfcore.slack.com/team/U0588A28BEW)
-- [<i class="fab fa-slack"></i> Matthhew Marshall](https://nfcore.slack.com/team/U0588A28BEW)
+- [<i class="fab fa-slack"></i> Matthhew Marshall](https://nfcore.slack.com/team/U066WCT8JA2)
 
 
 <div class="table-responsive">
