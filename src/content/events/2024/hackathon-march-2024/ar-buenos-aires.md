@@ -32,15 +32,21 @@ Contact:
             </thead>
             <tbody>
             <tr>
-                <td>9:30</td>
+                <td>08:00</td>
                 <td background-color:navy; rowspan="1">Welcome and Setup</td>
                 <td background-color:navy; rowspan="1">Daily Start</td>
                 <td background-color:navy; rowspan="1">Daily Start</td>
             </tr>
+                <td>08:30</td>
+                <td rowspan="6">Hack!</td>
+                <td rowspan="6">Hack!</td>
+                <td rowspan="6">Hack!</td>
+            </tr>
+            <tr>
+                <td>09:00</td>
+            </tr>
+            <tr>
                 <td>10:00</td>
-                <td rowspan="6">Hack!</td>
-                <td rowspan="6">Hack!</td>
-                <td rowspan="6">Hack!</td>
             </tr>
             <tr>
                 <td>11:00</td>
@@ -49,16 +55,9 @@ Contact:
                 <td>12:00</td>
             </tr>
             <tr>
-                <td>13:00</td>
             </tr>
             <tr>
-                <td>14:00</td>
-            </tr>
-            <tr>
-                <td>15:00</td>
-            </tr>
-            <tr>
-                <td>16:00</td>
+                <td>12:30</td>
                 <td background-color:navy; rowspan="1">Daily sync</td>
                 <td background-color:navy; rowspan="1">Daily sync</td>
                 <td background-color:navy; rowspan="1">Final wrap-up</td>
@@ -75,7 +74,7 @@ Please contact the local site organizers via Slack if you would like to join thi
 
 ### Location
 
-We'll be in the room "Riddersalen" at the first floor, near the canteen.
+We'll be in the first floor, room to be confirmed. The day of the event, registered attendees will also have to announce themselves at the reception of HIT CEL.
 
 ### Material
 
