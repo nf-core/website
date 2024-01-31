@@ -3925,6 +3925,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -7760,6 +7764,10 @@
       },
       "pipelines": [
         {
+          "name": "phaseimpute",
+          "version": "dev"
+        },
+        {
           "name": "raredisease",
           "version": "1.1.1"
         },
@@ -8368,6 +8376,10 @@
         {
           "name": "mag",
           "version": "2.5.1"
+        },
+        {
+          "name": "phaseimpute",
+          "version": "dev"
         }
       ]
     },
@@ -8813,6 +8825,10 @@
       },
       "pipelines": [
         {
+          "name": "phaseimpute",
+          "version": "dev"
+        },
+        {
           "name": "raredisease",
           "version": "1.1.1"
         },
@@ -9138,6 +9154,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "phaseimpute",
+          "version": "dev"
+        },
         {
           "name": "viralrecon",
           "version": "2.6.0"
@@ -9765,6 +9785,10 @@
         {
           "name": "mag",
           "version": "2.5.1"
+        },
+        {
+          "name": "phaseimpute",
+          "version": "dev"
         },
         {
           "name": "raredisease",
@@ -11087,6 +11111,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "phaseimpute",
+          "version": "dev"
+        },
         {
           "name": "radseq",
           "version": "dev"
@@ -24333,6 +24361,10 @@
           "version": "dev"
         },
         {
+          "name": "phaseimpute",
+          "version": "dev"
+        },
+        {
           "name": "phyloplace",
           "version": "1.0.0"
         },
@@ -30672,6 +30704,13 @@
             }
           },
           {
+            "bai": {
+              "type": "file",
+              "description": "Index of BAM/CRAM file",
+              "pattern": "*.{bai,crai}"
+            }
+          },
+          {
             "meta2": {
               "type": "map",
               "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
@@ -30691,7 +30730,7 @@
             }
           },
           {
-            "fasta": {
+            "fasta_fai": {
               "type": "file",
               "description": "Reference genome index",
               "pattern": "*.fai"
@@ -30723,6 +30762,13 @@
               "type": "file",
               "description": "File containing software versions",
               "pattern": "versions.yml"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "BAM/CRAM file",
+              "pattern": "*.{bam,cram}"
             }
           },
           {
@@ -32441,6 +32487,10 @@
         },
         {
           "name": "phageannotator",
+          "version": "dev"
+        },
+        {
+          "name": "phaseimpute",
           "version": "dev"
         },
         {
@@ -37068,6 +37118,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -37793,6 +37847,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -42294,6 +42352,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -48830,7 +48892,13 @@
         "maintainers": [
           "@louislenezet"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phaseimpute",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "glimpse2_concordance",
@@ -49079,7 +49147,13 @@
         "maintainers": [
           "@louislenezet"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phaseimpute",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "glimpse2_phase",
@@ -49219,7 +49293,13 @@
         "maintainers": [
           "@LouisLeNezet"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phaseimpute",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "glimpse2_splitreference",
@@ -49319,7 +49399,13 @@
         "maintainers": [
           "@LouisLeNezet"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phaseimpute",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "glimpse_chunk",
@@ -49394,7 +49480,13 @@
         "maintainers": [
           "@louislenezet"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phaseimpute",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "glimpse_concordance",
@@ -49608,7 +49700,13 @@
         "maintainers": [
           "@louislenezet"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phaseimpute",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "glimpse_phase",
@@ -49727,7 +49825,13 @@
         "maintainers": [
           "@louislenezet"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phaseimpute",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "glimpse_sample",
@@ -71893,6 +71997,10 @@
           "version": "dev"
         },
         {
+          "name": "phaseimpute",
+          "version": "dev"
+        },
+        {
           "name": "phyloplace",
           "version": "1.0.0"
         },
@@ -91298,7 +91406,13 @@
         "maintainers": [
           "@LouisLeNezet"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phaseimpute",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "samtools_depth",
@@ -91593,6 +91707,10 @@
         },
         {
           "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phaseimpute",
           "version": "dev"
         },
         {
@@ -92570,6 +92688,10 @@
         },
         {
           "name": "phageannotator",
+          "version": "dev"
+        },
+        {
+          "name": "phaseimpute",
           "version": "dev"
         },
         {
@@ -93576,6 +93698,10 @@
         {
           "name": "hlatyping",
           "version": "2.0.0"
+        },
+        {
+          "name": "phaseimpute",
+          "version": "dev"
         },
         {
           "name": "raredisease",
@@ -98328,7 +98454,13 @@
         "maintainers": [
           "@louislenezet"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phaseimpute",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "shapeit5_phasecommon",
@@ -98453,7 +98585,13 @@
         "maintainers": [
           "@LouisLeNezet"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phaseimpute",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "shapeit5_phaserare",
@@ -106752,6 +106890,10 @@
           "version": "1.0.0"
         },
         {
+          "name": "phaseimpute",
+          "version": "dev"
+        },
+        {
           "name": "viralrecon",
           "version": "2.6.0"
         }
@@ -106958,6 +107100,10 @@
         },
         {
           "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phaseimpute",
           "version": "dev"
         },
         {
@@ -110286,8 +110432,15 @@
           {
             "bai": {
               "type": "file",
-              "description": "BAM index files corresponding to the input BAM file.\n",
+              "description": "BAM index files corresponding to the input BAM file. Optionally can be skipped using [] when using FastQ input.\n",
               "pattern": "*.{bai}"
+            }
+          },
+          {
+            "mode": {
+              "type": "string",
+              "description": "Selects the mode of Umicollapse - either fastq or bam need to be provided.\n",
+              "pattern": "{fastq,bam}"
             }
           }
         ],
@@ -110326,7 +110479,9 @@
         ],
         "maintainers": [
           "@CharlotteAnne",
-          "@chris-cheshire"
+          "@chris-cheshire",
+          "@apeltzer",
+          "@MatthiasZepper"
         ]
       }
     },
@@ -120625,7 +120780,13 @@
         "maintainers": [
           "@LouisLeNezet"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phaseimpute",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "nextflowpipelineutils",
@@ -121417,6 +121578,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -121451,6 +121616,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -122980,6 +123149,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -123675,7 +123848,13 @@
         "maintainers": [
           "@LouisLeNezet"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phaseimpute",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "vcf_phase_shapeit5",
@@ -123775,7 +123954,13 @@
         "maintainers": [
           "@LouisLeNezet"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phaseimpute",
+          "version": "dev"
+        }
+      ]
     }
   ]
 }
