@@ -17,7 +17,7 @@ Local event to be held at RKI, Berlin.
 Contact:
 
 - [<i class="fab fa-slack"></i> Marie Lataretu](https://nfcore.slack.com/team/U04EL1VEY5C)
-- [<i class="fab fa-slack"></i> Paul Wolk](https://nfcore.slack.com/team/U0460T114CE)
+- [<i class="fab fa-slack"></i> Paul Wolk](https://nfcore.slack.com/team/U04U4JKTB27)
 
 ## Schedule
 
