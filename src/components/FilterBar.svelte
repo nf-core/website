@@ -73,7 +73,7 @@
                                     tabindex="0"
                                 >
                                     {#if fil.icon}
-                                        <i class={fil.icon + ' me-1'} />
+                                        <i class={fil.icon + ' fa-fw me-1'} />
                                     {/if}
                                     {fil.name}
                                     {#if fil.count >= 0}
