@@ -11,16 +11,6 @@ locationURL:
   - https://www.youtube.com/watch?v=hOuS6mXCwhk
 ---
 
-# nf-core/bytesize
-
-Join us for our **weekly series** of short talks: **“nf-core/bytesize”**.
-
-Just **15 minutes** + questions, we will be focussing on topics about using and developing nf-core pipelines.
-These will be recorded and made available at <https://nf-co.re>
-It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
-
-## Bytesize: Converting Python scripts into packages for PyPI, Bioconda & Biocontainers
-
 This week, Phil Ewels ([@ewels](https://github.com/ewels/)) will show you how to take a Python script and turn it into a stand-alone command-line tool, ready for distribution via the [Python Package Index](https://pypi.org/) (PyPI).
 
 > You can download a `.zip` file of the "before" and "after" code examples Phil demoed [here](https://github.com/nf-core/website/raw/master/public_html/assets/markdown_assets/events/2023/bytesize-python-packaging/python-packaging.zip).

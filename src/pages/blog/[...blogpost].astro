@@ -6,14 +6,14 @@ import GitHubProfilePictureExtended from '@components/GitHubProfilePictureExtend
 import { Image } from 'astro:assets';
 const images = import.meta.glob('../../assets/**');
 export async function getStaticPaths() {
-    const blogPost = await getCollection('blog');
-    return blogPost.map((post) => ({
+    const blogPosts = await getCollection('blog');
+    return blogPosts.map((post) => ({
         params: { blogpost: post.slug },
-        props: { post },
+        props: { post, blogPosts },
     }));
 }
 
-let blogPosts = await getCollection('blog');
+let { post, blogPosts } = Astro.props;
 // filter out posts that have a pubDate later than today
 blogPosts = blogPosts
     .filter((post) => {
@@ -42,12 +42,10 @@ const sections = years.map((year) => {
                 return {
                     title: post.data.title,
                     slug: '/blog/' + post.slug,
-                    pubDate: post.data.pubDate,
                 };
             }),
     };
 });
-const { post } = Astro.props;
 const { headings, Content } = await post.render();
 const title = post.data.title;
 const subtitle = post.data.subtitle;

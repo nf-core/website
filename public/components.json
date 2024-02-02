@@ -3945,6 +3945,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -18380,7 +18384,12 @@
         "name": "centrifuge_kreport",
         "description": "Creates Kraken-style reports from centrifuge out files",
         "keywords": [
-          "metagenomics"
+          "classify",
+          "metagenomics",
+          "fastq",
+          "db",
+          "report",
+          "kraken"
         ],
         "tools": [
           {
@@ -18407,6 +18416,12 @@
               "type": "file",
               "description": "File containing the centrifuge classification report",
               "pattern": "*.{txt}"
+            }
+          },
+          {
+            "db": {
+              "type": "directory",
+              "description": "Path to directory containing centrifuge database files"
             }
           }
         ],
@@ -37156,6 +37171,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -37881,6 +37900,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -42402,6 +42425,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -120202,6 +120229,10 @@
       },
       "pipelines": [
         {
+          "name": "riboseq",
+          "version": "dev"
+        },
+        {
           "name": "rnaseq",
           "version": "3.14.0"
         }
@@ -120361,6 +120392,10 @@
         {
           "name": "atacseq",
           "version": "2.1.2"
+        },
+        {
+          "name": "riboseq",
+          "version": "dev"
         },
         {
           "name": "rnaseq",
@@ -121696,6 +121731,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -121730,6 +121769,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -123299,6 +123342,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -123479,7 +123526,13 @@
         "maintainers": [
           "@pinin4fjords"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "utils_nextflow_pipeline",
