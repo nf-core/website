@@ -26,3 +26,19 @@ Contact:
 - 2024-03-20 - 0900-1700: Alpha 2, Milky Way
 
 _Details to be confirmed_
+
+
+## In collaboration with
+
+
+<div style="text-align: center;">
+    <img src="https://www.ghga.de/fileadmin/user_upload/Bilder/Logo/GHGA_CMYK_Bright_Orange.svg" width=300>
+    <img src="https://www.nct-heidelberg.de/fileadmin/sites/nct-heidelberg.de/website/img/nct-heidelberg.jpg" width=300>
+</div>
+
+
+<div style="text-align: center;">
+    <a href="https://genomic.social/@g"><img src="https://openmoji.org/data/color/svg/E05A.svg" width=100></a>
+    <a href="https://www.linkedin.com/company/the-german-human-genome-phenome-archive/"><img src="https://openmoji.org/data/color/svg/E046.svg" width=100></a>
+    <a href="https://bsky.app/profile/ghga.bsky.social"><img src="https://openmoji.org/data/color/svg/1F98B.svg" width=100></a>
+</div>
