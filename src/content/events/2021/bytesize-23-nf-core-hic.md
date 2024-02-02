@@ -14,16 +14,6 @@ locationURL:
   - https://www.bilibili.com/video/BV1Uh411J7BV/
 ---
 
-# nf-core/bytesize
-
-Join us for a special pipeline-focused episode of our **weekly series** of short talks: **“nf-core/bytesize”**.
-
-Just **15 minutes** + questions, we will be focussing on topics about using and developing nf-core pipelines.
-These will be recorded and made available at <https://nf-co.re>
-It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
-
-## Bytesize 23: nf-core/hic
-
 This week, Nicolas Servant ([@nservant](https://github.com/nservant/)) will tell us all about the nf-core/hic pipeline.
 
 [0:00](https://youtu.be/AFHaX_GRNBU?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=0) Hi everyone. Happy to have you here again for our bytesize talk today. We are joined today by Nicolas Servant, who is based at the Institute Curie in Paris, France. He is talking to us about the nf-core/hic pipeline. If you have any questions for Nicolas during the talk, please put them in the chat or even unmute yourself at the end of the session and ask them directly. We started doing that from today's talk. Just to let you know, this video and all previous bytesize talks are on our YouTube channel, so you can feel free to consult them there as well. All links are still on our homepage. With that, thanks for joining us again Nicolas and over to you.

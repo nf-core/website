@@ -46,12 +46,14 @@
     });
 </script>
 
-{#if headings.length > 1}
-    <div class="nav flex-column sticky-top-under align-items-end pt-1">
-        <div class="d-none d-md-inline">
+<div class="nav flex-column sticky-top-under align-items-end pt-1">
+    <div class="d-none d-md-inline">
+        {#if headings.length > 1}
             <strong class="h6 my-2 text-body">On this page</strong>
-            <!-- <hr class="my-1" /> -->
-            <nav id="TableOfContents" class="d-none d-md-flex flex-column">
+        {/if}
+        <!-- <hr class="my-1" /> -->
+        <nav id="TableOfContents" class="d-none d-md-flex flex-column">
+            {#if headings.length > 1}
                 <ul class="mb-0 mt-1">
                     {#each headings as heading (heading)}
                         <li
@@ -77,12 +79,11 @@
                         <i class="fa-solid fa-arrow-up-to-line" aria-hidden="true" /> Back to top
                     </a>
                 </div>
-
-                <slot />
-            </nav>
-        </div>
+            {/if}
+            <slot />
+        </nav>
     </div>
-{/if}
+</div>
 
 <style lang="scss">
     @import 'src/styles/_variables.scss';
