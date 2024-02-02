@@ -25,7 +25,6 @@ Business Development Center (BDC), Carl-Friedrich-Gauß-Ring 5, 69124, Heidelber
 
 ## Organizational Information
 
-
 ### Schedule
 
 <div class="table-responsive">
@@ -97,7 +96,6 @@ _Details to be confirmed_
 
 ### Food
 
-
 ### Material
 
 Please come with your computer and lots of energy for the hackathon.
@@ -105,3 +103,14 @@ Please come with your computer and lots of energy for the hackathon.
 ## Acknowledgments
 
 This local event is being kindly supported by the German Human Genome-Phenome Archive Project.
+
+<div style="text-align: center;">
+    <img src="https://www.ghga.de/fileadmin/user_upload/Bilder/Logo/GHGA_CMYK_Bright_Orange.svg" width=300>
+    <img src="https://www.nct-heidelberg.de/fileadmin/sites/nct-heidelberg.de/website/img/nct-heidelberg.jpg" width=300>
+</div>
+
+<div style="text-align: center;">
+    <a href="https://genomic.social/@ghga"><img src="https://openmoji.org/data/color/svg/E05A.svg" width=100></a>
+    <a href="https://www.linkedin.com/company/the-german-human-genome-phenome-archive/"><img src="https://openmoji.org/data/color/svg/E046.svg" width=100></a>
+    <a href="https://bsky.app/profile/ghga.bsky.social"><img src="https://openmoji.org/data/color/svg/1F98B.svg" width=100></a>
+</div>
