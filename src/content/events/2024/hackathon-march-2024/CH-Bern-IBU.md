@@ -3,9 +3,9 @@ title: Hackathon - March 2024 (Bern)
 subtitle: Local site of the nf-core hackathon at the IBU, Bern.
 type: hackathon
 startDate: '2024-03-18'
-startTime: '10:00'
+startTime: '10:00+01:00'
 endDate: '2024-03-20'
-endTime: '17:00'
+endTime: '17:00+01:00'
 locationName: IBU
 address: Baltzerstrasse 6, 3012 Bern, Switzerland
 locationURL: https://www.bioinformatics.unibe.ch/
