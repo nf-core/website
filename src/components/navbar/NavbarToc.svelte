@@ -43,7 +43,7 @@
     @import 'src/styles/_variables.scss';
     .toc-md {
         .dropdown-menu {
-            max-height: 90vh;
+            max-height: 90dvh;
             overflow-y: auto;
         }
     }
