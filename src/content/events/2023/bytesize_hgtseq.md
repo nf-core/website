@@ -13,16 +13,6 @@ locationURL:
   - https://doi.org/10.6084/m9.figshare.22317877.v1
 ---
 
-# nf-core/bytesize
-
-Join us for our **weekly series** of short talks: **“nf-core/bytesize”**.
-
-Just **15 minutes** + questions, we will be focussing on topics about using and developing nf-core pipelines.
-These will be recorded and made available at <https://nf-co.re>
-It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
-
-## Bytesize: nf-core/hgtseq
-
 This week, Francesco Lescai ([@lescai](https://github.com/lescai)) is presenting us the nf-core pipeline hgtseq. nf-core/hgtseq is a bioinformatics best-practice analysis pipeline built to investigate horizontal gene transfer from NGS data.
 It uses metagenomic classification of paired-read alignments against a reference genome to identify the presence of non-host microbial sequences within read pairs, and to infer potential integration sites into the host genome.
 

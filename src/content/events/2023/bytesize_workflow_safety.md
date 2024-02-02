@@ -11,16 +11,6 @@ locationURL:
   - https://www.youtube.com/watch?v=A357C-ux6Dw
 ---
 
-# nf-core/bytesize
-
-Join us for our **weekly series** of short talks: **“nf-core/bytesize”**.
-
-Just **15 minutes** + questions, we will be focussing on topics about using and developing nf-core pipelines.
-These will be recorded and made available at <https://nf-co.re>
-It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
-
-## Bytesize: Workflow safety and immutable objects
-
 This week, Rob Syme ([@robsyme](https://github.com/robsyme)) will talk about how to avoid introducing subtle concurrency bugs in your Nextflow workflows by safely modifying objects (or more specifically, by _not_ modifying objects) when writing Groovy closures.
 
 <details markdown="1"><summary>Video transcription</summary>

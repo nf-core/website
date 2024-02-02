@@ -13,17 +13,6 @@ locationURL:
   - https://doi.org/10.6084/m9.figshare.14413046.v1
 ---
 
-# nf-core/bytesize
-
-Join us for an episode of our **weekly series** of short talks: **“nf-core/bytesize”**.
-
-Just **15 minutes** + questions, we will be focussing on topics about using and developing nf-core pipelines.
-These will be recorded and made available at <https://nf-co.re>
-It is our hope that these talks / videos will build an archive of training material that can complement our documentation.
-Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
-
-## Bytesize 8: Running pipelines offline
-
 This week, Maxime Garcia ([@maxulysse](http://github.com/maxulysse/)) will present: _**Running pipelines offline.**_
 This will cover:
 
