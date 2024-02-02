@@ -95,7 +95,9 @@
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
                     >
-                        Sort <span class="d-none d-xl-inline">({$SortBy})</span>
+                        <i class="fa-solid fa-arrow-down-wide-short me-1 d-xxl-none"></i>
+                        <span class="d-none d-xxl-inline">Sort: </span>
+                        <span class="d-none d-xl-inline">{$SortBy}</span>
                     </button>
                     <ul class="dropdown-menu">
                         {#each sortBy as sor (sor)}
