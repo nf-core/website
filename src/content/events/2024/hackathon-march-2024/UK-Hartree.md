@@ -1,23 +1,23 @@
 ---
-title: Hackathon - March 2024 (Argentina)
-subtitle: Local node of the nf-core hackathon
+title: Hackathon - March 2024
+subtitle: Local node of the nf-core hackathon at UKRI Hartree centre, Daresbury
 type: hackathon
 startDate: '2024-03-18'
-startTime: '13:00+02:00'
+startTime: '10:00+00:00'
 endDate: '2024-03-20'
-endTime: '21:00+02:00'
-locationName: ZS Associates
-address: Av. del Libertador 7208, C1429 CABA
-locationURL: https://www.zs.com/careers/where-we-work/latin-america/buenos-aires
+endTime: '17:00+00:00'
+locationName: Hartree centre
+address: Sci-Tech Daresbury, Keckwick, Daresbury, ​​​Warrington. WA4 4AD
+locationURL: https://maps.app.goo.gl/pEB5CDxgPbg7GLXb7
+locationLatLng: [53.3433353, -2.6384581]
 ---
 
-Local event to be held in Buenos Aires
+Local event to be held at UKRI's Hartree centre, Daresbury UK.
 
 Contact:
 
-- [<i class="fab fa-slack"></i> Anabella Trigila](https://nfcore.slack.com/team/U03HEFYUW3H)
-
-## Schedule (local time)
+- [<i class="fab fa-slack"></i> Stephen Checkley](https://nfcore.slack.com/team/U0588A28BEW)
+- [<i class="fab fa-slack"></i> Matthew Marshall](https://nfcore.slack.com/team/U066WCT8JA2)
 
 <div class="table-responsive">
     <table class="table table-hover table-sm table-bordered">
@@ -31,21 +31,15 @@ Contact:
             </thead>
             <tbody>
             <tr>
-                <td>08:00</td>
+                <td>9:30</td>
                 <td background-color:navy; rowspan="1">Welcome and Setup</td>
                 <td background-color:navy; rowspan="1">Daily Start</td>
                 <td background-color:navy; rowspan="1">Daily Start</td>
             </tr>
-                <td>08:30</td>
-                <td rowspan="6">Hack!</td>
-                <td rowspan="6">Hack!</td>
-                <td rowspan="6">Hack!</td>
-            </tr>
-            <tr>
-                <td>09:00</td>
-            </tr>
-            <tr>
                 <td>10:00</td>
+                <td rowspan="6">Hack!</td>
+                <td rowspan="6">Hack!</td>
+                <td rowspan="6">Hack!</td>
             </tr>
             <tr>
                 <td>11:00</td>
@@ -54,9 +48,16 @@ Contact:
                 <td>12:00</td>
             </tr>
             <tr>
+                <td>13:00</td>
             </tr>
             <tr>
-                <td>12:30</td>
+                <td>14:00</td>
+            </tr>
+            <tr>
+                <td>15:00</td>
+            </tr>
+            <tr>
+                <td>16:00</td>
                 <td background-color:navy; rowspan="1">Daily sync</td>
                 <td background-color:navy; rowspan="1">Daily sync</td>
                 <td background-color:navy; rowspan="1">Final wrap-up</td>
@@ -69,16 +70,13 @@ Contact:
 
 ### Registration
 
-Please contact the local site organizers via Slack if you would like to join this event. There is a limited number of places. We will therefore be able to plan everything based on the number of persons coming.
+Please use the **main registration form** (_soon available_) to sign up and select the location you want.
+We will therefore be able to plan everything based on the number of persons coming.
 
 ### Location
 
-We'll be in the first floor, room to be confirmed. The day of the event, registered attendees will also have to announce themselves at the reception of HIT CEL.
+Brunner-Monde, STFC Daresbury lab. Sci-Tech Daresbury, Keckwick, Daresbury, ​​​Warrington. WA4 4AD
 
 ### Material
 
 Please come with your computer and lots of energy for the hackathon.
-
-### Food
-
-Some food will be provided for attendees, there is also stores and supermarkets nearby.

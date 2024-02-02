@@ -31,6 +31,8 @@ export const GET: APIRoute = async ({ params, request }) => {
             // shorten to last previous word
             subtitle = subtitle.substring(0, subtitle.lastIndexOf(' '));
         }
+        // remove from emoji icons
+        subtitle = subtitle.replace(/:[^:]*:$/, '');
     } else {
         args.title = 'nf-core';
         args.subtitle = 'A community effort to collect a curated set of analysis pipelines built using Nextflow.';

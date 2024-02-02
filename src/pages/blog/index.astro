@@ -6,6 +6,8 @@ import GitHubProfilePictureExtended from '@components/GitHubProfilePictureExtend
 import GitHubProfilePicture from '@components/GitHubProfilePicture.svelte';
 import { Image } from 'astro:assets';
 
+const images = import.meta.glob('../../assets/**/*.{png,jpg,jpeg,gif,svg}');
+
 let blogPosts = await getCollection('blog');
 
 // filter out posts that have a pubDate later than today
@@ -14,7 +16,14 @@ blogPosts = blogPosts
         const pubDate = new Date(post.data.pubDate);
         return pubDate < new Date();
     })
-    .sort((a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate));
+    .filter((post) => {
+        if (process.env.production) {
+            return post.data.draft !== true;
+        } else {
+            return true;
+        }
+    })
+    .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
 
 // get years of all posts
 const years = [...new Set(blogPosts.map((post) => new Date(post.data.pubDate).getFullYear()))].sort((a, b) => b - a);
@@ -61,7 +70,11 @@ const sections = years.map((year) => {
                                 <div class="card m-xl-3 m-1">
                                     {post.data.headerImage && (
                                         <Image
-                                            src={post.data.headerImage}
+                                            src={
+                                                post.data.headerImage.startsWith('/assets/')
+                                                    ? images['../..' + post.data.headerImage]()
+                                                    : post.data.headerImage
+                                            }
                                             class="card-img-top object-fit-cover"
                                             alt={post.data.headerImageAlt || ''}
                                             height={240}

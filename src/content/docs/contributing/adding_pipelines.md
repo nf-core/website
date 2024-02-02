@@ -64,6 +64,8 @@ and added to our [new pipeline tracking board](https://github.com/orgs/nf-core/p
 
 Once accepted, someone from the core team will create a Slack channel for your pipeline and you can get started on the next steps.
 
+You should also at this point additionally join the [#pipeline-maintainers](https://nfcore.slack.com/channels/pipeline-maintainers) channel for major change announcements as well as general discussion on pipeline development related topics.
+
 ### Create the pipeline
 
 You'll start by making a new pipeline locally and working with it on your own GitHub account.
