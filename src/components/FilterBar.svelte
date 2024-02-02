@@ -20,6 +20,11 @@
             CurrentFilter.set([...$CurrentFilter, { name: fil }]);
         }
     }
+    function handleExlusiveFilter(fil) {
+        // remove focus from button
+        event.target.blur();
+        CurrentFilter.set([{ name: fil }]);
+    }
     function handleSort(sor) {
         SortBy.set(sor);
     }
@@ -50,7 +55,36 @@
             placeholder="Search"
         />
         {#if $Filters.length > 0 && $Filters[0].name}
-            <div class="ms-1 ms-md-3 align-items-center">
+            <div class="d-none d-xl-block ms-3 d-flex align-items-center">
+                <div class="btn-group ms-1 filter-buttons d-flex" role="group" aria-label="Filter listing">
+                    {#each $Filters as fil}
+                        <button
+                            type="button"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            data-bs-delay="500"
+                            title={'Double click to only show items from this category'}
+                            class={fil.class
+                                ? 'btn text-nowrap flex-fill btn-outline-' + fil.class
+                                : 'btn text-nowrap w-100 btn-outline-success'}
+                            class:active={$CurrentFilter.find((f) => f.name === fil.name)}
+                            on:click={() => handleFilter(fil.name)}
+                            on:dblclick={() => handleExlusiveFilter(fil.name)}
+                            on:mouseout={() => event.target.blur()}
+                            on:blur={() => event.target.blur()}
+                        >
+                            {#if fil.icon}
+                                <i class={fil.icon + ' me-1'} />
+                            {/if}
+                            {fil.name}
+                            {#if fil.count >= 0}
+                                <span class="badge bg-secondary ms-1">{fil.count}</span>
+                            {/if}
+                        </button>
+                    {/each}
+                </div>
+            </div>
+            <div class="d-xl-none ms-1 ms-md-3 align-items-center">
                 <div class="dropdown">
                     <button
                         class="btn btn-outline-success dropdown-toggle text-nowrap"
@@ -95,9 +129,8 @@
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
                     >
-                        <i class="fa-solid fa-arrow-down-wide-short me-1 d-xxl-none"></i>
-                        <span class="d-none d-xxl-inline">Sort: </span>
-                        <span class="d-none d-xl-inline">{$SortBy}</span>
+                        <i class="fa-solid fa-arrow-down-wide-short me-1"></i>
+                        <span class="d-none d-md-inline">{$SortBy}</span>
                     </button>
                     <ul class="dropdown-menu">
                         {#each sortBy as sor (sor)}
