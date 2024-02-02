@@ -1,10 +1,11 @@
 ---
 import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
 import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
-    const tools = await getCollection('tools');
-    return tools.map((entry) => {
+    const tools: CollectionEntry<'tools'>[] = await getCollection('tools');
+    return tools.map((entry: CollectionEntry<'tools'>) => {
         const version = entry.id.split('/')[1];
         return {
             params: { version: version, slug: entry.id.replace(`docs/${version}/`, '').replace(/\.md$/, '') },
@@ -17,7 +18,7 @@ const { entry } = Astro.props;
 const { headings, Content } = await entry.render();
 const { title } = entry.data;
 const subtitle = entry.data.subtitle || '';
-const md_github_url = 'https://github.com/nf-core/website/blob/main/src/content/tools/' + post.id;
+const md_github_url = 'https://github.com/nf-core/website/blob/main/src/content/tools/' + entry.id;
 const tools = await getCollection('tools');
 const sections = tools.map((entry) => {
     return {
