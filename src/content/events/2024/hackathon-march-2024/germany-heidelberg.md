@@ -38,7 +38,7 @@ _Details to be confirmed_
 
 
 <div style="text-align: center;">
-    <a href="https://genomic.social/@g"><img src="https://openmoji.org/data/color/svg/E05A.svg" width=100></a>
+    <a href="https://genomic.social/@ghga"><img src="https://openmoji.org/data/color/svg/E05A.svg" width=100></a>
     <a href="https://www.linkedin.com/company/the-german-human-genome-phenome-archive/"><img src="https://openmoji.org/data/color/svg/E046.svg" width=100></a>
     <a href="https://bsky.app/profile/ghga.bsky.social"><img src="https://openmoji.org/data/color/svg/1F98B.svg" width=100></a>
 </div>
