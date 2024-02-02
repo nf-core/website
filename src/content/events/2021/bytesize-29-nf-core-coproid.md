@@ -14,16 +14,6 @@ locationURL:
   - https://www.bilibili.com/video/BV15b4y1B7Uc
 ---
 
-# nf-core/bytesize
-
-Join us for a special pipeline-focussed episode of our **weekly series** of short talks: **“nf-core/bytesize”**.
-
-Just **15 minutes** + questions, we will be focussing on topics about using and developing nf-core pipelines.
-These will be recorded and made available at <https://nf-co.re>
-It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
-
-## Bytesize 29: nf-core/coproid
-
 This week, Maxime Borry ([@maxibor](https://github.com/maxibor)) will tell us all about the nf-core/coproid pipeline.
 
 <details markdown="1"><summary>Video transcription</summary>

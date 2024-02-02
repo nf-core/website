@@ -72,7 +72,7 @@ This is perfect for anyone already familiar with specific pipelines.
 ## Group 2 - DSL2 / modules documentation
 
 💬 Slack group:[`hackathon-march2022-modules`](https://nfcore.slack.com/channels/hackathon-march2022-modules)<br>
-😊 Group Leads: [Harshil Patel](https://github.com/drpatelh), [Edmund Miller](https://github.com/Emiller88), [Gregor Sturm](https://github.com/grst), [Friederike Hanssen](https://github.com/FriederikeHanssen)<br>
+😊 Group Leads: [Harshil Patel](https://github.com/drpatelh), [Edmund Miller](https://github.com/edmundmiller), [Gregor Sturm](https://github.com/grst), [Friederike Hanssen](https://github.com/FriederikeHanssen)<br>
 💻 [HackMD](https://hackmd.io/bdEPR9COS72hj74EmUMyJQ)
 
 The pace of development with DSL2 and nf-core/modules has been a little crazy over the past months.

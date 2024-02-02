@@ -12,17 +12,7 @@ locationURL:
   - https://www.youtube.com/watch?v=chayGGPTnfM
 ---
 
-# nf-core/bytesize
-
-Join us for our **weekly series** of short talks: **“nf-core/bytesize”**.
-
-Just **15 minutes** + questions, we will be focussing on topics about using and developing nf-core pipelines.
-These will be recorded and made available at <https://nf-co.re>
-It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
-
-## Bytesize: nf-core/nascent
-
-This week, Edmund Miller ([@Emiller88](https://github.com/Emiller88)) will talk about the newest developments in the nf-core/nascent pipeline.
+This week, Edmund Miller ([@edmundmiller](https://github.com/edmundmiller)) will talk about the newest developments in the nf-core/nascent pipeline.
 
 <details markdown="1"><summary>Video transcription</summary>
 :::note

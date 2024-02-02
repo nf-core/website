@@ -13,17 +13,7 @@ locationURL:
   - https://doi.org/10.6084/m9.figshare.14784855.v1
 ---
 
-# nf-core/bytesize
-
-Join us for an episode of our **weekly series** of short talks: **“nf-core/bytesize”**.
-
-Just **15 minutes** + questions, we will be focussing on topics about using and developing nf-core pipelines.
-These will be recorded and made available at <https://nf-co.re>
-It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
-
-## Bytesize 17: Pytest workflow
-
-This week, Edmund Miller ([@Emiller88](http://github.com/Emiller88/)) will present: _**Pytest workflow**_
+This week, Edmund Miller ([@edmundmiller](http://github.com/edmundmiller/)) will present: _**Pytest workflow**_
 
 This will cover:
 

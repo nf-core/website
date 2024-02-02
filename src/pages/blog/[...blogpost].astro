@@ -4,23 +4,30 @@ import { getCollection } from 'astro:content';
 import SidebarStatsRow from '@components/sidebar/SidebarStatsRow.astro';
 import GitHubProfilePictureExtended from '@components/GitHubProfilePictureExtended.svelte';
 import { Image } from 'astro:assets';
-
+const images = import.meta.glob('../../assets/**');
 export async function getStaticPaths() {
-    const blogPost = await getCollection('blog');
-    return blogPost.map((post) => ({
+    const blogPosts = await getCollection('blog');
+    return blogPosts.map((post) => ({
         params: { blogpost: post.slug },
-        props: { post },
+        props: { post, blogPosts },
     }));
 }
 
-let blogPosts = await getCollection('blog');
+let { post, blogPosts } = Astro.props;
 // filter out posts that have a pubDate later than today
 blogPosts = blogPosts
     .filter((post) => {
         const pubDate = new Date(post.data.pubDate);
         return pubDate < new Date();
     })
-    .sort((a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate));
+    .filter((post) => {
+        if (process.env.production) {
+            return post.data.draft !== true;
+        } else {
+            return true;
+        }
+    })
+    .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
 
 // get years of all posts
 const years = [...new Set(blogPosts.map((post) => new Date(post.data.pubDate).getFullYear()))].sort((a, b) => b - a);
@@ -34,18 +41,15 @@ const sections = years.map((year) => {
             .map((post) => {
                 return {
                     title: post.data.title,
-                    slug: post.slug,
-                    pubDate: post.data.pubDate,
+                    slug: '/blog/' + post.slug,
                 };
             }),
     };
 });
-const { post } = Astro.props;
 const { headings, Content } = await post.render();
 const title = post.data.title;
 const subtitle = post.data.subtitle;
 const md_github_url = 'https://github.com/nf-core/website/blob/main/src/content/blog/' + post.id;
-const headerImage = post.data.headerImage;
 ---
 
 <MarkdownTocLayout
@@ -63,20 +67,24 @@ const headerImage = post.data.headerImage;
     doubleNavbar={false}
     sidebarTitle="Blog posts"
 >
-    <div class="image-container d-flex align-items-center">
-        {
-            post.data.headerImage && (
+    {
+        post.data.headerImage && post.data.embedHeaderImage !== undefined && post.data.embedHeaderImage !== false && (
+            <div class="image-container d-flex align-items-center">
                 <Image
-                    src={post.data.headerImage}
+                    src={
+                        post.data.headerImage.startsWith('/assets/')
+                            ? images['../..' + post.data.headerImage]()
+                            : post.data.headerImage
+                    }
                     alt={post.data.headerImageAlt || ''}
                     class="object-fit-cover mb-3 d-flex m-auto w-100 h-100 py-2"
                     width={728}
                     height={360}
                     transition:name="cover-image"
                 />
-            )
-        }
-    </div>
+            </div>
+        )
+    }
     <Content />
     <div class="author-list d-md-none d-flex flex-wrap justify-content-between">
         <SidebarStatsRow lastChild={true} content={[{ title: 'Published on' }]}>
@@ -124,5 +132,8 @@ const headerImage = post.data.headerImage;
         .image-container {
             height: 260px;
         }
+    }
+    :global(.markdown-content img) {
+        margin-bottom: 1rem;
     }
 </style>
