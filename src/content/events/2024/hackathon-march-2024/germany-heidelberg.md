@@ -25,7 +25,6 @@ Business Development Center (BDC), Carl-Friedrich-Gauß-Ring 5, 69124, Heidelber
 
 ## Organizational Information
 
-
 ### Schedule
 
 <div class="table-responsive">
@@ -95,10 +94,7 @@ Business Development Center (BDC), Carl-Friedrich-Gauß-Ring 5, 69124, Heidelber
 
 _Details to be confirmed_
 
-
-
 ### Food
-
 
 ### Material
 
@@ -112,7 +108,6 @@ This local event is being kindly supported by the German Human Genome-Phenome Ar
     <img src="https://www.ghga.de/fileadmin/user_upload/Bilder/Logo/GHGA_CMYK_Bright_Orange.svg" width=300>
     <img src="https://www.nct-heidelberg.de/fileadmin/sites/nct-heidelberg.de/website/img/nct-heidelberg.jpg" width=300>
 </div>
-
 
 <div style="text-align: center;">
     <a href="https://genomic.social/@ghga"><img src="https://openmoji.org/data/color/svg/E05A.svg" width=100></a>
