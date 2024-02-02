@@ -52,8 +52,10 @@
             class="form-control w-25 me-2"
             bind:value={search}
             on:keyup={handleSearch}
-            placeholder="Search"
+            placeholder="&#xF002;  Search"
+            style="font-family: Inter, 'Font Awesome 6 Pro'"
         />
+
         {#if $Filters.length > 0 && $Filters[0].name}
             <div class="d-none d-xl-block ms-3 d-flex align-items-center">
                 <div class="btn-group ms-1 filter-buttons d-flex" role="group" aria-label="Filter listing">
