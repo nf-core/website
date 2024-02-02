@@ -1,5 +1,5 @@
 ---
-title: Hackathon - March 2024 (Berlin)
+title: Hackathon - March 2024 (Bern)
 subtitle: Local site of the nf-core hackathon at the IBU, Bern.
 type: hackathon
 startDate: '2024-03-18'
