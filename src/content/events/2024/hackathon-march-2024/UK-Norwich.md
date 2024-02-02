@@ -18,7 +18,6 @@ Contact:
 
 - [<i class="fab fa-slack"></i> Lisa Marchioretto](https://nfcore.slack.com/team/U06H0Q0PT4L)
 - [<i class="fab fa-slack"></i> Andrea Telatin](https://nfcore.slack.com/team/UTKJMDMGX)
- 
 
 <div class="table-responsive">
     <table class="table table-hover table-sm table-bordered">
@@ -71,7 +70,7 @@ Contact:
 
 ### Registration
 
-Please contact the local site organizers via Slack if you would like to join this event. 
+Please contact the local site organizers via Slack if you would like to join this event.
 There is a limited number of places. We will therefore be able to plan everything based on the number of persons coming.
 
 ### Location
