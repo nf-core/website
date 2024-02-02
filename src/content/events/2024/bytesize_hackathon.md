@@ -6,7 +6,8 @@ startDate: '2024-01-30'
 startTime: '13:00+01:00'
 endDate: '2024-01-30'
 endTime: '13:30+01:00'
-locationURL: https://kth-se.zoom.us/j/68390542812
+youtube_embed: https://youtu.be/nmp0pXL7GqQ
+locationURL: https://youtu.be/nmp0pXL7GqQ
 ---
 
 # nf-core/bytesize
