@@ -11,16 +11,6 @@ locationURL:
   - https://www.youtube.com/watch?v=rr9FTlQayIE
 ---
 
-# nf-core/bytesize
-
-Join us for our **weekly series** of short talks: **“nf-core/bytesize”**.
-
-Just **15 minutes** + questions, we will be focussing on topics about using and developing nf-core pipelines.
-These will be recorded and made available at <https://nf-co.re>
-It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
-
-## Bytesize: nf-validation
-
 This week Júlia Mir Pedrol ([@mirpedrol](https://github.com/mirpedrol)) and Nicolas Vannieuwkerke ([@nvnieuwk](https://github.com/nvnieuwk)) are presenting nf-validation, the soon to be released plugin to validate the input parameters and sample sheets for Nextflow pipelines.
 
 <details markdown="1"><summary>Video transcription</summary>

@@ -2,7 +2,7 @@
 import EventListing from '@components/event/EventListing.svelte';
 import PageLayout from '@layouts/PageLayout.astro';
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
-import { CollectionEntry } from 'astro:content';
+import { type CollectionEntry } from 'astro:content';
 
 const { title, subtitle, events, currentFilters } = Astro.props;
 export interface Props {

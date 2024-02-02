@@ -13,16 +13,6 @@ locationURL:
   - https://www.bilibili.com/video/BV1M54y1a7Uy
 ---
 
-# nf-core/bytesize
-
-Join us for an episode of our **weekly series** of short talks: **“nf-core/bytesize”**.
-
-Just **15 minutes** + questions, we will be focussing on topics about using and developing nf-core pipelines.
-These will be recorded and made available at <https://nf-co.re>
-It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
-
-## Bytesize 2: How nf-core configs work
-
 This week, Maxime Garcia ([@MaxUlysse](http://github.com/MaxUlysse/)) will present: _**How nf-core configs work.**_ This talk will cover:
 
 - Making your own Nextflow config file
