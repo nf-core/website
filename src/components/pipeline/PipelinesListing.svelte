@@ -134,8 +134,10 @@
 <div class="listing grid px-2 py-4">
     {#if $DisplayStyle === 'grid'}
         {#if filteredPipelines.length === 0 && $SearchQuery !== ''}
-            <div class="alert alert-warning" role="alert">
-                No pipelines found. Try changing your search query or filters.
+            <div class="g-col-12 g-col-md-8 g-start-md-3">
+                <div class="alert alert-secondary text-center" role="alert">
+                    No pipelines found. Try changing your search query or filters.
+                </div>
             </div>
         {:else}
             {#each filteredPipelines as pipeline (pipeline.name)}
