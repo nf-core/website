@@ -1,4 +1,5 @@
 ---
+import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
 import { getCollection } from 'astro:content';
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
@@ -13,7 +14,35 @@ export async function getStaticPaths() {
 }
 // 2. For your template, you can get the entry directly from the prop
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { headings, Content } = await entry.render();
+const { title } = entry.data;
+const subtitle = entry.data.subtitle || '';
+const md_github_url = 'https://github.com/nf-core/website/blob/main/src/content/tools/' + post.id;
+const tools = await getCollection('tools');
+const sections = tools.map((entry) => {
+    return {
+        section_name: entry.id.split('/')[2],
+        section_slug: entry.id.split('/')[2].replace(/\.md$/, ''),
+        children: tools.map((entry) => {
+            return {
+                title: entry.data.title,
+                slug: 'tools/' + entry.id.replace(/\.md$/, ''),
+            };
+        }),
+    };
+});
 ---
 
-<Content />
+<MarkdownTocLayout
+    title={title}
+    subtitle={subtitle}
+    md_github_url={md_github_url}
+    headings={headings}
+    viewTransitions={true}
+    leftSidebar={true}
+    sections={sections}
+    viewTransitions={true}
+    doubleNavbar={false}
+>
+    <Content />
+</MarkdownTocLayout>
