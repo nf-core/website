@@ -124,10 +124,13 @@ const blog = defineCollection({
 
 const pipelines = defineCollection({});
 
+const tools = defineCollection({});
+
 export const collections = {
     events: events,
     docs: docs,
     about: about,
     pipelines: pipelines,
     blog: blog,
+    tools: tools,
 };
