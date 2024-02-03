@@ -65,6 +65,9 @@ const sections = years.map((year) => {
                     event.slug.endsWith('index.mdx')
                 );
             })
+            .sort((a, b) => {
+                return new Date(b.data.start) - new Date(a.data.start);
+            })
             .map((event, i) => {
                 return {
                     title: event.data.title,
