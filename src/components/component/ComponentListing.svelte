@@ -89,15 +89,17 @@
     });
 </script>
 
-<div class={`listing grid px-2 py-4 ${components[0].type}`}>
+<div class={`listing px-0 px-lg-2 py-4 ${components[0].type}`}>
     {#if $DisplayStyle === 'grid'}
-        {#each paginatedItems as component (component.name)}
-            <div class="g-col-12 g-col-md-6 g-col-xl-4 g-col-xxl-3">
-                <ComponentCard {component} />
-            </div>
-        {/each}
+        <div class="grid">
+            {#each paginatedItems as component (component.name)}
+                <div class="g-col-12 g-col-md-6 g-col-xl-4 g-col-xxl-3">
+                    <ComponentCard {component} />
+                </div>
+            {/each}
+        </div>
     {:else}
-        <table class="table table-responsive mx-3">
+        <table class="table table-responsive">
             <thead>
                 <tr>
                     <ListingTableHeader name="Name" />
