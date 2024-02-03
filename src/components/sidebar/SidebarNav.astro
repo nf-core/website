@@ -69,7 +69,7 @@ url = url.replace(/\.html$/, '');
                                                         ]}
                                                         href={child.slug}
                                                     >
-                                                        {child.title}
+                                                        <Fragment inner:html={child.title} />
                                                     </a>
                                                 </li>
                                             );
