@@ -49,11 +49,10 @@
     <div class="d-flex w-100 justify-content-between justify-content-md-center">
         <input
             type="text"
-            class="form-control w-25 me-2"
+            class="form-control w-25 me-2 searchbar"
             bind:value={search}
             on:keyup={handleSearch}
             placeholder="&#xF002;  Search"
-            style="font-family: Inter, 'Font Awesome 6 Pro'"
         />
 
         {#if $Filters.length > 0 && $Filters[0].name}
@@ -175,5 +174,9 @@
     </div>
 </div>
 
-<style>
+<style lang="scss">
+    @import '../styles/_variables.scss';
+    .searchbar {
+        font-family: $font-family-sans-serif, 'Font Awesome 6 Pro';
+    }
 </style>
