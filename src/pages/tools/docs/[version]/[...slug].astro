@@ -14,10 +14,10 @@ export async function getStaticPaths() {
                 section_name: entry,
                 section_slug: entry.replace(/\.md$/, ''),
                 children: versioned_tools
-                    .filter((child) => child.id.split('/')[2] === entry)
+                    .filter((child) => child.id.split('/')[2] === entry && child.id.split('/')[3])
                     .map((tool_entry) => {
                         return {
-                            title: tool_entry.child.id.split('/')[3].replace(/\.md$/, ''),
+                            title: tool_entry.id.split('/')[3].replace(/\.md$/, ''),
                             slug: '/tools/' + tool_entry.id.replace(/\.md$/, ''),
                         };
                     }),
