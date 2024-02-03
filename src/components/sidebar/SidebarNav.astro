@@ -68,9 +68,8 @@ url = url.replace(/\.html$/, '');
                                                             'stretched-link',
                                                         ]}
                                                         href={child.slug}
-                                                    >
-                                                        <Fragment inner:html={child.title} />
-                                                    </a>
+                                                        set:html={child.title}
+                                                    />
                                                 </li>
                                             );
                                         })}
