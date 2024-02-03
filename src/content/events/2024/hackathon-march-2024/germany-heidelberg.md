@@ -92,7 +92,6 @@ Business Development Center (BDC), Carl-Friedrich-Gauß-Ring 5, 69124, Heidelber
     </table>
 </div>
 
-
 ### Food
 
 ### Material
