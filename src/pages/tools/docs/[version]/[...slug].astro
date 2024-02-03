@@ -17,8 +17,8 @@ export async function getStaticPaths() {
                     .filter((child) => child.id.split('/')[2] === entry)
                     .map((tool_entry) => {
                         return {
-                            title: tool_entry.data.title,
-                            slug: 'tools/' + tool_entry.id.replace(/\.md$/, ''),
+                            title: tool_entry.child.id.split('/')[3].replace(/\.md$/, ''),
+                            slug: '/tools/' + tool_entry.id.replace(/\.md$/, ''),
                         };
                     }),
             };
