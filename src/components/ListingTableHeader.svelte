@@ -49,4 +49,9 @@
             background-color: $body-tertiary-bg-dark;
         }
     }
+    @include media-breakpoint-down(lg) {
+        .text-nowrap {
+            white-space: normal !important;
+        }
+    }
 </style>
