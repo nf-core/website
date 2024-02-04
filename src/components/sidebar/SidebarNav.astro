@@ -68,8 +68,8 @@ url = url.replace(/\.html$/, '');
                                                             'stretched-link',
                                                         ]}
                                                         href={child.slug}
-                                                        set:html={child.title}
                                                     />
+                                                    <span set:html={child.title} />
                                                 </li>
                                             );
                                         })}
