@@ -6,7 +6,7 @@ startDate: '2024-03-18'
 startTime: '10:00+02:00'
 endDate: '2024-03-20'
 endTime: '18:00+02:00'
-locationName: Heidelberh
+locationName: Heidelberg
 address: Business Development Center, Carl-Friedrich-Gauß-Ring 5, 69124, Heidelberg, Germany
 locationURL: https://www.ghga.de/events
 # locationLatLng: [ , ]
@@ -18,6 +18,10 @@ Contact:
 
 - [<i class="fab fa-slack"></i> Kubra Narci](https://nfcore.slack.com/team/U03EY2LC5V3)
 - [<i class="fab fa-slack"></i> Florian Wuennemann](https://nfcore.slack.com/team/UU10KMQ1F)
+
+## Registration
+
+Find the detailed information [here](https://nf-co.re/events/2024/hackathon-march-2024)
 
 ## Location
 
@@ -104,7 +108,12 @@ This local event is being kindly supported by the German Human Genome-Phenome Ar
 
 <div style="text-align: center;">
     <img src="https://www.ghga.de/fileadmin/user_upload/Bilder/Logo/GHGA_CMYK_Bright_Orange.svg" width=300>
-    <img src="https://www.nct-heidelberg.de/fileadmin/sites/nct-heidelberg.de/website/img/nct-heidelberg.jpg" width=300>
+    <img src="https://www.ghga.de/fileadmin/user_upload/Bilder/Logo/NCT-logo.png" width=200>
+</div>
+
+<div style="text-align: center;">
+    <img src="https://www.ghga.de/fileadmin/user_upload/Bilder/Logo/Master-Logo.png" width=150>
+    <img src="https://www.ghga.de/fileadmin/user_upload/Bilder/Logo/dktk-logo.png" width=250>
 </div>
 
 <div style="text-align: center;">
