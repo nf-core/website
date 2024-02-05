@@ -5,7 +5,7 @@ type: hackathon
 startDate: '2024-03-18'
 startTime: '09:30+00:00'
 endDate: '2024-03-19'
-endTime: '16:30+01:00'
+endTime: '16:30+00:00'
 locationName: Rosalind Franklin Pavillion, Conference Centre, Wellcome Genome Campus
 address: Wellcome Genome Campus, Hinxton CB10 1SA
 locationURL: https://www.wellcomegenomecampus.org
