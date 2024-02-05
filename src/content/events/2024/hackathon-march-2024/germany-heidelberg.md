@@ -108,12 +108,12 @@ This local event is being kindly supported by the German Human Genome-Phenome Ar
 
 <div style="text-align: center;">
     <img src="https://www.ghga.de/fileadmin/user_upload/Bilder/Logo/GHGA_CMYK_Bright_Orange.svg" width=300>
-    <img src="https://www.ghga.de/fileadmin/user_upload/Bilder/Logo/NCT-logo.png" width=300>
+    <img src="https://www.ghga.de/fileadmin/user_upload/Bilder/Logo/NCT-logo.png" width=200>
 </div>
 
 <div style="text-align: center;">
-    <img src="https://www.ghga.de/fileadmin/user_upload/Bilder/Logo/Master-Logo.png" width=250>
-    <img src="https://www.ghga.de/fileadmin/user_upload/Bilder/Logo/dktk-logo.png" width=400>
+    <img src="https://www.ghga.de/fileadmin/user_upload/Bilder/Logo/Master-Logo.png" width=150>
+    <img src="https://www.ghga.de/fileadmin/user_upload/Bilder/Logo/dktk-logo.png" width=250>
 </div>
 
 <div style="text-align: center;">
