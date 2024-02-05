@@ -2,9 +2,9 @@
 title: Hackathon - March 2024 (Cambridge)
 subtitle: Local node of the nf-core hackathon at the Wellcome Genome Campus, Cambridge.
 type: hackathon
-startDate: '2023-03-18'
+startDate: '2024-03-18'
 startTime: '09:30+01:00'
-endDate: '2023-03-19'
+endDate: '2024-03-19'
 endTime: '16:30+01:00'
 locationName: Rosalind Franklin Pavillion, Conference Centre, Wellcome Genome Campus
 address: Wellcome Genome Campus, Hinxton CB10 1SA
@@ -26,7 +26,7 @@ You can sign up [here](https://seqera.typeform.com/mar24hackathon) or in the wid
 
 ## Local Schedule
 
-Refreshments available at 10:30 and 15:00 daily. Lunch is provided daily, please let us know your dietary requirements.
+Refreshments available at 10:30 and 15:00 daily. Lunch is provided, please let us know your dietary requirements.
 
 <div class="table-responsive">
     <table class="table table-hover table-sm table-bordered">
