@@ -6,7 +6,7 @@ startDate: '2024-03-18'
 startTime: '10:00+02:00'
 endDate: '2024-03-20'
 endTime: '18:00+02:00'
-locationName: Heidelberh
+locationName: Heidelberg
 address: Business Development Center, Carl-Friedrich-Gauß-Ring 5, 69124, Heidelberg, Germany
 locationURL: https://www.ghga.de/events
 # locationLatLng: [ , ]
@@ -18,6 +18,10 @@ Contact:
 
 - [<i class="fab fa-slack"></i> Kubra Narci](https://nfcore.slack.com/team/U03EY2LC5V3)
 - [<i class="fab fa-slack"></i> Florian Wuennemann](https://nfcore.slack.com/team/UU10KMQ1F)
+
+## Registration
+
+Find the detailed information [here](https://nf-co.re/events/2024/hackathon-march-2024)
 
 ## Location
 
