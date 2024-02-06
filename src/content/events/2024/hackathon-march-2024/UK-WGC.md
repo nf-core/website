@@ -10,6 +10,7 @@ locationName: Rosalind Franklin Pavillion, Conference Centre, Wellcome Genome Ca
 address: Wellcome Genome Campus, Hinxton CB10 1SA
 locationURL: https://www.wellcomegenomecampus.org
 locationLatLng: [52.079047, 0.187607]
+importTypeform: true
 ---
 
 Local event to be held at the [Wellcome Genome Campus, Cambridge](https://goo.gl/maps/k3fuhxd6R8Tnuoay8).
@@ -20,7 +21,9 @@ For questions or concerns, contact [<i class="fab fa-slack"></i> Priyanka Surana
 
 Registration for the March 2024 nf-core hackathon is now OPEN! 🎉
 
-You can sign up [here](https://seqera.typeform.com/mar24hackathon).
+You can sign up [here](https://seqera.typeform.com/mar24hackathon) or in the widget below 👇
+
+<div data-tf-widget="YVGRCa8c" style="width:100%;height:500px;color:#FFFFFF;"></div>
 
 ## Local Schedule
 
