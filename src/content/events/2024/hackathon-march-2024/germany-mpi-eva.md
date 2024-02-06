@@ -71,9 +71,11 @@ Please use the main registration form to sign up, but feel free to email Thiseas
 </div>
 
 # Organisational Information
+
 MPI-EVA has an in-house cafeteria for lunch, and accepts both EC or credit card. Cash is not possible!
 
 We will also optionally arrange a social dinner in one of the evenings if there is interest among the attendees.
 
 # Acknowledgments
+
 This local event is being kindly supported by the Department of Archaeogenetics at MPI-EVA.
