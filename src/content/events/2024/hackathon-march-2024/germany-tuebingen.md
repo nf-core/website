@@ -18,8 +18,6 @@ Contact:
 
 - [<i class="fab fa-slack"></i> Jonas Scheid](https://nfcore.slack.com/team/U03DN4C1JQ5)
 
-
-
 ## Schedule
 
 <div class="table-responsive">
