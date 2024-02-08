@@ -1,7 +1,7 @@
 ---
 title: 'core team retreat'
 subtitle: 'Why not come to Stockholm in February? 🥶'
-pubDate: 2024-01-29T00:00:00+01:00
+pubDate: 2024-02-08T00:11:00+01:00
 headerImage: '/assets/images/blog/core_retreat_Feb_2024/group_pic4.jpg'
 headerImageAlt: 'Viking core team'
 authors:
@@ -26,78 +26,94 @@ import { Image } from 'astro:assets';
 
 <Image src={work_pic1} alt="core team working at retreat" />
 
-Between the 5th and 8th of February, the core team and members of the steering group met in icy Stockholm to discuss upcoming challenges and improvements to the community. The topics and decisions are outlined below.
+Between the 5th and 8th of February, the core team and members of the steering group met in icy Stockholm to discuss upcoming challenges and improvements to the community.
+We spent four days discussing key questions and projects for the community and getting stuck into kickstarting key initiatives.
+The topics and decisions are outlined below.
 
 # Structure and Governance
 
--   **Funding**
+### Improve transparency
 
-    As many open-source communities, funding is an important topic. The nf-core community has applied for another grant from the Chan Zuckerberg Initiative, but we will not hear about a decision until later in the year. Until then, the community is run on volunteer work by all of you and supported by different universities and institutions.
+To keep everyone in the loop about what is happening in the community and what decisions are taken, the core team will introduce a quarterly blog post with updates about infrastructure, pipeline maintenance and the leadership.
+We will also try to better document how new members are added to the different [governance teams](/governance/), with a slightly more formalised process.
 
--   **nf-core working groups**
+### nf-core working groups
 
-    An exiting development is that nf-core wants to establish working groups / SIGs / IGs / COSIs to encourage people within the nf-core community with similar interest to meet and work together. More information on this new initiative will be presented in the [bytesize talk on February 20th](/events/2024/bytesize_workgroups_intro).
+An exiting development is that nf-core wants to establish working groups / SIGs / IGs / COSIs _(naming things is hard)_ to encourage people within the nf-core community with similar interest to meet and work together. More information on this new initiative will be presented in the [bytesize talk on February 20th](/events/2024/bytesize_workgroups_intro).
 
--   **Improve transparency**
+### Funding
 
-    To keep everyone in the loop about what is happening in the community and what decisions are taken, the core team will introduce a quarterly blog post with updates about infrastructure, pipeline maintenance and the leadership. Also, the way of how new members are added to the different teams will get a bit more formalized.
+As many open-source communities, funding is an important topic. The nf-core community has applied for another grant from the Chan Zuckerberg Initiative, but we will not hear about a decision until later in the year. Until then, the community is run on volunteer work by all of you and supported by different universities and institutions.
 
 # Outreach and Community
 
--   **Training and Documentation overhaul**
+### Training and Documentation overhaul
 
-    One of the main goals of nf-core is to provide easy to use and well documented tools and pipelines. While the pipeline documentation pages are generally in a good state, the docs for tools and training are a bit scattered throughout the website and at times not very accessible. You can look forward to a complete overhaul of the docs page towards a more modular setup, which will also help putting together more targeted training for different levels of knowledge. Be aware that this is a major project and will likely require a good amount of time.
+One of the main goals of nf-core is to provide easy to use and well documented tools and pipelines. While the pipeline documentation pages are generally in a good state, the docs for tools and training are a bit scattered throughout the website and at times not very accessible. You can look forward to a complete overhaul of the docs page towards a more modular setup, which will also help putting together more targeted training for different levels of knowledge. Be aware that this is a major project and will likely require a good amount of time.
 
--   **Publication of a nf-core v2.0 paper**
+### Publication of a nf-core v2.0 paper
 
-    It has been 4 years since the first nf-core paper was published [insert gif or something] and the community has changed a lot since then. Not only has it grown tremendously, but we also experienced a lot of technical changes including the update to Nextflow DSL2, the introduction of modules and subworkflows and upgrades to nf-core/tools. To reflect these changes, the core team would like to publish an updated state of nf-core paper. A first draft is in the works and will also emphasize the work done in the community built around FAANG that sparked the idea about creating nf-core communities.
+It has been 4 years since the first nf-core paper was published and the community has changed a lot since then.
+Not only has it grown tremendously, but we also experienced a lot of technical changes including the update to Nextflow DSL2, the introduction of modules and subworkflows and upgrades to nf-core/tools.
+To reflect these changes, the core team would like to publish an updated state of nf-core paper.
+A first draft is in the works and will also emphasize the work done in the community built around Euro-FAANG that sparked the idea about creating nf-core communities.
 
--   **nf-core mentorship program**
+### nf-core mentorship program
 
-    The three previous nf-core mentorship rounds have been a great success. However, with the uncertainty of further funding, it was a major discussion point how nf-core would be able to provide continues opportunities for both new, but also more experienced members of the communities. There are plans to change the mentorship program to be volunteer based, whereas prospective mentors can set more targeted aims and community members can apply to be a mentee of (a) specific mentor(s). More information will be available soon, so keep your eyes on the announcement channel in Slack.
+The three previous nf-core mentorship rounds have been a great success. However, with the uncertainty of further funding, it was a major discussion point how nf-core would be able to provide continues opportunities for both new, but also more experienced members of the communities. There are plans to change the mentorship program to be volunteer based, whereas prospective mentors can set more targeted aims and community members can apply to be a mentee of (a) specific mentor(s). More information will be available soon, so keep your eyes on the announcement channel in Slack.
 
--   **Open office hours for nf-core developers**
+### Open office hours for nf-core developers
 
-    As a trial, nf-core wants to implement weekly open office hours to bring people together to collaborate on pull-request reviews and discuss issues developers experience during their work on nf-core related items. Be aware that this explicitly **won't** be a training event. Stay tuned for more information.
+As a trial, nf-core wants to implement weekly open office hours to bring people together to collaborate on pull-request reviews and discuss issues developers experience during their work on nf-core related items.
+This _won't_ be for training or support, but rather a collaborative space for collaborative work within nf-core. Stay tuned for more information.
 
 # Technical Improvements
 
--   **Roadmap for nf-core/tools**
+### Roadmap for nf-core/tools
 
-    There are lots of smaller and bigger improvements to nf-core/tools in the works, but special mention deserves the config builder that will help new users to create institutional or other config files to run nf-core and other nextflow pipelines.
+There are lots of smaller and bigger improvements to nf-core/tools in the works and the core team discussed and prioritised the major tasks for the start of 2024.
+Special mention deserves the [upcoming config builder](https://github.com/nf-core/tools/issues/2731) that will help new users to create institutional or other config files to run nf-core and other nextflow pipelines.
 
--   **Restructuring of nf-core/modules**
+### Restructuring of nf-core/modules
 
-    Newly added features in nf-test, will allow us to drop the `tags.yml` files for nf-core modules and subworkflow.
-    Thinking further ahead, we continued our discussions on the strucutre of nf-core modules directories for better portability and workflow-level tests.
+Newly added features in nf-test, will allow us to drop the `tags.yml` files for nf-core modules and subworkflow.
+Thinking further ahead, we continued our discussions on the strucutre of nf-core modules directories for better portability and workflow-level tests.
 
--   **Reference genomes**
+### Reference genomes
 
-    The core team started to collect ideas on how to improve AWS-iGenomes.
+Many nf-core analysis pipelines use AWS-iGenomes for reference indexes. However it suffers from a number of well documented problems.
+The core team continued discussions about a potential successor to AWS-iGenomes and made tentative first steps towards building something new. Stay tuned for updates.
 
--   **Resource optimization**
+### Resource optimization
 
-    The goal is to improve resource usage on the module level and as a first step it is planned to make use of optimized configs taken from Seqera platform.
+The goal is to improve resource usage on the module level and as a first step it is planned to make use of optimized configs taken from Seqera platform.
 
--   **Benchmarking**
+### Benchmarking
 
-    Wouldn't it be great to know how a nf-core pipeline compares to other pipelines or to a previous version? The core team decided to do a proof of concept for nf-core/sarek and nf-core/multipesequencealign, to investigate the feasibility and time demands.
+Wouldn't it be great to know how a nf-core pipeline compares to other pipelines or to a previous version?
+The core team decided to do a proof of concept for `nf-core/sarek` and `nf-core/multipesequencealign`, to investigate the feasibility and time demands.
 
--   **Wave and nf-core**
+### Wave and nf-core
 
-    [Seqera Wave](https://seqera.io/wave/) is a way to generate containers "on the fly" and it was discussed if and how Wave could be adopted to be used in nf-core.
+[Seqera Wave](https://seqera.io/wave/) is a way to generate software containers and it was discussed if and how Wave could be used to help developers in nf-core.
 
 # nf-core/vikings
 
-<Image src={viking1} alt="first viking" width="200" />
-<Image src={viking2} alt="second viking" width="170" />
-<Image src={viking3} alt="third viking" width="200" />
-<Image src={viking4} alt="fourth viking" width="600" />
-<Image src={viking5} alt="fifth viking" width="200" />
-<Image src={viking6} alt="sixth viking" width="200" />
-<Image src={viking7} alt="seventh viking" width="200" />
-<Image src={viking8} alt="eighth viking" width="200" />
+As is becoming tradition for nf-core events in Stockholm, the group visited at the viking-themed restaurant [Aifur](https://aifur.se/).
+Much silliness ensued.
+
+<Image src={viking1} alt="first viking" height="300" />
+<Image src={viking2} alt="second viking" height="300" />
+<Image src={viking3} alt="third viking" height="300" />
+<Image src={viking5} alt="fourth viking" height="300" />
+<Image src={viking6} alt="fifth viking" height="300" />
+<Image src={viking7} alt="sixth viking" height="300" />
+<Image src={viking8} alt="seventh viking" height="300" />
+<Image src={viking4} alt="eighth viking" height="300" />
 
 # fin
 
-<Image src={phin} alt="sleepy viking" width="300" />
+All the excitement was too much for some of the team members..
+Thank you to everyone who attended and worked hard to make this week happen!
+
+<Image src={phin} alt="sleepy viking" height="250" />
