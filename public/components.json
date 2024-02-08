@@ -3989,6 +3989,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -25046,7 +25050,7 @@
           {
             "quants": {
               "type": "directory",
-              "description": "Path to a directory with subdirectories corresponding to sample-wise runs of Salmon or Kallisto"
+              "description": "Paths to subdirectories corresponding to sample-wise runs of Salmon or Kallisto"
             }
           },
           {
@@ -37364,6 +37368,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -38089,6 +38097,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -42654,6 +42666,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -51503,7 +51519,9 @@
               "homepage": "http://www.gsea-msigdb.org/gsea/index.jsp",
               "documentation": "https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Main_Page",
               "doi": "10.1073/pnas.0506580102",
-              "licence": "['BSD-3-clause']"
+              "licence": [
+                "BSD-3-clause"
+              ]
             }
           }
         ],
@@ -53095,7 +53113,9 @@
               "homepage": "https://github.com/pha4ge/hAMRonization/",
               "documentation": "https://github.com/pha4ge/hAMRonization/",
               "tool_dev_url": "https://github.com/pha4ge/hAMRonization",
-              "licence": "['GNU Lesser General Public v3 (LGPL v3)']"
+              "licence": [
+                "GNU Lesser General Public v3 (LGPL v3)"
+              ]
             }
           }
         ],
@@ -53115,21 +53135,21 @@
           },
           {
             "format": {
-              "type": "value",
+              "type": "string",
               "description": "Type of report file to be produced",
               "pattern": "tsv|json"
             }
           },
           {
             "software_version": {
-              "type": "value",
+              "type": "string",
               "description": "Version of ABRicate used",
               "pattern": "[0-9].[0-9].[0-9]"
             }
           },
           {
             "reference_db_version": {
-              "type": "value",
+              "type": "string",
               "description": "Database version of ABRicate used",
               "pattern": "[0-9][0-9][0-9][0-9]-[A-Z][a-z][a-z]-[0-9][0-9]"
             }
@@ -122132,6 +122152,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -122166,6 +122190,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -123028,6 +123056,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
