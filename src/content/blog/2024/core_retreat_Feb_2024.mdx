@@ -20,15 +20,13 @@ import viking5 from '@assets/images/blog/core_retreat_Feb_2024/viking5.jpg';
 import viking6 from '@assets/images/blog/core_retreat_Feb_2024/viking6.jpg';
 import viking7 from '@assets/images/blog/core_retreat_Feb_2024/viking7.jpg';
 import viking8 from '@assets/images/blog/core_retreat_Feb_2024/viking8.jpg';
-import fin from '@assets/images/blog/core_retreat_Feb_2024/fin.jpg';
-
+import phin from '@assets/images/blog/core_retreat_Feb_2024/phin.jpg';
 
 import { Image } from 'astro:assets';
 
 <Image src={work_pic1} alt="core team working at retreat" />
 
 Between the 5th and 8th of February, the core team and members of the Steering group met in icy Stockholm to discuss upcoming challenges and improvements to the community. The topics and desicions are outlined below.
-
 
 # Structure and Governance
 
@@ -47,7 +45,6 @@ Between the 5th and 8th of February, the core team and members of the Steering g
 -   **Improve transparency**
 
     To keep everyone in the loop about what is happening in the community and what decisions are taken, the core team will introduce a quarterly blog post with updates about infrastructure, pipeline maintenance and the leadership. Also, the way of how new members are added to the different teams will get a bit more formalized.
-    
 
 # Outreach and Community
 
@@ -74,18 +71,21 @@ Between the 5th and 8th of February, the core team and members of the Steering g
 # Technical Improvements
 
 -   **Roadmap for nf-core/tools**
-    
+
     There are lots of smaller and bigger improvements to nf-core/tools in the works, but special mention deserves the config builder that will aid in the currently somewhat cumbersom creation of institutional or other config files to run nf-core and other nextflow pipelines.
 
--   **Restructuring of nf-test and nf-core/modules**
+-   **Restructuring of nf-core/modules**
+
+    Newly added features in nf-test, will allow us to drop the `tags.yml` files for nf-core modules and subworkflow.
+    Thinking further ahead, we continued our discussions on the strucutre of nf-core modules directories for better portability and workflow-level tests.
 
 -   **Reference genomes**
-    
+
     The core team started to collect ideas on how to improve iGenomes.
 
 -   **Resource optimization**
 
-    The goal is to improve resource usage on the module level and as a first step it is planned to make use of optimized configs taken from Seqera platform®.
+    The goal is to improve resource usage on the module level and as a first step it is planned to make use of optimized configs taken from Seqera platform.
 
 -   **Benchmarking**
 
@@ -93,23 +93,19 @@ Between the 5th and 8th of February, the core team and members of the Steering g
 
 -   **Wave and nf-core**
 
-    Seqera wave® is a way to generate containers "on the fly" and it was discussed if and how wave® could be adopted to be used in nf-core.
+    Seqera Wave is a way to generate containers "on the fly" and it was discussed if and how Wave could be adopted to be used in nf-core.
 
 # nf-core/vikings
 
-<Image src={viking1} alt="first viking" width="200" /><Image src={viking2} alt="second viking" width="170"/>
-<Image src={viking3} alt="third viking" width="200"/>
-<Image src={viking4} alt="fourth viking" width="600"/>
-<Image src={viking5} alt="fifth viking" width="200"/>
-<Image src={viking6} alt="sixth viking" width="200"/>
-<Image src={viking7} alt="seventh viking" width="200"/>
-<Image src={viking8} alt="eighth viking" width="200"/>
+<Image src={viking1} alt="first viking" width="200" />
+<Image src={viking2} alt="second viking" width="170" />
+<Image src={viking3} alt="third viking" width="200" />
+<Image src={viking4} alt="fourth viking" width="600" />
+<Image src={viking5} alt="fifth viking" width="200" />
+<Image src={viking6} alt="sixth viking" width="200" />
+<Image src={viking7} alt="seventh viking" width="200" />
+<Image src={viking8} alt="eighth viking" width="200" />
 
 # fin
 
-<Image src={fin} alt="eighth viking" width="300"/>
-
-
-
-
-
+<Image src={phin} alt="sleepy viking" width="300" />
