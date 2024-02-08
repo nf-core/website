@@ -550,7 +550,7 @@ This is done to emulate the user inside the container.
 
 In some containers, this option may cause permission errors, for example when the Docker container writes to the `$HOME` directory, as the emulated user won't have a `$HOME` directory.
 
-One solution is to override this Docker option with a config file, with `docker.runOptions = ''{:groovy}`. However, this change will affect all the Docker containers, and can't be overriden only in one single process.
+One solution is to override this Docker option with a config file, with `docker.runOptions = ''{:groovy}`. However, this change will affect all the Docker containers, and can't be overridden only in one single process.
 To solve this, one option is to replace `docker.runOptions{:groovy}` and use `containerOptions` instead.
 
 Your new `nextflow.config` file should look like this:

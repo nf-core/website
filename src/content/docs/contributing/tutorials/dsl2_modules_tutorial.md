@@ -68,7 +68,7 @@ nf-core modules create fgbio/demofastqtobam
 - We separate the keys by a forward slash (`/`)
 - The second word indicates the function of the tool we are creating a module for
 
-Nf-core tools will set up an empty module for you based on a template. Follow the instructions on the command-line and a new module will be created in the fgbio folder.
+nf-core tools will set up an empty module for you based on a template. Follow the instructions on the command-line and a new module will be created in the fgbio folder.
 
 One parameter you have to specify during the creation is the `process resource label` based on the process label in the `base.config` files in workflows. You have to select one of the following labels:
 

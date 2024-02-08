@@ -13,7 +13,7 @@ Some key Nextflow resources:
   - Pipeline examples: <https://www.nextflow.io/example1.html>
   - Main documentation: <https://www.nextflow.io/docs/latest/index.html>
   - Common implementation patterns for developers: <http://nextflow-io.github.io/patterns/index.html>
-- **Official Nextflow Training** (available in english, spanish and portugese): <https://training.nextflow.io>
+- **Official Nextflow Training** (available in english, spanish and portuguese): <https://training.nextflow.io>
 - Others tutorials and workshops:
   - Introduction to Bioinformatics workflows with Nextflow and nf-core (Pre-alpha Software Carpentries course): <https://carpentries-incubator.github.io/workflows-nextflow/>
   - Nextflow Training - Radio Astronomy Edition (Carpentries course:) <https://adacs.org.au/project/nextflow-training-2022b/>
