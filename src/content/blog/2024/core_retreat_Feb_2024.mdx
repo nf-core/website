@@ -1,0 +1,110 @@
+---
+title: 'core team retreat'
+subtitle: 'funny Viking themed title here'
+pubDate: 2024-01-29T00:00:00+01:00
+headerImage: '/assets/images/blog/core_retreat_Feb_2024/group_pic4.jpg'
+headerImageAlt: 'Viking core team'
+authors:
+    - 'FranBonath'
+label:
+    - 'community'
+embedHeaderImage: false
+---
+
+import work_pic1 from '@assets/images/blog/core_retreat_Feb_2024/work_pic1.png';
+import viking1 from '@assets/images/blog/core_retreat_Feb_2024/viking1.jpg';
+import viking2 from '@assets/images/blog/core_retreat_Feb_2024/viking2.jpg';
+import viking3 from '@assets/images/blog/core_retreat_Feb_2024/viking3.jpg';
+import viking4 from '@assets/images/blog/core_retreat_Feb_2024/viking4.jpg';
+import viking5 from '@assets/images/blog/core_retreat_Feb_2024/viking5.jpg';
+import viking6 from '@assets/images/blog/core_retreat_Feb_2024/viking6.jpg';
+import viking7 from '@assets/images/blog/core_retreat_Feb_2024/viking7.jpg';
+import viking8 from '@assets/images/blog/core_retreat_Feb_2024/viking8.jpg';
+import fin from '@assets/images/blog/core_retreat_Feb_2024/fin.jpg';
+
+
+import { Image } from 'astro:assets';
+
+<Image src={work_pic1} alt="core team working at retreat" />
+
+Between the 5th and 8th of February, the core team and members of the Steering group met in icy Stockholm to discuss upcoming challenges and improvements to the community. The topics and desicions are outlined below.
+
+
+# Structure and Governance
+
+-   **Funding**
+
+    As many open-source communities, funding is an important topic. The nf-core community has applied for another grant from the Chan Zuckerberg Initiative, but we will not hear about a decision until later in the year. Until then, the community is run on volunteer work by all of you and supported by different Universities and institutions.
+
+-   **nf-core trademark**
+
+    Currently, the nf-core logo is not trademarked. During the retreat the core team and steering group discussed the benefits and drawbacks of trademarking the nf-core logo.
+
+-   **nf-core working groups**
+
+    An exiting development is that nf-core wants to establish working groups / SIGs / IGs / COSIs to encourage people within the nf-core community with similar interest to meet and work together. More information on this new initiative will be presented in the bytesize talk on February 20th [link to the bytesize page].
+
+# Outreach and Community
+
+-   **Training and Documentation overhaul**
+
+    One of the main goals of nf-core is to provide easy to use and well documented tools and pipelines. While the pipeline documentations are in a good state, the docs for tools and training are a bit scattered throughout the website and at times not very accessible. You can look forward to a complete overhaul of the docs page towards a more modular setup, which will also help putting together more targeted training for different levels of knowledge. Be aware that this is a major project and will likely require a good amount of time.
+
+-   **Publication of a nf-core v2.0 paper**
+
+    It has been 4 years since the first nf-core paper was published [insert gif or something] and the community has changed masively since then. Not only has it tremendously grown in size, but we also experienced a lot of technical changes including the update to Nextflow DSL2, the introduction of modules and subworkflows and upgrades to nf-core/tools. To reflect these changes, the core team would like to publish an updated state of nf-core paper. A first draft is in the works and will also emphasize the work done in the community build around FAANG that sparked the idea about creating work groups.
+
+-   **Crediting nf-core components in non-nf-core pipelines**
+
+    Many non-nf-core pipelines use the nf-core tooling or nf-core modules and some specifically want to follow the nf-core guidelines while not being an official nf-core pipeline. It was dicussed whether or not we want to give a platform for such pipelines to be highlighted on the website.
+
+-   **nf-core mentorship program**
+
+    The three previous nf-core mentorship rounds have been a great success. However, with the uncertainty of further funding, it was a major discussion point how nf-core would be able to provide continues opportunities for both new, but also more experienced members of the communities. There are plans to change the mentorship program to be volunteer based, whereas prospective mentors can set more targeted aims and community members can apply to me a mentee of (a) specific mentor(s). More information will be available soon, so keep your eyes on the announcement channel in Slack.
+
+-   **Open office hours for nf-core developers**
+
+    As a trial, nf-core wants to implement weekly open office hours to help with reviews and discuss issues developers experience during their work on nf-core related items. Be aware that this explicitly **won't** be a training event. Stay tuned for more information.
+
+# Technical Improvements
+
+-   **Roadmap for nf-core/tools**
+    
+    There are lots of smaller and bigger improvements to nf-core/tools in the works, but special mention deserves the config builder that will aid in the currently somewhat cumbersom creation of institutional or other config files to run nf-core and other nextflow pipelines.
+
+-   **Restructuring of nf-test and nf-core/modules**
+
+-   **Reference genomes**
+    
+    The core team started to collect ideas on how to improve iGenomes.
+
+-   **Resource optimization**
+
+    The goal is to improve resource usage on the module level and as a first step it is planned to make use of optimized configs taken from Seqera platform®.
+
+-   **Benchmarking**
+
+    Wouldn't it be great to know how a nf-core pipeline compares to other pipelines or to a previous version? The core team decided to do a proof of concept for nf-core/sarek and nf-core/multipesequencealign, to investigate the feasibility and time demands.
+
+-   **Wave and nf-core**
+
+    Seqera wave® is a way to generate containers "on the fly" and it was discussed if and how wave® could be adopted to be used in nf-core.
+
+# nf-core/vikings
+
+<Image src={viking1} alt="first viking" width="200" /><Image src={viking2} alt="second viking" width="170"/>
+<Image src={viking3} alt="third viking" width="200"/>
+<Image src={viking4} alt="fourth viking" width="600"/>
+<Image src={viking5} alt="fifth viking" width="200"/>
+<Image src={viking6} alt="sixth viking" width="200"/>
+<Image src={viking7} alt="seventh viking" width="200"/>
+<Image src={viking8} alt="eighth viking" width="200"/>
+
+# fin
+
+<Image src={fin} alt="eighth viking" width="300"/>
+
+
+
+
+
