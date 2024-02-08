@@ -305,7 +305,7 @@ While the command to automatically format the style of all the files in your dir
 prettier -w .
 ```
 
-See pre-commit informations here: https://nf-co.re/docs/contributing/modules#new-module-workflow
+See pre-commit information here: https://nf-co.re/docs/contributing/modules#new-module-workflow
 
 #### Continuous integration tests
 
