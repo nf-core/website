@@ -3997,6 +3997,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -37380,6 +37384,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -38105,6 +38113,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -42678,6 +42690,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -53236,7 +53252,9 @@
               "homepage": "https://github.com/pha4ge/hAMRonization/",
               "documentation": "https://github.com/pha4ge/hAMRonization/",
               "tool_dev_url": "https://github.com/pha4ge/hAMRonization",
-              "licence": "['GNU Lesser General Public v3 (LGPL v3)']"
+              "licence": [
+                "GNU Lesser General Public v3 (LGPL v3)"
+              ]
             }
           }
         ],
@@ -53256,21 +53274,21 @@
           },
           {
             "format": {
-              "type": "value",
+              "type": "string",
               "description": "Type of report file to be produced",
               "pattern": "tsv|json"
             }
           },
           {
             "software_version": {
-              "type": "value",
+              "type": "string",
               "description": "Version of AMRfinder used",
               "pattern": "[0-9].[0-9].[0-9]"
             }
           },
           {
             "reference_db_version": {
-              "type": "value",
+              "type": "string",
               "description": "Database version of ncbi_AMRfinder used",
               "pattern": "[0-9]-[0-9]-[0-9].[0-9]"
             }
@@ -53361,21 +53379,21 @@
           },
           {
             "format": {
-              "type": "value",
+              "type": "string",
               "description": "Type of report file to be produced",
               "pattern": "tsv|json"
             }
           },
           {
             "software_version": {
-              "type": "value",
+              "type": "string",
               "description": "Version of DeepARG used",
               "pattern": "[0-9].[0-9].[0-9]"
             }
           },
           {
             "reference_db_version": {
-              "type": "value",
+              "type": "integer",
               "description": "Database version of DeepARG used",
               "pattern": "[0-9]"
             }
@@ -53446,7 +53464,9 @@
               "homepage": "https://github.com/pha4ge/hAMRonization/",
               "documentation": "https://github.com/pha4ge/hAMRonization/",
               "tool_dev_url": "https://github.com/pha4ge/hAMRonization",
-              "licence": "['GNU Lesser General Public v3 (LGPL v3)']"
+              "licence": [
+                "GNU Lesser General Public v3 (LGPL v3)"
+              ]
             }
           }
         ],
@@ -53466,21 +53486,21 @@
           },
           {
             "format": {
-              "type": "value",
+              "type": "string",
               "description": "Type of report file to be produced",
               "pattern": "tsv|json"
             }
           },
           {
             "software_version": {
-              "type": "value",
+              "type": "string",
               "description": "Version of fARGene used",
               "pattern": "[0-9].[0-9].[0-9]"
             }
           },
           {
             "reference_db_version": {
-              "type": "value",
+              "type": "string",
               "description": "Database version of fARGene used",
               "pattern": "[0-9].[0-9].[0-9]"
             }
@@ -53551,7 +53571,9 @@
               "homepage": "https://github.com/pha4ge/hAMRonization/",
               "documentation": "https://github.com/pha4ge/hAMRonization/",
               "tool_dev_url": "https://github.com/pha4ge/hAMRonization",
-              "licence": "['GNU Lesser General Public v3 (LGPL v3)']"
+              "licence": [
+                "GNU Lesser General Public v3 (LGPL v3)"
+              ]
             }
           }
         ],
@@ -53571,21 +53593,21 @@
           },
           {
             "format": {
-              "type": "value",
+              "type": "string",
               "description": "Type of report file to be produced",
               "pattern": "tsv|json"
             }
           },
           {
             "software_version": {
-              "type": "value",
+              "type": "string",
               "description": "Version of DeepARG used",
               "pattern": "[0-9].[0-9].[0-9]"
             }
           },
           {
             "reference_db_version": {
-              "type": "value",
+              "type": "string",
               "description": "Database version of DeepARG used",
               "pattern": "[0-9].[0-9].[0-9]"
             }
@@ -53669,7 +53691,7 @@
           },
           {
             "format": {
-              "type": "value",
+              "type": "string",
               "description": "Type of final combined report file to be produced",
               "pattern": "tsv|json|interactive"
             }
@@ -109951,6 +109973,159 @@
       }
     },
     {
+      "name": "tximeta_tximport",
+      "path": "modules/nf-core/tximeta/tximport/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "tximeta_tximport",
+        "description": "Import transcript-level abundances and estimated counts for gene-level\nanalysis packages\n",
+        "keywords": [
+          "gene",
+          "kallisto",
+          "pseudoalignment",
+          "salmon",
+          "transcript"
+        ],
+        "tools": [
+          {
+            "tximeta": {
+              "description": "Transcript Quantification Import with Automatic Metadata",
+              "homepage": "https://bioconductor.org/packages/release/bioc/html/tximeta.html",
+              "documentation": "https://bioconductor.org/packages/release/bioc/vignettes/tximeta/inst/doc/tximeta.html",
+              "tool_dev_url": "https://github.com/thelovelab/tximeta",
+              "doi": "10.1371/journal.pcbi.1007664",
+              "licence": [
+                "GPL-2"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing information related to the experiment as a whole\ne.g. `[ id:'SRP123456' ]`\n"
+            }
+          },
+          {
+            "quants": {
+              "type": "directory",
+              "description": "Paths to subdirectories corresponding to sample-wise runs of Salmon or Kallisto"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information related to the species\nreference e.g. `[ id:'yeast' ]`\n"
+            }
+          },
+          {
+            "tx2gene": {
+              "type": "file",
+              "description": "A transcript to gene mapping table such as those generated by custom/tx2gene",
+              "pattern": "*.{csv,tsv}"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing information related to the experiment as a whole\ne.g. `[ id:'SRP123456' ]`\n"
+            }
+          },
+          {
+            "coldata": {
+              "type": "file",
+              "description": "Optional 'coldata' file equivalent to a sample sheet where the first\ncolumn corresponds to the sample names (directory names in the input\nsalmon/ kallisto results)\n",
+              "pattern": "*.{csv,tsv}"
+            }
+          },
+          {
+            "quant_type": {
+              "type": "string",
+              "description": "Quantification type, 'kallisto' or 'salmon'"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing information related to the experiment as a whole\ne.g. `[ id:'SRP123456' ]`\n"
+            }
+          },
+          {
+            "tpm_gene": {
+              "type": "file",
+              "description": "Abundance (TPM) values derived from tximport output after\nsummarizeToGene(), without a 'countsFromAbundance' specification\n",
+              "pattern": "*gene_tpm.tsv"
+            }
+          },
+          {
+            "counts_gene": {
+              "type": "file",
+              "description": "Count values derived from tximport output after\nsummarizeToGene(), without a 'countsFromAbundance' specification\n",
+              "pattern": "*gene_counts.tsv"
+            }
+          },
+          {
+            "counts_gene_length_scaled": {
+              "type": "file",
+              "description": "Count values derived from tximport output after summarizeToGene(), with\na 'countsFromAbundance' specification of 'lengthScaledTPM'\n",
+              "pattern": "*gene_counts_length_scaled.tsv"
+            }
+          },
+          {
+            "counts_gene_scaled": {
+              "type": "file",
+              "description": "Count values derived from tximport output after summarizeToGene(), with\na 'countsFromAbundance' specification of 'scaledTPM'\n",
+              "pattern": "*gene_counts_scaled.tsv"
+            }
+          },
+          {
+            "gene_lengths": {
+              "type": "file",
+              "description": "Length values derived from tximport output after summarizeToGene(),\nwithout a 'countsFromAbundance' specification\n",
+              "pattern": "*gene_lengths.tsv"
+            }
+          },
+          {
+            "tpm_transcript": {
+              "type": "file",
+              "description": "Abundance (TPM) values derived from tximport output without\nsummarizeToGene(), without a 'countsFromAbundance' specification\n",
+              "pattern": "*transcript_tpm.tsv"
+            }
+          },
+          {
+            "counts_transcript": {
+              "type": "file",
+              "description": "Count values derived from tximport output without\nsummarizeToGene(), without a 'countsFromAbundance' specification\n",
+              "pattern": "*transcript_counts.tsv"
+            }
+          },
+          {
+            "transcript_lengths": {
+              "type": "file",
+              "description": "Length values derived from tximport output without summarizeToGene(),\nwithout a 'countsFromAbundance' specification\n",
+              "pattern": "*gene_lengths.tsv"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
+        ]
+      }
+    },
+    {
       "name": "ucsc_bedclip",
       "path": "modules/nf-core/ucsc/bedclip/meta.yml",
       "type": "module",
@@ -122186,6 +122361,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -122220,6 +122399,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -123090,6 +123273,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
