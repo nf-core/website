@@ -58,7 +58,7 @@ Specifically, Seqera helps nf-core with:
 - Event organisation and costs
 - Website hosting
 - Employment of several core contributors
-- A [Tower Cloud Professional](https://cloud.tower.nf/pricing/) account for launching and managing full-size release tests.
+- A [Seqera Cloud Pro](https://seqera.io/pricing/) account for launching and managing full-size release tests.
 - Providing and maintaining Nextflow! ✨
 
 <div class="clearfix"></div>
