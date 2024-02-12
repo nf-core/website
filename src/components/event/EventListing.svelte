@@ -111,7 +111,7 @@
 </script>
 
 <div>
-    <FilterBar filter={event_types} displayStyle={[]} sortBy={[]} />
+    <FilterBar filter={event_types} displayStyle={[]} sortBy={[]}><span slot="filter-name">Event type</span></FilterBar>
     <div class="events">
         {#if currentEvents.length > 0}
             <div class="mb-3 col-12">

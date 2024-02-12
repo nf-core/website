@@ -18,16 +18,6 @@ locationURL:
   - https://doi.org/10.6084/m9.figshare.14185745.v1
 ---
 
-# nf-core/bytesize
-
-Join us for an episode of our **weekly series** of short talks: **“nf-core/bytesize”**.
-
-Just **15 minutes** + questions, we will be focussing on topics about using and developing nf-core pipelines.
-These will be recorded and made available at <https://nf-co.re>
-It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
-
-## Bytesize 6: DSL2
-
 ### DSL2 - Using modules in a pipeline
 
 This week, Friederike Hanssen ([@friederikehanssen](http://github.com/friederikehanssen/)) will present: _**DSL2 - Using modules in a pipeline.**_

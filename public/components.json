@@ -440,11 +440,11 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -2365,7 +2365,9 @@
               "documentation": "https://docs.antismash.secondarymetabolites.org",
               "tool_dev_url": "https://github.com/antismash/antismash",
               "doi": "10.1093/nar/gkab335",
-              "licence": "['AGPL v3']"
+              "licence": [
+                "AGPL v3"
+              ]
             }
           }
         ],
@@ -2813,7 +2815,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         },
         {
           "name": "proteinfold",
@@ -3937,6 +3939,98 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -4261,7 +4355,7 @@
       "pipelines": [
         {
           "name": "readsimulator",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -7165,7 +7259,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -7239,7 +7333,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         },
         {
           "name": "metatdenovo",
@@ -8065,7 +8159,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         },
         {
           "name": "viralrecon",
@@ -8383,7 +8477,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         },
         {
           "name": "phaseimpute",
@@ -9771,7 +9865,7 @@
             "vcf": {
               "type": "file",
               "description": "VCF normalized output file",
-              "pattern": "*.{vcf.gz}"
+              "pattern": "*.{vcf,vcf.gz,bcf,bcf.gz}"
             }
           },
           {
@@ -9792,7 +9886,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         },
         {
           "name": "phaseimpute",
@@ -10301,7 +10395,7 @@
       "pipelines": [
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         },
         {
           "name": "radseq",
@@ -10481,7 +10575,7 @@
       "pipelines": [
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         }
       ]
     },
@@ -10679,7 +10773,7 @@
       "pipelines": [
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         },
         {
           "name": "hicar",
@@ -10758,7 +10852,7 @@
       "pipelines": [
         {
           "name": "readsimulator",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "viralrecon",
@@ -10942,7 +11036,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         },
         {
           "name": "nascent",
@@ -11385,7 +11479,7 @@
       "pipelines": [
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         },
         {
           "name": "nascent",
@@ -14430,7 +14524,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         },
         {
           "name": "hic",
@@ -14446,11 +14540,11 @@
         },
         {
           "name": "readsimulator",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         },
         {
           "name": "viralrecon",
@@ -14553,7 +14647,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         },
         {
           "name": "hic",
@@ -14569,11 +14663,11 @@
         },
         {
           "name": "readsimulator",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         },
         {
           "name": "viralrecon",
@@ -14829,7 +14923,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -14904,7 +14998,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -15258,7 +15352,7 @@
         },
         {
           "name": "circdna",
-          "version": "1.0.4"
+          "version": "1.1.0"
         },
         {
           "name": "circrna",
@@ -16530,7 +16624,7 @@
         },
         {
           "name": "circdna",
-          "version": "1.0.4"
+          "version": "1.1.0"
         },
         {
           "name": "circrna",
@@ -16542,7 +16636,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         },
         {
           "name": "genomeannotator",
@@ -16550,7 +16644,7 @@
         },
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         },
         {
           "name": "metatdenovo",
@@ -16606,7 +16700,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         },
         {
           "name": "viralrecon",
@@ -18360,7 +18454,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -18372,7 +18466,12 @@
         "name": "centrifuge_kreport",
         "description": "Creates Kraken-style reports from centrifuge out files",
         "keywords": [
-          "metagenomics"
+          "classify",
+          "metagenomics",
+          "fastq",
+          "db",
+          "report",
+          "kraken"
         ],
         "tools": [
           {
@@ -18399,6 +18498,12 @@
               "type": "file",
               "description": "File containing the centrifuge classification report",
               "pattern": "*.{txt}"
+            }
+          },
+          {
+            "db": {
+              "type": "directory",
+              "description": "Path to directory containing centrifuge database files"
             }
           }
         ],
@@ -18436,7 +18541,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -18684,7 +18789,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         }
       ]
     },
@@ -18797,7 +18902,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         }
       ]
     },
@@ -19416,7 +19521,9 @@
               "description": "Chromograph is a python package to create PNG images from genetics data such as BED and WIG files.",
               "homepage": "https://github.com/Clinical-Genomics/chromograph",
               "documentation": "https://github.com/Clinical-Genomics/chromograph/blob/master/README.md",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -21809,7 +21916,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         }
       ]
     },
@@ -21903,7 +22010,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         }
       ]
     },
@@ -21995,7 +22102,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         }
       ]
     },
@@ -22083,7 +22190,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         }
       ]
     },
@@ -22163,7 +22270,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         }
       ]
     },
@@ -24226,7 +24333,7 @@
         },
         {
           "name": "circdna",
-          "version": "1.0.4"
+          "version": "1.1.0"
         },
         {
           "name": "circrna",
@@ -24306,7 +24413,7 @@
         },
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         },
         {
           "name": "marsseq",
@@ -24357,6 +24464,10 @@
           "version": "2.1.1"
         },
         {
+          "name": "omicsgenetraitassociation",
+          "version": "dev"
+        },
+        {
           "name": "pangenome",
           "version": "1.0.0"
         },
@@ -24402,7 +24513,7 @@
         },
         {
           "name": "readsimulator",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "riboseq",
@@ -24458,7 +24569,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         },
         {
           "name": "variantcatalogue",
@@ -24573,7 +24684,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         },
         {
           "name": "hic",
@@ -24929,6 +25040,105 @@
           "version": "1.4.0"
         }
       ]
+    },
+    {
+      "name": "custom_tx2gene",
+      "path": "modules/nf-core/custom/tx2gene/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "custom_tx2gene",
+        "description": "Make a transcript/gene mapping from a GTF and cross-reference with transcript quantifications.",
+        "keywords": [
+          "gene",
+          "gtf",
+          "pseudoalignment",
+          "transcript"
+        ],
+        "tools": [
+          {
+            "custom": {
+              "description": "\"Custom module to create a transcript to gene mapping from a GTF and\ncheck it against transcript quantifications\"\n",
+              "tool_dev_url": "https://github.com/nf-core/modules/blob/master/modules/nf-core/custom/tx2gene/main.nf",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing reference information related to the GTF file\ne.g. `[ id:'yeast' ]`\n"
+            }
+          },
+          {
+            "gtf": {
+              "type": "file",
+              "description": "An annotation file of the reference genome in GTF format",
+              "pattern": "*.gtf"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing information related to the experiment as a whole\ne.g. `[ id:'SRP123456' ]`\n"
+            }
+          },
+          {
+            "quants": {
+              "type": "directory",
+              "description": "Paths to subdirectories corresponding to sample-wise runs of Salmon or Kallisto"
+            }
+          },
+          {
+            "quant_type": {
+              "type": "string",
+              "description": "Quantification type, 'kallisto' or 'salmon'"
+            }
+          },
+          {
+            "id": {
+              "type": "string",
+              "description": "Gene ID attribute in the GTF file (default= gene_id)"
+            }
+          },
+          {
+            "extra": {
+              "type": "string",
+              "description": "Extra gene attribute in the GTF file (default= gene_name)"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing reference information related to the GTF file\ne.g. `[ id:'yeast' ]`\n"
+            }
+          },
+          {
+            "tx2gene": {
+              "type": "file",
+              "description": "A transcript/ gene mapping table in TSV format",
+              "pattern": "*.tx2gene.tsv"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
+        ]
+      }
     },
     {
       "name": "cutadapt",
@@ -25383,7 +25593,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         }
       ]
     },
@@ -25473,7 +25683,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         }
       ]
     },
@@ -26453,7 +26663,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         }
       ]
     },
@@ -26543,7 +26753,7 @@
       "pipelines": [
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         }
       ]
     },
@@ -26643,7 +26853,7 @@
       "pipelines": [
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         }
       ]
     },
@@ -26753,7 +26963,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         },
         {
           "name": "ssds",
@@ -26853,7 +27063,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         }
       ]
     },
@@ -26937,7 +27147,7 @@
       "pipelines": [
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         }
       ]
     },
@@ -27766,7 +27976,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -31039,7 +31249,9 @@
               "description": "falco is a drop-in C++ implementation of FastQC to assess the quality of sequence reads.",
               "homepage": "https://falco.readthedocs.io/",
               "documentation": "https://falco.readthedocs.io/",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -31107,7 +31319,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -32239,7 +32451,7 @@
         },
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         },
         {
           "name": "nascent",
@@ -32279,7 +32491,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         },
         {
           "name": "viralrecon",
@@ -32399,7 +32611,7 @@
         },
         {
           "name": "circdna",
-          "version": "1.0.4"
+          "version": "1.1.0"
         },
         {
           "name": "circrna",
@@ -32411,7 +32623,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         },
         {
           "name": "detaxizer",
@@ -32459,7 +32671,7 @@
         },
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         },
         {
           "name": "marsseq",
@@ -32490,6 +32702,10 @@
           "version": "2.1.1"
         },
         {
+          "name": "omicsgenetraitassociation",
+          "version": "dev"
+        },
+        {
           "name": "pathogensurveillance",
           "version": "dev"
         },
@@ -32511,7 +32727,7 @@
         },
         {
           "name": "readsimulator",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "riboseq",
@@ -32567,7 +32783,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         },
         {
           "name": "variantcatalogue",
@@ -33567,7 +33783,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -34502,7 +34718,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         },
         {
           "name": "radseq",
@@ -35385,7 +35601,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -35473,7 +35689,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -35555,7 +35771,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -37138,6 +37354,98 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -37863,6 +38171,98 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -43012,6 +43412,98 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -47047,7 +47539,8 @@
         "description": "for annotating regions, frequencies, cadd scores",
         "keywords": [
           "annotate",
-          "genmod"
+          "genmod",
+          "ranking"
         ],
         "tools": [
           {
@@ -47056,7 +47549,9 @@
               "homepage": "https://github.com/Clinical-Genomics/genmod",
               "documentation": "https://github.com/Clinical-Genomics/genmod",
               "tool_dev_url": "https://github.com/moonso",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -47091,7 +47586,7 @@
           },
           {
             "vcf": {
-              "type": "vcf",
+              "type": "file",
               "description": "Annotated VCF file",
               "pattern": "*.{vcf}"
             }
@@ -47120,7 +47615,8 @@
         "description": "Score compounds",
         "keywords": [
           "compound",
-          "genmod"
+          "genmod",
+          "ranking"
         ],
         "tools": [
           {
@@ -47129,7 +47625,9 @@
               "homepage": "https://github.com/Clinical-Genomics/genmod",
               "documentation": "https://github.com/Clinical-Genomics/genmod",
               "tool_dev_url": "https://github.com/moonso",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -47193,7 +47691,8 @@
         "description": "annotate models of inheritance",
         "keywords": [
           "models",
-          "genmod"
+          "genmod",
+          "ranking"
         ],
         "tools": [
           {
@@ -47202,7 +47701,9 @@
               "homepage": "https://github.com/Clinical-Genomics/genmod",
               "documentation": "https://github.com/Clinical-Genomics/genmod",
               "tool_dev_url": "https://github.com/moonso",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -47280,6 +47781,7 @@
         "description": "Score the variants of a vcf based on their annotation",
         "keywords": [
           "score",
+          "ranking",
           "genmod"
         ],
         "tools": [
@@ -47289,7 +47791,9 @@
               "homepage": "https://github.com/Clinical-Genomics/genmod",
               "documentation": "https://github.com/Clinical-Genomics/genmod",
               "tool_dev_url": "https://github.com/moonso",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -47414,7 +47918,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         },
         {
           "name": "phageannotator",
@@ -47595,7 +48099,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         },
         {
           "name": "phageannotator",
@@ -51161,7 +51665,9 @@
               "homepage": "http://www.gsea-msigdb.org/gsea/index.jsp",
               "documentation": "https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Main_Page",
               "doi": "10.1073/pnas.0506580102",
-              "licence": "['BSD-3-clause']"
+              "licence": [
+                "BSD-3-clause"
+              ]
             }
           }
         ],
@@ -52129,7 +52635,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         }
       ]
     },
@@ -52309,7 +52815,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         }
       ]
     },
@@ -52398,7 +52904,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         }
       ]
     },
@@ -52491,7 +52997,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         }
       ]
     },
@@ -52575,7 +53081,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         },
         {
           "name": "differentialabundance",
@@ -52607,7 +53113,7 @@
         },
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         },
         {
           "name": "marsseq",
@@ -52655,7 +53161,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         },
         {
           "name": "viralrecon",
@@ -52753,7 +53259,9 @@
               "homepage": "https://github.com/pha4ge/hAMRonization/",
               "documentation": "https://github.com/pha4ge/hAMRonization/",
               "tool_dev_url": "https://github.com/pha4ge/hAMRonization",
-              "licence": "['GNU Lesser General Public v3 (LGPL v3)']"
+              "licence": [
+                "GNU Lesser General Public v3 (LGPL v3)"
+              ]
             }
           }
         ],
@@ -52773,21 +53281,21 @@
           },
           {
             "format": {
-              "type": "value",
+              "type": "string",
               "description": "Type of report file to be produced",
               "pattern": "tsv|json"
             }
           },
           {
             "software_version": {
-              "type": "value",
+              "type": "string",
               "description": "Version of ABRicate used",
               "pattern": "[0-9].[0-9].[0-9]"
             }
           },
           {
             "reference_db_version": {
-              "type": "value",
+              "type": "string",
               "description": "Database version of ABRicate used",
               "pattern": "[0-9][0-9][0-9][0-9]-[A-Z][a-z][a-z]-[0-9][0-9]"
             }
@@ -52858,7 +53366,9 @@
               "homepage": "https://github.com/pha4ge/hAMRonization/",
               "documentation": "https://github.com/pha4ge/hAMRonization/",
               "tool_dev_url": "https://github.com/pha4ge/hAMRonization",
-              "licence": "['GNU Lesser General Public v3 (LGPL v3)']"
+              "licence": [
+                "GNU Lesser General Public v3 (LGPL v3)"
+              ]
             }
           }
         ],
@@ -52878,21 +53388,21 @@
           },
           {
             "format": {
-              "type": "value",
+              "type": "string",
               "description": "Type of report file to be produced",
               "pattern": "tsv|json"
             }
           },
           {
             "software_version": {
-              "type": "value",
+              "type": "string",
               "description": "Version of AMRfinder used",
               "pattern": "[0-9].[0-9].[0-9]"
             }
           },
           {
             "reference_db_version": {
-              "type": "value",
+              "type": "string",
               "description": "Database version of ncbi_AMRfinder used",
               "pattern": "[0-9]-[0-9]-[0-9].[0-9]"
             }
@@ -52983,21 +53493,21 @@
           },
           {
             "format": {
-              "type": "value",
+              "type": "string",
               "description": "Type of report file to be produced",
               "pattern": "tsv|json"
             }
           },
           {
             "software_version": {
-              "type": "value",
+              "type": "string",
               "description": "Version of DeepARG used",
               "pattern": "[0-9].[0-9].[0-9]"
             }
           },
           {
             "reference_db_version": {
-              "type": "value",
+              "type": "integer",
               "description": "Database version of DeepARG used",
               "pattern": "[0-9]"
             }
@@ -53068,7 +53578,9 @@
               "homepage": "https://github.com/pha4ge/hAMRonization/",
               "documentation": "https://github.com/pha4ge/hAMRonization/",
               "tool_dev_url": "https://github.com/pha4ge/hAMRonization",
-              "licence": "['GNU Lesser General Public v3 (LGPL v3)']"
+              "licence": [
+                "GNU Lesser General Public v3 (LGPL v3)"
+              ]
             }
           }
         ],
@@ -53088,21 +53600,21 @@
           },
           {
             "format": {
-              "type": "value",
+              "type": "string",
               "description": "Type of report file to be produced",
               "pattern": "tsv|json"
             }
           },
           {
             "software_version": {
-              "type": "value",
+              "type": "string",
               "description": "Version of fARGene used",
               "pattern": "[0-9].[0-9].[0-9]"
             }
           },
           {
             "reference_db_version": {
-              "type": "value",
+              "type": "string",
               "description": "Database version of fARGene used",
               "pattern": "[0-9].[0-9].[0-9]"
             }
@@ -53173,7 +53685,9 @@
               "homepage": "https://github.com/pha4ge/hAMRonization/",
               "documentation": "https://github.com/pha4ge/hAMRonization/",
               "tool_dev_url": "https://github.com/pha4ge/hAMRonization",
-              "licence": "['GNU Lesser General Public v3 (LGPL v3)']"
+              "licence": [
+                "GNU Lesser General Public v3 (LGPL v3)"
+              ]
             }
           }
         ],
@@ -53193,21 +53707,21 @@
           },
           {
             "format": {
-              "type": "value",
+              "type": "string",
               "description": "Type of report file to be produced",
               "pattern": "tsv|json"
             }
           },
           {
             "software_version": {
-              "type": "value",
+              "type": "string",
               "description": "Version of DeepARG used",
               "pattern": "[0-9].[0-9].[0-9]"
             }
           },
           {
             "reference_db_version": {
-              "type": "value",
+              "type": "string",
               "description": "Database version of DeepARG used",
               "pattern": "[0-9].[0-9].[0-9]"
             }
@@ -53291,7 +53805,7 @@
           },
           {
             "format": {
-              "type": "value",
+              "type": "string",
               "description": "Type of final combined report file to be produced",
               "pattern": "tsv|json|interactive"
             }
@@ -59039,7 +59553,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -59117,7 +59631,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -59204,7 +59718,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -60454,7 +60968,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -60539,7 +61053,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -60755,7 +61269,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         },
         {
           "name": "viralrecon",
@@ -60836,7 +61350,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -60911,7 +61425,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -61187,7 +61701,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -61314,7 +61828,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -61393,7 +61907,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -63617,7 +64131,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         },
         {
           "name": "hicar",
@@ -64230,7 +64744,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -65828,7 +66342,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         }
       ]
     },
@@ -66514,7 +67028,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -67622,7 +68136,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         }
       ]
     },
@@ -67739,7 +68253,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         }
       ]
     },
@@ -67841,7 +68355,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         }
       ]
     },
@@ -68136,7 +68650,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -68237,7 +68751,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -68990,7 +69504,7 @@
         },
         {
           "name": "circdna",
-          "version": "1.0.4"
+          "version": "1.1.0"
         },
         {
           "name": "crisprseq",
@@ -69006,7 +69520,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -69090,7 +69604,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -70044,7 +70558,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         }
       ]
     },
@@ -70789,7 +71303,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -70894,7 +71408,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -71893,10 +72407,6 @@
           "version": "dev"
         },
         {
-          "name": "circdna",
-          "version": "1.0.4"
-        },
-        {
           "name": "circrna",
           "version": "dev"
         },
@@ -71970,7 +72480,7 @@
         },
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         },
         {
           "name": "marsseq",
@@ -72017,6 +72527,10 @@
           "version": "2.1.1"
         },
         {
+          "name": "omicsgenetraitassociation",
+          "version": "dev"
+        },
+        {
           "name": "pangenome",
           "version": "1.0.0"
         },
@@ -72058,7 +72572,7 @@
         },
         {
           "name": "readsimulator",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "riboseq",
@@ -72110,7 +72624,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         },
         {
           "name": "variantcatalogue",
@@ -73501,7 +74015,7 @@
       "pipelines": [
         {
           "name": "readsimulator",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -81545,11 +82059,11 @@
         },
         {
           "name": "circdna",
-          "version": "1.0.4"
+          "version": "1.1.0"
         },
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         },
         {
           "name": "methylseq",
@@ -82089,7 +82603,13 @@
         "maintainers": [
           "@leoisl"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "createtaxdb",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "pigz_uncompress",
@@ -84439,7 +84959,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -84621,7 +85141,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         },
         {
           "name": "methylseq",
@@ -84956,7 +85476,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -85063,7 +85583,7 @@
         },
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         },
         {
           "name": "metapep",
@@ -85242,7 +85762,7 @@
         },
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         },
         {
           "name": "metatdenovo",
@@ -86906,7 +87426,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         }
       ]
     },
@@ -86991,7 +87511,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         }
       ]
     },
@@ -87431,6 +87951,137 @@
           "version": "3.14.0"
         }
       ]
+    },
+    {
+      "name": "quartonotebook",
+      "path": "modules/nf-core/quartonotebook/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "quartonotebook",
+        "description": "Render a Quarto notebook, including parametrization.",
+        "keywords": [
+          "quarto",
+          "notebook",
+          "reports",
+          "python",
+          "r"
+        ],
+        "tools": [
+          {
+            "quartonotebook": {
+              "description": "An open-source scientific and technical publishing system.",
+              "homepage": "https://quarto.org/",
+              "documentation": "https://quarto.org/docs/reference/",
+              "tool_dev_url": "https://github.com/quarto-dev/quarto-cli",
+              "licence": [
+                "MIT"
+              ]
+            }
+          },
+          {
+            "papermill": {
+              "description": "Parameterize, execute, and analyze notebooks",
+              "homepage": "https://github.com/nteract/papermill",
+              "documentation": "http://papermill.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/nteract/papermill",
+              "licence": [
+                "BSD 3-clause"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`.\n"
+            }
+          },
+          {
+            "notebook": {
+              "type": "file",
+              "description": "The Quarto notebook to be rendered.",
+              "pattern": "*.{qmd}"
+            }
+          },
+          {
+            "parameters": {
+              "type": "map",
+              "description": "Groovy map with notebook parameters which will be passed to Quarto to\ngenerate parametrized reports.\n"
+            }
+          },
+          {
+            "input_files": {
+              "type": "file",
+              "description": "One or multiple files serving as input data for the notebook.",
+              "pattern": "*"
+            }
+          },
+          {
+            "extensions": {
+              "type": "file",
+              "description": "A quarto `_extensions` directory with custom template(s) to be\navailable for rendering.\n",
+              "pattern": "*"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`.\n"
+            }
+          },
+          {
+            "html": {
+              "type": "file",
+              "description": "HTML report generated by Quarto.",
+              "pattern": "*.html"
+            }
+          },
+          {
+            "notebook": {
+              "type": "file",
+              "description": "The original, un-rendered notebook.",
+              "pattern": "*.[qmd,ipynb,rmd]"
+            }
+          },
+          {
+            "artifacts": {
+              "type": "file",
+              "description": "Artifacts generated during report rendering.",
+              "pattern": "*"
+            }
+          },
+          {
+            "params_yaml": {
+              "type": "file",
+              "description": "Parameters used during report rendering.",
+              "pattern": "*"
+            }
+          },
+          {
+            "extensions": {
+              "type": "file",
+              "description": "Quarto extensions used during report rendering.",
+              "pattern": "*"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions.",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@fasterius"
+        ],
+        "maintainers": [
+          "@fasterius"
+        ]
+      }
     },
     {
       "name": "quast",
@@ -88521,6 +89172,90 @@
           "version": "1.1.1"
         }
       ]
+    },
+    {
+      "name": "rhocall_viz",
+      "path": "modules/nf-core/rhocall/viz/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "rhocall_viz",
+        "description": "Call regions of homozygosity and make tentative UPD calls",
+        "keywords": [
+          "roh",
+          "bcftools",
+          "runs_of_homozygosity"
+        ],
+        "tools": [
+          {
+            "rhocall": {
+              "description": "Call regions of homozygosity and make tentative UPD calls.",
+              "homepage": "https://github.com/dnil/rhocall",
+              "documentation": "https://github.com/dnil/rhocall",
+              "tool_dev_url": "https://github.com/dnil",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "VCF file",
+              "pattern": "*.{vcf}"
+            }
+          },
+          {
+            "roh": {
+              "type": "file",
+              "description": "Input RHO file produced from rhocall",
+              "pattern": "*.{roh}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "bed": {
+              "type": "file",
+              "description": "Bed file containing roh calls",
+              "pattern": "*.{bed}"
+            }
+          },
+          {
+            "wig": {
+              "type": "file",
+              "description": "Wig file containing roh calls",
+              "pattern": "*.{wig}"
+            }
+          }
+        ],
+        "authors": [
+          "@ramprasadn"
+        ],
+        "maintainers": [
+          "@ramprasadn"
+        ]
+      }
     },
     {
       "name": "rmarkdownnotebook",
@@ -90257,7 +90992,7 @@
             }
           },
           {
-            "transcriptome_fasta": {
+            "transcript_fasta": {
               "type": "file",
               "description": "Fasta file of the reference transcriptome"
             }
@@ -91725,7 +92460,7 @@
         },
         {
           "name": "circdna",
-          "version": "1.0.4"
+          "version": "1.1.0"
         },
         {
           "name": "createpanelrefs",
@@ -91733,11 +92468,11 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         },
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         },
         {
           "name": "methylseq",
@@ -92002,7 +92737,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -92179,7 +92914,7 @@
         },
         {
           "name": "circdna",
-          "version": "1.0.4"
+          "version": "1.1.0"
         },
         {
           "name": "circrna",
@@ -92187,7 +92922,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         },
         {
           "name": "hgtseq",
@@ -92421,7 +93156,7 @@
         },
         {
           "name": "circdna",
-          "version": "1.0.4"
+          "version": "1.1.0"
         },
         {
           "name": "circrna",
@@ -92429,7 +93164,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         },
         {
           "name": "hgtseq",
@@ -92690,7 +93425,7 @@
         },
         {
           "name": "circdna",
-          "version": "1.0.4"
+          "version": "1.1.0"
         },
         {
           "name": "circrna",
@@ -92706,7 +93441,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         },
         {
           "name": "hgtseq",
@@ -92754,7 +93489,7 @@
         },
         {
           "name": "readsimulator",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnadnavar",
@@ -92794,7 +93529,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         },
         {
           "name": "variantcatalogue",
@@ -93308,7 +94043,7 @@
         },
         {
           "name": "circdna",
-          "version": "1.0.4"
+          "version": "1.1.0"
         },
         {
           "name": "circrna",
@@ -93316,7 +94051,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         },
         {
           "name": "hgtseq",
@@ -93498,7 +94233,7 @@
         },
         {
           "name": "circdna",
-          "version": "1.0.4"
+          "version": "1.1.0"
         },
         {
           "name": "circrna",
@@ -93506,7 +94241,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         },
         {
           "name": "hgtseq",
@@ -93574,7 +94309,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         },
         {
           "name": "viralrecon",
@@ -93727,7 +94462,7 @@
         },
         {
           "name": "circdna",
-          "version": "1.0.4"
+          "version": "1.1.0"
         },
         {
           "name": "circrna",
@@ -93735,7 +94470,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         },
         {
           "name": "hgtseq",
@@ -93775,7 +94510,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         },
         {
           "name": "viralrecon",
@@ -94212,7 +94947,7 @@
       "pipelines": [
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         }
       ]
     },
@@ -96545,6 +97280,78 @@
       }
     },
     {
+      "name": "seqkit_concat",
+      "path": "modules/nf-core/seqkit/concat/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "seqkit_concat",
+        "description": "Concatenating multiple uncompressed sequence files together",
+        "keywords": [
+          "concat",
+          "fasta",
+          "fastq",
+          "merge"
+        ],
+        "tools": [
+          {
+            "seqkit": {
+              "description": "Cross-platform and ultrafast toolkit for FASTA/Q file manipulation, written by Wei Shen.\n",
+              "homepage": "https://github.com/shenwei356/seqkit",
+              "documentation": "https://bioinf.shenwei.me/seqkit/",
+              "tool_dev_url": "https://github.com/shenwei356/seqkit",
+              "doi": "10.1371/journal.pone.0163962",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "input": {
+              "type": "file",
+              "description": "Sequence file in fasta/q format",
+              "pattern": "*.{fasta,fastq,fa,fq,fas,fna,faa}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "fastx": {
+              "type": "file",
+              "description": "A concatenated sequence file",
+              "pattern": "*.{fasta,fastq,fa,fq,fas,fna,faa}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@DLBPointon"
+        ],
+        "maintainers": [
+          "@DLBPointon"
+        ]
+      }
+    },
+    {
       "name": "seqkit_fx2tab",
       "path": "modules/nf-core/seqkit/fx2tab/meta.yml",
       "type": "module",
@@ -97500,7 +98307,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         },
         {
           "name": "metatdenovo",
@@ -107039,7 +107846,7 @@
       "pipelines": [
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         },
         {
           "name": "nanoseq",
@@ -107345,7 +108152,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -107430,7 +108237,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         }
       ]
     },
@@ -108049,7 +108856,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         }
       ]
     },
@@ -108927,7 +109734,7 @@
         },
         {
           "name": "circdna",
-          "version": "1.0.4"
+          "version": "1.1.0"
         },
         {
           "name": "circrna",
@@ -109479,6 +110286,159 @@
       }
     },
     {
+      "name": "tximeta_tximport",
+      "path": "modules/nf-core/tximeta/tximport/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "tximeta_tximport",
+        "description": "Import transcript-level abundances and estimated counts for gene-level\nanalysis packages\n",
+        "keywords": [
+          "gene",
+          "kallisto",
+          "pseudoalignment",
+          "salmon",
+          "transcript"
+        ],
+        "tools": [
+          {
+            "tximeta": {
+              "description": "Transcript Quantification Import with Automatic Metadata",
+              "homepage": "https://bioconductor.org/packages/release/bioc/html/tximeta.html",
+              "documentation": "https://bioconductor.org/packages/release/bioc/vignettes/tximeta/inst/doc/tximeta.html",
+              "tool_dev_url": "https://github.com/thelovelab/tximeta",
+              "doi": "10.1371/journal.pcbi.1007664",
+              "licence": [
+                "GPL-2"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing information related to the experiment as a whole\ne.g. `[ id:'SRP123456' ]`\n"
+            }
+          },
+          {
+            "quants": {
+              "type": "directory",
+              "description": "Paths to subdirectories corresponding to sample-wise runs of Salmon or Kallisto"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information related to the species\nreference e.g. `[ id:'yeast' ]`\n"
+            }
+          },
+          {
+            "tx2gene": {
+              "type": "file",
+              "description": "A transcript to gene mapping table such as those generated by custom/tx2gene",
+              "pattern": "*.{csv,tsv}"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing information related to the experiment as a whole\ne.g. `[ id:'SRP123456' ]`\n"
+            }
+          },
+          {
+            "coldata": {
+              "type": "file",
+              "description": "Optional 'coldata' file equivalent to a sample sheet where the first\ncolumn corresponds to the sample names (directory names in the input\nsalmon/ kallisto results)\n",
+              "pattern": "*.{csv,tsv}"
+            }
+          },
+          {
+            "quant_type": {
+              "type": "string",
+              "description": "Quantification type, 'kallisto' or 'salmon'"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing information related to the experiment as a whole\ne.g. `[ id:'SRP123456' ]`\n"
+            }
+          },
+          {
+            "tpm_gene": {
+              "type": "file",
+              "description": "Abundance (TPM) values derived from tximport output after\nsummarizeToGene(), without a 'countsFromAbundance' specification\n",
+              "pattern": "*gene_tpm.tsv"
+            }
+          },
+          {
+            "counts_gene": {
+              "type": "file",
+              "description": "Count values derived from tximport output after\nsummarizeToGene(), without a 'countsFromAbundance' specification\n",
+              "pattern": "*gene_counts.tsv"
+            }
+          },
+          {
+            "counts_gene_length_scaled": {
+              "type": "file",
+              "description": "Count values derived from tximport output after summarizeToGene(), with\na 'countsFromAbundance' specification of 'lengthScaledTPM'\n",
+              "pattern": "*gene_counts_length_scaled.tsv"
+            }
+          },
+          {
+            "counts_gene_scaled": {
+              "type": "file",
+              "description": "Count values derived from tximport output after summarizeToGene(), with\na 'countsFromAbundance' specification of 'scaledTPM'\n",
+              "pattern": "*gene_counts_scaled.tsv"
+            }
+          },
+          {
+            "gene_lengths": {
+              "type": "file",
+              "description": "Length values derived from tximport output after summarizeToGene(),\nwithout a 'countsFromAbundance' specification\n",
+              "pattern": "*gene_lengths.tsv"
+            }
+          },
+          {
+            "tpm_transcript": {
+              "type": "file",
+              "description": "Abundance (TPM) values derived from tximport output without\nsummarizeToGene(), without a 'countsFromAbundance' specification\n",
+              "pattern": "*transcript_tpm.tsv"
+            }
+          },
+          {
+            "counts_transcript": {
+              "type": "file",
+              "description": "Count values derived from tximport output without\nsummarizeToGene(), without a 'countsFromAbundance' specification\n",
+              "pattern": "*transcript_counts.tsv"
+            }
+          },
+          {
+            "transcript_lengths": {
+              "type": "file",
+              "description": "Length values derived from tximport output without summarizeToGene(),\nwithout a 'countsFromAbundance' specification\n",
+              "pattern": "*gene_lengths.tsv"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
+        ]
+      }
+    },
+    {
       "name": "ucsc_bedclip",
       "path": "modules/nf-core/ucsc/bedclip/meta.yml",
       "type": "module",
@@ -109548,7 +110508,7 @@
       "pipelines": [
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         },
         {
           "name": "hicar",
@@ -109652,7 +110612,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         },
         {
           "name": "hicar",
@@ -111131,7 +112091,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         },
         {
           "name": "demultiplex",
@@ -111219,7 +112179,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.4"
+          "version": "1.1.5"
         },
         {
           "name": "viralrecon",
@@ -111374,6 +112334,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "createtaxdb",
+          "version": "dev"
+        },
         {
           "name": "rnadnavar",
           "version": "dev"
@@ -116418,7 +117382,7 @@
         },
         {
           "name": "circdna",
-          "version": "1.0.4"
+          "version": "1.1.0"
         },
         {
           "name": "rnadnavar",
@@ -116825,182 +117789,182 @@
         ],
         "output": [
           {
-            "ch_bamstat": {
+            "bamstat_txt": {
               "type": "file",
               "description": "bam statistics report",
               "pattern": "*.bam_stat.txt"
             }
           },
           {
-            "ch_innerdistance": {
+            "innerdistance_all": {
               "type": "file",
               "description": "All the output files from RSEQC_INNERDISTANCE",
               "pattern": "*.{txt,pdf,R}"
             }
           },
           {
-            "ch_innerdistance_distance": {
+            "innerdistance_distance": {
               "type": "file",
               "description": "the inner distances",
               "pattern": "*.inner_distance.txt"
             }
           },
           {
-            "ch_innerdistance_freq": {
+            "innerdistance_freq": {
               "type": "file",
               "description": "frequencies of different insert sizes",
               "pattern": "*.inner_distance_freq.txt"
             }
           },
           {
-            "ch_innerdistance_mean": {
+            "innerdistance_mean": {
               "type": "file",
               "description": "mean/median values of inner distances",
               "pattern": "*.inner_distance_mean.txt"
             }
           },
           {
-            "ch_innerdistance_pdf": {
+            "innerdistance_pdf": {
               "type": "file",
               "description": "distribution plot of inner distances",
               "pattern": "*.inner_distance_plot.pdf"
             }
           },
           {
-            "ch_innerdistance_rscript": {
+            "innerdistance_rscript": {
               "type": "file",
               "description": "script to reproduce the plot",
               "pattern": "*.inner_distance_plot.R"
             }
           },
           {
-            "ch_inferexperiment": {
+            "inferexperiment_txt": {
               "type": "file",
               "description": "infer_experiment results report",
               "pattern": "*.infer_experiment.txt"
             }
           },
           {
-            "ch_junctionannotation": {
+            "junctionannotation_all": {
               "type": "file",
               "description": "All the output files from RSEQC_JUNCTIONANNOTATION",
               "pattern": "*.{bed,xls,pdf,R,log}"
             }
           },
           {
-            "ch_junctionannotation_bed": {
+            "junctionannotation_bed": {
               "type": "file",
               "description": "bed file of annotated junctions",
               "pattern": "*.junction.bed"
             }
           },
           {
-            "ch_junctionannotation_interact_bed": {
+            "junctionannotation_interact_bed": {
               "type": "file",
               "description": "Interact bed file",
               "pattern": "*.Interact.bed"
             }
           },
           {
-            "ch_junctionannotation_xls": {
+            "junctionannotation_xls": {
               "type": "file",
               "description": "xls file with junction information",
               "pattern": "*.xls"
             }
           },
           {
-            "ch_junctionannotation_pdf": {
+            "junctionannotation_pdf": {
               "type": "file",
               "description": "junction plot",
               "pattern": "*.junction.pdf"
             }
           },
           {
-            "ch_junctionannotation_events_pdf": {
+            "junctionannotation_events_pdf": {
               "type": "file",
               "description": "events plot",
               "pattern": "*.events.pdf"
             }
           },
           {
-            "ch_junctionannotation_rscript": {
+            "junctionannotation_rscript": {
               "type": "file",
               "description": "Rscript to reproduce the plots",
               "pattern": "*.r"
             }
           },
           {
-            "ch_junctionannotation_log": {
+            "junctionannotation_log": {
               "type": "file",
               "description": "Log file generated by tool",
               "pattern": "*.log"
             }
           },
           {
-            "ch_junctionsaturation": {
+            "junctionsaturation_all": {
               "type": "file",
               "description": "All the output files from RSEQC_JUNCTIONSATURATION",
               "pattern": "*.{pdf,R}"
             }
           },
           {
-            "ch_junctionsaturation_pdf": {
+            "junctionsaturation_pdf": {
               "type": "file",
               "description": "Junction saturation report",
               "pattern": "*.pdf"
             }
           },
           {
-            "ch_junctionsaturation_rscript": {
+            "junctionsaturation_rscript": {
               "type": "file",
               "description": "Junction saturation R-script",
               "pattern": "*.r"
             }
           },
           {
-            "ch_readdistribution": {
+            "readdistribution_txt": {
               "type": "file",
               "description": "the read distribution report",
               "pattern": "*.read_distribution.txt"
             }
           },
           {
-            "ch_readduplication": {
+            "readduplication_all": {
               "type": "file",
               "description": "All the output files from RSEQC_READDUPLICATION",
               "pattern": "*.{xls,pdf,R}"
             }
           },
           {
-            "ch_readduplication_seq_xls": {
+            "readduplication_seq_xls": {
               "type": "file",
               "description": "Read duplication rate determined from mapping position of read",
               "pattern": "*seq.DupRate.xls"
             }
           },
           {
-            "ch_readduplication_pos_xls": {
+            "readduplication_pos_xls": {
               "type": "file",
               "description": "Read duplication rate determined from sequence of read",
               "pattern": "*pos.DupRate.xls"
             }
           },
           {
-            "ch_readduplication_pdf": {
+            "readduplication_pdf": {
               "type": "file",
               "description": "plot of duplication rate",
               "pattern": "*.pdf"
             }
           },
           {
-            "ch_readduplication_rscript": {
+            "readduplication_rscript": {
               "type": "file",
               "description": "script to reproduce the plot",
               "pattern": "*.R"
             }
           },
           {
-            "ch_tin": {
+            "tin_txt": {
               "type": "file",
               "description": "TXT file containing tin.py results summary",
               "pattern": "*.txt"
@@ -117154,7 +118118,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         },
         {
           "name": "metatdenovo",
@@ -117306,7 +118270,7 @@
         },
         {
           "name": "circdna",
-          "version": "1.0.4"
+          "version": "1.1.0"
         },
         {
           "name": "circrna",
@@ -117314,7 +118278,7 @@
         },
         {
           "name": "cutandrun",
-          "version": "3.2.1"
+          "version": "3.2.2"
         },
         {
           "name": "metatdenovo",
@@ -118281,7 +119245,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.1"
+          "version": "2.5.3"
         }
       ]
     },
@@ -120156,6 +121120,10 @@
       },
       "pipelines": [
         {
+          "name": "riboseq",
+          "version": "dev"
+        },
+        {
           "name": "rnaseq",
           "version": "3.14.0"
         }
@@ -120315,6 +121283,10 @@
         {
           "name": "atacseq",
           "version": "2.1.2"
+        },
+        {
+          "name": "riboseq",
+          "version": "dev"
         },
         {
           "name": "rnaseq",
@@ -121642,6 +122614,98 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -121676,6 +122740,98 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -123229,6 +124385,98 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -123409,7 +124657,13 @@
         "maintainers": [
           "@pinin4fjords"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "utils_nextflow_pipeline",
@@ -123485,7 +124739,14 @@
           "version"
         ],
         "components": [],
-        "input": [],
+        "input": [
+          {
+            "nextflow_cli_args": {
+              "type": "list",
+              "description": "Nextflow CLI positional arguments\n"
+            }
+          }
+        ],
         "output": [
           {
             "success": {

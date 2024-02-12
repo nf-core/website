@@ -12,16 +12,6 @@ locationURL:
   - https://www.youtube.com/watch?v=3aA5-s8PAF0
 ---
 
-# nf-core/bytesize
-
-Join us for our **weekly series** of short talks: **“nf-core/bytesize”**.
-
-Just **15 minutes** + questions, we will be focussing on topics about using and developing nf-core pipelines.
-These will be recorded and made available at <https://nf-co.re>
-It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
-
-## Bytesize: using custom scripts in Nextflow pipelines
-
 This week, Chris Hakkaart ([@christopher-hakkaart](https://github.com/christopher-hakkaart)) will show how to integrate custom scripts, such as R or Perl o Python scripts, can be integrated into a Nextflow pipeline.
 
 <details markdown="1"><summary>Video transcription</summary>
