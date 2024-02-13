@@ -4035,6 +4035,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -37454,6 +37458,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -38179,6 +38187,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -42788,6 +42800,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -85976,6 +85992,109 @@
       }
     },
     {
+      "name": "propr_propr",
+      "path": "modules/nf-core/propr/propr/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "propr_propr",
+        "description": "Perform logratio-based correlation analysis -> get proportionality & basis shrinkage partial correlation coefficients.\nOne can also compute standard correlation coefficients, if required.\n",
+        "keywords": [
+          "coexpression",
+          "correlation",
+          "proportionality",
+          "logratio",
+          "propr",
+          "corpcor"
+        ],
+        "tools": [
+          {
+            "propr": {
+              "description": "Logratio methods for omics data",
+              "homepage": "https://github.com/tpq/propr",
+              "documentation": "https://rdrr.io/cran/propr/man/propr.html",
+              "tool_dev_url": "https://github.com/tpq/propr",
+              "doi": "10.1038/s41598-017-16520-0",
+              "licence": [
+                "GPL-2"
+              ]
+            }
+          },
+          {
+            "corpcor": {
+              "description": "Efficient Estimation of Covariance and (Partial) Correlation",
+              "homepage": "https://cran.r-project.org/web/packages/corpcor/index.html",
+              "documentation": "https://cran.r-project.org/web/packages/corpcor/corpcor.pdf",
+              "doi": "10.2202/1544-6115.1175",
+              "licence": [
+                "GPL >=3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information.\nThis can be used at the workflow level to pass optional parameters to the module.\n[id: 'test', ...]\n"
+            }
+          },
+          {
+            "count": {
+              "type": "file",
+              "description": "Count matrix, where rows = variables or genes, columns = samples or cells.\nThis matrix should not contain zeros. Otherwise, they will be replaced by the minimun number.\nIt is recommended to handle the zeros beforehand with the method of preference.\n",
+              "pattern": "*.{csv,tsv}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information.\nThis can be used at the workflow level to pass optional parameters to the module.\n[id: 'test', ...]\n"
+            }
+          },
+          {
+            "propr": {
+              "type": "file",
+              "description": "R propr object",
+              "pattern": "*.propr.rds"
+            }
+          },
+          {
+            "matrix": {
+              "type": "file",
+              "description": "Coefficient matrix",
+              "pattern": "*.propr.tsv"
+            }
+          },
+          {
+            "fdr": {
+              "type": "file",
+              "description": "(optional) propr fdr table",
+              "pattern": "*.fdr.tsv"
+            }
+          },
+          {
+            "session_info": {
+              "type": "file",
+              "description": "dump of R SessionInfo",
+              "pattern": "*.R_sessionInfo.log"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@suzannejin"
+        ]
+      }
+    },
+    {
       "name": "proteinortho",
       "path": "modules/nf-core/proteinortho/meta.yml",
       "type": "module",
@@ -106038,6 +106157,112 @@
       ]
     },
     {
+      "name": "summarizedexperiment_summarizedexperiment",
+      "path": "modules/nf-core/summarizedexperiment/summarizedexperiment/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "summarizedexperiment_summarizedexperiment",
+        "description": "SummarizedExperiment container\n",
+        "keywords": [
+          "gene",
+          "transcript",
+          "sample",
+          "matrix",
+          "assay"
+        ],
+        "tools": [
+          {
+            "summarizedexperiment": {
+              "description": "The SummarizedExperiment container contains one or more assays, each represented by a matrix-like object of numeric or other mode. The rows typically represent genomic ranges of interest and the columns represent samples.",
+              "homepage": "https://bioconductor.org/packages/release/bioc/html/SummarizedExperiment.html",
+              "documentation": "https://bioconductor.org/packages/release/bioc/vignettes/SummarizedExperiment/inst/doc/SummarizedExperiment.html",
+              "tool_dev_url": "https://github.com/Bioconductor/SummarizedExperiment",
+              "doi": "10.18129/B9.bioc.SummarizedExperiment",
+              "licence": [
+                "Artistic-2.0"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing information related to the experiment as a whole\ne.g. `[ id:'SRP123456' ]`\n"
+            }
+          },
+          {
+            "matrix_files": {
+              "type": "directory",
+              "description": "One or more paths to CSV or TSV matrix files. All files must have the\nsame rows and columns.\n",
+              "pattern": "*.{csv,tsv}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information related to the species\nreference from which matrix rows are derived e.g. `[ id:'yeast' ]`\n"
+            }
+          },
+          {
+            "rowdata": {
+              "type": "file",
+              "description": "Metadata on matrix features. One column must contain all matrix row\nIDs.\n",
+              "pattern": "*.{csv,tsv}"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing information related to the experiment as a whole,\nas represented by the matrix columns and the sample sheet e.g.\n`[id:'SRP123456' ]`\n"
+            }
+          },
+          {
+            "coldata": {
+              "type": "file",
+              "description": "Metadata on matrix columns. One column must contain all matrix column\nIDs.\n",
+              "pattern": "*.{csv,tsv}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing information related to the experiment as a whole\ne.g. `[ id:'SRP123456' ]`\n"
+            }
+          },
+          {
+            "rds": {
+              "type": "file",
+              "description": "Serialised SummarizedExperiment object",
+              "pattern": "*.SummarizedExperiment.rds"
+            }
+          },
+          {
+            "log": {
+              "type": "file",
+              "description": "dump of R SessionInfo",
+              "pattern": "*.log"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
+        ]
+      }
+    },
+    {
       "name": "survivor_filter",
       "path": "modules/nf-core/survivor/filter/meta.yml",
       "type": "module",
@@ -110411,7 +110636,7 @@
             }
           },
           {
-            "gene_lengths": {
+            "lengths_gene": {
               "type": "file",
               "description": "Length values derived from tximport output after summarizeToGene(),\nwithout a 'countsFromAbundance' specification\n",
               "pattern": "*gene_lengths.tsv"
@@ -110432,7 +110657,7 @@
             }
           },
           {
-            "transcript_lengths": {
+            "lengths_transcript": {
               "type": "file",
               "description": "Length values derived from tximport output without summarizeToGene(),\nwithout a 'countsFromAbundance' specification\n",
               "pattern": "*gene_lengths.tsv"
@@ -111828,6 +112053,91 @@
         ],
         "maintainers": [
           "@Joon-Klaps"
+        ]
+      }
+    },
+    {
+      "name": "umitools_prepareforrsem",
+      "path": "modules/nf-core/umitools/prepareforrsem/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "umitools_prepareforrsem",
+        "description": "Make the output from umi_tools dedup or group compatible with RSEM",
+        "keywords": [
+          "umitools",
+          "rsem",
+          "salmon",
+          "dedup"
+        ],
+        "tools": [
+          {
+            "umi_tools": {
+              "description": "UMI-tools contains tools for dealing with Unique Molecular Identifiers (UMIs)/Random Molecular Tags (RMTs) and single cell RNA-Seq cell barcodes\n",
+              "documentation": "https://umi-tools.readthedocs.io/en/latest/",
+              "license": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "BAM file containing reads to be deduplicated via UMIs.\n",
+              "pattern": "*.{bam}"
+            }
+          },
+          {
+            "bai": {
+              "type": "file",
+              "description": "BAM index files corresponding to the input BAM file.\n",
+              "pattern": "*.{bai}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "Prepared BAM file.",
+              "pattern": "*.{bam}"
+            }
+          },
+          {
+            "log": {
+              "type": "file",
+              "description": "File with logging information",
+              "pattern": "*.{log}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@drpatelh",
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@drpatelh",
+          "@pinin4fjords"
         ]
       }
     },
@@ -122726,6 +123036,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -122760,6 +123074,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -123666,6 +123984,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
