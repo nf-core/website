@@ -6,7 +6,8 @@ startDate: '2024-02-13'
 startTime: '13:00+01:00'
 endDate: '2024-02-13'
 endTime: '13:30+01:00'
-locationURL: https://seqera-io.zoom.us/j/5968645264
+youtubeEmbed: https://youtu.be/R0fqk5OS-nw
+locationURL: https://youtu.be/R0fqk5OS-nw
 ---
 
 Building pipelines is one thing, but have you ever wanted to make a contribution
