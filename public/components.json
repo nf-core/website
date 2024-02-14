@@ -4039,6 +4039,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -18337,6 +18341,104 @@
         "authors": [
           "@ggabernet",
           "@heylf"
+        ]
+      }
+    },
+    {
+      "name": "centrifuge_build",
+      "path": "modules/nf-core/centrifuge/build/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "centrifuge_build",
+        "description": "Build centrifuge database for taxonomic profiling",
+        "keywords": [
+          "database",
+          "metagenomics",
+          "build",
+          "db",
+          "fasta"
+        ],
+        "tools": [
+          {
+            "centrifuge": {
+              "description": "Classifier for metagenomic sequences",
+              "homepage": "https://ccb.jhu.edu/software/centrifuge/",
+              "documentation": "https://ccb.jhu.edu/software/centrifuge/manual.shtml",
+              "doi": "10.1101/gr.210641.116",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Fasta file containing sequences to be used in centrifuge database.",
+              "pattern": "*.{fasta,fna}"
+            }
+          },
+          {
+            "conversion_table": {
+              "type": "file",
+              "description": "A tab-separated file with sequence ID to taxonomy ID mapping",
+              "pattern": "*.{map}"
+            }
+          },
+          {
+            "taxonomy_tree": {
+              "type": "file",
+              "description": "A \\t|\\t-separated file mapping taxonomy. Typically nodes.dmp from the NCBI taxonomy dump. Links taxonomy IDs to their parents",
+              "pattern": "*.{dmp}"
+            }
+          },
+          {
+            "name_table": {
+              "type": "file",
+              "description": "A '|'-separated file mapping taxonomy IDs to a name. Typically names.dmp from the NCBI taxonomy dump. Links taxonomy IDs to their scientific name",
+              "pattern": "*.{dmp}"
+            }
+          },
+          {
+            "size_table": {
+              "type": "file",
+              "description": "Optional list of taxonomic IDs and lengths of the sequences belonging to the same taxonomic IDs.",
+              "pattern": "*"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "cf": {
+              "type": "file",
+              "description": "Index files for the centrifuge database",
+              "pattern": "*.{cf}"
+            }
+          }
+        ],
+        "authors": [
+          "@sarah-buddle",
+          "@jfy133"
         ]
       }
     },
@@ -37462,6 +37564,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -38187,6 +38293,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -42800,6 +42910,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -123040,6 +123154,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -123074,6 +123192,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -123984,6 +124106,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
