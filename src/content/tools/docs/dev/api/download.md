@@ -8,31 +8,31 @@ Bases: `Exception`
 
 A class of errors related to pulling containers with Singularity/Apptainer
 
-#### `undefined{:python}` ImageExistsError(error_log)
+#### _`exception{:python}`_`ImageExistsError(error_log){:python}`
 
 Bases: `FileExistsError`
 
 Image already exists in cache/output directory.
 
-#### `undefined{:python}` ImageNotFoundError(error_log)
+#### _`exception{:python}`_`ImageNotFoundError(error_log){:python}`
 
 Bases: `FileNotFoundError`
 
 The image can not be found in the registry
 
-#### `undefined{:python}` InvalidTagError(error_log)
+#### _`exception{:python}`_`InvalidTagError(error_log){:python}`
 
 Bases: `AttributeError`
 
 Image and registry are valid, but the (version) tag is not
 
-#### `undefined{:python}` OtherError(error_log)
+#### _`exception{:python}`_`OtherError(error_log){:python}`
 
 Bases: `RuntimeError`
 
 Undefined error with the container
 
-#### `undefined{:python}` RegistryNotFoundError(error_log)
+#### _`exception{:python}`_`RegistryNotFoundError(error_log){:python}`
 
 Bases: `ConnectionRefusedError`
 
