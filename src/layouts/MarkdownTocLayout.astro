@@ -101,13 +101,15 @@ const {
     <div class="row">
         {
             leftSidebar && (
-                <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left pt-1">
-                    {sidebarTitle && (
-                        <div class="sidebar-title">
-                            <strong class="h6 p-2 text-body">{sidebarTitle}</strong>
-                        </div>
-                    )}
-                    <SidebarNav items={sections} />
+                <div class="col-12 col-md-2 d-none d-md-block sidebar-left pt-1">
+                    <div class="sticky-top-under">
+                        {sidebarTitle && (
+                            <div class="sidebar-title">
+                                <strong class="h6 p-2 text-body">{sidebarTitle}</strong>
+                            </div>
+                        )}
+                        <SidebarNav items={sections} />
+                    </div>
                 </div>
             )
         }

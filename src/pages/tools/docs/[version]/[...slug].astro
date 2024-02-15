@@ -6,7 +6,20 @@ import { sequence } from 'astro:middleware';
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
     const tools: CollectionEntry<'tools'>[] = await getCollection('tools');
-    return tools.map((entry: CollectionEntry<'tools'>) => {
+    const versions = [...new Set(tools.map((entry) => entry.id.split('/')[1]))].sort((a, b) => {
+        const a_version = a.split('.').map((entry) => parseInt(entry));
+        const b_version = b.split('.').map((entry) => parseInt(entry));
+        for (let i = 0; i < a_version.length; i++) {
+            if (a_version[i] > b_version[i]) {
+                return -1;
+            }
+            if (a_version[i] < b_version[i]) {
+                return 1;
+            }
+        }
+        return 0;
+    });
+    let tools_path = tools.map((entry: CollectionEntry<'tools'>) => {
         const version = entry.id.split('/')[1];
         const versioned_tools = tools.filter((tool) => tool.id.split('/')[1] === version);
         const section_names = [...new Set(versioned_tools.map((entry) => entry.id.split('/')[2]))];
@@ -53,17 +66,29 @@ export async function getStaticPaths() {
 
         return {
             params: { version: version, slug: entry.id.replace(`docs/${version}/`, '').replace(/\.md$/, '') },
-            props: { entry: entry, sections: sections },
+            props: { entry: entry, sections: sections, versions: versions },
         };
     });
+    // add 'latest' as a version, which is a copy of the latest version
+    const latest_version = tools_path.filter((entry) => entry.params.version === versions[0]);
+    console.log('latest_version', latest_version);
+    latest_version.map((entry) => {
+        tools_path.push({
+            params: { version: 'latest', slug: entry.params.slug },
+            props: { entry: entry.props.entry, sections: entry.props.sections, versions: versions },
+        });
+    });
+    return tools_path;
 }
 // 2. For your template, you can get the entry directly from the prop
-const { entry, sections } = Astro.props;
-
+const { entry, sections, versions } = Astro.props;
 let { headings, Content } = await entry.render();
 const title = 'nf-core/tools API documentation';
+const version_tag_name = Astro.params.version === 'latest' ? versions[0] : Astro.params.version;
 const subtitle =
-    'Automated documentation for nf-core/tools (`' + Astro.params.version + '`) methods, classes and linting rules.';
+    'Automated documentation for nf-core/tools ' +
+    (version_tag_name === 'dev' ? '(dev version)' : '(`' + version_tag_name + '`)') +
+    ' methods, classes and linting rules.';
 const md_github_url = 'https://github.com/nf-core/website/blob/main/src/content/tools/' + entry.id;
 
 const module_name = headings[0].text;
