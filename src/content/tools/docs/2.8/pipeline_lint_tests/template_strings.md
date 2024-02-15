@@ -1,6 +1,6 @@
 # template_strings
 
-#### PipelineLint.template_strings()
+#### `PipelineLint.template_strings(){:python}`
 
 Check for template placeholders.
 

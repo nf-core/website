@@ -1,17 +1,17 @@
 # nextflow_config
 
-#### PipelineLint.nextflow_config()
+#### `PipelineLint.nextflow_config(){:python}`
 
 Checks the pipeline configuration for required variables.
 
 All nf-core pipelines are required to be configured with a minimal set of variable
 names. This test fails or throws warnings if required variables are not set.
 
-#### NOTE
-
+:::note
 These config variables must be set in `nextflow.config` or another config
 file imported from there. Any variables set in nextflow script files (eg. `main.nf`)
 are not checked and will be assumed to be missing.
+:::
 
 **The following variables fail the test if missing:**
 
@@ -56,6 +56,9 @@ are not checked and will be assumed to be missing.
 - `params.nf_required_version`: The old method for specifying the minimum Nextflow version. Replaced by `manifest.nextflowVersion`
 - `params.container`: The old method for specifying the dockerhub container address. Replaced by `process.container`
 - `igenomesIgnore`: Changed to `igenomes_ignore`
+  > :::note
+  > The `snake_case` convention should now be used when defining pipeline parameters
+  > :::
 
 **The following Nextflow syntax is depreciated and fails the test if present:**
 

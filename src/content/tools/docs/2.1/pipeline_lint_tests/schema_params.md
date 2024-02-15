@@ -1,6 +1,6 @@
 # schema_params
 
-#### PipelineLint.schema_params()
+#### `PipelineLint.schema_params(){:python}`
 
 Check that the schema describes all flat params in the pipeline.
 

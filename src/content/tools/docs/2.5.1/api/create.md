@@ -3,7 +3,7 @@
 Creates a nf-core pipeline matching the current
 organization’s specification based on a template.
 
-### _class_ nf_core.create.PipelineCreate(name, description, author, version='1.0dev', no_git=False, force=False, outdir=None, template_yaml_path=None, plain=False)
+### _`class{:python}`_`nf_core.create.PipelineCreate(name, description, author, version='1.0dev', no_git=False, force=False, outdir=None, template_yaml_path=None, plain=False){:python}`
 
 Bases: `object`
 
@@ -19,14 +19,14 @@ Creates a nf-core pipeline a la carte from the nf-core best-practice template.
     May the force be with you.
   - **outdir** (_str_) – Path to the local output directory.
 
-#### create_param_dict(name, description, author, version, template_yaml_path, plain)
+#### `create_param_dict(name, description, author, version, template_yaml_path, plain){:python}`
 
 Creates a dictionary of parameters for the new pipeline.
 
 - **Parameters:**
   **template_yaml_path** (_str_) – Path to YAML file containing template parameters.
 
-#### customize_template(template_areas)
+#### `customize_template(template_areas){:python}`
 
 Customizes the template parameters.
 
@@ -35,47 +35,47 @@ Customizes the template parameters.
   - **description** (_str_) – Description for the pipeline.
   - **author** (_str_) – Authors name of the pipeline.
 
-#### download_pipeline_logo(url, img_fn)
+#### `download_pipeline_logo(url, img_fn){:python}`
 
 Attempt to download a logo from the website. Retry if it fails.
 
-#### fix_linting()
+#### `fix_linting(){:python}`
 
 Updates the .nf-core.yml with linting configurations
 for a customized pipeline.
 
-#### get_param(param_name, passed_value, template_yaml, template_yaml_path)
+#### `get_param(param_name, passed_value, template_yaml, template_yaml_path){:python}`
 
-#### git_init_pipeline()
+#### `git_init_pipeline(){:python}`
 
 Initialises the new pipeline as a Git repository and submits first commit.
 
 - **Raises:**
   **UserWarning** – if Git default branch is set to ‘dev’ or ‘TEMPLATE’.
 
-#### init_pipeline()
+#### `init_pipeline(){:python}`
 
 Creates the nf-core pipeline.
 
-#### make_pipeline_logo()
+#### `make_pipeline_logo(){:python}`
 
 Fetch a logo for the new pipeline from the nf-core website
 
-#### prompt_wf_author()
+#### `prompt_wf_author(){:python}`
 
-#### prompt_wf_description()
+#### `prompt_wf_description(){:python}`
 
-#### prompt_wf_name()
+#### `prompt_wf_name(){:python}`
 
-#### remove_nf_core_in_bug_report_template()
+#### `remove_nf_core_in_bug_report_template(){:python}`
 
 Remove the field mentioning nf-core documentation
 in the github bug report template
 
-#### render_template()
+#### `render_template(){:python}`
 
 Runs Jinja to create a new nf-core pipeline.
 
-#### update_nextflow_schema()
+#### `update_nextflow_schema(){:python}`
 
 Removes unused parameters from the nextflow schema.

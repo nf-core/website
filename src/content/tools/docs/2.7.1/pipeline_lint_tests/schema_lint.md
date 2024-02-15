@@ -1,11 +1,17 @@
 # schema_lint
 
-#### PipelineLint.schema_lint()
+#### `PipelineLint.schema_lint(){:python}`
 
 Pipeline schema syntax
 
 Pipelines should have a `nextflow_schema.json` file that describes the different
 pipeline parameters (eg. `params.something`, `--something`).
+
+:::note
+Reminder: you should generally never need to edit this JSON file by hand.
+The `nf-core schema build` command can create _and edit_ the file for you
+to keep it up to date, with a friendly user-interface for customisation.
+:::
 
 The lint test checks the schema for the following:
 
@@ -47,3 +53,8 @@ For example, an _extremely_ minimal schema could look like this:
   "allOf": [{ "$ref": "#/definitions/my_first_group" }]
 }
 ```
+
+:::note
+You can check your pipeline schema without having to run the entire pipeline lint
+by running `nf-core schema lint` instead of `nf-core lint`
+:::

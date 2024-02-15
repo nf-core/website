@@ -3,7 +3,7 @@
 Creates a nf-core pipeline matching the current
 organization’s specification based on a template.
 
-### _class_ nf_core.create.PipelineCreate(name, description, author, version='1.0dev', no_git=False, force=False, outdir=None, template_yaml_path=None, plain=False, default_branch=None)
+### _`class{:python}`_`nf_core.create.PipelineCreate(name, description, author, version='1.0dev', no_git=False, force=False, outdir=None, template_yaml_path=None, plain=False, default_branch=None){:python}`
 
 Bases: `object`
 
@@ -22,7 +22,7 @@ Creates a nf-core pipeline a la carte from the nf-core best-practice template.
   - **plain** (_bool_) – If true the Git repository will be initialized plain.
   - **default_branch** (_str_) – Specifies the –initial-branch name.
 
-#### create_param_dict(name, description, author, version, template_yaml_path, plain, pipeline_dir)
+#### `create_param_dict(name, description, author, version, template_yaml_path, plain, pipeline_dir){:python}`
 
 Creates a dictionary of parameters for the new pipeline.
 
@@ -35,50 +35,50 @@ Creates a dictionary of parameters for the new pipeline.
   - **plain** (_bool_) – If true the pipeline template will be initialized plain, without customisation.
   - **pipeline_dir** (_str_) – Path to the pipeline directory.
 
-#### customize_template(template_areas)
+#### `customize_template(template_areas){:python}`
 
 Customizes the template parameters.
 
 - **Parameters:**
   **template_areas** (_list<str>_) – List of available template areas to skip.
 
-#### fix_linting()
+#### `fix_linting(){:python}`
 
 Updates the .nf-core.yml with linting configurations
 for a customized pipeline.
 
-#### get_param(param_name, passed_value, template_yaml, template_yaml_path)
+#### `get_param(param_name, passed_value, template_yaml, template_yaml_path){:python}`
 
-#### git_init_pipeline()
+#### `git_init_pipeline(){:python}`
 
 Initialises the new pipeline as a Git repository and submits first commit.
 
 - **Raises:**
   **UserWarning** – if Git default branch is set to ‘dev’ or ‘TEMPLATE’.
 
-#### init_pipeline()
+#### `init_pipeline(){:python}`
 
 Creates the nf-core pipeline.
 
-#### make_pipeline_logo()
+#### `make_pipeline_logo(){:python}`
 
 Fetch a logo for the new pipeline from the nf-core website
 
-#### prompt_wf_author()
+#### `prompt_wf_author(){:python}`
 
-#### prompt_wf_description()
+#### `prompt_wf_description(){:python}`
 
-#### prompt_wf_name()
+#### `prompt_wf_name(){:python}`
 
-#### remove_nf_core_in_bug_report_template()
+#### `remove_nf_core_in_bug_report_template(){:python}`
 
 Remove the field mentioning nf-core documentation
 in the github bug report template
 
-#### render_template()
+#### `render_template(){:python}`
 
 Runs Jinja to create a new nf-core pipeline.
 
-#### update_nextflow_schema()
+#### `update_nextflow_schema(){:python}`
 
 Removes unused parameters from the nextflow schema.

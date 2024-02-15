@@ -3,7 +3,7 @@
 Creates a nf-core pipeline matching the current
 organization’s specification based on a template.
 
-### _class_ nf_core.create.PipelineCreate(name, description, author, version='1.0dev', no_git=False, force=False, outdir=None)
+### _`class{:python}`_`nf_core.create.PipelineCreate(name, description, author, version='1.0dev', no_git=False, force=False, outdir=None){:python}`
 
 Bases: `object`
 
@@ -19,18 +19,18 @@ Creates a nf-core pipeline a la carte from the nf-core best-practice template.
     May the force be with you.
   - **outdir** (_str_) – Path to the local output directory.
 
-#### git_init_pipeline()
+#### `git_init_pipeline(){:python}`
 
 Initialises the new pipeline as a Git repository and submits first commit.
 
-#### init_pipeline()
+#### `init_pipeline(){:python}`
 
 Creates the nf-core pipeline.
 
-#### make_pipeline_logo()
+#### `make_pipeline_logo(){:python}`
 
 Fetch a logo for the new pipeline from the nf-core website
 
-#### render_template()
+#### `render_template(){:python}`
 
 Runs Jinja to create a new nf-core pipeline.

@@ -1,6 +1,6 @@
 # system_exit
 
-#### PipelineLint.system_exit()
+#### `PipelineLint.system_exit(){:python}`
 
 Check for System.exit calls in groovy/nextflow code
 

@@ -1,6 +1,6 @@
 # module_version
 
-#### ModuleLint.module_version(module)
+#### `ModuleLint.module_version(module){:python}`
 
 Verifies that the module has a version specified in the `modules.json` file
 

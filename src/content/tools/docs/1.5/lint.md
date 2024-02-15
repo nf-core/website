@@ -5,7 +5,7 @@ Linting policy for nf-core pipeline projects.
 Tests Nextflow-based pipelines to check that they adhere to
 the nf-core community guidelines.
 
-### _class_ nf_core.lint.PipelineLint(path)
+### _`class{:python}`_`nf_core.lint.PipelineLint(path){:python}`
 
 Object to hold linting information and results.
 All objects attributes are set, after the [`PipelineLint.lint_pipeline()`](#nf_core.lint.PipelineLint.lint_pipeline) function was called.
@@ -13,84 +13,84 @@ All objects attributes are set, after the [`PipelineLint.lint_pipeline()`](#nf_c
 - **Parameters:**
   **path** (_str_) – The path to the nf-core pipeline directory.
 
-#### conda_config
+#### `conda_config{:python}`
 
 The parsed conda configuration file content (environment.yml).
 
 - **Type:**
   dict
 
-#### conda_package_info
+#### `conda_package_info{:python}`
 
 The conda package(s) information, based on the API requests to Anaconda cloud.
 
 - **Type:**
   dict
 
-#### config
+#### `config{:python}`
 
 The Nextflow pipeline configuration file content.
 
 - **Type:**
   dict
 
-#### dockerfile
+#### `dockerfile{:python}`
 
 A list of lines (str) from the parsed Dockerfile.
 
 - **Type:**
   list
 
-#### failed
+#### `failed{:python}`
 
 A list of tuples of the form: (<error no>, <reason>)
 
 - **Type:**
   list
 
-#### files
+#### `files{:python}`
 
 A list of files found during the linting process.
 
 - **Type:**
   list
 
-#### minNextflowVersion
+#### `minNextflowVersion{:python}`
 
 The minimum required Nextflow version to run the pipeline.
 
 - **Type:**
   str
 
-#### passed
+#### `passed{:python}`
 
 A list of tuples of the form: (<passed no>, <reason>)
 
 - **Type:**
   list
 
-#### path
+#### `path{:python}`
 
 Path to the pipeline directory.
 
 - **Type:**
   str
 
-#### pipeline_name
+#### `pipeline_name{:python}`
 
 The pipeline name, without the nf-core tag, for example hlatyping.
 
 - **Type:**
   str
 
-#### release_mode
+#### `release_mode{:python}`
 
 True, if you the to linting was run in release mode, False else.
 
 - **Type:**
   bool
 
-#### warned
+#### `warned{:python}`
 
 A list of tuples of the form: (<warned no>, <reason>)
 
@@ -132,7 +132,7 @@ Some of the more complex attributes of a PipelineLint object.
   ...
   ```
 
-#### check_anaconda_package(dep)
+#### `check_anaconda_package(dep){:python}`
 
 Query conda package information.
 
@@ -141,16 +141,16 @@ Sends a HTTP GET request to the Anaconda remote API.
 - **Parameters:**
   **dep** (_str_) – A conda package name.
 - **Raises:**
-  **A ValueError\*\***,\*\* **if the package name can not be resolved.** –
+  **A ValueError**\*\*,\*\* **if the package name can not be resolved.** –
 
-#### check_ci_config()
+#### `check_ci_config(){:python}`
 
 Checks that the Travis or Circle CI YAML config is valid.
 
 Makes sure that `nf-core lint` runs in travis tests and that
 tests run with the required nextflow version.
 
-#### check_conda_dockerfile()
+#### `check_conda_dockerfile(){:python}`
 
 Checks the Docker build file.
 
@@ -160,7 +160,7 @@ Checks that:
 - dependency versions are pinned
 - dependency versions are the latest available
 
-#### check_conda_env_yaml()
+#### `check_conda_env_yaml(){:python}`
 
 Checks that the conda environment file is valid.
 
@@ -170,11 +170,11 @@ Checks that:
 - check that dependency versions are pinned
 - dependency versions are the latest available
 
-#### check_docker()
+#### `check_docker(){:python}`
 
 Checks that Dockerfile contains the string `FROM`.
 
-#### check_files_exist()
+#### `check_files_exist(){:python}`
 
 Checks a given pipeline directory for required files.
 
@@ -205,7 +205,7 @@ Files that _should_ be present:
 - **Raises:**
   **An AssertionError if neither nextflow.config** **or** **main.nf found.** –
 
-#### check_licence()
+#### `check_licence(){:python}`
 
 Checks licence file is MIT.
 
@@ -215,7 +215,7 @@ Currently the checkpoints are:
 - licence contains the string _without restriction_
 - licence doesn’t have any placeholder variables
 
-#### check_nextflow_config()
+#### `check_nextflow_config(){:python}`
 
 Checks a given pipeline for required config variables.
 
@@ -223,7 +223,7 @@ Uses `nextflow config -flat` to parse pipeline `nextflow.config`
 and print all config variables.
 NB: Does NOT parse contents of main.nf / nextflow script
 
-#### check_pip_package(dep)
+#### `check_pip_package(dep){:python}`
 
 Query PyPi package information.
 
@@ -232,19 +232,19 @@ Sends a HTTP GET request to the PyPi remote API.
 - **Parameters:**
   **dep** (_str_) – A PyPi package name.
 - **Raises:**
-  **A ValueError\*\***,\*\* **if the package name can not be resolved** **or** **the connection timed out.** –
+  **A ValueError**\*\*,\*\* **if the package name can not be resolved** **or** **the connection timed out.** –
 
-#### check_pipeline_todos()
+#### `check_pipeline_todos(){:python}`
 
 Go through all template files looking for the string ‘TODO nf-core:’
 
-#### check_readme()
+#### `check_readme(){:python}`
 
 Checks the repository README file for errors.
 
 Currently just checks the badges at the top of the README.
 
-#### check_version_consistency()
+#### `check_version_consistency(){:python}`
 
 Checks container tags versions.
 
@@ -256,7 +256,7 @@ Checks that:
 - the version numbers are numeric
 - the version numbers are the same as one-another
 
-#### lint_pipeline(release_mode=False)
+#### `lint_pipeline(release_mode=False){:python}`
 
 Main linting function.
 
@@ -284,9 +284,9 @@ pipeline script). Results from this function are printed by the main script.
 - **Return type:**
   dict
 - **Raises:**
-  **If a critical problem is found\*\***,\*\* **an AssertionError is raised.** –
+  **If a critical problem is found**\*\*,\*\* **an AssertionError is raised.** –
 
-### nf_core.lint.run_linting(pipeline_dir, release_mode=False)
+### `nf_core.lint.run_linting(pipeline_dir, release_mode=False){:python}`
 
 Runs all nf-core linting checks on a given Nextflow pipeline project
 in either release mode or normal mode (default). Returns an object

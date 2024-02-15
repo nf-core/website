@@ -1,6 +1,6 @@
 # module_changes
 
-#### ModuleLint.module_changes(module)
+#### `ModuleLint.module_changes(module){:python}`
 
 Checks whether installed nf-core modules have changed compared to the
 original repository

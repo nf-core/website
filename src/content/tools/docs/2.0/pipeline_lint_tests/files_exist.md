@@ -1,17 +1,17 @@
 # files_exist
 
-#### PipelineLint.files_exist()
+#### `PipelineLint.files_exist(){:python}`
 
 Checks a given pipeline directory for required files.
 
 Iterates through the pipeline’s directory content and checks that specified
 files are either present or absent, as required.
 
-#### NOTE
-
+:::note
 This test raises an `AssertionError` if neither `nextflow.config` or `main.nf` are found.
 If these files are not found then this cannot be a Nextflow pipeline and something has gone badly wrong.
 All lint tests are stopped immediately with a critical error message.
+:::
 
 Files that _must_ be present:
 

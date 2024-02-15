@@ -1,6 +1,6 @@
 # meta_yml
 
-#### SubworkflowLint.meta_yml(subworkflow)
+#### `SubworkflowLint.meta_yml(subworkflow){:python}`
 
 Lint a `meta.yml` file
 

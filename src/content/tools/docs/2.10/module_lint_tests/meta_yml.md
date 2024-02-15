@@ -1,6 +1,6 @@
 # meta_yml
 
-#### ModuleLint.meta_yml(module)
+#### `ModuleLint.meta_yml(module){:python}`
 
 Lint a `meta.yml` file
 

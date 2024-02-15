@@ -1,6 +1,6 @@
 # readme
 
-#### PipelineLint.readme()
+#### `PipelineLint.readme(){:python}`
 
 Repository `README.md` tests
 
@@ -20,6 +20,6 @@ The `README.md` files for a project are very important and must meet some requir
     [![install with bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg)](https://bioconda.github.io/)
     ```
 
-#### NOTE
-
+:::note
 These badges are a markdown image `![alt-text](<image URL>)` _inside_ a markdown link `[markdown image](<link URL>)`, so a bit fiddly to write.
+:::
