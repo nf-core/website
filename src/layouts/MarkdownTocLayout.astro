@@ -123,6 +123,7 @@ const {
         {
             headings && headings.length > 1 && (
                 <div class="col-12 col-md-2 toc">
+                    <slot name="right-sidebar-top" />
                     <SidebarToc
                         headings={headings}
                         minHeadingDepth={minHeadingDepth}

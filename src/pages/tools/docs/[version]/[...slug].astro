@@ -19,6 +19,16 @@ export async function getStaticPaths() {
         }
         return 0;
     });
+    // put dev version first
+    versions.sort((a, b) => {
+        if (a === 'dev') {
+            return -1;
+        }
+        if (b === 'dev') {
+            return 1;
+        }
+        return 0;
+    });
     let tools_path = tools.map((entry: CollectionEntry<'tools'>) => {
         const version = entry.id.split('/')[1];
         const versioned_tools = tools.filter((tool) => tool.id.split('/')[1] === version);
@@ -70,7 +80,7 @@ export async function getStaticPaths() {
         };
     });
     // add 'latest' as a version, which is a copy of the latest version
-    const latest_version = tools_path.filter((entry) => entry.params.version === versions[0]);
+    const latest_version = tools_path.filter((entry) => entry.params.version === versions[1]);
     latest_version.map((entry) => {
         tools_path.push({
             params: { version: 'latest', slug: entry.params.slug },
@@ -81,9 +91,10 @@ export async function getStaticPaths() {
 }
 // 2. For your template, you can get the entry directly from the prop
 const { entry, sections, versions } = Astro.props;
+const { version } = Astro.params;
 let { headings, Content } = await entry.render();
 const title = 'nf-core/tools API documentation';
-const version_tag_name = Astro.params.version === 'latest' ? versions[0] : Astro.params.version;
+const version_tag_name = version === 'latest' ? versions[1] : version;
 const subtitle =
     'Automated documentation for nf-core/tools ' +
     (version_tag_name === 'dev' ? '(dev version)' : '(`' + version_tag_name + '`)') +
@@ -114,6 +125,37 @@ headings.map((heading) => {
     viewTransitions={true}
     doubleNavbar={false}
 >
+    <div slot="right-sidebar-top" class="input-group input-group-sm justify-content-end justify-content-lg-center">
+        <label class="input-group-text" for="version_select">
+            <i class="fas fa-tags"></i>
+        </label>
+        <div class="dropdown">
+            <button
+                class="btn btn-secondary dropdown-toggle rounded-start-0"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+            >
+                {version_tag_name}
+            </button>
+
+            <ul class="dropdown-menu dropdown-menu-end w-100 pipeline-versions">
+                {
+                    versions &&
+                        versions.map((v) => {
+                            let url = Astro.url.pathname.replace(`tools/docs/${version}`, `tools/docs/${v}`);
+                            return (
+                                <li>
+                                    <a class={'dropdown-item ' + (v === version_tag_name ? 'active' : '')} href={url}>
+                                        {v}
+                                    </a>
+                                </li>
+                            );
+                        })
+                }
+            </ul>
+        </div>
+    </div>
     <Content />
 </MarkdownTocLayout>
 <style lang="scss">
