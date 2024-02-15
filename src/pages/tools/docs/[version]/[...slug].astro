@@ -71,7 +71,6 @@ export async function getStaticPaths() {
     });
     // add 'latest' as a version, which is a copy of the latest version
     const latest_version = tools_path.filter((entry) => entry.params.version === versions[0]);
-    console.log('latest_version', latest_version);
     latest_version.map((entry) => {
         tools_path.push({
             params: { version: 'latest', slug: entry.params.slug },
