@@ -41,7 +41,6 @@ export default defineConfig({
     output: 'hybrid',
     adapter: netlify(),
     redirects: {
-        '/tools/docs/latest': `/tools/docs/'+${latestToolsRelease}`,
         ...latestPipelineReleases,
     },
     integrations: [
