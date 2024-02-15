@@ -1,5 +1,5 @@
 ---
-const { items, minimal } = Astro.props;
+const { items, minimal, accordion } = Astro.props;
 
 export interface Props {
     items: {
@@ -12,13 +12,14 @@ export interface Props {
         }[];
     }[];
     minimal?: boolean;
+    accordion?: boolean;
 }
 
 let url = Astro.url.pathname.endsWith('/') ? Astro.url.pathname.slice(0, -1) : Astro.url.pathname;
 url = url.replace(/\.html$/, '');
 ---
 
-<div class="nav">
+<div class:list={['nav', { accordion: accordion }]}>
     <div class="w-100 sticky-top-under">
         {
             items &&
@@ -182,6 +183,19 @@ url = url.replace(/\.html$/, '');
             & a {
                 color: $gray-200 !important;
             }
+        }
+    }
+    // show only the active section
+    .nav.accordion {
+        ul {
+            display: none;
+        }
+        h6:has(.active) ~ ul,
+        ul:has(.active) {
+            display: block;
+        }
+        div.mb-3:not(:has(.active)) {
+            margin-bottom: 0 !important;
         }
     }
 </style>
