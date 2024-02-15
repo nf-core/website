@@ -46,10 +46,11 @@ assets/multiqc_config.yaml
 :::note
 You can configure the `nf-core lint` tests to ignore any of these checks by setting
 the `files_unchanged` key as follows in your linting config file. For example:
-:::
 
 ```yaml
 files_unchanged:
   - .github/workflows/branch.yml
   - assets/multiqc_config.yaml
 ```
+
+:::

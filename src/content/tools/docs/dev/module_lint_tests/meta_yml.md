@@ -16,10 +16,11 @@ and module input is consistent between the
 If the module has inputs or outputs, they are expected to be
 formatted as:
 
-..code-block::
-: tuple val(foo) path(bar)
+```groovy
+tuple val(foo) path(bar)
 val foo
 path foo
+```
 
 or permutations of the above.
 

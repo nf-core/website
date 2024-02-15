@@ -35,9 +35,7 @@ Format a single parameter of the schema as commented YAML
   - **show_hidden** (_bool_) – Whether to include hidden parameters
 - **Returns:**
   Section of a params-file.yml for given parameter
-  None:
-  > If the parameter is skipped because it is hidden and
-  > show_hidden is not set
+  None: If the parameter is skipped because it is hidden and show_hidden is not set
 - **Return type:**
   str
 

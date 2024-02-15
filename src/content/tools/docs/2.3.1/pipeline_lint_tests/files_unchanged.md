@@ -45,9 +45,10 @@ Files that can have additional content but must include the template contents:
 :::note
 You can configure the `nf-core lint` tests to ignore any of these checks by setting
 the `files_unchanged` key as follows in your linting config file. For example:
-:::
 
 ```yaml
 files_unchanged:
   - .github/workflows/branch.yml
 ```
+
+:::
