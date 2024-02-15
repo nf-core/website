@@ -1,6 +1,6 @@
 # nextflow_config
 
-#### PipelineLint.modules_json()
+#### `PipelineLint.modules_json(){:python}`
 
 Make sure all modules described in the `modules.json` file are actually installed
 

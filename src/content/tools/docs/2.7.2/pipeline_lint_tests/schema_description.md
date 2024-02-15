@@ -1,6 +1,6 @@
 # schema_description
 
-#### PipelineLint.schema_description()
+#### `PipelineLint.schema_description(){:python}`
 
 Check that every parameter in the schema has a description
 

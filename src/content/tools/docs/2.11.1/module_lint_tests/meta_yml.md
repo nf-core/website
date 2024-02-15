@@ -1,6 +1,6 @@
 # meta_yml
 
-#### ModuleLint.meta_yml(module: NFCoreComponent)
+#### `ModuleLint.meta_yml(module: NFCoreComponent){:python}`
 
 Lint a `meta.yml` file
 

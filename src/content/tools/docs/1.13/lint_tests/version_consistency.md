@@ -1,13 +1,13 @@
 # version_consistency
 
-#### PipelineLint.version_consistency()
+#### `PipelineLint.version_consistency(){:python}`
 
 Pipeline and container version number consistency.
 
-#### NOTE
-
+:::note
 This test only runs when the `--release` flag is set for `nf-core lint`,
 or `$GITHUB_REF` is equal to `master`.
+:::
 
 This lint fetches the pipeline version number from three possible locations:
 

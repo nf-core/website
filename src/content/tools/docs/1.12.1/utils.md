@@ -2,11 +2,11 @@
 
 Common utility functions for the nf-core python package.
 
-### nf_core.utils.check_if_outdated(current_version=None, remote_version=None, source_url='https://nf-co.re/tools_version')
+### `nf_core.utils.check_if_outdated(current_version=None, remote_version=None, source_url='https://nf-co.re/tools_version'){:python}`
 
 Check if the current version of nf-core is outdated
 
-### nf_core.utils.fetch_wf_config(wf_path)
+### `nf_core.utils.fetch_wf_config(wf_path){:python}`
 
 Uses Nextflow to retrieve the the configuration variables
 from a Nextflow workflow.
@@ -18,7 +18,7 @@ from a Nextflow workflow.
 - **Return type:**
   dict
 
-### nf_core.utils.poll_nfcore_web_api(api_url, post_data=None)
+### `nf_core.utils.poll_nfcore_web_api(api_url, post_data=None){:python}`
 
 Poll the nf-core website API
 
@@ -26,18 +26,18 @@ Takes argument api_url for URL
 
 Expects API reponse to be valid JSON and contain a top-level ‘status’ key.
 
-### nf_core.utils.rich_force_colors()
+### `nf_core.utils.rich_force_colors(){:python}`
 
 Check if any environment variables are set to force Rich to use coloured output
 
-### nf_core.utils.setup_requests_cachedir()
+### `nf_core.utils.setup_requests_cachedir(){:python}`
 
 Sets up local caching for faster remote HTTP requests.
 
 Caching directory will be set up in the user’s home directory under
 a .nfcore_cache subdir.
 
-### nf_core.utils.wait_cli_function(poll_func, poll_every=20)
+### `nf_core.utils.wait_cli_function(poll_func, poll_every=20){:python}`
 
 Display a command-line spinner while calling a function repeatedly.
 

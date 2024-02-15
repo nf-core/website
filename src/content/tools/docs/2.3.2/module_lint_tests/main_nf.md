@@ -1,6 +1,6 @@
 # main_nf
 
-#### ModuleLint.main_nf(module)
+#### `ModuleLint.main_nf(module){:python}`
 
 Lint a `main.nf` module file
 

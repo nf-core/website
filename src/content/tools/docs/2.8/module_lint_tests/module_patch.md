@@ -1,6 +1,6 @@
 # module_patch
 
-#### ModuleLint.module_patch(module: NFCoreModule)
+#### `ModuleLint.module_patch(module: NFCoreModule){:python}`
 
 Lint a patch file found in a module
 

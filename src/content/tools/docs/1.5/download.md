@@ -2,7 +2,7 @@
 
 Downloads a nf-core pipeline to the local file system.
 
-### _class_ nf_core.download.DownloadWorkflow(pipeline, release=None, singularity=False, outdir=None)
+### _`class{:python}`_`nf_core.download.DownloadWorkflow(pipeline, release=None, singularity=False, outdir=None){:python}`
 
 Downloads a nf-core workflow from Github to the local file system.
 
@@ -14,28 +14,28 @@ Can also download its Singularity container image if required.
   - **singularity** (_bool_) – Flag, if the Singularity container should be downloaded as well. Defaults to False.
   - **outdir** (_str_) – Path to the local download directory. Defaults to None.
 
-#### download_wf_files()
+#### `download_wf_files(){:python}`
 
 Downloads workflow files from Github to the `self.outdir`.
 
-#### download_workflow()
+#### `download_workflow(){:python}`
 
 Starts a nf-core workflow download.
 
-#### fetch_workflow_details(wfs)
+#### `fetch_workflow_details(wfs){:python}`
 
 Fetches details of a nf-core workflow to download.
 
 - **Parameters:**
-  **wfs** ([_nf_core.list.Workflows_](list.md#nf_core.list.Workflows)) – A nf_core.list.Workflows object
+  **wfs** ([_nf_core.list.Workflows_](list#nf_core.list.Workflows)) – A nf_core.list.Workflows object
 - **Raises:**
-  **LockupError\*\***,\*\* **if the pipeline can not be found.** –
+  **LockupError**\*\*,\*\* **if the pipeline can not be found.** –
 
-#### find_container_images()
+#### `find_container_images(){:python}`
 
 Find container image names for workflow
 
-#### pull_singularity_image(container)
+#### `pull_singularity_image(container){:python}`
 
 Uses a local installation of singularity to pull an image from Docker Hub.
 
@@ -45,7 +45,7 @@ Uses a local installation of singularity to pull an image from Docker Hub.
 - **Raises:**
   **Various exceptions possible from subprocess execution** **of** **Singularity.** –
 
-#### validate_md5(fname, expected)
+#### `validate_md5(fname, expected){:python}`
 
 Calculates the md5sum for a file on the disk and validate with expected.
 
@@ -53,4 +53,4 @@ Calculates the md5sum for a file on the disk and validate with expected.
   - **fname** (_str_) – Path to a local file.
   - **expected** (_str_) – The expected md5sum.
 - **Raises:**
-  **IOError\*\***,\*\* **if the md5sum does not match the remote sum.** –
+  **IOError**\*\*,\*\* **if the md5sum does not match the remote sum.** –

@@ -1,6 +1,6 @@
 # subworkflow_version
 
-#### SubworkflowLint.subworkflow_version(subworkflow)
+#### `SubworkflowLint.subworkflow_version(subworkflow){:python}`
 
 Verifies that the subworkflow has a version specified in the `modules.json` file
 

@@ -1,6 +1,6 @@
 # subworkflow_changes
 
-#### SubworkflowLint.subworkflow_changes(subworkflow)
+#### `SubworkflowLint.subworkflow_changes(subworkflow){:python}`
 
 Checks whether installed nf-core subworkflow have changed compared to the
 original repository

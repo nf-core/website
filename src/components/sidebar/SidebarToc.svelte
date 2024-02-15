@@ -24,7 +24,7 @@
     // make margin classes from min to max heading depth
     let headingMargin = {};
     for (let i = minHeadingDepth; i <= 4; i++) {
-        headingMargin[i] = 'ps-' + (i - minHeadingDepth) * 2;
+        headingMargin[i] = 'ps-' + (i - minHeadingDepth);
     }
     let activeHeading = {};
     onMount(() => {
@@ -47,7 +47,7 @@
 </script>
 
 <div class="nav flex-column sticky-top-under align-items-end pt-1">
-    <div class="d-none d-md-inline">
+    <div class="d-none d-md-block w-100">
         {#if headings.length > 1}
             <strong class="h6 my-2 text-body">On this page</strong>
         {/if}
@@ -57,7 +57,7 @@
                 <ul class="mb-0 mt-1">
                     {#each headings as heading (heading)}
                         <li
-                            class={'nav-item ' + headingMargin[heading.depth]}
+                            class={'nav-item' + headingMargin[heading.depth]}
                             class:active={heading.slug === activeHeading}
                             class:collapse={heading.hidden && !$showHidden}
                         >

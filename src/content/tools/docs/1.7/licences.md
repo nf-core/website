@@ -2,7 +2,7 @@
 
 Lists software licences for a given workflow.
 
-### _class_ nf_core.licences.WorkflowLicences(pipeline)
+### _`class{:python}`_`nf_core.licences.WorkflowLicences(pipeline){:python}`
 
 A nf-core workflow licenses collection.
 
@@ -15,7 +15,7 @@ A condensed overview with license per dependency can be printed out.
   **pipeline** (_str_) – An existing nf-core pipeline name, like nf-core/hlatyping
   or short hlatyping.
 
-#### clean_licence_names(licences)
+#### `clean_licence_names(licences){:python}`
 
 Normalises varying licence names.
 
@@ -27,11 +27,11 @@ Normalises varying licence names.
 - **Return type:**
   list
 
-#### fetch_conda_licences()
+#### `fetch_conda_licences(){:python}`
 
 Fetch package licences from Anaconda and PyPi.
 
-#### print_licences(as_json=False)
+#### `print_licences(as_json=False){:python}`
 
 Prints the fetched license information.
 

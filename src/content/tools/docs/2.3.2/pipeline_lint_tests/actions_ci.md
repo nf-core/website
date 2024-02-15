@@ -1,6 +1,6 @@
 # actions_ci
 
-#### PipelineLint.actions_ci()
+#### `PipelineLint.actions_ci(){:python}`
 
 Checks that the GitHub Actions pipeline CI (Continuous Integration) workflow is valid.
 
@@ -29,11 +29,11 @@ This lint test checks this GitHub Actions workflow file for the following:
       nxf_ver: ['19.10.0', '']
   ```
 
-  #### NOTE
-
+  :::note
   These `matrix` variables run the test workflow twice, varying the `nxf_ver` variable each time.
   This is used in the `nextflow run` commands to test the pipeline with both the latest available version
   of the pipeline (`''`) and the stated minimum required version.
+  :::
 
 - The Docker container for the pipeline must use the correct pipeline version number:
 
@@ -53,7 +53,7 @@ This lint test checks this GitHub Actions workflow file for the following:
   >   ```
 
   > - name: Pull docker image
-  >   if: ${{ !env.GIT_DIFF }}
+  >   if: ${{ !env.GIT\_DIFF }}
   >   run: |
   >   docker pull nfcore/example:dev
   >   docker tag nfcore/example:dev nfcore/example:1.0.0

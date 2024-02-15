@@ -1,6 +1,6 @@
 # main_nf
 
-#### ModuleLint.main_nf(module, fix_version, progress_bar)
+#### `ModuleLint.main_nf(module, fix_version, progress_bar){:python}`
 
 Lint a `main.nf` module file
 

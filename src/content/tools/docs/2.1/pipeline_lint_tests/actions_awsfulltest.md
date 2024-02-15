@@ -1,6 +1,6 @@
 # actions_awsfulltest
 
-#### PipelineLint.actions_awsfulltest()
+#### `PipelineLint.actions_awsfulltest(){:python}`
 
 Checks the GitHub Actions awsfulltest is valid.
 
@@ -9,15 +9,19 @@ This should ensure that the pipeline runs as expected on AWS and provide a resou
 
 The GitHub Actions workflow is called `awsfulltest.yml`, and it can be found in the `.github/workflows/` directory.
 
-#### WARNING
-
+:::warning
 This workflow incurs AWS costs, therefore it should only be triggered for pipeline releases:
 `release` (after the pipeline release) and `workflow_dispatch`.
+:::
 
-#### NOTE
-
+:::note
 You can manually trigger the AWS tests by going to the Actions tab on the pipeline GitHub repository and selecting the
 nf-core AWS full size tests workflow on the left.
+:::
+
+:::note
+For tests on full data prior to release, [Nextflow Tower](https://tower.nf) launch feature can be employed.
+:::
 
 The `.github/workflows/awsfulltest.yml` file is tested for the following:
 

@@ -1,6 +1,6 @@
 # subworkflow_tests
 
-#### SubworkflowLint.subworkflow_tests(subworkflow)
+#### `SubworkflowLint.subworkflow_tests(subworkflow){:python}`
 
 Lint the tests of a subworkflow in `nf-core/modules`
 

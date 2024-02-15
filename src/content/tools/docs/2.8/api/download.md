@@ -2,18 +2,18 @@
 
 Downloads a nf-core pipeline to the local file system.
 
-### _class_ nf_core.download.DownloadProgress(\*columns: str | ProgressColumn, console: Console | None = None, auto_refresh: bool = True, refresh_per_second: float = 10, speed_estimate_period: float = 30.0, transient: bool = False, redirect_stdout: bool = True, redirect_stderr: bool = True, get_time: Callable[[], float] | None = None, disable: bool = False, expand: bool = False)
+### _`class{:python}`_`nf_core.download.DownloadProgress(*columns: str | ProgressColumn, console: Console | None = None, auto_refresh: bool = True, refresh_per_second: float = 10, speed_estimate_period: float = 30.0, transient: bool = False, redirect_stdout: bool = True, redirect_stderr: bool = True, get_time: Callable[[], float] | None = None, disable: bool = False, expand: bool = False){:python}`
 
 Bases: `Progress`
 
 Custom Progress bar class, allowing us to have two progress
 bars with different columns / layouts.
 
-#### get_renderables()
+#### `get_renderables(){:python}`
 
 Get a number of renderables for the progress display.
 
-### _class_ nf_core.download.DownloadWorkflow(pipeline=None, revision=None, outdir=None, compress_type=None, force=False, container=None, singularity_cache_only=False, parallel_downloads=4)
+### _`class{:python}`_`nf_core.download.DownloadWorkflow(pipeline=None, revision=None, outdir=None, compress_type=None, force=False, container=None, singularity_cache_only=False, parallel_downloads=4){:python}`
 
 Bases: `object`
 
@@ -27,23 +27,23 @@ Can also download its Singularity container image if required.
   - **singularity** (_bool_) – Flag, if the Singularity container should be downloaded as well. Defaults to False.
   - **outdir** (_str_) – Path to the local download directory. Defaults to None.
 
-#### compress_download()
+#### `compress_download(){:python}`
 
 Take the downloaded files and make a compressed .tar.gz archive.
 
-#### download_configs()
+#### `download_configs(){:python}`
 
 Downloads the centralised config profiles from nf-core/configs to `self.outdir`.
 
-#### download_wf_files()
+#### `download_wf_files(){:python}`
 
 Downloads workflow files from GitHub to the `self.outdir`.
 
-#### download_workflow()
+#### `download_workflow(){:python}`
 
 Starts a nf-core workflow download.
 
-#### find_container_images()
+#### `find_container_images(){:python}`
 
 Find container image names for workflow.
 
@@ -60,11 +60,9 @@ Example syntax:
 
 Early DSL2:
 : if (workflow.containerEngine == ‘singularity’ && !params.singularity_pull_docker_container) {
-: container “[https://depot.galaxyproject.org/singularity/fastqc:0.11.9–0](https://depot.galaxyproject.org/singularity/fastqc:0.11.9--0)”
-<br/>
+: container “[https://depot.galaxyproject.org/singularity/fastqc:0.11.9–0](https://depot.galaxyproject.org/singularity/fastqc:0.11.9--0)” <br/>
 } else {
-: container “quay.io/biocontainers/fastqc:0.11.9–0”
-<br/>
+: container “quay.io/biocontainers/fastqc:0.11.9–0” <br/>
 }
 
 Later DSL2:
@@ -75,43 +73,43 @@ Later DSL2:
 DSL1 / Special case DSL2:
 : container “nfcore/cellranger:6.0.2”
 
-#### get_revision_hash()
+#### `get_revision_hash(){:python}`
 
 Find specified revision / branch hash
 
-#### get_singularity_images()
+#### `get_singularity_images(){:python}`
 
 Loop through container names and download Singularity images
 
-#### prompt_compression_type()
+#### `prompt_compression_type(){:python}`
 
 Ask user if we should compress the downloaded files
 
-#### prompt_container_download()
+#### `prompt_container_download(){:python}`
 
 Prompt whether to download container images or not
 
-#### prompt_pipeline_name()
+#### `prompt_pipeline_name(){:python}`
 
 Prompt for the pipeline name if not set with a flag
 
-#### prompt_revision()
+#### `prompt_revision(){:python}`
 
 Prompt for pipeline revision / branch
 
-#### prompt_singularity_cachedir_only()
+#### `prompt_singularity_cachedir_only(){:python}`
 
 Ask if we should _only_ use $NXF_SINGULARITY_CACHEDIR without copying into target
 
-#### prompt_use_singularity_cachedir()
+#### `prompt_use_singularity_cachedir(){:python}`
 
 Prompt about using $NXF_SINGULARITY_CACHEDIR if not already set
 
-#### singularity_copy_cache_image(container, out_path, cache_path)
+#### `singularity_copy_cache_image(container, out_path, cache_path){:python}`
 
 Copy Singularity image from NXF_SINGULARITY_CACHEDIR to target folder.
 
-#### singularity_download_image(container, out_path, cache_path, progress)
+#### `singularity_download_image(container, out_path, cache_path, progress){:python}`
 
 Download a singularity image from the web.
 
@@ -121,10 +119,10 @@ Use native Python to download the file.
   - **container** (_str_) – A pipeline’s container name. Usually it is of similar format
     to `https://depot.galaxyproject.org/singularity/name:version`
   - **out_path** (_str_) – The final target output path
-  - **cache_path** (_str\*\*,_ _None_) – The NXF_SINGULARITY_CACHEDIR path if set, None if not
+  - **cache_path** (_str_\*,\* _None_) – The NXF_SINGULARITY_CACHEDIR path if set, None if not
   - **progress** (_Progress_) – Rich progress bar instance to add tasks to.
 
-#### singularity_image_filenames(container)
+#### `singularity_image_filenames(container){:python}`
 
 Check Singularity cache for image, copy to destination folder if found.
 
@@ -137,7 +135,7 @@ Check Singularity cache for image, copy to destination folder if found.
 - **Return type:**
   results (bool, str)
 
-#### singularity_pull_image(container, out_path, cache_path, progress)
+#### `singularity_pull_image(container, out_path, cache_path, progress){:python}`
 
 Pull a singularity image using `singularity pull`
 
@@ -149,6 +147,6 @@ Attempt to use a local installation of singularity to pull the image.
 - **Raises:**
   **Various exceptions possible from subprocess execution** **of** **Singularity.** –
 
-#### wf_use_local_configs()
+#### `wf_use_local_configs(){:python}`
 
 Edit the downloaded nextflow.config file to use the local config files

@@ -1,6 +1,6 @@
 # files_unchanged
 
-#### PipelineLint.files_unchanged()
+#### `PipelineLint.files_unchanged(){:python}`
 
 Checks that certain pipeline files are not modified from template output.
 
@@ -46,4 +46,15 @@ Files that need to be there or not based on a entry in nextflow config:
 
 ```default
 lib/nfcore_external_java_deps.jar # if config doesn't mention nf-validation
+```
+
+:::note
+You can configure the `nf-core lint` tests to ignore any of these checks by setting
+the `files_unchanged` key as follows in your `.nf-core.yml` config file. For example:
+:::
+
+```yaml
+lint:
+  files_unchanged:
+    - .github/workflows/branch.yml
 ```

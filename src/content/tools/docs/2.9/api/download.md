@@ -2,61 +2,61 @@
 
 Downloads a nf-core pipeline to the local file system.
 
-### _exception_ nf_core.download.ContainerError(container, registry, address, out_path, singularity_command, error_msg)
+### _`exception{:python}`_`nf_core.download.ContainerError(container, registry, address, out_path, singularity_command, error_msg){:python}`
 
 Bases: `Exception`
 
 A class of errors related to pulling containers with Singularity/Apptainer
 
-#### _exception_ ImageExists(error_log)
+#### `undefined{:python}` ImageExists(error_log)
 
 Bases: `FileExistsError`
 
 Image already exists in cache/output directory.
 
-#### _exception_ ImageNotFound(error_log)
+#### `undefined{:python}` ImageNotFound(error_log)
 
 Bases: `FileNotFoundError`
 
 The image can not be found in the registry
 
-#### _exception_ InvalidTag(error_log)
+#### `undefined{:python}` InvalidTag(error_log)
 
 Bases: `AttributeError`
 
 Image and registry are valid, but the (version) tag is not
 
-#### _exception_ OtherError(error_log)
+#### `undefined{:python}` OtherError(error_log)
 
 Bases: `RuntimeError`
 
 Undefined error with the container
 
-#### _exception_ RegistryNotFound(error_log)
+#### `undefined{:python}` RegistryNotFound(error_log)
 
 Bases: `ConnectionRefusedError`
 
 The specified registry does not resolve to a valid IP address
 
-### _exception_ nf_core.download.DownloadError
+### _`exception{:python}`_`nf_core.download.DownloadError{:python}`
 
 Bases: `RuntimeError`
 
 A custom exception that is raised when nf-core download encounters a problem that we already took into consideration.
 In this case, we do not want to print the traceback, but give the user some concise, helpful feedback instead.
 
-### _class_ nf_core.download.DownloadProgress(\*columns: str | ProgressColumn, console: Console | None = None, auto_refresh: bool = True, refresh_per_second: float = 10, speed_estimate_period: float = 30.0, transient: bool = False, redirect_stdout: bool = True, redirect_stderr: bool = True, get_time: Callable[[], float] | None = None, disable: bool = False, expand: bool = False)
+### _`class{:python}`_`nf_core.download.DownloadProgress(*columns: str | ProgressColumn, console: Console | None = None, auto_refresh: bool = True, refresh_per_second: float = 10, speed_estimate_period: float = 30.0, transient: bool = False, redirect_stdout: bool = True, redirect_stderr: bool = True, get_time: Callable[[], float] | None = None, disable: bool = False, expand: bool = False){:python}`
 
 Bases: `Progress`
 
 Custom Progress bar class, allowing us to have two progress
 bars with different columns / layouts.
 
-#### get_renderables()
+#### `get_renderables(){:python}`
 
 Get a number of renderables for the progress display.
 
-### _class_ nf_core.download.DownloadWorkflow(pipeline=None, revision=None, outdir=None, compress_type=None, force=False, tower=False, download_configuration=None, container_system=None, container_library=None, container_cache_utilisation=None, container_cache_index=None, parallel_downloads=4)
+### _`class{:python}`_`nf_core.download.DownloadWorkflow(pipeline=None, revision=None, outdir=None, compress_type=None, force=False, tower=False, download_configuration=None, container_system=None, container_library=None, container_cache_utilisation=None, container_cache_index=None, parallel_downloads=4){:python}`
 
 Bases: `object`
 
@@ -66,36 +66,36 @@ Can also download its Singularity container image if required.
 
 - **Parameters:**
   - **pipeline** (_str_) – A nf-core pipeline name.
-  - **revision** (_List**[**str\*\*]_) – The workflow revision to download, like 1.0. Defaults to None.
+  - **revision** (_List_\*\[**str**]\*) – The workflow revision to download, like 1.0. Defaults to None.
   - **container** (_bool_) – Flag, if the Singularity container should be downloaded as well. Defaults to False.
   - **tower** (_bool_) – Flag, to customize the download for Nextflow Tower (convert to git bare repo). Defaults to False.
   - **outdir** (_str_) – Path to the local download directory. Defaults to None.
 
-#### compress_download()
+#### `compress_download(){:python}`
 
 Take the downloaded files and make a compressed .tar.gz archive.
 
-#### download_configs()
+#### `download_configs(){:python}`
 
 Downloads the centralised config profiles from nf-core/configs to `self.outdir`.
 
-#### download_wf_files(revision, wf_sha, download_url)
+#### `download_wf_files(revision, wf_sha, download_url){:python}`
 
 Downloads workflow files from GitHub to the `self.outdir`.
 
-#### download_workflow()
+#### `download_workflow(){:python}`
 
 Starts a nf-core workflow download.
 
-#### download_workflow_static()
+#### `download_workflow_static(){:python}`
 
 Downloads a nf-core workflow from GitHub to the local file system in a self-contained manner.
 
-#### download_workflow_tower(location=None)
+#### `download_workflow_tower(location=None){:python}`
 
-Create a bare-cloned git repository of the workflow, so it can be launched with tw launch as [file:/](file:/) pipeline
+Create a bare-cloned git repository of the workflow, so it can be launched with tw launch as <file:/> pipeline
 
-#### find_container_images(workflow_directory)
+#### `find_container_images(workflow_directory){:python}`
 
 Find container image names for workflow.
 
@@ -107,31 +107,31 @@ Second, we look for DSL2 containers. These can’t be found with
 nextflow config at the time of writing, so we scrape the pipeline files.
 This returns raw matches that will likely need to be cleaned.
 
-#### get_revision_hash()
+#### `get_revision_hash(){:python}`
 
 Find specified revision / branch hash
 
-#### get_singularity_images(current_revision='')
+#### `get_singularity_images(current_revision=''){:python}`
 
 Loop through container names and download Singularity images
 
-#### prompt_compression_type()
+#### `prompt_compression_type(){:python}`
 
 Ask user if we should compress the downloaded files
 
-#### prompt_config_inclusion()
+#### `prompt_config_inclusion(){:python}`
 
 Prompt for inclusion of institutional configurations
 
-#### prompt_container_download()
+#### `prompt_container_download(){:python}`
 
 Prompt whether to download container images or not
 
-#### prompt_pipeline_name()
+#### `prompt_pipeline_name(){:python}`
 
 Prompt for the pipeline name if not set with a flag
 
-#### prompt_revision()
+#### `prompt_revision(){:python}`
 
 Prompt for pipeline revision / branch
 Prompt user for revision tag if ‘–revision’ was not set
@@ -139,23 +139,23 @@ If –tower is specified, allow to select multiple revisions
 Also the static download allows for multiple revisions, but
 we do not prompt this option interactively.
 
-#### prompt_singularity_cachedir_creation()
+#### `prompt_singularity_cachedir_creation(){:python}`
 
 Prompt about using $NXF_SINGULARITY_CACHEDIR if not already set
 
-#### prompt_singularity_cachedir_remote()
+#### `prompt_singularity_cachedir_remote(){:python}`
 
 Prompt about the index of a remote $NXF_SINGULARITY_CACHEDIR
 
-#### prompt_singularity_cachedir_utilization()
+#### `prompt_singularity_cachedir_utilization(){:python}`
 
 Ask if we should _only_ use $NXF_SINGULARITY_CACHEDIR without copying into target
 
-#### read_remote_containers()
+#### `read_remote_containers(){:python}`
 
 Reads the file specified as index for the remote Singularity cache dir
 
-#### rectify_raw_container_matches(raw_findings)
+#### `rectify_raw_container_matches(raw_findings){:python}`
 
 Helper function to rectify the raw extracted container matches into fully qualified container names.
 If multiple containers are found, any prefixed with http for direct download is prioritized
@@ -164,11 +164,9 @@ Example syntax:
 
 Early DSL2:
 : if (workflow.containerEngine == ‘singularity’ && !params.singularity_pull_docker_container) {
-: container “[https://depot.galaxyproject.org/singularity/fastqc:0.11.9–0](https://depot.galaxyproject.org/singularity/fastqc:0.11.9--0)”
-<br/>
+: container “[https://depot.galaxyproject.org/singularity/fastqc:0.11.9–0](https://depot.galaxyproject.org/singularity/fastqc:0.11.9--0)” <br/>
 } else {
-: container “quay.io/biocontainers/fastqc:0.11.9–0”
-<br/>
+: container “quay.io/biocontainers/fastqc:0.11.9–0” <br/>
 }
 
 Later DSL2:
@@ -177,20 +175,19 @@ Later DSL2:
 ‘biocontainers/fastqc:0.11.9–0’ }”
 
 Later DSL2, variable is being used:
-: container “${ workflow.containerEngine == ‘singularity’ && !task.ext.singularity_pull_docker_container ?
-  : “[https://depot.galaxyproject.org/singularity](https://depot.galaxyproject.org/singularity)/${container_id}” :
-“quay.io/biocontainers/${container_id}” }”
-<br/>
+: container “${ workflow.containerEngine == ‘singularity’ && !task.ext.singularity\_pull\_docker\_container ?
+: “<https://depot.galaxyproject.org/singularity>/${container_id}” :
+“quay.io/biocontainers/${container_id}” }” <br/>
 container_id = ‘mulled-v2-1fa26d1ce03c295fe2fdcf85831a92fbcbd7e8c2:afaaa4c6f5b308b4b6aa2dd8e99e1466b2a6b0cd-0’
 
 DSL1 / Special case DSL2:
 : container “nfcore/cellranger:6.0.2”
 
-#### singularity_copy_cache_image(container, out_path, cache_path)
+#### `singularity_copy_cache_image(container, out_path, cache_path){:python}`
 
 Copy Singularity image from NXF_SINGULARITY_CACHEDIR to target folder.
 
-#### singularity_download_image(container, out_path, cache_path, progress)
+#### `singularity_download_image(container, out_path, cache_path, progress){:python}`
 
 Download a singularity image from the web.
 
@@ -200,10 +197,10 @@ Use native Python to download the file.
   - **container** (_str_) – A pipeline’s container name. Usually it is of similar format
     to `https://depot.galaxyproject.org/singularity/name:version`
   - **out_path** (_str_) – The final target output path
-  - **cache_path** (_str\*\*,_ _None_) – The NXF_SINGULARITY_CACHEDIR path if set, None if not
+  - **cache_path** (_str_\*,\* _None_) – The NXF_SINGULARITY_CACHEDIR path if set, None if not
   - **progress** (_Progress_) – Rich progress bar instance to add tasks to.
 
-#### singularity_image_filenames(container)
+#### `singularity_image_filenames(container){:python}`
 
 Check Singularity cache for image, copy to destination folder if found.
 
@@ -216,7 +213,7 @@ Check Singularity cache for image, copy to destination folder if found.
 - **Return type:**
   results (bool, str)
 
-#### singularity_pull_image(container, out_path, cache_path, library, progress)
+#### `singularity_pull_image(container, out_path, cache_path, library, progress){:python}`
 
 Pull a singularity image using `singularity pull`
 
@@ -229,11 +226,11 @@ Attempt to use a local installation of singularity to pull the image.
 - **Raises:**
   **Various exceptions possible from subprocess execution** **of** **Singularity.** –
 
-#### wf_use_local_configs(revision_dirname)
+#### `wf_use_local_configs(revision_dirname){:python}`
 
 Edit the downloaded nextflow.config file to use the local config files
 
-### _class_ nf_core.download.WorkflowRepo(remote_url, revision, commit, location=None, hide_progress=False, in_cache=True)
+### _`class{:python}`_`nf_core.download.WorkflowRepo(remote_url, revision, commit, location=None, hide_progress=False, in_cache=True){:python}`
 
 Bases: `SyncedRepo`
 
@@ -243,18 +240,18 @@ Important Attributes:
 : fullname: The full name of the repository, `nf-core/{self.pipelinename}`.
 local_repo_dir (str): The local directory, where the workflow is cloned into. Defaults to `$HOME/.cache/nf-core/nf-core/{self.pipeline}`.
 
-#### access()
+#### `access(){:python}`
 
-#### bare_clone(destination)
+#### `bare_clone(destination){:python}`
 
-#### checkout(commit)
+#### `checkout(commit){:python}`
 
 Checks out the repository at the requested commit
 
 - **Parameters:**
   **commit** (_str_) – Git SHA of the commit
 
-#### get_remote_branches(remote_url)
+#### `get_remote_branches(remote_url){:python}`
 
 Get all branches from a remote repository
 
@@ -263,11 +260,11 @@ Get all branches from a remote repository
 - **Returns:**
   All branches found in the remote
 - **Return type:**
-  (set[str])
+  (set\[str])
 
-#### retry_setup_local_repo(skip_confirm=False)
+#### `retry_setup_local_repo(skip_confirm=False){:python}`
 
-#### setup_local_repo(remote, location=None, in_cache=True)
+#### `setup_local_repo(remote, location=None, in_cache=True){:python}`
 
 Sets up the local git repository. If the repository has been cloned previously, it
 returns a git.Repo object of that clone. Otherwise it tries to clone the repository from
@@ -276,11 +273,11 @@ the provided remote URL and returns a git.Repo of the new clone.
 - **Parameters:**
   - **remote** (_str_) – git url of remote
   - **location** (_Path_) – location where the clone should be created/cached.
-  - **in_cache** (_bool\*\*,_ _optional_) – Whether to clone the repository from the cache. Defaults to False.
+  - **in_cache** (_bool_\*,\* _optional_) – Whether to clone the repository from the cache. Defaults to False.
 
 Sets self.repo
 
-#### tidy_tags_and_branches()
+#### `tidy_tags_and_branches(){:python}`
 
 Function to delete all tags and branches that are not of interest to the downloader.
 This allows a clutter-free experience in Tower. The untagged commits are evidently still available.

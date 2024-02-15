@@ -1,6 +1,6 @@
 # modules_structure
 
-#### PipelineLint.modules_structure()
+#### `PipelineLint.modules_structure(){:python}`
 
 Check that the structure of the modules directory in a pipeline is the correct one:
 : modules/nf-core/TOOL/SUBTOOL

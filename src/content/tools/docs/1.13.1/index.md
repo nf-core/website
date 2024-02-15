@@ -13,6 +13,6 @@ test), and also reference for the `nf_core` [Python package API](api/index.html)
 
 # Indices and tables
 
-- [Index](genindex.md)
-- [Module Index](py-modindex.md)
-- [Search Page](search.md)
+- [Index](genindex)
+- [Module Index](py-modindex)
+- [Search Page](search)

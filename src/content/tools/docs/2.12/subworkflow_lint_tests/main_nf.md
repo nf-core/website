@@ -1,6 +1,6 @@
 # main_nf
 
-#### SubworkflowLint.main_nf(subworkflow)
+#### `SubworkflowLint.main_nf(subworkflow){:python}`
 
 Lint a `main.nf` subworkflow file
 
