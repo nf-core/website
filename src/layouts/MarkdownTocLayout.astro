@@ -1,9 +1,9 @@
 ---
 import PageLayout from '@layouts/PageLayout.astro';
 import MarkdownWrapper from '@components/markdown/MarkdownWrapper.svelte';
-import SidebarNav from '@components/sidebar/SidebarNav.astro';
 import SidebarToc from '@components/sidebar/SidebarToc.svelte';
 import 'katex/dist/katex.min.css';
+import AccordionSidebarNav from '@components/sidebar/AccordionSidebarNav.astro';
 
 export interface Props {
     title: string;
@@ -101,14 +101,14 @@ const {
     <div class="row">
         {
             leftSidebar && (
-                <div class="col-12 col-md-2 d-none d-md-block sidebar-left pt-1">
-                    <div class="sticky-top-under">
+                <div class="col-12 col-md-2 d-none d-md-block pt-1 mvh-100 sticky-top-under">
+                    <div class="sidebar-left">
                         {sidebarTitle && (
                             <div class="sidebar-title">
                                 <strong class="h6 p-2 text-body">{sidebarTitle}</strong>
                             </div>
                         )}
-                        <SidebarNav items={sections} />
+                        <AccordionSidebarNav items={sections} />
                     </div>
                 </div>
             )
