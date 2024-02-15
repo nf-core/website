@@ -4051,6 +4051,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -18448,7 +18452,13 @@
           "@sarah-buddle",
           "@jfy133"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "createtaxdb",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "centrifuge_centrifuge",
@@ -20151,6 +20161,13 @@
                 "GPL v2"
               ]
             }
+          },
+          {
+            "pigz": {
+              "description": "Parallel implementation of the gzip algorithm.",
+              "homepage": "https://zlib.net/pigz/",
+              "documentation": "https://zlib.net/pigz/pigz.pdf"
+            }
           }
         ],
         "input": [
@@ -20179,6 +20196,12 @@
               "description": "Input guide tree in Newick format",
               "pattern": "*.{dnd}"
             }
+          },
+          {
+            "compress": {
+              "type": "boolean",
+              "description": "Flag representing whether the output MSA should be compressed. Set to true to enable/false to disable compression. Compression is done using pigz, and is multithreaded."
+            }
           }
         ],
         "output": [
@@ -20191,8 +20214,8 @@
           {
             "alignment": {
               "type": "file",
-              "description": "Alignment file.",
-              "pattern": "*.{aln}"
+              "description": "Alignment file, in gzipped fasta format",
+              "pattern": "*.aln{.gz,}"
             }
           },
           {
@@ -20209,7 +20232,8 @@
         ],
         "maintainers": [
           "@luisas",
-          "@joseespinosa"
+          "@joseespinosa",
+          "@lrauschning"
         ]
       },
       "pipelines": [
@@ -31493,6 +31517,12 @@
               "description": "Input guide tree in Newick format",
               "pattern": "*.{dnd}"
             }
+          },
+          {
+            "compress": {
+              "type": "boolean",
+              "description": "Flag representing whether the output MSA should be compressed. Set to true to enable/false to disable compression. Compression is handled by passing '-gz' to FAMSA along with any other options specified in task.ext.args."
+            }
           }
         ],
         "output": [
@@ -31505,8 +31535,8 @@
           {
             "alignment": {
               "type": "file",
-              "description": "Alignment file.",
-              "pattern": "*.{aln}"
+              "description": "Alignment file, in FASTA format. May be gzipped or uncompressed, depending on if compress is set to true or false",
+              "pattern": "*.aln{.gz,}"
             }
           },
           {
@@ -37584,6 +37614,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -38309,6 +38343,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -43682,6 +43720,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -43922,7 +43964,7 @@
             }
           },
           {
-            "ref_dict": {
+            "dict": {
               "type": "file",
               "description": "Optional Sequence Dictionary as input",
               "pattern": "*.dict"
@@ -45631,6 +45673,13 @@
               "type": "file",
               "description": "The index file of the VCF",
               "pattern": "*.vcf.gz.tbi"
+            }
+          },
+          {
+            "bed": {
+              "type": "file",
+              "description": "Regions to limit the analysis to",
+              "pattern": "*.bed"
             }
           },
           {
@@ -64341,6 +64390,13 @@
                 "BSD"
               ]
             }
+          },
+          {
+            "pigz": {
+              "description": "Parallel implementation of the gzip algorithm.",
+              "homepage": "https://zlib.net/pigz/",
+              "documentation": "https://zlib.net/pigz/pigz.pdf"
+            }
           }
         ],
         "input": [
@@ -64353,8 +64409,8 @@
           {
             "fasta": {
               "type": "file",
-              "description": "FASTA file containing the sequences to align",
-              "pattern": "*.{fa,fasta}"
+              "description": "FASTA file containing the sequences to align. May be gzipped or uncompressed.",
+              "pattern": "*.{fa,fasta}{.gz,}"
             }
           },
           {
@@ -64366,8 +64422,8 @@
           {
             "add": {
               "type": "file",
-              "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--add`",
-              "pattern": "*.{fa,fasta}"
+              "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--add`. May be gzipped or uncompressed.",
+              "pattern": "*.{fa,fasta}{.gz,}"
             }
           },
           {
@@ -64379,8 +64435,8 @@
           {
             "addfragments": {
               "type": "file",
-              "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--addfragments`",
-              "pattern": "*.{fa,fasta}"
+              "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--addfragments`. May be gzipped or uncompressed.",
+              "pattern": "*.{fa,fasta}{.gz,}"
             }
           },
           {
@@ -64392,8 +64448,8 @@
           {
             "addfull": {
               "type": "file",
-              "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--addfull`",
-              "pattern": "*.{fa,fasta}"
+              "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--addfull`. May be gzipped or uncompressed.",
+              "pattern": "*.{fa,fasta}{.gz,}"
             }
           },
           {
@@ -64405,8 +64461,8 @@
           {
             "addprofile": {
               "type": "file",
-              "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--addprofile`",
-              "pattern": "*.{fa,fasta}"
+              "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--addprofile`. May be gzipped or uncompressed.",
+              "pattern": "*.{fa,fasta}{.gz,}"
             }
           },
           {
@@ -64418,8 +64474,14 @@
           {
             "addlong": {
               "type": "file",
-              "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--addlong`",
-              "pattern": "*.{fa,fasta}"
+              "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--addlong`. May be gzipped or uncompressed.",
+              "pattern": "*.{fa,fasta}{.gz,}"
+            }
+          },
+          {
+            "compress": {
+              "type": "boolean",
+              "description": "Flag representing whether the output MSA should be compressed. Set to true to enable/false to disable compression. Compression is done using pigz, and is multithreaded."
             }
           }
         ],
@@ -64440,8 +64502,8 @@
           {
             "fas": {
               "type": "file",
-              "description": "Aligned sequences in FASTA format",
-              "pattern": "*.{fas}"
+              "description": "Aligned sequences in FASTA format. May be gzipped or uncompressed.",
+              "pattern": "*.fas{.gz,}"
             }
           }
         ],
@@ -72177,6 +72239,13 @@
                 "None"
               ]
             }
+          },
+          {
+            "pigz": {
+              "description": "Parallel implementation of the gzip algorithm.",
+              "homepage": "https://zlib.net/pigz/",
+              "documentation": "https://zlib.net/pigz/pigz.pdf"
+            }
           }
         ],
         "input": [
@@ -72189,8 +72258,14 @@
           {
             "pdbs": {
               "type": "file",
-              "description": "Input protein structures in PDB format. They should contain exactly one chain!",
+              "description": "Input protein structures in PDB format. Files may be gzipped or uncompressed. They should contain exactly one chain!",
               "pattern": "*.{pdb}"
+            }
+          },
+          {
+            "compress": {
+              "type": "boolean",
+              "description": "Flag representing whether the output MSA should be compressed. Set to true to enable/false to disable compression. Compression is done using pigz, and is multithreaded."
             }
           }
         ],
@@ -72204,15 +72279,15 @@
           {
             "alignment": {
               "type": "file",
-              "description": "Alignment in FASTA format.",
-              "pattern": "*.aln"
+              "description": "Alignment in FASTA format. May be gzipped or uncompressed.",
+              "pattern": "*.aln{.gz,}"
             }
           },
           {
             "structure": {
               "type": "file",
-              "description": "Overlaid structures in PDB format.",
-              "pattern": "${prefix}.pdb"
+              "description": "Overlaid structures in PDB format. May be gzipped or uncompressed.",
+              "pattern": "${prefix}.pdb{.gz,}"
             }
           },
           {
@@ -73218,6 +73293,13 @@
                 "Public Domain"
               ]
             }
+          },
+          {
+            "pigz": {
+              "description": "Parallel implementation of the gzip algorithm.",
+              "homepage": "https://zlib.net/pigz/",
+              "documentation": "https://zlib.net/pigz/pigz.pdf"
+            }
           }
         ],
         "input": [
@@ -73232,6 +73314,12 @@
               "type": "file",
               "description": "Input sequences for alignment must be in FASTA format",
               "pattern": "*.{fasta,fa,fna}"
+            }
+          },
+          {
+            "compress": {
+              "type": "boolean",
+              "description": "Flag representing whether the output MSA should be compressed. Set to true to enable/false to disable compression. Compression is done using pigz, and is multithreaded."
             }
           }
         ],
@@ -73252,8 +73340,8 @@
           {
             "alignment": {
               "type": "file",
-              "description": "Multiple sequence alignment produced in FASTA format",
-              "pattern": "*.{aln}"
+              "description": "Multiple sequence alignment produced in gzipped FASTA format. If '-perm all' is passed in ext.args, this will be multiple files per input!",
+              "pattern": "*.{aln.gz}"
             }
           }
         ],
@@ -73263,7 +73351,8 @@
         ],
         "maintainers": [
           "@alessiovignoli",
-          "@JoseEspinosa"
+          "@JoseEspinosa",
+          "@lrauschning"
         ]
       },
       "pipelines": [
@@ -82254,10 +82343,6 @@
         {
           "name": "raredisease",
           "version": "1.1.1"
-        },
-        {
-          "name": "rnadnavar",
-          "version": "dev"
         },
         {
           "name": "rnaseq",
@@ -108751,6 +108836,13 @@
                 "GPL v3"
               ]
             }
+          },
+          {
+            "pigz": {
+              "description": "Parallel implementation of the gzip algorithm.",
+              "homepage": "https://zlib.net/pigz/",
+              "documentation": "https://zlib.net/pigz/pigz.pdf"
+            }
           }
         ],
         "input": [
@@ -108799,6 +108891,12 @@
               "description": "Accessory files to be used in the alignment. For example, it could be protein structures or secondary structures.",
               "pattern": "*"
             }
+          },
+          {
+            "compress": {
+              "type": "boolean",
+              "description": "Flag representing whether the output MSA should be compressed. Set to true to enable/false to disable compression. Compression is done using pigz, and is multithreaded."
+            }
           }
         ],
         "output": [
@@ -108811,8 +108909,8 @@
           {
             "alignment": {
               "type": "file",
-              "description": "Alignment file.",
-              "pattern": "*.{aln}"
+              "description": "Alignment file in FASTA format. May be gzipped.",
+              "pattern": "*.aln{.gz,}"
             }
           },
           {
@@ -108829,7 +108927,8 @@
         ],
         "maintainers": [
           "@luisas",
-          "@JoseEspinosa"
+          "@JoseEspinosa",
+          "@lrauschning"
         ]
       },
       "pipelines": [
@@ -108863,6 +108962,13 @@
                 "GPL v3"
               ]
             }
+          },
+          {
+            "pigz": {
+              "description": "Parallel implementation of the gzip algorithm.",
+              "homepage": "https://zlib.net/pigz/",
+              "documentation": "https://zlib.net/pigz/pigz.pdf"
+            }
           }
         ],
         "input": [
@@ -108875,15 +108981,15 @@
           {
             "msa": {
               "type": "file",
-              "description": "fasta file containing the alignment to be evaluated",
-              "pattern": "*.{aln,fa,fasta,fas}"
+              "description": "fasta file containing the alignment to be evaluated. Can be gzipped or uncompressed",
+              "pattern": "*.{aln,fa,fasta,fas}{.gz,}"
             }
           },
           {
             "ref_msa": {
               "type": "file",
-              "description": "fasta file containing the reference alignment used for the evaluation",
-              "pattern": "*.{aln,fa,fasta,fas}"
+              "description": "fasta file containing the reference alignment used for the evaluation. Can be gzipped or uncompressed",
+              "pattern": "*.{aln,fa,fasta,fas}{.gz,}"
             }
           }
         ],
@@ -108927,7 +109033,7 @@
       "type": "module",
       "meta": {
         "name": "tcoffee_irmsd",
-        "description": "Computes irmsd score for a given alignment and the structures.",
+        "description": "Computes the irmsd score for a given alignment and the structures.",
         "keywords": [
           "alignment",
           "MSA",
@@ -108945,6 +109051,13 @@
                 "GPL v3"
               ]
             }
+          },
+          {
+            "pigz": {
+              "description": "Parallel implementation of the gzip algorithm.",
+              "homepage": "https://zlib.net/pigz/",
+              "documentation": "https://zlib.net/pigz/pigz.pdf"
+            }
           }
         ],
         "input": [
@@ -108957,14 +109070,14 @@
           {
             "msa": {
               "type": "file",
-              "description": "fasta file containing the alignment to be evaluated",
-              "pattern": "*.{aln,fa,fasta,fas}"
+              "description": "fasta file containing the alignment to be evaluated. May be gzipped or uncompressed.",
+              "pattern": "*.{aln,fa,fasta,fas}{.gz,}"
             }
           },
           {
             "template": {
               "type": "file",
-              "description": "Template file matching the structures to the sequences in the alignment",
+              "description": "Template file matching the structures to the sequences in the alignment.",
               "pattern": "*"
             }
           },
@@ -117857,10 +117970,6 @@
           "version": "1.1.0"
         },
         {
-          "name": "rnadnavar",
-          "version": "dev"
-        },
-        {
           "name": "rnaseq",
           "version": "3.14.0"
         },
@@ -118935,13 +119044,7 @@
         "maintainers": [
           "@GCJMackenzie"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "rnadnavar",
-          "version": "dev"
-        }
-      ]
+      }
     },
     {
       "name": "bam_tumor_only_somatic_variant_calling_gatk",
@@ -120482,10 +120585,6 @@
         {
           "name": "atacseq",
           "version": "2.1.2"
-        },
-        {
-          "name": "rnadnavar",
-          "version": "dev"
         }
       ]
     },
@@ -123198,6 +123297,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -123232,6 +123335,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -124154,6 +124261,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
