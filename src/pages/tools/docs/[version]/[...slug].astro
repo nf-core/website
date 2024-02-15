@@ -112,6 +112,15 @@ headings.map((heading) => {
     // add word-break hints after before periods
     heading.text = heading.text.replaceAll(/\./g, '.\u200B');
 });
+
+// add top section wih link to the top index
+sections.unshift({
+    section_name: 'Contents',
+    section_slug: '/tools/docs/' + version + '/index',
+    children: [],
+});
+
+// try to figure out github URL to the source file from file path
 ---
 
 <MarkdownTocLayout
