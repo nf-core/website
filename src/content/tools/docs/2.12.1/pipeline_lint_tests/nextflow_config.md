@@ -76,13 +76,14 @@ are not checked and will be assumed to be missing.
 You can choose to ignore tests for the presence or absence of specific config variables
 by creating a file called `.nf-core.yml` in the root of your pipeline and creating
 a list the config variables that should be ignored. For example:
-:::
 
 ```yaml
 lint:
   nextflow_config:
     - params.input
 ```
+
+:::
 
 The other checks in this test (depreciated syntax etc) can not be individually identified,
 but you can skip the entire test block if you wish:
@@ -102,7 +103,6 @@ lint:
 You can choose to ignore tests for the default value of an specific parameter
 by creating a file called `.nf-core.yml` in the root of your pipeline and creating
 a list the config parameters that should be ignored. For example to ignore the default value for the input parameter:
-:::
 
 ```yaml
 lint:
@@ -110,3 +110,5 @@ lint:
     - config_defaults:
         - params.input
 ```
+
+:::

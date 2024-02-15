@@ -186,25 +186,38 @@ If multiple containers are found, any prefixed with http for direct download is 
 Example syntax:
 
 Early DSL2:
-: if (workflow.containerEngine == ‘singularity’ && !params.singularity_pull_docker_container) {
-: container “[https://depot.galaxyproject.org/singularity/fastqc:0.11.9–0](https://depot.galaxyproject.org/singularity/fastqc:0.11.9--0)” <br/>
+
+```groovy
+if (workflow.containerEngine == 'singularity' && !params.singularity_pull_docker_container) {
+    container "https://depot.galaxyproject.org/singularity/fastqc:0.11.9--0"
 } else {
-: container “quay.io/biocontainers/fastqc:0.11.9–0” <br/>
+    container "quay.io/biocontainers/fastqc:0.11.9--0"
 }
+```
 
 Later DSL2:
-: container “${ workflow.containerEngine == ‘singularity’ && !task.ext.singularity_pull_docker_container ?
-: ‘[https://depot.galaxyproject.org/singularity/fastqc:0.11.9–0](https://depot.galaxyproject.org/singularity/fastqc:0.11.9--0)’ :
-‘biocontainers/fastqc:0.11.9–0’ }”
+
+```groovy
+container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+    'https://depot.galaxyproject.org/singularity/fastqc:0.11.9--0' :
+    'biocontainers/fastqc:0.11.9--0' }"
+```
 
 Later DSL2, variable is being used:
-: container “${ workflow.containerEngine == ‘singularity’ && !task.ext.singularity\_pull\_docker\_container ?
-: “<https://depot.galaxyproject.org/singularity>/${container_id}” :
-“quay.io/biocontainers/${container_id}” }” <br/>
-container_id = ‘mulled-v2-1fa26d1ce03c295fe2fdcf85831a92fbcbd7e8c2:afaaa4c6f5b308b4b6aa2dd8e99e1466b2a6b0cd-0’
+
+```groovy
+container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+    "https://depot.galaxyproject.org/singularity/${container_id}" :
+    "quay.io/biocontainers/${container_id}" }"
+
+container_id = 'mulled-v2-1fa26d1ce03c295fe2fdcf85831a92fbcbd7e8c2:afaaa4c6f5b308b4b6aa2dd8e99e1466b2a6b0cd-0'
+```
 
 DSL1 / Special case DSL2:
-: container “nfcore/cellranger:6.0.2”
+
+```groovy
+container "nfcore/cellranger:6.0.2"
+```
 
 #### `singularity_copy_cache_image(container, out_path, cache_path){:python}`
 

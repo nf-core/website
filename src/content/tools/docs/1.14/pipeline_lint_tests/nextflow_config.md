@@ -80,12 +80,13 @@ are not checked and will be assumed to be missing.
 You can choose to ignore tests for the presence or absence of specific config variables
 by creating a file called `.nf-core-lint.yml` in the root of your pipeline and creating
 a list the config variables that should be ignored. For example:
-:::
 
 ```yaml
 nextflow_config:
   - params.input
 ```
+
+:::
 
 The other checks in this test (depreciated syntax etc) can not be individually identified,
 but you can skip the entire test block if you wish:
