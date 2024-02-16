@@ -34,34 +34,34 @@ Contact:
             </thead>
             <tbody>
             <tr>
-                <td data-timestamp="1679902200" data-timeformat="HH:mm z">09:30</td>
+                <td data-timestamp="1710750600000" data-timeformat="HH:mm z">09:30</td>
                 <td background-color:navy; rowspan="1">Local Welcome and Setup</td>
                 <td background-color:navy; rowspan="1">Daily Start</td>
                 <td background-color:navy; rowspan="1">Daily Start</td>
             </tr>
-                <td data-timestamp="1679904000" data-timeformat="HH:mm z">10:00</td>
+                <td data-timestamp="1710752400000" data-timeformat="HH:mm z">10:00</td>
                 <td>Welcome<br>Location: Gather Town Lecture Theatre</td>
                 <td rowspan="6">Hack!</td>
                 <td rowspan="6">Hack!</td>
             </tr>
             <tr>
-                <td data-timestamp="1679907600" data-timeformat="HH:mm z">11:00</td>
+                <td data-timestamp="171075600" data-timeformat="HH:mm z">11:00</td>
                 <td rowspan="5">Hack!</td>
             </tr>
             <tr>
-                <td data-timestamp="1679911200" data-timeformat="HH:mm z">12:00</td>
+                <td data-timestamp="1710759600" data-timeformat="HH:mm z">12:00</td>
             </tr>
             <tr>
-                <td data-timestamp="1679914800" data-timeformat="HH:mm z">13:00</td>
+                <td data-timestamp="1710763200" data-timeformat="HH:mm z">13:00</td>
             </tr>
             <tr>
-                <td data-timestamp="1679918400" data-timeformat="HH:mm z">14:00</td>
+                <td data-timestamp="1710766800" data-timeformat="HH:mm z">14:00</td>
             </tr>
             <tr>
-                <td data-timestamp="1679922000" data-timeformat="HH:mm z">15:00</td>
+                <td data-timestamp="1710770400" data-timeformat="HH:mm z">15:00</td>
             </tr>
             <tr>
-                <td data-timestamp="1679925600"  data-timeformat="HH:mm z">16:00</td>
+                <td data-timestamp="1710774000"  data-timeformat="HH:mm z">16:00</td>
                 <td>Daily sync<br>Location: Gather Town Lecture Theatre</td>
                 <td>Daily sync<br>Location: Gather Town Lecture Theatre</td>
                 <td>Final wrap-up<br>Location: Gather Town Lecture Theatre</td>
