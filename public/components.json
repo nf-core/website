@@ -4055,6 +4055,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -7191,7 +7195,7 @@
       "pipelines": [
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -7279,7 +7283,7 @@
       "pipelines": [
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "taxprofiler",
@@ -7361,7 +7365,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -7635,7 +7639,7 @@
       "pipelines": [
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -16545,7 +16549,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "nascent",
@@ -16672,7 +16676,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "methylseq",
@@ -24575,7 +24579,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "methylseq",
@@ -32458,6 +32462,95 @@
       ]
     },
     {
+      "name": "fastme",
+      "path": "modules/nf-core/fastme/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "fastme",
+        "description": "Distance-based phylogeny with FastME",
+        "keywords": [
+          "phylogenetics",
+          "newick",
+          "minimum_evolution",
+          "distance-based"
+        ],
+        "tools": [
+          {
+            "fastme": {
+              "description": "A comprehensive, accurate and fast distance-based phylogeny inference program.",
+              "homepage": "http://www.atgc-montpellier.fr/fastme",
+              "documentation": "http://www.atgc-montpellier.fr/fastme/usersguide.php",
+              "tool_dev_url": "https://gite.lirmm.fr/atgc/FastME/",
+              "doi": "10.1093/molbev/msv150",
+              "licence": [
+                "GPL v3"
+              ],
+              "args_id": "$args"
+            }
+          }
+        ],
+        "input": [
+          {
+            "infile": {
+              "type": "file",
+              "description": "MSA or distance matrix in Phylip format",
+              "pattern": "*"
+            }
+          },
+          {
+            "topo": {
+              "type": "file",
+              "description": "Initial tree topology in Newick format",
+              "pattern": "*.{nwk,dnd}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "nwk": {
+              "type": "file",
+              "description": "Final phylogeny in Newick format",
+              "pattern": "*.nwk"
+            }
+          },
+          {
+            "stats": {
+              "type": "file",
+              "description": "A text file with the statistics of the phylogeny",
+              "pattern": "*_stat.txt"
+            }
+          },
+          {
+            "matrix": {
+              "type": "file",
+              "description": "Optional; the distance matrix in Phylip matrix format; it is generated if the -O option is passed in ext.args, although the provided file name will be overwritten",
+              "pattern": "*.matrix.phy"
+            }
+          },
+          {
+            "bootstrap": {
+              "type": "file",
+              "description": "A file containing all bootstrap trees in Newick format; it is generated if the -B option is passed in ext.args (and bootstrap is used), although the provided file name will be overwritten",
+              "pattern": "*.bootstrap"
+            }
+          }
+        ],
+        "authors": [
+          "@itrujnara"
+        ],
+        "maintainers": [
+          "@itrujnara"
+        ]
+      }
+    },
+    {
       "name": "fastp",
       "path": "modules/nf-core/fastp/meta.yml",
       "type": "module",
@@ -32831,7 +32924,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "methylseq",
@@ -37618,6 +37711,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -38343,6 +38440,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -42972,6 +43073,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -56479,7 +56584,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -72749,7 +72854,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "methylseq",
@@ -85854,7 +85959,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -86029,7 +86134,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -93300,7 +93405,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "methylseq",
@@ -93542,7 +93647,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "nanoseq",
@@ -93819,7 +93924,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "methylseq",
@@ -94429,7 +94534,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "methylseq",
@@ -94619,7 +94724,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "methylseq",
@@ -98677,7 +98782,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -98911,7 +99016,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "radseq",
@@ -104227,7 +104332,7 @@
       "pipelines": [
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "pathogensurveillance",
@@ -106371,7 +106476,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "nascent",
@@ -110016,7 +110121,7 @@
       "pipelines": [
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -110119,7 +110224,7 @@
       "pipelines": [
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -110246,7 +110351,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "methylseq",
@@ -118703,7 +118808,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "nascent",
@@ -118863,7 +118968,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "nascent",
@@ -123301,6 +123406,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -123335,6 +123444,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -124261,6 +124374,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
