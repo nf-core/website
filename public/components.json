@@ -4059,6 +4059,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -7906,6 +7910,10 @@
           "version": "3.4.0"
         },
         {
+          "name": "variantbenchmarking",
+          "version": "dev"
+        },
+        {
           "name": "variantcatalogue",
           "version": "dev"
         }
@@ -8961,6 +8969,10 @@
         {
           "name": "raredisease",
           "version": "1.1.1"
+        },
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
         },
         {
           "name": "variantcatalogue",
@@ -24718,6 +24730,10 @@
           "version": "1.1.5"
         },
         {
+          "name": "variantbenchmarking",
+          "version": "dev"
+        },
+        {
           "name": "variantcatalogue",
           "version": "dev"
         },
@@ -33027,6 +33043,10 @@
           "version": "1.1.5"
         },
         {
+          "name": "variantbenchmarking",
+          "version": "dev"
+        },
+        {
           "name": "variantcatalogue",
           "version": "dev"
         },
@@ -37715,6 +37735,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -38440,6 +38464,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -43073,6 +43101,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -54640,7 +54672,13 @@
         "maintainers": [
           "@nvnieuwk"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "happy_prepy",
@@ -54867,7 +54905,13 @@
         "authors": [
           "@kubranarci"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "hicap",
@@ -72983,6 +73027,10 @@
         {
           "name": "taxprofiler",
           "version": "1.1.5"
+        },
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
         },
         {
           "name": "variantcatalogue",
@@ -107028,7 +107076,13 @@
         "maintainers": [
           "@kubranarci"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "svaba",
@@ -108559,6 +108613,10 @@
         {
           "name": "sarek",
           "version": "3.4.0"
+        },
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
         },
         {
           "name": "variantcatalogue",
@@ -110742,7 +110800,13 @@
         "maintainers": [
           "@nvnieuwk"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "truvari_consistency",
@@ -121249,6 +121313,13 @@
               "description": "Reference genome fasta file",
               "pattern": "*.{fasta,fa,fna}"
             }
+          },
+          {
+            "ch_transcripts_fasta": {
+              "type": "file",
+              "description": "Optional reference genome fasta file",
+              "pattern": "*.{fasta,fa,fna}"
+            }
           }
         ],
         "output": [
@@ -121278,7 +121349,7 @@
             }
           },
           {
-            "bam_transcript": {
+            "orig_bam_transcript": {
               "description": "Output BAM file of transcriptome alignment (optional)\nStructure: [ val(meta), path(bam) ]\n"
             }
           },
@@ -121293,11 +121364,6 @@
             }
           },
           {
-            "stats": {
-              "description": "File containing samtools stats output\nStructure: [ val(meta), path(stats) ]\n"
-            }
-          },
-          {
             "bam": {
               "description": "BAM file ordered by samtools\nStructure: [ val(meta), path(bam) ]\n"
             }
@@ -121308,6 +121374,11 @@
             }
           },
           {
+            "stats": {
+              "description": "File containing samtools stats output\nStructure: [ val(meta), path(stats) ]\n"
+            }
+          },
+          {
             "flagstat": {
               "description": "File containing samtools flagstat output\nStructure: [ val(meta), path(flagstat) ]\n"
             }
@@ -121315,6 +121386,31 @@
           {
             "idxstats": {
               "description": "File containing samtools idxstats output\nStructure: [ val(meta), path(idxstats) ]\n"
+            }
+          },
+          {
+            "bam_transcript": {
+              "description": "Transcriptome-level BAM file ordered by samtools  (optional)\nStructure: [ val(meta), path(bam) ]\n"
+            }
+          },
+          {
+            "bai_transcript": {
+              "description": "Transcriptome-level BAI index of the ordered BAM file (optional)\nStructure: [ val(meta), path(bai) ]\n"
+            }
+          },
+          {
+            "stats_transcript": {
+              "description": "Transcriptome-level file containing samtools stats output (optional)\nStructure: [ val(meta), path(stats) ]\n"
+            }
+          },
+          {
+            "flagstat_transcript": {
+              "description": "Transcriptome-level file containing samtools flagstat output (optional)\nStructure: [ val(meta), path(flagstat) ]\n"
+            }
+          },
+          {
+            "idxstats_transcript": {
+              "description": "Transcriptome-level file containing samtools idxstats output (optional)\nStructure: [ val(meta), path(idxstats) ]\n"
             }
           },
           {
@@ -123410,6 +123506,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -123444,6 +123544,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -124374,6 +124478,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
