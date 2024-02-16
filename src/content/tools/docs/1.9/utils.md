@@ -1,0 +1,22 @@
+# nf_core.utils
+
+Common utility functions for the nf-core python package.
+
+### `nf_core.utils.fetch_wf_config(wf_path, wf=None){:python}`
+
+Uses Nextflow to retrieve the the configuration variables
+from a Nextflow workflow.
+
+- **Parameters:**
+  **wf_path** (_str_) – Nextflow workflow file system path.
+- **Returns:**
+  Workflow configuration settings.
+- **Return type:**
+  dict
+
+### `nf_core.utils.setup_requests_cachedir(){:python}`
+
+Sets up local caching for faster remote HTTP requests.
+
+Caching directory will be set up in the user’s home directory under
+a .nfcore_cache subdir.
