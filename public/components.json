@@ -440,7 +440,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         },
         {
           "name": "taxprofiler",
@@ -2815,7 +2815,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         },
         {
           "name": "proteinfold",
@@ -3431,6 +3431,34 @@
         {
           "name": "rnafusion",
           "version": "3.0.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         },
         {
           "name": "rnafusion",
@@ -7167,7 +7195,7 @@
       "pipelines": [
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -7255,7 +7283,7 @@
       "pipelines": [
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "taxprofiler",
@@ -7333,11 +7361,11 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -7611,7 +7639,7 @@
       "pipelines": [
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -8159,7 +8187,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         },
         {
           "name": "viralrecon",
@@ -8477,7 +8505,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         },
         {
           "name": "phaseimpute",
@@ -9886,7 +9914,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         },
         {
           "name": "phaseimpute",
@@ -16521,7 +16549,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "nascent",
@@ -16644,11 +16672,11 @@
         },
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "methylseq",
@@ -16965,7 +16993,7 @@
         },
         {
           "name": "molkart",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -18333,6 +18361,110 @@
       }
     },
     {
+      "name": "centrifuge_build",
+      "path": "modules/nf-core/centrifuge/build/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "centrifuge_build",
+        "description": "Build centrifuge database for taxonomic profiling",
+        "keywords": [
+          "database",
+          "metagenomics",
+          "build",
+          "db",
+          "fasta"
+        ],
+        "tools": [
+          {
+            "centrifuge": {
+              "description": "Classifier for metagenomic sequences",
+              "homepage": "https://ccb.jhu.edu/software/centrifuge/",
+              "documentation": "https://ccb.jhu.edu/software/centrifuge/manual.shtml",
+              "doi": "10.1101/gr.210641.116",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Fasta file containing sequences to be used in centrifuge database.",
+              "pattern": "*.{fasta,fna}"
+            }
+          },
+          {
+            "conversion_table": {
+              "type": "file",
+              "description": "A tab-separated file with sequence ID to taxonomy ID mapping",
+              "pattern": "*.{map}"
+            }
+          },
+          {
+            "taxonomy_tree": {
+              "type": "file",
+              "description": "A \\t|\\t-separated file mapping taxonomy. Typically nodes.dmp from the NCBI taxonomy dump. Links taxonomy IDs to their parents",
+              "pattern": "*.{dmp}"
+            }
+          },
+          {
+            "name_table": {
+              "type": "file",
+              "description": "A '|'-separated file mapping taxonomy IDs to a name. Typically names.dmp from the NCBI taxonomy dump. Links taxonomy IDs to their scientific name",
+              "pattern": "*.{dmp}"
+            }
+          },
+          {
+            "size_table": {
+              "type": "file",
+              "description": "Optional list of taxonomic IDs and lengths of the sequences belonging to the same taxonomic IDs.",
+              "pattern": "*"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "cf": {
+              "type": "file",
+              "description": "Index files for the centrifuge database",
+              "pattern": "*.{cf}"
+            }
+          }
+        ],
+        "authors": [
+          "@sarah-buddle",
+          "@jfy133"
+        ]
+      },
+      "pipelines": [
+        {
+          "name": "createtaxdb",
+          "version": "dev"
+        }
+      ]
+    },
+    {
       "name": "centrifuge_centrifuge",
       "path": "modules/nf-core/centrifuge/centrifuge/meta.yml",
       "type": "module",
@@ -18789,7 +18921,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         }
       ]
     },
@@ -18902,7 +19034,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         }
       ]
     },
@@ -20033,6 +20165,13 @@
                 "GPL v2"
               ]
             }
+          },
+          {
+            "pigz": {
+              "description": "Parallel implementation of the gzip algorithm.",
+              "homepage": "https://zlib.net/pigz/",
+              "documentation": "https://zlib.net/pigz/pigz.pdf"
+            }
           }
         ],
         "input": [
@@ -20061,6 +20200,12 @@
               "description": "Input guide tree in Newick format",
               "pattern": "*.{dnd}"
             }
+          },
+          {
+            "compress": {
+              "type": "boolean",
+              "description": "Flag representing whether the output MSA should be compressed. Set to true to enable/false to disable compression. Compression is done using pigz, and is multithreaded."
+            }
           }
         ],
         "output": [
@@ -20073,8 +20218,8 @@
           {
             "alignment": {
               "type": "file",
-              "description": "Alignment file.",
-              "pattern": "*.{aln}"
+              "description": "Alignment file, in gzipped fasta format",
+              "pattern": "*.aln{.gz,}"
             }
           },
           {
@@ -20091,7 +20236,8 @@
         ],
         "maintainers": [
           "@luisas",
-          "@joseespinosa"
+          "@joseespinosa",
+          "@lrauschning"
         ]
       },
       "pipelines": [
@@ -21916,7 +22062,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         }
       ]
     },
@@ -22010,7 +22156,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         }
       ]
     },
@@ -22102,7 +22248,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         }
       ]
     },
@@ -22190,7 +22336,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         }
       ]
     },
@@ -22270,7 +22416,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         }
       ]
     },
@@ -24413,7 +24559,7 @@
         },
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         },
         {
           "name": "marsseq",
@@ -24433,7 +24579,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "methylseq",
@@ -24445,7 +24591,7 @@
         },
         {
           "name": "molkart",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "multiplesequencealign",
@@ -25593,7 +25739,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         }
       ]
     },
@@ -25683,7 +25829,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         }
       ]
     },
@@ -26349,7 +26495,7 @@
         },
         {
           "name": "molkart",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -31375,6 +31521,12 @@
               "description": "Input guide tree in Newick format",
               "pattern": "*.{dnd}"
             }
+          },
+          {
+            "compress": {
+              "type": "boolean",
+              "description": "Flag representing whether the output MSA should be compressed. Set to true to enable/false to disable compression. Compression is handled by passing '-gz' to FAMSA along with any other options specified in task.ext.args."
+            }
           }
         ],
         "output": [
@@ -31387,8 +31539,8 @@
           {
             "alignment": {
               "type": "file",
-              "description": "Alignment file.",
-              "pattern": "*.{aln}"
+              "description": "Alignment file, in FASTA format. May be gzipped or uncompressed, depending on if compress is set to true or false",
+              "pattern": "*.aln{.gz,}"
             }
           },
           {
@@ -32310,6 +32462,95 @@
       ]
     },
     {
+      "name": "fastme",
+      "path": "modules/nf-core/fastme/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "fastme",
+        "description": "Distance-based phylogeny with FastME",
+        "keywords": [
+          "phylogenetics",
+          "newick",
+          "minimum_evolution",
+          "distance-based"
+        ],
+        "tools": [
+          {
+            "fastme": {
+              "description": "A comprehensive, accurate and fast distance-based phylogeny inference program.",
+              "homepage": "http://www.atgc-montpellier.fr/fastme",
+              "documentation": "http://www.atgc-montpellier.fr/fastme/usersguide.php",
+              "tool_dev_url": "https://gite.lirmm.fr/atgc/FastME/",
+              "doi": "10.1093/molbev/msv150",
+              "licence": [
+                "GPL v3"
+              ],
+              "args_id": "$args"
+            }
+          }
+        ],
+        "input": [
+          {
+            "infile": {
+              "type": "file",
+              "description": "MSA or distance matrix in Phylip format",
+              "pattern": "*"
+            }
+          },
+          {
+            "topo": {
+              "type": "file",
+              "description": "Initial tree topology in Newick format",
+              "pattern": "*.{nwk,dnd}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "nwk": {
+              "type": "file",
+              "description": "Final phylogeny in Newick format",
+              "pattern": "*.nwk"
+            }
+          },
+          {
+            "stats": {
+              "type": "file",
+              "description": "A text file with the statistics of the phylogeny",
+              "pattern": "*_stat.txt"
+            }
+          },
+          {
+            "matrix": {
+              "type": "file",
+              "description": "Optional; the distance matrix in Phylip matrix format; it is generated if the -O option is passed in ext.args, although the provided file name will be overwritten",
+              "pattern": "*.matrix.phy"
+            }
+          },
+          {
+            "bootstrap": {
+              "type": "file",
+              "description": "A file containing all bootstrap trees in Newick format; it is generated if the -B option is passed in ext.args (and bootstrap is used), although the provided file name will be overwritten",
+              "pattern": "*.bootstrap"
+            }
+          }
+        ],
+        "authors": [
+          "@itrujnara"
+        ],
+        "maintainers": [
+          "@itrujnara"
+        ]
+      }
+    },
+    {
       "name": "fastp",
       "path": "modules/nf-core/fastp/meta.yml",
       "type": "module",
@@ -32451,7 +32692,7 @@
         },
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         },
         {
           "name": "nascent",
@@ -32671,7 +32912,7 @@
         },
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         },
         {
           "name": "marsseq",
@@ -32683,7 +32924,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "methylseq",
@@ -34718,7 +34959,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         },
         {
           "name": "radseq",
@@ -37446,6 +37687,34 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -38171,6 +38440,34 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -41195,14 +41492,14 @@
             }
           },
           {
-            "intervalfile": {
+            "interval_file": {
               "type": "file",
               "description": "file containing the intervals to be used when creating the genomicsdb",
               "pattern": "*.interval_list"
             }
           },
           {
-            "intervalval": {
+            "interval_value": {
               "type": "string",
               "description": "if an intervals file has not been spcified, the value enetered here will be used as an interval via the \"-L\" argument",
               "pattern": "example: chr1:1000-10000"
@@ -43504,6 +43801,34 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -43744,7 +44069,7 @@
             }
           },
           {
-            "ref_dict": {
+            "dict": {
               "type": "file",
               "description": "Optional Sequence Dictionary as input",
               "pattern": "*.dict"
@@ -45453,6 +45778,13 @@
               "type": "file",
               "description": "The index file of the VCF",
               "pattern": "*.vcf.gz.tbi"
+            }
+          },
+          {
+            "bed": {
+              "type": "file",
+              "description": "Regions to limit the analysis to",
+              "pattern": "*.bed"
             }
           },
           {
@@ -47918,7 +48250,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         },
         {
           "name": "phageannotator",
@@ -48099,7 +48431,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         },
         {
           "name": "phageannotator",
@@ -52635,7 +52967,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         }
       ]
     },
@@ -52815,7 +53147,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         }
       ]
     },
@@ -52904,7 +53236,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         }
       ]
     },
@@ -52997,7 +53329,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         }
       ]
     },
@@ -53113,7 +53445,7 @@
         },
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         },
         {
           "name": "marsseq",
@@ -56252,7 +56584,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -57938,7 +58270,7 @@
       "pipelines": [
         {
           "name": "molkart",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -58023,7 +58355,7 @@
       "pipelines": [
         {
           "name": "molkart",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -64163,6 +64495,13 @@
                 "BSD"
               ]
             }
+          },
+          {
+            "pigz": {
+              "description": "Parallel implementation of the gzip algorithm.",
+              "homepage": "https://zlib.net/pigz/",
+              "documentation": "https://zlib.net/pigz/pigz.pdf"
+            }
           }
         ],
         "input": [
@@ -64175,8 +64514,8 @@
           {
             "fasta": {
               "type": "file",
-              "description": "FASTA file containing the sequences to align",
-              "pattern": "*.{fa,fasta}"
+              "description": "FASTA file containing the sequences to align. May be gzipped or uncompressed.",
+              "pattern": "*.{fa,fasta}{.gz,}"
             }
           },
           {
@@ -64188,8 +64527,8 @@
           {
             "add": {
               "type": "file",
-              "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--add`",
-              "pattern": "*.{fa,fasta}"
+              "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--add`. May be gzipped or uncompressed.",
+              "pattern": "*.{fa,fasta}{.gz,}"
             }
           },
           {
@@ -64201,8 +64540,8 @@
           {
             "addfragments": {
               "type": "file",
-              "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--addfragments`",
-              "pattern": "*.{fa,fasta}"
+              "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--addfragments`. May be gzipped or uncompressed.",
+              "pattern": "*.{fa,fasta}{.gz,}"
             }
           },
           {
@@ -64214,8 +64553,8 @@
           {
             "addfull": {
               "type": "file",
-              "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--addfull`",
-              "pattern": "*.{fa,fasta}"
+              "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--addfull`. May be gzipped or uncompressed.",
+              "pattern": "*.{fa,fasta}{.gz,}"
             }
           },
           {
@@ -64227,8 +64566,8 @@
           {
             "addprofile": {
               "type": "file",
-              "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--addprofile`",
-              "pattern": "*.{fa,fasta}"
+              "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--addprofile`. May be gzipped or uncompressed.",
+              "pattern": "*.{fa,fasta}{.gz,}"
             }
           },
           {
@@ -64240,8 +64579,14 @@
           {
             "addlong": {
               "type": "file",
-              "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--addlong`",
-              "pattern": "*.{fa,fasta}"
+              "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--addlong`. May be gzipped or uncompressed.",
+              "pattern": "*.{fa,fasta}{.gz,}"
+            }
+          },
+          {
+            "compress": {
+              "type": "boolean",
+              "description": "Flag representing whether the output MSA should be compressed. Set to true to enable/false to disable compression. Compression is done using pigz, and is multithreaded."
             }
           }
         ],
@@ -64262,8 +64607,8 @@
           {
             "fas": {
               "type": "file",
-              "description": "Aligned sequences in FASTA format",
-              "pattern": "*.{fas}"
+              "description": "Aligned sequences in FASTA format. May be gzipped or uncompressed.",
+              "pattern": "*.fas{.gz,}"
             }
           }
         ],
@@ -66342,7 +66687,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         }
       ]
     },
@@ -68136,7 +68481,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         }
       ]
     },
@@ -68253,7 +68598,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         }
       ]
     },
@@ -68355,7 +68700,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         }
       ]
     },
@@ -69122,7 +69467,7 @@
       "pipelines": [
         {
           "name": "molkart",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -69200,7 +69545,7 @@
       "pipelines": [
         {
           "name": "molkart",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -70558,7 +70903,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         }
       ]
     },
@@ -71999,6 +72344,13 @@
                 "None"
               ]
             }
+          },
+          {
+            "pigz": {
+              "description": "Parallel implementation of the gzip algorithm.",
+              "homepage": "https://zlib.net/pigz/",
+              "documentation": "https://zlib.net/pigz/pigz.pdf"
+            }
           }
         ],
         "input": [
@@ -72011,8 +72363,14 @@
           {
             "pdbs": {
               "type": "file",
-              "description": "Input protein structures in PDB format. They should contain exactly one chain!",
+              "description": "Input protein structures in PDB format. Files may be gzipped or uncompressed. They should contain exactly one chain!",
               "pattern": "*.{pdb}"
+            }
+          },
+          {
+            "compress": {
+              "type": "boolean",
+              "description": "Flag representing whether the output MSA should be compressed. Set to true to enable/false to disable compression. Compression is done using pigz, and is multithreaded."
             }
           }
         ],
@@ -72026,15 +72384,15 @@
           {
             "alignment": {
               "type": "file",
-              "description": "Alignment in FASTA format.",
-              "pattern": "*.aln"
+              "description": "Alignment in FASTA format. May be gzipped or uncompressed.",
+              "pattern": "*.aln{.gz,}"
             }
           },
           {
             "structure": {
               "type": "file",
-              "description": "Overlaid structures in PDB format.",
-              "pattern": "${prefix}.pdb"
+              "description": "Overlaid structures in PDB format. May be gzipped or uncompressed.",
+              "pattern": "${prefix}.pdb{.gz,}"
             }
           },
           {
@@ -72480,7 +72838,7 @@
         },
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         },
         {
           "name": "marsseq",
@@ -72496,7 +72854,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "methylseq",
@@ -72508,7 +72866,7 @@
         },
         {
           "name": "molkart",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "multiplesequencealign",
@@ -73040,6 +73398,13 @@
                 "Public Domain"
               ]
             }
+          },
+          {
+            "pigz": {
+              "description": "Parallel implementation of the gzip algorithm.",
+              "homepage": "https://zlib.net/pigz/",
+              "documentation": "https://zlib.net/pigz/pigz.pdf"
+            }
           }
         ],
         "input": [
@@ -73054,6 +73419,12 @@
               "type": "file",
               "description": "Input sequences for alignment must be in FASTA format",
               "pattern": "*.{fasta,fa,fna}"
+            }
+          },
+          {
+            "compress": {
+              "type": "boolean",
+              "description": "Flag representing whether the output MSA should be compressed. Set to true to enable/false to disable compression. Compression is done using pigz, and is multithreaded."
             }
           }
         ],
@@ -73074,8 +73445,8 @@
           {
             "alignment": {
               "type": "file",
-              "description": "Multiple sequence alignment produced in FASTA format",
-              "pattern": "*.{aln}"
+              "description": "Multiple sequence alignment produced in gzipped FASTA format. If '-perm all' is passed in ext.args, this will be multiple files per input!",
+              "pattern": "*.{aln.gz}"
             }
           }
         ],
@@ -73085,7 +73456,8 @@
         ],
         "maintainers": [
           "@alessiovignoli",
-          "@JoseEspinosa"
+          "@JoseEspinosa",
+          "@lrauschning"
         ]
       },
       "pipelines": [
@@ -82078,10 +82450,6 @@
           "version": "1.1.1"
         },
         {
-          "name": "rnadnavar",
-          "version": "dev"
-        },
-        {
           "name": "rnaseq",
           "version": "3.14.0"
         },
@@ -85583,7 +85951,7 @@
         },
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         },
         {
           "name": "metapep",
@@ -85591,7 +85959,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -85762,11 +86130,11 @@
         },
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -85955,6 +86323,109 @@
           "@suzannejin"
         ],
         "maintainers": [
+          "@suzannejin"
+        ]
+      }
+    },
+    {
+      "name": "propr_propr",
+      "path": "modules/nf-core/propr/propr/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "propr_propr",
+        "description": "Perform logratio-based correlation analysis -> get proportionality & basis shrinkage partial correlation coefficients.\nOne can also compute standard correlation coefficients, if required.\n",
+        "keywords": [
+          "coexpression",
+          "correlation",
+          "proportionality",
+          "logratio",
+          "propr",
+          "corpcor"
+        ],
+        "tools": [
+          {
+            "propr": {
+              "description": "Logratio methods for omics data",
+              "homepage": "https://github.com/tpq/propr",
+              "documentation": "https://rdrr.io/cran/propr/man/propr.html",
+              "tool_dev_url": "https://github.com/tpq/propr",
+              "doi": "10.1038/s41598-017-16520-0",
+              "licence": [
+                "GPL-2"
+              ]
+            }
+          },
+          {
+            "corpcor": {
+              "description": "Efficient Estimation of Covariance and (Partial) Correlation",
+              "homepage": "https://cran.r-project.org/web/packages/corpcor/index.html",
+              "documentation": "https://cran.r-project.org/web/packages/corpcor/corpcor.pdf",
+              "doi": "10.2202/1544-6115.1175",
+              "licence": [
+                "GPL >=3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information.\nThis can be used at the workflow level to pass optional parameters to the module.\n[id: 'test', ...]\n"
+            }
+          },
+          {
+            "count": {
+              "type": "file",
+              "description": "Count matrix, where rows = variables or genes, columns = samples or cells.\nThis matrix should not contain zeros. Otherwise, they will be replaced by the minimun number.\nIt is recommended to handle the zeros beforehand with the method of preference.\n",
+              "pattern": "*.{csv,tsv}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information.\nThis can be used at the workflow level to pass optional parameters to the module.\n[id: 'test', ...]\n"
+            }
+          },
+          {
+            "propr": {
+              "type": "file",
+              "description": "R propr object",
+              "pattern": "*.propr.rds"
+            }
+          },
+          {
+            "matrix": {
+              "type": "file",
+              "description": "Coefficient matrix",
+              "pattern": "*.propr.tsv"
+            }
+          },
+          {
+            "fdr": {
+              "type": "file",
+              "description": "(optional) propr fdr table",
+              "pattern": "*.fdr.tsv"
+            }
+          },
+          {
+            "session_info": {
+              "type": "file",
+              "description": "dump of R SessionInfo",
+              "pattern": "*.R_sessionInfo.log"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
           "@suzannejin"
         ]
       }
@@ -87426,7 +87897,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         }
       ]
     },
@@ -87511,7 +87982,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         }
       ]
     },
@@ -92472,7 +92943,7 @@
         },
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         },
         {
           "name": "methylseq",
@@ -92934,7 +93405,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "methylseq",
@@ -93176,7 +93647,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "nanoseq",
@@ -93453,7 +93924,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "methylseq",
@@ -94063,7 +94534,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "methylseq",
@@ -94253,7 +94724,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "methylseq",
@@ -98307,11 +98778,11 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -98545,7 +99016,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "radseq",
@@ -103861,7 +104332,7 @@
       "pipelines": [
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "pathogensurveillance",
@@ -106005,7 +106476,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "nascent",
@@ -106020,6 +106491,112 @@
           "version": "1.0.2"
         }
       ]
+    },
+    {
+      "name": "summarizedexperiment_summarizedexperiment",
+      "path": "modules/nf-core/summarizedexperiment/summarizedexperiment/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "summarizedexperiment_summarizedexperiment",
+        "description": "SummarizedExperiment container\n",
+        "keywords": [
+          "gene",
+          "transcript",
+          "sample",
+          "matrix",
+          "assay"
+        ],
+        "tools": [
+          {
+            "summarizedexperiment": {
+              "description": "The SummarizedExperiment container contains one or more assays, each represented by a matrix-like object of numeric or other mode. The rows typically represent genomic ranges of interest and the columns represent samples.",
+              "homepage": "https://bioconductor.org/packages/release/bioc/html/SummarizedExperiment.html",
+              "documentation": "https://bioconductor.org/packages/release/bioc/vignettes/SummarizedExperiment/inst/doc/SummarizedExperiment.html",
+              "tool_dev_url": "https://github.com/Bioconductor/SummarizedExperiment",
+              "doi": "10.18129/B9.bioc.SummarizedExperiment",
+              "licence": [
+                "Artistic-2.0"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing information related to the experiment as a whole\ne.g. `[ id:'SRP123456' ]`\n"
+            }
+          },
+          {
+            "matrix_files": {
+              "type": "directory",
+              "description": "One or more paths to CSV or TSV matrix files. All files must have the\nsame rows and columns.\n",
+              "pattern": "*.{csv,tsv}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information related to the species\nreference from which matrix rows are derived e.g. `[ id:'yeast' ]`\n"
+            }
+          },
+          {
+            "rowdata": {
+              "type": "file",
+              "description": "Metadata on matrix features. One column must contain all matrix row\nIDs.\n",
+              "pattern": "*.{csv,tsv}"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing information related to the experiment as a whole,\nas represented by the matrix columns and the sample sheet e.g.\n`[id:'SRP123456' ]`\n"
+            }
+          },
+          {
+            "coldata": {
+              "type": "file",
+              "description": "Metadata on matrix columns. One column must contain all matrix column\nIDs.\n",
+              "pattern": "*.{csv,tsv}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing information related to the experiment as a whole\ne.g. `[ id:'SRP123456' ]`\n"
+            }
+          },
+          {
+            "rds": {
+              "type": "file",
+              "description": "Serialised SummarizedExperiment object",
+              "pattern": "*.SummarizedExperiment.rds"
+            }
+          },
+          {
+            "log": {
+              "type": "file",
+              "description": "dump of R SessionInfo",
+              "pattern": "*.log"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
+        ]
+      }
     },
     {
       "name": "survivor_filter",
@@ -108364,6 +108941,13 @@
                 "GPL v3"
               ]
             }
+          },
+          {
+            "pigz": {
+              "description": "Parallel implementation of the gzip algorithm.",
+              "homepage": "https://zlib.net/pigz/",
+              "documentation": "https://zlib.net/pigz/pigz.pdf"
+            }
           }
         ],
         "input": [
@@ -108412,6 +108996,12 @@
               "description": "Accessory files to be used in the alignment. For example, it could be protein structures or secondary structures.",
               "pattern": "*"
             }
+          },
+          {
+            "compress": {
+              "type": "boolean",
+              "description": "Flag representing whether the output MSA should be compressed. Set to true to enable/false to disable compression. Compression is done using pigz, and is multithreaded."
+            }
           }
         ],
         "output": [
@@ -108424,8 +109014,8 @@
           {
             "alignment": {
               "type": "file",
-              "description": "Alignment file.",
-              "pattern": "*.{aln}"
+              "description": "Alignment file in FASTA format. May be gzipped.",
+              "pattern": "*.aln{.gz,}"
             }
           },
           {
@@ -108442,7 +109032,8 @@
         ],
         "maintainers": [
           "@luisas",
-          "@JoseEspinosa"
+          "@JoseEspinosa",
+          "@lrauschning"
         ]
       },
       "pipelines": [
@@ -108476,6 +109067,13 @@
                 "GPL v3"
               ]
             }
+          },
+          {
+            "pigz": {
+              "description": "Parallel implementation of the gzip algorithm.",
+              "homepage": "https://zlib.net/pigz/",
+              "documentation": "https://zlib.net/pigz/pigz.pdf"
+            }
           }
         ],
         "input": [
@@ -108488,15 +109086,15 @@
           {
             "msa": {
               "type": "file",
-              "description": "fasta file containing the alignment to be evaluated",
-              "pattern": "*.{aln,fa,fasta,fas}"
+              "description": "fasta file containing the alignment to be evaluated. Can be gzipped or uncompressed",
+              "pattern": "*.{aln,fa,fasta,fas}{.gz,}"
             }
           },
           {
             "ref_msa": {
               "type": "file",
-              "description": "fasta file containing the reference alignment used for the evaluation",
-              "pattern": "*.{aln,fa,fasta,fas}"
+              "description": "fasta file containing the reference alignment used for the evaluation. Can be gzipped or uncompressed",
+              "pattern": "*.{aln,fa,fasta,fas}{.gz,}"
             }
           }
         ],
@@ -108540,7 +109138,7 @@
       "type": "module",
       "meta": {
         "name": "tcoffee_irmsd",
-        "description": "Computes irmsd score for a given alignment and the structures.",
+        "description": "Computes the irmsd score for a given alignment and the structures.",
         "keywords": [
           "alignment",
           "MSA",
@@ -108558,6 +109156,13 @@
                 "GPL v3"
               ]
             }
+          },
+          {
+            "pigz": {
+              "description": "Parallel implementation of the gzip algorithm.",
+              "homepage": "https://zlib.net/pigz/",
+              "documentation": "https://zlib.net/pigz/pigz.pdf"
+            }
           }
         ],
         "input": [
@@ -108570,14 +109175,14 @@
           {
             "msa": {
               "type": "file",
-              "description": "fasta file containing the alignment to be evaluated",
-              "pattern": "*.{aln,fa,fasta,fas}"
+              "description": "fasta file containing the alignment to be evaluated. May be gzipped or uncompressed.",
+              "pattern": "*.{aln,fa,fasta,fas}{.gz,}"
             }
           },
           {
             "template": {
               "type": "file",
-              "description": "Template file matching the structures to the sequences in the alignment",
+              "description": "Template file matching the structures to the sequences in the alignment.",
               "pattern": "*"
             }
           },
@@ -108856,7 +109461,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         }
       ]
     },
@@ -109516,7 +110121,7 @@
       "pipelines": [
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -109619,7 +110224,7 @@
       "pipelines": [
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -109746,7 +110351,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "methylseq",
@@ -110395,7 +111000,7 @@
             }
           },
           {
-            "gene_lengths": {
+            "lengths_gene": {
               "type": "file",
               "description": "Length values derived from tximport output after summarizeToGene(),\nwithout a 'countsFromAbundance' specification\n",
               "pattern": "*gene_lengths.tsv"
@@ -110416,7 +111021,7 @@
             }
           },
           {
-            "transcript_lengths": {
+            "lengths_transcript": {
               "type": "file",
               "description": "Length values derived from tximport output without summarizeToGene(),\nwithout a 'countsFromAbundance' specification\n",
               "pattern": "*gene_lengths.tsv"
@@ -111812,6 +112417,91 @@
         ],
         "maintainers": [
           "@Joon-Klaps"
+        ]
+      }
+    },
+    {
+      "name": "umitools_prepareforrsem",
+      "path": "modules/nf-core/umitools/prepareforrsem/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "umitools_prepareforrsem",
+        "description": "Make the output from umi_tools dedup or group compatible with RSEM",
+        "keywords": [
+          "umitools",
+          "rsem",
+          "salmon",
+          "dedup"
+        ],
+        "tools": [
+          {
+            "umi_tools": {
+              "description": "UMI-tools contains tools for dealing with Unique Molecular Identifiers (UMIs)/Random Molecular Tags (RMTs) and single cell RNA-Seq cell barcodes\n",
+              "documentation": "https://umi-tools.readthedocs.io/en/latest/",
+              "license": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "BAM file containing reads to be deduplicated via UMIs.\n",
+              "pattern": "*.{bam}"
+            }
+          },
+          {
+            "bai": {
+              "type": "file",
+              "description": "BAM index files corresponding to the input BAM file.\n",
+              "pattern": "*.{bai}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "Prepared BAM file.",
+              "pattern": "*.{bam}"
+            }
+          },
+          {
+            "log": {
+              "type": "file",
+              "description": "File with logging information",
+              "pattern": "*.{log}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@drpatelh",
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@drpatelh",
+          "@pinin4fjords"
         ]
       }
     },
@@ -117385,10 +118075,6 @@
           "version": "1.1.0"
         },
         {
-          "name": "rnadnavar",
-          "version": "dev"
-        },
-        {
           "name": "rnaseq",
           "version": "3.14.0"
         },
@@ -118122,7 +118808,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "nascent",
@@ -118282,7 +118968,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "nascent",
@@ -118463,13 +119149,7 @@
         "maintainers": [
           "@GCJMackenzie"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "rnadnavar",
-          "version": "dev"
-        }
-      ]
+      }
     },
     {
       "name": "bam_tumor_only_somatic_variant_calling_gatk",
@@ -119245,7 +119925,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.3"
+          "version": "2.5.4"
         }
       ]
     },
@@ -120010,10 +120690,6 @@
         {
           "name": "atacseq",
           "version": "2.1.2"
-        },
-        {
-          "name": "rnadnavar",
-          "version": "dev"
         }
       ]
     },
@@ -122706,6 +123382,34 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -122740,6 +123444,34 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -123642,6 +124374,34 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"

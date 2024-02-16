@@ -3,9 +3,9 @@ title: 'Bytesize: nf-core Work Groups'
 subtitle: Phil Ewels, Seqera
 type: talk
 startDate: '2024-02-20'
-startTime: '13:00+02:00'
+startTime: '13:00+01:00'
 endDate: '2024-02-20'
-endTime: '13:00+02:00'
+endTime: '13:30+01:00'
 locationURL: https://seqera-io.zoom.us/j/5968645264
 ---
 
