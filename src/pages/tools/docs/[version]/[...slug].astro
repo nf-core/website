@@ -111,12 +111,14 @@ headings.map((heading) => {
     heading.text = heading.text.replaceAll(/\./g, '.\u200B');
 });
 
-// add top section wih link to the top index
-sections.unshift({
-    section_name: 'Contents',
-    section_slug: '/tools/docs/' + version + '/index',
-    children: [],
-});
+// add top section wih link to the top index if it doesn't exist
+if (!sections.find((section) => section.section_name === 'Contents')) {
+    sections.unshift({
+        section_name: 'Contents',
+        section_slug: '/tools/docs/' + version + '/index',
+        children: [],
+    });
+}
 
 // try to figure out github URL to the source file from file path
 let md_github_url = '';
