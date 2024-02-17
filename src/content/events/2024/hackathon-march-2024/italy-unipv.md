@@ -21,7 +21,6 @@ Contact:
 
 ## Schedule
 
-
 <div class="table-responsive">
     <table class="table table-hover table-sm table-bordered">
         <thead>
@@ -70,14 +69,11 @@ Contact:
     </table>
 </div>
 
-
-
 ## How to find us
 
-Reach the Golgi-Spallanzani (aka Botta2) building, as show on the map. Past the reception outside the building, head to the fourth floor. If you used the stairs leading to the Library, follow the indications to "Aula Jucci" and continue straigth passed it until the end of the corridor. 
+Reach the Golgi-Spallanzani (aka Botta2) building, as show on the map. Past the reception outside the building, head to the fourth floor. If you used the stairs leading to the Library, follow the indications to "Aula Jucci" and continue straigth passed it until the end of the corridor.
 If you used the stairs from the main hall of the building, head to the fourth floor and turn left, until the end of the cooridor.
 You will then find only one door on your right: pass the door and go straigh to the end of the new corridor. The lab is on the left.
-
 
 ## Organisational Information
 
