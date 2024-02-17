@@ -2,26 +2,16 @@
 title: 'Bytesize: nf-core/hgtseq'
 subtitle: Francesco Lescai - Department of Biology and Biotechnology, University of Pavia
 type: talk
-start_date: '2023-03-21'
-start_time: '13:30+01:00'
-end_date: '2023-03-21'
-end_time: '14:00+01:00'
-youtube_embed: https://www.youtube.com/watch?v=nDaRt2L-tRw&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=69
-embed_at: 'hgtseq'
-location_url:
+startDate: '2023-03-21'
+startTime: '13:30+01:00'
+endDate: '2023-03-21'
+endTime: '14:00+01:00'
+youtubeEmbed: https://www.youtube.com/watch?v=nDaRt2L-tRw&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=69
+embedAt: 'hgtseq'
+locationURL:
   - https://www.youtube.com/watch?v=nDaRt2L-tRw&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=69
   - https://doi.org/10.6084/m9.figshare.22317877.v1
 ---
-
-# nf-core/bytesize
-
-Join us for our **weekly series** of short talks: **“nf-core/bytesize”**.
-
-Just **15 minutes** + questions, we will be focussing on topics about using and developing nf-core pipelines.
-These will be recorded and made available at <https://nf-co.re>
-It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
-
-## Bytesize: nf-core/hgtseq
 
 This week, Francesco Lescai ([@lescai](https://github.com/lescai)) is presenting us the nf-core pipeline hgtseq. nf-core/hgtseq is a bioinformatics best-practice analysis pipeline built to investigate horizontal gene transfer from NGS data.
 It uses metagenomic classification of paired-read alignments against a reference genome to identify the presence of non-host microbial sequences within read pairs, and to infer potential integration sites into the host genome.

@@ -2,27 +2,17 @@
 title: 'Bytesize 22: nf-core/eager'
 subtitle: James Fellows Yates - MPI-EVA, Germany
 type: talk
-start_date: '2021-10-05'
-start_time: '13:00+02:00'
-end_date: '2021-10-05'
-end_time: '13:30+02:00'
-embed_at: 'eager'
-youtube_embed: https://youtu.be/fObuLeGhQRo
-location_url:
+startDate: '2021-10-05'
+startTime: '13:00+02:00'
+endDate: '2021-10-05'
+endTime: '13:30+02:00'
+embedAt: 'eager'
+youtubeEmbed: https://youtu.be/fObuLeGhQRo
+locationURL:
   - https://youtu.be/fObuLeGhQRo
   - https://www.bilibili.com/video/BV1q34y1U7Ak/
   - https://doi.org/10.6084/m9.figshare.16750387.v1
 ---
-
-# nf-core/bytesize
-
-Join us for a special pipeline-focussed episode of our **weekly series** of short talks: **“nf-core/bytesize”**.
-
-Just **15 minutes** + questions, we will be focussing on topics about using and developing nf-core pipelines.
-These will be recorded and made available at <https://nf-co.re>
-It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
-
-## Bytesize 22: nf-core/eager
 
 This week, James Fellows Yates ([@jfy133](https://github.com/jfy133/)) will tell us all about the nf-core/eager pipeline.
 

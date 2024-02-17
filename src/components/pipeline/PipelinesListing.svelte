@@ -131,19 +131,25 @@
     });
 </script>
 
-<div class="listing d-flex flex-wrap w-100 justify-content-center">
+<div class="listing px-2 py-4">
     {#if $DisplayStyle === 'grid'}
-        {#if filteredPipelines.length === 0 && $SearchQuery !== ''}
-            <div class="alert alert-warning" role="alert">
-                No pipelines found. Try changing your search query or filters.
-            </div>
-        {:else}
-            {#each filteredPipelines as pipeline (pipeline.name)}
-                <PipelineCard {pipeline} />
-            {/each}
-        {/if}
+        <div class="grid">
+            {#if filteredPipelines.length === 0 && $SearchQuery !== ''}
+                <div class="g-col-12 g-col-md-8 g-start-md-3">
+                    <div class="alert alert-secondary text-center" role="alert">
+                        No pipelines found. Try changing your search query or filters.
+                    </div>
+                </div>
+            {:else}
+                {#each filteredPipelines as pipeline (pipeline.name)}
+                    <div class="g-col-12 g-col-md-6 g-col-xl-4 g-col-xxl-3">
+                        <PipelineCard {pipeline} />
+                    </div>
+                {/each}
+            {/if}
+        </div>
     {:else}
-        <table class="table table-hove table-responsive mx-3">
+        <table class="table table-hove table-responsive">
             <thead>
                 <tr>
                     <ListingTableHeader name="Name" />

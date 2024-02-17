@@ -2,26 +2,16 @@
 title: 'Bytesize 2022-05-17: nf-core/cutandrun'
 subtitle: Chris Cheshire, The Francis Crick Institute, UK
 type: talk
-start_date: '2022-05-17'
-start_time: '13:00+02:00'
-end_date: '2022-05-17'
-end_time: '13:30+02:00'
-embed_at: 'cutandrun'
-youtube_embed: https://www.youtube.com/watch?v=rj5i9deNPHA
-location_url:
+startDate: '2022-05-17'
+startTime: '13:00+02:00'
+endDate: '2022-05-17'
+endTime: '13:30+02:00'
+embedAt: 'cutandrun'
+youtubeEmbed: https://www.youtube.com/watch?v=rj5i9deNPHA
+locationURL:
   - https://www.youtube.com/watch?v=kBoC6QBU-M0
   - https://doi.org/10.6084/m9.figshare.19923428.v1
 ---
-
-# nf-core/bytesize
-
-Join us for our **weekly series** of short talks: **“nf-core/bytesize”**.
-
-Just **15 minutes** + questions, we will be focussing on topics about using and developing nf-core pipelines.
-These will be recorded and made available at <https://nf-co.re>
-It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
-
-## Bytesize: cutandrun
 
 This week, Chris Cheshire ([@chris-cheshire](https://github.com/chris-cheshire/)) will present: _**nf-core/cutandrun**_
 

@@ -2,12 +2,12 @@
 title: 'BOSC 2020: nf-core poster / demo'
 subtitle: Live poster / demo showing off some new nf-core features
 type: talk
-start_date: '2020-07-21'
-start_time: '17:30+02:00'
-end_date: '2020-07-21'
-end_time: '18:15+02:00'
-location_name: Online
-location_url: https://bcc2020.github.io/
+startDate: '2020-07-21'
+startTime: '17:30+02:00'
+endDate: '2020-07-21'
+endTime: '18:15+02:00'
+locationName: Online
+locationURL: https://bcc2020.github.io/
 ---
 
 ## About the conference

@@ -26,7 +26,7 @@ export interface Props {
     version: string;
 }
 const events = await getCollection('events');
-let video = events.find((event) => event.data.embed_at === pipeline)?.data.location_url;
+let video = events.find((event) => event.data.embedAt === pipeline)?.data.locationURL;
 if (typeof video === 'string') {
     video = [video];
 }
@@ -77,11 +77,11 @@ const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https
                         >See the <a href="https://github.com/seqeralabs/tower-cli/#2-configuration" target="_blank"
                             >docs</a
                         >
-                        on how to configure the Tower CLI.</span
+                        on how to configure the Seqera Platform CLI.</span
                     >
                 </div>
             </div>
-            <ul class="nav flex-column flex-lg-row nav-fill small" role="tablist">
+            <ul class="nav flex-column flex-xl-row nav-fill small border-top" role="tablist">
                 <li class="nav-item" role="presentation">
                     <a
                         class="nav-link btn btn-sm btn-outline-secondary active rounded-0"
@@ -115,7 +115,7 @@ const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https
                         type="button"
                         role="tab"
                         aria-controls="tower-tab-pane"
-                        aria-selected="false">Tower</a
+                        aria-selected="false">Seqera Platform</a
                     >
                 </li>
             </ul>
@@ -157,7 +157,17 @@ const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https
             },
         ]}
     />
-    <SidebarStatsRow content={[{ title: 'contributors' }]}>
+    <SidebarStatsRow content={[{ title: 'get help' }]}>
+        <div class="d-flex flex-column">
+            <a class="btn btn-outline-info mb-2" href={'https://nfcore.slack.com/channels/' + pipeline}
+                ><i class="fab fa-slack me-1"></i> Ask a question on Slack</a
+            >
+            <a class="btn btn-outline-secondary" href={'https://github.com/nf-core/' + pipeline + '/issues'}
+                ><i class="fab fa-github me-1"></i> Open an issue on GitHub</a
+            >
+        </div>
+    </SidebarStatsRow>
+    <SidebarStatsRow content={[{ title: 'contributors' }]} lastChild={true}>
         {
             meta.contributors.map((contributor) => {
                 return (
@@ -171,16 +181,6 @@ const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https
                 );
             })
         }
-    </SidebarStatsRow>
-    <SidebarStatsRow content={[{ title: 'get in touch' }]} lastChild={true}>
-        <div class="d-flex flex-column">
-            <a class="btn btn-sm btn-outline-info mb-2" href={'https://nfcore.slack.com/channels/' + pipeline}
-                ><i class="fab fa-slack me-1"></i> Ask a question on Slack</a
-            >
-            <a class="btn btn-sm btn-outline-secondary" href={'https://github.com/nf-core/' + pipeline + '/issues'}
-                ><i class="fab fa-github me-1"></i> Open an issue on GitHub</a
-            >
-        </div>
     </SidebarStatsRow>
 </div>
 <style lang="scss">

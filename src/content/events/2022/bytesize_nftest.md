@@ -2,27 +2,17 @@
 title: 'Bytesize: nf-test'
 subtitle: Edmund Miller, University of Texas at Dallas
 type: talk
-start_date: '2022-12-06'
-start_time: '14:00+01:00'
-end_date: '2022-12-06'
-end_time: '14:30+01:00'
-youtube_embed: https://www.youtube.com/watch?v=K9B7JRkMpQ4
-location_url:
+startDate: '2022-12-06'
+startTime: '14:00+01:00'
+endDate: '2022-12-06'
+endTime: '14:30+01:00'
+youtubeEmbed: https://www.youtube.com/watch?v=K9B7JRkMpQ4
+locationURL:
   - https://doi.org/10.6084/m9.figshare.21695195.v1
   - https://www.youtube.com/watch?v=K9B7JRkMpQ4
 ---
 
-# nf-core/bytesize
-
-Join us for our **weekly series** of short talks: **“nf-core/bytesize”**.
-
-Just **15 minutes** + questions, we will be focussing on topics about using and developing nf-core pipelines.
-These will be recorded and made available at <https://nf-co.re>
-It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
-
-## Bytesize: nf-test
-
-This week Edmund Miller ([@Emiller88](https://github.com/Emiller88)) will share with us his impressions about nf-test from a user perspective. nf-test is a simple test framework for Nextflow pipelines.
+This week Edmund Miller ([@edmundmiller](https://github.com/edmundmiller)) will share with us his impressions about nf-test from a user perspective. nf-test is a simple test framework for Nextflow pipelines.
 
 <details markdown="1"><summary>Video transcription</summary>
 :::note

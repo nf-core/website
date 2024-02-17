@@ -2,27 +2,16 @@
 title: 'Bytesize 12: Template sync - how to merge automated PRs'
 subtitle: Phil Ewels - SciLifeLab, Sweden
 type: talk
-start_date: '2021-05-11'
-start_time: '13:00+02:00'
-end_date: '2021-05-11'
-end_time: '13:30+02:00'
-youtube_embed: https://youtu.be/-CZKoo5Y_08
-location_url:
+startDate: '2021-05-11'
+startTime: '13:00+02:00'
+endDate: '2021-05-11'
+endTime: '13:30+02:00'
+youtubeEmbed: https://youtu.be/-CZKoo5Y_08
+locationURL:
   - https://youtu.be/-CZKoo5Y_08
   - https://www.bilibili.com/video/BV1D64y127yJ/
   - https://doi.org/10.6084/m9.figshare.14572866.v1
 ---
-
-# nf-core/bytesize
-
-Join us for an episode of our **weekly series** of short talks: **“nf-core/bytesize”**.
-
-Just **15 minutes** + questions, we will be focussing on topics about using and developing nf-core pipelines.
-These will be recorded and made available at <https://nf-co.re>
-It is our hope that these talks / videos will build an archive of training material that can complement our documentation.
-Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
-
-## Bytesize 12: Template sync - how to merge automated PRs
 
 This week, Phil Ewels ([@ewels](http://github.com/ewels/)) will present: _**Template sync - how to merge automated PRs**_
 

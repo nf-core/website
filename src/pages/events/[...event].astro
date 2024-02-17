@@ -3,6 +3,7 @@ import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
 import { getCollection } from 'astro:content';
 import { YouTube } from '@astro-community/astro-embed-youtube';
 import VideoTranscript from '@components/VideoTranscript.svelte';
+import Admonition from '@components/Admonition.astro';
 
 export async function getStaticPaths() {
     const events = await getCollection('events');
@@ -12,41 +13,105 @@ export async function getStaticPaths() {
         },
         props: {
             event: event,
+            events: events,
         },
     }));
 }
-const { event } = Astro.props;
+const { event, events } = Astro.props;
 const title = event.data.title;
 const subtitle = event.data.subtitle;
 let frontmatter = event.data;
-if (typeof frontmatter.location_url == 'string') {
-    frontmatter.location_url = [frontmatter.location_url];
+if (typeof frontmatter.locationURL == 'string') {
+    frontmatter.locationURL = [frontmatter.locationURL];
 }
 const { headings, Content } = await event.render();
 
 const md_github_url = 'https://github.com/nf-core/website/blob/main/src/content/events/' + event.id;
 
-let video = event.data.location_url;
+let video = event.data.locationURL;
 if (typeof video === 'string') {
     video = [video];
 }
 video = video?.filter((v) => v.includes('youtube.com') || v.includes('youtu.be'))[0];
 const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https://youtu.be/', '');
+
+events
+    .map((event) => {
+        if (event.data.title.toLowerCase().match('bytesize')) {
+            event.data.type = 'bytesize';
+        }
+        event.data.start = new Date(event.data.startDate + 'T' + event.data.startTime);
+        event.data.end = new Date(event.data.endDate + 'T' + event.data.endTime);
+        return event;
+    })
+    .filter((event) => event.data.type === frontmatter.type)
+    .sort((a, b) => {
+        return new Date(a.data.start) - new Date(b.data.start);
+    });
+
+const years = [...new Set(events.map((event) => event.data.start.getFullYear()))].sort((a, b) => b - a);
+
+const sections = years.map((year) => {
+    return {
+        section_name: year,
+        section_slug: '#year-' + year,
+        children: events
+            .filter((event) => event.data.start.getFullYear() === year)
+            .filter((event) => {
+                // exclude subevents based on slug and not index.md(x)
+                return (
+                    event.slug.split('/').length === 2 ||
+                    event.slug.endsWith('index.md') ||
+                    event.slug.endsWith('index.mdx')
+                );
+            })
+            .sort((a, b) => {
+                return new Date(b.data.start) - new Date(a.data.start);
+            })
+            .map((event, i) => {
+                return {
+                    title: event.data.title,
+                    slug: '/events/' + event.slug,
+                    order: i,
+                };
+            }),
+    };
+});
 ---
 
-{frontmatter.import_typeform && <script async src="https://embed.typeform.com/next/embed.js" />}
+{frontmatter.importTypeform && <script async src="https://embed.typeform.com/next/embed.js" />}
 <MarkdownTocLayout
     title={title}
     subtitle={subtitle}
     md_github_url={md_github_url}
     event_header={frontmatter}
     headings={headings}
+    sections={sections}
+    leftSidebar={true}
     docSearchTags={[
         { name: 'page_type', content: 'Event' },
         { name: 'page_subtype', content: frontmatter.type },
     ]}
     viewTransitions={true}
 >
+    {
+        title.trim().toLowerCase().startsWith('bytesize') && (
+            <Admonition
+                title="tip"
+                titleText="Join us for our <strong>weekly series</strong> of short talks: <strong>nf-core/bytesize</strong>."
+            >
+                <p class="small text-body-secondary">
+                    Just <strong>15 minutes</strong> + questions, we focus on topics about using and developing nf-core
+                    pipelines. These are recorded and made available at <a href="https://nf-co.re/">https://nf-co.re</a>
+                    , helping to build an archive of training material. Got an idea for a talk? Let us know on the{' '}
+                    <a href="https://nfcore.slack.com/channels/bytesize">
+                        <code>#bytesize</code>
+                    </a>{' '}
+                    Slack channel!
+                </p>
+            </Admonition>
+        )
+    }
     <Content />
     {
         id && (

@@ -2,27 +2,16 @@
 title: 'Bytesize 13: Tuning pipeline performance'
 subtitle: Gisela Gabernet - QBiC Tübingen, Germany
 type: talk
-start_date: '2021-05-18'
-start_time: '13:00+02:00'
-end_date: '2021-05-18'
-end_time: '13:30+02:00'
-youtube_embed: https://youtu.be/Qw1gLpYtMec
-location_url:
+startDate: '2021-05-18'
+startTime: '13:00+02:00'
+endDate: '2021-05-18'
+endTime: '13:30+02:00'
+youtubeEmbed: https://youtu.be/Qw1gLpYtMec
+locationURL:
   - https://www.bilibili.com/video/BV1z64y1k7a3
   - https://youtu.be/Qw1gLpYtMec
   - https://doi.org/10.6084/m9.figshare.14680260.v1
 ---
-
-# nf-core/bytesize
-
-Join us for an episode of our **weekly series** of short talks: **“nf-core/bytesize”**.
-
-Just **15 minutes** + questions, we will be focussing on topics about using and developing nf-core pipelines.
-These will be recorded and made available at <https://nf-co.re>
-It is our hope that these talks / videos will build an archive of training material that can complement our documentation.
-Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
-
-## Bytesize 13: Tuning pipeline performance
 
 This week, Gisela Gabernet ([@ggabernet](http://github.com/ggabernet/)) will present: _**Tuning pipeline performance**_.
 

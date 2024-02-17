@@ -64,6 +64,8 @@ and added to our [new pipeline tracking board](https://github.com/orgs/nf-core/p
 
 Once accepted, someone from the core team will create a Slack channel for your pipeline and you can get started on the next steps.
 
+You should also at this point additionally join the [#pipeline-maintainers](https://nfcore.slack.com/channels/pipeline-maintainers) channel for major change announcements as well as general discussion on pipeline development related topics.
+
 ### Create the pipeline
 
 You'll start by making a new pipeline locally and working with it on your own GitHub account.
@@ -286,7 +288,7 @@ core team.
 What happens next depends on the state of your master branch:
 
 - If you have developed in such a way that your master branch is clean, .i.e. doesn't have
-  any commits since the inital one, the PR created above will represent all changes
+  any commits since the initial one, the PR created above will represent all changes
   associated with the proposed release, and the core team will use it for review and
   feedback.
 - If your master branch already contains changes associated with the release, the core
@@ -453,7 +455,7 @@ Nextflow DSL2 allows for a more modularized design of pipelines and the reuse of
 
 Each pipeline has a `modules` directory which contains all the module code. A module here depicts a single process which involves - if possible - only a single tool/software. The `modules` directory is furthermore divided into `local`and `nf-core` sub-directories, where local contains the `samplesheet_check.nf`. Modules contained in the `local` directory are specific to the pipeline, whereas `nf-core` modules are installed from the `nf-core/modules` repository. For instance, most pipelines that involve FastQ files will run the FastQC tool for quality control. The module needed for this can be easily reused from the `nf-core/modules` directory using the `nf-core/tools`package.
 
-For more informations and a comprehensive guide on the guidelines of how to implement modules in pipelines please refer to the [DSL 2 Modules](https://nf-co.re/docs/contributing/modules) page
+For more information and a comprehensive guide on the guidelines of how to implement modules in pipelines please refer to the [DSL 2 Modules](https://nf-co.re/docs/contributing/modules) page
 
 ### Sample meta information
 

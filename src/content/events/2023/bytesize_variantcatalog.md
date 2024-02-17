@@ -2,25 +2,15 @@
 title: 'Bytesize: variantcatalogue'
 subtitle: Solenne Correard, University of British Columbia, Vancouver, Canada
 type: talk
-start_date: '2023-02-21'
-start_time: '13:00+01:00'
-end_date: '2023-02-21'
-end_time: '13:30+01:00'
-youtube_embed: https://www.youtube.com/watch?v=Em1cHCLQQ_c
-location_url:
+startDate: '2023-02-21'
+startTime: '13:00+01:00'
+endDate: '2023-02-21'
+endTime: '13:30+01:00'
+youtubeEmbed: https://www.youtube.com/watch?v=Em1cHCLQQ_c
+locationURL:
   - https://doi.org/10.6084/m9.figshare.22140854.v1
   - https://www.youtube.com/watch?v=Em1cHCLQQ_c
 ---
-
-# nf-core/bytesize
-
-Join us for our **weekly series** of short talks: **“nf-core/bytesize”**.
-
-Just **15 minutes** + questions, we will be focussing on topics about using and developing nf-core pipelines.
-These will be recorded and made available at <https://nf-co.re>
-It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
-
-## Bytesize: variantcatalogue
 
 This week, Solenne Correard ([@scorreard](https://github.com/scorreard)) is introducing us to the nextflow pipeline `variantcatalogue`. Though not an nf-core pipeline (yet), `variantcatalogue` is using nf-core derived material to aid in the creation of the pipeline.
 

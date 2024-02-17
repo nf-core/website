@@ -35,10 +35,10 @@ export interface Props {
         title: string;
         subtitle: string;
         type: string;
-        start_date: string;
-        end_date: string;
-        start_time: string;
-        end_time: string;
+        startDate: string;
+        endDate: string;
+        startTime: string;
+        endTime: string;
     };
     md_github_url?: string;
     header_btn_url?: string;
@@ -112,7 +112,11 @@ if (frontmatter) {
 </BaseLayout>
 
 <style lang="scss">
+    @import '@styles/_variables.scss';
     .mainpage {
         min-height: calc(100vh - 14.5rem); // offset for header and footer
+        @include media-breakpoint-down(lg) {
+            min-height: calc(100vh - 16rem); // offset for header and footer
+        }
     }
 </style>

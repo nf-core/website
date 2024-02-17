@@ -2,26 +2,16 @@
 title: 'Bytesize 2: How nf-core configs work'
 subtitle: Maxime Garcia - SciLifeLab / Karolinska Institutet, Sweden
 type: talk
-start_date: '2021-02-09'
-start_time: '13:00+01:00'
-end_date: '2021-02-09'
-end_time: '13:30+01:00'
-youtube_embed: https://youtu.be/cXBYusdjrc0
-location_url:
+startDate: '2021-02-09'
+startTime: '13:00+01:00'
+endDate: '2021-02-09'
+endTime: '13:30+01:00'
+youtubeEmbed: https://youtu.be/cXBYusdjrc0
+locationURL:
   - https://doi.org/10.6084/m9.figshare.14160347.v1
   - https://youtu.be/cXBYusdjrc0
   - https://www.bilibili.com/video/BV1M54y1a7Uy
 ---
-
-# nf-core/bytesize
-
-Join us for an episode of our **weekly series** of short talks: **“nf-core/bytesize”**.
-
-Just **15 minutes** + questions, we will be focussing on topics about using and developing nf-core pipelines.
-These will be recorded and made available at <https://nf-co.re>
-It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
-
-## Bytesize 2: How nf-core configs work
 
 This week, Maxime Garcia ([@MaxUlysse](http://github.com/MaxUlysse/)) will present: _**How nf-core configs work.**_ This talk will cover:
 

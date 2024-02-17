@@ -2,26 +2,16 @@
 title: 'Bytesize: nf-core/crisprseq'
 subtitle: Júlia Mir (QBiC, Tübingen University) and Marta Sanvincente (Pompeu Fabra University, Barcelona)
 type: talk
-start_date: '2023-02-14'
-start_time: '13:00+01:00'
-end_date: '2023-02-14'
-end_time: '13:30+01:00'
-embed_at: 'crisprseq'
-youtube_embed: https://www.youtube.com/watch?v=x_eFQW0nNvo
-location_url:
+startDate: '2023-02-14'
+startTime: '13:00+01:00'
+endDate: '2023-02-14'
+endTime: '13:30+01:00'
+embedAt: 'crisprseq'
+youtubeEmbed: https://www.youtube.com/watch?v=x_eFQW0nNvo
+locationURL:
   - https://doi.org/10.6084/m9.figshare.22100045.v1
   - https://www.youtube.com/watch?v=x_eFQW0nNvo
 ---
-
-# nf-core/bytesize
-
-Join us for our **weekly series** of short talks: **“nf-core/bytesize”**.
-
-Just **15 minutes** + questions, we will be focussing on topics about using and developing nf-core pipelines.
-These will be recorded and made available at <https://nf-co.re>
-It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
-
-## Bytesize: nf-core/crisprseq
 
 This week Júlia Mir ([@mirpedrol](https://github.com/mirpedrol)) and Marta Sanvincente ([@msanvicente](https://github.com/msanvicente)) present the newly released nf-core pipeline nf-core/crisprseq.
 Nf-core/crisprseq is a bioinformatics best-practice analysis pipeline for the analysis of CRISPR edited next generation sequencing (NGS) data. It allows the evaluation of the quality of gene editing experiments using targeted NGS data.

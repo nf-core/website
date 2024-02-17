@@ -14,13 +14,21 @@ export interface Props {
         title: string;
         subtitle: string;
         type: string;
-        start_date: string;
-        end_date: string;
-        start_time: string;
-        end_time: string;
+        startDate: string;
+        endDate: string;
+        startTime: string;
+        endTime: string;
     };
     leftSidebar?: boolean;
-    sections?: { section_name: string; children: {}[] }[] | never[];
+    sections?: {
+        section_name: string;
+        section_slug?: string;
+        children: {
+            title: string;
+            slug: string;
+            order?: number;
+        }[];
+    }[];
     viewTransitions?: boolean;
     meta_title?: string;
     docSearchTags?: {
@@ -93,13 +101,15 @@ const {
     <div class="row">
         {
             leftSidebar && (
-                <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left pt-1">
-                    {sidebarTitle && (
-                        <div class="sidebar-title">
-                            <strong class="h6 p-2 text-body">{sidebarTitle}</strong>
-                        </div>
-                    )}
-                    <SidebarNav items={sections} />
+                <div class="col-12 col-md-2 d-none d-md-block sidebar-left pt-1">
+                    <div class="sticky-top-under">
+                        {sidebarTitle && (
+                            <div class="sidebar-title">
+                                <strong class="h6 p-2 text-body">{sidebarTitle}</strong>
+                            </div>
+                        )}
+                        <SidebarNav items={sections} accordion={true} />
+                    </div>
                 </div>
             )
         }
@@ -110,16 +120,21 @@ const {
                 </MarkdownWrapper>
             </div>
         </div>
-        <div class="col-12 col-md-2 toc">
-            <SidebarToc
-                headings={headings}
-                minHeadingDepth={minHeadingDepth}
-                maxHeadingDepth={maxHeadingDepth}
-                client:idle
-            >
-                <slot name="right-sidebar" />
-            </SidebarToc>
-        </div>
+        {
+            headings && headings.length > 1 && (
+                <div class="col-12 col-md-2 toc">
+                    <slot name="right-sidebar-top" />
+                    <SidebarToc
+                        headings={headings}
+                        minHeadingDepth={minHeadingDepth}
+                        maxHeadingDepth={maxHeadingDepth}
+                        client:idle
+                    >
+                        <slot name="right-sidebar" />
+                    </SidebarToc>
+                </div>
+            )
+        }
     </div>
     <slot name="pre-footer" slot="pre-footer" />
 </PageLayout>
@@ -127,5 +142,9 @@ const {
     .markdown-content :global(img[loading='lazy']) {
         aspect-ratio: attr(width) / attr(height);
         height: auto;
+    }
+    :global(.admonition figure),
+    :global(.admonition pre) {
+        margin-bottom: 0;
     }
 </style>

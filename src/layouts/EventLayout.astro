@@ -2,7 +2,7 @@
 import EventListing from '@components/event/EventListing.svelte';
 import PageLayout from '@layouts/PageLayout.astro';
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
-import { CollectionEntry } from 'astro:content';
+import { type CollectionEntry } from 'astro:content';
 
 const { title, subtitle, events, currentFilters } = Astro.props;
 export interface Props {
@@ -17,8 +17,8 @@ events
         if (event.data.title.toLowerCase().match('bytesize')) {
             event.data.type = 'bytesize';
         }
-        event.data.start = new Date(event.data.start_date + 'T' + event.data.start_time);
-        event.data.end = new Date(event.data.end_date + 'T' + event.data.end_time);
+        event.data.start = new Date(event.data.startDate + 'T' + event.data.startTime);
+        event.data.end = new Date(event.data.endDate + 'T' + event.data.endTime);
         return event;
     })
     .sort((a, b) => {

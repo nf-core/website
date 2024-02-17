@@ -10,7 +10,10 @@ let lastYoutubeUrls = bytesizes
     .slice()
     .reverse()
     .find((Bytesize) => {
-        let urls = Bytesize.data.location_url;
+        let urls = Bytesize.data.locationURL;
+        if (urls === undefined) {
+            return false;
+        }
         if (typeof urls === 'string') {
             urls = [urls];
         }
@@ -18,9 +21,9 @@ let lastYoutubeUrls = bytesizes
         return urls.find((url) => url.startsWith('https://www.youtube.com') || url.startsWith('https://youtu.be'));
     });
 
-lastYoutubeUrls = lastYoutubeUrls?.data.location_url.find(
-    (url) => url.startsWith('https://www.youtube.com') || url.startsWith('https://youtu.be'),
-);
+lastYoutubeUrls = ([] as string[])
+    .concat(lastYoutubeUrls?.data.locationURL ?? [])
+    .find((url) => url.startsWith('https://www.youtube.com') || url.startsWith('https://youtu.be'));
 
 const latestBytesize = lastYoutubeUrls
     ?.replace('https://www.youtube.com/watch?v=', '')
@@ -70,7 +73,7 @@ eventPreviewPast = eventPreview
         </div>
 
         <div class="col-lg-4">
-            {eventPreviewCurrent.length > 0 && <h4>Current Events</h4>}
+            {eventPreviewCurrent.length > 0 && <h2>Current Events</h2>}
             {
                 eventPreviewCurrent.map((event) => (
                     <EventCard
@@ -84,7 +87,7 @@ eventPreviewPast = eventPreview
                     />
                 ))
             }
-            {eventPreviewFuture.length > 0 && <h4>Upcoming Events</h4>}
+            {eventPreviewFuture.length > 0 && <h2>Upcoming Events</h2>}
             {
                 eventPreviewFuture
                     .slice(0, Math.max(0, 3 - eventPreviewCurrent.length))
@@ -102,7 +105,7 @@ eventPreviewPast = eventPreview
             }
             {
                 eventPreviewPast.length > 0 && eventPreviewCurrent.length + eventPreviewFuture.length < 3 && (
-                    <h4>Past Events</h4>
+                    <h2>Past Events</h2>
                 )
             }
             {
@@ -122,15 +125,14 @@ eventPreviewPast = eventPreview
             }
         </div>
         <div class="col-lg-4">
-            <h2>Latest bytesize video</h2>
+            <h2>Latest bytesize</h2>
 
-            <p class="lead">
-                Our weekly series of short talks. Around 15 minutes + questions, focussing on topics about using and
-                developing nf-core pipelines.
-            </p>
+            <p>Our weekly series of short talks.</p>
 
             <YouTube id={latestBytesize} poster={`https://img.youtube.com/vi/${latestBytesize}/hqdefault.jpg`} />
-            <h4 class="mt-3">More bytesize videos: <FuzzySearch possibleResults={bytesizeSearch} client:load /></h4>
+            <div class="my-2">
+                <FuzzySearch possibleResults={bytesizeSearch} placeholder="Find another bytesize" client:load />
+            </div>
         </div>
     </div>
 

@@ -68,3 +68,14 @@ test('nested event pages', async ({ page }) => {
 
     //
 });
+
+test('pipeline schema builder redirect', async ({ page }) => {
+    // doesn't work on localhost, because it is redirected  by the _redirects file on netlify
+    // skip therefore if localhost
+
+    if (!process.env.PLAYWRIGHT_TEST_BASE_URL) {
+        return;
+    }
+    await page.goto('/pipeline_schema_builder');
+    await expect.soft(page).toHaveTitle('Parameter schema » nf-core');
+});
