@@ -40,10 +40,18 @@ jobs:
       - name: Install pre-commit
         run: pip install pre-commit
 
+      - name: install nf-core
+        run: |
+          cd tools
+          pip install --upgrade -r requirements-dev.txt -e .
+
       - name: run API generation script
         run: |
           cd tools
           bash docs/api/generate-api-docs.sh --release ${{ inputs.ref_name }}
+
+      - name: remove tools code
+        run: rm -rf tools
 
       - name: Run pre-commit
         id: pre-commit
