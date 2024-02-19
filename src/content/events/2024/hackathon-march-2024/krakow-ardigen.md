@@ -1,6 +1,6 @@
 ---
 title: Hackathon - March 2024 (Krakow)
-subtitle: Local node of the nf-core hackathon at Ardigen, Kraków.
+subtitle: Local node of the nf-core hackathon at Ardigen office, in Kraków.
 type: hackathon
 startDate: '2024-03-18'
 startTime: '10:00+02:00'
@@ -12,7 +12,7 @@ locationURL: https://ardigen.com/
 locationLatLng: [50.02159965915289, 19.89199888650787]
 ---
 
-Local event to be held at Ardigen, Kraków.
+Local event to be held at Ardigen office, Kraków.
 
 Primary contact: [<i class="fab fa-slack"></i> Mauro Saporita](https://nfcore.slack.com/team/U03PV7P60KA)
 
@@ -69,12 +69,12 @@ Primary contact: [<i class="fab fa-slack"></i> Mauro Saporita](https://nfcore.sl
 
 ### Registration
 
-Please use the **main registration form** (_soon available_) to sign up and select the location you want.
-We will therefore be able to plan everything based on the number of persons coming.
+Please use the [main registration form](https://seqera.typeform.com/mar24hackathon) to sign up and select the location you want.
+Please be aware that there is a limited number of places. We will therefore be able to plan everything based on the number of persons joining.
 
 ### Location
 
-We'll be in the room "A1" at the first floor. Please tell the reception that you have come to the hackathon organized by Ardigen.
+Podole 76, 30-348 Krakow, Poland. Please ask for Ardigen at the reception.
 
 ### Material
 
@@ -82,4 +82,5 @@ Please come with your computer and lots of energy for the hackathon.
 
 ### Food
 
-There are plenty options in 500m from the office and some food will be provided.
+Ardigen will provide lunch for one day; coffee breaks and gadgets will be provided too.
+There are also plenty of restaurants and food trucks close to the office.
