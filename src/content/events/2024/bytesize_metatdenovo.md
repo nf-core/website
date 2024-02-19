@@ -1,6 +1,6 @@
 ---
 title: 'Bytesize: nf-core/metatdenovo'
-subtitle: Danilo Di Leo, Linné­universitetet
+subtitle: Danilo Di Leo, Linné­ universitetet
 type: talk
 startDate: '2024-03-12'
 startTime: '13:00+01:00'
