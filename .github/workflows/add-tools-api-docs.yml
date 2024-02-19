@@ -57,9 +57,11 @@ jobs:
           git config user.name "nf-core-bot"
           git config push.default upstream
           git add .
+          // unstage package.json changes
+          git reset -- package.json
+          git reset -- package-lock.json
           git status
           git commit -m "[automated] Update nf-core/tools API docs for ${{ inputs.ref_name }}"
-          git push
 
       - name: Create PR
         uses: peter-evans/create-pull-request@v3
