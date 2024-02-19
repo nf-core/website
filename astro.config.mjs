@@ -90,18 +90,13 @@ export default defineConfig({
             }),
         ],
         ssr: {
-            noExternal: ['@popperjs/core', 'bin/cache.js'],
+            noExternal: ['@popperjs/core', 'bin/cache.js', 'sharp'],
+            optimizeDeps: { exclude: ['sharp'] },
         },
         resolve: {
             preserveSymlinks: true,
         },
     },
-    // image: {
-    //     domains: ['raw.githubusercontent.com', 'unsplash.com'],
-    //     service: {
-    //         entrypoint: 'astro/assets/services/sharp',
-    //     },
-    // },
     markdown: {
         syntaxHighlight: false,
         shikiConfig: {
