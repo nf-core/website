@@ -63,9 +63,8 @@ jobs:
         run: |
           git config user.email "core@nf-co.re"
           git config user.name "nf-core-bot"
-          git config push.default upstream
           git add .
-          // unstage package.json changes
+          # unstage package.json changes
           git reset -- package.json
           git reset -- package-lock.json
           git status
