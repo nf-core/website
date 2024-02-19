@@ -63,10 +63,10 @@ jobs:
         run: |
           git config user.email "core@nf-co.re"
           git config user.name "nf-core-bot"
+          # restore package.json changes
+          git restore package.json
+          git restore package-lock.json
           git add .
-          # unstage package.json changes
-          git reset -- package.json
-          git reset -- package-lock.json
           git status
           git commit -m "[automated] Update nf-core/tools API docs for ${{ inputs.ref_name }}"
 
@@ -74,12 +74,12 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: Update nf-core/tools API docs for ${{github.ref_name}}
-          title: Update nf-core/tools API docs for ${{github.ref_name}}
+          commit-message: Update nf-core/tools API docs for ${{inputs.ref_name}}
+          title: Update nf-core/tools API docs for ${{inputs.ref_name}}
           body: |
-            This PR updates the nf-core/tools API docs for ${{github.ref_name}}.
+            This PR updates the nf-core/tools API docs for ${{inputs.ref_name}}.
             Please review the changes and merge if they look good.
-          branch: 'update-api-docs-${{github.ref_name}}'
+          branch: 'update-api-docs-${{inputs.ref_name}}'
           delete-branch: true
           base: 'main'
           draft: false
