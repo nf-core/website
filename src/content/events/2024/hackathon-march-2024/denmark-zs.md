@@ -14,7 +14,7 @@ locationLatLng: [55.780384, 12.488322]
 
 Local event to be held at the ZS Associates office, in (North of) Copenhagen.
 
-Primary contact: [<i class="fab fa-slack"></i> Anne Bresciani](https://nfcore.slack.com/team/U0467NW8QAJ) or email [<i class="email"></i>anne.bresciani@zs.com](anne.bresciani@zs.com)
+Primary contact: [<i class="fab fa-slack"></i> Felipe Almeida](https://nfcore.slack.com/team/U01BQB33DF1) or email [<i class="email"></i>felipe.almeida@zs.com](felipe.almeida@zs.com)
 
 <div class="table-responsive">
     <table class="table table-hover table-sm table-bordered">
