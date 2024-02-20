@@ -4087,6 +4087,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -37787,6 +37791,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -38512,6 +38520,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -43173,6 +43185,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -64379,6 +64395,142 @@
       }
     },
     {
+      "name": "ltrretriever_ltrretriever",
+      "path": "modules/nf-core/ltrretriever/ltrretriever/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "ltrretriever_ltrretriever",
+        "description": "Identifies LTR retrotransposons using LTR_retriever",
+        "keywords": [
+          "genomics",
+          "annotation",
+          "repeat",
+          "long terminal repeat",
+          "retrotransposon"
+        ],
+        "tools": [
+          {
+            "LTR_retriever": {
+              "description": "Sensitive and accurate identification of LTR retrotransposons",
+              "homepage": "https://github.com/oushujun/LTR_retriever",
+              "documentation": "https://github.com/oushujun/LTR_retriever",
+              "tool_dev_url": "https://github.com/oushujun/LTR_retriever",
+              "doi": "10.1104/pp.17.01310",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "genome": {
+              "type": "file",
+              "description": "Genomic sequences in fasta format",
+              "pattern": "*.{fsa,fa,fasta}"
+            }
+          },
+          {
+            "harvest": {
+              "type": "file",
+              "description": "LTR-RT candidates from GenomeTools ltrharvest in the old tabular format",
+              "pattern": "*.tabout"
+            }
+          },
+          {
+            "finder": {
+              "type": "file",
+              "description": "LTR-RT candidates from LTR_FINDER",
+              "pattern": "*.scn"
+            }
+          },
+          {
+            "mgescan": {
+              "type": "file",
+              "description": "LTR-RT candidates from MGEScan_LTR",
+              "pattern": "*.out"
+            }
+          },
+          {
+            "non_tgca": {
+              "type": "file",
+              "description": "Non-canonical LTR-RT candidates from GenomeTools ltrharvest in the old tabular format",
+              "pattern": "*.tabout"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "log": {
+              "type": "file",
+              "description": "Output log from LTR_retriever",
+              "pattern": "*.log"
+            }
+          },
+          {
+            "pass_list": {
+              "type": "file",
+              "description": "Intact LTR-RTs with coordinate and structural information in summary table format",
+              "pattern": "*.pass.list"
+            }
+          },
+          {
+            "pass_list_gff": {
+              "type": "file",
+              "description": "Intact LTR-RTs with coordinate and structural information in gff3 format",
+              "pattern": "*.pass.list.gff3"
+            }
+          },
+          {
+            "ltrlib": {
+              "type": "file",
+              "description": "All non-redundant LTR-RTs",
+              "pattern": "*.LTRlib.fa"
+            }
+          },
+          {
+            "annotation_out": {
+              "type": "file",
+              "description": "Whole-genome LTR-RT annotation by the non-redundant library",
+              "pattern": "*.out"
+            }
+          },
+          {
+            "annotation_gff": {
+              "type": "file",
+              "description": "Whole-genome LTR-RT annotation by the non-redundant library in gff3 format",
+              "pattern": "*.out.gff3"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@GallVp"
+        ],
+        "maintainers": [
+          "@GallVp"
+        ]
+      }
+    },
+    {
       "name": "macrel_contigs",
       "path": "modules/nf-core/macrel/contigs/meta.yml",
       "type": "module",
@@ -80647,7 +80799,13 @@
         "maintainers": [
           "@CarsonJM"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "pharokka_pharokka",
@@ -80761,7 +80919,13 @@
         "maintainers": [
           "@CarsonJM"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "phispy",
@@ -93572,6 +93736,10 @@
           "version": "dev"
         },
         {
+          "name": "riboseq",
+          "version": "dev"
+        },
+        {
           "name": "rnadnavar",
           "version": "dev"
         },
@@ -93807,6 +93975,10 @@
         },
         {
           "name": "radseq",
+          "version": "dev"
+        },
+        {
+          "name": "riboseq",
           "version": "dev"
         },
         {
@@ -94105,6 +94277,10 @@
         {
           "name": "readsimulator",
           "version": "1.0.0"
+        },
+        {
+          "name": "riboseq",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -94701,6 +94877,10 @@
           "version": "1.1.1"
         },
         {
+          "name": "riboseq",
+          "version": "dev"
+        },
+        {
           "name": "rnadnavar",
           "version": "dev"
         },
@@ -94893,6 +95073,10 @@
         {
           "name": "raredisease",
           "version": "1.1.1"
+        },
+        {
+          "name": "riboseq",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -105438,6 +105622,10 @@
           "version": "1.0.3"
         },
         {
+          "name": "riboseq",
+          "version": "dev"
+        },
+        {
           "name": "rnadnavar",
           "version": "dev"
         },
@@ -112382,6 +112570,10 @@
           "version": "dev"
         },
         {
+          "name": "riboseq",
+          "version": "dev"
+        },
+        {
           "name": "rnaseq",
           "version": "3.14.0"
         }
@@ -112663,7 +112855,13 @@
           "@drpatelh",
           "@pinin4fjords"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "unicycler",
@@ -118061,6 +118259,10 @@
           "version": "2.1.1"
         },
         {
+          "name": "riboseq",
+          "version": "dev"
+        },
+        {
           "name": "rnaseq",
           "version": "3.14.0"
         }
@@ -118979,6 +119181,10 @@
           "version": "dev"
         },
         {
+          "name": "riboseq",
+          "version": "dev"
+        },
+        {
           "name": "rnadnavar",
           "version": "dev"
         },
@@ -119136,6 +119342,10 @@
         },
         {
           "name": "phageannotator",
+          "version": "dev"
+        },
+        {
+          "name": "riboseq",
           "version": "dev"
         },
         {
@@ -121526,6 +121736,10 @@
       },
       "pipelines": [
         {
+          "name": "riboseq",
+          "version": "dev"
+        },
+        {
           "name": "rnadnavar",
           "version": "dev"
         }
@@ -123630,6 +123844,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -123664,6 +123882,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -124622,6 +124844,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
