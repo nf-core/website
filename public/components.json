@@ -4091,6 +4091,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -37795,6 +37799,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -38520,6 +38528,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -42153,7 +42165,7 @@
           {
             "meta2": {
               "type": "map",
-              "description": "Groovy Map containing reference information\ne.g. [ id:'test', single_end:false ]\n"
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test_reference' ]\n"
             }
           },
           {
@@ -42166,7 +42178,7 @@
           {
             "meta3": {
               "type": "map",
-              "description": "Groovy Map containing reference information\ne.g. [ id:'test', single_end:false ]\n"
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test_reference' ]\n"
             }
           },
           {
@@ -42179,7 +42191,7 @@
           {
             "meta4": {
               "type": "map",
-              "description": "Groovy Map containing reference information\ne.g. [ id:'test', single_end:false ]\n"
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test_reference' ]\n"
             }
           },
           {
@@ -42192,7 +42204,7 @@
           {
             "meta5": {
               "type": "map",
-              "description": "Groovy Map containing dbsnp information\ne.g. [ id:'test', single_end:false ]\n"
+              "description": "Groovy Map containing dbsnp information\ne.g. [ id:'test_dbsnp' ]\n"
             }
           },
           {
@@ -42204,7 +42216,7 @@
           {
             "meta6": {
               "type": "map",
-              "description": "Groovy Map containing dbsnp information\ne.g. [ id:'test', single_end:false ]\n"
+              "description": "Groovy Map containing dbsnp information\ne.g. [ id:'test_dbsnp' ]\n"
             }
           },
           {
@@ -43185,6 +43197,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -123848,6 +123864,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -123882,6 +123902,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -124844,6 +124868,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
