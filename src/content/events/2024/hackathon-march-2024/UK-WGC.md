@@ -4,7 +4,7 @@ subtitle: Local node of the nf-core hackathon at the Wellcome Genome Campus, Cam
 type: hackathon
 startDate: '2024-03-18'
 startTime: '09:30+00:00'
-endDate: '2024-03-19'
+endDate: '2024-03-20'
 endTime: '16:30+00:00'
 locationName: Rosalind Franklin Pavillion, Conference Centre, Wellcome Genome Campus
 address: Wellcome Genome Campus, Hinxton CB10 1SA
@@ -38,6 +38,7 @@ Refreshments available at 10:30 and 15:00 daily. Lunch is provided, please let u
                 <th>Time</th>
                 <th>Mon. 18 Mar. 2024</th>
                 <th>Tue. 19 Mar. 2024</th>
+                <th>Wed. 20 Mar. 2024</th>
             </tr>
             </thead>
             <tbody>
@@ -45,8 +46,10 @@ Refreshments available at 10:30 and 15:00 daily. Lunch is provided, please let u
                 <td data-timestamp="1679905800" data-timeformat="HH:mm z">09:30</td>
                 <td background-color:navy; rowspan="1">Welcome and Introduction</td>
                 <td background-color:navy; rowspan="1">Daily Start</td>
+                <td background-color:navy; rowspan="1">Daily Start</td>
             </tr>
                 <td data-timestamp="1679907600" data-timeformat="HH:mm z">10:00</td>
+                <td rowspan="1">Hack!</td>
                 <td rowspan="1">Hack!</td>
                 <td rowspan="1">Hack!</td>
             </tr>
@@ -54,14 +57,17 @@ Refreshments available at 10:30 and 15:00 daily. Lunch is provided, please let u
                 <td data-timestamp="1679918400" data-timeformat="HH:mm z">12:30</td>
                 <td rowspan="1">Lunch</td>
                 <td rowspan="1">Lunch</td>
+                <td rowspan="1">Lunch</td>
             </tr>
             <tr>
                 <td data-timestamp="1679922000" data-timeformat="HH:mm z">13:30</td>
                 <td rowspan="1">Hack!</td>
                 <td rowspan="1">Hack!</td>
+                <td rowspan="1">Hack!</td>
             </tr>
             <tr>
                 <td data-timestamp="1679932800"  data-timeformat="HH:mm z">16:00</td>
+                <td>Daily sync</td>
                 <td>Daily sync</td>
                 <td>Wrap up</td>
             </tr>
