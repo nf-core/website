@@ -9,7 +9,7 @@ endTime: '13:00-06:00'
 locationName: University of Washington
 address: 1607 NE Pacific St, Seattle, WA
 locationURL: https://www.washington.edu/maps/#!/hsrr
-locationLatLng: [47.649292,-122.308287]
+locationLatLng: [47.649292, -122.308287]
 ---
 
 Local event to be held at the University of Washington.
