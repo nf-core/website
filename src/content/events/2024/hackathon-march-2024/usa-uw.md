@@ -71,7 +71,7 @@ Local event to be held at the University of Washington.
 
 ### Registration
 
-Please use the main registration form to sign up and select the location you want. If the Seattle location does not appear as an option (this node was recently added), please let [Carson Miller](#contact) know that you will be attending, so that we can adjust our plan based on the number of people.
+Please use the main registration form to sign up and select the location you want. If the Seattle location does not appear as an option (this node was recently added), please let [Carson Miller](https://nfcore.slack.com/team/U04T0N2631P) know that you will be attending, so that we can adjust our plan based on the number of people.
 
 ### Location
 
