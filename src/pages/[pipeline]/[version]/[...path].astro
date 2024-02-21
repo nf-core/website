@@ -10,8 +10,11 @@ const meta = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline);
 if (meta) {
     // check if version starts with usage, output, or docs
     // if so, redirect to the versioned docs
-    if (version?.startsWith('usage') || version?.startsWith('output') || version?.startsWith('docs')) {
+    if (version?.startsWith('usage') || version?.startsWith('output')) {
         return Astro.redirect(`/${pipeline}/${meta.releases[0].tag_name}/docs/${version}`);
+    }
+    if (version?.startsWith('docs')) {
+        return Astro.redirect(`/${pipeline}/${meta.releases[0].tag_name}/${version}/${path}`);
     }
     if (version?.startsWith('results')) {
         console.log('redirecting ', version, ' to ', meta.releases[0].tag_name, '/results');

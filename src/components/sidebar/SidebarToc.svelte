@@ -48,12 +48,12 @@
 
 <div class="nav flex-column sticky-top-under align-items-end pt-1">
     <div class="d-none d-md-block w-100">
-        {#if headings.length > 1}
+        {#if headings.length > 2}
             <strong class="h6 my-2 text-body">On this page</strong>
         {/if}
         <!-- <hr class="my-1" /> -->
         <nav id="TableOfContents" class="d-none d-md-flex flex-column">
-            {#if headings.length > 1}
+            {#if headings.length > 2}
                 <ul class="mb-0 mt-1">
                     {#each headings as heading (heading)}
                         <li

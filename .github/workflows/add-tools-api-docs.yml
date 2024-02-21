@@ -29,25 +29,29 @@ jobs:
         run: |
           npm install remark unist-util-visit
 
-      - name: run API generation script
-        run: |
-          cd tools
-          bash docs/api/generate-api-docs.sh --release ${{ inputs.ref_name }}
-
-      # Install and run pre-commit
+      # Install pre-commit
       - uses: actions/setup-python@0a5c61591373683505ea898e09a3ea4f39ef2b9c # v5
         with:
           python-version: 3.11
 
       # install prettier plugins
-      - uses: actions/setup-node@b39b52d1213e96004bfcb1c61a8a6fa8ab84f3e8 # v4
-        with:
-          node-version: 20
-
       - run: npm install --only=dev
 
       - name: Install pre-commit
         run: pip install pre-commit
+
+      - name: install nf-core
+        run: |
+          cd tools
+          pip install --upgrade -r requirements-dev.txt -e .
+
+      - name: run API generation script
+        run: |
+          cd tools
+          bash docs/api/generate-api-docs.sh --release ${{ inputs.ref_name }}
+
+      - name: remove tools code
+        run: rm -rf tools
 
       - name: Run pre-commit
         id: pre-commit
@@ -59,22 +63,23 @@ jobs:
         run: |
           git config user.email "core@nf-co.re"
           git config user.name "nf-core-bot"
-          git config push.default upstream
+          # restore package.json changes
+          git restore package.json
+          git restore package-lock.json
           git add .
           git status
           git commit -m "[automated] Update nf-core/tools API docs for ${{ inputs.ref_name }}"
-          git push
 
       - name: Create PR
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: Update nf-core/tools API docs for ${{github.ref_name}}
-          title: Update nf-core/tools API docs for ${{github.ref_name}}
+          commit-message: Update nf-core/tools API docs for ${{inputs.ref_name}}
+          title: Update nf-core/tools API docs for ${{inputs.ref_name}}
           body: |
-            This PR updates the nf-core/tools API docs for ${{github.ref_name}}.
+            This PR updates the nf-core/tools API docs for ${{inputs.ref_name}}.
             Please review the changes and merge if they look good.
-          branch: 'update-api-docs-${{github.ref_name}}'
+          branch: 'update-api-docs-${{inputs.ref_name}}'
           delete-branch: true
           base: 'main'
           draft: false
