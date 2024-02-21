@@ -15,7 +15,7 @@ importTypeform: true
 
 Local event to be held at the [Wellcome Genome Campus, Cambridge](https://goo.gl/maps/k3fuhxd6R8Tnuoay8).
 
-For questions or concerns, contact [<i class="fab fa-slack"></i> Priyanka Surana](https://nfcore.slack.com/team/U02JA08N0BC)
+For questions or concerns, contact [<i class="fab fa-slack"></i> Jose Perez-Silva](https://nfcore.slack.com/team/U04M3B2QSDQ) or [<i class="fab fa-slack"></i> Damon-Lee Pointon](https://sanger.slack.com/team/U0283HRRMB6).
 
 ## Registration
 
@@ -24,6 +24,8 @@ Registration for the March 2024 nf-core hackathon is now OPEN! 🎉
 You can sign up [here](https://seqera.typeform.com/mar24hackathon) or in the widget below 👇
 
 <div data-tf-widget="YVGRCa8c" style="width:100%;height:500px;color:#FFFFFF;"></div>
+
+Also, to help us organise the event, please fill [this form](https://forms.gle/BXHjAJtntPajfu4aA).
 
 ## Local Schedule
 
