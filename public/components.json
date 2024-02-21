@@ -4099,6 +4099,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -15451,6 +15455,10 @@
           "version": "2.1.1"
         },
         {
+          "name": "oncoanalyser",
+          "version": "dev"
+        },
+        {
           "name": "pathogensurveillance",
           "version": "dev"
         },
@@ -24534,10 +24542,6 @@
           "version": "dev"
         },
         {
-          "name": "createpanelrefs",
-          "version": "dev"
-        },
-        {
           "name": "createtaxdb",
           "version": "dev"
         },
@@ -24642,10 +24646,6 @@
           "version": "1.0.0"
         },
         {
-          "name": "multiplesequencealign",
-          "version": "dev"
-        },
-        {
           "name": "nanoseq",
           "version": "3.1.0"
         },
@@ -24659,6 +24659,10 @@
         },
         {
           "name": "omicsgenetraitassociation",
+          "version": "dev"
+        },
+        {
+          "name": "oncoanalyser",
           "version": "dev"
         },
         {
@@ -37811,6 +37815,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -38536,6 +38544,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -43209,6 +43221,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -77899,7 +77915,10 @@
         "name": "pairtools_dedup",
         "description": "Find and remove PCR/optical duplicates",
         "keywords": [
-          "dedup"
+          "dedup",
+          "deduplication",
+          "PCR/optical duplicates",
+          "pairs"
         ],
         "tools": [
           {
@@ -77979,7 +77998,9 @@
         "name": "pairtools_flip",
         "description": "Flip pairs to get an upper-triangular matrix",
         "keywords": [
-          "flip"
+          "flip",
+          "pairs",
+          "upper-triangular matrix"
         ],
         "tools": [
           {
@@ -78127,7 +78148,9 @@
         "name": "pairtools_parse",
         "description": "Find ligation junctions in .sam, make .pairs",
         "keywords": [
-          "parse"
+          "ligation junctions",
+          "parse",
+          "pairtools"
         ],
         "tools": [
           {
@@ -78214,7 +78237,9 @@
         "name": "pairtools_restrict",
         "description": "Assign restriction fragments to pairs",
         "keywords": [
-          "sort"
+          "pairs",
+          "pairstools",
+          "restriction fragments"
         ],
         "tools": [
           {
@@ -78293,7 +78318,9 @@
         "name": "pairtools_select",
         "description": "Select pairs according to given condition by options.args",
         "keywords": [
-          "select"
+          "select",
+          "pairs",
+          "filter"
         ],
         "tools": [
           {
@@ -93165,7 +93192,13 @@
         "maintainers": [
           "@muffato"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "oncoanalyser",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "samtools_faidx",
@@ -93296,6 +93329,10 @@
         {
           "name": "nascent",
           "version": "2.1.1"
+        },
+        {
+          "name": "oncoanalyser",
+          "version": "dev"
         },
         {
           "name": "pangenome",
@@ -93758,6 +93795,10 @@
         {
           "name": "nascent",
           "version": "2.1.1"
+        },
+        {
+          "name": "oncoanalyser",
+          "version": "dev"
         },
         {
           "name": "phageannotator",
@@ -123888,6 +123929,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -123922,6 +123967,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -125795,6 +125844,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -126041,7 +126094,17 @@
           "@drpatelh",
           "@maxulysse"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "createpanelrefs",
+          "version": "dev"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "utils_nfcore_pipeline",
@@ -126080,7 +126143,17 @@
           "@adamrtalbot",
           "@maxulysse"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "createpanelrefs",
+          "version": "dev"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "utils_nfvalidation_plugin",
@@ -126149,7 +126222,17 @@
           "@adamrtalbot",
           "@maxulysse"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "createpanelrefs",
+          "version": "dev"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "vcf_annotate_ensemblvep",
