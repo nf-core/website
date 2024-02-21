@@ -37,7 +37,8 @@ export async function getStaticPaths() {
             .filter((entry) => entry !== 'index.md')
             .map((entry) => {
                 return {
-                    section_name: entry,
+                    section_name:
+                        entry === 'api' ? 'API' : entry.replace(/_/g, ' ').replace(/^\w/, (c) => c.toUpperCase()),
                     section_slug:
                         '/tools/' +
                         versioned_tools
@@ -59,16 +60,16 @@ export async function getStaticPaths() {
             });
         // reshuffle sections with section name pipeline_lint_tests first, then modules_lint_tests, then subworkflows_lint_tests and then api
         sections.sort((a, b) => {
-            if (a.section_name === 'pipeline_lint_tests') {
+            if (a.section_name === 'Pipeline lint tests') {
                 return -1;
             }
-            if (b.section_name === 'pipeline_lint_tests') {
+            if (b.section_name === 'Pipeline lint tests') {
                 return 1;
             }
-            if (a.section_name === 'api') {
+            if (a.section_name === 'API') {
                 return -1;
             }
-            if (b.section_name === 'api') {
+            if (b.section_name === 'API') {
                 return -1;
             }
             return 0;
@@ -182,7 +183,10 @@ if (entry.id.includes('pipeline_lint_tests')) {
 </MarkdownTocLayout>
 <style lang="scss">
     @import 'src/styles/_variables.scss';
-    h3 {
-        white-space: nowrap;
+    :global(h3:not(:first-of-type), h4) {
+        margin-top: 2rem;
+        :global(code) {
+            font-size: 1.5rem;
+        }
     }
 </style>
