@@ -1,0 +1,19 @@
+---
+import CopyButton from '@components/CopyButton.svelte';
+
+const { href } = Astro.props;
+
+export interface Props {
+    href: string;
+}
+---
+
+<div class="btn-group" role="group">
+    <a class="btn btn-outline-secondary download-file-btn" href={href} target="_blank"> Download file</a>
+    <span class="btn btn-outline-secondary">
+        <CopyButton text={href} client:idle>Copy File URL</CopyButton>
+    </span>
+    <span class="btn btn-outline-secondary">
+        <CopyButton text={href.replace('https://', 's3://')} client:idle>Copy S3 URL</CopyButton>
+    </span>
+</div>

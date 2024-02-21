@@ -3,8 +3,8 @@ import * as icons from 'file-icons-js';
 import 'file-icons-js/css/style.css';
 // import { Code } from 'astro/components';
 import { Markdown } from '@astropub/md';
-import CopyButton from '@components/CopyButton.svelte';
 import Admonition from '@components/Admonition.astro';
+import AWSExportButtons from '@components/pipeline/AWSExportButtons.astro';
 
 const hrefPrefix = 'https://nf-core-awsmegatests.s3-eu-west-1.amazonaws.com/';
 
@@ -30,12 +30,15 @@ const hasPreview = [
     'svg',
     'config',
     'nf',
+    'bed',
 ].includes(extension);
 let tooBig = file.size > 5500000;
+if (['csv', 'tsv', 'log', 'txt'].includes(extension)) {
+    tooBig = file.size > 1000;
+}
 if (!tooBig && hasPreview) {
     content = await fetch(hrefPrefix + file.path).then((r) => r.text());
 }
-console.log('``` ' + extension + '\n' + content + '\n' + '```');
 ---
 
 <script>
@@ -54,19 +57,7 @@ console.log('``` ' + extension + '\n' + content + '\n' + '```');
             {file.name}
         </span>
         <div class="ms-auto">
-            <div class="btn-group" role="group">
-                <a class="btn btn-outline-secondary download-file-btn" href={hrefPrefix + file.path} target="_blank"
-                    >Download file</a
-                >
-                <span class="btn btn-outline-secondary">
-                    <CopyButton text={hrefPrefix + file.path} client:idle>Copy File URL</CopyButton>
-                </span>
-                <span class="btn btn-outline-secondary">
-                    <CopyButton text={hrefPrefix.replace('https://', 's3://') + file.path} client:idle>
-                        Copy S3 URL
-                    </CopyButton>
-                </span>
-            </div>
+            <AWSExportButtons href={hrefPrefix + file.path} />
         </div>
     </div>
     <div class:list={['card-body  p-0', { 'd-none': !hasPreview || tooBig }]}>
@@ -107,7 +98,7 @@ console.log('``` ' + extension + '\n' + content + '\n' + '```');
             )
         }
         {
-            ['log', 'txt', 'csv', 'tsv'].includes(extension) && (
+            ['log', 'txt', 'csv', 'tsv', 'bed'].includes(extension) && (
                 <Markdown of={'``` ' + extension + '\n' + content + '\n' + '```'} />
             )
         }
