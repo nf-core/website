@@ -20,7 +20,7 @@
     circle={true}
     size={Math.max(size, 25)}
 >
-    <div class={'ms-2 d-inline-block text-start d-flex flex-column px-2 ' + extra_classes}>
+    <div class={'ms-2 text-start d-inline-flex flex-column px-2 ' + extra_classes}>
         <slot>
             <div>@{username}</div>
         </slot>
