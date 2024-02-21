@@ -6,7 +6,8 @@ startDate: '2024-02-20'
 startTime: '13:00+01:00'
 endDate: '2024-02-20'
 endTime: '13:30+01:00'
-locationURL: https://seqera-io.zoom.us/j/5968645264
+locationURL: https://youtu.be/dg85sISW-0Q
+youtubeEmbed: https://youtu.be/dg85sISW-0Q
 ---
 
 Introducing a brand new nf-core initiative: Special Interest Groups.
