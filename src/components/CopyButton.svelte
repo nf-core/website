@@ -25,21 +25,15 @@
     title="Copy to clipboard"
     role="button"
     tabindex="0"
-    ><slot />{#if copied}
-        {@html copiedLabel}
-    {:else}
-        {@html label}
-    {/if}</span
+    ><slot />{#if copied}{@html copiedLabel}
+    {:else}{@html label}{/if}</span
 >
 
-<style lang="scss">
-    @import '@styles/_variables.scss';
+<style>
     .copy-url {
-        background: $body-bg;
-    }
-    :global([data-bs-theme='dark']) {
-        .copy-url {
-            background: $body-bg-dark;
-        }
+        /* Set the height of the button,
+        because the height is different
+        with and without text */
+        height: 2rem;
     }
 </style>

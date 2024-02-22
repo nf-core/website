@@ -11,9 +11,19 @@ export interface Props {
 <div class="btn-group" role="group">
     <a class="btn btn-outline-secondary download-file-btn" href={href} target="_blank"> Download file</a>
     <span class="btn btn-outline-secondary">
-        <CopyButton text={href} client:idle>Copy File URL</CopyButton>
+        <CopyButton
+            text={href}
+            label="Copy file URL"
+            copiedLabel='Copied file URL <i class="fa-regular px-1 fa-clipboard-check" />'
+            client:idle
+        />
     </span>
     <span class="btn btn-outline-secondary">
-        <CopyButton text={href.replace('https://', 's3://')} client:idle>Copy S3 URL</CopyButton>
+        <CopyButton
+            text={href.replace('https://', 's3://')}
+            label="Copy S3 URL"
+            copiedLabel='Copied S3 URL <i class="fa-regular px-1 fa-clipboard-check" />'
+            client:idle
+        />
     </span>
 </div>

@@ -16,6 +16,7 @@ export interface Props {
     showHiddenBtn?: boolean;
     sections?: { section_name: string; children: {}[] }[] | never[];
     docSearchTags?: { name: string; content: string | string[] }[];
+    viewTransitions?: boolean;
 }
 
 let {
@@ -30,6 +31,7 @@ let {
     showHiddenBtn = false,
     sections = [],
     docSearchTags = [],
+    viewTransitions = true,
 } = Astro.props;
 
 if (version === 'latest') {
@@ -110,7 +112,7 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
     topics={topics}
     sections={sections}
     {showHiddenBtn}
-    viewTransitions={true}
+    viewTransitions={viewTransitions}
     docSearchTags={[
         ...docSearchTags,
         { name: 'version', content: latestVersion === version ? [version, 'latest'] : version },
