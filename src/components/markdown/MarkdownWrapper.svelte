@@ -57,7 +57,7 @@
 
         // Add "Copy code" button in code blocks
         const copyButtonLabel = "<i class='fa-regular fa-clipboard'></i>";
-        const copiedButtonLabel = `<span class='font-sans-serif'><i class='fa-regular fa-clipboard-check me-2 '></i> Copied</span>`;
+        const copiedButtonLabel = `<span class='font-sans-serif'>Copied </span><i class='fa-regular fa-clipboard-check'></i>`;
         document
             .querySelectorAll("figure[data-rehype-pretty-code-figure] pre:not([data-language='console'])")
             .forEach((block) => {
