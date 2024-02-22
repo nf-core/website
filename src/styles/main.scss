@@ -1289,6 +1289,7 @@ figure[data-rehype-pretty-code-figure] [data-theme*=' ']:not([data-rehype-pretty
 
 .main-content figure[data-rehype-pretty-code-figure] pre .copy-code-button {
   margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
   margin-right: 0.7rem;
   &:hover {
     opacity: 1 !important;
@@ -1335,6 +1336,14 @@ div.mermaid {
   a {
     color: $link-color;
   }
+}
+
+// add margin to codeblocks wedged in between ol/ul
+.main-content ol + figure,
+.main-content ul + figure {
+  margin-bottom: 1rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
 
 ////////////////////////////
