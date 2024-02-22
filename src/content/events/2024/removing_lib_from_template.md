@@ -1,5 +1,5 @@
 ---
-title: 'Bytesize: Removing `lib/` from the template'
+title: "Bytesize: Removing the 'lib/' directory from the template"
 subtitle: 'Sayonara lib! Harshil Patel, Seqera'
 type: talk
 startDate: '2024-02-27'
