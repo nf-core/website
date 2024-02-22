@@ -1,6 +1,6 @@
 ---
 title: 'Bytesize: Removing `lib/` from the template'
-subtitle: "Sayonara lib! Harshil Patel, Seqera"
+subtitle: 'Sayonara lib! Harshil Patel, Seqera'
 type: talk
 startDate: '2024-02-27'
 startTime: '13:00+01:00'
