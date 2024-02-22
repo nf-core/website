@@ -27,7 +27,7 @@ We refactored the pipelines template a bit:
 :::tip
 If you haven't started merging in the template updates yet, it may almost be easier to ignore the template updates for now and try and remove the `lib/` directory on the pipeline `dev` branch by:
 
-1. Individually installing the `utils\_\*` subworkflows with the following commands:
+1. Individually installing the `utils_*` subworkflows with the following commands:
 
 ```bash
 nf-core subworkflows install utils_nextflow_pipeline
@@ -35,9 +35,9 @@ nf-core subworkflows install utils_nfcore_pipeline
 nf-core subworkflows install utils_nfvalidation_plugin
 ```
 
-2. Creating a local `utils\_\*` subworkflow for the pipeline. You can copy the one in [rnaseq (`dev`)](https://github.com/nf-core/rnaseq/blob/dev/subworkflows/local/utils_nfcore_rnaseq_pipeline/main.nf) or the [pipeline template](https://github.com/nf-core/tools/blob/master/nf_core/pipeline-template/subworkflows/local/utils_nfcore_pipeline_pipeline/main.nf) and customise this to your requirements. Make sure you move any custom functions in `lib/` directory to this file.
-3. Include the `utils\_\*` subworkflows in the main.nf as done in [rnaseq (`dev`)](https://github.com/nf-core/rnaseq/blob/48663bffadb900e1ae4e11fb3391134cbf12ffc7/main.nf#L22-L25).
-4. Including the `utils\_\*` subworkflows in the workflow main.nf as done in [rnaseq (`dev`)](https://github.com/nf-core/rnaseq/blob/48663bffadb900e1ae4e11fb3391134cbf12ffc7/workflows/rnaseq/main.nf#L25-L30).
+2. Creating a local `utils_*` subworkflow for the pipeline. You can copy the one in [rnaseq (`dev`)](https://github.com/nf-core/rnaseq/blob/dev/subworkflows/local/utils_nfcore_rnaseq_pipeline/main.nf) or the [pipeline template](https://github.com/nf-core/tools/blob/master/nf_core/pipeline-template/subworkflows/local/utils_nfcore_pipeline_pipeline/main.nf) and customise this to your requirements. Make sure you move any custom functions in `lib/` directory to this file.
+3. Include the `utils_*` subworkflows in the main.nf as done in [rnaseq (`dev`)](https://github.com/nf-core/rnaseq/blob/48663bffadb900e1ae4e11fb3391134cbf12ffc7/main.nf#L22-L25).
+4. Including the `utils_*` subworkflows in the workflow main.nf as done in [rnaseq (`dev`)](https://github.com/nf-core/rnaseq/blob/48663bffadb900e1ae4e11fb3391134cbf12ffc7/workflows/rnaseq/main.nf#L25-L30).
 5. Delete the `lib/` directory after you have confirmed everything has been ported across.
 6. Once you have merged this to `dev` the template sync PR will be updated and tell you whether you have missed anything.
 
