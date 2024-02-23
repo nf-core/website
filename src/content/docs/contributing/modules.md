@@ -1405,7 +1405,7 @@ check_conda_channels // boolean: check conda channels
 
 Sometimes modules or subworkflows become outdated and need to be deprecated (available, but no longer recommended).
 These modules or subworkflows should not be deleted as they could be used in private repositories, or used on other
-platforms. The recommended procedure is, once the alternative is available on nf-core modules, add a comment to the
+platforms. The recommended procedure is, once the alternative is available on nf-core modules, add a message to the
 top of the module code saying this module is deprecated, and an `assert` in the code body to print a deprecation
 message like so:
 
