@@ -1410,18 +1410,19 @@ top of the module code saying this module is deprecated, and an `assert` in the 
 message like so:
 
 ```groovy title="main.nf"
-/*
+def deprecation_message = """
 WARNING: This module has been deprecated. Please use nf-core/modules/path/to/new/module
 
 Reason:
-Add why this module is no longer fit for purpose.
-*/
+This module is no longer fit for purpose because ...
+
+"""
 
 process OLD_MODULE {
   ...
 
   script:
-  assert true: "This module has been deprecated. See code for the reason and an alternative."
+  assert false: deprecation_message
 }
 ```
 
