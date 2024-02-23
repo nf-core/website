@@ -43,8 +43,7 @@ nf-core subworkflows install utils_nfvalidation_plugin
 6. Once you have merged this to `dev` the template sync PR will be updated and tell you whether you have missed anything.
 7. The `nf-core lint` command might complain about having to recompute checksum of subworkflow(s).
    - Be sure to check the `modules.json` file as previously installed subworkflows might have dissapeared from it.
-   - The `git merge` command adds a new `subworkflows` sections with the new `utils_*` subworkflows, which doesn't create a merge conflict but clashes with any previously installed subworfklows.
-   - Reinstalling the subworkflows using `nf-core subworkflows install` should fix this, otherwise one could manually edit the modules.json file (only recommended for advanced users).
+   - A new `subworkflows` section with the new `utils_*` subworkflows might have been added during the merged. Reinstalling the subworkflows using `nf-core subworkflows install` should fix this, otherwise one could manually edit the modules.json file (only recommended for advanced users).
 
 :bulb: It helped to disable running the main workflow whilst wiring all of this in to speed up development.
 :::
