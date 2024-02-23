@@ -611,15 +611,16 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
     For guidelines regarding multi-tool modules, please search this page for the phrase `multi-tool`.
 
-    Existing local multi-tool modules can be searched for using the Github search box searching across
-    the nf-core org, for terms such as `args2` `samtools` `collate` `fastq`.
+    Existing local multi-tool modules can be searched for using the Github search box, searching across
+    the nf-core org for terms such as `args2` `samtools` `collate` `fastq`.
 
     ```
     org:nf-core args2 samtools collate fastq
     ```
 
     Modules intended to batch process files by parallelizing repeated calls to a tool, for example with
-    `xargs` or `parallel`, also fall under the category of multi-tool modules.
+    `xargs` or `parallel`, also fall under the category of multi-tool modules. Multi-tool modules
+    should chain tools in an explicit order given by the module name, e.g. `SAMTOOLS/COLLATEFASTQ`.
     :::
 
 5.  Each tool in a multi-tool module MUST have an `$args` e.g.,
