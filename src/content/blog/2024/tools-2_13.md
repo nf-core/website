@@ -8,6 +8,7 @@ authors:
   - 'mashehu'
   - 'mirpedrol'
   - 'drpatelh'
+  - 'maxulysse'
 label:
   - 'tools'
 embedHeaderImage: true
@@ -40,6 +41,9 @@ nf-core subworkflows install utils_nfvalidation_plugin
 4. Including the `utils_*` subworkflows in the workflow main.nf as done in [rnaseq (`dev`)](https://github.com/nf-core/rnaseq/blob/48663bffadb900e1ae4e11fb3391134cbf12ffc7/workflows/rnaseq/main.nf#L25-L30).
 5. Delete the `lib/` directory after you have confirmed everything has been ported across.
 6. Once you have merged this to `dev` the template sync PR will be updated and tell you whether you have missed anything.
+7. The `nf-core lint` command might complain about having to recompute checksum of subworkflow(s).
+   - Be sure to check in the `modules.json` file that non of the previously installed subworkflows have dissapeared from it.
+   - A new `subworkflows` section with the new `utils_*` subworkflows might have been added during the merged. Reinstalling the subworkflows using `nf-core subworkflows install` should fix this, otherwise one could manually edit the modules.json file (only recommended for advanced users).
 
 :bulb: It helped to disable running the main workflow whilst wiring all of this in to speed up development.
 :::
