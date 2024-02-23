@@ -603,6 +603,25 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
     bwa mem $args | samtools view $args2 -B -T ref.fasta
     ```
 
+    :::info
+    The addition of multi-tool modules to nf-core/modules adds increased burden on the nf-core
+    maintainers. Where possible, if a multi-tool module is desired, it should be implemented as
+    a local module in the nf-core pipeline. If another nf-core pipeline also desires to
+    use this module, a PR can be made adding it to nf-core/modules.
+
+    For guidelines regarding multi-tool modules, please search this page for the phrase `multi-tool`.
+
+    Existing local multi-tool modules can be searched for using the Github search box searching across
+    the nf-core org, for terms such as `args2` `samtools` `collate` `fastq`.
+
+    ```
+    org:nf-core args2 samtools collate fastq
+    ```
+
+    Modules intended to batch process files by parallelizing repeated calls to a tool, for example with
+    `xargs` or `parallel`, also fall under the category of multi-tool modules.
+    :::
+
 5.  Each tool in a multi-tool module MUST have an `$args` e.g.,
 
     ```bash
