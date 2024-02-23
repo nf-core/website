@@ -4107,6 +4107,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -8642,7 +8646,13 @@
           "@joseespinosa",
           "@drpatelh"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "bcftools_merge",
@@ -9454,6 +9464,10 @@
         {
           "name": "raredisease",
           "version": "1.1.1"
+        },
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
         }
       ]
     },
@@ -9656,6 +9670,10 @@
         {
           "name": "sarek",
           "version": "3.4.0"
+        },
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
         },
         {
           "name": "viralrecon",
@@ -9869,6 +9887,10 @@
           "version": "3.4.0"
         },
         {
+          "name": "variantbenchmarking",
+          "version": "dev"
+        },
+        {
           "name": "viralrecon",
           "version": "2.6.0"
         }
@@ -9979,6 +10001,10 @@
         {
           "name": "raredisease",
           "version": "1.1.1"
+        },
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
         }
       ]
     },
@@ -10403,7 +10429,13 @@
         "authors": [
           "@nvnieuwk"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "bedtools_bamtobed",
@@ -10756,6 +10788,10 @@
         {
           "name": "radseq",
           "version": "dev"
+        },
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
         }
       ]
     },
@@ -10866,6 +10902,10 @@
         {
           "name": "nascent",
           "version": "2.1.1"
+        },
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
         }
       ]
     },
@@ -11128,6 +11168,10 @@
         },
         {
           "name": "radseq",
+          "version": "dev"
+        },
+        {
+          "name": "variantbenchmarking",
           "version": "dev"
         }
       ]
@@ -11571,6 +11615,10 @@
         },
         {
           "name": "radseq",
+          "version": "dev"
+        },
+        {
+          "name": "variantbenchmarking",
           "version": "dev"
         },
         {
@@ -12056,7 +12104,13 @@
         "maintainers": [
           "@sidorov-si"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "bedtools_unionbedg",
@@ -12139,7 +12193,13 @@
         "maintainers": [
           "@ekushele"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "bioawk",
@@ -24441,7 +24501,13 @@
         "maintainers": [
           "@pinin4fjords"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "custom_dumpsoftwareversions",
@@ -24556,10 +24622,6 @@
         {
           "name": "demultiplex",
           "version": "1.4.0"
-        },
-        {
-          "name": "detaxizer",
-          "version": "dev"
         },
         {
           "name": "differentialabundance",
@@ -24714,10 +24776,6 @@
           "version": "1.0.0"
         },
         {
-          "name": "riboseq",
-          "version": "dev"
-        },
-        {
           "name": "rnadnavar",
           "version": "dev"
         },
@@ -24768,10 +24826,6 @@
         {
           "name": "taxprofiler",
           "version": "1.1.5"
-        },
-        {
-          "name": "variantbenchmarking",
-          "version": "dev"
         },
         {
           "name": "variantcatalogue",
@@ -37823,6 +37877,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -39352,6 +39410,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -39960,7 +40022,9 @@
               "homepage": "https://gatk.broadinstitute.org/hc/en-us",
               "tool_dev_url": "https://github.com/broadinstitute/gatk",
               "doi": "10.1158/1538-7445.AM2017-3590",
-              "licence": "['BSD-3-clause']"
+              "licence": [
+                "BSD-3-clause"
+              ]
             }
           }
         ],
@@ -40278,7 +40342,9 @@
               "homepage": "https://gatk.broadinstitute.org/hc/en-us",
               "tool_dev_url": "https://github.com/broadinstitute/gatk",
               "doi": "10.1158/1538-7445.AM2017-3590",
-              "licence": "['BSD-3-clause']"
+              "licence": [
+                "BSD-3-clause"
+              ]
             }
           }
         ],
@@ -43229,6 +43295,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -47277,7 +47347,9 @@
               "homepage": "https://www.gnu.org/software/gawk/",
               "documentation": "https://www.gnu.org/software/gawk/manual/",
               "tool_dev_url": "https://www.gnu.org/prep/ftp.html",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -54844,13 +54916,7 @@
         "maintainers": [
           "@nvnieuwk"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "variantbenchmarking",
-          "version": "dev"
-        }
-      ]
+      }
     },
     {
       "name": "happy_prepy",
@@ -55077,13 +55143,7 @@
         "authors": [
           "@kubranarci"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "variantbenchmarking",
-          "version": "dev"
-        }
-      ]
+      }
     },
     {
       "name": "hicap",
@@ -61690,6 +61750,101 @@
       }
     },
     {
+      "name": "kraken2_add",
+      "path": "modules/nf-core/kraken2/add/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "kraken2_add",
+        "description": "Adds fasta files to a Kraken2 taxonomic database",
+        "keywords": [
+          "metagenomics",
+          "db",
+          "classification",
+          "build",
+          "kraken2",
+          "add"
+        ],
+        "tools": [
+          {
+            "kraken2": {
+              "description": "Kraken2 is a system for assigning taxonomic labels to short DNA sequences, usually obtained through metagenomic studies.",
+              "homepage": "https://ccb.jhu.edu/software/kraken2/",
+              "documentation": "https://github.com/DerrickWood/kraken2/wiki/Manual",
+              "tool_dev_url": "https://github.com/DerrickWood/kraken2",
+              "doi": "10.1186/s13059-019-1891-0",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "fasta file that will be added to the database",
+              "pattern": "*.{fa,fasta,fna,ffn}"
+            }
+          },
+          {
+            "taxonomy_names": {
+              "type": "file",
+              "description": "used for associating sequences with taxonomy IDs",
+              "pattern": "*.dmp"
+            }
+          },
+          {
+            "taxonomy_nodes": {
+              "type": "file",
+              "description": "tree nodes using NCBI taxonomy nomenclature",
+              "pattern": "*.dmp"
+            }
+          },
+          {
+            "accession2taxid": {
+              "type": "file",
+              "description": "associates sequence accession IDs to taxonomy IDs",
+              "pattern": "*.accession2taxid"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "db": {
+              "type": "directory",
+              "description": "contains required files to build the database",
+              "pattern": "*/"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@alxndrdiaz"
+        ],
+        "maintainers": [
+          "@alxndrdiaz"
+        ]
+      }
+    },
+    {
       "name": "kraken2_kraken2",
       "path": "modules/nf-core/kraken2/kraken2/meta.yml",
       "type": "module",
@@ -64319,6 +64474,98 @@
       }
     },
     {
+      "name": "ltrharvest",
+      "path": "modules/nf-core/ltrharvest/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "ltrharvest",
+        "description": "Predicts LTR retrotransposons using the parallel version of GenomeTools gt-ltrharvest\nutility included in the EDTA toolchain\n",
+        "keywords": [
+          "genomics",
+          "genome",
+          "annotation",
+          "repeat",
+          "transposons",
+          "retrotransposons"
+        ],
+        "tools": [
+          {
+            "LTR_HARVEST_parallel": {
+              "description": "A Perl wrapper for LTR_harvest",
+              "homepage": "https://github.com/oushujun/EDTA/tree/v2.2.0/bin/LTR_HARVEST_parallel",
+              "documentation": "https://github.com/oushujun/EDTA/tree/v2.2.0/bin/LTR_HARVEST_parallel",
+              "tool_dev_url": "https://github.com/oushujun/EDTA/tree/v2.2.0/bin/LTR_HARVEST_parallel",
+              "licence": [
+                "MIT"
+              ]
+            }
+          },
+          {
+            "gt": {
+              "description": "The GenomeTools genome analysis system",
+              "homepage": "https://genometools.org/index.html",
+              "documentation": "https://genometools.org/documentation.html",
+              "tool_dev_url": "https://github.com/genometools/genometools",
+              "doi": "10.1109/TCBB.2013.68",
+              "licence": [
+                "ISC"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Input genome fasta",
+              "pattern": "*.{fsa,fa,fasta}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "gff3": {
+              "type": "file",
+              "description": "Predicted LTR candidates in gff3 format",
+              "pattern": "*.gff3"
+            }
+          },
+          {
+            "scn": {
+              "type": "file",
+              "description": "Predicted LTR candidates in scn format",
+              "pattern": "*.scn"
+            }
+          }
+        ],
+        "authors": [
+          "@GallVp"
+        ],
+        "maintainers": [
+          "@GallVp"
+        ]
+      }
+    },
+    {
       "name": "ltrretriever",
       "path": "modules/nf-core/ltrretriever/meta.yml",
       "type": "module",
@@ -65604,7 +65851,13 @@
         "maintainers": [
           "@FriederikeHanssen"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "manta_germline",
@@ -107113,7 +107366,13 @@
         "maintainers": [
           "@LlaneroHiboreo"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "survivor_merge",
@@ -107838,7 +108097,13 @@
         "authors": [
           "@kubranarci"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "svdb_merge",
@@ -108649,7 +108914,13 @@
         "maintainers": [
           "@nvnieuwk"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "tabix_bgzip",
@@ -108748,6 +109019,10 @@
         },
         {
           "name": "phaseimpute",
+          "version": "dev"
+        },
+        {
+          "name": "variantbenchmarking",
           "version": "dev"
         },
         {
@@ -108867,6 +109142,10 @@
         {
           "name": "sarek",
           "version": "3.4.0"
+        },
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
         }
       ]
     },
@@ -123949,6 +124228,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -123983,6 +124266,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -125872,6 +126159,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -126125,7 +126416,19 @@
           "version": "dev"
         },
         {
+          "name": "detaxizer",
+          "version": "dev"
+        },
+        {
           "name": "multiplesequencealign",
+          "version": "dev"
+        },
+        {
+          "name": "riboseq",
+          "version": "dev"
+        },
+        {
+          "name": "variantbenchmarking",
           "version": "dev"
         }
       ]
@@ -126174,7 +126477,19 @@
           "version": "dev"
         },
         {
+          "name": "detaxizer",
+          "version": "dev"
+        },
+        {
           "name": "multiplesequencealign",
+          "version": "dev"
+        },
+        {
+          "name": "riboseq",
+          "version": "dev"
+        },
+        {
+          "name": "variantbenchmarking",
           "version": "dev"
         }
       ]
@@ -126253,7 +126568,19 @@
           "version": "dev"
         },
         {
+          "name": "detaxizer",
+          "version": "dev"
+        },
+        {
           "name": "multiplesequencealign",
+          "version": "dev"
+        },
+        {
+          "name": "riboseq",
+          "version": "dev"
+        },
+        {
+          "name": "variantbenchmarking",
           "version": "dev"
         }
       ]
