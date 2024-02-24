@@ -4119,6 +4119,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -37897,6 +37901,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -38622,6 +38630,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -43319,6 +43331,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -90103,6 +90119,81 @@
       }
     },
     {
+      "name": "rgi_cardannotation",
+      "path": "modules/nf-core/rgi/cardannotation/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "rgi_cardannotation",
+        "description": "Preprocess the CARD database for RGI to predict antibiotic resistance from protein or nucleotide data",
+        "keywords": [
+          "bacteria",
+          "fasta",
+          "antibiotic resistance"
+        ],
+        "tools": [
+          {
+            "rgi": {
+              "description": "This module preprocesses the downloaded Comprehensive Antibiotic Resistance Database (CARD) which can then be used as input for RGI.",
+              "homepage": "https://card.mcmaster.ca",
+              "documentation": "https://github.com/arpcard/rgi",
+              "tool_dev_url": "https://github.com/arpcard/rgi",
+              "doi": "10.1093/nar/gkz935",
+              "licence": [
+                "https://card.mcmaster.ca/about"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "card": {
+              "type": "directory",
+              "description": "Directory containing the CARD database",
+              "pattern": "*/"
+            }
+          }
+        ],
+        "output": [
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "db": {
+              "type": "directory",
+              "description": "Directory containing the processed CARD database files",
+              "pattern": "*/"
+            }
+          },
+          {
+            "tool_version": {
+              "type": "string",
+              "description": "The version of the tool in string format (useful for downstream tools such as hAMRronization)"
+            }
+          },
+          {
+            "db_version": {
+              "type": "string",
+              "description": "The version of the used database in string format (useful for downstream tools such as hAMRronization)"
+            }
+          }
+        ],
+        "authors": [
+          "@rpetit3",
+          "@jfy133",
+          "@jasmezz"
+        ],
+        "maintainers": [
+          "@rpetit3",
+          "@jfy133",
+          "@jasmezz"
+        ]
+      }
+    },
+    {
       "name": "rgi_main",
       "path": "modules/nf-core/rgi/main/meta.yml",
       "type": "module",
@@ -90141,6 +90232,20 @@
               "description": "Nucleotide or protein sequences in FASTA format",
               "pattern": "*.{fasta,fasta.gz,fa,fa.gz,fna,fna.gz,faa,faa.gz}"
             }
+          },
+          {
+            "card": {
+              "type": "directory",
+              "description": "Directory containing the CARD database. This is expected to be the unarchived but otherwise unaltered download folder (see RGI documentation for download instructions).",
+              "pattern": "*/"
+            }
+          },
+          {
+            "wildcard": {
+              "type": "directory",
+              "description": "Directory containing the WildCARD database (optional). This is expected to be the unarchived but otherwise unaltered download folder (see RGI documentation for download instructions).",
+              "pattern": "*/"
+            }
           }
         ],
         "output": [
@@ -90172,7 +90277,7 @@
             }
           },
           {
-            "temp": {
+            "tmp": {
               "type": "directory",
               "description": "Directory containing various intermediate files",
               "pattern": "temp/"
@@ -90193,11 +90298,13 @@
         ],
         "authors": [
           "@rpetit3",
-          "@jfy133"
+          "@jfy133",
+          "@jasmezz"
         ],
         "maintainers": [
           "@rpetit3",
-          "@jfy133"
+          "@jfy133",
+          "@jasmezz"
         ]
       },
       "pipelines": [
@@ -124294,6 +124401,10 @@
         {
           "name": "fetchngs",
           "version": "1.11.0"
+        },
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
         }
       ]
     },
@@ -124328,6 +124439,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
@@ -125318,6 +125433,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fetchngs",
+          "version": "1.11.0"
+        },
         {
           "name": "fetchngs",
           "version": "1.11.0"
