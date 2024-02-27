@@ -6,9 +6,9 @@ startDate: '2024-03-18'
 startTime: '09:00-06:00'
 endDate: '2024-03-20'
 endTime: '13:00-06:00'
-locationName: University of Texas at Dallas
+locationName: Benchling
 address: 680 Folsom St., 8th Floor San Francisco, CA 94107
-locationURL: https://map.concept3d.com/?id=1772#!m/434445
+locationURL: https://maps.app.goo.gl/TJAGF7ypXFwwCcLG7
 locationLatLng: [37.78452954687462, -122.39858903879933]
 ---
 
