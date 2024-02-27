@@ -3,19 +3,27 @@ import * as icons from 'file-icons-js';
 import 'file-icons-js/css/style.css';
 import { formatDistanceToNow } from 'date-fns';
 import prettyBytes from 'pretty-bytes';
+import AWSExportButtons from '@components/pipeline/AWSExportButtons.astro';
 
 const { item } = Astro.props;
-
 const fileIcon = icons.getClass(item.name);
+
+const hrefPrefix = 'https://nf-core-awsmegatests.s3-eu-west-1.amazonaws.com/';
 ---
 
-<a href={'?file=' + item.name} class="list-group-item list-group-item-action">
-    <div class="row">
-        <span class="col">
-            {fileIcon ? <span class={fileIcon + ' file-icon me-2'} /> : <i class="fa-regular fa-file me-2" />}
-            <span>{item.name}</span>
-        </span>
-        <span class="col">{formatDistanceToNow(item.lastModified)}</span>
+<span class="list-group-item list-group-item-action">
+    <div class="row align-items-center">
+        <div class="col">
+            <a href={'?file=' + item.name}
+                >{fileIcon ? <span class={fileIcon + ' file-icon me-2'} /> : <i class="fa-regular fa-file me-2" />}
+                <span>{item.name}</span></a
+            >
+        </div>
+        <span class="col">{formatDistanceToNow(new Date(item.lastModified))}</span>
+
         <span class="col-1 text-end">{prettyBytes(item.size)}</span>
+        <span class="col text-end">
+            <AWSExportButtons href={hrefPrefix + item.path} />
+        </span>
     </div>
-</a>
+</span>

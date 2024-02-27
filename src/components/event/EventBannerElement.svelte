@@ -4,19 +4,42 @@
     import ExportEventButton from '@components/event/ExportEventButton.svelte';
     import VideoButton from '@components/VideoButton.svelte';
     import { onMount } from 'svelte';
-    export let events = [];
+
+    export let events: {
+        id: string;
+        slug: string;
+        body: string;
+        collections: string;
+        data: {
+            title: string;
+            subtitle: string;
+            type: string;
+            startDate: string;
+            startTime: string;
+            endDate: string;
+            endTime: string;
+            start: Date;
+            end: Date;
+            announcement?: {
+                start: string;
+            };
+            duration: string;
+            eventCountDown: string;
+            locationURL: string;
+        };
+    }[] = [];
     export let event_time_category: string = '';
 
-    export let event_type_classes: {}[] = [{}];
-    export let event_type_icons: {}[] = [{}];
+    export let event_type_classes: {} = {};
+    export let event_type_icons: {} = {};
 
     let backgroundIcon = '';
 
     const event_duration = (event) => {
-        event.data.start = new Date(event.data.start_date + 'T' + event.data.start_time);
-        event.data.end = new Date(event.data.end_date + 'T' + event.data.end_time);
+        event.data.start = new Date(event.data.startDate + 'T' + event.data.startTime);
+        event.data.end = new Date(event.data.endDate + 'T' + event.data.endTime);
         event.data.eventCountDown = formatDistanceToNow(event.data.start);
-        if (event.data.start_date === event.data.end_date) {
+        if (event.data.startDate === event.data.endDate) {
             event.data.duration =
                 new Date(event.data.start).toLocaleString('en-US', {
                     year: 'numeric',
@@ -63,21 +86,25 @@
             return event;
         })
         .sort((a, b) => {
-            return new Date(a.data.start) - new Date(b.data.start);
+            return new Date(a.data.start).getTime() - new Date(b.data.start).getTime();
         });
     if (event_time_category === 'upcoming') {
         backgroundIcon = 'fa-alarm-clock';
         events = events
             .filter((event) => {
                 let time_window = 1 * 24 * 60 * 60 * 1000;
-                const event_start_unix =
-                    event.data.start_announcement !== undefined
-                        ? new Date(event.data.start_announcement).getTime()
-                        : event.data.start.getTime();
+                let event_start_unix = event.data.start.getTime();
+                if (event.data.announcement?.start !== undefined) {
+                    event_start_unix = new Date(event.data.announcement.start).getTime();
+                    time_window = 0;
+                }
                 const event_end_unix = event.data.end.getTime();
 
                 // increase time window to a week for events longer than 5 hours
-                if (event_end_unix - event_start_unix > 5 * 60 * 60 * 1000) {
+                if (
+                    event_end_unix - event_start_unix > 5 * 60 * 60 * 1000 &&
+                    event.data.announcement?.start === undefined
+                ) {
                     time_window = 7 * 24 * 60 * 60 * 1000;
                 }
                 if (event.data.start < new Date() && new Date() < event.data.end) {
@@ -90,7 +117,7 @@
                 }
             })
             .sort((a, b) => {
-                return a.data.start - b.data.start;
+                return new Date(a.data.start).getTime() - new Date(b.data.start).getTime();
             });
     } else if (event_time_category === 'ongoing') {
         backgroundIcon = 'fa-broadcast-tower';
@@ -99,7 +126,7 @@
                 return event.data.start < new Date() && new Date() < event.data.end;
             })
             .sort((a, b) => {
-                return new Date(b.data.start) - new Date(a.data.start);
+                return new Date(b.data.start).getTime() - new Date(a.data.start).getTime();
             });
 
         if (events.length > 0) {
@@ -131,7 +158,7 @@
                     />
                 </div>
                 <div class="flex-grow-1">
-                    {#each events as event}
+                    {#each events as event (event.slug)}
                         <div class="w-100 row align-items-center">
                             <div class="col-8 py-lg-2 text-lg-start">
                                 <h5 class="pt-2 pb-0 pb-lg-1">
@@ -189,8 +216,8 @@
                                                 href={'events/' + event.slug + '/'}
                                                 class="btn btn-outline-success text-nowrap">Event Details</a
                                             >
-                                            {#if event.data.location_url}
-                                                <VideoButton urls={event.data.location_url} />
+                                            {#if event.data.locationURL}
+                                                <VideoButton urls={event.data.locationURL} />
                                             {/if}
                                         </div>
                                     </div>
@@ -205,7 +232,7 @@
                 <div class="pt-2 pb-1 mb-2 overflow-hidden mainpage-subheader-heading-header bg-body-tertiary">
                     <h5 class="pt-2 font-weight-light text-center text-sucess">{heading_title}</h5>
                 </div>
-                {#each events as event}
+                {#each events as event (event.slug)}
                     <div class="text-center">
                         <h4 class="pt-2 pb-0">
                             <a href={'events/' + event.slug + '/'} class="text-success text-decoration-none"
@@ -232,8 +259,8 @@
                                 {#if event_time_category === 'upcoming'}
                                     <ExportEventButton frontmatter={event.data} />
                                 {/if}
-                                {#if event_time_category === 'ongoing' && event.data.location_url}
-                                    <VideoButton urls={event.data.location_url} />
+                                {#if event_time_category === 'ongoing' && event.data.locationURL}
+                                    <VideoButton urls={event.data.locationURL} />
                                 {/if}
                             </div>
                         </div>

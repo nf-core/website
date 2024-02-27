@@ -1,9 +1,8 @@
 # Slack invite URL
-/join/slack https://join.slack.com/t/nfcore/shared_invite/zt-zj2p3l6d-oLK8OcMGXYuPra0ye1ptdg
+/join/slack https://join.slack.com/t/nfcore/shared_invite/zt-2c57uqiqb-fKxI57H7lq99Q6QWLSKKmQ
 
 # Temporary oldsite redirections
 /logo/*  https://oldsite.nf-co.re/logo/:splat 200
-/tools/docs/* https://oldsite.nf-co.re/tools/docs/:splat 200
 /pipeline_schema_builder/* https://oldsite.nf-co.re/pipeline_schema_builder/:splat 200
 /launch/* https://oldsite.nf-co.re/launch/:splat 200
 /assets/* https://oldsite.nf-co.re/assets/:splat 200
@@ -14,3 +13,5 @@
 /developers/* /docs/contributing/:splat
 /contributing/* /docs/contributing/:splat
 /assets/img/* /images/:splat
+/tools-docs/lint_tests/* /tools/docs/latest/pipeline_lint_tests/:splat
+

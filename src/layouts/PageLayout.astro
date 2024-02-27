@@ -15,12 +15,14 @@ let {
     header_btn_text,
     mainpage_container,
     subfooter = false,
+    showHiddenBtn = false,
     frontmatter,
     navTocHeadings = [],
     topics = [],
     sections = [],
     viewTransitions = false,
     docSearchTags = [],
+    doubleNavbar = true,
 } = Astro.props;
 
 export interface Props {
@@ -29,13 +31,22 @@ export interface Props {
     subtitle?: string;
     image?: string;
     header_html?: string;
-    event_header?: object[];
+    event_header?: {
+        title: string;
+        subtitle: string;
+        type: string;
+        startDate: string;
+        endDate: string;
+        startTime: string;
+        endTime: string;
+    };
     md_github_url?: string;
     header_btn_url?: string;
     header_btn_text?: string;
     mainpage_container?: boolean;
-    navTocHeadings?: object[];
+    navTocHeadings?: ({ text: string; slug: string; depth: number; fa_icon?: string } | undefined)[];
     subfooter?: boolean;
+    showHiddenBtn?: boolean;
     frontmatter?: any;
     topics?: string[];
     sections?: { section_name: string; children: {}[] }[] | never[];
@@ -44,8 +55,8 @@ export interface Props {
         name: string;
         content: string | string[];
     }[];
+    doubleNavbar?: boolean;
 }
-
 if (frontmatter) {
     title = frontmatter.title || title;
     subtitle = frontmatter.subtitle || subtitle;
@@ -65,10 +76,12 @@ if (frontmatter) {
     image={image}
     md_github_url={md_github_url}
     subfooter={subfooter}
+    {showHiddenBtn}
     navTocHeadings={navTocHeadings}
     sections={sections}
     viewTransitions={viewTransitions}
     docSearchTags={docSearchTags}
+    doubleNavbar={doubleNavbar}
 >
     <div class="mainpage">
         <Header
@@ -85,7 +98,7 @@ if (frontmatter) {
         </Header>
         {
             mainpage_container || mainpage_container == null ? (
-                <div class="container main-content pt-md-4 DocSearch-content">
+                <div class="container-xl main-content pt-md-4 DocSearch-content">
                     <slot />
                 </div>
             ) : (
@@ -99,7 +112,11 @@ if (frontmatter) {
 </BaseLayout>
 
 <style lang="scss">
+    @import '@styles/_variables.scss';
     .mainpage {
         min-height: calc(100vh - 14.5rem); // offset for header and footer
+        @include media-breakpoint-down(lg) {
+            min-height: calc(100vh - 16rem); // offset for header and footer
+        }
     }
 </style>

@@ -2,25 +2,15 @@
 title: 'Bytesize 40: Software packaging'
 subtitle: Alexander Peltzer - Boehringer Ingelheim Pharma GmbH & Co. KG, Germany
 type: talk
-start_date: '2022-04-05'
-start_time: '13:00+02:00'
-end_date: '2022-04-05'
-end_time: '13:30+02:00'
-youtube_embed: https://www.youtube.com/watch?v=0ZpcYtKDZrU
-location_url:
+startDate: '2022-04-05'
+startTime: '13:00+02:00'
+endDate: '2022-04-05'
+endTime: '13:30+02:00'
+youtubeEmbed: https://www.youtube.com/watch?v=0ZpcYtKDZrU
+locationURL:
   - https://www.youtube.com/watch?v=0ZpcYtKDZrU
   - https://doi.org/10.6084/m9.figshare.19923425.v1
 ---
-
-# nf-core/bytesize
-
-Join us for our **weekly series** of short talks: **“nf-core/bytesize”**.
-
-Just **15 minutes** + questions, we will be focussing on topics about using and developing nf-core pipelines.
-These will be recorded and made available at <https://nf-co.re>
-It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
-
-## Bytesize 40: Software packaging
 
 This week, Alexander Peltzer ([@apeltzer](http://github.com/apeltzer/)) will present: _**Software packaging.**_
 

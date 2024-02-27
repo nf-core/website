@@ -1,6 +1,6 @@
 ---
 import EventHeader from '@components/event/EventHeader.astro';
-import { markdown } from '@astropub/md';
+import { Markdown } from '@astropub/md';
 
 let { title, subtitle, header_html, md_github_url, header_btn_url, header_btn_text, event_header, topics } =
     Astro.props;
@@ -16,23 +16,23 @@ export interface Props {
     topics?: string[];
 }
 title = title.replace('nf-core/', 'nf-core/<wbr>');
-subtitle = markdown(subtitle);
 ---
 
-<div class="mainpage-heading pb-1 text-bg-success">
+<div class="mainpage-heading pb-1 text-bg-success" transition:animate="morph">
     <div class="container">
         <h1 class="display-2 d-flex justify-content-between mb-2">
-            <span class="title" set:html={title} />
+            <span class="title" transition:name="title" set:html={title} />
             <div>
                 {
                     md_github_url && (
                         <a
                             href={md_github_url}
-                            class="edit-md-btn btn btn-sm btn-outline-light d-none d-md-inline-block ms-2 d-print-none align-self-start"
+                            class="edit-md-btn btn btn-sm btn-outline-light d-none d-md-inline-block ms-2 d-print-none align-self-start text-nowrap"
                             title="Edit this page on GitHub"
                             data-bs-toggle="tooltip"
                         >
-                            <i class="fas fa-pencil-alt" /> Edit
+                            <i class="fas fa-pencil-alt me-2" />
+                            Edit
                         </a>
                     )
                 }
@@ -45,7 +45,13 @@ subtitle = markdown(subtitle);
                 }
             </div>
         </h1>
-        {subtitle && <div class="lead mb-0 subtitle">{subtitle}</div>}
+        {
+            subtitle && (
+                <div class="lead mb-0 subtitle">
+                    <Markdown of={subtitle} />
+                </div>
+            )
+        }
 
         <div class="mb-2 mb-md-3 topics">
             {topics && topics.map((topic) => <span class="badge topic me-2">{topic}</span>)}
@@ -59,7 +65,6 @@ subtitle = markdown(subtitle);
 <style lang="scss">
     @import '@styles/_variables.scss';
     .mainpage-heading {
-        background-color: $success !important;
         & h1,
         & p {
             color: $white !important;
@@ -69,7 +74,6 @@ subtitle = markdown(subtitle);
         cursor: default;
         h1,
         h1 {
-            color: $white !important;
             text-decoration: none;
         }
         code {
@@ -91,6 +95,6 @@ subtitle = markdown(subtitle);
         }
     }
     .triangle-down {
-        background-color: $success !important;
+        background-color: $success;
     }
 </style>

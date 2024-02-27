@@ -9,10 +9,26 @@ export interface Props {
     title: string;
     subtitle: string;
     md_github_url: string;
-    headings: { text: string; slug: string; depth: number; fa_icon?: string }[];
-    event_header?: object[];
-    left_sidebar?: boolean;
-    sections?: { section_name: string; children: {}[] }[] | never[];
+    headings: ({ text: string; slug: string; depth: number; fa_icon?: string } | undefined)[];
+    event_header?: {
+        title: string;
+        subtitle: string;
+        type: string;
+        startDate: string;
+        endDate: string;
+        startTime: string;
+        endTime: string;
+    };
+    leftSidebar?: boolean;
+    sections?: {
+        section_name: string;
+        section_slug?: string;
+        children: {
+            title: string;
+            slug: string;
+            order?: number;
+        }[];
+    }[];
     viewTransitions?: boolean;
     meta_title?: string;
     docSearchTags?: {
@@ -21,6 +37,9 @@ export interface Props {
     }[];
     minHeadingDepth?: number;
     maxHeadingDepth?: number;
+    image?: string;
+    doubleNavbar?: boolean;
+    sidebarTitle?: string;
 }
 
 const {
@@ -29,13 +48,16 @@ const {
     md_github_url,
     event_header,
     headings,
-    left_sidebar,
+    leftSidebar,
     sections = [],
     viewTransitions = false,
     meta_title = '',
     docSearchTags = [],
     minHeadingDepth = 1,
     maxHeadingDepth = 4,
+    image,
+    doubleNavbar = true,
+    sidebarTitle = '',
 } = Astro.props;
 ---
 
@@ -63,7 +85,7 @@ const {
 </script>
 <PageLayout
     title={title}
-    meta_title={meta_title}
+    meta_title={meta_title || title}
     subtitle={subtitle}
     md_github_url={md_github_url}
     event_header={event_header}
@@ -73,31 +95,46 @@ const {
     sections={sections}
     docSearchTags={docSearchTags}
     viewTransitions={viewTransitions}
-    mermaid={true}
+    image={image}
+    doubleNavbar={doubleNavbar}
 >
     <div class="row">
         {
-            left_sidebar && (
-                <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left pt-1">
-                    <SidebarNav items={sections} />
+            leftSidebar && (
+                <div class="col-12 col-md-2 d-none d-md-block sidebar-left pt-1">
+                    <div class="sticky-top-under">
+                        {sidebarTitle && (
+                            <div class="sidebar-title">
+                                <strong class="h6 p-2 text-body">{sidebarTitle}</strong>
+                            </div>
+                        )}
+                        <SidebarNav items={sections} accordion={true} />
+                    </div>
                 </div>
             )
         }
-        <div class:list={['col-12', { 'col-md-10': !left_sidebar, 'col-md-8': left_sidebar }]}>
+        <div class:list={['col-12', { 'col-md-10': !leftSidebar, 'col-md-8': leftSidebar }]}>
             <div class="markdown-content" transition:animate="morph">
                 <MarkdownWrapper headings={headings} client:idle>
                     <slot />
                 </MarkdownWrapper>
             </div>
         </div>
-        <div class="col-12 col-md-2 toc">
-            <SidebarToc
-                headings={headings}
-                minHeadingDepth={minHeadingDepth}
-                maxHeadingDepth={maxHeadingDepth}
-                client:idle
-            />
-        </div>
+        {
+            headings && headings.length > 1 && (
+                <div class="col-12 col-md-2 toc">
+                    <slot name="right-sidebar-top" />
+                    <SidebarToc
+                        headings={headings}
+                        minHeadingDepth={minHeadingDepth}
+                        maxHeadingDepth={maxHeadingDepth}
+                        client:idle
+                    >
+                        <slot name="right-sidebar" />
+                    </SidebarToc>
+                </div>
+            )
+        }
     </div>
     <slot name="pre-footer" slot="pre-footer" />
 </PageLayout>
@@ -105,5 +142,9 @@ const {
     .markdown-content :global(img[loading='lazy']) {
         aspect-ratio: attr(width) / attr(height);
         height: auto;
+    }
+    :global(.admonition figure),
+    :global(.admonition pre) {
+        margin-bottom: 0;
     }
 </style>

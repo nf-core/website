@@ -5,16 +5,16 @@ export const prerender = false;
 
 const { pipeline, version, path } = Astro.params;
 console.log('redirecting based on [pipeline, version, ...path]', [pipeline, version, path]);
+
 const meta = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline);
 if (meta) {
     // check if version starts with usage, output, or docs
     // if so, redirect to the versioned docs
-    if (version?.startsWith('usage') || version?.startsWith('output') || version?.startsWith('docs')) {
-        console.log('redirecting ', version, ' to ', meta.releases[0].tag_name);
-        if (version === 'docs') {
-            return Astro.redirect(`/${pipeline}/${meta.releases[0].tag_name}/docs/${path}`);
-        }
+    if (version?.startsWith('usage') || version?.startsWith('output')) {
         return Astro.redirect(`/${pipeline}/${meta.releases[0].tag_name}/docs/${version}`);
+    }
+    if (version?.startsWith('docs')) {
+        return Astro.redirect(`/${pipeline}/${meta.releases[0].tag_name}/${version}/${path}`);
     }
     if (version?.startsWith('results')) {
         console.log('redirecting ', version, ' to ', meta.releases[0].tag_name, '/results');

@@ -1,11 +1,13 @@
 <script lang="ts">
     import { currentHeading } from '@components/store';
+    import SchemaListingTocButtons from '@components/schema/SchemaListingTocButtons.svelte';
     export let headings: {
         text: string;
         slug: string;
         depth: number;
         fa_icon?: string;
     }[];
+    export let showHiddenBtn: boolean;
 </script>
 
 <div class="d-md-none toc-md">
@@ -30,6 +32,9 @@
                     </a>
                 </li>
             {/each}
+            {#if showHiddenBtn}
+                <SchemaListingTocButtons />
+            {/if}
         </ul>
     </div>
 </div>
@@ -38,7 +43,7 @@
     @import 'src/styles/_variables.scss';
     .toc-md {
         .dropdown-menu {
-            max-height: 90vh;
+            max-height: 90dvh;
             overflow-y: auto;
         }
     }

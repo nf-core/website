@@ -1,12 +1,12 @@
 ---
-import { markdown } from '@astropub/md';
+import { Markdown } from '@astropub/md';
 import ComponentParamTable from '@components/component/ComponentParamTable.astro';
 import SidebarStats from '@components/sidebar/SidebarStats.astro';
 import ComponentPageLayout from '@layouts/ComponentPageLayout.astro';
 import components_json from '@public/components.json';
 
 export function getStaticPaths() {
-    return components_json.modules.map((module) => {
+    return components_json.modules.flatMap((module) => {
         return [
             {
                 params: {
@@ -19,20 +19,21 @@ export function getStaticPaths() {
         ];
     });
 }
-const { moduleslug } = Astro.params;
 const { module } = Astro.props;
 
 const tools = module.meta.tools;
 
-function truncatURLs(url) {
-    url = url.replace(/^http(s):\/\//, '');
-    url = url.replace(/^www./, '');
-    url = url.replace(/\/Home$/, '');
-    url = url.replace(/\/$/, '');
-    url = url.replace(/.(s)html$/, '');
-    url = url.replace(/\/index$/, '');
-    url = url.replace(/\/src\/master$/, '');
-    url = url.replace('/tree/master/', '[...]');
+function truncatURLs(url: string) {
+    url = url
+        .replace(/^http(s):\/\//, '')
+        .replace(/^www./, '')
+        .replace(/\/Home$/, '')
+        .replace(/\/$/, '')
+        .replace(/.html$/, '')
+        .replace(/.shtml$/, '')
+        .replace(/\/index$/, '')
+        .replace(/\/src\/master$/, '')
+        .replace('/tree/master/', '[...]');
     return url;
 }
 ---
@@ -53,12 +54,7 @@ function truncatURLs(url) {
                     >
                 </h2>
                 <div class="">
-                    {
-                        async () => {
-                            const html = await markdown(module.meta.description);
-                            return html;
-                        }
-                    }
+                    <Markdown of={module.meta.description} />
                 </div>
             </div>
             <div class="module-params">
@@ -82,7 +78,7 @@ function truncatURLs(url) {
         <div class="col-none col-md-3">
             <SidebarStats
                 component_type={'modules'}
-                contributors={module.meta.authors}
+                contributors={module.meta.maintainers || module.meta.authors}
                 included_pipelines={module.pipelines}
                 included_subworkflows={module.subworkflows}
             />
@@ -97,109 +93,134 @@ function truncatURLs(url) {
 
             {
                 tools &&
-                    tools.map((tool) => {
-                        const toolName = Object.keys(tool)[0];
-                        return (
-                            <>
+                    tools.map(
+                        (tool: {
+                            [key: string]: {
+                                description: string;
+                                homepage: string;
+                                documentation: string;
+                                tool_dev_url: string;
+                                doi: string;
+                                licence: string[] | string;
+                                args_id: string;
+                            };
+                        }) => {
+                            const toolName = Object.keys(tool)[0];
+                            return (
                                 <div>
-                                    <div class="d-flex justify-content-between">
-                                        <div class="d-flex flex-column">
-                                            <h3 class="text-success d-flex align-items-center">
-                                                {toolName}
-                                                <div class="text-small ms-2">
-                                                    {tool[toolName].licence &&
-                                                        (typeof tool[toolName].licence === 'string' ? (
-                                                            <span
-                                                                title="Software License"
+                                    <div>
+                                        <div class="d-flex justify-content-between">
+                                            <div class="d-flex flex-column">
+                                                <h3 class="text-success d-flex align-items-center">
+                                                    {toolName}
+                                                    <div class="text-small ms-2">
+                                                        {tool[toolName].licence &&
+                                                            (typeof tool[toolName].licence === 'string' ? (
+                                                                <span
+                                                                    title="Software License"
+                                                                    data-bs-toggle="tooltip"
+                                                                    data-bs-delay="300"
+                                                                    class="badge text-small fw-normal text-bg-secondary"
+                                                                >
+                                                                    {tool[toolName].licence.replace(/^\['|'\]$/g, '')}
+                                                                </span>
+                                                            ) : (
+                                                                tool[toolName].licence?.map((licence: str) => {
+                                                                    return (
+                                                                        <span
+                                                                            title="Software License"
+                                                                            data-bs-toggle="tooltip"
+                                                                            data-bs-delay="300"
+                                                                            class="badge text-small fw-normal text-bg-secondary"
+                                                                        >
+                                                                            {licence}
+                                                                        </span>
+                                                                    );
+                                                                })
+                                                            ))}
+                                                    </div>
+                                                </h3>
+
+                                                <p class="pe-3">{tool[toolName].description}</p>
+                                                {tool[toolName].args_id && (
+                                                    <div class="text-body-secondary">
+                                                        args_id: <code>{tool[toolName].args_id}</code>
+                                                    </div>
+                                                )}
+                                            </div>
+                                            <div class="d-flex flex-column justify-content-center tool-resources">
+                                                <div class="btn-group-vertical" role="group" aria-label="Basic example">
+                                                    {tool[toolName].homepage &&
+                                                        tool[toolName].homepage !== tool[toolName].documentation && (
+                                                            <a
+                                                                href={tool[toolName].homepage}
+                                                                title="Homepage"
                                                                 data-bs-toggle="tooltip"
                                                                 data-bs-delay="300"
-                                                                class="badge text-small fw-normal text-bg-secondary"
+                                                                class="btn btn-outline-secondary"
                                                             >
-                                                                {tool[toolName].licence.replace(/^\['|'\]$/g, '')}
-                                                            </span>
-                                                        ) : (
-                                                            tool[toolName].licence?.map((licence) => {
-                                                                return (
-                                                                    <span
-                                                                        title="Software License"
-                                                                        data-bs-toggle="tooltip"
-                                                                        data-bs-delay="300"
-                                                                        class="badge text-small fw-normal text-bg-secondary"
-                                                                    >
-                                                                        {licence}
-                                                                    </span>
-                                                                );
-                                                            })
-                                                        ))}
-                                                </div>
-                                            </h3>
-
-                                            <p class="pe-3">{tool[toolName].description}</p>
-                                            {tool[toolName].args_id && (
-                                                <div class="text-body-secondary">
-                                                    args_id: <code>{tool[toolName].args_id}</code>
-                                                </div>
-                                            )}
-                                        </div>
-                                        <div class="d-flex flex-column justify-content-center">
-                                            <div class="btn-group-vertical" role="group" aria-label="Basic example">
-                                                {tool[toolName].homepage &&
-                                                    tool[toolName].homepage !== tool[toolName].documentation && (
+                                                                <i class="fa-regular fa-globe fa-fw" />
+                                                                {truncatURLs(tool[toolName].homepage)}
+                                                            </a>
+                                                        )}
+                                                    {tool[toolName].documentation && (
                                                         <a
-                                                            href={tool[toolName].homepage}
-                                                            title="Homepage"
+                                                            href={tool[toolName].documentation}
+                                                            title="Documentation"
                                                             data-bs-toggle="tooltip"
                                                             data-bs-delay="300"
-                                                            class="btn btn-outline-secondary text-nowrap"
-                                                        >
-                                                            <i class="fa-regular fa-globe fa-fw" />
-                                                            {truncatURLs(tool[toolName].homepage)}
-                                                        </a>
-                                                    )}
-                                                {tool[toolName].documentation && (
-                                                    <a
-                                                        href={tool[toolName].documentation}
-                                                        title="Documentation"
-                                                        data-bs-toggle="tooltip"
-                                                        data-bs-delay="300"
-                                                        class="btn btn-outline-secondary text-nowrap"
-                                                    >
-                                                        <i class="fa-duotone fa-book fa-fw" />{' '}
-                                                        {truncatURLs(tool[toolName].documentation)}
-                                                    </a>
-                                                )}
-
-                                                {tool[toolName].tool_dev_url &&
-                                                    tool[toolName].documentation !== tool[toolName].tool_dev_url && (
-                                                        <a
-                                                            href={tool[toolName].tool_dev_url}
-                                                            title="Development Docs"
                                                             class="btn btn-outline-secondary"
                                                         >
-                                                            <i class="fa-duotone fa-wrench fa-fw" />{' '}
-                                                            {tool[toolName].tool_dev_url}
+                                                            <i class="fa-duotone fa-book fa-fw" />{' '}
+                                                            {truncatURLs(tool[toolName].documentation)}
                                                         </a>
                                                     )}
-                                                {tool[toolName].doi && (
-                                                    <a
-                                                        href={'https://doi.org/' + tool[toolName].doi}
-                                                        title="DOI"
-                                                        data-bs-toggle="tooltip"
-                                                        data-bs-delay="300"
-                                                        class="btn btn-outline-secondary"
-                                                    >
-                                                        <i class="fa-regular fa-newspaper fa-fw" /> {tool[toolName].doi}
-                                                    </a>
-                                                )}
+
+                                                    {tool[toolName].tool_dev_url &&
+                                                        tool[toolName].documentation !==
+                                                            tool[toolName].tool_dev_url && (
+                                                            <a
+                                                                href={tool[toolName].tool_dev_url}
+                                                                title="Development Docs"
+                                                                class="btn btn-outline-secondary"
+                                                            >
+                                                                <i class="fa-duotone fa-wrench fa-fw" />{' '}
+                                                                {tool[toolName].tool_dev_url}
+                                                            </a>
+                                                        )}
+                                                    {tool[toolName].doi && tool[toolName].doi.startsWith('10.') && (
+                                                        <a
+                                                            href={'https://doi.org/' + tool[toolName].doi}
+                                                            title="DOI"
+                                                            data-bs-toggle="tooltip"
+                                                            data-bs-delay="300"
+                                                            class="btn btn-outline-secondary"
+                                                        >
+                                                            <i class="fa-regular fa-newspaper fa-fw" />{' '}
+                                                            {tool[toolName].doi}
+                                                        </a>
+                                                    )}
+                                                    {tool[toolName].doi &&
+                                                        tool[toolName].doi === 'no DOI available' && (
+                                                            <span class="btn btn-outline-secondary disabled">
+                                                                no DOI available
+                                                            </span>
+                                                        )}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    {tools.lenght > 1 && <hr />}
                                 </div>
-                                {tools.lenght > 1 && <hr />}
-                            </>
-                        );
-                    })
+                            );
+                        },
+                    )
             }
         </div>
     </div>
 </ComponentPageLayout>
+<style>
+    .tool-resources {
+        max-width: 35%;
+    }
+</style>

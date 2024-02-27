@@ -8,16 +8,26 @@ import NfCoreLogoDarkbg from '/images/logo/nf-core-logo-darkbg.svg?raw';
 import NfCoreLogo from '/images/logo/nf-core-logo.svg?raw';
 import IconSocial from '@components/IconSocial.astro';
 import ThemeSwitch from '@components/ThemeSwitch.svelte';
-import Icon from 'astro-icon';
+import { Icon } from 'astro-icon/components';
+import Search from '@components/navbar/Search.svelte';
+import { getCollection } from 'astro:content';
 
 export interface Props {
     navTocHeadings?: object[];
     title?: string;
-    sections?: { section_name: string; children: {}[] }[] | never[];
+    sections?: {
+        section_name: string;
+        section_slug?: string;
+        children: {
+            title: string;
+            slug: string;
+            order?: number;
+        }[];
+    }[];
+    showHiddenBtn?: boolean;
 }
-const { navTocHeadings = [], title, sections = [] } = Astro.props;
+const { navTocHeadings = [], title, sections = [], showHiddenBtn = false } = Astro.props;
 let navbarTitle = [];
-
 if (sections?.length > 0) {
     // construct the breadcrumb for the navbarNav element
     let url = Astro.url.pathname;
@@ -34,15 +44,24 @@ if (sections?.length > 0) {
               return url.startsWith(child.slug);
           })?.title
         : '';
-
-    navbarTitle = currentChild ? [currentSection?.section_name, currentChild] : [currentSection?.section_name];
+    if (currentSection) {
+        navbarTitle = currentChild ? [currentSection?.section_name, currentChild] : [currentSection?.section_name];
+    }
 }
+let newBlogPost = false;
+newBlogPost = await getCollection('blog').then((posts) => {
+    return posts.some(
+        (post) =>
+            new Date(Date.now()) > new Date(post.data.pubDate) &&
+            new Date(post.data.pubDate) > new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
+    );
+});
 ---
 
 <nav
     class="navbar fixed-top navbar-expand-xl bg-body-secondary text-body-secondary shadow-sm d-print-none py-0 py-xl-2"
 >
-    <div class="container">
+    <div class="container-fluid">
         <a class="navbar-brand d-xl-none" href="/">
             <div class="hide-dark">
                 <Fragment set:html={NfCoreLogo} />
@@ -51,9 +70,14 @@ if (sections?.length > 0) {
                 <Fragment set:html={NfCoreLogoDarkbg} />
             </div>
         </a>
-        {navTocHeadings.length > 0 && <NavbarToc headings={navTocHeadings} client:visible />}
-
-        <div class="align-self-center d-xl-none" id="docsearch-mobile"></div>
+        {
+            navTocHeadings.length > 0 && (
+                <NavbarToc headings={navTocHeadings} showHiddenBtn={showHiddenBtn} client:visible />
+            )
+        }
+        <div class:list={['align-self-center d-xl-none', { 'me-5': navTocHeadings.length === 0 }]}>
+            <Search id="docsearch-mobile" client:visible />
+        </div>
         <button
             class="navbar-toggler border-0"
             type="button"
@@ -67,28 +91,31 @@ if (sections?.length > 0) {
         </button>
         <div class="collapse navbar-collapse justify-content-xl-center align-items-xl-stretch" id="navbarCollapse">
             <ul class="navbar-nav">
-                <li class="nav-item p-1">
+                <li class="nav-item p-1 px-3 px-xl-1">
                     <a class="nav-link" href="/">Home</a>
                 </li>
-                <li class="nav-item p-1">
+                <li class="nav-item p-1 px-3 px-xl-1">
                     <a class="nav-link" href="/pipelines/">Pipelines</a>
                 </li>
-                <li class="nav-item p-1 dropdown">
+                <li class="nav-item p-1 px-3 px-xl-1 dropdown">
                     <span class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"> Resources</span>
                     <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
-                        <li><span class="dropdown-header">Configs & tools</span></li>
-                        <li><a class="dropdown-item" href="/configs/">Shared Configs</a></li>
-                        <li><a class="dropdown-item" href="/tools/">Tools</a></li>
-                        <li><hr class="dropdown-divider" /></li>
                         <li><span class="dropdown-header">Components</span></li>
                         <li><a class="dropdown-item" href="/modules/">Modules</a></li>
                         <li><a class="dropdown-item" href="/subworkflows/">Subworkflows</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><span class="dropdown-header">Configs & tools</span></li>
+                        <li><a class="dropdown-item" href="/configs/">Shared configs</a></li>
+                        <li><a class="dropdown-item" href="/tools/">Tools</a></li>
+                        <li>
+                            <a class="dropdown-item" href="/tools/docs/latest/index">Linting Docs</a>
+                        </li>
                     </ul>
                 </li>
-                <li class="nav-item p-1">
+                <li class="nav-item p-1 px-3 px-xl-1">
                     <a class="nav-link" href="/docs/">Docs</a>
                 </li>
-                <li class="nav-item p-1 d-flex align-items-center">
+                <li class="nav-item p-1 px-3 px-xl-1 d-flex align-items-center">
                     <EventIndicator client:idle>
                         <Icon name="circle" />
                     </EventIndicator>
@@ -123,49 +150,65 @@ if (sections?.length > 0) {
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item p-1 dropdown">
-                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"> About</a>
+                <li class="nav-item p-1 px-3 px-xl-1 dropdown">
+                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                        >{newBlogPost && <i class="fa-solid fa-circle fa-2xs text-primary" />} About</a
+                    >
                     <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
                         <li><span class="dropdown-header">Community</span></li>
-                        <!-- <li><a class="dropdown-item" href="/contributors/">Blog</a></li> -->
                         <li><a class="dropdown-item" href="/about/">About nf-core</a></li>
-                        <li><a class="dropdown-item" href="/governance/">Governance</a></li>
-                        <li><a class="dropdown-item" href="/contributors/">Contributors</a></li>
-                        <li><a class="dropdown-item" href="/code_of_conduct/">Code of conduct</a></li>
-                        <li><hr class="dropdown-divider" /></li>
-                        <li><span class="dropdown-header">Initiatives</span></li>
-                        <li><a class="dropdown-item" href="/mentorships/">Mentorships</a></li>
-                        <li><a class="dropdown-item" href="/publications/">Publications</a></li>
-                        <li><a class="dropdown-item" href="/stats/">Statistics</a></li>
-                        <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="/join/">Join nf-core</a></li>
+                        <li>
+                            <a class="dropdown-item" href="/blog/"
+                                >Blog {
+                                    newBlogPost && (
+                                        <span class="float-end border border-primary text-primary rounded-pill px-2 small">
+                                            new post
+                                        </span>
+                                    )
+                                }</a
+                            >
+                            <li><a class="dropdown-item" href="/governance/">Governance</a></li>
+                            <li><a class="dropdown-item" href="/contributors/">Contributors</a></li>
+                            <li><a class="dropdown-item" href="/marketing/">Marketing</a></li>
+                            <li><a class="dropdown-item" href="/code_of_conduct/">Code of conduct</a></li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li><span class="dropdown-header">Initiatives</span></li>
+                            <li><a class="dropdown-item" href="/mentorships/">Mentorships</a></li>
+                            <li><a class="dropdown-item" href="/publications/">Publications</a></li>
+                            <li><a class="dropdown-item" href="/stats/">Statistics</a></li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li><a class="dropdown-item" href="/join/">Join nf-core</a></li>
+                        </li>
                     </ul>
                 </li>
-            </ul>
-            <div class="align-self-center d-none d-xl-block ms-auto pe-3" id="docsearch-desktop"></div>
-            <div class="d-none d-xl-block align-self-center px-2 py-1">
-                <ThemeSwitch client:load>
-                    <i class="icon" slot="light"><Icon name="sun" width={'14pt'} /></i>
-                    <i class="icon" slot="dark"><Icon name="moon" width={'14pt'} /></i>
-                </ThemeSwitch>
-            </div>
-            <div class="vr d-none d-lg-inline mx-1 mx-xxl-3"></div>
-            <hr class="d-xl-none" />
-            <div class="social-icons d-print-none d-flex align-items-center d-xl-block align-self-center mb-3 mb-xl-0">
-                <IconSocial
-                    href="https://github.com/nf-core/"
-                    title="GitHub"
-                    icon="fa-brands:github"
-                    icon_dark="fa-brands:github"
-                    additionalClass="text-body monochrome me-1"
-                />
-                <IconSocial
-                    href="https://twitter.com/nf_core"
-                    icon="logos:twitter"
-                    title="Twitter"
-                    additionalClass="monochrome me-1"
-                />
-                <!-- <IconSocial
+                <div class="align-self-center d-none d-xl-block ms-auto">
+                    <Search id="docsearch-desktop" client:only="svelte" />
+                </div>
+                <div class="d-none d-xl-block align-self-center px-2 py-1">
+                    <ThemeSwitch client:load>
+                        <i class="icon" slot="light"><Icon name="sun" width={'14pt'} /></i>
+                        <i class="icon" slot="dark"><Icon name="moon" width={'14pt'} /></i>
+                    </ThemeSwitch>
+                </div>
+                <div class="vr d-none d-xl-inline mx-1 mx-xxl-2"></div>
+                <hr class="d-xl-none" />
+                <div
+                    class="social-icons d-print-none d-flex align-items-center d-xl-block align-self-center mb-3 mb-xl-0 px-3 px-xl-1"
+                >
+                    <IconSocial
+                        href="https://github.com/nf-core/"
+                        title="GitHub"
+                        icon="fa-brands:github"
+                        icon_dark="fa-brands:github"
+                        additionalClass="text-body monochrome me-1"
+                    />
+                    <IconSocial
+                        href="https://twitter.com/nf_core"
+                        icon="logos:twitter"
+                        title="Twitter"
+                        additionalClass="monochrome me-1"
+                    />
+                    <!-- <IconSocial
                     marginLeft="0"
                     marginRight="1rem"
                     href="https://mstdn.science/@nf_core"
@@ -173,201 +216,103 @@ if (sections?.length > 0) {
                     icon="logos:mastodon-icon"
                     additionalClass="monochrome me-1"
                 /> -->
-                <IconSocial
-                    href="https://www.youtube.com/@nf-core"
-                    icon="mdi:youtube"
-                    title="YouTube"
-                    additionalClass="monochrome me-1"
-                    color="red"
-                />
-                <IconSocial
-                    href="/join/slack/"
-                    title="Slack"
-                    icon="logos:slack-icon"
-                    additionalClass="monochrome me-1"
-                />
-                <div class="d-xl-none ms-auto px-2 py-1">
-                    <ThemeSwitch client:load>
-                        <i class="icon" slot="light"><Icon name="sun" width={'14pt'} /></i>
-                        <i class="icon" slot="dark"><Icon name="moon" width={'14pt'} /></i>
-                    </ThemeSwitch>
+                    <IconSocial
+                        href="https://www.youtube.com/@nf-core"
+                        icon="mdi:youtube"
+                        title="YouTube"
+                        additionalClass="monochrome me-1"
+                        color="red"
+                    />
+                    <IconSocial
+                        href="/join/slack/"
+                        title="Slack"
+                        icon="logos:slack-icon"
+                        additionalClass="monochrome me-1"
+                    />
+                    <div class="vr ms-2 me-1 d-xl-none"></div>
+                    <div class="d-xl-none ms-auto px-2 py-1">
+                        <ThemeSwitch client:load>
+                            <i class="icon" slot="light"><Icon name="sun" width={'14pt'} /></i>
+                            <i class="icon" slot="dark"><Icon name="moon" width={'14pt'} /></i>
+                        </ThemeSwitch>
+                    </div>
                 </div>
-            </div>
-            <div class="d-none d-xl-block vr mx-1 mx-xxl-3"></div>
-            <a class="d-xl-none btn d-block btn-success mb-3" href="/join/"> Join nf-core</a>
-            <a class="d-none d-xl-block btn btn-success align-self-center" href="/join/"> Join nf-core</a>
+                <div class="d-none d-xl-block vr mx-1 mx-xxl-3"></div>
+                <!-- Mobile nav -->
+                <a class="d-xl-none btn d-block btn-success mb-3 mx-3 mx-xl-1" href="/join/">Join nf-core</a>
+                <!-- Desktop nav -->
+                <a class="d-none d-xl-block btn btn-success mx-2 align-self-center" href="/join/">
+                    Join
+                    <span class="d-none d-xxl-inline">nf-core</span>
+                </a>
+            </ul>
         </div>
     </div>
-</nav>
-{
-    sections && sections.length > 0 && (
-        <NavbarDocsNav client:visible>
-            <NavbarDocsNavTitle slot="title" title={navbarTitle.flat()} />
-            <SidebarNav slot="menu" items={sections} />
-        </NavbarDocsNav>
-    )
-}
-<script>
-    import docsearch from '@docsearch/js';
-
-    import '@docsearch/css';
-
-    docsearch({
-        container: '#docsearch-mobile',
-        appId: '01BY3A8NRJ',
-        indexName: 'nf-co',
-        debug: true,
-        apiKey: 'c726615ab69f88b4e26bc891c97c1808',
-        placeholder: 'Search',
-    });
-    docsearch({
-        container: '#docsearch-desktop',
-        appId: '01BY3A8NRJ',
-        indexName: 'nf-co',
-        debug: true,
-        apiKey: 'c726615ab69f88b4e26bc891c97c1808',
-        placeholder: 'Search',
-    });
-</script>
-
-<style lang="scss">
-    @import '@styles/_variables.scss';
-
-    :global(:root) {
-        --docsearch-text-color: #{$input-color};
-        --docsearch-searchbox-background: #{$input-bg};
-        --docsearch-searchbox-shadow: none;
-        --docsearch-searchbox-focus-background: #{$input-bg};
-        --docsearch-primary-color: #{$nf-core-color};
-        --docsearch-container-background: #{rgba($black, 0.5)};
-        --docsearch-modal-shadow: 'none';
-        --docsearch-footer-shadow: none;
-    }
-    :global(.DocSearch-Modal) {
-        background: $body-secondary-bg;
-    }
-    :global(button.DocSearch-Button) {
-        border-radius: $border-radius;
-        margin-left: 0;
-    }
-    :global(button.DocSearch-Button .DocSearch-Button-Keys) {
-        background: none;
-        border-radius: $border-radius-sm;
-
-        //   padding: 0.2rem;
-        margin-top: 0.15rem;
-
-        min-width: 3rem;
-        justify-content: space-around;
-        align-items: center;
-    }
-    :global(.DocSearch-Button-Key, .DocSearch-Commands-Key) {
-        align-items: center;
-        background: $white;
-        box-shadow: 0 0 0 1px $secondary;
-        margin-right: 0.2rem;
-        padding: 0;
-    }
-    :global(.DocSearch-Hits) {
-        &:last-of-type {
-            margin-bottom: 0;
-        }
-        &::before {
-            height: 0;
-        }
-    }
-    :global(.DocSearch-Hit) {
-        & :global(a) {
-            box-shadow: none;
-        }
-        & :global(mark) {
-            padding: 0;
-        }
-    }
-    :global(.DocSearch-Hit-icon:has(svg[height='20'])) {
-        line-height: 20px;
+    {
+        sections && sections.length > 0 && navbarTitle[0] !== undefined && (
+            <NavbarDocsNav client:visible>
+                <NavbarDocsNavTitle slot="title" title={navbarTitle.flat()} />
+                <SidebarNav slot="menu" items={sections} />
+            </NavbarDocsNav>
+        )
     }
 
-    .navbar.fixed-top {
-        .navbar-brand {
-            margin-top: 0.25rem;
-            margin-bottom: 0.25rem;
-            :global(svg) {
-                height: 25px;
-            }
-        }
-        // add wider margins on larger screens
-        @include media-breakpoint-up(lg) {
-            padding: 0.2rem 1rem;
-            .navbar-nav > li > a {
-                margin-left: 1rem;
-                margin-right: 1rem;
-                transition: ease-in-out color 0.1s;
-            }
-        }
-        @include media-breakpoint-down(lg) {
+    <style lang="scss">
+        @import '@styles/_variables.scss';
+
+        .navbar.fixed-top {
             .navbar-brand {
-                left: 0;
-                margin-left: 0;
-                margin-right: 0;
-            }
-        }
-        li .dropdown-menu {
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-            border-top: 0;
-            margin-top: calc($navbar-padding-y/3);
-        }
+                margin-top: 0.25rem;
+                margin-bottom: 0.25rem;
 
-        .collapse.show {
-            max-height: 80vh;
-            overflow-y: auto;
+                :global(svg) {
+                    height: 25px;
+                }
+            }
+            // add wider margins on larger screens
+            @include media-breakpoint-up(xl) {
+                padding: 0.2rem 1rem;
+                .navbar-nav > li > a {
+                    margin-left: 0.6rem;
+                    margin-right: 0.6rem;
+                    transition: ease-in-out color 0.1s;
+                }
+            }
+            @include media-breakpoint-down(xl) {
+                .container {
+                    padding-left: 0;
+                    padding-right: 0;
+                }
+                .navbar-brand {
+                    left: 0;
+                    margin-left: 0;
+                    margin-right: 0;
+                    max-width: 5rem;
+                }
+            }
             li .dropdown-menu {
-                border: none;
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+                border-top: 0;
+                margin-top: calc($navbar-padding-y);
+            }
+
+            .collapse.show {
+                max-height: 80dvh;
+                overflow-y: auto;
+                li .dropdown-menu {
+                    border: none;
+                }
+            }
+            .navbar-toggler:focus-within {
+                box-shadow: none;
             }
         }
-        .navbar-toggler:focus-within {
-            box-shadow: none;
+        .icon :global(svg) {
+            fill: $navbar-light-color;
+            :global(.active) & {
+                fill: $white;
+            }
         }
-    }
-    .icon :global(svg) {
-        fill: $navbar-light-color;
-        :global(.active) & {
-            fill: $white;
-        }
-    }
-    :global([data-bs-theme='dark']:root) {
-        --docsearch-text-color: #{$input-color};
-        --docsearch-searchbox-background: #{$input-bg};
-        --docsearch-searchbox-shadow: none;
-        --docsearch-searchbox-focus-background: #{$input-bg};
-        --docsearch-primary-color: #{$nf-core-color-dark};
-        --docsearch-container-background: #{rgba($black, 0.5)};
-
-        --docsearch-modal-shadow: 'none';
-
-        --docsearch-hit-color: #{$body-color-dark};
-        --docsearch-hit-background: #{$body-bg-dark};
-        --docsearch-footer-background: #{$body-secondary-bg-dark};
-    }
-    :global(.DocSearch-Hit-source) {
-        font-size: 1rem;
-    }
-    :global([data-bs-theme='dark'] .DocSearch-Modal, [data-bs-theme='dark'] .DocSearch-Hit-source) {
-        background: $body-secondary-bg-dark;
-    }
-    :global(.DocSearch-Container) {
-        @include media-breakpoint-down(lg) {
-            padding-top: 3rem;
-        }
-    }
-    :global(.double-navbar ~ .DocSearch-Container) {
-        @include media-breakpoint-down(lg) {
-            padding-top: 5rem;
-        }
-    }
-    :global([data-bs-theme='dark'] .DocSearch-Button-Key, [data-bs-theme='dark'] .DocSearch-Commands-Key) {
-        background: $black;
-        box-shadow: 0 0 0 1px $secondary-border-subtle-dark;
-    }
-</style>
+    </style>
+</nav>

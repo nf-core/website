@@ -1,7 +1,8 @@
 ---
-import { Icon } from 'astro-icon';
+import { Icon } from 'astro-icon/components';
 
 import Profile from '@components/GitHubProfilePictureExtended.svelte';
+import { YouTube } from '@astro-community/astro-embed-youtube';
 
 const { title, color, proj_url, leaders, slack, intro_video } = Astro.props;
 
@@ -47,10 +48,10 @@ const slack_clean = slack ? slack.replace('#', '') : '';
                     slack && (
                         <a
                             href={`https://nfcore.slack.com/channels/${slack_clean}`}
-                            class="badge rounded-pill text-bg-success text-decoration-none mb-3"
+                            class="badge rounded-pill text-bg-success text-decoration-none d-inline-flex align-items-center"
                         >
-                            <Icon name="mdi:slack" width="12pt" /> Slack:
-                            <code class="text-bg-success">#{slack_clean}</code>
+                            <Icon name="mdi:slack" width="12pt" height="10pt" /> Slack:
+                            <code class="text-bg-success pb-0">#{slack_clean}</code>
                         </a>
                     )
                 }
@@ -69,14 +70,7 @@ const slack_clean = slack ? slack.replace('#', '') : '';
             {
                 intro_video && (
                     <div class="col-md-6">
-                        <div class="ratio ratio-16x9">
-                            <iframe
-                                src={`https://www.youtube.com/embed/${intro_video}`}
-                                title="YouTube video player"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen
-                            />
-                        </div>
+                        <YouTube id={intro_video} poster={`https://img.youtube.com/vi/${intro_video}/hqdefault.jpg`} />
                     </div>
                 )
             }

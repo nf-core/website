@@ -7,11 +7,11 @@
         title: '',
         subtitle: '',
         start: new Date(),
-        start_date: new Date(),
+        startDate: new Date(),
         end: new Date(),
-        end_date: new Date(),
+        endDate: new Date(),
         type: '',
-        location_url: [''],
+        locationURL: [''],
     };
     export let slug: string = '';
     export let type: string = '';
@@ -19,9 +19,9 @@
     export let showDescription: boolean = true;
     export let narrow: boolean = false;
 
-    const event_duration = (event: { start: Date; end: Date; start_date: Date; end_date: Date }) => {
+    const event_duration = (event: { start: Date; end: Date; startDate: Date; endDate: Date }) => {
         let duration: string;
-        if (event.start_date === event.end_date) {
+        if (event.startDate === event.endDate) {
             duration =
                 new Date(event.start).toLocaleString('en-US', {
                     year: 'numeric',
@@ -77,13 +77,13 @@
 <div class={'card mb-3 rounded-0 rounded-end ' + type} style="border-left-color:var(--bs-{type_class});">
     <div class="card-body">
         <div class="card-title">
-            <h4 id={'event-' + slug.split('/')[1]}>
-                <a class="text-center" href={/events/ + slug + '/'}>
+            <h4 id={'event-' + slug.split('/')[1]} class:h5={narrow}>
+                <a class="text-center" class:text-decoration-none={narrow} href={/events/ + slug + '/'}>
                     {frontmatter.title}
                 </a>
-                {#if time_category === 'current' && frontmatter.location_url}
+                {#if time_category === 'current' && frontmatter.locationURL}
                     <div class="float-end d-none d-md-inline">
-                        <VideoButton urls={frontmatter.location_url} btnClass="btn-danger" />
+                        <VideoButton urls={frontmatter.locationURL} btnClass="btn-danger" />
                     </div>
                 {/if}
             </h4>
@@ -102,7 +102,7 @@
             </div>
         </div>
     </div>
-    <div class="card-footer p-0" class:p-md-2={!narrow}>
+    <div class="card-footer p-0" class:p-md-2={!narrow} class:d-none={narrow}>
         <div class="d-flex align-items-center justify-content-between">
             <p class="d-none text-wrap mb-0 ms-2 align-middle" class:d-md-inline-block={!narrow}>
                 {@html event_date}
@@ -124,9 +124,9 @@
                 {/if}
             </div>
         </div>
-        {#if time_category === 'current' && frontmatter.location_url}
+        {#if time_category === 'current' && frontmatter.locationURL}
             <VideoButton
-                urls={frontmatter.location_url}
+                urls={frontmatter.locationURL}
                 btnClass=" d-md-none btn-danger w-100 rounded-top-0 rounded-start-0"
             />
         {/if}

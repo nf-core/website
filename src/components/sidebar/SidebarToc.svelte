@@ -24,7 +24,7 @@
     // make margin classes from min to max heading depth
     let headingMargin = {};
     for (let i = minHeadingDepth; i <= 4; i++) {
-        headingMargin[i] = 'ps-' + (i - minHeadingDepth) * 2;
+        headingMargin[i] = 'ps-' + (i - minHeadingDepth);
     }
     let activeHeading = {};
     onMount(() => {
@@ -46,16 +46,18 @@
     });
 </script>
 
-{#if headings.length > 1}
-    <div class="nav flex-column sticky-top-under align-items-end pt-1">
-        <div class="d-none d-md-inline">
+<div class="nav flex-column sticky-top-under align-items-end pt-1">
+    <div class="d-none d-md-block w-100">
+        {#if headings.length > 2}
             <strong class="h6 my-2 text-body">On this page</strong>
-            <!-- <hr class="my-1" /> -->
-            <nav id="TableOfContents" class="d-none d-md-flex flex-column">
+        {/if}
+        <!-- <hr class="my-1" /> -->
+        <nav id="TableOfContents" class="d-none d-md-flex flex-column">
+            {#if headings.length > 2}
                 <ul class="mb-0 mt-1">
                     {#each headings as heading (heading)}
                         <li
-                            class={'nav-item ' + headingMargin[heading.depth]}
+                            class={'nav-item' + headingMargin[heading.depth]}
                             class:active={heading.slug === activeHeading}
                             class:collapse={heading.hidden && !$showHidden}
                         >
@@ -76,13 +78,12 @@
                     >
                         <i class="fa-solid fa-arrow-up-to-line" aria-hidden="true" /> Back to top
                     </a>
-
-                    <slot />
                 </div>
-            </nav>
-        </div>
+            {/if}
+            <slot />
+        </nav>
     </div>
-{/if}
+</div>
 
 <style lang="scss">
     @import 'src/styles/_variables.scss';
@@ -98,7 +99,9 @@
 
     li {
         border-inline-start: 2pt solid $border-color;
-        transition: background-color 0.3s ease-out, border-left 0.3s ease-out;
+        transition:
+            background-color 0.3s ease-out,
+            border-left 0.3s ease-out;
         scroll-margin-top: 6rem;
         scroll-margin-bottom: 6rem;
         &:hover {

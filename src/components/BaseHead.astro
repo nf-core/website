@@ -7,7 +7,7 @@ export interface Props {
     viewTransitions: boolean;
     docSearchTags?: {
         name: string;
-        content: string;
+        content: string | string[];
     }[];
 }
 
@@ -43,7 +43,7 @@ const { title, description, image = '/social_img.png', docSearchTags = [], viewT
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
-{viewTransitions && <ViewTransitions fallback="swap" />}
+{viewTransitions && <ViewTransitions fallback="none" />}
 
 <!-- DocSearch -->
 {docSearchTags.map(({ name, content }) => <meta name={'docsearch:' + name} content={content} />)}
@@ -76,7 +76,7 @@ const { title, description, image = '/social_img.png', docSearchTags = [], viewT
 
         setTheme(theme);
 
-        document.addEventListener('astro:beforeload', () => {
+        document.addEventListener('astro:after-swap', () => {
             setTheme(theme);
         });
     }
@@ -84,7 +84,7 @@ const { title, description, image = '/social_img.png', docSearchTags = [], viewT
 <script>
     import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
-    document.addEventListener('astro:beforeload', () => {
+    document.addEventListener('astro:after-swap', () => {
         const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
         [...tooltipTriggerList].map((tooltipTriggerEl) => {
             const tooltip = bootstrap.Tooltip.getInstance(tooltipTriggerEl);

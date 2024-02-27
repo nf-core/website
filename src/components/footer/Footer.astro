@@ -4,12 +4,12 @@ import NfCoreLogo from '/images/logo/nf-core-logo.svg?raw';
 import IconSocial from '@components/IconSocial.astro';
 ---
 
-<footer class="footer bg-body-secondary text-body-secondary">
+<footer class="footer bg-body-secondary text-body-secondary py-4 py-lg-5">
     <div class="container">
         <div class="row align-items-center">
             <div class="text-center text-lg-start col-12 col-lg d-flex flex-column justify-content-between">
                 <div class="">
-                    <a href="/" class="text-decoration-none">
+                    <a href="/" class="text-decoration-none d-inline-block">
                         <div class="hide-dark align-middle">
                             <Fragment set:html={NfCoreLogo} />
                         </div>
@@ -39,7 +39,7 @@ import IconSocial from '@components/IconSocial.astro';
                             icon_dark="mdi:aws"
                         />
                         <span class="ms-1">+</span>
-                        <IconSocial link="/about/#seqera-labs" title="Seqera Labs" icon="logos/seqera" />
+                        <IconSocial link="/about/#seqera" title="Seqera" icon="logos/seqera" />
                     </span>
                 </div>
             </div>
@@ -75,7 +75,6 @@ import IconSocial from '@components/IconSocial.astro';
         }
 
         footer {
-            padding: 3rem 0 3rem;
             & a {
                 color: $gray-600;
                 &:hover,

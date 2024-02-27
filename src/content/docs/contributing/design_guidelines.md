@@ -51,6 +51,8 @@ This helps new users get an overview of a workflow when visiting a pipeline webp
 
 Most workflow diagrams are made by hand using vector image editors such as the open-source [Inkscape](https://inkscape.org/) or commercial suites such as [Adobe Illustrator](https://www.adobe.com/products/illustrator.html). Useful tools for collaborative prototyping include [Google Drawings](https://docs.google.com/drawings/) or [LucidChart](https://www.lucidchart.com/pages/). All examples and components below can be opened in these editors, and various parts borrowed and/or modified as necessary.
 
+The components are also made available on [bioicons](https://bioicons.com), which offers extensions for [Inkscape](https://inkscape.org/) and [draw.io](https://app.diagrams.net/) to directly import them there.
+
 ### Examples
 
 See below for some examples of nf-core workflow schematics that can be re-used and modified for your own pipeline.
@@ -96,9 +98,11 @@ Some components that may be useful are shown below:
 ### Use draw.io
 
 The web app [draw.io](https://app.diagrams.net/) helps you create, render and export different diagrams including metro-maps.
-For even more convenience you can use the following asset library [NF-Core xml item library](https://github.com/LouisLeNezet/phaseimpute/blob/dev/docs/NfCore_library.xml). It contains all of the components from the cheatsheet above.
+For even more convenience you can use the following asset library [nf-core xml item library](https://github.com/LouisLeNezet/phaseimpute/blob/dev/docs/NfCore_library.xml). It contains all of the components from the cheatsheet above.
 To import it to draw.io use "File / Open library from / URL..." and paste:
 
 ```plaintext
 https://github.com/LouisLeNezet/phaseimpute/raw/dev/docs/NfCore_library.xml
 ```
+
+Additionally, the components can be used via [bioicons](https://bioicons.com).

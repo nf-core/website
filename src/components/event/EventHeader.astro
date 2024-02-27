@@ -5,14 +5,13 @@ import LocalDateTime from '@components/event/LocalDateTime.svelte';
 const { frontmatter } = Astro.props;
 
 if (frontmatter.start === undefined) {
-    frontmatter.start = new Date(frontmatter.start_date + 'T' + frontmatter.start_time);
+    frontmatter.start = new Date(frontmatter.startDate + 'T' + frontmatter.startTime);
 }
 if (frontmatter.end === undefined) {
-    frontmatter.end = new Date(frontmatter.end_date + 'T' + frontmatter.end_time);
+    frontmatter.end = new Date(frontmatter.endDate + 'T' + frontmatter.endTime);
 }
 const start = frontmatter.start;
 const end = frontmatter.end;
-console.log('start', frontmatter.start);
 ---
 
 <div class="">
@@ -28,12 +27,12 @@ console.log('start', frontmatter.start);
         <div class="col">
             <dl>
                 {
-                    frontmatter.location_url && (
+                    frontmatter.locationURL && (
                         <>
-                            <dt>{frontmatter.location_url.length === 1 ? 'Link' : 'Links'}:</dt>
+                            <dt>{frontmatter.locationURL.length === 1 ? 'Link' : 'Links'}:</dt>
                             <dd>
                                 <ul class="list-unstyled">
-                                    {frontmatter.location_url.map((loc) => {
+                                    {frontmatter.locationURL.map((loc) => {
                                         return (
                                             <li class="list-item">
                                                 <a class="text-white underline" href={loc}>
@@ -48,10 +47,10 @@ console.log('start', frontmatter.start);
                     )
                 }
                 {
-                    frontmatter.location_name && (
+                    frontmatter.locationName && (
                         <>
                             <dt>Location:</dt>
-                            <dd>{frontmatter.location_name}</dd>
+                            <dd>{frontmatter.locationName}</dd>
                         </>
                     )
                 }
@@ -64,12 +63,12 @@ console.log('start', frontmatter.start);
                     )
                 }
                 {
-                    frontmatter.location_latlng && (
+                    frontmatter.locationLatLng && (
                         <>
                             <dd>
                                 <a
                                     class="mt-2 btn btn-sm btn-outline-light"
-                                    href={`https://www.openstreetmap.org/?mlat=${frontmatter.location_latlng[0]}&mlon=${frontmatter.location_latlng[1]}&zoom=16#map=16/${frontmatter.location_latlng[0]}/${frontmatter.location_latlng[1]}`}
+                                    href={`https://www.openstreetmap.org/?mlat=${frontmatter.locationLatLng[0]}&mlon=${frontmatter.locationLatLng[1]}&zoom=16#map=16/${frontmatter.locationLatLng[0]}/${frontmatter.locationLatLng[1]}`}
                                     target="_blank"
                                 >
                                     <i class="fa-duotone fa-map-pin me-1" />

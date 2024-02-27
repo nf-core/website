@@ -2,24 +2,14 @@
 title: 'Bytesize: Converting Python scripts into packages for PyPI, Bioconda & Biocontainers'
 subtitle: Phil Ewels - Seqera Labs
 type: talk
-start_date: '2023-05-02'
-start_time: '13:00+02:00'
-end_date: '2023-05-02'
-end_time: '13:30+02:00'
-youtube_embed: https://www.youtube.com/watch?v=hOuS6mXCwhk
-location_url:
+startDate: '2023-05-02'
+startTime: '13:00+02:00'
+endDate: '2023-05-02'
+endTime: '13:30+02:00'
+youtubeEmbed: https://www.youtube.com/watch?v=hOuS6mXCwhk
+locationURL:
   - https://www.youtube.com/watch?v=hOuS6mXCwhk
 ---
-
-# nf-core/bytesize
-
-Join us for our **weekly series** of short talks: **“nf-core/bytesize”**.
-
-Just **15 minutes** + questions, we will be focussing on topics about using and developing nf-core pipelines.
-These will be recorded and made available at <https://nf-co.re>
-It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
-
-## Bytesize: Converting Python scripts into packages for PyPI, Bioconda & Biocontainers
 
 This week, Phil Ewels ([@ewels](https://github.com/ewels/)) will show you how to take a Python script and turn it into a stand-alone command-line tool, ready for distribution via the [Python Package Index](https://pypi.org/) (PyPI).
 

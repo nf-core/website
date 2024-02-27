@@ -20,29 +20,51 @@ export interface Props {
     image?: string;
     md_github_url?: string;
     subfooter?: boolean;
-    navTocHeadings?: object[];
-    sections?: { section_name: string; children: {}[] }[] | never[];
+    showHiddenBtn?: boolean;
+    navTocHeadings?: ({ text: string; slug: string; depth: number; fa_icon?: string } | undefined)[];
+    sections?: {
+        section_name: string;
+        section_slug?: string;
+        children: {
+            title: string;
+            slug: string;
+            order?: number;
+        }[];
+    }[];
     viewTransitions?: boolean;
     docSearchTags?: {
         name: string;
-        content: string;
+        content: string | string[];
     }[];
+    doubleNavbar?: boolean;
 }
+// get entry for page_type in docsearchtags
 
-const {
+let {
     title = SITE_TITLE,
     subtitle = SITE_DESCRIPTION,
-    image = `/og.png?title=${encodeURIComponent(title ? title : SITE_TITLE)}`,
+    image = `/og.png?title=${encodeURIComponent(title ? title : SITE_TITLE)}&subtitle=${encodeURIComponent(
+        subtitle ? subtitle : '',
+    )}&category=`,
     md_github_url,
     subfooter = false,
+    showHiddenBtn = false,
     navTocHeadings = [],
     sections = [],
     viewTransitions = false,
     docSearchTags = [],
+    doubleNavbar = true,
 } = Astro.props;
+const pageTypeTag = docSearchTags.find((tag) => tag.name === 'page_type');
+const pageSubtypeTag = docSearchTags.find((tag) => tag.name === 'page_subtype');
+
+let category = pageTypeTag?.content || '';
+category += pageSubtypeTag && pageSubtypeTag?.content ? `/${pageSubtypeTag.content}` : '';
+
+image += category;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
     <head>
         <BaseHead
@@ -55,8 +77,8 @@ const {
     </head>
 
     <body tabindex="0">
-        <Navbar navTocHeadings={navTocHeadings} title={title} sections={sections} />
-        <div class:list={['content', { 'double-navbar': sections.length > 0 }]}>
+        <Navbar navTocHeadings={navTocHeadings} title={title} sections={sections} {showHiddenBtn} />
+        <div class:list={['content', { 'double-navbar': sections.length > 0 && doubleNavbar }]}>
             <slot />
         </div>
         {subfooter && <SubFooter md_github_url={md_github_url} />}
@@ -73,6 +95,11 @@ const {
                 padding-top: 4rem; //offset for navbar
             }
             @include media-breakpoint-down(xl) {
+                .content {
+                    padding-top: 3rem; //offset for navbar
+                }
+            }
+            @include media-breakpoint-down(md) {
                 .content {
                     padding-top: 3rem; //offset for navbar
                     &.double-navbar {

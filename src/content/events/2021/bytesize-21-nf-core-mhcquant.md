@@ -2,27 +2,17 @@
 title: 'Bytesize 21: nf-core/mhcquant'
 subtitle: Leon Bichmann - University of Tuebingen, Germany
 type: talk
-start_date: '2021-09-28'
-start_time: '13:00+02:00'
-end_date: '2021-09-28'
-end_time: '13:30+02:00'
-embed_at: 'mhcquant'
-youtube_embed: https://youtu.be/NCKkSssE_4w
-location_url:
+startDate: '2021-09-28'
+startTime: '13:00+02:00'
+endDate: '2021-09-28'
+endTime: '13:30+02:00'
+embedAt: 'mhcquant'
+youtubeEmbed: https://youtu.be/NCKkSssE_4w
+locationURL:
   - https://youtu.be/NCKkSssE_4w
   - https://www.bilibili.com/video/BV1Lh411J732/
   - https://doi.org/10.6084/m9.figshare.16750381.v1
 ---
-
-# nf-core/bytesize
-
-Join us for a special pipeline-focussed episode of our **weekly series** of short talks: **“nf-core/bytesize”**.
-
-Just **15 minutes** + questions, we will be focussing on topics about using and developing nf-core pipelines.
-These will be recorded and made available at <https://nf-co.re>
-It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
-
-## Bytesize 21: nf-core/mhcquant
 
 This week, Leon Bichmann ([@Leon-Bichmann](https://github.com/Leon-Bichmann/)) will tell us all about the nf-core/mhcquant pipeline.
 

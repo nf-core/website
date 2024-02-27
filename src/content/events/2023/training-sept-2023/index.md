@@ -2,12 +2,12 @@
 title: Community Advanced Nextflow Training - September 2023
 subtitle: Join us for the first ever Advanced community training! Become a Nextflow expert!
 type: training
-start_date: '2023-09-27'
-start_time: '15:00+02:00'
-end_date: '2023-09-28'
-end_time: '19:00+02:00'
-location_name: YouTube
-import_typeform: true
+startDate: '2023-09-27'
+startTime: '15:00+02:00'
+endDate: '2023-09-28'
+endTime: '19:00+02:00'
+locationName: YouTube
+importTypeform: true
 ---
 
 # Welcome
@@ -21,6 +21,8 @@ Please note that this is not an introductory workshop and experience writing Nex
 # Accessing the streams
 
 To make the workshops available to everyone they will be streamed on the [Advanced Nextflow training playlist on the nf-core YouTube channel](https://www.youtube.com/playlist?list=PL3xpfTVZLcNhPoEl8cT15MdIBfX9kFJCj).
+
+A link to each stream will also be posted in the [`#sept23-advanced-training`](https://nfcore.slack.com/archives/C05U1A096EQ) Slack channel.
 
 # Attending at the Wellcome Genome Campus
 
@@ -56,11 +58,9 @@ Session 2 will cover the following topics:
 
 ## Asking questions
 
-Questions can be asked in the Slack channels created for this event. Community volunteers will monitor these channels and will answer your questions as quickly as they can. You can join the nf-core Slack [here](https://nf-co.re/join/slack).
+Questions can be asked in the nf-core [`#sept23-advanced-training`](https://nfcore.slack.com/archives/C05U1A096EQ) created for this event. Community volunteers will monitor these channels and will answer your questions as quickly as they can. You can join the nf-core Slack [here](https://nf-co.re/join/slack).
 
-The Slack channels for this event will become available closer to the event.
-
-> Please be aware that due to the size of this event there may be a delay when answering your questions.
+> Please be aware that due to the size of this event, there may be a delay when answering your questions.
 
 # Registration
 

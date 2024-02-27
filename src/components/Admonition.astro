@@ -1,11 +1,12 @@
 ---
 //NOTE: When updating this file, check remark-admonitions.js for similar changes.
 
-const { title, icon } = Astro.props;
+const { title, icon, titleText } = Astro.props;
 
 export interface Props {
     title: string;
-    icon: string;
+    icon?: string;
+    titleText?: string;
 }
 
 const admonitionTypes = {
@@ -55,7 +56,8 @@ const admonitionTypes = {
                     </svg>
                 )
             }
-            {title.charAt(0).toUpperCase() + title.slice(1)}
+            {titleText && <span set:html={titleText} />}
+            {!titleText && title.charAt(0).toUpperCase() + title.slice(1)}
         </div>
         <div class="p-3 pt-0">
             <slot />

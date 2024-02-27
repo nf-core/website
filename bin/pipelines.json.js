@@ -4,7 +4,7 @@ import { promises as fs, writeFileSync, existsSync } from 'fs';
 import yaml from 'js-yaml';
 import path, { join } from 'path';
 import ProgressBar from 'progress';
-
+import cache from './cache.js';
 
 // get current path
 const __dirname = path.resolve();
@@ -29,23 +29,35 @@ export const writePipelinesJson = async () => {
   const ignored_repos = yaml.load(ignoredTopicsYaml).ignore_repos;
 
   // get all repos for the nf-core org
-  let names = await octokit
+  let names = [];
+  let active_names = [];
+
+  await octokit
     .paginate(octokit.rest.repos.listForOrg, {
       org: 'nf-core',
       type: 'public',
       per_page: 100,
     })
     .then((response) => {
-      // filter out repos that are in the ignored_repos list
-      return response
-        .filter((repo) => !ignored_repos.includes(repo.name))
-        .map((repo) => repo.name)
-        .sort();
+      names.push(
+        response
+          .filter((repo) => !ignored_repos.includes(repo.name))
+          .map((repo) => repo.name)
+          .sort(),
+      );
+      active_names.push(
+        response
+          .filter((repo) => !ignored_repos.includes(repo.name) && !repo.archived)
+          .map((repo) => repo.name)
+          .sort(),
+      );
     });
+  names = names.flat();
+  active_names = active_names.flat();
   // write pipeline_names.json
   await fs.writeFile(
     join(__dirname, '/public/pipeline_names.json'),
-    JSON.stringify({ pipeline: names }, null, 4),
+    JSON.stringify({ pipeline: active_names }, null),
     'utf8',
   );
 
@@ -55,7 +67,7 @@ export const writePipelinesJson = async () => {
   let bar = new ProgressBar('  fetching pipelines [:bar] :percent :etas', { total: names.length });
 
   // go through names and add or update pipelines in pipelines.json
-  for (const name of names) {
+  for (const name of names.flat()) {
     // get the details from the github repo description
     const data = await octokit.rest.repos
       .get({
@@ -202,6 +214,31 @@ export const writePipelinesJson = async () => {
           components.modules = components.modules.map((component) => {
             return component.replace('/', '_');
           });
+        }
+
+        // cache release body except for dev
+        if (release.tag_name !== 'dev') {
+          const cache_key = `${name}/${release.tag_name}/body`;
+          // const is_cached = cache.getSync(cache_key, false) && cache.getSync(cache_key, false).length > 0;
+          const is_cached = false;
+          if (!is_cached) {
+            // wrap github urls in markdown links if they are to the same repo and not already inside a link
+            release.body = release.body.replaceAll(
+              /(?<!\]\()https:\/\/github\.com\/nf-core\/([^\/]+)\/([^\/]+)\/([^\/\n]*)(?![\)\]])/g,
+              (match, p1, p2, p3) => {
+                if (p1 === name && ['pull', 'issues', 'compare'].includes(p2)) {
+                  const prefix = p2 !== 'compare' ? '#' : '';
+                  return `[${prefix}${p3}](${match})`;
+                }
+                return match;
+              },
+            );
+            // replace usernames with links to github profiles
+            release.body = release.body.replaceAll(/@(\w+([-]\w+)*)/g, (match, p1) => {
+              return `[${match}](https://github.com/${p1})`;
+            });
+            cache.set(cache_key, release.body);
+          }
         }
         return { tag_name, published_at, tag_sha, has_schema, doc_files, components };
       }),

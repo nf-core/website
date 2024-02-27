@@ -1,12 +1,10 @@
 ---
-import { Markdown } from '@astropub/md';
 import MarkdownWrapper from '@components/markdown/MarkdownWrapper.svelte';
 import SidebarToc from '@components/sidebar/SidebarToc.svelte';
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
 import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
 import pipelines_json from '@public/pipelines.json';
-import cache from 'bin/cache.js';
-import { getGitHubFile } from '@components/octokit';
+import { getEntry } from 'astro:content';
 
 import ExpandDetailsButton from '@components/sidebar/ExpandDetailsButton.svelte';
 
@@ -42,15 +40,10 @@ export function getStaticPaths() {
 }
 let { pipeline, version, md_file } = Astro.params;
 const { versions, md_files, description } = Astro.props;
-let headings: {
-    depth: number;
-    text: string;
-    slug: string;
-}[] = [];
 
 const section = md_file.split('/')[0];
 // check if there are multiple files in the section
-let left_sidebar = md_files.filter((file) => file.split('/')[0] === section).length > 1;
+let leftSidebar = md_files.filter((file) => file.split('/')[0] === section).length > 1;
 
 let sections = {};
 
@@ -59,7 +52,7 @@ let url = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : Astro.url.path
 url = url.replace(/\.html\/$/, '/');
 const baseURL = url.split('/').slice(0, -2).join('/') + '/';
 
-if (left_sidebar) {
+if (leftSidebar) {
     const siblings = md_files
         .filter((file) => file.split('/')[0] === section && section !== file)
         .map((child) => {
@@ -83,66 +76,11 @@ if (left_sidebar) {
         },
     ];
 }
-
 const version_tag_name = version === 'latest' ? versions[0] : version;
+const cache_key = `${pipeline}/${version_tag_name?.replaceAll('.', '')}/docs/${md_file?.toLowerCase()}`;
 
-const cache_key = `${pipeline}/${version_tag_name}/docs/${md_file}.md`;
-
-const md_content = await cache
-    .get(cache_key)
-    .catch((error) => {
-        console.log(error);
-        return;
-    })
-    .then(async (response) => {
-        let content = response;
-        if (content === undefined) {
-            console.log(`Cache miss for ${cache_key}`);
-            content = await getGitHubFile(pipeline, `/docs/${md_file}.md`, version);
-        }
-        // make relative links to assets point towards github instead of local
-        content = content.replaceAll(
-            /(\]\()(\.\.\/assets\/)/g,
-            `$1https://raw.githubusercontent.com/nf-core/${pipeline}/${version}/assets/`,
-        );
-
-        // make relative links to other markdown files absolute to current Astro.url.pathname
-        content = content.replaceAll(/\[([^\]]+)\]\((?!http)(?!#)(.*?)\)/g, (match, p1, p2) => {
-            const link = [...new Set([...url.split('/').filter((i) => i), ...p2.split('/').filter((i) => i)])].join(
-                '/',
-            );
-            return `[${p1}](/${link})`;
-        });
-        const text_content = content.replace(/```(.*?)```/gs, '');
-        // get headings and their depth for table of contents
-        headings = text_content.match(/^(#{1,6})\s(.*)$/gm);
-        if (headings === null) {
-            headings = [];
-            return content;
-        }
-        headings = headings.map((heading) => {
-            const depth = heading.match(/^(#{1,6})/)[0].length;
-            let text = heading.match(/^(#{1,6})\s(.*)$/)[2];
-            // check if exactly two backticks are used to wrap text
-            if (text.match(/`(.+?)`/g)) {
-                text = text.replace(/`(.+?)`/g, '<code>$1</code>');
-                const slug = text
-                    .replace(/<code>(.*?)<\/code>/g, '$1')
-                    .toLowerCase()
-                    .replace(/ /g, '-')
-                    .replace(/[^\w-]+/g, '');
-                return { depth, text, slug };
-            } else {
-                const slug = text
-                    .toLowerCase()
-                    .replace(/ /g, '-')
-                    .replace(/[^\w-]+/g, '');
-                return { depth, text, slug };
-            }
-        });
-        return content;
-    });
-
+const entry = await getEntry('pipelines', cache_key);
+let { Content, headings } = await entry.render();
 const max_heading_depth = 2;
 
 // filter out headings that are higher than max_heading_depth
@@ -161,22 +99,25 @@ headings = headings.filter((h) => h.depth <= max_heading_depth);
     tabItems={md_files}
     md_github_url={`https://github.com/nf-core/${pipeline}/blob/${version}/docs/${md_file}.md`}
     sections={sections}
-    docSearchTags={[{ name: 'page_rank', content: '5' }]}
+    docSearchTags={[
+        { name: 'page_rank', content: '5' },
+        { name: 'page_subtype', content: 'docs' },
+    ]}
 >
     <div class="row">
         {
-            left_sidebar && (
-                <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left pt-1">
+            leftSidebar && (
+                <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left pt-3">
                     <SidebarNav items={sections} />
                 </div>
             )
         }
-        <div class:list={['col-12 pt-3 markdown-content', { 'col-md-9': !left_sidebar, 'col-md-8': left_sidebar }]}>
+        <div class:list={['col-12 pt-3 markdown-content', { 'col-md-9': !leftSidebar, 'col-md-8': leftSidebar }]}>
             <MarkdownWrapper client:load headings={headings}>
-                <Markdown of={md_content} />
+                <Content />
             </MarkdownWrapper>
         </div>
-        <div class:list={['col-12 toc', { 'col-md-3': !left_sidebar, 'col-md-2': left_sidebar }]}>
+        <div class:list={['col-12 toc', { 'col-md-3': !leftSidebar, 'col-md-2': leftSidebar }]}>
             <SidebarToc headings={headings} client:idle><ExpandDetailsButton client:idle /></SidebarToc>
         </div>
     </div>

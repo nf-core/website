@@ -2,14 +2,14 @@
 title: 'Bytesize 6: All about modules'
 subtitle: Friederike Hanssen / Kevin Menden - QBiC Tübingen, Germany
 type: talk
-start_date: '2021-03-09'
-start_time: '13:00+01:00'
-end_date: '2021-03-09'
-end_time: '13:30+01:00'
-youtube_embed:
+startDate: '2021-03-09'
+startTime: '13:00+01:00'
+endDate: '2021-03-09'
+endTime: '13:30+01:00'
+youtubeEmbed:
   - https://www.youtube.com/embed/tWvou0xj9wA
   - https://www.youtube.com/embed/Wc4A2tQ6WWY
-location_url:
+locationURL:
   - https://youtu.be/tWvou0xj9wA
   - https://youtu.be/Wc4A2tQ6WWY
   - https://www.bilibili.com/video/BV1nN411Q7Ex
@@ -17,16 +17,6 @@ location_url:
   - https://doi.org/10.6084/m9.figshare.14185736.v1
   - https://doi.org/10.6084/m9.figshare.14185745.v1
 ---
-
-# nf-core/bytesize
-
-Join us for an episode of our **weekly series** of short talks: **“nf-core/bytesize”**.
-
-Just **15 minutes** + questions, we will be focussing on topics about using and developing nf-core pipelines.
-These will be recorded and made available at <https://nf-co.re>
-It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
-
-## Bytesize 6: DSL2
 
 ### DSL2 - Using modules in a pipeline
 
