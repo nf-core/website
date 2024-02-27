@@ -69,7 +69,8 @@ Primary contact: [<i class="fab fa-slack"></i> Mauro Saporita](https://nfcore.sl
 
 ### Registration
 
-Please use the [main registration form](https://seqera.typeform.com/mar24hackathon) to sign up and select the location you want.
+Please use the **main registration form** to sign up and select `Kraków, Poland (Ardigen)`.
+This can be found on the [main hackathon event page](https://nf-co.re/events/2024/hackathon-march-2024), or you can go to it directly [here](https://seqera.typeform.com/mar24hackathon).
 Please be aware that there is a limited number of places. We will therefore be able to plan everything based on the number of persons joining.
 
 ### Location

@@ -67,7 +67,8 @@ Primary contact: [<i class="fab fa-slack"></i> Louis Le Nézet](https://nfcore.s
 
 ### Registration
 
-Please use the **main registration form** (_soon available_) to sign up and select the location you want.
+Please use the **main registration form** to sign up and select `Rennes, France (IGDR)`.
+This can be found on the [main hackathon event page](https://nf-co.re/events/2024/hackathon-march-2024), or you can go to it directly [here](https://seqera.typeform.com/mar24hackathon).
 We will therefore be able to plan everything based on the number of persons coming.
 
 ### Location
