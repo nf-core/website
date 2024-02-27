@@ -70,7 +70,9 @@ Contact:
 
 ### Registration
 
-Please use the main <a href="https://seqera.typeform.com/mar24hackathon?typeform-source=nf-co.re">registration page</a> to sign up and select Daresbury as your location. If you plan to drive please let us know so that we can book your parking.
+Please use the **main registration form** to sign up and select Daresbury as your location.
+This can be found on the [main hackathon event page](https://nf-co.re/events/2024/hackathon-march-2024), or you can go to it directly [here](https://seqera.typeform.com/mar24hackathon).
+If you plan to drive please let us know so that we can book your parking.
 
 ### Location
 
