@@ -108,13 +108,11 @@ Please don't call your pipeline `nf-core/<yourpipeline>`, it _must_ be `sanger-t
 Please say that your pipeline _"uses"_ nf-core rather than rather than _"is"_ nf-core.
 When you generate a pipeline with `nf-core create`, exclude nf-core branding and select custom prefix `sanger-tol`.
 
-**Primary development must on the sanger-tol organisation.**
+**Development must on the sanger-tol organisation.**
 
-Whilst pipelines can be forked on GitHub for personal development work, the sanger-tol repository should be the primary source for all development.
+All ToL developers have got write access to the sanger-tol repositories so that all development can happen directly there.
 
-**The sanger-tol repository should be set as the head repo**
-
-Your personal / organisation repos should show on GitHub as being forked from sanger-tol, not the other way around. This is so that it's clear where the primary development location is. It also means that any pull-requests that are created will automatically select the sanger-tol repository as the target.
+Do *not* fork sanger-tol repositories.
 
 When new pipelines are added to sanger-tol, please transfer ownership to sanger-tol instead of forking it.
 
