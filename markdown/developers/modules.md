@@ -20,6 +20,7 @@ Reading the code of a pipeline can be daunting, especially if picking up the dev
 ```
 
 For example, instead of a block of code such as:
+
 ```nextflow
 SAMTOOLS_MARKDUP (pretext_input.input_bam,pretext_input.reference)
 ch_versions = ch_versions.mix ( SAMTOOLS_MARKDUP.out.versions )
@@ -76,6 +77,7 @@ It should be formatted as such:
 Although clues about the use of a channel should be obvious by its name. These comments help give context to why a tool is used here and explicitly states its purpose.
 
 Further examples include:
+
 ```
 //
 // IMPORT: SUBWORKFLOWS CALLED BY THE MAIN PROCESS
@@ -157,7 +159,7 @@ cram_filter -n ${from}-${to} ${cramfile} - | \\
 
 The original implementation of this module took a cram file and whilst reading, split the stream into 10,000 container segments (a cram container is analogous to 1 read), these stream segments are then processed upon (by the other 4 commands) before being merged into 1 mapped and sorted bam file for the primary assembly.
 
-Nextflow cannot manipulate a data stream passing between two modules. This required us to create a module to pre compute the 10,000 container regions of interest in the cram file (in the form of a csv) and pass these as arguments to the cram_et al_ module. Whilst not as performant as the original implementation (due to the small overhead created by Nextflow and the csv generation between parameter generation and cram_et al_), this is much more performant (in terms of compute resources and IO impact) than splitting the cram file into n (( total number of container / 10,000 ) * no. of cram files) number of files before further manipulation with the next 4 commands. This means that the TreeVal implementation is the best case scenario, as shown below.
+Nextflow cannot manipulate a data stream passing between two modules. This required us to create a module to pre compute the 10,000 container regions of interest in the cram file (in the form of a csv) and pass these as arguments to the cram*et al* module. Whilst not as performant as the original implementation (due to the small overhead created by Nextflow and the csv generation between parameter generation and cram*et al*), this is much more performant (in terms of compute resources and IO impact) than splitting the cram file into n (( total number of container / 10,000 ) \* no. of cram files) number of files before further manipulation with the next 4 commands. This means that the TreeVal implementation is the best case scenario, as shown below.
 
 <img src="../../public_html/assets/img/developer-images/cram-et-al.png" alt="A comparison of the three different cram et al module implementations, first the original (and fastest), second the TreeVal and finally a wholly NF-Core implementation" width="600" height="500">
 
