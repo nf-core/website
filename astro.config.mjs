@@ -21,7 +21,7 @@ import remarkDirective from 'remark-directive';
 import emoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
-import mermaid from '@dendronhq/remark-mermaid';
+import rehypeMermaid from 'rehype-mermaid';
 import remarkDescription from 'astro-remark-description';
 import markdownIntegration from '@astropub/md';
 import icon from 'astro-icon';
@@ -86,9 +86,12 @@ export default defineConfig({
                 // avoid flash of unstyled text by interjecting fallback system fonts https://developer.chrome.com/blog/framework-tools-font-fallback/#using-fontaine-library
                 fallbacks: ['BlinkMacSystemFont', 'Segoe UI', 'Helvetica Neue', 'Arial', 'Noto Sans'],
                 resolvePath: (id) => new URL(`./public${id}`, import.meta.url),
-                skipFontFaceGeneration: (fallbackName) => fallbackName === 'Font Awesome 6 Pro fallback',
+                skipFontFaceGeneration: (fallbackName) => fallbackName.includes('Font Awesome'),
             }),
         ],
+        optimizeDeps: {
+            exclude: ['property-information', 'micromark-util-symbol'],
+        },
         ssr: {
             noExternal: ['@popperjs/core', 'bin/cache.js', 'sharp'],
             optimizeDeps: { exclude: ['sharp'] },
@@ -109,7 +112,6 @@ export default defineConfig({
             remarkGfm,
             remarkDirective,
             admonitionsPlugin,
-            [mermaid, { simple: true }],
             remarkMath,
             // [
             //     remarkDescription,
@@ -154,6 +156,7 @@ export default defineConfig({
         // NOTE: Also update the plugins in `src/components/Markdown.svelte`!
         rehypePlugins: [
             rehypeSlug,
+            [rehypeMermaid, { strategy: 'pre-mermaid' }],
             [
                 rehypeAutolinkHeadings,
                 {

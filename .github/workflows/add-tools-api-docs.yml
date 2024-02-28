@@ -25,17 +25,20 @@ jobs:
         with:
           node-version: '20'
 
+      - name: setup pnpm
+        uses: pnpm/action-setup@v3
+
       - name: Install dependencies
         run: |
-          npm install remark unist-util-visit
+          pnpm install remark unist-util-visit
 
       # Install pre-commit
       - uses: actions/setup-python@0a5c61591373683505ea898e09a3ea4f39ef2b9c # v5
         with:
-          python-version: 3.11
+          python-version: 3.12
 
       # install prettier plugins
-      - run: npm install --only=dev
+      - run: pnpm install --only=dev
 
       - name: Install pre-commit
         run: pip install pre-commit
