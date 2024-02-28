@@ -3,15 +3,13 @@ title: Module Writing Guidelines
 subtitle: Guidelines on writing a sanger-tol compliant module
 ---
 
-# NF-Core Module Guidelines
+## NF-Core Module Guidelines
 
 Generally, modules should conform to the [NF-Core Standards](https://nf-co.re/docs/contributing/modules#new-module-guidelines-and-pr-review-checklist). However, there are a small number of cases where this is not possible.
 
-----
+## Sanger-tol additions
 
-# Sanger-tol additions
-
-## Pipeline Comments (Optional)
+### Pipeline Comments (Optional)
 
 Reading the code of a pipeline can be daunting, especially if picking up the development for said pipeline. And so we propose that there should be structured comments to explain the context of implementation at each module, subworkflow and workflow.
 
@@ -135,9 +133,7 @@ BEDTOOLS_SORT.out.sorted
 
 These explainers do not have to be as comprehensive as in other documentation, just enough to provide context or reasoning for that module or logic block.
 
----
-
-## The Super-module
+### The Super-module
 
 In [TreeVal](https://www.github.com/sanger-tol/treeval), there is the [`cram_filter_align_bwamem2_fixmate_sort.nf`](https://github.com/sanger-tol/treeval/blob/dev/modules/local/cram_filter_align_bwamem2_fixmate_sort.nf) local module, which contains 3 tools across 5 commands.
 
@@ -165,11 +161,11 @@ Nextflow cannot manipulate a data stream passing between two modules. This requi
 
 <img src="../../public_html/assets/img/developer-images/cram-et-al.png" alt="A comparison of the three different cram et al module implementations, first the original (and fastest), second the TreeVal and finally a wholly NF-Core implementation" width="600" height="500">
 
-### Reasons for:
+#### Reasons for:
 
 - Where there is a significant reduction in compute resource and IO when compared to a subworkflow with the same function.
 
-### Reasons against:
+#### Reasons against:
 
 - Where there is no performance increase.
 - Where an intermediary file, inside the command pipe, is also an output file.
