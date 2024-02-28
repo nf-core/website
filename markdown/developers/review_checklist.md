@@ -1,10 +1,11 @@
 ---
 title: Pipeline Review Guidelines
-subtitle: Suggestions for reviewing pipeline PRs
+subtitle: Suggestions for reviewing pipeline pull requests
 ---
 
-The aim is to have standardised best-practice pipelines. To ensure this standardisation, we maintain a set of guidelines which all sanger-tol
-pipelines must adhere to.
+The aim is to have standardised best-practice pipelines.
+To ensure this standardisation, we maintain a set of guidelines which all sanger-tol pipelines must adhere to.
+These are adopted from [nf-core guidelines](https://nf-co.re/docs/contributing/guidelines) and [review checklist](https://nf-co.re/docs/contributing/pipeline_release_review_guidelines).
 
 Pipeline developers are recommended to create **modular and small pull requests (PRs)** to get the most out of the review process.
 Think about that _before_ writing the code and opening the pull-request, as breaking down a PR into multiple ones can be tricky.
@@ -20,29 +21,29 @@ All sanger-tol pipelines _must_ follow the following guidelines:
 
 - [Identity and branding](#identity-and-branding): Primary development must on the sanger-tol organisation.
 - [Workflow size](#workflow-size): Not too big, not too small.
-- [Workflow name](#workflow_name): Names should be lower case and without punctuation.
-- [Use the template](#use_the_template): All sanger-tol pipelines must be built using the nf-core template and sanger-tol branding.
-- [Software license](#mit_license): Pipelines must be open source, released with the MIT license.
-- [Bundled documentation](#docs): Pipeline documentation must be stored in the repository and viewable on the pipeline website.
-- [Docker support](#docker): Software must be bundled using Docker and versioned.
-- [Continuous integration testing](#ci_testing): Pipelines must pass CI tests.
-- [Semantic versioning](#semantic_versioning): Pipelines must use stable release tags.
-- [Standardised parameters](#parameters): Strive to have standardised usage.
-- [Single command](#single_command): Pipelines should run in a single command.
+- [Workflow name](#workflow-name): Names should be lower case and without punctuation.
+- [Use the template](#use-the-template): All sanger-tol pipelines must be built using the nf-core template and sanger-tol branding.
+- [Software license](#software-license): Pipelines must be open source, released with the MIT license.
+- [Bundled documentation](#bundled-documentation): Pipeline documentation must be stored in the repository and viewable on the pipeline website.
+- [Docker support](#docker-support): Software must be bundled using Docker and versioned.
+- [Continuous integration testing](#continuous-integration-testing): Pipelines must pass CI tests.
+- [Semantic versioning](#semantic-versioning): Pipelines must use stable release tags.
+- [Standardised parameters](#standardised-parameters): Strive to have standardised usage.
+- [Single command](#single-command): Pipelines should run in a single command.
 - [Keywords](#keywords): Excellent documentation and GitHub repository keywords.
-- [Pass lint tests](#linting): The pipeline must not have any failures in the `nf-core lint` tests.
-- [Credits and Acknowledgements](#acknowledgements): Pipelines must properly acknowledge prior work.
-- [Minimum inputs](#minimum_inputs): Pipelines should be able to run with as little input as possible.
-- [Use sanger-tol git branches](#git_branches): Use `main`, `dev` and `TEMPLATE`.
+- [Pass lint tests](#pass-lint-tests): The pipeline must not have any failures in the `nf-core lint` tests.
+- [Credits and Acknowledgements](#credits-and-acknowledgements): Pipelines must properly acknowledge prior work.
+- [Minimum inputs](#minimum-inputs): Pipelines should be able to run with as little input as possible.
+- [Use sanger-tol git branches](#git-branches): Use `main`, `dev` and `TEMPLATE`.
 
 ## Do: nf-core recommendations {#recommendations}
 
 All sanger-tol pipelines _should_ follow the following guidelines, if possible / appropriate:
 
-- [Use Bioconda](#bioconda): Package software using bioconda and biocontainers.
-- [File formats](#file_formats): Use community accepted modern file formats such as `CRAM`.
+- [Use Bioconda](#use-bioconda): Package software using bioconda and biocontainers.
+- [File formats](#file-formats): Use community accepted modern file formats such as `CRAM`.
 - [DOIs](#dois): Pipelines should have digital object identifiers (DOIs).
-- [Publication credit](#publication_credit): Pipeline publications should acknowledge the sanger-tol community and contributing members.
+- [Publication credit](#publication-credit): Pipeline publications should acknowledge the sanger-tol community and contributing members.
 
 ## Do: Local code and modules {#local}
 
@@ -97,6 +98,8 @@ If a pipeline is found to be violating the standards and guidelines, you should 
 
 All members of the sanger-tol community must adhere to the [sanger-tol code of conduct](https://pipelines.tol.sanger.ac.uk/code_of_conduct).
 The guidelines and actions within the code of conduct take precedence over the development guidelines described in this page.
+
+## Guidelines
 
 ### Identity and branding
 
