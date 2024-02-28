@@ -6,7 +6,9 @@ subtitle: Suggestions for reviewing pipeline PRs
 The aim is to have standardised best-practice pipelines. To ensure this standardisation, we maintain a set of guidelines which all sanger-tol
 pipelines must adhere to.
 
-Pipeline developers are recommeneded to create **modular and small pull requests (PRs)** to get the most out of the review process.
+Pipeline developers are recommended to create **modular and small pull requests (PRs)** to get the most out of the review process.
+Think about that _before_ writing the code and opening the pull-request, as breaking down a PR into multiple ones can be tricky.
+As a rule of thumb, a PR should not add more than one sub-workflow, a sub-workflow should not contain more than ten steps. A PR can modify multiple sub-workflows, as long as the changes are related.
 
 The role of the reviewer is to check for adherence to the central principles of nf-core (reproducibility, execellent reporting, documented, keeping to the template etc.,). Here we provide a general set of suggestions when doing pipeline reviews:
 
@@ -57,7 +59,7 @@ All sanger-tol pipelines _should_ follow the following guidelines, if possible /
 
 ## Do: Documentation {#documentation}
 
-- Documention is only on the pipelines website (not pointed to other places, e.g. not read the docs )
+- Documention is only on the pipelines website (not pointed to other places, e.g. not readthedocs )
 - Is documentation sufficiently described (`usage.md`, `output.md`, `nextflow_schema.json`)?
   - nextflow_schema.json: check if types are correct and that `default` and `enum` are used where applicable
 - Are there any typos in the documentation (`usage.md`, `output.md`, `nextflow_schema.json`)
@@ -70,7 +72,7 @@ All sanger-tol pipelines _should_ follow the following guidelines, if possible /
 
 ## Do: Code {#code}
 
-- Check no overly non-template components (no read the docs, entirely custom logo etc.)
+- Check no overly non-template components (no readthedocs, entirely custom logo etc.)
 - Check for general code readability
 - Check for possible code bugs
 - Check for consistency in parameters
@@ -103,7 +105,7 @@ The guidelines and actions within the code of conduct take precedence over the d
 
 ### Identity and branding
 
-Please don't call your pipeline `nf-core/<yourpipeline>`, it _must_ be `sanger-tol/<yourpipelines>`.
+Please don't call your pipeline `nf-core/<yourpipeline>`, it _must_ be `sanger-tol/<yourpipeline>`.
 Please say that your pipeline _"uses"_ nf-core rather than rather than _"is"_ nf-core.
 When you generate a pipeline with `nf-core create`, exclude nf-core branding and select custom prefix `sanger-tol`.
 
