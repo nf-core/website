@@ -112,7 +112,7 @@ When you generate a pipeline with `nf-core create`, exclude nf-core branding and
 
 All ToL developers have got write access to the sanger-tol repositories so that all development can happen directly there.
 
-Do *not* fork sanger-tol repositories.
+Do _not_ fork sanger-tol repositories.
 
 When new pipelines are added to sanger-tol, please transfer ownership to sanger-tol instead of forking it.
 
