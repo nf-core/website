@@ -10,7 +10,7 @@ Pipeline developers are recommended to create **modular and small pull requests 
 Think about that _before_ writing the code and opening the pull-request, as breaking down a PR into multiple ones can be tricky.
 As a rule of thumb, a PR should not add more than one sub-workflow, a sub-workflow should not contain more than ten steps. A PR can modify multiple sub-workflows, as long as the changes are related.
 
-The role of the reviewer is to check for adherence to the central principles of nf-core (reproducibility, execellent reporting, documented, keeping to the template etc.,). Here we provide a general set of suggestions when doing pipeline reviews:
+The role of the reviewer is to check for adherence to the central principles of nf-core and sanger-tol (reproducibility, execellent reporting, documented, keeping to the template etc.,). Here we provide a general set of suggestions when doing pipeline reviews:
 
 The instructions below are subject to interpretation and specific scenarios. If in doubt, please ask for feedback.
 
@@ -23,9 +23,9 @@ All sanger-tol pipelines _must_ follow the following guidelines:
 - [Workflow name](#workflow_name): Names should be lower case and without punctuation.
 - [Use the template](#use_the_template): All sanger-tol pipelines must be built using the nf-core template and sanger-tol branding.
 - [Software license](#mit_license): Pipelines must be open source, released with the MIT license.
-- [Bundled documentation](#docs): Pipeline documentation must be hosted on the nf-core website.
+- [Bundled documentation](#docs): Pipeline documentation must be stored in the repository and viewable on the pipeline website.
 - [Docker support](#docker): Software must be bundled using Docker and versioned.
-- [Continuous integration testing](#ci_testing): Pipelines must run CI tests.
+- [Continuous integration testing](#ci_testing): Pipelines must pass CI tests.
 - [Semantic versioning](#semantic_versioning): Pipelines must use stable release tags.
 - [Standardised parameters](#parameters): Strive to have standardised usage.
 - [Single command](#single_command): Pipelines should run in a single command.
@@ -42,15 +42,14 @@ All sanger-tol pipelines _should_ follow the following guidelines, if possible /
 - [Use Bioconda](#bioconda): Package software using bioconda and biocontainers.
 - [File formats](#file_formats): Use community accepted modern file formats such as `CRAM`.
 - [DOIs](#dois): Pipelines should have digital object identifiers (DOIs).
-- [Cloud compatible](#cloud_compatible): Pipelines should be tested on cloud computing environments.
 - [Publication credit](#publication_credit): Pipeline publications should acknowledge the sanger-tol community and contributing members.
 
 ## Do: Local code and modules {#local}
 
 - Do local scripts in `bin/` have author and license embedded?
-  - Local script licenses if written for the pipeline should not be GPL, but ideally MIT (matching with pipeline code, which is assumed if not otherwise specified)
+  - Local scripts must be licensed with the MIT license, like the pipeline code itself.
 - Do all local modules have docker/singularity/conda declarations?
-  - Are they ideally in bioconda/biocontainers
+  - Are they ideally in bioconda/biocontainers ?
 - Do all local modules conda/container tool declarations have versions? (and _not_ `latest`, `dev` etc.)
 - Do all local modules report versions (if applicable)?
   - Simple modules with e.g. single `grep` operations not necessary
@@ -77,7 +76,7 @@ All sanger-tol pipelines _should_ follow the following guidelines, if possible /
 - Check for possible code bugs
 - Check for consistency in parameters
   - i.e. `snake_case`
-  - All boolean parameters evaluate to `false` (e.g. bad: `params.run_step = true`, good: `params.skip_step = false` )
+  - All boolean parameters evaluate to `false` by default (e.g. bad: `params.run_step = true`, good: `params.skip_step = false` )
 - Check manifest includes DOI (if present) etc.
 
 ## Don't have to do {#not-needed}
@@ -153,7 +152,7 @@ Please try not bundle any third party scripts within the workflow, in case they 
 
 All documentation must be bundled with the pipeline code in the main repository, within a directory called `docs`.
 
-Documentation must _only_ be hosted on the pipelines website and GitHub.
+Documentation must _only_ be hosted on the GitHub repository, which is automatically synchronised to the pipelines website.
 Hosting the documentation at a second location (such as custom readthedocs website, or GitHub pages etc) is not allowed.
 This is to ensure that users of sanger-tol pipelines can always intuitively find the documentation for all sanger-tol pipelines in the same way.
 
@@ -162,8 +161,6 @@ Documentation must include at least the following files:
 - `README.md`
 - `docs/usage.md`
 - `docs/output.md`
-
-Additional pages (e.g. tutorials, FAQs) can be added and will be automatically rendered on the website pipeline page.
 
 ### Docker support
 
@@ -177,9 +174,11 @@ Software versions must be static and stable. Labels such as `latest`, `dev`, `ma
 
 ### Continuous integration testing
 
-Pipelines must have automated continuous integration testing, running using GitHub Actions. There must also be CI tests using Nextflow Tower (`sanger_test` and `sanger_test_full`).
+Pipelines must have automated continuous integration testing, running using GitHub Actions. There must be a small dataset that can be tested on GitHub directly, and a larger one that can be tested on the Sanger farm using Nextflow Tower.
 
 There must be a config `profile` called `test` that should be as comprehensive as possible - that is, it should run as much of the pipeline as possible. It should use as tiny test data set as possible (even if the output that it creates is meaningless).
+
+Then, we configure the integration with Nextflow Tower to allow testing the larger dataset (`test_full`) on the Sanger LSF farm. To set up that up, first add the profile `cleanup { cleanup = true }` to your `nextflow.config` (right at the beginning of the `profiles` section). This is to control the amount of space taken on Lustre. Then, copy the two files [`sanger_test.yml`](https://github.com/sanger-tol/insdcdownload/blob/dev/.github/workflows/sanger_test.yml) and [`sanger_test_full.yml`](https://github.com/sanger-tol/insdcdownload/blob/dev/.github/workflows/sanger_test_full.yml) to your `.github/workflows/`. Ask @muffato to enable the Tower integration for your repository.
 
 ### Semantic versioning
 
@@ -191,7 +190,7 @@ Release version tags must be numerical only (no `v` prefix) and should follow [s
 For example, starting with with a release version `1.4.3`, bumping the version to:
 
 - `1.4.4` would be a patch release for minor things such as fixing bugs.
-- `1.5.0` would be a minor release, for example adding some new features.
+- `1.5.0` would be a minor release, for example adding some new features, but still being backwards compatible.
 - `2.0.0` would correspond to the _major_ release where results would no longer be backwards compatible.
 
 ### Standardised parameters
@@ -208,13 +207,13 @@ For example, `--input` typically takes a `.csv` sample sheet file (but not alway
 
 ### Single command
 
-Every sanger-tol pipeline repository should contain a single pipeline.
+Every sanger-tol pipeline repository must contain a single pipeline.
 That is, there should be a `main.nf` file that is the single way to launch a pipeline.
 
 - It is ok to have multiple 'tracks' within the pipeline, selectable with configuration options.
 - It is ok to have workflows that use the output of _another_ nf-core pipeline as input
 
-It should be possible to run all parts of the workflow using `nextflow run sanger-tol/<pipeline>`, without any specific filename.
+It should be possible to run all parts of the workflow using `nextflow run sanger-tol/<pipeline>`, without any specific `.nf` filename.
 
 ### Keywords
 
