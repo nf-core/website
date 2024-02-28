@@ -114,7 +114,7 @@ if (isset($subfooter) and $subfooter) {
         </ul>
       </div>
       <div class="col-sm-6 col-lg-2 mb-3 d-print-none">
-        <h5>About nf-core</h5>
+        <h5>About sanger-tol</h5>
         <ul class="list-unstyled">
           <li><a href="/about">About sanger-tol</a></li>
           <li><a href="/events">Events</a></li>
