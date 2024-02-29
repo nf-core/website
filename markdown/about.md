@@ -49,7 +49,7 @@ Current members are listed below:
 [<img class="emoji" src="/assets/img/github.svg" height=25px>](https://github.com/gq1) &nbsp; [<img class="emoji" src="/assets/img/linkedin.png" height=25px>](https://www.linkedin.com/in/guoying-qi/) &nbsp;
 </br> Guoying, a DevOps software engineer, has the responsibility of developing and deploying software and web applications for the Tree of Life project across various platforms such as computing farms, Kubernetes, OpenStack, and public clouds.
 
-### Cibin Sadasivan Baby, Senior Software Developer {#cibin-sadasivan-baby}
+#### Cibin Sadasivan Baby, Senior Software Developer {#cibin-sadasivan-baby}
 
 [<img class="emoji" src="/assets/img/github.svg" height=25px>](https://github.com/cibinsb) &nbsp; [<img class="emoji" src="/assets/img/linkedin.png" height=25px>](https://www.linkedin.com/in/cibinsb/) &nbsp;
 </br> Cibin, a Senior Software Developer, is tasked with designing and implementing the production systems for TOL-IT. Currently, Cibin is focused on building an automated platform to execute high-throughput genomic pipelines. The ultimate goal of this project is to develop a system capable of efficiently processing large amounts of genomic data.
@@ -69,7 +69,7 @@ Current members are listed below:
 [<img class="emoji" src="/assets/img/github.svg" height=25px>](https://github.com/BethYates) &nbsp; [<img class="emoji" src="/assets/img/linkedin.png" height=25px>](https://www.linkedin.com/in/bethanyates/) &nbsp;
 </br> Beth is a Bioinformatics Engineer working on a building a platform to automate the production of [Genome Note publications](https://wellcomeopenresearch.org/treeoflife). The Universal Genome Note platform consists of a web portal, database and Nextflow pipelines. Beth is contributing to the genomenote pipeline, this pipeline fetches assembly meta data and generates some of the figures and statistics included in each genome note.
 
-### Alumni and Friends {#alumni}
+#### Alumni and Friends {#alumni}
 
 - Alexander Ramos-Díaz, Google Summer of Code contributor. Alexander kick-started the development of the [BlobToolKit](/blobtoolkit) pipeline through the [2022 edition of Google Summer of Code](https://summerofcode.withgoogle.com/archive/2022/organizations/wellcome-sanger-institute).
 - Zaynab Butt, Informatics and Digital Associate. Zaynab continued the development of the [BlobToolKit](/blobtoolkit) pipeline, and then developed the web interface of our internal tool for tracking workflow execution.
