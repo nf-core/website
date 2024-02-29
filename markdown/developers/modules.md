@@ -5,7 +5,7 @@ subtitle: Guidelines on writing a sanger-tol compliant module
 
 ## nf-core Module Guidelines
 
-Generally, modules should conform to the [nf-core Standards](https://nf-co.re/docs/contributing/modules#new-module-guidelines-and-pr-review-checklist). However, there are a small number of cases where this is not possible.
+Generally, modules should conform to the [nf-core standards](https://nf-co.re/docs/contributing/modules#new-module-guidelines-and-pr-review-checklist). However, there are a small number of cases where this is not possible.
 
 ## Sanger-tol additions
 

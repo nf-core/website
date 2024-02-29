@@ -86,7 +86,7 @@ if (isset($subfooter) and $subfooter) {
 
       </div>
       <div class="col-sm-6 col-lg-3 offset-lg-1 mb-3 d-print-none">
-        <h5>For sanger-tol users</h5>
+        <h5>About sanger-tol</h5>
         <ul class="list-unstyled">
           <li><a href="/pipelines">Available pipelines</a></li>
           <li><a href="/tools">Our tools</a></li>
@@ -95,14 +95,14 @@ if (isset($subfooter) and $subfooter) {
         </ul>
       </div>
       <div class="col-sm-6 col-lg-3 mb-3 d-print-none">
-        <h5>nf-core</h5>
+        <h5>About nf-core</h5>
         <ul class="list-unstyled">
-          <li><a href="https://nf-co.re/modules">nf-core modules</a></li>
-          <li><a href="https://nf-co.re/tools">nf-core tools</a></li>
           <li><a href="https://nf-co.re/docs/usage/introduction">Getting started</a></li>
           <li><a href="https://nf-co.re/docs/usage/installation">Installation</a></li>
           <li><a href="https://nf-co.re/docs/usage/tutorials">Usage tutorials</a></li>
           <li><a href="https://nf-co.re/docs/usage/tutorials/nextflow">Nextflow resources</a></li>
+          <li><a href="https://nf-co.re/tools">Command-line tool</a></li>
+          <li><a href="https://nf-co.re/modules">Modules</a></li>
         </ul>
       </div>
       <div class="col-sm-6 col-lg-2 mb-3 d-print-none">

@@ -7,7 +7,7 @@ Hi there! Many thanks for taking an interest in improving the sanger-tol website
 If you'd like to write some code for sanger-tol/pipelines-website, the standard workflow is as follows:
 
 1. Check that there isn't already an issue about your idea in the
-   [sanger-tol/pipelines-website issues](<[https://github.com/nf-core/nf-co.re/issues](https://github.com/sanger-tol/pipelines-website/issues)>) to avoid duplicating work.
+   [sanger-tol/pipelines-website issues](https://github.com/sanger-tol/pipelines-website/issues) to avoid duplicating work.
    - If there isn't one already, please create one so that others know you're working on this
 2. Fork the [sanger-tol/pipelines-website repository](https://github.com/sanger-tol/pipelines-website) to your GitHub account
 3. Make the necessary changes / additions within your forked repository

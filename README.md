@@ -54,7 +54,7 @@ docker compose up
 You should then be able to access the website in your browser at [http://localhost:8888/](http://localhost:8888/).
 
 If you prefer, you can also use a tool such as [MAMP](https://www.mamp.info/) - if so,
-set the base directory to `/path/to/nf-co.re/public_html` in _Preferences > Web-Server > Document Root_ and then hit _Start Servers_.
+set the base directory to `/path/to/pipelines-website/public_html` in _Preferences > Web-Server > Document Root_ and then hit _Start Servers_.
 
 Most of the hand-written text is in `/markdown`, to make it easier to write. The PHP files in `/public_html` then parse this into HTML dynamically, if supplied with a filename.
 
