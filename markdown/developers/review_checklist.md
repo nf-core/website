@@ -96,7 +96,7 @@ We hope that the nf-core best practices, tooling and community are helpful for a
 
 If a pipeline is found to be violating the standards and guidelines, you should try to address the problems with the pipeline maintainers through discussion. Hopefully the pipeline can then be updated so that it adheres to the guidelines.
 
-All members of the sanger-tol community must adhere to the [sanger-tol code of conduct](https://pipelines.tol.sanger.ac.uk/code_of_conduct).
+All members of the sanger-tol community must adhere to the [sanger-tol code of conduct](/code_of_conduct).
 The guidelines and actions within the code of conduct take precedence over the development guidelines described in this page.
 
 ## Guidelines
