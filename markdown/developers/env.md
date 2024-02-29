@@ -28,7 +28,7 @@ To develop and run pipelines on our LSF compute farms, first make sure you have 
 Modules are used to expose Nextflow alone
 
 ```
-$ module load nextflow/23.10.0-5889 
+$ module load nextflow/23.10.0-5889
 $ nextflow -version
 
       N E X T F L O W
@@ -39,7 +39,6 @@ $ nextflow -version
 ```
 
 Conda environments are used to expose the nf-core command-line tool, together with a Nextflow and some development helpers like `prettier` or `nf-test`.
-
 
 ```
 $ conda activate nf-core_2.11
@@ -70,7 +69,7 @@ https://code.askimed.com/nf-test
 (c) 2021 - 2023 Lukas Forer and Sebastian Schoenherr
 
 Nextflow Runtime:
-    > 
+    >
       N E X T F L O W
       version 23.04.1 build 5866
       created 15-04-2023 06:51 UTC (07:51 BST)
@@ -80,4 +79,3 @@ Nextflow Runtime:
 $ prettier --version
 3.1.1
 ```
-

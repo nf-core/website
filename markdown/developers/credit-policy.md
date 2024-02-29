@@ -8,15 +8,17 @@ Here we outline, how to credit the work of others as it is incorporated into you
 ## In scripts
 
 If the original concept of your script or parts of the code are borrowed, please acknowledge with a comment at the top.
+
 ```
 # This script is based on https://github.com/nf-core/rnaseq/blob/master/bin/check_samplesheet.py
 or
-# This script was originally conceived by @github-username 
+# This script was originally conceived by @github-username
 ```
 
 ## In `README.md`
 
 Under `Credits` in `README.md`
+
 - Acknowledge those who wrote the scripts and local modules
 - Acknowledge those who provide concepts and ideas
 - Acknowledge the code reviewers and those who contributed through discussions
@@ -24,7 +26,8 @@ Under `Credits` in `README.md`
 
 ## In `CITATIONS.md`
 
-List all pipeline tools with links and references. 
+List all pipeline tools with links and references.
+
 ```
 - [STAR](https://pubmed.ncbi.nlm.nih.gov/23104886/)
 
@@ -32,4 +35,3 @@ List all pipeline tools with links and references.
 
 - [BBMap](https://sourceforge.net/projects/bbmap/)
 ```
-

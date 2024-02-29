@@ -41,6 +41,7 @@ Assign a version to each script independently, the simplest scheme being to star
 To simplify maintenance of the script, the module, and the pipeline, we recommend implementing in each script a way of printing a short usage message and a version number. This will also help you remember what the script is for and what arguments to pass !
 
 Here is an example one-liner you can plug at the top of bash scripts
+
 ```bash
 if [ $# -ne 2 ]; then echo -e "Script to extract a sequence from a Fasta file.\nUsage: $0 <fasta_path> <seq_name>\nVersion 1.0"; exit 1; fi
 ```
