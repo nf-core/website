@@ -31,13 +31,12 @@ The team uses a wide range of technologies, frameworks and programming languages
 
 Current members are listed below:
 
-- [Matthieu Muffato](/it#matthieu-muffato)
-- [Guoying Qi](/it#guoying-qi)
-- [Priyanka Surana](/it#priyanka-surana)
-- [Cibin Sadasivan Baby](/it#cibin-sadasivan-baby)
-- [Cibele Sotero-Caio](/it#cibele-sotero-caio)
-- [Paul Davis](/it#paul-davis)
-- [Beth Yates](/it#beth-yates)
+- [Matthieu Muffato](#matthieu-muffato)
+- [Guoying Qi](#guoying-qi)
+- [Cibin Sadasivan Baby](#cibin-sadasivan-baby)
+- [Cibele Sotero-Caio](#cibele-sotero-caio)
+- [Paul Davis](#paul-davis)
+- [Beth Yates](#beth-yates)
 
 #### Matthieu Muffato, Team Lead {#matthieu-muffato}
 

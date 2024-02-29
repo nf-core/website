@@ -1,4 +1,21 @@
-> If you have an idea for a new feature – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+).
+
+🧮 **Tech Stack:** [Nextflow DSL2](https://www.nextflow.io), [Python](https://www.python.org), [React](https://react.dev), [SQLAlchemy](https://www.sqlalchemy.org), and [PostgreSQL](https://www.postgresql.org)
+
+Genome After Party is a suite of pipelines to standardise the downstream analyses performed on all genomes produced by the Tree of Life. These include:
+
+- **[sanger-tol/insdcdownload](https://pipelines.tol.sanger.ac.uk/insdcdownload)** downloads assemblies from INSDC into a Tree of Life directory structure.
+- **[sanger-tol/ensemblrepeatdownload](https://pipelines.tol.sanger.ac.uk/ensemblrepeatdownload)** downloads repeat annotations from Ensembl into a Tree of Life directory structure.
+- **[sanger-tol/ensemblgenedownload](https://pipelines.tol.sanger.ac.uk/ensemblgenedownload)** downloads gene annotations from Ensembl into the Tree of Life directory structure.
+- **[sanger-tol/sequencecomposition](https://pipelines.tol.sanger.ac.uk/sequencecomposition)** extracts statistics from a genome about its sequence composition.
+- **[sanger-tol/readmapping](https://pipelines.tol.sanger.ac.uk/readmapping)** for aligning reads generated using Illumina, HiC, PacBio and Nanopore technologies against a genome assembly.
+- **[sanger-tol/variantcalling](https://pipelines.tol.sanger.ac.uk/variantcalling)** for calling variants using DeepVariant with PacBio data.
+- **[sanger-tol/blobtoolkit](https://pipelines.tol.sanger.ac.uk/blobtoolkit)** is used to identify and analyse non-target DNA for eukaryotic genomes.
+- **[sanger-tol/genomenote](https://pipelines.tol.sanger.ac.uk/genomenote)** creates HiC contact maps and collates (1) assembly information, statistics and chromosome details, (2) PacBio consensus quality and k-mer completeness, and (3) HiC mapping statistics.
+
+Learn more about our pipelines on their dedicated pages. These pipelines are created using [Nextflow DSL2](https://www.nextflow.io) and [nf-core](https://nf-co.re) template. They are designed for portability, scalability and biodiversity.
+
+A portal is being developed to automate the production of genome note publications. It will execute the Nextflow pipeline and populate an associated database with generated statistics and images. The platform is being designed in collaboration with the Enabling Platforms team to create genome note style publications for both internal Tree of Life assemblies as well as external genome assemblies.
+
 > You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
 > Currently, we plan to **download** all primary and alternative ToL assemblies, as well as non-ToL (VGP, _Lepidoptera_, and requests) assemblies, and run the analysis pipelines **only on the primary** assemblies.
 > [Let us know](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+) if some analyses would be useful to have on the other assemblies too.
