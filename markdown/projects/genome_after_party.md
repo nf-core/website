@@ -1,5 +1,5 @@
 
-🧮 **Tech Stack:** [Nextflow DSL2](https://www.nextflow.io), [Python](https://www.python.org), [React](https://react.dev), [SQLAlchemy](https://www.sqlalchemy.org), and [PostgreSQL](https://www.postgresql.org)
+# Introduction
 
 Genome After Party is a suite of pipelines to standardise the downstream analyses performed on all genomes produced by the Tree of Life. These include:
 
