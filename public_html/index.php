@@ -1,37 +1,5 @@
 <?php
 
-/*
-require '../vendor/autoload.php'; // for spyc
-
-// Get a random subset of contributor institute logos
-
-$contributors = spyc_load_file('../nf-core-contributors.yaml');
-$contributors_img_list = [];
-foreach ($contributors['contributors'] as $idx => $c) {
-    if (isset($c['image_fn']) and $c['image_fn'] and isset($c['full_name']) and $c['full_name']) {
-        $card_id = preg_replace('/[^a-z]+/', '-', strtolower($c['full_name']));
-        $img_path = 'assets/img/contributors-white/' . $c['image_fn'];
-        if (file_exists($img_path)) {
-            $contributors_img_list[] =
-                '<a href="/community#' .
-                $card_id .
-                '"><img src="' .
-                $img_path .
-                '" data-bs-placement="bottom" data-bs-toggle="tooltip" title="' .
-                $c['full_name'] .
-                '"></a>';
-        }
-    }
-}
-// Shuffle and truncate the list
-shuffle($contributors_img_list);
-*/
-
-//Check if there is an event
-// these 2 variables not being used any more, but update them to sanger-tol now
-// $md_github_url = 'https://github.com/sanger-tol/pipelines-website/tree/main/markdown/events';
-// $header_btn_url = 'https://pipelines.tol.sanger.ac.uk/events/rss';
-
 # To get parse_md_front_matter() and sanitise_date_meta() functions
 require_once '../includes/functions.php';
 
