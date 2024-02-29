@@ -1,6 +1,7 @@
-# Introduction
-
-In Tree of Life we use a standard diretory structure to organise our data.
+---
+title: Tree of Life directory structure
+subtitle: The standard directory structure we use to organise our data
+---
 
 > Page in progress !
 
