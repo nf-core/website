@@ -14,7 +14,7 @@ Generally, modules should conform to the [nf-core standards](https://nf-co.re/do
 To ensure the portability of our pipelines, all pipeline dependencies have to be wrapped into containers.
 Here is the decision tree you can use to decide how software are packaged and used in pipelines.
 
-<img src="/assets/img/developer-images/software-packaging.svg" alt="Software packaging decision tree" width="600">
+<img src="/assets/img/developer-images/software-packaging.svg" alt="Software packaging decision tree">
 
 Reference URLs:
 
@@ -33,7 +33,7 @@ Reference URLs:
 
 Here is the decision tree you can use to decide whether to make a nf-core module or a local one, and how to ship a tool or script with the pipeline.
 
-<img src="/assets/img/developer-images/nextflow-wrapping.svg" alt="Nextflow wrapping decision tree" width="600">
+<img src="/assets/img/developer-images/nextflow-wrapping.svg" alt="Nextflow wrapping decision tree">
 
 ### Versioning
 
