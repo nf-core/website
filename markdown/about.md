@@ -75,10 +75,6 @@ Current members are listed below:
 - Zaynab Butt, Informatics and Digital Associate. Zaynab continued the development of the [BlobToolKit](/blobtoolkit) pipeline, and then developed the web interface of our internal tool for tracking workflow execution.
 - Priyanka Surana, Senior Bioinformatician. Priyanka was a Senior Bioinformatician, overseeing the development of Nextflow pipelines for genome assembly, curation and downstream analyses. She is passionate about building networks that support peer learning and facilitated the workflows community on campus.
 
-[<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/logo/sanger-tol-logo-tree.png" height=25px>](https://www.sanger.ac.uk/person/surana-priyanka/) &nbsp; [<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/github.svg" height=25px>](https://github.com/priyanka-surana) &nbsp; [<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/linkedin.png" height=25px>](https://www.linkedin.com/in/priyanka-surana/) &nbsp;
-
-</br> Priyanka is a Senior Bioinformatician, overseeing the development of Nextflow pipelines for genome assembly, curation and downstream analyses. She also facilitates the workflows community and is passionate about building networks that support peer learning.
-
 ## Safety team {#safety}
 
 The Safety team is responsible for ensuring the community is a safe place and responding to instances of misconduct. It is made up of community members who have displayed integrity, strong communication, and a genuine concern for community welfare.
