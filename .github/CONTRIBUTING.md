@@ -23,4 +23,4 @@ For now, the only test is for Markdown syntax, using the `markdownlint` package.
 
 ## Getting help
 
-For further information or help, please [contact us](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana%2Cmuffato&labels=connect&projects=&template=contact_us.yaml&title=%5BContact+Us%5D%3A+).
+For further information or help, please [contact us](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=muffato%2Cmuffato&labels=connect&projects=&template=contact_us.yaml&title=%5BContact+Us%5D%3A+).

@@ -1,4 +1,4 @@
-Do you know of a ToL tool that we are missing? [Let us know.](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana&labels=tool%2Cenhancement&projects=&template=add_tool.yaml&title=%5BTool%5D%3A+)
+Do you know of a ToL tool that we are missing? [Let us know.](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=muffato&labels=tool%2Cenhancement&projects=&template=add_tool.yaml&title=%5BTool%5D%3A+)
 
 
 

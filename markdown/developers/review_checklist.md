@@ -115,7 +115,7 @@ Do _not_ fork sanger-tol repositories.
 
 When new pipelines are added to sanger-tol, please transfer ownership to sanger-tol instead of forking it.
 
-If you have already forked your pipeline to sanger-tol, you can [email GitHub support](https://support.github.com/contact?subject=Reroute%20a%20Fork&tags=rr-forks) and request that they reroute the fork. Alternatively, [contact the IT team](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana%2Cmuffato&labels=connect&projects=&template=contact_us.yaml&title=%5BContact+Us%5D%3A+) and we may be able to help.
+If you have already forked your pipeline to sanger-tol, you can [email GitHub support](https://support.github.com/contact?subject=Reroute%20a%20Fork&tags=rr-forks) and request that they reroute the fork. Alternatively, [contact the IT team](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=muffato%2Cmuffato&labels=connect&projects=&template=contact_us.yaml&title=%5BContact+Us%5D%3A+) and we may be able to help.
 
 **Disable GitHub features for forks**
 
