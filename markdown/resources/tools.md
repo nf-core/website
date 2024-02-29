@@ -2,7 +2,7 @@ Do you know of a ToL tool that we are missing? [Let us know.](https://github.com
 
 
 
-<img align="left" src="https://raw.githubusercontent.com/genomehubs/genomehubs/main/src/genomehubs-ui/src/client/favicon/icon-512.png" height="50px" style="margin-right: 8px">
+<img align="left" src="/assets/img/genomehubs-icon-512.png" height="50px" style="margin-right: 8px">
 
 ## Genomes on a Tree (GoaT)
 
@@ -12,7 +12,7 @@ Genomes on a Tree (GoaT), an Elasticsearch-powered datastore and search index fo
 
 </br>
 
-<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/markdown/tools/images/cobiontID.png" height="50px" style="margin-right: 8px">
+<img align="left" src="/assets/img/obiontID.png" height="50px" style="margin-right: 8px">
 
 ## CobiontID
 

@@ -135,27 +135,24 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
       </button>
       <div class="collapse navbar-collapse justify-content-md-center" id="navbarCollapse">
         <ul class="navbar-nav">
-            
+
           <li class="nav-item p-1">
             <a class="nav-link" href="/">Home</a>
           </li>
 
-          <li class="nav-item p-1 dropdown">
-            <a class="nav-link dropdown-toggle" href="/about" role="button" data-bs-toggle="dropdown">Projects</a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="/genome_after_party">Genome After Party</a>
-            </div>
-	      </li>
-            
           <li class="nav-item p-1">
             <a class="nav-link" href="/pipelines">Pipelines</a>
           </li>
-           
-          <li class="nav-item p-1">
-            <a class="nav-link" href="/tools/">Tools</a>
-          </li>
 
-	        <li class="nav-item p-1">
+          <li class="nav-item p-1 dropdown">
+            <a class="nav-link dropdown-toggle" href="/about" role="button" data-bs-toggle="dropdown">Resources</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/genome_after_party">Genome After Party</a>
+              <a class="dropdown-item" href="/tools">Tools</a>
+            </div>
+	      </li>
+
+	      <li class="nav-item p-1">
             <a class="nav-link" href="/docs">Docs</a>
           </li>
 
