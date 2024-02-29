@@ -41,32 +41,32 @@ Current members are listed below:
 
 #### Matthieu Muffato, Team Lead {#matthieu-muffato}
 
-[<img align="left" src="/assets/img/logo/sanger-tol-logo-tree.png" height=25px>](https://www.sanger.ac.uk/person/muffato-matthieu/) &nbsp; [<img align="left" src="/assets/img/github.svg" height=25px>](https://github.com/muffato) &nbsp; [<img align="left" src="/assets/img/linkedin.png" height=25px>](https://www.linkedin.com/in/matthieu-muffato/) &nbsp;
+[<img class="emoji" src="/assets/img/logo/sanger-tol-logo-tree.png" height=25px>](https://www.sanger.ac.uk/person/muffato-matthieu/) &nbsp; [<img class="emoji" src="/assets/img/github.svg" height=25px>](https://github.com/muffato) &nbsp; [<img class="emoji" src="/assets/img/linkedin.png" height=25px>](https://www.linkedin.com/in/matthieu-muffato/) &nbsp;
 </br> Matthieu leads the Informatics Infrastructure team, which guides the implementation and delivery of the genome assembly pipelines, and provides support for large-scale genome analyses for the Tree of Life faculty teams. He joined the Wellcome Sanger Institute in February 2021, to form the Informatics Infrastructure team for the Tree of Life programme. He has recruited 7 team members, with skills covering data curation & management, software development & operations, and bioinformatics.
 
 #### Guoying Qi, DevOps Software Developer {#guoying-qi}
 
-[<img align="left" src="/assets/img/github.svg" height=25px>](https://github.com/gq1) &nbsp; [<img align="left" src="/assets/img/linkedin.png" height=25px>](https://www.linkedin.com/in/guoying-qi/) &nbsp;
+[<img class="emoji" src="/assets/img/github.svg" height=25px>](https://github.com/gq1) &nbsp; [<img class="emoji" src="/assets/img/linkedin.png" height=25px>](https://www.linkedin.com/in/guoying-qi/) &nbsp;
 </br> Guoying, a DevOps software engineer, has the responsibility of developing and deploying software and web applications for the Tree of Life project across various platforms such as computing farms, Kubernetes, OpenStack, and public clouds.
 
 ### Cibin Sadasivan Baby, Senior Software Developer {#cibin-sadasivan-baby}
 
-[<img align="left" src="/assets/img/github.svg" height=25px>](https://github.com/cibinsb) &nbsp; [<img align="left" src="/assets/img/linkedin.png" height=25px>](https://www.linkedin.com/in/cibinsb/) &nbsp;
+[<img class="emoji" src="/assets/img/github.svg" height=25px>](https://github.com/cibinsb) &nbsp; [<img class="emoji" src="/assets/img/linkedin.png" height=25px>](https://www.linkedin.com/in/cibinsb/) &nbsp;
 </br> Cibin, a Senior Software Developer, is tasked with designing and implementing the production systems for TOL-IT. Currently, Cibin is focused on building an automated platform to execute high-throughput genomic pipelines. The ultimate goal of this project is to develop a system capable of efficiently processing large amounts of genomic data.
 
 #### Cibele Sotero-Caio, Genomic Data Curator {#cibele-sotero-caio}
 
-[<img align="left" src="/assets/img/logo/sanger-tol-logo-tree.png" height=25px>](https://www.sanger.ac.uk/person/sotero-caio-cibele) &nbsp; [<img align="left" src="/assets/img/github.svg" height=25px>](https://github.com/ccaio) &nbsp; [<img align="left" src="/assets/img/linkedin.png" height=25px>](https://www.linkedin.com/in/cibele-sotero-caio-b379071a6/) &nbsp; [<img align="left" src="/assets/img/twitter.svg" height=25px>](https://twitter.com/CibeleCaio) &nbsp;
+[<img class="emoji" src="/assets/img/logo/sanger-tol-logo-tree.png" height=25px>](https://www.sanger.ac.uk/person/sotero-caio-cibele) &nbsp; [<img class="emoji" src="/assets/img/github.svg" height=25px>](https://github.com/ccaio) &nbsp; [<img class="emoji" src="/assets/img/linkedin.png" height=25px>](https://www.linkedin.com/in/cibele-sotero-caio-b379071a6/) &nbsp; [<img class="emoji" src="/assets/img/twitter.svg" height=25px>](https://twitter.com/CibeleCaio) &nbsp;
 </br> Cibele is the data curator for the Genomes on a Tree (GoaT) - a platform developed to support the Tree of Life and other sequencing initiatives of the Earth Biogenome project (EBP).
 
 #### Paul Davis, Data Manager {#paul-davis}
 
-[<img align="left" src="/assets/img/logo/sanger-tol-logo-tree.png" height=25px>](https://www.sanger.ac.uk/person/davis-paul/) &nbsp; [<img align="left" src="/assets/img/github.svg" height=25px>](https://github.com/Paul-Davis) &nbsp; [<img align="left" src="/assets/img/linkedin.png" height=25px>](https://www.linkedin.com/in/paul-davis-uk/) &nbsp; [<img align="left" src="/assets/img/twitter.svg" height=25px>](https://twitter.com/SirPaulDavis) &nbsp;
+[<img class="emoji" src="/assets/img/logo/sanger-tol-logo-tree.png" height=25px>](https://www.sanger.ac.uk/person/davis-paul/) &nbsp; [<img class="emoji" src="/assets/img/github.svg" height=25px>](https://github.com/Paul-Davis) &nbsp; [<img class="emoji" src="/assets/img/linkedin.png" height=25px>](https://www.linkedin.com/in/paul-davis-uk/) &nbsp; [<img class="emoji" src="/assets/img/twitter.svg" height=25px>](https://twitter.com/SirPaulDavis) &nbsp;
 </br> Paul works on the main ToL Genome Engine. This system was developed by the ToL to manage and track samples from collection, onboarding, processing in the lab, sequencing and finally the publication of the assembly and Genome Note publication. As there are many steps in this process developing methodology to identify issues as early as possible is vital to avoid wasted time and resource. Paul works at all levels of the project fielding questions about data flow, data fixes and helps other ToL staff and project stakeholders with data and information. Paul also interacts with external groups and stakeholders to maintain data integrity in the public domain.
 
 #### Beth Yates, Bioinformatics Engineer {#beth-yates}
 
-[<img align="left" src="/assets/img/github.svg" height=25px>](https://github.com/BethYates) &nbsp; [<img align="left" src="/assets/img/linkedin.png" height=25px>](https://www.linkedin.com/in/bethanyates/) &nbsp;
+[<img class="emoji" src="/assets/img/github.svg" height=25px>](https://github.com/BethYates) &nbsp; [<img class="emoji" src="/assets/img/linkedin.png" height=25px>](https://www.linkedin.com/in/bethanyates/) &nbsp;
 </br> Beth is a Bioinformatics Engineer working on a building a platform to automate the production of [Genome Note publications](https://wellcomeopenresearch.org/treeoflife). The Universal Genome Note platform consists of a web portal, database and Nextflow pipelines. Beth is contributing to the genomenote pipeline, this pipeline fetches assembly meta data and generates some of the figures and statistics included in each genome note.
 
 ### Alumni and Friends {#alumni}
