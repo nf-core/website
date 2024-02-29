@@ -141,13 +141,6 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
           </li>
 
           <li class="nav-item p-1 dropdown">
-            <a class="nav-link dropdown-toggle" href="/about" role="button" data-bs-toggle="dropdown">Teams</a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="/it">Informatics Infrastructure (IT)</a>
-            </div>
-	      </li>
-            
-          <li class="nav-item p-1 dropdown">
             <a class="nav-link dropdown-toggle" href="/about" role="button" data-bs-toggle="dropdown">Projects</a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/genome_after_party">Genome After Party</a>
