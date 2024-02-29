@@ -63,7 +63,7 @@ $stats_total_allrepos = [
     'views_uniques' => [],
 ];
 
-// Run everything twice - keep pipelines and core repos seperate
+// Run everything twice - keep pipelines and core repos separate
 foreach (['pipelines', 'core_repos'] as $repo_type):
     $stats = $stats_json->{$repo_type};
     $stats_total[$repo_type] = [

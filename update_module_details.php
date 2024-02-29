@@ -435,7 +435,7 @@ foreach ($pipelines as $pipeline) {
 
         $name = str_replace('/', '_', $name);
         $name = htmlspecialchars($name, ENT_QUOTES, 'UTF-8');
-        // pepare a select statment for nfcore_modules based on name
+        // prepare a select statement for nfcore_modules based on name
         $get_module = "SELECT * FROM nfcore_modules WHERE name = '$name'";
 
         if ($result = mysqli_query($conn, $get_module)) {

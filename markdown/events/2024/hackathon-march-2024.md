@@ -6,7 +6,7 @@ startDate: '2024-03-18'
 startTime: '09:30+00:00'
 endDate: '2024-03-19'
 endTime: '16:30+00:00'
-locationName: Rosalind Franklin Pavillion, Conference Centre, Wellcome Genome Campus
+locationName: Rosalind Franklin Pavilion, Conference Centre, Wellcome Genome Campus
 address: Wellcome Genome Campus, Hinxton CB10 1SA
 locationURL: https://www.wellcomegenomecampus.org
 locationLatLng: [52.079047, 0.187607]

@@ -11,7 +11,7 @@ Pipeline developers are recommended to create **modular and small pull requests 
 Think about that _before_ writing the code and opening the pull-request, as breaking down a PR into multiple ones can be tricky.
 As a rule of thumb, a PR should not add more than one sub-workflow, a sub-workflow should not contain more than ten steps. A PR can modify multiple sub-workflows, as long as the changes are related.
 
-The role of the reviewer is to check for adherence to the central principles of nf-core and sanger-tol (reproducibility, execellent reporting, documented, keeping to the template etc.,). Here we provide a general set of suggestions when doing pipeline reviews:
+The role of the reviewer is to check for adherence to the central principles of nf-core and sanger-tol (reproducibility, excellent reporting, documented, keeping to the template etc.,). Here we provide a general set of suggestions when doing pipeline reviews:
 
 The instructions below are subject to interpretation and specific scenarios. If in doubt, please ask for feedback.
 
@@ -59,7 +59,7 @@ All sanger-tol pipelines _should_ follow the following guidelines, if possible /
 
 ## Do: Documentation {#documentation}
 
-- Documention is only on the pipelines website (not pointed to other places, e.g. not readthedocs )
+- Documentation is only on the pipelines website (not pointed to other places, e.g. not readthedocs )
 - Is documentation sufficiently described (`usage.md`, `output.md`, `nextflow_schema.json`)?
   - nextflow_schema.json: check if types are correct and that `default` and `enum` are used where applicable
 - Are there any typos in the documentation (`usage.md`, `output.md`, `nextflow_schema.json`)

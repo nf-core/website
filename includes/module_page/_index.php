@@ -22,7 +22,7 @@ if ($result = mysqli_query($conn, $sql)) {
     }
 }
 mysqli_close($conn);
-// function to create bootstrap row with the first column for the name and type and the second for the descritption
+// function to create bootstrap row with the first column for the name and type and the second for the description
 function create_row($name, $type, $description, $pattern) {
     $id = strtolower(preg_replace('/[^\w\-\.]+/', '', str_replace(' ', '-', $name)));
     $id = str_replace('.', '-', $id); // periods break the js code, because they are not valid in selector ids

@@ -14,7 +14,7 @@ $no_print_content = true;
 $mainpage_container = false;
 $sidebar_nav_elements = [];
 
-# function to generate an array of the file strcuture
+# function to generate an array of the file structure
 function dir_tree($dir) {
     global $docs_md_base;
     $files = array_map('basename', glob("$dir/*"));

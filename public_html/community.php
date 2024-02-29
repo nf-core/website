@@ -229,7 +229,7 @@ include '../includes/header.php';
 </script>
 
 <h1 id="initiatives">Projects we are involved with<a href="#initiatives" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a></h1>
-<p>Tree of Life programme at Wellcome Sanger Insitute is part of several biodiversity projects. You can see an overview of these below.</p>
+<p>Tree of Life programme at Wellcome Sanger Institute is part of several biodiversity projects. You can see an overview of these below.</p>
 
 <h3 id="dtol_testimonial">
     <img width="200px" src="/assets/img/contributors-<?php echo $theme == 'dark'

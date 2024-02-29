@@ -267,7 +267,7 @@ foreach ($results['remote_workflows'] as $new_pipeline) {
             $tweet .= $new_pipeline['full_name'] . ' v' . $rel['tag_name'] . ' (' . $new_pipeline['description'] . ')';
             $tweet_url = "\n\nSee the changelog: " . $rel['html_url'];
             // 42 chars for tweet URL string with t.co url shortener
-            # BUG: if tweet_length not defined, infinte loop
+            # BUG: if tweet_length not defined, infinite loop
             while (strlen($tweet) + 42 > $config['twitter_tweet_length']) {
                 $tweet = substr(rtrim($tweet, '.)'), 0, -3) . '..)';
             }

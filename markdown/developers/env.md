@@ -80,7 +80,7 @@ $ prettier --version
 3.1.1
 ```
 
-Java programs are not really allowed to run on the head nodes so you will have to submit all your Nextflow commands ot LSF.
+Java programs are not really allowed to run on the head nodes so you will have to submit all your Nextflow commands on LSF.
 When developing a pipeline, you may want to do all your development from an interactive job.
 
 In our experience, `nextflow run` commands need 1 CPU and 6 GB RAM for themselves, but of course more if you want to use the "local" executor.
