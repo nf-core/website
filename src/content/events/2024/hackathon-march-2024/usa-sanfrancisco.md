@@ -1,20 +1,18 @@
 ---
 title: Hackathon - March 2024 (San Francisco)
-# subtitle: Local node of the nf-core hackathon at the Benchling Offices in San Francisco
-subtitle: Local node of the nf-core hackathon in San Francisco
+subtitle: Local node of the nf-core hackathon at the Superfluid office in South San Francisco
 type: hackathon
 startDate: '2024-03-18'
-startTime: '09:00-06:00'
+startTime: '10:00-06:00'
 endDate: '2024-03-20'
-endTime: '13:00-06:00'
-locationName: TBA
-# address: 680 Folsom St., 8th Floor San Francisco, CA 94107
-# locationURL: https://maps.app.goo.gl/TJAGF7ypXFwwCcLG7
-# locationLatLng: [37.78452954687462, -122.39858903879933]
+endTime: '17:00-06:00'
+locationName: Superfluid Dx Office
+address: 259 E. Grand Ave., South San Francisco, CA 94080
+locationURL: https://maps.app.goo.gl/S2bbwxMkF12Tgm4U7
+locationLatLng: [37.6545572, -122.3973615]
 ---
 
-More details coming soon. Please register via the main nf-core hackathon page,
-as we will need to know numbers of attendees as well as names, to get everyone into the building.
+[Superfluid Dx](https://www.superfluiddx.com/) is excited to host us for our hackathon! They are located in the heart of SF biotech in South San Francisco. We will have access to a nice space on the 5th floor of the building where their office is (building 259). Please register by no later than 3/14 via the main nf-core hackathon page, as we will need to know attendee info to get everyone into the building. More logistical details coming soon!
 
 Contact:
 
