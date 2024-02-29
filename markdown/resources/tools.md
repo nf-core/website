@@ -1,7 +1,5 @@
 Do you know of a ToL tool that we are missing? [Let us know.](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=muffato&labels=tool%2Cenhancement&projects=&template=add_tool.yaml&title=%5BTool%5D%3A+)
 
-
-
 <img align="left" src="/assets/img/genomehubs-icon-512.png" height="50px" style="margin-right: 8px">
 
 ## Genomes on a Tree (GoaT)
