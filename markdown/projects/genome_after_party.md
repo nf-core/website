@@ -1,4 +1,3 @@
-
 # Introduction
 
 Genome After Party is a suite of pipelines to standardise the downstream analyses performed on all genomes produced by the Tree of Life. These include:
