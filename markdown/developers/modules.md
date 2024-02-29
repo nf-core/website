@@ -9,6 +9,44 @@ Generally, modules should conform to the [nf-core standards](https://nf-co.re/do
 
 ## Sanger-tol additions
 
+### Pipeline dependencies
+
+To ensure the portability of our pipelines, all pipeline dependencies have to be wrapped into containers.
+Here is the decision tree you can use to decide how software are packaged and used in pipelines.
+
+<img src="/assets/img/developer-images/software-packaging.svg" alt="Software packaging decision tree" width="600">
+
+Reference URLs:
+
+- Conda search: https://anaconda.org/
+- BioContainers search: https://biocontainers.pro/registry
+- Docker hub search: https://hub.docker.com/search?q=samtools&type=image
+- quay.io (another registry of Docker containers, esp. all BioContainers) search: https://quay.io/search?q=samtools
+  - Our own container registry on quay.io: https://quay.io/organization/sanger-tol
+- Our own container registry on GitHub: https://github.com/orgs/sanger-tol/packages
+- Our internal container registry on GitLab: https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images/container_registry/
+- Repository of Singularity images by the Galaxy project (should contain all BioContainers): https://depot.galaxyproject.org/singularity/
+- Minimal Dockerfile for creating a container around a Conda package: https://github.com/BioContainers/containers/blob/master/abyss/1.9.0/Dockerfile
+- Instructions to create a new Docker image (when the tool's usage or scope is limited to sanger-tol): https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images
+
+### Nextflow wrapping
+
+Here is the decision tree you can use to decide whether to make a nf-core module or a local one, and how to ship a tool or script with the pipeline.
+
+<img src="/assets/img/developer-images/nextflow-wrapping.svg" alt="Nextflow wrapping decision tree" width="600">
+
+### Versioning
+
+Assign a version to each script independently, the simplest scheme being to start with 1.0 and incrementing it each time you change the script.
+To simplify maintenance of the script, the module, and the pipeline, we recommend implementing in each script a way of printing a short usage message and a version number. This will also help you remember what the script is for and what arguments to pass !
+
+Here is an example one-liner you can plug at the top of bash scripts
+```bash
+if [ $# -ne 2 ]; then echo -e "Script to extract a sequence from a Fasta file.\nUsage: $0 <fasta_path> <seq_name>\nVersion 1.0"; exit 1; fi
+```
+
+In Python, you can do the same with the `argparse` package like in [create_table.py#L13](https://github.com/sanger-tol/genomenote/blob/1.1.0/bin/create_table.py#L23).
+
 ### Pipeline Comments (Optional)
 
 Reading the code of a pipeline can be daunting, especially if picking up the development for said pipeline. And so we propose that there should be structured comments to explain the context of implementation at each module, subworkflow and workflow.
