@@ -18,4 +18,4 @@ Unfortunately, we do not have any funding for food and refreshments. :sob:
 
 ## Code of conduct
 
-Please note that by attending the hackathon you are agreeing to abide by our [Code of Conduct](http://pipelines.tol-dev.sanger.ac.uk/code_of_conduct).
+Please note that by attending the hackathon you are agreeing to abide by our [Code of Conduct](/code_of_conduct).

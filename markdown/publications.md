@@ -45,7 +45,7 @@ Do you know of a ToL informatics publication that we are missing?
 
 # Pipelines {#pipelines}
 
-### [Genome After Party](https://pipelines.tol.sanger.ac.uk/genome_after_party) {#genome_after_party}
+### [Genome After Party](/genome_after_party) {#genome_after_party}
 
 🧰 [BlobToolKit](https://blobtoolkit.genomehubs.org)
 

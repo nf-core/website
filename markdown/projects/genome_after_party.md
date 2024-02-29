@@ -3,14 +3,14 @@
 
 Genome After Party is a suite of pipelines to standardise the downstream analyses performed on all genomes produced by the Tree of Life. These include:
 
-- **[sanger-tol/insdcdownload](https://pipelines.tol.sanger.ac.uk/insdcdownload)** downloads assemblies from INSDC into a Tree of Life directory structure.
-- **[sanger-tol/ensemblrepeatdownload](https://pipelines.tol.sanger.ac.uk/ensemblrepeatdownload)** downloads repeat annotations from Ensembl into a Tree of Life directory structure.
-- **[sanger-tol/ensemblgenedownload](https://pipelines.tol.sanger.ac.uk/ensemblgenedownload)** downloads gene annotations from Ensembl into the Tree of Life directory structure.
-- **[sanger-tol/sequencecomposition](https://pipelines.tol.sanger.ac.uk/sequencecomposition)** extracts statistics from a genome about its sequence composition.
-- **[sanger-tol/readmapping](https://pipelines.tol.sanger.ac.uk/readmapping)** for aligning reads generated using Illumina, HiC, PacBio and Nanopore technologies against a genome assembly.
-- **[sanger-tol/variantcalling](https://pipelines.tol.sanger.ac.uk/variantcalling)** for calling variants using DeepVariant with PacBio data.
-- **[sanger-tol/blobtoolkit](https://pipelines.tol.sanger.ac.uk/blobtoolkit)** is used to identify and analyse non-target DNA for eukaryotic genomes.
-- **[sanger-tol/genomenote](https://pipelines.tol.sanger.ac.uk/genomenote)** creates HiC contact maps and collates (1) assembly information, statistics and chromosome details, (2) PacBio consensus quality and k-mer completeness, and (3) HiC mapping statistics.
+- **[sanger-tol/insdcdownload](/insdcdownload)** downloads assemblies from INSDC into a Tree of Life directory structure.
+- **[sanger-tol/ensemblrepeatdownload](/ensemblrepeatdownload)** downloads repeat annotations from Ensembl into a Tree of Life directory structure.
+- **[sanger-tol/ensemblgenedownload](/ensemblgenedownload)** downloads gene annotations from Ensembl into the Tree of Life directory structure.
+- **[sanger-tol/sequencecomposition](/sequencecomposition)** extracts statistics from a genome about its sequence composition.
+- **[sanger-tol/readmapping](/readmapping)** for aligning reads generated using Illumina, HiC, PacBio and Nanopore technologies against a genome assembly.
+- **[sanger-tol/variantcalling](/variantcalling)** for calling variants using DeepVariant with PacBio data.
+- **[sanger-tol/blobtoolkit](/blobtoolkit)** is used to identify and analyse non-target DNA for eukaryotic genomes.
+- **[sanger-tol/genomenote](/genomenote)** creates HiC contact maps and collates (1) assembly information, statistics and chromosome details, (2) PacBio consensus quality and k-mer completeness, and (3) HiC mapping statistics.
 
 Learn more about our pipelines on their dedicated pages. These pipelines are created using [Nextflow DSL2](https://www.nextflow.io) and [nf-core](https://nf-co.re) template. They are designed for portability, scalability and biodiversity.
 
@@ -22,7 +22,7 @@ A portal is being developed to automate the production of genome note publicatio
 
 # INSDC Download {#insdcdownload}
 
-**[sanger-tol/insdcdownload](https://pipelines.tol.sanger.ac.uk/insdcdownload)** downloads assemblies from INSDC into a Tree of Life directory structure. This pipeline is run for all **primary and alternative** ToL assemblies, as well as non-ToL (VGP, _Lepidoptera_, and requests) assemblies.
+**[sanger-tol/insdcdownload](/insdcdownload)** downloads assemblies from INSDC into a Tree of Life directory structure. This pipeline is run for all **primary and alternative** ToL assemblies, as well as non-ToL (VGP, _Lepidoptera_, and requests) assemblies.
 
 ### Current features:
 
@@ -41,7 +41,7 @@ If you have an idea for a new feature – [send us your request](https://github.
 
 # Ensembl Repeat Download {#ensemblrepeatdownload}
 
-**[sanger-tol/ensemblrepeatdownload](https://pipelines.tol.sanger.ac.uk/ensemblrepeatdownload)** downloads repeat annotations from Ensembl into a Tree of Life directory structure. This pipeline is run for all **primary and alternative** ToL assemblies, as well as non-ToL (VGP, _Lepidoptera_, and requests) assemblies.
+**[sanger-tol/ensemblrepeatdownload](/ensemblrepeatdownload)** downloads repeat annotations from Ensembl into a Tree of Life directory structure. This pipeline is run for all **primary and alternative** ToL assemblies, as well as non-ToL (VGP, _Lepidoptera_, and requests) assemblies.
 
 ### Current features:
 
@@ -58,7 +58,7 @@ If you have an idea for a new feature – [send us your request](https://github.
 
 # Ensembl Gene Download {#ensemblgenedownload}
 
-**[sanger-tol/ensemblgenedownload](https://pipelines.tol.sanger.ac.uk/ensemblgenedownload)** downloads gene annotations from Ensembl into the Tree of Life directory structure. This pipeline is run for all **primary and alternative** ToL assemblies, as well as non-ToL (VGP, _Lepidoptera_, and requests) assemblies.
+**[sanger-tol/ensemblgenedownload](/ensemblgenedownload)** downloads gene annotations from Ensembl into the Tree of Life directory structure. This pipeline is run for all **primary and alternative** ToL assemblies, as well as non-ToL (VGP, _Lepidoptera_, and requests) assemblies.
 
 ### Current features:
 
@@ -76,7 +76,7 @@ If you have an idea for a new feature – [send us your request](https://github.
 
 # Sequence Composition {#sequencecomposition}
 
-**[sanger-tol/sequencecomposition](https://pipelines.tol.sanger.ac.uk/sequencecomposition)** extracts statistics from a genome about its sequence composition. This pipeline is run for all **primary** ToL assemblies.
+**[sanger-tol/sequencecomposition](/sequencecomposition)** extracts statistics from a genome about its sequence composition. This pipeline is run for all **primary** ToL assemblies.
 
 ### Current features:
 
@@ -108,7 +108,7 @@ If you have an idea for a new feature or would like this pipeline to run on othe
 
 # Read Mapping {#readmapping}
 
-**[sanger-tol/readmapping](https://pipelines.tol.sanger.ac.uk/readmapping)** aligns reads generated using Illumina, HiC, PacBio and Nanopore technologies against a genome assembly. This pipeline is run for all **primary** ToL assemblies.
+**[sanger-tol/readmapping](/readmapping)** aligns reads generated using Illumina, HiC, PacBio and Nanopore technologies against a genome assembly. This pipeline is run for all **primary** ToL assemblies.
 
 ### Current features:
 
@@ -135,7 +135,7 @@ If you have an idea for a new feature or would like this pipeline to run on othe
 
 # Variant Calling {#variantcalling}
 
-**[sanger-tol/variantcalling](https://pipelines.tol.sanger.ac.uk/variantcalling)** calls (short) variants on PacBio data using DeepVariant. This pipeline is run for all **primary** ToL assemblies.
+**[sanger-tol/variantcalling](/variantcalling)** calls (short) variants on PacBio data using DeepVariant. This pipeline is run for all **primary** ToL assemblies.
 
 ### Current features:
 
@@ -160,7 +160,7 @@ If you have an idea for a new feature or would like this pipeline to run on othe
 
 # BlobToolKit {#blobtoolkit}
 
-**[sanger-tol/blobtoolkit](https://pipelines.tol.sanger.ac.uk/blobtoolkit)** is used to identify and analyse non-target DNA for eukaryotic genomes. This pipeline will be run for all **primary** ToL assemblies after 1.0.0 release. Currently, the [Snakemake version](https://github.com/blobtoolkit/blobtoolkit/tree/main/src/blobtoolkit-pipeline/src) is used in production.
+**[sanger-tol/blobtoolkit](/blobtoolkit)** is used to identify and analyse non-target DNA for eukaryotic genomes. This pipeline will be run for all **primary** ToL assemblies after 1.0.0 release. Currently, the [Snakemake version](https://github.com/blobtoolkit/blobtoolkit/tree/main/src/blobtoolkit-pipeline/src) is used in production.
 
 ### Current features:
 
@@ -186,7 +186,7 @@ If you have an idea for a new feature or would like this pipeline to run on othe
 
 # Genome Note {#genomenote}
 
-**[sanger-tol/genomenote](https://pipelines.tol.sanger.ac.uk/genomenote)** generates all the data (tables and figures) used in genome note publications. These include (1) assembly information, statistics and chromosome details, (2) PacBio consensus quality and k-mer completeness, and (3) HiC contact maps and mapping statistics. This pipeline is run for all **primary** ToL assemblies.
+**[sanger-tol/genomenote](/genomenote)** generates all the data (tables and figures) used in genome note publications. These include (1) assembly information, statistics and chromosome details, (2) PacBio consensus quality and k-mer completeness, and (3) HiC contact maps and mapping statistics. This pipeline is run for all **primary** ToL assemblies.
 
 ### Current features:
 

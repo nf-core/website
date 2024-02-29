@@ -364,8 +364,6 @@ if (isset($_GET['event']) && substr($_GET['event'], 0, 7) == 'events/') {
 $title = 'Events';
 $subtitle = 'Details of past and future nf-core meetups.';
 $md_github_url = 'https://github.com/sanger-tol/pipelines-website/tree/main/markdown/events';
-// $header_btn_url = 'https://pipelines.tol.sanger.ac.uk/events/rss';
-// $header_btn_text = '<i class="fas fa-rss me-1"></i> RSS';
 
 // Load event front-matter
 $events = [];
