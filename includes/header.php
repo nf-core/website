@@ -198,7 +198,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
         <div class="container">
           <?php
           if (isset($md_github_url) and $md_github_url) {
-              $md_github_url = str_replace('/docs/contributing/', '/developers/', $md_github_url);
+              $md_github_url = str_replace('/docs/contributing/', '/contributing/', $md_github_url);
               $md_github_url = str_replace('/docs/usage/', '/usage/', $md_github_url);
               echo '<a href="' .
                   $md_github_url .
