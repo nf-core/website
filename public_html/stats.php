@@ -298,35 +298,6 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
 </div>
 
 <div class="row">
-  <!--
-  <div class="col-lg-6">
-    <?php echo _h2('Slack'); ?>
-    <p>Slack is a real-time messaging tool, with discussion split into channels and groups.
-    We use it to provide help to people running sanger-tol pipelines, as well as discussing development ideas.
-    You can join the sanger-tol slack by getting an invite <a href="https://nf-co.re/join/slack">here</a>.</p>
-    <div class="card bg-body mt-4">
-      <div class="card-body">
-        <canvas id="slack_users_plot" height="200"></canvas>
-        <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-info-circle"></i> Slack considers users to be inactive when they haven't used slack for the previous 14 days.</p>
-        <p class="card-text small text-muted mb-1"><i class="fas fa-exclamation-triangle"></i> Data from before 2019-07-24 fudged by reverse-engineering billing details on the slack admin pages.</p>
-        <p class="card-text small text-muted">
-          <a href="#" data-bs-target="slack" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-bs-target="slack" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
-        </p>
-      </div>
-    </div>
-
-    <h2 class="mt-0" id="twitter"></a>Twitter followers<a href="#twitter" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></h2>
-    <p>We use our <a href="https://twitter.com/nf_core">@nf_core</a> twitter account to send automated tweets about new pipeline releases and other updates relevant to the community.
-    Follower counts give some indication to the level of interest in the sanger-tol project.</p>
-    <div class="card bg-body mt-4">
-      <div class="card-body">
-        <canvas id="twitter_followers_plot" height="150"></canvas>
-        <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-exclamation-triangle"></i> Data from before 2019-06-26 fudged by reverse-engineering a tiny sparkline plot on the twitter analytics website.</p>
-        <p class="card-text small text-muted"><a href="#" data-bs-target="twitter" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a>  &nbsp;/&nbsp; <a href="#" data-bs-target="twitter" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a></p>
-      </div>
-    </div>
-  </div>
-  -->
   
   <div class="col-lg-6">
 

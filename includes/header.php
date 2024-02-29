@@ -176,18 +176,18 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
               <a class="dropdown-item" href="/stats">Statistics</a>
               <a class="dropdown-item" href="/publications">Publications</a>
               <a class="dropdown-item" href="/code_of_conduct">Code of conduct</a>
-              <a class="dropdown-item" href="/join">Join sanger-tol</a>
+              <a class="dropdown-item" href="/connect">Connect to sanger-tol</a>
             </div>
 	      </li>
 
         </ul>
 
 	<hr class="d-md-none">
-        <a class="d-md-none btn d-block btn-success mb-3" href="/join">
-          Join sanger-tol
+        <a class="d-md-none btn d-block btn-success mb-3" href="/connect">
+          Connect to sanger-tol
         </a>
-        <a class="d-none d-lg-block btn btn-success" style="position:absolute; right: 1rem;" href="/join">
-          Join sanger-tol
+        <a class="d-none d-lg-block btn btn-success" style="position:absolute; right: 1rem;" href="/connect">
+          Connect to sanger-tol
 	</a>
 
       </div>

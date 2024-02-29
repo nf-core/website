@@ -1,28 +1,12 @@
 <?php
 
-// Check if we have $_GET['t'] - ie, URL was /join/something
-$config = parse_ini_file('../config.ini');
-$join_redirects = [
-    'slack' => $config['slack_invite_url'],
-];
-if (isset($_GET['t'])) {
-    $redirect = rtrim(str_replace('join/', '', $_GET['t']), '/');
-    if (array_key_exists($redirect, $join_redirects)) {
-        header('Location: ' . $join_redirects[$redirect]);
-    } else {
-        header('HTTP/1.1 404 Not Found');
-        include '404.php';
-        die();
-    }
-}
-
-$title = 'Join sanger-tol';
+$title = 'Connect tos anger-tol';
 $subtitle = 'Read about the different ways you can get involved with sanger-tol';
 include '../includes/header.php';
 ?>
 
 <p>We use a few different tools to organise the sanger-tol community -
-    you are welcome to join us at any or all!</p>
+    you are welcome to reach out to us at any or all!</p>
 <p class="text-center">
   <a href="https://github.com/sanger-tol" class="mb-2 me-3 btn btn-lg btn-dark">
     <i class="fab fa-github"></i> GitHub
@@ -61,7 +45,6 @@ include '../includes/header.php';
 It's a fantastic platform and provides a huge number of tools.
 We have a GitHub organisation called <a href="https://github.com/sanger-tol/">sanger-tol</a> which we use to give access to
 collaborators for editing and reviewing code.</p>
-<p>To join the GitHub organisation, please introduce yourself and what you want to work on using the <a href="https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana%2Cmuffato&labels=connect&projects=&template=contact_us.yaml&title=%5BContact+Us%5D%3A+">contact us form</a> and we'll send an invite.</p>
 
 <p><a href="https://github.com/sanger-tol" class="mb-2 btn btn-dark">
   <i class="fab fa-github"></i> sanger-tol on GitHub

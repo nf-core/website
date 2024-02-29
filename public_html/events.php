@@ -433,8 +433,8 @@ if (isset($_GET['rss'])) {
       <title>nf-core: ' .
         $title .
         '</title>
-      <link>https://www.nf-co.re/events</link>
-      <atom:link href="https://www.nf-co.re/events/rss" rel="self" type="application/rss+xml" />
+      <link>https://pipelines.tol.sanger.ac.uk/events</link>
+      <atom:link href="https://pipelines.tol.sanger.ac.uk/events/rss" rel="self" type="application/rss+xml" />
       <description>' .
         $subtitle .
         '</description>
@@ -446,10 +446,10 @@ if (isset($_GET['rss'])) {
         <title>' .
                 htmlspecialchars(utf8_encode($event['title'])) .
                 '</title>
-        <link>https://nf-co.re' .
+        <link>https://pipelines.tol.sanger.ac.uk' .
                 $event['url'] .
                 '</link>
-        <guid>https://nf-co.re' .
+        <guid>https://pipelines.tol.sanger.ac.uk' .
                 $event['url'] .
                 '</guid>
         <pubDate>' .
