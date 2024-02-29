@@ -387,8 +387,8 @@ endif;
           <li><a href="https://youtu.be/aK1Ek39z4sA" data-src="https://www.youtube.com/embed/aK1Ek39z4sA" class="active"> Introduction to Darwin Tree of Life <em>(0:44)</em></a></li>
           <li><a href="https://youtu.be/Ggk59FOwvMo" data-src="https://www.youtube.com/embed/Ggk59FOwvMo"> Nextflow Summit: Automated production engine to decode the Tree of Life <em>(24:37)</em></a></li>
           <li><a href="https://youtu.be/w4RGam3T8iQ" data-src="https://www.youtube.com/embed/w4RGam3T8iQ"> Adopting Nextflow in Sanger Tree of Life <em>(24:00)</em></a></li>
-          <li><a href="https://youtu.be/gUM9acK25tQ" data-src="https://www.youtube.com/embed/gUM9acK25tQ"> Introduction to nf-core <em>(1:01)</em></a></li>
           <li><a href="https://youtu.be/Zort8tv7iRI" data-src="https://www.youtube.com/embed/Zort8tv7iRI"> Nextflow Summit: sanger-tol Production Engine <em>(14:57)</em></a></li>
+          <li><a href="https://youtu.be/gUM9acK25tQ" data-src="https://www.youtube.com/embed/gUM9acK25tQ"> Introduction to nf-core <em>(1:01)</em></a></li>
         </ul>
       </div>
     </div>
