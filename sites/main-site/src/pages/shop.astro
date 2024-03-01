@@ -1,0 +1,57 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+---
+
+<PageLayout title="nf-core/shop" subtitle="Share your love for the nf-core community!" mainpage_container={false}>
+    <div id="myShop">
+        <a href="https://nf-core.myspreadshop.es">nf-core</a>
+    </div>
+    <script is:inline>
+        var spread_shop_config = {
+            shopName: 'nf-core',
+            locale: 'en_ES',
+            prefix: 'https://nf-core.myspreadshop.es',
+            baseId: 'myShop',
+        };
+    </script>
+
+    <script
+        is:inline
+        type="text/javascript"
+        src="https://nf-core.myspreadshop.es/shopfiles/shopclient/shopclient.nocache.js"></script>
+</PageLayout>
+
+<style is:global>
+    :root {
+        --sprd-main1: var(--bs-body-bg) !important;
+        --sprd-main2: var(--bs-body-bg) !important;
+        --sprd-main3: var(--bs-body-bg) !important;
+        --sprd-sub1: var(--bs-body-color) !important;
+        --sprd-sub2: var(--bs-body-color) !important;
+        --sprd-sub3: var(--bs-body-color) !important;
+    }
+    .sprd-c-m3.sprd-bg-s2 {
+        color: var(--bs-body-color) !important;
+        background-color: var(--bs-body-bg) !important;
+    }
+    .sprd-hc-m2:hover {
+        color: inherit !important;
+        text-decoration: underline !important;
+    }
+    .SprdMain .customPageBackground {
+        background-color: var(--sprd-main1) !important;
+    }
+    #sprd-main {
+        margin-top: 30px !important;
+    }
+    .sprd-header.sprd-bg-m1.sprd-c-s3 {
+        display: none;
+    }
+    .sprd-btn-primary {
+        background-color: var(--bs-green) !important;
+        border-color: var(--bs-green) !important;
+    }
+    a[href='#!/about'] {
+        display: none !important;
+    }
+</style>
