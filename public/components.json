@@ -4167,6 +4167,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -37989,6 +37993,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -38714,6 +38722,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -43459,6 +43471,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -90857,6 +90873,111 @@
       }
     },
     {
+      "name": "ribotish_quality",
+      "path": "modules/nf-core/ribotish/quality/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "ribotish_quality",
+        "description": "Quality control of riboseq bam data",
+        "keywords": [
+          "riboseq",
+          "quality",
+          "bam"
+        ],
+        "tools": [
+          {
+            "ribotish": {
+              "description": "Ribo TIS Hunter (Ribo-TISH) identifies translation activities using ribosome profiling data.",
+              "homepage": "https://github.com/zhpn1024/ribotish",
+              "documentation": "https://github.com/zhpn1024/ribotish",
+              "tool_dev_url": "https://github.com/zhpn1024/ribotish",
+              "doi": "10.1038/s41467-017-01981-8",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "Sorted BAM/CRAM/SAM file",
+              "pattern": "*.{bam}"
+            }
+          },
+          {
+            "bai": {
+              "type": "file",
+              "description": "Index for sorted BAM/CRAM/SAM file",
+              "pattern": "*.{bai}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. `[ id:'Ensembl human v.111' ]`\n"
+            }
+          },
+          {
+            "gtf": {
+              "type": "file",
+              "description": "GTF-format annotation file for reference sequences used in the bam file\n",
+              "pattern": "*.gtf"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "txt": {
+              "type": "file",
+              "description": "txt file recording all distribution data in python format for each\ngroup of reads\n",
+              "pattern": "*.{txt}"
+            }
+          },
+          {
+            "pdf": {
+              "type": "file",
+              "description": "Pdf figure file is plot of all the distributions and illustration of\nquality and P-site offset\n",
+              "pattern": "*.{pdf}"
+            }
+          },
+          {
+            "offset": {
+              "type": "file",
+              "description": "This file saves P-site offsets for different reads lengths in python\ncode dict format, and can be used in further analysis\n",
+              "pattern": "*.{para.py}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
+        ]
+      }
+    },
+    {
       "name": "rmarkdownnotebook",
       "path": "modules/nf-core/rmarkdownnotebook/meta.yml",
       "type": "module",
@@ -95588,6 +95709,158 @@
         ],
         "maintainers": [
           "@louislenezet"
+        ]
+      }
+    },
+    {
+      "name": "samtools_sormadup",
+      "path": "modules/nf-core/samtools/sormadup/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "samtools_sormadup",
+        "description": "Collate/Fixmate/Sort/Markdup SAM/BAM/CRAM file",
+        "keywords": [
+          "cat",
+          "collate",
+          "fixmate",
+          "sort",
+          "markduplicates",
+          "bam",
+          "sam",
+          "cram",
+          "multi-tool"
+        ],
+        "tools": [
+          {
+            "samtools_cat": {
+              "description": "SAMtools is a set of utilities for interacting with and post-processing\nshort DNA sequence read alignments in the SAM, BAM and CRAM formats, written by Heng Li.\nThese files are generated as output by short read aligners like BWA.\n",
+              "homepage": "http://www.htslib.org/",
+              "documentation": "http://www.htslib.org/doc/samtools.html",
+              "doi": "10.1093/bioinformatics/btp352",
+              "licence": [
+                "MIT"
+              ],
+              "args_id": "$args"
+            }
+          },
+          {
+            "samtools_collate": {
+              "description": "SAMtools is a set of utilities for interacting with and post-processing\nshort DNA sequence read alignments in the SAM, BAM and CRAM formats, written by Heng Li.\nThese files are generated as output by short read aligners like BWA.\n",
+              "homepage": "http://www.htslib.org/",
+              "documentation": "http://www.htslib.org/doc/samtools.html",
+              "doi": "10.1093/bioinformatics/btp352",
+              "licence": [
+                "MIT"
+              ],
+              "args_id": "$args2"
+            }
+          },
+          {
+            "samtools_fixmate": {
+              "description": "SAMtools is a set of utilities for interacting with and post-processing\nshort DNA sequence read alignments in the SAM, BAM and CRAM formats, written by Heng Li.\nThese files are generated as output by short read aligners like BWA.\n",
+              "homepage": "http://www.htslib.org/",
+              "documentation": "http://www.htslib.org/doc/samtools.html",
+              "doi": "10.1093/bioinformatics/btp352",
+              "licence": [
+                "MIT"
+              ],
+              "args_id": "$args3"
+            }
+          },
+          {
+            "samtools_sort": {
+              "description": "SAMtools is a set of utilities for interacting with and post-processing\nshort DNA sequence read alignments in the SAM, BAM and CRAM formats, written by Heng Li.\nThese files are generated as output by short read aligners like BWA.\n",
+              "homepage": "http://www.htslib.org/",
+              "documentation": "http://www.htslib.org/doc/samtools.html",
+              "doi": "10.1093/bioinformatics/btp352",
+              "licence": [
+                "MIT"
+              ],
+              "args_id": "$args4"
+            }
+          },
+          {
+            "samtools_markdup": {
+              "description": "SAMtools is a set of utilities for interacting with and post-processing\nshort DNA sequence read alignments in the SAM, BAM and CRAM formats, written by Heng Li.\nThese files are generated as output by short read aligners like BWA.\n",
+              "homepage": "http://www.htslib.org/",
+              "documentation": "http://www.htslib.org/doc/samtools.html",
+              "doi": "10.1093/bioinformatics/btp352",
+              "licence": [
+                "MIT"
+              ],
+              "args_id": "$args5"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "input": {
+              "type": "file",
+              "description": "BAM/CRAM/SAM files",
+              "pattern": "*.{bam,cram,sam}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Reference genome file",
+              "pattern": "*.{fasta,fa,fna}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "markdup": {
+              "type": "file",
+              "description": "Sorted and duplicate marked BAM/CRAM file",
+              "pattern": "*.{bam, cram}"
+            }
+          },
+          {
+            "markdup_index": {
+              "type": "file",
+              "description": "Sorted and duplicate marked BAM/CRAM file",
+              "pattern": "*.{bai, crai}"
+            }
+          },
+          {
+            "metrics": {
+              "type": "file",
+              "description": "Duplicate metrics file",
+              "pattern": "*.{metrics}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@matthdsm"
+        ],
+        "maintainers": [
+          "@matthdsm"
         ]
       }
     },
