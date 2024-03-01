@@ -10,7 +10,7 @@ Genomes on a Tree (GoaT), an Elasticsearch-powered datastore and search index fo
 
 </br>
 
-<img align="left" src="/assets/img/obiontID.png" height="50px" style="margin-right: 8px">
+<img align="left" src="/assets/img/cobiontID.png" height="50px" style="margin-right: 8px">
 
 ## CobiontID
 
