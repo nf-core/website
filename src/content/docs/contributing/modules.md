@@ -914,6 +914,10 @@ MY_MODULE(cram, fasta)  // execution of the module will need an element in the f
 
    - Keywords MUST NOT just be solely of the (sub)tool name
 
+   :::info
+   For multi-tool modules, please add the keyword `multi-tool`, as well as all the (sub)tools involved.
+   :::
+
 3. Keywords MUST be all lower case
 
 4. The tools section MUST list every tool used in the module. For example
