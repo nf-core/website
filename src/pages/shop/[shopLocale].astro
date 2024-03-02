@@ -1,24 +1,42 @@
 ---
 import PageLayout from '@layouts/PageLayout.astro';
+import { spreadshopLocales } from '../../config';
+
+export function getStaticPaths() {
+    return spreadshopLocales.map((data) => ({
+        params: {
+            shopLocale: data[1].toLowerCase(),
+        },
+        props: {
+            domain: data[2],
+        },
+    }));
+}
+const { shopLocale } = Astro.params;
+const domain = Astro.props.domain;
 ---
 
-<PageLayout title="nf-core/shop" subtitle="Share your love for the nf-core community!" mainpage_container={false}>
-    <div id="myShop">
-        <a href="https://nf-core.myspreadshop.es">nf-core</a>
+<PageLayout
+    title="nf-core/shop"
+    subtitle="Share your love for the nf-core community! <a class='ms-3' href='/shop'>[back to shop index]</a>"
+    mainpage_container={false}
+>
+    <div id="nf-core-shop-embed" class="text-center mt-5">
+        <a href={'https://nf-core.myspreadshop.' + domain}>nf-core</a>
     </div>
-    <script is:inline>
-        var spread_shop_config = {
+    <script define:vars={{ shopLocale, domain }}>
+        window.spread_shop_config = {
             shopName: 'nf-core',
-            locale: 'en_ES',
-            prefix: 'https://nf-core.myspreadshop.es',
-            baseId: 'myShop',
+            locale: shopLocale,
+            prefix: 'https://nf-core.myspreadshop.' + domain,
+            baseId: 'nf-core-shop-embed',
         };
     </script>
 
     <script
         is:inline
         type="text/javascript"
-        src="https://nf-core.myspreadshop.es/shopfiles/shopclient/shopclient.nocache.js"></script>
+        src={'https://nf-core.myspreadshop.' + domain + '/shopfiles/shopclient/shopclient.nocache.js'}></script>
 </PageLayout>
 
 <style is:global>
