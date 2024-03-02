@@ -13,7 +13,7 @@ jobs:
           python-version: 3.x
 
       - name: Install Nextflow
-        uses: nf-core/setup-nextflow@b9f764e8ba5c76b712ace14ecbfcef0e40ae2dd8 # v1
+        uses: nf-core/setup-nextflow@561fcfc7146dcb12e3871909b635ab092a781f34 # v2
 
       - name: Install nf-core/tools
         run: pip install nf-core
