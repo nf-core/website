@@ -18,16 +18,16 @@ Here is the decision tree you can use to decide how software are packaged and us
 
 Reference URLs:
 
-- Conda search: https://anaconda.org/
-- BioContainers search: https://biocontainers.pro/registry
-- Docker hub search: https://hub.docker.com/search?q=samtools&type=image
-- quay.io (another registry of Docker containers, esp. all BioContainers) search: https://quay.io/search?q=samtools
-  - Our own container registry on quay.io: https://quay.io/organization/sanger-tol
-- Our own container registry on GitHub: https://github.com/orgs/sanger-tol/packages
-- Our internal container registry on GitLab: https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images/container_registry/
-- Repository of Singularity images by the Galaxy project (should contain all BioContainers): https://depot.galaxyproject.org/singularity/
-- Minimal Dockerfile for creating a container around a Conda package: https://github.com/BioContainers/containers/blob/master/abyss/1.9.0/Dockerfile
-- Instructions to create a new Docker image (when the tool's usage or scope is limited to sanger-tol): https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images
+- Conda search: <https://anaconda.org/>
+- BioContainers search: <https://biocontainers.pro/registry>
+- Docker hub search: <https://hub.docker.com/search?q=samtools&type=image>
+- quay.io (another registry of Docker containers, esp. all BioContainers) search: <https://quay.io/search?q=samtools>
+  - Our own container registry on quay.io: <https://quay.io/organization/sanger-tol>
+- Our own container registry on GitHub: <https://github.com/orgs/sanger-tol/packages>
+- Our internal container registry on GitLab: <https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images/container_registry/>
+- Repository of Singularity images by the Galaxy project (should contain all BioContainers): <https://depot.galaxyproject.org/singularity/>
+- Minimal Dockerfile for creating a container around a Conda package: <https://github.com/BioContainers/containers/blob/master/abyss/1.9.0/Dockerfile>
+- Instructions to create a new Docker image (when the tool's usage or scope is limited to sanger-tol): <https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images>
 
 ### Nextflow wrapping
 
