@@ -68,7 +68,9 @@ Session 2 will provide a deeper dive into Nextflow. You will revisit concepts fr
 - Troubleshooting (20 min)
 - Getting starting with Seqera Platform (20 min)
 
-> PLease notes times are estimates
+:::note
+ The given times are estimates.
+:::
 
 # Asking questions
 
