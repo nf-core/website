@@ -69,7 +69,7 @@ Session 2 will provide a deeper dive into Nextflow. You will revisit concepts fr
 - Getting starting with Seqera Platform (20 min)
 
 :::note
- The given times are estimates.
+The given times are estimates.
 :::
 
 # Asking questions
