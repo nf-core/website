@@ -798,7 +798,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
     corresponding streams as well. Since a timeout may mean execution is aborted, it may make most sense
     to have background tasks do that.
 
-    ```nextflow {7-8}
+    ```nextflow {3-4}
     script:
     """
     tail -F stored_stderr.log >&2 &
