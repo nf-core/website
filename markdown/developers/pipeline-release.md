@@ -74,7 +74,7 @@ Alternatively, GitHub can also generate release notes from the list of commits. 
 ## Integration with Zenodo
 
 Once you've made a release, a record is automatically created on Zenodo.
-Tell @muffato who can then do the following:
+Tell @muffato or @DLBPointon who can then do the following:
 
 1. Check the release notes. Sometimes the conversion from Markdown doesn't work well, especially the tables. If this happens, copy-paste the rendered Markdwon from GitHub into the Zenodo editor.
 2. Change the record type from "Software" to "Workflow".
