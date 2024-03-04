@@ -4191,6 +4191,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -38061,6 +38065,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -38786,6 +38794,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -43555,6 +43567,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -100280,7 +100296,9 @@
         "name": "seqtk_mergepe",
         "description": "Interleave pair-end reads from FastQ files",
         "keywords": [
-          "interleave"
+          "interleave",
+          "merge",
+          "fastx"
         ],
         "tools": [
           {
@@ -100358,7 +100376,9 @@
         "name": "seqtk_rename",
         "description": "Rename sequence names in FASTQ or FASTA files.",
         "keywords": [
-          "rename"
+          "rename",
+          "fastx",
+          "header"
         ],
         "tools": [
           {
@@ -100430,7 +100450,9 @@
         "name": "seqtk_sample",
         "description": "Subsample reads from FASTQ files",
         "keywords": [
-          "sample"
+          "sample",
+          "fastx",
+          "reads"
         ],
         "tools": [
           {
@@ -100461,7 +100483,7 @@
           },
           {
             "sample_size": {
-              "type": "value",
+              "type": "integer",
               "description": "Number of reads to sample."
             }
           }
@@ -100596,7 +100618,9 @@
         "name": "seqtk_subseq",
         "description": "Select only sequences that match the filtering condition",
         "keywords": [
-          "filtering,selection"
+          "filtering",
+          "selection",
+          "fastx"
         ],
         "tools": [
           {
@@ -109800,12 +109824,6 @@
               "type": "file",
               "description": "The index of the input VCF file containing structural variants",
               "pattern": "*.tbi"
-            }
-          },
-          {
-            "meta2": {
-              "type": "map",
-              "description": "Groovy Map containing config meta information\n"
             }
           },
           {
