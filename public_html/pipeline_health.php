@@ -677,10 +677,10 @@ class PipelineHealth extends RepoHealth {
                 'https://raw.githubusercontent.com/nf-core/' . $this->name . '/dev/nextflow_schema.json',
             );
             $this->has_dsl2_modules_dir = $this->check_url(
-                'https://github.com/nf-core/' . $this->name . '/tree/dev/modules',
+                'https://github.com/nf-core/' . $this->name . '/blob/dev/modules',
             );
             $this->has_nf_test = $this->check_url(
-                'https://github.com/nf-core/' . $this->name . '/tree/dev/nf-test.config',
+                'https://github.com/nf-core/' . $this->name . '/blob/dev/tests/main.nf.test',
             );
             $this->has_nf_test_dev = $this->has_nf_test;
 
@@ -707,13 +707,13 @@ class PipelineHealth extends RepoHealth {
                         '/nextflow_schema.json',
                 );
                 $this->has_dsl2_modules_dir = $this->check_url(
-                    'https://github.com/nf-core/' . $this->name . '/tree/' . $this->last_release->tag_name . '/modules',
+                    'https://github.com/nf-core/' . $this->name . '/blog/' . $this->last_release->tag_name . '/modules',
                 );
                 $this->has_nf_test = $this->check_url(
-                    'https://github.com/nf-core/' . $this->name . '/tree/' . $this->last_release->tag_name . '/nf-test.config',
+                    'https://github.com/nf-core/' . $this->name . '/blog/' . $this->last_release->tag_name . '/nf-test.config',
                 );
                 $this->has_nf_test_dev = $this->check_url(
-                'https://github.com/nf-core/' . $this->name . '/tree/dev/nf-test.config',
+                'https://github.com/nf-core/' . $this->name . '/blog/dev/nf-test.config',
             );
                 // Save the cache
                 $files_404_cache = [
