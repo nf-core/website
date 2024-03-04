@@ -80,7 +80,6 @@ class RepoHealth {
     public $required_status_check_contexts = [
         'pre-commit',
         'nf-core',
-        'Run pipeline with test data',
         // NOTE - doesn't seem to be any way to get the "available" contexts through GitHub API
         // If we really want to do this, might have to query the repo contents..??
     ];
