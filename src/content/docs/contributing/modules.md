@@ -774,7 +774,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
     ```
 
 10. In some cases, STDOUT and STDERR may need to be saved to file, for example for reporting purposes. Use
-    the shell command `tee` to capture the streams but preserve the streams. This allows for the streams to
+    the shell command `tee` to simultaneously capture and preserve the streams. This allows for the streams to
     be captured by the job scheduler's stream logging capabilities and print them to screen when Nextflow
     encounters an error.
 
