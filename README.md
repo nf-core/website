@@ -15,7 +15,7 @@ Here's how the website is built:
   - [Svelte](https://svelte.dev/) (interactive components),
   - [Bootstrap](https://getbootstrap.com/docs/) (CSS framework)
 - Tools:
-  - [npm](https://www.npmjs.com/) (package manager)
+  - [pnpm](https://pnpm.io/) (package manager)
 
 ## Development
 
@@ -34,7 +34,7 @@ The website is built using [Astro](https://astro.build/), a static site generato
 To install the dependencies, run:
 
 ```bash
-npm install
+pnpm install
 ```
 
 ### Running a local server
@@ -42,7 +42,7 @@ npm install
 Ok, you're ready! To run the website locally, just start astro dev mode:
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 You should then be able to access the website in your browser at [http://localhost:4321/](http://localhost:4321/).
@@ -120,9 +120,9 @@ Much of the site is powered by the JSON files in `/public` and the cached markdo
 They come pre-built with the repository, but if you want to rebuild them then you'll need to run the following commands. Note that you need to add a GITHUB_TOKEN inside a `.env` file to avoid hitting API limits (too early). See [instructions on how to get a GitHub OAuth token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line) (the token only needs the `public_repo` permission).
 
 ```bash
-npm run build-pipeline-json
-npm run build-component-json
-npm run build-cache-force
+pnpm run build-pipeline-json
+pnpm run build-component-json
+pnpm run build-cache-force
 ```
 
 ### Tools API docs

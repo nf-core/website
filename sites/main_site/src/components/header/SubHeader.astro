@@ -1,0 +1,132 @@
+---
+import InstallCmd from '@components/InstallCmd.svelte';
+
+const { pipeline = '', version = '', latestVersion = '', component, gh_url, component_type } = Astro.props;
+
+export interface Props {
+    pipeline?: string;
+    version?: string;
+    latestVersion?: string;
+    component?: string;
+    component_type?: string;
+    gh_url: string;
+}
+let latest_link = '';
+if (pipeline.length > 0) {
+    latest_link = Astro.url.pathname.replace(pipeline + '/' + version, pipeline + '/' + latestVersion);
+}
+let component_name = component;
+if (component_type === 'modules') {
+    component_name = component.replace('_', '/');
+}
+
+const shaking = version === 'dev' ? '3deg' : '1deg';
+---
+
+<div class="subheader bg-body-secondary under-triangle-down">
+    <div class="container text-center d-flex flex-column align-items-center py-2">
+        {
+            version !== latestVersion || version === 'dev' ? (
+                <div class="alert alert-warning p-1 p-md-3" role="alert">
+                    <span>
+                        {version === 'dev' ? (
+                            <span>This is the development version of the pipeline.</span>
+                        ) : (
+                            <span>
+                                These pages are for an old version of the pipeline (<code>{version}</code>). The latest
+                                stable release is{' '}
+                                <code>
+                                    <a href={latest_link}>{latestVersion}</a>
+                                </code>
+                                .
+                            </span>
+                        )}
+                    </span>
+                </div>
+            ) : (
+                ''
+            )
+        }
+        {
+            pipeline.length > 0 ? (
+                <a
+                    href={`/launch/?pipeline=${pipeline}&release=${version}`}
+                    class={'btn btn-success launch-btn btn-md-lg' + (version === 'dev' ? '-dev' : '')}
+                >
+                    <i class="fa-duotone fa-rocket me-2" />
+                    {'Launch ' + (version === 'dev' ? 'development version' : 'version ' + version)}
+                </a>
+            ) : (
+                <div class="w-50">
+                    <InstallCmd cmd={`nf-core ${component_type} install ${component_name}`} client:idle />
+                </div>
+            )
+        }
+        {
+            version && (
+                <a href={`${gh_url}/tree/${version}`} class="text-body mt-2">
+                    <i class="fab fa-github me-2" />
+                    {gh_url}
+                </a>
+            )
+        }
+        {
+            !version && (
+                <a href={gh_url} class="text-body mt-2">
+                    <i class="fab fa-github me-2" />
+                    {gh_url.replace('tree/master', '[...]')}
+                </a>
+            )
+        }
+    </div>
+</div>
+
+<div class="triangle-down bg-body-secondary"></div>
+
+<style lang="scss" define:vars={{ shaking }}>
+    // shaking taken from https://www.w3schools.com/howto/howto_css_shake_image.asp
+    .btn.launch-btn:hover i,
+    .btn.launch-btn-dev:hover i {
+        &::after {
+            content: '\e027\e027';
+        }
+        animation: shake 0.5s;
+        animation-iteration-count: infinite;
+    }
+
+    @keyframes shake {
+        0% {
+            transform: translate(1px, 1px) rotate(var(--shaking));
+        }
+        10% {
+            transform: translate(0px, -1px) rotate(calc(-1 * var(--shaking)));
+        }
+        20% {
+            transform: translate(-1px, 0px) rotate(var(--shaking));
+        }
+        30% {
+            transform: translate(0px, 1px) rotate(var(--shaking));
+        }
+        40% {
+            transform: translate(1px, -1px) rotate(var(--shaking));
+        }
+        50% {
+            transform: translate(-1px, 0px) rotate(calc(-1 * var(--shaking)));
+        }
+        60% {
+            transform: translate(-1px, 1px) rotate(var(--shaking));
+        }
+        70% {
+            transform: translate(0px, 1px) rotate(calc(-1 * var(--shaking)));
+        }
+        80% {
+            transform: translate(-1px, 0px) rotate(var(--shaking));
+        }
+        90% {
+            transform: translate(0px, -1px) rotate(var(--shaking));
+        }
+        100% {
+            transform: translate(1px, -1px) rotate(calc(-1 * var(--shaking)));
+        }
+    }
+</style>

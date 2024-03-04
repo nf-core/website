@@ -1,0 +1,26 @@
+---
+export interface Props {
+    title?: string[];
+}
+
+const { title } = Astro.props;
+---
+
+<div class="d-flex align-items-end">
+    {
+        title?.map((item, i) => {
+            if (!item) return;
+            item = item.toString();
+            // make item title case
+            item = item?.replace(/_/g, ' ').replace(/\w\S*/g, function (txt) {
+                return txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase();
+            });
+            return (
+                <span class="align-middle">
+                    {i === 0 ? '' : <i class="fa-solid fa-chevron-right fa-xs mx-1 " />}
+                    {item}
+                </span>
+            );
+        })
+    }
+</div>

@@ -1,0 +1,88 @@
+---
+import NfCoreLogoDarkbg from '/images/logo/nf-core-logo-darkbg.svg?raw';
+import NfCoreLogo from '/images/logo/nf-core-logo.svg?raw';
+import IconSocial from '@components/IconSocial.astro';
+---
+
+<footer class="footer bg-body-secondary text-body-secondary py-4 py-lg-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="text-center text-lg-start col-12 col-lg d-flex flex-column justify-content-between">
+                <div class="">
+                    <a href="/" class="text-decoration-none d-inline-block">
+                        <div class="hide-dark align-middle">
+                            <Fragment set:html={NfCoreLogo} />
+                        </div>
+                        <div class="hide-light">
+                            <Fragment set:html={NfCoreLogoDarkbg} />
+                        </div>
+                    </a>
+                    <div class="small d-block">Making awesome workflows since 2018.</div>
+                </div>
+            </div>
+            <div class="col-12 col-lg text-center small">
+                <div class="small mb-1">
+                    <p class="mb-1">Supported by:</p>
+                    <span class="text-center">
+                        <IconSocial link="/about#czi-eoss" title="Chan Zuckerberg Initiative" icon="logos/czi" />
+                        <span class="ms-1">+</span>
+                        <IconSocial
+                            link="/about/#microsoft-azure"
+                            title="Microsoft Azure"
+                            icon="logos:microsoft-azure"
+                        />
+                        <span class="ms-1">+</span>
+                        <IconSocial
+                            link="/about/#aws"
+                            title="Amazon Web Services"
+                            icon="logos:aws"
+                            icon_dark="mdi:aws"
+                        />
+                        <span class="ms-1">+</span>
+                        <IconSocial link="/about/#seqera" title="Seqera" icon="logos/seqera" />
+                    </span>
+                </div>
+            </div>
+            <div class="col-12 col-lg text-center text-lg-end">
+                <div class="small">
+                    See the source code for this website on GitHub:<br />
+                    <a href="https://github.com/nf-core/website" target="_blank"> https://github.com/nf-core/website</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style lang="scss">
+        @import '@styles/_variables.scss';
+        .hide-dark {
+            height: 3rem;
+            width: 7.5rem;
+        }
+        .hide-light {
+            height: 0rem;
+            width: 0rem;
+        }
+
+        :global([data-bs-theme='dark']) {
+            .hide-dark {
+                height: 0;
+                width: 0;
+            }
+            .hide-light {
+                height: 3rem;
+                width: 7.5rem;
+            }
+        }
+
+        footer {
+            & a {
+                color: $gray-600;
+                &:hover,
+                &:focus,
+                &:active {
+                    text-decoration: underline;
+                }
+            }
+        }
+    </style>
+</footer>

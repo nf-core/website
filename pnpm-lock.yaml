@@ -4,300 +4,329 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-dependencies:
-  '@astro-community/astro-embed-youtube':
-    specifier: ^0.4.4
-    version: 0.4.4(astro@4.4.5)
-  '@astrojs/internal-helpers':
-    specifier: ^0.2.1
-    version: 0.2.1
-  '@astrojs/markdown-remark':
-    specifier: ^4.2.1
-    version: 4.2.1
-  '@astrojs/mdx':
-    specifier: ^2.1.1
-    version: 2.1.1(astro@4.4.5)
-  '@astrojs/netlify':
-    specifier: ^5.1.3
-    version: 5.1.3(astro@4.4.5)
-  '@astrojs/partytown':
-    specifier: ^2.0.4
-    version: 2.0.4
-  '@astrojs/rss':
-    specifier: ^4.0.5
-    version: 4.0.5
-  '@astrojs/sitemap':
-    specifier: ^3.1.1
-    version: 3.1.1
-  '@astrojs/svelte':
-    specifier: ^5.1.0
-    version: 5.1.0(astro@4.4.5)(svelte@4.2.12)(typescript@5.3.3)(vite@5.1.4)
-  '@astropub/md':
-    specifier: ^0.4.0
-    version: 0.4.0(@astrojs/markdown-remark@4.2.1)
-  '@aws-sdk/client-s3':
-    specifier: ^3.521.0
-    version: 3.523.0
-  '@aws-sdk/credential-provider-node':
-    specifier: ^3.521.0
-    version: 3.523.0
-  '@docsearch/css':
-    specifier: ^3.5.2
-    version: 3.5.2
-  '@docsearch/js':
-    specifier: ^3.5.2
-    version: 3.5.2(@algolia/client-search@4.22.1)(search-insights@2.13.0)
-  '@fontsource-variable/inter':
-    specifier: ^5.0.16
-    version: 5.0.16
-  '@fontsource-variable/maven-pro':
-    specifier: ^5.0.16
-    version: 5.0.16
-  '@fontsource-variable/open-sans':
-    specifier: ^5.0.25
-    version: 5.0.25
-  '@iconify-json/fa':
-    specifier: ^1.1.8
-    version: 1.1.8
-  '@iconify-json/fa-brands':
-    specifier: ^1.1.8
-    version: 1.1.8
-  '@iconify-json/file-icons':
-    specifier: ^1.1.8
-    version: 1.1.8
-  '@iconify-json/line-md':
-    specifier: ^1.1.36
-    version: 1.1.36
-  '@iconify-json/logos':
-    specifier: ^1.1.42
-    version: 1.1.42
-  '@iconify-json/mdi':
-    specifier: ^1.1.64
-    version: 1.1.64
-  '@iconify-json/octicon':
-    specifier: ^1.1.52
-    version: 1.1.52
-  '@iconify/utils':
-    specifier: ^2.1.22
-    version: 2.1.22
-  '@nanostores/persistent':
-    specifier: ^0.10.1
-    version: 0.10.1(nanostores@0.10.0)
-  astro:
-    specifier: ^4.4.5
-    version: 4.4.5(@types/node@20.11.21)(sass@1.71.1)(typescript@5.3.3)
-  astro-icon:
-    specifier: ^1.1.0
-    version: 1.1.0
-  astro-remark-description:
-    specifier: ^1.1.2
-    version: 1.1.2
-  bootstrap:
-    specifier: ^5.3.3
-    version: 5.3.3(@popperjs/core@2.11.8)
-  bootstrap-print-css:
-    specifier: ^1.0.1
-    version: 1.0.1
-  clsx:
-    specifier: ^2.1.0
-    version: 2.1.0
-  cookie:
-    specifier: ^0.6.0
-    version: 0.6.0
-  cssesc:
-    specifier: ^3.0.0
-    version: 3.0.0
-  d3:
-    specifier: ^7.8.5
-    version: 7.8.5
-  d3-array:
-    specifier: ^3.2.4
-    version: 3.2.4
-  date-fns:
-    specifier: ^3.3.1
-    version: 3.3.1
-  datebook:
-    specifier: ^8.0.1
-    version: 8.0.1
-  dayjs:
-    specifier: ^1.11.10
-    version: 1.11.10
-  dompurify:
-    specifier: ^3.0.9
-    version: 3.0.9
-  dotenv:
-    specifier: ^16.4.5
-    version: 16.4.5
-  file-icons-js:
-    specifier: github:websemantics/file-icons-js
-    version: github.com/websemantics/file-icons-js/8b397223dc14fa57600f1b06c787dfd2107c4449
-  file-saver:
-    specifier: ^2.0.5
-    version: 2.0.5
-  file-system-cache:
-    specifier: ^2.4.4
-    version: 2.4.4
-  fuzzysort:
-    specifier: ^2.0.4
-    version: 2.0.4
-  html-escaper:
-    specifier: ^3.0.3
-    version: 3.0.3
-  katex:
-    specifier: ^0.16.9
-    version: 0.16.9
-  kleur:
-    specifier: ^4.1.5
-    version: 4.1.5
-  leaflet:
-    specifier: ^1.9.4
-    version: 1.9.4
-  lite-youtube-embed:
-    specifier: ^0.3.0
-    version: 0.3.0
-  mermaid:
-    specifier: ^10.8.0
-    version: 10.8.0
-  nanostores:
-    specifier: ^0.10.0
-    version: 0.10.0
-  octokit:
-    specifier: ^3.1.2
-    version: 3.1.2
-  party-js:
-    specifier: ^2.2.0
-    version: 2.2.0
-  path-to-regexp:
-    specifier: ^6.2.1
-    version: 6.2.1
-  pretty-bytes:
-    specifier: ^6.1.1
-    version: 6.1.1
-  progress:
-    specifier: ^2.0.3
-    version: 2.0.3
-  property-information:
-    specifier: ^6.4.1
-    version: 6.4.1
-  rehype-add-classes:
-    specifier: github:tycol7/rehype-add-classes
-    version: github.com/tycol7/rehype-add-classes/0a4dc28fee61e1d41bb8f6978a4435965f3c8497
-  rehype-autolink-headings:
-    specifier: ^7.1.0
-    version: 7.1.0
-  rehype-katex:
-    specifier: ^7.0.0
-    version: 7.0.0
-  rehype-mermaid:
-    specifier: ^2.1.0
-    version: 2.1.0
-  rehype-pretty-code:
-    specifier: ^0.13.0
-    version: 0.13.0(shiki@1.1.7)
-  rehype-slug:
-    specifier: ^6.0.0
-    version: 6.0.0
-  rehype-urls:
-    specifier: ^1.2.0
-    version: 1.2.0
-  rehype-wrap-all:
-    specifier: ^1.1.0
-    version: 1.1.0
-  remark-directive:
-    specifier: ^3.0.0
-    version: 3.0.0
-  remark-emoji:
-    specifier: ^4.0.1
-    version: 4.0.1
-  remark-gfm:
-    specifier: ^4.0.0
-    version: 4.0.0
-  remark-math:
-    specifier: ^6.0.0
-    version: 6.0.0
-  satori:
-    specifier: ^0.10.13
-    version: 0.10.13
-  satori-html:
-    specifier: ^0.3.2
-    version: 0.3.2
-  sharp:
-    specifier: ^0.33.2
-    version: 0.33.2
-  shikiji:
-    specifier: ^0.10.2
-    version: 0.10.2
-  string-width:
-    specifier: ^7.1.0
-    version: 7.1.0
-  svelte:
-    specifier: ^4.2.12
-    version: 4.2.12
-  svelte-confetti:
-    specifier: ^1.3.2
-    version: 1.3.2(svelte@4.2.12)
-  svelte-exmarkdown:
-    specifier: ^3.0.2
-    version: 3.0.3(svelte@4.2.12)
-  svelte-fast-marquee:
-    specifier: ^0.7.0
-    version: 0.7.0
-  ts-dedent:
-    specifier: ^2.2.0
-    version: 2.2.0
-  typescript:
-    specifier: ^5.3.3
-    version: 5.3.3
-  unist-util-visit:
-    specifier: ^5.0.0
-    version: 5.0.0
-  vite:
-    specifier: ^5.1.4
-    version: 5.1.4(@types/node@20.11.21)(sass@1.71.1)
-  yaml:
-    specifier: ^2.4.0
-    version: 2.4.0
-  yoga-wasm-web:
-    specifier: ^0.3.3
-    version: 0.3.3
-  youtube-player:
-    specifier: ^5.6.0
-    version: 5.6.0
-  zod:
-    specifier: ^3.22.4
-    version: 3.22.4
+importers:
 
-devDependencies:
-  '@playwright/test':
-    specifier: ^1.41.2
-    version: 1.42.0
-  '@rollup/plugin-yaml':
-    specifier: 4.1.2
-    version: 4.1.2
-  '@types/leaflet':
-    specifier: 1.9.8
-    version: 1.9.8
-  '@types/node':
-    specifier: ^20.11.20
-    version: 20.11.21
-  fontaine:
-    specifier: 0.4.1
-    version: 0.4.1
-  hastscript:
-    specifier: ^9.0.0
-    version: 9.0.0
-  prettier:
-    specifier: ^3.2.4
-    version: 3.2.5
-  prettier-plugin-astro:
-    specifier: ^0.13.0
-    version: 0.13.0
-  prettier-plugin-svelte:
-    specifier: ^3.2.1
-    version: 3.2.1(prettier@3.2.5)(svelte@4.2.12)
-  sass:
-    specifier: ^1.70.0
-    version: 1.71.1
+  .:
+    dependencies:
+      '@iconify-json/fa':
+        specifier: ^1.1.8
+        version: 1.1.8
+      '@iconify-json/fa-brands':
+        specifier: ^1.1.8
+        version: 1.1.8
+      '@iconify-json/file-icons':
+        specifier: ^1.1.8
+        version: 1.1.8
+      '@iconify-json/line-md':
+        specifier: ^1.1.36
+        version: 1.1.36
+      '@iconify-json/logos':
+        specifier: ^1.1.42
+        version: 1.1.42
+      '@iconify-json/mdi':
+        specifier: ^1.1.64
+        version: 1.1.64
+      '@iconify-json/octicon':
+        specifier: ^1.1.52
+        version: 1.1.52
+      '@iconify/utils':
+        specifier: ^2.1.22
+        version: 2.1.22
+
+  sites/API-docs:
+    dependencies:
+      '@astro-community/astro-embed-youtube':
+        specifier: ^0.4.4
+        version: 0.4.4(astro@4.4.6)
+      '@astrojs/internal-helpers':
+        specifier: ^0.2.1
+        version: 0.2.1
+      '@astrojs/markdown-remark':
+        specifier: ^4.2.1
+        version: 4.2.1
+      '@astrojs/mdx':
+        specifier: ^2.1.1
+        version: 2.1.1(astro@4.4.6)
+      '@astrojs/netlify':
+        specifier: ^5.1.3
+        version: 5.1.3(astro@4.4.6)
+      '@astrojs/partytown':
+        specifier: ^2.0.4
+        version: 2.0.4
+      '@astrojs/rss':
+        specifier: ^4.0.5
+        version: 4.0.5
+      '@astrojs/sitemap':
+        specifier: ^3.1.1
+        version: 3.1.1
+      '@astrojs/svelte':
+        specifier: ^5.1.0
+        version: 5.2.0(astro@4.4.6)(svelte@4.2.12)(typescript@5.3.3)(vite@5.1.4)
+      '@astropub/md':
+        specifier: ^0.4.0
+        version: 0.4.0(@astrojs/markdown-remark@4.2.1)
+      '@aws-sdk/client-s3':
+        specifier: ^3.521.0
+        version: 3.523.0
+      '@aws-sdk/credential-provider-node':
+        specifier: ^3.521.0
+        version: 3.523.0
+      '@docsearch/css':
+        specifier: ^3.5.2
+        version: 3.5.2
+      '@docsearch/js':
+        specifier: ^3.5.2
+        version: 3.5.2(@algolia/client-search@4.22.1)(search-insights@2.13.0)
+      '@fontsource-variable/inter':
+        specifier: ^5.0.16
+        version: 5.0.16
+      '@fontsource-variable/maven-pro':
+        specifier: ^5.0.16
+        version: 5.0.16
+      '@fontsource-variable/open-sans':
+        specifier: ^5.0.25
+        version: 5.0.25
+      '@iconify-json/fa':
+        specifier: ^1.1.8
+        version: 1.1.8
+      '@iconify-json/fa-brands':
+        specifier: ^1.1.8
+        version: 1.1.8
+      '@iconify-json/file-icons':
+        specifier: ^1.1.8
+        version: 1.1.8
+      '@iconify-json/line-md':
+        specifier: ^1.1.36
+        version: 1.1.36
+      '@iconify-json/logos':
+        specifier: ^1.1.42
+        version: 1.1.42
+      '@iconify-json/mdi':
+        specifier: ^1.1.64
+        version: 1.1.64
+      '@iconify-json/octicon':
+        specifier: ^1.1.52
+        version: 1.1.52
+      '@iconify/utils':
+        specifier: ^2.1.22
+        version: 2.1.22
+      '@nanostores/persistent':
+        specifier: ^0.10.1
+        version: 0.10.1(nanostores@0.10.0)
+      astro:
+        specifier: ^4.4.5
+        version: 4.4.6(@types/node@20.11.21)(sass@1.71.1)(typescript@5.3.3)
+      astro-icon:
+        specifier: ^1.1.0
+        version: 1.1.0
+      astro-remark-description:
+        specifier: ^1.1.2
+        version: 1.1.2
+      bootstrap:
+        specifier: ^5.3.3
+        version: 5.3.3(@popperjs/core@2.11.8)
+      bootstrap-print-css:
+        specifier: ^1.0.1
+        version: 1.0.1
+      clsx:
+        specifier: ^2.1.0
+        version: 2.1.0
+      cookie:
+        specifier: ^0.6.0
+        version: 0.6.0
+      cssesc:
+        specifier: ^3.0.0
+        version: 3.0.0
+      d3:
+        specifier: ^7.8.5
+        version: 7.8.5
+      d3-array:
+        specifier: ^3.2.4
+        version: 3.2.4
+      date-fns:
+        specifier: ^3.3.1
+        version: 3.3.1
+      datebook:
+        specifier: ^8.0.1
+        version: 8.0.1
+      dayjs:
+        specifier: ^1.11.10
+        version: 1.11.10
+      dompurify:
+        specifier: ^3.0.9
+        version: 3.0.9
+      dotenv:
+        specifier: ^16.4.5
+        version: 16.4.5
+      file-icons-js:
+        specifier: github:websemantics/file-icons-js
+        version: github.com/websemantics/file-icons-js/8b397223dc14fa57600f1b06c787dfd2107c4449
+      file-saver:
+        specifier: ^2.0.5
+        version: 2.0.5
+      file-system-cache:
+        specifier: ^2.4.4
+        version: 2.4.4
+      fuzzysort:
+        specifier: ^2.0.4
+        version: 2.0.4
+      html-escaper:
+        specifier: ^3.0.3
+        version: 3.0.3
+      katex:
+        specifier: ^0.16.9
+        version: 0.16.9
+      kleur:
+        specifier: ^4.1.5
+        version: 4.1.5
+      leaflet:
+        specifier: ^1.9.4
+        version: 1.9.4
+      lite-youtube-embed:
+        specifier: ^0.3.0
+        version: 0.3.0
+      mermaid:
+        specifier: ^10.8.0
+        version: 10.8.0
+      nanostores:
+        specifier: ^0.10.0
+        version: 0.10.0
+      octokit:
+        specifier: ^3.1.2
+        version: 3.1.2
+      party-js:
+        specifier: ^2.2.0
+        version: 2.2.0
+      path-to-regexp:
+        specifier: ^6.2.1
+        version: 6.2.1
+      pretty-bytes:
+        specifier: ^6.1.1
+        version: 6.1.1
+      progress:
+        specifier: ^2.0.3
+        version: 2.0.3
+      property-information:
+        specifier: ^6.4.1
+        version: 6.4.1
+      rehype-add-classes:
+        specifier: github:tycol7/rehype-add-classes
+        version: github.com/tycol7/rehype-add-classes/0a4dc28fee61e1d41bb8f6978a4435965f3c8497
+      rehype-autolink-headings:
+        specifier: ^7.1.0
+        version: 7.1.0
+      rehype-katex:
+        specifier: ^7.0.0
+        version: 7.0.0
+      rehype-mermaid:
+        specifier: ^2.1.0
+        version: 2.1.0
+      rehype-pretty-code:
+        specifier: ^0.13.0
+        version: 0.13.0(shiki@1.1.7)
+      rehype-slug:
+        specifier: ^6.0.0
+        version: 6.0.0
+      rehype-urls:
+        specifier: ^1.2.0
+        version: 1.2.0
+      rehype-wrap-all:
+        specifier: ^1.1.0
+        version: 1.1.0
+      remark-directive:
+        specifier: ^3.0.0
+        version: 3.0.0
+      remark-emoji:
+        specifier: ^4.0.1
+        version: 4.0.1
+      remark-gfm:
+        specifier: ^4.0.0
+        version: 4.0.0
+      remark-math:
+        specifier: ^6.0.0
+        version: 6.0.0
+      satori:
+        specifier: ^0.10.13
+        version: 0.10.13
+      satori-html:
+        specifier: ^0.3.2
+        version: 0.3.2
+      sharp:
+        specifier: ^0.33.2
+        version: 0.33.2
+      shikiji:
+        specifier: ^0.10.2
+        version: 0.10.2
+      string-width:
+        specifier: ^7.1.0
+        version: 7.1.0
+      svelte:
+        specifier: ^4.2.12
+        version: 4.2.12
+      svelte-confetti:
+        specifier: ^1.3.2
+        version: 1.3.2(svelte@4.2.12)
+      svelte-exmarkdown:
+        specifier: ^3.0.2
+        version: 3.0.3(svelte@4.2.12)
+      svelte-fast-marquee:
+        specifier: ^0.7.0
+        version: 0.7.0
+      ts-dedent:
+        specifier: ^2.2.0
+        version: 2.2.0
+      typescript:
+        specifier: ^5.3.3
+        version: 5.3.3
+      unist-util-visit:
+        specifier: ^5.0.0
+        version: 5.0.0
+      vite:
+        specifier: ^5.1.4
+        version: 5.1.4(@types/node@20.11.21)(sass@1.71.1)
+      yaml:
+        specifier: ^2.4.0
+        version: 2.4.0
+      yoga-wasm-web:
+        specifier: ^0.3.3
+        version: 0.3.3
+      youtube-player:
+        specifier: ^5.6.0
+        version: 5.6.0
+      zod:
+        specifier: ^3.22.4
+        version: 3.22.4
+    devDependencies:
+      '@playwright/test':
+        specifier: ^1.41.2
+        version: 1.42.0
+      '@rollup/plugin-yaml':
+        specifier: 4.1.2
+        version: 4.1.2
+      '@types/leaflet':
+        specifier: 1.9.8
+        version: 1.9.8
+      '@types/node':
+        specifier: ^20.11.20
+        version: 20.11.21
+      fontaine:
+        specifier: 0.4.1
+        version: 0.4.1
+      hastscript:
+        specifier: ^9.0.0
+        version: 9.0.0
+      prettier:
+        specifier: ^3.2.4
+        version: 3.2.5
+      prettier-plugin-astro:
+        specifier: ^0.13.0
+        version: 0.13.0
+      prettier-plugin-svelte:
+        specifier: ^3.2.1
+        version: 3.2.2(prettier@3.2.5)(svelte@4.2.12)
+      sass:
+        specifier: ^1.70.0
+        version: 1.71.1
 
 packages:
 
@@ -453,12 +482,12 @@ packages:
     resolution: {integrity: sha512-gFPqTG7otEJ8uP6wrhDv6mqwGWYZKNvAcCq6u9hOj0c+IKCEsY4L1oC9trPq2SaWIzAfHvqfBDxF591JkMf+kg==}
     dev: false
 
-  /@astro-community/astro-embed-youtube@0.4.4(astro@4.4.5):
+  /@astro-community/astro-embed-youtube@0.4.4(astro@4.4.6):
     resolution: {integrity: sha512-fYlycLrJFNnibZ9VHPSJO766kO2IgqYQU4mBd4iaDMaicL0gGX9cVZ80QdnpzGrI6w0XOJOY7prx86eWEVBy8w==}
     peerDependencies:
       astro: ^2.0.0 || ^3.0.0-beta || ^4.0.0-beta
     dependencies:
-      astro: 4.4.5(@types/node@20.11.21)(sass@1.71.1)(typescript@5.3.3)
+      astro: 4.4.6(@types/node@20.11.21)(sass@1.71.1)(typescript@5.3.3)
       lite-youtube-embed: 0.2.0
     dev: false
 
@@ -495,7 +524,7 @@ packages:
       - supports-color
     dev: false
 
-  /@astrojs/mdx@2.1.1(astro@4.4.5):
+  /@astrojs/mdx@2.1.1(astro@4.4.6):
     resolution: {integrity: sha512-AgGFdE7HOGmoFooGvMSatkA9FiSKwyVW7ImHot/bXJ6uAbFfu6iG2ht18Cf1pT22Hda/6iSCGWusFvBv0/EnKQ==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
@@ -504,7 +533,7 @@ packages:
       '@astrojs/markdown-remark': 4.2.1
       '@mdx-js/mdx': 3.0.1
       acorn: 8.11.3
-      astro: 4.4.5(@types/node@20.11.21)(sass@1.71.1)(typescript@5.3.3)
+      astro: 4.4.6(@types/node@20.11.21)(sass@1.71.1)(typescript@5.3.3)
       es-module-lexer: 1.4.1
       estree-util-visit: 2.0.0
       github-slugger: 2.0.0
@@ -521,14 +550,14 @@ packages:
       - supports-color
     dev: false
 
-  /@astrojs/netlify@5.1.3(astro@4.4.5):
+  /@astrojs/netlify@5.1.3(astro@4.4.6):
     resolution: {integrity: sha512-zHxEHbFo+qw0jIXraxtEtgOpyit/vH8au/Kvl3DMZeG9cR71folOVIMKdxkLXewBnW/BPQsdDdl7HY7HPvylLw==}
     peerDependencies:
       astro: ^4.2.0
     dependencies:
       '@astrojs/underscore-redirects': 0.3.3
       '@netlify/functions': 2.6.0
-      astro: 4.4.5(@types/node@20.11.21)(sass@1.71.1)(typescript@5.3.3)
+      astro: 4.4.6(@types/node@20.11.21)(sass@1.71.1)(typescript@5.3.3)
       esbuild: 0.19.12
     dev: false
 
@@ -560,20 +589,21 @@ packages:
       zod: 3.22.4
     dev: false
 
-  /@astrojs/svelte@5.1.0(astro@4.4.5)(svelte@4.2.12)(typescript@5.3.3)(vite@5.1.4):
-    resolution: {integrity: sha512-1f0wkFkHs+1vcCliaEB1j9SYEU/n5ZYTAASv5Rkq6nvjNFRrnPuXLQCYIYFqdGGqFm6UPdgKpJBFbFFeQlr4yA==}
+  /@astrojs/svelte@5.2.0(astro@4.4.6)(svelte@4.2.12)(typescript@5.3.3)(vite@5.1.4):
+    resolution: {integrity: sha512-GmwbXks2WMkmAfl0rlPM/2gA1RtmZzjGV2mOceV3g7QNyjIsSYBPKrlEnSFnuR+YMvlAtWdbMFBsb3gtGxnTTg==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
       astro: ^4.0.0
       svelte: ^4.0.0 || ^5.0.0-next.56
+      typescript: ^5.3.3
     dependencies:
       '@sveltejs/vite-plugin-svelte': 3.0.2(svelte@4.2.12)(vite@5.1.4)
-      astro: 4.4.5(@types/node@20.11.21)(sass@1.71.1)(typescript@5.3.3)
+      astro: 4.4.6(@types/node@20.11.21)(sass@1.71.1)(typescript@5.3.3)
       svelte: 4.2.12
       svelte2tsx: 0.6.27(svelte@4.2.12)(typescript@5.3.3)
+      typescript: 5.3.3
     transitivePeerDependencies:
       - supports-color
-      - typescript
       - vite
     dev: false
 
@@ -1248,20 +1278,20 @@ packages:
     engines: {node: '>=6.9.0'}
     dev: false
 
-  /@babel/core@7.23.9:
-    resolution: {integrity: sha512-5q0175NOjddqpvvzU+kDiSOAk4PfdO6FvwCWoQ6RO7rTzEe8vlo+4HVfcnAREhD4npMs0e9uZypjTwzZPCf/cw==}
+  /@babel/core@7.24.0:
+    resolution: {integrity: sha512-fQfkg0Gjkza3nf0c7/w6Xf34BW4YvzNfACRLmmb7XRLa6XHdR+K9AlJlxneFfWYf6uhOzuzZVTjF/8KfndZANw==}
     engines: {node: '>=6.9.0'}
     dependencies:
       '@ampproject/remapping': 2.2.1
       '@babel/code-frame': 7.23.5
       '@babel/generator': 7.23.6
       '@babel/helper-compilation-targets': 7.23.6
-      '@babel/helper-module-transforms': 7.23.3(@babel/core@7.23.9)
-      '@babel/helpers': 7.23.9
-      '@babel/parser': 7.23.9
-      '@babel/template': 7.23.9
-      '@babel/traverse': 7.23.9
-      '@babel/types': 7.23.9
+      '@babel/helper-module-transforms': 7.23.3(@babel/core@7.24.0)
+      '@babel/helpers': 7.24.0
+      '@babel/parser': 7.24.0
+      '@babel/template': 7.24.0
+      '@babel/traverse': 7.24.0
+      '@babel/types': 7.24.0
       convert-source-map: 2.0.0
       debug: 4.3.4
       gensync: 1.0.0-beta.2
@@ -1275,7 +1305,7 @@ packages:
     resolution: {integrity: sha512-qrSfCYxYQB5owCmGLbl8XRpX1ytXlpueOb0N0UmQwA073KZxejgQTzAmJezxvpwQD9uGtK2shHdi55QT+MbjIw==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.23.9
+      '@babel/types': 7.24.0
       '@jridgewell/gen-mapping': 0.3.4
       '@jridgewell/trace-mapping': 0.3.23
       jsesc: 2.5.2
@@ -1285,7 +1315,7 @@ packages:
     resolution: {integrity: sha512-LvBTxu8bQSQkcyKOU+a1btnNFQ1dMAd0R6PyW3arXes06F6QLWLIrd681bxRPIXlrMGR3XYnW9JyML7dP3qgxg==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.23.9
+      '@babel/types': 7.24.0
     dev: false
 
   /@babel/helper-compilation-targets@7.23.6:
@@ -1308,31 +1338,31 @@ packages:
     resolution: {integrity: sha512-OErEqsrxjZTJciZ4Oo+eoZqeW9UIiOcuYKRJA4ZAgV9myA+pOXhhmpfNCKjEH/auVfEYVFJ6y1Tc4r0eIApqiw==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/template': 7.23.9
-      '@babel/types': 7.23.9
+      '@babel/template': 7.24.0
+      '@babel/types': 7.24.0
     dev: false
 
   /@babel/helper-hoist-variables@7.22.5:
     resolution: {integrity: sha512-wGjk9QZVzvknA6yKIUURb8zY3grXCcOZt+/7Wcy8O2uctxhplmUPkOdlgoNhmdVee2c92JXbf1xpMtVNbfoxRw==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.23.9
+      '@babel/types': 7.24.0
     dev: false
 
   /@babel/helper-module-imports@7.22.15:
     resolution: {integrity: sha512-0pYVBnDKZO2fnSPCrgM/6WMc7eS20Fbok+0r88fp+YtWVLZrp4CkafFGIp+W0VKw4a22sgebPT99y+FDNMdP4w==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.23.9
+      '@babel/types': 7.24.0
     dev: false
 
-  /@babel/helper-module-transforms@7.23.3(@babel/core@7.23.9):
+  /@babel/helper-module-transforms@7.23.3(@babel/core@7.24.0):
     resolution: {integrity: sha512-7bBs4ED9OmswdfDzpz4MpWgSrV7FXlc3zIagvLFjS5H+Mk7Snr21vQ6QwrsoCGMfNC4e4LQPdoULEt4ykz0SRQ==}
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0
     dependencies:
-      '@babel/core': 7.23.9
+      '@babel/core': 7.24.0
       '@babel/helper-environment-visitor': 7.22.20
       '@babel/helper-module-imports': 7.22.15
       '@babel/helper-simple-access': 7.22.5
@@ -1340,8 +1370,8 @@ packages:
       '@babel/helper-validator-identifier': 7.22.20
     dev: false
 
-  /@babel/helper-plugin-utils@7.22.5:
-    resolution: {integrity: sha512-uLls06UVKgFG9QD4OeFYLEGteMIAa5kpTPcFL28yuCIIzsf6ZyKZMllKVOCZFhiZ5ptnwX4mtKdWCBE/uT4amg==}
+  /@babel/helper-plugin-utils@7.24.0:
+    resolution: {integrity: sha512-9cUznXMG0+FxRuJfvL82QlTqIzhVW9sL0KjMPHhAOOvpQGL8QtdxnBKILjBqxlHyliz0yCa1G903ZXI/FuHy2w==}
     engines: {node: '>=6.9.0'}
     dev: false
 
@@ -1349,14 +1379,14 @@ packages:
     resolution: {integrity: sha512-n0H99E/K+Bika3++WNL17POvo4rKWZ7lZEp1Q+fStVbUi8nxPQEBOlTmCOxW/0JsS56SKKQ+ojAe2pHKJHN35w==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.23.9
+      '@babel/types': 7.24.0
     dev: false
 
   /@babel/helper-split-export-declaration@7.22.6:
     resolution: {integrity: sha512-AsUnxuLhRYsisFiaJwvp1QF+I3KjD5FOxut14q/GzovUe6orHLesW2C7d754kRm53h5gqrz6sFl6sxc4BVtE/g==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.23.9
+      '@babel/types': 7.24.0
     dev: false
 
   /@babel/helper-string-parser@7.23.4:
@@ -1374,13 +1404,13 @@ packages:
     engines: {node: '>=6.9.0'}
     dev: false
 
-  /@babel/helpers@7.23.9:
-    resolution: {integrity: sha512-87ICKgU5t5SzOT7sBMfCOZQ2rHjRU+Pcb9BoILMYz600W6DkVRLFBPwQ18gwUVvggqXivaUakpnxWQGbpywbBQ==}
+  /@babel/helpers@7.24.0:
+    resolution: {integrity: sha512-ulDZdc0Aj5uLc5nETsa7EPx2L7rM0YJM8r7ck7U73AXi7qOV44IHHRAYZHY6iU1rr3C5N4NtTmMRUJP6kwCWeA==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/template': 7.23.9
-      '@babel/traverse': 7.23.9
-      '@babel/types': 7.23.9
+      '@babel/template': 7.24.0
+      '@babel/traverse': 7.24.0
+      '@babel/types': 7.24.0
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -1394,49 +1424,49 @@ packages:
       js-tokens: 4.0.0
     dev: false
 
-  /@babel/parser@7.23.9:
-    resolution: {integrity: sha512-9tcKgqKbs3xGJ+NtKF2ndOBBLVwPjl1SHxPQkd36r3Dlirw3xWUeGaTbqr7uGZcTaxkVNwc+03SVP7aCdWrTlA==}
+  /@babel/parser@7.24.0:
+    resolution: {integrity: sha512-QuP/FxEAzMSjXygs8v4N9dvdXzEHN4W1oF3PxuWAtPo08UdM17u89RDMgjLn/mlc56iM0HlLmVkO/wgR+rDgHg==}
     engines: {node: '>=6.0.0'}
     hasBin: true
     dependencies:
-      '@babel/types': 7.23.9
+      '@babel/types': 7.24.0
     dev: false
 
-  /@babel/plugin-syntax-jsx@7.23.3(@babel/core@7.23.9):
+  /@babel/plugin-syntax-jsx@7.23.3(@babel/core@7.24.0):
     resolution: {integrity: sha512-EB2MELswq55OHUoRZLGg/zC7QWUKfNLpE57m/S2yr1uEneIgsTgrSzXP3NXEsMkVn76OlaVVnzN+ugObuYGwhg==}
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
-      '@babel/core': 7.23.9
-      '@babel/helper-plugin-utils': 7.22.5
+      '@babel/core': 7.24.0
+      '@babel/helper-plugin-utils': 7.24.0
     dev: false
 
-  /@babel/plugin-transform-react-jsx@7.23.4(@babel/core@7.23.9):
+  /@babel/plugin-transform-react-jsx@7.23.4(@babel/core@7.24.0):
     resolution: {integrity: sha512-5xOpoPguCZCRbo/JeHlloSkTA8Bld1J/E1/kLfD1nsuiW1m8tduTA1ERCgIZokDflX/IBzKcqR3l7VlRgiIfHA==}
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
-      '@babel/core': 7.23.9
+      '@babel/core': 7.24.0
       '@babel/helper-annotate-as-pure': 7.22.5
       '@babel/helper-module-imports': 7.22.15
-      '@babel/helper-plugin-utils': 7.22.5
-      '@babel/plugin-syntax-jsx': 7.23.3(@babel/core@7.23.9)
-      '@babel/types': 7.23.9
+      '@babel/helper-plugin-utils': 7.24.0
+      '@babel/plugin-syntax-jsx': 7.23.3(@babel/core@7.24.0)
+      '@babel/types': 7.24.0
     dev: false
 
-  /@babel/template@7.23.9:
-    resolution: {integrity: sha512-+xrD2BWLpvHKNmX2QbpdpsBaWnRxahMwJjO+KZk2JOElj5nSmKezyS1B4u+QbHMTX69t4ukm6hh9lsYQ7GHCKA==}
+  /@babel/template@7.24.0:
+    resolution: {integrity: sha512-Bkf2q8lMB0AFpX0NFEqSbx1OkTHf0f+0j82mkw+ZpzBnkk7e9Ql0891vlfgi+kHwOk8tQjiQHpqh4LaSa0fKEA==}
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/code-frame': 7.23.5
-      '@babel/parser': 7.23.9
-      '@babel/types': 7.23.9
+      '@babel/parser': 7.24.0
+      '@babel/types': 7.24.0
     dev: false
 
-  /@babel/traverse@7.23.9:
-    resolution: {integrity: sha512-I/4UJ9vs90OkBtY6iiiTORVMyIhJ4kAVmsKo9KFc8UOxMeUfi2hvtIBsET5u9GizXE6/GFSuKCTNfgCswuEjRg==}
+  /@babel/traverse@7.24.0:
+    resolution: {integrity: sha512-HfuJlI8qq3dEDmNU5ChzzpZRWq+oxCZQyMzIMEqLho+AQnhMnKQUzH6ydo3RBl/YjPCuk68Y6s0Gx0AeyULiWw==}
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/code-frame': 7.23.5
@@ -1445,16 +1475,16 @@ packages:
       '@babel/helper-function-name': 7.23.0
       '@babel/helper-hoist-variables': 7.22.5
       '@babel/helper-split-export-declaration': 7.22.6
-      '@babel/parser': 7.23.9
-      '@babel/types': 7.23.9
+      '@babel/parser': 7.24.0
+      '@babel/types': 7.24.0
       debug: 4.3.4
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
     dev: false
 
-  /@babel/types@7.23.9:
-    resolution: {integrity: sha512-dQjSq/7HaSjRM43FFGnv5keM2HsxpmyV1PfaSVm0nzzjwwTmjOe6J4bC8e3+pTEIgHaHj+1ZlLThRJ2auc/w1Q==}
+  /@babel/types@7.24.0:
+    resolution: {integrity: sha512-+j7a5c253RfKh8iABBhywc8NSfP5LURe7Uh4qpsh6jc+aLJguvmIUBdjSdEMQv2bENrCR5MfRdjGo7vzS/ob7w==}
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/helper-string-parser': 7.23.4
@@ -3062,8 +3092,8 @@ packages:
   /@types/babel__core@7.20.5:
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
     dependencies:
-      '@babel/parser': 7.23.9
-      '@babel/types': 7.23.9
+      '@babel/parser': 7.24.0
+      '@babel/types': 7.24.0
       '@types/babel__generator': 7.6.8
       '@types/babel__template': 7.4.4
       '@types/babel__traverse': 7.20.5
@@ -3072,20 +3102,20 @@ packages:
   /@types/babel__generator@7.6.8:
     resolution: {integrity: sha512-ASsj+tpEDsEiFr1arWrlN6V3mdfjRMZt6LtK/Vp/kreFLnr5QH5+DhvD5nINYZXzwJvXeGq+05iUXcAzVrqWtw==}
     dependencies:
-      '@babel/types': 7.23.9
+      '@babel/types': 7.24.0
     dev: false
 
   /@types/babel__template@7.4.4:
     resolution: {integrity: sha512-h/NUaSyG5EyxBIp8YRxo4RMe2/qQgvyowRwVMzhYhBCONbW8PUsg4lkFMrhgZhUe5z3L3MiLDuvyJ/CaPa2A8A==}
     dependencies:
-      '@babel/parser': 7.23.9
-      '@babel/types': 7.23.9
+      '@babel/parser': 7.24.0
+      '@babel/types': 7.24.0
     dev: false
 
   /@types/babel__traverse@7.20.5:
     resolution: {integrity: sha512-WXCyOcRtH37HAUkpXhUduaxdm82b4GSlyTqajXviN4EfiuPgNYR109xMCKvpl6zPIpua0DGlMEDCq+g8EdoheQ==}
     dependencies:
-      '@babel/types': 7.23.9
+      '@babel/types': 7.24.0
     dev: false
 
   /@types/btoa-lite@1.0.2:
@@ -3365,8 +3395,8 @@ packages:
       unist-util-visit: 4.1.2
     dev: false
 
-  /astro@4.4.5(@types/node@20.11.21)(sass@1.71.1)(typescript@5.3.3):
-    resolution: {integrity: sha512-ccat42P5qr281JExywVsK/BLeKgwSL+oLxJP195s4Wvj3nL32djw+WNJNctuDDTJ5XWgvPdHZjBtSDNO5OgagQ==}
+  /astro@4.4.6(@types/node@20.11.21)(sass@1.71.1)(typescript@5.3.3):
+    resolution: {integrity: sha512-kns2TtiMYTyDPgcvtaQjMfBhY/F/2+O3eSX4XWH13FFQW1hp7AcTXfGwq8SvJ14JNoU4bsKeJbaB9CxUN9ZQlQ==}
     engines: {node: '>=18.14.1', npm: '>=6.14.0'}
     hasBin: true
     dependencies:
@@ -3374,12 +3404,12 @@ packages:
       '@astrojs/internal-helpers': 0.2.1
       '@astrojs/markdown-remark': 4.2.1
       '@astrojs/telemetry': 3.0.4
-      '@babel/core': 7.23.9
+      '@babel/core': 7.24.0
       '@babel/generator': 7.23.6
-      '@babel/parser': 7.23.9
-      '@babel/plugin-transform-react-jsx': 7.23.4(@babel/core@7.23.9)
-      '@babel/traverse': 7.23.9
-      '@babel/types': 7.23.9
+      '@babel/parser': 7.24.0
+      '@babel/plugin-transform-react-jsx': 7.23.4(@babel/core@7.24.0)
+      '@babel/traverse': 7.24.0
+      '@babel/types': 7.24.0
       '@medv/finder': 3.1.0
       '@types/babel__core': 7.20.5
       acorn: 8.11.3
@@ -5892,8 +5922,8 @@ packages:
     engines: {node: '>= 8'}
     dev: false
 
-  /mermaid-isomorphic@2.1.1:
-    resolution: {integrity: sha512-iShQaYYfGYakKs6fbwVjaTAaTVYm02aIvq8QZJFZMEJ18it2YMhW7QF23jLc1SgXHfVLbeWVoQ27jar2X8KP9g==}
+  /mermaid-isomorphic@2.1.2:
+    resolution: {integrity: sha512-56bgo4pexO4dxtGT0szLKkbHtPdgB2ZDhIZBV6tKT8J/NlyjLa2bTeT9t5Y2zeMgL0y68gCYCQvn9+tIFg6Cpw==}
     dependencies:
       '@fortawesome/fontawesome-free': 6.5.1
       mermaid: 10.8.0
@@ -6968,8 +6998,8 @@ packages:
       sass-formatter: 0.7.9
     dev: true
 
-  /prettier-plugin-svelte@3.2.1(prettier@3.2.5)(svelte@4.2.12):
-    resolution: {integrity: sha512-ENAPbIxASf2R79IZwgkG5sBdeNA9kLRlXVvKKmTXh79zWTy0KKoT86XO2pHrTitUPINd+iXWy12MRmgzKGVckA==}
+  /prettier-plugin-svelte@3.2.2(prettier@3.2.5)(svelte@4.2.12):
+    resolution: {integrity: sha512-ZzzE/wMuf48/1+Lf2Ffko0uDa6pyCfgHV6+uAhtg2U0AAXGrhCSW88vEJNAkAxW5qyrFY1y1zZ4J8TgHrjW++Q==}
     peerDependencies:
       prettier: ^3.0.0
       svelte: ^3.2.0 || ^4.0.0-next.0 || ^5.0.0-next.0
@@ -7093,7 +7123,7 @@ packages:
       '@types/hast': 3.0.4
       hast-util-from-html-isomorphic: 2.0.0
       hast-util-to-text: 4.0.0
-      mermaid-isomorphic: 2.1.1
+      mermaid-isomorphic: 2.1.2
       mini-svg-data-uri: 1.4.4
       space-separated-tokens: 2.0.2
       unified: 11.0.4

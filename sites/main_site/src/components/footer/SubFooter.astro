@@ -1,0 +1,19 @@
+---
+const { md_github_url } = Astro.props;
+---
+
+<footer class="subfooter bg-body-tertiary py-3">
+    <div class="container text-center">
+        {
+            md_github_url && (
+                <p class="mb-0">
+                    <i class="fab fa-github" /> Read this page on GitHub:
+                    <code>
+                        <a href={md_github_url}>{md_github_url}</a>
+                    </code>
+                </p>
+            )
+        }
+        <slot />
+    </div>
+</footer>
