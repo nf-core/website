@@ -92,7 +92,7 @@ If you have an idea for a new feature – [send us your request](https://github.
 
 ### Potential features:
 
-_Only if there is an actual demand ! Use the form below to indicate interest._
+_Only if there is an actual demand! Use the form below to indicate interest._
 
 - Import features from the [GDA (Genome Decomposition Analysis)](https://github.com/sanger-tol/gda) pipeline, for instance:
   - Low complexity repeats from `Dustmasker`

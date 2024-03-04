@@ -27,7 +27,7 @@ Follow the "Before you release" and "Steps to release" from the [nf-core release
 About version numbers and release names:
 
 1. The release _number_ is made of digits and dots **only**, and follows [Semantic Versioning](https://semver.org/).
-2. The release _name_ is whatever you want. It can be Harry Potter, Stargate, or Pokemon. Express your creativity ! You only need a new name for major and minor releases. Patch releases reuse the last name with the addition of `(patch ${PATCH_NUMBER})`.
+2. The release _name_ is whatever you want. It can be Harry Potter, Stargate, or Pokemon. Express your creativity! You only need a new name for major and minor releases. Patch releases reuse the last name with the addition of `(patch ${PATCH_NUMBER})`.
 3. The release _title_ you enter on GitHub must be of the form `v${RELEASE_NUMBER} - ${RELEASE_NAME}`. No need to include the pipeline name there, especially as it is added by Zenodo later.
 4. The release _description_ you enter on GitHub should be the same from what you have in the Changelog, e.g.:
 
