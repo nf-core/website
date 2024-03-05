@@ -27,6 +27,7 @@ Find the detailed information [here](https://nf-co.re/events/2024/hackathon-marc
 
 Business Development Center (BDC), Carl-Friedrich-Gauß-Ring 5, 69124, Heidelberg, Germany
 
+
 ## Organizational Information
 
 ### Schedule
@@ -89,7 +90,7 @@ Business Development Center (BDC), Carl-Friedrich-Gauß-Ring 5, 69124, Heidelber
             <tr>
                 <td data-timestamp="1679936400"  data-timeformat="HH:mm z">19:00</td>
                 <td>Social Dinner<br>Location: TBD</td>
-                <td>Seqera Pizza Dinner<br>Location: TBD</td>
+                <td>Seqera Pizza Dinner<br>Location: Mathematikon, Berliner Straße 41, 1st floor.</td>
                 <td></td>
             </tr>
         </tbody>
@@ -97,6 +98,10 @@ Business Development Center (BDC), Carl-Friedrich-Gauß-Ring 5, 69124, Heidelber
 </div>
 
 ### Food
+
+There will be bretzels/sweets for breakfast and sandwiches/wraps for lunch :) We plan to have options for vegan/vegeterias.
+
+Note: Please bring your own thermos/water bottles to help us not to waste paper cups.
 
 ### Material
 
