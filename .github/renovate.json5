@@ -4,7 +4,7 @@
     customManagers: [
         {
             customType: "regex",
-            fileMatch: ["\\.yaml$"],
+            fileMatch: ["^linting\\.yml$"],
             matchStrings: ["https://github.com/(?<depName>.*)/releases/download/(?<currentValue>.*)/.*.tar.gz"],
             datasourceTemplate: "github-release-attachments"
         }
