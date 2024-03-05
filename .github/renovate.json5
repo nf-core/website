@@ -1,4 +1,12 @@
 {
     $schema: "https://docs.renovatebot.com/renovate-schema.json",
-    extends: ["github>nf-core/ops//.github/renovate/default.json5", "config:recommended", "schedule:monthly"]
+    extends: ["github>nf-core/ops//.github/renovate/default.json5", "config:recommended", "schedule:monthly"],
+    customManagers: [
+        {
+            customType: "regex",
+            fileMatch: ["\\.yaml$"],
+            matchStrings: ["https://github.com/(?<depName>.*)/releases/download/(?<currentValue>.*)/.*.tar.gz"],
+            datasourceTemplate: "github-release-attachments"
+        }
+    ]
 }
