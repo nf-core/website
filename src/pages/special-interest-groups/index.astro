@@ -1,0 +1,19 @@
+---
+import ListingLayout from '@layouts/ListingLayout.astro';
+import SidebarNav from '@components/sidebar/SidebarNav.astro';
+import { getCollection } from 'astro:content';
+const groups = await getCollection('special-interest-groups');
+---
+
+<ListingLayout
+    title="Special Interest Groups"
+    description="nf-core Special Interest Groups are groups of community members who are interested in a particular aspect of nf-core, such as pipelines, tools, or community engagement."
+    specialInterestGroups={groups}
+    displayStyle={[
+        { name: 'grid', icon: 'fa-regular fa-grid-2' },
+        { name: 'table', icon: 'fa-regular fa-bars' },
+    ]}
+    viewTransitions={true}
+    filter={[]}
+    sortBy={[]}
+/>

@@ -1,0 +1,90 @@
+---
+import { getCollection } from 'astro:content';
+import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
+import SidebarStatsRow from '@components/sidebar/SidebarStatsRow.astro';
+import GitHubProfilePictureExtended from '@components/GitHubProfilePictureExtended.svelte';
+const groupEntries = await getCollection('special-interest-groups');
+export async function getStaticPaths() {
+    const groupEntries = await getCollection('special-interest-groups');
+    return groupEntries.map((entry) => ({
+        params: { slug: entry.slug },
+        props: { entry: entry, section: entry.slug.split('/')[0] },
+    }));
+}
+const { entry, section } = Astro.props;
+const { headings, Content } = await entry.render();
+const md_github_url = 'https://github.com/nf-core/website/blob/main/src/content/special-interest-groups/' + entry.id;
+const current_section = groupEntries.filter((group) => group.slug.split('/')[0] === section);
+
+// generate sections object from current_section, where the element whith an id ends with 'index' add it as section_name, else add it to the children of the current section
+const sections = [
+    {
+        section_name:
+            current_section.find((group) => group.id.includes('index.md'))?.data.title ?? current_section[0].data.title,
+        section_slug:
+            '/special-interest-groups/' + current_section.find((group) => group.id.includes('index.md'))?.slug,
+        children: current_section
+            .filter((group) => !group.id.includes('index.md'))
+            .map((group) => {
+                return {
+                    title: group.data.title,
+                    slug: '/special-interest-groups/' + group.slug,
+                };
+            }),
+    },
+];
+---
+
+<MarkdownTocLayout
+    title={entry.data.title}
+    subtitle={entry.data.subtitle}
+    {headings}
+    leftSidebar={true}
+    {md_github_url}
+    {sections}
+    viewTransitions={true}
+>
+    {
+        entry.id.includes('index.md') && (
+            <div slot="right-sidebar-top">
+                {(entry.data.pipelines?.length ?? 0) > 0 && (
+                    <SidebarStatsRow
+                        content={[
+                            {
+                                title: 'used pipelines',
+                            },
+                        ]}
+                    >
+                        <div class="mb-2">
+                            {entry.data.pipelines?.map((pipeline) => (
+                                <a
+                                    href={'/' + pipeline}
+                                    class="badge fw-normal border border-warning-subtle bg-warning-subtle text-body me-1 text-decoration-none"
+                                >
+                                    {pipeline}
+                                </a>
+                            ))}
+                        </div>
+                    </SidebarStatsRow>
+                )}
+                <SidebarStatsRow
+                    lastChild={true}
+                    content={[{ title: 'Group lead' + (entry.data.leads?.length > 1 ? 's' : '') }]}
+                >
+                    {entry.data.leads?.map((lead) => {
+                        if (typeof lead === 'string') {
+                            return <GitHubProfilePictureExtended username={lead} size={40} />;
+                        } else {
+                            return (
+                                <GitHubProfilePictureExtended username={Object.keys(lead)[0]} size={40}>
+                                    {Object.values(lead)[0]}
+                                </GitHubProfilePictureExtended>
+                            );
+                        }
+                    })}
+                </SidebarStatsRow>
+            </div>
+        )
+    }
+    <Content />
+</MarkdownTocLayout>
