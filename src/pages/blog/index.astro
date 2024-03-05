@@ -43,6 +43,7 @@ const sections = years.map((year) => {
             }),
     };
 });
+console.log(blogPosts[0].data.authors);
 ---
 
 <PageLayout
@@ -94,20 +95,10 @@ const sections = years.map((year) => {
                                         <a href={'/blog/' + post.slug} class="stretched-link" />
                                     </div>
                                     <div class="card-footer d-flex align-items-center justify-space-between">
-                                        <div class="me-auto">
-                                            {post.data.authors.length > 2 &&
-                                                post.data.authors.map((author) => (
-                                                    <GitHubProfilePicture
-                                                        image={'https://github.com/' + author + '.png'}
-                                                        name={author}
-                                                        circle={true}
-                                                        size={40}
-                                                    />
-                                                ))}
-                                            {post.data.authors.length <= 2 &&
-                                                post.data.authors.map((author) => (
-                                                    <GitHubProfilePictureExtended username={author} size={40} />
-                                                ))}
+                                        <div class="me-auto authors d-flex justify-content-start">
+                                            {post.data.authors.map((author) => (
+                                                <GitHubProfilePictureExtended username={author} size={40} />
+                                            ))}
                                         </div>
                                         <span class="text-body-secondary text-small">
                                             published at {new Date(post.data.pubDate).toLocaleDateString()}
@@ -134,5 +125,9 @@ const sections = years.map((year) => {
         .card {
             width: 100%;
         }
+    }
+    .authors {
+        max-width: 25rem;
+        width: 100%;
     }
 </style>

@@ -54,7 +54,7 @@
     .github-profile a {
         width: fit-content;
     }
-    @container github-profile (width < 5rem) {
+    @container github-profile (width < 7rem) {
         .profile-name {
             display: none;
         }

@@ -14,7 +14,7 @@
     const extraClasses = affiliation.length > 0 ? 'small' : '';
 </script>
 
-<div>
+<div class="w-100">
     <GitHubProfilePicture
         {wrapperClasses}
         linkClasses="btn btn-light rounded-pill mb-2 p-0 d-flex align-items-center"
