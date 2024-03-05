@@ -101,8 +101,8 @@ const {
     <div class="row">
         {
             leftSidebar && (
-                <div class="col-12 col-md-2 d-none d-md-block sidebar-left pt-1">
-                    <div class="sticky-top-under">
+                <div class="col-12 col-md-2 d-none d-md-block sidebar-left pt-1 sticky-top-under">
+                    <div class="">
                         {sidebarTitle && (
                             <div class="sidebar-title">
                                 <strong class="h6 p-2 text-body">{sidebarTitle}</strong>
@@ -130,7 +130,7 @@ const {
                         maxHeadingDepth={maxHeadingDepth}
                         client:idle
                     >
-                        <slot name="right-sidebar" />
+                        <slot name="right-sidebar-bottom" />
                     </SidebarToc>
                 </div>
             )
@@ -142,6 +142,9 @@ const {
     .markdown-content :global(img[loading='lazy']) {
         aspect-ratio: attr(width) / attr(height);
         height: auto;
+    }
+    .markdown-content {
+        max-width: 60rem;
     }
     :global(.admonition figure),
     :global(.admonition pre) {

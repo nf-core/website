@@ -1,5 +1,6 @@
 <script lang="ts">
     export let recentRelease: boolean = false;
+    export let footer: boolean = false;
 </script>
 
 <div class="card">
@@ -11,6 +12,11 @@
     <div class="card-body" class:pt-0={recentRelease}>
         <slot name="card-body" />
     </div>
+    {#if footer}
+        <div class="card-footer">
+            <slot name="card-footer" />
+        </div>
+    {/if}
 </div>
 
 <style lang="scss">
