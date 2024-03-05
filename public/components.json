@@ -4195,6 +4195,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -8046,10 +8050,6 @@
           "version": "3.4.0"
         },
         {
-          "name": "variantbenchmarking",
-          "version": "dev"
-        },
-        {
           "name": "variantcatalogue",
           "version": "dev"
         }
@@ -8734,13 +8734,7 @@
           "@joseespinosa",
           "@drpatelh"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "variantbenchmarking",
-          "version": "dev"
-        }
-      ]
+      }
     },
     {
       "name": "bcftools_merge",
@@ -9760,10 +9754,6 @@
           "version": "3.4.0"
         },
         {
-          "name": "variantbenchmarking",
-          "version": "dev"
-        },
-        {
           "name": "viralrecon",
           "version": "2.6.0"
         }
@@ -10089,10 +10079,6 @@
         {
           "name": "raredisease",
           "version": "1.1.1"
-        },
-        {
-          "name": "variantbenchmarking",
-          "version": "dev"
         }
       ]
     },
@@ -10517,13 +10503,7 @@
         "authors": [
           "@nvnieuwk"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "variantbenchmarking",
-          "version": "dev"
-        }
-      ]
+      }
     },
     {
       "name": "bedtools_bamtobed",
@@ -10876,10 +10856,6 @@
         {
           "name": "radseq",
           "version": "dev"
-        },
-        {
-          "name": "variantbenchmarking",
-          "version": "dev"
         }
       ]
     },
@@ -10990,10 +10966,6 @@
         {
           "name": "nascent",
           "version": "2.1.1"
-        },
-        {
-          "name": "variantbenchmarking",
-          "version": "dev"
         }
       ]
     },
@@ -11256,10 +11228,6 @@
         },
         {
           "name": "radseq",
-          "version": "dev"
-        },
-        {
-          "name": "variantbenchmarking",
           "version": "dev"
         }
       ]
@@ -11707,10 +11675,6 @@
         },
         {
           "name": "tfactivity",
-          "version": "dev"
-        },
-        {
-          "name": "variantbenchmarking",
           "version": "dev"
         },
         {
@@ -12205,10 +12169,6 @@
         {
           "name": "tfactivity",
           "version": "dev"
-        },
-        {
-          "name": "variantbenchmarking",
-          "version": "dev"
         }
       ]
     },
@@ -12293,13 +12253,7 @@
         "maintainers": [
           "@ekushele"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "variantbenchmarking",
-          "version": "dev"
-        }
-      ]
+      }
     },
     {
       "name": "bioawk",
@@ -33241,10 +33195,6 @@
           "version": "1.1.5"
         },
         {
-          "name": "variantbenchmarking",
-          "version": "dev"
-        },
-        {
           "name": "variantcatalogue",
           "version": "dev"
         },
@@ -38069,6 +38019,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -38794,6 +38748,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -43567,6 +43525,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -49394,6 +49356,71 @@
         "maintainers": [
           "@JoseEspinosa",
           "@samuelruizperez"
+        ]
+      }
+    },
+    {
+      "name": "geofetch",
+      "path": "modules/nf-core/geofetch/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "geofetch",
+        "description": "geofetch is a command-line tool that downloads and organizes data and metadata from GEO and SRA",
+        "keywords": [
+          "GEO",
+          "expression",
+          "microarray",
+          "sequencing"
+        ],
+        "tools": [
+          {
+            "geofetch": {
+              "description": "Downloads data and metadata from GEO and SRA and creates standard PEPs.",
+              "homepage": "http://geofetch.databio.org/",
+              "documentation": "http://geofetch.databio.org/",
+              "tool_dev_url": "https://github.com/pepkit/geofetch",
+              "licence": [
+                "BSD-2-clause"
+              ],
+              "args_id": "$args"
+            }
+          }
+        ],
+        "input": [
+          {
+            "geo_accession": {
+              "type": "string",
+              "description": "GEO accession ID"
+            }
+          }
+        ],
+        "output": [
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "geo_accession": {
+              "type": "string",
+              "description": "String with the GEO accession"
+            }
+          },
+          {
+            "samples": {
+              "type": "file",
+              "description": "List of sample files fetched",
+              "pattern": "${geo_accession}/*.CEL.gz"
+            }
+          }
+        ],
+        "authors": [
+          "@mribeirodantas"
+        ],
+        "maintainers": [
+          "@mribeirodantas"
         ]
       }
     },
@@ -61078,7 +61105,9 @@
               "homepage": "https://www.kallistobus.tools/",
               "documentation": "https://kb-python.readthedocs.io/en/latest/index.html",
               "tool_dev_url": "https://github.com/pachterlab/kb_python",
-              "licence": "MIT License"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -61112,22 +61141,22 @@
           {
             "t1c": {
               "type": "file",
-              "description": "kb ref's c1 spliced_t2c file",
+              "description": "kb ref's c1 cdna_t2c file",
               "pattern": "*.{cdna_t2c.txt}"
             }
           },
           {
             "t2c": {
               "type": "file",
-              "description": "kb ref's c2 unspliced_t2c file",
-              "pattern": "*.{introns_t2c.txt}"
+              "description": "kb ref's c2 intron_t2c file",
+              "pattern": "*.{intron_t2c.txt}"
             }
           },
           {
             "workflow_mode": {
               "type": "string",
-              "description": "String value defining workflow to use, can be one of \"standard\", \"lamanno\", \"nucleus\"",
-              "pattern": "{standard,lamanno,nucleus,kite}"
+              "description": "String value defining workflow to use, can be one of \"standard\", \"nac\", \"lamanno\" (obsolete)",
+              "pattern": "{standard,lamanno,nac}"
             }
           },
           {
@@ -61197,7 +61226,9 @@
               "documentation": "https://kb-python.readthedocs.io/en/latest/index.html",
               "tool_dev_url": "https://github.com/pachterlab/kb_python",
               "doi": "10.22002/D1.1876",
-              "licence": "MIT License"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -61219,8 +61250,8 @@
           {
             "workflow_mode": {
               "type": "string",
-              "description": "String value defining workflow to use, can be one of \"standard\", \"lamanno\", \"nucleus\"",
-              "pattern": "{standard,lamanno,nucleus}"
+              "description": "String value defining workflow to use, can be one of \"standard\", \"nac\", \"lamanno\" (obsolete)",
+              "pattern": "{standard,lamanno,nac}"
             }
           }
         ],
@@ -61249,28 +61280,28 @@
           {
             "cdna": {
               "type": "file",
-              "description": "Cdna fasta file",
+              "description": "cDNA fasta file",
               "pattern": "*cdna.{fa}"
             }
           },
           {
             "intron": {
               "type": "file",
-              "description": "intron fasta file",
+              "description": "Intron fasta file",
               "pattern": "*intron.{fa}"
             }
           },
           {
             "cdna_t2c": {
               "type": "file",
-              "description": "cdna transcript to capture file",
+              "description": "cDNA transcript to capture file",
               "pattern": "*cdna_t2c.{txt}"
             }
           },
           {
             "intron_t2c": {
               "type": "file",
-              "description": "intron transcript to capture file",
+              "description": "Intron transcript to capture file",
               "pattern": "*intron_t2c.{txt}"
             }
           }
@@ -90993,6 +91024,177 @@
         ],
         "maintainers": [
           "@ramprasadn"
+        ]
+      }
+    },
+    {
+      "name": "ribotish_predict",
+      "path": "modules/nf-core/ribotish/predict/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "ribotish_predict",
+        "description": "Quality control of riboseq bam data",
+        "keywords": [
+          "riboseq",
+          "predict",
+          "bam"
+        ],
+        "tools": [
+          {
+            "ribotish": {
+              "description": "Ribo TIS Hunter (Ribo-TISH) identifies translation activities using ribosome profiling data.",
+              "homepage": "https://github.com/zhpn1024/ribotish",
+              "documentation": "https://github.com/zhpn1024/ribotish",
+              "tool_dev_url": "https://github.com/zhpn1024/ribotish",
+              "doi": "10.1038/s41467-017-01981-8",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing riboseq sample information\ne.g. `[ id:'sample1', single_end:false ]\n"
+            }
+          },
+          {
+            "bam_ribo": {
+              "type": "file",
+              "description": "Sorted riboseq BAM file(s)",
+              "pattern": "*.{bam}"
+            }
+          },
+          {
+            "bai_ribo": {
+              "type": "file",
+              "description": "Index for sorted riboseq bam file(s)",
+              "pattern": "*.{bai}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing TI-Seq sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "bam_ti": {
+              "type": "file",
+              "description": "Sorted TI-Seq BAM file(s)",
+              "pattern": "*.{bam}"
+            }
+          },
+          {
+            "bai_ti": {
+              "type": "file",
+              "description": "Index for sorted TI-Seq BAM file(s)",
+              "pattern": "*.{bai}"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. `[ id:'Ensembl human v.111' ]`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Fasta-format sequence file for reference sequences used in the bam file\n",
+              "pattern": "*.gtf"
+            }
+          },
+          {
+            "gtf": {
+              "type": "file",
+              "description": "GTF-format annotation file for reference sequences used in the bam file\n",
+              "pattern": "*.gtf"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing information on candidate ORFs\n"
+            }
+          },
+          {
+            "candidate_orfs": {
+              "type": "file",
+              "description": "3-column (transID<tab>start<tab>tstop) candidate ORFs file\n",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "meta5": {
+              "type": "map",
+              "description": "Groovy Map containing information on riboseq P-site offfset parameter\nfiles\n"
+            }
+          },
+          {
+            "para_ribo": {
+              "type": "file",
+              "description": "Input P-site offset parameter files for riboseq bam files\n",
+              "pattern": "*.py"
+            }
+          },
+          {
+            "meta6": {
+              "type": "map",
+              "description": "Groovy Map containing information on TI-seq P-site offfset parameter\nfiles\n"
+            }
+          },
+          {
+            "para_ribo": {
+              "type": "file",
+              "description": "Input P-site offset parameter files for TI-seq bam files\n",
+              "pattern": "*.py"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "predictions": {
+              "type": "file",
+              "description": "txt file all possible ORF results that fit the thresholds\n",
+              "pattern": "*.{txt}"
+            }
+          },
+          {
+            "all": {
+              "type": "file",
+              "description": "txt file similar to the predictions but do not use FDR (q-value) cutoff\n",
+              "pattern": "*.{txt}"
+            }
+          },
+          {
+            "transprofile": {
+              "type": "file",
+              "description": "Output RPF P-site profile for each transcript. The profile data is in\npython dict format, recording non-zero read counts at different\npositions on transcript.\n",
+              "pattern": "*.{py}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
         ]
       }
     },
@@ -127572,6 +127774,10 @@
           "version": "1.1.0"
         },
         {
+          "name": "phaseimpute",
+          "version": "dev"
+        },
+        {
           "name": "riboseq",
           "version": "dev"
         },
@@ -127659,6 +127865,10 @@
         {
           "name": "pangenome",
           "version": "1.1.0"
+        },
+        {
+          "name": "phaseimpute",
+          "version": "dev"
         },
         {
           "name": "riboseq",
@@ -127778,6 +127988,10 @@
         {
           "name": "pangenome",
           "version": "1.1.0"
+        },
+        {
+          "name": "phaseimpute",
+          "version": "dev"
         },
         {
           "name": "riboseq",
