@@ -16,8 +16,15 @@ jobs:
       - run: npm install --only=dev
       - uses: pre-commit/action@646c83fcd040023954eafda54b4db0192ce70507 # v3.0.0
   vale:
-    name: runner / vale
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
-      - uses: errata-ai/vale-action@reviewdog
+      - name: Install Vale
+        run: |
+          wget https://github.com/errata-ai/vale/releases/download/v3.0.5/vale_3.0.5_Linux_64-bit.tar.gz -O vale.tar.gz
+          tar -xvzf vale.tar.gz vale
+          rm vale.tar.gz
+      - name: Spell check
+        run: |
+          ./vale sync
+          ./vale ${{inputs.DOC_SRC}}
