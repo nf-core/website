@@ -2,7 +2,10 @@
 import ListingLayout from '@layouts/ListingLayout.astro';
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
 import { getCollection } from 'astro:content';
-const groups = await getCollection('special-interest-groups');
+let groups = await getCollection('special-interest-groups');
+groups = groups
+    .filter((group) => group.id.includes('index.md'))
+    .sort((a, b) => a.data.title.localeCompare(b.data.title));
 ---
 
 <ListingLayout
