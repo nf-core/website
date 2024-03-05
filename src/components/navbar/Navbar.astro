@@ -10,7 +10,7 @@ import IconSocial from '@components/IconSocial.astro';
 import ThemeSwitch from '@components/ThemeSwitch.svelte';
 import { Icon } from 'astro-icon/components';
 import Search from '@components/navbar/Search.svelte';
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 
 export interface Props {
     navTocHeadings?: object[];
@@ -40,7 +40,7 @@ if (sections?.length > 0) {
     });
     const shortenedURL = url.replace(currentSection?.section_slug, '');
     const currentChild = shortenedURL
-        ? currentSection?.children.find((child) => {
+        ? currentSection?.children?.find((child) => {
               return url.startsWith(child.slug);
           })?.title
         : '';
@@ -48,9 +48,9 @@ if (sections?.length > 0) {
         navbarTitle = currentChild ? [currentSection?.section_name, currentChild] : [currentSection?.section_name];
     }
 }
-let newBlogPost = false;
+let newBlogPost: CollectionEntry<'blog'> | undefined;
 newBlogPost = await getCollection('blog').then((posts) => {
-    return posts.some(
+    return posts.find(
         (post) =>
             new Date(Date.now()) > new Date(post.data.pubDate) &&
             new Date(post.data.pubDate) > new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
@@ -94,12 +94,11 @@ newBlogPost = await getCollection('blog').then((posts) => {
                 <li class="nav-item p-1 px-3 px-xl-1">
                     <a class="nav-link" href="/">Home</a>
                 </li>
-                <li class="nav-item p-1 px-3 px-xl-1">
-                    <a class="nav-link" href="/pipelines/">Pipelines</a>
-                </li>
                 <li class="nav-item p-1 px-3 px-xl-1 dropdown">
                     <span class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"> Resources</span>
                     <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
+                        <a class="nav-link" href="/pipelines/">Pipelines</a>
+                        <li><hr class="dropdown-divider" /></li>
                         <li><span class="dropdown-header">Components</span></li>
                         <li><a class="dropdown-item" href="/modules/">Modules</a></li>
                         <li><a class="dropdown-item" href="/subworkflows/">Subworkflows</a></li>
@@ -152,33 +151,39 @@ newBlogPost = await getCollection('blog').then((posts) => {
                 </li>
                 <li class="nav-item p-1 px-3 px-xl-1 dropdown">
                     <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
-                        >{newBlogPost && <i class="fa-solid fa-circle fa-2xs text-primary" />} About</a
+                        >{newBlogPost && <i class="fa-solid fa-circle fa-2xs text-primary" />} Community</a
                     >
                     <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
-                        <li><span class="dropdown-header">Community</span></li>
-                        <li><a class="dropdown-item" href="/about/">About nf-core</a></li>
-                        <li>
-                            <a class="dropdown-item" href="/blog/"
-                                >Blog {
-                                    newBlogPost && (
-                                        <span class="float-end border border-primary text-primary rounded-pill px-2 small">
-                                            new post
-                                        </span>
-                                    )
-                                }</a
-                            >
-                            <li><a class="dropdown-item" href="/governance/">Governance</a></li>
-                            <li><a class="dropdown-item" href="/contributors/">Contributors</a></li>
-                            <li><a class="dropdown-item" href="/marketing/">Marketing</a></li>
-                            <li><a class="dropdown-item" href="/code_of_conduct/">Code of conduct</a></li>
-                            <li><hr class="dropdown-divider" /></li>
-                            <li><span class="dropdown-header">Initiatives</span></li>
-                            <li><a class="dropdown-item" href="/mentorships/">Mentorships</a></li>
-                            <li><a class="dropdown-item" href="/publications/">Publications</a></li>
-                            <li><a class="dropdown-item" href="/stats/">Statistics</a></li>
-                            <li><hr class="dropdown-divider" /></li>
-                            <li><a class="dropdown-item" href="/join/">Join nf-core</a></li>
+                        <li class="d-flex align-items-center">
+                            <a class="dropdown-item" href="/blog/">Blog</a>
+                            {
+                                newBlogPost && (
+                                    <a
+                                        href={'/blog/' + newBlogPost.slug}
+                                        class="float-end btn btn-outline-primary rounded-pill btn-sm text-nowrap text-decoration-none me-2"
+                                    >
+                                        new post
+                                    </a>
+                                )
+                            }
                         </li>
+                        <li><a class="dropdown-item" href="/special-interest-groups/">Special interest groups</a></li>
+                        <li><a class="dropdown-item" href="/mentorships/">Mentorships</a></li>
+                        <li><a class="dropdown-item" href="/contributors/">Contributors</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item p-1 px-3 px-xl-1 dropdown">
+                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">About</a>
+                    <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
+                        <li><a class="dropdown-item" href="/about/">About nf-core</a></li>
+                        <li><a class="dropdown-item" href="/governance/">Governance</a></li>
+                        <li><a class="dropdown-item" href="/marketing/">Marketing</a></li>
+                        <li><a class="dropdown-item" href="/code_of_conduct/">Code of conduct</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="/publications/">Publications</a></li>
+                        <li><a class="dropdown-item" href="/stats/">Statistics</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="/join/">Join nf-core</a></li>
                     </ul>
                 </li>
                 <div class="align-self-center d-none d-xl-block ms-auto">
