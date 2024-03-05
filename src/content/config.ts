@@ -122,6 +122,32 @@ const blog = defineCollection({
         }),
 });
 
+const specialInterestGroups = defineCollection({
+    schema: z
+        .object({
+            title: z.string(),
+            subtitle: z.string(),
+            // for index.md pages also require lead and pipelines
+            leads: z
+                .array(z.string())
+                .or(z.array(z.record(z.string())))
+                .optional(),
+            pipelines: z
+                .array(z.string())
+                .optional()
+                .transform((data) => {
+                    // sort the pipelines by name
+                    return data?.sort();
+                }),
+        })
+        .refine((data) => {
+            if (data?.leads && !data.pipelines) {
+                throw new Error('`pipelines` must be set if `leads` is');
+            }
+            return true;
+        }),
+});
+
 const pipelines = defineCollection({});
 
 const tools = defineCollection({});
@@ -133,4 +159,5 @@ export const collections = {
     pipelines: pipelines,
     blog: blog,
     tools: tools,
+    'special-interest-groups': specialInterestGroups,
 };
