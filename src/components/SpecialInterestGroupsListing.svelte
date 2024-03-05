@@ -11,7 +11,6 @@
     export let groups: CollectionEntry<'special-interest-groups'>[] = [];
 
     let filteredGroups = groups;
-    console.log(filteredGroups);
 </script>
 
 <div class="listing px-2 py-4">
