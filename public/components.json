@@ -4199,6 +4199,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -38023,6 +38027,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -38748,6 +38756,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -43525,6 +43537,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -96154,24 +96170,38 @@
             }
           },
           {
-            "markdup": {
+            "bam": {
               "type": "file",
-              "description": "Sorted and duplicate marked BAM/CRAM file",
-              "pattern": "*.{bam, cram}"
+              "description": "Sorted and duplicate marked BAM file",
+              "pattern": "*.bam"
             }
           },
           {
-            "markdup_index": {
+            "cram": {
               "type": "file",
-              "description": "Sorted and duplicate marked BAM/CRAM file",
-              "pattern": "*.{bai, crai}"
+              "description": "Sorted and duplicate marked CRAM file",
+              "pattern": "*.cram"
+            }
+          },
+          {
+            "csi": {
+              "type": "file",
+              "description": "Sorted and duplicate marked BAM index file",
+              "pattern": "*.csi"
+            }
+          },
+          {
+            "crai": {
+              "type": "file",
+              "description": "Sorted and duplicate marked CRAM index file",
+              "pattern": "*.crai"
             }
           },
           {
             "metrics": {
               "type": "file",
               "description": "Duplicate metrics file",
-              "pattern": "*.{metrics}"
+              "pattern": "*.metrics"
             }
           },
           {
