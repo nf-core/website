@@ -83,7 +83,7 @@ console.log(blogPosts[0].data.authors);
                                             transition:name="cover-image"
                                         />
                                     )}
-                                    <div class="card-body">
+                                    <div class="card-body position-relative">
                                         <h2 transition:name="title">{post.data.title}</h2>
                                         <p class="lead">{post.data.subtitle}</p>
                                         <p class="card-text small">
@@ -94,13 +94,17 @@ console.log(blogPosts[0].data.authors);
                                         </p>
                                         <a href={'/blog/' + post.slug} class="stretched-link" />
                                     </div>
-                                    <div class="card-footer d-flex align-items-center justify-space-between">
-                                        <div class="me-auto authors d-flex justify-content-start">
+                                    <div class="card-footer d-flex justify-content-between">
+                                        <div class="me-auto authors d-flex flex-grow-1">
                                             {post.data.authors.map((author) => (
-                                                <GitHubProfilePictureExtended username={author} size={40} />
+                                                <GitHubProfilePictureExtended
+                                                    username={author}
+                                                    size={40}
+                                                    wrapperClasses={'flex-grow-1'}
+                                                />
                                             ))}
                                         </div>
-                                        <span class="text-body-secondary text-small">
+                                        <span class="text-body-secondary text-small text-end flex-grow-1">
                                             published at {new Date(post.data.pubDate).toLocaleDateString()}
                                         </span>
                                     </div>
@@ -127,7 +131,6 @@ console.log(blogPosts[0].data.authors);
         }
     }
     .authors {
-        max-width: 25rem;
         width: 100%;
     }
 </style>
