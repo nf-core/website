@@ -7,7 +7,7 @@ subtitle: Where and how we develop our pipelines
 
 ### Repository organisation
 
-The main branch of our repository is called `main`, following the new GitHub convention, as opposite to `master` in [nf-core/modules](https://github.com/nf-core/modules).
+The default branch of our repository is called `main`, following the new GitHub convention, as opposite to `master` in [nf-core/modules](https://github.com/nf-core/modules).
 
 The `main` and `dev` branches are "protected" and can only be modified with pull-requests.
 
