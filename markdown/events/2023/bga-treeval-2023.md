@@ -8,7 +8,7 @@ end_date: '2023-09-08'
 end_time: '15:00+01:00'
 location_name: Biodiversity Genomics Academy 2023
 location: https://bga23.org/
-youtubeEmbed: https://youtu.be/gAzpMN87adk
+youtube_embed: https://youtu.be/gAzpMN87adk
 ---
 
 TreeVal is a pipeline created to generate supplemental information which will aid in the curation of high-quality genomes.
