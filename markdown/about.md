@@ -14,7 +14,7 @@ The Informatics Infrastructure team provides support for the production of refer
 
 The team is organised in three poles.
 
-📂 **Data management**: Our data curators and managers maintain the integrity, consistency, and quality, or multiple databases used in production, including Genomes on a Tree (GoaT), Sample Tracking System (STS), Collaborative Open Plant Omics (COPO), and BioSamples.
+📂 **Data management**: Our data curators and managers maintain the integrity, consistency, and quality, or multiple databases used in production, including [Genomes on a Tree (GoaT)](/tools#genomes-on-a-tree-goat), [Collaborative Open Plant Omics (COPO)](https://copo-project.org/), the [European Nucleotide Archive](https://www.ebi.ac.uk/ena/browser/home), and our internal sample-tracking systems.
 
 💻 **Bioinformatics**: Our bioinformaticians develop the suite of analysis pipelines that will run on every genome produced in Tree of Life, providing a central database of core results available for all.
 
