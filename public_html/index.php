@@ -309,7 +309,7 @@ endif;
             <h5 class="card-title">Portable and cloud-compatible</h5>
             <p class="card-text">Pipelines follow best-practices to ensure maximum
             portability. You can run the pipelines on any Nextflow supported cloud
-            provider. We test all our pipelines via Nextflow Tower before release.
+            provider. We test all our pipelines via Seqera Platform before release.
             </p>
           </div>
           <i class="fas fa-server fa-5x text-success ms-3"></i>

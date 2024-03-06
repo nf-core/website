@@ -71,7 +71,7 @@ $embed_video = array_values($embed_video)[0];
                     <button class="nav-link text-muted" id="nf-tab" data-bs-toggle="tab" data-bs-target="#nf" type="button" role="tab" aria-controls="nf" aria-selected="false">Nextflow</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link text-muted" id="tw-tab" data-bs-toggle="tab" data-bs-target="#tw" type="button" role="tab" aria-controls="tw" aria-selected="false">Tower</button>
+                    <button class="nav-link text-muted" id="tw-tab" data-bs-toggle="tab" data-bs-target="#tw" type="button" role="tab" aria-controls="tw" aria-selected="false">Seqera Platform</button>
                 </li>
             </ul>
             <div class="tab-content mt-2">
@@ -94,7 +94,7 @@ $embed_video = array_values($embed_video)[0];
                         <input type="text" class="form-control input-sm code  rounded-0" id="pipeline-tw-run-cmd-text" data-autoselect="" value="tw launch https://github.com/sanger-tol/<?php echo $pipeline->name .
                             $release_cmd; ?>" aria-label="Copy run command" readonly="">
                             <button class="btn btn-outline-secondary copy-txt rounded-0" data-bs-target="pipeline-tw-run-cmd-text" data-bs-toggle="tooltip" data-bs-placement="left" title="Copy to clipboard" type="button"><i class="fas fa-clipboard px-1"></i></button>
-                </div><p class="text-muted">Read how to configure the Tower CLI <u><a href='https://github.com/seqeralabs/tower-cli/#2-configuration' target="_blank">here</a></u>.</p></div>
+                </div><p class="text-muted">Read how to configure the Seqera Platform CLI <u><a href='https://github.com/seqeralabs/tower-cli/#2-configuration' target="_blank">here</a></u>.</p></div>
             </div>
         </div>
     </div>

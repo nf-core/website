@@ -171,11 +171,11 @@ Software versions must be static and stable. Labels such as `latest`, `dev`, `ma
 
 ### Continuous integration testing
 
-Pipelines must have automated continuous integration testing, running using GitHub Actions. There must be a small dataset that can be tested on GitHub directly, and a larger one that can be tested on the Sanger farm using Nextflow Tower.
+Pipelines must have automated continuous integration testing, running using GitHub Actions. There must be a small dataset that can be tested on GitHub directly, and a larger one that can be tested on the Sanger farm using Seqera Platform.
 
 There must be a config `profile` called `test` that should be as comprehensive as possible - that is, it should run as much of the pipeline as possible. It should use as tiny test data set as possible (even if the output that it creates is meaningless).
 
-Then, we configure the integration with Nextflow Tower to allow testing the larger dataset (`test_full`) on the Sanger LSF farm. To set up that up, first add the profile `cleanup { cleanup = true }` to your `nextflow.config` (right at the beginning of the `profiles` section). This is to control the amount of space taken on Lustre. Then, copy the two files [`sanger_test.yml`](https://github.com/sanger-tol/insdcdownload/blob/dev/.github/workflows/sanger_test.yml) and [`sanger_test_full.yml`](https://github.com/sanger-tol/insdcdownload/blob/dev/.github/workflows/sanger_test_full.yml) to your `.github/workflows/`. Ask @muffato to enable the Tower integration for your repository.
+Then, we configure the integration with Seqera Platform to allow testing the larger dataset (`test_full`) on the Sanger LSF farm. To set up that up, first add the profile `cleanup { cleanup = true }` to your `nextflow.config` (right at the beginning of the `profiles` section). This is to control the amount of space taken on Lustre. Then, copy the two files [`sanger_test.yml`](https://github.com/sanger-tol/insdcdownload/blob/dev/.github/workflows/sanger_test.yml) and [`sanger_test_full.yml`](https://github.com/sanger-tol/insdcdownload/blob/dev/.github/workflows/sanger_test_full.yml) to your `.github/workflows/`. Ask @muffato to enable the Seqera Platform integration for your repository.
 
 ### Semantic versioning
 
