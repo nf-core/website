@@ -82,7 +82,7 @@ $ prettier --version
 ```
 
 Java programs are not really allowed to run on the head nodes so you will have to submit all your Nextflow commands on LSF.
-When developing a pipeline, you may want to do all your development from an interactive job.
+When developing a pipeline, you may want to do all your development from an interactive LSF job.
 
 In our experience, `nextflow run` commands need 1 CPU and 6 GB RAM for themselves, but of course more if you want to use the "local" executor.
 For all sanger-tol and nf-core pipelines, we recommend using the ["sanger" profile](https://github.com/nf-core/configs/blob/master/conf/sanger.config)
