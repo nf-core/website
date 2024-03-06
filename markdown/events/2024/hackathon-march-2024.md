@@ -10,7 +10,7 @@ location_name: Rosalind Franklin Pavilion, Conference Centre, Wellcome Genome Ca
 address: Wellcome Genome Campus, Hinxton CB10 1SA
 location_rul: https://www.wellcomegenomecampus.org
 location_latlng: [52.079047, 0.187607]
-importTypeform: true
+import_typeform: true
 ---
 
 Local event to be held at the [Wellcome Genome Campus, Cambridge](https://goo.gl/maps/k3fuhxd6R8Tnuoay8).
