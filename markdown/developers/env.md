@@ -63,6 +63,7 @@ $ nf-core --version
 
 
 nf-core, version 2.11.1
+
 $ nf-test version
 🚀 nf-test 0.8.2
 https://code.askimed.com/nf-test
