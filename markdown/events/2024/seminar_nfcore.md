@@ -2,10 +2,10 @@
 title: 'Informatics Seminar: nf-core: what it is and isn\'t'
 subtitle: Matthieu Muffato
 type: talk
-startDate: '2024-01-30'
-startTime: '11:00+00:00'
-endDate: '2024-01-30'
-endTime: '12:00+00:00'
+start_date: '2024-01-30'
+start_time: '11:00+00:00'
+end_date: '2024-01-30'
+end_time: '12:00+00:00'
 location: Zoom
 ---
 

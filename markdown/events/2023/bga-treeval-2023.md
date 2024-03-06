@@ -2,10 +2,10 @@
 title: 'The Treeval pipeline: Generating evidence for manual curation'
 subtitle: Damon-Lee Pointon, Ying Sims, Will Eagles
 type: talk
-startDate: '2023-09-08'
-startTime: '14:00+01:00'
-endDate: '2023-09-08'
-endTime: '15:00+01:00'
+start_date: '2023-09-08'
+start_time: '14:00+01:00'
+end_date: '2023-09-08'
+end_time: '15:00+01:00'
 location_name: Biodiversity Genomics Academy 2023
 location: https://bga23.org/
 youtubeEmbed: https://youtu.be/gAzpMN87adk

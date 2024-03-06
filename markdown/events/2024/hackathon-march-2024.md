@@ -2,14 +2,14 @@
 title: Hackathon - March 2024 (Cambridge)
 subtitle: Local node of the nf-core hackathon at the Wellcome Genome Campus, Cambridge.
 type: hackathon
-startDate: '2024-03-18'
-startTime: '09:30+00:00'
-endDate: '2024-03-19'
-endTime: '16:30+00:00'
-locationName: Rosalind Franklin Pavilion, Conference Centre, Wellcome Genome Campus
+start_date: '2024-03-18'
+start_time: '09:30+00:00'
+end_date: '2024-03-19'
+end_time: '16:30+00:00'
+location_name: Rosalind Franklin Pavilion, Conference Centre, Wellcome Genome Campus
 address: Wellcome Genome Campus, Hinxton CB10 1SA
-locationURL: https://www.wellcomegenomecampus.org
-locationLatLng: [52.079047, 0.187607]
+location_rul: https://www.wellcomegenomecampus.org
+location_latlng: [52.079047, 0.187607]
 importTypeform: true
 ---
 

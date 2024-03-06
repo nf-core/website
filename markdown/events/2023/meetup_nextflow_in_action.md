@@ -2,13 +2,13 @@
 title: 'Nextflow in Action'
 subtitle: Matthieu Muffato, Luke Paul Buttigieg and Ricardo Ramirez
 type: talk
-startDate: '2023-10-12'
-startTime: '14:00+01:00'
-endDate: '2023-10-12'
-endTime: '15:00+01:00'
+start_date: '2023-10-12'
+start_time: '14:00+01:00'
+end_date: '2023-10-12'
+end_time: '15:00+01:00'
 location_name: Green Room, Hinxton Hall, Wellcome Genome Campus
 location: https://sanger.zoom.us/j/96537565366?pwd=UWpYVVdsbTZFREZkbndaZGNkNGJrdz09
-youtubeEmbed: https://youtu.be/w4RGam3T8iQ
+youtube_embed: https://youtu.be/w4RGam3T8iQ
 ---
 
 **Matthieu Muffato, Tree of Life, Wellcome Sanger Institute**
