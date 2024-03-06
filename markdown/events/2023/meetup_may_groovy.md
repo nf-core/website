@@ -1,7 +1,7 @@
 ---
 title: 'Workflows Community Meetup - All Things Groovy'
 subtitle: Supercharge your Nextflow pipelines with Groovy – Sateesh Peri (nf-core) and Simon Murray (Wellcome Sanger Institute)
-type: talk
+type: tutorial
 start_date: '2023-05-23'
 start_time: '15:00 CET'
 end_date: '2023-05-23'

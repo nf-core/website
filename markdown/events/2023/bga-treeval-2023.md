@@ -1,7 +1,7 @@
 ---
 title: 'The Treeval pipeline: Generating evidence for manual curation'
 subtitle: Damon-Lee Pointon, Ying Sims, Will Eagles
-type: talk
+type: tutorial
 start_date: '2023-09-08'
 start_time: '14:00+01:00'
 end_date: '2023-09-08'
