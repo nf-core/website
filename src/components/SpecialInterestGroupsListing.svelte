@@ -30,8 +30,8 @@
                                 >{group.data.title}</a
                             >
                             <p slot="card-body">{group.data.subtitle}</p>
-                            <div slot="card-footer" class="d-flex align-items-start">
-                                <div class="pipeline-badges small flex-grow-1 border-end me-3 h-100">
+                            <div slot="card-footer" class="grid align-content-start">
+                                <div class="pipeline-badges small g-col-8">
                                     {#if group.data.pipelines}
                                         <p class="text-muted small mb-1">Pipelines:</p>
                                         {#each group.data.pipelines as pipeline}
@@ -39,22 +39,30 @@
                                         {/each}
                                     {/if}
                                 </div>
-                                <div class="leads w-75 small text-end">
+                                <div class="small g-col-4">
                                     {#if group.data.leads}
                                         <p class="text-muted small mb-2">Group leads:</p>
-                                        {#each group.data.leads as lead}
-                                            {#if typeof lead === 'string'}
-                                                <GitHubProfilePictureExtended username={lead} size={25} />
-                                            {:else}
-                                                <GitHubProfilePictureExtended
-                                                    username={Object.keys(lead)[0]}
-                                                    size={25}
-                                                    wrapperClasses=" justify-content-end"
-                                                >
-                                                    {Object.values(lead)[0]}
-                                                </GitHubProfilePictureExtended>
-                                            {/if}
-                                        {/each}
+                                        <div class="leads d-flex flex-wrap w-100">
+                                            {#each group.data.leads as lead}
+                                                {#if typeof lead === 'string'}
+                                                    <GitHubProfilePictureExtended
+                                                        username={lead}
+                                                        size={25}
+                                                        wrapperClasses="flex-grow-1"
+                                                        labelClasses=""
+                                                    />
+                                                {:else}
+                                                    <GitHubProfilePictureExtended
+                                                        username={Object.keys(lead)[0]}
+                                                        size={25}
+                                                        wrapperClasses="flex-grow-1"
+                                                        labelClasses=""
+                                                    >
+                                                        {Object.values(lead)[0]}
+                                                    </GitHubProfilePictureExtended>
+                                                {/if}
+                                            {/each}
+                                        </div>
                                     {/if}
                                 </div>
                             </div></ListingCard

@@ -12,7 +12,7 @@
     const avatar_url = image.match(/\?/) ? `${image}&s=${size}` : `${image}?s=${size}`;
 </script>
 
-<div class={'github-profile d-flex ' + wrapperClasses}>
+<div class={'github-profile ' + wrapperClasses}>
     <a
         href="https://github.com/{name}"
         class={'text-decoration-none d-block overflow-scroll ' + linkClasses}
@@ -48,15 +48,22 @@
     .github-profile {
         container-type: inline-size;
         container-name: github-profile;
-        width: 100%;
         // min-width: 15rem;
     }
     .github-profile a {
         width: fit-content;
     }
     @container github-profile (width < 7rem) {
-        .profile-name {
+        :global(.profile-name) {
             display: none;
+        }
+    }
+    :global(.github-profile:hover) {
+        z-index: 1000;
+        :global(.profile-name) {
+            display: block !important;
+
+            z-index: 1000;
         }
     }
 </style>
