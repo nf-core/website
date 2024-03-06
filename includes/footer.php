@@ -86,16 +86,16 @@ if (isset($subfooter) and $subfooter) {
 
       </div>
       <div class="col-sm-6 col-lg-3 offset-lg-1 mb-3 d-print-none">
-        <h5>About sanger-tol</h5>
+        <h5>Our documentation</h5>
         <ul class="list-unstyled">
-          <li><a href="/pipelines">Available pipelines</a></li>
-          <li><a href="/tools">Our tools</a></li>
-          <li><a href="/docs/contributing/modules">Writing modules</a></li>
-          <li><a href="/docs/contributing/review_checklist">Reviewing pipelines</a></li>
+          <li><a href="/pipelines">Pipelines</a></li>
+          <li><a href="/tools">Tools</a></li>
+          <li><a href="/docs/contributing/modules">Modules</a></li>
+          <li><a href="/docs/contributing/review_checklist">Code review</a></li>
         </ul>
       </div>
       <div class="col-sm-6 col-lg-3 mb-3 d-print-none">
-        <h5>About nf-core</h5>
+        <h5>nf-core documentation</h5>
         <ul class="list-unstyled">
           <li><a href="https://nf-co.re/docs/usage/introduction">Getting started</a></li>
           <li><a href="https://nf-co.re/docs/usage/installation">Installation</a></li>
@@ -106,7 +106,7 @@ if (isset($subfooter) and $subfooter) {
         </ul>
       </div>
       <div class="col-sm-6 col-lg-2 mb-3 d-print-none">
-        <h5>About sanger-tol</h5>
+        <h5>More information</h5>
         <ul class="list-unstyled">
           <li><a href="/about">About sanger-tol</a></li>
           <li><a href="/events">Events</a></li>
