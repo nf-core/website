@@ -114,7 +114,7 @@ if (isset($subfooter) and $subfooter) {
           <li><a href="/stats">Statistics</a></li>
           <li><a href="/publications">Publications</a></li>
           <li><a href="/code_of_conduct">Code of conduct</a></li>
-          <li><a href="/connect" class="mt-1 btn btn-outline-success">Connect to sanger-tol</a></li>
+          <li><a href="/connect" class="mt-1 btn btn-outline-success">Connect with sanger-tol</a></li>
         </ul>
       </div>
     </div>

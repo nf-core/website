@@ -1,6 +1,6 @@
 <?php
 
-$title = 'Connect to sanger-tol';
+$title = 'Connect with sanger-tol';
 $subtitle = 'Read about the different ways you can get involved with sanger-tol';
 include '../includes/header.php';
 ?>
