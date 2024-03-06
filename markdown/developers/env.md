@@ -87,4 +87,5 @@ When developing a pipeline, you may want to do all your development from an inte
 In our experience, `nextflow run` commands need 1 CPU and 6 GB RAM for themselves, but of course more if you want to use the "local" executor.
 For all sanger-tol and nf-core pipelines, we recommend using the ["sanger" profile](https://github.com/nf-core/configs/blob/master/conf/sanger.config)
 which automatically activates LSF job submission using the appropriate queues based on each job's parameters.
-When asking Nextflow to submit jobs to LSF, please submit Nextflow itself to the `oversubscribed` queue so that it doesn't take unnecessary compute resources.
+When asking Nextflow to submit jobs to LSF, please submit the `nextflow run` command to the `oversubscribed` queue,
+which is designed for workflow managers, that it doesn't take unnecessary compute resources.
