@@ -10,8 +10,6 @@ Please note that all community members are expected to adhere to our [code of co
 
 ## Informatics Infrastructure team {#it}
 
-### Introduction {#it-intro}
-
 The Informatics Infrastructure team provides support for the production of reference genome assemblies and large-scale genome analyses in the Tree of Life programme, and helps with the management and use of informatics resources and digital solutions.
 
 The team is organised in three poles.
