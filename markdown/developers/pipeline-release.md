@@ -21,7 +21,7 @@ Follow the "Before you release" and "Steps to release" from the [nf-core release
 
 1. Replace "nf-core" with "sanger-tol".
 2. Since we develop directly off the sanger-tol repository, the version bump happens there, not "on your fork".
-3. The "core team member" who can activate the integration with Zenodo is @muffato.
+3. The "core team member" who can activate the integration with Zenodo is [@muffato](https://github.com/muffato).
 4. We don't have Twitter integration.
 
 About version numbers and release names:
@@ -74,7 +74,7 @@ Alternatively, GitHub can also generate release notes from the list of commits. 
 ## Integration with Zenodo
 
 Once you've made a release, a record is automatically created on Zenodo.
-Tell @muffato or @DLBPointon who can then do the following:
+Tell [@muffato](https://github.com/muffato) or [@DLBPointon](https://github.com/DLBPointon) who can then do the following:
 
 1. Check the release notes. Sometimes the conversion from Markdown doesn't work well, especially the tables. If this happens, copy-paste the rendered Markdwon from GitHub into the Zenodo editor.
 2. Change the record type from "Software" to "Workflow".
