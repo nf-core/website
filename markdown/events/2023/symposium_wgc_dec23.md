@@ -10,7 +10,7 @@ end_date: '2023-12-04'
 end_time: '18:00+00:00'
 location_name: Wellcome Genome Campus, Hinxton, UK
 location_latlng: [52.07800, 0.18683]
-youtube_embed: https://www.youtube.com/watch?v=oAdSpdUrJag
+youtube_embed: https://www.youtube.com/watch?v=e1UcnkI8-Fk
 ---
 
 # Welcome
@@ -72,3 +72,8 @@ See [Onsite Information](https://sites.google.com/ebi.ac.uk/nextflow2023/logisti
 The symposium will be broadcasted via Zoom webinar. Closer to the event, registered attendees will recive the Zoom details. Slack will be used for Q&A on the day.
 
 All [posters](https://sites.google.com/ebi.ac.uk/nextflow2023/posters) will be available on the sympsoium website.
+
+---
+
+All recordings are on [Youtube](https://www.youtube.com/playlist?list=PLo5QmrytFHLFLfHxHW9WiB8o5RRCmQdco).
+We (sanger-tol) gave a presentation on resource optimisation:
