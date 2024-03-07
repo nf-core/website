@@ -10,6 +10,8 @@ end_time: '13:00+02:00'
 location_name: Barcelona, Spain
 ---
 
+> Organised by [nf-core](https://nf-co.re/events/2022/hackathon-october-2022/)
+
 # Welcome
 
 Please join us for the October 2022 nf-core hackathon!

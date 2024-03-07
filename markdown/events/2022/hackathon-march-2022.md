@@ -11,6 +11,8 @@ location_name: Gather town and Slack.
 location_url: https://gather.town/
 ---
 
+> Organised by [nf-core](https://nf-co.re/events/2022/hackathon-march-2022/)
+
 # Welcome
 
 Please join us for the March 2022 nf-core hackathon!

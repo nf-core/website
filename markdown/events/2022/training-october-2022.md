@@ -11,6 +11,8 @@ location_url:
   - https://youtube.com/playlist?list=PL3xpfTVZLcNiqYQ41g0fvyTQazpafFvOn
 ---
 
+> Organised by [Seqera and nf-core](https://nf-co.re/events/2022/training-october-2022/)
+
 # Welcome
 
 Join us from October 3-5, 2022 for the Nextflow and nf-core training event!
