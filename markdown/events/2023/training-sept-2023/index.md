@@ -30,7 +30,7 @@ An in-person version of advanced training will be held on 27th September at the 
 
 The schedule for the in-person Wellcome Genome Campus event will differ from the schedule shown for the online event. The same content will be covered at both events, however, the content will be condensed into one day rather than spread across two.
 
-More information about this local event can be found [here](/events/2023/training-sept-2023/wgc).
+More information about this local event can be found [here](training-sept-2023/wgc).
 
 Registration for this in-person version of advanced training is now closed. Registration for the online version of the training is still open.
 
