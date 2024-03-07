@@ -4215,6 +4215,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -29142,6 +29146,132 @@
       }
     },
     {
+      "name": "dupradar",
+      "path": "modules/nf-core/dupradar/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "dupradar",
+        "description": "Assessment of duplication rates in RNA-Seq datasets",
+        "keywords": [
+          "rnaseq",
+          "duplication",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "dupradar": {
+              "description": "Assessment of duplication rates in RNA-Seq datasets",
+              "homepage": "https://bioconductor.org/packages/release/bioc/html/dupRadar.html",
+              "documentation": "https://bioconductor.org/packages/release/bioc/vignettes/dupRadar/inst/doc/dupRadar.html",
+              "tool_dev_url": "https://github.com/ssayols/dupRadar",
+              "doi": "10.1186/s12859-016-1276-2",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "BAM/SAM file containing read alignments",
+              "pattern": "*.{bam}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'human' ]\n"
+            }
+          },
+          {
+            "gtf": {
+              "type": "file",
+              "description": "Genomic features annotation in GTF or SAF",
+              "pattern": "*.{gtf}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "scatter2d": {
+              "type": "file",
+              "description": "PDF duplication rate against total read count plot",
+              "pattern": "*_duprateExpDens.pdf"
+            }
+          },
+          {
+            "boxplot": {
+              "type": "file",
+              "description": "PDF duplication rate ~ total reads per kilobase (RPK) boxplot\n",
+              "pattern": "*_duprateExpBoxplot.pdf"
+            }
+          },
+          {
+            "hist": {
+              "type": "file",
+              "description": "PDF expression histogram\n",
+              "pattern": "*.pdf"
+            }
+          },
+          {
+            "dupmatrix": {
+              "type": "file",
+              "description": "Text file containing tags falling on the features described in the GTF\nfile\n",
+              "pattern": "*_dupMatrix.txt"
+            }
+          },
+          {
+            "intercept_slope": {
+              "type": "file",
+              "description": "Text file containing intercept and slope from dupRadar modelling\n",
+              "pattern": "*_intercept_slope.txt"
+            }
+          },
+          {
+            "multiqc": {
+              "type": "file",
+              "description": "dupRadar files for passing to MultiQC\n",
+              "pattern": "*_multiqc.txt"
+            }
+          },
+          {
+            "session_info": {
+              "type": "file",
+              "description": "dump of R SessionInfo",
+              "pattern": "*.log"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
+        ]
+      }
+    },
+    {
       "name": "ectyper",
       "path": "modules/nf-core/ectyper/meta.yml",
       "type": "module",
@@ -38065,6 +38195,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -38790,6 +38924,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -43583,6 +43721,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -50420,7 +50562,9 @@
               "documentation": "https://odelaneau.github.io/GLIMPSE/commands.html",
               "tool_dev_url": "https://github.com/odelaneau/GLIMPSE",
               "doi": "10.1038/s41588-020-00756-0",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -50455,6 +50599,12 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing genomic map information\ne.g. [ map:'GRCh38' ]\n"
+            }
+          },
+          {
             "map": {
               "type": "file",
               "description": "File containing the genetic map.",
@@ -50484,7 +50634,7 @@
             }
           },
           {
-            "txt": {
+            "chunk_chr": {
               "type": "file",
               "description": "Tab delimited output txt file containing buffer and imputation regions.",
               "pattern": "*.{txt}"
@@ -78653,17 +78803,17 @@
             }
           },
           {
-            "output": {
+            "hla_type": {
               "type": "file",
-              "description": "OptiType Results Folder",
-              "pattern": "${prefix}"
+              "description": "HLA type",
+              "pattern": "${prefix}/*.tsv"
             }
           },
           {
-            "pdf": {
+            "coverage_plot": {
               "type": "file",
-              "description": "OptiType PDF Plots",
-              "pattern": "*.pdf"
+              "description": "OptiType coverage plot",
+              "pattern": "${prefix}/*.pdf"
             }
           }
         ],
@@ -78671,7 +78821,8 @@
           "@apeltzer"
         ],
         "maintainers": [
-          "@apeltzer"
+          "@apeltzer",
+          "@christopher-mohr"
         ]
       },
       "pipelines": [
@@ -94203,10 +94354,31 @@
             }
           },
           {
-            "alignment_index": {
+            "bam": {
               "type": "file",
-              "description": "filtered/converted BAM/CRAM file + index",
-              "pattern": "*{.bam/cram,.bai/crai}"
+              "description": "filtered/converted BAM file",
+              "pattern": "*{.bam}"
+            }
+          },
+          {
+            "cram": {
+              "type": "file",
+              "description": "filtered/converted CRAM file",
+              "pattern": "*{cram}"
+            }
+          },
+          {
+            "bai": {
+              "type": "file",
+              "description": "filtered/converted BAM index",
+              "pattern": "*{.bai}"
+            }
+          },
+          {
+            "crai": {
+              "type": "file",
+              "description": "filtered/converted CRAM index",
+              "pattern": "*{.crai}"
             }
           },
           {
@@ -94223,7 +94395,8 @@
         ],
         "maintainers": [
           "@FriederikeHanssen",
-          "@maxulysse"
+          "@maxulysse",
+          "@matthdsm"
         ]
       },
       "pipelines": [
