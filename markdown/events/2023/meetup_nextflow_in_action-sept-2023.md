@@ -13,7 +13,7 @@ location_name: BIC Conference Room
 
 # Nextflow in Action
 
-Join us for an engaging exploration of Nextflow in designing, executing, and managing complex bioinformatics workflows. Our meetups are a platform to exchange insights and delve into practical use cases. If you missed the previous sessions, you can watch the recordings on YouTube<https://www.youtube.com/playlist?list=PLo5QmrytFHLHUkBLviJykEHYE8ZKzJOm5>. This session includes:
+Join us for an engaging exploration of Nextflow in designing, executing, and managing complex bioinformatics workflows. Our meetups are a platform to exchange insights and delve into practical use cases. If you missed the previous sessions, you can watch the recordings on [YouTube](https://www.youtube.com/playlist?list=PLo5QmrytFHLHUkBLviJykEHYE8ZKzJOm5). This session includes:
 
 ##  Zahra Waheed and Ahmad Zyoud – Data Coordination and Archiving, EMBL–EBI
 
