@@ -13,6 +13,8 @@ youtube_embed: https://youtu.be/gAzpMN87adk
 
 > Organised by [Biodiversity Genomics Academy](https://bga23.org/)
 
+# Description
+
 TreeVal is a pipeline created to generate supplemental information which will aid in the curation of high-quality genomes.
 
 By the end of this session you will be able to:
