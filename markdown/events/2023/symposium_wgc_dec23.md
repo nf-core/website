@@ -27,41 +27,13 @@ You can register to attend the symposium in-person or online using the links on 
 
 Attendance is free for both online and in-person. You can find travel and further information on the [Logistics section](https://sites.google.com/ebi.ac.uk/nextflow2023/logistics).
 
-**In-person registration closes when sold out.**
-
-Register early to avoid disappointment!
-
-<a
-class="btn btn-success btn-lg mb-3"
-href="https://docs.google.com/forms/d/e/1FAIpQLSd60ndombsvt4hCe85wa34tgB-nNCJPIU3PSrwpgnoKYvmnKg/viewform"
-
->
-
-    <span>
-        <i class="fa-solid fa-id-card me-2"></i>
-        <span>Register now</span>
-    </span>
-
-</a>
+**Registration is now closed**
 
 # Abstract Submissions
 
 We invite abstracts that showcase development, implementation and deployment of Nextflow pipelines. We also encourage abstracts that extend Nextflow or nf-core tools. Both in progress or recently published work are welcome for oral and poster presentation.
 
-Only submissions for posters are still open.
-
-<a
-class="btn btn-success btn-lg mb-3"
-href="https://docs.google.com/forms/d/e/1FAIpQLSdpLMNAU3wXnJpxQSfcU-lY1RpZ3nu7-ZEWLqUYrswh_GzNFQ/viewform"
-
->
-
-    <span>
-        <i class="fa-solid fa-id-card me-2"></i>
-        <span>Submit Abstract</span>
-    </span>
-
-</a>
+**Abstract submission is now closed**
 
 # Schedule
 
