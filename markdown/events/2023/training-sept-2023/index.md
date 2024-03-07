@@ -10,6 +10,8 @@ location_name: YouTube
 import_yypeform: true
 ---
 
+> Co-organised with [nf-core](https://nf-co.re/events/2023/training-sept-2023)
+
 # Welcome
 
 Join us from September 27-28 2023 for the Community Advanced Nextflow Training event!
