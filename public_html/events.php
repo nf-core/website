@@ -6,17 +6,17 @@ use Spatie\CalendarLinks\Link;
 
 $md_base = dirname(dirname(__FILE__)) . '/markdown/';
 $event_type_classes = [
-    'bytesize' => 'success',
+    //'bytesize' => 'success',
     'hackathon' => 'primary',
-    'poster' => 'danger',
+    //'poster' => 'danger',
     'talk' => 'success',
     'tutorial' => 'info',
     'training' => 'warning',
 ];
 $event_type_icons = [
-    'bytesize' => 'fas fa-apple-core',
+    //'bytesize' => 'fas fa-apple-core',
     'hackathon' => 'fas fa-laptop-code',
-    'poster' => 'far fa-image',
+    //'poster' => 'far fa-image',
     'talk' => 'fas fa-presentation',
     'tutorial' => 'fas fa-graduation-cap',
     'training' => 'fas fa-chalkboard-teacher',
