@@ -3,7 +3,7 @@ title: Nextflow Symposium 2023
 subtitle: A hybrid symposium held on Wellcome Genome Campus in Cambridge and online
 type: talk
 announcement:
-    start: 2023-12-04T9:00:00+00:00
+  start: 2023-12-04T9:00:00+00:00
 start_date: '2023-12-04'
 start_time: '09:00+00:00'
 end_date: '2023-12-04'
@@ -30,13 +30,16 @@ Attendance is free for both online and in-person. You can find travel and furthe
 Register early to avoid disappointment!
 
 <a
-    class="btn btn-success btn-lg mb-3"
-    href="https://docs.google.com/forms/d/e/1FAIpQLSd60ndombsvt4hCe85wa34tgB-nNCJPIU3PSrwpgnoKYvmnKg/viewform"
+class="btn btn-success btn-lg mb-3"
+href="https://docs.google.com/forms/d/e/1FAIpQLSd60ndombsvt4hCe85wa34tgB-nNCJPIU3PSrwpgnoKYvmnKg/viewform"
+
 >
+
     <span>
         <i class="fa-solid fa-id-card me-2"></i>
         <span>Register now</span>
     </span>
+
 </a>
 
 # Abstract Submissions
@@ -46,13 +49,16 @@ We invite abstracts that showcase development, implementation and deployment of 
 Only submissions for posters are still open.
 
 <a
-    class="btn btn-success btn-lg mb-3"
-    href="https://docs.google.com/forms/d/e/1FAIpQLSdpLMNAU3wXnJpxQSfcU-lY1RpZ3nu7-ZEWLqUYrswh_GzNFQ/viewform"
+class="btn btn-success btn-lg mb-3"
+href="https://docs.google.com/forms/d/e/1FAIpQLSdpLMNAU3wXnJpxQSfcU-lY1RpZ3nu7-ZEWLqUYrswh_GzNFQ/viewform"
+
 >
+
     <span>
         <i class="fa-solid fa-id-card me-2"></i>
         <span>Submit Abstract</span>
     </span>
+
 </a>
 
 # Schedule
