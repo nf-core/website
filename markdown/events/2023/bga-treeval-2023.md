@@ -13,6 +13,12 @@ youtube_embed: https://youtu.be/gAzpMN87adk
 
 > Organised by [Biodiversity Genomics Academy](https://bga23.org/)
 
+# Introduction
+
+Biodiversity Genomics Academy 2023 (BGA23) is a series of free, open to all,
+online-only, short, interactive sessions on how to use the bioinformatics
+tools and approaches that underpin the [Earth Biogenome Project (EBP)](https://earthbiogenome.org/).
+
 # Description
 
 TreeVal is a pipeline created to generate supplemental information which will aid in the curation of high-quality genomes.
