@@ -15,7 +15,7 @@ location_name: BIC Conference Room
 
 Join us for an engaging exploration of Nextflow in designing, executing, and managing complex bioinformatics workflows. Our meetups are a platform to exchange insights and delve into practical use cases. If you missed the previous sessions, you can watch the recordings on [YouTube](https://www.youtube.com/playlist?list=PLo5QmrytFHLHUkBLviJykEHYE8ZKzJOm5). This session includes:
 
-##  Zahra Waheed and Ahmad Zyoud – Data Coordination and Archiving, EMBL–EBI
+## Zahra Waheed and Ahmad Zyoud – Data Coordination and Archiving, EMBL–EBI
 
 The COVID-19 pandemic highlighted the importance of sharing genomic data and metadata globally, through submission to public nucleotide sequence repositories. To date, over 12 million raw reads and assembled SARS-CoV-2 sequences have been submitted to the European Nucleotide Archive (ENA) alone, which are visible and retrievable from the COVID-19 Data Portal. The rapid sharing of this data (whilst keeping in line with recommended metadata standards) is key to efficient outbreak surveillance and sequence interpretation and helps to drive a more effective public health response. Thus, developing simple, user-friendly submission tools is valuable for lowering the barrier to data entry, and maximising the rate and volume of data shared for scientific research.
 

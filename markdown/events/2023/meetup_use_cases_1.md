@@ -27,5 +27,4 @@ Disha Lodha from Ensembl Metazoa at EMBL-EBI talks about how they are moving the
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ZczTUqApzmI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-
 Attend in person in BIC Conference Room (AB3-23,AB3-24) or via Zoom.
