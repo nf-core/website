@@ -25,7 +25,7 @@ It is our hope that these talks / videos will help us learn from the greater Nex
 
 **Adopting Nextflow in Sanger Tree of Life**
 
-Tree of Life is the latest scientific programme of the Wellcome Sanger Institute, aiming at producing reference genome assemblies for tens of thousands of species. We decided early on that Nextflow would be the workflow manager of choice - what an adventure it has been ! In this presentation, I will tell you about our journey, starting from training users, setting up development environments, right up to advertising our complete pipelines and reaching out to users outside of the department, with some insights into deploying and automating the pipelines.
+Tree of Life is the latest scientific programme of the Wellcome Sanger Institute, aiming at producing reference genome assemblies for tens of thousands of species. We decided early on that Nextflow would be the workflow manager of choice - what an adventure it has been! In this presentation, I will tell you about our journey, starting from training users, setting up development environments, right up to advertising our complete pipelines and reaching out to users outside of the department, with some insights into deploying and automating the pipelines.
 
 Recording: [YouTube](https://youtu.be/w4RGam3T8iQ)
 

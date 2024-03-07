@@ -38,7 +38,7 @@ Here is the decision tree you can use to decide whether to make a nf-core module
 ### Versioning
 
 Assign a version to each script independently, the simplest scheme being to start with 1.0 and incrementing it each time you change the script.
-To simplify maintenance of the script, the module, and the pipeline, we recommend implementing in each script a way of printing a short usage message and a version number. This will also help you remember what the script is for and what arguments to pass !
+To simplify maintenance of the script, the module, and the pipeline, we recommend implementing in each script a way of printing a short usage message and a version number. This will also help you remember what the script is for and what arguments to pass!
 
 Here is an example one-liner you can plug at the top of bash scripts
 
