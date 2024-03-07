@@ -9,10 +9,6 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule (.*)/$ /$1 [L,R=301]
 
-    # Return join names to join.php
-    RewriteCond %{REQUEST_URI} ^/join/(.*)$
-    RewriteRule ^(.*)$ /join.php?t=$1 [L,NC,QSA]
-
     # Event RSS feed
     RewriteCond %{REQUEST_URI} ^/events/rss$
     RewriteRule ^(.*)$ /events.php?rss [L,NC,QSA]

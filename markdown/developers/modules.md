@@ -3,11 +3,50 @@ title: Module Writing Guidelines
 subtitle: Guidelines on writing a sanger-tol compliant module
 ---
 
-## NF-Core Module Guidelines
+## nf-core Module Guidelines
 
-Generally, modules should conform to the [NF-Core Standards](https://nf-co.re/docs/contributing/modules#new-module-guidelines-and-pr-review-checklist). However, there are a small number of cases where this is not possible.
+Generally, modules should conform to the [nf-core standards](https://nf-co.re/docs/contributing/modules#new-module-guidelines-and-pr-review-checklist). However, there are a small number of cases where this is not possible.
 
 ## Sanger-tol additions
+
+### Pipeline dependencies
+
+To ensure the portability of our pipelines, all pipeline dependencies have to be wrapped into containers.
+Here is the decision tree you can use to decide how software are packaged and used in pipelines.
+
+<img src="/assets/img/developer-images/software-packaging.svg" alt="Software packaging decision tree">
+
+Reference URLs:
+
+- Conda search: <https://anaconda.org/>
+- BioContainers search: <https://biocontainers.pro/registry>
+- Docker hub search: <https://hub.docker.com/search?q=samtools&type=image>
+- quay.io (another registry of Docker containers, esp. all BioContainers) search: <https://quay.io/search?q=samtools>
+  - Our own container registry on quay.io: <https://quay.io/organization/sanger-tol>
+- Our own container registry on GitHub: <https://github.com/orgs/sanger-tol/packages>
+- Our internal container registry on GitLab: <https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images/container_registry/>
+- Repository of Singularity images by the Galaxy project (should contain all BioContainers): <https://depot.galaxyproject.org/singularity/>
+- Minimal Dockerfile for creating a container around a Conda package: <https://github.com/BioContainers/containers/blob/master/abyss/1.9.0/Dockerfile>
+- Instructions to create a new Docker image (when the tool's usage or scope is limited to sanger-tol): <https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images>
+
+### Nextflow wrapping
+
+Here is the decision tree you can use to decide whether to make a nf-core module or a local one, and how to ship a tool or script with the pipeline.
+
+<img src="/assets/img/developer-images/nextflow-wrapping.svg" alt="Nextflow wrapping decision tree">
+
+### Versioning
+
+Assign a version to each script independently, the simplest scheme being to start with 1.0 and incrementing it each time you change the script.
+To simplify maintenance of the script, the module, and the pipeline, we recommend implementing in each script a way of printing a short usage message and a version number. This will also help you remember what the script is for and what arguments to pass !
+
+Here is an example one-liner you can plug at the top of bash scripts
+
+```bash
+if [ $# -ne 2 ]; then echo -e "Script to extract a sequence from a Fasta file.\nUsage: $0 <fasta_path> <seq_name>\nVersion 1.0"; exit 1; fi
+```
+
+In Python, you can do the same with the `argparse` package like in [create_table.py#L13](https://github.com/sanger-tol/genomenote/blob/1.1.0/bin/create_table.py#L23).
 
 ### Pipeline Comments (Optional)
 
@@ -161,7 +200,7 @@ The original implementation of this module took a cram file and whilst reading, 
 
 Nextflow cannot manipulate a data stream passing between two modules. This required us to create a module to pre compute the 10,000 container regions of interest in the cram file (in the form of a csv) and pass these as arguments to the cram*et al* module. Whilst not as performant as the original implementation (due to the small overhead created by Nextflow and the csv generation between parameter generation and cram*et al*), this is much more performant (in terms of compute resources and IO impact) than splitting the cram file into n (( total number of container / 10,000 ) \* no. of cram files) number of files before further manipulation with the next 4 commands. This means that the TreeVal implementation is the best case scenario, as shown below.
 
-<img src="../../public_html/assets/img/developer-images/cram-et-al.png" alt="A comparison of the three different cram et al module implementations, first the original (and fastest), second the TreeVal and finally a wholly NF-Core implementation" width="600" height="500">
+<img src="/assets/img/developer-images/cram-et-al.png" alt="A comparison of the three different cram et al module implementations, first the original (and fastest), second the TreeVal and finally a wholly nf-core implementation" width="600" height="500">
 
 #### Reasons for:
 

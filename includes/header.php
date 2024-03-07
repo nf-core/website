@@ -135,34 +135,24 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
       </button>
       <div class="collapse navbar-collapse justify-content-md-center" id="navbarCollapse">
         <ul class="navbar-nav">
-            
+
           <li class="nav-item p-1">
             <a class="nav-link" href="/">Home</a>
           </li>
 
-          <li class="nav-item p-1 dropdown">
-            <a class="nav-link dropdown-toggle" href="/about" role="button" data-bs-toggle="dropdown">Teams</a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="/it">Informatics Infrastructure (IT)</a>
-            </div>
-	      </li>
-            
-          <li class="nav-item p-1 dropdown">
-            <a class="nav-link dropdown-toggle" href="/about" role="button" data-bs-toggle="dropdown">Projects</a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="/genome_after_party">Genome After Party</a>
-            </div>
-	      </li>
-            
           <li class="nav-item p-1">
             <a class="nav-link" href="/pipelines">Pipelines</a>
           </li>
-           
-          <li class="nav-item p-1">
-            <a class="nav-link" href="/tools/">Tools</a>
-          </li>
 
-	        <li class="nav-item p-1">
+          <li class="nav-item p-1 dropdown">
+            <a class="nav-link dropdown-toggle" href="/about" role="button" data-bs-toggle="dropdown">Resources</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/genome_after_party">Genome After Party</a>
+              <a class="dropdown-item" href="/tools">Tools</a>
+            </div>
+	      </li>
+
+	      <li class="nav-item p-1">
             <a class="nav-link" href="/docs">Docs</a>
           </li>
 
@@ -183,18 +173,18 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
               <a class="dropdown-item" href="/stats">Statistics</a>
               <a class="dropdown-item" href="/publications">Publications</a>
               <a class="dropdown-item" href="/code_of_conduct">Code of conduct</a>
-              <a class="dropdown-item" href="/join">Join sanger-tol</a>
+              <a class="dropdown-item" href="/connect">Connect with sanger-tol</a>
             </div>
 	      </li>
 
         </ul>
 
 	<hr class="d-md-none">
-        <a class="d-md-none btn d-block btn-success mb-3" href="/join">
-          Join sanger-tol
+        <a class="d-md-none btn d-block btn-success mb-3" href="/connect">
+          Connect with sanger-tol
         </a>
-        <a class="d-none d-lg-block btn btn-success" style="position:absolute; right: 1rem;" href="/join">
-          Join sanger-tol
+        <a class="d-none d-lg-block btn btn-success" style="position:absolute; right: 1rem;" href="/connect">
+          Connect with sanger-tol
 	</a>
 
       </div>
@@ -208,7 +198,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
         <div class="container">
           <?php
           if (isset($md_github_url) and $md_github_url) {
-              $md_github_url = str_replace('/docs/contributing/', '/developers/', $md_github_url);
+              $md_github_url = str_replace('/docs/contributing/', '/contributing/', $md_github_url);
               $md_github_url = str_replace('/docs/usage/', '/usage/', $md_github_url);
               echo '<a href="' .
                   $md_github_url .

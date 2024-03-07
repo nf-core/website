@@ -1,5 +1,5 @@
 Do you know of a ToL informatics publication that we are missing?
-[Let us know](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana&labels=&projects=&template=publications.yaml&title=%5BPublication%5D%3A+DOI).
+[Let us know](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=muffato&labels=&projects=&template=publications.yaml&title=%5BPublication%5D%3A+DOI).
 
 # Initiatives {#initiatives}
 
@@ -45,7 +45,7 @@ Do you know of a ToL informatics publication that we are missing?
 
 # Pipelines {#pipelines}
 
-### [Genome After Party](https://pipelines.tol.sanger.ac.uk/genome_after_party) {#genome_after_party}
+### [Genome After Party](/genome_after_party) {#genome_after_party}
 
 🧰 [BlobToolKit](https://blobtoolkit.genomehubs.org)
 

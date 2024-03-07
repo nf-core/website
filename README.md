@@ -54,7 +54,7 @@ docker compose up
 You should then be able to access the website in your browser at [http://localhost:8888/](http://localhost:8888/).
 
 If you prefer, you can also use a tool such as [MAMP](https://www.mamp.info/) - if so,
-set the base directory to `/path/to/nf-co.re/public_html` in _Preferences > Web-Server > Document Root_ and then hit _Start Servers_.
+set the base directory to `/path/to/pipelines-website/public_html` in _Preferences > Web-Server > Document Root_ and then hit _Start Servers_.
 
 Most of the hand-written text is in `/markdown`, to make it easier to write. The PHP files in `/public_html` then parse this into HTML dynamically, if supplied with a filename.
 
@@ -160,11 +160,12 @@ If you are looking forward to contribute to the website or add your institution 
 
 ## Community
 
-If you have any questions or issues, please [let us know](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana%2Cmuffato&labels=connect&projects=&template=contact_us.yaml&title=%5BContact+Us%5D%3A+).
+If you have any questions or issues, please [let us know](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=muffato%2Cmuffato&labels=connect&projects=&template=contact_us.yaml&title=%5BContact+Us%5D%3A+).
 
 ## Credits
 
-Priyanka Surana ([@priyanka-surana](http://github.com/priyanka-surana/)) manages the content and Guoying Qi ([@gq1](https://github.com/gq1)) manages the website. Many individuals, especially Matthieu Muffato ([@muffato](http://github.com/muffato)), have made various contributions.
+Matthieu Muffato ([@muffato](http://github.com/muffato)) manages the content and Guoying Qi ([@gq1](https://github.com/gq1)) manages the website.
+Many individuals, especially Priyanka Surana ([@priyanka-surana](http://github.com/priyanka-surana/)), have made various contributions.
 
 Phil Ewels ([@ewels](http://github.com/ewels/)) built the original nf-core website.
 More recently, [@mashehu](https://github.com/mashehu) has done a great deal of work with the code.

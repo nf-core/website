@@ -4,7 +4,7 @@
 require '../vendor/autoload.php';
 use Spyc;
 
-// $search_term - should be availble from include
+// $search_term - should be available from include
 $search_results = [
     'pipelines' => [],
     'documentation' => [],

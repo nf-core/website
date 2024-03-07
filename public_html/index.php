@@ -1,37 +1,5 @@
 <?php
 
-/*
-require '../vendor/autoload.php'; // for spyc
-
-// Get a random subset of contributor institute logos
-
-$contributors = spyc_load_file('../nf-core-contributors.yaml');
-$contributors_img_list = [];
-foreach ($contributors['contributors'] as $idx => $c) {
-    if (isset($c['image_fn']) and $c['image_fn'] and isset($c['full_name']) and $c['full_name']) {
-        $card_id = preg_replace('/[^a-z]+/', '-', strtolower($c['full_name']));
-        $img_path = 'assets/img/contributors-white/' . $c['image_fn'];
-        if (file_exists($img_path)) {
-            $contributors_img_list[] =
-                '<a href="/community#' .
-                $card_id .
-                '"><img src="' .
-                $img_path .
-                '" data-bs-placement="bottom" data-bs-toggle="tooltip" title="' .
-                $c['full_name'] .
-                '"></a>';
-        }
-    }
-}
-// Shuffle and truncate the list
-shuffle($contributors_img_list);
-*/
-
-//Check if there is an event
-// these 2 variables not being used any more, but update them to sanger-tol now
-// $md_github_url = 'https://github.com/sanger-tol/pipelines-website/tree/main/markdown/events';
-// $header_btn_url = 'https://pipelines.tol.sanger.ac.uk/events/rss';
-
 # To get parse_md_front_matter() and sanitise_date_meta() functions
 require_once '../includes/functions.php';
 
@@ -341,7 +309,7 @@ endif;
             <h5 class="card-title">Portable and cloud-compatible</h5>
             <p class="card-text">Pipelines follow best-practices to ensure maximum
             portability. You can run the pipelines on any Nextflow supported cloud
-            provider. We test all our pipelines via Nextflow Tower before release.
+            provider. We test all our pipelines via Seqera Platform before release.
             </p>
           </div>
           <i class="fas fa-server fa-5x text-success ms-3"></i>
@@ -417,6 +385,8 @@ endif;
       <div class="col-lg-6">
         <ul class="list-switch left video-chooser">
           <li><a href="https://youtu.be/aK1Ek39z4sA" data-src="https://www.youtube.com/embed/aK1Ek39z4sA" class="active"> Introduction to Darwin Tree of Life <em>(0:44)</em></a></li>
+          <li><a href="https://youtu.be/Ggk59FOwvMo" data-src="https://www.youtube.com/embed/Ggk59FOwvMo"> Nextflow Summit: Automated production engine to decode the Tree of Life <em>(24:37)</em></a></li>
+          <li><a href="https://youtu.be/w4RGam3T8iQ" data-src="https://www.youtube.com/embed/w4RGam3T8iQ"> Adopting Nextflow in Sanger Tree of Life <em>(24:00)</em></a></li>
           <li><a href="https://youtu.be/Zort8tv7iRI" data-src="https://www.youtube.com/embed/Zort8tv7iRI"> Nextflow Summit: sanger-tol Production Engine <em>(14:57)</em></a></li>
           <li><a href="https://youtu.be/gUM9acK25tQ" data-src="https://www.youtube.com/embed/gUM9acK25tQ"> Introduction to nf-core <em>(1:01)</em></a></li>
         </ul>
@@ -475,7 +445,7 @@ pip install nf-core
     <div class="col-md-4 px-md-5 mb-5 mb-md-0">
       <h3>Get into the code</h3>
       <p>If you're interested in contributing to sanger-tol, take a look at the developer documentation to see what's required.</p>
-      <a class="btn btn-lg btn-success arrow-hover" href="https://nf-co.re/docs/contributing/adding_pipelines"><span><i class="fad fa-code me-1"></i> Developer docs</span></a>
+      <a class="btn btn-lg btn-success arrow-hover" href="/docs"><span><i class="fad fa-code me-1"></i> Developer docs</span></a>
     </div>
   </div>
 </div>

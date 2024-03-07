@@ -1,7 +1,7 @@
 ---
 title: 'Workflows Community Meetup - All Things Groovy'
 subtitle: Supercharge your Nextflow pipelines with Groovy – Sateesh Peri (nf-core) and Simon Murray (Wellcome Sanger Institute)
-type: talk
+type: tutorial
 start_date: '2023-05-23'
 start_time: '15:00 CET'
 end_date: '2023-05-23'
@@ -10,6 +10,8 @@ location_name: Sulston C3-02, Hinxton Hall, Wellcome Genome Campus
 address: https://sanger.zoom.us/j/93327483010?pwd=TEk5UTJEUVdZMGFGWHJKSURGcUVZZz09
 location_url: https://goo.gl/maps/h68RvwRHsNLWqtUc9
 ---
+
+> Organised by the [the BioDev Network](https://www.youtube.com/@biodev-network)
 
 **Workflows Community** is inviting you to a meetup focused on supercharging your Nextflow pipelines with Groovy.
 

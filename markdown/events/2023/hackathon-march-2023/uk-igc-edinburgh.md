@@ -6,7 +6,7 @@ start_date: '2023-03-27'
 start_time: '09:30 BST'
 end_date: '2023-03-29'
 end_time: '16:30 BST'
-location_name: MRC Insitute of Genetics and Cancer
+location_name: MRC Institute of Genetics and Cancer
 # address: Medical Education Centre Computing Lab 1, Outpatients Department, Western General Hospital, Crewe Road, Edinburgh, EH4 2XU
 # location_url: https://www.med.scot.nhs.uk/hospitals/wgh/medical-education/education-centre
 # location_latlng: [55.9624822, -3.2383988]

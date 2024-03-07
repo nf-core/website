@@ -50,7 +50,7 @@ Members of the Safety Team (the Safety Officers) are responsible for clarifying 
 
 The Safety Team have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this CoC, or to ban temporarily or permanently any contributor for other behaviors that they deem inappropriate, threatening, offensive, or harmful.
 
-Members of the Safety Team who violate the CoC will be required to recuse themselves pending investigation. They will not have access to any reports of the violations and will be subject to the same actions as others in violation of the CoC.
+Members of the Safety Team who violate the CoC will be required to recurse themselves pending investigation. They will not have access to any reports of the violations and will be subject to the same actions as others in violation of the CoC.
 
 ## When and where does this Code of Conduct apply?
 
@@ -122,7 +122,7 @@ After you file a report, one or more members of our Safety Team will contact you
 
 All reports will be read and handled by the members of the Safety Team at sanger-tol.
 
-If members of the Safety Team are deemed to have a conflict of interest with a report, they will be required to recuse themselves as per our Code of Conduct and will not have access to any follow-ups.
+If members of the Safety Team are deemed to have a conflict of interest with a report, they will be required to recurse themselves as per our Code of Conduct and will not have access to any follow-ups.
 
 To keep this first report confidential from any of the Safety Team members, please submit your first report by direct email to any of the safety officers you are comfortable disclosing the information to, and be explicit about which member(s) you do not consent to sharing the information with.
 

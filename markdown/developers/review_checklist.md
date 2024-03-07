@@ -11,7 +11,7 @@ Pipeline developers are recommended to create **modular and small pull requests 
 Think about that _before_ writing the code and opening the pull-request, as breaking down a PR into multiple ones can be tricky.
 As a rule of thumb, a PR should not add more than one sub-workflow, a sub-workflow should not contain more than ten steps. A PR can modify multiple sub-workflows, as long as the changes are related.
 
-The role of the reviewer is to check for adherence to the central principles of nf-core and sanger-tol (reproducibility, execellent reporting, documented, keeping to the template etc.,). Here we provide a general set of suggestions when doing pipeline reviews:
+The role of the reviewer is to check for adherence to the central principles of nf-core and sanger-tol (reproducibility, excellent reporting, documented, keeping to the template etc.,). Here we provide a general set of suggestions when doing pipeline reviews:
 
 The instructions below are subject to interpretation and specific scenarios. If in doubt, please ask for feedback.
 
@@ -59,7 +59,7 @@ All sanger-tol pipelines _should_ follow the following guidelines, if possible /
 
 ## Do: Documentation {#documentation}
 
-- Documention is only on the pipelines website (not pointed to other places, e.g. not readthedocs )
+- Documentation is only on the pipelines website (not pointed to other places, e.g. not readthedocs )
 - Is documentation sufficiently described (`usage.md`, `output.md`, `nextflow_schema.json`)?
   - nextflow_schema.json: check if types are correct and that `default` and `enum` are used where applicable
 - Are there any typos in the documentation (`usage.md`, `output.md`, `nextflow_schema.json`)
@@ -96,7 +96,7 @@ We hope that the nf-core best practices, tooling and community are helpful for a
 
 If a pipeline is found to be violating the standards and guidelines, you should try to address the problems with the pipeline maintainers through discussion. Hopefully the pipeline can then be updated so that it adheres to the guidelines.
 
-All members of the sanger-tol community must adhere to the [sanger-tol code of conduct](https://pipelines.tol.sanger.ac.uk/code_of_conduct).
+All members of the sanger-tol community must adhere to the [sanger-tol code of conduct](/code_of_conduct).
 The guidelines and actions within the code of conduct take precedence over the development guidelines described in this page.
 
 ## Guidelines
@@ -115,7 +115,7 @@ Do _not_ fork sanger-tol repositories.
 
 When new pipelines are added to sanger-tol, please transfer ownership to sanger-tol instead of forking it.
 
-If you have already forked your pipeline to sanger-tol, you can [email GitHub support](https://support.github.com/contact?subject=Reroute%20a%20Fork&tags=rr-forks) and request that they reroute the fork. Alternatively, [contact the IT team](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana%2Cmuffato&labels=connect&projects=&template=contact_us.yaml&title=%5BContact+Us%5D%3A+) and we may be able to help.
+If you have already forked your pipeline to sanger-tol, you can [email GitHub support](https://support.github.com/contact?subject=Reroute%20a%20Fork&tags=rr-forks) and request that they reroute the fork. Alternatively, [contact the IT team](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=muffato%2Cmuffato&labels=connect&projects=&template=contact_us.yaml&title=%5BContact+Us%5D%3A+) and we may be able to help.
 
 **Disable GitHub features for forks**
 
@@ -171,11 +171,11 @@ Software versions must be static and stable. Labels such as `latest`, `dev`, `ma
 
 ### Continuous integration testing
 
-Pipelines must have automated continuous integration testing, running using GitHub Actions. There must be a small dataset that can be tested on GitHub directly, and a larger one that can be tested on the Sanger farm using Nextflow Tower.
+Pipelines must have automated continuous integration testing, running using GitHub Actions. There must be a small dataset that can be tested on GitHub directly, and a larger one that can be tested on the Sanger farm using Seqera Platform.
 
 There must be a config `profile` called `test` that should be as comprehensive as possible - that is, it should run as much of the pipeline as possible. It should use as tiny test data set as possible (even if the output that it creates is meaningless).
 
-Then, we configure the integration with Nextflow Tower to allow testing the larger dataset (`test_full`) on the Sanger LSF farm. To set up that up, first add the profile `cleanup { cleanup = true }` to your `nextflow.config` (right at the beginning of the `profiles` section). This is to control the amount of space taken on Lustre. Then, copy the two files [`sanger_test.yml`](https://github.com/sanger-tol/insdcdownload/blob/dev/.github/workflows/sanger_test.yml) and [`sanger_test_full.yml`](https://github.com/sanger-tol/insdcdownload/blob/dev/.github/workflows/sanger_test_full.yml) to your `.github/workflows/`. Ask @muffato to enable the Tower integration for your repository.
+Then, we configure the integration with Seqera Platform to allow testing the larger dataset (`test_full`) on the Sanger LSF farm. To set up that up, first add the profile `cleanup { cleanup = true }` to your `nextflow.config` (right at the beginning of the `profiles` section). This is to control the amount of space taken on Lustre. Then, copy the two files [`sanger_test.yml`](https://github.com/sanger-tol/insdcdownload/blob/dev/.github/workflows/sanger_test.yml) and [`sanger_test_full.yml`](https://github.com/sanger-tol/insdcdownload/blob/dev/.github/workflows/sanger_test_full.yml) to your `.github/workflows/`. Ask @muffato to enable the Seqera Platform integration for your repository.
 
 ### Semantic versioning
 

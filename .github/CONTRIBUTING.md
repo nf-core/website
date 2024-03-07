@@ -7,7 +7,7 @@ Hi there! Many thanks for taking an interest in improving the sanger-tol website
 If you'd like to write some code for sanger-tol/pipelines-website, the standard workflow is as follows:
 
 1. Check that there isn't already an issue about your idea in the
-   [sanger-tol/pipelines-website issues](<[https://github.com/nf-core/nf-co.re/issues](https://github.com/sanger-tol/pipelines-website/issues)>) to avoid duplicating work.
+   [sanger-tol/pipelines-website issues](https://github.com/sanger-tol/pipelines-website/issues) to avoid duplicating work.
    - If there isn't one already, please create one so that others know you're working on this
 2. Fork the [sanger-tol/pipelines-website repository](https://github.com/sanger-tol/pipelines-website) to your GitHub account
 3. Make the necessary changes / additions within your forked repository
@@ -23,4 +23,4 @@ For now, the only test is for Markdown syntax, using the `markdownlint` package.
 
 ## Getting help
 
-For further information or help, please [contact us](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana%2Cmuffato&labels=connect&projects=&template=contact_us.yaml&title=%5BContact+Us%5D%3A+).
+For further information or help, please [contact us](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=muffato%2Cmuffato&labels=connect&projects=&template=contact_us.yaml&title=%5BContact+Us%5D%3A+).

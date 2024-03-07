@@ -668,17 +668,17 @@ elseif ($cache['status'] == 'launch_params_complete') {
                 simply run the following command and follow the prompts:</p>
             <pre><code>nf-core launch --id <?php echo $cache_id; ?> --url <?php echo $self_url; ?></code></pre>
 
-            <h3>Launch using Nextflow Tower</h3>
+            <h3>Launch using Seqera Platform</h3>
             <?php if (substr($cache['pipeline'], 0, 11) == 'sanger-tol/') { ?>
-                <p>Clicking the button below will take you to the Nextflow Tower launch page with all parameters set, ready for launch
-                    (requires a Nextflow Tower account).</p>
+                <p>Clicking the button below will take you to the Seqera Platform launch page with all parameters set, ready for launch
+                    (log in with your Google/Github account if you have one, otherwise just enter your email address).</p>
                 <form method="get" action="https://tower.nf/launch" target="_blank" class="mb-3">
                     <?php foreach ($tower_fields as $name => $value) {
                         echo '<input type="hidden" name="' . $name . '" value="' . htmlspecialchars($value) . '">';
                     } ?>
                     <button type="submit" class="btn btn-primary btn-nf-tower rocket-launch-hover">
                         <i class="fad fa-rocket me-1"></i>
-                        Nextflow Tower &nbsp; &#x276f; &nbsp; Launch
+                        Seqera Platform &nbsp; &#x276f; &nbsp; Launch
                     </button>
                 </form>
             <?php } else { ?>

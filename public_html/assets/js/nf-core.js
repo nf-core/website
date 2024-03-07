@@ -92,7 +92,7 @@ $(function () {
     // Set a cookie to remember
     document.cookie = 'nfcoretheme=' + theme + '; expires=Thu, 2 Dec 2032 12:00:00 UTC; path=/';
   }
-  // Override the .contains() filter to be case insenstive
+  // Override the .contains() filter to be case insensitive
   $.expr[':'].contains = $.expr.createPseudo(function (arg) {
     return function (elem) {
       return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;

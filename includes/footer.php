@@ -86,35 +86,27 @@ if (isset($subfooter) and $subfooter) {
 
       </div>
       <div class="col-sm-6 col-lg-3 offset-lg-1 mb-3 d-print-none">
-        <h5>Getting Started</h5>
+        <h5>Our documentation</h5>
         <ul class="list-unstyled">
-          <li><a href="/pipelines">Available pipelines</a></li>
-          <li><a href="/modules">nf-core modules</a></li>
-          <li><a href="https://nf-co.re/tools">nf-core tools</a></li>
-          <li><a href="https://nf-co.re/docs/usage/introduction">Getting started</a></li>
-          <li><a href="https://nf-co.re/docs/usage/installation">Installation</a></li>
-          <li><a href="https://nf-co.re/docs/usage/configuration">Pipeline configuration</a></li>
-          <li><a href="https://nf-co.re/docs/usage/offline">Running offline</a></li>
-          <li><a href="https://nf-co.re/docs/usage/tutorials">Usage tutorials</a></li>
-          <li><a href="https://nf-co.re/docs/usage/data_management">Data Management</a></li>
-          <li><a href="https://nf-co.re/docs/usage/troubleshooting">Troubleshooting</a></li>
-          <li><a href="https://nf-co.re/docs/usage/tutorials/nextflow">Nextflow resources</a></li>
+          <li><a href="/pipelines">Pipelines</a></li>
+          <li><a href="/tools">Tools</a></li>
+          <li><a href="/docs/contributing/modules">Modules</a></li>
+          <li><a href="/docs/contributing/review_checklist">Code review</a></li>
         </ul>
       </div>
       <div class="col-sm-6 col-lg-3 mb-3 d-print-none">
-        <h5>For Authors</h5>
+        <h5>nf-core documentation</h5>
         <ul class="list-unstyled">
-          <li><a href="https://nf-co.re/docs/contributing/modules">DSL2 modules</a></li>
-          <li><a href="https://nf-co.re/docs/contributing/subworkflows">DSL2 subworkflows</a></li>
-          <li><a href="https://nf-co.re/docs/contributing/training_guide">Training guide</a></li>
-          <li><a href="https://nf-co.re/docs/contributing/sync">Template synchronisation</a></li>
-          <li><a href="https://nf-co.re/docs/contributing/tutorials">Developer tutorials</a></li>
-          <li><a href="https://nf-co.re/docs/contributing/editor_plugins">Code editor plugins</a></li>
-          <li><a href="https://nf-co.re/docs/contributing/design_guidelines">Graphic design guidelines</a></li>
+          <li><a href="https://nf-co.re/docs/usage/introduction">Getting started</a></li>
+          <li><a href="https://nf-co.re/docs/usage/installation">Installation</a></li>
+          <li><a href="https://nf-co.re/docs/usage/tutorials">Usage tutorials</a></li>
+          <li><a href="https://nf-co.re/docs/usage/tutorials/nextflow">Nextflow resources</a></li>
+          <li><a href="https://nf-co.re/tools">Command-line tool</a></li>
+          <li><a href="https://nf-co.re/modules">Modules</a></li>
         </ul>
       </div>
       <div class="col-sm-6 col-lg-2 mb-3 d-print-none">
-        <h5>About sanger-tol</h5>
+        <h5>More information</h5>
         <ul class="list-unstyled">
           <li><a href="/about">About sanger-tol</a></li>
           <li><a href="/events">Events</a></li>
@@ -122,7 +114,7 @@ if (isset($subfooter) and $subfooter) {
           <li><a href="/stats">Statistics</a></li>
           <li><a href="/publications">Publications</a></li>
           <li><a href="/code_of_conduct">Code of conduct</a></li>
-          <li><a href="/join" class="mt-1 btn btn-outline-success">Join sanger-tol</a></li>
+          <li><a href="/connect" class="mt-1 btn btn-outline-success">Connect with sanger-tol</a></li>
         </ul>
       </div>
     </div>

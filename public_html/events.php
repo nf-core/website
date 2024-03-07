@@ -6,17 +6,17 @@ use Spatie\CalendarLinks\Link;
 
 $md_base = dirname(dirname(__FILE__)) . '/markdown/';
 $event_type_classes = [
-    'bytesize' => 'success',
+    //'bytesize' => 'success',
     'hackathon' => 'primary',
-    'poster' => 'danger',
+    //'poster' => 'danger',
     'talk' => 'success',
     'tutorial' => 'info',
     'training' => 'warning',
 ];
 $event_type_icons = [
-    'bytesize' => 'fas fa-apple-core',
+    //'bytesize' => 'fas fa-apple-core',
     'hackathon' => 'fas fa-laptop-code',
-    'poster' => 'far fa-image',
+    //'poster' => 'far fa-image',
     'talk' => 'fas fa-presentation',
     'tutorial' => 'fas fa-graduation-cap',
     'training' => 'fas fa-chalkboard-teacher',
@@ -364,8 +364,6 @@ if (isset($_GET['event']) && substr($_GET['event'], 0, 7) == 'events/') {
 $title = 'Events';
 $subtitle = 'Details of past and future nf-core meetups.';
 $md_github_url = 'https://github.com/sanger-tol/pipelines-website/tree/main/markdown/events';
-// $header_btn_url = 'https://pipelines.tol.sanger.ac.uk/events/rss';
-// $header_btn_text = '<i class="fas fa-rss me-1"></i> RSS';
 
 // Load event front-matter
 $events = [];
@@ -433,8 +431,8 @@ if (isset($_GET['rss'])) {
       <title>nf-core: ' .
         $title .
         '</title>
-      <link>https://www.nf-co.re/events</link>
-      <atom:link href="https://www.nf-co.re/events/rss" rel="self" type="application/rss+xml" />
+      <link>https://pipelines.tol.sanger.ac.uk/events</link>
+      <atom:link href="https://pipelines.tol.sanger.ac.uk/events/rss" rel="self" type="application/rss+xml" />
       <description>' .
         $subtitle .
         '</description>
@@ -446,10 +444,10 @@ if (isset($_GET['rss'])) {
         <title>' .
                 htmlspecialchars(utf8_encode($event['title'])) .
                 '</title>
-        <link>https://nf-co.re' .
+        <link>https://pipelines.tol.sanger.ac.uk' .
                 $event['url'] .
                 '</link>
-        <guid>https://nf-co.re' .
+        <guid>https://pipelines.tol.sanger.ac.uk' .
                 $event['url'] .
                 '</guid>
         <pubDate>' .
