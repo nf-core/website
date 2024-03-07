@@ -11,6 +11,8 @@ address: https://sanger.zoom.us/j/99770615046?pwd=KzczZ3FhNWZ3dzdQSUM4dnNxbmNjQT
 location_url: https://goo.gl/maps/4adAsjqRwQVv18hJ6
 ---
 
+> Organised by the [the BioDev Network](https://www.youtube.com/@biodev-network)
+
 Join Workflows Community to hear real-world examples showcasing how Nextflow enables teams to efficiently design, execute, and manage complex bioinformatics workflows, unlocking crucial insights from complex genomics data.
 
 - **Anthony Underwood – Broken String Biosciences**

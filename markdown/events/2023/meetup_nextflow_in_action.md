@@ -11,6 +11,8 @@ location: https://sanger.zoom.us/j/96537565366?pwd=UWpYVVdsbTZFREZkbndaZGNkNGJrd
 youtube_embed: https://youtu.be/w4RGam3T8iQ
 ---
 
+> Organised by the [the BioDev Network](https://www.youtube.com/@biodev-network)
+
 # Nextflow in Action
 
 Join us for our **monthly series** of talks: **“Nextflow in Action”**.

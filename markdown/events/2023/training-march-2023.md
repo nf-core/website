@@ -10,6 +10,8 @@ location_name: YouTube
 import_typeform: true
 ---
 
+> Organised by [nf-core](https://nf-co.re/events/2023/training-march-2023/)
+
 # Welcome
 
 Join us from March 13-16 2023 for the Nextflow and nf-core training event!

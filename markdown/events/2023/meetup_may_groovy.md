@@ -11,6 +11,8 @@ address: https://sanger.zoom.us/j/93327483010?pwd=TEk5UTJEUVdZMGFGWHJKSURGcUVZZz
 location_url: https://goo.gl/maps/h68RvwRHsNLWqtUc9
 ---
 
+> Organised by the [the BioDev Network](https://www.youtube.com/@biodev-network)
+
 **Workflows Community** is inviting you to a meetup focused on supercharging your Nextflow pipelines with Groovy.
 
 1. **Sateesh Peri (nf-core)** will do a hands-on exploration of **nf-test**, a simple test framework specifically tailored for Nextflow pipelines. This presentation will delve into:

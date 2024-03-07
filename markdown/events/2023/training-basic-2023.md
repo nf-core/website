@@ -10,6 +10,8 @@ location_name: YouTube
 import_typeform: true
 ---
 
+> Organised by [nf-core](https://nf-co.re/events/2023/training-basic-2023/)
+
 # Welcome
 
 Join us from September 6-8 2023 for the Community Nextflow & nf-core Training event!

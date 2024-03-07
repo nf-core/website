@@ -10,6 +10,8 @@ location_name: Library Room, Conference Centre, and YouTube
 import_typeform: true
 ---
 
+> Organised by [nf-core](https://nf-co.re/events/2024/training-foundational-march/)
+
 # Welcome
 
 Join us from **March 5-6** for the Community Nextflow Foundational Training event!

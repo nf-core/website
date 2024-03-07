@@ -13,6 +13,8 @@ location_latlng: [52.07800, 0.18683]
 youtube_embed: https://www.youtube.com/watch?v=e1UcnkI8-Fk
 ---
 
+> Organised by the [the BioDev Network](https://www.youtube.com/@biodev-network)
+
 # Welcome
 
 Join us in-person or online for Nextflow Symposium on the Wellcome Genome Campus. For further details, please see the [symposium website](http://bit.ly/3PK8ag7). Everyone is welcome to attend.
