@@ -4227,6 +4227,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -38215,6 +38219,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -38940,6 +38948,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -43745,6 +43757,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -91561,6 +91577,84 @@
       }
     },
     {
+      "name": "ribotricer_prepareorfs",
+      "path": "modules/nf-core/ribotricer/prepareorfs/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "ribotricer_prepareorfs",
+        "description": "Accurate detection of short and long active ORFs using Ribo-seq data",
+        "keywords": [
+          "riboseq",
+          "orf",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "ribotricer": {
+              "description": "Python package to detect translating ORF from Ribo-seq data",
+              "homepage": "https://github.com/smithlabcode/ribotricer",
+              "documentation": "https://github.com/smithlabcode/ribotricer",
+              "tool_dev_url": "https://github.com/smithlabcode/ribotricer",
+              "doi": "10.1093/bioinformatics/btz878",
+              "licence": [
+                "GNU General Public v3 (GPL v3)"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. `[ id:'Ensembl human v.111' ]`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Fasta-format sequence file for reference sequences used in the bam file\n",
+              "pattern": "*.gtf"
+            }
+          },
+          {
+            "gtf": {
+              "type": "file",
+              "description": "GTF-format annotation file for reference sequences used in the bam file\n",
+              "pattern": "*.gtf"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. `[ id:'Ensembl human v.111' ]`\n"
+            }
+          },
+          {
+            "candidate_orfs": {
+              "type": "file",
+              "description": "TSV file with candidate ORFs",
+              "pattern": "*.tsv"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
+        ]
+      }
+    },
+    {
       "name": "rmarkdownnotebook",
       "path": "modules/nf-core/rmarkdownnotebook/meta.yml",
       "type": "module",
@@ -96515,8 +96609,22 @@
           {
             "bam": {
               "type": "file",
-              "description": "BAM/CRAM/SAM file",
+              "description": "BAM/CRAM/SAM file(s)",
               "pattern": "*.{bam,cram,sam}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Reference genome FASTA file",
+              "pattern": "*.{fa,fasta,fna}",
+              "optional": true
             }
           }
         ],
@@ -96530,15 +96638,22 @@
           {
             "bam": {
               "type": "file",
-              "description": "Sorted BAM/CRAM/SAM file",
-              "pattern": "*.{bam,cram,sam}"
+              "description": "Sorted BAM file",
+              "pattern": "*.{bam}"
             }
           },
           {
-            "versions": {
+            "cram": {
               "type": "file",
-              "description": "File containing software versions",
-              "pattern": "versions.yml"
+              "description": "Sorted CRAM file",
+              "pattern": "*.{cram}"
+            }
+          },
+          {
+            "crai": {
+              "type": "file",
+              "description": "CRAM index file (optional)",
+              "pattern": "*.crai"
             }
           },
           {
@@ -96547,15 +96662,24 @@
               "description": "BAM index file (optional)",
               "pattern": "*.csi"
             }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
           }
         ],
         "authors": [
           "@drpatelh",
-          "@ewels"
+          "@ewels",
+          "@matthdsm"
         ],
         "maintainers": [
           "@drpatelh",
-          "@ewels"
+          "@ewels",
+          "@matthdsm"
         ]
       },
       "pipelines": [
