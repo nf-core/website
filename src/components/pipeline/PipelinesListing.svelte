@@ -117,7 +117,6 @@
     $: filteredPipelines = searchFilterSortPipelines(pipelines);
 
     onMount(() => {
-        console.log(filters);
         CurrentFilter.set(filters);
         SortBy.subscribe(() => {
             filteredPipelines = searchFilterSortPipelines(pipelines);
