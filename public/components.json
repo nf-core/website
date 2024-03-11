@@ -4247,6 +4247,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -24812,10 +24816,6 @@
           "version": "2.0.0"
         },
         {
-          "name": "metapep",
-          "version": "dev"
-        },
-        {
           "name": "metatdenovo",
           "version": "1.0.0"
         },
@@ -38255,6 +38255,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -38980,6 +38984,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -43805,6 +43813,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -109633,19 +109645,13 @@
           {
             "meta2": {
               "type": "map",
-              "description": "Groovy Map containing truth sample information\ne.g. `[ id:'test2' ]`\n"
+              "description": "Groovy Map containing reference genome information for fasta\ne.g. `[ id:'test2' ]`\n"
             }
           },
           {
             "meta3": {
               "type": "map",
-              "description": "Groovy Map containing reference genome information\ne.g. `[ id:'test3' ]`\n"
-            }
-          },
-          {
-            "meta4": {
-              "type": "map",
-              "description": "Groovy Map containing bed file information\ne.g. `[ id:'test4' ]`\n"
+              "description": "Groovy Map containing reference genome information for fai\ne.g. `[ id:'test3' ]`\n"
             }
           },
           {
@@ -109656,10 +109662,24 @@
             }
           },
           {
+            "test_tbi": {
+              "type": "file",
+              "description": "A VCF-formatted file index of structural variants to test only for zipped files",
+              "pattern": "*.{vcf.gz.tbi}"
+            }
+          },
+          {
             "truth": {
               "type": "file",
               "description": "A VCF-formatted file of variants to compare against (required)",
               "pattern": "*.{vcf,vcf.gz}"
+            }
+          },
+          {
+            "truth_tbi": {
+              "type": "file",
+              "description": "A VCF-formatted file of variants to compare against only for zipped files",
+              "pattern": "*.{vcf.gz.tbi}"
             }
           },
           {
@@ -128374,6 +128394,10 @@
           "version": "1.12.0"
         },
         {
+          "name": "metapep",
+          "version": "dev"
+        },
+        {
           "name": "multiplesequencealign",
           "version": "dev"
         },
@@ -128465,6 +128489,10 @@
         {
           "name": "fetchngs",
           "version": "1.12.0"
+        },
+        {
+          "name": "metapep",
+          "version": "dev"
         },
         {
           "name": "multiplesequencealign",
@@ -128588,6 +128616,10 @@
         {
           "name": "fetchngs",
           "version": "1.12.0"
+        },
+        {
+          "name": "metapep",
+          "version": "dev"
         },
         {
           "name": "multiplesequencealign",
