@@ -27,7 +27,6 @@ Find the detailed information [here](https://nf-co.re/events/2024/hackathon-marc
 
 Business Development Center (BDC), Carl-Friedrich-Gauß-Ring 5, 69124, Heidelberg, Germany
 
-
 ## Organizational Information
 
 ### Schedule
@@ -96,7 +95,6 @@ Business Development Center (BDC), Carl-Friedrich-Gauß-Ring 5, 69124, Heidelber
         </tbody>
     </table>
 </div>
-
 
 ### Food
 
