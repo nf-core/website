@@ -1,5 +1,5 @@
 ---
-title: Domestic Animal Genomics
+title: Animal Genomics
 subtitle: 'The Domestic Animal Genomics Special Interest Group is a community of researchers and practitioners interested in the application of genomics to animal breeding and genetics.'
 leads:
   - bjlang: Björn Langer
