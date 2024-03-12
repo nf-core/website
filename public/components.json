@@ -4255,6 +4255,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -38267,6 +38271,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -38992,6 +39000,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -43825,6 +43837,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -62811,6 +62827,97 @@
           "version": "1.1.5"
         }
       ]
+    },
+    {
+      "name": "krakentools_extractkrakenreads",
+      "path": "modules/nf-core/krakentools/extractkrakenreads/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "krakentools_extractkrakenreads",
+        "description": "Extract reads classified at any user-specified taxonomy IDs.",
+        "keywords": [
+          "kraken2",
+          "krakentools",
+          "metagenomics"
+        ],
+        "tools": [
+          {
+            "krakentools": {
+              "description": "KrakenTools is a suite of scripts to be used for post-analysis of Kraken/KrakenUniq/Kraken2/Bracken results. Please cite the relevant paper if using KrakenTools with any of the listed programs.",
+              "homepage": "https://github.com/jenniferlu717/KrakenTools",
+              "documentation": "https://github.com/jenniferlu717/KrakenTools?tab=readme-ov-file#extract_kraken_readspy",
+              "tool_dev_url": "https://github.com/jenniferlu717/KrakenTools",
+              "doi": "10.1038/s41596-022-00738-y",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "taxid": {
+              "type": "string",
+              "description": "A list of taxid separated by spaces"
+            }
+          },
+          {
+            "classified_reads_assignment": {
+              "type": "file",
+              "description": "A file contains the taxonomic classification of each input read.",
+              "pattern": "*.{classifiedreads.txt}"
+            }
+          },
+          {
+            "classified_reads_fastq": {
+              "type": "file",
+              "description": "Classified reads as belonging to any of the taxa on the kraken2 database.",
+              "pattern": "*.{fastq.gz}"
+            }
+          },
+          {
+            "report": {
+              "type": "file",
+              "description": "Optional Kraken2 report containing stats about classified and not classifed reads.",
+              "pattern": "*.{report.txt}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "extracted_kraken2_reads": {
+              "type": "file",
+              "description": "Reads assigned to a taxid list.",
+              "pattern": "*.{fastq,fasta}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@LilyAnderssonLee"
+        ],
+        "maintainers": [
+          "@LilyAnderssonLee"
+        ]
+      }
     },
     {
       "name": "krakentools_kreport2krona",
