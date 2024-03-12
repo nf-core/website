@@ -90,12 +90,13 @@ Business Development Center (BDC), Carl-Friedrich-Gauß-Ring 5, 69124, Heidelber
             <tr>
                 <td data-timestamp="1679936400"  data-timeformat="HH:mm z">19:00</td>
                 <td>Social Dinner<br>Location: TBD</td>
-                <td>Seqera Pizza Dinner<br>Location: Mathematikon, Berliner Straße 41, 1st floor.</td>
+                <td>Seqera Pizza Dinner<br>Location: Mathematikon, Berliner Straße 41, 2st floor.</td>
                 <td></td>
             </tr>
         </tbody>
     </table>
 </div>
+
 
 ### Food
 
