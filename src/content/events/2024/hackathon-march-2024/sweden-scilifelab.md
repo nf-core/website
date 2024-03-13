@@ -31,7 +31,9 @@ Like proper Swedes, all other activities like pizza and / or drinks will be disc
 
 ## Access
 
-If you do not already have access to the Scilifelab Stockholm building (because for example you work there), you will not be able to access the rooms without assistance. Please be at the Scilifelab reception before 9 am, or, if that is not possible, inform Franziska or Maxime on Slack at what time you will arrive, and she will pick you up.
+::: warning
+If you do not already have access to the Scilifelab Stockholm building (because for example you work there), you will not be able to access the rooms without assistance. Please be at the Scilifelab reception before **9 am**, or, if that is not possible, inform [Franziska](https://nfcore.slack.com/team/UGP9YUCKD) or [Maxime](https://nfcore.slack.com/team/UE6D8290F) on Slack at what time you will arrive, and they will pick you up.
+:::
 
 ## How to prepare and what to bring?
 
@@ -44,4 +46,4 @@ If you do not already have access to the Scilifelab Stockholm building (because 
 
 ## Food and Drinks
 
-Seqera has kindly offered to pay for a round of pizza for us (yay!) and there is coffee, tee and milk available on site. Other than that we will need to provide our own food and beverages. You are welcome to use the microwaves at Scilife to heat anything you bring, but from experience we are most likely going to a nearby restaurant for sustenance.
+Seqera has kindly offered to pay for a round of pizza for us (yay!) and there is coffee, tea and milk available on site. Other than that we will need to provide our own food and beverages. You are welcome to use the microwaves at Scilife to heat anything you bring, but from experience we are most likely going to a nearby restaurant for sustenance.
