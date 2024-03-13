@@ -4,10 +4,10 @@
         "baseUrl": ".",
         "paths": {
             "@assets/*": ["src/assets/*"],
-            "@components/*": ["src/components/*"],
+            "@components/*": ["../main_site/src/components/*"],
             "@layouts/*": ["src/layouts/*"],
             "@content/*": ["src/content/*"],
-            "@public/*": ["public/*"],
+            "@public/*": ["../main_site/public/*"],
             "@styles/*": ["src/styles/*"]
         },
         "strictNullChecks": true

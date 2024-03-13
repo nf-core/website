@@ -4,8 +4,8 @@ import NavbarToc from '@components/navbar/NavbarToc.svelte';
 import NavbarDocsNav from '@components/navbar/NavbarDocsNav.svelte';
 import NavbarDocsNavTitle from '@components/navbar/NavbarDocsNavTitle.astro';
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
-import NfCoreLogoDarkbg from '/images/logo/nf-core-logo-darkbg.svg?raw';
-import NfCoreLogo from '/images/logo/nf-core-logo.svg?raw';
+import NfCoreLogoDarkbg from '@public/images/logo/nf-core-logo-darkbg.svg?raw';
+import NfCoreLogo from '@public/images/logo/nf-core-logo.svg?raw';
 import IconSocial from '@components/IconSocial.astro';
 import ThemeSwitch from '@components/ThemeSwitch.svelte';
 import { Icon } from 'astro-icon/components';
@@ -49,6 +49,7 @@ if (sections?.length > 0) {
     }
 }
 let newBlogPost = false;
+// check if collection blog exists
 newBlogPost = await getCollection('blog').then((posts) => {
     return posts.some(
         (post) =>

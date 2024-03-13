@@ -2,7 +2,6 @@
     import { currentHeading } from '@components/store';
     import * as icons from 'file-icons-js';
     import 'file-icons-js/css/style.css';
-    import mermaid from 'mermaid';
     import { onMount } from 'svelte';
     import CopyButton from '@components/CopyButton.svelte';
 
@@ -10,6 +9,7 @@
     // find current heading in viewport with IntersectionObserver
     onMount(() => {
         async function renderDiagrams(graphs) {
+            const mermaid: any = await import('mermaid');
             mermaid.initialize({
                 startOnLoad: false,
                 fontFamily: 'var(--sans-font)',

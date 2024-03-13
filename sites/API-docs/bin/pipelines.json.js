@@ -1,5 +1,5 @@
 #! /usr/bin/env node
-import octokit, { getDocFiles, getCurrentRateLimitRemaining, getGitHubFile } from '../src/components/octokit.js';
+import octokit, { getDocFiles, getCurrentRateLimitRemaining, getGitHubFile } from '../../main_site/src/components/octokit.js';
 import { promises as fs, writeFileSync, existsSync } from 'fs';
 import yaml from 'js-yaml';
 import path, { join } from 'path';

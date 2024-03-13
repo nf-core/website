@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 import { YouTube } from '@astro-community/astro-embed-youtube';
 import VideoTranscript from '@components/VideoTranscript.svelte';
 import Admonition from '@components/Admonition.astro';
+import EventHeader from '@components/event/EventHeader.astro';
 
 export async function getStaticPaths() {
     const events = await getCollection('events');
@@ -94,6 +95,7 @@ const sections = years.map((year) => {
     ]}
     viewTransitions={true}
 >
+    <EventHeader frontmatter={frontmatter} slot="mainpage-heading" />
     {
         title.trim().toLowerCase().startsWith('bytesize') && (
             <Admonition
