@@ -4263,6 +4263,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -38283,6 +38287,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -39008,6 +39016,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -43849,6 +43861,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -83528,6 +83544,13 @@
             }
           },
           {
+            "input1_index": {
+              "type": "file",
+              "description": "List containing 1 or more bam/vcf files indexes",
+              "pattern": "*.{bai,csi,crai,tbi}"
+            }
+          },
+          {
             "input2": {
               "type": "file",
               "description": "Optional list containing 1 or more bam/vcf files or a file containing filepaths",
@@ -83535,10 +83558,37 @@
             }
           },
           {
+            "input2_index": {
+              "type": "file",
+              "description": "List containing 1 or more bam/vcf files indexes",
+              "pattern": "*.{bai,csi,crai,tbi}"
+            }
+          },
+          {
             "haplotype_map": {
               "type": "file",
               "description": "Haplotype map file",
               "pattern": "*.{txt,vcf,vcf.gz}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Reference genome file",
+              "pattern": "*.{fasta,fa,fasta.gz,fa.gz}"
+            }
+          },
+          {
+            "fasta_index": {
+              "type": "file",
+              "description": "Reference genome index file",
+              "pattern": "*.{fai,fasta.fai,fa.fai,fasta.gz.fai,fa.gz.fai}"
             }
           }
         ],
@@ -83550,17 +83600,17 @@
             }
           },
           {
-            "versions": {
-              "type": "file",
-              "description": "File containing software versions",
-              "pattern": "versions.yml"
-            }
-          },
-          {
             "crosscheck_metrics": {
               "type": "file",
               "description": "Metrics created by crosscheckfingerprints",
               "pattern": "*.{crosscheck_metrics.txt}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
             }
           }
         ],
