@@ -31,7 +31,7 @@ Like proper Swedes, all other activities like pizza and / or drinks will be disc
 
 ## Access
 
-::: warning
+:::warning
 If you do not already have access to the Scilifelab Stockholm building (because for example you work there), you will not be able to access the rooms without assistance. Please be at the Scilifelab reception before **9 am**, or, if that is not possible, inform [Franziska](https://nfcore.slack.com/team/UGP9YUCKD) or [Maxime](https://nfcore.slack.com/team/UE6D8290F) on Slack at what time you will arrive, and they will pick you up.
 :::
 
