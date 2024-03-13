@@ -37,7 +37,7 @@ pipelines_json.remote_workflows.map(
 // https://astro.build/config
 export default defineConfig({
     site: 'https://nf-co.re/',
-    output: 'hybrid',
+    output: 'static',
     adapter: netlify({ cacheOnDemandPages: true }),
     prefetch: false,
     redirects: {
