@@ -37,7 +37,7 @@ If you do not already have access to the Scilifelab Stockholm building (because 
 
 ## How to prepare and what to bring?
 
-- Please familiarize yourself with the [pre-hackathon checklist](Pre-hackathon checklist)
+- Please familiarize yourself with the [pre-hackathon checklist](https://nf-co.re/events/2024/hackathon-march-2024#pre-hackathon-checklist)
 - Don't forget your work utensils:
   - Computer
   - Computer charger (!)
