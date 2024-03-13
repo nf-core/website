@@ -90,7 +90,7 @@ jobs:
       # Create a PR if there are too many lines changed
       - name: Create PR with changes
         if: ${{ steps.check_lines.outputs.changes }}
-        uses: peter-evans/create-pull-request@a4f52f8033a6168103c2538976c07b467e8163bc # v6
+        uses: peter-evans/create-pull-request@70a41aba780001da0a30141984ae2a0c95d8704e # v6
         with:
           token: ${{ secrets.CREATE_PR_TOKEN }}
           commit-message: 'chore: update pipeline.json and component.json'
