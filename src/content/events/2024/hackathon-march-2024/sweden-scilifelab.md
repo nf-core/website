@@ -37,9 +37,9 @@ If you do not already have access to the Scilifelab Stockholm building (because 
 
 - Please familiarize yourself with the [pre-hackathon checklist](Pre-hackathon checklist)
 - Don't forget your work utensils:
-   - Computer
-   - Computer charger (!)
-   - any required adapters
+  - Computer
+  - Computer charger (!)
+  - any required adapters
 - We always welcome baked goods :)
 
 ## Food and Drinks
