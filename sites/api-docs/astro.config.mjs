@@ -94,7 +94,7 @@ export default defineConfig({
         },
         build: {
             rollupOptions: {
-                exclude: ['dotenv'],
+                external: ['dotenv'],
             },
         },
     },
