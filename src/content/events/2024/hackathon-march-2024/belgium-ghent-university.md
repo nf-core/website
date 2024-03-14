@@ -27,4 +27,4 @@ Contact:
 
 ## Pizzas
 
-We will have free pizzas for lunch on Tuesday March 19th (Thanks to Seqera for sponsoring this!)
+We will have free pizzas for lunch on Tuesday March 19th (Thanks to Seqera for sponsoring this!).
