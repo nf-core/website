@@ -9,6 +9,7 @@ endTime: '21:00+02:00'
 locationName: ZS Associates
 address: Av. del Libertador 7208, C1429 CABA
 locationURL: https://www.zs.com/careers/where-we-work/latin-america/buenos-aires
+locationLatLng: [52.079047, 0.187607]
 ---
 
 Local event to be held in Buenos Aires

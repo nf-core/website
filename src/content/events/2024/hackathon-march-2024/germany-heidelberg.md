@@ -9,7 +9,7 @@ endTime: '18:00+02:00'
 locationName: Heidelberg
 address: Business Development Center, Carl-Friedrich-Gauß-Ring 5, 69124, Heidelberg, Germany
 locationURL: https://www.ghga.de/events
-# locationLatLng: [ , ]
+locationLatLng: [49.39643881353221, 8.673259933781846]
 ---
 
 Local event to be held at Heidelberg, Germany.
