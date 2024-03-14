@@ -1,9 +1,0 @@
-[functions]
-external_node_modules = ["vscode-oniguruma","shiki"]
-node_bundler = "esbuild"
-[build]
-base = "./sites/main_site"
-environment = { NODE_VERSION = "20.11.0",  PNPM_FLAGS = "--shamefully-hoist" }
-command = "pnpm run build"
-[dev]
-command = "pnpm run dev"

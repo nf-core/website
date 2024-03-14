@@ -1,5 +1,5 @@
 {
-    "name": "api-docs",
+    "name": "main-site",
     "type": "module",
     "version": "0.0.1",
     "private": true,
@@ -12,14 +12,13 @@
         "build-md-cache-force": "node bin/build-cache.js --force && tar -cvJf .cache.tar.xz .cache && node bin/build-content-collection",
         "build-cache-no-tar": "pnpm run build-pipeline-json && pnpm run build-component-json && node bin/build-cache.js && node bin/build-content-collection",
         "build-cache-force": "pnpm run build-pipeline-json && pnpm run build-component-json && pnpm run build-md-cache-force",
-        "build": "tar -xf ../../.cache.tar.xz && NODE_OPTIONS='--max-old-space-size=4096' astro build",
+        "build": "tar -xf ../../.cache.tar.xz &&  NODE_OPTIONS='--max-old-space-size=4096' astro build",
         "build-without-cache": "pnpm run build-cache-no-tar && astro build",
         "preview": "astro preview",
-        "build-pipeline-json": "tar -xf ../../.cache.tar.xz && node bin/pipelines.json.js && tar -cvJf .cache.tar.xz .cache",
+        "build-pipeline-json": "tar -xf .cache.tar.xz && node bin/pipelines.json.js && tar -cvJf .cache.tar.xz .cache",
         "build-component-json": "node bin/components.json.js"
     },
     "dependencies": {
-        "main-site": "workspace:../main-site",
         "@astro-community/astro-embed-youtube": "^0.4.4",
         "@astrojs/internal-helpers": "^0.3.0",
         "@astrojs/markdown-remark": "^4.2.1",
@@ -93,6 +92,7 @@
         "satori": "^0.10.13",
         "satori-html": "^0.3.2",
         "sharp": "^0.33.2",
+        "shiki": "^1.1.7",
         "shikiji": "^0.10.2",
         "string-width": "^7.1.0",
         "svelte": "^4.2.12",
@@ -120,8 +120,5 @@
         "prettier-plugin-svelte": "^3.2.1",
         "sass": "^1.70.0"
     },
-    "packageManager": "pnpm@8.15.4",
-    "workspaces": [
-        "sites/*"
-    ]
+    "packageManager": "pnpm@8.15.4"
 }

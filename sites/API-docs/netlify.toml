@@ -2,7 +2,7 @@
 external_node_modules = ["vscode-oniguruma","shiki","dotenv"]
 node_bundler = "esbuild"
 [build]
-base = "./sites/API-docs"
+base = "./sites/api-docs"
 environment = { NODE_VERSION = "20.11.0",  PNPM_FLAGS = "--shamefully-hoist"}
 command = "pnpm run build"
 [dev]
