@@ -17,5 +17,3 @@ Local event to be held at the Seqera offices, Barcelona.
 Contact:
 
 - [<i class="fab fa-slack"></i> Heather Wiencko](https://nfcore.slack.com/team/U06135C91N2)
-
-
