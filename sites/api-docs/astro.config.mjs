@@ -30,19 +30,12 @@ const latestToolsRelease = await fetch('https://api.github.com/repos/nf-core/too
     .then((res) => res.json())
     .then((json) => json.tag_name);
 
-let latestPipelineReleases = {};
-pipelines_json.remote_workflows.map(
-    (pipeline) => (latestPipelineReleases[pipeline.name] = `/${pipeline.name}/${pipeline.releases[0].tag_name}/`),
-);
 // https://astro.build/config
 export default defineConfig({
     site: 'https://nf-co.re/',
     output: 'static',
     adapter: netlify({ cacheOnDemandPages: true }),
     prefetch: false,
-    redirects: {
-        ...latestPipelineReleases,
-    },
     integrations: [
         svelte(),
         icon({

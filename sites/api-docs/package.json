@@ -1,5 +1,5 @@
 {
-    "name": "api-docs",
+    "name": "@nf-co.re/api-docs",
     "type": "module",
     "version": "0.0.1",
     "private": true,
@@ -19,7 +19,6 @@
         "build-component-json": "node bin/components.json.js"
     },
     "dependencies": {
-        "main-site": "workspace:../main-site",
         "@astro-community/astro-embed-youtube": "^0.4.4",
         "@astrojs/internal-helpers": "^0.3.0",
         "@astrojs/markdown-remark": "^4.2.1",
@@ -46,6 +45,7 @@
         "@iconify-json/octicon": "^1.1.52",
         "@iconify/utils": "^2.1.22",
         "@nanostores/persistent": "^0.10.1",
+        "@nf-co.re/main-site": "workspace:^",
         "astro": "^4.4.5",
         "astro-icon": "^1.1.0",
         "astro-remark-description": "^1.1.2",
