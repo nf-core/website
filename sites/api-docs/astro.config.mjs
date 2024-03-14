@@ -92,6 +92,11 @@ export default defineConfig({
         resolve: {
             preserveSymlinks: true,
         },
+        build: {
+            rollupOptions: {
+                exclude: ['dotenv'],
+            },
+        },
     },
     markdown: {
         syntaxHighlight: false,
