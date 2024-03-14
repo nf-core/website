@@ -4267,6 +4267,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -38291,6 +38295,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -39016,6 +39024,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -44825,6 +44837,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -47899,7 +47915,11 @@
               "description": "The full Genome Analysis Toolkit (GATK) framework, license restricted.",
               "homepage": "https://gatk.broadinstitute.org/hc/en-us",
               "documentation": "https://github.com/broadinstitute/gatk-docs",
-              "licence": "['https://software.broadinstitute.org/gatk/download/licensing', 'BSD', 'https://www.broadinstitute.org/gatk/about/#licensing']"
+              "licence": [
+                "https://software.broadinstitute.org/gatk/download/licensing",
+                "BSD",
+                "https://www.broadinstitute.org/gatk/about/#licensing"
+              ]
             }
           }
         ],
@@ -47996,7 +48016,7 @@
             }
           },
           {
-            "dbsnps": {
+            "dbsnp": {
               "type": "file",
               "description": "VCF file containing known sites (optional)",
               "pattern": "*"
@@ -51119,7 +51139,9 @@
               "documentation": "https://odelaneau.github.io/GLIMPSE/commands.html",
               "tool_dev_url": "https://github.com/odelaneau/GLIMPSE",
               "doi": "10.1038/s41588-020-00756-0",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -51127,7 +51149,7 @@
           {
             "meta": {
               "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
             }
           },
           {
@@ -51163,6 +51185,12 @@
               "type": "string",
               "description": "Target imputed region, excluding left and right buffers (e.g. chr20:1000000-2000000).\nOptional if reference panel is in bin format.\n",
               "pattern": "chrXX:leftBufferPosition-rightBufferPosition"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing genomic map information\ne.g. `[ map:'GRCh38' ]`\n"
             }
           },
           {
@@ -51205,7 +51233,7 @@
           {
             "meta": {
               "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
             }
           },
           {
@@ -51254,7 +51282,8 @@
         "keywords": [
           "split",
           "reference",
-          "phasing"
+          "phasing",
+          "imputation"
         ],
         "tools": [
           {
@@ -51264,7 +51293,9 @@
               "documentation": "https://odelaneau.github.io/GLIMPSE/commands.html",
               "tool_dev_url": "https://github.com/odelaneau/GLIMPSE",
               "doi": "10.1038/s41588-020-00756-0",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -51304,6 +51335,12 @@
               "type": "string",
               "description": "Target imputed region, excluding left and right buffers (e.g. chr20:1000000-2000000).",
               "pattern": "chrXX:leftBufferPosition-rightBufferPosition"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing genomic map information\ne.g. `[ map:'GRCh38' ]`\n"
             }
           },
           {
@@ -55736,7 +55773,9 @@
               "homepage": "https://www.illumina.com/products/by-type/informatics-products/basespace-sequence-hub/apps/hap-py-benchmarking.html",
               "documentation": "https://github.com/Illumina/hap.py",
               "tool_dev_url": "https://github.com/Illumina/hap.py",
-              "licence": "['BSD-2-clause']"
+              "licence": [
+                "BSD-2-clause"
+              ]
             }
           }
         ],
@@ -55745,6 +55784,18 @@
             "meta": {
               "type": "map",
               "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing sample information for reference fasta\ne.g. [ id:'test2']\n"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing sample information for reference fai\ne.g. [ id:'test3' ]\n"
             }
           },
           {
