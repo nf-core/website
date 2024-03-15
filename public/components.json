@@ -4279,6 +4279,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -15754,6 +15758,13 @@
             }
           },
           {
+            "fasta": {
+              "type": "file",
+              "description": "Reference genome in FASTA format",
+              "pattern": "*.{fasta,fa}"
+            }
+          },
+          {
             "sort_bam": {
               "type": "boolean",
               "description": "use samtools sort (true) or samtools view (false)",
@@ -15770,6 +15781,27 @@
             }
           },
           {
+            "cram": {
+              "type": "file",
+              "description": "Output CRAM file containing read alignments",
+              "pattern": "*.{cram}"
+            }
+          },
+          {
+            "csi": {
+              "type": "file",
+              "description": "Optional index file for BAM file",
+              "pattern": "*.{csi}"
+            }
+          },
+          {
+            "crai": {
+              "type": "file",
+              "description": "Optional index file for CRAM file",
+              "pattern": "*.{crai}"
+            }
+          },
+          {
             "versions": {
               "type": "file",
               "description": "File containing software versions",
@@ -15779,11 +15811,13 @@
         ],
         "authors": [
           "@drpatelh",
-          "@jeremy1805"
+          "@jeremy1805",
+          "@matthdsm"
         ],
         "maintainers": [
           "@drpatelh",
-          "@jeremy1805"
+          "@jeremy1805",
+          "@matthdsm"
         ]
       },
       "pipelines": [
@@ -24873,10 +24907,6 @@
         },
         {
           "name": "omicsgenetraitassociation",
-          "version": "dev"
-        },
-        {
-          "name": "oncoanalyser",
           "version": "dev"
         },
         {
@@ -38315,6 +38345,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -39040,6 +39074,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -43897,6 +43935,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -50192,7 +50234,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -74657,7 +74699,7 @@
         },
         {
           "name": "pangenome",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "pathogensurveillance",
@@ -77910,7 +77952,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -77995,7 +78037,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -78080,7 +78122,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -78158,7 +78200,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -78236,7 +78278,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -78321,7 +78363,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -78399,7 +78441,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -78477,7 +78519,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -78555,7 +78597,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -91817,7 +91859,13 @@
         "maintainers": [
           "@pinin4fjords"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "ribotish_quality",
@@ -91922,7 +91970,13 @@
         "maintainers": [
           "@pinin4fjords"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "ribotricer_detectorfs",
@@ -95436,7 +95490,7 @@
         },
         {
           "name": "pangenome",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "pathogensurveillance",
@@ -102138,7 +102192,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -104406,7 +104460,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -111088,7 +111142,7 @@
         },
         {
           "name": "pangenome",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "phaseimpute",
@@ -119299,7 +119353,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -123910,6 +123964,19 @@
             }
           },
           {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Reference genome in fasta format",
+              "pattern": "*.{fa, fasta, fna}"
+            }
+          },
+          {
             "aligner": {
               "type": "string",
               "description": "Aligner to use for alignment",
@@ -123944,10 +124011,10 @@
             }
           },
           {
-            "bai": {
+            "bam_index": {
               "type": "file",
               "description": "BAM index (currently only for snapaligner)",
-              "pattern": "*.bai"
+              "pattern": "*.{bai, csi}"
             }
           },
           {
@@ -128828,8 +128895,12 @@
           "version": "dev"
         },
         {
+          "name": "oncoanalyser",
+          "version": "dev"
+        },
+        {
           "name": "pangenome",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "phaseimpute",
@@ -128925,8 +128996,12 @@
           "version": "dev"
         },
         {
+          "name": "oncoanalyser",
+          "version": "dev"
+        },
+        {
           "name": "pangenome",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "phaseimpute",
@@ -129052,8 +129127,12 @@
           "version": "dev"
         },
         {
+          "name": "oncoanalyser",
+          "version": "dev"
+        },
+        {
           "name": "pangenome",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "phaseimpute",
