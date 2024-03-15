@@ -15,6 +15,7 @@ announcement:
 ---
 
 import HackathonGroup from '@components/event/HackathonGroup.astro';
+import { YouTube } from '@astro-community/astro-embed-youtube';
 
 # Welcome
 
@@ -314,14 +315,14 @@ We will be a lot of people working in parallel during this hackathon, so to stay
 
 The hackathon is a great opportunity to work on any nf-core related work that you have been putting off or didn't have time for. To help you find like-minded people or possible things to work on, we will have the following topics (formally known as groups):
 
-<HackathonGroup title="Beginners"   leaders={{'mribeirodantas': 'Marcel Ribeiro-Dantas'}}>
+<HackathonGroup title="Beginners" intro_video="dhgUFU8iqGk"  leaders={{'mribeirodantas': 'Marcel Ribeiro-Dantas'}}>
     For people who are new to nf-core (but not necessarily new to Nextflow) and need a bit of guidance on where to start.
 
     > Please note that attendees are expected to know the basics of working with Nextflow.
 
 </HackathonGroup>
 
-<HackathonGroup title="nf-test" color="#238636" leaders={{
+<HackathonGroup title="nf-test" color="#238636" intro_video="LcdKhFjAWmU" leaders={{
     'nvnieuwk': 'Nicolas Vannieuwkerke',
     'sateeshperi': 'Sateesh Peri'
 }}>
@@ -336,7 +337,7 @@ The hackathon is a great opportunity to work on any nf-core related work that yo
 
 </HackathonGroup>
 
-<HackathonGroup title="Pipelines" color="#bf4b8a" leaders={{
+<HackathonGroup title="Pipelines" color="#bf4b8a" intro_video="tpk7O7W12r0" leaders={{
     'FriederikeHanssen': 'Friederike Hanssen',
     'JoseEspinosa': 'Jose Espinosa-Carrasco',
     'maxulysse': 'Maxime Garcia',
@@ -359,7 +360,7 @@ The hackathon is a great opportunity to work on any nf-core related work that yo
 
 </HackathonGroup>
 
-<HackathonGroup title="Modules & Subworkflows" color="#1f6feb" leaders={{
+<HackathonGroup title="Modules & Subworkflows" color="#1f6feb" intro_video="tXHzj0nWDXE" leaders={{
     'maxulysse': 'Maxime Garcia',
     'jonasscheid': 'Jonas Scheid',
     'JoseEspinosa': 'Jose Espinosa-Carrasco'
@@ -375,7 +376,7 @@ The hackathon is a great opportunity to work on any nf-core related work that yo
 
 </HackathonGroup>
 
-<HackathonGroup title="Infrastructure" color="#9e6a03"  leaders={{
+<HackathonGroup title="Infrastructure" color="#9e6a03" intro_video="WOSBpHTM2nQ" leaders={{
     'mashehu': 'Matthias Hörtenhuber',
 }}>
     The nf-core website and central tooling are always being improved.
@@ -392,7 +393,7 @@ The hackathon is a great opportunity to work on any nf-core related work that yo
 
 </HackathonGroup>
 
-<HackathonGroup title="Training materials"  leaders={{
+<HackathonGroup title="Training materials" intro_video="PsT8uFKOeFA" leaders={{
     'FranBonath': 'Franziska Bonath',
 }}>
     We are always looking for ways to improve our training materials.
