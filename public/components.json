@@ -4275,6 +4275,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -38307,6 +38311,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -39032,6 +39040,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -43885,6 +43897,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -91890,6 +91906,160 @@
               "type": "file",
               "description": "This file saves P-site offsets for different reads lengths in python\ncode dict format, and can be used in further analysis\n",
               "pattern": "*.{para.py}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
+        ]
+      }
+    },
+    {
+      "name": "ribotricer_detectorfs",
+      "path": "modules/nf-core/ribotricer/detectorfs/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "ribotricer_detectorfs",
+        "description": "Accurate detection of short and long active ORFs using Ribo-seq data",
+        "keywords": [
+          "riboseq",
+          "orf",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "ribotricer": {
+              "description": "Python package to detect translating ORF from Ribo-seq data",
+              "homepage": "https://github.com/smithlabcode/ribotricer",
+              "documentation": "https://github.com/smithlabcode/ribotricer",
+              "tool_dev_url": "https://github.com/smithlabcode/ribotricer",
+              "doi": "10.1093/bioinformatics/btz878",
+              "licence": [
+                "GNU General Public v3 (GPL v3)"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Map containing riboseq sample information\ne.g. `[ id:'sample1', single_end:false, strandedness: 'single' ]\n"
+            }
+          },
+          {
+            "bam_ribo": {
+              "type": "file",
+              "description": "Sorted riboseq BAM file(s)",
+              "pattern": "*.{bam}"
+            }
+          },
+          {
+            "bai_ribo": {
+              "type": "file",
+              "description": "Index for sorted riboseq bam file(s)",
+              "pattern": "*.{bai}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Map containing reference information for the candidate ORFs\ne.g. `[ id:'Ensembl human v.111' ]`\n"
+            }
+          },
+          {
+            "candidate_orfs": {
+              "type": "file",
+              "description": "TSV file with candidate ORFs from 'ribotricer prepareorfs'",
+              "pattern": "*.tsv"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing riboseq sample information\ne.g. `[ id:'sample1', single_end:false ]\n"
+            }
+          },
+          {
+            "protocol": {
+              "type": "file",
+              "description": "txt file containing inferred protocol if it was inferred (not supplied as input)",
+              "pattern": "*_protocol.txt"
+            }
+          },
+          {
+            "bam_summary": {
+              "type": "file",
+              "description": "Text summary of reads found in the BAM",
+              "pattern": "*_bam_summary.txt"
+            }
+          },
+          {
+            "read_length_dist": {
+              "type": "file",
+              "description": "PDF-format read length distribution as quality control",
+              "pattern": "*_read_length_dist.pdf"
+            }
+          },
+          {
+            "metagene_profile_5p": {
+              "type": "file",
+              "description": "Metagene profile aligning with the start codon",
+              "pattern": "*_metagene_profiles_5p.tsv"
+            }
+          },
+          {
+            "metagene_profile_3p": {
+              "type": "file",
+              "description": "Metagene profile aligning with the stop codon",
+              "pattern": "*_metagene_profiles_3p.tsv"
+            }
+          },
+          {
+            "metagene_plots": {
+              "type": "file",
+              "description": "Metagene plots for quality control",
+              "pattern": "*_metagene_plots.pdf"
+            }
+          },
+          {
+            "psite_offsets": {
+              "type": "file",
+              "description": "\"If the P-site offsets are not provided, txt file containing the\nderived relative offsets\"\n",
+              "pattern": "*_psite_offsets.txt"
+            }
+          },
+          {
+            "pos_wig": {
+              "type": "file",
+              "description": "Positive strand WIG file for visualization in Genome Browser",
+              "pattern": "*_pos.wig"
+            }
+          },
+          {
+            "neg_wig": {
+              "type": "file",
+              "description": "Negative strand WIG file for visualization in Genome Browser",
+              "pattern": "*_neg.wig"
+            }
+          },
+          {
+            "orfs": {
+              "type": "file",
+              "description": "\"TSV with ORFs assessed as translating in this BAM file. You can output\nall ORFs regardless of the translation status with option --report_all\"\n",
+              "pattern": "*_translating_ORFs.tsv"
             }
           },
           {
