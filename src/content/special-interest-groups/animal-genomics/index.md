@@ -26,4 +26,4 @@ Finally, the group will be a place where users can share their experience with n
 
 # Activities
 
-The format will involve a monthly meeting featuring a presentation and round table discussions on pre-identified topics. The format will involve a monthly meeting featuring a presentation and round table discussions on pre-identified topics. The presentation will typically feature novel ongoing efforts in animal genomics (new consortiums, new calls, etc). The discussion will often be a follow-up on the talk.
+The format will involve a monthly meeting featuring a presentation and round table discussions on pre-identified topics. The presentation will typically feature novel ongoing efforts in animal genomics (new consortiums, new calls, etc). The discussion will often be a follow-up on the talk.
