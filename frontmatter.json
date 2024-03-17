@@ -1,0 +1,101 @@
+{
+  "$schema": "https://frontmatter.codes/frontmatter.schema.json",
+  "frontMatter.taxonomy.contentTypes": [
+    {
+      "name": "events",
+      "previewPath": "'events'",
+      "pageBundle": false,
+      "clearEmpty": true,
+      "fields": [
+        {
+          "title": "title",
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "title": "subtitle",
+          "name": "subtitle",
+          "type": "string"
+        },
+        {
+          "title": "pubDate",
+          "name": "pubDate",
+          "type": "datetime"
+        }
+      ]
+    },
+    {
+      "name": "blog",
+      "previewPath": "'blog'",
+      "pageBundle": false,
+      "clearEmpty": true,
+      "fields": [
+        {
+          "title": "title",
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "title": "subtitle",
+          "name": "subtitle",
+          "type": "string"
+        },
+        {
+          "title": "pubDate",
+          "name": "pubDate",
+          "type": "datetime"
+        },
+        {
+          "title": "headerImage",
+          "name": "headerImage",
+          "type": "image",
+          "isPreviewImage": true
+        },
+        {
+          "title": "embedHeaderImage",
+          "name": "embedHeaderImage",
+          "type": "boolean"
+        },
+        {
+          "title": "headerImageAlt",
+          "name": "headerImageAlt",
+          "type": "string"
+        },
+        {
+          "title": "authors",
+          "name": "authors",
+          "type": "list"
+        },
+        {
+          "title": "label",
+          "name": "label",
+          "type": "tags"
+        }
+      ]
+    }
+  ],
+  "frontMatter.framework.id": "astro",
+  "frontMatter.preview.host": "http://localhost:4321",
+  "frontMatter.content.pageFolders": [
+    {
+      "title": "events",
+      "path": "[[workspace]]/src/content/events/{{year}}",
+      "contentTypes": [
+        "events"
+      ],
+      "filePrefix": ""
+    },
+    {
+      "title": "blog",
+      "path": "[[workspace]]/src/content/blog/{{year}}",
+      "contentTypes": [
+        "blog"
+      ],
+      "filePrefix": ""
+    }
+  ],
+  "frontMatter.content.publicFolder": {
+    "path": "[[workspace]]/src",
+    "relative": false
+  }
+}
