@@ -94,11 +94,12 @@ newBlogPost = await getCollection('blog').then((posts) => {
                 <li class="nav-item p-1 px-3 px-xl-1">
                     <a class="nav-link" href="/">Home</a>
                 </li>
+                <li class="nav-item p-1 px-3 px-xl-1">
+                    <a class="nav-link" href="/pipelines/">Pipelines</a>
+                </li>
                 <li class="nav-item p-1 px-3 px-xl-1 dropdown">
                     <span class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"> Resources</span>
                     <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
-                        <a class="nav-link" href="/pipelines/">Pipelines</a>
-                        <li><hr class="dropdown-divider" /></li>
                         <li><span class="dropdown-header">Components</span></li>
                         <li><a class="dropdown-item" href="/modules/">Modules</a></li>
                         <li><a class="dropdown-item" href="/subworkflows/">Subworkflows</a></li>
@@ -114,46 +115,16 @@ newBlogPost = await getCollection('blog').then((posts) => {
                 <li class="nav-item p-1 px-3 px-xl-1">
                     <a class="nav-link" href="/docs/">Docs</a>
                 </li>
-                <li class="nav-item p-1 px-3 px-xl-1 d-flex align-items-center">
+                <li class="nav-item p-1 px-3 px-xl-1 dropdown">
                     <EventIndicator client:idle>
                         <Icon name="circle" />
                     </EventIndicator>
-                    <div class="dropdown">
-                        <a class="nav-link dropdown-toggle" href="/events/" role="button" data-bs-toggle="dropdown">
-                            Events</a
-                        >
-                        <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
-                            <li>
-                                <a class="dropdown-item" href="/events/bytesize/"
-                                    ><i class="fa-solid fa-apple-core me-2"></i>bytesize</a
-                                >
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="/events/hackathon/"
-                                    ><i class="fa-solid fa-laptop-code me-2"></i>hackathon</a
-                                >
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="/events/talk/"
-                                    ><i class="fa-solid fa-presentation me-2"></i>talk</a
-                                >
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="/events/training/"
-                                    ><i class="fa-solid fa-chalkboard-teacher me-2"></i>training</a
-                                >
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="/events/">All events</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item p-1 px-3 px-xl-1 dropdown">
                     <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
                         >{newBlogPost && <i class="fa-solid fa-circle fa-2xs text-primary" />} Community</a
                     >
                     <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
+                        <li><span class="dropdown-header">What's happening</span></li>
+                        <li><a class="dropdown-item" href="/events/">Events</a></li>
                         <li class="d-flex align-items-center">
                             <a class="dropdown-item" href="/blog/">Blog</a>
                             {
@@ -167,6 +138,8 @@ newBlogPost = await getCollection('blog').then((posts) => {
                                 )
                             }
                         </li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><span class="dropdown-header">Programs and groups</span></li>
                         <li><a class="dropdown-item" href="/special-interest-groups/">Special interest groups</a></li>
                         <li><a class="dropdown-item" href="/mentorships/">Mentorships</a></li>
                         <li><a class="dropdown-item" href="/contributors/">Contributors</a></li>
@@ -186,17 +159,11 @@ newBlogPost = await getCollection('blog').then((posts) => {
                         <li><a class="dropdown-item" href="/join/">Join nf-core</a></li>
                     </ul>
                 </li>
-                <div class="align-self-center d-none d-xl-block ms-auto">
+                <div class="align-self-center d-none d-xl-block ms-auto me-2">
                     <Search id="docsearch-desktop" client:only="svelte" />
                 </div>
-                <div class="d-none d-xl-block align-self-center px-2 py-1">
-                    <ThemeSwitch client:load>
-                        <i class="icon" slot="light"><Icon name="sun" width={'14pt'} /></i>
-                        <i class="icon" slot="dark"><Icon name="moon" width={'14pt'} /></i>
-                    </ThemeSwitch>
-                </div>
-                <div class="vr d-none d-xl-inline mx-1 mx-xxl-2"></div>
-                <hr class="d-xl-none" />
+                <div class="d-none d-xl-block vr mx-1 mx-xxl-2"></div>
+
                 <div
                     class="social-icons d-print-none d-flex align-items-center d-xl-block align-self-center mb-3 mb-xl-0 px-3 px-xl-1"
                 >
@@ -207,33 +174,6 @@ newBlogPost = await getCollection('blog').then((posts) => {
                         icon_dark="fa-brands:github"
                         additionalClass="text-body monochrome me-1"
                     />
-                    <IconSocial
-                        href="https://twitter.com/nf_core"
-                        icon="logos:twitter"
-                        title="Twitter"
-                        additionalClass="monochrome me-1"
-                    />
-                    <!-- <IconSocial
-                    marginLeft="0"
-                    marginRight="1rem"
-                    href="https://mstdn.science/@nf_core"
-                    title="Mastodon"
-                    icon="logos:mastodon-icon"
-                    additionalClass="monochrome me-1"
-                /> -->
-                    <IconSocial
-                        href="https://www.youtube.com/@nf-core"
-                        icon="mdi:youtube"
-                        title="YouTube"
-                        additionalClass="monochrome me-1"
-                        color="red"
-                    />
-                    <IconSocial
-                        href="/join/slack/"
-                        title="Slack"
-                        icon="logos:slack-icon"
-                        additionalClass="monochrome me-1"
-                    />
                     <div class="vr ms-2 me-1 d-xl-none"></div>
                     <div class="d-xl-none ms-auto px-2 py-1">
                         <ThemeSwitch client:load>
@@ -242,7 +182,13 @@ newBlogPost = await getCollection('blog').then((posts) => {
                         </ThemeSwitch>
                     </div>
                 </div>
-                <div class="d-none d-xl-block vr mx-1 mx-xxl-3"></div>
+                <div class="d-none d-xl-block align-self-center my-1">
+                    <ThemeSwitch client:load>
+                        <i class="icon" slot="light"><Icon name="sun" width={'14pt'} /></i>
+                        <i class="icon" slot="dark"><Icon name="moon" width={'14pt'} /></i>
+                    </ThemeSwitch>
+                </div>
+                <div class="d-none d-xl-block vr mx-1 me-xxl-3"></div>
                 <!-- Mobile nav -->
                 <a class="d-xl-none btn d-block btn-success mb-3 mx-3 mx-xl-1" href="/join/">Join nf-core</a>
                 <!-- Desktop nav -->
