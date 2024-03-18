@@ -57,6 +57,7 @@ export default defineConfig({
                     'microsoft-azure',
                     'github-actions',
                     'youtube-icon',
+                    'linkedin'
                 ],
                 fa: ['github'],
                 'fa-brands': ['github'],
