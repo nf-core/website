@@ -39,6 +39,7 @@ const events = defineCollection({
                     zoom: z.string().optional(),
                 })
             ).optional(),
+            links: z.array(z.string().url()).optional(),
             address: z.string().optional(),
             start: z.date().optional(),
             end: z.date().optional(),

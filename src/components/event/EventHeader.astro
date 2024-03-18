@@ -26,59 +26,75 @@ const locations = frontmatter.locations || [];
             </dl>
         </div>
         <div class="col">
-            {
-                locations.map((location) => {
-                    return (
-                        <dl>
-                            {location.locationURL && (
-                                <>
-                                    <dt>{location.locationURL.length === 1 ? 'Link' : 'Links'}:</dt>
-                                    <dd>
-                                        <ul class="list-unstyled">
-                                            {location.locationURL.map((loc) => {
-                                                return (
-                                                    <li class="list-item">
-                                                        <a class="text-white underline" href={loc}>
-                                                            // TODO: Add logic to display icon depending on URL
-                                                            {loc}
+            <dl>
+                <dt>Locations:</dt>
+                <dd>
+                    <ul class="list-unstyled">
+                        {
+                            locations.map((location) => {
+                                const locationURLs = Array.isArray(location.locationURL) ? location.locationURL : [location.locationURL];
+                                return (
+                                    <li class="list-item">
+                                        <ul>
+                                            <li>
+                                                <strong>
+                                                    {location.locationName}{location.locationLatLng && (
+                                                        <a
+                                                            class="m-1 btn btn-sm btn-outline-light"
+                                                            href={`https://www.openstreetmap.org/?mlat=${location.locationLatLng[0]}&mlon=${location.locationLatLng[1]}&zoom=16#map=16/${location.locationLatLng[0]}/${location.locationLatLng[1]}`}
+                                                            target="_blank"
+                                                        >
+                                                            <i class="fa-duotone fa-map-pin me-1" />
+                                                            See on map
                                                         </a>
+                                                    )}:
+                                                </strong>
+                                                <ul class="list-unstyled">
+                                                    <li>
+                                                        {locationURLs && (
+                                                            <ul>
+                                                                {locationURLs.map((loc) => {
+                                                                    return (
+                                                                        <li class="list-item">
+                                                                            <a class="text-white underline" href={loc}>
+                                                                                <!-- TODO: Add logic to display icon depending on URL -->
+                                                                                {loc}
+                                                                            </a>
+                                                                        </li>
+                                                                    );
+                                                                })}
+                                                            </ul>
+                                                        )}
                                                     </li>
-                                                );
-                                            })}
+                                                </ul>
+                                            </li>
                                         </ul>
-                                    </dd>
-                                </>
-                            )}
-                            {location.locationName && (
-                                <>
-                                    <dt>Location:</dt>
-                                    <dd>{location.locationName}</dd>
-                                </>
-                            )}
-                            {location.address && (
-                                <>
-                                    <dt>Address:</dt>
-                                    <dd>{location.address}</dd>
-                                </>
-                            )}
-                            {location.locationLatLng && (
-                                <>
-                                    <dd>
-                                        <a
-                                            class="mt-2 btn btn-sm btn-outline-light"
-                                            href={`https://www.openstreetmap.org/?mlat=${location.locationLatLng[0]}&mlon=${location.locationLatLng[1]}&zoom=16#map=16/${location.locationLatLng[0]}/${location.locationLatLng[1]}`}
-                                            target="_blank"
-                                        >
-                                            <i class="fa-duotone fa-map-pin me-1" />
-                                            See on map
-                                        </a>
-                                    </dd>
-                                </>
-                            )}
-                        </dl>
-                    );
-                })
-            }
+                                    </li>
+                                );
+                            })
+                        }
+                    </ul>
+                </dd>
+
+                {frontmatter.links && frontmatter.links.length > 0 && (
+                    <>
+                        <dt>Links:</dt>
+                        <dd>
+                            <ul>
+                                {frontmatter.links.map((link) => {
+                                    return (
+                                        <li class="list-item">
+                                            <a class="text-white underline" href={link}>
+                                                {link}
+                                            </a>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        </dd>
+                    </>
+                )}
+            </dl>
         </div>
     </div>
 
