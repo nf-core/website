@@ -95,6 +95,8 @@ export const writePipelinesJson = async () => {
     });
     data['open_pr_count'] = pull_requests.length;
 
+    data['repository_url'] = `https://github.com/nf-core/${name}`;
+
     // get all the contributors
     let { data: contributors } = await octokit.rest.repos.listContributors({
       owner: 'nf-core',
