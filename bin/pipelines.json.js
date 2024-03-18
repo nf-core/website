@@ -1,5 +1,5 @@
 #! /usr/bin/env node
-import octokit, { getDocFiles, getCurrentRateLimitRemaining, getGitHubFile } from '../src/components/octokit.js';
+import octokit, { getDocFiles, getCurrentRateLimitRemaining, getGitHubFile, githubFolderExists } from '../src/components/octokit.js';
 import { promises as fs, writeFileSync, existsSync } from 'fs';
 import yaml from 'js-yaml';
 import path, { join } from 'path';
@@ -67,7 +67,7 @@ export const writePipelinesJson = async () => {
   let bar = new ProgressBar('  fetching pipelines [:bar] :percent :etas', { total: names.length });
 
   // go through names and add or update pipelines in pipelines.json
-  for (const name of names.flat()) {
+  for (const name of names.flat()?.splice(0,1)) {
     // get the details from the github repo description
     const data = await octokit.rest.repos
       .get({
@@ -177,6 +177,10 @@ export const writePipelinesJson = async () => {
     } else {
       console.log(`No commits to dev branch found for ${name}`);
     }
+
+    // Get DSL2 status
+    data['is_DSL2'] = await githubFolderExists(name, 'modules', releases?.[0].tag_name ?? data.default_branch);
+
     new_releases = await Promise.all(
       new_releases.map(async (release) => {
         const { tag_name, published_at, tag_sha, has_schema } = release;
