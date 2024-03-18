@@ -265,7 +265,7 @@ Deletes a key from a nested dictionary
 
 - **Parameters:**
   - **d** (_dict_) – the nested dictionary to traverse
-  - **keys** (_list_\*\[**Any**]\*) – A list of keys to iteratively traverse, deleting the final one
+  - **keys** (_list_ \*\[\*_Any_ _]_) – A list of keys to iteratively traverse, deleting the final one
 
 ### `nf_core.utils.nested_setitem(d, keys, value){:python}`
 
@@ -273,7 +273,7 @@ Sets the value in a nested dict using a list of keys to traverse
 
 - **Parameters:**
   - **d** (_dict_) – the nested dictionary to traverse
-  - **keys** (_list_\*\[**Any**]\*) – A list of keys to iteratively traverse
+  - **keys** (_list_ \*\[\*_Any_ _]_) – A list of keys to iteratively traverse
   - **value** (_Any_) – The value to be set for the last key in the chain
 
 ### `nf_core.utils.parse_anaconda_licence(anaconda_response, version=None){:python}`

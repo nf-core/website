@@ -21,8 +21,10 @@ Contact:
 
 ## Schedule
 
-- 2024-03-18 - 0900-1700: Campus Ardoyen, Zwijnaarde
-- 2024-03-19 - 0900-1700: Campus Ardoyen, Zwijnaarde
-- 2024-03-20 - 0900-1700: Campus Ardoyen, Zwijnaarde
+- 2024-03-18 - 0900-1700: Vergaderzaal 1.1
+- 2024-03-19 - 0900-1700: Vergaderzaal 1.1
+- 2024-03-20 - 0900-1700: Vergaderzaal 1.1
 
-_Details to be confirmed_
+## Pizzas
+
+We will have free pizzas for lunch on Tuesday March 19th (Thanks to Seqera for sponsoring this!).
