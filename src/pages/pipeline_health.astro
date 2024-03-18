@@ -35,7 +35,8 @@ import { remote_workflows as pipelines } from '@public/pipelines.json';
                         <th colspan="3" class="small fw-normal text-nowrap" title="Branches exist" data-bs-toggle="tooltip" data-bs-placement="top">Branches exist</th>
                         <th colspan="6" class="small fw-normal text-nowrap" title="Branch protection: master" data-bs-toggle="tooltip" data-bs-placement="top">Branch protection: master</th>
                         <th colspan="6" class="small fw-normal text-nowrap" title="Branch protection: dev" data-bs-toggle="tooltip" data-bs-placement="top">Branch protection: dev</th>
-                        <th colspan="6" class="small fw-normal text-nowrap" title="Restrict push to TEMPLATE to @nf-core-bot" data-bs-toggle="tooltip" data-bs-placement="top">T push</th>                </tr>
+                        <th colspan="6" class="small fw-normal text-nowrap" title="Restrict push to TEMPLATE to @nf-core-bot" data-bs-toggle="tooltip" data-bs-placement="top">T push</th>
+                    </tr>
                 </thead>
                 <tbody>
                     {
@@ -178,75 +179,65 @@ import { remote_workflows as pipelines } from '@public/pipelines.json';
                                 <!-- Branch protection: master -->
                                 <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
                                     <a href="null" target="_blank">
-                                        up to date?
+                                        up to date
                                         { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
                                     </a>
                                 </td>
-                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                <td class={"text-center " + (pipeline.main_branch_protection_status_checks ? 'status--healthy' : 'status--unhealthy')}>
                                     <a href="null" target="_blank">
-                                        minimum CI checks?
-                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                        { pipeline.main_branch_protection_status_checks ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
                                     </a>
                                 </td>
-                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                <td class={"text-center " + (pipeline.main_branch_protection_require_non_stale_review ? 'status--healthy' : 'status--unhealthy')}>
                                     <a href="null" target="_blank">
-                                        non-stale reviews?
-                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                        { pipeline.main_branch_protection_require_non_stale_review ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
                                     </a>
                                 </td>
-                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                <td class={"text-center " + (pipeline.main_branch_protection_require_codeowner_review ? 'status--healthy' : 'status--unhealthy')}>
                                     <a href="null" target="_blank">
-                                        codeowner reviews?
-                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                        { pipeline.main_branch_protection_require_codeowner_review ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
                                     </a>
                                 </td>
-                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                <td class={"text-center " + (((pipeline.main_branch_protection_required_reviews ?? 0) > 1) ? 'status--healthy' : 'status--unhealthy')}>
                                     <a href="null" target="_blank">
-                                        2 reviews required?
-                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                        { ((pipeline.main_branch_protection_required_reviews ?? 0) > 1) ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
                                     </a>
                                 </td>
-                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                <td class={"text-center " + (pipeline.main_branch_protection_enforce_admins ? 'status--healthy' : 'status--unhealthy')}>
                                     <a href="null" target="_blank">
-                                        do not enforce for admins?
-                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                        { pipeline.main_branch_protection_enforce_admins ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
                                     </a>
                                 </td>
                                 <!-- Branch protection: dev -->
                                 <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
                                     <a href="null" target="_blank">
-                                        up to date?
+                                        up to date
                                         { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
                                     </a>
                                 </td>
-                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                <td class={"text-center " + (pipeline.dev_branch_protection_status_checks ? 'status--healthy' : 'status--unhealthy')}>
                                     <a href="null" target="_blank">
-                                        minimum CI checks?
-                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                        { pipeline.dev_branch_protection_status_checks ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
                                     </a>
                                 </td>
-                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                <td class={"text-center " + (pipeline.dev_branch_protection_require_non_stale_review ? 'status--healthy' : 'status--unhealthy')}>
                                     <a href="null" target="_blank">
-                                        non-stale reviews?
-                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                        { pipeline.dev_branch_protection_require_non_stale_review ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
                                     </a>
                                 </td>
-                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                <td class={"text-center " + (pipeline.dev_branch_protection_require_codeowner_review ? 'status--healthy' : 'status--unhealthy')}>
                                     <a href="null" target="_blank">
-                                        codeowner reviews?
-                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                        { pipeline.dev_branch_protection_require_codeowner_review ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
                                     </a>
                                 </td>
-                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                <td class={"text-center " + (((pipeline.dev_branch_protection_required_reviews ?? 0) > 1) ? 'status--healthy' : 'status--unhealthy')}>
                                     <a href="null" target="_blank">
-                                        2 reviews required?
-                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                        { ((pipeline.dev_branch_protection_required_reviews ?? 0) > 1) ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
                                     </a>
                                 </td>
-                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                <td class={"text-center " + (pipeline.dev_branch_protection_enforce_admins ? 'status--healthy' : 'status--unhealthy')}>
                                     <a href="null" target="_blank">
-                                        do not enforce for admins?
-                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                        { pipeline.dev_branch_protection_enforce_admins ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
                                     </a>
                                 </td>
                                 <!-- T push -->
