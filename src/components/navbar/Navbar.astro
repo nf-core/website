@@ -116,12 +116,12 @@ newBlogPost = await getCollection('blog').then((posts) => {
                     <a class="nav-link" href="/docs/">Docs</a>
                 </li>
                 <li class="nav-item p-1 px-3 px-xl-1 dropdown">
-                    <EventIndicator client:idle>
-                        <Icon name="circle" />
-                    </EventIndicator>
                     <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
-                        >{newBlogPost && <i class="fa-solid fa-circle fa-2xs text-primary" />} Community</a
-                    >
+                        >
+                            {newBlogPost && <i class="fa-solid fa-circle fa-2xs text-primary" />}
+                             <EventIndicator client:idle><Icon name="circle" /></EventIndicator>
+                            Community
+                        </a>
                     <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
                         <li><span class="dropdown-header">What's happening</span></li>
                         <li><a class="dropdown-item" href="/events/">Events</a></li>
