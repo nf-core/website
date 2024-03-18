@@ -46,6 +46,8 @@ nf-core subworkflows install utils_nfvalidation_plugin
    - A new `subworkflows` section with the new `utils_*` subworkflows might have been added during the merged. Reinstalling the subworkflows using `nf-core subworkflows install` should fix this, otherwise one could manually edit the modules.json file (only recommended for advanced users).
 
 :bulb: It helped to disable running the main workflow whilst wiring all of this in to speed up development.
+
+:movie_camera: Last but not least, we have a short [bytesize talk](https://www.youtube.com/watch?v=_meU3EzKdRI) showing the necessary steps.
 :::
 
 ## Additional bug fixes and improvements
