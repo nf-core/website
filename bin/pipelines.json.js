@@ -139,6 +139,23 @@ export const writePipelinesJson = async () => {
       });
     }
 
+    // get last push to main branch and compare to that of the newest release
+    const { data: default_branch } = await octokit.rest.repos.listCommits({
+      owner: 'nf-core',
+      repo: name,
+      sha: data.default_branch,
+      per_page: 1,
+    });
+    data['head_sha'] = default_branch[0]?.sha;
+
+    const lastReleaseCommit = await octokit.rest.repos.getCommit({
+      owner: 'nf-core',
+      repo: name,
+      ref: releases[0]?.tag_name,
+    });
+    data['last_release_is_head'] = data['head_sha'] === lastReleaseCommit.data?.sha;
+    data['last_release_vs_default_compare_url'] = data['repository_url'] + '/compare/' + data['head_sha'] + '...' + lastReleaseCommit.data?.sha;
+
     // get last push to dev branch
     const { data: dev_branch } = await octokit.rest.repos.listCommits({
       owner: 'nf-core',
