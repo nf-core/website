@@ -56,10 +56,9 @@ import { remote_workflows as pipelines } from '@public/pipelines.json';
                                     </a>
                                 </td>
                                 <!--Master = release -->
-                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href="null" target="_blank">
-                                        TODO:
-                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                <td class={"text-center " + (pipeline.last_release_is_head ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href={pipeline.last_release_vs_default_compare_url} target="_blank">
+                                        { pipeline.last_release_is_head ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
                                     </a>
                                 </td>
                                 <!-- JSON Schema -->
