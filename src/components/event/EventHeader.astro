@@ -13,6 +13,24 @@ if (frontmatter.end === undefined) {
 const start = frontmatter.start;
 const end = frontmatter.end;
 const locations = frontmatter.locations || [];
+
+function getLinkIcon(link) {
+    if (/^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/gi.test(link)) {
+        return 'fa-youtube';
+    } else if (/^(https?:\/\/)?(www\.)?zoom\.us\/.+$/gi.test(link)) {
+        return 'fa-zoom-us';
+    } else if (/^(https?:\/\/)?(www\.)?bilibili\.com\/.+$/gi.test(link)) {
+        return 'fa-bilibili';
+    } else if (/^(https?:\/\/)?(www\.)?github\.com\/.+$/gi.test(link)) {
+        return 'fa-github';
+    } else if (/^(https?:\/\/)?(www\.)?linkedin\.com\/.+$/gi.test(link)) {
+        return 'fa-linkedin';
+    } else if (/^(https?:\/\/)?(www\.)?twitter\.com\/.+$/gi.test(link)) {
+        return 'fa-twitter';
+    } else if (/^(https?:\/\/)?(www\.)?(docs\.google\.com)\/.+$/gi.test(link)) {
+        return 'fa-google-drive';
+    }
+}
 ---
 
 <div class="">
@@ -82,8 +100,10 @@ const locations = frontmatter.locations || [];
                         <dd>
                             <ul>
                                 {frontmatter.links.map((link) => {
+                                    const iconClass = getLinkIcon(link);
                                     return (
                                         <li class="list-item">
+                                            {iconClass && <i class={'fab ' + iconClass} />}
                                             <a class="text-white underline" href={link}>
                                                 {link}
                                             </a>
