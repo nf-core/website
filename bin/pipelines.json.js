@@ -67,7 +67,7 @@ export const writePipelinesJson = async () => {
   let bar = new ProgressBar('  fetching pipelines [:bar] :percent :etas', { total: names.length });
 
   // go through names and add or update pipelines in pipelines.json
-  for (const name of names.flat()?.splice(0,1)) {
+  for (const name of names.flat()) {
     // get the details from the github repo description
     const data = await octokit.rest.repos
       .get({
@@ -85,6 +85,28 @@ export const writePipelinesJson = async () => {
 
         return response.data;
       });
+
+    // Get branch protection rules
+    for(const branch of [
+      'main',
+      'dev'
+    ]) {
+      let rules;
+      try {
+        rules = await octokit.rest.repos.getBranchProtection({
+          owner: 'nf-core',
+          repo: name,
+          branch: branch === 'dev' ? 'dev' : data.default_branch,
+        });
+      } catch(err)  {
+        console.log(`Failed to fetch ${branch} branch protection`, err);
+      }
+      data[`${branch}_branch_protection_status_checks`] = rules?.data?.required_status_checks ?? null;
+      data[`${branch}_branch_protection_required_reviews`] = rules?.data?.required_pull_request_reviews?.required_approving_review_count ?? null;
+      data[`${branch}_branch_protection_require_codeowner_review`] = rules?.data?.required_pull_request_reviews?.require_code_owner_reviews ?? null;
+      data[`${branch}_branch_protection_require_non_stale_review`] = rules?.data?.required_pull_request_reviews?.dismiss_stale_reviews ?? null;
+      data[`${branch}_branch_protection_enforce_admins`] = rules?.data?.enforce_admins?.enabled ?? null;
+    }
     // remove ignored topics
     data['topics'] = data['topics'].filter((topic) => !ignored_topics.includes(topic));
     // get number of open pull requests
