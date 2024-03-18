@@ -74,17 +74,15 @@ import { remote_workflows as pipelines } from '@public/pipelines.json';
                                     </a>
                                 </td>
                                 <!-- nf-test -->
-                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href="null" target="_blank">
-                                        TODO
-                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                <td class={"text-center " + (pipeline.has_nf_test ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href={pipeline.repository_url} target="_blank">
+                                        { pipeline.has_nf_test ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
                                     </a>
                                 </td>
                                 <!-- nf-test in dev -->
-                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                <td class={"text-center " + (pipeline.has_nf_test_dev ? 'status--healthy' : 'status--unhealthy')}>
                                     <a href="null" target="_blank">
-                                        TODO
-                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                        { pipeline.has_nf_test_dev ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
                                     </a>
                                 </td>
                                 <!-- wikis -->
