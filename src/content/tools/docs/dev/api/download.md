@@ -56,7 +56,7 @@ bars with different columns / layouts.
 
 Get a number of renderables for the progress display.
 
-### _`class{:python}`_`nf_core.download.DownloadWorkflow(pipeline=None, revision=None, outdir=None, compress_type=None, force=False, tower=False, download_configuration=None, container_system=None, container_library=None, container_cache_utilisation=None, container_cache_index=None, parallel_downloads=4){:python}`
+### _`class{:python}`_`nf_core.download.DownloadWorkflow(pipeline=None, revision=None, outdir=None, compress_type=None, force=False, platform=False, download_configuration=None, container_system=None, container_library=None, container_cache_utilisation=None, container_cache_index=None, parallel_downloads=4){:python}`
 
 Bases: `object`
 
@@ -68,7 +68,7 @@ Can also download its Singularity container image if required.
   - **pipeline** (_str_) – A nf-core pipeline name.
   - **revision** (_List_ \*\[\*_str_ _]_) – The workflow revision to download, like 1.0. Defaults to None.
   - **container** (_bool_) – Flag, if the Singularity container should be downloaded as well. Defaults to False.
-  - **tower** (_bool_) – Flag, to customize the download for Nextflow Tower (convert to git bare repo). Defaults to False.
+  - **platform** (_bool_) – Flag, to customize the download for Seqera Platform (convert to git bare repo). Defaults to False.
   - **outdir** (_str_) – Path to the local download directory. Defaults to None.
 
 #### `compress_download(){:python}`
@@ -87,13 +87,13 @@ Downloads workflow files from GitHub to the `self.outdir`.
 
 Starts a nf-core workflow download.
 
+#### `download_workflow_platform(location=None){:python}`
+
+Create a bare-cloned git repository of the workflow, so it can be launched with tw launch as <file:/> pipeline
+
 #### `download_workflow_static(){:python}`
 
 Downloads a nf-core workflow from GitHub to the local file system in a self-contained manner.
-
-#### `download_workflow_tower(location=None){:python}`
-
-Create a bare-cloned git repository of the workflow, so it can be launched with tw launch as <file:/> pipeline
 
 #### `find_container_images(workflow_directory){:python}`
 
@@ -163,7 +163,7 @@ Prompt for the pipeline name if not set with a flag
 
 Prompt for pipeline revision / branch
 Prompt user for revision tag if ‘–revision’ was not set
-If –tower is specified, allow to select multiple revisions
+If –platform is specified, allow to select multiple revisions
 Also the static download allows for multiple revisions, but
 we do not prompt this option interactively.
 
@@ -337,7 +337,7 @@ Sets self.repo
 #### `tidy_tags_and_branches(){:python}`
 
 Function to delete all tags and branches that are not of interest to the downloader.
-This allows a clutter-free experience in Tower. The untagged commits are evidently still available.
+This allows a clutter-free experience in Seqera Platform. The untagged commits are evidently still available.
 
 However, due to local caching, the downloader might also want access to revisions that had been deleted before.
 In that case, don’t bother with re-adding the tags and rather download anew from Github.
