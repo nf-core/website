@@ -31,12 +31,6 @@ const events = defineCollection({
                     locationName: z.string().optional(),
                     locationURL: z.string().url().or(z.string().startsWith('#')).or(z.array(z.string().url())).optional(),
                     locationLatLng: z.array(z.number(), z.number()).optional(),
-                    // Fields more relevant for online events
-                    slides: z.array(z.string().url()).optional(),
-                    doi: z.array(z.string()).optional(),
-                    youtube: z.string().optional(),
-                    biliBili: z.string().optional(),
-                    zoom: z.string().optional(),
                 })
             ).optional(),
             links: z.array(z.string().url()).optional(),
