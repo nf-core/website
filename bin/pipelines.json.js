@@ -179,7 +179,15 @@ export const writePipelinesJson = async () => {
     }
 
     // Get DSL2 status
-    data['is_DSL2'] = await githubFolderExists(name, 'modules', releases?.[0].tag_name ?? data.default_branch);
+    data['is_DSL2'] = await githubFolderExists(name, 'modules', releases?.[0]?.tag_name ?? data.default_branch);
+
+    // Get nf-test uage
+    data['has_nf_test'] = await getGitHubFile(name, 'nf-test.config', releases?.[0]?.tag_name ?? data.default_branch).then((response) => {
+      return response ? true : false;
+    });
+    data['has_nf_test_dev'] = await getGitHubFile(name, 'nf-test.config', 'dev').then((response) => {
+      return response ? true : false;
+    });
 
     new_releases = await Promise.all(
       new_releases.map(async (release) => {
