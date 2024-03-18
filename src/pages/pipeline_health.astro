@@ -1,5 +1,6 @@
 ---
 import PageLayout from '@layouts/PageLayout.astro';
+import { remote_workflows as pipelines } from '@public/pipelines.json';
 ---
 
 <PageLayout
@@ -7,15 +8,88 @@ import PageLayout from '@layouts/PageLayout.astro';
     subtitle="Check GitHub settings for all nf-core repositories"
     mainpage_container={false}
 >
-    <div class="iframe-container w-100 d-flex align-items-start vh-100">
-        <i class="mt-5 m-auto text-success fa-regular fa-spinner-third fa-spin fa-3x"></i>
-        <iframe
-            class="d-none"
-            src="https://oldsite.nf-co.re/pipeline_health"
-            onload="this.classList.remove('d-none'); this.previousElementSibling.classList.add('d-none');"
-            title="pipeline_heath"
-            style="border:none;"
-            width="100%"
-            height="100%"></iframe>
+    <div class="container-fluid main-content w-100 mw-100">
+        <div class="table-responsive">
+            <h2>Pipelines</h2>
+            <table class="table table-hover table-sm">
+                <thead>
+                    <tr>
+                        <th class="small fw-normal text-nowrap">Pipeline Name</th>
+                        <th class="small fw-normal text-nowrap" title="Has at least one release" data-bs-toggle="tooltip" data-bs-placement="top">Released</th>
+                        <th class="small fw-normal text-nowrap" title="Last release is after latest tools release (so up to date with template)" data-bs-toggle="tooltip" data-bs-placement="top">Released after tools</th>
+                        <th class="small fw-normal text-nowrap" title="Master branch is same commit as the last release" data-bs-toggle="tooltip" data-bs-placement="top">Master = release</th>
+                        <th class="small fw-normal text-nowrap" title="Has a nextflow_schema.json file (in last release, dev if no release)" data-bs-toggle="tooltip" data-bs-placement="top">JSON Schema</th>
+                        <th class="small fw-normal text-nowrap" title="Has a modules directory, suggesting that it's a DSL2 pipeline (in last release, dev if no release)" data-bs-toggle="tooltip" data-bs-placement="top">DSL2</th>
+                        <th class="small fw-normal text-nowrap" title="Uses nf-test" data-bs-toggle="tooltip" data-bs-placement="top">nf-test</th>
+                        <th class="small fw-normal text-nowrap" title="Uses nf-test in dev branch" data-bs-toggle="tooltip" data-bs-placement="top">nf-test in dev</th>
+                        <th class="small fw-normal text-nowrap" title="Disable wikis" data-bs-toggle="tooltip" data-bs-placement="top">Wikis</th>
+                        <th class="small fw-normal text-nowrap" title="Enable issues" data-bs-toggle="tooltip" data-bs-placement="top">Issues</th>
+                        <th class="small fw-normal text-nowrap" title="Allow merge commits" data-bs-toggle="tooltip" data-bs-placement="top">Merge commits</th>
+                        <th class="small fw-normal text-nowrap" title="Allow rebase merging" data-bs-toggle="tooltip" data-bs-placement="top">Rebase merging</th>
+                        <th class="small fw-normal text-nowrap" title="Do not allow squash merges" data-bs-toggle="tooltip" data-bs-placement="top">Squash merges</th>
+                        <th class="small fw-normal text-nowrap" title="default branch master (released) or dev (no releases)" data-bs-toggle="tooltip" data-bs-placement="top">Default branch</th>
+                        <th class="small fw-normal text-nowrap" title="Minimum keywords set" data-bs-toggle="tooltip" data-bs-placement="top">Keywords</th>
+                        <th class="small fw-normal text-nowrap" title="Description must be set" data-bs-toggle="tooltip" data-bs-placement="top">Description</th>
+                        <th class="small fw-normal text-nowrap" title="URL should be set to https://nf-co.re/[PIPELINE-NAME]" data-bs-toggle="tooltip" data-bs-placement="top">Repo URL</th>
+                        <th colspan="2" class="small fw-normal text-nowrap" title="Team access" data-bs-toggle="tooltip" data-bs-placement="top">Team access</th>
+                        <th colspan="3" class="small fw-normal text-nowrap" title="Branches exist" data-bs-toggle="tooltip" data-bs-placement="top">Branches exist</th>
+                        <th colspan="6" class="small fw-normal text-nowrap" title="Branch protection: master" data-bs-toggle="tooltip" data-bs-placement="top">Branch protection: master</th>
+                        <th colspan="6" class="small fw-normal text-nowrap" title="Branch protection: dev" data-bs-toggle="tooltip" data-bs-placement="top">Branch protection: dev</th>
+                        <th colspan="6" class="small fw-normal text-nowrap" title="Restrict push to TEMPLATE to @nf-core-bot" data-bs-toggle="tooltip" data-bs-placement="top">T push</th>                </tr>
+                </thead>
+                <tbody>
+                    {
+                        pipelines.map(pipeline =>
+                            <tr>
+                                <td>{pipeline.name}</td>
+                                <!-- Released -->
+                                <td class={"text-center " + (pipeline.releases?.length ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href="null" target="_blank">
+                                        { pipeline.releases?.length ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
+                                <!-- Released after tools -->
+                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href="null" target="_blank">
+                                        TODO:
+                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
+                            </tr>
+                        )
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
+    {
+        false && (
+        <div class="iframe-container w-100 d-flex align-items-start vh-100">
+            <i class="mt-5 m-auto text-success fa-regular fa-spinner-third fa-spin fa-3x"></i>
+            <iframe
+                class="d-none"
+                src="https://oldsite.nf-co.re/pipeline_health"
+                onload="this.classList.remove('d-none'); this.previousElementSibling.classList.add('d-none');"
+                title="pipeline_heath"
+                style="border:none;"
+                width="100%"
+                height="100%"></iframe>
+        </div>
+        )
+    }
+    hello
 </PageLayout>
+<style>
+    .status--healthy {
+        background-color: #0f4b2b;
+    }
+    .status--unhealthy {
+        background-color: #74261e;
+    }
+    th {
+        padding: 0.25rem;
+    }
+    tr {
+        border-bottom: 1px solid gray;
+    }
+</style>
