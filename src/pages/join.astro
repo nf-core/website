@@ -1,6 +1,7 @@
 ---
 import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
 import { Icon } from 'astro-icon/components';
+import { Icon as Iconify } from 'astro-iconify';
 
 const title = 'Join nf-core';
 const subtitle = 'Read about the different ways you can get involved with nf-core';
@@ -237,6 +238,7 @@ const headings = [
     >
 
     <h1 id="bluesky" class="mt-5">
+        <span class="join-pull-img bg-body"> <Iconify name="simple-icons:bluesky" color="#1185fe" size="120px" /></span>
         Bluesky
         <a href="#blueksy" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
     </h1>
