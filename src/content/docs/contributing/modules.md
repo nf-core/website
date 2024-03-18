@@ -72,7 +72,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
    git checkout -b fastqc
    ```
 
-8. Create a module using the [nf-core DSL2 module template](https://github.com/nf-core/tools/blob/master/nf_core/module-template/modules/main.nf):
+8. Create a module using the [nf-core DSL2 module template](https://github.com/nf-core/tools/blob/master/nf_core/module-template/main.nf):
 
    ```console
    $ nf-core modules create fastqc --author @joebloggs --label process_low --meta
