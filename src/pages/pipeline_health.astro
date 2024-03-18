@@ -68,10 +68,9 @@ import { remote_workflows as pipelines } from '@public/pipelines.json';
                                     </a>
                                 </td>
                                 <!-- DSL2 -->
-                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href="null" target="_blank">
-                                        TODO
-                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                <td class={"text-center " + (pipeline.is_DSL2 ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href={pipeline.repository_url} target="_blank">
+                                        { pipeline.is_DSL2 ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
                                     </a>
                                 </td>
                                 <!-- nf-test -->
