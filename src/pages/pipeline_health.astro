@@ -55,6 +55,211 @@ import { remote_workflows as pipelines } from '@public/pipelines.json';
                                         { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
                                     </a>
                                 </td>
+                                <!--Master = release -->
+                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href="null" target="_blank">
+                                        TODO:
+                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
+                                <!-- JSON Schema -->
+                                <td class={"text-center " + (pipeline.releases?.[0].has_schema ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href="null" target="_blank">
+                                        { pipeline.releases?.[0].has_schema ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
+                                <!-- DSL2 -->
+                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href="null" target="_blank">
+                                        TODO
+                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
+                                <!-- nf-test -->
+                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href="null" target="_blank">
+                                        TODO
+                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
+                                <!-- nf-test in dev -->
+                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href="null" target="_blank">
+                                        TODO
+                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
+                                <!-- wikis -->
+                                <td class={"text-center " + (pipeline.has_wiki ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href="null" target="_blank">
+                                        { pipeline.has_wiki ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
+                                <!-- issues -->
+                                <td class={"text-center " + (pipeline.has_issues ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href="null" target="_blank">
+                                        { pipeline.has_issues ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
+                                <!-- merge commits -->
+                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href="null" target="_blank">
+                                        TODO
+                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
+                                <!-- Rebase merging -->
+                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href="null" target="_blank">
+                                        TODO
+                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
+                                <!-- Squash changes -->
+                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href="null" target="_blank">
+                                        TODO
+                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
+                                <!-- Default branch -->
+                                <td class={"text-center " + (pipeline.default_branch ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href="null" target="_blank">
+                                        { pipeline.default_branch ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
+                                <!-- Keywords -->
+                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href="null" target="_blank">
+                                        TODO:
+                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
+                                <!-- Description -->
+                                <td class={"text-center " + (pipeline.description ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href="null" target="_blank">
+                                        { pipeline.description ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
+                                <!-- Repo URL -->
+                                <td class={"text-center " + (pipeline.repository_url ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href={pipeline.repository_url} target="_blank">
+                                        { pipeline.repository_url ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
+                                <!-- Team access -->
+                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href="null" target="_blank">
+                                        TODO
+                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
+                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href="null" target="_blank">
+                                        TODO
+                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
+                                <!-- Branches exist -->
+                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href="null" target="_blank">
+                                        master?
+                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
+                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href="null" target="_blank">
+                                        dev?
+                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
+                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href="null" target="_blank">
+                                        template?
+                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
+                                <!-- Branch protection: master -->
+                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href="null" target="_blank">
+                                        up to date?
+                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
+                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href="null" target="_blank">
+                                        minimum CI checks?
+                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
+                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href="null" target="_blank">
+                                        non-stale reviews?
+                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
+                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href="null" target="_blank">
+                                        codeowner reviews?
+                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
+                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href="null" target="_blank">
+                                        2 reviews required?
+                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
+                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href="null" target="_blank">
+                                        do not enforce for admins?
+                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
+                                <!-- Branch protection: dev -->
+                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href="null" target="_blank">
+                                        up to date?
+                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
+                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href="null" target="_blank">
+                                        minimum CI checks?
+                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
+                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href="null" target="_blank">
+                                        non-stale reviews?
+                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
+                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href="null" target="_blank">
+                                        codeowner reviews?
+                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
+                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href="null" target="_blank">
+                                        2 reviews required?
+                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
+                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href="null" target="_blank">
+                                        do not enforce for admins?
+                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
+                                <!-- T push -->
+                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                    <a href="null" target="_blank">
+                                        TODO
+                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                    </a>
+                                </td>
                             </tr>
                         )
                     }
