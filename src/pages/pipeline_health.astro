@@ -74,11 +74,11 @@ import { remote_workflows as pipelines } from '@public/pipelines.json';
                                 <!-- issues -->
                                 { getCell(pipeline.has_issues, pipeline.repository_url+'/issues', "enable issues") }
                                 <!-- merge commits -->
-                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "allow merge commits") }
+                                { getCell(pipeline.allow_merge_commit, `https://github.com/nf-core/${pipeline.name}/releases`, "allow merge commits") }
                                 <!-- Rebase merging -->
-                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "allow rebase merging") }
+                                { getCell(pipeline.allow_rebase_commit, `https://github.com/nf-core/${pipeline.name}/releases`, "allow rebase merging") }
                                 <!-- Squash changes -->
-                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "do not allow squash merge") }
+                                { getCell(pipeline.allow_squash_commit !== -1 ? !pipeline.allow_squash_commit : pipeline.allow_squash_commit, `https://github.com/nf-core/${pipeline.name}/releases`, "do not allow squash merge") }
                                 <!-- Default branch TODO: 🚧-->
                                 { getCell(pipeline.default_branch, pipeline.repository_url+'/commits', "default branch master (released) or dev (no releases)") }
                                 <!-- Keywords -->
