@@ -43,10 +43,10 @@ import { remote_workflows as pipelines } from '@public/pipelines.json';
                         pipelines.map(pipeline =>
                             {
                                 const getCell = (condition?: any, link?: string, tooltip?: string) =>
-                                    <td class={"text-center " + (condition ? (condition === -1 ? 'status--unknown' : 'status--healthy') : 'status--unhealthy')}
+                                    <td class={"text-center " + (condition ? ((condition === -1 || condition === undefined) ? 'status--unknown' : 'status--healthy') : 'status--unhealthy')}
                                         data-bs-toggle="tooltip" title={pipeline.name + ": " + tooltip}>
                                         {
-                                            condition === -1 ?
+                                            (condition === -1 || condition === undefined) ?
                                                 <a href={link} class="d-block text-secondary text-decoration-none">?</a> :
                                                 <a href={link} target="_blank">
                                                     { condition ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
