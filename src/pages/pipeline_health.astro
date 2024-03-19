@@ -43,11 +43,11 @@ import { remote_workflows as pipelines } from '@public/pipelines.json';
                         pipelines.map(pipeline =>
                             {
                                 const getCell = (condition?: any, link?: string, tooltip?: string) =>
-                                    <td class={"text-center " + (condition ? 'status--healthy' : 'status--unhealthy')}
+                                    <td class={"text-center " + (condition ? (condition === -1 ? 'status--unknown' : 'status--healthy') : 'status--unhealthy')}
                                         data-bs-toggle="tooltip" title={pipeline.name + ": " + tooltip}>
                                         {
                                             condition === -1 ?
-                                                <a href={link} class="d-block text-secondary text-decoration-none">-</a> :
+                                                <a href={link} class="d-block text-secondary text-decoration-none">?</a> :
                                                 <a href={link} target="_blank">
                                                     { condition ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
                                                 </a>
@@ -91,25 +91,25 @@ import { remote_workflows as pipelines } from '@public/pipelines.json';
                                 { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "write access for nf-core/contributors") }
                                 { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "admin access for nf-core/core") }
                                 <!-- Branches exist -->
-                                { getCell(pipeline.master_branch_exists, `https://github.com/nf-core/${pipeline.name}/tree/${pipeline.default_branch}`, "master branch: branch must exist") }
+                                { getCell(pipeline.main_branch_exists, `https://github.com/nf-core/${pipeline.name}/tree/${pipeline.default_branch}`, "master branch: branch must exist") }
                                 { getCell(pipeline.dev_branch_exists, `https://github.com/nf-core/${pipeline.name}/tree/dev`, "dev branch: branch must exist") }
                                 { getCell(pipeline.TEMPLATE_branch_exists, `https://github.com/nf-core/${pipeline.name}/tree/TEMPLATE`, "TEMPLATE branch: branch must exist") }
                                 <!-- Branch protection: master -->
                                 { getCell(!pipeline.main_branch_protection_up_to_date ? true : pipeline.main_branch_protection_up_to_date, pipeline.repository_url, "master branch: do not require branch to be up to date before merging") }
                                 { getCell(pipeline.main_branch_protection_status_checks, pipeline.repository_url, "master branch: minimum set of CI tests must pass") }
                                 { getCell(pipeline.main_branch_protection_require_non_stale_review, pipeline.repository_url, "master branch: reviews not marked stale after new commits") }
-                                { getCell(!(pipeline.main_branch_protection_require_codeowner_review), pipeline.repository_url, "master branch: code owner reviews not required") }
-                                { getCell(pipeline.main_branch_protection_required_reviews === 2, pipeline.repository_url, "master branch: 2 reviews required") }
-                                { getCell(!pipeline.main_branch_protection_enforce_admins, pipeline.repository_url, "master branch: do not enforce rules for admins") }
+                                { getCell(pipeline.main_branch_protection_require_codeowner_review !== -1 ? !pipeline.main_branch_protection_require_codeowner_review : pipeline.main_branch_protection_require_codeowner_review, pipeline.repository_url, "master branch: code owner reviews not required") }
+                                { getCell(pipeline.main_branch_protection_required_reviews !== -1 ? pipeline.main_branch_protection_required_reviews === 2 : pipeline.main_branch_protection_required_reviews, pipeline.repository_url, "master branch: 2 reviews required") }
+                                { getCell(pipeline.main_branch_protection_enforce_admins !== -1 ? !pipeline.main_branch_protection_enforce_admins : pipeline.main_branch_protection_enforce_admins, pipeline.repository_url, "master branch: do not enforce rules for admins") }
                                 <!-- Branch protection: dev -->
-                                { getCell(!pipeline.devbranch_protection_up_to_date ? true : pipeline.devbranch_protection_up_to_date, pipeline.repository_url, "dev branch: do not require branch to be up to date before merging") }
+                                { getCell(!pipeline.dev_branch_protection_up_to_date ? true : pipeline.dev_branch_protection_up_to_date, pipeline.repository_url, "dev branch: do not require branch to be up to date before merging") }
                                 { getCell(pipeline.dev_branch_protection_status_checks, pipeline.repository_url, "dev branch: minimum set of CI tests must pass") }
                                 { getCell(pipeline.dev_branch_protection_require_non_stale_review, pipeline.repository_url, "dev branch: reviews not marked stale after new commits") }
-                                { getCell(!pipeline.dev_branch_protection_require_codeowner_review, pipeline.repository_url, "dev branch: code owner reviews not required") }
-                                { getCell(pipeline.dev_branch_protection_required_reviews === 2, pipeline.repository_url, "dev branch: 2 reviews required") }
-                                { getCell(!pipeline.dev_branch_protection_enforce_admins, pipeline.repository_url, "dev branch: do not enforce rules for admins") }
+                                { getCell(pipeline.dev_branch_protection_require_codeowner_review !== -1 ? !pipeline.dev_branch_protection_require_codeowner_review : pipeline.dev_branch_protection_require_codeowner_review, pipeline.repository_url, "dev branch: code owner reviews not required") }
+                                { getCell(pipeline.dev_branch_protection_required_reviews !== -1 ? pipeline.dev_branch_protection_required_reviews === 2 : pipeline.dev_branch_protection_required_reviews, pipeline.repository_url, "dev branch: 2 reviews required") }
+                                { getCell(pipeline.dev_branch_protection_enforce_admins !== -1 ? !pipeline.dev_branch_protection_enforce_admins : pipeline.dev_branch_protection_enforce_admins, pipeline.repository_url, "dev branch: do not enforce rules for admins") }
                                 <!-- T push -->
-                                { getCell(pipeline.TEMPLATE_branch_restrict_push, pipeline.repository_url, "restrict push to TEMPLATE to @nf-core-bot") }
+                                { getCell(pipeline.TEMPLATE_restrict_push, pipeline.repository_url, "restrict push to TEMPLATE to @nf-core-bot") }
                             </tr>
                             }
                         )
@@ -141,6 +141,9 @@ import { remote_workflows as pipelines } from '@public/pipelines.json';
     }
     .status--unhealthy {
         background-color: #74261e;
+    }
+    .status--unknown {
+        background-color: transparent;
     }
     th {
         padding: 0.25rem;
