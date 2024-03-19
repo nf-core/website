@@ -43,7 +43,8 @@ import { remote_workflows as pipelines } from '@public/pipelines.json';
                         pipelines.map(pipeline =>
                             {
                                 const getCell = (condition?: any, link?: string, tooltip?: string) =>
-                                    <td class={"text-center " + (condition ? 'status--healthy' : 'status--unhealthy')}>
+                                    <td class={"text-center " + (condition ? 'status--healthy' : 'status--unhealthy')}
+                                        data-bs-toggle="tooltip" title={pipeline.name + ": " + tooltip}>
                                         {
                                             condition === -1 ?
                                                 <a href={link} class="d-block text-secondary text-decoration-none">-</a> :
@@ -55,60 +56,60 @@ import { remote_workflows as pipelines } from '@public/pipelines.json';
                                 return <tr>
                                 <td>{pipeline.name}</td>
                                 <!-- Released -->
-                                { getCell(!!pipeline.releases?.length, `https://github.com/nf-core/${pipeline.name}/releases`, "Has at least one release") }
+                                { getCell(!!pipeline.releases?.length, `https://github.com/nf-core/${pipeline.name}/releases`, "has at least one release") }
                                 <!-- Released after tools -->
-                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "Released after tools") }
+                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "last release is after latest tools release (so up to date with template)") }
                                 <!--Master = release -->
-                                { getCell(pipeline.last_release_is_head, pipeline.last_release_vs_default_compare_url, "Has at least one release") }
-                                <!-- JSON Schema -->
-                                { getCell(pipeline.releases?.[0].has_schema, "null", "Has pipeline schema") }
-                                <!-- DSL2 -->
-                                { getCell(pipeline.is_DSL2, pipeline.repository_url, "Is DSL2") }
+                                { getCell(pipeline.last_release_is_head, pipeline.last_release_vs_default_compare_url, "master branch is same commit as the last release") }
+                                <!-- JSON Schema TODO: 🚧 add dev branch fallback-->
+                                { getCell(pipeline.releases?.[0].has_schema, "null", "has a nextflow_schema.json file (in last release, dev if no release)") }
+                                <!-- DSL2 TODO: 🚧 add dev branch fallback-->
+                                { getCell(pipeline.is_DSL2, pipeline.repository_url, "has a modules directory, suggesting that it's a DSL2 pipeline (in last release, dev if no release)") }
                                 <!-- nf-test -->
-                                { getCell(pipeline.has_nf_test, pipeline.repository_url, "Has nf test") }
+                                { getCell(pipeline.has_nf_test, pipeline.repository_url, "uses nf-test") }
                                 <!-- nf-test in dev -->
-                                { getCell(pipeline.has_nf_test_dev, pipeline.repository_url, "Has nf test in dev branch") }
+                                { getCell(pipeline.has_nf_test_dev, pipeline.repository_url, "uses nf-test in dev branch") }
                                 <!-- wikis -->
-                                { getCell(pipeline.has_wiki, pipeline.repository_url, "Has wiki") }
+                                { getCell(!pipeline.has_wiki, pipeline.repository_url, "disable wiki") }
                                 <!-- issues -->
-                                { getCell(pipeline.has_issues, pipeline.repository_url+'/issues', "Has issues") }
+                                { getCell(pipeline.has_issues, pipeline.repository_url+'/issues', "enable issues") }
                                 <!-- merge commits -->
-                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "Released after tools") }
+                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "allow merge commits") }
                                 <!-- Rebase merging -->
-                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "Released after tools") }
+                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "allow rebase merging") }
                                 <!-- Squash changes -->
-                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "Released after tools") }
-                                <!-- Default branch -->
-                                { getCell(pipeline.default_branch, pipeline.repository_url+'/commits', "Default branch") }
+                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "do not allow squash merge") }
+                                <!-- Default branch TODO: 🚧-->
+                                { getCell(pipeline.default_branch, pipeline.repository_url+'/commits', "default branch master (released) or dev (no releases)") }
                                 <!-- Keywords -->
-                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "Released after tools") }
+                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "minimum keywords set") }
                                 <!-- Description -->
-                                { getCell(pipeline.description, pipeline.repository_url, "Has description") }
+                                { getCell(pipeline.description, pipeline.repository_url, "description must be set") }
                                 <!-- Repo URL -->
-                                { getCell(pipeline.repository_url, pipeline.repository_url, "Has repository URL") }
+                                { getCell(new RegExp(`https:\/\/nf-co\.re\/${pipeline.name}`).test(pipeline.homepage ?? ''), pipeline.homepage ?? pipeline.repository_url, "URL should be set to https://nf-co.re/[PIPELINE-NAME]") }
                                 <!-- Team access -->
-                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "Released after tools") }
-                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "Released after tools") }
+                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "write access for nf-core/contributors") }
+                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "admin access for nf-core/core") }
                                 <!-- Branches exist -->
-                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "Released after tools") }
-                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "Released after tools") }
-                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "Released after tools") }
+                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "master branch: branch must exist") }
+                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "dev branch: branch must exist") }
+                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "TEMPLATE branch: branch must exist") }
                                 <!-- Branch protection: master -->
-                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "Up to date") }
-                                { getCell(pipeline.main_branch_protection_status_checks, pipeline.repository_url, "Has repository URL") }
-                                { getCell(pipeline.main_branch_protection_require_non_stale_review, pipeline.repository_url, "Has repository URL") }
-                                { getCell(pipeline.main_branch_protection_require_codeowner_review, pipeline.repository_url, "Has repository URL") }
-                                { getCell((pipeline.main_branch_protection_required_reviews ?? 0) > 1, pipeline.repository_url, "Has repository URL") }
-                                { getCell(pipeline.main_branch_protection_enforce_admins, pipeline.repository_url, "Has repository URL") }
+                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "master branch: do not require branch to be up to date before merging") }
+                                { getCell(pipeline.main_branch_protection_status_checks, pipeline.repository_url, "master branch: minimum set of CI tests must pass") }
+                                { getCell(pipeline.main_branch_protection_require_non_stale_review, pipeline.repository_url, "master branch: reviews not marked stale after new commits") }
+                                { getCell(!(pipeline.main_branch_protection_require_codeowner_review), pipeline.repository_url, "master branch: code owner reviews not required") }
+                                { getCell(pipeline.main_branch_protection_required_reviews === 2, pipeline.repository_url, "master branch: 2 reviews required") }
+                                { getCell(!pipeline.main_branch_protection_enforce_admins, pipeline.repository_url, "master branch: do not enforce rules for admins") }
                                 <!-- Branch protection: dev -->
-                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "Up to date") }
-                                { getCell(pipeline.dev_branch_protection_status_checks, pipeline.repository_url, "Has repository URL") }
-                                { getCell(pipeline.dev_branch_protection_require_non_stale_review, pipeline.repository_url, "Has repository URL") }
-                                { getCell(pipeline.dev_branch_protection_require_codeowner_review, pipeline.repository_url, "Has repository URL") }
-                                { getCell((pipeline.dev_branch_protection_required_reviews ?? 0) > 1, pipeline.repository_url, "Has repository URL") }
-                                { getCell(pipeline.dev_branch_protection_enforce_admins, pipeline.repository_url, "Has repository URL") }
+                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "dev branch: do not require branch to be up to date before merging") }
+                                { getCell(pipeline.dev_branch_protection_status_checks, pipeline.repository_url, "dev branch: minimum set of CI tests must pass") }
+                                { getCell(pipeline.dev_branch_protection_require_non_stale_review, pipeline.repository_url, "dev branch: reviews not marked stale after new commits") }
+                                { getCell(!pipeline.dev_branch_protection_require_codeowner_review, pipeline.repository_url, "dev branch: code owner reviews not required") }
+                                { getCell(pipeline.dev_branch_protection_required_reviews === 2, pipeline.repository_url, "dev branch: 2 reviews required") }
+                                { getCell(!pipeline.dev_branch_protection_enforce_admins, pipeline.repository_url, "dev branch: do not enforce rules for admins") }
                                 <!-- T push -->
-                                { getCell(pipeline.branch_template_restrict_push, pipeline.repository_url, "Has repository URL") }
+                                { getCell(pipeline.branch_template_restrict_push, pipeline.repository_url, "restrict push to TEMPLATE to @nf-core-bot") }
                             </tr>
                             }
                         )
