@@ -241,10 +241,13 @@ import { remote_workflows as pipelines } from '@public/pipelines.json';
                                     </a>
                                 </td>
                                 <!-- T push -->
-                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
+                                <td class={"text-center " + (pipeline.branch_template_restrict_push ? 'status--healthy' : 'status--unhealthy')}>
                                     <a href="null" target="_blank">
-                                        TODO
-                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                        {
+                                            !pipeline.branch_template_restrict_push ?
+                                                <span class="d-block text-secondary">-</span> :
+                                                pipeline.branch_template_restrict_push ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i>
+                                        }
                                     </a>
                                 </td>
                             </tr>
@@ -277,6 +280,9 @@ import { remote_workflows as pipelines } from '@public/pipelines.json';
     }
     .status--unhealthy {
         background-color: #74261e;
+    }
+    .text-decorarion-none {
+        text-decoration: none;
     }
     th {
         padding: 0.25rem;
