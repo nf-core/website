@@ -321,7 +321,7 @@ Prompt for pipeline release / branch
 - **Parameters:**
   - **wf_releases** (_array_) – Array of repo releases as returned by the GitHub API
   - **wf_branches** (_array_) – Array of repo branches, as returned by the GitHub API
-  - **multiple** (_bool_) – Allow selection of multiple releases & branches (for Tower)
+  - **multiple** (_bool_) – Allow selection of multiple releases & branches (for Seqera Platform)
 - **Returns:**
   Selected release / branch name
 - **Return type:**
