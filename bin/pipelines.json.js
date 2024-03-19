@@ -9,7 +9,7 @@ import cache from './cache.js';
 // get current path
 const __dirname = path.resolve();
 
-console.log(await getCurrentRateLimitRemaining());
+
 //check if pipelines.json exists
 if (!existsSync(join(__dirname, 'public/pipelines.json'))) {
   // create empty pipelines.json with empty remote_workflows array
@@ -73,7 +73,7 @@ export const writePipelinesJson = async () => {
   let bar = new ProgressBar('  fetching pipelines [:bar] :percent :etas', { total: names.length });
 
   // go through names and add or update pipelines in pipelines.json
-  for (const name of names.flat()) {
+  for (const name of names.flat()?.splice(0,1)) {
     // get the details from the github repo description
     const data = await octokit.rest.repos
       .get({
@@ -91,6 +91,16 @@ export const writePipelinesJson = async () => {
 
         return response.data;
       });
+
+    const repoInfo = await octokit.rest.repos.get({
+      owner: 'nf-core',
+      repo: name,
+    });
+
+
+    data['allow_merge_commit'] = repoInfo.data.allow_merge_commit ?? -1;
+    data['allow_rebase_commit'] = repoInfo.data.allow_rebase_merge ?? -1;
+    data['allow_squash_commit'] = repoInfo.data.allow_squash_merge ?? -1;
 
     // Get branch existence & protection rules
     for(const branch of [
