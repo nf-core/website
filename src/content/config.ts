@@ -29,14 +29,14 @@ const events = defineCollection({
             locations: z
                 .array(
                     z.object({
-                        locationName: z.string().optional(),
-                        locationURL: z
+                        name: z.string().optional(),
+                        links: z
                             .string()
                             .url()
                             .or(z.string().startsWith('#'))
                             .or(z.array(z.string().url()))
                             .optional(),
-                        locationLatLng: z.array(z.number(), z.number()).optional(),
+                        geoCoordinates: z.array(z.number(), z.number()).optional(),
                     }),
                 )
                 .optional(),
