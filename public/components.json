@@ -1219,6 +1219,83 @@
       }
     },
     {
+      "name": "ale",
+      "path": "modules/nf-core/ale/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "ale",
+        "description": "ALE: assembly likelihood estimator.",
+        "keywords": [
+          "reference-independent",
+          "assembly",
+          "evaluation"
+        ],
+        "tools": [
+          {
+            "ale": {
+              "description": "ALE is a generic assembly likelihood evaluation framework for assessing the accuracy of genome and metagenome assemblies.",
+              "documentation": "https://portal.nersc.gov/dna/RD/Adv-Seq/ALE-doc/index.html#document-install",
+              "tool_dev_url": "https://github.com/sc932/ALE",
+              "doi": "10.1093/bioinformatics/bts723",
+              "licence": [
+                "NCSA"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "asm": {
+              "type": "file",
+              "description": "Assembly in FASTA format",
+              "pattern": "*.{fasta,fa}"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "BAM file containing sorted read mappings",
+              "pattern": "*.{bam}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "ale": {
+              "type": "file",
+              "description": "Output TXT file containing ALE results",
+              "pattern": "*_ALEoutput.{txt}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@rodtheo"
+        ],
+        "maintainers": [
+          "@rodtheo"
+        ]
+      }
+    },
+    {
       "name": "allelecounter",
       "path": "modules/nf-core/allelecounter/meta.yml",
       "type": "module",
@@ -2136,6 +2213,106 @@
         ],
         "maintainers": [
           "@jfy133"
+        ]
+      }
+    },
+    {
+      "name": "angsd_gl",
+      "path": "modules/nf-core/angsd/gl/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "angsd_gl",
+        "description": "Calculated genotype likelihoods from BAM files.",
+        "keywords": [
+          "angsd",
+          "genotype likelihood",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "angsd": {
+              "description": "ANGSD: Analysis of next generation Sequencing Data",
+              "homepage": "http://www.popgen.dk/angsd/",
+              "documentation": "http://www.popgen.dk/angsd/",
+              "tool_dev_url": "https://github.com/ANGSD/angsd",
+              "doi": "10.1186/s12859-014-0356-4",
+              "licence": [
+                "GPL v3",
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "A list of BAM or CRAM files",
+              "pattern": "*.{bam,cram}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "A reference genome in FASTA format",
+              "pattern": "*.fasta"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "error_file": {
+              "type": "file",
+              "description": "A file containing information about type specific errors.",
+              "pattern": "*.error.chunkunordered"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "genotype_likelihood": {
+              "type": "file",
+              "description": "File containing genotype likelihoods per sample",
+              "pattern": "*.{glf,beagle}.gz"
+            }
+          }
+        ],
+        "authors": [
+          "@apeltzer",
+          "@TCLamnidis"
+        ],
+        "maintainers": [
+          "@apeltzer",
+          "@TCLamnidis"
         ]
       }
     },
@@ -3431,6 +3608,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         },
         {
           "name": "rnafusion",
@@ -33663,6 +33844,77 @@
       }
     },
     {
+      "name": "fastx_collapser",
+      "path": "modules/nf-core/fastx/collapser/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "fastx_collapser",
+        "description": "Collapses identical sequences in a FASTQ/A file into a single sequence (while maintaining reads counts)",
+        "keywords": [
+          "collapse",
+          "genomics",
+          "fasta",
+          "fastq"
+        ],
+        "tools": [
+          {
+            "fastx": {
+              "description": "A collection of command line tools for Short-Reads FASTA/FASTQ files preprocessing",
+              "homepage": "http://hannonlab.cshl.edu/fastx_toolkit/",
+              "documentation": "http://hannonlab.cshl.edu/fastx_toolkit/commandline.html",
+              "tool_dev_url": "https://github.com/agordon/fastx_toolkit",
+              "licence": [
+                "AGPL"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "fastx": {
+              "type": "file",
+              "description": "Decompressed FASTA/FASTQ input file",
+              "pattern": "*.{fastq,fasta}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Collapsed FASTA file",
+              "pattern": "*.fasta"
+            }
+          }
+        ],
+        "authors": [
+          "@jvfe"
+        ],
+        "maintainers": [
+          "@jvfe"
+        ]
+      }
+    },
+    {
       "name": "fcs_fcsadaptor",
       "path": "modules/nf-core/fcs/fcsadaptor/meta.yml",
       "type": "module",
@@ -38471,6 +38723,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -39196,6 +39452,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -44099,6 +44359,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -51348,7 +51612,9 @@
               "documentation": "https://odelaneau.github.io/GLIMPSE/commands.html",
               "tool_dev_url": "https://github.com/odelaneau/GLIMPSE",
               "doi": "10.1038/s41588-020-00756-0",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -67117,6 +67383,12 @@
         ],
         "input": [
           {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
             "rma6": {
               "type": "file",
               "description": "RMA6 files from MALT",
@@ -79371,7 +79643,9 @@
               "documentation": "https://openms.readthedocs.io/en/latest/index.html",
               "tool_dev_url": "https://github.com/OpenMS/OpenMS",
               "doi": "10.1038/nmeth.3959",
-              "licence": "['BSD']"
+              "licence": [
+                "BSD"
+              ]
             }
           }
         ],
