@@ -54,9 +54,7 @@ function getLinkIcon(link) {
                     <ul class="list-unstyled">
                         {
                             locations?.map((location) => {
-                                const locationLinks = Array.isArray(location.links)
-                                    ? location.links
-                                    : [location.links];
+                                const locationLinks = Array.isArray(location.links) ? location.links : [location.links];
                                 return (
                                     <li class="list-item">
                                         <ul>
@@ -105,14 +103,16 @@ function getLinkIcon(link) {
                         <>
                             <dt>{frontmatter.links?.length === 1 ? 'Link' : 'Links'}:</dt>
                             <dd>
-                                    {frontmatter.links?.map((link) => {
-                                        const iconClass = getLinkIcon(link);
-                                        return (
-                                            <span class="link-">
-                                                <a class="text-white" target="_blank" href={link}>{iconClass && <i class={'fab ' + iconClass} />}</a>
-                                            </span>
-                                        );
-                                    })}
+                                {frontmatter.links?.map((link) => {
+                                    const iconClass = getLinkIcon(link);
+                                    return (
+                                        <span class="link-">
+                                            <a class="text-white" target="_blank" href={link}>
+                                                {iconClass && <i class={'fab ' + iconClass} />}
+                                            </a>
+                                        </span>
+                                    );
+                                })}
                             </dd>
                         </>
                     )
@@ -121,8 +121,7 @@ function getLinkIcon(link) {
         </div>
     </div>
 
-    <div class="d-flex justify-content-center justify-content-md-start">
-    </div>
+    <div class="d-flex justify-content-center justify-content-md-start"></div>
 </div>
 <style lang="scss">
     .dropdown-menu {
