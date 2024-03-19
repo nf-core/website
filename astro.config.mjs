@@ -64,6 +64,7 @@ export default defineConfig({
                 'line-md': ['check-list-3-twotone'],
                 mdi: ['aws', 'slack', 'youtube'],
                 octicon: ['link-external-16', 'table-16'],
+                "simple-icons": ['bluesky'],
             },
         }),
         sitemap(),
