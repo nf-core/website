@@ -82,7 +82,7 @@ import { remote_workflows as pipelines } from '@public/pipelines.json';
                                 <!-- Default branch TODO: 🚧-->
                                 { getCell(pipeline.default_branch, pipeline.repository_url+'/commits', "default branch master (released) or dev (no releases)") }
                                 <!-- Keywords -->
-                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "minimum keywords set") }
+                                { getCell(pipeline.has_required_topics, `https://github.com/nf-core/${pipeline.name}/releases`, "minimum keywords set") }
                                 <!-- Description -->
                                 { getCell(pipeline.description, pipeline.repository_url, "description must be set") }
                                 <!-- Repo URL -->
