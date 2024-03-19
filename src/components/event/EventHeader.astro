@@ -64,8 +64,8 @@ function getLinkIcon(link) {
                                                 <strong>
                                                     {location.name}
                                                     {location.geoCoordinates && (
-                                                        <a
-                                                            class="m-1 btn btn-sm btn-outline-light"
+                                                    :<a
+                                                            class="m-1 ms-auto btn btn-sm btn-outline-light"
                                                             href={`https://www.openstreetmap.org/?mlat=${location.geoCoordinates[0]}&mlon=${location.geoCoordinates[1]}&zoom=16#map=16/${location.geoCoordinates[0]}/${location.geoCoordinates[1]}`}
                                                             target="_blank"
                                                         >
@@ -73,7 +73,7 @@ function getLinkIcon(link) {
                                                             See on map
                                                         </a>
                                                     )}
-                                                    :
+
                                                 </strong>
                                                 <ul class="list-unstyled">
                                                     <li>
