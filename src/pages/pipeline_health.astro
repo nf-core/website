@@ -41,216 +41,76 @@ import { remote_workflows as pipelines } from '@public/pipelines.json';
                 <tbody>
                     {
                         pipelines.map(pipeline =>
-                            <tr>
+                            {
+                                const getCell = (condition?: any, link?: string, tooltip?: string) =>
+                                    <td class={"text-center " + (condition ? 'status--healthy' : 'status--unhealthy')}>
+                                        {
+                                            condition === -1 ?
+                                                <a href={link} class="d-block text-secondary text-decoration-none">-</a> :
+                                                <a href={link} target="_blank">
+                                                    { condition ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
+                                                </a>
+                                        }
+                                    </td>
+                                return <tr>
                                 <td>{pipeline.name}</td>
                                 <!-- Released -->
-                                <td class={"text-center " + (pipeline.releases?.length ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href="null" target="_blank">
-                                        { pipeline.releases?.length ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
-                                    </a>
-                                </td>
+                                { getCell(!!pipeline.releases?.length, `https://github.com/nf-core/${pipeline.name}/releases`, "Has at least one release") }
                                 <!-- Released after tools -->
-                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href="null" target="_blank">
-                                        TODO:
-                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
-                                    </a>
-                                </td>
+                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "Released after tools") }
                                 <!--Master = release -->
-                                <td class={"text-center " + (pipeline.last_release_is_head ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href={pipeline.last_release_vs_default_compare_url} target="_blank">
-                                        { pipeline.last_release_is_head ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
-                                    </a>
-                                </td>
+                                { getCell(pipeline.last_release_is_head, pipeline.last_release_vs_default_compare_url, "Has at least one release") }
                                 <!-- JSON Schema -->
-                                <td class={"text-center " + (pipeline.releases?.[0].has_schema ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href="null" target="_blank">
-                                        { pipeline.releases?.[0].has_schema ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
-                                    </a>
-                                </td>
+                                { getCell(pipeline.releases?.[0].has_schema, "null", "Has pipeline schema") }
                                 <!-- DSL2 -->
-                                <td class={"text-center " + (pipeline.is_DSL2 ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href={pipeline.repository_url} target="_blank">
-                                        { pipeline.is_DSL2 ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
-                                    </a>
-                                </td>
+                                { getCell(pipeline.is_DSL2, pipeline.repository_url, "Is DSL2") }
                                 <!-- nf-test -->
-                                <td class={"text-center " + (pipeline.has_nf_test ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href={pipeline.repository_url} target="_blank">
-                                        { pipeline.has_nf_test ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
-                                    </a>
-                                </td>
+                                { getCell(pipeline.has_nf_test, pipeline.repository_url, "Has nf test") }
                                 <!-- nf-test in dev -->
-                                <td class={"text-center " + (pipeline.has_nf_test_dev ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href="null" target="_blank">
-                                        { pipeline.has_nf_test_dev ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
-                                    </a>
-                                </td>
+                                { getCell(pipeline.has_nf_test_dev, pipeline.repository_url, "Has nf test in dev branch") }
                                 <!-- wikis -->
-                                <td class={"text-center " + (pipeline.has_wiki ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href="null" target="_blank">
-                                        { pipeline.has_wiki ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
-                                    </a>
-                                </td>
+                                { getCell(pipeline.has_wiki, pipeline.repository_url, "Has wiki") }
                                 <!-- issues -->
-                                <td class={"text-center " + (pipeline.has_issues ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href="null" target="_blank">
-                                        { pipeline.has_issues ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
-                                    </a>
-                                </td>
+                                { getCell(pipeline.has_issues, pipeline.repository_url+'/issues', "Has issues") }
                                 <!-- merge commits -->
-                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href="null" target="_blank">
-                                        TODO
-                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
-                                    </a>
-                                </td>
+                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "Released after tools") }
                                 <!-- Rebase merging -->
-                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href="null" target="_blank">
-                                        TODO
-                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
-                                    </a>
-                                </td>
+                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "Released after tools") }
                                 <!-- Squash changes -->
-                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href="null" target="_blank">
-                                        TODO
-                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
-                                    </a>
-                                </td>
+                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "Released after tools") }
                                 <!-- Default branch -->
-                                <td class={"text-center " + (pipeline.default_branch ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href="null" target="_blank">
-                                        { pipeline.default_branch ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
-                                    </a>
-                                </td>
+                                { getCell(pipeline.default_branch, pipeline.repository_url+'/commits', "Default branch") }
                                 <!-- Keywords -->
-                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href="null" target="_blank">
-                                        TODO:
-                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
-                                    </a>
-                                </td>
+                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "Released after tools") }
                                 <!-- Description -->
-                                <td class={"text-center " + (pipeline.description ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href="null" target="_blank">
-                                        { pipeline.description ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
-                                    </a>
-                                </td>
+                                { getCell(pipeline.description, pipeline.repository_url, "Has description") }
                                 <!-- Repo URL -->
-                                <td class={"text-center " + (pipeline.repository_url ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href={pipeline.repository_url} target="_blank">
-                                        { pipeline.repository_url ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
-                                    </a>
-                                </td>
+                                { getCell(pipeline.repository_url, pipeline.repository_url, "Has repository URL") }
                                 <!-- Team access -->
-                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href="null" target="_blank">
-                                        TODO
-                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
-                                    </a>
-                                </td>
-                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href="null" target="_blank">
-                                        TODO
-                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
-                                    </a>
-                                </td>
+                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "Released after tools") }
+                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "Released after tools") }
                                 <!-- Branches exist -->
-                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href="null" target="_blank">
-                                        master?
-                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
-                                    </a>
-                                </td>
-                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href="null" target="_blank">
-                                        dev?
-                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
-                                    </a>
-                                </td>
-                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href="null" target="_blank">
-                                        template?
-                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
-                                    </a>
-                                </td>
+                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "Released after tools") }
+                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "Released after tools") }
+                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "Released after tools") }
                                 <!-- Branch protection: master -->
-                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href="null" target="_blank">
-                                        up to date
-                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
-                                    </a>
-                                </td>
-                                <td class={"text-center " + (pipeline.main_branch_protection_status_checks ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href="null" target="_blank">
-                                        { pipeline.main_branch_protection_status_checks ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
-                                    </a>
-                                </td>
-                                <td class={"text-center " + (pipeline.main_branch_protection_require_non_stale_review ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href="null" target="_blank">
-                                        { pipeline.main_branch_protection_require_non_stale_review ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
-                                    </a>
-                                </td>
-                                <td class={"text-center " + (pipeline.main_branch_protection_require_codeowner_review ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href="null" target="_blank">
-                                        { pipeline.main_branch_protection_require_codeowner_review ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
-                                    </a>
-                                </td>
-                                <td class={"text-center " + (((pipeline.main_branch_protection_required_reviews ?? 0) > 1) ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href="null" target="_blank">
-                                        { ((pipeline.main_branch_protection_required_reviews ?? 0) > 1) ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
-                                    </a>
-                                </td>
-                                <td class={"text-center " + (pipeline.main_branch_protection_enforce_admins ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href="null" target="_blank">
-                                        { pipeline.main_branch_protection_enforce_admins ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
-                                    </a>
-                                </td>
+                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "Up to date") }
+                                { getCell(pipeline.main_branch_protection_status_checks, pipeline.repository_url, "Has repository URL") }
+                                { getCell(pipeline.main_branch_protection_require_non_stale_review, pipeline.repository_url, "Has repository URL") }
+                                { getCell(pipeline.main_branch_protection_require_codeowner_review, pipeline.repository_url, "Has repository URL") }
+                                { getCell((pipeline.main_branch_protection_required_reviews ?? 0) > 1, pipeline.repository_url, "Has repository URL") }
+                                { getCell(pipeline.main_branch_protection_enforce_admins, pipeline.repository_url, "Has repository URL") }
                                 <!-- Branch protection: dev -->
-                                <td class={"text-center " + (false ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href="null" target="_blank">
-                                        up to date
-                                        { false ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
-                                    </a>
-                                </td>
-                                <td class={"text-center " + (pipeline.dev_branch_protection_status_checks ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href="null" target="_blank">
-                                        { pipeline.dev_branch_protection_status_checks ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
-                                    </a>
-                                </td>
-                                <td class={"text-center " + (pipeline.dev_branch_protection_require_non_stale_review ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href="null" target="_blank">
-                                        { pipeline.dev_branch_protection_require_non_stale_review ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
-                                    </a>
-                                </td>
-                                <td class={"text-center " + (pipeline.dev_branch_protection_require_codeowner_review ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href="null" target="_blank">
-                                        { pipeline.dev_branch_protection_require_codeowner_review ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
-                                    </a>
-                                </td>
-                                <td class={"text-center " + (((pipeline.dev_branch_protection_required_reviews ?? 0) > 1) ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href="null" target="_blank">
-                                        { ((pipeline.dev_branch_protection_required_reviews ?? 0) > 1) ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
-                                    </a>
-                                </td>
-                                <td class={"text-center " + (pipeline.dev_branch_protection_enforce_admins ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href="null" target="_blank">
-                                        { pipeline.dev_branch_protection_enforce_admins ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
-                                    </a>
-                                </td>
+                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "Up to date") }
+                                { getCell(pipeline.dev_branch_protection_status_checks, pipeline.repository_url, "Has repository URL") }
+                                { getCell(pipeline.dev_branch_protection_require_non_stale_review, pipeline.repository_url, "Has repository URL") }
+                                { getCell(pipeline.dev_branch_protection_require_codeowner_review, pipeline.repository_url, "Has repository URL") }
+                                { getCell((pipeline.dev_branch_protection_required_reviews ?? 0) > 1, pipeline.repository_url, "Has repository URL") }
+                                { getCell(pipeline.dev_branch_protection_enforce_admins, pipeline.repository_url, "Has repository URL") }
                                 <!-- T push -->
-                                <td class={"text-center " + (pipeline.branch_template_restrict_push ? 'status--healthy' : 'status--unhealthy')}>
-                                    <a href="null" target="_blank">
-                                        {
-                                            !pipeline.branch_template_restrict_push ?
-                                                <span class="d-block text-secondary">-</span> :
-                                                pipeline.branch_template_restrict_push ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i>
-                                        }
-                                    </a>
-                                </td>
+                                { getCell(pipeline.branch_template_restrict_push, pipeline.repository_url, "Has repository URL") }
                             </tr>
+                            }
                         )
                     }
                 </tbody>
@@ -280,9 +140,6 @@ import { remote_workflows as pipelines } from '@public/pipelines.json';
     }
     .status--unhealthy {
         background-color: #74261e;
-    }
-    .text-decorarion-none {
-        text-decoration: none;
     }
     th {
         padding: 0.25rem;
