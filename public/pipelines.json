@@ -44,7 +44,10 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 28,
-            "subscribers_count": 147,
+            "subscribers_count": 146,
+            "allow_merge_commit": -1,
+            "allow_rebase_commit": -1,
+            "allow_squash_commit": -1,
             "main_branch_exists": true,
             "main_branch_protection_up_to_date": -1,
             "main_branch_protection_status_checks": -1,
@@ -69,6 +72,7 @@
             "TEMPLATE_branch_protection_require_non_stale_review": -1,
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": -1,
+            "has_required_topics": false,
             "open_pr_count": 1,
             "repository_url": "https://github.com/nf-core/airrflow",
             "contributors": [
@@ -133,6 +137,7 @@
                     "avatar_url": "https://avatars.githubusercontent.com/u/15126788?v=4"
                 }
             ],
+            "released_after_tools": false,
             "head_sha": "333c8b521d62f6c61c658823d8831df93bc5b532",
             "last_release_is_head": true,
             "last_release_vs_default_compare_url": "https://github.com/nf-core/airrflow/compare/333c8b521d62f6c61c658823d8831df93bc5b532...333c8b521d62f6c61c658823d8831df93bc5b532",

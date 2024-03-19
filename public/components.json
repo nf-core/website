@@ -4315,6 +4315,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -38463,6 +38467,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -39188,6 +39196,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -45099,6 +45111,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -46946,6 +46962,12 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'reference' ]\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "The reference fasta file",
@@ -46953,10 +46975,22 @@
             }
           },
           {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'reference' ]\n"
+            }
+          },
+          {
             "fai": {
               "type": "file",
               "description": "Index of reference fasta file",
               "pattern": "*.fasta.fai"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'reference' ]\n"
             }
           },
           {
@@ -120202,7 +120236,9 @@
               "documentation": "https://github.com/CenterForMedicalGeneticsGhent/WisecondorX",
               "tool_dev_url": "https://github.com/CenterForMedicalGeneticsGhent/WisecondorX",
               "doi": "10.1093/nar/gky1263",
-              "licence": "['Attribution-NonCommercial-ShareAlike CC BY-NC-SA']"
+              "licence": [
+                "Attribution-NonCommercial-ShareAlike CC BY-NC-SA"
+              ]
             }
           }
         ],
@@ -120304,7 +120340,9 @@
               "documentation": "https://github.com/CenterForMedicalGeneticsGhent/WisecondorX",
               "tool_dev_url": "https://github.com/CenterForMedicalGeneticsGhent/WisecondorX",
               "doi": "10.1093/nar/gky1263",
-              "licence": "['Attribution-NonCommercial-ShareAlike CC BY-NC-SA']"
+              "licence": [
+                "Attribution-NonCommercial-ShareAlike CC BY-NC-SA"
+              ]
             }
           }
         ],
@@ -120380,7 +120418,9 @@
               "documentation": "https://github.com/CenterForMedicalGeneticsGhent/WisecondorX",
               "tool_dev_url": "https://github.com/CenterForMedicalGeneticsGhent/WisecondorX",
               "doi": "10.1093/nar/gky1263",
-              "licence": "['Attribution-NonCommercial-ShareAlike CC BY-NC-SA']"
+              "licence": [
+                "Attribution-NonCommercial-ShareAlike CC BY-NC-SA"
+              ]
             }
           }
         ],
@@ -120450,7 +120490,9 @@
               "documentation": "https://github.com/CenterForMedicalGeneticsGhent/WisecondorX",
               "tool_dev_url": "https://github.com/CenterForMedicalGeneticsGhent/WisecondorX",
               "doi": "10.1093/nar/gky1263",
-              "licence": "['Attribution-NonCommercial-ShareAlike CC BY-NC-SA']"
+              "licence": [
+                "Attribution-NonCommercial-ShareAlike CC BY-NC-SA"
+              ]
             }
           }
         ],
@@ -120510,7 +120552,7 @@
             }
           },
           {
-            "abberations_bed": {
+            "aberrations_bed": {
               "type": "file",
               "description": "OPTIONAL - Output abberations in BED format. This gets created with the `--bed` option",
               "pattern": "*_aberrations.bed"
