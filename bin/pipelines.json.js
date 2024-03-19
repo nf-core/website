@@ -86,50 +86,69 @@ export const writePipelinesJson = async () => {
         return response.data;
       });
 
-    // Get branch protection rules
+    // Get branch existence & protection rules
     for(const branch of [
       'main',
-      'dev'
+      'dev',
+      'TEMPLATE'
     ]) {
-      let rules;
+      // Initialize to -1 (unknown)
+      data[`${branch}_branch_exists`] = -1;
+      data[`${branch}_branch_protection_up_to_date`] = -1;
+      data[`${branch}_branch_protection_status_checks`] = -1;
+      data[`${branch}_branch_protection_required_reviews`] = -1;
+      data[`${branch}_branch_protection_require_codeowner_review`] = -1;
+      data[`${branch}_branch_protection_require_non_stale_review`] = -1;
+      data[`${branch}_branch_protection_enforce_admins`] = -1;
+      data[`${branch}_restrict_push`] = -1;
+
+      // Check if branch exists
       try {
-        rules = await octokit.rest.repos.getBranchProtection({
+        const branch_exists = await octokit.rest.repos.getBranch({
           owner: 'nf-core',
           repo: name,
-          branch: branch === 'dev' ? 'dev' : data.default_branch,
+          branch: 'TEMPLATE',
+        }).then(() => true).catch((err) => {
+          if (err.status === 404) {
+            return false;
+          }
+          throw err;
         });
-      } catch(err)  {
-        console.log(`Failed to fetch ${branch} branch protection`, err);
+        data[`${branch}_branch_exists`] = branch_exists;
+      } catch(err) {
+        console.warn(`Failed to fetch ${branch} branch`, err);
       }
-      data[`${branch}_branch_protection_status_checks`] = rules?.data?.required_status_checks ?? null;
-      data[`${branch}_branch_protection_required_reviews`] = rules?.data?.required_pull_request_reviews?.required_approving_review_count ?? null;
-      data[`${branch}_branch_protection_require_codeowner_review`] = rules?.data?.required_pull_request_reviews?.require_code_owner_reviews ?? null;
-      data[`${branch}_branch_protection_require_non_stale_review`] = rules?.data?.required_pull_request_reviews?.dismiss_stale_reviews ?? null;
-      data[`${branch}_branch_protection_enforce_admins`] = rules?.data?.enforce_admins?.enabled ?? null;
-    }
-    // Template branch protection rules
-    try {
-      const template_branch_exists = await octokit.rest.repos.getBranch({
-        owner: 'nf-core',
-        repo: name,
-        branch: 'TEMPLATE',
-      }).then(() => true).catch((err) => {
-        if (err.status === 404) {
-          return false;
+
+      if(branch !== 'TEMPLATE') {
+        // Get branch protection rules
+        try {
+          const rules = await octokit.rest.repos.getBranchProtection({
+            owner: 'nf-core',
+            repo: name,
+            branch: branch === 'dev' ? 'dev' : data.default_branch,
+          });
+          data[`${branch}_branch_protection_up_to_date`] = rules?.data?.res
+          data[`${branch}_branch_protection_status_checks`] = rules?.data?.required_status_checks ?? -1;
+          data[`${branch}_branch_protection_required_reviews`] = rules?.data?.required_pull_request_reviews?.required_approving_review_count ?? -1;
+          data[`${branch}_branch_protection_require_codeowner_review`] = rules?.data?.required_pull_request_reviews?.require_code_owner_reviews ?? -1;
+          data[`${branch}_branch_protection_require_non_stale_review`] = rules?.data?.required_pull_request_reviews?.dismiss_stale_reviews ?? -1;
+          data[`${branch}_branch_protection_enforce_admins`] = rules?.data?.enforce_admins?.enabled ?? -1;
+        } catch(err)  {
+          console.log(`Failed to fetch ${branch} branch protection`, err);
         }
-        throw err;
-      });
-      if(!template_branch_exists) {
-        data[`branch_template_restrict_push`] = -1;
+      } else {
+        // Template branch protection rules
+        try {
+          restrictions = await octokit.rest.repos.getBranchProtection({
+            owner: 'nf-core',
+            repo: name,
+            branch: 'TEMPLATE',
+          });
+          data[`${branch}_restrict_push`] = restrictions?.users?.length === 1 && restrictions?.users?.[0]?.login === 'nf-core-bot' ? true : false;
+        } catch(err)  {
+          console.log(`Failed to fetch ${branch} branch push restrictions`, err);
+        }
       }
-      restrictions = await octokit.rest.repos.getBranchProtection({
-        owner: 'nf-core',
-        repo: name,
-        branch: 'TEMPLATE',
-      });
-      data[`branch_template_restrict_push`] = restrictions?.users?.length === 1 && restrictions?.users?.[0]?.login === 'nf-core-bot' ? true : false;
-    } catch(err)  {
-      console.log(`Failed to fetch TEMPLATE branch protection`, err);
     }
     // remove ignored topics
     data['topics'] = data['topics'].filter((topic) => !ignored_topics.includes(topic));
