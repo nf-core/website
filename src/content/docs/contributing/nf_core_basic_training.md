@@ -1217,8 +1217,7 @@ A `tag` is simple a user provided identifier associated to
 the task. In our process example, the input is a tuple
 comprising a hash of metadata for the maf file called
 `meta` and the path to the `maf` file. It may look
-similar to: `[[id:'123', data_type:'maf'],
-/path/to/file/example.maf]`. Hence, when nextflow makes
+similar to: `[[id:'123', data_type:'maf'], /path/to/file/example.maf]`. Hence, when nextflow makes
 the call and `$meta.id` is `123` name of the job
 will be "CONVERT_MAF2BED(123)". If `meta` does not have
 `id` in its hash, then this will be literally `null`.
