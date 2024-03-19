@@ -1,7 +1,7 @@
 ---
 import InstallCmd from '@components/InstallCmd.svelte';
 
-const { pipeline = '', version = '', latestVersion = '', component, gh_url, component_type } = Astro.props;
+const { pipeline = '', version = '', latestVersion = '', component, gh_url, component_type, isDsl2 = true } = Astro.props;
 
 export interface Props {
     pipeline?: string;
@@ -10,6 +10,7 @@ export interface Props {
     component?: string;
     component_type?: string;
     gh_url: string;
+    isDsl2?: boolean;
 }
 let latest_link = '';
 if (pipeline.length > 0) {
@@ -41,6 +42,17 @@ const shaking = version === 'dev' ? '3deg' : '1deg';
                                 .
                             </span>
                         )}
+                    </span>
+                </div>
+            ) : (
+                ''
+            )
+        }
+        {
+            !isDsl2 ? (
+                <div class="alert alert-warning p-1 p-md-3" role="alert">
+                    <span>
+                        This pipeline uses DSL1. From Nextflow version <code>22.03.0-edge</code> DSL2 is the default DSL version. <a href="https://www.nextflow.io/docs/edge/dsl1.html" target="_blank">Learn more</a>.
                     </span>
                 </div>
             ) : (
