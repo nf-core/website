@@ -120,7 +120,14 @@ const isDsl2 = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
         { name: 'page_type', content: 'Pipeline' },
     ]}
 >
-    <SubHeader pipeline={pipeline} version={version} latestVersion={latestVersion} gh_url={gh_url} isDsl2={isDsl2} slot="sub-header" />
+    <SubHeader
+        pipeline={pipeline}
+        version={version}
+        latestVersion={latestVersion}
+        gh_url={gh_url}
+        isDsl2={isDsl2}
+        slot="sub-header"
+    />
     {
         tabItems.length > 0 && (
             <TabBar items={allTabItems}>
