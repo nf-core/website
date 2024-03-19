@@ -123,7 +123,10 @@ newBlogPost = await getCollection('blog').then((posts) => {
                     </a>
                     <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
                         <li><span class="dropdown-header">What's happening</span></li>
-                        <li><a class="dropdown-item" href="/events/">Events</a></li>
+                        <li>
+                            <EventIndicator client:idle><Icon name="circle" /></EventIndicator>
+                            <a class="dropdown-item" href="/events/">Events</a>
+                        </li>
                         <li class="d-flex align-items-center">
                             <a class="dropdown-item" href="/blog/">Blog</a>
                             {
