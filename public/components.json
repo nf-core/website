@@ -1219,6 +1219,83 @@
       }
     },
     {
+      "name": "ale",
+      "path": "modules/nf-core/ale/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "ale",
+        "description": "ALE: assembly likelihood estimator.",
+        "keywords": [
+          "reference-independent",
+          "assembly",
+          "evaluation"
+        ],
+        "tools": [
+          {
+            "ale": {
+              "description": "ALE is a generic assembly likelihood evaluation framework for assessing the accuracy of genome and metagenome assemblies.",
+              "documentation": "https://portal.nersc.gov/dna/RD/Adv-Seq/ALE-doc/index.html#document-install",
+              "tool_dev_url": "https://github.com/sc932/ALE",
+              "doi": "10.1093/bioinformatics/bts723",
+              "licence": [
+                "NCSA"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "asm": {
+              "type": "file",
+              "description": "Assembly in FASTA format",
+              "pattern": "*.{fasta,fa}"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "BAM file containing sorted read mappings",
+              "pattern": "*.{bam}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "ale": {
+              "type": "file",
+              "description": "Output TXT file containing ALE results",
+              "pattern": "*_ALEoutput.{txt}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@rodtheo"
+        ],
+        "maintainers": [
+          "@rodtheo"
+        ]
+      }
+    },
+    {
       "name": "allelecounter",
       "path": "modules/nf-core/allelecounter/meta.yml",
       "type": "module",
@@ -3431,6 +3508,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         },
         {
           "name": "rnafusion",
@@ -9107,6 +9188,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "phaseimpute",
+          "version": "dev"
+        },
         {
           "name": "sarek",
           "version": "3.4.0"
@@ -32969,6 +33054,12 @@
         ],
         "input": [
           {
+            "meta": {
+              "type": "map",
+              "description": "A Groovy map containing sample information,\ne.g. [ id: \"test\" ]\n"
+            }
+          },
+          {
             "infile": {
               "type": "file",
               "description": "MSA or distance matrix in Phylip format",
@@ -33437,10 +33528,6 @@
           "version": "dev"
         },
         {
-          "name": "phaseimpute",
-          "version": "dev"
-        },
-        {
           "name": "radseq",
           "version": "dev"
         },
@@ -33645,6 +33732,77 @@
         ],
         "maintainers": [
           "@aunderwo"
+        ]
+      }
+    },
+    {
+      "name": "fastx_collapser",
+      "path": "modules/nf-core/fastx/collapser/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "fastx_collapser",
+        "description": "Collapses identical sequences in a FASTQ/A file into a single sequence (while maintaining reads counts)",
+        "keywords": [
+          "collapse",
+          "genomics",
+          "fasta",
+          "fastq"
+        ],
+        "tools": [
+          {
+            "fastx": {
+              "description": "A collection of command line tools for Short-Reads FASTA/FASTQ files preprocessing",
+              "homepage": "http://hannonlab.cshl.edu/fastx_toolkit/",
+              "documentation": "http://hannonlab.cshl.edu/fastx_toolkit/commandline.html",
+              "tool_dev_url": "https://github.com/agordon/fastx_toolkit",
+              "licence": [
+                "AGPL"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "fastx": {
+              "type": "file",
+              "description": "Decompressed FASTA/FASTQ input file",
+              "pattern": "*.{fastq,fasta}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Collapsed FASTA file",
+              "pattern": "*.fasta"
+            }
+          }
+        ],
+        "authors": [
+          "@jvfe"
+        ],
+        "maintainers": [
+          "@jvfe"
         ]
       }
     },
@@ -38449,6 +38607,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -39174,6 +39336,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -45077,6 +45243,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -46924,6 +47094,12 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'reference' ]\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "The reference fasta file",
@@ -46931,10 +47107,22 @@
             }
           },
           {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'reference' ]\n"
+            }
+          },
+          {
             "fai": {
               "type": "file",
               "description": "Index of reference fasta file",
               "pattern": "*.fasta.fai"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'reference' ]\n"
             }
           },
           {
@@ -51292,7 +51480,9 @@
               "documentation": "https://odelaneau.github.io/GLIMPSE/commands.html",
               "tool_dev_url": "https://github.com/odelaneau/GLIMPSE",
               "doi": "10.1038/s41588-020-00756-0",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -67061,6 +67251,12 @@
         ],
         "input": [
           {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
             "rma6": {
               "type": "file",
               "description": "RMA6 files from MALT",
@@ -79315,7 +79511,9 @@
               "documentation": "https://openms.readthedocs.io/en/latest/index.html",
               "tool_dev_url": "https://github.com/OpenMS/OpenMS",
               "doi": "10.1038/nmeth.3959",
-              "licence": "['BSD']"
+              "licence": [
+                "BSD"
+              ]
             }
           }
         ],
@@ -120180,7 +120378,9 @@
               "documentation": "https://github.com/CenterForMedicalGeneticsGhent/WisecondorX",
               "tool_dev_url": "https://github.com/CenterForMedicalGeneticsGhent/WisecondorX",
               "doi": "10.1093/nar/gky1263",
-              "licence": "['Attribution-NonCommercial-ShareAlike CC BY-NC-SA']"
+              "licence": [
+                "Attribution-NonCommercial-ShareAlike CC BY-NC-SA"
+              ]
             }
           }
         ],
@@ -120282,7 +120482,9 @@
               "documentation": "https://github.com/CenterForMedicalGeneticsGhent/WisecondorX",
               "tool_dev_url": "https://github.com/CenterForMedicalGeneticsGhent/WisecondorX",
               "doi": "10.1093/nar/gky1263",
-              "licence": "['Attribution-NonCommercial-ShareAlike CC BY-NC-SA']"
+              "licence": [
+                "Attribution-NonCommercial-ShareAlike CC BY-NC-SA"
+              ]
             }
           }
         ],
@@ -120358,7 +120560,9 @@
               "documentation": "https://github.com/CenterForMedicalGeneticsGhent/WisecondorX",
               "tool_dev_url": "https://github.com/CenterForMedicalGeneticsGhent/WisecondorX",
               "doi": "10.1093/nar/gky1263",
-              "licence": "['Attribution-NonCommercial-ShareAlike CC BY-NC-SA']"
+              "licence": [
+                "Attribution-NonCommercial-ShareAlike CC BY-NC-SA"
+              ]
             }
           }
         ],
@@ -120428,7 +120632,9 @@
               "documentation": "https://github.com/CenterForMedicalGeneticsGhent/WisecondorX",
               "tool_dev_url": "https://github.com/CenterForMedicalGeneticsGhent/WisecondorX",
               "doi": "10.1093/nar/gky1263",
-              "licence": "['Attribution-NonCommercial-ShareAlike CC BY-NC-SA']"
+              "licence": [
+                "Attribution-NonCommercial-ShareAlike CC BY-NC-SA"
+              ]
             }
           }
         ],
@@ -120488,7 +120694,7 @@
             }
           },
           {
-            "abberations_bed": {
+            "aberrations_bed": {
               "type": "file",
               "description": "OPTIONAL - Output abberations in BED format. This gets created with the `--bed` option",
               "pattern": "*_aberrations.bed"
