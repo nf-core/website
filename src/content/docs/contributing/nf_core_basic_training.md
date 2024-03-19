@@ -22,7 +22,7 @@ subtitle: A guide to create Nextflow pipelines using nf-core tools
 
 :::
 
-This training course aims to demonstrate how to build an nf-core pipeline using the nf-core pipeline template and nf-core modules as well as custom, local modules. Be aware that we are not going to explain any fundamental Nextflow concepts, as such we advise anyone taking this course to have completed the [Basic Nextflow Training Workshop](https://training.nextflow.io/).
+This training course aims to demonstrate how to build an nf-core pipeline using the nf-core pipeline template and nf-core modules and subworkflows as well as custom, local modules. Be aware that we are not going to explain any fundamental Nextflow concepts, as such we advise anyone taking this course to have completed the [Basic Nextflow Training Workshop](https://training.nextflow.io/).
 
 ```md
 During this course we are going to build a Simple RNA-Seq workflow.
@@ -704,11 +704,13 @@ nf-core lint
 
    :::
 
-## Adding Modules to a pipeline
+# Building a pipeline from (existing) components
 
-### Adding an existing nf-core module
+Nextflow pipelines can be build in a very modular fashion. In nf-core, we have simple building blocks available: nf-core/modules. Usually, they are wrappers around individual tools. In addition, we have subworkflows: smaller pre-build pipeline chunks. You can think about the modules as Lego bricks and subworkflows as pre-build chunks that can be added to various sets. These components are centrally available for all Nextflow pipelines. To make working with them easy, you can use `nf-core/tools`.
 
-#### Identify available nf-core modules
+## Adding an existing nf-core module
+
+### Identify available nf-core modules
 
 The nf-core pipeline template comes with a few nf-core/modules pre-installed. You can list these with the command below:
 
@@ -774,9 +776,11 @@ You can list all of the modules available on nf-core/modules via the command bel
 nf-core modules list remote
 ```
 
-#### Install a remote nf-core module
+In addition, all modules are listed on the website: [https://nf-co.re/modules](https://nf-co.re/modules)
 
-To install a remote nf-core module from the website, you can first get information about a tool, including the installation command by executing:
+### Install a remote nf-core module
+
+To install a remote nf-core module, you can first get information about a tool, including the installation command by executing:
 
 ```bash
 nf-core modules info salmon/index
@@ -838,7 +842,7 @@ versions (file) │File containing software versions │versions.yml
       </details>
    :::
 
-The out put from the info command will among other things give you the nf-core/tools installation command, lets see what it is doing:
+The output from the info command will among other things give you the nf-core/tools installation command, lets see what it is doing:
 
 ```bash
 nf-core modules install salmon/index
@@ -893,6 +897,72 @@ INFO     Use the following statement to include this module:
 
  include { SALMON_INDEX } from '../modules/nf-core/salmon/index/main'
 ```
+
+The module is now installed into the folder `modules/nf-core`. Now open the file `workflow/demotest.nf`. You will find already several `include` statements there from the installed modules (`MultiQC` and `FastQC`):
+
+```bash title="workflow/demotest.nf"
+
+include { FASTQC  } from '../modules/nf-core/fastqc/main'
+include { MULTIQC } from '../modules/nf-core/multiqc/main'
+```
+
+Now add the above line underneath it:
+
+```bash title="workflow/demotest.nf"
+
+include { FASTQC  } from '../modules/nf-core/fastqc/main'
+include { MULTIQC } from '../modules/nf-core/multiqc/main'
+include { SALMON_INDEX } from '../modules/nf-core/salmon/index/main'
+
+```
+
+This makes the module now available in the workflow script and it can be called with the right input data.
+
+<!-- TODO/TO DISCUSS here the user now needs to know about how to get their fasta. We could do this here or add a new point for this above -->
+
+We can now call the module in our workflow. Let's place it after FastQC:
+
+```bash title="workflow/demotest.nf"
+
+workflow DEMOTEST {
+
+    ...
+    //
+    // MODULE: Run FastQC
+    //
+    FASTQC (
+        INPUT_CHECK.out.reads
+    )
+    ch_versions = ch_versions.mix(FASTQC.out.versions.first())
+
+    SALMON_INDEX()
+```
+
+Now we are still missing an input for our module. In order to build an index, we require the reference fasta. Luckily, the template pipeline has this already all configured, and we can access it by just using `params.fasta` and `view` it to insppect the channel content. (We will see later how to add more input files.)
+
+```bash
+    fasta  = Channel.fromPath(params.fasta)
+
+    fasta.view()
+
+    SALMON_INDEX(
+        fasta.map{it -> [id:it.getName(), it]}
+    )
+    ch_versions = ch_versions.mix(SALMON_INDEX.out.versions.first())
+
+```
+
+Now what is happening here:
+
+To pass over our input FastA file, we need to do a small channel manipulation. nf-core/modules typically take the input together with a `meta` map. This is just a hashmap that contains relevant information for the analysis, that should be passed around the pipeline. There are a couple of keys that we share across all modules, such as `id`. So in order, to have a valid input for our module, we just use the fasta file name (`it.getName()`) as our `id`. In addition, we collect the versions of the tools that are run in the module. This will allow us later to track all tools and all versions allow us to generate a report.
+
+How test your pipeline:
+
+```bash
+nextflow run main.nf -profile test,docker --outdir results
+```
+
+You should now see that `SALMON_INDEX` is run.
 
 (lots of steps missing here)
 exercise to add a different module would be nice! => salmon/quant!
@@ -991,7 +1061,7 @@ If there is no nf-core module available for the software you want to include, th
 nf-core modules create
 ```
 
-Open ./modules/local/demo/module.nf and start customising this to your needs whilst working your way through the extensive TODO comments!
+Open ./modules/local/demo/module.nf and start customising this to your needs whilst working your way through the extensive TODO comments! For further help and guidelines for the modules code, check out the [modules specific documentation](https://nf-co.re/docs/contributing/tutorials/dsl2_modules_tutorial).
 
 ### Making a local module for a custom script
 
@@ -1016,7 +1086,7 @@ In the directory `exercise_6` you will find the custom script `print_hello.py`, 
 
 To generate a module for a custom script you need to follow the same steps when adding a remote module.
 Then, you can supply the command for your script in the `script` block but your script needs to be present
-and *executable* in the `bin`
+and _executable_ in the `bin`
 folder of the pipeline.
 In the nf-core pipelines,
 this folder is in the main directory and you can see in [`rnaseq`](https://github.com/nf-core/rnaseq).
@@ -1026,7 +1096,7 @@ This is an Rscript present in the [`bin`](https://github.com/nf-core/rnaseq/tree
 We can find the module that runs this script in
 [`modules/local/tximport`](https://github.com/nf-core/rnaseq/blob/master/modules/local/tximport/main.nf).
 As we can see the script is being called in the `script` block, note that `tximport.r` is
-being executed as if it was called from the command line and therefore needs to be *executable*.
+being executed as if it was called from the command line and therefore needs to be _executable_.
 
 <blockquote style="border-left: 4px solid #F0AD4E; background-color: #FFF3CD; padding: 10px;">
 
@@ -1042,11 +1112,12 @@ being executed as if it was called from the command line and therefore needs to 
 </blockquote>
 
 _Tip: Try to follow best practices when writing a script for
-   reproducibility and maintenance purposes: add the
-   shebang (e.g. `#!/usr/bin/env python`), and a header
-   with description and type of license._
+reproducibility and maintenance purposes: add the
+shebang (e.g. `#!/usr/bin/env python`), and a header
+with description and type of license._
 
 ### 1. Write your script
+
 Let's create a simple custom script that converts a MAF file to a BED file called `maf2bed.py` and place it in the bin directory of our nf-core-testpipeline::
 
 ```
@@ -1086,6 +1157,7 @@ if __name__ == "__main__":
 ```
 
 ### 2. Make sure your script is in the right folder
+
 Now, let's move it to the correct directory:
 
 ```
@@ -1094,12 +1166,12 @@ chmod +x /path/where/pipeline/is/bin/maf2bed.py
 ```
 
 ### 3. Create your custom module
+
 Then, let's write our module. We will call the process
 "CONVERT_MAF2BED" and add any tags or/and labels that
 are appropriate (this is optional) and directives (via
 conda and/or container) for
 the definition of dependencies.
-
 
 <details>
 <summary><span style="color: forestgreen; font-weight: bold;">More info on labels</span></summary>
@@ -1115,6 +1187,7 @@ withLabel:process_single {
         time   = { check_max( 1.h   * task.attempt, 'time'  ) }
     }
 ```
+
 </details>
 
 <details>
@@ -1124,8 +1197,7 @@ A `tag` is simple a user provided identifier associated to
 the task. In our process example, the input is a tuple
 comprising a hash of metadata for the maf file called
 `meta` and the path to the `maf` file. It may look
-similar to: `[[id:'123', data_type:'maf'],
-/path/to/file/example.maf]`. Hence, when nextflow makes
+similar to: `[[id:'123', data_type:'maf'], /path/to/file/example.maf]`. Hence, when nextflow makes
 the call and `$meta.id` is `123` name of the job
 will be "CONVERT_MAF2BED(123)". If `meta` does not have
 `id` in its hash, then this will be literally `null`.
@@ -1147,6 +1219,7 @@ process foo {
   '''
 }
 ```
+
 Multiple packages can be specified separating them with a blank space e.g. `bwa=0.7.15 samtools=1.15.1`. The name of the channel from where a specific package needs to be downloaded can be specified using the usual Conda notation i.e. prefixing the package with the channel name as shown here `bioconda::bwa=0.7.15`
 
 ```
@@ -1159,6 +1232,7 @@ process foo {
   '''
 }
 ```
+
 Similarly, we can apply the `container` directive to execute the process script in a [Docker](http://docker.io/) or [Singularity](https://docs.sylabs.io/guides/3.5/user-guide/introduction.html) container. When running Docker, it requires the Docker daemon to be running in machine where the pipeline is executed, i.e. the local machine when using the local executor or the cluster nodes when the pipeline is deployed through a grid executor.
 
 ```
@@ -1188,6 +1262,7 @@ process foo {
   '''
 }
 ```
+
 </details>
 
 Since `maf2bed.py` is in the `bin` directory we can directory call it in the script block of our new module `CONVERT_MAF2BED`. You only have to be careful with how you call variables (some explanations on when to use `${variable}` vs. `$variable`):
@@ -1225,9 +1300,8 @@ maf2bed.py --mafin $maf --bedout ${prefix}.bed
 
 More on nextflow's process components in the [docs](https://www.nextflow.io/docs/latest/process.html).
 
-
-
 ### Include your module in the workflow
+
 In general, we will call out nextflow module `main.nf` and save it in the `modules` folder under another folder called `conver_maf2bed`. If you believe your custom script could be useful for others and it is potentially reusable or calling a tool that is not yet present in nf-core modules you can start the process of making it official adding a `meta.yml` [explained above](#adding-modules-to-a-pipeline). In the `meta.yml` The overall tree for the pipeline skeleton will look as follows:
 
 ```
@@ -1246,7 +1320,7 @@ pipeline/
 ...
 ```
 
-To use our custom module located in `./modules/local/convert_maf2bed` within our workflow, we use a module inclusions command  as follows (this has to be done before we invoke our workflow):
+To use our custom module located in `./modules/local/convert_maf2bed` within our workflow, we use a module inclusions command as follows (this has to be done before we invoke our workflow):
 
 ```
 include { CONVERT_MAF2BED } from './modules/local/convert_maf2bed/main'
@@ -1257,6 +1331,7 @@ workflow {
 ```
 
 ### Other notes
+
 #### What happens in I want to use containers but there is no image created with the packages I need?
 
 No worries, this can be done fairly easy thanks to [BioContainers](https://biocontainers-edu.readthedocs.io/en/latest/what_is_biocontainers.html), see instructions [here](https://github.com/BioContainers/multi-package-containers). If you see the combination that you need in the repo, you can also use [this website](https://midnighter.github.io/mulled) to find out the "mulled" name of this container.
@@ -1265,10 +1340,9 @@ No worries, this can be done fairly easy thanks to [BioContainers](https://bioco
 
 You are in luck, we have more documentation [here](https://nf-co.re/docs/contributing/modules#software-requirements)
 
-
 #### I want to know more about modules!
-See more info about modules in the nextflow docs [here](https://nf-co.re/docs/contributing/modules#software-requirements.)
 
+See more info about modules in the nextflow docs [here](https://nf-co.re/docs/contributing/modules#software-requirements.)
 
 ## Lint all modules
 
