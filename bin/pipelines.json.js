@@ -107,6 +107,26 @@ export const writePipelinesJson = async () => {
       data[`${branch}_branch_protection_require_non_stale_review`] = rules?.data?.required_pull_request_reviews?.dismiss_stale_reviews ?? null;
       data[`${branch}_branch_protection_enforce_admins`] = rules?.data?.enforce_admins?.enabled ?? null;
     }
+    // Template branch protection rules
+    try {
+      const template_branch_exists = await octokit.rest.repos.getBranch({}).then(() => true).catch((err) => {
+        if (err.status === 404) {
+          return false;
+        }
+        throw err;
+      });
+      if(!template_branch_exists) {
+        data[`branch_template_restrict_push`] = -1;
+      }
+      restrictions = await octokit.rest.repos.getBranchProtection({
+        owner: 'nf-core',
+        repo: name,
+        branch: 'TEMPLATE',
+      });
+      data[`branch_template_restrict_push`] = restrictions?.users?.length === 1 && restrictions?.users?.[0]?.login === 'nf-core-bot' ? true : false;
+    } catch(err)  {
+      console.log(`Failed to fetch TEMPLATE branch protection`, err);
+    }
     // remove ignored topics
     data['topics'] = data['topics'].filter((topic) => !ignored_topics.includes(topic));
     // get number of open pull requests
