@@ -516,7 +516,7 @@ nf-core lint
 
 # Building a pipeline from (existing) components
 
-Nextflow pipelines can be build in a very modular fashion. In nf-core, we have simple building blocks available: nf-core/modules. They are wrappers around usually individual tools. In addition, we have subworkflows: smaller pre-build pipeline chunks. You can think about the modules as Lego bricks and subworkflows as pre-build chunks that can be added to various sets. These components are centrally available for all Nextflow pipelines. To make working with them easy, we have can use `nf-core/tools`
+Nextflow pipelines can be build in a very modular fashion. In nf-core, we have simple building blocks available: nf-core/modules. Usually, they are wrappers around individual tools. In addition, we have subworkflows: smaller pre-build pipeline chunks. You can think about the modules as Lego bricks and subworkflows as pre-build chunks that can be added to various sets. These components are centrally available for all Nextflow pipelines. To make working with them easy, you can use `nf-core/tools`.
 
 ## Adding an existing nf-core module
 
@@ -629,7 +629,7 @@ nf-core modules info salmon/index
  💻  Installation command: nf-core modules install salmon/index
 ```
 
-The output from the info command will among other things give you the nf-core/tools installation command, lets see what it is doing:
+The output from the info command will, among other things, give you the nf-core/tools installation command. Lets see what it is doing:
 
 ```bash
 nf-core modules install salmon/index
@@ -687,7 +687,7 @@ INFO     Use the following statement to include this module:
 
 The module is now installed into the folder `modules/nf-core`. Now open the file `workflow/demotest.nf`. You will find already several `include` statements there from the installed modules (`MultiQC` and `FastQC`):
 
-```bash
+```bash title="workflow/demotest.nf"
 
 include { FASTQC  } from '../modules/nf-core/fastqc/main'
 include { MULTIQC } from '../modules/nf-core/multiqc/main'
@@ -695,7 +695,7 @@ include { MULTIQC } from '../modules/nf-core/multiqc/main'
 
 Now add the above line underneath it:
 
-```bash
+```bash title="workflow/demotest.nf"
 
 include { FASTQC  } from '../modules/nf-core/fastqc/main'
 include { MULTIQC } from '../modules/nf-core/multiqc/main'
@@ -709,7 +709,7 @@ This makes the module now available in the workflow script and it can be called 
 
 We can now call the module in our workflow. Let's place it after FastQC:
 
-```bash
+```bash title="workflow/demotest.nf"
 
 workflow DEMOTEST {
 
