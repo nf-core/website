@@ -152,6 +152,7 @@ export const writePipelinesJson = async () => {
     }
     // remove ignored topics
     data['topics'] = data['topics'].filter((topic) => !ignored_topics.includes(topic));
+    data['has_required_topics'] = ['nf-core', 'nextflow', 'workflow', 'pipeline'].every((topic) => data['topics'].includes(topic));
     // get number of open pull requests
     let { data: pull_requests } = await octokit.rest.pulls.list({
       owner: 'nf-core',
