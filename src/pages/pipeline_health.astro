@@ -43,10 +43,10 @@ import { remote_workflows as pipelines } from '@public/pipelines.json';
                         pipelines.map(pipeline =>
                             {
                                 const getCell = (condition?: any, link?: string, tooltip?: string) =>
-                                    <td class={"text-center " + (condition ? (condition === -1 ? 'status--unknown' : 'status--healthy') : 'status--unhealthy')}
+                                    <td class={"text-center " + (condition ? ((condition === -1 || condition === undefined) ? 'status--unknown' : 'status--healthy') : 'status--unhealthy')}
                                         data-bs-toggle="tooltip" title={pipeline.name + ": " + tooltip}>
                                         {
-                                            condition === -1 ?
+                                            (condition === -1 || condition === undefined) ?
                                                 <a href={link} class="d-block text-secondary text-decoration-none">?</a> :
                                                 <a href={link} target="_blank">
                                                     { condition ? <i class="fas fa-check text-success"></i> : <i class="fas fa-times text-danger"></i> }
@@ -74,11 +74,11 @@ import { remote_workflows as pipelines } from '@public/pipelines.json';
                                 <!-- issues -->
                                 { getCell(pipeline.has_issues, pipeline.repository_url+'/issues', "enable issues") }
                                 <!-- merge commits -->
-                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "allow merge commits") }
+                                { getCell(pipeline.allow_merge_commit, `https://github.com/nf-core/${pipeline.name}/releases`, "allow merge commits") }
                                 <!-- Rebase merging -->
-                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "allow rebase merging") }
+                                { getCell(pipeline.allow_rebase_merge, `https://github.com/nf-core/${pipeline.name}/releases`, "allow rebase merging") }
                                 <!-- Squash changes -->
-                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "do not allow squash merge") }
+                                { getCell(pipeline.allow_squash_merge !== -1 ? !pipeline.allow_squash_commit : pipeline.allow_squash_commit, `https://github.com/nf-core/${pipeline.name}/releases`, "do not allow squash merge") }
                                 <!-- Default branch TODO: 🚧-->
                                 { getCell(pipeline.default_branch, pipeline.repository_url+'/commits', "default branch master (released) or dev (no releases)") }
                                 <!-- Keywords -->
@@ -88,8 +88,8 @@ import { remote_workflows as pipelines } from '@public/pipelines.json';
                                 <!-- Repo URL -->
                                 { getCell(new RegExp(`https:\/\/nf-co\.re\/${pipeline.name}`).test(pipeline.homepage ?? ''), pipeline.homepage ?? pipeline.repository_url, "URL should be set to https://nf-co.re/[PIPELINE-NAME]") }
                                 <!-- Team access -->
-                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "write access for nf-core/contributors") }
-                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "admin access for nf-core/core") }
+                                { getCell(pipeline.team_contributors_push ?? -1, `https://github.com/nf-core/${pipeline.name}`, "write access for nf-core/contributors") }
+                                { getCell(pipeline.team_core_admin ?? -1, `https://github.com/nf-core/${pipeline.name}`, "admin access for nf-core/core") }
                                 <!-- Branches exist -->
                                 { getCell(pipeline.main_branch_exists, `https://github.com/nf-core/${pipeline.name}/tree/${pipeline.default_branch}`, "master branch: branch must exist") }
                                 { getCell(pipeline.dev_branch_exists, `https://github.com/nf-core/${pipeline.name}/tree/dev`, "dev branch: branch must exist") }
