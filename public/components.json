@@ -4307,6 +4307,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -38441,6 +38445,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -39166,6 +39174,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -44057,6 +44069,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -55972,7 +55988,13 @@
         "maintainers": [
           "@nvnieuwk"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "happy_prepy",
@@ -56075,7 +56097,13 @@
         "maintainers": [
           "@nvnieuwk"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "happy_sompy",
@@ -58556,7 +58584,9 @@
               "homepage": "https://htseq.readthedocs.io/en/latest/",
               "documentation": "https://htseq.readthedocs.io/en/latest/index.html",
               "doi": "10.1093/bioinformatics/btu638",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -76900,7 +76930,9 @@
               "homepage": "https://github.com/imgag/ngs-bits",
               "documentation": "https://github.com/imgag/ngs-bits",
               "tool_dev_url": "https://github.com/imgag/ngs-bits",
-              "licence": "['MIT license']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -78992,7 +79024,9 @@
               "documentation": "https://openms.readthedocs.io/en/latest/index.html",
               "tool_dev_url": "https://github.com/OpenMS/OpenMS",
               "doi": "10.1038/nmeth.3959",
-              "licence": "['BSD']"
+              "licence": [
+                "BSD"
+              ]
             }
           }
         ],
@@ -79011,7 +79045,7 @@
             }
           },
           {
-            "filter": {
+            "filter_file": {
               "type": "file",
               "description": "Optional idXML file to filter on/out peptides or proteins",
               "patter": "*.{idXML,fasta}"
@@ -79033,7 +79067,7 @@
             }
           },
           {
-            "id_file": {
+            "filtered": {
               "type": "file",
               "description": "Filtered peptide-spectrum matches.",
               "pattern": "*.{idXML,consensusXML}"
@@ -90191,6 +90225,13 @@
               "description": "FASTA file",
               "pattern": "*.{fasta.gz,fa.gz,fna.gz}"
             }
+          },
+          {
+            "output_format": {
+              "type": "string",
+              "description": "Output format",
+              "pattern": "{gbk,gff}"
+            }
           }
         ],
         "output": [
@@ -90208,10 +90249,10 @@
             }
           },
           {
-            "gff": {
+            "annotations": {
               "type": "file",
-              "description": "gene annotations in gff format",
-              "pattern": "*.{gff.gz}"
+              "description": "Gene annotations. The file format is specified via input channel \"output_format\".",
+              "pattern": "*.{gbk,gff}.gz"
             }
           },
           {
@@ -93778,6 +93819,10 @@
         {
           "name": "raredisease",
           "version": "2.0.0"
+        },
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
         }
       ]
     },
@@ -94122,6 +94167,10 @@
         {
           "name": "raredisease",
           "version": "2.0.0"
+        },
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
         }
       ]
     },
@@ -95728,6 +95777,13 @@
             "meta": {
               "type": "map",
               "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "fa": {
+              "type": "file",
+              "description": "FASTA file",
+              "pattern": "*.{fa}"
             }
           },
           {
