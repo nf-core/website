@@ -92,15 +92,25 @@ export const writePipelinesJson = async () => {
         return response.data;
       });
 
-    const repoInfo = await octokit.rest.repos.get({
-      owner: 'nf-core',
-      repo: name,
-    });
+    data['allow_merge_commit'] = data.allow_merge_commit ?? -1;
+    data['allow_rebase_merge'] = data.allow_rebase_merge ?? -1;
+    data['allow_squash_merge'] = data.allow_squash_merge ?? -1;
 
-
-    data['allow_merge_commit'] = repoInfo.data.allow_merge_commit ?? -1;
-    data['allow_rebase_commit'] = repoInfo.data.allow_rebase_merge ?? -1;
-    data['allow_squash_commit'] = repoInfo.data.allow_squash_merge ?? -1;
+    // Get team permissions
+    for (const team of ['contributors', 'core']) {
+      try {
+        const team_permission = await octokit.rest.teams.checkPermissionsForRepoInOrg({
+          org: 'nf-core',
+          team_slug: team,
+          owner: 'nf-core',
+          repo: name,
+        });
+        data[`team_${team}_permission_push`] = team_permission?.data.permissions?.push ?? -1;
+        data[`team_${team}_permission_admin`] = team_permission?.data.permissions?.admin ?? -1;
+      } catch (err) {
+        console.warn(`Failed to fetch ${team} team permission`, err);
+      }
+    }
 
     // Get branch existence & protection rules
     for(const branch of [
@@ -167,8 +177,8 @@ export const writePipelinesJson = async () => {
       }
     }
     // remove ignored topics
-    data['topics'] = data['topics'].filter((topic) => !ignored_topics.includes(topic));
     data['has_required_topics'] = ['nf-core', 'nextflow', 'workflow', 'pipeline'].every((topic) => data['topics'].includes(topic));
+    data['topics'] = data['topics'].filter((topic) => !ignored_topics.includes(topic));
     // get number of open pull requests
     let { data: pull_requests } = await octokit.rest.pulls.list({
       owner: 'nf-core',
