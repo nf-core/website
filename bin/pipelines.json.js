@@ -64,6 +64,12 @@ export const writePipelinesJson = async () => {
   // get ignored_topics from ignored_reops.yml
   const ignored_topics = yaml.load(ignoredTopicsYaml).ignore_topics;
 
+  // Get latest tools release
+  const latest_tools_release_date = (await octokit.rest.repos.getLatestRelease({
+    owner: 'nf-core',
+    repo: 'tools',
+  }))?.data?.created_at;
+
   let bar = new ProgressBar('  fetching pipelines [:bar] :percent :etas', { total: names.length });
 
   // go through names and add or update pipelines in pipelines.json
@@ -184,6 +190,8 @@ export const writePipelinesJson = async () => {
     // remove releases that are already in the pipelines.json file
     const index = pipelines.remote_workflows.findIndex((workflow) => workflow.name === name);
     let new_releases = releases;
+
+    data['released_after_tools'] = new Date(latest_tools_release_date.valueOf()) < new Date(releases[0]?.published_at).valueOf();
 
     let old_releases = [];
     if (index > -1) {

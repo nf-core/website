@@ -58,7 +58,7 @@ import { remote_workflows as pipelines } from '@public/pipelines.json';
                                 <!-- Released -->
                                 { getCell(!!pipeline.releases?.length, `https://github.com/nf-core/${pipeline.name}/releases`, "has at least one release") }
                                 <!-- Released after tools -->
-                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "last release is after latest tools release (so up to date with template)") }
+                                { getCell(pipeline.released_after_tools, `https://github.com/nf-core/${pipeline.name}/releases`, "last release is after latest tools release (so up to date with template)") }
                                 <!--Master = release -->
                                 { getCell(pipeline.last_release_is_head, pipeline.last_release_vs_default_compare_url, "master branch is same commit as the last release") }
                                 <!-- JSON Schema TODO: 🚧 add dev branch fallback-->
