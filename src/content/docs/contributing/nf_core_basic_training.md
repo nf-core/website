@@ -3,7 +3,24 @@ title: Basic training to create an nf-core pipeline
 subtitle: A guide to create Nextflow pipelines using nf-core tools
 ---
 
-# Introduction
+## Scope
+
+- How do I create a pipeline using nf-core tools?
+- How do I incorporate modules from nf-core modules?
+- How can I use custom code in my pipeline?
+
+:::note
+
+### Learning objectives
+
+- The learner will create a simple pipeline using the nf-core template.
+- The learner will identify key files in the pipeline.
+- The learner will lint their pipeline code to identify work to be done.
+- The learner will incorporate modules from nf-core/modules into their pipeline.
+- The learner will add custom code as a local module into their pipeline.
+- The learner will build an nf-core schema to describe and validate pipeline parameters.
+
+:::
 
 This training course aims to demonstrate how to build an nf-core pipeline using the nf-core pipeline template and nf-core modules and subworkflows as well as custom, local modules. Be aware that we are not going to explain any fundamental Nextflow concepts, as such we advise anyone taking this course to have completed the [Basic Nextflow Training Workshop](https://training.nextflow.io/).
 
@@ -30,54 +47,58 @@ The course is going to build an (totally unscientific and useless) RNA seq pipel
 
 The following sections will be handled in the course:
 
-**1. Setting up the gitpod environment for the course**
+1. **Setting up the gitpod environment for the course**
 
 The course is using gitpod in order to avoid the time expense for downloading and installing tools and data.
 
-**2. Exploring the nf-core tools command**
+2. **Exploring the nf-core tools command**
 
 A very basic walk-through of what can be done with nf-core tools
 
-**3. Creating a new nf-core pipeline from the nf-core template**
+3. **Creating a new nf-core pipeline from the nf-core template**
 
-**4. Exploring the nf-core template**
+4. **Exploring the nf-core template**
 
-a) The git repository
+   a) The git repository
 
-b) running the pipeline
+   b) running the pipeline
 
-c) linting the pipeline
+   c) linting the pipeline
 
-d) walk-through of the template files
+   d) walk-through of the template files
 
-**5. Building a nf-core pipeline using the template**
+5. **Building a nf-core pipeline using the template**
 
-a) Adding a nf-core module to your pipeline
+   a) Adding a nf-core module to your pipeline
 
-b) Adding a local custom module to your pipeline
+   b) Adding a local custom module to your pipeline
 
-c) Working with Nextflow schema
+   c) Working with Nextflow schema
 
-d) Linting your modules
+   d) Linting your modules
 
-## Prerequisites
+## Preparation
 
-## Follow the training videos
+### Prerequisites
+
+- Familiarity with Nextflow syntax and configuration.
+
+### Follow the training videos
 
 This training can be followed either based on this documentation alone, or via a training video hosted on youtube. You can find the youtube video in the Youtube playlist below:
 
 (no such video yet)
 
-# Using gitpod
+### Gitpod
 
-For this tutorial we are going to use Gitpod, which is best for first-timers as this platform contains all the programs and data required.
-Gitpod will contain a preconfigured Nextflow development environment and has the following requirements:
+For this tutorial we will use Gitpod, which runs in the learners web browser. The Gitpod environment contains a preconfigured Nextflow development environment
+which includes a terminal, file editor, file browser, Nextflow, and nf-core tools. To use Gitpod, you will need:
 
 - A GitHub account
 - Web browser (Google Chrome, Firefox)
 - Internet connection
 
-Simply click the link and log in using your GitHub account to start the tutorial:
+Click the link and log in using your GitHub account to start the tutorial:
 
 <p class="text-center">
   <a href="https://www.gitpod.io/#https://github.com/nf-core/basic_training" class="btn btn-lg btn-success" target="_blank">
@@ -85,9 +106,13 @@ Simply click the link and log in using your GitHub account to start the tutorial
   </a>
 </p>
 
-For more information about gitpod, including how to make your own gitpod environement, see the gitpod bytesize talk on youtube (link to the bytesize talk)
+For more information about Gitpod, including how to make your own Gitpod environement, see the Gitpod bytesize talk on youtube (link to the bytesize talk),
+check the [nf-core Gitpod documentation](gitpod/index) or [Gitpod's own documentation](https://www.gitpod.io/docs).
 
-## Explore your Gitpod interface
+<details>
+<summary> Expand this section for instructions to explore your Gitpod environment</summary>
+
+#### Explore your Gitpod interface
 
 You should now see something similar to the following:
 
@@ -113,9 +138,10 @@ Runtime: Groovy 3.0.19 on OpenJDK 64-Bit Server VM 17.0.8-internal+0-adhoc..src
 Encoding: UTF-8 (UTF-8)
 ```
 
-## Reopening a Gitpod session
+#### Reopening a Gitpod session
 
-You can reopen an environment from <https://gitpod.io/workspaces>. Find your previous environment in the list, then select the ellipsis (three dots icon) and select Open.
+When a Gitpod session is not used for a while, i.e., goes idle, it will timeout and close the interface.
+You can reopen the environment from <https://gitpod.io/workspaces>. Find your previous environment in the list, then select the ellipsis (three dots icon) and select Open.
 
 If you have saved the URL for your previous Gitpod environment, you can simply open it in your browser.
 
@@ -123,11 +149,13 @@ Alternatively, you can start a new workspace by following the Gitpod URL: <https
 
 If you have lost your environment, you can find the main scripts used in this tutorial in the `nf-training` directory.
 
-## Saving files from Gitpod to your local machine
+#### Saving files from Gitpod to your local machine
 
-To save any file from the explorer panel, right-click the file and select Download.
+To save any file locally from the explorer panel, right-click the file and select Download.
 
-# Explore nf-core/tools
+</details>
+
+## Explore nf-core/tools
 
 The nf-core/tools package is already installed in the gitpod environment. Now you can check out which pipelines, subworkflows and modules are available via tools. To see all available commands of nf-core tools, run the following:
 
@@ -137,7 +165,7 @@ nf-core --help
 
 We will touch on most of the commands for developers later throughout this tutorial.
 
-# Create a pipeline from template
+## Create a pipeline from template
 
 To get started with your new pipeline, run the create command:
 
@@ -229,10 +257,63 @@ Ideally code should be developed on feature branches (i.e. a new branch made wit
 
 When creating a new repository on GitHub, create it as an empty repository without a README or any other file. Then push the repo with the template of your new pipeline from your local clone.
 
-( OLD: When creating a new repository on https://github.com or equivalent, don’t initialise it - leave it bare and push everything from your local clone
-Develop your code on either the master or dev branches and leave TEMPLATE alone.)
+:::tip{title="Exercise 1 - Getting around the git environment"}
 
-## Run the new pipeline
+1. Create and switch to a new git branch called `demo`.
+   <details>
+   <summary>solution 1</summary>
+
+   ```bash
+   git checkout -b demo
+   ```
+
+   </details>
+
+2. Display all available git branches.
+   <details>
+   <summary>solution 2</summary>
+
+   ```bash
+   git branch
+   ```
+
+   </details>
+
+3. Create a directory within the new pipeline directory called `results` and add it to the `.gitignore` file.
+   <details>
+   <summary>solution 3</summary>
+
+   ```bash
+   mkdir results
+   ```
+
+   ```groovy title=".gitignore"
+   .nextflow*
+    work/
+    data/
+    results/
+    .DS_Store
+    testing/
+    testing*
+    *.pyc
+    results/
+   ```
+
+   </details>
+
+4. Commit the changes you have made.
+   <details>
+   <summary>solution 4</summary>
+
+   ```bash
+   git add .
+   git commit -m "creating results dir and adding it to gitignore"
+   ```
+
+   </details>
+   :::
+
+### Run the new pipeline
 
 The new pipeline should run with Nextflow, right out of the box. Let’s try:
 
@@ -243,7 +324,7 @@ nextflow run nf-core-demotest/ -profile test,docker --outdir test_results
 
 This basic template pipeline contains already the FastQC and MultiQC modules, which do run on a selection of test data.
 
-## Template code walk through
+### Template code walk through
 
 Now let us have a look at the files that were generated within the `nf-core-demotest` directory when we created this pipeline. You can see all files and directories either on the left hand side in the Explorer, or by running the command:
 
@@ -390,7 +471,7 @@ This file keeps track of modules installed using nf-core tools from the nf-core/
 
     e) _.gitpod.yml_
 
-This file provides settings to create a Cloud development environment in your browser using Gitpod. It comes installed with the tools necessary to develop and test nf-core pipelines, modules, and subworkflows, allowing you to develop from anywhere without installing anything locally.
+    This file provides settings to create a Cloud development environment in your browser using Gitpod. It comes installed with the tools necessary to develop and test nf-core pipelines, modules, and subworkflows, allowing you to develop from anywhere without installing anything locally.
 
     f) _.nf-core.yml_
 
@@ -399,6 +480,43 @@ This file provides settings to create a Cloud development environment in your br
     h) _.prettierignore_
 
     i) _.prettierrc.yml_
+
+:::tip{title="Exercise 2 - Test your knowledge of the nf-core pipeline structure"}
+
+1. In which directory can you find the main script of the nf-core module `fastqc`
+   <details>
+      <summary>solution 1</summary>
+
+   ```
+   modules/nf-core/fastqc/
+   ```
+
+      </details>
+
+2. Which file contains the main workflow of your new pipeline?
+   <details>
+      <summary>solution 2</summary>
+
+   ```
+   workflows/demotest.nf
+   ```
+
+      </details>
+
+3. `check_samplesheet.py` is a script that can be called by any module of your pipeline, where is it located?
+   <details>
+      <summary>solution 3</summary>
+
+   ```
+   bin/
+   ```
+
+   This directory can also contain a custom scripts that you may wish to call from within a custom module.
+
+      </details>
+
+[MORE QUESTIONS CAN BE ADDED HERE]
+:::
 
 ## Customising the template
 
@@ -514,6 +632,78 @@ nf-core lint
 [...]
 ```
 
+:::tip{title="Exercise 3 - ToDos and linting"}
+
+1. Add the following bullet point list to the README file, where the ToDo indicates to describe the default steps to execute the pipeline
+
+   ```groovy title="pipeline overview"
+   - Indexing of a transcriptome file
+   - Quality control
+   - Quantification of transcripts
+   - [whatever the custom script does]
+   - Generation of a MultiQC report
+   ```
+
+   <details>
+      <summary>solution 1</summary>
+
+   ```bash title="README.md"
+   [...]
+
+   ## Introduction
+
+   **nf-core/a** is a bioinformatics pipeline that ...
+
+   <!-- TODO nf-core:
+   Complete this sentence with a 2-3 sentence summary of what types of data the pipeline ingests, a brief overview of the
+   major pipeline sections and the types of output it produces. You\'re giving an overview to someone new to nf-core here,
+   in 15-20 seconds. For an example, see https://github.com/nf-core/rnaseq/blob/master/README.md#introduction -->
+
+   <!-- TODO nf-core: Include a figure that guides the user through the major workflow steps. Many nf-core
+     workflows use the "tube map" design for that. See https://nf-co.re/docs/contributing/design_guidelines#examples for examples.
+     -->
+
+   Default steps:
+      - Indexing of a transcriptome file
+    - Quality control
+    - Quantification of transcripts
+    - [whatever the custom script does]
+    - Generation of a MultiQC report
+
+   1. Read QC ([`FastQC`](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/))
+   2. Present QC for raw reads ([`MultiQC`](http://multiqc.info/))
+
+   [...]
+
+   ```
+
+      </details>
+
+2. Lint the changes you have made
+   <details>
+      <summary>solution 2</summary>
+
+   ```bash
+   nf-core lint
+   ```
+
+   You should see that we now get one less `warning` in our lint overview, since we removed one of the TODO items.
+
+      </details>
+
+3. Commit your changes
+   <details>
+      <summary>solution 3</summary>
+
+   ```bash
+   git add .
+   git commit -m "adding pipeline overview to pipeline README"
+   ```
+
+      </details>
+
+   :::
+
 # Building a pipeline from (existing) components
 
 Nextflow pipelines can be build in a very modular fashion. In nf-core, we have simple building blocks available: nf-core/modules. Usually, they are wrappers around individual tools. In addition, we have subworkflows: smaller pre-build pipeline chunks. You can think about the modules as Lego bricks and subworkflows as pre-build chunks that can be added to various sets. These components are centrally available for all Nextflow pipelines. To make working with them easy, you can use `nf-core/tools`.
@@ -605,31 +795,54 @@ nf-core modules info salmon/index
 
     nf-core/tools version 2.10 - https://nf-co.re
 
-
-╭─ Module: salmon/index  ───────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-│ 🌐 Repository: https://github.com/nf-core/modules.git                                                                             │
-│ 🔧 Tools: salmon                                                                                                                  │
-│ 📖 Description: Create index for salmon                                                                                           │
+╭─ Module: salmon/index ───────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ 🌐 Repository: https://github.com/nf-core/modules.git │
+│ 🔧 Tools: salmon │
+│ 📖 Description: Create index for salmon │
 ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-                             ╷                                                                                              ╷
- 📥 Inputs                   │Description                                                                                   │Pattern
+╷ ╷
+📥 Inputs │Description │Pattern
 ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━╸
-  genome_fasta  (file)       │Fasta file of the reference genome                                                            │
+genome_fasta (file) │Fasta file of the reference genome │
 ╶────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────┼───────╴
-  transcriptome_fasta  (file)│Fasta file of the reference transcriptome                                                     │
-                             ╵                                                                                              ╵
-                    ╷                                                                                                  ╷
- 📤 Outputs         │Description                                                                                       │     Pattern
+transcriptome_fasta (file)│Fasta file of the reference transcriptome │
+╵ ╵
+╷ ╷
+📤 Outputs │Description │ Pattern
 ╺━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━╸
-  index  (directory)│Folder containing the star index files                                                            │      salmon
+index (directory)│Folder containing the star index files │ salmon
 ╶───────────────────┼───────────────────────────────────────────────────────────────────────���──────────────────────────┼────────────╴
-  versions  (file)  │File containing software versions                                                                 │versions.yml
-                    ╵                                                                                                  ╵
+versions (file) │File containing software versions │versions.yml
+╵ ╵
 
- 💻  Installation command: nf-core modules install salmon/index
+💻 Installation command: nf-core modules install salmon/index
+
 ```
 
-The output from the info command will, among other things, give you the nf-core/tools installation command. Lets see what it is doing:
+:::tip{title="Exercise 4 - Identification of available nf-core modules"}
+
+1. Check which versions are available for the nf-core module `salmon/quant`.
+   <details>
+      <summary>solution 1</summary>
+
+   ```
+   nf-core modules info salmon/quant
+   ```
+
+    </details>
+
+2. Is there any version of `salmon/quant` already installed locally?
+   <details>
+      <summary>solution 2</summary>
+
+   ```
+   nf-core modules list local
+   ```
+
+      </details>
+   :::
+
+The output from the info command will among other things give you the nf-core/tools installation command, lets see what it is doing:
 
 ```bash
 nf-core modules install salmon/index
@@ -756,9 +969,94 @@ You should now see that `SALMON_INDEX` is run.
 exercise to add a different module would be nice! => salmon/quant!
 comparison to simple nextflow pipeline from the basic Nextflow training would be nice!)
 
-## Adding a remote module
+:::tip{title="Exercise 5 - Installing a remote module from nf-core"}
 
-If there is no nf-core module available for the software you want to include, you can add the module to the nf-core/modules repository. It will then become available to the wider Nextflow Community. See how to [here](https://nf-co.re/docs/contributing/tutorials/dsl2_modules_tutorial). If the module is very pipeline specific, you can also add a local module. The nf-core tools package can aid in the generation of a module template. To add a bare-bone local module run the following:
+1.  Install the nf-core module `salmon/quant` version `?`
+    <details>
+       <summary>solution 1</summary>
+
+        ```
+        ```
+
+       </details>
+
+2.  Which file(s) were/are added and what does it / do they do?
+    <details>
+       <summary>solution 2</summary>
+
+        ```
+        ```
+
+       </details>
+
+3.  Import the installed `salmon/quant` pipeline into your main workflow.
+    <details>
+       <summary>solution 3</summary>
+
+        ```
+        ```
+
+       </details>
+
+4.  Call the `SALMON_QUANT` process in your workflow
+    <details>
+       <summary>solution 4</summary>
+
+        ```
+        ```
+
+       </details>
+
+5.  Add required parameters for `salmon/quant`to the `SALMON_QUANT` process
+    <details>
+       <summary>solution 5</summary>
+
+        ```
+        ```
+
+       </details>
+
+6.  Include the quantification results in the multiQC input
+    <details>
+       <summary>solution 6</summary>
+
+        ```
+        ```
+
+       </details>
+
+7.  Lint your pipeline
+    <details>
+       <summary>solution 7</summary>
+
+        ```
+        ```
+
+       </details>
+
+8.  Run the pipeline and inspect the results
+    <details>
+       <summary>solution 8</summary>
+
+        ```
+        ```
+
+       </details>
+
+9.  Commit the changes
+    <details>
+       <summary>solution 9</summary>
+
+        ```
+        ```
+
+       </details>
+
+:::
+
+### Adding a local module
+
+If there is no nf-core module available for the software you want to include, the nf-core tools package can also aid in the generation of a local module that is specific for your pipeline. To add a local module run the following:
 
 ```
 nf-core modules create
@@ -766,7 +1064,282 @@ nf-core modules create
 
 Open ./modules/local/demo/module.nf and start customising this to your needs whilst working your way through the extensive TODO comments! For further help and guidelines for the modules code, check out the [modules specific documentation](https://nf-co.re/docs/contributing/tutorials/dsl2_modules_tutorial).
 
-### Making a remote module for a custom script
+### Making a local module for a custom script
+
+:::tip{title="Exercise 6 - Adding a custom module"}
+In the directory `exercise_6` you will find the custom script `print_hello.py`, which will be used for this and the next exercise.
+
+1.  Create a local module that runs the `print_hello.py` script
+2.  Add the module to your main workflow
+3.  Run the pipeline
+4.  Lint the pipeline
+5.  Commit your changes
+    <details>
+    <summary>solution 1</summary>
+
+    ```
+
+    ```
+
+      </details>
+
+:::
+
+To generate a module for a custom script you need to follow the same steps when adding a remote module.
+Then, you can supply the command for your script in the `script` block but your script needs to be present
+and *executable* in the `bin`
+folder of the pipeline.
+In the nf-core pipelines,
+this folder is in the main directory and you can see in [`rnaseq`](https://github.com/nf-core/rnaseq).
+Let's look at an publicly available example in this pipeline,
+for instance [`tximport.r`](https://github.com/nf-core/rnaseq/blob/master/bin/tximport.r).
+This is an Rscript present in the [`bin`](https://github.com/nf-core/rnaseq/tree/master/bin) of the pipeline.
+We can find the module that runs this script in
+[`modules/local/tximport`](https://github.com/nf-core/rnaseq/blob/master/modules/local/tximport/main.nf).
+As we can see the script is being called in the `script` block, note that `tximport.r` is
+being executed as if it was called from the command line and therefore needs to be *executable*.
+
+<blockquote style="border-left: 4px solid #F0AD4E; background-color: #FFF3CD; padding: 10px;">
+
+<h4 style="margin-top: 0;">TL;TR</h4>
+
+1. Write your script on any language (python, bash, R,
+   ruby). E.g. `maf2bed.py`
+2. If not there yet, move your script to `bin` folder of
+   the pipeline and make it
+   executable (`chmod +x <filename>`)
+3. Create a module with a single process to call your script from within the workflow. E.g. `./modules/local/convert_maf2bed/main.nf`
+4. Include your new module in your workflow with the command `include {CONVERT_MAF2BED} from './modules/local/convert_maf2bed/main'` that is written before the workflow call.
+</blockquote>
+
+_Tip: Try to follow best practices when writing a script for
+   reproducibility and maintenance purposes: add the
+   shebang (e.g. `#!/usr/bin/env python`), and a header
+   with description and type of license._
+
+### 1. Write your script
+Let's create a simple custom script that converts a MAF file to a BED file called `maf2bed.py` and place it in the bin directory of our nf-core-testpipeline::
+
+```
+#!/usr/bin/env python
+"""bash title="maf2bed.py"
+Author: Raquel Manzano - @RaqManzano
+Script: Convert MAF to BED format keeping ref and alt info
+License: MIT
+"""
+import argparse
+import pandas as pd
+
+
+def argparser():
+    parser = argparse.ArgumentParser(description="")
+    parser.add_argument("-maf", "--mafin", help="MAF input file", required=True)
+    parser.add_argument("-bed", "--bedout", help="BED input file", required=True)
+    parser.add_argument(
+        "--extra", help="Extra columns to keep (space separated list)", nargs="+", required=False, default=[]
+    )
+    return parser.parse_args()
+
+def maf2bed(maf_file, bed_file, extra):
+    maf = pd.read_csv(maf_file, sep="\t", comment="#")
+    bed = maf[["Chromosome", "Start_Position", "End_Position"] + extra]
+    bed.to_csv(bed_file, sep="\t", index=False, header=False)
+
+
+def main():
+    args = argparser()
+    maf2bed(maf_file=args.mafin, bed_file=args.bedout, extra=args.extra)
+
+
+if __name__ == "__main__":
+    main()
+
+```
+
+### 2. Make sure your script is in the right folder
+Now, let's move it to the correct directory:
+
+```
+mv maf2bed.py /path/where/pipeline/is/bin/.
+chmod +x /path/where/pipeline/is/bin/maf2bed.py
+```
+
+### 3. Create your custom module
+Then, let's write our module. We will call the process
+"CONVERT_MAF2BED" and add any tags or/and labels that
+are appropriate (this is optional) and directives (via
+conda and/or container) for
+the definition of dependencies.
+
+
+<details>
+<summary><span style="color: forestgreen; font-weight: bold;">More info on labels</span></summary>
+A `label` will
+annotate the processes with a reusable identifier of your
+choice that can be used for configuring. E.g. we use the
+`label` 'process_single', this looks as follows:
+
+```
+withLabel:process_single {
+        cpus   = { check_max( 1     * task.attempt, 'cpus'  ) }
+        memory = { check_max( 1.GB  * task.attempt, 'memory') }
+        time   = { check_max( 1.h   * task.attempt, 'time'  ) }
+    }
+```
+</details>
+
+<details>
+<summary><span style="color: forestgreen; font-weight: bold;">More info on tags</span></summary>
+
+A `tag` is simple a user provided identifier associated to
+the task. In our process example, the input is a tuple
+comprising a hash of metadata for the maf file called
+`meta` and the path to the `maf` file. It may look
+similar to: `[[id:'123', data_type:'maf'],
+/path/to/file/example.maf]`. Hence, when nextflow makes
+the call and `$meta.id` is `123` name of the job
+will be "CONVERT_MAF2BED(123)". If `meta` does not have
+`id` in its hash, then this will be literally `null`.
+
+</details>
+
+<details>
+<summary><span style="color: forestgreen; font-weight: bold;">More info on conda/container directives</span></summary>
+
+The `conda` directive allows for the definition of the
+process dependencies using the [Conda package manager](https://docs.conda.io/en/latest/). Nextflow automatically sets up an environment for the given package names listed by in the conda directive. For example:
+
+```
+process foo {
+  conda 'bwa=0.7.15'
+
+  '''
+  your_command --here
+  '''
+}
+```
+Multiple packages can be specified separating them with a blank space e.g. `bwa=0.7.15 samtools=1.15.1`. The name of the channel from where a specific package needs to be downloaded can be specified using the usual Conda notation i.e. prefixing the package with the channel name as shown here `bioconda::bwa=0.7.15`
+
+```
+process foo {
+  conda 'bioconda::bwa=0.7.15 bioconda::samtools=1.15.1'
+
+  '''
+  your_bwa_cmd      --here
+  your_samtools_cmd --here
+  '''
+}
+```
+Similarly, we can apply the `container` directive to execute the process script in a [Docker](http://docker.io/) or [Singularity](https://docs.sylabs.io/guides/3.5/user-guide/introduction.html) container. When running Docker, it requires the Docker daemon to be running in machine where the pipeline is executed, i.e. the local machine when using the local executor or the cluster nodes when the pipeline is deployed through a grid executor.
+
+```
+process foo {
+  conda 'bioconda::bwa=0.7.15 bioconda::samtools=1.15.1'
+  container 'dockerbox:tag'
+
+
+  '''
+  your_bwa_cmd      --here
+  your_samtools_cmd --here
+  '''
+}
+```
+
+Additionally, the `container` directive allows for a more sophisticated choice of container and if it Docker or Singularity depending on the users choice of container engine. This practice is quite common on official nf-core modules.
+
+```
+process foo {
+  conda "bioconda::fastqc=0.11.9"
+  container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+        'https://depot.galaxyproject.org/singularity/fastqc:0.11.9--0' :
+        'biocontainers/fastqc:0.11.9--0' }"
+
+  '''
+  your_fastqc_command --here
+  '''
+}
+```
+</details>
+
+Since `maf2bed.py` is in the `bin` directory we can directory call it in the script block of our new module `CONVERT_MAF2BED`. You only have to be careful with how you call variables (some explanations on when to use `${variable}` vs. `$variable`):
+A process may contain any of the following definition blocks: directives, inputs, outputs, when clause, and the process script. Here is how we write it:
+
+```
+process CONVERT_MAF2BED {
+    // HEADER
+    tag "$meta.id"
+    label 'process_single'
+    // DEPENDENCIES DIRECTIVES
+    conda "anaconda::pandas=1.4.3"
+    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+        'https://depot.galaxyproject.org/singularity/pandas:1.4.3' :
+        'quay.io/biocontainers/pandas:1.4.3' }"
+    // INPUT BLOCK
+    input:
+    tuple val(meta), path(maf)
+    // OUTPUT BLOCK
+    output:
+    tuple val(meta), path('*.bed') , emit: bed
+    path "versions.yml"            , emit: versions
+    // WHEN CLAUSE
+    when:
+    task.ext.when == null || task.ext.when
+    // SCRIPT BLOCK
+    script: // This script is bundled with the pipeline in bin
+    def args = task.ext.args ?: ''
+    def prefix = task.ext.prefix ?: "${meta.id}"
+
+    """
+maf2bed.py --mafin $maf --bedout ${prefix}.bed
+    """
+```
+
+More on nextflow's process components in the [docs](https://www.nextflow.io/docs/latest/process.html).
+
+
+
+### Include your module in the workflow
+In general, we will call out nextflow module `main.nf` and save it in the `modules` folder under another folder called `conver_maf2bed`. If you believe your custom script could be useful for others and it is potentially reusable or calling a tool that is not yet present in nf-core modules you can start the process of making it official adding a `meta.yml` [explained above](#adding-modules-to-a-pipeline). In the `meta.yml` The overall tree for the pipeline skeleton will look as follows:
+
+```
+pipeline/
+├── bin/
+│   └── maf2bed.py
+├── modules/
+│   ├── local/
+│   │   └── convert_maf2bed/
+│   │       ├── main.nf
+│   │       └── meta.yml
+│   └── nf-core/
+├── config/
+│   ├── base.config
+│   └── modules.config
+...
+```
+
+To use our custom module located in `./modules/local/convert_maf2bed` within our workflow, we use a module inclusions command  as follows (this has to be done before we invoke our workflow):
+
+```
+include { CONVERT_MAF2BED } from './modules/local/convert_maf2bed/main'
+workflow {
+    input_data = [[id:123, data_type='maf'], /path/to/maf/example.maf]
+    CONVERT_MAF2BED(input_data)
+}
+```
+
+### Other notes
+#### What happens in I want to use containers but there is no image created with the packages I need?
+
+No worries, this can be done fairly easy thanks to [BioContainers](https://biocontainers-edu.readthedocs.io/en/latest/what_is_biocontainers.html), see instructions [here](https://github.com/BioContainers/multi-package-containers). If you see the combination that you need in the repo, you can also use [this website](https://midnighter.github.io/mulled) to find out the "mulled" name of this container.
+
+### I want to know more about software dependencies!
+
+You are in luck, we have more documentation [here](https://nf-co.re/docs/contributing/modules#software-requirements)
+
+
+#### I want to know more about modules!
+See more info about modules in the nextflow docs [here](https://nf-co.re/docs/contributing/modules#software-requirements.)
+
 
 ## Lint all modules
 
@@ -776,7 +1349,7 @@ As well as the pipeline template you can lint individual or all modules with a s
 nf-core modules lint --all
 ```
 
-# Nextflow Schema
+## Nextflow Schema
 
 All nf-core pipelines can be run with --help to see usage instructions. We can try this with the demo pipeline that we just created:
 
@@ -785,7 +1358,7 @@ cd ../
 nextflow run nf-core-demo/ --help
 ```
 
-## Working with Nextflow schema
+### Working with Nextflow schema
 
 If you peek inside the nextflow_schema.json file you will see that it is quite an intimidating thing. The file is large and complex, and very easy to break if edited manually.
 
@@ -822,6 +1395,25 @@ Here in the schema editor you can edit:
 - Special formats for strings, such as file-path
 - Additional fields for files such as mime-type
 
-```
+:::tip{title="Exercise 7 - Using nextflow schema to add command line parameters"}
 
-```
+1.  Feed a string to your custom script from exercise 6 from the command line. Use `nf-core schema build` to add the parameter to the `nextflow.config` file.
+
+      </details>
+
+:::
+
+:::note
+
+### Key points
+
+- `nf-core create <pipeline>` creates a pipeline from the nf-core template.
+- `nf-core lint` lints the pipeline code for things that must be completed.
+- `nf-core modules list local` lists modules currently installed into your pipeline.
+- `nf-core modules list remote` lists modules available to install into your pipeline.
+- `nf-core modules install <tool/subtool>` installs the tool module into your pipeline.
+- `nf-core modules create` creates a module locally to add custom code into your pipeline.
+- `nf-core modules lint --all` lints your module code for things that must be completed.
+- `nf-core schema build` opens an interface to allow you to describe your pipeline parameters and set default values, and which values are valid.
+
+:::
