@@ -88,8 +88,8 @@ import { remote_workflows as pipelines } from '@public/pipelines.json';
                                 <!-- Repo URL -->
                                 { getCell(new RegExp(`https:\/\/nf-co\.re\/${pipeline.name}`).test(pipeline.homepage ?? ''), pipeline.homepage ?? pipeline.repository_url, "URL should be set to https://nf-co.re/[PIPELINE-NAME]") }
                                 <!-- Team access -->
-                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "write access for nf-core/contributors") }
-                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "admin access for nf-core/core") }
+                                { getCell(pipeline.team_contributors_push ?? -1, `https://github.com/nf-core/${pipeline.name}`, "write access for nf-core/contributors") }
+                                { getCell(pipeline.team_core_admin ?? -1, `https://github.com/nf-core/${pipeline.name}`, "admin access for nf-core/core") }
                                 <!-- Branches exist -->
                                 { getCell(pipeline.main_branch_exists, `https://github.com/nf-core/${pipeline.name}/tree/${pipeline.default_branch}`, "master branch: branch must exist") }
                                 { getCell(pipeline.dev_branch_exists, `https://github.com/nf-core/${pipeline.name}/tree/dev`, "dev branch: branch must exist") }
