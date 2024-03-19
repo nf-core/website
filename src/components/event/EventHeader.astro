@@ -16,22 +16,24 @@ const locations = frontmatter.locations || [];
 
 function getLinkIcon(link) {
     if (/^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/gi.test(link)) {
-        return 'fa-youtube';
+        return 'fab fa-youtube';
     } else if (/^(https?:\/\/)?(www\.)?zoom\.us\/.+$/gi.test(link)) {
-        return 'fa-zoom-us';
+        return 'fab fa-zoom-us';
     } else if (/^(https?:\/\/)?(www\.)?bilibili\.com\/.+$/gi.test(link)) {
-        return 'fa-bilibili';
+        return 'fab fa-bilibili';
     } else if (/^(https?:\/\/)?(www\.)?github\.com\/.+$/gi.test(link)) {
-        return 'fa-github';
+        return 'fab fa-github';
     } else if (/^(https?:\/\/)?(www\.)?linkedin\.com\/.+$/gi.test(link)) {
-        return 'fa-linkedin';
+        return 'fab fa-linkedin';
     } else if (/^(https?:\/\/)?(www\.)?twitter\.com\/.+$/gi.test(link)) {
-        return 'fa-twitter';
+        return 'fab fa-twitter';
     } else if (/^(https?:\/\/)?(www\.)?(docs\.google\.com)\/.+$/gi.test(link)) {
-        return 'fa-google-drive';
+        return 'fab fa-google-drive';
     } else if (/^(https?:\/\/)?(www\.)?(slideshare\.net)\/.+$/gi.test(link)) {
-        return 'fa-slideshare';
+        return 'fab fa-slideshare';
     }
+
+    return 'fas fa-link';
 }
 ---
 
@@ -106,9 +108,9 @@ function getLinkIcon(link) {
                                 {frontmatter.links?.map((link) => {
                                     const iconClass = getLinkIcon(link);
                                     return (
-                                        <span class="link-">
+                                        <span class="d-inline-block me-1">
                                             <a class="text-white" target="_blank" href={link}>
-                                                {iconClass && <i class={'fab ' + iconClass} />}
+                                                {iconClass && <i class={iconClass} />}
                                             </a>
                                         </span>
                                     );
