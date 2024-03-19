@@ -109,7 +109,11 @@ export const writePipelinesJson = async () => {
     }
     // Template branch protection rules
     try {
-      const template_branch_exists = await octokit.rest.repos.getBranch({}).then(() => true).catch((err) => {
+      const template_branch_exists = await octokit.rest.repos.getBranch({
+        owner: 'nf-core',
+        repo: name,
+        branch: 'TEMPLATE',
+      }).then(() => true).catch((err) => {
         if (err.status === 404) {
           return false;
         }
