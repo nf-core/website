@@ -91,25 +91,25 @@ import { remote_workflows as pipelines } from '@public/pipelines.json';
                                 { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "write access for nf-core/contributors") }
                                 { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "admin access for nf-core/core") }
                                 <!-- Branches exist -->
-                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "master branch: branch must exist") }
-                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "dev branch: branch must exist") }
-                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "TEMPLATE branch: branch must exist") }
+                                { getCell(pipeline.master_branch_exists, `https://github.com/nf-core/${pipeline.name}/tree/${pipeline.default_branch}`, "master branch: branch must exist") }
+                                { getCell(pipeline.dev_branch_exists, `https://github.com/nf-core/${pipeline.name}/tree/dev`, "dev branch: branch must exist") }
+                                { getCell(pipeline.TEMPLATE_branch_exists, `https://github.com/nf-core/${pipeline.name}/tree/TEMPLATE`, "TEMPLATE branch: branch must exist") }
                                 <!-- Branch protection: master -->
-                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "master branch: do not require branch to be up to date before merging") }
+                                { getCell(!pipeline.main_branch_protection_up_to_date ? true : pipeline.main_branch_protection_up_to_date, pipeline.repository_url, "master branch: do not require branch to be up to date before merging") }
                                 { getCell(pipeline.main_branch_protection_status_checks, pipeline.repository_url, "master branch: minimum set of CI tests must pass") }
                                 { getCell(pipeline.main_branch_protection_require_non_stale_review, pipeline.repository_url, "master branch: reviews not marked stale after new commits") }
                                 { getCell(!(pipeline.main_branch_protection_require_codeowner_review), pipeline.repository_url, "master branch: code owner reviews not required") }
                                 { getCell(pipeline.main_branch_protection_required_reviews === 2, pipeline.repository_url, "master branch: 2 reviews required") }
                                 { getCell(!pipeline.main_branch_protection_enforce_admins, pipeline.repository_url, "master branch: do not enforce rules for admins") }
                                 <!-- Branch protection: dev -->
-                                { <td class="text-center">🚧</td> ?? getCell(-1, `https://github.com/nf-core/${pipeline.name}/releases`, "dev branch: do not require branch to be up to date before merging") }
+                                { getCell(!pipeline.devbranch_protection_up_to_date ? true : pipeline.devbranch_protection_up_to_date, pipeline.repository_url, "dev branch: do not require branch to be up to date before merging") }
                                 { getCell(pipeline.dev_branch_protection_status_checks, pipeline.repository_url, "dev branch: minimum set of CI tests must pass") }
                                 { getCell(pipeline.dev_branch_protection_require_non_stale_review, pipeline.repository_url, "dev branch: reviews not marked stale after new commits") }
                                 { getCell(!pipeline.dev_branch_protection_require_codeowner_review, pipeline.repository_url, "dev branch: code owner reviews not required") }
                                 { getCell(pipeline.dev_branch_protection_required_reviews === 2, pipeline.repository_url, "dev branch: 2 reviews required") }
                                 { getCell(!pipeline.dev_branch_protection_enforce_admins, pipeline.repository_url, "dev branch: do not enforce rules for admins") }
                                 <!-- T push -->
-                                { getCell(pipeline.branch_template_restrict_push, pipeline.repository_url, "restrict push to TEMPLATE to @nf-core-bot") }
+                                { getCell(pipeline.TEMPLATE_branch_restrict_push, pipeline.repository_url, "restrict push to TEMPLATE to @nf-core-bot") }
                             </tr>
                             }
                         )
