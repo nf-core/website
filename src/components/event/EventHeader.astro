@@ -29,6 +29,8 @@ function getLinkIcon(link) {
         return 'fa-twitter';
     } else if (/^(https?:\/\/)?(www\.)?(docs\.google\.com)\/.+$/gi.test(link)) {
         return 'fa-google-drive';
+    } else if (/^(https?:\/\/)?(www\.)?(slideshare\.net)\/.+$/gi.test(link)) {
+        return 'fa-slideshare';
     }
 }
 ---
@@ -42,6 +44,8 @@ function getLinkIcon(link) {
                 <dt>Event end:</dt>
                 <dd><LocalDateTime date={end} client:visible /></dd>
             </dl>
+
+            <ExportEventButton frontmatter={frontmatter} add_class="btn-outline-light col" client:idle />
         </div>
         <div class="col">
             <dl>
@@ -49,20 +53,20 @@ function getLinkIcon(link) {
                 <dd>
                     <ul class="list-unstyled">
                         {
-                            locations.map((location) => {
-                                const locationURLs = Array.isArray(location.locationURL)
-                                    ? location.locationURL
-                                    : [location.locationURL];
+                            locations?.map((location) => {
+                                const locationLinks = Array.isArray(location.links)
+                                    ? location.links
+                                    : [location.links];
                                 return (
                                     <li class="list-item">
                                         <ul>
                                             <li>
                                                 <strong>
-                                                    {location.locationName}
-                                                    {location.locationLatLng && (
+                                                    {location.name}
+                                                    {location.geoCoordinates && (
                                                         <a
                                                             class="m-1 btn btn-sm btn-outline-light"
-                                                            href={`https://www.openstreetmap.org/?mlat=${location.locationLatLng[0]}&mlon=${location.locationLatLng[1]}&zoom=16#map=16/${location.locationLatLng[0]}/${location.locationLatLng[1]}`}
+                                                            href={`https://www.openstreetmap.org/?mlat=${location.geoCoordinates[0]}&mlon=${location.geoCoordinates[1]}&zoom=16#map=16/${location.geoCoordinates[0]}/${location.geoCoordinates[1]}`}
                                                             target="_blank"
                                                         >
                                                             <i class="fa-duotone fa-map-pin me-1" />
@@ -73,9 +77,9 @@ function getLinkIcon(link) {
                                                 </strong>
                                                 <ul class="list-unstyled">
                                                     <li>
-                                                        {locationURLs && (
+                                                        {locationLinks && (
                                                             <ul>
-                                                                {locationURLs.map((loc) => {
+                                                                {locationLinks.map((loc) => {
                                                                     return (
                                                                         <li class="list-item">
                                                                             <a class="text-white underline" href={loc}>
@@ -96,25 +100,19 @@ function getLinkIcon(link) {
                         }
                     </ul>
                 </dd>
-
                 {
                     frontmatter.links && frontmatter.links.length > 0 && (
                         <>
-                            <dt>Links:</dt>
+                            <dt>{frontmatter.links?.length === 1 ? 'Link' : 'Links'}:</dt>
                             <dd>
-                                <ul>
-                                    {frontmatter.links.map((link) => {
+                                    {frontmatter.links?.map((link) => {
                                         const iconClass = getLinkIcon(link);
                                         return (
-                                            <li class="list-item">
-                                                {iconClass && <i class={'fab ' + iconClass} />}
-                                                <a class="text-white underline" href={link}>
-                                                    {link}
-                                                </a>
-                                            </li>
+                                            <span class="link-">
+                                                <a class="text-white" target="_blank" href={link}>{iconClass && <i class={'fab ' + iconClass} />}</a>
+                                            </span>
                                         );
                                     })}
-                                </ul>
                             </dd>
                         </>
                     )
@@ -124,7 +122,6 @@ function getLinkIcon(link) {
     </div>
 
     <div class="d-flex justify-content-center justify-content-md-start">
-        <ExportEventButton frontmatter={frontmatter} add_class="btn-outline-light col" client:idle />
     </div>
 </div>
 <style lang="scss">
