@@ -3,7 +3,7 @@ title: Basic training to create an nf-core pipeline
 subtitle: A guide to create Nextflow pipelines using nf-core tools
 ---
 
-## Scope
+# Scope
 
 - How do I create a pipeline using nf-core tools?
 - How do I incorporate modules from nf-core modules?
@@ -11,7 +11,7 @@ subtitle: A guide to create Nextflow pipelines using nf-core tools
 
 :::note
 
-### Learning objectives
+## Learning objectives
 
 - The learner will create a simple pipeline using the nf-core template.
 - The learner will identify key files in the pipeline.
@@ -24,66 +24,70 @@ subtitle: A guide to create Nextflow pipelines using nf-core tools
 
 This training course aims to demonstrate how to build an nf-core pipeline using the nf-core pipeline template and nf-core modules and subworkflows as well as custom, local modules. Be aware that we are not going to explain any fundamental Nextflow concepts, as such we advise anyone taking this course to have completed the [Basic Nextflow Training Workshop](https://training.nextflow.io/).
 
-```md
-During this course we are going to build a Simple RNA-Seq workflow.
-This workflow is by no means ment to be a useful bioinformatics workflow,
-but should only teach the objectives of the course, so please,
-**DO NOT use this workflow to analyse RNA sequencing data**!
-```
+# Let's get started
 
-### Follow the training videos
+## Follow the training videos
 
 This training can be followed either based on this documentation alone, or via a training video hosted on youtube. You can find the youtube video in the Youtube playlist below:
 
 (no such video yet)
 
-## Overview
+## Training sessions
 
-### Layout of the pipeline
+<p class="text-left">
+  <a href="gitpod_environment/" class="btn btn-lg btn-success" target="_blank">
+    Chapter 1 - setup the GitPod environment
+  </a>
+</p>
 
-The course is going to build an (totally unscientific and useless) RNA seq pipeline that does the following:
+The course is using gitpod in order to avoid the time expense for downloading and installing tools and data.
 
-1. Indexing of a transcriptome file
-2. Quality control
-3. Quantification of transcripts
-4. [whatever the custom script does]
-5. Generation of a MultiQC report
+<p class="text-left">
+  <a href="nf_core_create_tool/" class="btn btn-lg btn-success" target="_blank">
+    Chapter 2 - Creating a new nf-core pipeline from the nf-core template
+  </a>
+</p>
 
-### Let's get started
+This includes the following sub-sections:
 
-1. **Setting up the gitpod environment for the course**
+a) generate the pipeline with `nf-core create`
 
-The course is using gitpod in order to avoid the time expense for downloading and installing tools and data. [Learn how to setup the GitPod environment](/docs/contributing/nf_core_basic_training/gitpod_environment.md)
+b) The template git repository
 
-2. **Creating a new nf-core pipeline from the nf-core template**
+c) Running the pipeline using the test profile
 
-   a) generate the pipeline with `nf-core create`
+d) Linting the pipeline
 
-   b) The template git repository
+<p class="text-left">
+  <a href="nf_core_create_tool/" class="btn btn-lg btn-success" target="_blank">
+    Chapter 3 - Exploring the nf-core template files
+  </a>
+</p>
 
-   c) Running the pipeline using the test profile
+The template contains a range of important files and directories. This chapter is giving explanations to all the template content important to beginners.
 
-   d) Linting the pipeline
+<p class="text-left">
+  <a href="add_nf_core_module/" class="btn btn-lg btn-success" target="_blank">
+    Chapter 4 - Adding a nf-core module to your pipeline
+  </a>
+</p>
+<p class="text-left">
+  <a href="add_custom_module/" class="btn btn-lg btn-success" target="_blank">
+    Chapter 5 - Adding a local custom module to your pipeline
+  </a>
+</p>
+<p class="text-left">
+  <a href="nf_schema/" class="btn btn-lg btn-success" target="_blank">
+    Chapter 6 - Working with Nextflow schema
+  </a>
+</p>
+<p class="text-left">
+  <a href="linting_modules/" class="btn btn-lg btn-success" target="_blank">
+    Chapter 7 - Linting your modules
+  </a>
+</p>
 
-   [These steps are described in the section "Generate a pipeline with nf-core tools"](/docs/contributing/nf_core_basic_training/nf_core_create_tool.md)
-
-3. **Exploring the nf-core template files**
-
-   The template contains a range of important files and directories. Check them out in the [walk-through of the template files](/docs/contributing/nf_core_basic_training/template_walk_through.md)
-
-4. **Building a nf-core pipeline using the template**
-
-   a) [Adding a nf-core module to your pipeline](/docs/contributing/nf_core_basic_training/add_nf_core_module.md)
-
-   b) [Adding a local custom module to your pipeline](/docs/contributing/nf_core_basic_training/add_custom_module.md)
-
-   c) [Working with Nextflow schema](/docs/contributing/nf_core_basic_training/nf_schema.md)
-
-   d) [Linting your modules](/docs/contributing/nf_core_basic_training/linting_modules.md)
-
-:::note
-
-### Key points
+:::note{title="Key nf-core tools commands"}
 
 - `nf-core create <pipeline>` creates a pipeline from the nf-core template.
 - `nf-core lint` lints the pipeline code for things that must be completed.
