@@ -22,7 +22,7 @@ subtitle: A guide to create Nextflow pipelines using nf-core tools
 
 :::
 
-This training course aims to demonstrate how to build an nf-core pipeline using the nf-core pipeline template and nf-core modules as well as custom, local modules. Be aware that we are not going to explain any fundamental Nextflow concepts, as such we advise anyone taking this course to have completed the [Basic Nextflow Training Workshop](https://training.nextflow.io/).
+This training course aims to demonstrate how to build an nf-core pipeline using the nf-core pipeline template and nf-core modules and subworkflows as well as custom, local modules. Be aware that we are not going to explain any fundamental Nextflow concepts, as such we advise anyone taking this course to have completed the [Basic Nextflow Training Workshop](https://training.nextflow.io/).
 
 ```md
 During this course we are going to build a Simple RNA-Seq workflow.
@@ -30,6 +30,12 @@ This workflow is by no means ment to be a useful bioinformatics workflow,
 but should only teach the objectives of the course, so please,
 **DO NOT use this workflow to analyse RNA sequencing data**!
 ```
+
+### Follow the training videos
+
+This training can be followed either based on this documentation alone, or via a training video hosted on youtube. You can find the youtube video in the Youtube playlist below:
+
+(no such video yet)
 
 ## Overview
 
@@ -67,10 +73,25 @@ The course is using gitpod in order to avoid the time expense for downloading an
 
 4. **Building a nf-core pipeline using the template**
 
-   a) [Adding a nf-core module to your pipeline]()
+   a) [Adding a nf-core module to your pipeline](/docs/contributing/nf_core_basic_training/add_nf_core_module.md)
 
-   b) [Adding a local custom module to your pipeline]()
+   b) [Adding a local custom module to your pipeline](/docs/contributing/nf_core_basic_training/add_custom_module.md)
 
-   c) [Working with Nextflow schema]()
+   c) [Working with Nextflow schema](/docs/contributing/nf_core_basic_training/nf_schema.md)
 
-   d) [Linting your modules]()
+   d) [Linting your modules](/docs/contributing/nf_core_basic_training/linting_modules.md)
+
+:::note
+
+### Key points
+
+- `nf-core create <pipeline>` creates a pipeline from the nf-core template.
+- `nf-core lint` lints the pipeline code for things that must be completed.
+- `nf-core modules list local` lists modules currently installed into your pipeline.
+- `nf-core modules list remote` lists modules available to install into your pipeline.
+- `nf-core modules install <tool/subtool>` installs the tool module into your pipeline.
+- `nf-core modules create` creates a module locally to add custom code into your pipeline.
+- `nf-core modules lint --all` lints your module code for things that must be completed.
+- `nf-core schema build` opens an interface to allow you to describe your pipeline parameters and set default values, and which values are valid.
+
+:::

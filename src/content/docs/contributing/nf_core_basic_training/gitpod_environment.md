@@ -1,19 +1,7 @@
 ---
 title: Basic training to create an nf-core pipeline
-subtitle: A guide to create Nextflow pipelines using nf-core tools
+subtitle: Setting up the gitpod environment for the course
 ---
-
-## Preparation
-
-### Prerequisites
-
-- Familiarity with Nextflow syntax and configuration.
-
-### Follow the training videos
-
-This training can be followed either based on this documentation alone, or via a training video hosted on youtube. You can find the youtube video in the Youtube playlist below:
-
-(no such video yet)
 
 ### Gitpod
 

@@ -1,6 +1,6 @@
 ---
 title: Basic training to create an nf-core pipeline
-subtitle: A guide to create Nextflow pipelines using nf-core tools
+subtitle: Exploring the nf-core template files
 ---
 
 ### Template code walk through
