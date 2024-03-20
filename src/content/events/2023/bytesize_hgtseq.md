@@ -8,9 +8,11 @@ endDate: '2023-03-21'
 endTime: '14:00+01:00'
 youtubeEmbed: https://www.youtube.com/watch?v=nDaRt2L-tRw&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=69
 embedAt: 'hgtseq'
-locationURL:
-  - https://www.youtube.com/watch?v=nDaRt2L-tRw&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=69
-  - https://doi.org/10.6084/m9.figshare.22317877.v1
+locations:
+  - name: Online
+    links:
+      - https://www.youtube.com/watch?v=nDaRt2L-tRw&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=69
+      - https://doi.org/10.6084/m9.figshare.22317877.v1
 ---
 
 This week, Francesco Lescai ([@lescai](https://github.com/lescai)) is presenting us the nf-core pipeline hgtseq. nf-core/hgtseq is a bioinformatics best-practice analysis pipeline built to investigate horizontal gene transfer from NGS data.

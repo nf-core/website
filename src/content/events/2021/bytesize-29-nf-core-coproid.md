@@ -8,10 +8,12 @@ endDate: '2021-11-30'
 endTime: '13:30+01:00'
 embedAt: 'coproid'
 youtubeEmbed: https://youtu.be/gU4jx1pb8Tw
-locationURL:
-  - https://youtu.be/gU4jx1pb8Tw
-  - https://doi.org/10.6084/m9.figshare.17099534.v1
-  - https://www.bilibili.com/video/BV15b4y1B7Uc
+locations:
+  - name: Online
+    links:
+      - https://youtu.be/gU4jx1pb8Tw
+      - https://doi.org/10.6084/m9.figshare.17099534.v1
+      - https://www.bilibili.com/video/BV15b4y1B7Uc
 ---
 
 This week, Maxime Borry ([@maxibor](https://github.com/maxibor)) will tell us all about the nf-core/coproid pipeline.

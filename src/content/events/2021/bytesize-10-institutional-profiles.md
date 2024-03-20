@@ -7,10 +7,12 @@ startTime: '13:00+02:00'
 endDate: '2021-04-27'
 endTime: '13:30+02:00'
 youtubeEmbed: https://youtu.be/Ym1s6sKGzkw
-locationURL:
-  - https://www.bilibili.com/video/BV1BA411V78U
-  - https://youtu.be/Ym1s6sKGzkw
-  - https://doi.org/10.6084/m9.figshare.14541291.v1
+locations:
+  - name: Online
+    links:
+      - https://www.bilibili.com/video/BV1BA411V78U
+      - https://youtu.be/Ym1s6sKGzkw
+      - https://doi.org/10.6084/m9.figshare.14541291.v1
 ---
 
 This week, James Fellows Yates ([@jfy133](http://github.com/jfy133/)) will present: _**Making a new institutional profile**_

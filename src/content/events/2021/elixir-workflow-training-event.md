@@ -6,8 +6,9 @@ startDate: '2021-12-01'
 startTime: '09:30+02:00'
 endDate: '2021-12-01'
 endTime: '15:00+02:00'
-locationURL:
-  - https://elixir-workflow-workshop.github.io/2021/
+locations:
+  - name: Online
+    links: https://elixir-workflow-workshop.github.io/2021/
 ---
 
 ## Nextflow and nf-core training as part of the ELIXIR Reproducible Research Workshop

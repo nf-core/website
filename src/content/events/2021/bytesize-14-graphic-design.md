@@ -7,10 +7,12 @@ startTime: '13:00+02:00'
 endDate: '2021-05-25'
 endTime: '13:30+02:00'
 youtubeEmbed: https://youtu.be/5jZPucWXnno
-locationURL:
-  - https://www.bilibili.com/video/BV1Z54y1V78h
-  - https://youtu.be/5jZPucWXnno
-  - https://doi.org/10.6084/m9.figshare.14673117.v1
+locations:
+  - name: Online
+    links:
+      - https://www.bilibili.com/video/BV1Z54y1V78h
+      - https://youtu.be/5jZPucWXnno
+      - https://doi.org/10.6084/m9.figshare.14673117.v1
 ---
 
 This week, Zandra Fagernäs ([@ZandraFagernas](http://github.com/ZandraFagernas/)) will present: _**Graphic design / pipeline diagrams.**_

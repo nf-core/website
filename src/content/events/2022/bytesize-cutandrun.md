@@ -8,9 +8,11 @@ endDate: '2022-05-17'
 endTime: '13:30+02:00'
 embedAt: 'cutandrun'
 youtubeEmbed: https://www.youtube.com/watch?v=rj5i9deNPHA
-locationURL:
-  - https://www.youtube.com/watch?v=kBoC6QBU-M0
-  - https://doi.org/10.6084/m9.figshare.19923428.v1
+locations:
+  - name: Online
+    links:
+      - https://www.youtube.com/watch?v=kBoC6QBU-M0
+      - https://doi.org/10.6084/m9.figshare.19923428.v1
 ---
 
 This week, Chris Cheshire ([@chris-cheshire](https://github.com/chris-cheshire/)) will present: _**nf-core/cutandrun**_
