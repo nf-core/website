@@ -198,10 +198,10 @@ This file keeps track of modules installed using nf-core tools from the nf-core/
 :::
 
 <p class="text-center">
-  <a href="/docs/contributing/nf_core_basic_course/nf_core_create_tool/" class="btn btn-lg btn-success" style="font-size: 14px">
+  <a href="/docs/contributing/nf_core_basic_training/nf_core_create_tool/" class="btn btn-lg btn-success" style="font-size: 14px">
     < go to Chapter 2
   </a>
-  <a href="/docs/contributing/nf_core_basic_course/add_nf_core_module/" class="btn btn-lg btn-success" style="font-size: 14px">
+  <a href="/docs/contributing/nf_core_basic_training/add_nf_core_module/" class="btn btn-lg btn-success" style="font-size: 14px">
     go to Chapter 4 >
   </a>
 </p>
