@@ -7,9 +7,11 @@ startTime: '13:00+01:00'
 endDate: '2022-11-15'
 endTime: '13:30+01:00'
 youtubeEmbed: https://www.youtube.com/watch?v=3aA5-s8PAF0
-locationURL:
-  - https://doi.org/10.6084/m9.figshare.21572238.v1
-  - https://www.youtube.com/watch?v=3aA5-s8PAF0
+locations:
+  - name: Online
+    links:
+      - https://doi.org/10.6084/m9.figshare.21572238.v1
+      - https://www.youtube.com/watch?v=3aA5-s8PAF0
 ---
 
 This week, Chris Hakkaart ([@christopher-hakkaart](https://github.com/christopher-hakkaart)) will show how to integrate custom scripts, such as R or Perl o Python scripts, can be integrated into a Nextflow pipeline.

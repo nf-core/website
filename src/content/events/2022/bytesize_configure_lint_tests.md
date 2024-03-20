@@ -7,9 +7,11 @@ startTime: '13:00+01:00'
 endDate: '2022-11-08'
 endTime: '13:30+01:00'
 youtubeEmbed: https://www.youtube.com/watch?v=DiXh3Dvpq5E
-locationURL:
-  - https://doi.org/10.6084/m9.figshare.21533151.v1
-  - https://www.youtube.com/watch?v=DiXh3Dvpq5E
+locations:
+  - name: Online
+    links:
+      - https://doi.org/10.6084/m9.figshare.21533151.v1
+      - https://www.youtube.com/watch?v=DiXh3Dvpq5E
 ---
 
 This week, Phil Ewels ([@ewels](https://github.com/ewels)) will show how to configure lint tests.

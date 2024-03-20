@@ -6,10 +6,11 @@ startDate: '2023-03-27'
 startTime: '10:00+02:00'
 endDate: '2023-03-29'
 endTime: '18:00+02:00'
-locationName: DBB
-address: Via Ferrata 9, 27100 Pavia, Italy
-locationURL: https://dbb.dip.unipv.it/en
-locationLatLng: [45.202990, 9.141067]
+locations:
+    - name: DBB
+      address: Via Ferrata 9, 27100 Pavia, Italy
+      links: https://dbb.dip.unipv.it/en
+      geoCoordinates: [45.202990, 9.141067]
 ---
 
 Local event to be held Department of Biology and Biotechnology, University of Pavia. We will be in the Laboratory of Computational Genomics, fourth floor of the building, opposite corner to the Library.

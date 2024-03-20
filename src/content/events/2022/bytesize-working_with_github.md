@@ -7,9 +7,11 @@ startTime: '13:00+01:00'
 endDate: '2022-11-29'
 endTime: '13:30+01:00'
 youtubeEmbed: https://www.youtube.com/watch?v=QLxXtCe1vIo
-locationURL:
-  - https://doi.org/10.6084/m9.figshare.21647114.v1
-  - https://www.youtube.com/watch?v=QLxXtCe1vIo
+locations:
+  - name: Online
+    links:
+      - https://doi.org/10.6084/m9.figshare.21647114.v1
+      - https://www.youtube.com/watch?v=QLxXtCe1vIo
 ---
 
 Join us for this weeks bytesize with Phil Ewels ([@ewels](https://github.com/ewels/)). You will get information about how to use the GitHub CLI and VSCode to make your work more efficient and less annoying!

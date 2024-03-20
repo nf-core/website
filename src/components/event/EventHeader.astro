@@ -76,6 +76,17 @@ function getLinkIcon(link) {
                                                 </strong>
                                                 <ul class="list-unstyled">
                                                     <li>
+                                                        {
+                                                            location.address && (
+                                                                <>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <span>{location.address}</span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </>
+                                                            )
+                                                        }
                                                         {locationLinks && (
                                                             <ul>
                                                                 {locationLinks.map((loc) => {
