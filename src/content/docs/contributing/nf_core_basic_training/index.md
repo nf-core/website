@@ -35,7 +35,7 @@ This training can be followed either based on this documentation alone, or via a
 ## Training sessions
 
 <p class="text-left">
-  <a href="/docs/contributing/nf_core_basic_course/gitpod_environment/" class="btn btn-lg btn-success" target="_blank">
+  <a href="/docs/contributing/nf_core_basic_training/gitpod_environment/" class="btn btn-lg btn-success" target="_blank">
     Chapter 1 - setup the GitPod environment
   </a>
 </p>
@@ -43,7 +43,7 @@ This training can be followed either based on this documentation alone, or via a
 The course is using gitpod in order to avoid the time expense for downloading and installing tools and data.
 
 <p class="text-left">
-  <a href="/docs/contributing/nf_core_basic_course/nf_core_create_tool/" class="btn btn-lg btn-success" target="_blank">
+  <a href="/docs/contributing/nf_core_basic_training/nf_core_create_tool/" class="btn btn-lg btn-success" target="_blank">
     Chapter 2 - Creating a new nf-core pipeline from the nf-core template
   </a>
 </p>
@@ -59,7 +59,7 @@ c) Running the pipeline using the test profile
 d) Linting the pipeline
 
 <p class="text-left">
-  <a href="/docs/contributing/nf_core_basic_course/nf_core_create_tool/" class="btn btn-lg btn-success">
+  <a href="/docs/contributing/nf_core_basic_training/nf_core_create_tool/" class="btn btn-lg btn-success">
     Chapter 3 - Exploring the nf-core template files
   </a>
 </p>
@@ -67,22 +67,22 @@ d) Linting the pipeline
 The template contains a range of important files and directories. This chapter is giving explanations to all the template content important to beginners.
 
 <p class="text-left">
-  <a href="/docs/contributing/nf_core_basic_course/add_nf_core_module/" class="btn btn-lg btn-success">
+  <a href="/docs/contributing/nf_core_basic_training/add_nf_core_module/" class="btn btn-lg btn-success">
     Chapter 4 - Adding a nf-core module to your pipeline
   </a>
 </p>
 <p class="text-left">
-  <a href="/docs/contributing/nf_core_basic_course/add_custom_module/" class="btn btn-lg btn-success">
+  <a href="/docs/contributing/nf_core_basic_training/add_custom_module/" class="btn btn-lg btn-success">
     Chapter 5 - Adding a local custom module to your pipeline
   </a>
 </p>
 <p class="text-left">
-  <a href="/docs/contributing/nf_core_basic_course/nf_schema/" class="btn btn-lg btn-success">
+  <a href="/docs/contributing/nf_core_basic_training/nf_schema/" class="btn btn-lg btn-success">
     Chapter 6 - Working with Nextflow schema
   </a>
 </p>
 <p class="text-left">
-  <a href="/docs/contributing/nf_core_basic_course/linting_modules/" class="btn btn-lg btn-success">
+  <a href="/docs/contributing/nf_core_basic_training/linting_modules/" class="btn btn-lg btn-success">
     Chapter 7 - Linting your modules
   </a>
 </p>
