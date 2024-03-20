@@ -44,7 +44,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 28,
-            "subscribers_count": 146,
+            "subscribers_count": 148,
             "open_pr_count": 1,
             "contributors": [
                 {
@@ -312,7 +312,7 @@
             "url": "https://api.github.com/repos/nf-core/ampliseq",
             "created_at": "2018-09-26T15:24:54Z",
             "updated_at": "2024-03-10T23:21:11Z",
-            "pushed_at": "2024-03-19T13:17:48Z",
+            "pushed_at": "2024-03-19T14:34:28Z",
             "homepage": "https://nf-co.re/ampliseq",
             "size": 13816,
             "stargazers_count": 155,
@@ -355,7 +355,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 95,
-            "subscribers_count": 148,
+            "subscribers_count": 150,
             "open_pr_count": 1,
             "contributors": [
                 {
@@ -950,7 +950,7 @@
             "has_wiki": false,
             "has_pages": false,
             "has_discussions": false,
-            "forks_count": 111,
+            "forks_count": 112,
             "archived": false,
             "disabled": false,
             "open_issues_count": 29,
@@ -962,13 +962,13 @@
                 "chromatin-accessibiity"
             ],
             "visibility": "public",
-            "forks": 111,
+            "forks": 112,
             "open_issues": 29,
             "watchers": 157,
             "default_branch": "master",
             "custom_properties": {},
-            "network_count": 111,
-            "subscribers_count": 145,
+            "network_count": 112,
+            "subscribers_count": 147,
             "open_pr_count": 3,
             "contributors": [
                 {
@@ -1396,9 +1396,9 @@
             "url": "https://api.github.com/repos/nf-core/bacass",
             "created_at": "2019-01-31T08:03:31Z",
             "updated_at": "2024-03-12T09:16:27Z",
-            "pushed_at": "2024-03-19T09:40:13Z",
+            "pushed_at": "2024-03-19T15:47:23Z",
             "homepage": "https://nf-co.re/bacass",
-            "size": 4914,
+            "size": 4942,
             "stargazers_count": 50,
             "watchers_count": 50,
             "language": "Nextflow",
@@ -1411,7 +1411,7 @@
             "forks_count": 32,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 16,
+            "open_issues_count": 14,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -1427,13 +1427,13 @@
             ],
             "visibility": "public",
             "forks": 32,
-            "open_issues": 16,
+            "open_issues": 14,
             "watchers": 50,
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 32,
-            "subscribers_count": 145,
-            "open_pr_count": 2,
+            "subscribers_count": 147,
+            "open_pr_count": 0,
             "contributors": [
                 {
                     "name": "apeltzer",
@@ -1586,8 +1586,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2024-02-19T15:33:09Z",
-                    "tag_sha": "144d23982e9cdb459bb9124865b46c1b703c78fb",
+                    "published_at": "2024-03-19T15:47:22Z",
+                    "tag_sha": "62655234c3e45cc3de27cffc19be36c004a33fba",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -1598,7 +1598,6 @@
                             "bakta_bakta",
                             "bakta_baktadbdownload",
                             "canu",
-                            "custom_dumpsoftwareversions",
                             "dragonflye",
                             "fastp",
                             "fastqc",
@@ -1617,7 +1616,10 @@
                             "untar"
                         ],
                         "subworkflows": [
-                            "fastq_trim_fastp_fastqc"
+                            "fastq_trim_fastp_fastqc",
+                            "utils_nextflow_pipeline",
+                            "utils_nfcore_pipeline",
+                            "utils_nfvalidation_plugin"
                         ]
                     }
                 }
@@ -1669,7 +1671,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 26,
-            "subscribers_count": 135,
+            "subscribers_count": 137,
             "open_pr_count": 1,
             "contributors": [
                 {
@@ -1798,7 +1800,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 11,
-            "subscribers_count": 157,
+            "subscribers_count": 159,
             "open_pr_count": 2,
             "contributors": [
                 {
@@ -1986,7 +1988,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 11,
-            "subscribers_count": 137,
+            "subscribers_count": 139,
             "open_pr_count": 2,
             "contributors": [
                 {
@@ -2134,7 +2136,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 2,
-            "subscribers_count": 155,
+            "subscribers_count": 157,
             "open_pr_count": 1,
             "contributors": [
                 {
@@ -2249,7 +2251,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 132,
-            "subscribers_count": 144,
+            "subscribers_count": 146,
             "open_pr_count": 3,
             "contributors": [
                 {
@@ -2533,7 +2535,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 13,
-            "subscribers_count": 151,
+            "subscribers_count": 153,
             "open_pr_count": 1,
             "contributors": [
                 {
@@ -2849,9 +2851,9 @@
             "url": "https://api.github.com/repos/nf-core/circrna",
             "created_at": "2021-02-10T14:28:49Z",
             "updated_at": "2024-03-13T05:36:12Z",
-            "pushed_at": "2024-03-19T13:53:42Z",
+            "pushed_at": "2024-03-19T18:27:24Z",
             "homepage": "https://nf-co.re/circrna",
-            "size": 64753,
+            "size": 64806,
             "stargazers_count": 35,
             "watchers_count": 35,
             "language": "Nextflow",
@@ -2864,7 +2866,7 @@
             "forks_count": 17,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 9,
+            "open_issues_count": 10,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -2881,13 +2883,13 @@
             ],
             "visibility": "public",
             "forks": 17,
-            "open_issues": 9,
+            "open_issues": 10,
             "watchers": 35,
             "default_branch": "dev",
             "custom_properties": {},
             "network_count": 17,
             "subscribers_count": 104,
-            "open_pr_count": 3,
+            "open_pr_count": 4,
             "contributors": [
                 {
                     "name": "BarryDigby",
@@ -3032,7 +3034,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 25,
-            "subscribers_count": 108,
+            "subscribers_count": 110,
             "open_pr_count": 3,
             "contributors": [
                 {
@@ -3127,7 +3129,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 1,
-            "subscribers_count": 66,
+            "subscribers_count": 68,
             "open_pr_count": 1,
             "contributors": [
                 {
@@ -3237,7 +3239,7 @@
             "default_branch": "dev",
             "custom_properties": {},
             "network_count": 4,
-            "subscribers_count": 165,
+            "subscribers_count": 167,
             "open_pr_count": 4,
             "contributors": [
                 {
@@ -3335,7 +3337,7 @@
             "default_branch": "dev",
             "custom_properties": {},
             "network_count": 1,
-            "subscribers_count": 185,
+            "subscribers_count": 187,
             "open_pr_count": 1,
             "contributors": [
                 {
@@ -3413,7 +3415,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 16,
-            "subscribers_count": 144,
+            "subscribers_count": 146,
             "open_pr_count": 6,
             "contributors": [
                 {
@@ -3676,7 +3678,7 @@
             "default_branch": "dev",
             "custom_properties": {},
             "network_count": 4,
-            "subscribers_count": 137,
+            "subscribers_count": 139,
             "open_pr_count": 1,
             "contributors": [
                 {
@@ -3746,7 +3748,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 34,
-            "subscribers_count": 154,
+            "subscribers_count": 156,
             "open_pr_count": 3,
             "contributors": [
                 {
@@ -4932,7 +4934,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 27,
-            "subscribers_count": 87,
+            "subscribers_count": 89,
             "open_pr_count": 7,
             "contributors": [
                 {
@@ -5603,7 +5605,7 @@
             "default_branch": "dev",
             "custom_properties": {},
             "network_count": 2,
-            "subscribers_count": 179,
+            "subscribers_count": 181,
             "open_pr_count": 2,
             "contributors": [
                 {
@@ -5698,7 +5700,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 11,
-            "subscribers_count": 64,
+            "subscribers_count": 66,
             "open_pr_count": 2,
             "contributors": [
                 {
@@ -5816,7 +5818,7 @@
             "url": "https://api.github.com/repos/nf-core/differentialabundance",
             "created_at": "2022-10-12T08:49:25Z",
             "updated_at": "2024-03-17T17:07:31Z",
-            "pushed_at": "2024-03-13T13:11:53Z",
+            "pushed_at": "2024-03-19T16:18:40Z",
             "homepage": "https://nf-co.re/differentialabundance",
             "size": 8126,
             "stargazers_count": 39,
@@ -5831,7 +5833,7 @@
             "forks_count": 22,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 35,
+            "open_issues_count": 36,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -5849,13 +5851,13 @@
             ],
             "visibility": "public",
             "forks": 22,
-            "open_issues": 35,
+            "open_issues": 36,
             "watchers": 39,
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 22,
-            "subscribers_count": 149,
-            "open_pr_count": 2,
+            "subscribers_count": 151,
+            "open_pr_count": 3,
             "contributors": [
                 {
                     "name": "WackerO",
@@ -6240,7 +6242,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 28,
-            "subscribers_count": 113,
+            "subscribers_count": 115,
             "open_pr_count": 8,
             "contributors": [
                 {
@@ -6311,9 +6313,9 @@
             "url": "https://api.github.com/repos/nf-core/eager",
             "created_at": "2018-06-03T15:52:24Z",
             "updated_at": "2024-03-13T13:34:20Z",
-            "pushed_at": "2024-03-19T12:01:02Z",
+            "pushed_at": "2024-03-19T15:21:28Z",
             "homepage": "https://nf-co.re/eager",
-            "size": 67211,
+            "size": 67259,
             "stargazers_count": 122,
             "watchers_count": 122,
             "language": "Nextflow",
@@ -6346,7 +6348,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 73,
-            "subscribers_count": 155,
+            "subscribers_count": 157,
             "open_pr_count": 5,
             "contributors": [
                 {
@@ -6846,7 +6848,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 20,
-            "subscribers_count": 136,
+            "subscribers_count": 138,
             "open_pr_count": 2,
             "contributors": [
                 {
@@ -7077,7 +7079,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 26,
-            "subscribers_count": 174,
+            "subscribers_count": 176,
             "open_pr_count": 1,
             "contributors": [
                 {
@@ -7162,7 +7164,7 @@
             "default_branch": "dev",
             "custom_properties": {},
             "network_count": 6,
-            "subscribers_count": 157,
+            "subscribers_count": 159,
             "open_pr_count": 2,
             "contributors": [
                 {
@@ -7224,7 +7226,7 @@
             "has_wiki": false,
             "has_pages": false,
             "has_discussions": false,
-            "forks_count": 63,
+            "forks_count": 64,
             "archived": false,
             "disabled": false,
             "open_issues_count": 22,
@@ -7241,13 +7243,13 @@
                 "synapse"
             ],
             "visibility": "public",
-            "forks": 63,
+            "forks": 64,
             "open_issues": 22,
             "watchers": 119,
             "default_branch": "master",
             "custom_properties": {},
-            "network_count": 63,
-            "subscribers_count": 93,
+            "network_count": 64,
+            "subscribers_count": 95,
             "open_pr_count": 6,
             "contributors": [
                 {
@@ -7627,7 +7629,7 @@
             "url": "https://api.github.com/repos/nf-core/funcscan",
             "created_at": "2021-12-13T10:35:54Z",
             "updated_at": "2024-03-06T18:50:17Z",
-            "pushed_at": "2024-03-19T13:41:28Z",
+            "pushed_at": "2024-03-19T14:19:21Z",
             "homepage": "https://nf-co.re/funcscan",
             "size": 12641,
             "stargazers_count": 52,
@@ -7670,7 +7672,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 15,
-            "subscribers_count": 89,
+            "subscribers_count": 91,
             "open_pr_count": 4,
             "contributors": [
                 {
@@ -8157,7 +8159,7 @@
             "default_branch": "dev",
             "custom_properties": {},
             "network_count": 9,
-            "subscribers_count": 155,
+            "subscribers_count": 157,
             "open_pr_count": 1,
             "contributors": [
                 {
@@ -8226,7 +8228,7 @@
             "default_branch": "dev",
             "custom_properties": {},
             "network_count": 8,
-            "subscribers_count": 163,
+            "subscribers_count": 165,
             "open_pr_count": 1,
             "contributors": [
                 {
@@ -8333,7 +8335,7 @@
             "default_branch": "dev",
             "custom_properties": {},
             "network_count": 2,
-            "subscribers_count": 165,
+            "subscribers_count": 167,
             "open_pr_count": 1,
             "contributors": [
                 {
@@ -8402,7 +8404,7 @@
             "default_branch": "dev",
             "custom_properties": {},
             "network_count": 16,
-            "subscribers_count": 156,
+            "subscribers_count": 158,
             "open_pr_count": 3,
             "contributors": [
                 {
@@ -8513,7 +8515,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 4,
-            "subscribers_count": 153,
+            "subscribers_count": 155,
             "open_pr_count": 1,
             "contributors": [
                 {
@@ -8686,7 +8688,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 51,
-            "subscribers_count": 134,
+            "subscribers_count": 136,
             "open_pr_count": 1,
             "contributors": [
                 {
@@ -8941,7 +8943,7 @@
             "default_branch": "dev",
             "custom_properties": {},
             "network_count": 4,
-            "subscribers_count": 82,
+            "subscribers_count": 84,
             "open_pr_count": 3,
             "contributors": [
                 {
@@ -9099,7 +9101,7 @@
             "url": "https://api.github.com/repos/nf-core/hlatyping",
             "created_at": "2018-07-11T12:42:26Z",
             "updated_at": "2024-01-25T05:33:34Z",
-            "pushed_at": "2024-03-18T14:33:56Z",
+            "pushed_at": "2024-03-19T17:03:06Z",
             "homepage": "https://nf-co.re/hlatyping",
             "size": 41188,
             "stargazers_count": 49,
@@ -9134,7 +9136,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 28,
-            "subscribers_count": 152,
+            "subscribers_count": 153,
             "open_pr_count": 3,
             "contributors": [
                 {
@@ -9370,7 +9372,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 14,
-            "subscribers_count": 134,
+            "subscribers_count": 136,
             "open_pr_count": 1,
             "contributors": [
                 {
@@ -9466,7 +9468,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 10,
-            "subscribers_count": 80,
+            "subscribers_count": 82,
             "open_pr_count": 2,
             "contributors": [
                 {
@@ -9739,7 +9741,7 @@
             "default_branch": "dev",
             "custom_properties": {},
             "network_count": 10,
-            "subscribers_count": 139,
+            "subscribers_count": 141,
             "open_pr_count": 6,
             "contributors": [
                 {
@@ -10425,10 +10427,10 @@
             "has_wiki": false,
             "has_pages": false,
             "has_discussions": false,
-            "forks_count": 93,
+            "forks_count": 94,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 51,
+            "open_issues_count": 52,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -10443,13 +10445,13 @@
                 "nanopore-sequencing"
             ],
             "visibility": "public",
-            "forks": 93,
-            "open_issues": 51,
+            "forks": 94,
+            "open_issues": 52,
             "watchers": 179,
             "default_branch": "master",
             "custom_properties": {},
-            "network_count": 93,
-            "subscribers_count": 155,
+            "network_count": 94,
+            "subscribers_count": 157,
             "open_pr_count": 4,
             "contributors": [
                 {
@@ -11339,7 +11341,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 2,
-            "subscribers_count": 169,
+            "subscribers_count": 171,
             "open_pr_count": 1,
             "contributors": [
                 {
@@ -11505,9 +11507,9 @@
             "url": "https://api.github.com/repos/nf-core/mcmicro",
             "created_at": "2023-06-21T18:40:14Z",
             "updated_at": "2024-03-18T12:28:17Z",
-            "pushed_at": "2024-03-18T20:51:04Z",
+            "pushed_at": "2024-03-19T21:14:31Z",
             "homepage": "https://nf-co.re/mcmicro",
-            "size": 2433,
+            "size": 2425,
             "stargazers_count": 4,
             "watchers_count": 4,
             "language": "Nextflow",
@@ -11520,7 +11522,7 @@
             "forks_count": 10,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 9,
+            "open_issues_count": 10,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -11540,13 +11542,13 @@
             ],
             "visibility": "public",
             "forks": 10,
-            "open_issues": 9,
+            "open_issues": 10,
             "watchers": 4,
             "default_branch": "dev",
             "custom_properties": {},
             "network_count": 10,
             "subscribers_count": 158,
-            "open_pr_count": 2,
+            "open_pr_count": 3,
             "contributors": [
                 {
                     "name": "heylf",
@@ -11622,7 +11624,7 @@
             "forks_count": 13,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 6,
+            "open_issues_count": 8,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -11636,7 +11638,7 @@
             ],
             "visibility": "public",
             "forks": 13,
-            "open_issues": 6,
+            "open_issues": 8,
             "watchers": 15,
             "default_branch": "master",
             "custom_properties": {},
@@ -11766,7 +11768,7 @@
             "default_branch": "dev",
             "custom_properties": {},
             "network_count": 3,
-            "subscribers_count": 55,
+            "subscribers_count": 57,
             "open_pr_count": 2,
             "contributors": [
                 {
@@ -11852,7 +11854,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 9,
-            "subscribers_count": 151,
+            "subscribers_count": 153,
             "open_pr_count": 1,
             "contributors": [
                 {
@@ -12008,7 +12010,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 126,
-            "subscribers_count": 146,
+            "subscribers_count": 148,
             "open_pr_count": 7,
             "contributors": [
                 {
@@ -12584,7 +12586,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 23,
-            "subscribers_count": 80,
+            "subscribers_count": 82,
             "open_pr_count": 0,
             "contributors": [
                 {
@@ -12998,7 +13000,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 8,
-            "subscribers_count": 132,
+            "subscribers_count": 134,
             "open_pr_count": 2,
             "contributors": [
                 {
@@ -13082,7 +13084,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 4,
-            "subscribers_count": 155,
+            "subscribers_count": 157,
             "open_pr_count": 1,
             "contributors": [
                 {
@@ -13159,9 +13161,9 @@
             "url": "https://api.github.com/repos/nf-core/multiplesequencealign",
             "created_at": "2023-07-24T14:30:12Z",
             "updated_at": "2024-03-04T10:42:40Z",
-            "pushed_at": "2024-03-19T12:58:05Z",
+            "pushed_at": "2024-03-19T16:30:37Z",
             "homepage": "https://nf-co.re/multiplesequencealign",
-            "size": 3860,
+            "size": 3876,
             "stargazers_count": 10,
             "watchers_count": 10,
             "language": "Nextflow",
@@ -13174,19 +13176,19 @@
             "forks_count": 7,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 21,
+            "open_issues_count": 20,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
             "topics": [],
             "visibility": "public",
             "forks": 7,
-            "open_issues": 21,
+            "open_issues": 20,
             "watchers": 10,
             "default_branch": "dev",
             "custom_properties": {},
             "network_count": 7,
-            "subscribers_count": 154,
+            "subscribers_count": 156,
             "open_pr_count": 1,
             "contributors": [
                 {
@@ -13196,7 +13198,7 @@
                 },
                 {
                     "name": "JoseEspinosa",
-                    "count": 27,
+                    "count": 28,
                     "avatar_url": "https://avatars.githubusercontent.com/u/6224346?v=4"
                 },
                 {
@@ -13206,15 +13208,15 @@
                 },
                 {
                     "name": "lrauschning",
-                    "count": 1,
+                    "count": 6,
                     "avatar_url": "https://avatars.githubusercontent.com/u/99650940?v=4"
                 }
             ],
             "releases": [
                 {
                     "tag_name": "dev",
-                    "published_at": "2024-03-18T16:08:37Z",
-                    "tag_sha": "ea810953fd7ad51f12a03b61364568b3a794cbaf",
+                    "published_at": "2024-03-19T16:26:43Z",
+                    "tag_sha": "e2013edcab3fba6f2a24a3062b1a08d385ce7bf3",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -13228,7 +13230,6 @@
                             "csvtk_join",
                             "famsa_align",
                             "famsa_guidetree",
-                            "fastqc",
                             "kalign_align",
                             "learnmsa_align",
                             "mafft",
@@ -13293,7 +13294,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 66,
-            "subscribers_count": 131,
+            "subscribers_count": 133,
             "open_pr_count": 3,
             "contributors": [
                 {
@@ -13587,7 +13588,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 5,
-            "subscribers_count": 155,
+            "subscribers_count": 157,
             "open_pr_count": 2,
             "contributors": [
                 {
@@ -13724,9 +13725,9 @@
             "url": "https://api.github.com/repos/nf-core/nascent",
             "created_at": "2018-11-15T15:46:09Z",
             "updated_at": "2024-03-04T04:11:37Z",
-            "pushed_at": "2024-03-19T00:55:39Z",
+            "pushed_at": "2024-03-19T20:36:13Z",
             "homepage": "https://nf-co.re/nascent",
-            "size": 8173,
+            "size": 8186,
             "stargazers_count": 13,
             "watchers_count": 13,
             "language": "Nextflow",
@@ -13758,7 +13759,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 9,
-            "subscribers_count": 151,
+            "subscribers_count": 152,
             "open_pr_count": 3,
             "contributors": [
                 {
@@ -14053,8 +14054,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2024-03-15T15:44:16Z",
-                    "tag_sha": "50e6a7b35ddcc457b9d4ef780c65a50f7bc1f29a",
+                    "published_at": "2024-02-18T20:54:03Z",
+                    "tag_sha": "cbf6bce8bab7ff1f35951b860381830b8822f041",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -14084,6 +14085,7 @@
                             "fastqc",
                             "gffread",
                             "gunzip",
+                            "hisat2_align",
                             "homer_findpeaks",
                             "homer_maketagdirectory",
                             "homer_makeucscfile",
@@ -14158,7 +14160,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 6,
-            "subscribers_count": 173,
+            "subscribers_count": 175,
             "open_pr_count": 0,
             "contributors": [
                 {
@@ -14375,7 +14377,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 13,
-            "subscribers_count": 50,
+            "subscribers_count": 52,
             "open_pr_count": 0,
             "contributors": [
                 {
@@ -14601,7 +14603,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 2,
-            "subscribers_count": 189,
+            "subscribers_count": 191,
             "open_pr_count": 0,
             "contributors": [
                 {
@@ -15035,7 +15037,7 @@
             "default_branch": "dev",
             "custom_properties": {},
             "network_count": 5,
-            "subscribers_count": 155,
+            "subscribers_count": 157,
             "open_pr_count": 1,
             "contributors": [
                 {
@@ -15119,12 +15121,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/phaseimpute",
             "created_at": "2023-07-12T14:41:51Z",
-            "updated_at": "2024-03-19T13:21:45Z",
-            "pushed_at": "2024-03-19T10:43:35Z",
+            "updated_at": "2024-03-19T20:27:48Z",
+            "pushed_at": "2024-03-19T16:13:06Z",
             "homepage": null,
-            "size": 6970,
-            "stargazers_count": 7,
-            "watchers_count": 7,
+            "size": 6974,
+            "stargazers_count": 8,
+            "watchers_count": 8,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": true,
@@ -15132,7 +15134,7 @@
             "has_wiki": true,
             "has_pages": false,
             "has_discussions": false,
-            "forks_count": 10,
+            "forks_count": 12,
             "archived": false,
             "disabled": false,
             "open_issues_count": 7,
@@ -15141,31 +15143,36 @@
             "web_commit_signoff_required": false,
             "topics": [],
             "visibility": "public",
-            "forks": 10,
+            "forks": 12,
             "open_issues": 7,
-            "watchers": 7,
+            "watchers": 8,
             "default_branch": "dev",
             "custom_properties": {},
-            "network_count": 10,
+            "network_count": 12,
             "subscribers_count": 2,
             "open_pr_count": 2,
             "contributors": [
                 {
                     "name": "LouisLeNezet",
-                    "count": 165,
+                    "count": 168,
                     "avatar_url": "https://avatars.githubusercontent.com/u/58640615?v=4"
                 },
                 {
                     "name": "atrigila",
                     "count": 4,
                     "avatar_url": "https://avatars.githubusercontent.com/u/18577080?v=4"
+                },
+                {
+                    "name": "nschcolnicov",
+                    "count": 2,
+                    "avatar_url": "https://avatars.githubusercontent.com/u/90359308?v=4"
                 }
             ],
             "releases": [
                 {
                     "tag_name": "dev",
-                    "published_at": "2024-03-19T10:29:49Z",
-                    "tag_sha": "ce3cc27ca5dfc7eb10e4d6c505c2c9e737ba6970",
+                    "published_at": "2024-03-19T15:16:53Z",
+                    "tag_sha": "bb21ad5ee8423c59d4e5e0d090c5ab3d3a1d659d",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -15255,7 +15262,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 2,
-            "subscribers_count": 171,
+            "subscribers_count": 173,
             "open_pr_count": 1,
             "contributors": [
                 {
@@ -15375,7 +15382,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 2,
-            "subscribers_count": 161,
+            "subscribers_count": 163,
             "open_pr_count": 0,
             "contributors": [
                 {
@@ -15531,7 +15538,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 23,
-            "subscribers_count": 158,
+            "subscribers_count": 160,
             "open_pr_count": 2,
             "contributors": [
                 {
@@ -15661,7 +15668,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 18,
-            "subscribers_count": 133,
+            "subscribers_count": 135,
             "open_pr_count": 4,
             "contributors": [
                 {
@@ -15760,7 +15767,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 27,
-            "subscribers_count": 64,
+            "subscribers_count": 66,
             "open_pr_count": 1,
             "contributors": [
                 {
@@ -15925,7 +15932,7 @@
             "default_branch": "dev",
             "custom_properties": {},
             "network_count": 2,
-            "subscribers_count": 168,
+            "subscribers_count": 170,
             "open_pr_count": 1,
             "contributors": [
                 {
@@ -16026,7 +16033,7 @@
             "default_branch": "dev",
             "custom_properties": {},
             "network_count": 2,
-            "subscribers_count": 196,
+            "subscribers_count": 198,
             "open_pr_count": 1,
             "contributors": [
                 {
@@ -16102,7 +16109,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 32,
-            "subscribers_count": 151,
+            "subscribers_count": 153,
             "open_pr_count": 0,
             "contributors": [
                 {
@@ -16737,9 +16744,9 @@
             "url": "https://api.github.com/repos/nf-core/readsimulator",
             "created_at": "2023-09-26T03:28:00Z",
             "updated_at": "2024-03-15T15:59:58Z",
-            "pushed_at": "2024-03-15T07:16:57Z",
+            "pushed_at": "2024-03-20T00:59:07Z",
             "homepage": "https://nf-co.re/readsimulator",
-            "size": 7859,
+            "size": 7872,
             "stargazers_count": 14,
             "watchers_count": 14,
             "language": "Nextflow",
@@ -16752,20 +16759,20 @@
             "forks_count": 5,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 10,
+            "open_issues_count": 8,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
             "topics": [],
             "visibility": "public",
             "forks": 5,
-            "open_issues": 10,
+            "open_issues": 8,
             "watchers": 14,
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 5,
-            "subscribers_count": 179,
-            "open_pr_count": 2,
+            "subscribers_count": 181,
+            "open_pr_count": 0,
             "contributors": [
                 {
                     "name": "a4000",
@@ -16814,8 +16821,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2024-02-06T00:37:03Z",
-                    "tag_sha": "ee35eeaea60867b0301ce66022a6c579c8cda1ba",
+                    "published_at": "2024-03-20T00:59:07Z",
+                    "tag_sha": "7c807dda382e4a09d983a77f3bd026aa0dd379c0",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -16832,6 +16839,11 @@
                             "multiqc",
                             "ncbigenomedownload",
                             "samtools_index"
+                        ],
+                        "subworkflows": [
+                            "utils_nextflow_pipeline",
+                            "utils_nfcore_pipeline",
+                            "utils_nfvalidation_plugin"
                         ]
                     }
                 }
@@ -16875,7 +16887,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 2,
-            "subscribers_count": 171,
+            "subscribers_count": 173,
             "open_pr_count": 1,
             "contributors": [
                 {
@@ -16964,7 +16976,7 @@
             "updated_at": "2023-10-18T14:42:39Z",
             "pushed_at": "2024-03-19T13:12:59Z",
             "homepage": "https://nf-co.re/rnadnavar",
-            "size": 3742,
+            "size": 3754,
             "stargazers_count": 2,
             "watchers_count": 2,
             "language": "Nextflow",
@@ -16989,7 +17001,7 @@
             "default_branch": "dev",
             "custom_properties": {},
             "network_count": 5,
-            "subscribers_count": 153,
+            "subscribers_count": 155,
             "open_pr_count": 1,
             "contributors": [
                 {
@@ -17155,7 +17167,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 88,
-            "subscribers_count": 143,
+            "subscribers_count": 145,
             "open_pr_count": 3,
             "contributors": [
                 {
@@ -17725,7 +17737,7 @@
             "url": "https://api.github.com/repos/nf-core/rnaseq",
             "created_at": "2018-03-29T13:10:58Z",
             "updated_at": "2024-03-19T13:49:17Z",
-            "pushed_at": "2024-03-19T13:45:51Z",
+            "pushed_at": "2024-03-19T17:50:35Z",
             "homepage": "https://nf-co.re/rnaseq",
             "size": 67031,
             "stargazers_count": 756,
@@ -17757,7 +17769,7 @@
                 "slack": "https://nfcore.slack.com/archives/CE8SSJV3N"
             },
             "network_count": 644,
-            "subscribers_count": 154,
+            "subscribers_count": 156,
             "open_pr_count": 16,
             "contributors": [
                 {
@@ -19505,7 +19517,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 18,
-            "subscribers_count": 148,
+            "subscribers_count": 150,
             "open_pr_count": 2,
             "contributors": [
                 {
@@ -19778,9 +19790,9 @@
             "url": "https://api.github.com/repos/nf-core/rnavar",
             "created_at": "2021-05-12T07:25:10Z",
             "updated_at": "2024-03-06T16:41:56Z",
-            "pushed_at": "2024-03-01T10:51:57Z",
+            "pushed_at": "2024-03-19T21:28:32Z",
             "homepage": "https://nf-co.re/rnavar",
-            "size": 3792,
+            "size": 3799,
             "stargazers_count": 28,
             "watchers_count": 28,
             "language": "Nextflow",
@@ -19811,7 +19823,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 29,
-            "subscribers_count": 102,
+            "subscribers_count": 104,
             "open_pr_count": 2,
             "contributors": [
                 {
@@ -19883,8 +19895,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2024-02-22T13:39:13Z",
-                    "tag_sha": "07dee6430f41fc662067fed5b54209d2e16d0d0d",
+                    "published_at": "2024-03-19T21:28:31Z",
+                    "tag_sha": "45c2b2a5bb7a10ab94f24b291afb6249b3ccad22",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -19931,8 +19943,7 @@
                             "star_genomegenerate",
                             "tabix_bgziptabix",
                             "tabix_tabix",
-                            "untar",
-                            "unzip"
+                            "untar"
                         ],
                         "subworkflows": [
                             "vcf_annotate_ensemblvep",
@@ -19981,7 +19992,7 @@
             "default_branch": "dev",
             "custom_properties": {},
             "network_count": 2,
-            "subscribers_count": 165,
+            "subscribers_count": 167,
             "open_pr_count": 2,
             "contributors": [
                 {
@@ -20058,7 +20069,7 @@
             "has_wiki": false,
             "has_pages": false,
             "has_discussions": false,
-            "forks_count": 358,
+            "forks_count": 359,
             "archived": false,
             "disabled": false,
             "open_issues_count": 203,
@@ -20079,15 +20090,15 @@
                 "whole-genome-sequencing"
             ],
             "visibility": "public",
-            "forks": 358,
+            "forks": 359,
             "open_issues": 203,
             "watchers": 330,
             "default_branch": "master",
             "custom_properties": {
                 "slack": "https://nfcore.slack.com/archives/CGFUX04HZ"
             },
-            "network_count": 358,
-            "subscribers_count": 129,
+            "network_count": 359,
+            "subscribers_count": 131,
             "open_pr_count": 14,
             "contributors": [
                 {
@@ -22221,9 +22232,9 @@
             "url": "https://api.github.com/repos/nf-core/scrnaseq",
             "created_at": "2019-04-08T13:12:00Z",
             "updated_at": "2024-03-19T02:34:12Z",
-            "pushed_at": "2024-03-19T09:35:29Z",
+            "pushed_at": "2024-03-19T21:24:30Z",
             "homepage": "https://nf-co.re/scrnaseq",
-            "size": 36634,
+            "size": 36638,
             "stargazers_count": 162,
             "watchers_count": 162,
             "language": "Nextflow",
@@ -22258,7 +22269,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 143,
-            "subscribers_count": 127,
+            "subscribers_count": 129,
             "open_pr_count": 1,
             "contributors": [
                 {
@@ -23313,7 +23324,7 @@
             "url": "https://api.github.com/repos/nf-core/smrnaseq",
             "created_at": "2018-07-11T14:56:59Z",
             "updated_at": "2024-03-12T12:43:27Z",
-            "pushed_at": "2024-03-01T11:58:36Z",
+            "pushed_at": "2024-03-19T17:52:55Z",
             "homepage": "https://nf-co.re/smrnaseq",
             "size": 8298,
             "stargazers_count": 64,
@@ -23328,7 +23339,7 @@
             "forks_count": 113,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 22,
+            "open_issues_count": 23,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -23338,13 +23349,13 @@
             ],
             "visibility": "public",
             "forks": 113,
-            "open_issues": 22,
+            "open_issues": 23,
             "watchers": 64,
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 113,
-            "subscribers_count": 144,
-            "open_pr_count": 0,
+            "subscribers_count": 146,
+            "open_pr_count": 1,
             "contributors": [
                 {
                     "name": "apeltzer",
@@ -23786,9 +23797,9 @@
             "url": "https://api.github.com/repos/nf-core/spatialtranscriptomics",
             "created_at": "2022-02-23T20:44:38Z",
             "updated_at": "2024-03-18T08:18:10Z",
-            "pushed_at": "2024-03-19T13:38:47Z",
+            "pushed_at": "2024-03-19T17:52:24Z",
             "homepage": "https://nf-co.re/spatialtranscriptomics",
-            "size": 6864,
+            "size": 6899,
             "stargazers_count": 38,
             "watchers_count": 38,
             "language": "Nextflow",
@@ -23825,7 +23836,7 @@
             "default_branch": "dev",
             "custom_properties": {},
             "network_count": 12,
-            "subscribers_count": 156,
+            "subscribers_count": 157,
             "open_pr_count": 2,
             "contributors": [
                 {
@@ -23914,7 +23925,7 @@
             "default_branch": "dev",
             "custom_properties": {},
             "network_count": 1,
-            "subscribers_count": 159,
+            "subscribers_count": 161,
             "open_pr_count": 1,
             "contributors": [
                 {
@@ -23999,7 +24010,7 @@
             "default_branch": "dev",
             "custom_properties": {},
             "network_count": 3,
-            "subscribers_count": 97,
+            "subscribers_count": 99,
             "open_pr_count": 2,
             "contributors": [
                 {
@@ -24065,7 +24076,7 @@
             "has_wiki": false,
             "has_pages": false,
             "has_discussions": false,
-            "forks_count": 28,
+            "forks_count": 29,
             "archived": false,
             "disabled": false,
             "open_issues_count": 41,
@@ -24086,13 +24097,13 @@
                 "taxonomic-profiling"
             ],
             "visibility": "public",
-            "forks": 28,
+            "forks": 29,
             "open_issues": 41,
             "watchers": 86,
             "default_branch": "master",
             "custom_properties": {},
-            "network_count": 28,
-            "subscribers_count": 148,
+            "network_count": 29,
+            "subscribers_count": 150,
             "open_pr_count": 4,
             "contributors": [
                 {
@@ -24790,7 +24801,7 @@
             "default_branch": "dev",
             "custom_properties": {},
             "network_count": 0,
-            "subscribers_count": 229,
+            "subscribers_count": 231,
             "open_pr_count": 0,
             "contributors": [
                 {
@@ -24967,7 +24978,7 @@
             "default_branch": "dev",
             "custom_properties": {},
             "network_count": 1,
-            "subscribers_count": 162,
+            "subscribers_count": 164,
             "open_pr_count": 2,
             "contributors": [
                 {
@@ -25067,7 +25078,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 11,
-            "subscribers_count": 184,
+            "subscribers_count": 186,
             "open_pr_count": 1,
             "contributors": [
                 {
@@ -25115,9 +25126,9 @@
             "url": "https://api.github.com/repos/nf-core/viralintegration",
             "created_at": "2022-04-01T19:30:55Z",
             "updated_at": "2024-02-07T09:33:55Z",
-            "pushed_at": "2024-03-01T10:52:55Z",
+            "pushed_at": "2024-03-19T16:21:33Z",
             "homepage": "https://nf-co.re/viralintegration",
-            "size": 3390,
+            "size": 3346,
             "stargazers_count": 14,
             "watchers_count": 14,
             "language": "Python",
@@ -25148,7 +25159,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 6,
-            "subscribers_count": 156,
+            "subscribers_count": 158,
             "open_pr_count": 4,
             "contributors": [
                 {
@@ -25224,8 +25235,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2024-02-17T21:21:06Z",
-                    "tag_sha": "060c1c1b08a1a28616c02c8939a9833835153f75",
+                    "published_at": "2024-03-19T16:21:30Z",
+                    "tag_sha": "3e4f8defb9aa00f8c94b88c46e4a3d9b85fc9dad",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -25300,7 +25311,7 @@
             "default_branch": "master",
             "custom_properties": {},
             "network_count": 94,
-            "subscribers_count": 99,
+            "subscribers_count": 101,
             "open_pr_count": 3,
             "contributors": [
                 {
