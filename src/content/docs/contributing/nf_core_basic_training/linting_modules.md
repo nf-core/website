@@ -12,3 +12,12 @@ As well as the pipeline template you can lint individual or all modules with a s
 nf-core modules lint --all
 
 ```
+
+<p class="text-center">
+  <a href="../" class="btn btn-lg btn-success" style="font-size: 14px">
+    < go to Chapter 6
+  </a>
+  <a href="../index/" class="btn btn-lg btn-success" style="font-size: 14px">
+    go to training index >
+  </a>
+</p>

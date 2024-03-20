@@ -68,3 +68,11 @@ If you have lost your environment, you can find the main scripts used in this tu
 To save any file locally from the explorer panel, right-click the file and select Download.
 
 </details>
+<p class="text-center">
+  <a href="../" class="btn btn-lg btn-success" style="font-size: 14px">
+    < go to training index
+  </a>
+  <a href="../nf_core_create_tool/" class="btn btn-lg btn-success" style="font-size: 14px">
+    go to Chapter 2 >
+  </a>
+</p>
