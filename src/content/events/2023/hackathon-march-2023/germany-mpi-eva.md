@@ -7,10 +7,10 @@ startTime: '10:00+02:00'
 endDate: '2023-03-29'
 endTime: '18:00+02:00'
 locations:
-    - name: MPI-EVA
-      address: Deutscher Pl. 6, 04103 Leipzig
-      links: https://www.eva.mpg.de/
-      geoCoordinates: [51.321402, 12.395295]
+  - name: MPI-EVA
+    address: Deutscher Pl. 6, 04103 Leipzig
+    links: https://www.eva.mpg.de/
+    geoCoordinates: [51.321402, 12.395295]
 ---
 
 Local event to be held at Max Planck Institute for Evolutionary Anthropology, Leipzig (Deutscher Pl. 6, 04103 Leipzig) in the Large Seminar room (H4.10)

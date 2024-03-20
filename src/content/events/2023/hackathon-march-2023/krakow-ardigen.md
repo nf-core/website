@@ -7,10 +7,10 @@ startTime: '09:00+02:00'
 endDate: '2023-03-29'
 endTime: '17:00+02:00'
 locations:
-    - name: Ardigen
-      address: Podole, 76, 30-394, Kraków, Poland
-      links: https://ardigen.com/
-      geoCoordinates: [50.02159965915289, 19.89199888650787]
+  - name: Ardigen
+    address: Podole, 76, 30-394, Kraków, Poland
+    links: https://ardigen.com/
+    geoCoordinates: [50.02159965915289, 19.89199888650787]
 ---
 
 Local event to be held at Ardigen, Kraków.

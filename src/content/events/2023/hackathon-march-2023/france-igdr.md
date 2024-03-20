@@ -7,10 +7,10 @@ startTime: '10:00+02:00'
 endDate: '2023-03-29'
 endTime: '17:00+02:00'
 locations:
-    - name: Institute Genetics & Development of Rennes
-      address: 2 avenue du Professeur Léon Bernard, CS 34317 / 35043 Rennes Cedex, France
-      links: https://igdr.univ-rennes1.fr/
-      geoCoordinates: [48.117546, -1.696719]
+  - name: Institute Genetics & Development of Rennes
+    address: 2 avenue du Professeur Léon Bernard, CS 34317 / 35043 Rennes Cedex, France
+    links: https://igdr.univ-rennes1.fr/
+    geoCoordinates: [48.117546, -1.696719]
 ---
 
 Local event to be held at the The Institute Genetics & Development of Rennes.

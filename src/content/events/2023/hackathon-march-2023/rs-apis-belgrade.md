@@ -7,10 +7,10 @@ startTime: '09:00+01:00'
 endDate: '2023-03-29'
 endTime: '17:00+01:00'
 locations:
-    - name: Startit Centar, Beograd
-      address: Savska 5, Belgrade 11000, Serbia
-      links: https://startit.rs/beograd/
-      geoCoordinates: [44.80696373983825, 20.45561989400684]
+  - name: Startit Centar, Beograd
+    address: Savska 5, Belgrade 11000, Serbia
+    links: https://startit.rs/beograd/
+    geoCoordinates: [44.80696373983825, 20.45561989400684]
 ---
 
 Local event to be held at the Startit Centar, by Bioinformatics Department of Apis Assay Technologies Ltd.

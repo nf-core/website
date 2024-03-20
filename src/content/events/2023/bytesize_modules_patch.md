@@ -10,8 +10,8 @@ youtubeEmbed: https://www.youtube.com/watch?v=7pu6Ikhi1eU
 locations:
   - name: Online
     links:
-    - https://doi.org/10.6084/m9.figshare.22231987.v1
-    - https://www.youtube.com/watch?v=7pu6Ikhi1eU
+      - https://doi.org/10.6084/m9.figshare.22231987.v1
+      - https://www.youtube.com/watch?v=7pu6Ikhi1eU
 ---
 
 Have you ever wanted to tweak an nf-core module for your own use? No need to copy / paste and lose the benefits of linting and updates, instead try using the magic `nf-core modules patch` command to keep track of your modifications.

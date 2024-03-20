@@ -7,10 +7,10 @@ startTime: '09:30+01:00'
 endDate: '2023-03-29'
 endTime: '16:30+01:00'
 locations:
-    - name: Chestnut Suite, Hinxton Hall, Wellcome Genome Campus
-      address: Wellcome Genome Campus, Hinxton CB10 1SA
-      links: https://www.wellcomegenomecampus.org
-      geoCoordinates: [52.079047, 0.187607]
+  - name: Chestnut Suite, Hinxton Hall, Wellcome Genome Campus
+    address: Wellcome Genome Campus, Hinxton CB10 1SA
+    links: https://www.wellcomegenomecampus.org
+    geoCoordinates: [52.079047, 0.187607]
 ---
 
 Local event to be held at the [Wellcome Genome Campus, Cambridge](https://goo.gl/maps/k3fuhxd6R8Tnuoay8).

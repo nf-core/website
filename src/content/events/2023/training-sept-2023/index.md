@@ -7,7 +7,7 @@ startTime: '15:00+02:00'
 endDate: '2023-09-28'
 endTime: '19:00+02:00'
 importTypeform: true
-locations: 
+locations:
   - name: Online
     links: https://www.youtube.com/playlist?list=PL3xpfTVZLcNhPoEl8cT15MdIBfX9kFJCj
 ---
