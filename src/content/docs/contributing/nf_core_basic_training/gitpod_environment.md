@@ -69,10 +69,10 @@ To save any file locally from the explorer panel, right-click the file and selec
 
 </details>
 <p class="text-center">
-  <a href="../" class="btn btn-lg btn-success" style="font-size: 14px">
+  <a href="/docs/contributing/nf_core_basic_course/" class="btn btn-lg btn-success" style="font-size: 14px">
     < go to training index
   </a>
-  <a href="../nf_core_create_tool/" class="btn btn-lg btn-success" style="font-size: 14px">
+  <a href="/docs/contributing/nf_core_basic_course/nf_core_create_tool/" class="btn btn-lg btn-success" style="font-size: 14px">
     go to Chapter 2 >
   </a>
 </p>

@@ -359,10 +359,10 @@ nf-core lint
    :::
 
 <p class="text-center">
-  <a href="../gitpod_environment/" class="btn btn-lg btn-success" style="font-size: 14px">
+  <a href="/docs/contributing/nf_core_basic_course/gitpod_environment/" class="btn btn-lg btn-success" style="font-size: 14px">
     < go to Chapter 1
   </a>
-  <a href="../template_walk_through/" class="btn btn-lg btn-success" style="font-size: 14px">
+  <a href="/docs/contributing/nf_core_basic_course/template_walk_through/" class="btn btn-lg btn-success" style="font-size: 14px">
     go to Chapter 3 >
   </a>
 </p>

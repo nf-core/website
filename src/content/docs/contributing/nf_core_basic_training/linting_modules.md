@@ -14,10 +14,10 @@ nf-core modules lint --all
 ```
 
 <p class="text-center">
-  <a href="../" class="btn btn-lg btn-success" style="font-size: 14px">
+  <a href="/docs/contributing/nf_core_basic_course/" class="btn btn-lg btn-success" style="font-size: 14px">
     < go to Chapter 6
   </a>
-  <a href="../index/" class="btn btn-lg btn-success" style="font-size: 14px">
+  <a href="/docs/contributing/nf_core_basic_course/index/" class="btn btn-lg btn-success" style="font-size: 14px">
     go to training index >
   </a>
 </p>
