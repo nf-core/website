@@ -7,7 +7,9 @@ startTime: '13:00+01:00'
 endDate: '2024-02-27'
 endTime: '13:30+01:00'
 youtube_embed: https://youtu.be/_meU3EzKdRI
-locationURL: https://youtu.be/_meU3EzKdRI
+locations:
+  - name: Online
+    links: https://youtu.be/_meU3EzKdRI
 ---
 
 The latest release of nf-core/tools (v2.13) brings with it some significant changes.

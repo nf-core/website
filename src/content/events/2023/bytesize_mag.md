@@ -8,9 +8,11 @@ endDate: '2023-02-28'
 endTime: '13:30+01:00'
 youtubeEmbed: https://www.youtube.com/watch?v=IiorfDHeoLo
 embedAt: 'mag'
-locationURL:
-  - https://doi.org/10.6084/m9.figshare.22210879.v1
-  - https://www.youtube.com/watch?v=IiorfDHeoLo
+locations:
+  - name: Online
+    links:
+      - https://doi.org/10.6084/m9.figshare.22210879.v1
+      - https://www.youtube.com/watch?v=IiorfDHeoLo
 ---
 
 This week, Sabrina Krakau ([@skrakau](https://github.com/skrakau)) is going to introduce nf-core/mag. nf-core/mag is a bioinformatics best-practise analysis pipeline for assembly, binning and annotation of metagenomes.

@@ -8,9 +8,11 @@ endDate: '2022-02-01'
 endTime: '13:30+01:00'
 embedAt: 'dualrnaseq'
 youtubeEmbed: https://www.youtube.com/watch?v=-J3Cbetk8Pk
-locationURL:
-  - https://www.youtube.com/watch?v=-J3Cbetk8Pk
-  - https://doi.org/10.6084/m9.figshare.19927178.v1
+locations:
+  - name: Online
+    links:
+      - https://www.youtube.com/watch?v=-J3Cbetk8Pk
+      - https://doi.org/10.6084/m9.figshare.19927178.v1
 ---
 
 This week, Regan Hayward ([@reganhayward](https://github.com/reganhayward/)) will tell us all about the nf-core/dualrnaseq pipeline.

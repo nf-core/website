@@ -7,10 +7,12 @@ startTime: '13:00+02:00'
 endDate: '2021-06-08'
 endTime: '13:30+02:00'
 youtubeEmbed: https://youtu.be/QXfAerydAT0
-locationURL:
-  - https://youtu.be/QXfAerydAT0
-  - https://www.bilibili.com/video/BV14y4y1u7ns
-  - https://doi.org/10.6084/m9.figshare.14748438.v3
+locations:
+  - name: Online
+    links:
+      - https://youtu.be/QXfAerydAT0
+      - https://www.bilibili.com/video/BV14y4y1u7ns
+      - https://doi.org/10.6084/m9.figshare.14748438.v3
 ---
 
 This week, Kevin Menden ([@KevinMenden](http://github.com/KevinMenden/)) will present: _**Modules test data**_

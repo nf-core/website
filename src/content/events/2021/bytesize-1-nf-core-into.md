@@ -7,10 +7,12 @@ startTime: '13:00+01:00'
 endDate: '2021-02-02'
 endTime: '13:30+01:00'
 youtubeEmbed: https://youtu.be/ZfxOFYXmiNw
-locationURL:
-  - https://doi.org/10.6084/m9.figshare.14160668.v1
-  - https://youtu.be/ZfxOFYXmiNw
-  - https://www.bilibili.com/video/BV1854y1h7d9
+locations:
+  - name: Online
+    links:
+      - https://doi.org/10.6084/m9.figshare.14160668.v1
+      - https://youtu.be/ZfxOFYXmiNw
+      - https://www.bilibili.com/video/BV1854y1h7d9
 ---
 
 # nf-core/bytesize

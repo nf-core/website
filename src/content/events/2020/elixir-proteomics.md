@@ -6,8 +6,11 @@ startDate: '2020-09-28'
 startTime: '11:00+02:00'
 endDate: '2020-09-28'
 endTime: '12:00+02:00'
-locationURL: https://stockholmuniversity.zoom.us/j/66498969128
-locationName: Zoom
+locations:
+  - name: Zoom
+    links:
+      - https://stockholmuniversity.zoom.us/j/66498969128
+      - https://youtu.be/vxDv_hVkycM
 ---
 
 Phil Ewels ([@ewels](http://github.com/ewels/)) will give a talk followed by discussion

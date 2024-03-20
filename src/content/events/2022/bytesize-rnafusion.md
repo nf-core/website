@@ -8,9 +8,11 @@ endDate: '2022-09-13'
 endTime: '13:30+02:00'
 embedAt: 'rnafusion'
 youtubeEmbed: https://www.youtube.com/watch?v=iP47pokiPB4
-locationURL:
-  - https://www.youtube.com/watch?v=iP47pokiPB4
-  - https://doi.org/10.6084/m9.figshare.21206537.v1
+locations:
+  - name: Online
+    links:
+      - https://www.youtube.com/watch?v=iP47pokiPB4
+      - https://doi.org/10.6084/m9.figshare.21206537.v1
 ---
 
 This week, Annick Renevey ([@rannick](https://github.com/rannick)) will introduce the nf-core/rnafusion pipeline!

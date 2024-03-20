@@ -7,9 +7,11 @@ startTime: '13:00+02:00'
 endDate: '2022-04-12'
 endTime: '13:30+02:00'
 youtubeEmbed: https://www.youtube.com/watch?v=ZO4lSma3OA8
-locationURL:
-  - https://www.youtube.com/watch?v=ZO4lSma3OA8
-  - https://doi.org/10.6084/m9.figshare.19923413.v1
+locations:
+  - name: Online
+    links:
+      - https://www.youtube.com/watch?v=ZO4lSma3OA8
+      - https://doi.org/10.6084/m9.figshare.19923413.v1
 ---
 
 This week, Phil Ewels ([@ewels](https://github.com/ewels/)) will present: _**Code linting tools**_

@@ -8,10 +8,12 @@ endDate: '2021-12-07'
 endTime: '13:30+01:00'
 embedAt: 'pgdb'
 youtubeEmbed: https://www.youtube.com/watch?v=vbyX3xmTT38
-locationURL:
-  - https://youtu.be/vbyX3xmTT38
-  - https://www.bilibili.com/video/BV1db4y1i7GM
-  - https://doi.org/10.6084/m9.figshare.17136131.v1
+locations:
+  - name: Online
+    links:
+      - https://youtu.be/vbyX3xmTT38
+      - https://www.bilibili.com/video/BV1db4y1i7GM
+      - https://doi.org/10.6084/m9.figshare.17136131.v1
 ---
 
 This week, Yasset Perez-Riverol ([@ypriverol](https://github.com/ypriverol/)) will tell us all about the nf-core/pgdb pipeline.

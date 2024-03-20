@@ -6,10 +6,11 @@ startDate: '2024-03-18'
 startTime: '10:00+01:00'
 endDate: '2024-03-20'
 endTime: '17:00+01:00'
-locationName: IBU
-address: Baltzerstrasse 6, 3012 Bern, Switzerland
-locationURL: https://www.bioinformatics.unibe.ch/
-locationLatLng: [46.952096, 7.428005]
+locations:
+  - name: IBU
+    address: Baltzerstrasse 6, 3012 Bern, Switzerland
+    links: https://www.bioinformatics.unibe.ch/
+    geoCoordinates: [46.952096, 7.428005]
 ---
 
 Local event to be held at the Interfaculty Bioinformatics Unit (IBU), Bern.
