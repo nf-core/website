@@ -37,11 +37,11 @@ const events = defineCollection({
                             .or(z.array(z.string().url()))
                             .optional(),
                         geoCoordinates: z.array(z.number(), z.number()).optional(),
+                        address: z.string().optional(),
                     }),
                 )
                 .optional(),
             links: z.array(z.string().url()).optional(),
-            address: z.string().optional(),
             start: z.date().optional(),
             end: z.date().optional(),
             duration: z.string().optional(),

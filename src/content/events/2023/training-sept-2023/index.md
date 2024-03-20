@@ -6,8 +6,10 @@ startDate: '2023-09-27'
 startTime: '15:00+02:00'
 endDate: '2023-09-28'
 endTime: '19:00+02:00'
-locationName: YouTube
 importTypeform: true
+locations: 
+  - name: Online
+    links: https://www.youtube.com/playlist?list=PL3xpfTVZLcNhPoEl8cT15MdIBfX9kFJCj
 ---
 
 # Welcome

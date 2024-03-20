@@ -6,10 +6,11 @@ startDate: '2024-03-18'
 startTime: '10:00+00:00'
 endDate: '2024-03-20'
 endTime: '17:00+00:00'
-locationName: Cosyne Therapeutics
-address: Medius House, 2 Sheraton St, London W1F 8BH
-locationURL: https://maps.app.goo.gl/G327eD8PEQefbHcs8
-locationLatLng: [51.51565268907713, -0.13365964707324154]
+locations:
+  - name: Cosyne Therapeutics
+    address: Medius House, 2 Sheraton St, London W1F 8BH
+    links: https://maps.app.goo.gl/G327eD8PEQefbHcs8
+    geoCoordinates: [51.51565268907713, -0.13365964707324154]
 ---
 
 Local event to be held at the offices of Cosyne Therapeutics, in Soho London.

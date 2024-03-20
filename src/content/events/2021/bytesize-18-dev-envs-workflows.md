@@ -7,9 +7,11 @@ startTime: '13:00+02:00'
 endDate: '2021-06-22'
 endTime: '13:30+02:00'
 youtubeEmbed: https://youtu.be/OF55x-FT5WE
-locationURL:
-  - https://youtu.be/OF55x-FT5WE
-  - https://www.bilibili.com/video/BV1Wh411679X
+locations:
+  - name: Online
+    links:
+      - https://youtu.be/OF55x-FT5WE
+      - https://www.bilibili.com/video/BV1Wh411679X
 ---
 
 This week, Maxime U. Garcia ([@maxulysse](http://github.com/maxulysse/)) will present: _**Development environments & workflows II**_

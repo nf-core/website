@@ -8,10 +8,12 @@ endDate: '2021-09-28'
 endTime: '13:30+02:00'
 embedAt: 'mhcquant'
 youtubeEmbed: https://youtu.be/NCKkSssE_4w
-locationURL:
-  - https://youtu.be/NCKkSssE_4w
-  - https://www.bilibili.com/video/BV1Lh411J732/
-  - https://doi.org/10.6084/m9.figshare.16750381.v1
+locations:
+  - name: Online
+    links:
+      - https://youtu.be/NCKkSssE_4w
+      - https://www.bilibili.com/video/BV1Lh411J732/
+      - https://doi.org/10.6084/m9.figshare.16750381.v1
 ---
 
 This week, Leon Bichmann ([@Leon-Bichmann](https://github.com/Leon-Bichmann/)) will tell us all about the nf-core/mhcquant pipeline.

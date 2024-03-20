@@ -7,9 +7,11 @@ startTime: '13:00+01:00'
 endDate: '2021-03-16'
 endTime: '13:30+01:00'
 youtubeEmbed: https://youtu.be/U9LG_mMQFMY
-locationURL:
-  - https://youtu.be/U9LG_mMQFMY
-  - https://www.bilibili.com/video/BV155411P7ES
+locations:
+  - name: Online
+    links:
+      - https://youtu.be/U9LG_mMQFMY
+      - https://www.bilibili.com/video/BV155411P7ES
 ---
 
 This week, Phil Ewels ([@ewels](http://github.com/ewels/)) will present: _**Making the CI tests pass.**_

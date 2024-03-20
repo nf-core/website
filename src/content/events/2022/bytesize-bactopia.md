@@ -7,10 +7,12 @@ startTime: '13:00+02:00'
 endDate: '2022-07-19'
 endTime: '13:30+02:00'
 youtubeEmbed: https://www.youtube.com/watch?v=egjgcmeJ0wQ
-locationURL:
-  - https://www.youtube.com/watch?v=egjgcmeJ0wQ
-  - https://doi.org/10.6084/m9.figshare.20338464.v1 (slides)
-  - https://doi.org/10.6084/m9.figshare.20342808.v1 (video)
+locations:
+  - name: Online
+    links:
+      - https://www.youtube.com/watch?v=egjgcmeJ0wQ
+      - https://doi.org/10.6084/m9.figshare.20338464.v1 (slides)
+      - https://doi.org/10.6084/m9.figshare.20342808.v1 (video)
 ---
 
 This week, Robert A. Petit III ([@rpetit3](https://github.com/rpetit3)) will introduce us to his pipeline [Bactopia](https://github.com/bactopia/bactopia). A first for bytesize, bactopia is not an nf-core pipeline but is rather [influenced by nf-core](https://bactopia.github.io/acknowledgements/#nf-core).

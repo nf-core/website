@@ -8,9 +8,11 @@ endDate: '2022-07-26'
 endTime: '13:30+02:00'
 embedAt: 'chipseq'
 youtubeEmbed: https://www.youtube.com/watch?v=59I-4wB1z4c
-locationURL:
-  - https://www.youtube.com/watch?v=59I-4wB1z4c
-  - https://doi.org/10.6084/m9.figshare.20418171.v1
+locations:
+  - name: Online
+    links:
+      - https://www.youtube.com/watch?v=59I-4wB1z4c
+      - https://doi.org/10.6084/m9.figshare.20418171.v1
 ---
 
 This week, Jose Espinosa-Carrasco ([@JoseEspinosa](https://github.com/JoseEspinosa)) will talk about new developments in the nf-core/chipseq pipeline.

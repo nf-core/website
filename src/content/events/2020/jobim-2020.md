@@ -6,7 +6,9 @@ startDate: '2020-07-01'
 startTime: '11:20+01:00'
 endDate: '2020-07-01'
 endTime: '11:40+01:00'
-locationURL: https://jobim2020.sciencesconf.org/
+locations:
+  - name: Online
+    links: https://jobim2020.sciencesconf.org/
 ---
 
 ## About the conference
