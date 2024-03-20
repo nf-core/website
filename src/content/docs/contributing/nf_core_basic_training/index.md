@@ -40,7 +40,7 @@ This training can be followed either based on this documentation alone, or via a
   </a>
 </p>
 
-The course is using gitpod in order to avoid the time expense for downloading and installing tools and data.
+This course uses [Gitpod](https://www.gitpod.io/) in order to avoid spending time downloading and installing tools and data. All necessary tools and data should be available in the Gitpod environment.
 
 <p class="text-left">
   <a href="/docs/contributing/nf_core_basic_training/nf_core_create_tool/" class="btn btn-lg btn-success" target="_blank">
