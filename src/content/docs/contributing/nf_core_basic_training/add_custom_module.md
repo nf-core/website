@@ -301,3 +301,12 @@ In the directory `exercise_6` you will find the custom script `print_hello.py`, 
       </details>
 
 :::
+
+<p class="text-center">
+  <a href="/docs/contributing/nf_core_basic_training/add_nf_core_module/" class="btn btn-lg btn-success" style="font-size: 14px">
+    < go to Chapter 4
+  </a>
+  <a href="/docs/contributing/nf_core_basic_training/nf_schema/" class="btn btn-lg btn-success" style="font-size: 14px">
+    go to Chapter 6 >
+  </a>
+</p>

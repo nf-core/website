@@ -62,3 +62,12 @@ Here in the schema editor you can edit:
       </details>
 
 :::
+
+<p class="text-center">
+  <a href="/docs/contributing/nf_core_basic_training/add_custom_module/" class="btn btn-lg btn-success" style="font-size: 14px">
+    < go to Chapter 5
+  </a>
+  <a href="/docs/contributing/nf_core_basic_training/linting_modules/" class="btn btn-lg btn-success" style="font-size: 14px">
+    go to Chapter 7 >
+  </a>
+</p>
