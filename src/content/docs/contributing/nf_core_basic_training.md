@@ -22,7 +22,7 @@ subtitle: A guide to create Nextflow pipelines using nf-core tools
 
 :::
 
-This training course aims to demonstrate how to build an nf-core pipeline using the nf-core pipeline template and nf-core modules as well as custom, local modules. Be aware that we are not going to explain any fundamental Nextflow concepts, as such we advise anyone taking this course to have completed the [Basic Nextflow Training Workshop](https://training.nextflow.io/).
+This training course aims to demonstrate how to build an nf-core pipeline using the nf-core pipeline template and nf-core modules and subworkflows as well as custom, local modules. Be aware that we are not going to explain any fundamental Nextflow concepts, as such we advise anyone taking this course to have completed the [Basic Nextflow Training Workshop](https://training.nextflow.io/).
 
 ```md
 During this course we are going to build a Simple RNA-Seq workflow.
@@ -704,11 +704,13 @@ nf-core lint
 
    :::
 
-## Adding Modules to a pipeline
+# Building a pipeline from (existing) components
 
-### Adding an existing nf-core module
+Nextflow pipelines can be build in a very modular fashion. In nf-core, we have simple building blocks available: nf-core/modules. Usually, they are wrappers around individual tools. In addition, we have subworkflows: smaller pre-build pipeline chunks. You can think about the modules as Lego bricks and subworkflows as pre-build chunks that can be added to various sets. These components are centrally available for all Nextflow pipelines. To make working with them easy, you can use `nf-core/tools`.
 
-#### Identify available nf-core modules
+## Adding an existing nf-core module
+
+### Identify available nf-core modules
 
 The nf-core pipeline template comes with a few nf-core/modules pre-installed. You can list these with the command below:
 
@@ -774,9 +776,11 @@ You can list all of the modules available on nf-core/modules via the command bel
 nf-core modules list remote
 ```
 
-#### Install a remote nf-core module
+In addition, all modules are listed on the website: [https://nf-co.re/modules](https://nf-co.re/modules)
 
-To install a remote nf-core module from the website, you can first get information about a tool, including the installation command by executing:
+### Install a remote nf-core module
+
+To install a remote nf-core module, you can first get information about a tool, including the installation command by executing:
 
 ```bash
 nf-core modules info salmon/index
@@ -895,6 +899,72 @@ INFO     Use the following statement to include this module:
 
  include { SALMON_INDEX } from '../modules/nf-core/salmon/index/main'
 ```
+
+The module is now installed into the folder `modules/nf-core`. Now open the file `workflow/demotest.nf`. You will find already several `include` statements there from the installed modules (`MultiQC` and `FastQC`):
+
+```bash title="workflow/demotest.nf"
+
+include { FASTQC  } from '../modules/nf-core/fastqc/main'
+include { MULTIQC } from '../modules/nf-core/multiqc/main'
+```
+
+Now add the above line underneath it:
+
+```bash title="workflow/demotest.nf"
+
+include { FASTQC  } from '../modules/nf-core/fastqc/main'
+include { MULTIQC } from '../modules/nf-core/multiqc/main'
+include { SALMON_INDEX } from '../modules/nf-core/salmon/index/main'
+
+```
+
+This makes the module now available in the workflow script and it can be called with the right input data.
+
+<!-- TODO/TO DISCUSS here the user now needs to know about how to get their fasta. We could do this here or add a new point for this above -->
+
+We can now call the module in our workflow. Let's place it after FastQC:
+
+```bash title="workflow/demotest.nf"
+
+workflow DEMOTEST {
+
+    ...
+    //
+    // MODULE: Run FastQC
+    //
+    FASTQC (
+        INPUT_CHECK.out.reads
+    )
+    ch_versions = ch_versions.mix(FASTQC.out.versions.first())
+
+    SALMON_INDEX()
+```
+
+Now we are still missing an input for our module. In order to build an index, we require the reference fasta. Luckily, the template pipeline has this already all configured, and we can access it by just using `params.fasta` and `view` it to insppect the channel content. (We will see later how to add more input files.)
+
+```bash
+    fasta  = Channel.fromPath(params.fasta)
+
+    fasta.view()
+
+    SALMON_INDEX(
+        fasta.map{it -> [id:it.getName(), it]}
+    )
+    ch_versions = ch_versions.mix(SALMON_INDEX.out.versions.first())
+
+```
+
+Now what is happening here:
+
+To pass over our input FastA file, we need to do a small channel manipulation. nf-core/modules typically take the input together with a `meta` map. This is just a hashmap that contains relevant information for the analysis, that should be passed around the pipeline. There are a couple of keys that we share across all modules, such as `id`. So in order, to have a valid input for our module, we just use the fasta file name (`it.getName()`) as our `id`. In addition, we collect the versions of the tools that are run in the module. This will allow us later to track all tools and all versions allow us to generate a report.
+
+How test your pipeline:
+
+```bash
+nextflow run main.nf -profile test,docker --outdir results
+```
+
+You should now see that `SALMON_INDEX` is run.
 
 (lots of steps missing here)
 exercise to add a different module would be nice! => salmon/quant!
@@ -1096,7 +1166,7 @@ nf-core modules create
 
 ```
 
-Open ./modules/local/demo/module.nf and start customising this to your needs whilst working your way through the extensive TODO comments!
+Open ./modules/local/demo/module.nf and start customising this to your needs whilst working your way through the extensive TODO comments! For further help and guidelines for the modules code, check out the [modules specific documentation](https://nf-co.re/docs/contributing/tutorials/dsl2_modules_tutorial).
 
 ### Making a local module for a custom script
 
