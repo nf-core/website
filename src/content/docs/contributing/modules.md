@@ -603,6 +603,26 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
     bwa mem $args | samtools view $args2 -B -T ref.fasta
     ```
 
+    :::info
+    The addition of multi-tool modules to nf-core/modules adds increased burden on the nf-core
+    maintainers. Where possible, if a multi-tool module is desired, it should be implemented as
+    a local module in the nf-core pipeline. If another nf-core pipeline also desires to
+    use this module, a PR can be made adding it to nf-core/modules.
+
+    For guidelines regarding multi-tool modules, please search this page for the phrase `multi-tool`.
+
+    Existing local multi-tool modules can be searched for using the Github search box, searching across
+    the nf-core org for terms such as `args2` `samtools` `collate` `fastq`.
+
+    ```
+    org:nf-core args2 samtools collate fastq
+    ```
+
+    Modules intended to batch process files by parallelizing repeated calls to a tool, for example with
+    `xargs` or `parallel`, also fall under the category of multi-tool modules. Multi-tool modules
+    should chain tools in an explicit order given by the module name, e.g. `SAMTOOLS/COLLATEFASTQ`.
+    :::
+
 5.  Each tool in a multi-tool module MUST have an `$args` e.g.,
 
     ```bash
@@ -893,6 +913,10 @@ MY_MODULE(cram, fasta)  // execution of the module will need an element in the f
 2. Keywords SHOULD be sufficient to make the module findable through research domain, data types, and tool function keywords
 
    - Keywords MUST NOT just be solely of the (sub)tool name
+
+   :::info
+   For multi-tool modules, please add the keyword `multi-tool`, as well as all the (sub)tools involved.
+   :::
 
 3. Keywords MUST be all lower case
 
@@ -1400,6 +1424,34 @@ dump_parameters      // boolean: dump parameters
 outdir               //    path: base directory used to publish pipeline results
 check_conda_channels // boolean: check conda channels
 ```
+
+## Deprecating a module
+
+Sometimes modules or subworkflows become outdated and need to be deprecated (available, but no longer recommended).
+These modules or subworkflows should not be deleted as they could be used in private repositories, or used on other
+platforms. The recommended procedure is, once the alternative is available on nf-core modules, add a message to the
+top of the module code saying this module is deprecated, and an `assert` in the code body to print a deprecation
+message like so:
+
+```groovy title="main.nf"
+def deprecation_message = """
+WARNING: This module has been deprecated. Please use nf-core/modules/path/to/new/module
+
+Reason:
+This module is no longer fit for purpose because ...
+
+"""
+
+process OLD_MODULE {
+  ...
+
+  script:
+  assert false: deprecation_message
+}
+```
+
+The purpose of the `assert` is to introduce a mechanism which stops the pipeline and alerts the developer when
+an automatic update of the module/subworkflow is performed.
 
 ## Help
 

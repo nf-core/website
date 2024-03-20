@@ -1219,6 +1219,83 @@
       }
     },
     {
+      "name": "ale",
+      "path": "modules/nf-core/ale/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "ale",
+        "description": "ALE: assembly likelihood estimator.",
+        "keywords": [
+          "reference-independent",
+          "assembly",
+          "evaluation"
+        ],
+        "tools": [
+          {
+            "ale": {
+              "description": "ALE is a generic assembly likelihood evaluation framework for assessing the accuracy of genome and metagenome assemblies.",
+              "documentation": "https://portal.nersc.gov/dna/RD/Adv-Seq/ALE-doc/index.html#document-install",
+              "tool_dev_url": "https://github.com/sc932/ALE",
+              "doi": "10.1093/bioinformatics/bts723",
+              "licence": [
+                "NCSA"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "asm": {
+              "type": "file",
+              "description": "Assembly in FASTA format",
+              "pattern": "*.{fasta,fa}"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "BAM file containing sorted read mappings",
+              "pattern": "*.{bam}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "ale": {
+              "type": "file",
+              "description": "Output TXT file containing ALE results",
+              "pattern": "*_ALEoutput.{txt}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@rodtheo"
+        ],
+        "maintainers": [
+          "@rodtheo"
+        ]
+      }
+    },
+    {
       "name": "allelecounter",
       "path": "modules/nf-core/allelecounter/meta.yml",
       "type": "module",
@@ -2136,6 +2213,106 @@
         ],
         "maintainers": [
           "@jfy133"
+        ]
+      }
+    },
+    {
+      "name": "angsd_gl",
+      "path": "modules/nf-core/angsd/gl/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "angsd_gl",
+        "description": "Calculated genotype likelihoods from BAM files.",
+        "keywords": [
+          "angsd",
+          "genotype likelihood",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "angsd": {
+              "description": "ANGSD: Analysis of next generation Sequencing Data",
+              "homepage": "http://www.popgen.dk/angsd/",
+              "documentation": "http://www.popgen.dk/angsd/",
+              "tool_dev_url": "https://github.com/ANGSD/angsd",
+              "doi": "10.1186/s12859-014-0356-4",
+              "licence": [
+                "GPL v3",
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "A list of BAM or CRAM files",
+              "pattern": "*.{bam,cram}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "A reference genome in FASTA format",
+              "pattern": "*.fasta"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "error_file": {
+              "type": "file",
+              "description": "A file containing information about type specific errors.",
+              "pattern": "*.error.chunkunordered"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "genotype_likelihood": {
+              "type": "file",
+              "description": "File containing genotype likelihoods per sample",
+              "pattern": "*.{glf,beagle}.gz"
+            }
+          }
+        ],
+        "authors": [
+          "@apeltzer",
+          "@TCLamnidis"
+        ],
+        "maintainers": [
+          "@apeltzer",
+          "@TCLamnidis"
         ]
       }
     },
@@ -3431,6 +3608,14 @@
         {
           "name": "rnafusion",
           "version": "3.0.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         },
         {
           "name": "rnafusion",
@@ -9107,6 +9292,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "phaseimpute",
+          "version": "dev"
+        },
         {
           "name": "sarek",
           "version": "3.4.0"
@@ -32969,6 +33158,12 @@
         ],
         "input": [
           {
+            "meta": {
+              "type": "map",
+              "description": "A Groovy map containing sample information,\ne.g. [ id: \"test\" ]\n"
+            }
+          },
+          {
             "infile": {
               "type": "file",
               "description": "MSA or distance matrix in Phylip format",
@@ -33413,10 +33608,6 @@
           "version": "2.6.0"
         },
         {
-          "name": "multiplesequencealign",
-          "version": "dev"
-        },
-        {
           "name": "nanoseq",
           "version": "3.1.0"
         },
@@ -33434,10 +33625,6 @@
         },
         {
           "name": "phageannotator",
-          "version": "dev"
-        },
-        {
-          "name": "phaseimpute",
           "version": "dev"
         },
         {
@@ -33645,6 +33832,77 @@
         ],
         "maintainers": [
           "@aunderwo"
+        ]
+      }
+    },
+    {
+      "name": "fastx_collapser",
+      "path": "modules/nf-core/fastx/collapser/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "fastx_collapser",
+        "description": "Collapses identical sequences in a FASTQ/A file into a single sequence (while maintaining reads counts)",
+        "keywords": [
+          "collapse",
+          "genomics",
+          "fasta",
+          "fastq"
+        ],
+        "tools": [
+          {
+            "fastx": {
+              "description": "A collection of command line tools for Short-Reads FASTA/FASTQ files preprocessing",
+              "homepage": "http://hannonlab.cshl.edu/fastx_toolkit/",
+              "documentation": "http://hannonlab.cshl.edu/fastx_toolkit/commandline.html",
+              "tool_dev_url": "https://github.com/agordon/fastx_toolkit",
+              "licence": [
+                "AGPL"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "fastx": {
+              "type": "file",
+              "description": "Decompressed FASTA/FASTQ input file",
+              "pattern": "*.{fastq,fasta}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Collapsed FASTA file",
+              "pattern": "*.fasta"
+            }
+          }
+        ],
+        "authors": [
+          "@jvfe"
+        ],
+        "maintainers": [
+          "@jvfe"
         ]
       }
     },
@@ -38449,6 +38707,14 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -39174,6 +39440,14 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -45077,6 +45351,14 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -46924,6 +47206,12 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'reference' ]\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "The reference fasta file",
@@ -46931,10 +47219,22 @@
             }
           },
           {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'reference' ]\n"
+            }
+          },
+          {
             "fai": {
               "type": "file",
               "description": "Index of reference fasta file",
               "pattern": "*.fasta.fai"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'reference' ]\n"
             }
           },
           {
@@ -51292,7 +51592,9 @@
               "documentation": "https://odelaneau.github.io/GLIMPSE/commands.html",
               "tool_dev_url": "https://github.com/odelaneau/GLIMPSE",
               "doi": "10.1038/s41588-020-00756-0",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -51643,7 +51945,9 @@
               "documentation": "https://odelaneau.github.io/GLIMPSE/commands.html",
               "tool_dev_url": "https://github.com/odelaneau/GLIMPSE",
               "doi": "10.1038/s41588-020-00756-0",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -51725,7 +52029,9 @@
               "documentation": "https://odelaneau.github.io/GLIMPSE/commands.html",
               "tool_dev_url": "https://github.com/odelaneau/GLIMPSE",
               "doi": "10.1038/s41588-020-00756-0",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -51862,7 +52168,9 @@
               "documentation": "https://odelaneau.github.io/GLIMPSE/commands.html",
               "tool_dev_url": "https://github.com/odelaneau/GLIMPSE",
               "doi": "10.1038/s41588-020-00756-0",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -51945,7 +52253,9 @@
               "documentation": "https://odelaneau.github.io/GLIMPSE/commands.html",
               "tool_dev_url": "https://github.com/odelaneau/GLIMPSE",
               "doi": "10.1038/s41588-020-00756-0",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -52069,7 +52379,9 @@
               "documentation": "https://odelaneau.github.io/GLIMPSE/commands.html",
               "tool_dev_url": "https://github.com/odelaneau/GLIMPSE",
               "doi": "10.1038/s41588-020-00756-0",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -52085,18 +52397,6 @@
               "type": "file",
               "description": "VCF/BCF file generated using GLIMPSE ligate",
               "pattern": "*.{vcf,bcf,vcf.gz,bcf.gz}"
-            }
-          },
-          {
-            "sample": {
-              "type": "parameter",
-              "description": "Samples a likely haplotype pair for each sample, use it in combination with --seed. Option not recommended for general usage, use --solve instead"
-            }
-          },
-          {
-            "solve": {
-              "type": "parameter",
-              "description": "Get the most likely haplotype pair for each sample (the random number generator is not used)"
             }
           }
         ],
@@ -53994,6 +54294,85 @@
       }
     },
     {
+      "name": "gt_gff3validator",
+      "path": "modules/nf-core/gt/gff3validator/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gt_gff3validator",
+        "description": "GenomeTools gt-gff3validator utility to strictly validate a GFF3 file",
+        "keywords": [
+          "genome",
+          "gff3",
+          "annotation",
+          "validation"
+        ],
+        "tools": [
+          {
+            "gt": {
+              "description": "The GenomeTools genome analysis system",
+              "homepage": "https://genometools.org/index.html",
+              "documentation": "https://genometools.org/documentation.html",
+              "tool_dev_url": "https://github.com/genometools/genometools",
+              "doi": "10.1109/TCBB.2013.68",
+              "licence": [
+                "ISC"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "gff3": {
+              "type": "file",
+              "description": "Input gff3 file",
+              "pattern": "*.{gff,gff3}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "success_log": {
+              "type": "file",
+              "description": "Log file for successful validation",
+              "pattern": "*.success.log"
+            }
+          },
+          {
+            "error_log": {
+              "type": "file",
+              "description": "Log file for failed validation",
+              "pattern": "*.error.log"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@GallVp"
+        ],
+        "maintainers": [
+          "@GallVp"
+        ]
+      }
+    },
+    {
       "name": "gt_ltrharvest",
       "path": "modules/nf-core/gt/ltrharvest/meta.yml",
       "type": "module",
@@ -54318,6 +54697,64 @@
           "version": "2.5.4"
         }
       ]
+    },
+    {
+      "name": "gtfsort",
+      "path": "modules/nf-core/gtfsort/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gtfsort",
+        "description": "Sort GTF files in chr/pos/feature order",
+        "keywords": [
+          "sort",
+          "example",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "gtfsort": {
+              "description": "A chr/pos/feature GTF sorter that uses a lexicographically-based index ordering algorithm.",
+              "homepage": "https://github.com/alejandrogzi/gtfsort",
+              "documentation": "https://github.com/alejandrogzi/gtfsort",
+              "tool_dev_url": "https://github.com/alejandrogzi/gtfsort",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "gtf": {
+              "type": "file",
+              "description": "Unsorted GTF/GFF file.",
+              "pattern": "*.gtf"
+            }
+          }
+        ],
+        "output": [
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "gtf": {
+              "type": "file",
+              "description": "Sorted GTF file",
+              "pattern": "*.gtf"
+            }
+          }
+        ],
+        "authors": [
+          "@georgiakes"
+        ],
+        "maintainers": [
+          "@georgiakes"
+        ]
+      }
     },
     {
       "name": "gubbins",
@@ -64812,6 +65249,113 @@
       }
     },
     {
+      "name": "liftoff",
+      "path": "modules/nf-core/liftoff/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "liftoff",
+        "description": "Uses Liftoff to accurately map annotations in GFF or GTF between assemblies of the same,\nor closely-related species\n",
+        "keywords": [
+          "genome",
+          "annotation",
+          "gff3",
+          "gtf",
+          "liftover"
+        ],
+        "tools": [
+          {
+            "liftoff": {
+              "description": "Liftoff is a tool that accurately maps annotations in GFF or GTF between assemblies of the same,\nor closely-related species\n",
+              "homepage": "https://github.com/agshumate/Liftoff",
+              "documentation": "https://github.com/agshumate/Liftoff",
+              "tool_dev_url": "https://github.com/agshumate/Liftoff",
+              "doi": "10.1093/bioinformatics/bty191",
+              "licence": [
+                "GPL v3 License"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "target_fa": {
+              "type": "file",
+              "description": "Target assembly in fasta format",
+              "pattern": "*.{fsa,fa,fasta}"
+            }
+          },
+          {
+            "ref_fa": {
+              "type": "file",
+              "description": "Reference assembly in fasta format",
+              "pattern": "*.{fsa,fa,fasta}"
+            }
+          },
+          {
+            "ref_annotation": {
+              "type": "file",
+              "description": "Reference assembly annotations in gtf or gff3 format",
+              "pattern": "*.{gtf,gff3}"
+            }
+          },
+          {
+            "ref_db": {
+              "type": "file",
+              "description": "Name of feature database; if not specified, the -g argument must\nbe provided and a database will be built automatically\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "gff3": {
+              "type": "file",
+              "description": "Lifted annotations for the target assembly in gff3 format",
+              "pattern": "*.gff3"
+            }
+          },
+          {
+            "polished_gff3": {
+              "type": "file",
+              "description": "Polished lifted annotations for the target assembly in gff3 format",
+              "pattern": "*.polished.gff3"
+            }
+          },
+          {
+            "unmapped_txt": {
+              "type": "file",
+              "description": "List of unmapped reference annotations",
+              "pattern": "*.unmapped.txt"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@GallVp"
+        ],
+        "maintainers": [
+          "@GallVp"
+        ]
+      }
+    },
+    {
       "name": "lima",
       "path": "modules/nf-core/lima/meta.yml",
       "type": "module",
@@ -65605,6 +66149,85 @@
         ],
         "maintainers": [
           "@nevinwu"
+        ]
+      }
+    },
+    {
+      "name": "lofreq_viterbi",
+      "path": "modules/nf-core/lofreq/viterbi/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "lofreq_viterbi",
+        "description": "Lofreq subcommand to call low frequency variants from alignments when tumor-normal paired samples are available",
+        "keywords": [
+          "variant calling",
+          "low frequency variant calling",
+          "variants",
+          "bam",
+          "probabilistic realignment"
+        ],
+        "tools": [
+          {
+            "lofreq": {
+              "description": "A fast and sensitive variant-caller for inferring SNVs and indels from next-generation sequencing data",
+              "homepage": "https://csb5.github.io/lofreq/",
+              "documentation": "https://csb5.github.io/lofreq/commands/",
+              "doi": "10.1093/nar/gks918",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "Sorted BAM file",
+              "pattern": "*.{bam}"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Reference genome FASTA file",
+              "pattern": "*.{fasta}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "Realignment and sorted BAM file",
+              "pattern": "*.{bam}"
+            }
+          }
+        ],
+        "authors": [
+          "@MarieLataretu"
+        ],
+        "maintainers": [
+          "@MarieLataretu"
         ]
       }
     },
@@ -67060,6 +67683,12 @@
           }
         ],
         "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
           {
             "rma6": {
               "type": "file",
@@ -79315,7 +79944,9 @@
               "documentation": "https://openms.readthedocs.io/en/latest/index.html",
               "tool_dev_url": "https://github.com/OpenMS/OpenMS",
               "doi": "10.1038/nmeth.3959",
-              "licence": "['BSD']"
+              "licence": [
+                "BSD"
+              ]
             }
           }
         ],
@@ -112264,6 +112895,13 @@
             }
           },
           {
+            "lib": {
+              "type": "file",
+              "description": "optional output, the library generated from the MSA file.",
+              "pattern": "*.*lib"
+            }
+          },
+          {
             "versions": {
               "type": "file",
               "description": "File containing software versions",
@@ -112273,12 +112911,14 @@
         ],
         "authors": [
           "@luisas",
-          "@JoseEspinosa"
+          "@JoseEspinosa",
+          "@alessiovignoli"
         ],
         "maintainers": [
           "@luisas",
           "@JoseEspinosa",
-          "@lrauschning"
+          "@lrauschning",
+          "@alessiovignoli"
         ]
       },
       "pipelines": [
@@ -120180,7 +120820,9 @@
               "documentation": "https://github.com/CenterForMedicalGeneticsGhent/WisecondorX",
               "tool_dev_url": "https://github.com/CenterForMedicalGeneticsGhent/WisecondorX",
               "doi": "10.1093/nar/gky1263",
-              "licence": "['Attribution-NonCommercial-ShareAlike CC BY-NC-SA']"
+              "licence": [
+                "Attribution-NonCommercial-ShareAlike CC BY-NC-SA"
+              ]
             }
           }
         ],
@@ -120282,7 +120924,9 @@
               "documentation": "https://github.com/CenterForMedicalGeneticsGhent/WisecondorX",
               "tool_dev_url": "https://github.com/CenterForMedicalGeneticsGhent/WisecondorX",
               "doi": "10.1093/nar/gky1263",
-              "licence": "['Attribution-NonCommercial-ShareAlike CC BY-NC-SA']"
+              "licence": [
+                "Attribution-NonCommercial-ShareAlike CC BY-NC-SA"
+              ]
             }
           }
         ],
@@ -120358,7 +121002,9 @@
               "documentation": "https://github.com/CenterForMedicalGeneticsGhent/WisecondorX",
               "tool_dev_url": "https://github.com/CenterForMedicalGeneticsGhent/WisecondorX",
               "doi": "10.1093/nar/gky1263",
-              "licence": "['Attribution-NonCommercial-ShareAlike CC BY-NC-SA']"
+              "licence": [
+                "Attribution-NonCommercial-ShareAlike CC BY-NC-SA"
+              ]
             }
           }
         ],
@@ -120428,7 +121074,9 @@
               "documentation": "https://github.com/CenterForMedicalGeneticsGhent/WisecondorX",
               "tool_dev_url": "https://github.com/CenterForMedicalGeneticsGhent/WisecondorX",
               "doi": "10.1093/nar/gky1263",
-              "licence": "['Attribution-NonCommercial-ShareAlike CC BY-NC-SA']"
+              "licence": [
+                "Attribution-NonCommercial-ShareAlike CC BY-NC-SA"
+              ]
             }
           }
         ],
@@ -120488,7 +121136,7 @@
             }
           },
           {
-            "abberations_bed": {
+            "aberrations_bed": {
               "type": "file",
               "description": "OPTIONAL - Output abberations in BED format. This gets created with the `--bed` option",
               "pattern": "*_aberrations.bed"
@@ -130104,15 +130752,15 @@
             }
           },
           {
-            "phased_variants": {
+            "merged_variants": {
               "type": "file",
-              "description": "Output VCF/BCF file containing genotype probabilities (GP field),\nimputed dosages (DS field), best guess genotypes (GT field),\nsampled haplotypes in the last (max 16) main iterations (HS field) and info-score.\nStructure: [ val(meta), bcf ]\n"
+              "description": "Output phased VCF/BCF file for the merged regions.\nPhased information (HS field) is updated accordingly for the full region.\nStructure: [ val(meta), bcf ]\n"
             }
           },
           {
-            "merged_variants": {
+            "merged_variants_index": {
               "type": "file",
-              "description": "Output VCF/BCF file for the merged regions.\nPhased information (HS field) is updated accordingly for the full region.\nStructure: [ val(meta), bcf ]\n"
+              "description": "Index output of phased VCF/BCF file for the merged regions.\nStructure: [ val(meta), csi ]\n"
             }
           },
           {
