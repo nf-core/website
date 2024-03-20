@@ -357,3 +357,12 @@ nf-core lint
       </details>
 
    :::
+
+<p class="text-center">
+  <a href="../gitpod_environment/" class="btn btn-lg btn-success" style="font-size: 14px">
+    < go to Chapter 1
+  </a>
+  <a href="../template_walk_through/" class="btn btn-lg btn-success" style="font-size: 14px">
+    go to Chapter 3 >
+  </a>
+</p>
