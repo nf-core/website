@@ -72,21 +72,20 @@ function getLinkIcon(link) {
                                                             <i class="fa-duotone fa-map-pin me-1" />
                                                             See on map
                                                         </a>
-                                                    )}:
+                                                    )}
+                                                    :
                                                 </strong>
                                                 <ul class="list-unstyled">
                                                     <li>
-                                                        {
-                                                            location.address && (
-                                                                <>
-                                                                    <ul>
-                                                                        <li>
-                                                                            <span>{location.address}</span>
-                                                                        </li>
-                                                                    </ul>
-                                                                </>
-                                                            )
-                                                        }
+                                                        {location.address && (
+                                                            <>
+                                                                <ul>
+                                                                    <li>
+                                                                        <span>{location.address}</span>
+                                                                    </li>
+                                                                </ul>
+                                                            </>
+                                                        )}
                                                         {locationLinks && (
                                                             <ul>
                                                                 {locationLinks.map((loc) => {

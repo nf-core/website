@@ -7,10 +7,10 @@ startTime: '09:30+01:00'
 endDate: '2023-03-29'
 endTime: '16:00+01:00'
 locations:
-    - name: Google Academy, London
-      address: 123 Buckingham Palace Rd, London SW1W 9SH
-      links: https://www.wired.co.uk/article/google-digital-skills-academy
-      geoCoordinates: [51.493721, -0.146830]
+  - name: Google Academy, London
+    address: 123 Buckingham Palace Rd, London SW1W 9SH
+    links: https://www.wired.co.uk/article/google-digital-skills-academy
+    geoCoordinates: [51.493721, -0.146830]
 ---
 
 Local event to be held at the [Google Academy, London](https://goo.gl/maps/4RH3qsYMRVnM65Bb9).

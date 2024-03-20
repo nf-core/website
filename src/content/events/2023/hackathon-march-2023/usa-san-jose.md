@@ -7,7 +7,7 @@ startTime: '08:00-07:00'
 endDate: '2023-03-29'
 endTime: '15:00-07:00'
 locations:
-    - name: San Jose, California
+  - name: San Jose, California
 # address:
 # locationURL:
 # locationLatLng: [xxx, xxx]

@@ -7,10 +7,10 @@ startTime: '10:00+02:00'
 endDate: '2023-03-29'
 endTime: '18:00+02:00'
 locations:
-    - name: SciLifeLab
-      address: Tomtebodavägen 23A, 17165 Solna, Sweden
-      links: https://scilifelab.se/
-      geoCoordinates: [59.3505174, 18.0221508]
+  - name: SciLifeLab
+    address: Tomtebodavägen 23A, 17165 Solna, Sweden
+    links: https://scilifelab.se/
+    geoCoordinates: [59.3505174, 18.0221508]
 ---
 
 Local event to be held at SciLifeLab, Stockholm.
