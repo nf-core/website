@@ -388,9 +388,7 @@ nextflow run tests/subworkflows/nf-core/<name_of_subworkflow> -entry test_<name_
 ## What is the `meta` map?
 
 In nf-core DSL2 pipelines, to add sample-specific information and metadata that is carried throughout the pipeline, we use a meta variable. This avoids the need to create separate channels for each new characteristic.
-The meta variable can be passed down to processes as a tuple of the channel containing the actual samples, e.g. FastQ files, and the meta variable. The `meta map` is a [groovy map](https://www.tutorialspoint.com/groovy/groovy_maps.htm), which is like a python dictionary.
-
-<!-- TODO: nf-core: Link to DSL2 modules docs section for this instead of duplicating here -->
+The meta variable can be passed down to processes as a tuple of the channel containing the actual samples, e.g. FastQ files, and the meta variable. The `meta map` is a [groovy map](https://www.tutorialspoint.com/groovy/groovy_maps.htm), which is like a python dictionary. Additional documentation on meta maps is available [here](https://nf-co.re/docs/contributing/modules#what-is-the-meta-map).
 
 ## Help
 
