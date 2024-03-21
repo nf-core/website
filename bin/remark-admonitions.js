@@ -120,8 +120,6 @@ export default function admonitionsPlugin() {
         iconWrapper.children = [svg, title, expandButton];
 
 
-
-
         // Creating the content's div for padding
         const contentColPaddingWrapper = h('div');
         const contentColPaddingWrapperData = contentColPaddingWrapper.data || (contentColPaddingWrapper.data = {});
@@ -129,7 +127,7 @@ export default function admonitionsPlugin() {
         contentColPaddingWrapperData.hProperties = h(
           'div',
           {
-            class: 'p-3',
+            class: 'p-3 admonition-body-content',
           }
         ).properties;
         contentColPaddingWrapper.children = [...node.children]; // Adding markdown's content block.
