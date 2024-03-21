@@ -1301,6 +1301,8 @@ Launch Page
     font-family: "Font Awesome 6 Pro", "Font Awesome 6 Pro fallback";
     margin-left: 0.5rem;
     font-weight: 900;
+    text-align: center; // same setting as .fa-w
+    width: 1.25em; // same setting as .fa-w
     content: "\f078";
   }
   .admonition-collapse-button.collapsed::after {
@@ -1321,11 +1323,6 @@ figure[data-rehype-pretty-code-figure] [data-theme*=' ']:not([data-rehype-pretty
   }
   [data-highlighted-chars] {
     background-color: tint-color($gray-500, 80%);
-  }
-  [data-rehype-pretty-code-caption] {
-    margin-top: -0.75rem;
-    font-size: $small-font-size;
-    color: $secondary;
   }
 }
 
