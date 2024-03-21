@@ -5,7 +5,7 @@ subtitle: How to troubleshoot common mistakes and issues
 
 ## How to read this page
 
-1. Search your specific error message in this page using your browsers search functionality (e.g. <kbd class="text-small">ctrl</kbd> <kbd class="text-small">f</kbd> or <kbd  class="text-small">cmd</kbd> <kbd  class="text-small">f</kbd>)
+1. Search your specific error message in this page using your browsers search functionality (e.g. <kbd class="text-small">ctrl</kbd> <kbd class="text-small">f</kbd> or <kbd class="text-small">cmd</kbd> <kbd class="text-small">f</kbd>)
 2. Read the headers of each sections to see if the error appears to match your error
 3. Follow the trouble shooting basics below,
    - to try to reproduce the error
