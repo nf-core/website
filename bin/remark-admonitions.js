@@ -90,11 +90,10 @@ export default function admonitionsPlugin() {
           node.attributes.title ? node.attributes.title : boxInfo.title,
         ).properties;
 
-
         // Expand button
         let expandButton = h();
         if (node.attributes.collapse !== undefined) {
-          const expandText = 'Expand '+node.attributes.collapse;
+          const expandText = 'Expand';
           expandButton = h('button', expandText);
           const expandButtonData = expandButton.data || (expandButton.data = {});
           expandButtonData.hName = 'button';
@@ -102,11 +101,11 @@ export default function admonitionsPlugin() {
             'button',
             {
               class: `btn btn-sm text-secondary flex-shrink-1 collapsed admonition-collapse-button`,
-              type:"button",
-              "data-bs-toggle":"collapse",
-              "data-bs-target":`#admonition-${randomId}`
+              type: 'button',
+              'data-bs-toggle': 'collapse',
+              'data-bs-target': `#admonition-${randomId}`,
             },
-            expandText
+            expandText,
           ).properties;
         }
 
@@ -119,17 +118,13 @@ export default function admonitionsPlugin() {
         }).properties;
         iconWrapper.children = [svg, title, expandButton];
 
-
         // Creating the content's div for padding
         const contentColPaddingWrapper = h('div');
         const contentColPaddingWrapperData = contentColPaddingWrapper.data || (contentColPaddingWrapper.data = {});
         contentColPaddingWrapperData.hName = 'div';
-        contentColPaddingWrapperData.hProperties = h(
-          'div',
-          {
-            class: 'p-3 admonition-body-content',
-          }
-        ).properties;
+        contentColPaddingWrapperData.hProperties = h('div', {
+          class: 'p-3 admonition-body-content',
+        }).properties;
         contentColPaddingWrapper.children = [...node.children]; // Adding markdown's content block.
 
         // Creating the content's div to show/hide collapse.
@@ -137,13 +132,10 @@ export default function admonitionsPlugin() {
         const contentColWrapperData = contentColWrapper.data || (contentColWrapper.data = {});
 
         contentColWrapperData.hName = 'div';
-        contentColWrapperData.hProperties = h(
-          'div',
-          {
-            class: node.attributes.collapse !== undefined ? 'collapse' : '',
-            id:`admonition-${randomId}`
-          }
-        ).properties;
+        contentColWrapperData.hProperties = h('div', {
+          class: node.attributes.collapse !== undefined ? 'collapse' : '',
+          id: `admonition-${randomId}`,
+        }).properties;
         contentColWrapper.children = [contentColPaddingWrapper];
 
         // Creating the wrapper for the admonition's content.
