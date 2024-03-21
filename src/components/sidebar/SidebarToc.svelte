@@ -24,7 +24,7 @@
     // make margin classes from min to max heading depth
     let headingMargin = {};
     for (let i = minHeadingDepth; i <= 4; i++) {
-        headingMargin[i] = 'ps-' + (i - minHeadingDepth);
+        headingMargin[i] = ' ps-' + (i - minHeadingDepth);
     }
     let activeHeading = {};
     onMount(() => {
