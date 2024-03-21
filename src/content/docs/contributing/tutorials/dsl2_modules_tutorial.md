@@ -260,7 +260,7 @@ Notice the escape `\$` of the first `$` sign to distinguish between _bash_ varia
 
 :::tip{collapse}
 
-- `sed '3!d'` Extracts only line 3 of the output printed by `samtools --version`
+- `sed '3!d'{:bash}` Extracts only line 3 of the output printed by `samtools --version`
 - Determine whether the error printed to stderr or stdout, by trying to filter the line with `sed`
 
 ```bash
@@ -270,13 +270,13 @@ samtools --version | sed '1!d'
 ```
 
 - If it works, then you're reading from stdout, otherwise you need to capture stderr using `|&` which is shorthand for `2>&1 |`
-- `sed 's/pattern/replacement/'` can be used to remove parts of a string. `.` matches any character, `+` matches 1 or more times.
-- You can separate sed commands using `;`. Often the pattern : `sed filter line ; replace string` is enough to get the version number
+- `sed 's/pattern/replacement/'{:bash}` can be used to remove parts of a string. `.` matches any character, `+` matches 1 or more times.
+- You can separate sed commands using `;`. Often the pattern : `sed filter line ; replace string{:bash}` is enough to get the version number
 - It is not necessary to use `echo`
-- For non-zero error code: `command --version || true` or `command --version | sed ... || true`
-- If the version is at a specific line you can try `sed -nr '/pattern/p'` that will return only the line with the pattern
-- To extract the version number in the middle you can also use regex pattern with `grep` as follow: `grep -o -E '([0-9]+.){1,2}[0-9]'`
-- If multiple lines are returned you can select the first one with `tool --version | head -n 1`
+- For non-zero error code: `command --version || true{:bash}` or `command --version | sed ... || true{:bash}`
+- If the version is at a specific line you can try `sed -nr '/pattern/p'{:bash}` that will return only the line with the pattern
+- To extract the version number in the middle you can also use regex pattern with `grep` as follows: `grep -o -E '([0-9]+.){1,2}[0-9]'{:bash}`
+- If multiple lines are returned you can select the first one with `tool --version | head -n 1{:bash}`
 
 :::
 

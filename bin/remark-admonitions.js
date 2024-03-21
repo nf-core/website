@@ -1,4 +1,6 @@
 // taken from https://github.com/elviswolcott/remark-admonitions/issues/49#issuecomment-1193909728
+//NOTE: When updating this file, check Admonition.astro for similar changes.
+
 import { h } from 'hastscript';
 import { visit } from 'unist-util-visit';
 
