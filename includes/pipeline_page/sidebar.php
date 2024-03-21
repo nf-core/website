@@ -181,7 +181,6 @@ $embed_video = array_values($embed_video)[0];
     </div>
     <div>
         <h6>get in touch</h6>
-        <p><a class="btn btn-sm btn-outline-info" href="https://nfcore.slack.com/channels/<?php echo $pipeline->name; ?>"><i class="fab fa-slack me-1"></i> Ask a question on Slack</a></p>
         <p><a class="btn btn-sm btn-outline-secondary" href="<?php echo $pipeline->html_url; ?>/issues"><i class="fab fa-github me-1"></i> Open an issue on GitHub</a></p>
     </div>
 </div>
