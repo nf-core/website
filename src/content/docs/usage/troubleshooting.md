@@ -240,7 +240,7 @@ A few examples are as follows:
 
 Note that if your sample name is "messy" then you have to be very particular with your glob specification (see point 2 above). A file name like `L1-1-D-2h_S1_L002_R1_001.fastq.gz` can be difficult enough for a human to read. Specifying `*{1,2}*.gz` will not give you what you want, whilst `*{R1,R2}*.gz` will.
 
-Please also note pipelines with 'direct input' can't take a list of multiple input files - it takes a glob expression. If your input files are scattered in different paths then we recommend that you generate a directory with symlinked files. If running in paired end mode please make sure that your files are sensibly named so that they can be properly paired. See the previous point.
+Please also note that genomics pipelines with 'direct input' can't take a list of multiple input files - it takes a glob expression. If your input files are scattered in different paths then we recommend that you generate a directory with symlinked files. Furthermore, you have paired-end sequencing data mode please make sure that your files are sensibly named so that they can be properly paired e.g. (`--input '*_{R1,R2}.fastq.gz'`).
 
 #### Output for only a single sample although I specified multiple with wildcards
 
