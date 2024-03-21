@@ -3,13 +3,22 @@ title: Troubleshooting
 subtitle: How to troubleshoot common mistakes and issues
 ---
 
+## How to read this page
+
+1. Search your specific error message in this page using your browsers search functionality (e.g. <kbd>ctrl</kbd> + <kbd>f</kbd>)
+2. Read the headers of each sections to see if the error appears to match your error
+3. Follow the trouble shooting basics below,
+   - to try to reproduce the error
+   - to inspect more places to gather information regarding the problem
+4. If you can't find your error message here, or a solution to your problem, fails, please [ask for help](#asking-for-help)
+
 ## Troubleshooting basics
 
 These are the recommended steps for troubleshooting a pipeline.
 
-### Start small
+### Check Nextflow is definitely working
 
-Before using the pipeline with your data, make sure to run a test using:
+Before using the pipeline with your own data and parameters, make sure to run a test in a separate directory using:
 
 ```bash
 nextflow run nf-core/<pipeline_name> -profile test,docker
@@ -86,7 +95,20 @@ For this step you try to identify when the error occurs:
 
 ### Read the log and check the work directory
 
-Checking the log files can help you to identify the type of error and where the error occurred. In order to search the output related to the error we need to understand the anatomy of the work directory:
+Checking the log files can help you to identify the type of error and where the error occurred.
+
+The first log file to look at is `.nextflow.log` that is placed in you executed `nextflow run`.
+This reports all logging information from the overarching pipeline run.
+Note this can be overwhelming! If so, proceed to the next step.
+
+In order to search the output related to the error we need to understand the anatomy of the work directory. The work directory is reported at the end of the error message:
+
+```console
+Work dir:
+  /home/harshil/repos/nf-core/fetchngs/work/c3/29eddb3ef99977c62f462b61f09afa
+```
+
+And contains:
 
 1. `command.out` STDOUT from tool.
 2. `command.err` STDERR from tool.
@@ -170,7 +192,9 @@ In this case, SLURM has printed to my console the reason _why_, the job failed t
 
 With this information, I can go back to my configuration file, and tweak the settings accordingly, and run the pipeline again.
 
-## Input files not found
+## Common Errors
+
+### Input and Output errors
 
 If the pipeline can't find your files then you will get the following error
 
@@ -178,7 +202,7 @@ If the pipeline can't find your files then you will get the following error
 ERROR ~ Cannot find any reads matching: *{1,2}.fastq.gz
 ```
 
-### Direct input
+#### Direct input
 
 :::warning
 This section mostly refers to DSL1 pipelines! Most DSL2 pipelines now use samplesheet inputs rather than direct read inputs.
@@ -216,7 +240,9 @@ A few examples are as follows:
 
 Note that if your sample name is "messy" then you have to be very particular with your glob specification (see point 2 above). A file name like `L1-1-D-2h_S1_L002_R1_001.fastq.gz` can be difficult enough for a human to read. Specifying `*{1,2}*.gz` will not give you what you want, whilst `*{R1,R2}*.gz` will.
 
-### Output for only a single sample although I specified multiple with wildcards
+Please also note pipelines with 'direct input' can't take a list of multiple input files - it takes a glob expression. If your input files are scattered in different paths then we recommend that you generate a directory with symlinked files. If running in paired end mode please make sure that your files are sensibly named so that they can be properly paired. See the previous point.
+
+#### Output for only a single sample although I specified multiple with wildcards
 
 You must specify paths to files in quotes, otherwise your _shell_ (e.g. bash) will evaluate any wildcards (\*) rather than Nextflow.
 
@@ -240,15 +266,34 @@ On the other hand, encapsulating the path in quotes will allow _Nextflow_ to eva
 nextflow run nf-core/<pipeline> --input "/path/to/sample_*/*.fq.gz"
 ```
 
-### Sample sheet input
+#### Sample sheet input
 
 If you are using a sample sheet or TSV input method, check there is not a mistake or typo in the path in a given column. Common mistakes are a trailing space at the end of the path, which can cause problems.
 
-### Data organization
+#### Using a local version of iGenomes
 
-The pipeline can't take a list of multiple input files - it takes a glob expression. If your input files are scattered in different paths then we recommend that you generate a directory with symlinked files. If running in paired end mode please make sure that your files are sensibly named so that they can be properly paired. See the previous point.
+The iGenomes config file uses `params.igenomes_base` to make it possible to use a local copy of iGenomes. However, as custom config files are loaded after `nextflow.config` and the `igenomes.config` has already been imported and parsed, setting `params.igenomes_base` in a custom config file has no effect and the pipeline will use the s3 locations by default. To overcome this you can specify a local iGenomes path by either:
 
-## The pipeline crashes almost immediately with an early pipeline step
+- Specifying an `--igenomes_base` path in your execution command.
+
+```bash
+nextflow run nf-core/<pipeline> --input <input> -c <config> -profile <profile> --igenomes_base <path>/<to>/<data>/igenomes
+```
+
+- Specifying the `igenomes_base` parameter in a parameters file provided with `-params-file` in `yaml` or `json` format.
+
+```bash
+nextflow run nf-core/<pipeline> -profile <profile> -params-file params.yml
+```
+
+Where the `params.yml` file contains the pipeline params:
+
+```bash
+input: '/<path>/<to>/<data>/input'
+igenomes_base: '/<path>/<to>/<data>/igenomes'
+```
+
+### The pipeline crashes almost immediately with an early pipeline step
 
 Sometimes a newly downloaded and set up nf-core pipeline will encounter an issue where a run almost immediately crashes (e.g. at `fastqc`, `output_documentation` etc.) saying the tool could not be found or similar.
 
@@ -258,7 +303,7 @@ The first thing to do is always check the `.nextflow.log` to see if it reports c
 Note that just because Nextflow reports a particular tool failed, this _does not_ necessarily mean it's an issue with the tool itself. It's important to always _fully_ read the error message to identify possible causes.
 :::
 
-### Tool not found
+#### Tool not found
 
 The most common case is when a user has forgotten to specify a container/environment profile.
 
@@ -266,7 +311,7 @@ If you do not specify one with the `-profile`, Nextflow by default looks for all
 
 It is _not_ recommended to run without a container/environment system as then your analysis will not be reproducible by others. You should pick one of: `docker`, `singularity`, `podman` and `conda` - depending on which your system already has available. See the nf-core [Installation](https://nf-co.re/docs/usage/installation/) documentation for more information.
 
-### Error related to Docker
+#### Error related to Docker
 
 You may have an outdated container. This happens more often when running on the `dev` branch of a nf-core pipeline, because Docker will _not_ update the container on each new commit, and thus may not get new tools called within the pipeline code.
 
@@ -285,7 +330,7 @@ docker {
 }
 ```
 
-### Error related to Singularity
+#### Error related to Singularity
 
 If you're running Singularity, it could be that Nextflow cannot access your Singularity image properly - often due to missing bind paths. See [_Cannot find input files when using Singularity_](https://nf-co.re/docs/usage/troubleshooting#cannot-find-input-files-when-using-singularity) for more information.
 
@@ -303,7 +348,7 @@ Caused by:
 
 If this is the case, please install `mksquashfs` or ask your IT department to install the package for you.
 
-### Error related to HPC Schedulers
+#### Error related to HPC Schedulers
 
 If working on a cluster, pipelines can crash if the profile used is not correctly configured for that environment. Typical issues can include missing cluster profile in `-profile`, incorrectly specified executor, or incompatible memory/CPU node maximums set in that institutional profile. See [nf-core/configs](https://github.com/nf-core/configs) and [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html#) for more information.
 
@@ -324,7 +369,7 @@ Command output:
   sbatch: error: Batch job submission failed: Invalid account or account/partition combination specified
 ```
 
-## Cannot find input files when using Singularity
+#### Cannot find input files when using Singularity
 
 Depending on how you install Singularity on your system several reoccurring issues have been reported. Typically these result in error messages such as these:
 
@@ -357,7 +402,7 @@ bind path = /home
 
 Alternatively, you can also add Singularity Bind Paths to your Nextflow call, e.g. using `autoMounts` and/or `runOptions` in the [Singularity scope](https://www.nextflow.io/docs/latest/config.html#config-singularity)
 
-## Warning about sticked on revision
+### Warning about sticked on revision
 
 If you get a warning like the following:
 
@@ -377,7 +422,7 @@ Specifying the version of the run you are using is highly recommended, as it hel
 
 You can see more information on the Nextflow documentation [here](https://www.nextflow.io/docs/latest/sharing.html#handling-revisions).
 
-## My pipeline crashes part way through a run at a certain step with a non 0 exit code
+### My pipeline crashes part way through a run at a certain step with a non 0 exit code
 
 Sometimes part way through a run, a particular tool or step of the pipeline will fail. While Nextflow and nf-core pipelines try to solve some of these issues for you, this is not always possible. If the particular eventually tool fails, Nextflow will report the process that failed with a non-0 error code, and print the command that failed.
 
@@ -417,54 +462,23 @@ If in doubt, Google is your friend! Many exit codes are roughly similar across m
 
 If you are still unable to resolve the issue, please make a GitHub issue on the corresponding pipeline repository.
 
-## I get a exceeded job memory limit error
+### I get a exceeded job memory limit error
+
+If you hit an error such as `Process requirement exceeds available memory -- req: 100 GB; avail: 15.5 GB`, this implies the pipeline run has requested more memory than is available on your system.
 
 While Nextflow tries to make your life easier by automatically retrying jobs that run out of memory with more resources (until a [specified max-limit](https://nf-co.re/docs/usage/configuration#tuning-workflow-resources)), sometimes you may have such large data that you run out even after the default 3 retries.
 
-To fix this you need to change the default memory requirements for the process that is breaking. We can do this by making a custom profile, which we then provide to the Nextflow run command.
+To address this you will need to make a configuration file that tells Nextflow how much memory or CPUs are available on your system, and also how much memory or CPUs the failing step should use.
 
-For example, let's say it's the `MARKDUPLICATES` process that is running out of memory (as displayed on the Nextflow running display).
+Please see the two following sections of the [configuring nf-core pipelines]
+(https://nf-co.re/docs/usage/configuration) page:
 
-- First we need to check to see what default memory value we have. For this you need to go into the pipeline code locally in your local copy (typically: `~/.nextflow/assets/nf-core/<pipeline>/`, or the GitHub repository (`https://github.com/nf-core/<pipeline>`)
-- Go to the file here `modules/nf-core/<tool_name>/main.nf`, and check the `label` line.
-- Once found, check the line called `label` and note down the corresponding label. In this case the label could be `process_low`.
-- Go back to the main github repository, and open `conf/base.config`. Now, search in your browser for `withLabel:'process_low'`.
-- Note what the `memory` field is set to (e.g. `4.GB`) on a line like: `memory = { check_max( 4.GB * task.attempt, 'memory' )})`.
-- Back on your working machine, make a new text file called `custom_resources.conf`. This should be saved somewhere centrally so you can reuse it.
-  > If you think this would be useful for multiple people in your lab/institute, we highly recommend you make an institutional profile at [nf-core/configs](https://github.com/nf-core/configs). This will simplify this process in the future.
-- Within this file, add the following. Note we have increased the default `4.GB` to `16.GB`.
+- Setting limits: '[Max Resources](https://nf-co.re/docs/usage/configuration#max-resources)'
+- Adusting the process resources: '[Tuning workflow resources](https://nf-co.re/docs/usage/configuration#tuning-workflow-resources)'
 
-  ```groovy
-  process {
-    withName: MARKDUPLICATES {
-      memory = 16.GB
-    }
-  }
-  ```
+The resulting configuration file can then be passed to your Nextflow run command with `-c <config_file> -resume` to resume the failed run but with the updated resource requirements.
 
-  :::info
-  In some cases you may need to use 'fully resolved' paths of the modules, as displayed in the nextflow console. e.g. `'NFCORE_SAREK:SAREK:MARKDUPLICATES'`, or in the pipeline's `conf/modules.config` file, if a module is used multiple times in a workflow and not all instances need the same resources.
-  :::
-
-  - Note that with the above example you will **_not_** have the automatic retry mechanism that resubmits jobs with increased resource requests (given appropriate exit codes). The job will still be resubmitted on failure but with `16.GB` each time.
-
-    - If you want this, use the following syntax instead:
-
-      ```groovy
-      memory = { check_max( 16.GB * task.attempt, 'memory' ) }
-      ```
-
-    - Next, copy the `check_max()` function from the pipeline's `nextflow.config` file (e.g. [here](https://github.com/nf-core/rnaseq/blob/3643a94411b65f42bce5357c5015603099556ad9/nextflow.config#L190-L221)) to the bottom of your custom config file.
-    - `16.GB * task.attempt` multiplies the memory request by the index of the retry. So if the job failed and is being tried a second time, it requests `32.GB`.
-    - The `check_max()` function prevents Nextflow requesting excessive resources above what is available on your system. This effectively sets a ceiling on the resources and prevents the pipeline from crashing if it goes too high. Unfortunately because of the order in which pipeline code and Nextflow configs are parsed, this function needs to be defined in your custom config file.
-
-- Once saved, modify the original Nextflow run command to supply the custom_resources configuration file:
-
-  ```bash
-  nextflow run nf-core/<pipeline> -c /<path>/<to>/custom_resources.conf -profile <original> <...>
-  ```
-
-## Crashed pipeline with an error but Nextflow is still running
+### Crashed pipeline with an error but Nextflow is still running
 
 If this happens, you can either wait until all other already running jobs to safely finish, or if Nextflow _still_ does not stop press `ctrl + c` on your keyboard (or equivalent) to stop the Nextflow run.
 
@@ -472,14 +486,14 @@ If this happens, you can either wait until all other already running jobs to saf
 if you do this, and do not plan to fix the run make sure to delete the `work` folder generated that is generated at the same as `results` (or specified with the Nextflow variable `-w`). Otherwise you may end up a lot of large intermediate files being left! You can clean a Nextflow run of all intermediate files with `nextflow clean -f -k` or delete the `work/` directory.
 :::
 
-### A step of a pipeline wasn't executed
+#### A step of a pipeline wasn't executed
 
 Possible options:
 
 1. If an optional step, check for a typo in the parameter name. Nextflow _does not_ check for this (unless you created a workflow with the nf-core template, which provides parameter validation)
 2. Check that an upstream step/process was turned on (if a step/process requires the output of an earlier process, it will not be activated unless it receives the output of that process)
 
-## My pipeline update doesn't seem to do anything
+### My pipeline update doesn't seem to do anything
 
 To download new version of a pipeline, you can use the following.
 
@@ -506,7 +520,7 @@ rm -r ~/.config/nfcore/nf-core/modules
 
 And re-pull the pipeline with the command above. This will install a fresh version of the version with the fixes.
 
-## Unable to acquire lock error
+### Unable to acquire lock error
 
 Errors like the following:
 
@@ -520,30 +534,7 @@ To fix this, you must clean the entirety of the run's `work/` directory e.g. wit
 
 `ctrl +z` is **not** a recommended way of killing a Nextflow job. Runs that take a long time to fail are often still running because other job submissions are still running. Nextflow will normally wait for those processes to complete before cleaning shutting down the run (to allow rerunning of a run with `-resume`). `ctrl + c` is much safer as it will tell Nextflow to stop earlier but cleanly.
 
-## Using a local version of iGenomes
-
-The iGenomes config file uses `params.igenomes_base` to make it possible to use a local copy of iGenomes. However, as custom config files are loaded after `nextflow.config` and the `igenomes.config` has already been imported and parsed, setting `params.igenomes_base` in a custom config file has no effect and the pipeline will use the s3 locations by default. To overcome this you can specify a local iGenomes path by either:
-
-- Specifying an `--igenomes_base` path in your execution command.
-
-```bash
-nextflow run nf-core/<pipeline> --input <input> -c <config> -profile <profile> --igenomes_base <path>/<to>/<data>/igenomes
-```
-
-- Specifying the `igenomes_base` parameter in a parameters file provided with `-params-file` in `yaml` or `json` format.
-
-```bash
-nextflow run nf-core/<pipeline> -profile <profile> -params-file params.yml
-```
-
-Where the `params.yml` file contains the pipeline params:
-
-```bash
-input: '/<path>/<to>/<data>/input'
-igenomes_base: '/<path>/<to>/<data>/igenomes'
-```
-
-## One module container fails due to Docker permissions
+### One module container fails due to Docker permissions
 
 The nf-core template `nextflow.config` contains the configuration `docker.runOptions = '-u $(id -u):$(id -g)'{:groovy}` for the profiles `docker` and `arm`.
 This is done to emulate the user inside the container.
