@@ -1292,6 +1292,20 @@ Launch Page
   .title {
     margin-bottom: 0.9rem;
   }
+  .admonition-collapse-button::after {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Font Awesome 6 Pro", "Font Awesome 6 Pro fallback";
+    margin-left: 0.5rem;
+    font-weight: 900;
+    content: "\f078";
+  }
+  .admonition-collapse-button.collapsed::after {
+    content: "\f054";
+  }
 }
 
 figure[data-rehype-pretty-code-figure] [data-theme*=' ']:not([data-rehype-pretty-code-title]) {
