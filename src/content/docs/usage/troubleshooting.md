@@ -5,7 +5,7 @@ subtitle: How to troubleshoot common mistakes and issues
 
 ## How to read this page
 
-1. Search your specific error message in this page using your browsers search functionality (e.g. <kbd>ctrl</kbd> + <kbd>f</kbd>)
+1. Search your specific error message in this page using your browsers search functionality (e.g. <kbd>ctrl</kbd> + <kbd>f</kbd> or <kbd>cmd</kbd> + <kbd>f</kbd>)
 2. Read the headers of each sections to see if the error appears to match your error
 3. Follow the trouble shooting basics below,
    - to try to reproduce the error
@@ -288,7 +288,7 @@ nextflow run nf-core/<pipeline> -profile <profile> -params-file params.yml
 
 Where the `params.yml` file contains the pipeline params:
 
-```bash
+```yaml title="params.yml"
 input: '/<path>/<to>/<data>/input'
 igenomes_base: '/<path>/<to>/<data>/igenomes'
 ```
@@ -473,8 +473,8 @@ To address this you will need to make a configuration file that tells Nextflow h
 Please see the two following sections of the [configuring nf-core pipelines]
 (https://nf-co.re/docs/usage/configuration) page:
 
-- Setting limits: '[Max Resources](https://nf-co.re/docs/usage/configuration#max-resources)'
-- Adusting the process resources: '[Tuning workflow resources](https://nf-co.re/docs/usage/configuration#tuning-workflow-resources)'
+- Setting limits: [Max Resources](https://nf-co.re/docs/usage/configuration#max-resources)
+- Adusting the process resources: [Tuning workflow resources](https://nf-co.re/docs/usage/configuration#tuning-workflow-resources)
 
 The resulting configuration file can then be passed to your Nextflow run command with `-c <config_file> -resume` to resume the failed run but with the updated resource requirements.
 
