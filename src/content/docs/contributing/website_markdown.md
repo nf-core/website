@@ -117,6 +117,18 @@ Curiously enough, the only thing that went through the mind of the bowl of petun
 Curiously enough, the only thing that went through the mind of the bowl of petunias as it fell was Oh no, not again.
 :::
 
+## Collapsing admonitions
+
+```md
+:::note{collapse}
+Many people have speculated that if we knew exactly why the bowl of petunias had thought that we would know a lot more about the nature of the Universe than we do now.
+:::
+```
+
+:::note{collapse}
+Many people have speculated that if we knew exactly why the bowl of petunias had thought that we would know a lot more about the nature of the Universe than we do now.
+:::
+
 # Code blocks
 
 We use [rehype-pretty-code](https://rehype-pretty-code.netlify.app/) to generate code blocks on the website. This allows us to add line numbers, highlight lines, add file names to code blocks, etc. These directives can be mixed and matched.
