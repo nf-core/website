@@ -77,6 +77,24 @@ blockquote {
   }
 }
 
+.main-content figure pre:has(+ figcaption) {
+  margin-bottom: 0;
+}
+.main-content figure pre:has(+ figcaption) code {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.main-content figcaption {
+  font-size: 0.8rem;
+  color: $body-secondary-color;
+  margin-bottom:1.5rem;
+  padding: 0.2rem 0.5rem;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border: 1px solid $border-color;
+  border-top: 0;
+}
+
 mark,
 .mark {
   padding: 0.2em 0;
@@ -1461,6 +1479,10 @@ div.mermaid {
 
   .main-content pre code {
     border: 1px solid $border-color-dark;
+  }
+  .main-content figcaption {
+    border-color: $border-color-dark;
+    color: $body-secondary-color-dark;
   }
 
   .markdown-content img[alt='Workflow'] {
