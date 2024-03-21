@@ -32,7 +32,7 @@ If you _must_ create your own test data, make sure you follow the [test data gui
 
 The first step, to contribute a module to the community repository is to fork \*nf-core modules into your own account or organisation. To do this, you should click on the top-right of the nf-core modules repository, and choose "fork" as shown in the figure below.
 
-![fork](/assets/markdown_assets/contributing/dsl2_modules_tutorial/dsl2-mod_01_fork.png)
+![fork](/images/contributing/dsl2_modules_tutorial/dsl2-mod_01_fork.png)
 
 You then choose the account or organisation you want to fork the repository into. Once forked, you can commit all changes you need into the new repository.
 
@@ -52,7 +52,7 @@ In order to create a new module, it is best to branch the code into a recognisab
 
   - To do this, you can select the dropdown menu on the top-left of your repository code, write the name of the new branch and choose to create it as shown below:
 
-    ![branch](/assets/markdown_assets/contributing/dsl2_modules_tutorial/dsl2-mod_02_new_branch.png)
+    ![branch](/images/contributing/dsl2_modules_tutorial/dsl2-mod_02_new_branch.png)
 
   - You will then sync this locally (ideally, you clone the forked repository on your working environment to edit code more comfortably)
 
@@ -100,7 +100,7 @@ Each of the files is pre-filled according to a defined nf-core template.
 
 You fill find a number of commented sections in the file, to help you modify the code while adhering to the guidelines, as you can appreciate in the following figure.
 
-```nextflow
+```groovy
 // TODO nf-core: If in doubt look at other nf-core/modules to see how we are doing things! :)
 //               https://github.com/nf-core/modules/tree/master/modules
 //               You can also ask for help via your pull request or on the #modules channel on the nf-core Slack workspace:
@@ -186,7 +186,7 @@ In our case, FGBIO also has a mandatory argument, which is not sample-specific, 
 
 Therefore, once we modify the template accordingly, our inputs and outputs will look like this:
 
-```nextflow
+```groovy
 input:
     tuple val(meta), path(reads)
     val(read_structure)
@@ -212,13 +212,13 @@ We now can substitute all our parameters with our predefined inputs, outputs and
 mkdir tmpFolder
 
 fgbio --tmp-dir=${PWD}/tmpFolder \\
-FastqToBam \\
-$args \\
--i ${reads} \\
--o "${prefix}_umi_converted.bam" \\
---read-structures $read_structure \\
---sample ${meta.id} \\
---library ${meta.id}
+    FastqToBam \\
+    $args \\
+    -i ${reads} \\
+    -o "${prefix}_umi_converted.bam" \\
+    --read-structures $read_structure \\
+    --sample ${meta.id} \\
+    --library ${meta.id}
 ```
 
 ### Export the version of the tool
@@ -246,7 +246,7 @@ However, in some cases the software outputs the version as _stderr_ and causes a
 
 In order to avoid that, we can in general print the version as part of an echo statement, like this
 
-```nextflow
+```groovy
 echo \$(tool --version 2>&1)
 ```
 
@@ -258,26 +258,27 @@ tool --version |& sed 'pattern'
 
 Notice the escape `\$` of the first `$` sign to distinguish between _bash_ variables and _nextflow_ variables.
 
-      <details markdown="1">
-      <summary>Tips</summary>
-      - `sed '3!d'` Extracts only line 3 of the output printed by `samtools --version`
-      - Determine whether the error printed to stderr or stdout, by trying to filter the line with `sed`
+:::tip{collapse}
 
-      ```bash
-      samtools --version
-      # Try filtering the specific line
-      samtools --version | sed '1!d'
-      ```
+- `sed '3!d'` Extracts only line 3 of the output printed by `samtools --version`
+- Determine whether the error printed to stderr or stdout, by trying to filter the line with `sed`
 
-      - If it works, then you're reading from stdout, otherwise you need to capture stderr using `|&` which is shorthand for `2>&1 |`
-      - `sed 's/pattern/replacement/'` can be used to remove parts of a string. `.` matches any character, `+` matches 1 or more times.
-      - You can separate sed commands using `;`. Often the pattern : `sed filter line ; replace string` is enough to get the version number
-      - It is not necessary to use `echo`
-      - For non-zero error code: `command --version || true` or  `command --version | sed ... || true`
-      - If the version is at a specific line you can try `sed -nr '/pattern/p'` that will return only the line with the pattern
-      - To extract the version number in the middle you can also use regex pattern with `grep` as follow: `grep -o -E '([0-9]+.){1,2}[0-9]'`
-      - If multiple lines are returned you can select the first one with `tool --version | head -n 1`
-      </details>
+```bash
+samtools --version
+# Try filtering the specific line
+samtools --version | sed '1!d'
+```
+
+- If it works, then you're reading from stdout, otherwise you need to capture stderr using `|&` which is shorthand for `2>&1 |`
+- `sed 's/pattern/replacement/'` can be used to remove parts of a string. `.` matches any character, `+` matches 1 or more times.
+- You can separate sed commands using `;`. Often the pattern : `sed filter line ; replace string` is enough to get the version number
+- It is not necessary to use `echo`
+- For non-zero error code: `command --version || true` or `command --version | sed ... || true`
+- If the version is at a specific line you can try `sed -nr '/pattern/p'` that will return only the line with the pattern
+- To extract the version number in the middle you can also use regex pattern with `grep` as follow: `grep -o -E '([0-9]+.){1,2}[0-9]'`
+- If multiple lines are returned you can select the first one with `tool --version | head -n 1`
+
+:::
 
 Unfortunately, FGBIO manages to cause an error exit even with this solution, and we are therefore forced to use a few `bash` tricks to re-route the version and format it to be _just_ the semantic number.
 
@@ -292,7 +293,7 @@ This may take a bit of time to get right.
 
 Once that's complete, our final script will therefore look like this:
 
-```nextflow
+```groovy
 process FGBIO_FASTQTOBAM {
     tag "$meta.id"
     label 'process_low'
@@ -338,7 +339,9 @@ process FGBIO_FASTQTOBAM {
 }
 ```
 
-> :heavy_check_mark: It is always good practice to commit regularly while you write the code and comment the commit with a meaningful message. This way, you will always be able to revert the changes at any time.
+:::note
+It is always good practice to commit regularly while you write the code and comment the commit with a meaningful message. This way, you will always be able to revert the changes at any time.
+:::
 
 ### Fill in the meta.yaml
 
@@ -346,17 +349,17 @@ Once the main module code is written, it is often a good point to fill in the `m
 
 Here you will document key words, context information about the module, and most importantly document the input and output requirements. In general, it follows a similar shape as the pipeline schema but is no JSON file. At the top you should add the name of the module, a short description and at least three keywords, which describe the module. Afterwards, describe all used tools, usually only one. The main part of the `meta.yml` should be about the input and output requirements, which follow the same fields as the pipeline schema for a file parameter. For each input and output requirement you have to add a type, a short description about the content and a pattern. The last block contains the authors, who worked on the module, to allow other users to easily reach out to them. If you are the main developer of the module, your GitHub name will be automatically added to the `meta.yml`. The types in the `meta.yml` are limited to map, file, directory, string, integer and float. In this example module, the prebuild `meta.yml` is already filled and the input part looks as follows:
 
-```nextflow
-## TODO nf-core: Add a description of all of the variables used as input
+```groovy
+// TODO nf-core: Add a description of all of the variables used as input
 input:
-  # Only when we have meta
+  // Only when we have meta
   - meta:
       type: map
       description: |
         Groovy Map containing sample information
         e.g. [ id:'test', single_end:false ]
-  #
-  ## TODO nf-core: Delete / customise this example input
+
+  // TODO nf-core: Delete / customise this example input
   - bam:
       type: file
       description: BAM/CRAM/SAM file
@@ -377,7 +380,7 @@ nf-core modules lint fgbio/demofastqtobam
 
 You will expect no test failed, as shown in figure below:
 
-![lint](/assets/markdown_assets/contributing/dsl2_modules_tutorial/dsl2-mod_04_lint_module.png)
+![lint](/images/contributing/dsl2_modules_tutorial/dsl2-mod_04_lint_module.png)
 
 For more information on fixing linting errors in your code both locally and directly in your pull request in GitHub, check at the end of this subsection [here](https://nf-co.re/docs/usage/tutorials/nf_core_usage_tutorial#installing-the-nf-core-helper-tools).
 
@@ -414,11 +417,11 @@ Once all your tests are passing - it's time to submit the module to nf-core/modu
 
 Back on GitHub, creating a Pull Request is very simple: on the top right of your repository you can click on the link "Pull request" as shown in the figure below:
 
-![pull](/assets/markdown_assets/contributing/dsl2_modules_tutorial/dsl2-mod_06_pull-reqs.png)
+![pull](/images/contributing/dsl2_modules_tutorial/dsl2-mod_06_pull-reqs.png)
 
 If you have initiated the pull request from your forked repository, the direction of the request should be indicated by the arrow, as in the picture below, i.e. from your fork to the nf-core original repository
 
-![open_pull](/assets/markdown_assets/contributing/dsl2_modules_tutorial/dsl2-mod_07_pull-reqs-open.png)
+![open_pull](/images/contributing/dsl2_modules_tutorial/dsl2-mod_07_pull-reqs-open.png)
 
 You can find more information on the GitHub [guide](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) and the nf-core talk [_Bytesize 4: GitHub contribution basics_](https://nf-co.re/events/2021/bytesize-4-github-contribution-basics).
 
