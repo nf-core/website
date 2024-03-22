@@ -4512,6 +4512,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -39395,6 +39399,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -40158,6 +40166,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -45073,6 +45085,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -115994,10 +116010,16 @@
             }
           },
           {
-            "index": {
+            "input_index": {
               "type": "file",
               "description": "BAM/CRAM index file",
               "pattern": "*.{bai,crai}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test_fasta']`\n"
             }
           },
           {
@@ -116005,6 +116027,12 @@
               "type": "file",
               "description": "Input FASTA file",
               "pattern": "*.{fasta,fa}"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing sample information from bwa index\ne.g. `[ id:'test_bwa-index' ]`\n"
             }
           },
           {
