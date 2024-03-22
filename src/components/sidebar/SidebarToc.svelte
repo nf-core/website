@@ -56,7 +56,7 @@
                             class:active={heading.slug === activeHeading}
                             class:collapse={heading.hidden && !$showHidden}
                         >
-                            <a class="nav-link py-1 ps-3 text-body-secondary" href={'#' + heading.slug}>
+                            <a class="nav-link py-1 ps-3 text-body-secondary small" href={'#' + heading.slug}>
                                 {#if heading.fa_icon}
                                     <i class={heading.fa_icon} aria-hidden="true" />
                                 {/if}
