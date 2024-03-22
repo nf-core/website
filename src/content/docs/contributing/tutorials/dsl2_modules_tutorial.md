@@ -406,9 +406,9 @@ tests
 
 We are using nf-test as our testing framework. You can find more information at [nf-test official docs](https://code.askimed.com/nf-test/) and [in this bytesize talk](https://nf-co.re/events/2022/bytesize_nftest).
 
-First, we need to create
+Snapshots are a useful tool to prevent unexpected changes in the output of a process or workflow, as [described in the docs](https://www.nf-test.com/docs/assertions/snapshots/).
 
-Once all your tests are passing - it's time to submit the module to nf-core/modules!
+Once all your tests pass successfully, it's time to submit the module to nf-core/modules!
 
 ## Create a Pull Request
 
