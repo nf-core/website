@@ -142,10 +142,6 @@ section:before {
   width: 20px;
 }
 
-.triangle-down {
-  z-index: -1;
-  position: relative;
-}
 
 .triangle-down,
 .triangle-up {
@@ -161,6 +157,8 @@ section:before {
 .under-triangle-down {
   margin-top: -2.9rem;
   padding-top: 5rem;
+  z-index: -1;
+  position: relative;
 }
 
 @include media-breakpoint-down(md) {
