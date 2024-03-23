@@ -4516,6 +4516,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -39403,6 +39407,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -40166,6 +40174,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -45085,6 +45097,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -63012,8 +63028,14 @@
           {
             "fasta": {
               "type": "file",
-              "description": "Input sequences in FASTA format",
-              "pattern": "*.{fa,fasta}"
+              "description": "Input sequences in FASTA format. May be gzipped or uncompressed.",
+              "pattern": "*.{fa,fasta}{.gz,}"
+            }
+          },
+          {
+            "compress": {
+              "type": "boolean",
+              "description": "Flag representing whether the output MSA should be compressed. Set to true to enable/false to disable compression. Compression is done using pigz, and is multithreaded."
             }
           }
         ],
@@ -63027,8 +63049,8 @@
           {
             "alignment": {
               "type": "file",
-              "description": "Alignment file.",
-              "pattern": "*.{aln}"
+              "description": "Alignment file. May be gzipped or uncompressed, depending on if `compress` is set to `true` or `false`.",
+              "pattern": "*.{aln}{.gz,}"
             }
           },
           {
@@ -64398,6 +64420,86 @@
             "db": {
               "type": "directory",
               "description": "contains required files to build the database",
+              "pattern": "*/"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@alxndrdiaz"
+        ],
+        "maintainers": [
+          "@alxndrdiaz"
+        ]
+      }
+    },
+    {
+      "name": "kraken2_build",
+      "path": "modules/nf-core/kraken2/build/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "kraken2_build",
+        "description": "Builds Kraken2 database",
+        "keywords": [
+          "metagenomics",
+          "db",
+          "classification",
+          "build",
+          "kraken2"
+        ],
+        "tools": [
+          {
+            "kraken2": {
+              "description": "Kraken2 is a system for assigning taxonomic labels to short DNA sequences, usually obtained through metagenomic studies.",
+              "homepage": "https://ccb.jhu.edu/software/kraken2/",
+              "documentation": "https://github.com/DerrickWood/kraken2/wiki/Manual",
+              "tool_dev_url": "https://github.com/DerrickWood/kraken2",
+              "doi": "10.1186/s13059-019-1891-0",
+              "licence": [
+                "MIT"
+              ],
+              "args_id": "$args"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "db": {
+              "type": "directory",
+              "description": "contains required files to build the database",
+              "pattern": "*/"
+            }
+          },
+          {
+            "cleaning": {
+              "type": "boolean",
+              "description": "activate or deactivate (true or false) cleaning of intermediate files"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "db": {
+              "type": "directory",
+              "description": "contains the database that can be used to perform taxonomic classification",
               "pattern": "*/"
             }
           },
@@ -66010,8 +66112,14 @@
           {
             "fasta": {
               "type": "file",
-              "description": "Input sequences in FASTA format",
-              "pattern": "*.{fa,fasta}"
+              "description": "Input sequences in FASTA format. May be gz-compressed or uncompressed.",
+              "pattern": "*.{fa,fasta}{.gz,}"
+            }
+          },
+          {
+            "compress": {
+              "type": "boolean",
+              "description": "Flag representing whether the output MSA should be compressed. Set to true to enable/false to disable compression. Compression is done using pigz, and is multithreaded."
             }
           }
         ],
@@ -66025,8 +66133,8 @@
           {
             "alignment": {
               "type": "file",
-              "description": "Alignment file.",
-              "pattern": "*.{aln}"
+              "description": "Alignment file, in FASTA format. May be gzipped or uncompressed.",
+              "pattern": "*.aln{.gz,}"
             }
           },
           {
