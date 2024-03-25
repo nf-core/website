@@ -8,10 +8,12 @@ endDate: '2021-10-12'
 endTime: '13:30+02:00'
 embedAt: 'hic'
 youtubeEmbed: https://youtu.be/AFHaX_GRNBU
-locationURL:
-  - https://youtu.be/AFHaX_GRNBU
-  - https://doi.org/10.6084/m9.figshare.16795882.v1
-  - https://www.bilibili.com/video/BV1Uh411J7BV/
+locations:
+  - name: Online
+    links:
+      - https://youtu.be/AFHaX_GRNBU
+      - https://doi.org/10.6084/m9.figshare.16795882.v1
+      - https://www.bilibili.com/video/BV1Uh411J7BV/
 ---
 
 This week, Nicolas Servant ([@nservant](https://github.com/nservant/)) will tell us all about the nf-core/hic pipeline.

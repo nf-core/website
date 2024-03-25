@@ -8,10 +8,12 @@ endDate: '2021-10-26'
 endTime: '13:30+02:00'
 embedAt: 'ampliseq'
 youtubeEmbed: https://youtu.be/a0VOEeAvETs
-locationURL:
-  - https://youtu.be/a0VOEeAvETs
-  - https://www.bilibili.com/video/BV1B44y1e7MM
-  - https://doi.org/10.6084/m9.figshare.16871008.v1
+locations:
+  - name: Online
+    links:
+      - https://youtu.be/a0VOEeAvETs
+      - https://www.bilibili.com/video/BV1B44y1e7MM
+      - https://doi.org/10.6084/m9.figshare.16871008.v1
 ---
 
 This week, Daniel Straub ([@d4straub](https://github.com/d4straub/)) will tell us all about the nf-core/ampliseq pipeline.

@@ -8,9 +8,11 @@ endDate: '2021-11-02'
 endTime: '13:30+01:00'
 embedAt: 'metaboigniter'
 youtubeEmbed: https://youtu.be/hPBrlwbsvsk
-locationURL:
-  - https://youtu.be/hPBrlwbsvsk
-  - https://doi.org/10.6084/m9.figshare.16961209.v1
+locations:
+  - name: Online
+    links:
+      - https://youtu.be/hPBrlwbsvsk
+      - https://doi.org/10.6084/m9.figshare.16961209.v1
 ---
 
 This week, Payam Emami ([@PayamEmami](https://github.com/PayamEmami/)) will tell us all about the nf-core/metaboigniter pipeline.

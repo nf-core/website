@@ -6,7 +6,8 @@ startDate: '2023-03-27'
 startTime: '10:00+02:00'
 endDate: '2023-03-29'
 endTime: '18:00+02:00'
-locationName: The University of Wyoming
+locations:
+  - name: The University of Wyoming
 # address:
 # locationURL:
 # locationLatLng: [xxx, xxx]

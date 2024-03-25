@@ -6,10 +6,11 @@ startDate: '2024-03-18'
 startTime: '10:00+02:00'
 endDate: '2024-03-20'
 endTime: '18:00+02:00'
-locationName: Tübingen
-address: Auf der Morgenstelle 6, 72076 Tübingen, Germany
-locationURL: https://uni-tuebingen.de/einrichtungen/personalvertretungen-beratung-beauftragte/lageplaene/karte-a-morgenstelle/auf-der-morgenstelle-6
-locationLatLng: [48.53757295717644, 9.035516078124646]
+locations:
+  - name: Tübingen
+    address: Auf der Morgenstelle 6, 72076 Tübingen, Germany
+    links: https://uni-tuebingen.de/einrichtungen/personalvertretungen-beratung-beauftragte/lageplaene/karte-a-morgenstelle/auf-der-morgenstelle-6
+    geoCoordinates: [48.53757295717644, 9.035516078124646]
 ---
 
 Local event to be held at the University of Tübingen (Auf der Morgenstelle 6, H-Bau, Room H2C14) hosted by the [Quantitative Biology Center (QBiC)](https://portal.qbic.uni-tuebingen.de/portal/)

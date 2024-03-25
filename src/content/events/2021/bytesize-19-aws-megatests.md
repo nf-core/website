@@ -7,10 +7,12 @@ startTime: '13:00+02:00'
 endDate: '2021-09-14'
 endTime: '13:30+02:00'
 youtubeEmbed: https://youtu.be/2-ekrRsYS00
-locationURL:
-  - https://youtu.be/2-ekrRsYS00
-  - https://doi.org/10.6084/m9.figshare.16621594.v1
-  - https://www.bilibili.com/video/BV1w44y1b7bK/
+locations:
+  - name: Online
+    links:
+      - https://youtu.be/2-ekrRsYS00
+      - https://doi.org/10.6084/m9.figshare.16621594.v1
+      - https://www.bilibili.com/video/BV1w44y1b7bK/
 ---
 
 This week, Gisela Gabernet ([@ggabernet](http://github.com/ggabernet/)) will tell us all about the nf-core _AWS megatests_‚ and how to set them up in your nf-core pipeline.
