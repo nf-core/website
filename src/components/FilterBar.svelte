@@ -74,6 +74,11 @@
                             on:mouseout={() => event.target.blur()}
                             on:blur={() => event.target.blur()}
                         >
+                            <input
+                                type="checkbox"
+                                class="me-1"
+                                checked={$CurrentFilter.find((f) => f.name === fil.name)}
+                            />
                             {#if fil.icon}
                                 <i class={fil.icon + ' me-1'} />
                             {/if}
