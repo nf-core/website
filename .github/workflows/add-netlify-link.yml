@@ -20,10 +20,11 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const changedFiles = `${{ steps.changed-files.outputs.all_changed_files }}`.split('\n');
+            console.log('Changed files:', changedFiles)
             const netlifyLinks = changedFiles
               .filter(file => file.startsWith('src/pages/'))
-              .map(file => `@netlify ${file.replace('src/pages/', '/')}`)[0]
-              .replace(/\.md$/, '').replace(/\.mdx$/, '').replace(/\/index$/, '')
+              .map(file => `@netlify ${file?.replace('src/pages/', '/')}`)[0]
+              ?.replace(/\.md$/, '').replace(/\.mdx$/, '').replace(/\/index$/, '');
 
             if (netlifyLinks) {
               const { data: pullRequest } = await github.rest.pulls.get({
@@ -32,7 +33,7 @@ jobs:
                 pull_number: context.payload.pull_request.number,
               });
 
-              const currentBody = pullReqest.body || '';
+              const currentBody = pullRequest.body || '';
               if (currentBody.includes('@netlify')) {
                 return; // Skip if the PR body already contains a Netlify link
               }
