@@ -123,10 +123,6 @@ newBlogPost = await getCollection('blog').then((posts) => {
                     </a>
                     <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
                         <li><span class="dropdown-header">What's happening</span></li>
-                        <li>
-                            <EventIndicator client:idle><Icon name="circle" /></EventIndicator>
-                            <a class="dropdown-item" href="/events/">Events</a>
-                        </li>
                         <li class="d-flex align-items-center">
                             <a class="dropdown-item" href="/blog/">Blog</a>
                             {
@@ -139,6 +135,37 @@ newBlogPost = await getCollection('blog').then((posts) => {
                                     </a>
                                 )
                             }
+                        </li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li>
+                            <span class="dropdown-header">
+                                <EventIndicator client:idle><Icon name="circle" /></EventIndicator>
+                                Events
+                            </span>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/events/bytesize">
+                                <i class="fa-solid fa-fw fa-apple-core me-2"></i>
+                                Bytesize Talks
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/events/hackathon">
+                                <i class="fa-solid fa-fw fa-laptop-code me-2"></i>
+                                Hackathons
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/events/training">
+                                <i class="fa-solid fa-fw fa-chalkboard-teacher me-2"></i>
+                                Training
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/events/talk">
+                                <i class="fa-solid fa-fw fa-presentation me-2"></i>
+                                Talks
+                            </a>
                         </li>
                         <li><hr class="dropdown-divider" /></li>
                         <li><span class="dropdown-header">Programs and groups</span></li>
