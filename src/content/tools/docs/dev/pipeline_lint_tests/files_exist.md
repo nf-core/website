@@ -48,9 +48,6 @@ docs/images/nf-core-PIPELINE_logo_dark.png
 docs/output.md
 docs/README.md
 docs/usage.md
-lib/NfcoreTemplate.groovy
-lib/Utils.groovy
-lib/WorkflowMain.groovy
 nextflow_schema.json
 nextflow.config
 README.md
@@ -65,7 +62,6 @@ conf/base.config
 conf/igenomes.config
 .github/workflows/awstest.yml
 .github/workflows/awsfulltest.yml
-lib/WorkflowPIPELINE.groovy
 pyproject.toml
 ```
 
@@ -87,6 +83,10 @@ docs/images/nf-core-PIPELINE_logo.png
 lib/Checks.groovy
 lib/Completion.groovy
 lib/Workflow.groovy
+lib/WorkflowPIPELINE.groovy
+lib/NfcoreTemplate.groovy
+lib/Utils.groovy
+lib/WorkflowMain.groovy
 ```
 
 Files that _should not_ be present:

@@ -77,6 +77,26 @@ blockquote {
   }
 }
 
+.main-content figure pre:has(+ figcaption) {
+  margin-bottom: 0;
+}
+.main-content figure pre:has(+ figcaption) code {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.main-content figcaption {
+  font-size: 0.8rem;
+  color: $body-secondary-color;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid $border-color;
+  border-top: 0;
+}
+.main-content figcaption:last-child {
+  margin-bottom: 1.5rem;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
 mark,
 .mark {
   padding: 0.2em 0;
@@ -141,6 +161,7 @@ section:before {
   height: 20px;
   width: 20px;
 }
+
 
 .triangle-down,
 .triangle-up {
@@ -1267,6 +1288,25 @@ Launch Page
   .title {
     margin-bottom: 0.9rem;
   }
+  .admonition-collapse-button::after {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Font Awesome 6 Pro", "Font Awesome 6 Pro fallback";
+    margin-left: 0.5rem;
+    font-weight: 900;
+    text-align: center; // same setting as .fa-w
+    width: 1.25em; // same setting as .fa-w
+    content: "\f078";
+  }
+  .admonition-collapse-button.collapsed::after {
+    content: "\f054";
+  }
+  .admonition-body-content {
+    font-size: 90%;
+  }
 }
 
 figure[data-rehype-pretty-code-figure] [data-theme*=' ']:not([data-rehype-pretty-code-title]) {
@@ -1279,11 +1319,6 @@ figure[data-rehype-pretty-code-figure] [data-theme*=' ']:not([data-rehype-pretty
   }
   [data-highlighted-chars] {
     background-color: tint-color($gray-500, 80%);
-  }
-  [data-rehype-pretty-code-caption] {
-    margin-top: -0.75rem;
-    font-size: $small-font-size;
-    color: $secondary;
   }
 }
 
@@ -1456,6 +1491,10 @@ div.mermaid {
 
   .main-content pre code {
     border: 1px solid $border-color-dark;
+  }
+  .main-content figcaption {
+    border-color: $border-color-dark;
+    color: $body-secondary-color-dark;
   }
 
   .markdown-content img[alt='Workflow'] {

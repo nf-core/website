@@ -7,9 +7,11 @@ startTime: '13:00+02:00'
 endDate: '2022-04-05'
 endTime: '13:30+02:00'
 youtubeEmbed: https://www.youtube.com/watch?v=0ZpcYtKDZrU
-locationURL:
-  - https://www.youtube.com/watch?v=0ZpcYtKDZrU
-  - https://doi.org/10.6084/m9.figshare.19923425.v1
+locations:
+  - name: Online
+    links:
+      - https://www.youtube.com/watch?v=0ZpcYtKDZrU
+      - https://doi.org/10.6084/m9.figshare.19923425.v1
 ---
 
 This week, Alexander Peltzer ([@apeltzer](http://github.com/apeltzer/)) will present: _**Software packaging.**_

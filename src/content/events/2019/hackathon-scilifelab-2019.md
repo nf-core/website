@@ -6,10 +6,11 @@ startDate: '2019-12-04'
 startTime: '09:00+02:00'
 endDate: '2019-12-06'
 endTime: '17:00+02:00'
-address: Tomtebodavägen 23A, 17165 Solna, Sweden
-locationName: SciLifeLab
-locationURL: https://scilifelab.se/
-locationLatLng: [59.3505174, 18.0221508]
+locations:
+  - name: SciLifeLab
+    links: https://www.scilifelab.se/
+    geoCoordinates: [59.3505174, 18.0221508]
+    address: Tomtebodavägen 23A, 17165 Solna, Sweden
 ---
 
 Informal meetup for anyone interested in learning more about nf-core and Nextflow.

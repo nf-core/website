@@ -8,9 +8,11 @@ endDate: '2023-02-14'
 endTime: '13:30+01:00'
 embedAt: 'crisprseq'
 youtubeEmbed: https://www.youtube.com/watch?v=x_eFQW0nNvo
-locationURL:
-  - https://doi.org/10.6084/m9.figshare.22100045.v1
-  - https://www.youtube.com/watch?v=x_eFQW0nNvo
+locations:
+  - name: Online
+    links:
+      - https://doi.org/10.6084/m9.figshare.22100045.v1
+      - https://www.youtube.com/watch?v=x_eFQW0nNvo
 ---
 
 This week Júlia Mir ([@mirpedrol](https://github.com/mirpedrol)) and Marta Sanvincente ([@msanvicente](https://github.com/msanvicente)) present the newly released nf-core pipeline nf-core/crisprseq.

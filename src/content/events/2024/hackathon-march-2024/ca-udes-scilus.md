@@ -6,10 +6,11 @@ startDate: '2024-03-18'
 startTime: '10:00-05:00'
 endDate: '2024-03-20'
 endTime: '17:00-05:00'
-locationName: Sherbrooke Connectivity Imaging Lab (SCIL), Université de Sherbrooke
-address: 2500 Bd de l'Université, Sherbrooke, QC J1K 2R1
-locationURL: https://scil.usherbrooke.ca/
-locationLatLng: [45.3797289, -71.9276139]
+locations:
+  - name: Sherbrooke Connectivity Imaging Lab (SCIL), Université de Sherbrooke
+    address: 2500 Bd de l'Université, Sherbrooke, QC J1K 2R1
+    links: https://scil.usherbrooke.ca/
+    geoCoordinates: [45.3797289, -71.9276139]
 ---
 
 Local event to be held at Sherbrooke Connectivity Imaging Lab (SCIL), Université de Sherbrooke, QC, Canada.

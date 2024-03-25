@@ -7,10 +7,12 @@ startTime: '13:00+01:00'
 endDate: '2021-02-23'
 endTime: '13:30+01:00'
 youtubeEmbed: https://youtu.be/gTEXDXWf4hE
-locationURL:
-  - https://doi.org/10.6084/m9.figshare.14160680.v1
-  - https://youtu.be/gTEXDXWf4hE
-  - https://www.bilibili.com/video/BV15y4y1E7Zz
+locations:
+  - name: Online
+    links:
+      - https://doi.org/10.6084/m9.figshare.14160680.v1
+      - https://youtu.be/gTEXDXWf4hE
+      - https://www.bilibili.com/video/BV15y4y1E7Zz
 ---
 
 This week, Alexander Peltzer ([@apeltzer](http://github.com/apeltzer/)) will present: _**GitHub contribution basics.**_
