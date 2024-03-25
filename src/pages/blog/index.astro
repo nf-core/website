@@ -93,12 +93,12 @@ const sections = years.map((year) => {
                                         <a href={'/blog/' + post.slug} class="stretched-link" />
                                     </div>
                                     <div class="card-footer d-flex justify-content-between">
-                                        <div class="me-auto authors d-flex flex-grow-1">
+                                        <div class="me-auto authors d-flex flex-grow-1 flex-wrap">
                                             {post.data.authors.map((author) => (
                                                 <GitHubProfilePictureExtended
                                                     username={author}
                                                     size={40}
-                                                    wrapperClasses={'flex-grow-1'}
+                                                    containerQuery={true}
                                                 />
                                             ))}
                                         </div>

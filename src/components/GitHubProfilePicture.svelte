@@ -9,7 +9,9 @@
     export let imgClasses: string = '';
     export let containerQuery: boolean = false;
 
-    const tooltip = count > 0 ? `${name} (${count} commits)` : name;
+    let tooltip = count > 0 ? `${name} (${count} commits)` : name;
+    tooltip = count === 1 ? `${name} (1 commit)` : tooltip;
+    tooltip = containerQuery ? '' : tooltip;
     const avatar_url = image.match(/\?/) ? `${image}&s=${size}` : `${image}?s=${size}`;
 </script>
 
@@ -45,20 +47,21 @@
         background-color: $white;
     }
     .github-profile {
-        container-type: inline-size;
+        container-type: size;
         container-name: github-profile;
+        flex-grow: 1;
     }
-    .github-profile a {
+    a {
         width: fit-content;
-        // height: var(--size);
     }
-    @container github-profile (width < 7rem) {
+    @container github-profile (width < 10rem) {
         :global(.profile-name) {
             display: none;
         }
     }
     :global(.github-profile:hover) {
         z-index: 1000;
+        width: 40%; // should cover most cases, but extra long usernames, will still be not completely covered
         :global(.profile-name) {
             display: block !important;
             z-index: 1000;

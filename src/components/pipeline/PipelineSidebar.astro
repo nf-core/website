@@ -169,47 +169,51 @@ const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https
     </SidebarStatsRow>
     <SidebarStatsRow content={[{ title: 'contributors' }]} lastChild={true}>
         {
-            meta.contributors.map((contributor) => {
-                return (
-                    <GitHubProfilePicture
-                        name={contributor.name}
-                        image={contributor.avatar_url}
-                        size={50}
-                        count={contributor.count}
-                        imgClasses="mb-2"
-                    />
-                );
-            })
+            (
+                <div class="d-flex flex-wrap justify">
+                    {meta.contributors.map((contributor) => {
+                        return (
+                            <GitHubProfilePicture
+                                name={contributor.name}
+                                image={contributor.avatar_url}
+                                size={50}
+                                count={contributor.count}
+                                imgClasses="mb-2 me-2"
+                            />
+                        );
+                    })}
+                </div>
+            )
         }
     </SidebarStatsRow>
-</div>
-<style lang="scss">
-    @import '@styles/_variables.scss';
-    .sidebar {
-        max-height: calc(100vh - 5rem);
-        overflow-y: auto;
-    }
-    .tab-content.border {
-        margin-top: -1px;
-    }
-    .btn.nav-link {
-        &.active,
-        &:hover {
-            color: $body-color;
-            background-color: $border-color !important;
+    <style lang="scss">
+        @import '@styles/_variables.scss';
+        .sidebar {
+            max-height: calc(100vh - 5rem);
+            overflow-y: auto;
         }
-    }
-
-    :global([data-bs-theme='dark']) {
-        .border-secondary {
-            border-color: $gray-700 !important;
+        .tab-content.border {
+            margin-top: -1px;
         }
         .btn.nav-link {
             &.active,
             &:hover {
-                color: $body-color-dark;
-                background-color: $border-color-dark !important;
+                color: $body-color;
+                background-color: $border-color !important;
             }
         }
-    }
-</style>
+
+        :global([data-bs-theme='dark']) {
+            .border-secondary {
+                border-color: $gray-700 !important;
+            }
+            .btn.nav-link {
+                &.active,
+                &:hover {
+                    color: $body-color-dark;
+                    background-color: $border-color-dark !important;
+                }
+            }
+        }
+    </style>
+</div>
