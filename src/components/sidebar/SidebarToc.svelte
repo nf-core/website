@@ -58,7 +58,7 @@
                         >
                             <a class="nav-link py-1 ps-3 text-body-secondary small" href={'#' + heading.slug}>
                                 {#if heading.fa_icon}
-                                    <i class={heading.fa_icon} aria-hidden="true" />
+                                    <i class={heading.fa_icon + ' fa-fw '} aria-hidden="true" />
                                 {/if}
                                 {@html heading.text}
                             </a>
