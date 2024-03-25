@@ -7,9 +7,10 @@ startTime: '09:00+02:00'
 endDate: '2019-04-09'
 endTime: '17:00+02:00'
 address: Auf der Morgenstelle 10, 72076 Tübingen, Germany
-locationName: QBiC
-locationURL: http://qbic.life
-locationLatLng: [48.5379169, 9.0339095]
+locations:
+  - name: QBiC
+    links: http://qbic.life
+    geoCoordinates: [48.5379169, 9.0339095]
 ---
 
 QBiC is holding a two-day nf-core hackathon.

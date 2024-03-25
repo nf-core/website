@@ -6,7 +6,9 @@ startDate: '2024-02-20'
 startTime: '13:00+01:00'
 endDate: '2024-02-20'
 endTime: '13:30+01:00'
-locationURL: https://youtu.be/dg85sISW-0Q
+locations:
+  - name: Online
+    links: https://youtu.be/dg85sISW-0Q
 youtubeEmbed: https://youtu.be/dg85sISW-0Q
 ---
 

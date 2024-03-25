@@ -6,7 +6,8 @@ startDate: '2021-10-27'
 startTime: '10:00+02:00'
 endDate: '2021-10-29'
 endTime: '18:00+02:00'
-locationName: Gather town and Slack.
+locations:
+  - name: Gather town and Slack.
 ---
 
 Our October hackathon is one week away! Registration is now closed, but preliminary information should be in your inbox if you've signed up. Final details will be coming soon.

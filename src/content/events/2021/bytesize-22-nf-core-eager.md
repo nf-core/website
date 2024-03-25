@@ -8,10 +8,12 @@ endDate: '2021-10-05'
 endTime: '13:30+02:00'
 embedAt: 'eager'
 youtubeEmbed: https://youtu.be/fObuLeGhQRo
-locationURL:
-  - https://youtu.be/fObuLeGhQRo
-  - https://www.bilibili.com/video/BV1q34y1U7Ak/
-  - https://doi.org/10.6084/m9.figshare.16750387.v1
+locations:
+  - name: Online
+    links:
+      - https://youtu.be/fObuLeGhQRo
+      - https://www.bilibili.com/video/BV1q34y1U7Ak/
+      - https://doi.org/10.6084/m9.figshare.16750387.v1
 ---
 
 This week, James Fellows Yates ([@jfy133](https://github.com/jfy133/)) will tell us all about the nf-core/eager pipeline.

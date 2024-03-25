@@ -7,10 +7,12 @@ startTime: '13:00+01:00'
 endDate: '2021-02-09'
 endTime: '13:30+01:00'
 youtubeEmbed: https://youtu.be/cXBYusdjrc0
-locationURL:
-  - https://doi.org/10.6084/m9.figshare.14160347.v1
-  - https://youtu.be/cXBYusdjrc0
-  - https://www.bilibili.com/video/BV1M54y1a7Uy
+locations:
+  - name: Online
+    links:
+      - https://doi.org/10.6084/m9.figshare.14160347.v1
+      - https://youtu.be/cXBYusdjrc0
+      - https://www.bilibili.com/video/BV1M54y1a7Uy
 ---
 
 This week, Maxime Garcia ([@MaxUlysse](http://github.com/MaxUlysse/)) will present: _**How nf-core configs work.**_ This talk will cover:

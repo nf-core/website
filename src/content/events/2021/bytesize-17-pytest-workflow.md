@@ -7,10 +7,12 @@ startTime: '13:00+02:00'
 endDate: '2021-06-15'
 endTime: '13:30+02:00'
 youtubeEmbed: https://youtu.be/pjhscKyWH74
-locationURL:
-  - https://youtu.be/pjhscKyWH74
-  - https://www.bilibili.com/video/BV1k64y1r7WR
-  - https://doi.org/10.6084/m9.figshare.14784855.v1
+locations:
+  - name: Online
+    links:
+      - https://youtu.be/pjhscKyWH74
+      - https://www.bilibili.com/video/BV1k64y1r7WR
+      - https://doi.org/10.6084/m9.figshare.14784855.v1
 ---
 
 This week, Edmund Miller ([@edmundmiller](http://github.com/edmundmiller/)) will present: _**Pytest workflow**_

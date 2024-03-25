@@ -9,8 +9,8 @@ Bases: `object`
 Class to hold config option to launch a pipeline.
 
 - **Parameters:**
-  - **pipeline** (_str_\*,\* _optional_) – Path to a local pipeline path or a remote pipeline.
-  - **revision** (_str_\*,\* _optional_) – Revision of the pipeline to use.
+  - **pipeline** (_str_ _,_ _optional_) – Path to a local pipeline path or a remote pipeline.
+  - **revision** (_str_ _,_ _optional_) – Revision of the pipeline to use.
 
 #### `format_group(definition, show_hidden=False){:python}`
 
@@ -61,9 +61,9 @@ Prompt the user for a pipeline name and get the schema
 Build a template file for the pipeline schema.
 
 - **Parameters:**
-  - **output_fn** (_str_\*,\* _optional_) – Filename to write the template to.
-  - **show_hidden** (_bool_\*,\* _optional_) – Include parameters marked as hidden in the output
-  - **force** (_bool_\*,\* _optional_) – Whether to overwrite existing output file.
+  - **output_fn** (_str_ _,_ _optional_) – Filename to write the template to.
+  - **show_hidden** (_bool_ _,_ _optional_) – Include parameters marked as hidden in the output
+  - **force** (_bool_ _,_ _optional_) – Whether to overwrite existing output file.
 - **Returns:**
   True if the template was written successfully, False otherwise
 - **Return type:**
@@ -75,8 +75,8 @@ Helper function to format text for the params-file template.
 
 - **Parameters:**
   - **text** (_str_) – Text to print
-  - **fill_char** (_str_\*,\* _optional_) – Character to use for creating dividers. Defaults to ‘-‘.
-  - **mode** (_str_\*,\* _optional_) – Where to place dividers. Defaults to “both”.
-  - **width** (_int_\*,\* _optional_) – Maximum line-width of the output text. Defaults to 80.
-  - **indent** (_int_\*,\* _optional_) – Number of spaces to indent the text. Defaults to 0.
-  - **drop_whitespace** (_bool_\*,\* _optional_) – Whether to drop whitespace from the start and end of lines.
+  - **fill_char** (_str_ _,_ _optional_) – Character to use for creating dividers. Defaults to ‘-‘.
+  - **mode** (_str_ _,_ _optional_) – Where to place dividers. Defaults to “both”.
+  - **width** (_int_ _,_ _optional_) – Maximum line-width of the output text. Defaults to 80.
+  - **indent** (_int_ _,_ _optional_) – Number of spaces to indent the text. Defaults to 0.
+  - **drop_whitespace** (_bool_ _,_ _optional_) – Whether to drop whitespace from the start and end of lines.

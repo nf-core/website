@@ -7,9 +7,11 @@ startTime: '13:00+01:00'
 endDate: '2023-01-31'
 endTime: '13:30+01:00'
 youtubeEmbed: https://www.youtube.com/watch?v=amwwmFMwOYw
-locationURL:
-  - https://doi.org/10.6084/m9.figshare.21995243.v1
-  - https://www.youtube.com/watch?v=amwwmFMwOYw
+locations:
+  - name: Online
+    links:
+      - https://doi.org/10.6084/m9.figshare.21995243.v1
+      - https://www.youtube.com/watch?v=amwwmFMwOYw
 ---
 
 This week, Franziska Bonath ([@FranBonath](https://github.com/FranBonath)) will talk about her work to generate transcripts of bytesize talks and what these might be used for in the future.
