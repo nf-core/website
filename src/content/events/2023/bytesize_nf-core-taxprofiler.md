@@ -8,10 +8,12 @@ endDate: '2023-01-17'
 endTime: '13:30+01:00'
 embedAt: 'taxprofiler'
 youtubeEmbed: https://www.youtube.com/watch?v=p1EQtidJiUY
-locationURL:
-  - https://www.youtube.com/watch?v=p1EQtidJiUY
-  - https://doi.org/10.6084/m9.figshare.21916416.v1 (video)
-  - https://doi.org/10.6084/m9.figshare.21916386.v1 (slides)
+locations:
+  - name: Online
+    links:
+      - https://www.youtube.com/watch?v=p1EQtidJiUY
+      - https://doi.org/10.6084/m9.figshare.21916416.v1
+      - https://doi.org/10.6084/m9.figshare.21916386.v1
 ---
 
 This week Sofia Stamouli ([@sofstam](https://github.com/sofstam)) will talk about nf-core/taxprofiler, a bioinformatics best-practice analysis pipeline for taxonomic profiling of shotgun metagenomic data. It allows for in-parallel profiling with multiple profiling tools against multiple databases, produces standardised output tables.

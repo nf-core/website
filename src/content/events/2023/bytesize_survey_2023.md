@@ -7,8 +7,9 @@ startTime: '13:00+02:00'
 endDate: '2023-05-16'
 endTime: '13:30+01:00'
 youtubeEmbed: https://www.youtube.com/watch?v=hnI3IgGNq3o
-locationURL:
-  - https://www.youtube.com/watch?v=hnI3IgGNq3o
+locations:
+  - name: Online
+    links: https://www.youtube.com/watch?v=hnI3IgGNq3o
 ---
 
 This week, Christopher Hakkaart ([@christopher-hakkaart](https://github.com/christopher-hakkaart)) will discuss the results of the nextflow/nf-core community survey.

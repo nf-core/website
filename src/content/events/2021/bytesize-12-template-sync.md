@@ -7,10 +7,12 @@ startTime: '13:00+02:00'
 endDate: '2021-05-11'
 endTime: '13:30+02:00'
 youtubeEmbed: https://youtu.be/-CZKoo5Y_08
-locationURL:
-  - https://youtu.be/-CZKoo5Y_08
-  - https://www.bilibili.com/video/BV1D64y127yJ/
-  - https://doi.org/10.6084/m9.figshare.14572866.v1
+locations:
+  - name: Online
+    links:
+      - https://youtu.be/-CZKoo5Y_08
+      - https://www.bilibili.com/video/BV1D64y127yJ/
+      - https://doi.org/10.6084/m9.figshare.14572866.v1
 ---
 
 This week, Phil Ewels ([@ewels](http://github.com/ewels/)) will present: _**Template sync - how to merge automated PRs**_
