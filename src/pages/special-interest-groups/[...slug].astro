@@ -33,10 +33,12 @@ const sections = [
             }),
     },
 ];
+const group_name = section.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
 ---
 
 <MarkdownTocLayout
-    title={entry.data.title}
+    title={group_name}
+    meta_title={group_name + ': ' + entry.data.title}
     subtitle={entry.data.subtitle}
     {headings}
     leftSidebar={true}

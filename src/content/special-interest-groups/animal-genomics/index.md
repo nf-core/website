@@ -1,5 +1,5 @@
 ---
-title: Animal Genomics
+title: Introduction
 subtitle: 'The Animal Genomics Special Interest Group is a community of researchers and practitioners interested in the application of genomics to animal breeding and genetics.'
 leads:
   - bjlang: Björn Langer
@@ -16,7 +16,7 @@ pipelines:
   - rnavar
 ---
 
-# Introdcution
+# Introduction
 
 The special interest group aims to bring together users of Nextflow/nf-core, and developers involved in animal genomics pipelines. The main focus of this group will be to identify the pipelines best suited for animal genomics analysis, and how to deploy these pipelines while integrating the best practices of Nextflow-based bioinformatic pipelines.
 
