@@ -7,7 +7,10 @@ export interface Props {
     title: string;
     icon?: string;
     titleText?: string;
+    collapse?: boolean;
 }
+
+const randomId = (Math.random() + 1).toString(36).substring(7);
 
 const admonitionTypes = {
     note: {
@@ -58,9 +61,20 @@ const admonitionTypes = {
             }
             {titleText && <span set:html={titleText} />}
             {!titleText && title.charAt(0).toUpperCase() + title.slice(1)}
+            <button
+                class="btn btn-sm text-secondary flex-shrink-1 admonition-collapse-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target=`#admonition-${randomId}`
+                aria-expanded="true"
+            >
+                Expand
+            </button>
         </div>
-        <div class="p-3 pt-0">
-            <slot />
+        <div class="collapse" id="admonition-r0xlk">
+            <div class="p-3 admonition-body-content">
+                <slot />
+            </div>
         </div>
     </div>
 </div>

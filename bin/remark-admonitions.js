@@ -1,4 +1,6 @@
 // taken from https://github.com/elviswolcott/remark-admonitions/issues/49#issuecomment-1193909728
+//NOTE: When updating this file, check Admonition.astro for similar changes.
+
 import { h } from 'hastscript';
 import { visit } from 'unist-util-visit';
 
@@ -46,6 +48,7 @@ export default function admonitionsPlugin() {
           return;
         }
 
+        const randomId = (Math.random() + 1).toString(36).substring(7);
         const boxInfo = acceptableAdmonitionTypes[node.name];
         // Adding CSS classes according to the type.
         const data = node.data || (node.data = {});
@@ -85,25 +88,57 @@ export default function admonitionsPlugin() {
         titleData.hName = 'span';
         titleData.hProperties = h(
           'span',
-          { class: `admonition-title ` },
+          { class: `admonition-title flex-grow-1 ` },
           node.attributes.title ? node.attributes.title : boxInfo.title,
         ).properties;
+
+        // Expand button
+        let expandButton = h();
+        if (node.attributes.collapse !== undefined) {
+          const expandText = 'Expand';
+          expandButton = h('button', expandText);
+          const expandButtonData = expandButton.data || (expandButton.data = {});
+          expandButtonData.hName = 'button';
+          expandButtonData.hProperties = h(
+            'button',
+            {
+              class: `btn btn-sm text-secondary flex-shrink-1 collapsed admonition-collapse-button`,
+              type: 'button',
+              'data-bs-toggle': 'collapse',
+              'data-bs-target': `#admonition-${randomId}`,
+            },
+            expandText,
+          ).properties;
+        }
 
         // Creating the icon's column.
         const iconWrapper = h('div');
         const iconWrapperData = iconWrapper.data || (iconWrapper.data = {});
         iconWrapperData.hName = 'div';
         iconWrapperData.hProperties = h('div', {
-          class: `title alert alert-${boxInfo.id} fw-bold px-3 py-2 d-flex align-items-center rounded-0 border-0`,
+          class: `title mb-0 alert alert-${boxInfo.id} fw-bold px-3 py-2 d-flex align-items-center rounded-0 border-0`,
         }).properties;
-        iconWrapper.children = [svg, title];
+        iconWrapper.children = [svg, title, expandButton];
 
-        // Creating the content's column.
+        // Creating the content's div for padding
+        const contentColPaddingWrapper = h('div');
+        const contentColPaddingWrapperData = contentColPaddingWrapper.data || (contentColPaddingWrapper.data = {});
+        contentColPaddingWrapperData.hName = 'div';
+        contentColPaddingWrapperData.hProperties = h('div', {
+          class: 'p-3 admonition-body-content',
+        }).properties;
+        contentColPaddingWrapper.children = [...node.children]; // Adding markdown's content block.
+
+        // Creating the content's div to show/hide collapse.
         const contentColWrapper = h('div');
         const contentColWrapperData = contentColWrapper.data || (contentColWrapper.data = {});
+
         contentColWrapperData.hName = 'div';
-        contentColWrapperData.hProperties = h('div', { class: 'p-3 pt-0' }).properties;
-        contentColWrapper.children = [...node.children]; // Adding markdown's content block.
+        contentColWrapperData.hProperties = h('div', {
+          class: node.attributes.collapse !== undefined ? 'collapse' : '',
+          id: `admonition-${randomId}`,
+        }).properties;
+        contentColWrapper.children = [contentColPaddingWrapper];
 
         // Creating the wrapper for the admonition's content.
         const contentWrapper = h('div');

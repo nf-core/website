@@ -25,8 +25,8 @@ let next_page: CollectionEntry<'docs'> | null = null;
 const docs = await getCollection('docs');
 
 let sections = [
-    { section_name: 'Usage', section_slug: '/docs/', children: [] },
-    { section_name: 'Contributing', section_slug: '/docs/', children: [] },
+    { section_name: 'Usage', section_slug: '/docs/usage/', children: [] },
+    { section_name: 'Contributing', section_slug: '/docs/contributing/', children: [] },
 ];
 
 // sort docs first depth, then by weight, then by title

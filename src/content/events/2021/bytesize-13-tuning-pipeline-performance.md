@@ -7,10 +7,12 @@ startTime: '13:00+02:00'
 endDate: '2021-05-18'
 endTime: '13:30+02:00'
 youtubeEmbed: https://youtu.be/Qw1gLpYtMec
-locationURL:
-  - https://www.bilibili.com/video/BV1z64y1k7a3
-  - https://youtu.be/Qw1gLpYtMec
-  - https://doi.org/10.6084/m9.figshare.14680260.v1
+locations:
+  - name: Online
+    links:
+      - https://www.bilibili.com/video/BV1z64y1k7a3
+      - https://youtu.be/Qw1gLpYtMec
+      - https://doi.org/10.6084/m9.figshare.14680260.v1
 ---
 
 This week, Gisela Gabernet ([@ggabernet](http://github.com/ggabernet/)) will present: _**Tuning pipeline performance**_.
