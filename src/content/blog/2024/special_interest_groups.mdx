@@ -17,73 +17,63 @@ import { Image } from 'astro:assets';
 
 Today, we're very happy to announce a new nf-core initiative:
 _Special Interest Groups_.
+These will be a new place to meet and discuss topics with others working in your specific
+field(s) of research, bringing people together to collaborate in a new way.
 
 # Background
 
-Until now, nf-core has been very focused on doing what we do best:
-creating analysis pipelines and the tooling around them.
-We have structured ourselves around this: Slack channels for every pipeline
-bring together people working on the same set of tools to collaborate.
-It's clear to newcomers where to find help and it keeps the discussion focussed.
-
-However, as the community grows, the tool-specific organisation is beginning to show a few gaps.
-Researchers from different disciplines can use the _same_ set of pipelines in very different ways:
-for example [nf-core/sarek](/sarek) was primarily written for analysis of somatic
-cancer sequencing analysis, with `tumor:normal` Human DNA samples as inputs.
-However, Sarek also works great as a generic variant calling pipeline and indeed many groups use
-it with DNA sequencing data from a diverse range of organisms, even bacteria!
+nf-core was created to bring people together to collaborate on building Nextflow pipelines.
+However, as the community grows, the way that we structure ourselves around pipelines and
+tools is beginning to show a few gaps.
+Researchers from different disciplines can use the _same_ set of pipelines in very different ways.
 Most nf-core pipelines are very flexible in their usage by design, and so for truly
 reproducible research groups need to standardise not just the pipelines that they
 use, but also the manner in which they use them.
 
-Additionally, many of these researchers actively contribute to major research consortia. As a result, we see more and more large research consortia adopting nf-core pipelines for their
-research and these concerns are often key to their desire to make research outputs
-from disparate groups comparable and reproducible.
-
 To meet this need, we want to provide a space for community members working on
 similar research interests to gather and collaborate.
-We want to foster collaboration not just in the development of scientific
-research tooling, but also in the usage of that tooling across multiple fields.
-We hope that special interest groups will provide a place for this to happen.
+We want to foster collaboration not just in the _development_ of scientific
+research tooling, but also in the _usage_ of that tooling across different fields.
+We hope that Special Interest Groups will provide a place for this to happen.
 
 # How will this work?
 
-We like how our community is structured around pipelines.
-Our established methods for these groups appears to work well, so rather than
-reinventing the wheel we intend to adopt a similar pattern for special interest groups:
+The nf-core community is structured around pipelines.
+The existing methods that we use to manage pipeline groups appears to work well, so rather than
+reinventing the wheel we intend to adopt a similar pattern for Special Interest Groups:
 
-1. Anyone can suggest a new group in the `#new-interest-groups` Slack channel
-    - Just like with `#new-pipelines`, there is a Slack workflow with a form to fill in,
+1. Anyone can suggest a new group in the [`#new-interest-group`](https://nfcore.slack.com/channels/new-interest-group) Slack channel
+    - Just like with [`#new-pipelines`](https://nfcore.slack.com/channels/new-pipelines), there is a Slack workflow with a form to fill in,
       with a handful of questions to collect all the required information.
 2. The core team (and steering group, as necessary) will discuss the proposal, suggest
    any changes and either accept or reject the proposal.
     - This process will be tracked in a GitHub project, called
-      [New interest groups](https://github.com/orgs/nf-core/projects/63)
-3. A new Slack channel will be created for the new interest group on the nf-core Slack
-4. A new web page will be created for the group on the nf-core website
+      [New interest groups](https://github.com/orgs/nf-core/projects/63).
+3. A new Slack channel will be created for the new interest group on the nf-core Slack.
+4. A [new web page](/special-interest-groups) will be created for the group on the nf-core website.
 5. The lead for the new group will organise a nf-core/bytesize talk to introduce
    the group to the community. A blog post will also be recommended.
 6. The new special interest group will be active and continue under their own steam.
 
 ## Group web pages
 
-The new web page will just be a stub at first, but we hope that the interest group
+The [new web page](/special-interest-groups) will just be a stub at first, but we hope that the interest group
 will develop this over time. These pages can evolve into mini sections with multiple
 sub-pages, including things like best-practice documentation, meeting notes and more.
 
-We would like to standardise a listing of the nf-core pipelines typically used by
-members of each interest group, so that the pages can be cross-linked.
+The web pages list the nf-core pipelines typically used by members of the group,
+so that the pages can be cross-linked.
 That way, anyone viewing a web page for an nf-core pipeline will be able to see
 at a glance what it can be used for and hopefully link to best practices for
 that pipeline with that type of data.
 
 ## Closing after inactivity
 
-Just like pipelines, special interest groups will never be _deleted_.
+Just like pipelines, Special Interest Groups will never be _deleted_.
 As part of the annual "spring cleaning" that the nf-core maintainers team does,
 we will check on each group's recent activity and make sure that everything is going ok.
 If a group is obviously inactive and does not respond to requests for a status update,
-or if desired by the organisers, the interest group will be archived.
+or if desired by the group organisers, the interest group will be archived.
 
 Anyone will be able to revive an archived special interest group at a future date,
 in a process much like proposing a new group.
@@ -91,13 +81,13 @@ in a process much like proposing a new group.
 ## Who can join?
 
 Anyone can join any interest group.
-Just as every nf-core pipeline is owned by the community, special interest groups
+In the same way that every nf-core pipeline is owned by the community, Special Interest Groups
 will be made as inclusive as possible.
 
-We will try to avoid naming groups after existing groups or consortia, though
-many may begin from such origins. We will also try to not to tie any interest
-groups to specific topics or research groups where possible.
-We want anyone working in a relevant field or interest to be able to join (and leave!)
+In order to achieve this, we will try to avoid naming groups after existing groups or consortia, even though
+some may begin from such origins. We will also try to not to tie any interest
+groups to very specific topics or research groups where possible.
+We want anyone working in a relevant field or interest to be able to join
 an interest group without feeling like an outsider.
 
 ## What will they do?
@@ -110,20 +100,21 @@ If the group is active and people are finding it useful, we will consider it a s
 
 That said, the types of things that we hope that interest groups could do could include:
 
--   Writing best practices for nf-core pipeline usage, specific to their field
--   Creating pipeline configs specific to the group, to encode these recommendations
--   Work together to harmonise usage of data formats
--   Listing relevant externala and internal resources, videos and documentation
--   Holding regular group meetings
--   Presenting updates in nf-core/bytesize talks and blog posts
--   Potentially even running their own series of talks, if there is interest
+-   Writing best practices for nf-core pipeline usage, specific to their field.
+-   Creating pipeline configs specific to the group, to encode these recommendations.
+-   Creating and extending nf-core pipelines, as necessary.
+-   Working together to harmonise usage of data formats.
+-   Listing relevant externala and internal resources, videos and documentation.
+-   Holding regular group meetings.
+-   Presenting updates in nf-core/bytesize talks and blog posts.
+-   Potentially even running their own series of talks, if there is interest.
 
 We're sure that our new groups can and will do many more different and diverse things.
 We can't wait to see where the program goes!
 
 ## What about pipeline development?
 
-Discussion within special interest groups can revolve around usage of pipelines,
+Discussion within Special Interest Groups can revolve around usage of pipelines,
 but when it comes to any missing features or requirements we expect members to move
 discussions into the regular pipeline channels.
 There should be a distinction between scientific and technical topics.
@@ -135,7 +126,7 @@ orthogonal manner, each contributing to the other.
 
 # Introducing: Our first special interest group
 
-Today we are delighted to announce our first interest group: [Domestic animal genomics](/special-interest-groups/domestic-animal-genomics/).
+Today we are delighted to announce our first interest group: [Animal genomics](/special-interest-groups/animal-genomics/).
 We'll leave the details to be elaborated on in a dedicated blog post by them at a later
 date, but we'd like to take this opportunity to thank them for taking the lead.
 
@@ -148,7 +139,9 @@ including [AQUA-FAANG](https://www.aqua-faang.eu/), [EuroFAANG Research Infrastr
 The BovReg project is now reaching its conclusion, and members of the group who
 had been working closely with nf-core expressed their interest in continuing the
 collaboration and discussion going in some form.
-It was this request that led to the formation of nf-core special interest groups.
+It was this request that led to the formation of nf-core Special Interest Groups.
+Many thanks to those involved for their enthusiasm and feedback in the process!
 
 Stay tuned for more information about this group, and others.
-If you have an idea for a group then let us know in the `#new-interest-groups` channel!
+If you have an idea for a group then let us know in the
+[`#new-interest-group`](https://nfcore.slack.com/channels/new-interest-group) channel!
