@@ -8,7 +8,6 @@ const { event } = Astro.props;
 let events = await getCollection('events', ({ slug }) => {
     return slug.startsWith(event);
 });
-console.log(events[0].data.locations);
 
 const local_sites_map: {
     location: [number, number];
@@ -16,7 +15,6 @@ const local_sites_map: {
     url: string;
 }[] = events.map((site) => {
     const location = site.data.locations?.[0];
-    console.log('location', location);
     if (location) {
         return {
             location: location.geoCoordinates,
