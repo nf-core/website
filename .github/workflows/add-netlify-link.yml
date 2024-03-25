@@ -14,12 +14,12 @@ jobs:
         uses: tj-actions/changed-files@v43
 
       - name: Add Netlify link to PR
-        if: steps.changed-files.outputs.changed_files != ''
+        if: steps.changed-files.outputs.all_changed_files != ''
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const changedFiles = `${{ steps.changed-files.outputs.changed_files }}`.split('\n');
+            const changedFiles = `${{ steps.changed-files.outputs.all_changed_files }}`.split('\n');
             const netlifyLinks = changedFiles
               .filter(file => file.startsWith('src/pages/'))
               .map(file => `@netlify ${file.replace('src/pages/', '/')}`)[0]
