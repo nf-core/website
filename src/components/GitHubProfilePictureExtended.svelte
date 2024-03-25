@@ -7,6 +7,7 @@
     export let size: number = 50;
     export let wrapperClasses: string = '';
     export let labelClasses: string = '';
+    export let containerQuery: boolean = false;
 
     const affiliation_str =
         affiliation.length > 0
@@ -16,24 +17,26 @@
 </script>
 
 <GitHubProfilePicture
-    {wrapperClasses}
+    wrapperClasses={'d-block ' + wrapperClasses}
     linkClasses="btn btn-light rounded-pill mb-2 p-0 d-flex align-items-center"
     image={'https://github.com/' + username + '.png'}
     name={username}
     circle={true}
     size={Math.max(size, 25)}
-    containerQuery={true}
+    {containerQuery}
 >
-    <div class={'ms-2 pe-2 w-100 text-start d-flex flex-column profile-name ' + labelClasses}>
-        <slot>
-            @{username}
-        </slot>
-        {@html affiliation_str}
-    </div>
-</GitHubProfilePicture>
+    <div class={'ms-2 pe-2 text-start d-flex flex-column profile-name ' + labelClasses}>
+        <div class={'ps-2 pe-3 ' + labelClasses}>
+            <slot>
+                @{username}
+            </slot>
+            {@html affiliation_str}
+        </div>
+    </div></GitHubProfilePicture
+>
 
 <style lang="scss">
-    .profile-name :global(p) {
+    :global(.profile-name p) {
         margin-bottom: 0;
     }
 </style>
