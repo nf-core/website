@@ -22,8 +22,9 @@
     name={username}
     circle={true}
     size={Math.max(size, 25)}
+    containerQuery={true}
 >
-    <div class={'ms-2 pe-2 text-start d-flex flex-column profile-name ' + labelClasses}>
+    <div class={'ms-2 pe-2 w-100 text-start d-flex flex-column profile-name ' + labelClasses}>
         <slot>
             @{username}
         </slot>

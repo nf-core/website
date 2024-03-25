@@ -4,20 +4,22 @@
     export let image: string = 'https://github.com/' + name + '.png';
     export let size: number = 60;
     export let circle: boolean = false;
-    export let linkClasses = '';
-    export let wrapperClasses = '';
-    export let imgClasses = '';
+    export let linkClasses: string = '';
+    export let wrapperClasses: string = '';
+    export let imgClasses: string = '';
+    export let containerQuery: boolean = false;
 
     const tooltip = count > 0 ? `${name} (${count} commits)` : name;
     const avatar_url = image.match(/\?/) ? `${image}&s=${size}` : `${image}?s=${size}`;
 </script>
 
-<div class={'github-profile ' + wrapperClasses}>
+<div class={wrapperClasses} class:github-profile={containerQuery}>
     <a
         href="https://github.com/{name}"
-        class={'text-decoration-none d-block overflow-scroll ' + linkClasses}
+        class={'text-decoration-none d-block ' + linkClasses}
         target="_blank"
         rel="noopener noreferrer"
+        style="--size:{size};"
     >
         <img
             src={avatar_url}
@@ -29,7 +31,7 @@
             title={tooltip}
             alt={`Github user ${name}`}
             style="--size:{size};"
-            class={'align-self-end ' + imgClasses}
+            class={' ' + imgClasses}
         />
         <div class="profile-name text-nowrap">
             <slot />
@@ -40,18 +42,15 @@
 <style lang="scss">
     @import '../styles/_variables.scss';
     img {
-        min-height: calc(var(--size) * 1px);
-        height: 100%;
         background-color: $white;
-        min-width: calc(var(--size) * 1px);
     }
     .github-profile {
         container-type: inline-size;
         container-name: github-profile;
-        // min-width: 15rem;
     }
     .github-profile a {
         width: fit-content;
+        // height: var(--size);
     }
     @container github-profile (width < 7rem) {
         :global(.profile-name) {
@@ -62,7 +61,6 @@
         z-index: 1000;
         :global(.profile-name) {
             display: block !important;
-
             z-index: 1000;
         }
     }
