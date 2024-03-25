@@ -49,7 +49,7 @@ const admonitionTypes = {
 <div class={`mb-4 admonition admonition-${admonitionTypes[title].id}`}>
     <div class={`admonition-body p-0 rounded-1 border border-2 border-${admonitionTypes[title].id}-subtle`}>
         <div
-            class={`title alert alert-${admonitionTypes[title].id} fw-bold px-3 py-2 d-flex align-items-center rounded-top-1 rounded-bottom-0 border-0`}
+            class={`title mb-0 alert alert-${admonitionTypes[title].id} fw-bold px-3 py-2 d-flex align-items-center rounded-0 border-0`}
         >
             {icon && <i class={`fa-solid ${icon} me-2`} />}
             {
@@ -62,7 +62,7 @@ const admonitionTypes = {
             {titleText && <span set:html={titleText} />}
             {!titleText && title.charAt(0).toUpperCase() + title.slice(1)}
             <button
-                class="btn btn-sm text-secondary flex-shrink-1 admonition-collapse-button"
+                class="btn btn-sm text-secondary flex-shrink-1 ms-auto admonition-collapse-button"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target=`#admonition-${randomId}`
@@ -71,7 +71,7 @@ const admonitionTypes = {
                 Expand
             </button>
         </div>
-        <div class="collapse" id="admonition-r0xlk">
+        <div class="collapse" id=`admonition-${randomId}`>
             <div class="p-3 admonition-body-content">
                 <slot />
             </div>
