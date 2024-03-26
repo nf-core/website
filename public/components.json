@@ -4540,6 +4540,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -39451,6 +39455,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -40214,6 +40222,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -45157,6 +45169,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -51552,7 +51568,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "1.1.1"
+          "version": "1.1.2"
         }
       ]
     },
@@ -77060,7 +77076,7 @@
         },
         {
           "name": "pangenome",
-          "version": "1.1.1"
+          "version": "1.1.2"
         },
         {
           "name": "pathogensurveillance",
@@ -80487,7 +80503,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "1.1.1"
+          "version": "1.1.2"
         }
       ]
     },
@@ -80572,7 +80588,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "1.1.1"
+          "version": "1.1.2"
         }
       ]
     },
@@ -80657,7 +80673,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "1.1.1"
+          "version": "1.1.2"
         }
       ]
     },
@@ -80735,7 +80751,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "1.1.1"
+          "version": "1.1.2"
         }
       ]
     },
@@ -80813,7 +80829,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "1.1.1"
+          "version": "1.1.2"
         }
       ]
     },
@@ -80898,7 +80914,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "1.1.1"
+          "version": "1.1.2"
         }
       ]
     },
@@ -80976,7 +80992,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "1.1.1"
+          "version": "1.1.2"
         }
       ]
     },
@@ -81054,7 +81070,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "1.1.1"
+          "version": "1.1.2"
         }
       ]
     },
@@ -81132,7 +81148,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "1.1.1"
+          "version": "1.1.2"
         }
       ]
     },
@@ -98767,7 +98783,7 @@
         },
         {
           "name": "pangenome",
-          "version": "1.1.1"
+          "version": "1.1.2"
         },
         {
           "name": "pathogensurveillance",
@@ -105694,7 +105710,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "1.1.1"
+          "version": "1.1.2"
         }
       ]
     },
@@ -107964,7 +107980,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "1.1.1"
+          "version": "1.1.2"
         }
       ]
     },
@@ -114793,7 +114809,7 @@
         },
         {
           "name": "pangenome",
-          "version": "1.1.1"
+          "version": "1.1.2"
         },
         {
           "name": "phaseimpute",
@@ -123142,7 +123158,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "1.1.1"
+          "version": "1.1.2"
         }
       ]
     },
@@ -129304,6 +129320,75 @@
       ]
     },
     {
+      "name": "fastq_taxonomic_profile_metaphlan",
+      "path": "subworkflows/nf-core/fastq_taxonomic_profile_metaphlan/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "fastq_taxonomic_profile_metaphlan",
+        "description": "Subworkflow to taxonomically classify metagenomic sequencing data using MetaPhlAn",
+        "keywords": [
+          "metaphlan",
+          "metagenomics",
+          "database",
+          "classification",
+          "merge",
+          "profiles"
+        ],
+        "components": [
+          "metaphlan/makedb",
+          "metaphlan/metaphlan",
+          "metaphlan/mergemetaphlantables"
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:‘test’, single_end:false ]\n"
+            }
+          },
+          {
+            "ch_fastq": {
+              "type": "file",
+              "description": "The input channel containing the FASTQ files\nStructure: [ val(meta), path(fastqs) ]\n",
+              "pattern": "*.{fastq/fastq.gz}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:‘test’, single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "txt": {
+              "type": "file",
+              "description": "Combined MetaPhlAn table\nStructure: [ val(meta), path(txt) ]\n",
+              "pattern": "*.txt"
+            }
+          }
+        ],
+        "authors": [
+          "@LaurenGonsalves",
+          "@hhayden01",
+          "@ErikLHendrickson",
+          "@CarsonJM"
+        ],
+        "maintainers": [
+          "@LaurenGonsalves",
+          "@CarsonJM"
+        ]
+      }
+    },
+    {
       "name": "fastq_trim_fastp_fastqc",
       "path": "subworkflows/nf-core/fastq_trim_fastp_fastqc/meta.yml",
       "type": "subworkflow",
@@ -132965,7 +133050,7 @@
         },
         {
           "name": "pangenome",
-          "version": "1.1.1"
+          "version": "1.1.2"
         },
         {
           "name": "phaseimpute",
@@ -133090,7 +133175,7 @@
         },
         {
           "name": "pangenome",
-          "version": "1.1.1"
+          "version": "1.1.2"
         },
         {
           "name": "phaseimpute",
@@ -133245,7 +133330,7 @@
         },
         {
           "name": "pangenome",
-          "version": "1.1.1"
+          "version": "1.1.2"
         },
         {
           "name": "phaseimpute",
