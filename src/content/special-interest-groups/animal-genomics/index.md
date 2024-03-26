@@ -1,6 +1,7 @@
 ---
 title: Introduction
 subtitle: 'The Animal Genomics Special Interest Group is a community of researchers and practitioners interested in the application of genomics to animal breeding and genetics.'
+groupName: Animal Genomics
 leads:
   - bjlang: Björn Langer
 pipelines:

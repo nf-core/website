@@ -33,7 +33,7 @@ const sections = [
             }),
     },
 ];
-const group_name = section.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
+const group_name = entry.data.groupName;
 ---
 
 <MarkdownTocLayout
