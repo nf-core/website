@@ -129,6 +129,23 @@ Many people have speculated that if we knew exactly why the bowl of petunias had
 Many people have speculated that if we knew exactly why the bowl of petunias had thought that we would know a lot more about the nature of the Universe than we do now.
 :::
 
+## GitHub style admonitions
+
+For `README.md` files, you can also use the [GitHub style admonitions/alerts](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts):
+
+```md
+> [!NOTE]
+> A magician wandered along the beach, but no one needed him.
+```
+
+> [!NOTE]
+> A magician wandered along the beach, but no one needed him.
+
+This renders in the same way as regular admonitions on the nf-core website,
+but has the bonus of also rendering nicely when viewing the rendered markdown on [github.com](https://github.com):
+
+![GitHub admonition syntax](/images/contributing/github_admonition_syntax.png)
+
 # Code blocks
 
 We use [rehype-pretty-code](https://rehype-pretty-code.netlify.app/) to generate code blocks on the website. This allows us to add line numbers, highlight lines, add file names to code blocks, etc. These directives can be mixed and matched.
