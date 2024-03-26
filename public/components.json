@@ -4544,6 +4544,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -14755,7 +14759,7 @@
       "pipelines": [
         {
           "name": "detaxizer",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "phageannotator",
@@ -14945,7 +14949,7 @@
       "pipelines": [
         {
           "name": "detaxizer",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "phageannotator",
@@ -18004,7 +18008,9 @@
               "homepage": "https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/what-is-cell-ranger",
               "documentation": "https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/using/tutorial_ov",
               "tool_dev_url": "https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/using/tutorial_ov",
-              "licence": "10x Genomics EULA"
+              "licence": [
+                "10X Genomics EULA"
+              ]
             }
           }
         ],
@@ -18071,7 +18077,9 @@
               "homepage": "https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/what-is-cell-ranger",
               "documentation": "https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/using/tutorial_ov",
               "tool_dev_url": "https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/using/tutorial_ov",
-              "licence": "10x Genomics EULA"
+              "licence": [
+                "10X Genomics EULA"
+              ]
             }
           }
         ],
@@ -18135,7 +18143,9 @@
               "homepage": "https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/what-is-cell-ranger",
               "documentation": "https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/using/tutorial_ov",
               "tool_dev_url": "https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/using/tutorial_ov",
-              "licence": "10x Genomics EULA"
+              "licence": [
+                "10X Genomics EULA"
+              ]
             }
           }
         ],
@@ -18485,7 +18495,9 @@
               "homepage": "https://support.10xgenomics.com/single-cell-vdj/software/pipelines/latest/what-is-cell-ranger",
               "documentation": "https://support.10xgenomics.com/single-cell-vdj/software/pipelines/latest/tutorial/tutorial-vdj",
               "tool_dev_url": "https://support.10xgenomics.com/single-cell-vdj/software/pipelines/latest/tutorial/tutorial-vdj",
-              "licence": "10x Genomics EULA"
+              "licence": [
+                "10X Genomics EULA"
+              ]
             }
           }
         ],
@@ -33937,7 +33949,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "mag",
@@ -34121,7 +34133,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "fastquorum",
@@ -39459,6 +39471,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -40222,6 +40238,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -45169,6 +45189,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -64737,7 +64761,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "hgtseq",
@@ -76968,7 +76992,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "epitopeprediction",
@@ -98820,6 +98844,10 @@
         {
           "name": "sarek",
           "version": "3.4.0"
+        },
+        {
+          "name": "tfactivity",
+          "version": "dev"
         }
       ]
     },
@@ -100266,7 +100294,13 @@
         "maintainers": [
           "@louislenezet"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tfactivity",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "samtools_sormadup",
@@ -133018,7 +133052,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "epitopeprediction",
@@ -133143,7 +133177,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "epitopeprediction",
@@ -133298,7 +133332,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "epitopeprediction",
