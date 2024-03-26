@@ -1,6 +1,7 @@
 ---
 title: 'Meetings'
-subtitle: 'When and where the Animal Genomics group meetss'
+subtitle: 'When and where the Animal Genomics group meets'
+groupName: Animal Genomics
 ---
 
 # Meeting schedule
@@ -14,6 +15,6 @@ The first meeting will be Wednesday 17th April at 16:00 CET.
 
 Meetings are held on Zoom:
 
-- [Zoom Link](https://rediris.zoom.us/j/94060212577?pwd=SFNCcjhkN2k2ZjdzZjJpaysvcFhhUT09)
+- Zoom Link
 - Meeting ID: `940 6021 2577`
 - Passcode: `711880`
