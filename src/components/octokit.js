@@ -80,13 +80,16 @@ export const getGitHubFile = async (repo, path, ref) => {
 
         // convert github style admonitions to docusaurus admonitions
         content = content.replace(
-          /> \[!(NOTE|TIP|WARNING|IMPORTANT)\]\s*\n((?:> [^\n]*\s*?)+)/g,
+          /> \[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]\s*\n((?:> [^\n]*\s*?)+)/g,
           (match, type, content) => {
             const cleanedContent = content.replace(/> /g, '').trim();
             const admonitionType = type.toLowerCase();
 
             if (admonitionType === 'important') {
               return `:::info{title=Important}\n${cleanedContent}\n:::\n\n`;
+            }
+            if (admonitionType === 'caution') {
+              return `:::danger{title=Caution}\n${cleanedContent}\n:::\n\n`;
             }
 
             return `:::${admonitionType}\n${cleanedContent}\n:::\n\n`;
