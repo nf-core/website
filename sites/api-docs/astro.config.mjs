@@ -94,7 +94,7 @@ export default defineConfig({
         },
         build: {
             rollupOptions: {
-                external: ['dotenv', 'octokit'],
+                external: ['dotenv', 'octokit', 'file-icons-js'],
             },
         },
     },
