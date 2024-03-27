@@ -1082,12 +1082,35 @@ A PR review is the process of examining a new modules' submission or the changes
 - Ensure that temporary unzipped files are removed to avoid mitigating benefits and worsening problems.
 - Ensure that large outputs are compressed with the correct tool (follow guidelines for gzip vs bzip2 vs other options).
 
-#### In `../tests/modules/nf-core/modulename/main.nf` and `../tests/modules/nf-core/modulename/meta.yml`:
+#### In `modules/nf-core/modulename/meta.yml`:
 
-- Check that there are tests for all outputs, including optional ones.
-- Check that the `meta.yml` file has correct documentation links and patterns of files.
+- Check that the file has correct documentation links and patterns of files.
 - Run the tool help and check that important input (usually optional) has not been missed.
-- Check that all outputs are captured by running pytest (e.g. on Gitpod).
+
+#### In `modules/nf-core/modulename/tests/main.nf.test`:
+
+- Check that there are tests for all outputs/inputs, including optional ones. Also check for all possible parameter variations that could lead to different outputs.
+    - [Different assertion types](https://nf-co.re/docs/contributing/tutorials/nf-test_assertions) should be used when a straightforward `process.out` snapshot is not feasible.
+- Check that a stub test exists for the module.
+- Check that tags for any dependent modules are specified to ensure changes to upstream modules will re-trigger tests for the current module.
+- Check that the `assertAll()` function is used and that there is at minimum a success assertion and versions in the snapshot.
+- Check that the test names describe the test dataset and configuration used, some examples below:
+    - `test("homo_sapiens - [fastq1, fastq2] - bam")`
+    - `test("sarscov2 - [ cram, crai ] - fasta - fai")`
+    - `test("Should search for zipped protein hits against a DIAMOND db and return a tab separated output file of hits")`
+- Check that all input data is being referenced using the `modules_testdata_base_path` parameter:
+    - e.g. `file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)`
+
+#### In `modules/nf-core/modulename/tests/main.nf.test.snap`:
+
+- Check that all output files are present in the nf-test snapshot file, or at a minimum, check that the files exist.
+- Check that there are no md5sums representing empty files (except for the stub tests)
+
+#### Migrating pytest to nf-test:
+
+- Ensure all previous pytest assertions are converted to nf-test
+- Confirm that all pytest files are deleted
+- The module MUST use an `environment.yml` for conda environments. Previously, modules used a `conda=<name>=<version>` statement in the `main.nf` file, which has since been replaced with a dedicated `environment.yml` file.
 
 ## What is the `meta` map?
 
