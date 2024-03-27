@@ -1085,7 +1085,7 @@ A PR review is the process of examining a new modules' submission or the changes
 #### In `modules/nf-core/modulename/meta.yml`:
 
 - Check that the file has correct documentation links and patterns of files.
-- Run the tool help and check that important input (usually optional) has not been missed.
+- Check that all inputs and outputs are documented in this file.
 
 #### In `modules/nf-core/modulename/tests/main.nf.test`:
 
