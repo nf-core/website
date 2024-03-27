@@ -1100,7 +1100,7 @@ A PR review is the process of examining a new modules' submission or the changes
     - `test("sarscov2 - [ cram, crai ] - fasta - fai")`
     - `test("Should search for zipped protein hits against a DIAMOND db and return a tab separated output file of hits")`
 - Check that all input data is being referenced using the `modules_testdata_base_path` parameter:
-    - e.g. `file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)`
+    - e.g. `file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true){:groovy}`
 
 #### In `modules/nf-core/modulename/tests/main.nf.test.snap`:
 
