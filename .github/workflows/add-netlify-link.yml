@@ -2,9 +2,6 @@ name: Add Netlify Link to PR
 
 on:
   pull_request_target:
-    types:
-      - opened
-      - edited
     paths:
       - 'src/pages/**'
       - 'src/content/**'
