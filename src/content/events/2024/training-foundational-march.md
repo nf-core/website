@@ -6,7 +6,8 @@ startDate: '2024-03-05'
 startTime: '15:00+01:00'
 endDate: '2024-03-06'
 endTime: '18:00+01:00'
-locationName: YouTube
+locations:
+  - name: YouTube
 importTypeform: true
 ---
 
@@ -29,16 +30,22 @@ Please sign up [here](https://form.typeform.com/to/cueKqqeM) or in the widget be
 
 > Registering for the event helps us to understand how many people will be attending and will help us to plan for future events.
 
+# Before the event
+
+The workshop will utilize a [Gitpod](https://www.gitpod.io/) environment that contains all the software and data required for this workshop. A [GitHub](https://github.com/) account is required to access this environment. It may take several minutes to register for GitHub and GitPod for the first time and it's recommended that participants have preregistered for both before the event.
+
 # Accessing the streams
 
 To make the workshops available to everyone they will be streamed on the [nf-core YouTube channel](https://www.youtube.com/c/nf-core).
 Videos will be released at the start of each session and will be available to watch at any time after that.
 
-A YouTube playlists of the streams for this event will be made available closer to the event.
+Both sessions will be streamed shared on the [Community Foundational Nextflow Training: March 2024](https://www.youtube.com/playlist?list=PL3xpfTVZLcNgLBGLAiY6Rl9fizsz-DTCT) playlist.
+
+Please follow [this link ](https://www.youtube.com/playlist?list=PL3xpfTVZLcNgLBGLAiY6Rl9fizsz-DTCT) to find the streams.
 
 # Schedule
 
-Training sessions will be available from 3 pm (CET) each day. Each session will be approximately 3 hours.
+Training sessions will be available from 3 pm (CET) each day. Each session will be approximately 3-4 hours.
 
 ## Session 1 (March 5)
 
@@ -62,15 +69,17 @@ Session 2 will provide a deeper dive into Nextflow. You will revisit concepts fr
 - Troubleshooting (20 min)
 - Getting starting with Seqera Platform (20 min)
 
+:::note
+The given times are estimates.
+:::
+
 # Asking questions
 
-Questions can be asked in the Slack channels created for this event. Community volunteers will monitor these channels and will answer your questions as quickly as they can. You can join the nf-core Slack [here](https://nf-co.re/join/slack).
+Questions can be asked using the nf-core [#training](https://nfcore.slack.com/archives/CP1T5S815) Slack channel. Community volunteers will monitor this channel and will answer your questions as quickly as they can. You can join the nf-core Slack [here](https://nf-co.re/join/slack).
 
-While the training is being streamed at a specific time, you can ask questions at any time. We will monitor the Slack channels closely for a few days after the event to make sure we answer your questions.
+While the training is being shared for the first time at 3 pm (CET), you can ask questions at any time. We will monitor the Slack channels closely to make sure we answer your questions.
 
-More details about the Slack channel will be made available closer to the event.
-
-> Please be aware that due to the size of this event there may be a delay when answering your questions.
+> Please be aware that due to the size and global reach of this event and there may be a delay when answering your questions.
 
 # Code of conduct
 

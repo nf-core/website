@@ -7,9 +7,11 @@ startTime: '13:00+02:00'
 endDate: '2021-09-21'
 endTime: '13:30+02:00'
 youtubeEmbed: https://youtu.be/zS_hbXQmHbI
-locationURL:
-  - https://youtu.be/zS_hbXQmHbI
-  - https://zoom.us/j/94352451216
+locations:
+  - name: Online
+    links:
+      - https://youtu.be/zS_hbXQmHbI
+      - https://zoom.us/j/94352451216
 ---
 
 This week, Evan Floden ([@evanfloden](http://github.com/evanfloden/)) will provide some updates on Nextflow Tower (<https://tower.nf>), including the new Community Showcase with nf-core pipelines, a first look at the datasets feature, the upcoming CLI, and some automations for triggering the execution of pipelines.

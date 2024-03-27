@@ -20,7 +20,7 @@ nf-core AWS full size tests workflow on the left.
 :::
 
 :::note
-For tests on full data prior to release, [Nextflow Tower](https://tower.nf) launch feature can be employed.
+For tests on full data prior to release, [Seqera Platform](https://seqera.io/platform/) launch feature can be employed.
 :::
 
 The `.github/workflows/awsfulltest.yml` file is tested for the following:

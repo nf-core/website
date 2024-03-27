@@ -8,10 +8,12 @@ endDate: '2021-11-23'
 endTime: '13:30+01:00'
 embedAt: 'sarek'
 youtubeEmbed: https://youtu.be/6EIGUe5sjNo
-locationURL:
-  - https://youtu.be/6EIGUe5sjNo
-  - https://www.bilibili.com/video/BV1WR4y147PT
-  - https://doi.org/10.6084/m9.figshare.17068046.v1
+locations:
+  - name: Online
+    links:
+      - https://youtu.be/6EIGUe5sjNo
+      - https://www.bilibili.com/video/BV1WR4y147PT
+      - https://doi.org/10.6084/m9.figshare.17068046.v1
 ---
 
 This week, José Fernández Navarro ([@jfnavarro](https://github.com/jfnavarro)) will tell us all about the nf-core/sarek pipeline.

@@ -9,13 +9,15 @@ endTime: '13:30+01:00'
 youtubeEmbed:
   - https://www.youtube.com/embed/tWvou0xj9wA
   - https://www.youtube.com/embed/Wc4A2tQ6WWY
-locationURL:
-  - https://youtu.be/tWvou0xj9wA
-  - https://youtu.be/Wc4A2tQ6WWY
-  - https://www.bilibili.com/video/BV1nN411Q7Ex
-  - https://www.bilibili.com/video/BV1bz4y117me
-  - https://doi.org/10.6084/m9.figshare.14185736.v1
-  - https://doi.org/10.6084/m9.figshare.14185745.v1
+locations:
+  - name: Online
+    links:
+      - https://youtu.be/tWvou0xj9wA
+      - https://youtu.be/Wc4A2tQ6WWY
+      - https://www.bilibili.com/video/BV1nN411Q7Ex
+      - https://www.bilibili.com/video/BV1bz4y117me
+      - https://doi.org/10.6084/m9.figshare.14185736.v1
+      - https://doi.org/10.6084/m9.figshare.14185745.v1
 ---
 
 ### DSL2 - Using modules in a pipeline

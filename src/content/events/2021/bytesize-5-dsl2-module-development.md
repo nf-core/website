@@ -7,10 +7,12 @@ startTime: '13:00+01:00'
 endDate: '2021-03-02'
 endTime: '13:30+01:00'
 youtubeEmbed: https://youtu.be/ggGGhTMgyHI
-locationURL:
-  - https://doi.org/10.6084/m9.figshare.14160116.v1
-  - https://youtu.be/ggGGhTMgyHI
-  - https://www.bilibili.com/video/BV1aK4y1D7z3
+locations:
+  - name: Online
+    links:
+      - https://doi.org/10.6084/m9.figshare.14160116.v1
+      - https://youtu.be/ggGGhTMgyHI
+      - https://www.bilibili.com/video/BV1aK4y1D7z3
 ---
 
 This week, Harshil Patel ([@drpatelh](http://github.com/drpatelh/)) will present: _**DSL2 module development.**_ This will cover:

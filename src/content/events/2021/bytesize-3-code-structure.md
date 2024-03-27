@@ -7,10 +7,12 @@ startTime: '13:00+01:00'
 endDate: '2021-02-16'
 endTime: '13:30+01:00'
 youtubeEmbed: https://youtu.be/FFTNVbdD5pQ
-locationURL:
-  - https://doi.org/10.6084/m9.figshare.14160677.v1
-  - https://youtu.be/FFTNVbdD5pQ
-  - https://www.bilibili.com/video/BV1gp4y1h7G8
+locations:
+  - name: Online
+    links:
+      - https://doi.org/10.6084/m9.figshare.14160677.v1
+      - https://youtu.be/FFTNVbdD5pQ
+      - https://www.bilibili.com/video/BV1gp4y1h7G8
 ---
 
 This week, Gisela Gabernet ([@ggabernet](http://github.com/ggabernet/)) will present: _**Pipeline code structure walkthrough.**_

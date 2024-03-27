@@ -7,10 +7,12 @@ startTime: '13:00+02:00'
 endDate: '2021-06-01'
 endTime: '13:30+02:00'
 youtubeEmbed: https://youtu.be/1OwkTd-P5pQ
-locationURL:
-  - https://youtu.be/1OwkTd-P5pQ
-  - https://www.bilibili.com/video/BV185411M71d
-  - https://doi.org/10.6084/m9.figshare.14717307.v1
+locations:
+  - name: Online
+    links:
+      - https://youtu.be/1OwkTd-P5pQ
+      - https://www.bilibili.com/video/BV185411M71d
+      - https://doi.org/10.6084/m9.figshare.14717307.v1
 ---
 
 This week, Alexander Peltzer ([@apeltzer](http://github.com/apeltzer/)) will present: _**Pipeline first release.**_

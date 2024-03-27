@@ -6,10 +6,11 @@ startDate: '2023-03-27'
 startTime: '14:00+02:00'
 endDate: '2023-03-29'
 endTime: '22:00+02:00'
-locationName: Brain Institute, Federal University of Rio Grande do Norte
-address: Av. Senador Salgado Filho, 3000 Campus Universitário, Lagoa Nova - Natal / RN 59078-900
-locationURL: https://neuro.ufrn.br
-locationLatLng: [-5.833184, -35.204875]
+locations:
+  - name: Brain Institute, Federal University of Rio Grande do Norte
+    address: Av. Senador Salgado Filho, 3000 Campus Universitário, Lagoa Nova - Natal / RN 59078-900
+    links: https://neuro.ufrn.br
+    geoCoordinates: [-5.833184, -35.204875]
 ---
 
 Local event to be held at the Federal University of Rio Grande do Norte as a satellite event of the [Natal Bioinformatics Forum 2023](https://bioinfo.imd.ufrn.br/nbf).

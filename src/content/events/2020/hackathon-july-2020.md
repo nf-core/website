@@ -6,8 +6,9 @@ startDate: '2020-07-13'
 startTime: '13:00+02:00'
 endDate: '2020-07-17'
 endTime: '17:00+02:00'
-locationName: Zoom, Slack & YouTube.
-locationURL: '#how-it-works'
+locations:
+  - name: Zoom, Slack & YouTube.
+    links: '#how-it-works'
 ---
 
 ## Introduction

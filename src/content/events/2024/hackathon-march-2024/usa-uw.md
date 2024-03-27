@@ -6,10 +6,11 @@ startDate: '2024-03-18'
 startTime: '09:00-06:00'
 endDate: '2024-03-20'
 endTime: '13:00-06:00'
-locationName: University of Washington
-address: 1607 NE Pacific St, Seattle, WA
-locationURL: https://www.washington.edu/maps/#!/hsrr
-locationLatLng: [47.649292, -122.308287]
+locations:
+  - name: University of Washington
+    address: 1607 NE Pacific St, Seattle, WA
+    links: https://www.washington.edu/maps/#!/hsrr
+    geoCoordinates: [47.649292, -122.308287]
 ---
 
 Local event to be held at the University of Washington.
