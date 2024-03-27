@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - 'src/pages/**'
+      - 'src/content/**'
 
 jobs:
   add-comment:
@@ -21,10 +22,20 @@ jobs:
           script: |
             const changedFiles = `${{ steps.changed-files.outputs.all_changed_files }}`.split('\n');
             console.log('Changed files:', changedFiles)
-            const netlifyLinks = changedFiles
+
+            # handle normal pages
+            let netlifyLinks = changedFiles
               .filter(file => file.startsWith('src/pages/'))
               .map(file => `@netlify ${file?.replace('src/pages/', '/')}`)[0]
               ?.replace(/\.md$/, '').replace(/\.mdx$/, '').replace(/\/index$/, '');
+
+            # handle pages in content collections
+            if (!netlifyLinks) {
+              netlifyLinks = changedFiles
+                .filter(file => file.startsWith('src/content/'))
+                .map(file => `@netlify ${file?.replace('src/content/', '/')}`)[0]
+                ?.replace(/\.md$/, '').replace(/\.mdx$/, '').replace(/\/index$/, '');
+            }
 
             if (netlifyLinks) {
               const { data: pullRequest } = await github.rest.pulls.get({
