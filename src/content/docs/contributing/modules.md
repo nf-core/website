@@ -1105,7 +1105,6 @@ A PR review is the process of examining a new modules' submission or the changes
 #### In `modules/nf-core/modulename/tests/main.nf.test.snap`:
 
 - Check that all output files are present in the nf-test snapshot file, or at a minimum, check that the files exist.
-- Check that there are no md5sums representing empty files (except for the stub tests)
 
 #### Migrating pytest to nf-test:
 
