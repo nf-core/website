@@ -793,10 +793,12 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
     }
     ```
 
-10. In some cases, STDOUT and STDERR need to be saved to file, for example for reporting purposes. Use the shell command `tee` to redirect the
-    streams to both file and it's original stream. This allows for the streams to be captured by the job scheduler's stream logging capabilities
-    and print them to screen when Nextflow encounters an error. In particular, when using `process.scratch`, the log files may not be preserved when
-    the job scheduler relinquishes the job allocation.
+10. In some cases, STDOUT and STDERR may need to be saved to file, for example for reporting purposes. Use
+    the shell command `tee` to simultaneously capture and preserve the streams. This allows for the streams to
+    be captured by the job scheduler's stream logging capabilities and print them to screen when Nextflow
+    encounters an error.
+
+    This ensures that they are captured by Nextflow. If information is only written to files, it could potentially be lost when the job scheduler gives up the job allocation.
 
     ```nextflow {7-8}
     script:
@@ -807,6 +809,19 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
       --output_prefix $prefix \\
       2> >( tee ${prefix}.stderr.log >&2 ) \\
       | tee ${prefix}.stdout.log
+    """
+    ```
+
+    Similarly, if the tool captures STDOUT or STDERR to a file itself, it is best to send those to the
+    corresponding streams as well. Since a timeout may mean execution is aborted, it may make most sense
+    to have background tasks do that.
+
+    ```nextflow {3-4}
+    script:
+    """
+    tail -F stored_stderr.log >&2 &
+    tail -F stored_stdout.log &
+    tool arguments
     """
     ```
 
