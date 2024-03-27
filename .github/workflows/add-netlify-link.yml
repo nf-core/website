@@ -36,20 +36,22 @@ jobs:
                 .map(file => `@netlify ${file?.replace('src/content/', '/')}`)[0]
                 ?.replace(/\.md$/, '').replace(/\.mdx$/, '').replace(/\/index$/, '');
             }
-
+            console.log('Netlify links:', netlifyLinks)
             if (netlifyLinks) {
+              console.log('Adding Netlify link to PR body' ,context.payload.pull_request.number);
               const { data: pullRequest } = await github.rest.pulls.get({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 pull_number: context.payload.pull_request.number,
               });
-
+              consoel.log('Current PR:', pullRequest);
+              console.log('Current PR body:', pullRequest.body);
               const currentBody = pullRequest.body || '';
               if (currentBody.includes('@netlify')) {
                 return; // Skip if the PR body already contains a Netlify link
               }
               const newBody = `${currentBody}\n\n${netlifyLinks}`;
-
+              console.log('New PR body:', newBody);
               // Update the pull request body
               await github.rest.pulls.update({
                 owner: context.repo.owner,
@@ -57,4 +59,5 @@ jobs:
                 pull_number: pullRequest.number,
                 body: newBody,
               });
+              console.log('Netlify link added to PR body');
             }
