@@ -4548,6 +4548,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -39475,6 +39479,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -40238,6 +40246,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -46253,6 +46265,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -50913,7 +50929,9 @@
               "documentation": "https://github.com/tbenavi1/genomescope2.0/blob/master/README.md",
               "tool_dev_url": "https://github.com/tbenavi1/genomescope2.0",
               "doi": "10.1038/s41467-020-14998-3",
-              "licence": "['Apache License, Version 2.0 (Apache-2.0)']"
+              "licence": [
+                "Apache-2.0"
+              ]
             }
           }
         ],
@@ -50993,6 +51011,20 @@
               "type": "file",
               "description": "Genomescope2 histogram summary",
               "pattern": "*_summary.txt"
+            }
+          },
+          {
+            "lookup_table": {
+              "type": "file",
+              "description": "Fitted histogram lookup table",
+              "pattern": "*_lookup_table.txt"
+            }
+          },
+          {
+            "fitted_histogram_png": {
+              "type": "file",
+              "description": "A genomescope2 fitted histogram plot in PNG format",
+              "pattern": "*_fitted_hist.png"
             }
           }
         ],
@@ -88798,6 +88830,150 @@
       }
     },
     {
+      "name": "plink_epistasis",
+      "path": "modules/nf-core/plink/epistasis/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "plink_epistasis",
+        "description": "Epistasis in PLINK, analyzing how the effects of one gene depend on the presence of others.",
+        "keywords": [
+          "interactions",
+          "variants",
+          "regression"
+        ],
+        "tools": [
+          {
+            "plink": {
+              "description": "Whole genome association analysis toolset, designed to perform a range of basic, large-scale analyses in a computationally efficient manner.",
+              "homepage": "https://www.cog-genomics.org/plink",
+              "documentation": "https://www.cog-genomics.org/plink/1.9/data#recode",
+              "tool_dev_url": "https://www.cog-genomics.org/plink/1.9/dev",
+              "licence": [
+                "GPL"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\nmeta is associated to the PLINK native file input\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing sample information,\ne.g. [ id:'test', single_end:false ]\nmeta2 is associated to VCF file input\n"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing sample information,\ne.g. [ id:'test', single_end:false ]\nmeta3 is associated to BCF file input\n"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing sample information,\ne.g. [ id:'test', single_end:false ]\nmeta4 is associated to phenotype file input\n"
+            }
+          },
+          {
+            "bed": {
+              "type": "file",
+              "description": "PLINK binary biallelic genotype table file",
+              "pattern": "*.{bed}"
+            }
+          },
+          {
+            "bim": {
+              "type": "file",
+              "description": "PLINK extended MAP file",
+              "pattern": "*.{bim}"
+            }
+          },
+          {
+            "fam": {
+              "type": "file",
+              "description": "PLINK sample information file",
+              "pattern": "*.{fam}"
+            }
+          },
+          {
+            "bcf": {
+              "type": "file",
+              "description": "PLINK variant information + sample ID + genotype call binary file",
+              "pattern": "*.{bcf}"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "Variant calling file (vcf)",
+              "pattern": "*.{vcf}"
+            }
+          },
+          {
+            "phe": {
+              "type": "file",
+              "description": "PLINK file containing phenotype information. This phenotype information can be read from the third column with the --pheno option or from a specific column with the --pheno-name option.",
+              "pattern": "*.{phe}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "epi": {
+              "type": "file",
+              "description": "PLINK epistasis file",
+              "pattern": "*.{epi.cc}"
+            }
+          },
+          {
+            "episummary": {
+              "type": "file",
+              "description": "PLINK epistasis summary file",
+              "pattern": "*.{epi.cc.summary}"
+            }
+          },
+          {
+            "log": {
+              "type": "file",
+              "description": "PLINK epistasis log file",
+              "pattern": "*.{log}"
+            }
+          },
+          {
+            "nosex": {
+              "type": "file",
+              "description": "Ambiguous sex ID file",
+              "pattern": "*.{nosex}"
+            }
+          }
+        ],
+        "authors": [
+          "@davidebag"
+        ],
+        "maintainers": [
+          "@davidebag"
+        ]
+      }
+    },
+    {
       "name": "plink_exclude",
       "path": "modules/nf-core/plink/exclude/meta.yml",
       "type": "module",
@@ -89089,7 +89265,7 @@
           {
             "phe": {
               "type": "file",
-              "description": "PLINK file containing phenotype information. This phenotype information can be read from the third column with the --pheno option or from a specific column with the --pheno-name option.",
+              "description": "PLINK file containing phenotype information. This phenotype information can be read from the third column with the --pheno option or from a specific column with the --pheno-name option",
               "pattern": "*.{phe}"
             }
           }
@@ -89106,6 +89282,20 @@
               "type": "file",
               "description": "PLINK GWAS association file",
               "pattern": "*.{assoc}"
+            }
+          },
+          {
+            "log": {
+              "type": "file",
+              "description": "PLINK GWAS association log file",
+              "pattern": "*.{log}"
+            }
+          },
+          {
+            "nosex": {
+              "type": "file",
+              "description": "PLINK GWAS association file that retains phenotypes for samples with ambiguous sex. Produced with the option --allow-no-sex",
+              "pattern": "*.{nosex}"
             }
           },
           {
@@ -89508,7 +89698,7 @@
           {
             "meta4": {
               "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\nmeta is associated to phenotype files input\n"
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\nmeta is associated to randomly selected snp files input\n"
             }
           },
           {
@@ -89572,6 +89762,18 @@
             "ld": {
               "type": "file",
               "description": "The output of a linkage disequilibrium analysis in PLINK typically includes a table showing variant pairs and their associated LD values, often expressed as R².\n"
+            }
+          },
+          {
+            "log": {
+              "type": "file",
+              "description": "Log file of the ld process\n"
+            }
+          },
+          {
+            "nosex": {
+              "type": "file",
+              "description": "Ambiguous sex ID file\n"
             }
           }
         ],
@@ -115174,6 +115376,89 @@
         ],
         "maintainers": [
           "@lucacozzuto"
+        ]
+      }
+    },
+    {
+      "name": "taxonkit_name2taxid",
+      "path": "modules/nf-core/taxonkit/name2taxid/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "taxonkit_name2taxid",
+        "description": "Convert taxon names to TaxIds",
+        "keywords": [
+          "taxonomy",
+          "taxids",
+          "taxon name",
+          "conversion"
+        ],
+        "tools": [
+          {
+            "taxonkit": {
+              "description": "A Cross-platform and Efficient NCBI Taxonomy Toolkit",
+              "homepage": "https://bioinf.shenwei.me/taxonkit/",
+              "documentation": "https://bioinf.shenwei.me/taxonkit/usage/#name2taxid",
+              "tool_dev_url": "https://github.com/shenwei356/taxonkit",
+              "doi": "10.1016/j.jgg.2021.03.006",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "name": {
+              "type": "string",
+              "description": "Taxon name to look up (provide either this or names.txt, not both)"
+            }
+          },
+          {
+            "names_txt": {
+              "type": "file",
+              "description": "File with taxon names to look up, each on their own line (provide either this or name, not both)"
+            }
+          },
+          {
+            "taxdb": {
+              "type": "file",
+              "description": "Taxonomy database unpacked from ftp://ftp.ncbi.nih.gov/pub/taxonomy/taxdump.tar.gz"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "tsv": {
+              "type": "file",
+              "description": "TSV file of Taxon names and their taxon ID",
+              "pattern": "*.tsv"
+            }
+          }
+        ],
+        "authors": [
+          "@mahesh-panchal"
+        ],
+        "maintainers": [
+          "@mahesh-panchal"
         ]
       }
     },
