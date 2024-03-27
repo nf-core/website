@@ -1090,16 +1090,16 @@ A PR review is the process of examining a new modules' submission or the changes
 #### In `modules/nf-core/modulename/tests/main.nf.test`:
 
 - Check that there are tests for all inputs and outputs, including optional ones. Also check for all possible parameter variations that could lead to different outputs.
-    - In general, the complete `process.out` should be snapshotted, i.e. `{ assert process.out.match() }{:groovy}`,
-    - [Different assertion types](https://nf-co.re/docs/contributing/tutorials/nf-test_assertions) should be used when a straightforward `process.out` snapshot is not feasible.
+  - In general, the complete `process.out` should be snapshotted, i.e. `{ assert process.out.match() }{:groovy}`,
+  - [Different assertion types](https://nf-co.re/docs/contributing/tutorials/nf-test_assertions) should be used when a straightforward `process.out` snapshot is not feasible.
 - Check that a stub test exists for the module, and that it's test names ends in `- stub`.
 - Check that the `assertAll()` function is used and that there is at minimum a success assertion and versions in the snapshot.
 - Check that the test names describe the test dataset and configuration used, some examples below:
-    - `test("homo_sapiens - [fastq1, fastq2] - bam")`
-    - `test("sarscov2 - [ cram, crai ] - fasta - fai")`
-    - `test("Should search for zipped protein hits against a DIAMOND db and return a tab separated output file of hits")`
+  - `test("homo_sapiens - [fastq1, fastq2] - bam")`
+  - `test("sarscov2 - [ cram, crai ] - fasta - fai")`
+  - `test("Should search for zipped protein hits against a DIAMOND db and return a tab separated output file of hits")`
 - Check that all input data is being referenced using the `modules_testdata_base_path` parameter:
-    - e.g. `file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true){:groovy}`
+  - e.g. `file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true){:groovy}`
 
 #### In `modules/nf-core/modulename/tests/main.nf.test.snap`:
 
