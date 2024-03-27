@@ -1109,8 +1109,8 @@ A PR review is the process of examining a new modules' submission or the changes
 
 #### Migrating pytest to nf-test:
 
-- Ensure all previous pytest assertions are converted to nf-test
-- Confirm that all pytest files are deleted
+- Ensure all previous pytest assertions are converted to nf-test.
+- Confirm that all pytest files are deleted, including the entry in `tests/tags.yaml`.
 - The module MUST use an `environment.yml` for conda environments. Previously, modules used a `conda=<name>=<version>` statement in the `main.nf` file, which has since been replaced with a dedicated `environment.yml` file.
 
 ## What is the `meta` map?
