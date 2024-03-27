@@ -1089,7 +1089,7 @@ A PR review is the process of examining a new modules' submission or the changes
 
 #### In `modules/nf-core/modulename/tests/main.nf.test`:
 
-- Check that there are tests for all outputs/inputs, including optional ones. Also check for all possible parameter variations that could lead to different outputs.
+- Check that there are tests for all inputs and outputs, including optional ones. Also check for all possible parameter variations that could lead to different outputs.
     - [Different assertion types](https://nf-co.re/docs/contributing/tutorials/nf-test_assertions) should be used when a straightforward `process.out` snapshot is not feasible.
 - Check that a stub test exists for the module.
 - Check that tags for any dependent modules are specified to ensure changes to upstream modules will re-trigger tests for the current module.
