@@ -11,7 +11,7 @@ Linting policy for nf-core pipeline projects.
 Tests Nextflow-based pipelines to check that they adhere to
 the nf-core community guidelines.
 
-### `nf_core.lint.run_linting(pipeline_dir, release_mode=False, fix=(), key=(), show_passed=False, fail_ignored=False, fail_warned=False, sort_by='test', md_fn=None, json_fn=None, hide_progress=False){:python}`
+### `nf_core.lint.run_linting(pipeline_dir, release_mode: bool = False, fix=(), key=(), show_passed: bool = False, fail_ignored: bool = False, fail_warned: bool = False, sort_by: str = 'test', md_fn=None, json_fn=None, hide_progress: bool = False){:python}`
 
 Runs all nf-core linting checks on a given Nextflow pipeline project
 in either release mode or normal mode (default). Returns an object

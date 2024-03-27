@@ -42,7 +42,7 @@ Generate set of default input parameters from schema.
 Saves defaults to self.schema_defaults
 Returns count of how many parameters were found (with or without a default value)
 
-#### `get_schema_path(path, local_only=False, revision=None){:python}`
+#### `get_schema_path(path: str | Path, local_only: bool = False, revision: str | None = None){:python}`
 
 Given a pipeline name, directory, or path, set self.schema_filename
 
