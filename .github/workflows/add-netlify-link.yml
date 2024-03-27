@@ -20,7 +20,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const changedFiles = `${{ steps.changed-files.outputs.all_changed_files }}`.split('\n');
+            const changedFiles = `${{ steps.changed-files.outputs.all_changed_files }}`.split(' ');
             console.log('Changed files:', changedFiles)
 
             // handle normal pages
@@ -33,7 +33,8 @@ jobs:
             if (!netlifyLinks) {
               netlifyLinks = changedFiles
                 .filter(file => file.startsWith('src/content/'))
-                .map(file => `@netlify ${file}`);
+                .map(file => `@netlify ${file?.replace('src/content/', '/')}`)[0]
+                ?.replace(/\.md$/, '').replace(/\.mdx$/, '').replace(/\/index$/, '');
             }
             console.log('Netlify links:', netlifyLinks)
             if (netlifyLinks) {
@@ -43,7 +44,7 @@ jobs:
                 repo: context.repo.repo,
                 pull_number: context.payload.pull_request.number,
               });
-              consoel.log('Current PR:', pullRequest);
+              console.log('Current PR:', pullRequest);
               console.log('Current PR body:', pullRequest.body);
               const currentBody = pullRequest.body || '';
               if (currentBody.includes('@netlify')) {
