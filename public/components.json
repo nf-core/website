@@ -4552,6 +4552,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -39483,6 +39487,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -39665,12 +39673,6 @@
             }
           },
           {
-            "meta2": {
-              "type": "map",
-              "description": "Groovy Map containing reference information\ne.g. `[ id:'reference' ]`\n"
-            }
-          },
-          {
             "vcf": {
               "type": "file",
               "description": "VCF file",
@@ -39685,7 +39687,7 @@
             }
           },
           {
-            "meta3": {
+            "meta2": {
               "type": "map",
               "description": "Groovy Map containing reference information\ne.g. `[ id:'reference' ]`\n"
             }
@@ -39698,7 +39700,7 @@
             }
           },
           {
-            "meta4": {
+            "meta3": {
               "type": "map",
               "description": "Groovy Map containing reference information\ne.g. `[ id:'reference' ]`\n"
             }
@@ -39711,7 +39713,7 @@
             }
           },
           {
-            "meta5": {
+            "meta4": {
               "type": "map",
               "description": "Groovy Map containing reference information\ne.g. `[ id:'reference' ]`\n"
             }
@@ -40246,6 +40248,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -45201,6 +45207,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -72175,7 +72185,8 @@
         "description": "A genomic k-mer counter (and sequence utility) with nice features.",
         "keywords": [
           "k-mer",
-          "count"
+          "count",
+          "reference-free"
         ],
         "tools": [
           {
@@ -72184,7 +72195,9 @@
               "homepage": "https://github.com/marbl/meryl",
               "documentation": "https://meryl.readthedocs.io/en/latest/quick-start.html",
               "tool_dev_url": "https://github.com/marbl/meryl",
-              "licence": "['GPL']"
+              "licence": [
+                "GPL"
+              ]
             }
           }
         ],
@@ -72199,6 +72212,12 @@
             "reads": {
               "type": "file",
               "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data,\nrespectively.\n"
+            }
+          },
+          {
+            "kvalue": {
+              "type": "integer",
+              "description": "An integer value of k to use as the k-mer value."
             }
           }
         ],
@@ -72247,7 +72266,8 @@
         "description": "A genomic k-mer counter (and sequence utility) with nice features.",
         "keywords": [
           "k-mer",
-          "histogram"
+          "histogram",
+          "reference-free"
         ],
         "tools": [
           {
@@ -72256,7 +72276,9 @@
               "homepage": "https://github.com/marbl/meryl",
               "documentation": "https://meryl.readthedocs.io/en/latest/quick-start.html",
               "tool_dev_url": "https://github.com/marbl/meryl",
-              "licence": "['GPL']"
+              "licence": [
+                "GPL"
+              ]
             }
           }
         ],
@@ -72271,6 +72293,12 @@
             "meryl_dbs": {
               "type": "directory",
               "description": "Meryl k-mer database"
+            }
+          },
+          {
+            "kvalue": {
+              "type": "integer",
+              "description": "An integer value of k to use as the k-mer value."
             }
           }
         ],
@@ -72319,7 +72347,8 @@
         "description": "A genomic k-mer counter (and sequence utility) with nice features.",
         "keywords": [
           "k-mer",
-          "unionsum"
+          "unionsum",
+          "reference-free"
         ],
         "tools": [
           {
@@ -72328,7 +72357,9 @@
               "homepage": "https://github.com/marbl/meryl",
               "documentation": "https://meryl.readthedocs.io/en/latest/quick-start.html",
               "tool_dev_url": "https://github.com/marbl/meryl",
-              "licence": "['GPL']"
+              "licence": [
+                "GPL"
+              ]
             }
           }
         ],
@@ -72343,6 +72374,12 @@
             "meryl_dbs": {
               "type": "directory",
               "description": "Meryl k-mer databases"
+            }
+          },
+          {
+            "kvalue": {
+              "type": "integer",
+              "description": "An integer value of k to use as the k-mer value."
             }
           }
         ],
@@ -89174,6 +89211,150 @@
         ],
         "maintainers": [
           "@nebfield"
+        ]
+      }
+    },
+    {
+      "name": "plink_fastepistasis",
+      "path": "modules/nf-core/plink/fastepistasis/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "plink_fastepistasis",
+        "description": "Fast Epistasis in PLINK, analyzing how the effects of one gene depend on the presence of others.",
+        "keywords": [
+          "interactions",
+          "variants",
+          "regression"
+        ],
+        "tools": [
+          {
+            "plink": {
+              "description": "Whole genome association analysis toolset, designed to perform a range of basic, large-scale analyses in a computationally efficient manner.",
+              "homepage": "https://www.cog-genomics.org/plink",
+              "documentation": "https://www.cog-genomics.org/plink/1.9/data#recode",
+              "tool_dev_url": "https://www.cog-genomics.org/plink/1.9/dev",
+              "licence": [
+                "GPL"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\nmeta is associated to the PLINK native file input\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing sample information,\ne.g. [ id:'test', single_end:false ]\nmeta2 is associated to VCF file input\n"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing sample information,\ne.g. [ id:'test', single_end:false ]\nmeta3 is associated to BCF file input\n"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing sample information,\ne.g. [ id:'test', single_end:false ]\nmeta4 is associated to phenotype file input\n"
+            }
+          },
+          {
+            "bed": {
+              "type": "file",
+              "description": "PLINK binary biallelic genotype table file",
+              "pattern": "*.{bed}"
+            }
+          },
+          {
+            "bim": {
+              "type": "file",
+              "description": "PLINK extended MAP file",
+              "pattern": "*.{bim}"
+            }
+          },
+          {
+            "fam": {
+              "type": "file",
+              "description": "PLINK sample information file",
+              "pattern": "*.{fam}"
+            }
+          },
+          {
+            "bcf": {
+              "type": "file",
+              "description": "PLINK variant information + sample ID + genotype call binary file",
+              "pattern": "*.{bcf}"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "Variant calling file (vcf)",
+              "pattern": "*.{vcf}"
+            }
+          },
+          {
+            "phe": {
+              "type": "file",
+              "description": "PLINK file containing phenotype information. This phenotype information can be read from the third column with the --pheno option or from a specific column with the --pheno-name option.",
+              "pattern": "*.{phe}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "fepi": {
+              "type": "file",
+              "description": "PLINK fast-epistasis file",
+              "pattern": "*.{epi.cc}"
+            }
+          },
+          {
+            "fepisummary": {
+              "type": "file",
+              "description": "PLINK fast-epistasis summary file",
+              "pattern": "*.{epi.cc.summary}"
+            }
+          },
+          {
+            "flog": {
+              "type": "file",
+              "description": "PLINK fast-epistasis log file",
+              "pattern": "*.{log}"
+            }
+          },
+          {
+            "fnosex": {
+              "type": "file",
+              "description": "Ambiguous sex ID file",
+              "pattern": "*.{nosex}"
+            }
+          }
+        ],
+        "authors": [
+          "@davidebag"
+        ],
+        "maintainers": [
+          "@davidebag"
         ]
       }
     },
