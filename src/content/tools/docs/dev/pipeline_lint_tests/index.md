@@ -11,6 +11,7 @@
 - [modules_structure](modules_structure)
 - [multiqc_config](multiqc_config)
 - [nextflow_config](nextflow_config)
+- [nfcore_yml](nfcore_yml)
 - [pipeline_name_conventions](pipeline_name_conventions)
 - [pipeline_todos](pipeline_todos)
 - [readme](readme)
