@@ -33,7 +33,7 @@ jobs:
             if (!netlifyLinks) {
               netlifyLinks = changedFiles
                 .filter(file => file.startsWith('src/content/'))
-                .map(file => `@netlify ${file?.replace('src/content/', '/').replace(/\.md$/, '').replace(/\.mdx$/, '').replace(/\/index$/, '')}`)[0];
+                .map(file => `@netlify ${file}`);
             }
             console.log('Netlify links:', netlifyLinks)
             if (netlifyLinks) {
