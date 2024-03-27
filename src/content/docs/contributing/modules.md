@@ -778,9 +778,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
     be captured by the job scheduler's stream logging capabilities and print them to screen when Nextflow
     encounters an error.
 
-    This also makes certain they are captured by Nextflow whereas things written to files only may be lost when
-    the job scheduler relinquishes the job allocation lost if using `process.scratch` - unless those files are
-    designated outputs from the process.
+    This ensures that they are captured by Nextflow. If information is only written to files, it could potentially be lost when the job scheduler gives up the job allocation. 
 
     ```nextflow {7-8}
     script:
