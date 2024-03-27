@@ -1,7 +1,10 @@
 name: Add Netlify Link to PR
 
 on:
-  pull_request:
+  pull_request_target:
+    types:
+      - opened
+      - edited
     paths:
       - 'src/pages/**'
       - 'src/content/**'
@@ -18,7 +21,7 @@ jobs:
         if: steps.changed-files.outputs.all_changed_files != ''
         uses: actions/github-script@v7
         with:
-          github-token: ${{secrets.NF_CORE_BOT_AUTH_TOKEN}}
+          github-token: ${{ secrets.NF_CORE_BOT_AUTH_TOKEN }}
           script: |
             const changedFiles = `${{ steps.changed-files.outputs.all_changed_files }}`.split(' ');
             console.log('Changed files:', changedFiles)
