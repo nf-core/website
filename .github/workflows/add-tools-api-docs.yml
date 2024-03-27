@@ -48,6 +48,7 @@ jobs:
       - name: run API generation script
         run: |
           cd tools
+          pip install sphinx-markdown-builder
           bash docs/api/generate-api-docs.sh --release ${{ inputs.ref_name }}
 
       - name: remove tools code
