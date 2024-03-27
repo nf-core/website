@@ -23,13 +23,13 @@ jobs:
             const changedFiles = `${{ steps.changed-files.outputs.all_changed_files }}`.split('\n');
             console.log('Changed files:', changedFiles)
 
-            # handle normal pages
+            // handle normal pages
             let netlifyLinks = changedFiles
               .filter(file => file.startsWith('src/pages/'))
               .map(file => `@netlify ${file?.replace('src/pages/', '/')}`)[0]
               ?.replace(/\.md$/, '').replace(/\.mdx$/, '').replace(/\/index$/, '');
 
-            # handle pages in content collections
+            // handle pages in content collections
             if (!netlifyLinks) {
               netlifyLinks = changedFiles
                 .filter(file => file.startsWith('src/content/'))
