@@ -8,10 +8,12 @@ endDate: '2021-11-09'
 endTime: '13:30+01:00'
 embedAt: 'smrnaseq'
 youtubeEmbed: https://youtu.be/4YLQ2VwpCJE
-locationURL:
-  - https://youtu.be/4YLQ2VwpCJE
-  - https://www.bilibili.com/video/BV17U4y1M7bQ
-  - https://doi.org/10.6084/m9.figshare.16964392.v1
+locations:
+  - name: Online
+    links:
+      - https://youtu.be/4YLQ2VwpCJE
+      - https://www.bilibili.com/video/BV17U4y1M7bQ
+      - https://doi.org/10.6084/m9.figshare.16964392.v1
 ---
 
 This week, Lorena Pantano ([@lpantano](https://github.com/lpantano/)) will tell us all about the nf-core/smrnaseq pipeline.

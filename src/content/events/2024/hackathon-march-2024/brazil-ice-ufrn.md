@@ -6,10 +6,11 @@ startDate: '2024-03-18'
 startTime: '13:00+02:00'
 endDate: '2024-03-20'
 endTime: '21:00+02:00'
-locationName: Instituto do Cérebro, UFRN
-address: R. do Horto - Lagoa Nova, Natal - RN, 59076-550
-locationURL: https://neuro.ufrn.br/
-locationLatLng: [-5.833473893839016, -35.20483247479188]
+locations:
+  - name: Instituto do Cérebro, UFRN
+    address: R. do Horto - Lagoa Nova, Natal - RN, 59076-550
+    links: https://neuro.ufrn.br/
+    geoCoordinates: [-5.833473893839016, -35.20483247479188]
 ---
 
 Local event to be held at Instituto do Cérebro, UFRN.

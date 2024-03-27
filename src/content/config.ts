@@ -26,10 +26,22 @@ const events = defineCollection({
                     end: z.date().optional(),
                 })
                 .optional(),
-            locationName: z.string().optional(),
-            locationURL: z.string().url().or(z.string().startsWith('#')).or(z.array(z.string().url())).optional(),
-            locationLatLng: z.array(z.number(), z.number()).optional(),
-            address: z.string().optional(),
+            locations: z
+                .array(
+                    z.object({
+                        name: z.string().optional(),
+                        links: z
+                            .string()
+                            .url()
+                            .or(z.string().startsWith('#'))
+                            .or(z.array(z.string().url()))
+                            .optional(),
+                        geoCoordinates: z.array(z.number(), z.number()).optional(),
+                        address: z.string().optional(),
+                    }),
+                )
+                .optional(),
+            links: z.array(z.string().url()).optional(),
             start: z.date().optional(),
             end: z.date().optional(),
             duration: z.string().optional(),

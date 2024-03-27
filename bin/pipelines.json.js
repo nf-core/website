@@ -187,7 +187,10 @@ export const writePipelinesJson = async () => {
                   return { modules: Object.keys(modules_json.repos['nf-core/modules'].modules) };
                 }
                 return { modules: Object.keys(modules_json.repos['nf-core/modules']) };
-              } else if (modules_json.repos['https://github.com/nf-core/modules.git']) {
+              } else if (
+                modules_json.repos['https://github.com/nf-core/modules.git'] &&
+                modules_json.repos['https://github.com/nf-core/modules.git'].modules
+              ) {
                 if (
                   modules_json.repos['https://github.com/nf-core/modules.git'].subworkflows &&
                   modules_json.repos['https://github.com/nf-core/modules.git'].subworkflows['nf-core']

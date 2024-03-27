@@ -72,7 +72,7 @@ jobs:
           git commit -m "[automated] Update nf-core/tools API docs for ${{ inputs.ref_name }}"
 
       - name: Create PR
-        uses: peter-evans/create-pull-request@v3
+        uses: peter-evans/create-pull-request@70a41aba780001da0a30141984ae2a0c95d8704e # v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: Update nf-core/tools API docs for ${{inputs.ref_name}}

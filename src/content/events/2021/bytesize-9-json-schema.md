@@ -7,10 +7,12 @@ startTime: '13:00+02:00'
 endDate: '2021-04-20'
 endTime: '13:30+02:00'
 youtubeEmbed: https://youtu.be/PU6vAj_7WRM
-locationURL:
-  - https://youtu.be/PU6vAj_7WRM
-  - https://www.bilibili.com/video/BV18h411S76E
-  - https://doi.org/10.6084/m9.figshare.14453214.v1
+locations:
+  - name: Online
+    links:
+      - https://youtu.be/PU6vAj_7WRM
+      - https://www.bilibili.com/video/BV18h411S76E
+      - https://doi.org/10.6084/m9.figshare.14453214.v1
 ---
 
 This week, Matthias Hörtenhuber ([@mashehu](http://github.com/mashehu/)) will present: _**JSON-schema: What, why and how**_

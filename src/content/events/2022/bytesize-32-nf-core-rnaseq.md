@@ -8,9 +8,11 @@ endDate: '2022-02-08'
 endTime: '13:30+01:00'
 embedAt: 'rnaseq'
 youtubeEmbed: https://www.youtube.com/watch?v=qMuUt8oVhHw
-locationURL:
-  - https://www.youtube.com/watch?v=qMuUt8oVhHw
-  - https://doi.org/10.6084/m9.figshare.19161176.v1
+locations:
+  - name: Online
+    links:
+      - https://www.youtube.com/watch?v=qMuUt8oVhHw
+      - https://doi.org/10.6084/m9.figshare.19161176.v1
 ---
 
 This week, Harshil Patel ([@drpatelh](https://github.com/drpatelh/)) will tell us all about the nf-core/rnaseq pipeline.
