@@ -1093,7 +1093,6 @@ A PR review is the process of examining a new modules' submission or the changes
     - In general, the complete `process.out` should be snapshotted, i.e. `{ assert process.out.match() }{:groovy}`,
     - [Different assertion types](https://nf-co.re/docs/contributing/tutorials/nf-test_assertions) should be used when a straightforward `process.out` snapshot is not feasible.
 - Check that a stub test exists for the module, and that it's test names ends in `- stub`.
-- Check that tags for any dependent modules are specified to ensure changes to upstream modules will re-trigger tests for the current module.
 - Check that the `assertAll()` function is used and that there is at minimum a success assertion and versions in the snapshot.
 - Check that the test names describe the test dataset and configuration used, some examples below:
     - `test("homo_sapiens - [fastq1, fastq2] - bam")`
