@@ -1,5 +1,5 @@
 ---
-title: DSL2 Subworkflows
+title: Guidelines for Subworkflows
 subtitle: Guidelines and reference for DSL2 subworkflows
 ---
 
@@ -228,7 +228,7 @@ In order to test that each subworkflow added to `nf-core/modules` is actually wo
 
 - All test data for the `nf-core/modules` repository MUST be added to the `modules` branch of [`nf-core/test-datasets`](https://github.com/nf-core/test-datasets/tree/modules/data) and organised by filename extension.
 
-- Please adhere to the [test-data specifications](/docs/contributing/specifications/test_data.md) when adding new test-data
+- Please adhere to the [test-data specifications](/docs/contributing/component-specifications/test_data.md) when adding new test-data
 
 - In order to keep the size of the test data repository as minimal as possible, pre-existing files from [`nf-core/test-datasets`](https://github.com/nf-core/test-datasets/tree/modules/data) MUST be reused if at all possible.
 
@@ -419,7 +419,7 @@ While the team of [maintainers](https://github.com/orgs/nf-core/teams/maintainer
 
 In general, the main purpose of the review is to ensure
 
-- All subworkflows adhere to the nf-core [module specifications](/docs/contributing/specifications/subworkflows.md)
+- All subworkflows adhere to the nf-core [module specifications](/docs/contributing/component-specifications/subworkflows.md)
 - Ensure all checks pass, including linting, conda, singularity, and docker.
 
 Otherwise, you can cover most of the specifications by checking for the following:
