@@ -218,11 +218,17 @@ All of the files required to add the subworkflow to `nf-core/modules` will be cr
    git branch -D bam_sort_stats_samtools
    ```
 
+### Publishing results
+
+This system uses Nextflow's native [`publishDir`](https://www.nextflow.io/docs/latest/process.html#publishdir) defined directly in a pipeline workflow's `modules.config` (see [here](https://github.com/nf-core/rnaseq/blob/f7702d5b76a1351e2e7796a5ed3f59943a139fbf/conf/modules.config#L100-L106) for a simple example)
+
 ### Test data
 
 In order to test that each subworkflow added to `nf-core/modules` is actually working and to be able to track any changes to results files between subworkflow updates we have set-up a number of Github Actions CI tests to run each subworkflow on a minimal test dataset using Docker, Singularity and Conda.
 
 - All test data for the `nf-core/modules` repository MUST be added to the `modules` branch of [`nf-core/test-datasets`](https://github.com/nf-core/test-datasets/tree/modules/data) and organised by filename extension.
+
+- Please adhere to the [test-data specifications](/docs/contributing/specifications/test_data.md) when adding new test-data
 
 - In order to keep the size of the test data repository as minimal as possible, pre-existing files from [`nf-core/test-datasets`](https://github.com/nf-core/test-datasets/tree/modules/data) MUST be reused if at all possible.
 
@@ -231,6 +237,10 @@ In order to test that each subworkflow added to `nf-core/modules` is actually wo
 - If the appropriate test data doesn't exist in the `modules` branch of [`nf-core/test-datasets`](https://github.com/nf-core/test-datasets/tree/modules/data) please contact us on the [nf-core Slack `#subworkflows` channel](https://nfcore.slack.com/channels/subworkflows) (you can join with [this invite](https://nf-co.re/join/slack)) to discuss possible options.
 
 - It may not be possible to add test data for some subworkflows e.g. if the input data is too large or requires a local database. In these scenarios, it is recommended to use the Nextflow [`stub`](https://www.nextflow.io/docs/latest/process.html#stub) feature to test the subworkflow. Please refer to the [`gtdbtk/classify`](https://github.com/nf-core/modules/blob/79d38a306bdaf07000e0d6f300684d3ed38c8919/modules/gtdbtk/classifywf/main.nf#L66) module and its corresponding [test script](https://github.com/nf-core/modules/blob/79d38a306bdaf07000e0d6f300684d3ed38c8919/tests/modules/gtdbtk/classifywf/main.nf#L20) to understand how to use this feature for your subworkflow development.
+
+If a new test dataset is added to [`tests/config/test_data.config`](https://github.com/nf-core/modules/blob/master/tests/config/test_data.config), check that the config name of the added file(s) follows the scheme of the entire file name with dots replaced with underscores.
+
+For example: the nf-core/test-datasets file `genomics/sarscov2/genome/genome.fasta` labelled as `genome_fasta`, or `genomics/sarscov2/genome/genome.fasta.fai` as `genome_fasta_fai`.
 
 ### Writing nf-test tests
 
@@ -399,97 +409,28 @@ these may include references to an older syntax, however the general idea remain
      <iframe src="https://widgets.figshare.com/articles/16825369/embed?show_title=1" width="568" height="351" allowfullscreen frameborder="0"></iframe>
 </div>
 
-## New subworkflow guidelines and PR review checklist
+### PR Review Checklist
 
-The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
+A PR review is the process of examining a new subworkflow submission or the changes proposed to a subworkflow. The reviewer provides constructive feedback on those changes before they are merged into the nf-core repository.The goal of a PR review is to ensure that the code meets the coding standards of the project, is consistent and of high-quality.
 
-### General
+While the team of [maintainers](https://github.com/orgs/nf-core/teams/maintainers/members) is responsible for overseeing the PR review process for subworkflows, these guidelines can assist community members in reviewing PRs and ensure that the review process is consistent and effective. The following is a collection of community suggestions to have into account during the review process.
 
-1. Subworkflows should combine tools that make up a logical unit in an analysis step. A subworkflow must contain at least two modules.
+#### General reviews of submissions to subworkflows:
 
-2. Each `subworkflow` emits a channel containing all `versions.yml` collecting the tool(s) versions. They MUST be collected within the workflow and added to the output as `versions` :
+In general, the main purpose of the review is to ensure
 
-```bash
-take:
-  input
+- All subworkflows adhere to the nf-core [module specifications](/docs/contributing/specifications/subworkflows.md)
+- Ensure all checks pass, including linting, conda, singularity, and docker.
 
-main:
+Otherwise, you can cover most of the specifications by checking for the following:
 
-  ch_versions = Channel.empty()
-
-  FASTQC(input)
-
-  ch_versions = ch_versions.mix(FASTQC.out.versions())
-
-emit:
-  versions = ch_versions
-```
-
-### Naming conventions
-
-1. The directory structure for the subworkflow name must be all lowercase e.g. [`subworkflows/nf-core/bam_sort_stats_samtools/`](https://github.com/nf-core/modules/tree/master/subworkflows/nf-core/bam_sort_stats_samtools/). The naming convention should be of the format `<file_type>_<operation_1>_<operation_n>_<tool_1>_<tool_n>` e.g. `bam_sort_stats_samtools` where `bam` = `<file_type>`, `sort` = `<operation>` and `samtools` = `<tool>`. Not all operations are required in the name if they are routine (e.g. indexing after creation of a BAM). Operations can be collapsed to a general name if the steps are directly related to each other. For example if in a subworkflow, a binning tool has three required steps (e.g. `<tool> split`, `<tool> calculate`, `<tool> merge`) to perform an operation (contig binning) these can be collapsed into one (e.g. `fasta_binning_concoct`, rather than `fasta_split_calculate_merge_concoct`). If in doubt regarding what to name your subworkflow, please contact us on the [nf-core Slack `#subworkflows` channel](https://nfcore.slack.com/channels/subworkflows) (you can join with [this invite](https://nf-co.re/join/slack)) to discuss possible options.
-
-2. All parameter names MUST follow the `snake_case` convention.
-
-3. All function names MUST follow the `camelCase` convention.
-
-4. Channel names MUST follow `snake_case` convention and be all lower case.
-
-5. Input channel names SHOULD signify the input object type. For example, a single value input channel will be prefixed with `val_`, whereas input channels with multiple elements (e.g. meta map + file) should be prefixed with `ch_`.
-
-6. Output channel names SHOULD only be named based on the major output file of that channel (i.e, an output channel of `[[meta], bam]` should be emitted as `bam`, not `ch_bam`). This is for more intuitive use of these output objects downstream with the `.out` attribute.
-
-### Input/output options
-
-1. Input channel declarations MUST be defined for all _possible_ input files that will be required by the subworkflow (i.e. both required and optional files) within the `take` block.
-
-2. Named file extensions MUST be emitted for ALL output channels e.g. `path "*.txt", emit: txt`.
-
-3. Optional inputs are not currently supported by Nextflow. However, passing an empty list (`[]`) instead of a file as a subworkflow parameter can be used to work around this issue.
-
-### Subworkflow parameters
-
-1. Named `params` defined in the parent workflow MUST NOT be assumed to be passed to the subworkflow to allow developers to call their parameters whatever they want. In general, it may be more suitable to use additional `input` value channels to cater for such scenarios.
-
-### Documentation
-
-1. Each input and output channel SHOULD have a comment describing the output structure of the channel e.g
-
-   ```nextflow
-   input:
-   ch_reads // channel: [mandatory] meta, reads
-   val_sort // boolean: [mandatory] false
-   <...>
-
-   emit:
-   bam = SAMTOOLS_VIEW.out.bam // channel: [ val(meta), path(bam) ]
-   versions = ch_versions      // channel: [ path(versions.yml) ]
-   ```
-
-2. Each input and output channel structure SHOULD also be described in the `meta.yml` in the description entry.
-
-   ```text
-   description: |
-     Structure: [ val(meta), path(tsv)]
-     (Sub)contig coverage table
-   ```
-
-### Publishing results
-
-This system uses Nextflow's native [`publishDir`](https://www.nextflow.io/docs/latest/process.html#publishdir) defined directly in a pipeline workflow's `modules.config` (see [here](https://github.com/nf-core/rnaseq/blob/f7702d5b76a1351e2e7796a5ed3f59943a139fbf/conf/modules.config#L100-L106) for a simple example)
-
-### Test data config file
-
-If a new test dataset is added to [`tests/config/test_data.config`](https://github.com/nf-core/modules/blob/master/tests/config/test_data.config), check that the config name of the added file(s) follows the scheme of the entire file name with dots replaced with underscores.
-
-For example: the nf-core/test-datasets file `genomics/sarscov2/genome/genome.fasta` labelled as `genome_fasta`, or `genomics/sarscov2/genome/genome.fasta.fai` as `genome_fasta_fai`.
-
-## What is the `meta` map?
-
-In nf-core DSL2 pipelines, to add sample-specific information and metadata that is carried throughout the pipeline, we use a meta variable. This avoids the need to create separate channels for each new characteristic.
-The meta variable can be passed down to processes as a tuple of the channel containing the actual samples, e.g. FastQ files, and the meta variable. The `meta map` is a [groovy map](https://www.tutorialspoint.com/groovy/groovy_maps.htm), which is like a python dictionary.
-
-<!-- TODO: nf-core: Link to DSL2 modules docs section for this instead of duplicating here -->
+- The subworkflow is suitable for offline running, without automatic database downloads assumed.
+- Check that it adheres to nf-core coding standards (e.g. use of meta map).
+- Check that the code is readable and the formatting is correct (e.g. indenting, extra spaces).
+- Check that there are tests for all outputs, including optional ones.
+- Check that the `meta.yml` file has correct documentation links and patterns of files.
+- Run the subworkflow help and check that important input (usually optional) has not been missed.
+- Check that all outputs are captured by running nf-test or pytest (e.g. on Gitpod).
 
 ## Help
 

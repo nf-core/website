@@ -11,6 +11,10 @@ For consistency and keeping the test data repositories small, we provide the fol
 
 The general philosophy to keep in mind for all new test data is: **as small as possible, as large as necessary**.
 
+## Reviewing
+
+When reviewing, all modules should be checked that they follow [test-data specificationz](/docs/contributing/specifications/test_data.md)
+
 ## Modules
 
 ### Re-use existing test data
