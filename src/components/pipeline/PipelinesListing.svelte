@@ -117,7 +117,6 @@
     $: filteredPipelines = searchFilterSortPipelines(pipelines);
 
     onMount(() => {
-        console.log(filters);
         CurrentFilter.set(filters);
         SortBy.subscribe(() => {
             filteredPipelines = searchFilterSortPipelines(pipelines);
@@ -142,7 +141,7 @@
                 </div>
             {:else}
                 {#each filteredPipelines as pipeline (pipeline.name)}
-                    <div class="g-col-12 g-col-md-6 g-col-xl-4 g-col-xxl-3">
+                    <div class="g-col-12 g-col-md-6 g-col-xl-6 g-col-xxl-4 g-col-xxxl-3 g-col-xxxxl-2">
                         <PipelineCard {pipeline} />
                     </div>
                 {/each}

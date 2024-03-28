@@ -101,12 +101,15 @@ const {
     <div class="row">
         {
             leftSidebar && (
-                <div class="col-12 col-md-2 d-none d-md-block sidebar-left pt-1">
-                    <div class="sticky-top-under">
+                <div class="col-12 col-md-2 d-none d-md-block sidebar-left pt-1 sticky-top-under">
+                    <div class="">
                         {sidebarTitle && (
-                            <div class="sidebar-title">
+                            <a
+                                href={sections[0].section_slug?.split('/').slice(0, 2).join('/').split('#')[0]}
+                                class="sidebar-title text-decoration-none"
+                            >
                                 <strong class="h6 p-2 text-body">{sidebarTitle}</strong>
-                            </div>
+                            </a>
                         )}
                         <SidebarNav items={sections} accordion={true} />
                     </div>
@@ -121,7 +124,7 @@ const {
             </div>
         </div>
         {
-            headings && headings.length > 1 && (
+            headings && (
                 <div class="col-12 col-md-2 toc">
                     <slot name="right-sidebar-top" />
                     <SidebarToc
@@ -130,7 +133,7 @@ const {
                         maxHeadingDepth={maxHeadingDepth}
                         client:idle
                     >
-                        <slot name="right-sidebar" />
+                        <slot name="right-sidebar-bottom" />
                     </SidebarToc>
                 </div>
             )
@@ -142,6 +145,9 @@ const {
     .markdown-content :global(img[loading='lazy']) {
         aspect-ratio: attr(width) / attr(height);
         height: auto;
+    }
+    .markdown-content {
+        max-width: 60rem;
     }
     :global(.admonition figure),
     :global(.admonition pre) {

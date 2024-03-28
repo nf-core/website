@@ -57,14 +57,14 @@ export default defineConfig({
                     'microsoft-azure',
                     'github-actions',
                     'youtube-icon',
-                    'linkedin'
+                    'linkedin',
                 ],
                 fa: ['github'],
                 'fa-brands': ['github'],
                 'line-md': ['check-list-3-twotone'],
                 mdi: ['aws', 'slack', 'youtube'],
                 octicon: ['link-external-16', 'table-16'],
-                "simple-icons": ['bluesky'],
+                'simple-icons': ['bluesky'],
             },
         }),
         sitemap(),
@@ -159,7 +159,7 @@ export default defineConfig({
                 rehypeAutolinkHeadings,
                 {
                     behavior: 'append',
-                    content: h('i.ms-1.fas.fa-link.invisible'),
+                    content: h('i.ms-1.fas.fa-link.fa-xs.invisible'),
                 },
             ],
             [
