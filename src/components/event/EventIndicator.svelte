@@ -2,11 +2,9 @@
     import { EventIsOngoing } from '@components/store';
 </script>
 
-{#if $EventIsOngoing}
-    <div class="event-indicator align-center d-inline-block">
-        <slot />
-    </div>
-{/if}
+<div class="event-indicator align-center d-inline-block" class:d-none={!$EventIsOngoing}>
+    <slot />
+</div>
 
 <style lang="scss">
     .event-indicator :global(svg[data-icon]) {
