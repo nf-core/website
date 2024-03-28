@@ -104,9 +104,12 @@ const {
                 <div class="col-12 col-md-2 d-none d-md-block sidebar-left pt-1 sticky-top-under">
                     <div class="">
                         {sidebarTitle && (
-                            <div class="sidebar-title">
+                            <a
+                                href={sections[0].section_slug?.split('/').slice(0, 2).join('/').split('#')[0]}
+                                class="sidebar-title text-decoration-none"
+                            >
                                 <strong class="h6 p-2 text-body">{sidebarTitle}</strong>
-                            </div>
+                            </a>
                         )}
                         <SidebarNav items={sections} accordion={true} />
                     </div>
