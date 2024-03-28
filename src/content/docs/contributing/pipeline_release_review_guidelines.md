@@ -1,5 +1,5 @@
 ---
-title: Pipeline Release Review Guidelines
+title: Guidelines for Pipeline Release Review
 subtitle: Suggestions for reviewing pipeline release PRs
 ---
 
