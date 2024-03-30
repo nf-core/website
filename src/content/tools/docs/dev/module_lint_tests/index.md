@@ -1,5 +1,6 @@
 # Module lint tests
 
+- [environment_yml](environment_yml)
 - [main_nf](main_nf)
 - [meta_yml](meta_yml)
 - [module_changes](module_changes)

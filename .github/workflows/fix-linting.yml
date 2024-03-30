@@ -19,7 +19,7 @@ jobs:
 
       # indication that the linting is being fixed
       - name: React on comment
-        uses: peter-evans/create-or-update-comment@23ff15729ef2fc348714a3bb66d2f655ca9066f2 # v3
+        uses: peter-evans/create-or-update-comment@71345be0265236311c031f5c7866368bd1eff043 # v4
         with:
           comment-id: ${{ github.event.comment.id }}
           reactions: eyes
@@ -32,12 +32,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.nf_core_bot_auth_token }}
 
       # Install and run pre-commit
-      - uses: actions/setup-python@0a5c61591373683505ea898e09a3ea4f39ef2b9c # v5
+      - uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d # v5
         with:
           python-version: 3.11
 
       # install prettier plugins
-      - uses: actions/setup-node@b39b52d1213e96004bfcb1c61a8a6fa8ab84f3e8 # v4
+      - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4
         with:
           node-version: 20
       - run: npm install --only=dev
@@ -53,7 +53,7 @@ jobs:
       # indication that the linting has finished
       - name: react if linting finished succesfully
         if: steps.pre-commit.outcome == 'success'
-        uses: peter-evans/create-or-update-comment@23ff15729ef2fc348714a3bb66d2f655ca9066f2 # v3
+        uses: peter-evans/create-or-update-comment@71345be0265236311c031f5c7866368bd1eff043 # v4
         with:
           comment-id: ${{ github.event.comment.id }}
           reactions: '+1'
@@ -73,21 +73,21 @@ jobs:
       - name: react if linting errors were fixed
         id: react-if-fixed
         if: steps.commit-and-push.outcome == 'success'
-        uses: peter-evans/create-or-update-comment@23ff15729ef2fc348714a3bb66d2f655ca9066f2 # v3
+        uses: peter-evans/create-or-update-comment@71345be0265236311c031f5c7866368bd1eff043 # v4
         with:
           comment-id: ${{ github.event.comment.id }}
           reactions: hooray
 
       - name: react if linting errors were not fixed
         if: steps.commit-and-push.outcome == 'failure'
-        uses: peter-evans/create-or-update-comment@23ff15729ef2fc348714a3bb66d2f655ca9066f2 # v3
+        uses: peter-evans/create-or-update-comment@71345be0265236311c031f5c7866368bd1eff043 # v4
         with:
           comment-id: ${{ github.event.comment.id }}
           reactions: confused
 
       - name: react if linting errors were not fixed
         if: steps.commit-and-push.outcome  == 'failure'
-        uses: peter-evans/create-or-update-comment@23ff15729ef2fc348714a3bb66d2f655ca9066f2 # v3
+        uses: peter-evans/create-or-update-comment@71345be0265236311c031f5c7866368bd1eff043 # v4
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |

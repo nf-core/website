@@ -10,6 +10,7 @@ export interface Props {
     subtitle?: string | null;
     version?: string;
     versions?: string[];
+    is_archived?: boolean;
     headings?: { text: string; slug: string; depth: number; fa_icon?: string }[];
     tabItems?: string[];
     md_github_url?: string;
@@ -26,6 +27,7 @@ let {
     headings,
     version,
     versions = [],
+    is_archived = false,
     tabItems = [],
     md_github_url = '',
     showHiddenBtn = false,
@@ -119,7 +121,14 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
         { name: 'page_type', content: 'Pipeline' },
     ]}
 >
-    <SubHeader pipeline={pipeline} version={version} latestVersion={latestVersion} gh_url={gh_url} slot="sub-header" />
+    <SubHeader
+        pipeline={pipeline}
+        version={version}
+        latestVersion={latestVersion}
+        is_archived={is_archived}
+        gh_url={gh_url}
+        slot="sub-header"
+    />
     {
         tabItems.length > 0 && (
             <TabBar items={allTabItems}>

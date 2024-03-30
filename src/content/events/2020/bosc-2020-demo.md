@@ -6,8 +6,9 @@ startDate: '2020-07-21'
 startTime: '17:30+02:00'
 endDate: '2020-07-21'
 endTime: '18:15+02:00'
-locationName: Online
-locationURL: https://bcc2020.github.io/
+locations:
+  - name: Online
+    links: https://bcc2020.github.io/
 ---
 
 ## About the conference
