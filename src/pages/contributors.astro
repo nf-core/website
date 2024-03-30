@@ -76,7 +76,7 @@ const headings = [
         Want to see who's working on what? See the <a href="/stats#contributor_leaderboard">contributor leaderboard</a>
         on the Statistics page.
     </p>
-    <p class="pt-3">
+    <div class="d-flex flex-wrap">
         {
             contributors &&
                 contributors
@@ -86,23 +86,17 @@ const headings = [
                     })
                     .sort((a, b) => a.sort - b.sort)
                     .map((contributor) => (
-                        <a
-                            href={'https://github.com/' + contributor.name}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="text-decoration-none"
-                        >
-                            <GitHubProfilePicture
-                                name={contributor.name}
-                                image={contributor.avatar_url}
-                                size={50}
-                                circle={true}
-                                imgClasses="mb-2"
-                            />
-                        </a>
+                        <GitHubProfilePicture
+                            name={contributor.name}
+                            image={contributor.avatar_url}
+                            size={50}
+                            circle={true}
+                            imgClasses="mb-2"
+                            wrapperClasses="me-2"
+                        />
                     ))
         }
-    </p>
+    </div>
     <Heading level={1} id="organisations">Organisations</Heading>
     <p>
         Some of the organisations running nf-core pipelines are listed below, along with a key person who you can

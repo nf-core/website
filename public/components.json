@@ -4560,6 +4560,26 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -17508,7 +17528,7 @@
         },
         {
           "name": "pixelator",
-          "version": "1.0.3"
+          "version": "1.1.0"
         },
         {
           "name": "riboseq",
@@ -24878,6 +24898,146 @@
       }
     },
     {
+      "name": "crabz_compress",
+      "path": "modules/nf-core/crabz/compress/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "crabz_compress",
+        "description": "Compress files with crabz",
+        "keywords": [
+          "compression",
+          "gzip",
+          "zlib"
+        ],
+        "tools": [
+          {
+            "crabz": {
+              "description": "Like pigz, but rust",
+              "homepage": "https://github.com/sstadick/crabz",
+              "documentation": "https://github.com/sstadick/crabz",
+              "tool_dev_url": "https://github.com/sstadick/crabz",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "file": {
+              "type": "file",
+              "description": "File to be compressed",
+              "pattern": "*.*"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "archive": {
+              "type": "file",
+              "description": "The compressed file",
+              "pattern": "*.gz"
+            }
+          }
+        ],
+        "authors": [
+          "@camlloyd"
+        ],
+        "maintainers": [
+          "@camlloyd"
+        ]
+      }
+    },
+    {
+      "name": "crabz_decompress",
+      "path": "modules/nf-core/crabz/decompress/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "crabz_decompress",
+        "description": "Decompress files with crabz",
+        "keywords": [
+          "decompression",
+          "gzip",
+          "zlib"
+        ],
+        "tools": [
+          {
+            "crabz": {
+              "description": "Like pigz, but rust",
+              "homepage": "https://github.com/sstadick/crabz",
+              "documentation": "https://github.com/sstadick/crabz",
+              "tool_dev_url": "https://github.com/sstadick/crabz",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "archive": {
+              "type": "file",
+              "description": "File to be decompressed",
+              "pattern": "*.gz"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "file": {
+              "type": "file",
+              "description": "The decompressed file",
+              "pattern": "*.*"
+            }
+          }
+        ],
+        "authors": [
+          "@camlloyd"
+        ],
+        "maintainers": [
+          "@camlloyd"
+        ]
+      }
+    },
+    {
       "name": "crisprcleanr_normalize",
       "path": "modules/nf-core/crisprcleanr/normalize/meta.yml",
       "type": "module",
@@ -25662,7 +25822,7 @@
         },
         {
           "name": "pixelator",
-          "version": "1.0.3"
+          "version": "1.1.0"
         },
         {
           "name": "proteinfold",
@@ -39499,6 +39659,26 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -41332,6 +41512,26 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -41415,6 +41615,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "createpanelrefs",
+          "version": "dev"
+        },
         {
           "name": "raredisease",
           "version": "2.0.1"
@@ -46295,6 +46499,26 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -49621,6 +49845,10 @@
       "pipelines": [
         {
           "name": "circrna",
+          "version": "dev"
+        },
+        {
+          "name": "phaseimpute",
           "version": "dev"
         },
         {
@@ -59241,7 +59469,7 @@
         "name": "hmmer_hmmsearch",
         "description": "search profile(s) against a sequence database",
         "keywords": [
-          "hidden Markov model",
+          "Hidden Markov Model",
           "HMM",
           "hmmer",
           "hmmsearch"
@@ -59283,20 +59511,20 @@
           },
           {
             "write_align": {
-              "type": "val",
-              "description": "Flag to write optional alignment output. Specify with 'true' to output"
+              "type": "boolean",
+              "description": "Flag to save optional alignment output. Specify with 'true' to save."
             }
           },
           {
             "write_target": {
-              "type": "val",
-              "description": "Flag to write optional per target summary . Specify with 'true' to output"
+              "type": "boolean",
+              "description": "Flag to save optional per target summary. Specify with 'true' to save."
             }
           },
           {
             "write_domain": {
-              "type": "val",
-              "description": "Flag to write optional per domain summary. Specify with 'true' to output"
+              "type": "boolean",
+              "description": "Flag to save optional per domain summary. Specify with 'true' to save."
             }
           }
         ],
@@ -117164,6 +117392,111 @@
       }
     },
     {
+      "name": "toulligqc",
+      "path": "modules/nf-core/toulligqc/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "toulligqc",
+        "description": "A post sequencing QC tool for Oxford Nanopore sequencers",
+        "keywords": [
+          "nanopore sequencing",
+          "quality control",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "toulligqc": {
+              "description": "A post sequencing QC tool for Oxford Nanopore sequencers",
+              "homepage": "https://github.com/GenomiqueENS/toulligQC",
+              "documentation": "https://github.com/GenomiqueENS/toulligQC",
+              "tool_dev_url": "https://github.com/GenomiqueENS/toulligQC",
+              "licence": [
+                "CECILL-2.1"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "seq_summary": {
+              "type": "file",
+              "description": "Basecaller sequencing summary source",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "fastq": {
+              "type": "file",
+              "description": "FASTQ file (necessary if no sequencing summary file)",
+              "pattern": "*.{fq,fastq,fq.gz,fastq.gz}"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "BAM file (necessary if no sequencing summary file)",
+              "pattern": "*.bam"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "report_data": {
+              "type": "file",
+              "description": "Report data emitted from toulligqc",
+              "pattern": "*.data"
+            }
+          },
+          {
+            "report_html": {
+              "type": "file",
+              "description": "Report data in html format",
+              "pattern": "*.html"
+            }
+          },
+          {
+            "plots_html": {
+              "type": "file",
+              "description": "Plots emitted in html format",
+              "pattern": "*.html"
+            }
+          },
+          {
+            "plotly_js": {
+              "type": "file",
+              "description": "Plots emitted from toulligqc",
+              "pattern": "plotly.min.js"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@Salome-Brunon"
+        ],
+        "maintainers": [
+          "@Salome-Brunon"
+        ]
+      }
+    },
+    {
       "name": "transdecoder_longorf",
       "path": "modules/nf-core/transdecoder/longorf/meta.yml",
       "type": "module",
@@ -133529,6 +133862,10 @@
           "version": "dev"
         },
         {
+          "name": "createtaxdb",
+          "version": "dev"
+        },
+        {
           "name": "datasync",
           "version": "dev"
         },
@@ -133571,6 +133908,10 @@
         {
           "name": "phaseimpute",
           "version": "dev"
+        },
+        {
+          "name": "pixelator",
+          "version": "1.1.0"
         },
         {
           "name": "raredisease",
@@ -133654,6 +133995,10 @@
           "version": "dev"
         },
         {
+          "name": "createtaxdb",
+          "version": "dev"
+        },
+        {
           "name": "datasync",
           "version": "dev"
         },
@@ -133696,6 +134041,10 @@
         {
           "name": "phaseimpute",
           "version": "dev"
+        },
+        {
+          "name": "pixelator",
+          "version": "1.1.0"
         },
         {
           "name": "raredisease",
@@ -133809,6 +134158,10 @@
           "version": "dev"
         },
         {
+          "name": "createtaxdb",
+          "version": "dev"
+        },
+        {
           "name": "datasync",
           "version": "dev"
         },
@@ -133851,6 +134204,10 @@
         {
           "name": "phaseimpute",
           "version": "dev"
+        },
+        {
+          "name": "pixelator",
+          "version": "1.1.0"
         },
         {
           "name": "raredisease",

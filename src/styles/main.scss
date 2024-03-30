@@ -474,6 +474,7 @@ h4:focus .header-link,
       &:not(.fa-link)::before {
         content: '\f0c1';
         color: $gray-600;
+        margin-right: 0.5rem;
       }
     }
   }
@@ -556,6 +557,7 @@ h4:focus .header-link,
   font-size: 0.9rem;
 }
 
+.pipeline-badges .pipeline-badge,
 .pipeline .pipeline-topic,
 .module .module-topic,
 .subworkflow .subworkflow-topic,
@@ -1476,7 +1478,15 @@ div.mermaid {
   .lead {
     text-wrap: balance;
   }
-
+  .pipeline .pipeline-topic,
+  .pipeline-badges .pipeline-badge,
+  .module .module-topic,
+  .subworkflow .subworkflow-topic,
+  .search-page-result .pipeline-topic {
+    background-color: $gray-600;
+    color: $white;
+    font-weight: 400;
+  }
   .main-content pre code {
     border: 1px solid $border-color-dark;
   }
