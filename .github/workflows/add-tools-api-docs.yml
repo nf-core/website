@@ -1,0 +1,86 @@
+name: Open PR with tools API docs based on webhook call
+on:
+  workflow_dispatch:
+    inputs:
+      ref_name:
+        description: 'The name of the release branch'
+        required: true
+        default: 'dev'
+
+jobs:
+  api-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Checkout tools code
+        uses: actions/checkout@v4
+        with:
+          repository: 'nf-core/tools'
+          ref: ${{ inputs.ref_name }}
+          path: 'tools'
+
+      - name: setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          npm install remark unist-util-visit
+
+      # Install pre-commit
+      - uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d # v5
+        with:
+          python-version: 3.11
+
+      # install prettier plugins
+      - run: npm install --only=dev
+
+      - name: Install pre-commit
+        run: pip install pre-commit
+
+      - name: install nf-core
+        run: |
+          cd tools
+          pip install --upgrade -r requirements-dev.txt -e .
+
+      - name: run API generation script
+        run: |
+          cd tools
+          pip install sphinx-markdown-builder
+          bash docs/api/generate-api-docs.sh --release ${{ inputs.ref_name }}
+
+      - name: remove tools code
+        run: rm -rf tools
+
+      - name: Run pre-commit
+        id: pre-commit
+        run: pre-commit run --all-files
+        continue-on-error: true
+
+      - name: Commit & push changes
+        id: commit-and-push
+        run: |
+          git config user.email "core@nf-co.re"
+          git config user.name "nf-core-bot"
+          # restore package.json changes
+          git restore package.json
+          git restore package-lock.json
+          git add .
+          git status
+          git commit -m "[automated] Update nf-core/tools API docs for ${{ inputs.ref_name }}"
+
+      - name: Create PR
+        uses: peter-evans/create-pull-request@70a41aba780001da0a30141984ae2a0c95d8704e # v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: Update nf-core/tools API docs for ${{inputs.ref_name}}
+          title: Update nf-core/tools API docs for ${{inputs.ref_name}}
+          body: |
+            This PR updates the nf-core/tools API docs for ${{inputs.ref_name}}.
+            Please review the changes and merge if they look good.
+          branch: 'update-api-docs-${{inputs.ref_name}}'
+          delete-branch: true
+          base: 'main'
+          draft: false

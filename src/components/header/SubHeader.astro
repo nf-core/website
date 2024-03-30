@@ -1,12 +1,21 @@
 ---
 import InstallCmd from '@components/InstallCmd.svelte';
 
-const { pipeline = '', version = '', latestVersion = '', component, gh_url, component_type } = Astro.props;
+const {
+    pipeline = '',
+    version = '',
+    latestVersion = '',
+    is_archived = false,
+    component,
+    gh_url,
+    component_type,
+} = Astro.props;
 
 export interface Props {
     pipeline?: string;
     version?: string;
     latestVersion?: string;
+    is_archived?: boolean;
     component?: string;
     component_type?: string;
     gh_url: string;
@@ -42,6 +51,18 @@ const shaking = version === 'dev' ? '3deg' : '1deg';
                             </span>
                         )}
                     </span>
+                </div>
+            ) : (
+                ''
+            )
+        }
+        {
+            is_archived ? (
+                <div class="alert alert-info p-1 p-md-3" role="alert">
+                    <h4 class="alert-heading">This pipeline is archived and no longer maintained.</h4>
+                    <p class="mb-0">
+                        Archived pipelines can still be used, but may be outdated and will not receive bugfixes.
+                    </p>
                 </div>
             ) : (
                 ''

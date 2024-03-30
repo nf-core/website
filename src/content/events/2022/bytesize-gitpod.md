@@ -7,9 +7,11 @@ startTime: '13:00+02:00'
 endDate: '2022-06-14'
 endTime: '13:30+02:00'
 youtubeEmbed: https://www.youtube.com/watch?v=kBoC6QBU-M0
-locationURL:
-  - https://www.youtube.com/watch?v=kBoC6QBU-M0
-  - https://doi.org/10.6084/m9.figshare.20109701.v1
+locations:
+  - name: Online
+    links:
+      - https://www.youtube.com/watch?v=kBoC6QBU-M0
+      - https://doi.org/10.6084/m9.figshare.20109701.v1
 ---
 
 This week, Chris Wyatt ([@chriswyatt1](https://github.com/chriswyatt1)) will show us how to use GitPod (<https://gitpod.io>) for testing, development and training. GitPod gives you a complete cloud-based environment to work in for free, with VSCode editor integration (in your browser or locally).

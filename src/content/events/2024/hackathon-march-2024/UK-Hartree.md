@@ -6,10 +6,11 @@ startDate: '2024-03-18'
 startTime: '10:00+00:00'
 endDate: '2024-03-20'
 endTime: '17:00+00:00'
-locationName: Hartree centre
-address: Sci-Tech Daresbury, Keckwick, Daresbury, ​​​Warrington. WA4 4AD
-locationURL: https://maps.app.goo.gl/pEB5CDxgPbg7GLXb7
-locationLatLng: [53.3433353, -2.6384581]
+locations:
+  - name: Hartree centre
+    address: Sci-Tech Daresbury, Keckwick, Daresbury, ​​​Warrington. WA4 4AD
+    links: https://maps.app.goo.gl/pEB5CDxgPbg7GLXb7
+    geoCoordinates: [53.3433353, -2.6384581]
 ---
 
 Local event to be held at UKRI's Hartree centre, Daresbury UK.
@@ -70,8 +71,9 @@ Contact:
 
 ### Registration
 
-Please use the **main registration form** (_soon available_) to sign up and select the location you want.
-We will therefore be able to plan everything based on the number of persons coming.
+Please use the **main registration form** to sign up and select Daresbury as your location.
+This can be found on the [main hackathon event page](https://nf-co.re/events/2024/hackathon-march-2024), or you can go to it directly [here](https://seqera.typeform.com/mar24hackathon).
+If you plan to drive please let us know so that we can book your parking.
 
 ### Location
 

@@ -7,9 +7,11 @@ startTime: '13:00+01:00'
 endDate: '2022-02-15'
 endTime: '13:30+01:00'
 youtubeEmbed: https://youtu.be/MggFf15vGCw
-locationURL:
-  - https://youtu.be/MggFf15vGCw
-  - https://doi.org/10.6084/m9.figshare.19927409.v1
+locations:
+  - name: Online
+    links:
+      - https://youtu.be/MggFf15vGCw
+      - https://doi.org/10.6084/m9.figshare.19927409.v1
 ---
 
 This week, Evan Floden ([@evanfloden](https://github.com/evanfloden/)) will tell us all about the new [Nextflow Tower command line client](https://github.com/seqeralabs/tower-cli).
