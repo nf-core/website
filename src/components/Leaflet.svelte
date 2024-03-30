@@ -6,7 +6,7 @@
         location: [number, number];
         name: string;
         url: string;
-        image: string;
+        image?: string;
     }[] = [];
 
     let m;
@@ -24,6 +24,9 @@
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         }).addTo(m);
         locations.map(function (locationMarker) {
+            const image = locationMarker.image
+                ? `<img src="/images/contributors/colour/${locationMarker.image}" title="${locationMarker.name}" class="contributor_map_logo"></img>`
+                : '';
             if (locationMarker != null) {
                 marker(locationMarker.location, {
                     icon: greenIcon,
@@ -35,7 +38,7 @@
                             '">' +
                             locationMarker.name +
                             '</a></h6>' +
-                            `<img src="/images/contributors/colour/${locationMarker.image}" title="${locationMarker.name}" class="contributor_map_logo"></img>`,
+                            image,
                     );
             }
         });
@@ -63,7 +66,7 @@
 <div class="map m-auto" use:mapAction />
 
 <style lang="scss">
-    @import '@styles/_variables.scss';
+    @import '../styles/_variables.scss';
     .map {
         height: 480px;
         width: 90%;

@@ -6,10 +6,11 @@ startDate: '2024-03-18'
 startTime: '10:00+00:00'
 endDate: '2024-03-20'
 endTime: '17:00+00:00'
-locationName: Quadram Institute Bioscience
-address: Rosalind Franklin Rd, Norwich, NR4 7UQ, UK
-locationURL: https://maps.app.goo.gl/xkDwoMQhnvPVGWVL7
-locationLatLng: [52.6209296, 1.2158586]
+locations:
+  - name: Quadram Institute Bioscience
+    address: Rosalind Franklin Rd, Norwich, NR4 7UQ, UK
+    links: https://maps.app.goo.gl/xkDwoMQhnvPVGWVL7
+    geoCoordinates: [52.6209296, 1.2158586]
 ---
 
 Local event to be held at the offices of the Quadram Institute Bioscience, Norwich
@@ -70,7 +71,8 @@ Contact:
 
 ### Registration
 
-Please contact the local site organizers via Slack if you would like to join this event.
+Please use the **main registration form** to sign up and select `Norwich, United Kingdom (Quadram Institute Bioscience)`.
+This can be found on the [main hackathon event page](https://nf-co.re/events/2024/hackathon-march-2024), or you can go to it directly [here](https://seqera.typeform.com/mar24hackathon).
 There is a limited number of places. We will therefore be able to plan everything based on the number of persons coming.
 
 ### Location

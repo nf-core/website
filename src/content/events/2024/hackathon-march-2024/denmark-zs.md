@@ -6,15 +6,16 @@ startDate: '2024-03-18'
 startTime: '10:00+02:00'
 endDate: '2024-03-20'
 endTime: '17:00+02:00'
-locationName: ZS Associates
-address: Lottenborgvej 26 DK-2800 Lyngby, Denmark
-locationURL: https://www.zs.com/careers/where-we-work/europe/copenhagen
-locationLatLng: [55.780384, 12.488322]
+locations:
+  - name: ZS Associates
+    address: Lottenborgvej 26 DK-2800 Lyngby, Denmark
+    links: https://www.zs.com/careers/where-we-work/europe/copenhagen
+    geoCoordinates: [55.780384, 12.488322]
 ---
 
 Local event to be held at the ZS Associates office, in (North of) Copenhagen.
 
-Primary contact: [<i class="fab fa-slack"></i> Anne Bresciani](https://nfcore.slack.com/team/U0467NW8QAJ) or email [<i class="email"></i>anne.bresciani@zs.com](anne.bresciani@zs.com)
+Primary contact: [<i class="fab fa-slack"></i> Felipe Almeida](https://nfcore.slack.com/team/U01BQB33DF1) or email [<i class="fab fa-envelope"></i>felipe.almeida@zs.com](mailto:felipe.almeida@zs.com)
 
 <div class="table-responsive">
     <table class="table table-hover table-sm table-bordered">
@@ -67,7 +68,8 @@ Primary contact: [<i class="fab fa-slack"></i> Anne Bresciani](https://nfcore.sl
 
 ### Registration
 
-Please use the **main registration form** (_soon available_) to sign up and select the location you want.
+Please use the **main registration form** to sign up and select `Copenhagen, Denmark (ZS Associates)`.
+This can be found on the [main hackathon event page](https://nf-co.re/events/2024/hackathon-march-2024), or you can go to it directly [here](https://seqera.typeform.com/mar24hackathon).
 We will therefore be able to plan everything based on the number of persons coming.
 
 ### Location

@@ -7,9 +7,11 @@ startTime: '13:00+01:00'
 endDate: '2022-11-22'
 endTime: '13:30+01:00'
 youtubeEmbed: https://www.youtube.com/watch?v=-vHAXsuYQhE
-locationURL:
-  - https://doi.org/10.6084/m9.figshare.21617526.v1
-  - https://www.youtube.com/watch?v=-vHAXsuYQhE
+locations:
+  - name: Online
+    links:
+      - https://doi.org/10.6084/m9.figshare.21617526.v1
+      - https://www.youtube.com/watch?v=-vHAXsuYQhE
 ---
 
 This week, Maxime Garcia ([@maxulysse](https://github.com/maxulysse)) will share with us all there is to know (well, some of it) about the brand-new nf-core subworkflows!

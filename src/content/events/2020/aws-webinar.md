@@ -6,8 +6,9 @@ startDate: '2020-10-14'
 startTime: '10:00+02:00'
 endDate: '2020-10-14'
 endTime: '11:00+02:00'
-locationName: Registration
-locationURL: https://pages.awscloud.com/Nordics_InSpotlight_WebinarSeries.html
+locations:
+  - name: Online
+    links: https://pages.awscloud.com/Nordics_InSpotlight_WebinarSeries.html
 ---
 
 > Researchers around the world use cloud technology to quickly analyze massive data pipelines,

@@ -6,10 +6,11 @@ startDate: '2024-03-18'
 startTime: '10:00+02:00'
 endDate: '2024-03-20'
 endTime: '18:00+02:00'
-locationName: Ghent University
-address: Hermann von Helmholtz, campus Ardoyen, iGent, 9052 Zwijnaarde, Belgium
-locationURL: https://www.ugent.be/en
-locationLatLng: [51.01287821684896, 3.708004390525348]
+locations:
+  - name: Ghent University
+    address: Hermann von Helmholtz, campus Ardoyen, iGent, 9052 Zwijnaarde, Belgium
+    links: https://www.ugent.be/en
+    geoCoordinates: [51.01287821684896, 3.708004390525348]
 ---
 
 Local event to be held at Ghent University, Belgium
@@ -21,8 +22,10 @@ Contact:
 
 ## Schedule
 
-- 2024-03-18 - 0900-1700: Campus Ardoyen, Zwijnaarde
-- 2024-03-19 - 0900-1700: Campus Ardoyen, Zwijnaarde
-- 2024-03-20 - 0900-1700: Campus Ardoyen, Zwijnaarde
+- 2024-03-18 - 0900-1700: Vergaderzaal 1.1
+- 2024-03-19 - 0900-1700: Vergaderzaal 1.1
+- 2024-03-20 - 0900-1700: Vergaderzaal 1.1
 
-_Details to be confirmed_
+## Pizzas
+
+We will have free pizzas for lunch on Tuesday March 19th (Thanks to Seqera for sponsoring this!).
