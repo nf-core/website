@@ -7,9 +7,11 @@ startTime: '13:00+02:00'
 endDate: '2022-05-24'
 endTime: '13:30+02:00'
 youtubeEmbed: https://youtu.be/DYdPNPVa4wc
-locationURL:
-  - https://youtu.be/DYdPNPVa4wc
-  - https://doi.org/10.6084/m9.figshare.19923410.v1
+locations:
+  - name: Online
+    links:
+      - https://youtu.be/DYdPNPVa4wc
+      - https://doi.org/10.6084/m9.figshare.19923410.v1
 ---
 
 At the start of 2022, nf-core joined the Nextflow community to do a joint survey entitled _"The State of the Workflow 2022: Nextflow and nf-core community survey"_ (see the [announcement blog post](https://seqera.io/blog/the-state-of-the-workflow-the-2022-nextflow-and-nf-core-community-survey/)). This follows on from the [2021 edition](https://seqera.io/blog/state-of-nextflow-2021-results/) but with some additional questions, including some concerning nf-core community strength and engagement.

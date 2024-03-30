@@ -7,7 +7,8 @@ startDate: '2022-10-10'
 startTime: '11:00+02:00'
 endDate: '2022-10-12'
 endTime: '13:00+02:00'
-locationName: Barcelona, Spain
+locations:
+  - name: Barcelona, Spain
 ---
 
 # Welcome

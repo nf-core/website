@@ -7,9 +7,11 @@ startTime: '13:00+02:00'
 endDate: '2022-09-27'
 endTime: '13:30+02:00'
 youtubeEmbed: https://www.youtube.com/watch?v=KXXeAcHnDBo
-locationURL:
-  - https://www.youtube.com/watch?v=KXXeAcHnDBo
-  - https://doi.org/10.6084/m9.figshare.21222446.v1
+locations:
+  - name: Online
+    links:
+      - https://www.youtube.com/watch?v=KXXeAcHnDBo
+      - https://doi.org/10.6084/m9.figshare.21222446.v1
 ---
 
 The nf-core core team recently met for their first ever retreat. A lot of topics were discussed, in this talk Phil Ewels ([@ewels](https://github.com/ewels)) will describe the key points and cover some of the future directions for the community.

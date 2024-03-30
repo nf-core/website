@@ -6,8 +6,9 @@ startDate: '2020-12-11'
 startTime: '14:00+01:00'
 endDate: '2020-12-11'
 endTime: '16:00+01:00'
-locationName: https://meet.jit.si
-locationURL: '#organisational-details'
+locations:
+  - name: https://meet.jit.si
+    links: '#organisational-details'
 ---
 
 The developers of the [nf-core/eager](https://nf-co.re/eager) aDNA (meta)genomics pipeline will be running an online practical workshop to introduce palaeogenetics researchers to the pipeline.

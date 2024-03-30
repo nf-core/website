@@ -7,9 +7,11 @@ startTime: '13:00+02:00'
 endDate: '2022-07-05'
 endTime: '13:30+02:00'
 youtubeEmbed: https://www.youtube.com/watch?v=KnYPzZ0Dd-Y
-locationURL:
-  - https://www.youtube.com/watch?v=KnYPzZ0Dd-Y
-  - https://doi.org/10.6084/m9.figshare.20238969.v1
+locations:
+  - name: Online
+    links:
+      - https://www.youtube.com/watch?v=KnYPzZ0Dd-Y
+      - https://doi.org/10.6084/m9.figshare.20238969.v1
 ---
 
 This week, Maxime Garcia ([@MaxUlysse](https://github.com/MaxUlysse)) will explain us what he thinks the perfect DSL2 coding style should be.

@@ -10,7 +10,7 @@ import IconSocial from '@components/IconSocial.astro';
 import ThemeSwitch from '@components/ThemeSwitch.svelte';
 import { Icon } from 'astro-icon/components';
 import Search from '@components/navbar/Search.svelte';
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 
 export interface Props {
     navTocHeadings?: object[];
@@ -40,7 +40,7 @@ if (sections?.length > 0) {
     });
     const shortenedURL = url.replace(currentSection?.section_slug, '');
     const currentChild = shortenedURL
-        ? currentSection?.children.find((child) => {
+        ? currentSection?.children?.find((child) => {
               return url.startsWith(child.slug);
           })?.title
         : '';
@@ -48,9 +48,9 @@ if (sections?.length > 0) {
         navbarTitle = currentChild ? [currentSection?.section_name, currentChild] : [currentSection?.section_name];
     }
 }
-let newBlogPost = false;
+let newBlogPost: CollectionEntry<'blog'> | undefined;
 newBlogPost = await getCollection('blog').then((posts) => {
-    return posts.some(
+    return posts.find(
         (post) =>
             new Date(Date.now()) > new Date(post.data.pubDate) &&
             new Date(post.data.pubDate) > new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
@@ -115,84 +115,84 @@ newBlogPost = await getCollection('blog').then((posts) => {
                 <li class="nav-item p-1 px-3 px-xl-1">
                     <a class="nav-link" href="/docs/">Docs</a>
                 </li>
-                <li class="nav-item p-1 px-3 px-xl-1 d-flex align-items-center">
-                    <EventIndicator client:idle>
-                        <Icon name="circle" />
-                    </EventIndicator>
-                    <div class="dropdown">
-                        <a class="nav-link dropdown-toggle" href="/events/" role="button" data-bs-toggle="dropdown">
-                            Events</a
-                        >
-                        <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
-                            <li>
-                                <a class="dropdown-item" href="/events/bytesize/"
-                                    ><i class="fa-solid fa-apple-core me-2"></i>bytesize</a
-                                >
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="/events/hackathon/"
-                                    ><i class="fa-solid fa-laptop-code me-2"></i>hackathon</a
-                                >
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="/events/talk/"
-                                    ><i class="fa-solid fa-presentation me-2"></i>talk</a
-                                >
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="/events/training/"
-                                    ><i class="fa-solid fa-chalkboard-teacher me-2"></i>training</a
-                                >
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="/events/">All events</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
                 <li class="nav-item p-1 px-3 px-xl-1 dropdown">
-                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
-                        >{newBlogPost && <i class="fa-solid fa-circle fa-2xs text-primary" />} About</a
-                    >
+                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
+                        {newBlogPost && <Icon name="circle" class="new-post" />}
+                        <EventIndicator client:idle><Icon name="circle" /></EventIndicator>
+                        Community
+                    </a>
                     <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
-                        <li><span class="dropdown-header">Community</span></li>
-                        <li><a class="dropdown-item" href="/about/">About nf-core</a></li>
-                        <li>
-                            <a class="dropdown-item" href="/blog/"
-                                >Blog {
+                        <li><span class="dropdown-header">What's happening</span></li>
+                        <li class="">
+                            <a class="dropdown-item d-flex align-items-center justify-content-between" href="/blog/"
+                                >Blog
+                                {
                                     newBlogPost && (
-                                        <span class="float-end border border-primary text-primary rounded-pill px-2 small">
+                                        <span class="float-end text-primary-emphasis  border border-primary badge rounded-pill fw-normal text btn-sm text-nowrap ">
                                             new post
                                         </span>
                                     )
-                                }</a
-                            >
-                            <li><a class="dropdown-item" href="/governance/">Governance</a></li>
-                            <li><a class="dropdown-item" href="/contributors/">Contributors</a></li>
-                            <li><a class="dropdown-item" href="/marketing/">Marketing</a></li>
-                            <li><a class="dropdown-item" href="/code_of_conduct/">Code of conduct</a></li>
-                            <li><a class="dropdown-item" href="/shop/">Shop</a></li>
-                            <li><hr class="dropdown-divider" /></li>
-                            <li><span class="dropdown-header">Initiatives</span></li>
-                            <li><a class="dropdown-item" href="/mentorships/">Mentorships</a></li>
-                            <li><a class="dropdown-item" href="/publications/">Publications</a></li>
-                            <li><a class="dropdown-item" href="/stats/">Statistics</a></li>
-                            <li><hr class="dropdown-divider" /></li>
-                            <li><a class="dropdown-item" href="/join/">Join nf-core</a></li>
+                                }
+                            </a>
                         </li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li>
+                            <span class="dropdown-header">
+                                <EventIndicator client:idle><Icon name="circle" /></EventIndicator>
+                                Events
+                            </span>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/events/bytesize">
+                                <i class="fa-solid fa-fw fa-apple-core me-1 fa-sm"></i>
+                                Bytesize Talks
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/events/hackathon">
+                                <i class="fa-solid fa-fw fa-laptop-code me-1 fa-sm"></i>
+                                Hackathons
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/events/training">
+                                <i class="fa-solid fa-fw fa-chalkboard-teacher me-1 fa-sm"></i>
+                                Training
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/events/talk">
+                                <i class="fa-solid fa-fw fa-presentation me-1 fa-sm"></i>
+                                Talks
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><span class="dropdown-header">Programs and groups</span></li>
+                        <li><a class="dropdown-item" href="/special-interest-groups/">Special interest groups</a></li>
+                        <li><a class="dropdown-item" href="/mentorships/">Mentorships</a></li>
+                        <li><a class="dropdown-item" href="/contributors/">Contributors</a></li>
+                        <li><a class="dropdown-item" href="/shop/">Shop</a></li>
                     </ul>
                 </li>
-                <div class="align-self-center d-none d-xl-block ms-auto">
+                <li class="nav-item p-1 px-3 px-xl-1 dropdown">
+                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">About</a>
+                    <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
+                        <li><a class="dropdown-item" href="/about/">About nf-core</a></li>
+                        <li><a class="dropdown-item" href="/governance/">Governance</a></li>
+                        <li><a class="dropdown-item" href="/marketing/">Marketing</a></li>
+                        <li><a class="dropdown-item" href="/code_of_conduct/">Code of conduct</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="/publications/">Publications</a></li>
+                        <li><a class="dropdown-item" href="/stats/">Statistics</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="/join/">Join nf-core</a></li>
+                    </ul>
+                </li>
+                <div class="align-self-center d-none d-xl-block ms-auto me-2">
                     <Search id="docsearch-desktop" client:only="svelte" />
                 </div>
-                <div class="d-none d-xl-block align-self-center px-2 py-1">
-                    <ThemeSwitch client:load>
-                        <i class="icon" slot="light"><Icon name="sun" width={'14pt'} /></i>
-                        <i class="icon" slot="dark"><Icon name="moon" width={'14pt'} /></i>
-                    </ThemeSwitch>
-                </div>
-                <div class="vr d-none d-xl-inline mx-1 mx-xxl-2"></div>
-                <hr class="d-xl-none" />
+                <div class="d-none d-xl-block vr mx-1 mx-xxl-2"></div>
+
                 <div
                     class="social-icons d-print-none d-flex align-items-center d-xl-block align-self-center mb-3 mb-xl-0 px-3 px-xl-1"
                 >
@@ -203,33 +203,6 @@ newBlogPost = await getCollection('blog').then((posts) => {
                         icon_dark="fa-brands:github"
                         additionalClass="text-body monochrome me-1"
                     />
-                    <IconSocial
-                        href="https://twitter.com/nf_core"
-                        icon="logos:twitter"
-                        title="Twitter"
-                        additionalClass="monochrome me-1"
-                    />
-                    <!-- <IconSocial
-                    marginLeft="0"
-                    marginRight="1rem"
-                    href="https://mstdn.science/@nf_core"
-                    title="Mastodon"
-                    icon="logos:mastodon-icon"
-                    additionalClass="monochrome me-1"
-                /> -->
-                    <IconSocial
-                        href="https://www.youtube.com/@nf-core"
-                        icon="mdi:youtube"
-                        title="YouTube"
-                        additionalClass="monochrome me-1"
-                        color="red"
-                    />
-                    <IconSocial
-                        href="/join/slack/"
-                        title="Slack"
-                        icon="logos:slack-icon"
-                        additionalClass="monochrome me-1"
-                    />
                     <div class="vr ms-2 me-1 d-xl-none"></div>
                     <div class="d-xl-none ms-auto px-2 py-1">
                         <ThemeSwitch client:load>
@@ -238,7 +211,13 @@ newBlogPost = await getCollection('blog').then((posts) => {
                         </ThemeSwitch>
                     </div>
                 </div>
-                <div class="d-none d-xl-block vr mx-1 mx-xxl-3"></div>
+                <div class="d-none d-xl-block align-self-center my-1">
+                    <ThemeSwitch client:load>
+                        <i class="icon" slot="light"><Icon name="sun" width={'14pt'} /></i>
+                        <i class="icon" slot="dark"><Icon name="moon" width={'14pt'} /></i>
+                    </ThemeSwitch>
+                </div>
+                <div class="d-none d-xl-block vr mx-1 me-xxl-3"></div>
                 <!-- Mobile nav -->
                 <a class="d-xl-none btn d-block btn-success mb-3 mx-3 mx-xl-1" href="/join/">Join nf-core</a>
                 <!-- Desktop nav -->
@@ -313,6 +292,13 @@ newBlogPost = await getCollection('blog').then((posts) => {
             fill: $navbar-light-color;
             :global(.active) & {
                 fill: $white;
+            }
+        }
+        :global(.new-post) {
+            width: 10pt;
+            color: $primary;
+            & symbol {
+                fill: $danger;
             }
         }
     </style>
