@@ -1,6 +1,6 @@
 ---
-title: Pipeline Release Guidelines
-subtitle: Guidelines on releasing a sanger-tol pipeline
+title: Pipeline Release Instructions
+subtitle: Instructions for releasing a sanger-tol pipeline
 ---
 
 ## nf-core Release Checklist
