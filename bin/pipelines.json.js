@@ -1,5 +1,6 @@
 #! /usr/bin/env node
 import octokit, { getDocFiles, getCurrentRateLimitRemaining, getGitHubFile, githubFolderExists } from '../src/components/octokit.js';
+
 import { promises as fs, writeFileSync, existsSync } from 'fs';
 import yaml from 'js-yaml';
 import path, { join } from 'path';
@@ -8,7 +9,6 @@ import cache from './cache.js';
 
 // get current path
 const __dirname = path.resolve();
-
 
 //check if pipelines.json exists
 if (!existsSync(join(__dirname, 'public/pipelines.json'))) {
@@ -99,11 +99,15 @@ export const writePipelinesJson = async () => {
     // Get team permissions
     for (const team of ['contributors', 'core']) {
       try {
-        const team_permission = await octokit.rest.teams.checkPermissionsForRepoInOrg({
+        const team_permission = await octokit.request('GET /orgs/{org}/teams/{team_slug}/repos/{owner}/{repo}', {
           org: 'nf-core',
           team_slug: team,
           owner: 'nf-core',
           repo: name,
+          headers: {
+            'X-GitHub-Api-Version': '2022-11-28',
+            'accept': 'application/vnd.github.v3.repository+json'
+          }
         });
         data[`team_${team}_permission_push`] = team_permission?.data.permissions?.push ?? -1;
         data[`team_${team}_permission_admin`] = team_permission?.data.permissions?.admin ?? -1;
