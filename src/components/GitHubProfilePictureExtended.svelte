@@ -8,6 +8,7 @@
     export let wrapperClasses: string = '';
     export let labelClasses: string = '';
     export let containerQuery: boolean = false;
+    export let imgClasses: string = '';
 
     const affiliation_str =
         affiliation.length > 0
@@ -24,6 +25,7 @@
     circle={true}
     size={Math.max(size, 25)}
     {containerQuery}
+    {imgClasses}
 >
     <div class={'ms-2 pe-2 text-start d-flex flex-column profile-name ' + labelClasses}>
         <div class={'ps-2 pe-3 ' + labelClasses}>

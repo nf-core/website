@@ -235,70 +235,71 @@ newBlogPost = await getCollection('blog').then((posts) => {
             </NavbarDocsNav>
         )
     }
-
-    <style lang="scss">
-        @import '@styles/_variables.scss';
-
-        .navbar.fixed-top {
-            .navbar-brand {
-                margin-top: 0.25rem;
-                margin-bottom: 0.25rem;
-
-                :global(svg) {
-                    height: 25px;
-                }
-            }
-            // add wider margins on larger screens
-            @include media-breakpoint-up(xl) {
-                padding: 0.2rem 1rem;
-                .navbar-nav > li > a {
-                    margin-left: 0.6rem;
-                    margin-right: 0.6rem;
-                    transition: ease-in-out color 0.1s;
-                }
-            }
-            @include media-breakpoint-down(xl) {
-                .container {
-                    padding-left: 0;
-                    padding-right: 0;
-                }
-                .navbar-brand {
-                    left: 0;
-                    margin-left: 0;
-                    margin-right: 0;
-                    max-width: 5rem;
-                }
-            }
-            li .dropdown-menu {
-                border-top-left-radius: 0;
-                border-top-right-radius: 0;
-                border-top: 0;
-                margin-top: calc($navbar-padding-y);
-            }
-
-            .collapse.show {
-                max-height: 80dvh;
-                overflow-y: auto;
-                li .dropdown-menu {
-                    border: none;
-                }
-            }
-            .navbar-toggler:focus-within {
-                box-shadow: none;
-            }
-        }
-        .icon :global(svg) {
-            fill: $navbar-light-color;
-            :global(.active) & {
-                fill: $white;
-            }
-        }
-        :global(.new-post) {
-            width: 10pt;
-            color: $primary;
-            & symbol {
-                fill: $danger;
-            }
-        }
-    </style>
 </nav>
+
+<style lang="scss">
+    @import '@styles/_variables.scss';
+
+    .navbar.fixed-top {
+        .navbar-brand {
+            margin-top: 0.25rem;
+            margin-bottom: 0.25rem;
+
+            :global(svg) {
+                height: 25px;
+            }
+        }
+        // add wider margins on larger screens
+        @include media-breakpoint-up(xl) {
+            padding: 0.2rem 1rem;
+            .navbar-nav > li > a {
+                margin-left: 0.6rem;
+                margin-right: 0.6rem;
+                transition: ease-in-out color 0.1s;
+            }
+        }
+        @include media-breakpoint-down(xl) {
+            .container {
+                padding-left: 0;
+                padding-right: 0;
+            }
+            .navbar-brand {
+                left: 0;
+                margin-left: 0;
+                margin-right: 0;
+                max-width: 5rem;
+            }
+        }
+        li .dropdown-menu {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            border-top: 0;
+            margin-top: calc($navbar-padding-y);
+        }
+
+        .collapse.show {
+            max-height: 80dvh;
+            overflow-y: auto;
+            li .dropdown-menu {
+                border: none;
+            }
+        }
+
+        .navbar-toggler:focus-within {
+            box-shadow: none;
+        }
+    }
+    .icon :global(svg) {
+        fill: $navbar-light-color;
+        :global(.active) & {
+            fill: $white;
+        }
+    }
+    :global(.new-post) {
+        width: 10pt;
+        color: $primary;
+        & symbol {
+            fill: $danger;
+        }
+    }
+</style>
