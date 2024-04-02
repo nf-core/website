@@ -293,14 +293,6 @@ code:not(pre code),
   color: $white !important;
 }
 
-@include media-breakpoint-down(md) {
-  pre,
-  code,
-  .code {
-    font-size: 10px;
-  }
-}
-
 .main-content pre {
   font-size: 14px;
   code {
