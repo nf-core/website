@@ -10,12 +10,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/airrflow",
             "created_at": "2018-12-04T11:39:05Z",
-            "updated_at": "2024-01-25T05:20:30Z",
-            "pushed_at": "2024-03-17T19:47:26Z",
+            "updated_at": "2024-03-21T01:37:40Z",
+            "pushed_at": "2024-04-01T00:00:20Z",
             "homepage": "https://nf-co.re/airrflow",
-            "size": 8537,
-            "stargazers_count": 40,
-            "watchers_count": 40,
+            "size": 8584,
+            "stargazers_count": 41,
+            "watchers_count": 41,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": false,
@@ -23,10 +23,10 @@
             "has_wiki": false,
             "has_pages": false,
             "has_discussions": false,
-            "forks_count": 28,
+            "forks_count": 29,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 20,
+            "open_issues_count": 18,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -38,13 +38,13 @@
                 "repseq"
             ],
             "visibility": "public",
-            "forks": 28,
-            "open_issues": 20,
-            "watchers": 40,
+            "forks": 29,
+            "open_issues": 18,
+            "watchers": 41,
             "default_branch": "master",
             "custom_properties": {},
-            "network_count": 28,
-            "subscribers_count": 146,
+            "network_count": 29,
+            "subscribers_count": 143,
             "allow_merge_commit": -1,
             "allow_rebase_merge": -1,
             "allow_squash_merge": -1,
@@ -78,12 +78,12 @@
             "contributors": [
                 {
                     "name": "ggabernet",
-                    "count": 1647,
+                    "count": 1744,
                     "avatar_url": "https://avatars.githubusercontent.com/u/3973503?v=4"
                 },
                 {
                     "name": "ssnn-airr",
-                    "count": 294,
+                    "count": 296,
                     "avatar_url": "https://avatars.githubusercontent.com/u/20683719?v=4"
                 },
                 {
@@ -97,6 +97,11 @@
                     "avatar_url": "https://avatars.githubusercontent.com/u/811296?v=4"
                 },
                 {
+                    "name": "mapo9",
+                    "count": 30,
+                    "avatar_url": "https://avatars.githubusercontent.com/u/58596435?v=4"
+                },
+                {
                     "name": "subwaystation",
                     "count": 4,
                     "avatar_url": "https://avatars.githubusercontent.com/u/10184961?v=4"
@@ -105,6 +110,11 @@
                     "name": "maxulysse",
                     "count": 3,
                     "avatar_url": "https://avatars.githubusercontent.com/u/1019628?v=4"
+                },
+                {
+                    "name": "adamrtalbot",
+                    "count": 2,
+                    "avatar_url": "https://avatars.githubusercontent.com/u/12817534?v=4"
                 },
                 {
                     "name": "drpatelh",
@@ -137,14 +147,39 @@
                     "avatar_url": "https://avatars.githubusercontent.com/u/15126788?v=4"
                 }
             ],
-            "released_after_tools": false,
-            "head_sha": "333c8b521d62f6c61c658823d8831df93bc5b532",
+            "released_after_tools": true,
+            "head_sha": "5c9a30bd35565b08d998a2feab02e4a1ccf84d8a",
             "last_release_is_head": true,
-            "last_release_vs_default_compare_url": "https://github.com/nf-core/airrflow/compare/333c8b521d62f6c61c658823d8831df93bc5b532...333c8b521d62f6c61c658823d8831df93bc5b532",
+            "last_release_vs_default_compare_url": "https://github.com/nf-core/airrflow/compare/5c9a30bd35565b08d998a2feab02e4a1ccf84d8a...5c9a30bd35565b08d998a2feab02e4a1ccf84d8a",
             "is_DSL2": true,
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "releases": [
+                {
+                    "tag_name": "3.3.0",
+                    "published_at": "2024-04-01T00:00:21Z",
+                    "tag_sha": "5c9a30bd35565b08d998a2feab02e4a1ccf84d8a",
+                    "has_schema": true,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/usage.md"
+                    ],
+                    "components": {
+                        "modules": [
+                            "cat_fastq",
+                            "cellranger_mkvdjref",
+                            "cellranger_vdj",
+                            "fastp",
+                            "fastqc",
+                            "multiqc"
+                        ],
+                        "subworkflows": [
+                            "utils_nextflow_pipeline",
+                            "utils_nfcore_pipeline",
+                            "utils_nfvalidation_plugin"
+                        ]
+                    }
+                },
                 {
                     "tag_name": "3.2.0",
                     "published_at": "2023-10-27T13:24:04Z",
@@ -316,8 +351,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2024-03-17T19:47:26Z",
-                    "tag_sha": "699948affd1ee3bc503c5a5f9d51526532eb1365",
+                    "published_at": "2024-03-31T23:58:42Z",
+                    "tag_sha": "16a4c0e25222823e09ddb0af88a90ff197af6222",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -328,10 +363,14 @@
                             "cat_fastq",
                             "cellranger_mkvdjref",
                             "cellranger_vdj",
-                            "custom_dumpsoftwareversions",
                             "fastp",
                             "fastqc",
                             "multiqc"
+                        ],
+                        "subworkflows": [
+                            "utils_nextflow_pipeline",
+                            "utils_nfcore_pipeline",
+                            "utils_nfvalidation_plugin"
                         ]
                     }
                 }
