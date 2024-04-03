@@ -174,7 +174,7 @@ Overwrite default PyYAML output to make Prettier YAML linting happy
 
 ### `nf_core.utils.fetch_remote_version(source_url){:python}`
 
-### `nf_core.utils.fetch_wf_config(wf_path, cache_config=True){:python}`
+### `nf_core.utils.fetch_wf_config(wf_path: str, cache_config: bool = True){:python}`
 
 Uses Nextflow to retrieve the the configuration variables
 from a Nextflow workflow.
