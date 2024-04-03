@@ -10,12 +10,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/airrflow",
             "created_at": "2018-12-04T11:39:05Z",
-            "updated_at": "2024-03-21T01:37:40Z",
+            "updated_at": "2024-04-03T16:14:09Z",
             "pushed_at": "2024-04-01T00:00:20Z",
             "homepage": "https://nf-co.re/airrflow",
             "size": 8584,
-            "stargazers_count": 41,
-            "watchers_count": 41,
+            "stargazers_count": 42,
+            "watchers_count": 42,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": false,
@@ -40,7 +40,7 @@
             "visibility": "public",
             "forks": 29,
             "open_issues": 18,
-            "watchers": 41,
+            "watchers": 42,
             "default_branch": "master",
             "temp_clone_token": "",
             "allow_squash_merge": false,
@@ -1297,7 +1297,7 @@
             "url": "https://api.github.com/repos/nf-core/atacseq",
             "created_at": "2018-11-05T17:49:32Z",
             "updated_at": "2024-04-02T12:05:29Z",
-            "pushed_at": "2024-04-03T07:54:59Z",
+            "pushed_at": "2024-04-03T15:30:38Z",
             "homepage": "https://nf-co.re/atacseq",
             "size": 9729,
             "stargazers_count": 158,
@@ -4134,20 +4134,15 @@
             "team_core_permission_admin": true,
             "master_branch_exists": true,
             "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/circrna/branches/dev/protection/required_status_checks",
+                "url": "https://api.github.com/repos/nf-core/circrna/branches/master/protection/required_status_checks",
                 "strict": false,
                 "contexts": [
-                    "nf-core",
-                    "Run pipeline with test data (latest-everything)"
+                    "nf-core"
                 ],
-                "contexts_url": "https://api.github.com/repos/nf-core/circrna/branches/dev/protection/required_status_checks/contexts",
+                "contexts_url": "https://api.github.com/repos/nf-core/circrna/branches/master/protection/required_status_checks/contexts",
                 "checks": [
                     {
                         "context": "nf-core",
-                        "app_id": 15368
-                    },
-                    {
-                        "context": "Run pipeline with test data (latest-everything)",
                         "app_id": 15368
                     }
                 ]
@@ -4329,7 +4324,7 @@
             "forks_count": 25,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 24,
+            "open_issues_count": 25,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -4341,7 +4336,7 @@
             ],
             "visibility": "public",
             "forks": 25,
-            "open_issues": 24,
+            "open_issues": 25,
             "watchers": 17,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -4768,7 +4763,7 @@
             "url": "https://api.github.com/repos/nf-core/createpanelrefs",
             "created_at": "2023-07-06T12:47:04Z",
             "updated_at": "2024-01-08T12:17:59Z",
-            "pushed_at": "2024-04-03T15:10:12Z",
+            "pushed_at": "2024-04-03T15:21:15Z",
             "homepage": "https://nf-co.re/createpanelrefs",
             "size": 2725,
             "stargazers_count": 4,
@@ -4828,13 +4823,30 @@
             "team_core_permission_admin": true,
             "master_branch_exists": true,
             "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/createpanelrefs/branches/dev/protection/required_status_checks",
+                "url": "https://api.github.com/repos/nf-core/createpanelrefs/branches/master/protection/required_status_checks",
                 "strict": false,
-                "contexts": [],
-                "contexts_url": "https://api.github.com/repos/nf-core/createpanelrefs/branches/dev/protection/required_status_checks/contexts",
-                "checks": []
+                "contexts": [
+                    "nf-core",
+                    "Run pipeline with test data",
+                    "pre-commit"
+                ],
+                "contexts_url": "https://api.github.com/repos/nf-core/createpanelrefs/branches/master/protection/required_status_checks/contexts",
+                "checks": [
+                    {
+                        "context": "nf-core",
+                        "app_id": null
+                    },
+                    {
+                        "context": "Run pipeline with test data",
+                        "app_id": null
+                    },
+                    {
+                        "context": "pre-commit",
+                        "app_id": 15368
+                    }
+                ]
             },
-            "master_branch_protection_required_reviews": 1,
+            "master_branch_protection_required_reviews": 2,
             "master_branch_protection_require_codeowner_review": false,
             "master_branch_protection_require_non_stale_review": false,
             "master_branch_protection_enforce_admins": false,
@@ -4994,35 +5006,18 @@
                 }
             },
             "network_count": 1,
-            "subscribers_count": 176,
+            "subscribers_count": 175,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
             "team_core_permission_admin": true,
             "master_branch_exists": true,
-            "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/createtaxdb/branches/dev/protection/required_status_checks",
-                "strict": false,
-                "contexts": [
-                    "nf-core",
-                    "nf-test (latest-everything, test, docker)"
-                ],
-                "contexts_url": "https://api.github.com/repos/nf-core/createtaxdb/branches/dev/protection/required_status_checks/contexts",
-                "checks": [
-                    {
-                        "context": "nf-core",
-                        "app_id": null
-                    },
-                    {
-                        "context": "nf-test (latest-everything, test, docker)",
-                        "app_id": 15368
-                    }
-                ]
-            },
-            "master_branch_protection_required_reviews": 1,
-            "master_branch_protection_require_codeowner_review": false,
-            "master_branch_protection_require_non_stale_review": false,
-            "master_branch_protection_enforce_admins": false,
+            "master_branch_protection_up_to_date": -1,
+            "master_branch_protection_status_checks": -1,
+            "master_branch_protection_required_reviews": -1,
+            "master_branch_protection_require_codeowner_review": -1,
+            "master_branch_protection_require_non_stale_review": -1,
+            "master_branch_protection_enforce_admins": -1,
             "master_restrict_push": -1,
             "dev_branch_exists": true,
             "dev_branch_protection_status_checks": {
@@ -5513,16 +5508,21 @@
             "team_core_permission_admin": true,
             "master_branch_exists": true,
             "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/crisprvar/branches/dev/protection/required_status_checks",
+                "url": "https://api.github.com/repos/nf-core/crisprvar/branches/master/protection/required_status_checks",
                 "strict": false,
                 "contexts": [
+                    "Travis CI - Pull Request",
                     "nf-core",
                     "Prettier",
                     "EditorConfig",
                     "Run pipeline with test data"
                 ],
-                "contexts_url": "https://api.github.com/repos/nf-core/crisprvar/branches/dev/protection/required_status_checks/contexts",
+                "contexts_url": "https://api.github.com/repos/nf-core/crisprvar/branches/master/protection/required_status_checks/contexts",
                 "checks": [
+                    {
+                        "context": "Travis CI - Pull Request",
+                        "app_id": null
+                    },
                     {
                         "context": "nf-core",
                         "app_id": null
@@ -5541,7 +5541,7 @@
                     }
                 ]
             },
-            "master_branch_protection_required_reviews": 1,
+            "master_branch_protection_required_reviews": 2,
             "master_branch_protection_require_codeowner_review": false,
             "master_branch_protection_require_non_stale_review": false,
             "master_branch_protection_enforce_admins": false,
@@ -6288,20 +6288,20 @@
                 }
             },
             "network_count": 2,
-            "subscribers_count": 229,
+            "subscribers_count": 228,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
             "team_core_permission_admin": true,
             "master_branch_exists": true,
             "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/datasync/branches/dev/protection/required_status_checks",
+                "url": "https://api.github.com/repos/nf-core/datasync/branches/master/protection/required_status_checks",
                 "strict": false,
                 "contexts": [
                     "pre-commit",
                     "nf-core"
                 ],
-                "contexts_url": "https://api.github.com/repos/nf-core/datasync/branches/dev/protection/required_status_checks/contexts",
+                "contexts_url": "https://api.github.com/repos/nf-core/datasync/branches/master/protection/required_status_checks/contexts",
                 "checks": [
                     {
                         "context": "pre-commit",
@@ -6313,7 +6313,7 @@
                     }
                 ]
             },
-            "master_branch_protection_required_reviews": 1,
+            "master_branch_protection_required_reviews": 2,
             "master_branch_protection_require_codeowner_review": false,
             "master_branch_protection_require_non_stale_review": false,
             "master_branch_protection_enforce_admins": false,
@@ -6669,21 +6669,16 @@
             "team_core_permission_admin": true,
             "master_branch_exists": true,
             "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/ddamsproteomics/branches/dev/protection/required_status_checks",
+                "url": "https://api.github.com/repos/nf-core/ddamsproteomics/branches/master/protection/required_status_checks",
                 "strict": false,
                 "contexts": [
-                    "Travis CI - Pull Request",
                     "nf-core",
                     "Prettier",
                     "EditorConfig",
                     "Run pipeline with test data"
                 ],
-                "contexts_url": "https://api.github.com/repos/nf-core/ddamsproteomics/branches/dev/protection/required_status_checks/contexts",
+                "contexts_url": "https://api.github.com/repos/nf-core/ddamsproteomics/branches/master/protection/required_status_checks/contexts",
                 "checks": [
-                    {
-                        "context": "Travis CI - Pull Request",
-                        "app_id": null
-                    },
                     {
                         "context": "nf-core",
                         "app_id": null
@@ -6702,7 +6697,7 @@
                     }
                 ]
             },
-            "master_branch_protection_required_reviews": 1,
+            "master_branch_protection_required_reviews": 2,
             "master_branch_protection_require_codeowner_review": false,
             "master_branch_protection_require_non_stale_review": false,
             "master_branch_protection_enforce_admins": false,
@@ -7976,7 +7971,7 @@
             "team_core_permission_admin": true,
             "master_branch_exists": true,
             "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/denovohybrid/branches/dev/protection/required_status_checks",
+                "url": "https://api.github.com/repos/nf-core/denovohybrid/branches/master/protection/required_status_checks",
                 "strict": false,
                 "contexts": [
                     "nf-core",
@@ -7984,7 +7979,7 @@
                     "EditorConfig",
                     "Run pipeline with test data"
                 ],
-                "contexts_url": "https://api.github.com/repos/nf-core/denovohybrid/branches/dev/protection/required_status_checks/contexts",
+                "contexts_url": "https://api.github.com/repos/nf-core/denovohybrid/branches/master/protection/required_status_checks/contexts",
                 "checks": [
                     {
                         "context": "nf-core",
@@ -8004,7 +7999,7 @@
                     }
                 ]
             },
-            "master_branch_protection_required_reviews": 1,
+            "master_branch_protection_required_reviews": 2,
             "master_branch_protection_require_codeowner_review": false,
             "master_branch_protection_require_non_stale_review": false,
             "master_branch_protection_enforce_admins": false,
@@ -8095,7 +8090,7 @@
             "updated_at": "2024-03-29T00:06:11Z",
             "pushed_at": "2024-04-03T14:47:51Z",
             "homepage": "https://nf-co.re/detaxizer",
-            "size": 4341,
+            "size": 4344,
             "stargazers_count": 9,
             "watchers_count": 9,
             "language": "Nextflow",
@@ -8161,7 +8156,7 @@
                 }
             },
             "network_count": 3,
-            "subscribers_count": 171,
+            "subscribers_count": 170,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
@@ -10534,7 +10529,7 @@
             "team_core_permission_admin": true,
             "master_branch_exists": true,
             "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/fastquorum/branches/dev/protection/required_status_checks",
+                "url": "https://api.github.com/repos/nf-core/fastquorum/branches/master/protection/required_status_checks",
                 "strict": false,
                 "contexts": [
                     "Prettier",
@@ -10542,7 +10537,7 @@
                     "nf-core",
                     "Run pipeline with test data"
                 ],
-                "contexts_url": "https://api.github.com/repos/nf-core/fastquorum/branches/dev/protection/required_status_checks/contexts",
+                "contexts_url": "https://api.github.com/repos/nf-core/fastquorum/branches/master/protection/required_status_checks/contexts",
                 "checks": [
                     {
                         "context": "Prettier",
@@ -10562,7 +10557,7 @@
                     }
                 ]
             },
-            "master_branch_protection_required_reviews": 1,
+            "master_branch_protection_required_reviews": 2,
             "master_branch_protection_require_codeowner_review": false,
             "master_branch_protection_require_non_stale_review": false,
             "master_branch_protection_enforce_admins": false,
@@ -12003,7 +11998,7 @@
             "team_core_permission_admin": true,
             "master_branch_exists": true,
             "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/genomeannotator/branches/dev/protection/required_status_checks",
+                "url": "https://api.github.com/repos/nf-core/genomeannotator/branches/master/protection/required_status_checks",
                 "strict": false,
                 "contexts": [
                     "nf-core",
@@ -12011,7 +12006,7 @@
                     "EditorConfig",
                     "Run pipeline with test data"
                 ],
-                "contexts_url": "https://api.github.com/repos/nf-core/genomeannotator/branches/dev/protection/required_status_checks/contexts",
+                "contexts_url": "https://api.github.com/repos/nf-core/genomeannotator/branches/master/protection/required_status_checks/contexts",
                 "checks": [
                     {
                         "context": "nf-core",
@@ -12031,7 +12026,7 @@
                     }
                 ]
             },
-            "master_branch_protection_required_reviews": 1,
+            "master_branch_protection_required_reviews": 2,
             "master_branch_protection_require_codeowner_review": false,
             "master_branch_protection_require_non_stale_review": false,
             "master_branch_protection_enforce_admins": false,
@@ -12189,14 +12184,14 @@
             "team_core_permission_admin": true,
             "master_branch_exists": true,
             "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/genomeassembler/branches/dev/protection/required_status_checks",
+                "url": "https://api.github.com/repos/nf-core/genomeassembler/branches/master/protection/required_status_checks",
                 "strict": false,
                 "contexts": [
                     "nf-core",
                     "Prettier",
                     "EditorConfig"
                 ],
-                "contexts_url": "https://api.github.com/repos/nf-core/genomeassembler/branches/dev/protection/required_status_checks/contexts",
+                "contexts_url": "https://api.github.com/repos/nf-core/genomeassembler/branches/master/protection/required_status_checks/contexts",
                 "checks": [
                     {
                         "context": "nf-core",
@@ -12212,7 +12207,7 @@
                     }
                 ]
             },
-            "master_branch_protection_required_reviews": 1,
+            "master_branch_protection_required_reviews": 2,
             "master_branch_protection_require_codeowner_review": false,
             "master_branch_protection_require_non_stale_review": false,
             "master_branch_protection_enforce_admins": false,
@@ -12403,13 +12398,13 @@
             "team_core_permission_admin": true,
             "master_branch_exists": true,
             "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/genomeskim/branches/dev/protection/required_status_checks",
+                "url": "https://api.github.com/repos/nf-core/genomeskim/branches/master/protection/required_status_checks",
                 "strict": false,
                 "contexts": [],
-                "contexts_url": "https://api.github.com/repos/nf-core/genomeskim/branches/dev/protection/required_status_checks/contexts",
+                "contexts_url": "https://api.github.com/repos/nf-core/genomeskim/branches/master/protection/required_status_checks/contexts",
                 "checks": []
             },
-            "master_branch_protection_required_reviews": 1,
+            "master_branch_protection_required_reviews": 2,
             "master_branch_protection_require_codeowner_review": false,
             "master_branch_protection_require_non_stale_review": false,
             "master_branch_protection_enforce_admins": false,
@@ -12545,7 +12540,7 @@
             "team_core_permission_admin": true,
             "master_branch_exists": true,
             "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/gwas/branches/dev/protection/required_status_checks",
+                "url": "https://api.github.com/repos/nf-core/gwas/branches/master/protection/required_status_checks",
                 "strict": false,
                 "contexts": [
                     "nf-core",
@@ -12553,7 +12548,7 @@
                     "EditorConfig",
                     "Run pipeline with test data"
                 ],
-                "contexts_url": "https://api.github.com/repos/nf-core/gwas/branches/dev/protection/required_status_checks/contexts",
+                "contexts_url": "https://api.github.com/repos/nf-core/gwas/branches/master/protection/required_status_checks/contexts",
                 "checks": [
                     {
                         "context": "nf-core",
@@ -12573,7 +12568,7 @@
                     }
                 ]
             },
-            "master_branch_protection_required_reviews": 1,
+            "master_branch_protection_required_reviews": 2,
             "master_branch_protection_require_codeowner_review": false,
             "master_branch_protection_require_non_stale_review": false,
             "master_branch_protection_enforce_admins": false,
@@ -13405,14 +13400,15 @@
             "team_core_permission_admin": true,
             "master_branch_exists": true,
             "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/hicar/branches/dev/protection/required_status_checks",
+                "url": "https://api.github.com/repos/nf-core/hicar/branches/master/protection/required_status_checks",
                 "strict": false,
                 "contexts": [
                     "nf-core",
                     "Prettier",
-                    "EditorConfig"
+                    "EditorConfig",
+                    "Run pipeline with test data (test)"
                 ],
-                "contexts_url": "https://api.github.com/repos/nf-core/hicar/branches/dev/protection/required_status_checks/contexts",
+                "contexts_url": "https://api.github.com/repos/nf-core/hicar/branches/master/protection/required_status_checks/contexts",
                 "checks": [
                     {
                         "context": "nf-core",
@@ -13425,10 +13421,14 @@
                     {
                         "context": "EditorConfig",
                         "app_id": 15368
+                    },
+                    {
+                        "context": "Run pipeline with test data (test)",
+                        "app_id": 15368
                     }
                 ]
             },
-            "master_branch_protection_required_reviews": 1,
+            "master_branch_protection_required_reviews": 2,
             "master_branch_protection_require_codeowner_review": false,
             "master_branch_protection_require_non_stale_review": false,
             "master_branch_protection_enforce_admins": false,
@@ -14627,7 +14627,7 @@
             "team_core_permission_admin": true,
             "master_branch_exists": true,
             "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/kmermaid/branches/dev/protection/required_status_checks",
+                "url": "https://api.github.com/repos/nf-core/kmermaid/branches/master/protection/required_status_checks",
                 "strict": false,
                 "contexts": [
                     "nf-core",
@@ -14635,7 +14635,7 @@
                     "EditorConfig",
                     "Run pipeline with test data"
                 ],
-                "contexts_url": "https://api.github.com/repos/nf-core/kmermaid/branches/dev/protection/required_status_checks/contexts",
+                "contexts_url": "https://api.github.com/repos/nf-core/kmermaid/branches/master/protection/required_status_checks/contexts",
                 "checks": [
                     {
                         "context": "nf-core",
@@ -14655,7 +14655,7 @@
                     }
                 ]
             },
-            "master_branch_protection_required_reviews": 1,
+            "master_branch_protection_required_reviews": 2,
             "master_branch_protection_require_codeowner_review": false,
             "master_branch_protection_require_non_stale_review": false,
             "master_branch_protection_enforce_admins": false,
@@ -15043,7 +15043,7 @@
             "team_core_permission_admin": true,
             "master_branch_exists": true,
             "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/liverctanalysis/branches/dev/protection/required_status_checks",
+                "url": "https://api.github.com/repos/nf-core/liverctanalysis/branches/master/protection/required_status_checks",
                 "strict": false,
                 "contexts": [
                     "nf-core",
@@ -15051,7 +15051,7 @@
                     "EditorConfig",
                     "Run pipeline with test data"
                 ],
-                "contexts_url": "https://api.github.com/repos/nf-core/liverctanalysis/branches/dev/protection/required_status_checks/contexts",
+                "contexts_url": "https://api.github.com/repos/nf-core/liverctanalysis/branches/master/protection/required_status_checks/contexts",
                 "checks": [
                     {
                         "context": "nf-core",
@@ -15071,7 +15071,7 @@
                     }
                 ]
             },
-            "master_branch_protection_required_reviews": 1,
+            "master_branch_protection_required_reviews": 2,
             "master_branch_protection_require_codeowner_review": false,
             "master_branch_protection_require_non_stale_review": false,
             "master_branch_protection_enforce_admins": false,
@@ -15454,15 +15454,20 @@
             "team_core_permission_admin": true,
             "master_branch_exists": true,
             "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/lncpipe/branches/dev/protection/required_status_checks",
+                "url": "https://api.github.com/repos/nf-core/lncpipe/branches/master/protection/required_status_checks",
                 "strict": false,
                 "contexts": [
+                    "Travis CI - Pull Request",
                     "nf-core",
                     "Prettier",
                     "EditorConfig"
                 ],
-                "contexts_url": "https://api.github.com/repos/nf-core/lncpipe/branches/dev/protection/required_status_checks/contexts",
+                "contexts_url": "https://api.github.com/repos/nf-core/lncpipe/branches/master/protection/required_status_checks/contexts",
                 "checks": [
+                    {
+                        "context": "Travis CI - Pull Request",
+                        "app_id": null
+                    },
                     {
                         "context": "nf-core",
                         "app_id": null
@@ -15477,7 +15482,7 @@
                     }
                 ]
             },
-            "master_branch_protection_required_reviews": 1,
+            "master_branch_protection_required_reviews": 2,
             "master_branch_protection_require_codeowner_review": false,
             "master_branch_protection_require_non_stale_review": false,
             "master_branch_protection_enforce_admins": false,
@@ -15948,12 +15953,183 @@
             ],
             "released_after_tools": false,
             "head_sha": "e486bb23b9012ecf649061f1eb448bb853e0aad8",
-            "last_release_is_head": false,
-            "last_release_vs_default_compare_url": "https://github.com/nf-core/mag/compare/e486bb23b9012ecf649061f1eb448bb853e0aad8...e72890089a1fb69d32f2cf0762739c824412bf2b",
+            "last_release_is_head": true,
+            "last_release_vs_default_compare_url": "https://github.com/nf-core/mag/compare/e486bb23b9012ecf649061f1eb448bb853e0aad8...e486bb23b9012ecf649061f1eb448bb853e0aad8",
             "is_DSL2": true,
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "releases": [
+                {
+                    "tag_name": "2.5.4",
+                    "published_at": "2024-02-12T19:22:52Z",
+                    "tag_sha": "e486bb23b9012ecf649061f1eb448bb853e0aad8",
+                    "has_schema": true,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/usage.md"
+                    ],
+                    "components": {
+                        "modules": [
+                            "adapterremoval",
+                            "aria2",
+                            "bbmap_bbnorm",
+                            "bcftools_consensus",
+                            "bcftools_index",
+                            "bcftools_view",
+                            "cat_fastq",
+                            "checkm_lineagewf",
+                            "checkm_qa",
+                            "concoct_concoct",
+                            "concoct_concoctcoveragetable",
+                            "concoct_cutupfasta",
+                            "concoct_extractfastabins",
+                            "concoct_mergecutupclustering",
+                            "custom_dumpsoftwareversions",
+                            "dastool_dastool",
+                            "dastool_fastatocontig2bin",
+                            "fastp",
+                            "fastqc",
+                            "freebayes",
+                            "genomad_download",
+                            "genomad_endtoend",
+                            "gtdbtk_classifywf",
+                            "gunc_downloaddb",
+                            "gunc_mergecheckm",
+                            "gunc_run",
+                            "gunzip",
+                            "maxbin2",
+                            "metabat2_jgisummarizebamcontigdepths",
+                            "metabat2_metabat2",
+                            "metaeuk_easypredict",
+                            "mmseqs_databases",
+                            "multiqc",
+                            "prodigal",
+                            "prokka",
+                            "pydamage_analyze",
+                            "pydamage_filter",
+                            "samtools_faidx",
+                            "seqtk_mergepe",
+                            "tiara_tiara"
+                        ],
+                        "subworkflows": [
+                            "fasta_binning_concoct"
+                        ]
+                    }
+                },
+                {
+                    "tag_name": "2.5.3",
+                    "published_at": "2024-02-05T14:46:11Z",
+                    "tag_sha": "7bd5dc6007aa15beb63ec827f50bc0e982beb8e2",
+                    "has_schema": true,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/usage.md"
+                    ],
+                    "components": {
+                        "modules": [
+                            "adapterremoval",
+                            "aria2",
+                            "bbmap_bbnorm",
+                            "bcftools_consensus",
+                            "bcftools_index",
+                            "bcftools_view",
+                            "cat_fastq",
+                            "checkm_lineagewf",
+                            "checkm_qa",
+                            "concoct_concoct",
+                            "concoct_concoctcoveragetable",
+                            "concoct_cutupfasta",
+                            "concoct_extractfastabins",
+                            "concoct_mergecutupclustering",
+                            "custom_dumpsoftwareversions",
+                            "dastool_dastool",
+                            "dastool_fastatocontig2bin",
+                            "fastp",
+                            "fastqc",
+                            "freebayes",
+                            "genomad_download",
+                            "genomad_endtoend",
+                            "gtdbtk_classifywf",
+                            "gunc_downloaddb",
+                            "gunc_mergecheckm",
+                            "gunc_run",
+                            "gunzip",
+                            "maxbin2",
+                            "metabat2_jgisummarizebamcontigdepths",
+                            "metabat2_metabat2",
+                            "metaeuk_easypredict",
+                            "mmseqs_databases",
+                            "multiqc",
+                            "prodigal",
+                            "prokka",
+                            "pydamage_analyze",
+                            "pydamage_filter",
+                            "samtools_faidx",
+                            "seqtk_mergepe",
+                            "tiara_tiara"
+                        ],
+                        "subworkflows": [
+                            "fasta_binning_concoct"
+                        ]
+                    }
+                },
+                {
+                    "tag_name": "2.5.2",
+                    "published_at": "2024-02-02T14:30:07Z",
+                    "tag_sha": "274412afa54f477dccf4d6230506ec7de3dfaa4d",
+                    "has_schema": true,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/usage.md"
+                    ],
+                    "components": {
+                        "modules": [
+                            "adapterremoval",
+                            "aria2",
+                            "bbmap_bbnorm",
+                            "bcftools_consensus",
+                            "bcftools_index",
+                            "bcftools_view",
+                            "cat_fastq",
+                            "checkm_lineagewf",
+                            "checkm_qa",
+                            "concoct_concoct",
+                            "concoct_concoctcoveragetable",
+                            "concoct_cutupfasta",
+                            "concoct_extractfastabins",
+                            "concoct_mergecutupclustering",
+                            "custom_dumpsoftwareversions",
+                            "dastool_dastool",
+                            "dastool_fastatocontig2bin",
+                            "fastp",
+                            "fastqc",
+                            "freebayes",
+                            "genomad_download",
+                            "genomad_endtoend",
+                            "gtdbtk_classifywf",
+                            "gunc_downloaddb",
+                            "gunc_mergecheckm",
+                            "gunc_run",
+                            "gunzip",
+                            "maxbin2",
+                            "metabat2_jgisummarizebamcontigdepths",
+                            "metabat2_metabat2",
+                            "metaeuk_easypredict",
+                            "mmseqs_databases",
+                            "multiqc",
+                            "prodigal",
+                            "prokka",
+                            "pydamage_analyze",
+                            "pydamage_filter",
+                            "samtools_faidx",
+                            "seqtk_mergepe",
+                            "tiara_tiara"
+                        ],
+                        "subworkflows": [
+                            "fasta_binning_concoct"
+                        ]
+                    }
+                },
                 {
                     "tag_name": "2.5.1",
                     "published_at": "2023-11-17T04:37:45Z",
@@ -16069,6 +16245,63 @@
                     }
                 },
                 {
+                    "tag_name": "2.4.0",
+                    "published_at": "2023-09-26T09:01:35Z",
+                    "tag_sha": "18a1645fa3e0cc6ea417f009d592f82bbe7b57f2",
+                    "has_schema": true,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/usage.md"
+                    ],
+                    "components": {
+                        "modules": [
+                            "adapterremoval",
+                            "aria2",
+                            "bbmap_bbnorm",
+                            "bcftools_consensus",
+                            "bcftools_index",
+                            "bcftools_view",
+                            "cat_fastq",
+                            "checkm_lineagewf",
+                            "checkm_qa",
+                            "concoct_concoct",
+                            "concoct_concoctcoveragetable",
+                            "concoct_cutupfasta",
+                            "concoct_extractfastabins",
+                            "concoct_mergecutupclustering",
+                            "custom_dumpsoftwareversions",
+                            "dastool_dastool",
+                            "dastool_fastatocontig2bin",
+                            "fastp",
+                            "fastqc",
+                            "freebayes",
+                            "genomad_download",
+                            "genomad_endtoend",
+                            "gtdbtk_classifywf",
+                            "gunc_downloaddb",
+                            "gunc_mergecheckm",
+                            "gunc_run",
+                            "gunzip",
+                            "maxbin2",
+                            "metabat2_jgisummarizebamcontigdepths",
+                            "metabat2_metabat2",
+                            "metaeuk_easypredict",
+                            "mmseqs_databases",
+                            "multiqc",
+                            "prodigal",
+                            "prokka",
+                            "pydamage_analyze",
+                            "pydamage_filter",
+                            "samtools_faidx",
+                            "seqtk_mergepe",
+                            "tiara_tiara"
+                        ],
+                        "subworkflows": [
+                            "fasta_binning_concoct"
+                        ]
+                    }
+                },
+                {
                     "tag_name": "2.3.2",
                     "published_at": "2023-06-23T11:40:26Z",
                     "tag_sha": "66cf53aff834d2a254b78b94fc54cd656b8b7b57",
@@ -16120,6 +16353,54 @@
                     "tag_name": "2.3.1",
                     "published_at": "2023-06-19T20:37:43Z",
                     "tag_sha": "61deef81c74b3c4c3bc0bce265e1d2e181d2260d",
+                    "has_schema": true,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/usage.md"
+                    ],
+                    "components": {
+                        "modules": [
+                            "adapterremoval",
+                            "aria2",
+                            "bcftools_consensus",
+                            "bcftools_index",
+                            "bcftools_view",
+                            "checkm_lineagewf",
+                            "checkm_qa",
+                            "concoct_concoct",
+                            "concoct_concoctcoveragetable",
+                            "concoct_cutupfasta",
+                            "concoct_extractfastabins",
+                            "concoct_mergecutupclustering",
+                            "custom_dumpsoftwareversions",
+                            "dastool_dastool",
+                            "dastool_fastatocontig2bin",
+                            "fastp",
+                            "fastqc",
+                            "freebayes",
+                            "gunc_downloaddb",
+                            "gunc_mergecheckm",
+                            "gunc_run",
+                            "gunzip",
+                            "maxbin2",
+                            "metabat2_jgisummarizebamcontigdepths",
+                            "metabat2_metabat2",
+                            "multiqc",
+                            "prodigal",
+                            "prokka",
+                            "pydamage_analyze",
+                            "pydamage_filter",
+                            "samtools_faidx"
+                        ],
+                        "subworkflows": [
+                            "fasta_binning_concoct"
+                        ]
+                    }
+                },
+                {
+                    "tag_name": "2.3.0",
+                    "published_at": "2023-03-02T10:12:03Z",
+                    "tag_sha": "c9468cb9154402c4a4cab78664ee50c24a91f6c3",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -16305,6 +16586,16 @@
                     ]
                 },
                 {
+                    "tag_name": "1.1.0",
+                    "published_at": "2020-10-06T15:26:21Z",
+                    "tag_sha": "7384cef0313583bc1c1277ba8f139f9783f0619e",
+                    "has_schema": true,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/usage.md"
+                    ]
+                },
+                {
                     "tag_name": "1.0.0",
                     "published_at": "2019-12-21T10:21:58Z",
                     "tag_sha": "4c2f61cbbb2be56d9a176947a758cdb4d7941910",
@@ -16444,13 +16735,13 @@
             "team_core_permission_admin": false,
             "master_branch_exists": true,
             "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/magmap/branches/dev/protection/required_status_checks",
-                "strict": true,
+                "url": "https://api.github.com/repos/nf-core/magmap/branches/master/protection/required_status_checks",
+                "strict": false,
                 "contexts": [],
-                "contexts_url": "https://api.github.com/repos/nf-core/magmap/branches/dev/protection/required_status_checks/contexts",
+                "contexts_url": "https://api.github.com/repos/nf-core/magmap/branches/master/protection/required_status_checks/contexts",
                 "checks": []
             },
-            "master_branch_protection_required_reviews": 1,
+            "master_branch_protection_required_reviews": 2,
             "master_branch_protection_require_codeowner_review": false,
             "master_branch_protection_require_non_stale_review": false,
             "master_branch_protection_enforce_admins": false,
@@ -16949,30 +17240,20 @@
             "team_core_permission_admin": true,
             "master_branch_exists": true,
             "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/mcmicro/branches/dev/protection/required_status_checks",
+                "url": "https://api.github.com/repos/nf-core/mcmicro/branches/master/protection/required_status_checks",
                 "strict": false,
                 "contexts": [
-                    "nf-core",
-                    "Run pipeline with test data (23.04.0)",
-                    "pre-commit"
+                    "nf-core"
                 ],
-                "contexts_url": "https://api.github.com/repos/nf-core/mcmicro/branches/dev/protection/required_status_checks/contexts",
+                "contexts_url": "https://api.github.com/repos/nf-core/mcmicro/branches/master/protection/required_status_checks/contexts",
                 "checks": [
                     {
                         "context": "nf-core",
                         "app_id": 15368
-                    },
-                    {
-                        "context": "Run pipeline with test data (23.04.0)",
-                        "app_id": 15368
-                    },
-                    {
-                        "context": "pre-commit",
-                        "app_id": 15368
                     }
                 ]
             },
-            "master_branch_protection_required_reviews": 1,
+            "master_branch_protection_required_reviews": 2,
             "master_branch_protection_require_codeowner_review": false,
             "master_branch_protection_require_non_stale_review": false,
             "master_branch_protection_enforce_admins": false,
@@ -17141,18 +17422,17 @@
                 }
             },
             "network_count": 0,
-            "subscribers_count": 261,
+            "subscribers_count": 249,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
             "team_core_permission_admin": true,
             "master_branch_exists": true,
-            "master_branch_protection_up_to_date": -1,
             "master_branch_protection_status_checks": -1,
-            "master_branch_protection_required_reviews": -1,
-            "master_branch_protection_require_codeowner_review": -1,
-            "master_branch_protection_require_non_stale_review": -1,
-            "master_branch_protection_enforce_admins": -1,
+            "master_branch_protection_required_reviews": 2,
+            "master_branch_protection_require_codeowner_review": false,
+            "master_branch_protection_require_non_stale_review": false,
+            "master_branch_protection_enforce_admins": false,
             "master_restrict_push": -1,
             "dev_branch_exists": true,
             "dev_branch_protection_up_to_date": -1,
@@ -17540,70 +17820,35 @@
             "team_core_permission_admin": true,
             "master_branch_exists": true,
             "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/metapep/branches/dev/protection/required_status_checks",
+                "url": "https://api.github.com/repos/nf-core/metapep/branches/master/protection/required_status_checks",
                 "strict": false,
                 "contexts": [
                     "nf-core",
-                    "Run additional profile tests (test_coassembly)",
-                    "Run pipeline with assembly test data (latest-everything)",
-                    "Run pipeline with assembly test data (23.04.0)",
-                    "Run additional profile tests (test_bins_only)",
-                    "Run additional profile tests (test_assembly_only)",
-                    "Run additional profile tests (test_mhcflurry)",
-                    "Run additional profile tests (test_mhcnuggets_1)",
-                    "Run additional profile tests (test_mhcnuggets_2)",
-                    "Run additional profile tests (test_model_information)",
-                    "Run additional profile tests (test_mouse_all_pep_lengths)"
+                    "Prettier",
+                    "EditorConfig",
+                    "Run pipeline with test data"
                 ],
-                "contexts_url": "https://api.github.com/repos/nf-core/metapep/branches/dev/protection/required_status_checks/contexts",
+                "contexts_url": "https://api.github.com/repos/nf-core/metapep/branches/master/protection/required_status_checks/contexts",
                 "checks": [
                     {
                         "context": "nf-core",
                         "app_id": null
                     },
                     {
-                        "context": "Run additional profile tests (test_coassembly)",
+                        "context": "Prettier",
                         "app_id": 15368
                     },
                     {
-                        "context": "Run pipeline with assembly test data (latest-everything)",
+                        "context": "EditorConfig",
                         "app_id": 15368
                     },
                     {
-                        "context": "Run pipeline with assembly test data (23.04.0)",
-                        "app_id": 15368
-                    },
-                    {
-                        "context": "Run additional profile tests (test_bins_only)",
-                        "app_id": 15368
-                    },
-                    {
-                        "context": "Run additional profile tests (test_assembly_only)",
-                        "app_id": 15368
-                    },
-                    {
-                        "context": "Run additional profile tests (test_mhcflurry)",
-                        "app_id": 15368
-                    },
-                    {
-                        "context": "Run additional profile tests (test_mhcnuggets_1)",
-                        "app_id": 15368
-                    },
-                    {
-                        "context": "Run additional profile tests (test_mhcnuggets_2)",
-                        "app_id": 15368
-                    },
-                    {
-                        "context": "Run additional profile tests (test_model_information)",
-                        "app_id": 15368
-                    },
-                    {
-                        "context": "Run additional profile tests (test_mouse_all_pep_lengths)",
-                        "app_id": 15368
+                        "context": "Run pipeline with test data",
+                        "app_id": null
                     }
                 ]
             },
-            "master_branch_protection_required_reviews": 1,
+            "master_branch_protection_required_reviews": 2,
             "master_branch_protection_require_codeowner_review": false,
             "master_branch_protection_require_non_stale_review": false,
             "master_branch_protection_enforce_admins": false,
@@ -17755,7 +18000,7 @@
             "updated_at": "2024-03-28T20:06:31Z",
             "pushed_at": "2024-04-03T15:20:55Z",
             "homepage": "https://nf-co.re/metatdenovo",
-            "size": 13694,
+            "size": 13768,
             "stargazers_count": 11,
             "watchers_count": 11,
             "language": "Nextflow",
@@ -19662,25 +19907,35 @@
             "team_core_permission_admin": true,
             "master_branch_exists": true,
             "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/multiplesequencealign/branches/dev/protection/required_status_checks",
+                "url": "https://api.github.com/repos/nf-core/multiplesequencealign/branches/master/protection/required_status_checks",
                 "strict": false,
                 "contexts": [
+                    "Prettier",
+                    "EditorConfig",
                     "nf-core",
-                    "Run pipeline with test data (23.04.0)"
+                    "Run pipeline with test data"
                 ],
-                "contexts_url": "https://api.github.com/repos/nf-core/multiplesequencealign/branches/dev/protection/required_status_checks/contexts",
+                "contexts_url": "https://api.github.com/repos/nf-core/multiplesequencealign/branches/master/protection/required_status_checks/contexts",
                 "checks": [
+                    {
+                        "context": "Prettier",
+                        "app_id": null
+                    },
+                    {
+                        "context": "EditorConfig",
+                        "app_id": null
+                    },
                     {
                         "context": "nf-core",
                         "app_id": null
                     },
                     {
-                        "context": "Run pipeline with test data (23.04.0)",
+                        "context": "Run pipeline with test data",
                         "app_id": null
                     }
                 ]
             },
-            "master_branch_protection_required_reviews": 1,
+            "master_branch_protection_required_reviews": 2,
             "master_branch_protection_require_codeowner_review": false,
             "master_branch_protection_require_non_stale_review": false,
             "master_branch_protection_enforce_admins": false,
@@ -21196,35 +21451,18 @@
                 }
             },
             "network_count": 2,
-            "subscribers_count": 224,
+            "subscribers_count": 223,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
             "team_core_permission_admin": true,
             "master_branch_exists": true,
-            "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/omicsgenetraitassociation/branches/dev/protection/required_status_checks",
-                "strict": false,
-                "contexts": [
-                    "pre-commit",
-                    "nf-core"
-                ],
-                "contexts_url": "https://api.github.com/repos/nf-core/omicsgenetraitassociation/branches/dev/protection/required_status_checks/contexts",
-                "checks": [
-                    {
-                        "context": "pre-commit",
-                        "app_id": null
-                    },
-                    {
-                        "context": "nf-core",
-                        "app_id": null
-                    }
-                ]
-            },
-            "master_branch_protection_required_reviews": 1,
-            "master_branch_protection_require_codeowner_review": false,
-            "master_branch_protection_require_non_stale_review": false,
-            "master_branch_protection_enforce_admins": false,
+            "master_branch_protection_up_to_date": -1,
+            "master_branch_protection_status_checks": -1,
+            "master_branch_protection_required_reviews": -1,
+            "master_branch_protection_require_codeowner_review": -1,
+            "master_branch_protection_require_non_stale_review": -1,
+            "master_branch_protection_enforce_admins": -1,
             "master_restrict_push": -1,
             "dev_branch_exists": true,
             "dev_branch_protection_status_checks": {
@@ -21365,20 +21603,20 @@
                 }
             },
             "network_count": 2,
-            "subscribers_count": 180,
+            "subscribers_count": 179,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
             "team_core_permission_admin": true,
             "master_branch_exists": true,
             "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/oncoanalyser/branches/dev/protection/required_status_checks",
+                "url": "https://api.github.com/repos/nf-core/oncoanalyser/branches/master/protection/required_status_checks",
                 "strict": false,
                 "contexts": [
                     "pre-commit",
                     "nf-core"
                 ],
-                "contexts_url": "https://api.github.com/repos/nf-core/oncoanalyser/branches/dev/protection/required_status_checks/contexts",
+                "contexts_url": "https://api.github.com/repos/nf-core/oncoanalyser/branches/master/protection/required_status_checks/contexts",
                 "checks": [
                     {
                         "context": "pre-commit",
@@ -21390,7 +21628,7 @@
                     }
                 ]
             },
-            "master_branch_protection_required_reviews": 1,
+            "master_branch_protection_required_reviews": 2,
             "master_branch_protection_require_codeowner_review": false,
             "master_branch_protection_require_non_stale_review": false,
             "master_branch_protection_enforce_admins": false,
@@ -21900,7 +22138,7 @@
                 }
             },
             "network_count": 2,
-            "subscribers_count": 181,
+            "subscribers_count": 180,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
@@ -22548,13 +22786,35 @@
             "team_core_permission_admin": true,
             "master_branch_exists": true,
             "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/phageannotator/branches/dev/protection/required_status_checks",
+                "url": "https://api.github.com/repos/nf-core/phageannotator/branches/master/protection/required_status_checks",
                 "strict": false,
-                "contexts": [],
-                "contexts_url": "https://api.github.com/repos/nf-core/phageannotator/branches/dev/protection/required_status_checks/contexts",
-                "checks": []
+                "contexts": [
+                    "Prettier",
+                    "EditorConfig",
+                    "nf-core",
+                    "Run pipeline with test data"
+                ],
+                "contexts_url": "https://api.github.com/repos/nf-core/phageannotator/branches/master/protection/required_status_checks/contexts",
+                "checks": [
+                    {
+                        "context": "Prettier",
+                        "app_id": null
+                    },
+                    {
+                        "context": "EditorConfig",
+                        "app_id": null
+                    },
+                    {
+                        "context": "nf-core",
+                        "app_id": null
+                    },
+                    {
+                        "context": "Run pipeline with test data",
+                        "app_id": null
+                    }
+                ]
             },
-            "master_branch_protection_required_reviews": 1,
+            "master_branch_protection_required_reviews": 2,
             "master_branch_protection_require_codeowner_review": false,
             "master_branch_protection_require_non_stale_review": false,
             "master_branch_protection_enforce_admins": false,
@@ -22726,17 +22986,18 @@
                 }
             },
             "network_count": 11,
-            "subscribers_count": 179,
+            "subscribers_count": 178,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
             "team_core_permission_admin": true,
             "master_branch_exists": true,
+            "master_branch_protection_up_to_date": -1,
             "master_branch_protection_status_checks": -1,
-            "master_branch_protection_required_reviews": 1,
-            "master_branch_protection_require_codeowner_review": false,
-            "master_branch_protection_require_non_stale_review": false,
-            "master_branch_protection_enforce_admins": false,
+            "master_branch_protection_required_reviews": -1,
+            "master_branch_protection_require_codeowner_review": -1,
+            "master_branch_protection_require_non_stale_review": -1,
+            "master_branch_protection_enforce_admins": -1,
             "master_restrict_push": -1,
             "dev_branch_exists": true,
             "dev_branch_protection_status_checks": -1,
@@ -24168,39 +24429,12 @@
             "team_core_permission_push": true,
             "team_core_permission_admin": true,
             "master_branch_exists": true,
-            "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/radseq/branches/dev/protection/required_status_checks",
-                "strict": false,
-                "contexts": [
-                    "Prettier",
-                    "EditorConfig",
-                    "nf-core",
-                    "Run pipeline with test data"
-                ],
-                "contexts_url": "https://api.github.com/repos/nf-core/radseq/branches/dev/protection/required_status_checks/contexts",
-                "checks": [
-                    {
-                        "context": "Prettier",
-                        "app_id": null
-                    },
-                    {
-                        "context": "EditorConfig",
-                        "app_id": null
-                    },
-                    {
-                        "context": "nf-core",
-                        "app_id": null
-                    },
-                    {
-                        "context": "Run pipeline with test data",
-                        "app_id": null
-                    }
-                ]
-            },
-            "master_branch_protection_required_reviews": 1,
-            "master_branch_protection_require_codeowner_review": false,
-            "master_branch_protection_require_non_stale_review": false,
-            "master_branch_protection_enforce_admins": false,
+            "master_branch_protection_up_to_date": -1,
+            "master_branch_protection_status_checks": -1,
+            "master_branch_protection_required_reviews": -1,
+            "master_branch_protection_require_codeowner_review": -1,
+            "master_branch_protection_require_non_stale_review": -1,
+            "master_branch_protection_enforce_admins": -1,
             "master_restrict_push": -1,
             "dev_branch_exists": true,
             "dev_branch_protection_status_checks": {
@@ -24380,14 +24614,14 @@
                 }
             },
             "network_count": 2,
-            "subscribers_count": 187,
+            "subscribers_count": 186,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
             "team_core_permission_admin": true,
             "master_branch_exists": true,
             "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/rangeland/branches/dev/protection/required_status_checks",
+                "url": "https://api.github.com/repos/nf-core/rangeland/branches/master/protection/required_status_checks",
                 "strict": false,
                 "contexts": [
                     "Prettier",
@@ -24395,7 +24629,7 @@
                     "nf-core",
                     "Run pipeline with test data"
                 ],
-                "contexts_url": "https://api.github.com/repos/nf-core/rangeland/branches/dev/protection/required_status_checks/contexts",
+                "contexts_url": "https://api.github.com/repos/nf-core/rangeland/branches/master/protection/required_status_checks/contexts",
                 "checks": [
                     {
                         "context": "Prettier",
@@ -24415,7 +24649,7 @@
                     }
                 ]
             },
-            "master_branch_protection_required_reviews": 1,
+            "master_branch_protection_required_reviews": 2,
             "master_branch_protection_require_codeowner_review": false,
             "master_branch_protection_require_non_stale_review": false,
             "master_branch_protection_enforce_admins": false,
@@ -25481,7 +25715,7 @@
                 }
             },
             "network_count": 5,
-            "subscribers_count": 170,
+            "subscribers_count": 169,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
@@ -25684,20 +25918,20 @@
                 }
             },
             "network_count": 2,
-            "subscribers_count": 255,
+            "subscribers_count": 247,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
             "team_core_permission_admin": true,
             "master_branch_exists": true,
             "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/reportho/branches/dev/protection/required_status_checks",
+                "url": "https://api.github.com/repos/nf-core/reportho/branches/master/protection/required_status_checks",
                 "strict": false,
                 "contexts": [],
-                "contexts_url": "https://api.github.com/repos/nf-core/reportho/branches/dev/protection/required_status_checks/contexts",
+                "contexts_url": "https://api.github.com/repos/nf-core/reportho/branches/master/protection/required_status_checks/contexts",
                 "checks": []
             },
-            "master_branch_protection_required_reviews": 1,
+            "master_branch_protection_required_reviews": 2,
             "master_branch_protection_require_codeowner_review": false,
             "master_branch_protection_require_non_stale_review": false,
             "master_branch_protection_enforce_admins": false,
@@ -25833,7 +26067,7 @@
                 }
             },
             "network_count": 2,
-            "subscribers_count": 163,
+            "subscribers_count": 162,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
@@ -26045,20 +26279,35 @@
             "team_core_permission_admin": true,
             "master_branch_exists": true,
             "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/rnadnavar/branches/dev/protection/required_status_checks",
+                "url": "https://api.github.com/repos/nf-core/rnadnavar/branches/master/protection/required_status_checks",
                 "strict": false,
                 "contexts": [
-                    "nf-core"
+                    "Prettier",
+                    "EditorConfig",
+                    "nf-core",
+                    "Run pipeline with test data"
                 ],
-                "contexts_url": "https://api.github.com/repos/nf-core/rnadnavar/branches/dev/protection/required_status_checks/contexts",
+                "contexts_url": "https://api.github.com/repos/nf-core/rnadnavar/branches/master/protection/required_status_checks/contexts",
                 "checks": [
                     {
+                        "context": "Prettier",
+                        "app_id": null
+                    },
+                    {
+                        "context": "EditorConfig",
+                        "app_id": null
+                    },
+                    {
                         "context": "nf-core",
+                        "app_id": null
+                    },
+                    {
+                        "context": "Run pipeline with test data",
                         "app_id": null
                     }
                 ]
             },
-            "master_branch_protection_required_reviews": 1,
+            "master_branch_protection_required_reviews": 2,
             "master_branch_protection_require_codeowner_review": false,
             "master_branch_protection_require_non_stale_review": false,
             "master_branch_protection_enforce_admins": false,
@@ -29549,14 +29798,14 @@
             "team_core_permission_admin": true,
             "master_branch_exists": true,
             "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/sammyseq/branches/dev/protection/required_status_checks",
+                "url": "https://api.github.com/repos/nf-core/sammyseq/branches/master/protection/required_status_checks",
                 "strict": false,
                 "contexts": [
                     "Prettier",
                     "EditorConfig",
                     "nf-core"
                 ],
-                "contexts_url": "https://api.github.com/repos/nf-core/sammyseq/branches/dev/protection/required_status_checks/contexts",
+                "contexts_url": "https://api.github.com/repos/nf-core/sammyseq/branches/master/protection/required_status_checks/contexts",
                 "checks": [
                     {
                         "context": "Prettier",
@@ -29572,7 +29821,7 @@
                     }
                 ]
             },
-            "master_branch_protection_required_reviews": 1,
+            "master_branch_protection_required_reviews": 2,
             "master_branch_protection_require_codeowner_review": false,
             "master_branch_protection_require_non_stale_review": false,
             "master_branch_protection_enforce_admins": false,
@@ -29688,7 +29937,7 @@
             "url": "https://api.github.com/repos/nf-core/sarek",
             "created_at": "2019-04-30T15:43:00Z",
             "updated_at": "2024-03-31T14:12:35Z",
-            "pushed_at": "2024-04-03T09:32:08Z",
+            "pushed_at": "2024-04-03T16:32:57Z",
             "homepage": "https://nf-co.re/sarek",
             "size": 86197,
             "stargazers_count": 331,
@@ -31943,7 +32192,7 @@
             "team_core_permission_admin": true,
             "master_branch_exists": true,
             "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/scflow/branches/dev/protection/required_status_checks",
+                "url": "https://api.github.com/repos/nf-core/scflow/branches/master/protection/required_status_checks",
                 "strict": false,
                 "contexts": [
                     "nf-core",
@@ -31951,7 +32200,7 @@
                     "EditorConfig",
                     "Run pipeline with test data"
                 ],
-                "contexts_url": "https://api.github.com/repos/nf-core/scflow/branches/dev/protection/required_status_checks/contexts",
+                "contexts_url": "https://api.github.com/repos/nf-core/scflow/branches/master/protection/required_status_checks/contexts",
                 "checks": [
                     {
                         "context": "nf-core",
@@ -31971,7 +32220,7 @@
                     }
                 ]
             },
-            "master_branch_protection_required_reviews": 1,
+            "master_branch_protection_required_reviews": 2,
             "master_branch_protection_require_codeowner_review": false,
             "master_branch_protection_require_non_stale_review": false,
             "master_branch_protection_enforce_admins": false,
@@ -32814,7 +33063,7 @@
                 }
             },
             "network_count": 7,
-            "subscribers_count": 261,
+            "subscribers_count": 251,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
@@ -33622,21 +33871,15 @@
             "team_core_permission_admin": true,
             "master_branch_exists": true,
             "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/smartseq2/branches/dev/protection/required_status_checks",
+                "url": "https://api.github.com/repos/nf-core/smartseq2/branches/master/protection/required_status_checks",
                 "strict": false,
                 "contexts": [
                     "Markdown",
                     "YAML",
                     "nf-core",
-                    "test (19.10.0, test)",
-                    "test (19.10.0, test_bracer)",
-                    "test (19.10.0, test_tracer)",
-                    "test (test)",
-                    "test (test_bracer)",
-                    "test (test_tracer)",
                     "Run workflow tests"
                 ],
-                "contexts_url": "https://api.github.com/repos/nf-core/smartseq2/branches/dev/protection/required_status_checks/contexts",
+                "contexts_url": "https://api.github.com/repos/nf-core/smartseq2/branches/master/protection/required_status_checks/contexts",
                 "checks": [
                     {
                         "context": "Markdown",
@@ -33651,36 +33894,12 @@
                         "app_id": null
                     },
                     {
-                        "context": "test (19.10.0, test)",
-                        "app_id": null
-                    },
-                    {
-                        "context": "test (19.10.0, test_bracer)",
-                        "app_id": null
-                    },
-                    {
-                        "context": "test (19.10.0, test_tracer)",
-                        "app_id": null
-                    },
-                    {
-                        "context": "test (test)",
-                        "app_id": null
-                    },
-                    {
-                        "context": "test (test_bracer)",
-                        "app_id": null
-                    },
-                    {
-                        "context": "test (test_tracer)",
-                        "app_id": null
-                    },
-                    {
                         "context": "Run workflow tests",
                         "app_id": null
                     }
                 ]
             },
-            "master_branch_protection_required_reviews": 1,
+            "master_branch_protection_required_reviews": 2,
             "master_branch_protection_require_codeowner_review": false,
             "master_branch_protection_require_non_stale_review": false,
             "master_branch_protection_enforce_admins": false,
@@ -34446,20 +34665,35 @@
             "team_core_permission_admin": true,
             "master_branch_exists": true,
             "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/spatialtranscriptomics/branches/dev/protection/required_status_checks",
+                "url": "https://api.github.com/repos/nf-core/spatialtranscriptomics/branches/master/protection/required_status_checks",
                 "strict": false,
                 "contexts": [
-                    "nf-core"
+                    "nf-core",
+                    "Prettier",
+                    "EditorConfig",
+                    "Run pipeline with test data"
                 ],
-                "contexts_url": "https://api.github.com/repos/nf-core/spatialtranscriptomics/branches/dev/protection/required_status_checks/contexts",
+                "contexts_url": "https://api.github.com/repos/nf-core/spatialtranscriptomics/branches/master/protection/required_status_checks/contexts",
                 "checks": [
                     {
                         "context": "nf-core",
                         "app_id": 15368
+                    },
+                    {
+                        "context": "Prettier",
+                        "app_id": null
+                    },
+                    {
+                        "context": "EditorConfig",
+                        "app_id": null
+                    },
+                    {
+                        "context": "Run pipeline with test data",
+                        "app_id": null
                     }
                 ]
             },
-            "master_branch_protection_required_reviews": 1,
+            "master_branch_protection_required_reviews": 2,
             "master_branch_protection_require_codeowner_review": false,
             "master_branch_protection_require_non_stale_review": false,
             "master_branch_protection_enforce_admins": false,
@@ -34621,10 +34855,38 @@
             "team_core_permission_push": true,
             "team_core_permission_admin": true,
             "master_branch_exists": true,
-            "master_branch_protection_status_checks": -1,
-            "master_branch_protection_required_reviews": -1,
-            "master_branch_protection_require_codeowner_review": -1,
-            "master_branch_protection_require_non_stale_review": -1,
+            "master_branch_protection_status_checks": {
+                "url": "https://api.github.com/repos/nf-core/spinningjenny/branches/master/protection/required_status_checks",
+                "strict": false,
+                "contexts": [
+                    "Prettier",
+                    "EditorConfig",
+                    "nf-core",
+                    "Run pipeline with test data"
+                ],
+                "contexts_url": "https://api.github.com/repos/nf-core/spinningjenny/branches/master/protection/required_status_checks/contexts",
+                "checks": [
+                    {
+                        "context": "Prettier",
+                        "app_id": null
+                    },
+                    {
+                        "context": "EditorConfig",
+                        "app_id": null
+                    },
+                    {
+                        "context": "nf-core",
+                        "app_id": null
+                    },
+                    {
+                        "context": "Run pipeline with test data",
+                        "app_id": null
+                    }
+                ]
+            },
+            "master_branch_protection_required_reviews": 2,
+            "master_branch_protection_require_codeowner_review": false,
+            "master_branch_protection_require_non_stale_review": false,
             "master_branch_protection_enforce_admins": false,
             "master_restrict_push": -1,
             "dev_branch_exists": true,
@@ -34749,7 +35011,7 @@
             "team_core_permission_admin": true,
             "master_branch_exists": true,
             "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/ssds/branches/dev/protection/required_status_checks",
+                "url": "https://api.github.com/repos/nf-core/ssds/branches/master/protection/required_status_checks",
                 "strict": false,
                 "contexts": [
                     "nf-core",
@@ -34757,7 +35019,7 @@
                     "EditorConfig",
                     "Run pipeline with test data"
                 ],
-                "contexts_url": "https://api.github.com/repos/nf-core/ssds/branches/dev/protection/required_status_checks/contexts",
+                "contexts_url": "https://api.github.com/repos/nf-core/ssds/branches/master/protection/required_status_checks/contexts",
                 "checks": [
                     {
                         "context": "nf-core",
@@ -34777,7 +35039,7 @@
                     }
                 ]
             },
-            "master_branch_protection_required_reviews": 1,
+            "master_branch_protection_required_reviews": 2,
             "master_branch_protection_require_codeowner_review": false,
             "master_branch_protection_require_non_stale_review": false,
             "master_branch_protection_enforce_admins": false,
@@ -35917,20 +36179,22 @@
                 }
             },
             "network_count": 0,
-            "subscribers_count": 200,
+            "subscribers_count": 199,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
             "team_core_permission_admin": true,
             "master_branch_exists": true,
             "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/tfactivity/branches/dev/protection/required_status_checks",
+                "url": "https://api.github.com/repos/nf-core/tfactivity/branches/master/protection/required_status_checks",
                 "strict": false,
                 "contexts": [
                     "nf-core",
-                    "pre-commit"
+                    "pre-commit",
+                    "Run pipeline with test data (23.04.0)",
+                    "Run pipeline with test data (latest-everything)"
                 ],
-                "contexts_url": "https://api.github.com/repos/nf-core/tfactivity/branches/dev/protection/required_status_checks/contexts",
+                "contexts_url": "https://api.github.com/repos/nf-core/tfactivity/branches/master/protection/required_status_checks/contexts",
                 "checks": [
                     {
                         "context": "nf-core",
@@ -35939,10 +36203,18 @@
                     {
                         "context": "pre-commit",
                         "app_id": 15368
+                    },
+                    {
+                        "context": "Run pipeline with test data (23.04.0)",
+                        "app_id": 15368
+                    },
+                    {
+                        "context": "Run pipeline with test data (latest-everything)",
+                        "app_id": 15368
                     }
                 ]
             },
-            "master_branch_protection_required_reviews": 1,
+            "master_branch_protection_required_reviews": 2,
             "master_branch_protection_require_codeowner_review": false,
             "master_branch_protection_require_non_stale_review": false,
             "master_branch_protection_enforce_admins": false,
@@ -36097,20 +36369,20 @@
                 }
             },
             "network_count": 6,
-            "subscribers_count": 200,
+            "subscribers_count": 199,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
             "team_core_permission_admin": true,
             "master_branch_exists": true,
             "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/variantbenchmarking/branches/dev/protection/required_status_checks",
+                "url": "https://api.github.com/repos/nf-core/variantbenchmarking/branches/master/protection/required_status_checks",
                 "strict": false,
                 "contexts": [
                     "pre-commit",
                     "nf-core"
                 ],
-                "contexts_url": "https://api.github.com/repos/nf-core/variantbenchmarking/branches/dev/protection/required_status_checks/contexts",
+                "contexts_url": "https://api.github.com/repos/nf-core/variantbenchmarking/branches/master/protection/required_status_checks/contexts",
                 "checks": [
                     {
                         "context": "pre-commit",
@@ -36122,7 +36394,7 @@
                     }
                 ]
             },
-            "master_branch_protection_required_reviews": 1,
+            "master_branch_protection_required_reviews": 2,
             "master_branch_protection_require_codeowner_review": false,
             "master_branch_protection_require_non_stale_review": false,
             "master_branch_protection_enforce_admins": false,
@@ -36299,7 +36571,7 @@
             "team_core_permission_admin": true,
             "master_branch_exists": true,
             "master_branch_protection_status_checks": {
-                "url": "https://api.github.com/repos/nf-core/variantcatalogue/branches/dev/protection/required_status_checks",
+                "url": "https://api.github.com/repos/nf-core/variantcatalogue/branches/master/protection/required_status_checks",
                 "strict": false,
                 "contexts": [
                     "Prettier",
@@ -36307,7 +36579,7 @@
                     "nf-core",
                     "Run pipeline with test data"
                 ],
-                "contexts_url": "https://api.github.com/repos/nf-core/variantcatalogue/branches/dev/protection/required_status_checks/contexts",
+                "contexts_url": "https://api.github.com/repos/nf-core/variantcatalogue/branches/master/protection/required_status_checks/contexts",
                 "checks": [
                     {
                         "context": "Prettier",
@@ -36327,7 +36599,7 @@
                     }
                 ]
             },
-            "master_branch_protection_required_reviews": 2,
+            "master_branch_protection_required_reviews": 1,
             "master_branch_protection_require_codeowner_review": false,
             "master_branch_protection_require_non_stale_review": false,
             "master_branch_protection_enforce_admins": false,
