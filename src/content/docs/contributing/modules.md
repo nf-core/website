@@ -58,17 +58,17 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
        conda activate nf-core
      </code>
    </details>
-3. Install [`Nextflow`](https://www.nextflow.io/docs/latest/getstarted.html#installation) (`>=21.04.0`)
-4. Install the latest version of [`nf-core/tools`](https://github.com/nf-core/tools#installation) (`>=2.7`)
-5. Install [`nf-test`](https://code.askimed.com/nf-test/installation/)
-6. [Fork and clone the nf-core/modules repo locally](#uploading-to-nf-coremodules)
-7. Setup up [pre-commit](https://pre-commit.com/) (comes packaged with [`nf-core/tools`](https://github.com/nf-core/tools#installation), watch the [pre-commit bytesize talk](https://www.youtube.com/watch?v=08d6zv6zvdM&t=215) if you want to know more about it) to ensure that your code is linted and formatted correctly before you commit it to the repository
+2. Install [`Nextflow`](https://www.nextflow.io/docs/latest/getstarted.html#installation) (`>=21.04.0`)
+3. Install the latest version of [`nf-core/tools`](https://github.com/nf-core/tools#installation) (`>=2.7`)
+4. Install [`nf-test`](https://code.askimed.com/nf-test/installation/)
+5. [Fork and clone the nf-core/modules repo locally](#uploading-to-nf-coremodules)
+6. Setup up [pre-commit](https://pre-commit.com/) (comes packaged with [`nf-core/tools`](https://github.com/nf-core/tools#installation), watch the [pre-commit bytesize talk](https://www.youtube.com/watch?v=08d6zv6zvdM&t=215) if you want to know more about it) to ensure that your code is linted and formatted correctly before you commit it to the repository
 
    ```bash
    pre-commit install
    ```
 
-8. Set up git on your computer by adding a new git remote of the main nf-core git repo called `upstream`
+7. Set up git on your computer by adding a new git remote of the main nf-core git repo called `upstream`
 
    ```bash
    git remote add upstream https://github.com/nf-core/modules.git
@@ -80,7 +80,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
    git checkout -b fastqc
    ```
 
-9. Create a module using the [nf-core DSL2 module template](https://github.com/nf-core/tools/blob/master/nf_core/module-template/main.nf):
+8. Create a module using the [nf-core DSL2 module template](https://github.com/nf-core/tools/blob/master/nf_core/module-template/main.nf):
 
    ```console
    $ nf-core modules create fastqc --author @joebloggs --label process_low --meta
@@ -123,7 +123,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 
       Refer to the section [writing nf-test tests](#writing-nf-test-tests) for more information on how to write nf-tests
 
-10. Create a snapshot of the tests
+9. Create a snapshot of the tests
 
    ```console
    $ nf-core modules test fastqc
@@ -186,15 +186,15 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
    See the [nf-test docs](https://code.askimed.com/nf-test/) if you would like to run the tests manually.
    :::
 
-11. Check that the new module you've added follows the [new module guidelines](#new-module-guidelines-and-pr-review-checklist)
+10. Check that the new module you've added follows the [new module guidelines](#new-module-guidelines-and-pr-review-checklist)
 
-12. Run [`prettier`](/docs/contributing/code_formatting) on all edited and generated files:
+11. Run [`prettier`](/docs/contributing/code_formatting) on all edited and generated files:
 
     ```bash
     prettier -w .
     ```
 
-13. Lint the module locally to check that it adheres to nf-core guidelines before submission
+12. Lint the module locally to check that it adheres to nf-core guidelines before submission
 
     ```console
     $ nf-core modules lint fastqc
@@ -236,7 +236,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
     ╰───────────────────────╯
     ```
 
-14. Once ready, the code can be pushed and a pull request (PR) created
+13. Once ready, the code can be pushed and a pull request (PR) created
 
     On a regular basis you can pull upstream changes into this branch and it is recommended to do so before pushing and creating a pull request - see below. Rather than merging changes directly from upstream the rebase strategy is recommended so that your changes are applied on top of the latest master branch from the nf-core repo. This can be performed as follows
 
