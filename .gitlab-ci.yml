@@ -1,14 +1,14 @@
 default:
   tags:
-  - autoscale
+    - autoscale
 stages:
-- test
-- dast
+  - test
+  - dast
 include:
-- template: Security/SAST.gitlab-ci.yml
-- template: Security/Secret-Detection.gitlab-ci.yml
-- template: Security/Dependency-Scanning.gitlab-ci.yml
-- template: Security/SAST-IaC.gitlab-ci.yml
-- template: DAST.gitlab-ci.yml
+  - template: Security/SAST.gitlab-ci.yml
+  - template: Security/Secret-Detection.gitlab-ci.yml
+  - template: Security/Dependency-Scanning.gitlab-ci.yml
+  - template: Security/SAST-IaC.gitlab-ci.yml
+  - template: DAST.gitlab-ci.yml
 variables:
   DAST_WEBSITE: https://pipelines-dev.tol.sanger.ac.uk/
