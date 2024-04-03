@@ -16,15 +16,15 @@
 </div>
 
 {#if visible}
-    <div class="d-md-none position-fixed bg-body min-vh-100 z-3">
+    <div class="d-md-none bg-body z-3">
         <span
-            class="position-fixed bg-dark bg-opacity-50 w-100 min-vh-100"
+            class="position-fixed bg-dark bg-opacity-75 w-100 min-vh-100"
             on:click={toggleVisible}
             on:keypress={toggleVisible}
             role="button"
             tabindex="0"
         />
-        <nav class="side-nav position-relative bg-body py-3 px-0 text-gray-400 overflow-y-auto">
+        <nav class="side-nav bg-body pb-2 px-0 text-gray-400 overflow-y-auto">
             <button type="button" class="btn-close float-end me-2" on:click={toggleVisible} aria-label="Close" />
             <slot name="menu" />
         </nav>
@@ -32,14 +32,19 @@
 {/if}
 
 <style lang="scss">
-    @import '@styles/_variables.scss';
+    @import '../../styles/_variables.scss';
     .docs-nav {
         margin-top: 3rem;
-        z-index: 1029; // reduce z-index by one to have navbarToc on top
     }
     .side-nav {
-        margin-top: 5rem;
-        max-height: calc(100vh - 5rem);
+        padding-top: 3rem; //offset for navbar + sectionNavbar from sidebarNav
+        max-height: calc(100dvh - 3rem);
         width: 75vw;
+    }
+    :global(.navbar.fixed-top:has(.collapse.show)) {
+        & .docs-nav,
+        & .side-nav {
+            display: none;
+        }
     }
 </style>
