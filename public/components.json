@@ -4608,6 +4608,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -7912,7 +7916,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -8004,7 +8008,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "taxprofiler",
@@ -8086,7 +8090,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -8364,7 +8368,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -17409,7 +17413,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "nascent",
@@ -17548,7 +17552,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "methylseq",
@@ -22902,6 +22906,172 @@
       }
     },
     {
+      "name": "cobrameta",
+      "path": "modules/nf-core/cobrameta/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "cobrameta",
+        "description": "A tool to raise the quality of viral genomes assembled from short-read metagenomes via resolving and joining of contigs fragmented during de novo assembly.",
+        "keywords": [
+          "cobra",
+          "contig",
+          "scaffold",
+          "assembly",
+          "extension",
+          "virus",
+          "phage"
+        ],
+        "tools": [
+          {
+            "cobra-meta": {
+              "description": "COBRA is a tool to get higher quality viral genomes assembled from metagenomes.",
+              "homepage": "https://github.com/linxingchen/cobra",
+              "documentation": "https://github.com/linxingchen/cobra",
+              "tool_dev_url": "https://github.com/linxingchen/cobra",
+              "doi": "10.1038/s41564-023-01598-2",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Assembly file (contigs/scaffolds) in FASTA format\n",
+              "pattern": "*.{fa,fasta,fna,fa.gz,fasta.gz,fna.gz}"
+            }
+          },
+          {
+            "coverage": {
+              "type": "file",
+              "description": "TSV file with 2 columns containing 1) the contig/scaffold id and\n2) the coverage depth of the sequence specified in column 1\n",
+              "pattern": "*.{tsv,txt}"
+            }
+          },
+          {
+            "query": {
+              "type": "file",
+              "description": "File containing the query contigs that the user wants COBRA to extend. This\ncan be provided in one-column TXT or FASTA format. (The IDs must match the IDs\nin the `--fasta` file exactly)\n",
+              "pattern": "*.{txt,fasta}"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "Sorted BAM/CRAM/SAM file resulting from mapping reads used in assembly\nto the resulting assembly FASTA\n",
+              "pattern": "*.{bam,cram,sam}"
+            }
+          },
+          {
+            "assembler": {
+              "type": "string",
+              "description": "The name of the tool used to assemble contigs",
+              "pattern": "{metaspades,megahit,idba}"
+            }
+          },
+          {
+            "mink": {
+              "type": "integer",
+              "description": "The minimum kmer size used to assemble contigs",
+              "pattern": "[0-9]+"
+            }
+          },
+          {
+            "maxk": {
+              "type": "integer",
+              "description": "The maximum kmer size used to assemble contigs",
+              "pattern": "[0-9]+"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "extended_assemblies": {
+              "type": "file",
+              "description": "Gzipped FASTA file containing query contigs that are already circular\n",
+              "pattern": "${prefix}/COBRA_category_i_self_circular.fasta.gz"
+            }
+          },
+          {
+            "extended_circular": {
+              "type": "file",
+              "description": "Gzipped FASTA file containing query contigs that were joined and extended\ninto a circular genome\n",
+              "pattern": "${prefix}/COBRA_category_ii-a_extended_circular_unique.fasta.gz"
+            }
+          },
+          {
+            "extended_partial": {
+              "type": "file",
+              "description": "Gzipped FASTA file containing query contigs were joined and extended, but\nnot into circular sequences\n",
+              "pattern": "${prefix}/COBRA_category_ii-b_extended_partial_unique.fasta.gz"
+            }
+          },
+          {
+            "extended_failed": {
+              "type": "file",
+              "description": "Gzipped FASTA file containing query contigs that could not be extended due\nto COBRA rules\n",
+              "pattern": "${prefix}/COBRA_category_ii-c_extended_failed.fasta.gz"
+            }
+          },
+          {
+            "orphan_end": {
+              "type": "file",
+              "description": "Gzipped FASTA file containing query contigs that do not shared the\n\"expected overlap length\" with other contigs\n",
+              "pattern": "${prefix}/COBRA_category_iii_orphan_end.fasta.gz"
+            }
+          },
+          {
+            "all_assemblies": {
+              "type": "file",
+              "description": "Gzipped FASTA file containing all FASTA outputs combined into one file\n",
+              "pattern": "${prefix}/COBRA_all_assemblies.fasta.gz"
+            }
+          },
+          {
+            "joining_summary": {
+              "type": "file",
+              "description": "TSV file containing information regarding COBRA's extension results\n",
+              "pattern": "${prefix}/COBRA_joining_summary.txt"
+            }
+          },
+          {
+            "log": {
+              "type": "file",
+              "description": "Log file containing the contents of each processing\n",
+              "pattern": "${prefix}/log"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@CarsonJM"
+        ],
+        "maintainers": [
+          "@CarsonJM"
+        ]
+      }
+    },
+    {
       "name": "cobs_classicconstruct",
       "path": "modules/nf-core/cobs/classicconstruct/meta.yml",
       "type": "module",
@@ -25701,10 +25871,6 @@
       },
       "pipelines": [
         {
-          "name": "ampliseq",
-          "version": "2.8.0"
-        },
-        {
           "name": "atacseq",
           "version": "2.1.2"
         },
@@ -25818,7 +25984,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "methylseq",
@@ -26581,7 +26747,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.8.0"
+          "version": "2.9.0"
         },
         {
           "name": "crisprseq",
@@ -32300,7 +32466,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.8.0"
+          "version": "2.9.0"
         },
         {
           "name": "phyloplace",
@@ -32391,7 +32557,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.8.0"
+          "version": "2.9.0"
         },
         {
           "name": "phyloplace",
@@ -34305,7 +34471,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.8.0"
+          "version": "2.9.0"
         },
         {
           "name": "atacseq",
@@ -34401,7 +34567,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "methylseq",
@@ -37652,7 +37818,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.8.0"
+          "version": "2.9.0"
         },
         {
           "name": "phyloplace",
@@ -37729,7 +37895,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.8.0"
+          "version": "2.9.0"
         },
         {
           "name": "phyloplace",
@@ -37844,7 +38010,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.8.0"
+          "version": "2.9.0"
         },
         {
           "name": "phyloplace",
@@ -38623,6 +38789,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -41628,6 +41798,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -42715,7 +42889,13 @@
         "maintainers": [
           "@ramprasadn"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "createpanelrefs",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "gatk4_createsequencedictionary",
@@ -45519,6 +45699,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -59238,7 +59422,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.8.0"
+          "version": "2.9.0"
         },
         {
           "name": "phyloplace",
@@ -59316,7 +59500,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.8.0"
+          "version": "2.9.0"
         },
         {
           "name": "phyloplace",
@@ -59403,7 +59587,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.8.0"
+          "version": "2.9.0"
         },
         {
           "name": "phyloplace",
@@ -59485,7 +59669,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.8.0"
+          "version": "2.9.0"
         },
         {
           "name": "phyloplace",
@@ -59709,7 +59893,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -65163,7 +65347,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.8.0"
+          "version": "2.9.0"
         },
         {
           "name": "bacass",
@@ -68973,7 +69157,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.8.0"
+          "version": "2.9.0"
         },
         {
           "name": "multiplesequencealign",
@@ -71806,6 +71990,117 @@
         ],
         "maintainers": [
           "@rpetit3"
+        ]
+      }
+    },
+    {
+      "name": "merfin_hist",
+      "path": "modules/nf-core/merfin/hist/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "merfin_hist",
+        "description": "Compare k-mer frequency in reads and assembly to devise the metrics K* and QV*",
+        "keywords": [
+          "assembly",
+          "evaluation",
+          "quality",
+          "completeness"
+        ],
+        "tools": [
+          {
+            "merfin": {
+              "description": "Merfin (k-mer based finishing tool) is a suite of subtools to variant filtering, assembly evaluation and polishing via k-mer validation. The subtool -hist estimates the QV (quality value of [Merqury](https://github.com/marbl/merqury)) for each scaffold/contig and genome-wide averages. In addition, Merfin produces a QV* estimate, which accounts also for kmers that are seen in excess with respect to their expected multiplicity predicted from the reads.",
+              "homepage": "https://github.com/arangrhie/merfin",
+              "documentation": "https://github.com/arangrhie/merfin/wiki/Best-practices-for-Merfin",
+              "doi": "10.1038/s41592-022-01445-y",
+              "licence": [
+                "Apache-2.0"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "fasta_assembly": {
+              "type": "file",
+              "description": "Genome assembly in FASTA; uncompressed, gz compressed [REQUIRED]",
+              "pattern": "*.{fasta, fasta.gz}"
+            }
+          },
+          {
+            "meta1": {
+              "type": "map",
+              "description": "Groovy Map containing sample read information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "meryl_db_reads": {
+              "type": "file",
+              "description": "K-mer database produced from raw reads using Meryl [REQUIRED]",
+              "pattern": "*.{meryl_db}"
+            }
+          },
+          {
+            "lookup_table": {
+              "type": "file",
+              "description": "Input vector of k-mer probabilities (obtained by genomescope2 with parameter --fitted_hist) [OPTIONAL]",
+              "pattern": "lookup_table.txt"
+            }
+          },
+          {
+            "seqmers": {
+              "type": "file",
+              "description": "Input for pre-built sequence meryl db. By default, the sequence meryl db will be generated from the input genome assembly [OPTIONAL]",
+              "pattern": "*.{meryl_db}"
+            }
+          },
+          {
+            "peak": {
+              "type": "float",
+              "description": "Input to hard set copy 1 and infer multiplicity to copy number. Can be calculated using genomescope2 [REQUIRED]"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "hist": {
+              "type": "file",
+              "description": "The generated 0-centered k* histogram for sequences in <fasta_assembly.fasta>. Positive k* values are expected collapsed copies. Negative k* values are expected expanded  copies. Closer to 0 means the expected and found k-mers are well balenced, 1:1.",
+              "pattern": "*.{hist}"
+            }
+          },
+          {
+            "log_stderr": {
+              "type": "file",
+              "description": "Log (stderr) of hist tool execution. The QV and QV* metrics are reported at the end.",
+              "pattern": "*.{hist.stderr.log}"
+            }
+          }
+        ],
+        "authors": [
+          "@rodtheo"
+        ],
+        "maintainers": [
+          "@rodtheo"
         ]
       }
     },
@@ -77389,7 +77684,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.8.0"
+          "version": "2.9.0"
         },
         {
           "name": "bacass",
@@ -77501,7 +77796,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "methylseq",
@@ -87986,6 +88281,10 @@
         {
           "name": "createtaxdb",
           "version": "dev"
+        },
+        {
+          "name": "metatdenovo",
+          "version": "1.0.1"
         }
       ]
     },
@@ -88042,7 +88341,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.8.0"
+          "version": "2.9.0"
         }
       ]
     },
@@ -91856,7 +92155,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -92035,7 +92334,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -96173,7 +96472,13 @@
         "maintainers": [
           "@pinin4fjords"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "ribotricer_prepareorfs",
@@ -96251,7 +96556,13 @@
         "maintainers": [
           "@pinin4fjords"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "rmarkdownnotebook",
@@ -100014,7 +100325,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "methylseq",
@@ -100268,7 +100579,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "nanoseq",
@@ -100553,7 +100864,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "methylseq",
@@ -101373,7 +101684,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "methylseq",
@@ -101571,7 +101882,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "methylseq",
@@ -105840,7 +106151,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -106078,7 +106389,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "radseq",
@@ -111446,7 +111757,7 @@
       "pipelines": [
         {
           "name": "metatdenovo",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "pathogensurveillance",
@@ -113619,7 +113930,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "nascent",
@@ -117720,7 +118031,7 @@
       "pipelines": [
         {
           "name": "metatdenovo",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -117823,7 +118134,7 @@
       "pipelines": [
         {
           "name": "metatdenovo",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -117954,7 +118265,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "methylseq",
@@ -120517,7 +120828,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.8.0"
+          "version": "2.9.0"
         },
         {
           "name": "atacseq",
@@ -123600,7 +123911,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.8.0"
+          "version": "2.9.0"
         },
         {
           "name": "crisprseq",
@@ -123678,7 +123989,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.8.0"
+          "version": "2.9.0"
         }
       ]
     },
@@ -123920,7 +124231,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.8.0"
+          "version": "2.9.0"
         }
       ]
     },
@@ -126906,7 +127217,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "nascent",
@@ -127070,7 +127381,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "nascent",
@@ -128463,7 +128774,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.8.0"
+          "version": "2.9.0"
         },
         {
           "name": "phyloplace",
@@ -134170,6 +134481,10 @@
           "version": "3.3.0"
         },
         {
+          "name": "ampliseq",
+          "version": "2.9.0"
+        },
+        {
           "name": "circrna",
           "version": "dev"
         },
@@ -134305,6 +134620,10 @@
         {
           "name": "airrflow",
           "version": "3.3.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.9.0"
         },
         {
           "name": "circrna",
@@ -134472,6 +134791,10 @@
         {
           "name": "airrflow",
           "version": "3.3.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.9.0"
         },
         {
           "name": "circrna",
