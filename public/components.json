@@ -4580,6 +4580,34 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -17487,6 +17515,10 @@
       },
       "pipelines": [
         {
+          "name": "airrflow",
+          "version": "3.3.0"
+        },
+        {
           "name": "bamtofastq",
           "version": "2.1.0"
         },
@@ -18314,7 +18346,13 @@
           "@ggabernet",
           "@klkeys"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "airrflow",
+          "version": "3.3.0"
+        }
+      ]
     },
     {
       "name": "cellranger_multi",
@@ -18580,7 +18618,13 @@
           "@edmundmiller",
           "@klkeys"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "airrflow",
+          "version": "3.3.0"
+        }
+      ]
     },
     {
       "name": "cellrangerarc_count",
@@ -25656,10 +25700,6 @@
         ]
       },
       "pipelines": [
-        {
-          "name": "airrflow",
-          "version": "3.2.0"
-        },
         {
           "name": "ampliseq",
           "version": "2.8.0"
@@ -34109,7 +34149,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "3.2.0"
+          "version": "3.3.0"
         },
         {
           "name": "bacass",
@@ -34261,7 +34301,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "3.2.0"
+          "version": "3.3.0"
         },
         {
           "name": "ampliseq",
@@ -39679,6 +39719,34 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -40436,6 +40504,34 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -45423,6 +45519,34 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -77261,7 +77385,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "3.2.0"
+          "version": "3.3.0"
         },
         {
           "name": "ampliseq",
@@ -85434,7 +85558,7 @@
       "path": "modules/nf-core/phispy/meta.yml",
       "type": "module",
       "meta": {
-        "name": "PhiSpy",
+        "name": "phispy",
         "description": "Predict prophages in bacterial genomes",
         "keywords": [
           "genomics",
@@ -85452,7 +85576,9 @@
               "documentation": "https://github.com/linsalrob/PhiSpy/blob/master/README.md",
               "tool_dev_url": "https://github.com/linsalrob/PhiSpy/",
               "doi": "10.1093/nar/gks406",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -122487,6 +122613,99 @@
       ]
     },
     {
+      "name": "velocyto",
+      "path": "modules/nf-core/velocyto/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "velocyto",
+        "description": "Velocyto is a library for the analysis of RNA velocity. velocyto.py CLI use\n`Path(resolve_path=True)` and breaks the nextflow logic of symbolic links.\nIf in the work dir velocyto find a file named EXACTLY `cellsorted_[ORIGINAL_BAM_NAME]`\nit will skip the samtools sort step.\nCellsorted bam file should be cell sorted with:\n```bash\n    samtools sort -t CB -O BAM -o cellsorted_input.bam input.bam\n```\nSee module test for an example with the SAMTOOLS_SORT nf-core module.\nConfig example to cellsort input bam using SAMTOOLS_SORT:\n```groovy\n    withName: SAMTOOLS_SORT {\n        ext.prefix = { \"cellsorted_${bam.baseName}\" }\n        ext.args = '-t CB -O BAM'\n    }\n```\nOptional mask must be passed with `ext.args` and option `--mask`\nThis is why I need to stage in the work dir 2 bam files (cellsorted and original).\nSee also [velocyto turorial](https://velocyto.org/velocyto.py/tutorial/cli.html#notes-on-first-runtime-and-parallelization)\n",
+        "keywords": [
+          "count",
+          "rnaseq",
+          "rna velocity",
+          "bam"
+        ],
+        "tools": [
+          {
+            "velocyto": {
+              "description": "A library for the analysis of RNA velocity.",
+              "homepage": "https://github.com/velocyto-team/velocyto.py",
+              "documentation": "https://velocyto.org/velocyto.py",
+              "tool_dev_url": "https://github.com/velocyto-team/velocyto.py",
+              "doi": "10.1038/s41586-018-0414-6",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "barcodes": {
+              "type": "file",
+              "description": "Valid barcodes file, to filter the bam",
+              "pattern": "*.tsv.gz"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "Sorted BAM/CRAM/SAM file",
+              "pattern": "*.{bam,cram,sam}"
+            }
+          },
+          {
+            "sorted_bam": {
+              "type": "file",
+              "description": "Cell sorted BAM/CRAM/SAM file generated with `samtools sort -t CB -O BAM -o cellsorted_possorted_genome_bam.bam possorted_genome_bam.bam`",
+              "pattern": "*.bam"
+            }
+          },
+          {
+            "gtf": {
+              "type": "file",
+              "description": "genome annotation file",
+              "pattern": "*.gtf"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "loom": {
+              "type": "file",
+              "description": "Loom file with counts divided in spliced/unspliced/ambiguous.",
+              "pattern": "*.loom"
+            }
+          }
+        ],
+        "authors": [
+          "@tucano"
+        ],
+        "maintainers": [
+          "@tucano"
+        ]
+      }
+    },
+    {
       "name": "verifybamid_verifybamid",
       "path": "modules/nf-core/verifybamid/verifybamid/meta.yml",
       "type": "module",
@@ -124899,6 +125118,99 @@
           "version": "dev"
         }
       ]
+    },
+    {
+      "name": "xengsort_index",
+      "path": "modules/nf-core/xengsort/index/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "xengsort_index",
+        "description": "Fast lightweight accurate xenograft sorting",
+        "keywords": [
+          "index",
+          "QC",
+          "reference",
+          "fasta",
+          "xenograft",
+          "sort",
+          "k-mer"
+        ],
+        "tools": [
+          {
+            "xengsort": {
+              "description": "A fast xenograft read sorter based on space-efficient k-mer hashing",
+              "homepage": "https://gitlab.com/genomeinformatics/xengsort",
+              "documentation": "https://gitlab.com/genomeinformatics/xengsort",
+              "tool_dev_url": "https://gitlab.com/genomeinformatics/xengsort",
+              "doi": "10.4230/LIPIcs.WABI.2020.4",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "host_fasta": {
+              "type": "file",
+              "description": "Reference genome fasta file from host, compressed or uncompressed.\n"
+            }
+          },
+          {
+            "graft_fasta": {
+              "type": "file",
+              "description": "Reference genome fasta file from graft, compressed or uncompressed.\n"
+            }
+          },
+          {
+            "index": {
+              "type": "string",
+              "description": "File name prefix to store index files.\n"
+            }
+          },
+          {
+            "nobjects": {
+              "type": "string",
+              "description": "Number of k-mers that will be stored in the hash table. Underscore should be used, i.e for 1000000, it should be typed 1_000_000.\n"
+            }
+          },
+          {
+            "mask": {
+              "type": "string",
+              "description": "Gapped k-mer mask (quoted string like '#__##_##__#').\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "hash": {
+              "type": "file",
+              "description": "File with index hash file.",
+              "pattern": "*hash"
+            }
+          },
+          {
+            "info": {
+              "type": "file",
+              "description": "File with index info file.",
+              "pattern": "*info"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@diegomscoelho"
+        ],
+        "maintainers": [
+          "@diegomscoelho"
+        ]
+      }
     },
     {
       "name": "xz_compress",
@@ -133854,6 +134166,10 @@
       },
       "pipelines": [
         {
+          "name": "airrflow",
+          "version": "3.3.0"
+        },
+        {
           "name": "circrna",
           "version": "dev"
         },
@@ -133986,6 +134302,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "airrflow",
+          "version": "3.3.0"
+        },
         {
           "name": "circrna",
           "version": "dev"
@@ -134149,6 +134469,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "airrflow",
+          "version": "3.3.0"
+        },
         {
           "name": "circrna",
           "version": "dev"

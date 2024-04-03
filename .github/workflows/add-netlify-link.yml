@@ -33,6 +33,7 @@ jobs:
             if (!netlifyLinks) {
               netlifyLinks = changedFiles
                 .filter(file => file.startsWith('src/content/'))
+                .filter(file => !file.endsWith('].astro')) // skip dynamic routes
                 .map(file => `@netlify ${file?.replace('src/content/', '/')}`)[0]
                 ?.replace(/\.md$/, '').replace(/\.mdx$/, '').replace(/\/index$/, '');
             }
