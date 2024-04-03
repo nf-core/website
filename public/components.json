@@ -4604,6 +4604,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -39739,6 +39743,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -40496,6 +40504,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -45507,6 +45519,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -85542,7 +85558,7 @@
       "path": "modules/nf-core/phispy/meta.yml",
       "type": "module",
       "meta": {
-        "name": "PhiSpy",
+        "name": "phispy",
         "description": "Predict prophages in bacterial genomes",
         "keywords": [
           "genomics",
@@ -85560,7 +85576,9 @@
               "documentation": "https://github.com/linsalrob/PhiSpy/blob/master/README.md",
               "tool_dev_url": "https://github.com/linsalrob/PhiSpy/",
               "doi": "10.1093/nar/gks406",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
