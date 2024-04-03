@@ -7,9 +7,11 @@ startTime: '13:00+01:00'
 endDate: '2023-02-07'
 endTime: '13:30+01:00'
 youtubeEmbed: https://www.youtube.com/watch?v=08d6zv6zvdM
-locationURL:
-  - https://doi.org/10.6084/m9.figshare.22047485.v1
-  - https://www.youtube.com/watch?v=08d6zv6zvdM
+locations:
+  - name: Online
+    links:
+      - https://doi.org/10.6084/m9.figshare.22047485.v1
+      - https://www.youtube.com/watch?v=08d6zv6zvdM
 ---
 
 This week, Matthias Hörtenhuber ([@mashehu](https://github.com/mashehu)) is going to explain the use the newly added pre-commit tool added to nf-core/tools. Pre-commits were developed to inspect the snapshot that is about to be committed and helps to check formatting etc. before adding the code to the repository.

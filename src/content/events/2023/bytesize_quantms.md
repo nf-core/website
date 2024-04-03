@@ -8,8 +8,9 @@ endDate: '2023-05-30'
 endTime: '13:30+02:00'
 youtubeEmbed: https://www.youtube.com/watch?v=pBzelkgrPgQ
 embedAt: quantms
-locationURL:
-  - https://www.youtube.com/watch?v=pBzelkgrPgQ
+locations:
+  - name: Online
+    links: https://www.youtube.com/watch?v=pBzelkgrPgQ
 ---
 
 This week, Yasset and Julianus will introduce to us the nf-core pipeline quantms. nf-core/quantms is a bioinformatics best-practice analysis pipeline for Quantitative Mass Spectrometry (MS). Currently, the workflow supports three major MS-based analytical methods: Data-dependant acquisition (DDA), either (i) label-free or (ii) isobarically labelled quantitation (e.g. TMT, iTRAQ), and (iii) Data-independent acquisition (DIA) with label-free quantification.

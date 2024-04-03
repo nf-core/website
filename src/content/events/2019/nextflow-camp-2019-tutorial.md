@@ -6,10 +6,11 @@ startDate: '2019-09-19'
 startTime: '11:15+01:00'
 endDate: '2019-09-19'
 endTime: '13:00+01:00'
-address: Carrer del Dr. Aiguader, 88, 08003 Barcelona, Spain
-locationName: Centre for Genomic Regulation, Barcelona
-locationURL: https://www.crg.eu/
-locationLatLng: [41.385242, 2.194323]
+locations:
+  - name: Centre for Genomic Regulation, Barcelona
+    links: https://www.crg.eu/
+    geoCoordinates: [41.385242, 2.194323]
+    address: Carrer del Dr. Aiguader, 88, 08003 Barcelona, Spain
 ---
 
 In this tutorial we discuss the best-practice guidelines developed by the nf-core community,

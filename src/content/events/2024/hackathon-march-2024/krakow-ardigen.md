@@ -6,10 +6,11 @@ startDate: '2024-03-18'
 startTime: '10:00+02:00'
 endDate: '2024-03-20'
 endTime: '17:00+02:00'
-locationName: Ardigen
-address: Podole, 76, 30-394, Kraków, Poland
-locationURL: https://ardigen.com/
-locationLatLng: [50.02159965915289, 19.89199888650787]
+locations:
+  - name: Ardigen
+    address: Podole, 76, 30-394, Kraków, Poland
+    links: https://ardigen.com/
+    geoCoordinates: [50.02159965915289, 19.89199888650787]
 ---
 
 Local event to be held at Ardigen office, Kraków.

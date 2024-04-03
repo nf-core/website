@@ -8,6 +8,11 @@ endDate: '2020-12-04'
 endTime: '13:00+01:00'
 locationName: Zoom
 locationURL: https://zoom.us/j/98115333040?pwd=bHhuOFZhSksxVndWcTNMY1VUaXlTdz09
+locations:
+  - name: Zoom
+    links:
+      - https://zoom.us/j/98115333040?pwd=bHhuOFZhSksxVndWcTNMY1VUaXlTdz09
+      - https://www.youtube.com/channel/UCexVPLCSwS2poahjxuewZNg
 ---
 
 ## Open and reproducible bioinformatics with Nextflow and nf-core

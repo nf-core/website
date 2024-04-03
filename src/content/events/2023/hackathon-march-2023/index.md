@@ -6,7 +6,8 @@ startDate: '2023-03-27'
 startTime: '10:00+02:00'
 endDate: '2023-03-29'
 endTime: '18:00+02:00'
-locationName: Gather town, Slack, and local sites.
+locations:
+  - name: Gather town, Slack, and local sites.
 importTypeform: true
 ---
 

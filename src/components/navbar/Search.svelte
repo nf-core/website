@@ -19,7 +19,7 @@
 <div {id} />
 
 <style lang="scss">
-    @import '@styles/_variables.scss';
+    @import '../../styles/_variables.scss';
 
     :global(:root) {
         --docsearch-text-color: #{$input-color};
@@ -50,9 +50,11 @@
         align-items: center;
 
         display: none;
+        /*
         @include media-breakpoint-up(xxl) {
             display: flex;
         }
+        */
     }
     :global(.DocSearch-Button-Key, .DocSearch-Commands-Key) {
         align-items: center;

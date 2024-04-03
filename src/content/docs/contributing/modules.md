@@ -72,7 +72,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
    git checkout -b fastqc
    ```
 
-8. Create a module using the [nf-core DSL2 module template](https://github.com/nf-core/tools/blob/master/nf_core/module-template/modules/main.nf):
+8. Create a module using the [nf-core DSL2 module template](https://github.com/nf-core/tools/blob/master/nf_core/module-template/main.nf):
 
    ```console
    $ nf-core modules create fastqc --author @joebloggs --label process_low --meta
@@ -99,11 +99,11 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 
    All of the files required to add the module to `nf-core/modules` will be created/edited in the appropriate places. There are at most 5 files to modify:
 
-   1. [`./modules/fastqc/main.nf`](https://github.com/nf-core/modules/blob/master/modules/nf-core/fastqc/main.nf)
+   1. [`./modules/nf-core/fastqc/main.nf`](https://github.com/nf-core/modules/blob/master/modules/nf-core/fastqc/main.nf)
 
       This is the main script containing the `process` definition for the module. You will see an extensive number of `TODO` statements to help guide you to fill in the appropriate sections and to ensure that you adhere to the guidelines we have set for module submissions.
 
-   2. [`./modules/fastqc/meta.yml`](https://github.com/nf-core/modules/blob/master/modules/nf-core/fastqc/meta.yml)
+   2. [`./modules/nf-core/fastqc/meta.yml`](https://github.com/nf-core/modules/blob/master/modules/nf-core/fastqc/meta.yml)
 
       This file will be used to store general information about the module and author details - the majority of which will already be auto-filled. However, you will need to add a brief description of the files defined in the `input` and `output` section of the main script since these will be unique to each module. We check it's formatting and validity based on a [JSON schema](https://github.com/nf-core/modules/blob/master/.yaml-schema.json) during linting (and in the pre-commit hook).
 
@@ -603,6 +603,26 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
     bwa mem $args | samtools view $args2 -B -T ref.fasta
     ```
 
+    :::info
+    The addition of multi-tool modules to nf-core/modules adds increased burden on the nf-core
+    maintainers. Where possible, if a multi-tool module is desired, it should be implemented as
+    a local module in the nf-core pipeline. If another nf-core pipeline also desires to
+    use this module, a PR can be made adding it to nf-core/modules.
+
+    For guidelines regarding multi-tool modules, please search this page for the phrase `multi-tool`.
+
+    Existing local multi-tool modules can be searched for using the Github search box, searching across
+    the nf-core org for terms such as `args2` `samtools` `collate` `fastq`.
+
+    ```
+    org:nf-core args2 samtools collate fastq
+    ```
+
+    Modules intended to batch process files by parallelizing repeated calls to a tool, for example with
+    `xargs` or `parallel`, also fall under the category of multi-tool modules. Multi-tool modules
+    should chain tools in an explicit order given by the module name, e.g. `SAMTOOLS/COLLATEFASTQ`.
+    :::
+
 5.  Each tool in a multi-tool module MUST have an `$args` e.g.,
 
     ```bash
@@ -773,10 +793,12 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
     }
     ```
 
-10. In some cases, STDOUT and STDERR need to be saved to file, for example for reporting purposes. Use the shell command `tee` to redirect the
-    streams to both file and it's original stream. This allows for the streams to be captured by the job scheduler's stream logging capabilities
-    and print them to screen when Nextflow encounters an error. In particular, when using `process.scratch`, the log files may not be preserved when
-    the job scheduler relinquishes the job allocation.
+10. In some cases, STDOUT and STDERR may need to be saved to file, for example for reporting purposes. Use
+    the shell command `tee` to simultaneously capture and preserve the streams. This allows for the streams to
+    be captured by the job scheduler's stream logging capabilities and print them to screen when Nextflow
+    encounters an error.
+
+    This ensures that they are captured by Nextflow. If information is only written to files, it could potentially be lost when the job scheduler gives up the job allocation.
 
     ```nextflow {7-8}
     script:
@@ -787,6 +809,19 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
       --output_prefix $prefix \\
       2> >( tee ${prefix}.stderr.log >&2 ) \\
       | tee ${prefix}.stdout.log
+    """
+    ```
+
+    Similarly, if the tool captures STDOUT or STDERR to a file itself, it is best to send those to the
+    corresponding streams as well. Since a timeout may mean execution is aborted, it may make most sense
+    to have background tasks do that.
+
+    ```nextflow {3-4}
+    script:
+    """
+    tail -F stored_stderr.log >&2 &
+    tail -F stored_stdout.log &
+    tool arguments
     """
     ```
 
@@ -809,7 +844,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 ### Naming conventions
 
-1. The directory structure for the module name must be all lowercase e.g. [`modules/nf-core/bwa/mem/`](https://github.com/nf-core/modules/tree/master/modules/nf-core/bwa/mem/). The name of the software (i.e. `bwa`) and tool (i.e. `mem`) MUST be all one word.
+1. The directory structure for the module name must be all lowercase, and without punctuation, e.g. [`modules/nf-core/bwa/mem/`](https://github.com/nf-core/modules/tree/master/modules/nf-core/bwa/mem/). The name of the software (i.e. `bwa`) and tool (i.e. `mem`) MUST be all one word. Note that nf-core/tools will validate your suggested name.
 
 2. The process name in the module file MUST be all uppercase e.g. `process BWA_MEM {`. The name of the software (i.e. `BWA`) and tool (i.e. `MEM`) MUST be all one word separated by an underscore.
 
@@ -893,6 +928,10 @@ MY_MODULE(cram, fasta)  // execution of the module will need an element in the f
 2. Keywords SHOULD be sufficient to make the module findable through research domain, data types, and tool function keywords
 
    - Keywords MUST NOT just be solely of the (sub)tool name
+
+   :::info
+   For multi-tool modules, please add the keyword `multi-tool`, as well as all the (sub)tools involved.
+   :::
 
 3. Keywords MUST be all lower case
 
@@ -1400,6 +1439,34 @@ dump_parameters      // boolean: dump parameters
 outdir               //    path: base directory used to publish pipeline results
 check_conda_channels // boolean: check conda channels
 ```
+
+## Deprecating a module
+
+Sometimes modules or subworkflows become outdated and need to be deprecated (available, but no longer recommended).
+These modules or subworkflows should not be deleted as they could be used in private repositories, or used on other
+platforms. The recommended procedure is, once the alternative is available on nf-core modules, add a message to the
+top of the module code saying this module is deprecated, and an `assert` in the code body to print a deprecation
+message like so:
+
+```groovy title="main.nf"
+def deprecation_message = """
+WARNING: This module has been deprecated. Please use nf-core/modules/path/to/new/module
+
+Reason:
+This module is no longer fit for purpose because ...
+
+"""
+
+process OLD_MODULE {
+  ...
+
+  script:
+  assert false: deprecation_message
+}
+```
+
+The purpose of the `assert` is to introduce a mechanism which stops the pipeline and alerts the developer when
+an automatic update of the module/subworkflow is performed.
 
 ## Help
 

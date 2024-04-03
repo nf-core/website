@@ -47,6 +47,9 @@
             overflow-y: auto;
         }
     }
+    :global(.navbar:has(.docs-nav)) .toc-md .dropdown-menu {
+        z-index: 1050;
+    }
     li.active {
         background-color: transparentize($success, 0.75);
     }

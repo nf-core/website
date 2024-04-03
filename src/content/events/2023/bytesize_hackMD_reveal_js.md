@@ -7,9 +7,11 @@ startTime: '13:00+02:00'
 endDate: '2023-04-18'
 endTime: '13:30+02:00'
 youtubeEmbed: https://www.youtube.com/watch?v=OqAKuwwNFf0
-locationURL:
-  - https://doi.org/10.6084/m9.figshare.22656934.v1
-  - https://www.youtube.com/watch?v=OqAKuwwNFf0
+locations:
+  - name: Online
+    links:
+      - https://doi.org/10.6084/m9.figshare.22656934.v1
+      - https://www.youtube.com/watch?v=OqAKuwwNFf0
 ---
 
 HackMD.io is an open source, collaborative Markdown editor, which allows people to share, comment, and collaborate on documents. At nf-core we use HackMD extensively during hackathons and for notekeeping.

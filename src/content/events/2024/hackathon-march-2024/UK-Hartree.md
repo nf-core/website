@@ -6,10 +6,11 @@ startDate: '2024-03-18'
 startTime: '10:00+00:00'
 endDate: '2024-03-20'
 endTime: '17:00+00:00'
-locationName: Hartree centre
-address: Sci-Tech Daresbury, Keckwick, Daresbury, ​​​Warrington. WA4 4AD
-locationURL: https://maps.app.goo.gl/pEB5CDxgPbg7GLXb7
-locationLatLng: [53.3433353, -2.6384581]
+locations:
+  - name: Hartree centre
+    address: Sci-Tech Daresbury, Keckwick, Daresbury, ​​​Warrington. WA4 4AD
+    links: https://maps.app.goo.gl/pEB5CDxgPbg7GLXb7
+    geoCoordinates: [53.3433353, -2.6384581]
 ---
 
 Local event to be held at UKRI's Hartree centre, Daresbury UK.

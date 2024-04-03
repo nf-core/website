@@ -8,6 +8,9 @@ endDate: '2023-03-16'
 endTime: '17:00+01:00'
 locationName: YouTube
 locationURL: https://www.youtube.com/nf-core
+locations:
+  - name: YouTube
+    links: https://www.youtube.com/nf-core
 ---
 
 # Welcome

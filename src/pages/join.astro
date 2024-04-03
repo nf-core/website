@@ -9,37 +9,49 @@ const headings = [
         text: 'Slack',
         slug: 'slack',
         depth: 1,
-        fa_icon: 'fab fa-slack',
+        fa_icon: 'fa-brands fa-slack',
     },
     {
         text: 'GitHub organisation',
         slug: 'github',
         depth: 1,
-        fa_icon: 'fab fa-github',
+        fa_icon: 'fa-brands fa-github',
     },
     {
         text: 'Twitter',
         slug: 'twitter',
         depth: 1,
-        fa_icon: 'fab fa-twitter',
+        fa_icon: 'fa-brands fa-twitter',
     },
     {
         text: 'Mastodon',
         slug: 'mastodon',
         depth: 1,
-        fa_icon: 'fab fa-mastodon',
+        fa_icon: 'fa-brands fa-mastodon',
     },
     {
         text: 'YouTube',
         slug: 'youtube',
         depth: 1,
-        fa_icon: 'fab fa-youtube',
+        fa_icon: 'fa-brands fa-youtube',
     },
     {
         text: 'Gather Town',
         slug: 'gather-town',
         depth: 1,
-        fa_icon: 'fa fa-grapes fa-rotate-270',
+        fa_icon: 'fa-regular fa-grapes fa-rotate-270',
+    },
+    {
+        text: 'LinkedIn',
+        slug: 'linkedin',
+        depth: 1,
+        fa_icon: 'fa-brands fa-linkedin',
+    },
+    {
+        text: 'Bluesky',
+        slug: 'bluesky',
+        depth: 1,
+        fa_icon: 'fa-regular fa-cloud',
     },
 ];
 ---
@@ -69,6 +81,21 @@ const headings = [
         </a>
         <a href="/join/slack" class="mb-2 me-3 btn btn-lg btn-dark" style="background-color: #611f69;">
             <i class="fab fa-slack"></i> Slack
+        </a>
+        <a
+            href="https://www.linkedin.com/company/nf-core"
+            class="mb-2 me-3 btn btn-lg btn-dark"
+            style="background-color: #0077B5;"
+        >
+            <i class="fab fa-linkedin"></i> LinkedIn
+        </a>
+        <a
+            href="https://bsky.app/profile/nf-co.re"
+            class="mb-2 me-3 btn btn-lg btn-dark"
+            style="background-color: #1185fe;"
+        >
+            <Icon name="simple-icons:bluesky" />
+            Bluesky
         </a>
     </p>
 
@@ -197,6 +224,32 @@ const headings = [
             ><i class="fab fa-slack"></i> Request access to gather.town</a
         >
     </p>
+
+    <h1 id="linkedin" class="mt-5">
+        <span class="join-pull-img bg-body"><Icon name="logos:linkedin" size="120px" /></span>
+        LinkedIn
+        <a href="#linkedin" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
+    </h1>
+    <p>
+        Follow <a href="https://www.linkedin.com/company/nf-core">nf-core</a> on LinkedIn to keep up to date with what's
+        new in the community.
+    </p>
+    <a href="https://www.linkedin.com/company/nf-core" class="btn btn-dark border-0" style="background-color: #0077B5;">
+        <i class="fab fa-linkedin me-1"></i>Follow nf-core</a
+    >
+
+    <h1 id="bluesky" class="mt-5">
+        <span class="join-pull-img bg-body"><Icon name="simple-icons:bluesky" color="#1185fe" size="120px" /></span>
+        Bluesky
+        <a href="#blueksy" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
+    </h1>
+    <p>
+        Follow <a href="https://bsky.app/profile/nf-co.re">@nf-co.re</a> on Bluesky to discover new pipeline releases and
+        upcoming events.
+    </p>
+    <a href="https://bsky.app/profile/nf-co.re" class="btn btn-dark border-0" style="background-color: #1185fe;">
+        <Icon name="simple-icons:bluesky" /> Follow @nf-co.re</a
+    >
 </MarkdownTocLayout>
 <style lang="scss">
     @import '@styles/_variables.scss';

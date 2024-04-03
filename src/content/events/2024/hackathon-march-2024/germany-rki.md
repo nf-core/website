@@ -6,10 +6,11 @@ startDate: '2024-03-18'
 startTime: '10:00+02:00'
 endDate: '2024-03-20'
 endTime: '18:00+02:00'
-locationName: RKI
-address: Seestraße 10, 13353 Berlin, Germany
-locationURL: https://www.rki.de
-locationLatLng: [52.54357, 13.33978]
+locations:
+  - name: RKI
+    address: Seestraße 10, 13353 Berlin, Germany
+    links: https://www.rki.de
+    geoCoordinates: [52.54357, 13.33978]
 ---
 
 Local event to be held at RKI, Berlin.

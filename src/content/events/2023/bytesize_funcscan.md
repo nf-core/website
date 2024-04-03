@@ -8,9 +8,11 @@ endDate: '2023-01-24'
 endTime: '13:30+01:00'
 embedAt: 'funcscan'
 youtubeEmbed: https://www.youtube.com/watch?v=c1CnE6jPhpg
-locationURL:
-  - https://www.youtube.com/watch?v=c1CnE6jPhpg
-  - https://doi.org/10.6084/m9.figshare.21953978.v1
+locations:
+  - name: Online
+    links:
+      - https://www.youtube.com/watch?v=c1CnE6jPhpg
+      - https://doi.org/10.6084/m9.figshare.21953978.v1
 ---
 
 This week, Jasmin Frangenberg ([@jasmezz](https://github.com/jasmezz)) is going to introduce nf-core/funcscan. nf-core/funcscan is a bioinformatics best-practice analysis pipeline for the screening of functional components of nucleotide sequences such as assembled contigs. This includes mining for antimicrobial peptides, antibiotic resistance genes and biosynthetic gene clusters.

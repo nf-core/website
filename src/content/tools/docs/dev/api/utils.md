@@ -174,7 +174,7 @@ Overwrite default PyYAML output to make Prettier YAML linting happy
 
 ### `nf_core.utils.fetch_remote_version(source_url){:python}`
 
-### `nf_core.utils.fetch_wf_config(wf_path, cache_config=True){:python}`
+### `nf_core.utils.fetch_wf_config(wf_path: str, cache_config: bool = True){:python}`
 
 Uses Nextflow to retrieve the the configuration variables
 from a Nextflow workflow.
@@ -265,7 +265,7 @@ Deletes a key from a nested dictionary
 
 - **Parameters:**
   - **d** (_dict_) – the nested dictionary to traverse
-  - **keys** (_list_\*\[**Any**]\*) – A list of keys to iteratively traverse, deleting the final one
+  - **keys** (_list_ \*\[\*_Any_ _]_) – A list of keys to iteratively traverse, deleting the final one
 
 ### `nf_core.utils.nested_setitem(d, keys, value){:python}`
 
@@ -273,7 +273,7 @@ Sets the value in a nested dict using a list of keys to traverse
 
 - **Parameters:**
   - **d** (_dict_) – the nested dictionary to traverse
-  - **keys** (_list_\*\[**Any**]\*) – A list of keys to iteratively traverse
+  - **keys** (_list_ \*\[\*_Any_ _]_) – A list of keys to iteratively traverse
   - **value** (_Any_) – The value to be set for the last key in the chain
 
 ### `nf_core.utils.parse_anaconda_licence(anaconda_response, version=None){:python}`
@@ -321,7 +321,7 @@ Prompt for pipeline release / branch
 - **Parameters:**
   - **wf_releases** (_array_) – Array of repo releases as returned by the GitHub API
   - **wf_branches** (_array_) – Array of repo branches, as returned by the GitHub API
-  - **multiple** (_bool_) – Allow selection of multiple releases & branches (for Tower)
+  - **multiple** (_bool_) – Allow selection of multiple releases & branches (for Seqera Platform)
 - **Returns:**
   Selected release / branch name
 - **Return type:**

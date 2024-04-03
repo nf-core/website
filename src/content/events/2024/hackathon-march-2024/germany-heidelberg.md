@@ -6,10 +6,11 @@ startDate: '2024-03-18'
 startTime: '10:00+02:00'
 endDate: '2024-03-20'
 endTime: '18:00+02:00'
-locationName: Heidelberg
-address: Business Development Center, Carl-Friedrich-Gauß-Ring 5, 69124, Heidelberg, Germany
-locationURL: https://www.ghga.de/events
-# locationLatLng: [ , ]
+locations:
+  - name: Heidelberg
+    address: Business Development Center, Carl-Friedrich-Gauß-Ring 5, 69124, Heidelberg, Germany
+    links: https://www.ghga.de/events
+    geoCoordinates: [49.39643881353221, 8.673259933781846]
 ---
 
 Local event to be held at Heidelberg, Germany.

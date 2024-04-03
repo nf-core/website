@@ -7,9 +7,11 @@ startTime: '13:00+02:00'
 endDate: '2022-10-25'
 endTime: '13:30+02:00'
 youtubeEmbed: https://www.youtube.com/watch?v=CrJgxVRVlqY
-locationURL:
-  - https://doi.org/10.6084/m9.figshare.21407004.v1
-  - https://www.youtube.com/watch?v=CrJgxVRVlqY
+locations:
+  - name: Online
+    links:
+      - https://doi.org/10.6084/m9.figshare.21407004.v1
+      - https://www.youtube.com/watch?v=CrJgxVRVlqY
 ---
 
 This week, Gisela Gabernet ([@ggabernet](https://github.com/ggabernet)) will talk about the newest developments in the nf-core/airrflow pipeline.
