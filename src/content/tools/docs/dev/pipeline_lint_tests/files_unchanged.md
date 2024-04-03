@@ -38,7 +38,6 @@ Files that can have additional content but must include the template contents:
 ```default
 .gitignore
 .prettierignore
-pyproject.toml
 ```
 
 :::note
