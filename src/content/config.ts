@@ -1,6 +1,7 @@
 import { z, defineCollection } from 'astro:content';
 
 const events = defineCollection({
+    type: 'content',
     schema: z
         .object({
             title: z.string(),
@@ -26,10 +27,17 @@ const events = defineCollection({
                     end: z.date().optional(),
                 })
                 .optional(),
-            locationName: z.string().optional(),
-            locationURL: z.string().url().or(z.string().startsWith('#')).or(z.array(z.string().url())).optional(),
-            locationLatLng: z.array(z.number(), z.number()).optional(),
-            address: z.string().optional(),
+            locations: z
+                .array(
+                    z.object({
+                        name: z.string().optional(),
+                        links: z.string().url().or(z.string().startsWith('#')).or(z.array(z.string().url())).optional(),
+                        geoCoordinates: z.array(z.number(), z.number()).optional(),
+                        address: z.string().optional(),
+                    }),
+                )
+                .optional(),
+            links: z.array(z.string().url()).optional(),
             start: z.date().optional(),
             end: z.date().optional(),
             duration: z.string().optional(),
@@ -65,6 +73,7 @@ const events = defineCollection({
         }),
 });
 const docs = defineCollection({
+    type: 'content',
     schema: z.object({
         title: z.string(),
         subtitle: z.string().optional(),
@@ -73,6 +82,7 @@ const docs = defineCollection({
     }),
 });
 const about = defineCollection({
+    type: 'content',
     schema: z.object({
         title: z.string(),
         description: z.string(),
@@ -83,6 +93,7 @@ const about = defineCollection({
 });
 
 const blog = defineCollection({
+    type: 'content',
     schema: z
         .object({
             title: z.string(),
@@ -122,6 +133,34 @@ const blog = defineCollection({
         }),
 });
 
+const specialInterestGroups = defineCollection({
+    type: 'content',
+    schema: z
+        .object({
+            title: z.string(),
+            subtitle: z.string(),
+            groupName: z.string(),
+            // for index.md pages also require lead and pipelines
+            leads: z
+                .array(z.string())
+                .or(z.array(z.record(z.string())))
+                .optional(),
+            pipelines: z
+                .array(z.string())
+                .optional()
+                .transform((data) => {
+                    // sort the pipelines by name
+                    return data?.sort();
+                }),
+        })
+        .refine((data) => {
+            if (data?.leads && !data.pipelines) {
+                throw new Error('`pipelines` must be set if `leads` is');
+            }
+            return true;
+        }),
+});
+
 const pipelines = defineCollection({});
 
 const tools = defineCollection({});
@@ -133,4 +172,5 @@ export const collections = {
     pipelines: pipelines,
     blog: blog,
     tools: tools,
+    'special-interest-groups': specialInterestGroups,
 };

@@ -7,9 +7,11 @@ startTime: '13:00+02:00'
 endDate: '2022-05-31'
 endTime: '13:30+02:00'
 youtubeEmbed: https://www.youtube.com/watch?v=oO7rAp-QZOk
-locationURL:
-  - https://www.youtube.com/watch?v=oO7rAp-QZOk
-  - https://doi.org/10.6084/m9.figshare.19960847.v1
+locations:
+  - name: Online
+    links:
+      - https://www.youtube.com/watch?v=oO7rAp-QZOk
+      - https://doi.org/10.6084/m9.figshare.19960847.v1
 ---
 
 This week, Sateesh Peri ([@sateeshperi](https://github.com/sateeshperi)) will talk about recources that are available for newcomers to Nextflow - but even more experienced Nextflow users might learn something!

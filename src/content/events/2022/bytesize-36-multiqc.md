@@ -7,9 +7,11 @@ startTime: '13:00+01:00'
 endDate: '2022-03-08'
 endTime: '13:30+01:00'
 youtubeEmbed: https://www.youtube.com/watch?v=a3_IYSMrKAk
-locationURL:
-  - https://www.youtube.com/watch?v=a3_IYSMrKAk
-  - https://doi.org/10.6084/m9.figshare.19923422.v1
+locations:
+  - name: Online
+    links:
+      - https://www.youtube.com/watch?v=a3_IYSMrKAk
+      - https://doi.org/10.6084/m9.figshare.19923422.v1
 ---
 
 This week, Phil Ewels ([@ewels](https://github.com/ewels/)) will talk about MultiQC (of which he is the author).

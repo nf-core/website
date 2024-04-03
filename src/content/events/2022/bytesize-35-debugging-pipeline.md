@@ -7,9 +7,11 @@ startTime: '13:00+01:00'
 endDate: '2022-03-01'
 endTime: '13:30+01:00'
 youtubeEmbed: https://youtu.be/z9n2F4ByIkY
-locationURL:
-  - https://youtu.be/z9n2F4ByIkY
-  - https://doi.org/10.6084/m9.figshare.19382933.v2
+locations:
+  - name: Online
+    links:
+      - https://youtu.be/z9n2F4ByIkY
+      - https://doi.org/10.6084/m9.figshare.19382933.v2
 ---
 
 This week, Phil Ewels ([@ewels](https://github.com/ewels/)) will show us how to troubleshoot a failing pipeline.

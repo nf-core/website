@@ -7,10 +7,12 @@ startTime: '13:00+02:00'
 endDate: '2021-04-13'
 endTime: '13:30+02:00'
 youtubeEmbed: https://youtu.be/N1rRr4J0Lps
-locationURL:
-  - https://youtu.be/N1rRr4J0Lps
-  - https://www.bilibili.com/video/BV1AZ4y1w7hZ/
-  - https://doi.org/10.6084/m9.figshare.14413046.v1
+locations:
+  - name: Online
+    links:
+      - https://youtu.be/N1rRr4J0Lps
+      - https://www.bilibili.com/video/BV1AZ4y1w7hZ/
+      - https://doi.org/10.6084/m9.figshare.14413046.v1
 ---
 
 This week, Maxime Garcia ([@maxulysse](http://github.com/maxulysse/)) will present: _**Running pipelines offline.**_

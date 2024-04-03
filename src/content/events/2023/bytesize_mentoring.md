@@ -7,8 +7,9 @@ startTime: '14:00+02:00'
 endDate: '2023-05-09'
 endTime: '14:30+02:00'
 youtubeEmbed: https://www.youtube.com/watch?v=K8gvK1drt0w
-locationURL:
-  - https://www.youtube.com/watch?v=K8gvK1drt0w
+locations:
+  - name: Online
+    links: https://www.youtube.com/watch?v=K8gvK1drt0w
 ---
 
 Mariana Guiladi ([@mariguilardi](https://github.com/mariguilardi)) and Alyssa Briggs ([@alyssa-ab](https://github.com/alyssa-ab)) were part of the nf-core mentoring program that concluded end of March 2023. In this weeks bytesize talk they will share their experiences as mentee and mentor, respectively, during the course of the program.

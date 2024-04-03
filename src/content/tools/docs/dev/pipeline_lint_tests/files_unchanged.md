@@ -30,7 +30,6 @@ CODE_OF_CONDUCT.md
 docs/images/nf-core-PIPELINE_logo_light.png
 docs/images/nf-core-PIPELINE_logo_dark.png
 docs/README.md'
-lib/NfcoreTemplate.groovy
 ['LICENSE', 'LICENSE.md', 'LICENCE', 'LICENCE.md'], # NB: British / American spelling
 ```
 
@@ -39,7 +38,6 @@ Files that can have additional content but must include the template contents:
 ```default
 .gitignore
 .prettierignore
-pyproject.toml
 ```
 
 :::note

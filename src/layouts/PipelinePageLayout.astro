@@ -10,6 +10,7 @@ export interface Props {
     subtitle?: string | null;
     version?: string;
     versions?: string[];
+    is_archived?: boolean;
     headings?: { text: string; slug: string; depth: number; fa_icon?: string }[];
     tabItems?: string[];
     md_github_url?: string;
@@ -26,6 +27,7 @@ let {
     headings,
     version,
     versions = [],
+    is_archived = false,
     tabItems = [],
     md_github_url = '',
     showHiddenBtn = false,
@@ -127,6 +129,7 @@ const isDsl2 = pipelineData?.is_DSL2;
         latestVersion={latestVersion}
         gh_url={gh_url}
         isDsl2={isDsl2}
+        is_archived={is_archived}
         slot="sub-header"
     />
     {
