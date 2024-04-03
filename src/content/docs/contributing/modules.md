@@ -49,18 +49,26 @@ If the module doesn't exist on `nf-core/modules`:
 
 We have implemented a number of commands in the `nf-core/tools` package to make it incredibly easy for you to create and contribute your own modules to nf-core/modules.
 
-1. Install the latest version of [`nf-core/tools`](https://github.com/nf-core/tools#installation) (`>=2.7`)
-2. Install [`Nextflow`](https://www.nextflow.io/docs/latest/getstarted.html#installation) (`>=21.04.0`)
-3. Install [`nf-test`](https://code.askimed.com/nf-test/installation/)
-4. Install any of [`Docker`](https://docs.docker.com/engine/installation/), [`Singularity`](https://www.sylabs.io/guides/3.0/user-guide/) or [`Conda`](https://conda.io/miniconda.html)
-5. Setup up [pre-commit](https://pre-commit.com/) (comes packaged with [`nf-core/tools`](https://github.com/nf-core/tools#installation), watch the [pre-commit bytesize talk](https://www.youtube.com/watch?v=08d6zv6zvdM&t=215) if you want to know more about it) to ensure that your code is linted and formatted correctly before you commit it to the repository
+1. Install any of [`Docker`](https://docs.docker.com/engine/installation/), [`Singularity`](https://www.sylabs.io/guides/3.0/user-guide/) or [`Conda`](https://conda.io/miniconda.html)
+   <details>
+     <summary> 🛠️ Conda environment for the Module contribution workflow </summary>
+     If you use the conda package manager you can install all dependencies for the New module workflow directly into a new environment via
+     <code>
+       conda create -n nf-core -c bioconda "nextflow>=21.04.0" "nf-core>=2.7" nf-test prettier
+       conda activate nf-core
+     </code>
+   </details>
+3. Install [`Nextflow`](https://www.nextflow.io/docs/latest/getstarted.html#installation) (`>=21.04.0`)
+4. Install the latest version of [`nf-core/tools`](https://github.com/nf-core/tools#installation) (`>=2.7`)
+5. Install [`nf-test`](https://code.askimed.com/nf-test/installation/)
+6. [Fork and clone the nf-core/modules repo locally](#uploading-to-nf-coremodules)
+7. Setup up [pre-commit](https://pre-commit.com/) (comes packaged with [`nf-core/tools`](https://github.com/nf-core/tools#installation), watch the [pre-commit bytesize talk](https://www.youtube.com/watch?v=08d6zv6zvdM&t=215) if you want to know more about it) to ensure that your code is linted and formatted correctly before you commit it to the repository
 
    ```bash
    pre-commit install
    ```
 
-6. [Fork and clone the nf-core/modules repo locally](#uploading-to-nf-coremodules)
-7. Set up git on your computer by adding a new git remote of the main nf-core git repo called `upstream`
+8. Set up git on your computer by adding a new git remote of the main nf-core git repo called `upstream`
 
    ```bash
    git remote add upstream https://github.com/nf-core/modules.git
@@ -72,7 +80,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
    git checkout -b fastqc
    ```
 
-8. Create a module using the [nf-core DSL2 module template](https://github.com/nf-core/tools/blob/master/nf_core/module-template/main.nf):
+9. Create a module using the [nf-core DSL2 module template](https://github.com/nf-core/tools/blob/master/nf_core/module-template/main.nf):
 
    ```console
    $ nf-core modules create fastqc --author @joebloggs --label process_low --meta
@@ -115,7 +123,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 
       Refer to the section [writing nf-test tests](#writing-nf-test-tests) for more information on how to write nf-tests
 
-9. Create a snapshot of the tests
+10. Create a snapshot of the tests
 
    ```console
    $ nf-core modules test fastqc
@@ -178,15 +186,15 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
    See the [nf-test docs](https://code.askimed.com/nf-test/) if you would like to run the tests manually.
    :::
 
-10. Check that the new module you've added follows the [new module guidelines](#new-module-guidelines-and-pr-review-checklist)
+11. Check that the new module you've added follows the [new module guidelines](#new-module-guidelines-and-pr-review-checklist)
 
-11. Run [`prettier`](/docs/contributing/code_formatting) on all edited and generated files:
+12. Run [`prettier`](/docs/contributing/code_formatting) on all edited and generated files:
 
     ```bash
     prettier -w .
     ```
 
-12. Lint the module locally to check that it adheres to nf-core guidelines before submission
+13. Lint the module locally to check that it adheres to nf-core guidelines before submission
 
     ```console
     $ nf-core modules lint fastqc
@@ -228,7 +236,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
     ╰───────────────────────╯
     ```
 
-13. Once ready, the code can be pushed and a pull request (PR) created
+14. Once ready, the code can be pushed and a pull request (PR) created
 
     On a regular basis you can pull upstream changes into this branch and it is recommended to do so before pushing and creating a pull request - see below. Rather than merging changes directly from upstream the rebase strategy is recommended so that your changes are applied on top of the latest master branch from the nf-core repo. This can be performed as follows
 
