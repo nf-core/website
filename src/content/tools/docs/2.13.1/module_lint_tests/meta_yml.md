@@ -1,4 +1,4 @@
-# meta\_yml
+# meta_yml
 
 #### `ModuleLint.meta_yml(module: NFCoreComponent){:python}`
 
@@ -24,6 +24,6 @@ path foo
 
 or permutations of the above.
 
-* **Parameters:**
-  * **module\_lint\_object** (*ComponentLint*) – The lint object for the module
-  * **module** (*NFCoreComponent*) – The module to lint
+- **Parameters:**
+  - **module_lint_object** (_ComponentLint_) – The lint object for the module
+  - **module** (_NFCoreComponent_) – The module to lint

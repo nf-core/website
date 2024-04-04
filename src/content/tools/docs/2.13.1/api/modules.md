@@ -1,1 +1,1 @@
-# nf\_core.modules
+# nf_core.modules

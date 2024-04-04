@@ -1,4 +1,4 @@
-# actions\_awsfulltest
+# actions_awsfulltest
 
 #### `PipelineLint.actions_awsfulltest(){:python}`
 
@@ -25,6 +25,6 @@ For tests on full data prior to release, [Nextflow Tower](https://tower.nf) laun
 
 The `.github/workflows/awsfulltest.yml` file is tested for the following:
 
-* Must be turned on `workflow_dispatch`.
-* Must be turned on for `release` with `types: [published]`
-* Should run the profile `test_full` that should be edited to provide the links to full-size datasets. If it runs the profile `test`, a warning is given.
+- Must be turned on `workflow_dispatch`.
+- Must be turned on for `release` with `types: [published]`
+- Should run the profile `test_full` that should be edited to provide the links to full-size datasets. If it runs the profile `test`, a warning is given.

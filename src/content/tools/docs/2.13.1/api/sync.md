@@ -1,75 +1,75 @@
-# nf\_core.sync
+# nf_core.sync
 
 Synchronise a pipeline TEMPLATE branch with the template.
 
-### *`class{:python}`*`nf_core.sync.PipelineSync(pipeline_dir, from_branch=None, make_pr=False, gh_repo=None, gh_username=None, template_yaml_path=None){:python}`
+### _`class{:python}`_`nf_core.sync.PipelineSync(pipeline_dir, from_branch=None, make_pr=False, gh_repo=None, gh_username=None, template_yaml_path=None){:python}`
 
 Bases: `object`
 
 Object to hold syncing information and results.
 
-* **Parameters:**
-  * **pipeline\_dir** (*str*) – The path to the Nextflow pipeline root directory
-  * **from\_branch** (*str*) – The branch to use to fetch config vars. If not set, will use current active branch
-  * **make\_pr** (*bool*) – Set this to True to create a GitHub pull-request with the changes
-  * **gh\_username** (*str*) – GitHub username
-  * **gh\_repo** (*str*) – GitHub repository name
-  * **template\_yaml\_path** (*str*) – Path to template.yml file for pipeline creation settings. DEPRECATED
+- **Parameters:**
+  - **pipeline_dir** (_str_) – The path to the Nextflow pipeline root directory
+  - **from_branch** (_str_) – The branch to use to fetch config vars. If not set, will use current active branch
+  - **make_pr** (_bool_) – Set this to True to create a GitHub pull-request with the changes
+  - **gh_username** (_str_) – GitHub username
+  - **gh_repo** (_str_) – GitHub repository name
+  - **template_yaml_path** (_str_) – Path to template.yml file for pipeline creation settings. DEPRECATED
 
 #### `pipeline_dir{:python}`
 
 Path to target pipeline directory
 
-* **Type:**
+- **Type:**
   str
 
 #### `from_branch{:python}`
 
 Repo branch to use when collecting workflow variables. Default: active branch.
 
-* **Type:**
+- **Type:**
   str
 
 #### `original_branch{:python}`
 
 Repo branch that was checked out before we started.
 
-* **Type:**
+- **Type:**
   str
 
 #### `made_changes{:python}`
 
 Whether making the new template pipeline introduced any changes
 
-* **Type:**
+- **Type:**
   bool
 
 #### `make_pr{:python}`
 
 Whether to try to automatically make a PR on GitHub.com
 
-* **Type:**
+- **Type:**
   bool
 
 #### `required_config_vars{:python}`
 
 List of nextflow variables required to make template pipeline
 
-* **Type:**
+- **Type:**
   list
 
 #### `gh_username{:python}`
 
 GitHub username
 
-* **Type:**
+- **Type:**
   str
 
 #### `gh_repo{:python}`
 
 GitHub repository name
 
-* **Type:**
+- **Type:**
   str
 
 #### `checkout_template_branch(){:python}`
@@ -84,7 +84,7 @@ Given a PR API response, add a comment and close.
 #### `close_open_template_merge_prs(){:python}`
 
 Get all template merging branches (starting with ‘nf-core-template-merge-‘)
-and check for any open PRs from these branches to the self.from\_branch
+and check for any open PRs from these branches to the self.from_branch
 If open PRs are found, add a comment and close them
 
 #### `commit_template_changes(){:python}`
@@ -139,13 +139,13 @@ Reset the target pipeline directory. Check out the original branch.
 
 Find workflow attributes, create a new template pipeline on TEMPLATE
 
-### *`exception{:python}`*`nf_core.sync.PullRequestExceptionError{:python}`
+### _`exception{:python}`_`nf_core.sync.PullRequestExceptionError{:python}`
 
 Bases: `Exception`
 
 Exception raised when there was an error creating a Pull-Request on GitHub.com
 
-### *`exception{:python}`*`nf_core.sync.SyncExceptionError{:python}`
+### _`exception{:python}`_`nf_core.sync.SyncExceptionError{:python}`
 
 Bases: `Exception`
 

@@ -49,17 +49,30 @@ If the module doesn't exist on `nf-core/modules`:
 
 We have implemented a number of commands in the `nf-core/tools` package to make it incredibly easy for you to create and contribute your own modules to nf-core/modules.
 
-1. Install the latest version of [`nf-core/tools`](https://github.com/nf-core/tools#installation) (`>=2.7`)
+1. Install any of [`Docker`](https://docs.docker.com/engine/installation/), [`Singularity`](https://www.sylabs.io/guides/3.0/user-guide/) or [`Conda`](https://conda.io/miniconda.html)
+
+:::tip{title="Single step conda installation" collapse}
+
+If you use the conda package manager you can setup a new environment and install all dependencies for the new module workflow in one step with:
+
+```bash
+  conda create -n nf-core -c bioconda "nextflow>=21.04.0" "nf-core>=2.7" nf-test
+  conda activate nf-core
+```
+
+and proceed with Step 5.
+:::
+
 2. Install [`Nextflow`](https://www.nextflow.io/docs/latest/getstarted.html#installation) (`>=21.04.0`)
-3. Install [`nf-test`](https://code.askimed.com/nf-test/installation/)
-4. Install any of [`Docker`](https://docs.docker.com/engine/installation/), [`Singularity`](https://www.sylabs.io/guides/3.0/user-guide/) or [`Conda`](https://conda.io/miniconda.html)
-5. Setup up [pre-commit](https://pre-commit.com/) (comes packaged with [`nf-core/tools`](https://github.com/nf-core/tools#installation), watch the [pre-commit bytesize talk](https://www.youtube.com/watch?v=08d6zv6zvdM&t=215) if you want to know more about it) to ensure that your code is linted and formatted correctly before you commit it to the repository
+3. Install the latest version of [`nf-core/tools`](https://github.com/nf-core/tools#installation) (`>=2.7`)
+4. Install [`nf-test`](https://code.askimed.com/nf-test/installation/)
+5. [Fork and clone the nf-core/modules repo locally](#uploading-to-nf-coremodules)
+6. Setup up [pre-commit](https://pre-commit.com/) (comes packaged with [`nf-core/tools`](https://github.com/nf-core/tools#installation), watch the [pre-commit bytesize talk](https://www.youtube.com/watch?v=08d6zv6zvdM&t=215) if you want to know more about it) to ensure that your code is linted and formatted correctly before you commit it to the repository
 
    ```bash
    pre-commit install
    ```
 
-6. [Fork and clone the nf-core/modules repo locally](#uploading-to-nf-coremodules)
 7. Set up git on your computer by adding a new git remote of the main nf-core git repo called `upstream`
 
    ```bash

@@ -1,4 +1,4 @@
-# template\_strings
+# template_strings
 
 #### `PipelineLint.template_strings(){:python}`
 
@@ -19,10 +19,12 @@ This test ignores any double-brackets prefixed with a dollar sign, such as
 :::note
 You can choose to ignore lint test tests by editing the file called
 `.nf-core.yml` in the root of your pipeline and setting the test to false:
+
 ```yaml
 lint:
-    template_strings: False
+  template_strings: False
 ```
+
 :::
 
 To disable this test only for specific files, you can specify a list of file paths to ignore.
@@ -30,6 +32,6 @@ For example, to ignore a pdf you added to the docs:
 
 ```yaml
 lint:
-    template_strings:
-        - docs/my_pdf.pdf
+  template_strings:
+    - docs/my_pdf.pdf
 ```
