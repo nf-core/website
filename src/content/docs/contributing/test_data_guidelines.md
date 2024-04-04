@@ -1,5 +1,5 @@
 ---
-title: Test data guidelines
+title: Guidelines for Test Data
 subtitle: Guidelines for adding test data to nf-core repositories
 ---
 
@@ -10,6 +10,10 @@ The nf-core community currently hosts two sets of test data that are used to exe
 For consistency and keeping the test data repositories small, we provide the following guidelines and recommendations that developers should aim to follow when adding new data.
 
 The general philosophy to keep in mind for all new test data is: **as small as possible, as large as necessary**.
+
+## Reviewing
+
+When reviewing, all modules should be checked that they follow [test-data specifications](/docs/contributing/component-specifications/test_data.md).
 
 ## Modules
 
