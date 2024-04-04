@@ -385,26 +385,12 @@ pipelines.sort((a, b) => a.name.localeCompare(b.name));
         </div>
         <a
             class="btn btn-primary mb-5 ms-3"
+            title="Refresh data via manual dispatch of GitHub Action (from the `main` branch) to update the pipelines.json file."
+            data-bs-toggle="tooltip"
             href="https://github.com/nf-core/website/actions/workflows/build-json-files-and-md-cache.yml"
             >Refresh data via GitHub Action</a
         >
     </div>
-    {
-        false && (
-            <div class="iframe-container w-100 d-flex align-items-start vh-100">
-                <i class="mt-5 m-auto text-success fa-regular fa-spinner-third fa-spin fa-3x" />
-                <iframe
-                    class="d-none"
-                    src="https://oldsite.nf-co.re/pipeline_health"
-                    onload="this.classList.remove('d-none'); this.previousElementSibling.classList.add('d-none');"
-                    title="pipeline_heath"
-                    style="border:none;"
-                    width="100%"
-                    height="100%"
-                />
-            </div>
-        )
-    }
 </PageLayout>
 <style lang="scss">
     @import '@styles/_variables.scss';
