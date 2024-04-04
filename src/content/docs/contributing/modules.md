@@ -53,10 +53,12 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
    <details>
      <summary> 🛠️ Conda environment for the Module contribution workflow </summary>
      If you use the conda package manager you can install all dependencies for the New module workflow directly into a new environment via
+
      <code>
        conda create -n nf-core -c bioconda "nextflow>=21.04.0" "nf-core>=2.7" nf-test prettier
        conda activate nf-core
      </code>
+
      and proceed with Step 5.
    </details>
 2. Install [`Nextflow`](https://www.nextflow.io/docs/latest/getstarted.html#installation) (`>=21.04.0`)
