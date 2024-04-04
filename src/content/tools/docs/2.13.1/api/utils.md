@@ -1,13 +1,13 @@
-# nf\_core.utils
+# nf_core.utils
 
 Common utility functions for the nf-core python package.
 
-### *`class{:python}`*`nf_core.utils.GitHubAPISession{:python}`
+### _`class{:python}`_`nf_core.utils.GitHubAPISession{:python}`
 
 Bases: `CachedSession`
 
 Class to provide a single session for interacting with the GitHub API for a run.
-Inherits the requests\_cache.CachedSession and adds additional functionality,
+Inherits the requests_cache.CachedSession and adds additional functionality,
 such as automatically setting up GitHub authentication if we can.
 
 #### `get(url, **kwargs){:python}`
@@ -39,76 +39,76 @@ Run a GET request, raise a nice exception with lots of logging if it fails.
 
 Try to automatically set up GitHub authentication
 
-### *`class{:python}`*`nf_core.utils.Pipeline(wf_path){:python}`
+### _`class{:python}`_`nf_core.utils.Pipeline(wf_path){:python}`
 
 Bases: `object`
 
 Object to hold information about a local pipeline.
 
-* **Parameters:**
-  **path** (*str*) – The path to the nf-core pipeline directory.
+- **Parameters:**
+  **path** (_str_) – The path to the nf-core pipeline directory.
 
 #### `conda_config{:python}`
 
 The parsed conda configuration file content (`environment.yml`).
 
-* **Type:**
+- **Type:**
   dict
 
 #### `conda_package_info{:python}`
 
 The conda package(s) information, based on the API requests to Anaconda cloud.
 
-* **Type:**
+- **Type:**
   dict
 
 #### `nf_config{:python}`
 
 The Nextflow pipeline configuration file content.
 
-* **Type:**
+- **Type:**
   dict
 
 #### `files{:python}`
 
 A list of files found during the linting process.
 
-* **Type:**
+- **Type:**
   list
 
 #### `git_sha{:python}`
 
-The git sha for the repo commit / current GitHub pull-request ($GITHUB\_PR\_COMMIT)
+The git sha for the repo commit / current GitHub pull-request ($GITHUB_PR_COMMIT)
 
-* **Type:**
+- **Type:**
   str
 
 #### `minNextflowVersion{:python}`
 
 The minimum required Nextflow version to run the pipeline.
 
-* **Type:**
+- **Type:**
   str
 
 #### `wf_path{:python}`
 
 Path to the pipeline directory.
 
-* **Type:**
+- **Type:**
   str
 
 #### `pipeline_name{:python}`
 
 The pipeline name, without the nf-core tag, for example hlatyping.
 
-* **Type:**
+- **Type:**
   str
 
 #### `schema_obj{:python}`
 
 A `PipelineSchema` object
 
-* **Type:**
+- **Type:**
   obj
 
 #### `_fp(fn){:python}`
@@ -133,20 +133,20 @@ Get the nextflow config for this pipeline
 
 Once loaded, set a few convienence reference class attributes
 
-### *`class{:python}`*`nf_core.utils.SingularityCacheFilePathValidator{:python}`
+### _`class{:python}`_`nf_core.utils.SingularityCacheFilePathValidator{:python}`
 
 Bases: `Validator`
 
 Validator for file path specified as –singularity-cache-index argument in nf-core download
 
-#### `_abc_impl{:python}`*= <\_abc.\_abc\_data object>*
+#### `_abc_impl{:python}`_= <\_abc.\_abc_data object>_
 
 #### `validate(value){:python}`
 
 Validate the input.
 If invalid, this should raise a `ValidationError`.
 
-* **Parameters:**
+- **Parameters:**
   **document** – `Document` instance.
 
 ### `nf_core.utils.anaconda_package(dep, dep_channels=None){:python}`
@@ -155,12 +155,12 @@ Query conda package information.
 
 Sends a HTTP GET request to the Anaconda remote API.
 
-* **Parameters:**
-  * **dep** (*str*) – A conda package name.
-  * **dep\_channels** (*list*) – list of conda channels to use
-* **Raises:**
-  * **A LookupError**\*\*,\*\* **if the connection fails** **or** **times out** **or** **gives an unexpected status code** –
-  * **A ValueError**\*\*,\*\* **if the package name can not be found** **(****404****)** –
+- **Parameters:**
+  - **dep** (_str_) – A conda package name.
+  - **dep_channels** (_list_) – list of conda channels to use
+- **Raises:**
+  - **A LookupError**\*\*,\*\* **if the connection fails** **or** **times out** **or** **gives an unexpected status code** –
+  - **A ValueError**\*\*,\*\* **if the package name can not be found** **(\*\***404\***\*)** –
 
 ### `nf_core.utils.check_if_outdated(current_version=None, remote_version=None, source_url='https://nf-co.re/tools_version'){:python}`
 
@@ -179,20 +179,20 @@ Overwrite default PyYAML output to make Prettier YAML linting happy
 Uses Nextflow to retrieve the the configuration variables
 from a Nextflow workflow.
 
-* **Parameters:**
-  * **wf\_path** (*str*) – Nextflow workflow file system path.
-  * **cache\_config** (*bool*) – cache configuration or not (def. True)
-* **Returns:**
+- **Parameters:**
+  - **wf_path** (_str_) – Nextflow workflow file system path.
+  - **cache_config** (_bool_) – cache configuration or not (def. True)
+- **Returns:**
   Workflow configuration settings.
-* **Return type:**
+- **Return type:**
   dict
 
 ### `nf_core.utils.file_md5(fname){:python}`
 
 Calculates the md5sum for a file on the disk.
 
-* **Parameters:**
-  **fname** (*str*) – Path to a local file.
+- **Parameters:**
+  **fname** (_str_) – Path to a local file.
 
 ### `nf_core.utils.get_biocontainer_tag(package, version){:python}`
 
@@ -205,9 +205,9 @@ Returns the most recent container versions by default.
 :param version: Version of the bioconda package
 :type version: str
 
-* **Raises:**
-  * **A LookupError**\*\*,\*\* **if the connection fails** **or** **times out** **or** **gives an unexpected status code** –
-  * **A ValueError**\*\*,\*\* **if the package name can not be found** **(****404****)** –
+- **Raises:**
+  - **A LookupError**\*\*,\*\* **if the connection fails** **or** **times out** **or** **gives an unexpected status code** –
+  - **A ValueError**\*\*,\*\* **if the package name can not be found** **(\*\***404\***\*)** –
 
 ### `nf_core.utils.get_first_available_path(directory, paths){:python}`
 
@@ -215,14 +215,14 @@ Returns the most recent container versions by default.
 
 Fetches details of a nf-core workflow to download.
 
-* **Parameters:**
-  * **pipeline** (*str*) – GitHub repo username/repo
-  * **wfs** – A nf\_core.list.Workflows() object, where get\_remote\_workflows() has been called.
-* **Returns:**
+- **Parameters:**
+  - **pipeline** (_str_) – GitHub repo username/repo
+  - **wfs** – A nf_core.list.Workflows() object, where get_remote_workflows() has been called.
+- **Returns:**
   Array of releases, Array of branches
-* **Return type:**
-  wf\_releases, wf\_branches (tuple)
-* **Raises:**
+- **Return type:**
+  wf_releases, wf_branches (tuple)
+- **Raises:**
   **LockupError**\*\*,\*\* **if the pipeline can not be found.** –
 
 ### `nf_core.utils.is_file_binary(path){:python}`
@@ -234,16 +234,16 @@ Check file path to see if it is a binary file
 Checks if the specified directory have the minimum required files
 (‘main.nf’, ‘nextflow.config’) for a pipeline directory
 
-* **Parameters:**
-  **wf\_path** (*str*) – The directory to be inspected
-* **Raises:**
+- **Parameters:**
+  **wf_path** (_str_) – The directory to be inspected
+- **Raises:**
   **UserWarning** – If one of the files are missing
 
 ### `nf_core.utils.is_relative_to(path1, path2){:python}`
 
 Checks if a path is relative to another.
 
-Should mimic Path.is\_relative\_to which not available in Python < 3.9
+Should mimic Path.is_relative_to which not available in Python < 3.9
 
 path1 (Path | str): The path that could be a subpath
 path2 (Path | str): The path the could be the superpath
@@ -263,22 +263,22 @@ Returns the loaded config dict or False, if the file couldn’t be loaded
 
 Deletes a key from a nested dictionary
 
-* **Parameters:**
-  * **d** (*dict*) – the nested dictionary to traverse
-  * **keys** (*list* \*\[\**Any* *]*) – A list of keys to iteratively traverse, deleting the final one
+- **Parameters:**
+  - **d** (_dict_) – the nested dictionary to traverse
+  - **keys** (_list_ \*\[\*_Any_ _]_) – A list of keys to iteratively traverse, deleting the final one
 
 ### `nf_core.utils.nested_setitem(d, keys, value){:python}`
 
 Sets the value in a nested dict using a list of keys to traverse
 
-* **Parameters:**
-  * **d** (*dict*) – the nested dictionary to traverse
-  * **keys** (*list* \*\[\**Any* *]*) – A list of keys to iteratively traverse
-  * **value** (*Any*) – The value to be set for the last key in the chain
+- **Parameters:**
+  - **d** (_dict_) – the nested dictionary to traverse
+  - **keys** (_list_ \*\[\*_Any_ _]_) – A list of keys to iteratively traverse
+  - **value** (_Any_) – The value to be set for the last key in the chain
 
 ### `nf_core.utils.parse_anaconda_licence(anaconda_response, version=None){:python}`
 
-Given a response from the anaconda API using anaconda\_package, parse the software licences.
+Given a response from the anaconda API using anaconda_package, parse the software licences.
 
 Returns: Set of licence types
 
@@ -288,11 +288,11 @@ Query PyPI package information.
 
 Sends a HTTP GET request to the PyPI remote API.
 
-* **Parameters:**
-  **dep** (*str*) – A PyPI package name.
-* **Raises:**
-  * **A LookupError**\*\*,\*\* **if the connection fails** **or** **times out** –
-  * **A ValueError**\*\*,\*\* **if the package name can not be found** –
+- **Parameters:**
+  **dep** (_str_) – A PyPI package name.
+- **Raises:**
+  - **A LookupError**\*\*,\*\* **if the connection fails** **or** **times out** –
+  - **A ValueError**\*\*,\*\* **if the package name can not be found** –
 
 ### `nf_core.utils.plural_es(list_or_int){:python}`
 
@@ -310,7 +310,7 @@ Return ‘ies’ if the input is not one or has not the length of one, else ‘y
 
 Poll the nf-core website API
 
-Takes argument api\_url for URL
+Takes argument api_url for URL
 
 Expects API reponse to be valid JSON and contain a top-level ‘status’ key.
 
@@ -318,26 +318,26 @@ Expects API reponse to be valid JSON and contain a top-level ‘status’ key.
 
 Prompt for pipeline release / branch
 
-* **Parameters:**
-  * **wf\_releases** (*array*) – Array of repo releases as returned by the GitHub API
-  * **wf\_branches** (*array*) – Array of repo branches, as returned by the GitHub API
-  * **multiple** (*bool*) – Allow selection of multiple releases & branches (for Tower)
-* **Returns:**
+- **Parameters:**
+  - **wf_releases** (_array_) – Array of repo releases as returned by the GitHub API
+  - **wf_branches** (_array_) – Array of repo branches, as returned by the GitHub API
+  - **multiple** (_bool_) – Allow selection of multiple releases & branches (for Tower)
+- **Returns:**
   Selected release / branch name
-* **Return type:**
+- **Return type:**
   choice (str)
 
 ### `nf_core.utils.prompt_remote_pipeline_name(wfs){:python}`
 
 Prompt for the pipeline name with questionary
 
-* **Parameters:**
-  **wfs** – A nf\_core.list.Workflows() object, where get\_remote\_workflows() has been called.
-* **Returns:**
+- **Parameters:**
+  **wfs** – A nf_core.list.Workflows() object, where get_remote_workflows() has been called.
+- **Returns:**
   GitHub repo - username/repo
-* **Return type:**
+- **Return type:**
   pipeline (str)
-* **Raises:**
+- **Raises:**
   **AssertionError**\*\*,\*\* **if pipeline cannot be found** –
 
 ### `nf_core.utils.rich_force_colors(){:python}`
@@ -352,8 +352,8 @@ Run a specified command and capture the output. Handle errors nicely.
 
 Sets the working directory for this context.
 
-* **Parameters:**
-  **path** (*Path*) – Path to the working directory to be used inside this context.
+- **Parameters:**
+  **path** (_Path_) – Path to the working directory to be used inside this context.
 
 ### `nf_core.utils.setup_nfcore_cachedir(cache_fn: str | Path){:python}`
 
@@ -372,7 +372,7 @@ Sets up local caching for faster remote HTTP requests.
 Caching directory will be set up in the user’s home directory under
 a .config/nf-core/cache\_\* subdir.
 
-Uses requests\_cache monkey patching.
+Uses requests_cache monkey patching.
 Also returns the config dict so that we can use the same setup with a Session.
 
 ### `nf_core.utils.sort_dictionary(d){:python}`
@@ -389,10 +389,10 @@ From Stack Overflow: <https://stackoverflow.com/a/14693789/713980>
 
 Validates the md5 checksum of a file on disk.
 
-* **Parameters:**
-  * **file\_name** (*str*) – Path to a local file.
-  * **expected** (*str*) – The expected md5sum.
-* **Raises:**
+- **Parameters:**
+  - **file_name** (_str_) – Path to a local file.
+  - **expected** (_str_) – The expected md5sum.
+- **Raises:**
   **IOError**\*\*,\*\* **if the md5sum does not match the remote sum.** –
 
 ### `nf_core.utils.wait_cli_function(poll_func, refresh_per_second=20){:python}`
@@ -401,8 +401,8 @@ Display a command-line spinner while calling a function repeatedly.
 
 Keep waiting until that function returns True
 
-* **Parameters:**
-  * **poll\_func** (*function*) – Function to call
-  * **refresh\_per\_second** (*int*) – Refresh this many times per second. Default: 20.
-* **Returns:**
+- **Parameters:**
+  - **poll_func** (_function_) – Function to call
+  - **refresh_per_second** (_int_) – Refresh this many times per second. Default: 20.
+- **Returns:**
   None. Just sits in an infite loop until the function returns True.

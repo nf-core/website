@@ -1,4 +1,4 @@
-# subworkflow\_version
+# subworkflow_version
 
 #### `SubworkflowLint.subworkflow_version(subworkflow){:python}`
 

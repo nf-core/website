@@ -1,8 +1,8 @@
-# nf\_core.launch
+# nf_core.launch
 
 Launch a pipeline, interactively collecting params
 
-### *`class{:python}`*`nf_core.launch.Launch(pipeline=None, revision=None, command_only=False, params_in=None, params_out=None, save_all=False, show_hidden=False, url=None, web_id=None){:python}`
+### _`class{:python}`_`nf_core.launch.Launch(pipeline=None, revision=None, command_only=False, params_in=None, params_out=None, save_all=False, show_hidden=False, url=None, web_id=None){:python}`
 
 Bases: `object`
 
@@ -40,13 +40,13 @@ Take the Nextflow flag schema and merge it with the pipeline schema
 
 Prompt for edits to a group of parameters (subschema in ‘definitions’)
 
-* **Parameters:**
-  * **group\_id** – Paramater ID (string)
-  * **group\_obj** – JSON Schema keys (dict)
-* **Returns:**
+- **Parameters:**
+  - **group_id** – Paramater ID (string)
+  - **group_obj** – JSON Schema keys (dict)
+- **Returns:**
   val answers
-* **Return type:**
-  Dict of param\_id
+- **Return type:**
+  Dict of param_id
 
 #### `prompt_param(param_id, param_obj, is_required, answers){:python}`
 
@@ -68,18 +68,18 @@ Use the functions defined in the cli wizard to convert to the correct types.
 #### `set_schema_inputs(){:python}`
 
 Take the loaded schema and set the defaults as the input parameters
-If a nf\_params.json file is supplied, apply these over the top
+If a nf_params.json file is supplied, apply these over the top
 
 #### `single_param_to_questionary(param_id, param_obj, answers=None, print_help=True){:python}`
 
 Convert a JSONSchema param to a Questionary question
 
-* **Parameters:**
-  * **param\_id** – Parameter ID (string)
-  * **param\_obj** – JSON Schema keys (dict)
-  * **answers** – Optional preexisting answers (dict)
-  * **print\_help** – If description and help\_text should be printed (bool)
-* **Returns:**
+- **Parameters:**
+  - **param_id** – Parameter ID (string)
+  - **param_obj** – JSON Schema keys (dict)
+  - **answers** – Optional preexisting answers (dict)
+  - **print_help** – If description and help_text should be printed (bool)
+- **Returns:**
   Single Questionary dict, to be appended to questions list
 
 #### `strip_default_params(){:python}`
