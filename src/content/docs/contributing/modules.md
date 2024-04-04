@@ -50,6 +50,18 @@ If the module doesn't exist on `nf-core/modules`:
 We have implemented a number of commands in the `nf-core/tools` package to make it incredibly easy for you to create and contribute your own modules to nf-core/modules.
 
 1. Install any of [`Docker`](https://docs.docker.com/engine/installation/), [`Singularity`](https://www.sylabs.io/guides/3.0/user-guide/) or [`Conda`](https://conda.io/miniconda.html)
+
+:::tip{title="Single step conda installation" collapse}
+If you use the conda package manager you can setup a new environment and install all dependencies for the new module workflow in one step with:
+
+```bash
+  conda create -n nf-core -c bioconda "nextflow>=21.04.0" "nf-core>=2.7" nf-test
+  conda activate nf-core
+```
+
+and proceed with Step 5.
+:::
+
 2. Install [`Nextflow`](https://www.nextflow.io/docs/latest/getstarted.html#installation) (`>=21.04.0`)
 3. Install the latest version of [`nf-core/tools`](https://github.com/nf-core/tools#installation) (`>=2.7`)
 4. Install [`nf-test`](https://code.askimed.com/nf-test/installation/)
