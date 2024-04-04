@@ -52,6 +52,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 1. Install any of [`Docker`](https://docs.docker.com/engine/installation/), [`Singularity`](https://www.sylabs.io/guides/3.0/user-guide/) or [`Conda`](https://conda.io/miniconda.html)
 
 :::tip{title="Single step conda installation" collapse}
+
 If you use the conda package manager you can setup a new environment and install all dependencies for the new module workflow in one step with:
 
 ```bash
