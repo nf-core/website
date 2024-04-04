@@ -313,7 +313,6 @@ pipelines.sort((a, b) => a.name.localeCompare(b.name));
                                             : pipeline.master_branch_protection_require_codeowner_review,
                                         pipeline.repository_url + '/settings/branches',
                                         'master branch: code owner reviews not required',
-                                        pipeline.default_branch === 'dev' ? ' opacity-75' : '',
                                     )}
                                     {getCell(
                                         pipeline.master_branch_protection_required_reviews !== -1
