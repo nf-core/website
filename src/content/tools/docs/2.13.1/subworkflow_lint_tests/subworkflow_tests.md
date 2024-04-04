@@ -1,4 +1,4 @@
-# subworkflow\_tests
+# subworkflow_tests
 
 #### `SubworkflowLint.subworkflow_tests(subworkflow: NFCoreComponent){:python}`
 
