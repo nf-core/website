@@ -272,6 +272,9 @@ export const writePipelinesJson = async () => {
       repo: name,
       sha: 'dev',
     });
+
+    data['commits_to_dev'] = dev_branch?.length;
+
     if (dev_branch.length > 0) {
       new_releases = [
         ...new_releases,
@@ -302,6 +305,29 @@ export const writePipelinesJson = async () => {
     data['has_nf_test_dev'] = await getGitHubFile(name, 'nf-test.config', 'dev').then((response) => {
       return response ? true : false;
     });
+
+    // Get plugins in nextflow.config file, in the form of:
+    //  plugins {
+    // id 'nf-validation' // Validation of pipeline parameters and creation of an input channel from a sample sheet
+    // }
+    for (const branch of ['master', 'dev']) {
+      data[`${branch}_nextflow_config_plugins`] = await getGitHubFile(name, 'nextflow.config', branch).then(
+        (response) => {
+          if (response) {
+            // use regex to find all plugins in nextflow.config
+            const plugins = response.match(/plugins\s*{([^}]*)}/s);
+            if (plugins) {
+              return plugins[1]
+                .split('\n')
+                .filter((line) => line.includes('id'))
+                .map((line) => line.match(/id\s*['"]([^'"]*)['"]/)[1]);
+            }
+            return plugins;
+          }
+          return [];
+        },
+      );
+    }
 
     new_releases = await Promise.all(
       new_releases.map(async (release) => {
