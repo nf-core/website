@@ -1,1 +1,1 @@
-# nf\_core.subworkflows
+# nf_core.subworkflows

@@ -1,8 +1,8 @@
-# nf\_core.schema
+# nf_core.schema
 
 Code to deal with pipeline JSON Schema
 
-### *`class{:python}`*`nf_core.schema.PipelineSchema{:python}`
+### _`class{:python}`_`nf_core.schema.PipelineSchema{:python}`
 
 Bases: `object`
 
@@ -28,23 +28,23 @@ Check that the input parameter has a mimetype
 
 Common mime types: <https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types>
 
-* **Returns:**
+- **Returns:**
   The mimetype of the input parameter
-* **Return type:**
+- **Return type:**
   mimetype (str)
-* **Raises:**
+- **Raises:**
   **LookupError** – If the input parameter is not found or defined in the correct place
 
 #### `get_schema_defaults(){:python}`
 
 Generate set of default input parameters from schema.
 
-Saves defaults to self.schema\_defaults
+Saves defaults to self.schema_defaults
 Returns count of how many parameters were found (with or without a default value)
 
 #### `get_schema_path(path, local_only=False, revision=None){:python}`
 
-Given a pipeline name, directory, or path, set self.schema\_filename
+Given a pipeline name, directory, or path, set self.schema_filename
 
 #### `get_schema_types(){:python}`
 
@@ -87,14 +87,14 @@ Make a new pipeline schema from the template
 
 Creates a markdown table for params from jsonschema properties section
 
-* **Parameters:**
-  * **properties** (*dict*) – A jsonschema properties dictionary
-  * **required** (*list*) – A list of the required fields.
+- **Parameters:**
+  - **properties** (_dict_) – A jsonschema properties dictionary
+  - **required** (_list_) – A list of the required fields.
     Should come from the same level of the jsonschema as properties
-  * **columns** (*list*) – A list of columns to write
-* **Returns:**
+  - **columns** (_list_) – A list of columns to write
+- **Returns:**
   A string with the markdown table
-* **Return type:**
+- **Return type:**
   str
 
 #### `markdown_to_html(markdown_str){:python}`
