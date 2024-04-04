@@ -4612,6 +4612,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -39917,6 +39921,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -40674,6 +40682,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -45699,6 +45711,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -134415,6 +134431,222 @@
           "version": "dev"
         }
       ]
+    },
+    {
+      "name": "quantify_pseudo_alignment",
+      "path": "subworkflows/nf-core/quantify_pseudo_alignment/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "quantify_pseudo_alignment",
+        "description": "Perform quantification with Salmon or Kallisto to produce count tables and SummarizedExperiment objects",
+        "keywords": [
+          "rnaseq",
+          "quantification",
+          "kallisto",
+          "salmon"
+        ],
+        "components": [
+          "custom/tx2gene",
+          "kallisto/quant",
+          "salmon/quant",
+          "summarizedexperiment/summarizedexperiment",
+          "tximeta/tximport"
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing study-level sample sheet information. e.g. [\n  id:'SRP1234' ].\n"
+            }
+          },
+          {
+            "samplesheet": {
+              "type": "file",
+              "description": "Sample sheet, to be baked into the `colData` of summarizedexperiment\nobjects.\n",
+              "pattern": "*.{csv,tsv}"
+            }
+          },
+          {
+            "reads": {
+              "type": "file",
+              "description": "Channel with input FastQ files of size 1 and 2 for single-end and\npaired-end data, respectively. OR a transcriptome-level BAM file if\nrunning Salmon in alignment mode.\n"
+            }
+          },
+          {
+            "index": {
+              "type": "path",
+              "description": "Path to Salmon or Kallisto index in the tool-appropriate form.\n"
+            }
+          },
+          {
+            "gtf": {
+              "type": "file",
+              "description": "Channel with features in GTF format. Passed to pseudoaligners and used\nto generate transcript/ gene mappings.\n"
+            }
+          },
+          {
+            "gtf_id_attribute": {
+              "type": "string",
+              "description": "Attribute in GTF file corresponding to the gene identifier.\n"
+            }
+          },
+          {
+            "gtf_extra_attribute": {
+              "type": "string",
+              "description": "GTF alternative gene attribute (e.g. gene_name)"
+            }
+          },
+          {
+            "pseudo_aligner": {
+              "type": "string",
+              "description": "Pseudoaligner, `kallisto` or `salmon`."
+            }
+          },
+          {
+            "alignment_mode": {
+              "type": "boolean",
+              "description": "If running Salmon, run in alignment mode (`true` or `false`).\n"
+            }
+          },
+          {
+            "lib_type": {
+              "type": "string",
+              "description": "String to override Salmon library type."
+            }
+          },
+          {
+            "kallisto_quant_fraglen": {
+              "type": "integer",
+              "description": "Estimated fragment length. Required if running Kallisto with\nsingle-ended reads.\n"
+            }
+          },
+          {
+            "kallisto_quant_fraglen_sd": {
+              "type": "integer",
+              "description": "Estimated standard error for fragment length required by Kallisto in\nsingle-end mode.\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing study-level sample sheet information. e.g. [\n  id:'SRP1234' ].\n"
+            }
+          },
+          {
+            "results": {
+              "type": "file",
+              "description": "Channel containing sample-wise results directories from the\npseudoaligner.\n"
+            }
+          },
+          {
+            "multiqc": {
+              "type": "file",
+              "description": "Channel containing those pseudoaligner outputs readable by MultiQC for\npassing to workflow-level reporting.\n"
+            }
+          },
+          {
+            "tpm_gene": {
+              "type": "file",
+              "description": "Gene-level matrix of abundance values in TPM.\n",
+              "pattern": "*.gene_tpm.tsv"
+            }
+          },
+          {
+            "counts_gene": {
+              "type": "file",
+              "description": "Gene-level matrix of unadjusted estimated counts from tximport\n(`countsFromAbundance = 'no'`).\n",
+              "pattern": "*.gene_counts.tsv"
+            }
+          },
+          {
+            "lengths_gene": {
+              "type": "file",
+              "description": "Gene-level matrix of length values for modelling in downstream\nanalysis.\n",
+              "pattern": "gene_lengths.tsv"
+            }
+          },
+          {
+            "counts_gene_length_scaled": {
+              "type": "file",
+              "description": "Gene-level matrix of estimated counts, generated from abundance (TPM)\nvalues by scaling to library size, additionally scaled using the\naverage transcript length, averaged over samples and to library size,\nusing tximport `countsFromAbundance = 'lengthScaledTPM'`.\n",
+              "pattern": "*.gene_counts_length_scaled.tsv"
+            }
+          },
+          {
+            "counts_gene_scaled": {
+              "type": "file",
+              "description": "Gene-level matrix of estimated counts, generated from abundance (TPM)\nvalues by scaling to library size with tximport `countsFromAbundance =\n'scaledTPM'`.\n",
+              "pattern": "*.gene_counts_length_scaled.tsv"
+            }
+          },
+          {
+            "tpm_transcript": {
+              "type": "file",
+              "description": "Transcript-level matrix of abundance values in TPM.\n",
+              "pattern": "*.transcript_tpm.tsv"
+            }
+          },
+          {
+            "counts_transcript": {
+              "type": "file",
+              "description": "Transcript-level matrix of unadjusted estimated counts from tximport\n(`countsFromAbundance = 'no'`).\n",
+              "pattern": "*.transcript_counts.tsv"
+            }
+          },
+          {
+            "lengths_transcript": {
+              "type": "file",
+              "description": "Transcript-level matrix of length values for modelling in downstream\nanalysis.\n",
+              "pattern": "transcript_lengths.tsv"
+            }
+          },
+          {
+            "merged_gene_rds": {
+              "type": "file",
+              "description": "Serialised SummarizedExperiment object containing gene level TPM\nabundance values and counts generated from tximport with\n`countsFromAbundance = 'no'`.\n",
+              "pattern": "*.rds"
+            }
+          },
+          {
+            "merged_gene_rds_length_scaled": {
+              "type": "file",
+              "description": "Serialised SummarizedExperiment object containing gene level TPM\nabundance values and counts generated from tximport with\n`countsFromAbundance='lengthScaledTPM'`.\n",
+              "pattern": "*.rds"
+            }
+          },
+          {
+            "merged_gene_rds_scaled": {
+              "type": "file",
+              "description": "Serialised SummarizedExperiment object containing gene level TPM\nabundance values and counts generated from tximport with\n`countsFromAbundance='scaledTPM'`.\n",
+              "pattern": "*.rds"
+            }
+          },
+          {
+            "merged_transcript_rds": {
+              "type": "file",
+              "description": "Serialised SummarizedExperiment object containing transcript level TPM\nabundance values and counts generated from tximport with\n`countsFromAbundance = 'no'`.\n",
+              "pattern": "*.rds"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@pinin4fjords",
+          "@adamrtalbot"
+        ],
+        "maintainers": [
+          "@pinin4fjords",
+          "@adamrtalbot"
+        ]
+      }
     },
     {
       "name": "utils_nextflow_pipeline",
