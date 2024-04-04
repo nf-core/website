@@ -1,4 +1,4 @@
-# schema\_description
+# schema_description
 
 #### `PipelineLint.schema_description(){:python}`
 
@@ -8,5 +8,5 @@ The `nextflow_schema.json` pipeline schema should describe every flat parameter.
 
 Furthermore warns about parameters outside of groups.
 
-* Warning: Parameters in `nextflow_schema.json` without a description
-* Warning: Parameters in `nextflow_schema.json` that are defined outside of a group
+- Warning: Parameters in `nextflow_schema.json` without a description
+- Warning: Parameters in `nextflow_schema.json` that are defined outside of a group

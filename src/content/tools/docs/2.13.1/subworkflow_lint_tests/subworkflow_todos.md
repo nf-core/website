@@ -1,4 +1,4 @@
-# subworkflow\_todos
+# subworkflow_todos
 
 #### `SubworkflowLint.subworkflow_todos(subworkflow){:python}`
 
@@ -22,7 +22,7 @@ This lint test runs through all files in the subworkflows and searches for these
 If any are found they will throw a warning.
 
 :::note
-Note that many GUI code editors have plugins to list all instances of *TODO*
+Note that many GUI code editors have plugins to list all instances of _TODO_
 in a given project directory. This is a very quick and convenient way to get
 started on your pipeline!
 :::
