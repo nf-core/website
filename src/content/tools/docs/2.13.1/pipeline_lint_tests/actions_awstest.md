@@ -1,4 +1,4 @@
-# actions\_awstest
+# actions_awstest
 
 #### `PipelineLint.actions_awstest(){:python}`
 
@@ -20,5 +20,5 @@ and selecting the nf-core AWS test workflow on the left.
 
 The `.github/workflows/awstest.yml` file is tested for the following:
 
-* Must *not* be turned on for `push` or `pull_request`.
-* Must be turned on for `workflow_dispatch`.
+- Must _not_ be turned on for `push` or `pull_request`.
+- Must be turned on for `workflow_dispatch`.

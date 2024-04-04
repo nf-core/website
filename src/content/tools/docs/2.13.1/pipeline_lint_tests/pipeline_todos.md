@@ -1,8 +1,8 @@
-# pipeline\_todos
+# pipeline_todos
 
 #### `PipelineLint.pipeline_todos(root_dir=None){:python}`
 
-Check for nf-core *TODO* lines.
+Check for nf-core _TODO_ lines.
 
 The nf-core workflow template contains a number of comment lines to help developers
 of new pipelines know where they need to edit files and add content.
@@ -22,7 +22,7 @@ This lint test runs through all files in the pipeline and searches for these lin
 If any are found they will throw a warning.
 
 :::note
-Note that many GUI code editors have plugins to list all instances of *TODO*
+Note that many GUI code editors have plugins to list all instances of _TODO_
 in a given project directory. This is a very quick and convenient way to get
 started on your pipeline!
 :::

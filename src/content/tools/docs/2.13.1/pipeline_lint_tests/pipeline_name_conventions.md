@@ -1,4 +1,4 @@
-# pipeline\_name\_conventions
+# pipeline_name_conventions
 
 #### `PipelineLint.pipeline_name_conventions(){:python}`
 
