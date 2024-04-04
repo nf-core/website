@@ -5,10 +5,11 @@ const {
     pipeline = '',
     version = '',
     latestVersion = '',
-    is_archived = false,
     component,
     gh_url,
     component_type,
+    isDsl2 = true,
+    is_archived = false,
 } = Astro.props;
 
 export interface Props {
@@ -19,13 +20,14 @@ export interface Props {
     component?: string;
     component_type?: string;
     gh_url: string;
+    isDsl2?: boolean;
 }
 let latest_link = '';
 if (pipeline.length > 0) {
     latest_link = Astro.url.pathname.replace(pipeline + '/' + version, pipeline + '/' + latestVersion);
 }
 let component_name = component;
-if (component_type === 'modules') {
+if (component_type === 'modules' && component) {
     component_name = component.replace('_', '/');
 }
 
@@ -56,6 +58,7 @@ const shaking = version === 'dev' ? '3deg' : '1deg';
                 ''
             )
         }
+
         {
             is_archived ? (
                 <div class="alert alert-info p-1 p-md-3" role="alert">
@@ -63,6 +66,20 @@ const shaking = version === 'dev' ? '3deg' : '1deg';
                     <p class="mb-0">
                         Archived pipelines can still be used, but may be outdated and will not receive bugfixes.
                     </p>
+                </div>
+            ) : (
+                ''
+            )
+        }
+        {
+            !isDsl2 ? (
+                <div class="alert alert-danger p-1 p-md-3" role="alert">
+                    <span>
+                        This pipeline uses DSL1. It will not work with Nextflow version after <code>22.03.0-edge</code>.{' '}
+                        <a href="https://www.nextflow.io/docs/edge/dsl1.html" target="_blank">
+                            Learn more.
+                        </a>
+                    </span>
                 </div>
             ) : (
                 ''

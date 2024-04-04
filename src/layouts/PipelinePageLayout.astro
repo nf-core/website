@@ -100,7 +100,9 @@ const sortOrder = ['Introduction', 'Usage', 'Parameters', 'Output', 'Results', '
 allTabItems.sort((a, b) => sortOrder.indexOf(a.label) - sortOrder.indexOf(b.label));
 
 const gh_url = 'https://github.com/nf-core/' + pipeline;
-const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline)?.topics || [];
+const pipelineData = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline);
+const topics = pipelineData?.topics ?? [];
+const isDsl2 = pipelineData?.is_DSL2;
 ---
 
 <PageLayout
@@ -125,8 +127,9 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
         pipeline={pipeline}
         version={version}
         latestVersion={latestVersion}
-        is_archived={is_archived}
         gh_url={gh_url}
+        isDsl2={isDsl2}
+        is_archived={is_archived}
         slot="sub-header"
     />
     {
