@@ -1,6 +1,7 @@
 ---
 title: Stuck on revision
 subtitle: How to troubleshoot common mistakes and issues
+weight: 50
 ---
 
 If you get a warning like the following:

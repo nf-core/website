@@ -1,6 +1,7 @@
 ---
 title: Early crash
 subtitle: How to troubleshoot common mistakes and issues
+weight: 40
 ---
 
 ### The pipeline crashes almost immediately with an early pipeline step

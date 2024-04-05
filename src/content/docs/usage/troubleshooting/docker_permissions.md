@@ -1,6 +1,7 @@
 ---
 title: Docker permission errors
 subtitle: How to troubleshoot common mistakes and issues
+weight: 80
 ---
 
 ## One module container fails due to Docker permissions

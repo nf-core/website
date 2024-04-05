@@ -1,6 +1,7 @@
 ---
 title: Crash halfway through
 subtitle: How to troubleshoot common mistakes and issues
+weight: 60
 ---
 
 ### Crashes at a certain step with a non 0 exit code
