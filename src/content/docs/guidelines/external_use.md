@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Using nf-core components outside nf-core'
+title: 'Using nf-core resources outside nf-core'
 subtitle: Guidance on how to use nf-core code and best practices in non-nf-core pipelines.
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Adding Modules to Pipelines'
+title: 'Adding Modules to Pipelines'
 subtitle: Quick reference of the steps needed to add a new module to a pipeline.
 ---
 
