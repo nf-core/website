@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Using nf-core configs outside nf-core'
+title: 'Using nf-core configs outside nf-core'
 subtitle: Guidance on how to use nf-core's centralised institutional configs in your own workflows.
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Writing nf-test tests
+title: 'nf-test: Writing tests'
 subtitle: Guidelines for writing nf-test tests
 ---
 

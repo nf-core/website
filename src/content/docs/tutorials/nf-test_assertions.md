@@ -1,5 +1,5 @@
 ---
-title: nf-test Assertions
+title: 'nf-test: Example assertions'
 description: A guide to using nf-test assertions for testing nf-core pipelines.
 ---
 
