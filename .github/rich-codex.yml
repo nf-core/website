@@ -2,35 +2,35 @@ timeout: 300
 outputs:
   - command: nf-core --help
     img_paths:
-      - public_html/assets/markdown_assets/developers/creating_with_nf_core/nfcore_help.svg
+      - public/images/contributing/creating_with_nf_core/nfcore_help.svg
   - command: nf-core list
     head: 19
     img_paths:
-      - public_html/assets/markdown_assets/developers/creating_with_nf_core/nfcore_list.svg
+      - public/images/contributing/creating_with_nf_core/nfcore_list.svg
   - command: nf-core create --name demo --description "Pipeline for training" --author "Phil" --plain
     fake_command: nf-core create
     img_paths:
-      - public_html/assets/markdown_assets/developers/creating_with_nf_core/nfcore_create.svg
+      - public/images/contributing/creating_with_nf_core/nfcore_create.svg
   - command: cd nf-core-demo && git status
     fake_command: git status
     img_paths:
-      - public_html/assets/markdown_assets/developers/creating_with_nf_core/git_status.svg
+      - public/images/contributing/creating_with_nf_core/git_status.svg
   - command: cd nf-core-demo && git branch
     fake_command: git branch
     img_paths:
-      - public_html/assets/markdown_assets/developers/creating_with_nf_core/git_branch.svg
+      - public/images/contributing/creating_with_nf_core/git_branch.svg
   - command: cd nf-core-demo && git log --oneline
     fake_command: git log --oneline
     img_paths:
-      - public_html/assets/markdown_assets/developers/creating_with_nf_core/git_log.svg
+      - public/images/contributing/creating_with_nf_core/git_log.svg
   - command: nextflow run nf-core-demo/ -profile test,docker --outdir test_results
     title: nextflow run
     img_paths:
-      - public_html/assets/markdown_assets/developers/creating_with_nf_core/nextflow_run_1.svg
+      - public/images/contributing/creating_with_nf_core/nextflow_run_1.svg
   - command: cd nf-core-demo && nf-core lint && grep -rl TODO .
     fake_command: nf-core lint
     img_paths:
-      - public_html/assets/markdown_assets/developers/creating_with_nf_core/nfcore_lint_warnings.svg
+      - public/images/contributing/creating_with_nf_core/nfcore_lint_warnings.svg
   - command: |
       cd nf-core-demo && \
       grep -rl TODO . | xargs sed -i 's/TODO//g' && \
@@ -38,11 +38,15 @@ outputs:
       nf-core lint
     fake_command: nf-core lint
     img_paths:
-      - public_html/assets/markdown_assets/developers/creating_with_nf_core/nfcore_lint_failure.svg
+      - public/images/contributing/creating_with_nf_core/nfcore_lint_failure.svg
   - command: nextflow run nf-core-demo/ --help
     img_paths:
-      - public_html/assets/markdown_assets/developers/creating_with_nf_core/nextflow_run_help.svg
+      - public/images/contributing/creating_with_nf_core/nextflow_run_help.svg
   - command: nextflow run nf-core-demo/ -profile test,docker
     title: nextflow run
     img_paths:
-      - public_html/assets/markdown_assets/developers/creating_with_nf_core/nextflow_run_no_outdir.svg
+      - public/images/contributing/creating_with_nf_core/nextflow_run_no_outdir.svg
+  - command: git clone https://github.com/nf-core/modules.git --depth 1 && cd modules && nf-core modules create fastqc --author @janedoe --label process_low --meta
+    fake_command: nf-core modules create fastqc --author @janedoe --label process_low --meta
+    img_paths:
+      - public/images/contributing/modules/nf-core-modules-create.svg
