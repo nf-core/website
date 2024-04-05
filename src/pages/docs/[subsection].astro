@@ -3,7 +3,7 @@ import PageLayout from '@layouts/PageLayout.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
 export async function getStaticPaths() {
-    return ['contributing', 'usage'].map((subsection) => ({
+    return ['tutorials', 'usage', 'checklists', 'guidelines'].map((subsection) => ({
         params: {
             subsection: subsection,
         },
@@ -15,8 +15,10 @@ const { subsection } = Astro.params;
 let docs = await getCollection('docs');
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
 let sections: { section_name: string; section_slug: string; children: { title: string; slug: string }[] }[] = [
-    { section_name: 'Usage', section_slug: '/docs/usage/', children: [] },
-    { section_name: 'Contributing', section_slug: '/docs/contributing/', children: [] },
+    { section_name: 'Tutorials', section_slug: '/docs/tutorials', children: [] },
+    { section_name: 'Usage', section_slug: '/docs/usage', children: [] },
+    { section_name: 'Checklists', section_slug: '/docs/checklists', children: [] },
+    { section_name: 'Guidelines', section_slug: '/docs/guidelines', children: [] },
 ];
 // sort docs first depth, then by weight, then by title
 const sortDocs = (a: CollectionEntry<'docs'>, b: CollectionEntry<'docs'>) => {
