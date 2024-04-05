@@ -7,7 +7,7 @@ subtitle: Follow this walkthrough to add a new pipeline to nf-core.
 
 Whilst the linting tests are good, they're not sufficient by themselves.
 It's also good actually run your pipeline on a minimal dataset.
-We also automatically run tests with GitHub Actions anytime someone updates the pipeline code (see below).
+We also automatically run tests with GitHub Actions anytime someone updates the pipeline code.
 Currently, we don't usually check the results that are produced, but it often catches
 syntax errors and other serious problems that cause nextflow to exit with an error.
 

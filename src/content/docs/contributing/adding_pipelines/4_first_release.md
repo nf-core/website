@@ -35,7 +35,7 @@ core team.
 What happens next depends on the state of your master branch:
 
 - If you have developed in such a way that your master branch is clean, .i.e. doesn't have
-  any commits since the initial one, the PR created above will represent all changes
+  any commits since the initial one, the PR will represent all changes
   associated with the proposed release, and the core team will use it for review and
   feedback.
 - If your master branch already contains changes associated with the release, the core
