@@ -2,8 +2,10 @@
 import PageLayout from '@layouts/PageLayout.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 let docs = await getCollection('docs');
+let tutorialDocs: CollectionEntry<'docs'>[] = [];
 let usageDocs: CollectionEntry<'docs'>[] = [];
-let contributingDocs: CollectionEntry<'docs'>[] = [];
+let checklistDocs: CollectionEntry<'docs'>[] = [];
+let guidelineDocs: CollectionEntry<'docs'>[] = [];
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
 let sections: { section_name: string; section_slug: string; children: { title: string; slug: string }[] }[] = [
     { section_name: 'Usage', section_slug: '/docs/usage', children: [] },
@@ -35,22 +37,40 @@ const sortDocs = (a: CollectionEntry<'docs'>, b: CollectionEntry<'docs'>) => {
 };
 
 docs.map((doc) => {
+    if (doc.slug.startsWith('tutorials/')) {
+        tutorialDocs.push(doc);
+    }
     if (doc.slug.startsWith('usage/')) {
         usageDocs.push(doc);
     }
-    if (doc.slug.startsWith('contributing/')) {
-        contributingDocs.push(doc);
+    if (doc.slug.startsWith('checklists/')) {
+        checklistDocs.push(doc);
+    }
+    if (doc.slug.startsWith('guidelines/')) {
+        guidelineDocs.push(doc);
     }
 });
+tutorialDocs.sort(sortDocs);
 usageDocs.sort(sortDocs);
-contributingDocs.sort(sortDocs);
+checklistDocs.sort(sortDocs);
+guidelineDocs.sort(sortDocs);
 
+tutorialDocs
+    .filter((doc) => doc.slug.split('/').length === 2)
+    .map((doc) => {
+        sections[0].children.push({ title: doc.data.title, slug: '/docs/' + doc.slug + '/' });
+    });
 usageDocs
     .filter((doc) => doc.slug.split('/').length === 2)
     .map((doc) => {
         sections[0].children.push({ title: doc.data.title, slug: '/docs/' + doc.slug + '/' });
     });
-contributingDocs
+checklistDocs
+    .filter((doc) => doc.slug.split('/').length === 2)
+    .map((doc) => {
+        sections[1].children.push({ title: doc.data.title, slug: '/docs/' + doc.slug + '/' });
+    });
+guidelineDocs
     .filter((doc) => doc.slug.split('/').length === 2)
     .map((doc) => {
         sections[1].children.push({ title: doc.data.title, slug: '/docs/' + doc.slug + '/' });
@@ -69,7 +89,58 @@ contributingDocs
                 processing your data. You will also find information on how to contribute to nf-core pipelines, modules
                 and subworkflows.
             </p>
-            <div class="row row-cols-1 row-cols-md-2 justify-content-around">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-xxl-4 justify-content-around">
+                <div class="col">
+                    <h2>Tutorials</h2>
+                    <ul>
+                        {
+                            tutorialDocs
+                                .filter((doc) => doc.slug.split('/').length === 2)
+                                .map((doc) => {
+                                    // check if this is a parent of a nested doc
+                                    const childDocs = tutorialDocs.filter((childDoc) =>
+                                        childDoc.slug.startsWith(doc.slug + '/'),
+                                    );
+                                    if (childDocs.length > 0) {
+                                        return (
+                                            <li>
+                                                <span>
+                                                    <a href={'/docs/' + doc.slug + '/'}>{doc.data.title}</a>
+                                                    <button
+                                                        class="btn p-0"
+                                                        data-bs-toggle="collapse"
+                                                        data-bs-target={'#' + doc.slug.replace('/', '-')}
+                                                        aria-expanded="false"
+                                                        aria-controls={doc.slug.replace('/', '-')}
+                                                    >
+                                                        <i class="fa-solid fa-chevron-down" />
+                                                    </button>
+                                                </span>
+                                                <ul class="collapse" id={doc.slug.replace('/', '-')}>
+                                                    {childDocs.map((childDoc) => {
+                                                        return (
+                                                            <li>
+                                                                <a href={'/docs/' + childDoc.slug + '/'}>
+                                                                    {childDoc.data.title}
+                                                                </a>
+                                                            </li>
+                                                        );
+                                                    })}
+                                                </ul>
+                                            </li>
+                                        );
+                                    } else {
+                                        return (
+                                            <li>
+                                                <a href={'/docs/' + doc.slug + '/'}>{doc.data.title}</a>
+                                            </li>
+                                        );
+                                    }
+                                })
+                        }
+                    </ul>
+                </div>
+
                 <div class="col">
                     <h2>Usage</h2>
                     <ul>
@@ -122,14 +193,65 @@ contributingDocs
                 </div>
 
                 <div class="col">
-                    <h2>Contributing</h2>
+                    <h2>Checklists</h2>
                     <ul>
                         {
-                            contributingDocs
+                            checklistDocs
                                 .filter((doc) => doc.slug.split('/').length === 2)
                                 .map((doc) => {
                                     // check if this is a parent of a nested doc
-                                    const childDocs = contributingDocs.filter((childDoc) =>
+                                    const childDocs = checklistDocs.filter((childDoc) =>
+                                        childDoc.slug.startsWith(doc.slug + '/'),
+                                    );
+                                    if (childDocs.length > 0) {
+                                        return (
+                                            <li>
+                                                <span>
+                                                    <a href={'/docs/' + doc.slug + '/'}>{doc.data.title}</a>
+                                                    <button
+                                                        class="btn p-0"
+                                                        data-bs-toggle="collapse"
+                                                        data-bs-target={'#' + doc.slug.replace('/', '-')}
+                                                        aria-expanded="false"
+                                                        aria-controls={doc.slug.replace('/', '-')}
+                                                    >
+                                                        <i class="fa-solid fa-chevron-down" />
+                                                    </button>
+                                                </span>
+                                                <ul class="collapse" id={doc.slug.replace('/', '-')}>
+                                                    {childDocs.map((childDoc) => {
+                                                        return (
+                                                            <li>
+                                                                <a href={'/docs/' + childDoc.slug + '/'}>
+                                                                    {childDoc.data.title}
+                                                                </a>
+                                                            </li>
+                                                        );
+                                                    })}
+                                                </ul>
+                                            </li>
+                                        );
+                                    } else {
+                                        return (
+                                            <li>
+                                                <a href={'/docs/' + doc.slug + '/'}>{doc.data.title}</a>
+                                            </li>
+                                        );
+                                    }
+                                })
+                        }
+                    </ul>
+                </div>
+
+                <div class="col">
+                    <h2>Guidelines</h2>
+                    <ul>
+                        {
+                            guidelineDocs
+                                .filter((doc) => doc.slug.split('/').length === 2)
+                                .map((doc) => {
+                                    // check if this is a parent of a nested doc
+                                    const childDocs = guidelineDocs.filter((childDoc) =>
                                         childDoc.slug.startsWith(doc.slug + '/'),
                                     );
                                     if (childDocs.length > 0) {
