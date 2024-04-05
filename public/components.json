@@ -4524,6 +4524,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -39763,6 +39767,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -40520,6 +40528,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -45467,6 +45479,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -128098,6 +128114,85 @@
           "version": "2.5.4"
         }
       ]
+    },
+    {
+      "name": "fasta_build_add_kraken2",
+      "path": "subworkflows/nf-core/fasta_build_add_kraken2/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "fasta_build_add_kraken2",
+        "description": "KRAKEN2 build custom database subworkflow",
+        "keywords": [
+          "metagenomics",
+          "kraken2",
+          "database",
+          "build",
+          "custom"
+        ],
+        "components": [
+          "kraken2/add",
+          "kraken2/build"
+        ],
+        "input": [
+          {
+            "ch_fasta": {
+              "type": "file",
+              "description": "Channel containing each fasta as a distinct element with meta\nStructure: [ val(meta), path(fasta) ]\n",
+              "pattern": "*.{fasta,fa,fna}"
+            }
+          },
+          {
+            "ch_taxonomy_names": {
+              "type": "file",
+              "description": "Channel containing a NCBI-style taxdump names file\nStructure: [ names.dmp ]\n",
+              "pattern": "names.dmp"
+            }
+          },
+          {
+            "ch_taxonomy_nodes": {
+              "type": "file",
+              "description": "Channel containing a NCBI-style taxdump nodes file\nStructure: [ nodes.dmp ]\n",
+              "pattern": "nodes.dmp"
+            }
+          },
+          {
+            "ch_accession2taxid": {
+              "type": "file",
+              "description": "Channel containing a NCBI-style taxdump accession2taxid (acc2tax) file\nStructure: [ accession2taxid_file ]\n",
+              "pattern": "*.accession2taxid"
+            }
+          },
+          {
+            "val_cleanintermediate": {
+              "type": "boolean",
+              "description": "Boolean flag whether to clean up intermediate files after build or not\nStructure: [ val_cleanintermediate ]\n",
+              "pattern": "true|false"
+            }
+          }
+        ],
+        "output": [
+          {
+            "db": {
+              "type": "directory",
+              "description": "Channel containing KRAKEN2 database directory.\nUse `$ext.prefix` in a modules.conf file to change default name\nStructure: [ val(meta), path(db) ]\n",
+              "pattern": "*/"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@jfy133"
+        ],
+        "maintainers": [
+          "@jfy133"
+        ]
+      }
     },
     {
       "name": "fasta_clean_fcs",
