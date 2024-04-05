@@ -1,6 +1,7 @@
 ---
-title: Adding a new pipeline
+title: Create a new pipeline
 subtitle: Follow this walkthrough to add a new pipeline to nf-core.
+weight: 10
 ---
 
 # Create a pipeline from the template

@@ -1,14 +1,23 @@
 ---
-title: Adding a new pipeline
+title: Test data
 subtitle: Follow this walkthrough to add a new pipeline to nf-core.
+weight: 20
 ---
 
 ## Running with test data
 
-Whilst the linting tests are good, they're not sufficient by themselves.
+Whilst the code formatting and nf-core linting tests are helpful, they're not sufficient by themselves.
 It's also good actually run your pipeline on a minimal dataset.
+
+It's recommended to use the `debug` profile when running the pipeline, so that you receive warnings about process selectors and other debug info.
+A typical command to run an nf-core pipeline test is as follows:
+
+```bash
+nextflow run . -profile debug,test,docker --outdir <OUTDIR>
+```
+
 We also automatically run tests with GitHub Actions anytime someone updates the pipeline code.
-Currently, we don't usually check the results that are produced, but it often catches
+We use nf-test to check the pipeline results, but regular test runs also often catch
 syntax errors and other serious problems that cause nextflow to exit with an error.
 
 ### Putting the test data on GitHub

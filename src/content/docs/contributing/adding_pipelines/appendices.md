@@ -1,6 +1,7 @@
 ---
-title: Adding a new pipeline
+title: Appendices
 subtitle: Follow this walkthrough to add a new pipeline to nf-core.
+weight: 50
 ---
 
 ### Adding new pipeline features to existing pipelines
