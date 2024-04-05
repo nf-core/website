@@ -18,7 +18,7 @@ The `main` and `dev` branches are "protected" and can only be modified with pull
   - Direct push to `main` and `dev` is not allowed, since the two branches are protected.
 - Within each team (Tree of Life Assembly and Informatics Infrastructure), everyone has ["maintain" access](https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization#permissions-for-each-role) to the team repositories.
 - A selection of people from the Informatics Infrastructure team have ["admin" access](https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization#permissions-for-each-role) to all Nextflow repositories.
-- @muffato and @mcshane are ["owners"](https://docs.github.com/en/organizations/managing-peoples-access-to-your-organization-with-roles/roles-in-an-organization#permissions-for-organization-roles).
+- [@muffato](https://github.com/muffato) and [@mcshane](https://github.com/mcshane) are ["owners"](https://docs.github.com/en/organizations/managing-peoples-access-to-your-organization-with-roles/roles-in-an-organization#permissions-for-organization-roles).
 - Additional contributors can be added, if sponsored by a repository admin.
 
 ## Farm environment
