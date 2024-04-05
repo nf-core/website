@@ -87,7 +87,7 @@ If another nf-core pipeline also desires to use this module, a PR can be made ad
 For guidelines regarding multi-tool modules, please search this page for the phrase `multi-tool`.
 Existing local multi-tool modules can be searched for using the Github search box, searching across the nf-core org for terms such as `args2` `samtools` `collate` `fastq`.
 
-```
+```plaintext
 org:nf-core args2 samtools collate fastq
 ```
 
@@ -218,6 +218,7 @@ tool --version | sed '1!d'
 - You can separate `sed{:bash}` commands using `;`. Often the pattern : `sed 'filter line ; replace string'{:bash}` is enough to get the version number.
 - It is not necessary to use `echo`, `head`, `tail`, or `grep`.
 - Use `|| true` for tools that exit with a non-zero error code: `command --version || true{:bash}` or `command --version | sed ... || true{:bash}`.
+
 </details>
 
 We chose a [HEREDOC](https://tldp.org/LDP/abs/html/here-docs.html) over piping into the versions file line-by-line as we believe the latter makes it easy to accidentally overwrite the file.
@@ -257,7 +258,7 @@ END_VERSIONS
 
 If the HEREDOC cannot be used because the script is not bash, the `versions.yml` MUST be written directly e.g. [ascat module](https://github.com/nf-core/modules/blob/master/modules/nf-core/ascat/main.nf).
 
-#### 1.9 Presence of when statemetn
+#### 1.9 Presence of when statement
 
 The process definition MUST NOT change the `when` statement.
 `when` conditions can instead be supplied using the `process.ext.when` directive in a configuration file.
@@ -492,7 +493,7 @@ Input and output tuples MUST be split into separate entries
 
 Input/output types MUST only be of the following categories: `map`, `file`, `directory`, `string`, `boolean`, `integer`, `float`, `boolean`, `list`
 
-#### 4.9 Correspondance of input/outputs entries to channels
+#### 4.9 Correspondence of input/outputs entries to channels
 
 Input/output entries MUST match a corresponding channel in the module itself
 
@@ -624,7 +625,7 @@ It is also possible for a new multi-tool container to be built and added to BioC
 
 - If the multi-tool container already exists and you want to obtain the `mulled-*` path, you can use (this)[https://midnighter.github.io/mulled] helper tool.
 
-#### 7.5 Software not on bioconda
+#### 7.5 Software not on Bioconda
 
 If the software is not available on Bioconda a `Dockerfile` MUST be provided within the module directory. We will use GitHub Actions to auto-build the containers on the [GitHub Packages registry](https://github.com/features/packages).
 

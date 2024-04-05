@@ -25,7 +25,7 @@ Test data SHOULD be as small as possible
 
 #### 1.3 License of test data
 
-Test data MUST be publically available and have licenses to allow public reuse
+Test data MUST be publicly available and have licenses to allow public reuse
 
 #### 1.4 Documentation of test data
 
