@@ -1,6 +1,7 @@
 ---
 title: Configuration
 subtitle: How to troubleshoot common mistakes and issues
+weight: 20
 ---
 
 ## Manual debugging on clusters using schedulers

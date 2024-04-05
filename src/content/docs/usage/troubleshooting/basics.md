@@ -1,6 +1,7 @@
 ---
 title: Troubleshooting basics
 subtitle: How to troubleshoot common mistakes and issues
+weight: 10
 ---
 
 These are the recommended steps for troubleshooting a pipeline.

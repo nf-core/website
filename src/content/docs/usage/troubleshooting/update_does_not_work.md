@@ -1,6 +1,7 @@
 ---
 title: Pipeline update doesn't work
 subtitle: How to troubleshoot common mistakes and issues
+weight: 60
 ---
 
 ### My pipeline update doesn't seem to do anything

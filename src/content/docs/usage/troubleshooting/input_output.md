@@ -1,6 +1,7 @@
 ---
 title: Input and output errors
 subtitle: How to troubleshoot common mistakes and issues
+weight: 30
 ---
 
 ## Sample sheet input
