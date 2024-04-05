@@ -217,11 +217,17 @@ you're ready to add your workflow to nf-core.
 
 First, go to the settings of your repository. Under the General page, in the 'Danger Zone' you should have an option to Transfer Ownership. Transfer this to the nf-core organisation.
 
-> You must make sure you are already a part of the nf-core organisation to allow transferring to nf-core. Alternatively you can add a core-team member to your repository, and ask them to do the transfer you.
+:::tip
+You must make sure you are already a part of the nf-core organisation to allow transferring to nf-core. Alternatively you can add a core-team member to your repository, and ask them to do the transfer you.
+:::
 
 Once transferred, go to the transferred repository on nf-core, and make a new fork back to your user name or organisation to continue development on a fork.
 
-> We [prefer](https://nfcore.slack.com/archives/CQY2U5QU9/p1676366247726189?thread_ts=1676360232.837109&cid=CQY2U5QU9) transferring over _forking_ to nf-core. If we fork the original repository to nf-core whenever anyone opens a pull-request, it defaults to going to the original user's fork of the repository, not the nf-core repo. In this case the only way to fix to request manual detachment from GitHub support.
+:::info
+Repositories should be _transferred_ instead of _forking_ to nf-core.
+If we fork the original repository to nf-core whenever anyone opens a pull-request, it defaults to going to the original user's fork of the repository, not the nf-core repo.
+In this case the only way to fix to request manual detachment from GitHub support.
+:::
 
 ### Branch setup
 
@@ -318,11 +324,11 @@ The nf-core website and helper tools will automatically detect the new release a
 
 That's it, you're finished! Congratulations!
 
-### Publications
+:::note{title=Publications}
+If you wish to make a publication based on the pipeline, make sure you [give credit to nf-core](/docs/contributing/guidelines/recommendations/publication_credit).
+:::
 
-If you wish to make a publication based on the pipeline, make sure to follow the recommended [nf-core guidelines](/docs/contributing/guidelines/recommendations/publication_credit).
-
-### Subsequent releases
+## Subsequent releases
 
 Once you've made your first release you can continue to work on your fork and make pull-requests
 against the `dev` branch on the nf-core repository. Now that we have a stable `master` branch,
@@ -336,6 +342,8 @@ because the commit ID is used to reference whether the pipeline is up to date or
 
 ### Adding new pipeline features to existing pipelines
 
+<!-- TODO: Delete / link to another section of the docs -->
+
 We are an open and inclusive community, welcoming any contributions to pipelines already present in nf-core. In many cases, the original developers might either not have experience with some new fancy method or simply doesn't have the time to implement everything themselves - so they might be really happy to see you actively contributing!
 
 Basic rules for such contributions:
@@ -346,6 +354,8 @@ Basic rules for such contributions:
 - Please do not write to multiple channels in the Slack community, rather collect all of the information in a single GitHub issue, which makes it also much easier to follow up on your proposal
 
 ### Adding new dependencies to an existing pipeline
+
+<!-- TODO: Delete / link to another section of the docs -->
 
 Sometimes, especially when adding new features to a pipeline, the dependencies change as well. In such cases, you might want to have an updated Docker Container available before submitting a pull request, in order to have the GitHub Actions tests run through when testing your updated code. To achieve that, please follow these steps:
 
@@ -375,9 +385,13 @@ This way, a review process will be very fast and we can merge the changes into t
 
 ## Continuous integration testing
 
+<!-- TODO: Delete / link to another section of the docs -->
+
 To assure that nf-core pipelines don't break after some change is made to the code, we use automated continuous integration (CI) testing. This is done via GitHub actions, which are defined in the `.github/workflows` directory. Parameters and file paths are set in the `conf/test.config` and `conf/test_full.config`. Please see also [here](/docs/contributing/adding_pipelines#add-some-test-data) for how to set-up the test workflow for your pipeline.
 
 ## DSL2 and modules
+
+<!-- TODO: Delete / link to another section of the docs -->
 
 Nextflow DSL2 allows for a more modularized design of pipelines and the reuse of components. The nf-core team has developed a set of design patterns on how to best implement DSL2 pipelines, which should be used by all nf-core pipelines in order to assure standardization and the reuse of components. The following is meant to help understand certain design choices and how a nf-core DSL2 pipeline should be build.
 
