@@ -1,21 +1,559 @@
 ---
 import PageLayout from '@layouts/PageLayout.astro';
+import { remote_workflows as pipelines } from '@public/pipelines.json';
+
+// sort pipelines by name
+pipelines.sort((a, b) => a.name.localeCompare(b.name));
+// sort pipelines by status, with released pipelines first, then dev, then archived
+pipelines.sort((a, b) => {
+    if (a.releases?.length > 1 && b.releases?.length === 1) return -1;
+    if (a.releases?.length === 1 && b.releases?.length > 1) return 1;
+    if (a.releases?.length === 1 && b.archived) return -1;
+    if (a.archived && b.releases?.length === 1) return 1;
+    if (a.releases?.length === 1 && b.releases?.length === 1) return a.name.localeCompare(b.name);
+    if (a.archived && !b.archived) return 1;
+    if (!a.archived && b.archived) return -1;
+    return a.name.localeCompare(b.name);
+});
 ---
 
 <PageLayout
     title="Pipeline health"
-    subtitle="Check GitHub settings for all nf-core repositories"
+    subtitle="Check GitHub settings for all nf-core pipelines"
     mainpage_container={false}
 >
-    <div class="iframe-container w-100 d-flex align-items-start vh-100">
-        <i class="mt-5 m-auto text-success fa-regular fa-spinner-third fa-spin fa-3x"></i>
-        <iframe
-            class="d-none"
-            src="https://oldsite.nf-co.re/pipeline_health"
-            onload="this.classList.remove('d-none'); this.previousElementSibling.classList.add('d-none');"
-            title="pipeline_heath"
-            style="border:none;"
-            width="100%"
-            height="100%"></iframe>
+    <div class="container-fluid main-content w-100 mw-100">
+        <table class="table table-hover table-sm w-100">
+            <thead class="">
+                <tr class="sticky-top-under z-1">
+                    <th class="small fw-normal text-nowrap p-1">Pipeline Name</th>
+                    <th
+                        class="small fw-normal text-nowrap p-1"
+                        title="Has at least one release"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top">Released</th
+                    >
+                    <th
+                        class="small fw-normal text-nowrap p-1"
+                        title="Last release is after latest tools release (so up to date with template)"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top">Released after tools</th
+                    >
+                    <th
+                        class="small fw-normal text-nowrap p-1"
+                        title="Master branch is same commit as the last release"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"><code>master</code> = release</th
+                    >
+                    <th
+                        class="small fw-normal text-nowrap p-1"
+                        title="Has a nextflow_schema.json file (in last release, dev if no release)"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top">JSON Schema</th
+                    >
+                    <th
+                        class="small fw-normal text-nowrap p-1"
+                        title="Has more than one commit to dev branch (not just initial creation commit)"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top">Dev activity</th
+                    >
+                    <th
+                        class="small fw-normal text-nowrap p-1"
+                        title="Has a modules directory, suggesting that it's a DSL2 pipeline (in last release, dev if no release)"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top">DSL2</th
+                    >
+                    <th
+                        class="small fw-normal text-nowrap p-1"
+                        title="Uses nf-test"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top">nf-test</th
+                    >
+                    <th
+                        class="small fw-normal text-nowrap p-1"
+                        title="Uses nf-test in dev branch"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top">nf-test in dev</th
+                    >
+                    <th
+                        class="small fw-normal text-nowrap p-1"
+                        title="Disable wikis"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top">Wikis</th
+                    >
+                    <th
+                        class="small fw-normal text-nowrap p-1"
+                        title="Enable issues"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top">Issues</th
+                    >
+                    <th
+                        class="small fw-normal text-nowrap p-1"
+                        title="Allow merge commits"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top">Merge commits</th
+                    >
+                    <th
+                        class="small fw-normal text-nowrap p-1"
+                        title="Allow rebase merging"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top">Rebase merging</th
+                    >
+                    <th
+                        class="small fw-normal text-nowrap p-1"
+                        title="Do not allow squash merges"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top">Squash merges</th
+                    >
+                    <th
+                        class="small fw-normal text-nowrap p-1"
+                        title="default branch master (released) or dev (no releases)"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top">Default branch</th
+                    >
+                    <th
+                        class="small fw-normal text-nowrap p-1"
+                        title="Minimum keywords set"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top">Keywords</th
+                    >
+                    <th
+                        class="small fw-normal text-nowrap p-1"
+                        title="Description must be set"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top">Description</th
+                    >
+                    <th
+                        class="small fw-normal text-nowrap p-1"
+                        title="URL should be set to https://nf-co.re/[PIPELINE-NAME]"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top">Repo URL</th
+                    >
+                    <th colspan="2" class="small fw-normal text-nowrap p-1 px-3" data-bs-placement="top">Team access</th
+                    >
+                    <th colspan="3" class="small fw-normal text-nowrap p-1 px-3" data-bs-placement="top"
+                        >Branches exist</th
+                    >
+
+                    <th colspan="6" class="small fw-normal text-nowrap p-1 px-3" data-bs-placement="top"
+                        >Branch protection: <code>master</code> branch</th
+                    >
+                    <th colspan="6" class="small fw-normal text-nowrap p-1 px-3" data-bs-placement="top"
+                        >Branch protection: <code>dev</code></th
+                    >
+                    <th
+                        class="small fw-normal text-nowrap p-1 px-3"
+                        title="Restrict push to TEMPLATE to @nf-core-bot"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top">T push</th
+                    >
+                    <th
+                        colspan="4"
+                        class="small fw-normal text-nowrap text-center p-1 px-3"
+                        title="nf-validation plugin in nextflow.config"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top">Plugins: nf-validation</th
+                    >
+                    <th
+                        colspan="4"
+                        class="small fw-normal text-nowrap text-center p-1 px-3"
+                        title="nf-prov plugin in nextflow.config"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top">Plugins: nf-prov</th
+                    >
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    pipelines.map((pipeline) => {
+                        const getCell = (condition?: any, link?: string, tooltip?: string, classes?: string) => (
+                            <td
+                                class={
+                                    'text-center status ' +
+                                    (condition
+                                        ? condition === -1 || condition === undefined
+                                            ? 'status--unknown '
+                                            : 'status--healthy '
+                                        : 'status--unhealthy ') +
+                                    (classes ?? '')
+                                }
+                                data-bs-toggle="tooltip"
+                                title={pipeline.name + ': ' + tooltip}
+                            >
+                                {condition === -1 || condition === undefined ? (
+                                    <a href={link} class="d-block text-secondary text-decoration-none">
+                                        ?
+                                    </a>
+                                ) : (
+                                    <a href={link} target="_blank">
+                                        {condition ? <i class="fas fa-check" /> : <i class="fas fa-times " />}
+                                    </a>
+                                )}
+                            </td>
+                        );
+                        return (
+                            <tr class:list={[{ archived: pipeline.archived, collapse: pipeline.archived }]}>
+                                <td class="text-nowrap">
+                                    {pipeline.name}
+                                    {pipeline.archived && (
+                                        <i
+                                            class="fa-solid fa-xs fa-fw fa-archive text-info"
+                                            title="archived"
+                                            data-bs-toggle="tooltip"
+                                        />
+                                    )}
+                                    {pipeline.releases?.length > 1 && (
+                                        <i
+                                            class="fa-solid fa-xs fa-fw fa-check text-success"
+                                            title="released"
+                                            data-bs-toggle="tooltip"
+                                        />
+                                    )}
+                                    {pipeline.releases?.length === 1 && !pipeline.archived && (
+                                        <i
+                                            class="fa-solid fa-xs fa-fw fa-wrench text-warning"
+                                            title="under development"
+                                            data-bs-toggle="tooltip"
+                                        />
+                                    )}
+                                </td>
+                                {/* Released */}
+                                {getCell(
+                                    pipeline.releases?.length > 1,
+                                    `https://github.com/nf-core/${pipeline.name}/releases`,
+                                    'has at least one release',
+                                )}
+                                {/* Released after tools */}
+                                {getCell(
+                                    pipeline.released_after_tools,
+                                    `https://github.com/nf-core/${pipeline.name}/releases`,
+                                    'last release is after latest tools release (so up to date with template)',
+                                )}
+                                {/*Master = release */}
+                                {getCell(
+                                    pipeline.last_release_is_head,
+                                    pipeline.last_release_vs_default_compare_url,
+                                    'master branch is same commit as the last release',
+                                )}
+                                {/* JSON Schema*/}
+                                {getCell(
+                                    pipeline.releases?.[0].has_schema,
+                                    pipeline.repository_url,
+                                    'has a nextflow_schema.json file (in last release, dev if no release)',
+                                )}
+                                {/* commits to dev */}
+                                {getCell(
+                                    pipeline.commits_to_dev > 1,
+                                    pipeline.repository_url + '/tree/dev',
+                                    'has more than one commit to dev branch (not just initial creation commit)',
+                                )}
+                                {/* nf-test */}
+                                {/* DSL2 */}
+                                {getCell(
+                                    pipeline.is_DSL2,
+                                    pipeline.repository_url,
+                                    "has a modules directory, suggesting that it's a DSL2 pipeline (in last release, dev if no release)",
+                                )}
+                                {/* nf-test */}
+                                {getCell(pipeline.has_nf_test, pipeline.repository_url, 'uses nf-test')}
+                                {/* nf-test in dev */}
+                                {getCell(
+                                    pipeline.has_nf_test_dev,
+                                    pipeline.repository_url,
+                                    'uses nf-test in dev branch',
+                                )}
+                                {/* wikis */}
+                                {getCell(!pipeline.has_wiki, pipeline.repository_url + '/settings', 'disable wiki')}
+                                {/* issues */}
+                                {getCell(pipeline.has_issues, pipeline.repository_url + '/settings', 'enable issues')}
+                                {/* merge commits */}
+                                {getCell(
+                                    pipeline.allow_merge_commit,
+                                    pipeline.repository_url + '/settings',
+                                    'allow merge commits',
+                                )}
+                                {/* Rebase merging */}
+                                {getCell(
+                                    pipeline.allow_rebase_merge,
+                                    pipeline.repository_url + '/settings',
+                                    'allow rebase merging',
+                                )}
+                                {/* Squash changes */}
+                                {getCell(
+                                    (pipeline.allow_squash_merge ?? -1) !== -1
+                                        ? !pipeline.allow_squash_merge
+                                        : pipeline.allow_squash_merge,
+                                    pipeline.repository_url + '/settings',
+                                    'do not allow squash merge',
+                                )}
+                                {/* Default branch */}
+                                {getCell(
+                                    pipeline.default_branch,
+                                    pipeline.repository_url,
+                                    'default branch master (released) or dev (no releases)',
+                                )}
+                                {/* Keywords */}
+                                {getCell(pipeline.has_required_topics, pipeline.repository_url, 'minimum keywords set')}
+                                {/* Description */}
+                                {getCell(pipeline.description, pipeline.repository_url, 'description must be set')}
+                                {/* Repo URL */}
+                                {getCell(
+                                    new RegExp(`https:\/\/nf-co\.re\/${pipeline.name}`).test(pipeline.homepage ?? ''),
+                                    pipeline.homepage && pipeline.homepage?.length > 0
+                                        ? pipeline.homepage
+                                        : pipeline.repository_url,
+                                    'URL should be set to https://nf-co.re/' + pipeline.name,
+                                )}
+                                {/* Team access */}
+                                {getCell(
+                                    pipeline.team_contributors_permission_push ?? -1,
+                                    pipeline.repository_url + '/settings/access',
+                                    'write access for nf-core/contributors',
+                                    ' border-start',
+                                )}
+                                {getCell(
+                                    pipeline.team_core_permission_admin ?? -1,
+                                    pipeline.repository_url + '/settings/access',
+                                    'admin access for nf-core/core',
+                                    ' border-end',
+                                )}
+                                {/* Branches exist */}
+                                {getCell(
+                                    pipeline.master_branch_exists,
+                                    `https://github.com/nf-core/${pipeline.name}/tree/${pipeline.default_branch}`,
+                                    'master branch: branch must exist',
+                                    ' ms-3',
+                                )}
+                                {getCell(
+                                    pipeline.dev_branch_exists,
+                                    `https://github.com/nf-core/${pipeline.name}/tree/dev`,
+                                    'dev branch: branch must exist',
+                                )}
+                                {getCell(
+                                    pipeline.TEMPLATE_branch_exists,
+                                    `https://github.com/nf-core/${pipeline.name}/tree/TEMPLATE`,
+                                    'TEMPLATE branch: branch must exist',
+                                    ' border-end',
+                                )}
+                                {/* Branch protection: master */}
+                                {getCell(
+                                    !pipeline.master_branch_protection_up_to_date
+                                        ? true
+                                        : pipeline.master_branch_protection_up_to_date,
+                                    pipeline.repository_url + '/settings/branches',
+                                    'master branch: do not require branch to be up to date before merging',
+                                    ' border-start ',
+                                )}
+                                {getCell(
+                                    pipeline.master_branch_protection_status_checks,
+                                    pipeline.repository_url + '/settings/branches',
+                                    'master branch: minimum set of CI tests must pass',
+                                )}
+                                {getCell(
+                                    !pipeline.master_branch_protection_require_non_stale_review,
+                                    pipeline.repository_url + '/settings/branches',
+                                    'master branch: reviews not marked stale after new commits',
+                                )}
+                                {getCell(
+                                    pipeline.master_branch_protection_require_codeowner_review !== -1
+                                        ? !pipeline.master_branch_protection_require_codeowner_review
+                                        : pipeline.master_branch_protection_require_codeowner_review,
+                                    pipeline.repository_url + '/settings/branches',
+                                    'master branch: code owner reviews not required',
+                                )}
+                                {getCell(
+                                    pipeline.master_branch_protection_required_reviews !== -1
+                                        ? pipeline.master_branch_protection_required_reviews === 2
+                                        : pipeline.master_branch_protection_required_reviews,
+                                    pipeline.repository_url + '/settings/branches',
+                                    'master branch: 2 reviews required',
+                                )}
+                                {getCell(
+                                    pipeline.master_branch_protection_enforce_admins !== -1
+                                        ? !pipeline.master_branch_protection_enforce_admins
+                                        : pipeline.master_branch_protection_enforce_admins,
+                                    pipeline.repository_url + '/settings/branches',
+                                    'master branch: do not enforce rules for admins',
+                                    ' border-end ',
+                                )}
+                                {/* Branch protection: dev */}
+                                {getCell(
+                                    !pipeline.dev_branch_protection_up_to_date
+                                        ? true
+                                        : pipeline.dev_branch_protection_up_to_date,
+                                    pipeline.repository_url + '/settings/branches',
+                                    'dev branch: do not require branch to be up to date before merging',
+                                    ' border-start ',
+                                )}
+                                {getCell(
+                                    pipeline.dev_branch_protection_status_checks,
+                                    pipeline.repository_url + '/settings/branches',
+                                    'dev branch: minimum set of CI tests must pass',
+                                )}
+                                {getCell(
+                                    !pipeline.dev_branch_protection_require_non_stale_review,
+                                    pipeline.repository_url + '/settings/branches',
+                                    'dev branch: reviews not marked stale after new commits',
+                                )}
+                                {getCell(
+                                    pipeline.dev_branch_protection_require_codeowner_review !== -1
+                                        ? !pipeline.dev_branch_protection_require_codeowner_review
+                                        : pipeline.dev_branch_protection_require_codeowner_review,
+                                    pipeline.repository_url + '/settings/branches',
+                                    'dev branch: code owner reviews not required',
+                                )}
+                                {getCell(
+                                    pipeline.dev_branch_protection_required_reviews !== -1
+                                        ? pipeline.dev_branch_protection_required_reviews >= 1
+                                        : pipeline.dev_branch_protection_required_reviews,
+                                    pipeline.repository_url + '/settings/branches',
+                                    'dev branch: 1 review required',
+                                )}
+                                {getCell(
+                                    pipeline.dev_branch_protection_enforce_admins !== -1
+                                        ? !pipeline.dev_branch_protection_enforce_admins
+                                        : pipeline.dev_branch_protection_enforce_admins,
+                                    pipeline.repository_url + '/settings/branches',
+                                    'dev branch: do not enforce rules for admins',
+                                    ' border-end ',
+                                )}
+                                {/* T push */}
+                                {getCell(
+                                    pipeline.TEMPLATE_restrict_push,
+                                    pipeline.repository_url + '/settings/branches',
+                                    'restrict push to TEMPLATE to @nf-core-bot',
+                                )}
+                                {/* Plugins */}
+                                {getCell(
+                                    pipeline.master_nextflow_config_plugins?.some((plugin) =>
+                                        plugin.startsWith('nf-validation'),
+                                    ) ?? 0,
+                                    pipeline.repository_url + '/blob/master/nextflow.config',
+                                    `nf-validation plugin version ${pipeline.master_nextflow_config_plugins?.filter((plugin) => plugin.startsWith('nf-validation'))[0]?.split('@')[1] ?? 'unpinned'} in nextflow.config in master`,
+                                    ' border-start ',
+                                )}
+                                {getCell(
+                                    pipeline.master_nextflow_config_plugins?.some((plugin) =>
+                                        plugin.startsWith('nf-validation'),
+                                    ) ?? 0,
+                                    pipeline.repository_url + '/blob/master/nextflow.config',
+                                    'nf-validation plugin must be pinned',
+                                )}
+                                {getCell(
+                                    pipeline.dev_nextflow_config_plugins?.some((plugin) =>
+                                        plugin.startsWith('nf-validation'),
+                                    ) ?? 0,
+                                    pipeline.repository_url + '/blob/dev/nextflow.config',
+                                    'nf-validation plugin in nextflow.config in dev',
+                                )}
+                                {getCell(
+                                    pipeline.dev_nextflow_config_plugins?.some((plugin) =>
+                                        plugin.startsWith('nf-validation'),
+                                    ) ?? 0,
+                                    pipeline.repository_url + '/blob/dev/nextflow.config',
+                                    'nf-validation plugin must be pinned',
+                                )}
+                                {getCell(
+                                    pipeline.master_nextflow_config_plugins?.some((plugin) =>
+                                        plugin.startsWith('nf-prov'),
+                                    ) ?? 0,
+                                    pipeline.repository_url + '/blob/master/nextflow.config',
+                                    `nf-prov plugin version ${pipeline.master_nextflow_config_plugins?.filter((plugin) => plugin.startsWith('nf-prov'))[0]?.split('@')[1] ?? 'unpinned'} in nextflow.config in master`,
+                                )}
+                                {getCell(
+                                    pipeline.master_nextflow_config_plugins?.some((plugin) =>
+                                        plugin.startsWith('nf-prov@'),
+                                    ) ?? 0,
+                                    pipeline.repository_url + '/blob/master/nextflow.config',
+                                    'nf-prov plugin must be pinned',
+                                )}
+                                {getCell(
+                                    pipeline.dev_nextflow_config_plugins?.some((plugin) =>
+                                        plugin.startsWith('nf-prov'),
+                                    ) ?? 0,
+                                    pipeline.repository_url + '/blob/dev/nextflow.config',
+                                    'nf-prov plugin in nextflow.config in dev',
+                                )}
+                                {getCell(
+                                    pipeline.dev_nextflow_config_plugins?.some((plugin) =>
+                                        plugin.startsWith('nf-prov@'),
+                                    ) ?? 0,
+                                    pipeline.repository_url + '/blob/dev/nextflow.config',
+                                    'nf-prov plugin must be pinned',
+                                )}
+                            </tr>
+                        );
+                    })
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="btn-row">
+        <a
+            class="btn btn-primary mb-5 ms-3"
+            title="Refresh data via manual dispatch of GitHub Action (from the `main` branch) to update the pipelines.json file."
+            data-bs-toggle="tooltip"
+            href="https://github.com/nf-core/website/actions/workflows/build-json-files-and-md-cache.yml"
+            >Refresh data via GitHub Action</a
+        >
+        <a
+            class="btn btn-outline-secondary mb-5 ms-3 show-archived"
+            title="Show hidden archived pipelines"
+            data-bs-toggle="collapse"
+            data-bs-target=".archived"
+            href="https://github.com/nf-core/website/actions/workflows/build-json-files-and-md-cache.yml"
+            >Show archived pipelines</a
+        >
+        <a
+            class="btn btn-outline-secondary mb-5 ms-3 archived collapse hide-archived"
+            title="Show hidden archived pipelines"
+            data-bs-toggle="collapse"
+            data-bs-target=".archived"
+            href="https://github.com/nf-core/website/actions/workflows/build-json-files-and-md-cache.yml"
+            >Hide archived pipelines</a
+        >
     </div>
 </PageLayout>
+<style lang="scss">
+    @import '@styles/_variables.scss';
+    .status {
+        pointer: hand;
+    }
+    .status--healthy {
+        i {
+            color: $success-text-emphasis;
+        }
+        background-color: $success;
+    }
+    .status--unhealthy {
+        i {
+            color: $danger-text-emphasis;
+        }
+        background-color: $danger;
+    }
+
+    :global([data-bs-theme='dark']) {
+        .status--healthy {
+            i {
+                color: $success-text-emphasis-dark;
+            }
+            background-color: $success-border-subtle-dark;
+        }
+        .status--unhealthy {
+            i {
+                color: $danger-text-emphasis-dark;
+            }
+            background-color: $danger-border-subtle-dark;
+        }
+    }
+    .status--unknown {
+        background-color: transparent;
+    }
+    .archived {
+        opacity: 0.5;
+    }
+    .btn-row:has(.hide-archived.show) .show-archived {
+        display: none;
+    }
+</style>

@@ -41,7 +41,10 @@
         max-height: calc(100dvh - 3rem);
         width: 75vw;
     }
-    :global(.navbar.fixed-top:has(.collapse.show)) .docs-nav {
-        display: none;
+    :global(.navbar.fixed-top:has(.collapse.show)) {
+        & .docs-nav,
+        & .side-nav {
+            display: none;
+        }
     }
 </style>

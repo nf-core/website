@@ -26,8 +26,9 @@ jobs:
             // handle normal pages
             let netlifyLinks = changedFiles
               .filter(file => file.startsWith('src/pages/'))
+              .filter(file => !file.endsWith('].astro')) // skip dynamic routes
               .map(file => `@netlify ${file?.replace('src/pages/', '/')}`)[0]
-              ?.replace(/\.md$/, '').replace(/\.mdx$/, '').replace(/\/index$/, '');
+              ?.replace(/\.md$/, '').replace(/\.mdx$/, '').replace(/\.astro$/, '').replace(/\/index$/, '');
 
             // handle pages in content collections
             if (!netlifyLinks) {
