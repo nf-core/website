@@ -1,6 +1,7 @@
 ---
-title: Adding a new pipeline
+title: Move to nf-core
 subtitle: Follow this walkthrough to add a new pipeline to nf-core.
+weight: 30
 ---
 
 ## Adding your pipeline to the nf-core organisation

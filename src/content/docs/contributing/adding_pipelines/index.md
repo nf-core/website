@@ -6,11 +6,11 @@ subtitle: Follow this walkthrough to add a new pipeline to nf-core.
 The steps covered in this tutorial are:
 
 1. Introduction (this page!)
-1. [Create a pipeline](1_create_pipeline.md)
-1. [Running with test data](2_test_data.md)
-1. [Adding to the nf-core organisation](3_move-to-nf-core-organisation.md)
-1. [Making your first release](4_first_release.md)
-1. [Appendices](5_appendices.md)
+1. [Create a pipeline](/docs/contributing/adding_pipelines/create_pipeline.md)
+1. [Running with test data](/docs/contributing/adding_pipelines/test_data.md)
+1. [Adding to the nf-core organisation](/docs/contributing/adding_pipelines/move-to-nf-core-organisation.md)
+1. [Making your first release](/docs/contributing/adding_pipelines/first_release.md)
+1. [Appendices](/docs/contributing/adding_pipelines/appendices.md)
 
 ## Before you start
 

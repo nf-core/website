@@ -1,6 +1,7 @@
 ---
-title: Adding a new pipeline
+title: First release
 subtitle: Follow this walkthrough to add a new pipeline to nf-core.
+weight: 40
 ---
 
 # Making the first release
