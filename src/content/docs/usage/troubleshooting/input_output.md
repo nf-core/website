@@ -3,7 +3,38 @@ title: Input and output errors
 subtitle: How to troubleshoot common mistakes and issues
 ---
 
-## Input and Output errors
+## Sample sheet input
+
+If you are using a sample sheet or TSV input method, check there is not a mistake or typo in the path in a given column. Common mistakes are a trailing space at the end of the path, which can cause problems.
+
+## Using a local version of iGenomes
+
+The iGenomes config file uses `params.igenomes_base` to make it possible to use a local copy of iGenomes. However, as custom config files are loaded after `nextflow.config` and the `igenomes.config` has already been imported and parsed, setting `params.igenomes_base` in a custom config file has no effect and the pipeline will use the s3 locations by default. To overcome this you can specify a local iGenomes path by either:
+
+- Specifying an `--igenomes_base` path in your execution command.
+
+```bash
+nextflow run nf-core/<pipeline> --input <input> -c <config> -profile <profile> --igenomes_base <path>/<to>/<data>/igenomes
+```
+
+- Specifying the `igenomes_base` parameter in a parameters file provided with `-params-file` in `yaml` or `json` format.
+
+```bash
+nextflow run nf-core/<pipeline> -profile <profile> -params-file params.yml
+```
+
+Where the `params.yml` file contains the pipeline params:
+
+```yaml title="params.yml"
+input: '/<path>/<to>/<data>/input'
+igenomes_base: '/<path>/<to>/<data>/igenomes'
+```
+
+## Input glob pattern errors
+
+:::warning
+This section mostly refers to DSL1 pipelines! Most DSL2 pipelines now use samplesheet inputs rather than direct read inputs.
+:::
 
 If the pipeline can't find your files then you will get the following error
 
@@ -12,10 +43,6 @@ ERROR ~ Cannot find any reads matching: *{1,2}.fastq.gz
 ```
 
 ### Direct input
-
-:::warning
-This section mostly refers to DSL1 pipelines! Most DSL2 pipelines now use samplesheet inputs rather than direct read inputs.
-:::
 
 Or when you're using a input method like `--input '/<path>/<to>/*_fq.gz'`, but only pick up one file, or only one file per pair being processed during the run, please note the following:
 
@@ -73,31 +100,4 @@ On the other hand, encapsulating the path in quotes will allow _Nextflow_ to eva
 
 ```bash
 nextflow run nf-core/<pipeline> --input "/path/to/sample_*/*.fq.gz"
-```
-
-### Sample sheet input
-
-If you are using a sample sheet or TSV input method, check there is not a mistake or typo in the path in a given column. Common mistakes are a trailing space at the end of the path, which can cause problems.
-
-### Using a local version of iGenomes
-
-The iGenomes config file uses `params.igenomes_base` to make it possible to use a local copy of iGenomes. However, as custom config files are loaded after `nextflow.config` and the `igenomes.config` has already been imported and parsed, setting `params.igenomes_base` in a custom config file has no effect and the pipeline will use the s3 locations by default. To overcome this you can specify a local iGenomes path by either:
-
-- Specifying an `--igenomes_base` path in your execution command.
-
-```bash
-nextflow run nf-core/<pipeline> --input <input> -c <config> -profile <profile> --igenomes_base <path>/<to>/<data>/igenomes
-```
-
-- Specifying the `igenomes_base` parameter in a parameters file provided with `-params-file` in `yaml` or `json` format.
-
-```bash
-nextflow run nf-core/<pipeline> -profile <profile> -params-file params.yml
-```
-
-Where the `params.yml` file contains the pipeline params:
-
-```yaml title="params.yml"
-input: '/<path>/<to>/<data>/input'
-igenomes_base: '/<path>/<to>/<data>/igenomes'
 ```
