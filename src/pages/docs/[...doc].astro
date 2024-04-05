@@ -24,9 +24,11 @@ let next_page: CollectionEntry<'docs'> | null = null;
 
 const docs = await getCollection('docs');
 
-let sections = [
-    { section_name: 'Usage', section_slug: '/docs/usage/', children: [] },
-    { section_name: 'Contributing', section_slug: '/docs/contributing/', children: [] },
+let sections: { section_name: string; section_slug: string; children: { title: string; slug: string }[] }[] = [
+    { section_name: 'Tutorials', section_slug: '/docs/tutorials', children: [] },
+    { section_name: 'Usage', section_slug: '/docs/usage', children: [] },
+    { section_name: 'Checklists', section_slug: '/docs/checklists', children: [] },
+    { section_name: 'Guidelines', section_slug: '/docs/guidelines', children: [] },
 ];
 
 // sort docs first depth, then by weight, then by title
@@ -56,40 +58,78 @@ const sortDocs = (a: CollectionEntry<'docs'>, b: CollectionEntry<'docs'>) => {
     }
 };
 let usageDocs: CollectionEntry<'docs'>[] = [];
-let contributingDocs: CollectionEntry<'docs'>[] = [];
+let tutorialDocs: CollectionEntry<'docs'>[] = [];
+let checklistDocs: CollectionEntry<'docs'>[] = [];
+let guidelineDocs: CollectionEntry<'docs'>[] = [];
 docs.map((doc) => {
+    if (doc.slug.startsWith('tutorials/')) {
+        tutorialDocs.push(doc);
+    }
     if (doc.slug.startsWith('usage/')) {
         usageDocs.push(doc);
     }
-    if (doc.slug.startsWith('contributing/')) {
-        contributingDocs.push(doc);
+    if (doc.slug.startsWith('checklists/')) {
+        checklistDocs.push(doc);
+    }
+    if (doc.slug.startsWith('guidelines/')) {
+        guidelineDocs.push(doc);
     }
 });
+tutorialDocs.sort(sortDocs);
 usageDocs.sort(sortDocs);
-contributingDocs.sort(sortDocs);
+checklistDocs.sort(sortDocs);
+guidelineDocs.sort(sortDocs);
 
-usageDocs
+tutorialDocs
     .filter((doc) => doc.slug.split('/').length === 2)
     .map((doc) => {
         sections[0].children.push({ title: doc.data.title, slug: '/docs/' + doc.slug });
     });
-contributingDocs
+usageDocs
     .filter((doc) => doc.slug.split('/').length === 2)
     .map((doc) => {
         sections[1].children.push({ title: doc.data.title, slug: '/docs/' + doc.slug });
     });
+checklistDocs
+    .filter((doc) => doc.slug.split('/').length === 2)
+    .map((doc) => {
+        sections[2].children.push({ title: doc.data.title, slug: '/docs/' + doc.slug });
+    });
+guidelineDocs
+    .filter((doc) => doc.slug.split('/').length === 2)
+    .map((doc) => {
+        sections[3].children.push({ title: doc.data.title, slug: '/docs/' + doc.slug });
+    });
+
 // find the index of the current page and use that to get the previous and next page
 const url = Astro.url.pathname.replace(/\/$/, '').replace(/\.html$/, '');
-const currentDocs = url.startsWith('/docs/usage/') ? usageDocs : contributingDocs;
-const current_page_index = currentDocs.findIndex((page) => '/docs/' + page.slug === url);
+const currentDocs = (() => {
+    if (url.startsWith('/docs/tutorials')) {
+        return tutorialDocs;
+    } else if (url.startsWith('/docs/usage')) {
+        return usageDocs;
+    } else if (url.startsWith('/docs/checklists')) {
+        return checklistDocs;
+    } else if (url.startsWith('/docs/guidelines')) {
+        return guidelineDocs;
+    }
+})();
 
-if (current_page_index === -1) {
+if (!currentDocs) {
     console.error('Could not find current page ' + Astro.url.pathname + ' in docs collection');
 } else {
-    prev_page = currentDocs[current_page_index - 1];
-    prev_page = prev_page && prev_page.slug?.split('/').slice(-2)[0] === url.split('/').slice(-2)[0] ? prev_page : null;
-    next_page = currentDocs[current_page_index + 1];
-    next_page = next_page && next_page.slug?.split('/').slice(-2)[0] === url.split('/').slice(-2)[0] ? next_page : null;
+    const current_page_index = currentDocs.findIndex((page) => '/docs/' + page.slug === url);
+
+    if (current_page_index === -1) {
+        console.error('Could not find current page ' + Astro.url.pathname + ' in docs collection');
+    } else {
+        prev_page = currentDocs[current_page_index - 1];
+        prev_page =
+            prev_page && prev_page.slug?.split('/').slice(-2)[0] === url.split('/').slice(-2)[0] ? prev_page : null;
+        next_page = currentDocs[current_page_index + 1];
+        next_page =
+            next_page && next_page.slug?.split('/').slice(-2)[0] === url.split('/').slice(-2)[0] ? next_page : null;
+    }
 }
 const md_github_url = 'https://github.com/nf-core/website/blob/main/src/content/docs/' + Astro.props.doc.id;
 ---
