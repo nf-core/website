@@ -1,5 +1,6 @@
 #! /usr/bin/env node
-import octokit, { getDocFiles, getCurrentRateLimitRemaining, getGitHubFile } from '../src/components/octokit.js';
+import octokit, { getDocFiles, getGitHubFile, githubFolderExists } from '../src/components/octokit.js';
+
 import { promises as fs, writeFileSync, existsSync } from 'fs';
 import yaml from 'js-yaml';
 import path, { join } from 'path';
@@ -9,7 +10,6 @@ import cache from './cache.js';
 // get current path
 const __dirname = path.resolve();
 
-console.log(await getCurrentRateLimitRemaining());
 //check if pipelines.json exists
 if (!existsSync(join(__dirname, 'public/pipelines.json'))) {
   // create empty pipelines.json with empty remote_workflows array
@@ -64,6 +64,14 @@ export const writePipelinesJson = async () => {
   // get ignored_topics from ignored_reops.yml
   const ignored_topics = yaml.load(ignoredTopicsYaml).ignore_topics;
 
+  // Get latest tools release
+  const latest_tools_release_date = (
+    await octokit.rest.repos.getLatestRelease({
+      owner: 'nf-core',
+      repo: 'tools',
+    })
+  )?.data?.created_at;
+
   let bar = new ProgressBar('  fetching pipelines [:bar] :percent :etas', { total: names.length });
 
   // go through names and add or update pipelines in pipelines.json
@@ -85,7 +93,105 @@ export const writePipelinesJson = async () => {
 
         return response.data;
       });
+
+    data['allow_merge_commit'] = data.allow_merge_commit ?? -1;
+    data['allow_rebase_merge'] = data.allow_rebase_merge ?? -1;
+    data['allow_squash_merge'] = data.allow_squash_merge ?? -1;
+
+    // Get team permissions
+    for (const team of ['contributors', 'core']) {
+      try {
+        const team_permission = await octokit.request('GET /orgs/{org}/teams/{team_slug}/repos/{owner}/{repo}', {
+          org: 'nf-core',
+          team_slug: team,
+          owner: 'nf-core',
+          repo: name,
+          headers: {
+            'X-GitHub-Api-Version': '2022-11-28',
+            accept: 'application/vnd.github.v3.repository+json',
+          },
+        });
+        data[`team_${team}_permission_push`] = team_permission?.data.permissions?.push ?? -1;
+        data[`team_${team}_permission_admin`] = team_permission?.data.permissions?.admin ?? -1;
+      } catch (err) {
+        console.warn(`Failed to fetch ${team} team permission`, err);
+      }
+    }
+
+    // Get branch existence & protection rules
+    for (const branch of ['master', 'dev', 'TEMPLATE']) {
+      // Initialize to -1 (unknown)
+      data[`${branch}_branch_exists`] = -1;
+      data[`${branch}_branch_protection_up_to_date`] = -1;
+      data[`${branch}_branch_protection_status_checks`] = -1;
+      data[`${branch}_branch_protection_required_reviews`] = -1;
+      data[`${branch}_branch_protection_require_codeowner_review`] = -1;
+      data[`${branch}_branch_protection_require_non_stale_review`] = -1;
+      data[`${branch}_branch_protection_enforce_admins`] = -1;
+      data[`${branch}_restrict_push`] = -1;
+
+      // Check if branch exists
+      try {
+        const branch_exists = await octokit.rest.repos
+          .getBranch({
+            owner: 'nf-core',
+            repo: name,
+            branch: 'TEMPLATE',
+          })
+          .then(() => true)
+          .catch((err) => {
+            if (err.status === 404) {
+              return false;
+            }
+            throw err;
+          });
+        data[`${branch}_branch_exists`] = branch_exists;
+      } catch (err) {
+        console.warn(`Failed to fetch ${branch} branch`, err);
+      }
+
+      if (branch !== 'TEMPLATE') {
+        // Get branch protection rules
+        try {
+          const rules = await octokit.rest.repos.getBranchProtection({
+            owner: 'nf-core',
+            repo: name,
+            branch: branch,
+          });
+          data[`${branch}_branch_protection_up_to_date`] = rules?.data?.res;
+          data[`${branch}_branch_protection_status_checks`] = rules?.data?.required_status_checks ?? -1;
+          data[`${branch}_branch_protection_required_reviews`] =
+            rules?.data?.required_pull_request_reviews?.required_approving_review_count ?? -1;
+          data[`${branch}_branch_protection_require_codeowner_review`] =
+            rules?.data?.required_pull_request_reviews?.require_code_owner_reviews ?? -1;
+          data[`${branch}_branch_protection_require_non_stale_review`] =
+            rules?.data?.required_pull_request_reviews?.dismiss_stale_reviews ?? -1;
+          data[`${branch}_branch_protection_enforce_admins`] = rules?.data?.enforce_admins?.enabled ?? -1;
+        } catch (err) {
+          console.log(`Failed to fetch ${branch} branch protection`, err);
+        }
+      } else {
+        // Template branch protection rules
+        try {
+          const restrictions = await octokit.rest.repos.getBranchProtection({
+            owner: 'nf-core',
+            repo: name,
+            branch: 'TEMPLATE',
+          });
+          data[`${branch}_restrict_push`] =
+            restrictions?.data.restrictions?.users?.length === 1 &&
+            restrictions?.data.restrictions?.users?.[0]?.login === 'nf-core-bot'
+              ? true
+              : false;
+        } catch (err) {
+          console.log(`Failed to fetch ${branch} branch push restrictions`, err);
+        }
+      }
+    }
     // remove ignored topics
+    data['has_required_topics'] = ['nf-core', 'nextflow', 'workflow', 'pipeline'].every((topic) =>
+      data['topics'].includes(topic),
+    );
     data['topics'] = data['topics'].filter((topic) => !ignored_topics.includes(topic));
     // get number of open pull requests
     let { data: pull_requests } = await octokit.rest.pulls.list({
@@ -94,6 +200,8 @@ export const writePipelinesJson = async () => {
       state: 'open',
     });
     data['open_pr_count'] = pull_requests.length;
+
+    data['repository_url'] = `https://github.com/nf-core/${name}`;
 
     // get all the contributors
     let { data: contributors } = await octokit.rest.repos.listContributors({
@@ -117,6 +225,9 @@ export const writePipelinesJson = async () => {
     const index = pipelines.remote_workflows.findIndex((workflow) => workflow.name === name);
     let new_releases = releases;
 
+    data['released_after_tools'] =
+      new Date(latest_tools_release_date.valueOf()) < new Date(releases[0]?.published_at).valueOf();
+
     let old_releases = [];
     if (index > -1) {
       old_releases = pipelines.remote_workflows[index].releases.filter((release) => release.tag_name !== 'dev');
@@ -137,12 +248,33 @@ export const writePipelinesJson = async () => {
       });
     }
 
+    // get last push to master branch and compare to that of the newest release
+    const { data: default_branch } = await octokit.rest.repos.listCommits({
+      owner: 'nf-core',
+      repo: name,
+      sha: data.default_branch,
+      per_page: 1,
+    });
+    data['head_sha'] = default_branch[0]?.sha;
+
+    const lastReleaseCommit = await octokit.rest.repos.getCommit({
+      owner: 'nf-core',
+      repo: name,
+      ref: releases[0]?.tag_name,
+    });
+    data['last_release_is_head'] = data['head_sha'] === lastReleaseCommit.data?.sha;
+    data['last_release_vs_default_compare_url'] =
+      data['repository_url'] + '/compare/' + data['head_sha'] + '...' + lastReleaseCommit.data?.sha;
+
     // get last push to dev branch
     const { data: dev_branch } = await octokit.rest.repos.listCommits({
       owner: 'nf-core',
       repo: name,
       sha: 'dev',
     });
+
+    data['commits_to_dev'] = dev_branch?.length;
+
     if (dev_branch.length > 0) {
       new_releases = [
         ...new_releases,
@@ -158,6 +290,45 @@ export const writePipelinesJson = async () => {
     } else {
       console.log(`No commits to dev branch found for ${name}`);
     }
+
+    // Get DSL2 status
+    data['is_DSL2'] = await githubFolderExists(name, 'modules', releases?.[0]?.tag_name ?? data.default_branch);
+
+    // Get nf-test usage
+    data['has_nf_test'] = await getGitHubFile(
+      name,
+      'nf-test.config',
+      releases?.[0]?.tag_name ?? data.default_branch,
+    ).then((response) => {
+      return response ? true : false;
+    });
+    data['has_nf_test_dev'] = await getGitHubFile(name, 'nf-test.config', 'dev').then((response) => {
+      return response ? true : false;
+    });
+
+    // Get plugins in nextflow.config file, in the form of:
+    //  plugins {
+    // id 'nf-validation' // Validation of pipeline parameters and creation of an input channel from a sample sheet
+    // }
+    for (const branch of ['master', 'dev']) {
+      data[`${branch}_nextflow_config_plugins`] = await getGitHubFile(name, 'nextflow.config', branch).then(
+        (response) => {
+          if (response) {
+            // use regex to find all plugins in nextflow.config
+            const plugins = response.match(/plugins\s*{([^}]*)}/s);
+            if (plugins) {
+              return plugins[1]
+                .split('\n')
+                .filter((line) => line.includes('id'))
+                .map((line) => line.match(/id\s*['"]([^'"]*)['"]/)[1]);
+            }
+            return plugins;
+          }
+          return [];
+        },
+      );
+    }
+
     new_releases = await Promise.all(
       new_releases.map(async (release) => {
         const { tag_name, published_at, tag_sha, has_schema } = release;

@@ -17,3 +17,14 @@ report_section_order:
     order: -1001
 export_plots: true
 ```
+
+:::note
+You can choose to ignore this lint tests by editing the file called
+`.nf-core.yml` in the root of your pipeline and setting the test to false:
+
+```yaml
+lint:
+  multiqc_config: False
+```
+
+:::

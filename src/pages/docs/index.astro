@@ -5,9 +5,9 @@ let docs = await getCollection('docs');
 let usageDocs: CollectionEntry<'docs'>[] = [];
 let contributingDocs: CollectionEntry<'docs'>[] = [];
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
-let sections: { section_name: string; children: { title: string; slug: string }[] }[] = [
-    { section_name: 'Usage', children: [] },
-    { section_name: 'Contributing', children: [] },
+let sections: { section_name: string; section_slug: string; children: { title: string; slug: string }[] }[] = [
+    { section_name: 'Usage', section_slug: '/docs/usage', children: [] },
+    { section_name: 'Contributing', section_slug: '/docs/contributing', children: [] },
 ];
 // sort docs first depth, then by weight, then by title
 const sortDocs = (a: CollectionEntry<'docs'>, b: CollectionEntry<'docs'>) => {

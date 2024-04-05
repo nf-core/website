@@ -26,7 +26,9 @@ export async function getCurrentRateLimitRemaining() {
     console.error('Error occurred:', error);
   }
 }
-
+export const githubFolderExists = async (repo, path, ref) => {
+  return fetch(`https://github.com/nf-core/${repo}/tree/${ref}/${path}`).then(response  => response.ok);
+}
 export const getGitHubFile = async (repo, path, ref) => {
   try {
     const response = await fetch(`https://raw.githubusercontent.com/nf-core/${repo}/${ref}/${path}`);
