@@ -4548,6 +4548,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         }
       ]
     },
@@ -39811,6 +39815,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -40568,6 +40576,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -44697,6 +44709,10 @@
       },
       "pipelines": [
         {
+          "name": "createpanelrefs",
+          "version": "dev"
+        },
+        {
           "name": "rnadnavar",
           "version": "dev"
         },
@@ -45539,6 +45555,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -117795,13 +117815,6 @@
               "type": "file",
               "description": "BAM file (necessary if no sequencing summary file)",
               "pattern": "*.bam"
-            }
-          },
-          {
-            "barcodes": {
-              "type": "string",
-              "description": "Comma separated barcode list (with no spaces). (e.g. BC05,RB09,NB01,barcode10)",
-              "pattern": "^\\S+$"
             }
           }
         ],
