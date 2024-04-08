@@ -48,6 +48,13 @@
                 rootMargin: '0px 0px -92% 0px',
             },
         );
+        // set current heading to last heading when at bottom of page
+        document.addEventListener('scrollend', () => {
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+                currentHeading.set(headings[headings.length - 1].slug);
+            }
+        });
+
         headings.forEach((heading) => {
             const element = document.querySelector('#' + heading.slug);
             if (element) {
