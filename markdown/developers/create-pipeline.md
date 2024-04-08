@@ -17,10 +17,16 @@ and also sets up the required `git` infrastructure for you to keep your pipeline
 ## Push to GitHub
 
 Create an empty repository on GitHub for your new pipeline under <https://github.com/sanger-tol>.
-Do this by going to the GitHub website and clicking + then _New Repository_.
+Do this by:
+
+1. going to the GitHub website,
+2. clicking `+` then _New Repository_,
+3. selecting "sanger-tol" as the Owner.
 
 Make sure _not_ to initialise it with _any_ file, `README` or `LICENSE`: you just want an empty repository.
 You already have these files generated from the nf-core template.
+
+Leave the repository as "Public". We don't want to hide our pipelines, even when they're in progress.
 
 Once created, copy the git URL and add this as a remote to your local git repository.
 The `nf-core create` command will have initialised a git repository for you,
