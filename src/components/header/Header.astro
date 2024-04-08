@@ -18,8 +18,9 @@ export interface Props {
 title = title.replace('nf-core/', 'nf-core/<wbr>');
 ---
 
-<div class="mainpage-heading pb-1 text-bg-success" transition:animate="morph">
+<div class="mainpage-heading pb-1 text-bg-success" transition:animate="fade">
     <div class="container">
+        <slot name="header-top" />
         <h1 class="display-2 d-flex justify-content-between mb-2">
             <span class="title" transition:name="title" set:html={title} />
             <div>

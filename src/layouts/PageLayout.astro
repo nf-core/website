@@ -94,6 +94,7 @@ if (frontmatter) {
             header_btn_text={header_btn_text}
             topics={topics}
         >
+            <slot name="header-top" slot="header-top" />
             <slot name="sub-header" />
         </Header>
         {
