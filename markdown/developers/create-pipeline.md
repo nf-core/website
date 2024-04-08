@@ -51,7 +51,7 @@ You should now see the vanilla nf-core template and branches in the github.com w
 
 ## GitHub configuration
 
-Then, head up to your repository on GitHub and do the following.
+Head up to your repository on GitHub and do the following.
 
 In the About section on the right, click on the cog wheel and:
 
@@ -67,3 +67,9 @@ Then, ask [@muffato](https://github.com/muffato) or [@mcshane](https://github.co
 3. Remove your individual access to the repository
 
 Finally, ask [@gq1](https://github.com/gq1) to set up the pipeline settings via <https://pipelines.tol.sanger.ac.uk/pipeline_health>.
+
+## Other bits
+
+The repository needs to be integrated with Zenodo before making the first release.
+Better to do it now before anyone forgets !
+Ask [@muffato](https://github.com/muffato) to enable the Zenodo integration.
