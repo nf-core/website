@@ -14,7 +14,7 @@ This is done by using the `nf-core create` command - see [the docs](https://nf-c
 This tool does lots of things for you: it gives you the correct file structure and boiler plate code
 and also sets up the required `git` infrastructure for you to keep your pipeline in sync in the future.
 
-When asked _Do you want to customize which parts of the template are used ?_, answer `Y`.
+When asked _Do you want to customize which parts of the template are used ?_, answer `y`.
 Then, set the "Pipeline prefix" to "sanger-tol", and when asked to "Skip template areas",
 disable "iGenomes config" by:
 
