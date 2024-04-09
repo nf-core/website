@@ -4,6 +4,7 @@ import BaseHead from '@components/BaseHead.astro';
 import Footer from '@components/footer/Footer.astro';
 import Navbar from '@components/navbar/Navbar.astro';
 import SubFooter from '@components/footer/SubFooter.astro';
+import type { SidebarEntry } from '@utils/types';
 import '@fontsource-variable/inter';
 import '@fontsource-variable/maven-pro';
 
@@ -22,15 +23,7 @@ export interface Props {
     subfooter?: boolean;
     showHiddenBtn?: boolean;
     navTocHeadings?: ({ text: string; slug: string; depth: number; fa_icon?: string } | undefined)[];
-    sections?: {
-        section_name: string;
-        section_slug?: string;
-        children: {
-            title: string;
-            slug: string;
-            order?: number;
-        }[];
-    }[];
+    sections?: SidebarEntry[];
     viewTransitions?: boolean;
     docSearchTags?: {
         name: string;

@@ -4,6 +4,7 @@ import MarkdownWrapper from '@components/markdown/MarkdownWrapper.svelte';
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
 import SidebarToc from '@components/sidebar/SidebarToc.svelte';
 import 'katex/dist/katex.min.css';
+import type { SidebarEntry } from '@utils/types';
 
 export interface Props {
     title: string;
@@ -20,15 +21,7 @@ export interface Props {
         endTime: string;
     };
     leftSidebar?: boolean;
-    sections?: {
-        section_name: string;
-        section_slug?: string;
-        children: {
-            title: string;
-            slug: string;
-            order?: number;
-        }[];
-    }[];
+    sections?: SidebarEntry[];
     viewTransitions?: boolean;
     meta_title?: string;
     docSearchTags?: {
@@ -90,7 +83,7 @@ const {
     md_github_url={md_github_url}
     event_header={event_header}
     subfooter={md_github_url && !Astro.url.pathname.startsWith('/docs/') ? true : false}
-    mainpage_container={true}
+    mainpage_container={false}
     navTocHeadings={headings}
     sections={sections}
     docSearchTags={docSearchTags}
@@ -99,46 +92,48 @@ const {
     doubleNavbar={doubleNavbar}
 >
     <slot name="header-top" slot="header-top" />
-    <div class="row">
-        {
-            leftSidebar && (
-                <div class="col-12 col-md-2 d-none d-md-block sidebar-left pt-1 sticky-top-under">
-                    <div class="">
-                        {sidebarTitle && (
-                            <a
-                                href={sections[0].section_slug?.split('/').slice(0, 2).join('/').split('#')[0]}
-                                class="sidebar-title text-decoration-none"
-                            >
-                                <strong class="h6 p-2 text-body">{sidebarTitle}</strong>
-                            </a>
-                        )}
-                        <SidebarNav items={sections} accordion={true} />
+    <div class="container-xxl">
+        <div class="row">
+            {
+                leftSidebar && (
+                    <div class="col-12 col-md-3 d-none d-md-block sidebar-left pt-1 sticky-top-under">
+                        <div class="">
+                            {sidebarTitle && (
+                                <a
+                                    href={sections[0].section_slug?.split('/').slice(0, 2).join('/').split('#')[0]}
+                                    class="sidebar-title text-decoration-none"
+                                >
+                                    <strong class="h6 p-2 text-body">{sidebarTitle}</strong>
+                                </a>
+                            )}
+                            <SidebarNav items={sections} accordion={true} />
+                        </div>
                     </div>
+                )
+            }
+            <div class:list={['col-12', { 'col-md-10': !leftSidebar, 'col-md-7': leftSidebar }]}>
+                <div class="markdown-content" transition:animate="morph">
+                    <MarkdownWrapper headings={headings} client:idle>
+                        <slot />
+                    </MarkdownWrapper>
                 </div>
-            )
-        }
-        <div class:list={['col-12', { 'col-md-10': !leftSidebar, 'col-md-8': leftSidebar }]}>
-            <div class="markdown-content" transition:animate="morph">
-                <MarkdownWrapper headings={headings} client:idle>
-                    <slot />
-                </MarkdownWrapper>
             </div>
+            {
+                headings && (
+                    <div class="col-12 col-md-2 toc">
+                        <slot name="right-sidebar-top" />
+                        <SidebarToc
+                            headings={headings}
+                            minHeadingDepth={minHeadingDepth}
+                            maxHeadingDepth={maxHeadingDepth}
+                            client:idle
+                        >
+                            <slot name="right-sidebar-bottom" />
+                        </SidebarToc>
+                    </div>
+                )
+            }
         </div>
-        {
-            headings && (
-                <div class="col-12 col-md-2 toc">
-                    <slot name="right-sidebar-top" />
-                    <SidebarToc
-                        headings={headings}
-                        minHeadingDepth={minHeadingDepth}
-                        maxHeadingDepth={maxHeadingDepth}
-                        client:idle
-                    >
-                        <slot name="right-sidebar-bottom" />
-                    </SidebarToc>
-                </div>
-            )
-        }
     </div>
     <slot name="pre-footer" slot="pre-footer" />
 </PageLayout>

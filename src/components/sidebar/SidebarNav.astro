@@ -1,27 +1,32 @@
 ---
-const { items, minimal, accordion } = Astro.props;
+import type { SidebarEntry } from '@utils/types';
+import SidebarSubNav from '@components/sidebar/SidebarSubNav.astro';
 
 export interface Props {
-    items: {
-        section_name: string;
-        section_slug?: string;
-        children: {
-            title: string;
-            slug: string;
-            order?: number;
-        }[];
-    }[];
+    items: SidebarEntry[];
     minimal?: boolean;
     accordion?: boolean;
 }
 
+let { items, minimal, accordion } = Astro.props;
+console.log('items', items);
+console.log(items[0].entries);
 let url = Astro.url.pathname.endsWith('/') ? Astro.url.pathname.slice(0, -1) : Astro.url.pathname;
 url = url.replace(/\.html$/, '');
+// items = [
+//     {
+//         type: 'group',
+//         label: 'Content',
+//         entries: [{ type: 'link', label: 'Home', href: '/', isCurrent: true }],
+//         collapsed: false,
+//     },
+// ];
 ---
 
 <div class:list={['nav', { accordion: accordion }]}>
-    <div class="w-100 sticky-top-under">
-        {
+    <div class="w-100 sticky-top-under mx-3">
+        <SidebarSubNav items={items} />
+        <!-- {
             items &&
                 items.map((item) => {
                     return (
@@ -119,12 +124,14 @@ url = url.replace(/\.html$/, '');
                         </div>
                     );
                 })
-        }
+        } -->
     </div>
 </div>
 
 <style lang="scss">
     @import '@styles/_variables.scss';
+    div.sticky-top-under {
+    }
     h6 a,
     li {
         &:hover {
