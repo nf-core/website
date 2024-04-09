@@ -124,7 +124,7 @@ url = url.replace(/\.html$/, '');
 </div>
 
 <style lang="scss">
-    @import 'src/styles/_variables.scss';
+    @import '@styles/_variables.scss';
     h6 a,
     li {
         &:hover {
@@ -134,10 +134,14 @@ url = url.replace(/\.html$/, '');
     li {
         font-size: 0.9rem;
     }
-
+    h6,
+    li {
+        border-inline-end: 2pt solid var(--bs-border-color);
+    }
     li.active,
     h6 .active {
         background-color: transparentize($success, 0.75);
+        border-color: $success;
         a {
             color: $green-800 !important;
         }
