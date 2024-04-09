@@ -118,9 +118,9 @@ description: |
   (Sub)contig coverage table
 ```
 
-### 7 Testing
+### 6 Testing
 
-#### 7.1 Adding nf-test to new modules
+#### 6.1 Adding nf-test to new modules
 
 - All output channels SHOULD be present in the nf-test snapshot file, or at a minimum, it MUST be verified that the files exist.
 - Tags for any dependent modules/subworkflows MUST be specified to ensure changes to upstream modules/subworkflows will re-trigger tests for the current module.
@@ -142,13 +142,13 @@ description: |
 - Input data SHOULD be referenced with the `modules_testdata_base_path` parameter:
   - `file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)`
 
-#### 8.2 Migrating pytest to nf-test
+#### 6.2 Migrating pytest to nf-test
 
 - All previous pytest assertions MUST be converted to nf-test.
 - All old pytest files MUST be deleted.
 
-### 6 Misc
+### 7 Misc
 
-#### 6.1 General module code formatting
+#### 7.1 General module code formatting
 
 All code MUST be aligned to follow the '[Harshil Alignment™️](#what-is-the-harshil-alignment)' format.
