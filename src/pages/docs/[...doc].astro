@@ -158,7 +158,7 @@ const splitUrl = `${url}/`.replace(/^\/|\/$/g, '').split('/');
                     splitUrl.slice(0, -1).map((slug, i) => (
                         <li class="breadcrumb-item">
                             <a class="" href={'/' + splitUrl.slice(0, i + 1).join('/')}>
-                                {slug}
+                                {slug.replaceAll('_', ' ').replace(/(^|\s)\S/g, (match) => match.toUpperCase())}
                             </a>
                         </li>
                     ))
