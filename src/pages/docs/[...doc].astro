@@ -3,6 +3,7 @@ import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
 import FooterPrevNext from '@components/footer/FooterPrevNext.astro';
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
+import type { SidebarEntry } from '@utils/types';
 
 export async function getStaticPaths() {
     const docs = await getCollection('docs');
@@ -23,12 +24,11 @@ let prev_page: CollectionEntry<'docs'> | null = null;
 let next_page: CollectionEntry<'docs'> | null = null;
 
 const docs = await getCollection('docs');
-
-let sections: { section_name: string; section_slug: string; children: { title: string; slug: string }[] }[] = [
-    { section_name: 'Tutorials', section_slug: '/docs/tutorials', children: [] },
-    { section_name: 'Usage', section_slug: '/docs/usage', children: [] },
-    { section_name: 'Checklists', section_slug: '/docs/checklists', children: [] },
-    { section_name: 'Guidelines', section_slug: '/docs/guidelines', children: [] },
+let sections: SidebarEntry[] = [
+    { type: 'group', label: 'Tutorials', href: '/docs/tutorials', entries: [], collapsed: true },
+    { type: 'group', label: 'Usage', href: '/docs/usage', entries: [], collapsed: true },
+    { type: 'group', label: 'Checklists', href: '/docs/checklists', entries: [], collapsed: true },
+    { type: 'group', label: 'Guidelines', href: '/docs/guidelines', entries: [], collapsed: true },
 ];
 
 // sort docs first depth, then by weight, then by title
@@ -42,10 +42,12 @@ const sortDocs = (a: CollectionEntry<'docs'>, b: CollectionEntry<'docs'>) => {
             return -1;
         } else if (!a.data.weight && b.data.weight) {
             return 1;
-        } else if (a.data.weight < b.data.weight) {
-            return -1;
-        } else if (a.data.weight > b.data.weight) {
-            return 1;
+        } else if (a.data.weight && b.data.weight) {
+            if (a.data.weight < b.data.weight) {
+                return -1;
+            } else if (a.data.weight > b.data.weight) {
+                return 1;
+            }
         } else {
             if (a.data.title < b.data.title) {
                 return -1;
@@ -79,27 +81,19 @@ tutorialDocs.sort(sortDocs);
 usageDocs.sort(sortDocs);
 checklistDocs.sort(sortDocs);
 guidelineDocs.sort(sortDocs);
+// add entries to sections
+tutorialDocs.forEach((doc) => {
+    // get sections for tutorials
+    let index = sections.findIndex((section) => section.label === 'Tutorials');
 
-tutorialDocs
-    .filter((doc) => doc.slug.split('/').length === 2)
-    .map((doc) => {
-        sections[0].children.push({ title: doc.data.title, slug: '/docs/' + doc.slug });
-    });
-usageDocs
-    .filter((doc) => doc.slug.split('/').length === 2)
-    .map((doc) => {
-        sections[1].children.push({ title: doc.data.title, slug: '/docs/' + doc.slug });
-    });
-checklistDocs
-    .filter((doc) => doc.slug.split('/').length === 2)
-    .map((doc) => {
-        sections[2].children.push({ title: doc.data.title, slug: '/docs/' + doc.slug });
-    });
-guidelineDocs
-    .filter((doc) => doc.slug.split('/').length === 2)
-    .map((doc) => {
-        sections[3].children.push({ title: doc.data.title, slug: '/docs/' + doc.slug });
-    });
+    sections[index].type === 'group' &&
+        sections[index].entries.push({
+            type: 'link',
+            label: doc.data.title,
+            href: '/docs/' + doc.slug,
+            isCurrent: Astro.url.pathname === '/docs/' + doc.slug,
+        });
+});
 
 // find the index of the current page and use that to get the previous and next page
 const url = Astro.url.pathname.replace(/\/$/, '').replace(/\.html$/, '');
@@ -163,9 +157,7 @@ const splitUrl = `${url}/`.replace(/^\/|\/$/g, '').split('/');
                         </li>
                     ))
                 }
-                <li class="breadcrumb-item active" aria-current="page">
-                    <!-- {url.split('/').slice(-1)[0].replaceAll('_', ' ')} -->
-                </li>
+                <li class="breadcrumb-item active" aria-current="page"></li>
             </ol>
         </nav>
     </div>

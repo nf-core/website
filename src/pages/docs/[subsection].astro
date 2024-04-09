@@ -56,7 +56,7 @@ subsectionDocs
     });
 ---
 
-<PageLayout title={subsection} subtitle="">
+<PageLayout title={subsection.replace(/(^|\s)\S/g, (match) => match.toUpperCase())} subtitle="">
     <div class="row">
         <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left">
             <SidebarNav items={sections} />
