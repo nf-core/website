@@ -132,6 +132,8 @@ if (!currentDocs) {
     }
 }
 const md_github_url = 'https://github.com/nf-core/website/blob/main/src/content/docs/' + Astro.props.doc.id;
+// remove leading and trailing slash
+const splitUrl = `${url}/`.replace(/^\/|\/$/g, '').split('/');
 ---
 
 <MarkdownTocLayout
@@ -149,23 +151,20 @@ const md_github_url = 'https://github.com/nf-core/website/blob/main/src/content/
         { name: 'page_subtype', content: currentDocs === usageDocs ? 'Usage' : 'Contributing' },
     ]}
 >
-    <div slot="header-top">
+    <div slot="header-top" class="d-none d-md-block">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 {
-                    url
-                        .split('/')
-                        .slice(1, -1)
-                        .map((slug) => (
-                            <li class="breadcrumb-item">
-                                <a class="" href={'/docs/' + slug}>
-                                    {slug}
-                                </a>
-                            </li>
-                        ))
+                    splitUrl.slice(0, -1).map((slug, i) => (
+                        <li class="breadcrumb-item">
+                            <a class="" href={'/' + splitUrl.slice(0, i + 1).join('/')}>
+                                {slug}
+                            </a>
+                        </li>
+                    ))
                 }
                 <li class="breadcrumb-item active" aria-current="page">
-                    {url.split('/').slice(-1)[0].replaceAll('_', ' ')}
+                    <!-- {url.split('/').slice(-1)[0].replaceAll('_', ' ')} -->
                 </li>
             </ol>
         </nav>
@@ -175,9 +174,17 @@ const md_github_url = 'https://github.com/nf-core/website/blob/main/src/content/
 </MarkdownTocLayout>
 <style lang="scss">
     @import '@styles/_variables.scss';
+    nav {
+        --bs-breadcrumb-divider: '\f054';
+    }
     .breadcrumb-item,
     .breadcrumb-item a,
     .breadcrumb-item::before {
         color: $gray-200 !important;
+    }
+    .breadcrumb-item::before {
+        font-family: 'Font Awesome 6 Pro';
+        font-size: 0.8rem;
+        margin-top: 0.2rem;
     }
 </style>
