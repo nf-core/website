@@ -11,11 +11,11 @@ All nf-core pipelines use Nextflow, so this must be installed on the system wher
 We recommend using a personal installation of Nextflow where possible, instead of using a system-wide installation.
 This makes it easier to update and control versions.
 
-:::tip{collapse title="Official Nextflow docs"}
-If in doubt, please see the [Nextflow installation docs](https://www.nextflow.io/docs/latest/getstarted.html#installation)
-for the latest instructions.
-Installation details are included here for convenience and may not be up to date.
-:::
+We generally recommend following the official installation instructions from the Nextflow documentation.
+However on this page we provide '[quick start](#quick-start-installation)' version of these instructions, as well as instructions for [installing via Conda](#bioconda-instllation), and on [Windows operating systems](#installation-on-windows).
+
+At any point, if double, see the [official Nextflow installation documentation](https://www.nextflow.io/docs/latest/getstarted.html#installation).
+Any instructions on this page are provided for convinence, and may not be up-to-date.
 
 :::note
 You don't need to install the `nf-core` command line tools to run nf-core pipelines, you only need Nextflow.
@@ -23,7 +23,11 @@ However, they offer a number of helpful functions and are essential for pipeline
 See the [tools page](/tools) for more information.
 :::
 
-### Typical installation
+### Official Nextflow installation.
+
+The Nextflow installation docs can be found [here](https://www.nextflow.io/docs/latest/getstarted.html#installation) for the latest instructions.
+
+### Quick-start installation
 
 Nextflow runs on most POSIX systems (Linux, macOS, etc) and can typically be installed by running these commands:
 
