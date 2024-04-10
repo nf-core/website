@@ -25,10 +25,10 @@ let next_page: CollectionEntry<'docs'> | null = null;
 
 const docs = await getCollection('docs');
 let sections: SidebarEntry[] = [
-    { type: 'group', label: 'tutorials', href: '/docs/tutorials', entries: [], collapsed: true },
-    { type: 'group', label: 'usage', href: '/docs/usage', entries: [], collapsed: true },
-    { type: 'group', label: 'checklists', href: '/docs/checklists', entries: [], collapsed: true },
-    { type: 'group', label: 'guidelines', href: '/docs/guidelines', entries: [], collapsed: true },
+    { type: 'group', label: 'Tutorials', href: '/docs/tutorials', entries: [], collapsed: true },
+    { type: 'group', label: 'Usage', href: '/docs/usage', entries: [], collapsed: true },
+    { type: 'group', label: 'Checklists', href: '/docs/checklists', entries: [], collapsed: true },
+    { type: 'group', label: 'Guidelines', href: '/docs/guidelines', entries: [], collapsed: true },
 ];
 
 // sort docs first depth, then by weight, then by title
@@ -64,16 +64,16 @@ let tutorialDocs: CollectionEntry<'docs'>[] = [];
 let checklistDocs: CollectionEntry<'docs'>[] = [];
 let guidelineDocs: CollectionEntry<'docs'>[] = [];
 docs.map((doc) => {
-    if (doc.slug.startsWith('tutorials/')) {
+    if (doc.slug.startsWith('Tutorials/')) {
         tutorialDocs.push(doc);
     }
-    if (doc.slug.startsWith('usage/')) {
+    if (doc.slug.startsWith('Usage/')) {
         usageDocs.push(doc);
     }
-    if (doc.slug.startsWith('checklists/')) {
+    if (doc.slug.startsWith('Checklists/')) {
         checklistDocs.push(doc);
     }
-    if (doc.slug.startsWith('guidelines/')) {
+    if (doc.slug.startsWith('Guidelines/')) {
         guidelineDocs.push(doc);
     }
 });
@@ -84,45 +84,37 @@ guidelineDocs.sort(sortDocs);
 console.log('astro.url', Astro.url.pathname);
 
 const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[]) => {
-    function createLinkOrGroup(part, path, isLastPart) {
-        console.log('path', path, 'isLastPart', isLastPart);
-        if (isLastPart) {
-            // This is a link
-            return {
-                type: 'link',
-                label: part,
-                href: '/' + path,
-                isCurrent: Astro.url.pathname === '/docs/' + path,
-            };
-        } else {
-            // This is a group
-            return {
-                type: 'group',
-                label: part,
-                href: '/' + path,
-                entries: [],
-                collapsed: true, // You can set this dynamically as well
-            };
+    const createLinkOrGroup = (part, path, isLastPart) => {
+        let entry: SidebarEntry = {
+            label: part,
+            href: '/' + path,
+            isCurrent: Astro.url.pathname === '/docs/' + path,
+            type: isLastPart ? 'link' : 'group',
+        };
+
+        if (entry.type === 'group') {
+            entry.entries = [];
+            entry.collapsed = true; // You can set this dynamically as well
         }
-    }
+
+        return entry;
+    };
+
     const docSlugs = docs.map((doc) => doc.slug);
     docSlugs.forEach((slug) => {
-        let parts = slug.split('/');
+        const parts = slug.split('/');
         let currentLevel = sections;
 
         parts.forEach((part, i) => {
-            let existingEntry = currentLevel.find((entry) => entry.label === part);
+            part = part.replaceAll('_', ' ').replace(/(^)\S/g, (match) => match.toUpperCase());
+            const existingEntry = currentLevel.find((entry) => entry.label === part);
 
-            if (existingEntry) {
-                // If the entry is a group, move to the next level
-                if (existingEntry && existingEntry.type === 'group') {
-                    currentLevel = existingEntry.entries;
-                }
+            if (existingEntry && existingEntry.type === 'group') {
+                currentLevel = existingEntry.entries;
             } else {
-                let newEntry = createLinkOrGroup(part, slug, i === parts.length - 1);
+                const newEntry = createLinkOrGroup(part, slug, i === parts.length - 1);
                 currentLevel.push(newEntry);
 
-                // If the new entry is a group, move to the next level
                 if (newEntry.type === 'group' && newEntry.entries) {
                     currentLevel = newEntry.entries;
                 }
@@ -130,6 +122,7 @@ const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[]) => {
         });
     });
 };
+
 addEntriesToSection(sections, docs);
 // find the index of the current page and use that to get the previous and next page
 const url = Astro.url.pathname.replace(/\/$/, '').replace(/\.html$/, '');
@@ -187,6 +180,7 @@ const firstHeading = Astro.props.doc.body.match(/^(#|<h1)/);
     md_github_url={md_github_url}
     headings={headings}
     leftSidebar={true}
+    rightSidebar={true}
     sections={sections}
     viewTransitions={true}
     docSearchTags={[
