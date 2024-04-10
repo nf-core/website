@@ -21,6 +21,7 @@ export interface Props {
         endTime: string;
     };
     leftSidebar?: boolean;
+    rightSidebar?: boolean;
     sections?: SidebarEntry[];
     viewTransitions?: boolean;
     meta_title?: string;
@@ -42,6 +43,7 @@ const {
     event_header,
     headings,
     leftSidebar,
+    rightSidebar,
     sections = [],
     viewTransitions = false,
     meta_title = '',
@@ -52,6 +54,20 @@ const {
     doubleNavbar = true,
     sidebarTitle = '',
 } = Astro.props;
+
+const minNumHeadings = 3;
+const leftSidebarWidth = 3;
+const rightSidebarWidth = 3;
+const showRightSidebar = headings.length > minNumHeadings || rightSidebar;
+
+let mainContentWidth = 12;
+if (leftSidebar) {
+    mainContentWidth -= leftSidebarWidth;
+}
+if (showRightSidebar) {
+    mainContentWidth -= rightSidebarWidth;
+}
+console.log('headings', headings);
 ---
 
 <script>
@@ -92,11 +108,13 @@ const {
     doubleNavbar={doubleNavbar}
 >
     <slot name="header-top" slot="header-top" />
-    <div class="container-xxl">
+    <div class="container-fluid">
         <div class="row">
             {
                 leftSidebar && (
-                    <div class="col-12 col-md-3 d-none d-md-block sidebar-left pt-1 sticky-top-under">
+                    <div
+                        class={`col-12 col-md-${leftSidebarWidth} d-none d-md-block sidebar-left pt-1 sticky-top-under`}
+                    >
                         <div class="">
                             {sidebarTitle && (
                                 <a
@@ -111,19 +129,20 @@ const {
                     </div>
                 )
             }
-            <div class:list={['col-12', { 'col-md-10': !leftSidebar, 'col-md-7': leftSidebar }]}>
-                <div class="markdown-content" transition:animate="morph">
+            <div class:list={['col-12', 'col-md-' + mainContentWidth]}>
+                <div class="markdown-content ms-auto" transition:animate="fade">
                     <MarkdownWrapper headings={headings} client:idle>
                         <slot />
                     </MarkdownWrapper>
                 </div>
             </div>
             {
-                headings && (
-                    <div class="col-12 col-md-2 toc">
+                showRightSidebar && (
+                    <div class={`col-12 col-md-${rightSidebarWidth} sidebar-right toc`}>
                         <slot name="right-sidebar-top" />
                         <SidebarToc
                             headings={headings}
+                            minNumHeadings={minNumHeadings}
                             minHeadingDepth={minHeadingDepth}
                             maxHeadingDepth={maxHeadingDepth}
                             client:idle
@@ -143,8 +162,15 @@ const {
         height: auto;
     }
     .markdown-content {
-        max-width: 60rem;
+        max-width: 50rem;
     }
+    .sidebar-left {
+        max-width: 25rem;
+    }
+    .sidebar-right {
+        max-width: 25rem;
+    }
+
     :global(.admonition figure),
     :global(.admonition pre) {
         margin-bottom: 0;

@@ -9,7 +9,7 @@
         fa_icon?: string;
         hidden?: boolean;
     }[];
-
+    export let minNumHeadings: number = 2;
     export let minHeadingDepth: number = 1;
     export let maxHeadingDepth: number = 4;
 
@@ -43,12 +43,12 @@
 
 <div class="nav flex-column sticky-top-under align-items-end pt-1">
     <div class="d-none d-md-block w-100">
-        {#if headings.length > 2}
+        {#if headings.length > minNumHeadings}
             <strong class="h6 my-2 text-body">On this page</strong>
         {/if}
         <!-- <hr class="my-1" /> -->
         <nav id="TableOfContents" class="d-none d-md-flex flex-column">
-            {#if headings.length > 2}
+            {#if headings.length > minNumHeadings}
                 <ul class="mb-0 mt-1">
                     {#each headings as heading (heading)}
                         <li
@@ -82,6 +82,7 @@
 
 <style lang="scss">
     @import 'src/styles/_variables.scss';
+
     nav > ul {
         font-size: 0.875rem;
         list-style: none;
