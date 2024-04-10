@@ -59,7 +59,10 @@ conda create --name env_nf nextflow
 conda activate env_nf
 ```
 
-To deactivate the conda environment, run `conda deactivate`.
+To deactivate the conda environment, run:
+```bash
+conda deactivate
+```
 
 ### Installation on Windows
 
@@ -75,7 +78,10 @@ The step to install Nextflow in itself will afterwards be the same as previously
 
 ### Updating Nextflow
 
-Updating nextflow is as simple as running `nextflow self-update`
+Updating nextflow is as simple as running 
+```bash
+nextflow self-update
+```
 or `conda update nextflow`, depending on how it was installed.
 
 ### Specific Nextflow versions
@@ -88,13 +94,13 @@ You can `export` this bash env variable, which is good to do in analysis scripts
 
 ```bash
 export NXF_VER=23.10.1
-nextflow run nf-core/pipeline ...
+nextflow run hello-world
 ```
 
 Or even just prepend it to a Nextflow command:
 
 ```bash
-NXF_VER=23.10.1 nextflow run nf-core/pipeline ...
+NXF_VER=23.10.1 nextflow run hello-world
 ```
 
 ### Edge releases
@@ -107,7 +113,7 @@ You can get an edge release either by defining the exact version with `NXF_VER`
 or by using the `NXF_EDGE` environment variable:
 
 ```bash
-NXF_VER=24.02.0-edge nextflow run ...
+NXF_VER=24.02.0-edge nextflow run hello-world
 NXF_EDGE=1 nextflow self-update
 ```
 
