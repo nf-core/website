@@ -127,8 +127,14 @@ const sections = years.map((year) => {
                                                 />
                                             ))}
                                         </div>
-                                        <span class="text-body-secondary text-small text-end flex-grow-1">
-                                            published at {new Date(post.data.pubDate).toLocaleDateString()}
+                                        <span class="text-body-secondary text-small text-end flex-grow-1 text-nowrap">
+                                            published at
+                                            <br \>
+                                                {new Date(post.data.pubDate).toLocaleDateString('en-GB', {
+                                                    day: 'numeric',
+                                                    month: 'short',
+                                                    year: 'numeric',
+                                                })}
                                         </span>
                                     </div>
                                 </div>
