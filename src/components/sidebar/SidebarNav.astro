@@ -8,9 +8,7 @@ export interface Props {
     accordion?: boolean;
 }
 
-let { items, minimal, accordion } = Astro.props;
-console.log('items', items);
-console.log(items[0].entries);
+let { items, minimal } = Astro.props;
 let url = Astro.url.pathname.endsWith('/') ? Astro.url.pathname.slice(0, -1) : Astro.url.pathname;
 url = url.replace(/\.html$/, '');
 // items = [
@@ -23,7 +21,7 @@ url = url.replace(/\.html$/, '');
 // ];
 ---
 
-<div class:list={['nav', { accordion: accordion }]}>
+<div class:list={['nav']}>
     <div class="w-100 sticky-top-under mx-3">
         <SidebarSubNav items={items} />
         <!-- {
@@ -132,8 +130,5 @@ url = url.replace(/\.html$/, '');
     @import '@styles/_variables.scss';
     div.sticky-top-under {
         max-width: 25rem;
-    }
-    :global(.sidebar-left) {
-        max-width: 5rem;
     }
 </style>

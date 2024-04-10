@@ -128,6 +128,8 @@ if (!currentDocs) {
 const md_github_url = 'https://github.com/nf-core/website/blob/main/src/content/docs/' + Astro.props.doc.id;
 // remove leading and trailing slash
 const splitUrl = `${url}/`.replace(/^\/|\/$/g, '').split('/');
+// check if markdown file starts with a heading (markdown or html)
+const firstHeading = Astro.props.doc.body.match(/^(#|<h1)/);
 ---
 
 <MarkdownTocLayout
@@ -161,6 +163,7 @@ const splitUrl = `${url}/`.replace(/^\/|\/$/g, '').split('/');
             </ol>
         </nav>
     </div>
+    {!firstHeading && <h1>{title}</h1>}
     <Content />
     <FooterPrevNext slot="pre-footer" md_github_url={md_github_url} prev_page={prev_page} next_page={next_page} />
 </MarkdownTocLayout>
