@@ -107,12 +107,12 @@ if (showRightSidebar) {
     doubleNavbar={doubleNavbar}
 >
     <slot name="header-top" slot="header-top" />
-    <div class="container-fluid">
+    <div class="container-fluid main-content">
         <div class="row">
             {
                 leftSidebar && (
                     <div
-                        class={`col-12 col-md-${leftSidebarWidth} d-none d-md-block sidebar-left pt-1 sticky-top-under`}
+                        class={`col-12 col-xl-${leftSidebarWidth} d-none d-xl-block sidebar-left pt-1 sticky-top-under`}
                     >
                         <div class="">
                             {sidebarTitle && (
@@ -128,7 +128,7 @@ if (showRightSidebar) {
                     </div>
                 )
             }
-            <div class:list={['col-12', 'col-md-' + mainContentWidth]}>
+            <div class:list={['col-12', 'col-xl-' + mainContentWidth]}>
                 <div class="markdown-content ms-auto" transition:animate="fade">
                     <MarkdownWrapper headings={headings} client:idle>
                         <slot />
@@ -137,7 +137,7 @@ if (showRightSidebar) {
             </div>
             {
                 showRightSidebar && (
-                    <div class={`col-12 col-md-${rightSidebarWidth} sidebar-right toc`}>
+                    <div class={`col-12 col-xl-${rightSidebarWidth} sidebar-right toc`}>
                         <slot name="right-sidebar-top" />
                         <SidebarToc
                             headings={headings}
