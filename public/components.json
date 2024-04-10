@@ -2709,7 +2709,13 @@
         "maintainers": [
           "@pinin4fjords"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "antismash_antismashlite",
@@ -4762,6 +4768,14 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         },
         {
           "name": "rnafusion",
@@ -40149,6 +40163,14 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -40906,6 +40928,14 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -45901,6 +45931,14 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -93017,7 +93055,9 @@
               "documentation": "https://rdrr.io/github/bartongroup/Proteus/",
               "tool_dev_url": "https://github.com/bartongroup/Proteus",
               "doi": "10.1101/416511",
-              "licence": "['GPL v2']"
+              "licence": [
+                "GPL v2"
+              ]
             }
           }
         ],
