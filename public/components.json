@@ -2601,7 +2601,7 @@
             "total_mrna": {
               "type": "file",
               "description": "anota2seq results for the 'translated mRNA' analysis, describing differences in RNA levels across conditions for RNA-seq samples. See https://rdrr.io/bioc/anota2seq/man/anota2seqGetOutput.html for description of output columns.",
-              "pattern": ".translated_mRNA.anota2seq.results.tsv"
+              "pattern": ".total_mRNA.anota2seq.results.tsv"
             }
           },
           {
@@ -2615,14 +2615,14 @@
             "buffering": {
               "type": "file",
               "description": "anota2seq results for the 'translated mRNA' analysis, describing buffering across conditions, being stable levels of translated RNA (from riboseq samples) across conditions, despite changes in total mRNA.  See https://rdrr.io/bioc/anota2seq/man/anota2seqGetOutput.html for description of output columns.",
-              "pattern": ".translated_mRNA.anota2seq.results.tsv"
+              "pattern": ".buffering.anota2seq.results.tsv"
             }
           },
           {
             "mrna_abundance": {
               "type": "file",
               "description": "anota2seq results for the 'mRNA abunance' analysis, describing changes across conditions consistent between total mRNA and translated RNA (RNA-seq and Riboseq samples).  See https://rdrr.io/bioc/anota2seq/man/anota2seqGetOutput.html for description of output columns.",
-              "pattern": ".translated_mRNA.anota2seq.results.tsv"
+              "pattern": ".mRNA_abundance.anota2seq.results.tsv"
             }
           },
           {
@@ -3810,6 +3810,14 @@
         {
           "name": "rnafusion",
           "version": "3.0.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1"
         },
         {
           "name": "rnafusion",
@@ -6320,6 +6328,7 @@
         "description": "Generate tables of feature metadata from GTF files",
         "keywords": [
           "gtf",
+          "gene",
           "annotation"
         ],
         "tools": [
@@ -6329,7 +6338,9 @@
               "homepage": "https://github.com/ebi-gene-expression-group/atlas-gene-annotation-manipulation",
               "documentation": "https://github.com/ebi-gene-expression-group/atlas-gene-annotation-manipulation",
               "tool_dev_url": "https://github.com/ebi-gene-expression-group/atlas-gene-annotation-manipulation",
-              "licence": "['Apache-2.0']"
+              "licence": [
+                "Apache-2.0"
+              ]
             }
           }
         ],
@@ -7192,14 +7203,14 @@
             }
           },
           {
-            "sample": {
+            "primary_aligned_bam": {
               "type": "file",
               "description": "BAM/CRAM/SAM file with the reads aligned to the primary genome (the one you want to keep)",
               "pattern": "*.{bam,cram,sam}"
             }
           },
           {
-            "contaminant": {
+            "contaminant_aligned_bam": {
               "type": "file",
               "description": "BAM/CRAM/SAM file with the reads aligned to the contaminant genome (the one you want to filter out)",
               "pattern": "*.{bam,cram,sam}"
@@ -7215,14 +7226,14 @@
             }
           },
           {
-            "bam": {
+            "primary_filtered_bam": {
               "type": "file",
               "description": "Bam file containing the reads which align better to the primary genome.",
               "pattern": "*.{bam,cram,sam}"
             }
           },
           {
-            "bam": {
+            "contamination_bam": {
               "type": "file",
               "description": "Bam file containing the reads which align better to the contaminant genome.",
               "pattern": "*.{bam,cram,sam}"
@@ -7234,7 +7245,6 @@
           "@sppearce"
         ],
         "maintainers": [
-          "@kmurat1",
           "@sppearce"
         ]
       }
@@ -40127,6 +40137,14 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -40884,6 +40902,14 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -45867,6 +45893,14 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
