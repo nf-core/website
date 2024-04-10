@@ -60,6 +60,7 @@ conda activate env_nf
 ```
 
 To deactivate the conda environment, run:
+
 ```bash
 conda deactivate
 ```
@@ -78,10 +79,12 @@ The step to install Nextflow in itself will afterwards be the same as previously
 
 ### Updating Nextflow
 
-Updating nextflow is as simple as running 
+Updating nextflow is as simple as running:
+
 ```bash
 nextflow self-update
 ```
+
 or `conda update nextflow`, depending on how it was installed.
 
 ### Specific Nextflow versions
