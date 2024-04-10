@@ -7,13 +7,12 @@ weight: 2
 ## Nextflow
 
 All nf-core pipelines use Nextflow, so this must be installed on the system where you launch your analysis.
-Once installed, see [_Nextflow configuration_](configuration.md) to set up Nextflow to run on your system.
 
 We recommend using a personal installation of Nextflow where possible, instead of using a system-wide installation.
 This makes it easier to update and control versions.
 
 :::tip{collapse title="Official Nextflow docs"}
-If in doubt, please ee the [Nextflow installation docs](https://www.nextflow.io/docs/latest/getstarted.html#installation)
+If in doubt, please see the [Nextflow installation docs](https://www.nextflow.io/docs/latest/getstarted.html#installation)
 for the latest instructions.
 Installation details are included here for convenience and may not be up to date.
 :::
@@ -172,9 +171,3 @@ This method requires an internet connection. If you're running on a system that 
 If you would like to make changes to the pipeline, fork the GitHub repository and then clone the files. Once cloned, you can run the pipeline with `nextflow run <path-to-repo>`.
 
 Note that you should _only_ do this if you intend to make significant changes to the pipeline. All configuration options can be changed without editing the pipeline code. Forking the pipeline repositories means that you cannot use stable releases and you will fall behind new updates.
-
-## Reference genomes
-
-Some pipelines come with built-in support for genome reference files.
-We recommend downloading these references locally to avoid fetching the same reference many times.
-For more information, see [_Reference genomes_](reference_genomes.md).
