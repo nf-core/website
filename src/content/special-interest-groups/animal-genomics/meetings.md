@@ -9,12 +9,11 @@ groupName: Animal Genomics
 The Animal Genomics special interest group meets on the third Wednesday
 of every month at 4 PM CET / 10 AM EDT / 7 AM PDT.
 
-The first meeting will be Wednesday 17th April at 16:00 CET.
+The first meeting will be on Wednesday, April 17th, at 16:00 CEST. For this inaugural session, we are honored to announce Christa Kühn, president of the Friedrich Loeffler Institute, BovReg project coordinator and former coordinator of EuroFAANG RI, as the speaker. Christa is well-known in the Bovine field for her important contributions to animal genetics. Her talk will be followed by a round table where the structure of the series will be announced and discussed with the participants. 
 
 # How to join
 
 Meetings are held on Zoom:
 
-- Zoom Link
-- Meeting ID: `940 6021 2577`
-- Passcode: `711880`
+- [Zoom Link](https://rediris.zoom.us/j/94354375573)
+- Meeting ID: `943 5437 5573`
