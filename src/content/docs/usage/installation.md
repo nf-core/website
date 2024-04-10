@@ -9,6 +9,9 @@ weight: 2
 All nf-core pipelines use Nextflow, so this must be installed on the system where you launch your analysis.
 Once installed, see [_Nextflow configuration_](configuration.md) to set up Nextflow to run on your system.
 
+We recommend using a personal installation of Nextflow where possible, instead of using a system-wide installation.
+This makes it easier to update and control versions.
+
 :::tip{collapse title="Official Nextflow docs"}
 If in doubt, please ee the [Nextflow installation docs](https://www.nextflow.io/docs/latest/getstarted.html#installation)
 for the latest instructions.
@@ -71,8 +74,6 @@ The main steps will be the following:
 The step to install Nextflow in itself will afterwards be the same as previously mentioned.
 
 ### Updating Nextflow
-
-We recommend using a personal installation of Nextflow where possible, instead of using a system-wide installation. This makes it easier to update.
 
 Updating nextflow is as simple as running `nextflow self-update`
 or `conda update nextflow`, depending on how it was installed.
@@ -137,8 +138,6 @@ For example, `-profile docker` or `-profile conda`.
     To use the singularity containers, use `-profile singularity` instead.
     This works because `apptainer` simply defines `singularity` as an alias
     to the `apptainer` command.
-
-    _Last update: April 2024_
     :::
 
 - [Podman](https://podman.io/), [Charliecloud](https://hpc.github.io/charliecloud/) and [Shifter](https://www.nersc.gov/research-and-development/user-defined-images/)
