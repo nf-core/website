@@ -1,6 +1,7 @@
 ---
 title: Pipeline configuration
 subtitle: How configure Nextflow to work on your system
+weight: 3
 ---
 
 # Introduction

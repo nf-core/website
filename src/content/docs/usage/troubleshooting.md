@@ -1,6 +1,7 @@
 ---
 title: Troubleshooting
 subtitle: How to troubleshoot common mistakes and issues
+weight: 7
 ---
 
 ## How to read this page

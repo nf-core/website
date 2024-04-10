@@ -1,6 +1,7 @@
 ---
 title: Data management
 subtitle: How to plan your project, estimate resources, and share your results.
+weight: 6
 ---
 
 ## Data management
