@@ -6,7 +6,7 @@
     import { onMount } from 'svelte';
     import CopyButton from '@components/CopyButton.svelte';
 
-    export let headings: { text: string; slug: string; depth: number; fa_icon?: string }[] = [];
+    export let headings: { text: string; slug: string; depth: number; fa_icon?: string }[] | undefined = [];
     // find current heading in viewport with IntersectionObserver
     onMount(() => {
         async function renderDiagrams(graphs) {
