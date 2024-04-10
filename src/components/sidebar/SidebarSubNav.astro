@@ -58,13 +58,13 @@ function flattenSidebar(sidebar: SidebarEntry[]): SidebarEntry[] {
         a {
             display: block;
             text-decoration: none;
-            color: var(--sl-color-gray-2);
+            color: var(--bs-secondary-color);
             padding: 0.3em var(--sl-sidebar-item-padding-inline);
 
             &[aria-current='page'],
             &[aria-current='page']:hover,
             &[aria-current='page']:focus {
-                color: var(--bs-success);
+                color: var(--bs-body-color);
                 background-color: transparentize($success, 0.75);
                 border-inline-end: 2pt solid var(--bs-success);
             }
