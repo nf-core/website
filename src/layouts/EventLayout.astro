@@ -3,6 +3,7 @@ import EventListing from '@components/event/EventListing.svelte';
 import PageLayout from '@layouts/PageLayout.astro';
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
 import { type CollectionEntry } from 'astro:content';
+import type { SidebarEntry } from '@utils/types';
 
 const { title, subtitle, events, currentFilters } = Astro.props;
 export interface Props {
@@ -44,11 +45,22 @@ let currentEvents = events.filter((event) => {
 
 const years = [...new Set(events.map((event) => event.data.start.getFullYear()))].sort((a, b) => b - a);
 
-const sections = years.map((year) => {
+const sections: SidebarEntry[] = years.map((year) => {
     return {
-        section_name: year,
-        section_slug: '#year-' + year,
-        children: [],
+        type: 'group',
+        label: year.toString(),
+        href: '#year-' + year,
+        collapsed: true,
+        entries: events
+            .filter((event) => event.data.start?.getFullYear() === year)
+            .map((event) => {
+                return {
+                    type: 'link',
+                    label: event.data.title,
+                    href: '#event-' + event.slug,
+                    isCurrent: false,
+                };
+            }),
     };
 });
 ---
@@ -60,7 +72,7 @@ const sections = years.map((year) => {
 >
     <div class="row">
         <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left pt-1">
-            <SidebarNav items={sections} minimal={true} />
+            <SidebarNav items={sections} />
         </div>
 
         <div class="col">

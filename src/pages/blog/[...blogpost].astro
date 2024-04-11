@@ -4,7 +4,10 @@ import { getCollection } from 'astro:content';
 import SidebarStatsRow from '@components/sidebar/SidebarStatsRow.astro';
 import GitHubProfilePictureExtended from '@components/GitHubProfilePictureExtended.svelte';
 import { Image } from 'astro:assets';
+import type { SidebarEntry } from '@utils/types';
+
 const images = import.meta.glob('../../assets/**');
+
 export async function getStaticPaths() {
     const blogPosts = await getCollection('blog');
     return blogPosts.map((post) => ({
@@ -32,16 +35,20 @@ blogPosts = blogPosts
 // get years of all posts
 const years = [...new Set(blogPosts.map((post) => new Date(post.data.pubDate).getFullYear()))].sort((a, b) => b - a);
 
-const sections = years.map((year) => {
+const sections: SidebarEntry[] = years.map((year) => {
     return {
-        section_name: year,
-        section_slug: '/blog/#year-' + year,
-        children: blogPosts
+        type: 'group',
+        label: year.toString(),
+        href: '/blog/#year-' + year,
+        collapsed: new Date().getFullYear() !== year,
+        entries: blogPosts
             .filter((post) => new Date(post.data.pubDate).getFullYear() === year)
             .map((post) => {
                 return {
-                    title: post.data.title,
-                    slug: '/blog/' + post.slug,
+                    type: 'link',
+                    label: post.data.title,
+                    href: '/blog/' + post.slug,
+                    isCurrent: Astro.url.pathname === '/blog/' + post.slug,
                 };
             }),
     };
