@@ -631,34 +631,46 @@ If the software is not available on Bioconda a `Dockerfile` MUST be provided wit
 
 ### 8 Testing
 
-#### 8.1 Adding nf-test to new modules
+#### 8.1 All output channels must be tested
 
-- All output channels SHOULD be present in the nf-test snapshot file, or at a minimum, it MUST be verified that the files exist.
-- A stub test MUST exist for the module.
-- Tags for any dependent modules MUST be specified to ensure changes to upstream modules will re-trigger tests for the current module.
-  ```
-  tag "modules"
-  tag "modules_nfcore"
-  tag "<tool>"
-  tag "<tool>/<subtool>" # Only if there is a subtool
-  tag "<dependent_tool>/<dependent_subtool>" # only if there is a tool this module depends on
-  ```
-- The `assertAll()` function MUST be used to specify an assertion, and there MUST be a minimum of one success assertion and versions in the snapshot.
-- There SHOULD be a test and assertions for each type of input and output.
-  - [Different assertion types](https://nf-co.re/docs/contributing/tutorials/nf-test_assertions) should be used if a straightforward `process.out` snapshot is not feasible.
-  - Always check the snapshot to ensure that all outputs are correct! E.g., make sure there are no md5sums representing empty files (with the exception of stub tests!).
-- Test names SHOULD describe the test dataset and configuration used. some examples below:
-  - `test("homo_sapiens - [fastq1, fastq2] - bam")`
-  - `test("sarscov2 - [ cram, crai ] - fasta - fai")`
-  - `test("Should search for zipped protein hits against a DIAMOND db and return a tab separated output file of hits")`
-- Input data SHOULD be referenced with the `modules_testdata_base_path` parameter:
-  - `file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)`
+All output channels SHOULD be present in the nf-test snapshot file, or at a minimum, it MUST be verified that the files exist.
 
-#### 8.2 Migrating pytest to nf-test
+#### 8.2 Stub tests
 
-- All previous pytest assertions MUST be converted to nf-test.
-- All old pytest files MUST be deleted.
-- A test for the modules stub MUST be added.
+A stub test MUST exist for the module.
+
+#### 8.3 Tags
+
+Tags for any dependent modules MUST be specified to ensure changes to upstream modules will re-trigger tests for the current module.
+```
+tag "modules"
+tag "modules_nfcore"
+tag "<tool>"
+tag "<tool>/<subtool>" # Only if there is a subtool
+tag "<dependent_tool>/<dependent_subtool>" # only if there is a tool this module depends on
+```
+
+#### 8.4 `assertAll()`
+
+The `assertAll()` function MUST be used to specify an assertion, and there MUST be a minimum of one success assertion and versions in the snapshot.
+
+#### 8.5 Assert each type of input and output
+
+There SHOULD be a test and assertions for each type of input and output.
+- [Different assertion types](https://nf-co.re/docs/contributing/tutorials/nf-test_assertions) should be used if a straightforward `process.out` snapshot is not feasible.
+- Always check the snapshot to ensure that all outputs are correct! E.g., make sure there are no md5sums representing empty files (with the exception of stub tests!).
+
+#### 8.6 Test names
+
+Test names SHOULD describe the test dataset and configuration used. some examples below:
+- `test("homo_sapiens - [fastq1, fastq2] - bam")`
+- `test("sarscov2 - [ cram, crai ] - fasta - fai")`
+- `test("Should search for zipped protein hits against a DIAMOND db and return a tab separated output file of hits")`
+
+#### 8.7 Input data
+
+Input data SHOULD be referenced with the `modules_testdata_base_path` parameter:
+- `file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)`
 
 ### 9 Misc
 
