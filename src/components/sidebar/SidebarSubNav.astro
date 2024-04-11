@@ -9,9 +9,13 @@ export interface Props {
 }
 
 let { items, nested } = Astro.props;
-
+if (!items) {
+    items = [];
+}
 function flattenSidebar(sidebar: SidebarEntry[]): SidebarEntry[] {
-    return sidebar.flatMap((entry) => (entry.type === 'group' ? flattenSidebar(entry.entries) : entry));
+    return sidebar.flatMap((entry) =>
+        entry.type === 'group' && entry.entries ? flattenSidebar(entry.entries) : entry,
+    );
 }
 ---
 

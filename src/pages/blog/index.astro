@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
 import GitHubProfilePictureExtended from '@components/GitHubProfilePictureExtended.svelte';
 import { Image } from 'astro:assets';
+import type { SidebarEntry } from '@utils/types';
 
 const images = import.meta.glob('../../assets/**/*.{png,jpg,jpeg,gif,svg}');
 
@@ -26,18 +27,21 @@ blogPosts = blogPosts
 
 // get years of all posts
 const years = [...new Set(blogPosts.map((post) => new Date(post.data.pubDate).getFullYear()))].sort((a, b) => b - a);
-
-const sections = years.map((year) => {
+console.log(years);
+const sections: SidebarEntry[] = years.map((year) => {
     return {
-        section_name: year,
-        section_slug: '#year-' + year,
-        children: blogPosts
+        type: 'group',
+        label: year.toString(),
+        href: '/blog/#year-' + year,
+        collapsed: new Date().getFullYear() !== year,
+        entries: blogPosts
             .filter((post) => new Date(post.data.pubDate).getFullYear() === year)
             .map((post) => {
                 return {
-                    title: post.data.title,
-                    slug: '/blog/' + post.slug,
-                    pubDate: post.data.pubDate,
+                    type: 'link',
+                    label: post.data.title,
+                    href: '/blog/' + post.slug,
+                    isCurrent: false,
                 };
             }),
     };
@@ -54,10 +58,7 @@ const sections = years.map((year) => {
 >
     <div class="row">
         <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left pt-1">
-            <a
-                href={sections[0].section_slug?.split('/').slice(0, 2).join('/').split('#')[0]}
-                class="sidebar-title text-decoration-none"
-            >
+            <a href="/blog" class="sidebar-title text-decoration-none">
                 <strong class="h6 p-2 text-body">Blog posts</strong>
             </a>
             <SidebarNav items={sections} />

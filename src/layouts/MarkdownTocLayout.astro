@@ -67,6 +67,7 @@ if (leftSidebar) {
 if (showRightSidebar) {
     mainContentWidth -= rightSidebarWidth;
 }
+console.log(sections[0].href);
 ---
 
 <script>
@@ -117,7 +118,7 @@ if (showRightSidebar) {
                         <div class="">
                             {sidebarTitle && (
                                 <a
-                                    href={sections[0].section_slug?.split('/').slice(0, 2).join('/').split('#')[0]}
+                                    href={sections[0].href?.split('/').slice(0, 2).join('/').split('#')[0]}
                                     class="sidebar-title text-decoration-none"
                                 >
                                     <strong class="h6 p-2 text-body">{sidebarTitle}</strong>
