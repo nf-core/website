@@ -84,6 +84,13 @@ blockquote {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
+.main-content figure img:has(+ figcaption) {
+  border: 1px solid $border-color;
+  border-bottom: 0;
+  margin-bottom: 0;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
 .main-content figcaption {
   font-size: 0.8rem;
   color: $body-secondary-color;
@@ -1482,7 +1489,7 @@ div.mermaid {
   .main-content pre code {
     border: 1px solid $border-color-dark;
   }
-  .main-content figcaption {
+  .main-content figcaption, .main-content figure img {
     border-color: $border-color-dark;
     color: $body-secondary-color-dark;
   }

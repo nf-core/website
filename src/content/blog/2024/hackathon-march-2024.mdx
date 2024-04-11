@@ -12,9 +12,62 @@ embedHeaderImage: false
 ---
 
 import { YouTube } from '@astro-community/astro-embed-youtube';
+import { Image } from 'astro:assets';
 
-# March 2024 Hackathon
+import attendee_locations from '@assets/images/blog/2024/hackathon-march-2024/attendee_locations.png';
+import attendees_per_site from '@assets/images/blog/2024/hackathon-march-2024/attendees_per_site.png';
+import attendees_per_year from '@assets/images/blog/2024/hackathon-march-2024/attendees_per_year.png';
+import local_site_locations from '@assets/images/blog/2024/hackathon-march-2024/local_site_locations.png';
+import number_attendees from '@assets/images/blog/2024/hackathon-march-2024/number_attendees.png';
 
-The March 2024 Hackathon was a great success!
+# March 2024 nf-core Hackathon
+
+From March 18-20, 2024, we held the
+[March 2024 online / distributed nf-core hackathon](/events/2024/hackathon-march-2024/).
+People from all over the world joined us both online and in person, at local nodes.
+The response from the community was overwhelming, with a phenomenal number of people
+registering to join:
+
+<Image src={number_attendees} alt="Number attendees" />
+
+The year-on-year growth of hackathon attendance is fantastic to see,
+once again in 2024 we smashed previous records with attendance:
+
+<Image src={attendees_per_year} alt="Attendees per year" />
+
+In the registration form, we asked people what country they live in.
+As you can see, we had people joining us from all over the globe!
+
+<Image src={attendee_locations} alt="Attendee locations" />
+
+The numbers in Germany were a real outlier in 2024,
+likely due to the large number of local sites organised there by community members.
+
+## Local sites
+
+We first tried the idea of hosting local in-person hackathon nodes
+[in March 2023](/events/2023/hackathon-march-2023/).
+Volunteers from the community organised venues at their local workplace and invited anyone to join.
+The response was extremely positive, so in 2024 we decided to take the same approach.
+
+In the end, we had a phenomenal 23 local sites run by community volunteers.
+The size and scale varied enormously, with the [GHGA](https://www.ghga.de/) site in Heidelberg, Germany,
+attracting over 50 people!
+
+<figure>
+    <Image src={attendees_per_site} alt="Attendees per site" />
+    <figcaption>Hopefully Sherbrooke had more than one person in reality!</figcaption>
+</figure>
+
+These sites were also spread all over the world.
+It's great to see more sites popping up in the USA especially:
+
+<Image src={local_site_locations} alt="Local site locations" />
+
+## Pizza and quizzes
+
+## Singalong
 
 <YouTube id="https://www.youtube.com/watch?v=Riiz_lWVTgE&t=9s" />
+
+## Future events
