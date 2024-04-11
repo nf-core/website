@@ -4780,6 +4780,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -40171,6 +40175,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -40928,6 +40936,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -45931,6 +45943,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -129407,7 +129423,7 @@
           {
             "sort_bam": {
               "type": "boolean",
-              "description": "Save reads that do not map to the reference (true) or discard them (false)\n",
+              "description": "Use samtools sort (true) or samtools view (false)\n",
               "default": false
             }
           },
