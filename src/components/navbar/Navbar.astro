@@ -11,19 +11,12 @@ import ThemeSwitch from '@components/ThemeSwitch.svelte';
 import { Icon } from 'astro-icon/components';
 import Search from '@components/navbar/Search.svelte';
 import { getCollection, type CollectionEntry } from 'astro:content';
+import type { SidebarEntry } from '@utils/types';
 
 export interface Props {
     navTocHeadings?: object[];
     title?: string;
-    sections?: {
-        section_name: string;
-        section_slug?: string;
-        children: {
-            title: string;
-            slug: string;
-            order?: number;
-        }[];
-    }[];
+    sections?: SidebarEntry[];
     showHiddenBtn?: boolean;
 }
 const { navTocHeadings = [], title, sections = [], showHiddenBtn = false } = Astro.props;

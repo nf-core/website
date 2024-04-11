@@ -17,30 +17,51 @@ function flattenSidebar(sidebar: SidebarEntry[]): SidebarEntry[] {
 
 <ul class:list={[{ 'top-level': !nested }]}>
     {
-        items.map((item) => (
-            <li>
-                {item.type === 'link' ? (
-                    <a href={item.href} aria-current={item.isCurrent && 'page'} class:list={[{ h6: !nested }, 'px-2']}>
-                        <span>{item.label}</span>
-                    </a>
-                ) : (
-                    <details
-                        open={
-                            flattenSidebar(item.entries).some((i) => i.type === 'link' && i.isCurrent) ||
-                            !item.collapsed
-                        }
-                    >
-                        <summary>
-                            <div class="group-label">
-                                <span class="h5 text-reset">{item.label}</span>
-                            </div>
-                            <i class="fa-solid fa-chevron-right fa-xs mx-2 caret" />
-                        </summary>
-                        <Astro.self items={item.entries} nested />
-                    </details>
-                )}
-            </li>
-        ))
+        items.map((item) => {
+            const containsCurrent =
+                item.type === 'group' && flattenSidebar(item.entries).some((i) => i.type === 'link' && i.isCurrent);
+            return (
+                <li>
+                    {item.type === 'link' ? (
+                        <a
+                            href={item.href}
+                            aria-current={item.isCurrent && 'page'}
+                            class:list={[{ h6: !nested }, 'px-2']}
+                        >
+                            <span>{item.label}</span>
+                        </a>
+                    ) : (
+                        <details
+                            open={
+                                flattenSidebar(item.entries).some((i) => i.type === 'link' && i.isCurrent) ||
+                                !item.collapsed
+                            }
+                        >
+                            <summary
+                                aria-current={item.isCurrent && 'page'}
+                                class:list={{ 'border-success': containsCurrent }}
+                            >
+                                <div class="group-label flex-grow-1">
+                                    {item.href && (
+                                        <a href={item.href} class="h5 text-reset d-block">
+                                            {item.label}
+                                        </a>
+                                    )}
+                                    {!item.href && <span class="h5 text-reset">{item.label}</span>}
+                                </div>
+                                <i
+                                    class:list={[
+                                        'fa-solid fa-chevron-right fa-xs mx-2 caret',
+                                        { 'text-success': containsCurrent },
+                                    ]}
+                                />
+                            </summary>
+                            <Astro.self items={item.entries} nested />
+                        </details>
+                    )}
+                </li>
+            );
+        })
     }
 </ul>
 <style lang="scss">
@@ -55,12 +76,24 @@ function flattenSidebar(sidebar: SidebarEntry[]): SidebarEntry[] {
     li {
         overflow-wrap: anywhere;
 
-        a {
+        a:not(.h5) {
             display: block;
             text-decoration: none;
             color: var(--bs-secondary-color);
             padding: 0.3em var(--sl-sidebar-item-padding-inline);
-
+            border-inline-end: 2pt solid var(--bs-border-color);
+            line-height: 1.4;
+        }
+        a {
+            &:hover {
+                background-color: transparentize($success, 0.85);
+            }
+        }
+        .group-label a:hover {
+            background-color: transparentize($success, 1);
+        }
+        a,
+        summary {
             &[aria-current='page'],
             &[aria-current='page']:hover,
             &[aria-current='page']:focus {
@@ -68,11 +101,6 @@ function flattenSidebar(sidebar: SidebarEntry[]): SidebarEntry[] {
                 background-color: transparentize($success, 0.75);
                 border-inline-end: 2pt solid var(--bs-success);
             }
-        }
-        a,
-        summary {
-            border-inline-end: 2pt solid var(--bs-border-color);
-            line-height: 1.4;
         }
     }
 
@@ -94,7 +122,13 @@ function flattenSidebar(sidebar: SidebarEntry[]): SidebarEntry[] {
         justify-content: space-between;
         cursor: pointer;
         user-select: none;
-        padding: 0.2em var(--sl-sidebar-item-padding-inline);
+        border-inline-end: 2pt solid var(--bs-border-color);
+        a,
+        span {
+            text-decoration: none;
+            padding: 0.3em var(--sl-sidebar-item-padding-inline);
+            margin-bottom: 0;
+        }
     }
     summary::marker,
     summary::-webkit-details-marker {
