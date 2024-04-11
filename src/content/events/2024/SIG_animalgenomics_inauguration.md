@@ -1,6 +1,6 @@
 ---
-title: 'animal-genomics: inauguration meeting'
-subtitle: Christa Kuehn, Friedrich Loeffler Institute
+title: '#animal-genomics: Inauguration Meeting'
+subtitle: Christa Kühn, Friedrich Löffler Institute
 type: talk
 startDate: '2024-04-17'
 startTime: '16:00+02:00'
