@@ -11,6 +11,7 @@ interface Group {
     entries: (Link | Group)[];
     collapsed: boolean;
     href?: string;
+    isCurrent?: boolean;
 }
 
 export type SidebarEntry = Link | Group;
