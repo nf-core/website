@@ -127,6 +127,7 @@ All output channels SHOULD be present in the nf-test snapshot file, or at a mini
 #### 6.2 Tags
 
 Tags for any dependent modules MUST be specified to ensure changes to upstream modules will re-trigger tests for the current subworkflow.
+
 ```
 tag "subworkflows"
 tag "subworkflows_nfcore"
@@ -142,12 +143,14 @@ The `assertAll()` function MUST be used to specify an assertion, and there MUST 
 #### 6.4 Assert each type of input and output
 
 There SHOULD be a test and assertions for each type of input and output.
+
 - [Different assertion types](https://nf-co.re/docs/contributing/tutorials/nf-test_assertions) should be used if a straightforward `workflow.out` snapshot is not feasible.
 - Always check the snapshot to ensure that all outputs are correct! E.g., make sure there are no md5sums representing empty files.
 
 #### 6.5 Test names
 
 Test names SHOULD describe the test dataset and configuration used. some examples below:
+
 - `test("homo_sapiens - [fastq1, fastq2] - bam")`
 - `test("sarscov2 - [ cram, crai ] - fasta - fai")`
 - `test("Should search for zipped protein hits against a DIAMOND db and return a tab separated output file of hits")`
@@ -155,6 +158,7 @@ Test names SHOULD describe the test dataset and configuration used. some example
 #### 6.6 Input data
 
 Input data SHOULD be referenced with the `modules_testdata_base_path` parameter:
+
 - `file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)`
 
 ### 7 Misc
