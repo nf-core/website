@@ -1,6 +1,7 @@
 ---
 import PageLayout from '@layouts/PageLayout.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
+import type { SidebarEntry } from '@utils/types';
 
 export async function getStaticPaths() {
     return ['tutorials', 'usage', 'checklists', 'guidelines'].map((subsection) => ({
@@ -14,11 +15,39 @@ const { subsection } = Astro.params;
 
 let docs = await getCollection('docs');
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
-let sections: { section_name: string; section_slug: string; children: { title: string; slug: string }[] }[] = [
-    { section_name: 'Tutorials', section_slug: '/docs/tutorials', children: [] },
-    { section_name: 'Usage', section_slug: '/docs/usage', children: [] },
-    { section_name: 'Checklists', section_slug: '/docs/checklists', children: [] },
-    { section_name: 'Guidelines', section_slug: '/docs/guidelines', children: [] },
+let sections: SidebarEntry[] = [
+    {
+        type: 'group',
+        label: 'Tutorials',
+        href: '/docs/tutorials',
+        entries: [],
+        isCurrent: Astro.url.pathname === '/docs/tutorials',
+        collapsed: Astro.url.pathname === '/docs/tutorials',
+    },
+    {
+        type: 'group',
+        label: 'Usage',
+        href: '/docs/usage',
+        entries: [],
+        isCurrent: Astro.url.pathname === '/docs/usage',
+        collapsed: Astro.url.pathname === '/docs/usage',
+    },
+    {
+        type: 'group',
+        label: 'Checklists',
+        href: '/docs/checklists',
+        entries: [],
+        isCurrent: Astro.url.pathname === '/docs/checklists',
+        collapsed: Astro.url.pathname === '/docs/checklists',
+    },
+    {
+        type: 'group',
+        label: 'Guidelines',
+        href: '/docs/guidelines',
+        entries: [],
+        isCurrent: Astro.url.pathname === '/docs/guidelines',
+        collapsed: Astro.url.pathname === '/docs/guidelines',
+    },
 ];
 // sort docs first depth, then by weight, then by title
 const sortDocs = (a: CollectionEntry<'docs'>, b: CollectionEntry<'docs'>) => {
@@ -48,82 +77,169 @@ const sortDocs = (a: CollectionEntry<'docs'>, b: CollectionEntry<'docs'>) => {
 let subsectionDocs: CollectionEntry<'docs'>[] = docs.filter((doc) => doc.slug.startsWith(subsection + '/'));
 
 subsectionDocs.sort(sortDocs);
-const sectionIndex = sections.findIndex((section) => section.section_name.toLowerCase() === subsection);
-subsectionDocs
-    .filter((doc) => doc.slug.split('/').length === 2)
-    .map((doc) => {
-        sections[sectionIndex].children.push({ title: doc.data.title, slug: '/docs/' + doc.slug + '/' });
+const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[]) => {
+    const createLinkOrGroup = (part, path, isLastPart, weight) => {
+        let entry: SidebarEntry = {
+            label: part,
+            href: '/docs/' + path,
+            isCurrent: Astro.url.pathname === '/docs/' + path,
+            type: isLastPart ? 'link' : 'group',
+        };
+        if (isLastPart && weight) {
+            entry.weight = weight;
+        }
+
+        if (entry.type === 'group') {
+            entry.entries = [];
+            entry.collapsed = true; // You can set this dynamically as well
+        }
+
+        return entry;
+    };
+
+    const docSlugs = docs.map((doc) => doc.slug);
+    docSlugs.forEach((slug) => {
+        const parts = slug.split('/');
+        let currentLevel = sections;
+
+        parts.forEach((part, i) => {
+            part = part.replaceAll('_', ' ').replace(/(^)\S/g, (match) => match.toUpperCase());
+            const existingEntry = currentLevel.find((entry) => entry.label === part);
+
+            if (existingEntry && existingEntry.type === 'group') {
+                currentLevel = existingEntry.entries;
+            } else {
+                const newEntry = createLinkOrGroup(
+                    part,
+                    slug,
+                    i === parts.length - 1,
+                    docs.find((doc) => doc.slug === slug)?.data.weight,
+                );
+                currentLevel.push(newEntry);
+
+                if (newEntry.type === 'group' && newEntry.entries) {
+                    currentLevel = newEntry.entries;
+                }
+            }
+        });
     });
+};
+
+addEntriesToSection(sections, subsectionDocs);
+// sort all entries by weight if available recursively
+const sortEntries = (entries: SidebarEntry[]) => {
+    entries.sort((a, b) => {
+        if (a.weight && !b.weight) {
+            return -1;
+        } else if (!a.weight && b.weight) {
+            return 1;
+        } else if (a.weight && b.weight) {
+            if (a.weight < b.weight) {
+                return -1;
+            } else if (a.weight > b.weight) {
+                return 1;
+            }
+        } else {
+            if (a.label < b.label) {
+                return -1;
+            } else if (a.label > b.label) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+    });
+    entries.forEach((entry) => {
+        if (entry.type === 'group' && entry.entries) {
+            sortEntries(entry.entries);
+        }
+    });
+};
+
+sections.forEach((section) => {
+    if (section.type === 'group') {
+        sortEntries(section.entries);
+    }
+});
 ---
 
-<PageLayout title={subsection.replace(/(^|\s)\S/g, (match) => match.toUpperCase())} subtitle="">
-    <div class="row">
-        <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left">
-            <SidebarNav items={sections} />
-        </div>
+<PageLayout
+    title={subsection.replace(/(^|\s)\S/g, (match) => match.toUpperCase())}
+    subtitle={'Overview of sections about' + subsection.replace(/(^|\s)\S/g, (match) => match.toUpperCase())}
+    mainpage_container={false}
+>
+    <div class="container-fluid main-content">
+        <div class="row">
+            <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left">
+                <SidebarNav items={sections} />
+            </div>
 
-        <div class="col-12 col-md-10">
-            <p>
-                Here you can find all documentation on how to use nf-core pipelines, and nf-core tools to start
-                processing your data. You will also find information on how to contribute to nf-core pipelines, modules
-                and subworkflows.
-            </p>
-            <div class="">
-                <h2>{subsection.slice(0, 1).toUpperCase() + subsection.slice(1)}</h2>
-                <div class="grid">
-                    {
-                        subsectionDocs
-                            .filter((doc) => doc.slug.split('/').length === 2)
-                            .map((doc) => {
-                                // check if this is a parent of a nested doc
-                                const childDocs = subsectionDocs.filter((childDoc) =>
-                                    childDoc.slug.startsWith(doc.slug + '/'),
-                                );
-                                if (childDocs.length > 0) {
-                                    return (
-                                        <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3 card">
-                                            <span class="card-header">
-                                                <a href={'/docs/' + doc.slug + '/'} class="text-decoration-none">
+            <div class="col-12 col-md-10">
+                <p>
+                    Here you can find all documentation on how to use nf-core pipelines, and nf-core tools to start
+                    processing your data. You will also find information on how to contribute to nf-core pipelines,
+                    modules and subworkflows.
+                </p>
+                <div class="">
+                    <h2>{subsection.slice(0, 1).toUpperCase() + subsection.slice(1)}</h2>
+                    <div class="grid">
+                        {
+                            subsectionDocs
+                                .filter((doc) => doc.slug.split('/').length === 2)
+                                .map((doc) => {
+                                    // check if this is a parent of a nested doc
+                                    const childDocs = subsectionDocs.filter((childDoc) =>
+                                        childDoc.slug.startsWith(doc.slug + '/'),
+                                    );
+                                    if (childDocs.length > 0) {
+                                        return (
+                                            <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3 card">
+                                                <span class="card-header">
+                                                    <a href={'/docs/' + doc.slug + '/'} class="text-decoration-none">
+                                                        {doc.data.title}
+                                                    </a>
+                                                    <button
+                                                        class="btn p-0"
+                                                        data-bs-toggle="collapse"
+                                                        data-bs-target={'#' + doc.slug.replace('/', '-')}
+                                                        aria-expanded="false"
+                                                        aria-controls={doc.slug.replace('/', '-')}
+                                                    >
+                                                        <i class="fa-solid fa-chevron-down" />
+                                                    </button>
+                                                </span>
+                                                <ul
+                                                    class="card-body collapse mx-3 mb-0"
+                                                    id={doc.slug.replace('/', '-')}
+                                                >
+                                                    {childDocs.map((childDoc) => {
+                                                        return (
+                                                            <li>
+                                                                <a href={'/docs/' + childDoc.slug + '/'}>
+                                                                    {childDoc.data.title}
+                                                                </a>
+                                                            </li>
+                                                        );
+                                                    })}
+                                                </ul>
+                                            </div>
+                                        );
+                                    } else {
+                                        return (
+                                            <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3 card">
+                                                <a
+                                                    href={'/docs/' + doc.slug + '/'}
+                                                    class="stretched-link text-decoration-none card-header"
+                                                >
                                                     {doc.data.title}
                                                 </a>
-                                                <button
-                                                    class="btn p-0"
-                                                    data-bs-toggle="collapse"
-                                                    data-bs-target={'#' + doc.slug.replace('/', '-')}
-                                                    aria-expanded="false"
-                                                    aria-controls={doc.slug.replace('/', '-')}
-                                                >
-                                                    <i class="fa-solid fa-chevron-down" />
-                                                </button>
-                                            </span>
-                                            <ul class="card-body collapse mx-3 mb-0" id={doc.slug.replace('/', '-')}>
-                                                {childDocs.map((childDoc) => {
-                                                    return (
-                                                        <li>
-                                                            <a href={'/docs/' + childDoc.slug + '/'}>
-                                                                {childDoc.data.title}
-                                                            </a>
-                                                        </li>
-                                                    );
-                                                })}
-                                            </ul>
-                                        </div>
-                                    );
-                                } else {
-                                    return (
-                                        <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3 card">
-                                            <a
-                                                href={'/docs/' + doc.slug + '/'}
-                                                class="stretched-link text-decoration-none card-header"
-                                            >
-                                                {doc.data.title}
-                                            </a>
-                                            <div class="card-body">{doc.data.subtitle}</div>
-                                        </div>
-                                    );
-                                }
-                            })
-                    }
+                                                <div class="card-body">{doc.data.subtitle}</div>
+                                            </div>
+                                        );
+                                    }
+                                })
+                        }
+                    </div>
                 </div>
             </div>
         </div>
