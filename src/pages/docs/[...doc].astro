@@ -81,7 +81,6 @@ tutorialDocs.sort(sortDocs);
 usageDocs.sort(sortDocs);
 checklistDocs.sort(sortDocs);
 guidelineDocs.sort(sortDocs);
-console.log('astro.url', Astro.url.pathname);
 
 const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[]) => {
     const createLinkOrGroup = (part, path, isLastPart) => {
