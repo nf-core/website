@@ -4,6 +4,9 @@ import { getCollection } from 'astro:content';
 import { YouTube } from '@astro-community/astro-embed-youtube';
 import VideoTranscript from '@components/VideoTranscript.svelte';
 import Admonition from '@components/Admonition.astro';
+import type { CollectionEntry } from 'astro:content';
+import type { SidebarEntry } from '@utils/types';
+import { createLinkOrGroup } from '@utils/functions';
 
 export async function getStaticPaths() {
     const events = await getCollection('events');
@@ -46,36 +49,60 @@ events
     })
     .filter((event) => event.data.type === frontmatter.type)
     .sort((a, b) => {
-        return new Date(a.data.start) - new Date(b.data.start);
+        return new Date(b.data.startDate) - new Date(a.data.startDate);
     });
 
-const years = [...new Set(events.map((event) => event.data.start.getFullYear()))].sort((a, b) => b - a);
+const addEntriesToSection = (sections, events: CollectionEntry<'events'>[]) => {
+    events.forEach((event) => {
+        const parts = event.slug.split('/');
+        let currentLevel = sections;
 
-const sections = years.map((year) => {
+        parts.forEach((part, i) => {
+            part = part.replaceAll('_', ' ').replace(/(^)\S/g, (match) => match.toUpperCase());
+            const existingEntry = currentLevel.find(
+                (entry) => entry.label === part || entry.label === event.data.title,
+            );
+
+            if (existingEntry) {
+                if (existingEntry.type === 'group') {
+                    // workaround for index files in nested events, where another element could already have created the group
+                    if (/index\.(md|mdx)$/.test(event.id) && i === parts.length - 1) {
+                        existingEntry.href = '/events/' + event.slug;
+                        existingEntry.isCurrent = Astro.url.pathname === '/events/' + event.slug;
+                        existingEntry.collapsed = Astro.url.pathname === '/events/' + event.slug;
+                    }
+                    currentLevel = existingEntry.entries;
+                }
+            } else {
+                const lastPart = i === parts.length - 1;
+                let title = lastPart ? event.data.title : part;
+                const newEntry = createLinkOrGroup(title, '/events/' + event.slug, lastPart, Astro.url.pathname);
+                currentLevel.push(newEntry);
+
+                if (newEntry.type === 'group' && newEntry.entries) {
+                    currentLevel = newEntry.entries;
+                }
+            }
+        });
+    });
+};
+const years = [...new Set(events.map((event) => event.data.start.getFullYear()))].sort((a, b) => b - a);
+let sections: SidebarEntry[] = years.map((year) => {
     return {
-        section_name: year,
-        section_slug: '#year-' + year,
-        children: events
-            .filter((event) => event.data.start.getFullYear() === year)
-            .filter((event) => {
-                // exclude subevents based on slug and not index.md(x)
-                return (
-                    event.slug.split('/').length === 2 ||
-                    event.slug.endsWith('index.md') ||
-                    event.slug.endsWith('index.mdx')
-                );
-            })
-            .sort((a, b) => {
-                return new Date(b.data.start) - new Date(a.data.start);
-            })
-            .map((event, i) => {
-                return {
-                    title: event.data.title,
-                    slug: '/events/' + event.slug,
-                    order: i,
-                };
-            }),
+        label: year.toString(),
+        entries: [],
+        type: 'group',
+        collapsed: true,
     };
+});
+addEntriesToSection(sections, events);
+// sort .entries by date
+sections.forEach((year) => {
+    year.entries.sort((a, b) => {
+        const eventA = events.find((event) => '/events/' + event.slug === a.href);
+        const eventB = events.find((event) => '/events/' + event.slug === b.href);
+        return eventB.data.startDate - eventA.data.startDate;
+    });
 });
 ---
 

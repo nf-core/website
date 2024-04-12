@@ -13,6 +13,9 @@ if (!items) {
     items = [];
 }
 function flattenSidebar(sidebar: SidebarEntry[]): SidebarEntry[] {
+    if (!sidebar) {
+        return [];
+    }
     return sidebar.flatMap((entry) =>
         entry.type === 'group' && entry.entries ? flattenSidebar(entry.entries) : entry,
     );
@@ -32,7 +35,8 @@ function flattenSidebar(sidebar: SidebarEntry[]): SidebarEntry[] {
     {
         items.map((item) => {
             const containsCurrent =
-                item.type === 'group' && flattenSidebar(item.entries).some((i) => i.type === 'link' && i.isCurrent);
+                item.type === 'group' &&
+                (flattenSidebar(item.entries).some((i) => i.isCurrent) || item.entries.some((i) => i.isCurrent));
             return (
                 <li>
                     {item.type === 'link' ? (
@@ -44,12 +48,7 @@ function flattenSidebar(sidebar: SidebarEntry[]): SidebarEntry[] {
                             <span>{item.label}</span>
                         </a>
                     ) : (
-                        <details
-                            open={
-                                flattenSidebar(item.entries).some((i) => i.type === 'link' && i.isCurrent) ||
-                                !item.collapsed
-                            }
-                        >
+                        <details open={containsCurrent || item.isCurrent || !item.collapsed}>
                             <summary
                                 aria-current={item.isCurrent && 'page'}
                                 class:list={{ 'border-success': containsCurrent }}

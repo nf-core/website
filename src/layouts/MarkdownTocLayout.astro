@@ -43,7 +43,7 @@ const {
     event_header,
     headings,
     leftSidebar,
-    rightSidebar,
+    rightSidebar = true,
     sections = [],
     viewTransitions = false,
     meta_title = '',
@@ -67,7 +67,6 @@ if (leftSidebar) {
 if (showRightSidebar) {
     mainContentWidth -= rightSidebarWidth;
 }
-console.log(sections[0].href);
 ---
 
 <script>

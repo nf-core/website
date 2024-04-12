@@ -104,19 +104,6 @@ if (leftSidebar) {
         });
     };
 
-    // const siblings: SidebarEntry[] = md_files
-    //     .filter((file) => file.split('/')[0] === section && section !== file)
-    //     .map((child) => {
-    //         const prefix = md_file !== section ? section + '/' : '';
-    //         const title = child
-    //             .replace(section + '/', '')
-    //             .replace(prefix, '')
-    //             .replace(/-/g, ' ')
-    //             .replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()));
-    //         const slug = baseURL + child.replace(prefix, '') + '/';
-    //         return { type: 'link', label: title, href: slug, isCurrent: md_file === child };
-    //     });
-
     addEntriesToSection(sections, md_files);
 }
 console.log('sections', sections[1]);
