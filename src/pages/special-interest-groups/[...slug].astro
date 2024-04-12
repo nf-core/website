@@ -19,7 +19,7 @@ const { headings, Content } = await entry.render();
 const md_github_url = 'https://github.com/nf-core/website/blob/main/src/content/special-interest-groups/' + entry.id;
 const current_section = groupEntries.filter((group) => group.slug.split('/')[0] === section);
 const indexPage = '/special-interest-groups/' + current_section.find((group) => group.id.includes('index.md'))?.slug;
-// generate sections object from current_section, where the element whith an id ends with 'index' add it as section_name, else add it to the children of the current section
+
 const sections: SidebarEntry[] = [
     {
         type: 'group',
