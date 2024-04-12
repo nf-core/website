@@ -57,35 +57,37 @@ function getLinkIcon(link) {
                         {
                             locations?.map((location) => {
                                 const locationLinks = Array.isArray(location.links) ? location.links : [location.links];
+
                                 return (
                                     <li class="list-item">
                                         <ul>
                                             <li>
                                                 <strong>
-                                                    {location.name}:
+                                                    {location.name}
                                                     {location.geoCoordinates && (
-                                                        <a
-                                                            class="m-1 ms-auto  btn btn-sm btn-outline-light"
-                                                            href={`https://www.openstreetmap.org/?mlat=${location.geoCoordinates[0]}&mlon=${location.geoCoordinates[1]}&zoom=16#map=16/${location.geoCoordinates[0]}/${location.geoCoordinates[1]}`}
-                                                            target="_blank"
-                                                        >
-                                                            <i class="fa-duotone fa-map-pin me-1" />
-                                                            See on map
-                                                        </a>
+                                                        <span>
+                                                            :
+                                                            <a
+                                                                class="m-1 ms-auto  btn btn-sm btn-outline-light"
+                                                                href={`https://www.openstreetmap.org/?mlat=${location.geoCoordinates[0]}&mlon=${location.geoCoordinates[1]}&zoom=16#map=16/${location.geoCoordinates[0]}/${location.geoCoordinates[1]}`}
+                                                                target="_blank"
+                                                            >
+                                                                <i class="fa-duotone fa-map-pin me-1" />
+                                                                See on map
+                                                            </a>
+                                                        </span>
                                                     )}
                                                 </strong>
                                                 <ul class="list-unstyled">
                                                     <li>
                                                         {location.address && (
-                                                            <>
-                                                                <ul>
-                                                                    <li>
-                                                                        <span>{location.address}</span>
-                                                                    </li>
-                                                                </ul>
-                                                            </>
+                                                            <ul>
+                                                                <li>
+                                                                    <span>{location.address}</span>
+                                                                </li>
+                                                            </ul>
                                                         )}
-                                                        {locationLinks && (
+                                                        {locationLinks && locationLinks[0] && (
                                                             <ul>
                                                                 {locationLinks.map((loc) => {
                                                                     return (
