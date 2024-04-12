@@ -40,7 +40,7 @@ const sections: SidebarEntry[] = years.map((year) => {
         type: 'group',
         label: year.toString(),
         href: '/blog/#year-' + year,
-        collapsed: new Date().getFullYear() !== year,
+        collapsed: Astro.url.pathname.includes('/blog/' + year) ? false : true,
         entries: blogPosts
             .filter((post) => new Date(post.data.pubDate).getFullYear() === year)
             .map((post) => {
