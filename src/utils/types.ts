@@ -3,6 +3,7 @@ export interface Link {
     label: string;
     href: string;
     isCurrent: boolean;
+    weight?: number;
 }
 
 interface Group {
@@ -12,6 +13,7 @@ interface Group {
     collapsed: boolean;
     href?: string;
     isCurrent?: boolean;
+    weight?: number;
 }
 
 export type SidebarEntry = Link | Group;
