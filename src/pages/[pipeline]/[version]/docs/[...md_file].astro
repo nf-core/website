@@ -42,7 +42,6 @@ export function getStaticPaths() {
 let { pipeline, version, md_file } = Astro.params;
 const { versions, md_files, description } = Astro.props;
 
-console.log('md_files', md_files);
 const section = md_file.split('/')[0];
 // check if there are multiple files in the section
 let leftSidebar = md_files.filter((file) => file.slug.split('/')[0] === section).length > 1;
@@ -55,7 +54,6 @@ url = url.replace(/\.html\/$/, '/');
 
 // drop everything after docs/
 const baseURL = url.split('/').slice(0, 4).join('/') + '/';
-console.log('baseURL', baseURL);
 if (leftSidebar) {
     const addEntriesToSection = (sections, md_files) => {
         const createLinkOrGroup = (part, path, isLastPart) => {
@@ -106,7 +104,6 @@ if (leftSidebar) {
 
     addEntriesToSection(sections, md_files);
 }
-console.log('sections', sections[1]);
 const version_tag_name = version === 'latest' ? versions[0] : version;
 const cache_key = `${pipeline}/${version_tag_name?.replaceAll('.', '')}/docs/${md_file?.toLowerCase()}`;
 
