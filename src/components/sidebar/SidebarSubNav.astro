@@ -19,6 +19,15 @@ function flattenSidebar(sidebar: SidebarEntry[]): SidebarEntry[] {
 }
 ---
 
+<script is:inline>
+    // scroll to the active item
+    if (typeof window !== 'undefined') {
+        const activeItem = document.querySelector('a[aria-current="page"]');
+        if (activeItem) {
+            activeItem.scrollIntoView({ block: 'center' });
+        }
+    }
+</script>
 <ul class:list={[{ 'top-level': !nested }]}>
     {
         items.map((item) => {
