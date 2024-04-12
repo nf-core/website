@@ -3,6 +3,9 @@ import { getCollection } from 'astro:content';
 import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
 import SidebarStatsRow from '@components/sidebar/SidebarStatsRow.astro';
 import GitHubProfilePictureExtended from '@components/GitHubProfilePictureExtended.svelte';
+
+import type { SidebarEntry } from '@utils/types';
+
 const groupEntries = await getCollection('special-interest-groups');
 export async function getStaticPaths() {
     const groupEntries = await getCollection('special-interest-groups');
@@ -15,20 +18,24 @@ const { entry, section } = Astro.props;
 const { headings, Content } = await entry.render();
 const md_github_url = 'https://github.com/nf-core/website/blob/main/src/content/special-interest-groups/' + entry.id;
 const current_section = groupEntries.filter((group) => group.slug.split('/')[0] === section);
-
+const indexPage = '/special-interest-groups/' + current_section.find((group) => group.id.includes('index.md'))?.slug;
 // generate sections object from current_section, where the element whith an id ends with 'index' add it as section_name, else add it to the children of the current section
-const sections = [
+const sections: SidebarEntry[] = [
     {
-        section_name:
+        type: 'group',
+        label:
             current_section.find((group) => group.id.includes('index.md'))?.data.title ?? current_section[0].data.title,
-        section_slug:
-            '/special-interest-groups/' + current_section.find((group) => group.id.includes('index.md'))?.slug,
-        children: current_section
+        href: indexPage,
+        isCurrent: Astro.url.pathname === indexPage,
+        collapsed: false,
+        entries: current_section
             .filter((group) => !group.id.includes('index.md'))
             .map((group) => {
                 return {
-                    title: group.data.title,
-                    slug: '/special-interest-groups/' + group.slug,
+                    type: 'link',
+                    label: group.data.title,
+                    href: '/special-interest-groups/' + group.slug,
+                    isCurrent: Astro.url.pathname === '/special-interest-groups/' + group.slug,
                 };
             }),
     },
@@ -42,6 +49,7 @@ const group_name = entry.data.groupName;
     subtitle={entry.data.subtitle}
     {headings}
     leftSidebar={true}
+    rightSidebar={true}
     {md_github_url}
     {sections}
     viewTransitions={true}
