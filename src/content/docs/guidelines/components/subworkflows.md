@@ -118,8 +118,59 @@ description: |
   (Sub)contig coverage table
 ```
 
-### 6 Misc
+### 6 Testing
 
-#### 6.1 General module code formatting
+#### 6.1 All output channels must be tested
+
+All output channels SHOULD be present in the nf-test snapshot file, or at a minimum, it MUST be verified that the files exist.
+
+#### 6.2 Tags
+
+Tags for any dependent modules MUST be specified to ensure changes to upstream modules will re-trigger tests for the current subworkflow.
+
+```groovy
+tag "subworkflows"
+tag "subworkflows_nfcore"
+tag "<subworkflow_name>"
+tag "<tool>" // Add each tool as a separate tag
+tag "<tool>/<subtool>" // Add each subtool as a separate tag
+```
+
+#### 6.3 `assertAll()`
+
+The `assertAll()` function MUST be used to specify an assertion, and there MUST be a minimum of one success assertion and versions in the snapshot.
+
+#### 6.4 Assert each type of input and output
+
+There SHOULD be a test and assertions for each type of input and output.
+
+[Different assertion types](https://nf-co.re/docs/contributing/tutorials/nf-test_assertions) should be used if a straightforward `workflow.out` snapshot is not feasible.
+
+:::tip
+Always check the snapshot to ensure that all outputs are correct!
+For exmaple, make sure there are no md5sums representing empty files.
+:::
+
+#### 6.5 Test names
+
+Test names SHOULD describe the test dataset and configuration used. some examples below:
+
+```groovy
+test("homo_sapiens - [fastq1, fastq2] - bam")
+test("sarscov2 - [ cram, crai ] - fasta - fai")
+test("Should search for zipped protein hits against a DIAMOND db and return a tab separated output file of hits")
+```
+
+#### 6.6 Input data
+
+Input data SHOULD be referenced with the `modules_testdata_base_path` parameter:
+
+```groovy
+file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
+```
+
+### 7 Misc
+
+#### 7.1 General module code formatting
 
 All code MUST be aligned to follow the '[Harshil Alignment™️](#what-is-the-harshil-alignment)' format.
