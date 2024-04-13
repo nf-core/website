@@ -1,7 +1,6 @@
 ---
 import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
-import { getCollection } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 
 import type { SidebarEntry } from '@utils/types';
 
@@ -98,10 +97,11 @@ const sections: SidebarEntry[] = section_names
             type: 'group',
             label: entry === 'api' ? 'API' : entry.replace(/_/g, ' ').replace(/^\w/, (c) => c.toUpperCase()),
             href:
-                '/tools/' +
+                '/docs/usage/tools/api_reference/' +
                 versioned_tools
                     .find((tool_entry) => tool_entry.id.endsWith('index.md') && tool_entry.id.split('/')[2] === entry)
-                    ?.id.replace(/index\.md$/, ''),
+                    ?.id.replace(/index\.md$/, '')
+                    .replace('docs/', ''),
             collapsed: true,
             entries: versioned_tools
                 .filter((child) => child.id.split('/')[2] === entry && child.id.split('/')[3])
@@ -110,11 +110,16 @@ const sections: SidebarEntry[] = section_names
                     return {
                         type: 'link',
                         label: `${tool_entry.id.split('/')[3].replace(/\.md$/, '')}`,
-                        href: '/tools/' + tool_entry.id.replace(/\.md$/, ''),
+                        href:
+                            '/docs/usage/tools/api_reference/' +
+                            tool_entry.id.replace('docs/', '').replace(/\.md$/, ''),
                         isCurrent: Astro.url.pathname
                             .replace('.html', '')
                             .replace('/latest/', `/${version_tag_name}/`)
-                            .includes('/tools/' + tool_entry.id.replace(/\.md$/, '')),
+                            .includes(
+                                '/docs/usage/tools/api_reference/' +
+                                    tool_entry.id.replace('docs/', '').replace(/\.md$/, ''),
+                            ),
                     };
                 }),
         };
@@ -167,7 +172,10 @@ sections.sort((a, b) => {
                 {
                     versions &&
                         versions.map((v) => {
-                            let url = Astro.url.pathname.replace(`tools/docs/${version}`, `tools/docs/${v}`);
+                            let url = Astro.url.pathname.replace(
+                                `tools/api_reference/${version}`,
+                                `tools/api_reference/${v}`,
+                            );
                             return (
                                 <li>
                                     <a class={'dropdown-item ' + (v === version_tag_name ? 'active' : '')} href={url}>
