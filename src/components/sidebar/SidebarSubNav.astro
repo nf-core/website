@@ -46,7 +46,7 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
                             aria-current={item.isCurrent && 'page'}
                             class:list={[{ h6: !nested }, 'px-2']}
                         >
-                            <span>{item.label}</span>
+                            <span>{item.label.replace('Nf-', 'nf-')}</span>
                         </a>
                     ) : (
                         <details open={containsCurrent || item.isCurrent || !item.collapsed}>
@@ -57,10 +57,12 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
                                 <div class="group-label flex-grow-1">
                                     {item.href && (
                                         <a href={item.href} class="h5 text-reset d-block">
-                                            {item.label}
+                                            {item.label.replace('Nf-', 'nf-')}
                                         </a>
                                     )}
-                                    {!item.href && <span class="h5 text-reset">{item.label}</span>}
+                                    {!item.href && (
+                                        <span class="h5 text-reset">{item.label.replace('Nf-', 'nf-')}</span>
+                                    )}
                                 </div>
                                 <i
                                     class:list={[

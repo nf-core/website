@@ -4,7 +4,6 @@ import FooterPrevNext from '@components/footer/FooterPrevNext.astro';
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import type { SidebarEntry } from '@utils/types';
-import { createLinkOrGroup } from '@utils/functions';
 
 export async function getStaticPaths() {
     const docs = await getCollection('docs');
@@ -21,8 +20,8 @@ const title = Astro.props.doc.data.title;
 const subtitle = Astro.props.doc.data.subtitle;
 const { headings, Content, remarkPluginFrontmatter } = await Astro.props.doc.render();
 
-let prev_page: CollectionEntry<'docs'> | null = null;
-let next_page: CollectionEntry<'docs'> | null = null;
+let prev_page: { title: string; slug: string } | null = null;
+let next_page: { title: string; slug: string } | null = null;
 
 const docs = await getCollection('docs');
 let sections: SidebarEntry[] = [
@@ -31,57 +30,6 @@ let sections: SidebarEntry[] = [
     { type: 'group', label: 'Checklists', href: '/docs/checklists', entries: [], collapsed: true },
     { type: 'group', label: 'Guidelines', href: '/docs/guidelines', entries: [], collapsed: true },
 ];
-
-// sort docs first depth, then by weight, then by title
-const sortDocs = (a: CollectionEntry<'docs'>, b: CollectionEntry<'docs'>) => {
-    if (a.slug.split('/').length < b.slug.split('/').length) {
-        return -1;
-    } else if (a.slug.split('/').length > b.slug.split('/').length) {
-        return 1;
-    } else {
-        if (a.data.weight && !b.data.weight) {
-            return -1;
-        } else if (!a.data.weight && b.data.weight) {
-            return 1;
-        } else if (a.data.weight && b.data.weight) {
-            if (a.data.weight < b.data.weight) {
-                return -1;
-            } else if (a.data.weight > b.data.weight) {
-                return 1;
-            }
-        } else {
-            if (a.data.title < b.data.title) {
-                return -1;
-            } else if (a.data.title > b.data.title) {
-                return 1;
-            } else {
-                return 0;
-            }
-        }
-    }
-};
-let usageDocs: CollectionEntry<'docs'>[] = [];
-let tutorialDocs: CollectionEntry<'docs'>[] = [];
-let checklistDocs: CollectionEntry<'docs'>[] = [];
-let guidelineDocs: CollectionEntry<'docs'>[] = [];
-docs.map((doc) => {
-    if (doc.slug.startsWith('Tutorials/')) {
-        tutorialDocs.push(doc);
-    }
-    if (doc.slug.startsWith('Usage/')) {
-        usageDocs.push(doc);
-    }
-    if (doc.slug.startsWith('Checklists/')) {
-        checklistDocs.push(doc);
-    }
-    if (doc.slug.startsWith('Guidelines/')) {
-        guidelineDocs.push(doc);
-    }
-});
-tutorialDocs.sort(sortDocs);
-usageDocs.sort(sortDocs);
-checklistDocs.sort(sortDocs);
-guidelineDocs.sort(sortDocs);
 
 const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[]) => {
     const createLinkOrGroup = (part, path, isLastPart, weight) => {
@@ -103,24 +51,41 @@ const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[]) => {
         return entry;
     };
 
-    const docSlugs = docs.map((doc) => doc.slug);
-    docSlugs.forEach((slug) => {
-        const parts = slug.split('/');
+    docs.sort((a, b) => a.slug.localeCompare(b.slug));
+
+    docs.forEach((doc) => {
+        const parts = doc.slug.split('/');
         let currentLevel = sections;
 
         parts.forEach((part, i) => {
             part = part.replaceAll('_', ' ').replace(/(^)\S/g, (match) => match.toUpperCase());
             const existingEntry = currentLevel.find((entry) => entry.label === part);
+            if (parts[parts.length - 1].endsWith('bioconda')) {
+                debugger;
+            }
+            if (existingEntry) {
+                if (existingEntry.type === 'group') {
+                    // workaround for index files in nested events, where another element could already have created the group
+                    if (/index\.(md|mdx)$/.test(doc.id) && i === parts.length - 1) {
+                        existingEntry.href = '/docs/' + doc.slug;
+                        existingEntry.isCurrent = Astro.url.pathname === '/docs/' + doc.slug;
+                        existingEntry.collapsed = Astro.url.pathname === '/docs/' + doc.slug;
+                    }
+                    currentLevel = existingEntry.entries;
+                } else {
+                    existingEntry.type = 'group';
+                    existingEntry.collapsed = true;
+                    existingEntry.entries = [];
 
-            if (existingEntry && existingEntry.type === 'group') {
-                currentLevel = existingEntry.entries;
+                    if (/index\.(md|mdx)$/.test(doc.id) && i === parts.length - 1) {
+                        existingEntry.href = '/docs/' + doc.slug;
+                        existingEntry.isCurrent = Astro.url.pathname === '/docs/' + doc.slug;
+                        existingEntry.collapsed = Astro.url.pathname === '/docs/' + doc.slug;
+                    }
+                    currentLevel = existingEntry.entries;
+                }
             } else {
-                const newEntry = createLinkOrGroup(
-                    part,
-                    slug,
-                    i === parts.length - 1,
-                    docs.find((doc) => doc.slug === slug)?.data.weight,
-                );
+                const newEntry = createLinkOrGroup(part, doc.slug, i === parts.length - 1, doc.data.weight);
                 currentLevel.push(newEntry);
 
                 if (newEntry.type === 'group' && newEntry.entries) {
@@ -130,7 +95,6 @@ const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[]) => {
         });
     });
 };
-
 addEntriesToSection(sections, docs);
 // sort all entries by weight if available recursively
 const sortEntries = (entries: SidebarEntry[]) => {
@@ -139,20 +103,14 @@ const sortEntries = (entries: SidebarEntry[]) => {
             return -1;
         } else if (!a.weight && b.weight) {
             return 1;
-        } else if (a.weight && b.weight) {
+        } else if (a.weight && b.weight && a.weight !== b.weight) {
             if (a.weight < b.weight) {
                 return -1;
             } else if (a.weight > b.weight) {
                 return 1;
             }
         } else {
-            if (a.label < b.label) {
-                return -1;
-            } else if (a.label > b.label) {
-                return 1;
-            } else {
-                return 0;
-            }
+            return a.label.localeCompare(b.label);
         }
     });
     entries.forEach((entry) => {
@@ -165,19 +123,48 @@ const sortEntries = (entries: SidebarEntry[]) => {
 sections.forEach((section) => {
     sortEntries(section.entries);
 });
-// find the index of the current page and use that to get the previous and next page
-const url = Astro.url.pathname.replace(/\/$/, '').replace(/\.html$/, '');
-const currentDocs = (() => {
-    if (url.startsWith('/docs/tutorials')) {
-        return tutorialDocs;
-    } else if (url.startsWith('/docs/usage')) {
-        return usageDocs;
-    } else if (url.startsWith('/docs/checklists')) {
-        return checklistDocs;
-    } else if (url.startsWith('/docs/guidelines')) {
-        return guidelineDocs;
+
+// go through all sections and section entries and section entries entries, etc, to find a group containing an elemnt with isCurrent and return all entries
+const findCurrentGroup = (sections: SidebarEntry[]) => {
+    let currentGroup: SidebarEntry[] = [];
+    sections.forEach((section) => {
+        if (section.type === 'group' && section.entries) {
+            section.entries.forEach((entry) => {
+                if (entry.isCurrent) {
+                    currentGroup = section.entries;
+                } else if (entry.type === 'group' && entry.entries) {
+                    const group = findCurrentGroup(entry.entries);
+                    if (group.length > 0) {
+                        currentGroup = group;
+                    }
+                }
+            });
+        }
+    });
+    return currentGroup;
+};
+
+const currentGroup = findCurrentGroup(sections);
+console.log('currentGroup', currentGroup);
+if (currentGroup.length > 0) {
+    const currentGroupIndex = currentGroup.findIndex((entry) => entry.isCurrent);
+    if (currentGroupIndex === -1) {
+        console.error('Could not find current page ' + Astro.url.pathname + ' in docs collection');
     }
-})();
+    if (currentGroup[currentGroupIndex - 1] && currentGroup[currentGroupIndex - 1].href) {
+        prev_page = {
+            title: currentGroup[currentGroupIndex - 1].label,
+            slug: currentGroup[currentGroupIndex - 1].href,
+        };
+    }
+    if (currentGroup[currentGroupIndex + 1] && currentGroup[currentGroupIndex + 1].href) {
+        next_page = {
+            title: currentGroup[currentGroupIndex + 1].label,
+            slug: currentGroup[currentGroupIndex + 1].href,
+        };
+    }
+}
+
 // // add entries to sections
 // tutorialDocs.forEach((doc) => {
 //     // get sections for tutorials
@@ -188,28 +175,28 @@ const currentDocs = (() => {
 //             type: 'link',
 //             label: doc.data.title,
 //             href: '/docs/' + doc.slug,
-//             isCurrent: Astro.url.pathname === '/docs/' + doc.slug,
+//             isCurrent: Astro.url.pathname.replace(".html","") === '/docs/' + doc.slug,
 //         });
 // });
-if (!currentDocs) {
-    console.error('Could not find current page ' + Astro.url.pathname + ' in docs collection');
-} else {
-    const current_page_index = currentDocs.findIndex((page) => '/docs/' + page.slug === url);
+// if (!currentDocs) {
+//     console.error('Could not find current page ' + Astro.url.pathname + ' in docs collection');
+// } else {
+//     const current_page_index = currentDocs.findIndex((page) => '/docs/' + page.slug === url);
 
-    if (current_page_index === -1) {
-        console.error('Could not find current page ' + Astro.url.pathname + ' in docs collection');
-    } else {
-        prev_page = currentDocs[current_page_index - 1];
-        prev_page =
-            prev_page && prev_page.slug?.split('/').slice(-2)[0] === url.split('/').slice(-2)[0] ? prev_page : null;
-        next_page = currentDocs[current_page_index + 1];
-        next_page =
-            next_page && next_page.slug?.split('/').slice(-2)[0] === url.split('/').slice(-2)[0] ? next_page : null;
-    }
-}
+//     if (current_page_index === -1) {
+//         console.error('Could not find current page ' + Astro.url.pathname + ' in docs collection');
+//     } else {
+//         prev_page = currentDocs[current_page_index - 1];
+//         prev_page =
+//             prev_page && prev_page.slug?.split('/').slice(-2)[0] === url.split('/').slice(-2)[0] ? prev_page : null;
+//         next_page = currentDocs[current_page_index + 1];
+//         next_page =
+//             next_page && next_page.slug?.split('/').slice(-2)[0] === url.split('/').slice(-2)[0] ? next_page : null;
+//     }
+// }
 const md_github_url = 'https://github.com/nf-core/website/blob/main/src/content/docs/' + Astro.props.doc.id;
 // remove leading and trailing slash
-const splitUrl = `${url}/`.replace(/^\/|\/$/g, '').split('/');
+const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, '').split('/');
 // check if markdown file starts with a heading (markdown or html)
 const firstHeading = Astro.props.doc.body.match(/^(#|<h1)/);
 ---
@@ -227,7 +214,7 @@ const firstHeading = Astro.props.doc.body.match(/^(#|<h1)/);
     docSearchTags={[
         { name: 'page_type', content: 'Docs' },
         { name: 'page_rank', content: '8' },
-        { name: 'page_subtype', content: currentDocs === usageDocs ? 'Usage' : 'Contributing' },
+        // { name: 'page_subtype', content: currentDocs === usageDocs ? 'Usage' : 'Contributing' },
     ]}
 >
     <div slot="header-top" class="d-none d-md-block">

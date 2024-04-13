@@ -3,7 +3,7 @@ export const createLinkOrGroup = (part, path, isLastPart, currentUrl) => {
     let entry: SidebarEntry = {
         label: part,
         href: path,
-        isCurrent: currentUrl === path,
+        isCurrent: currentUrl.replace('.html', '') === path,
         type: isLastPart ? 'link' : 'group',
     };
 
@@ -13,4 +13,13 @@ export const createLinkOrGroup = (part, path, isLastPart, currentUrl) => {
     }
 
     return entry;
+};
+
+const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
+    if (!sidebar) {
+        return [];
+    }
+    return sidebar.flatMap((entry) =>
+        entry.type === 'group' && entry.entries ? flattenSidebar(entry.entries) : entry,
+    );
 };
