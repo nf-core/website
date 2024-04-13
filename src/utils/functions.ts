@@ -33,23 +33,21 @@ export const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
 
 export const findCurrentGroup = (sections: SidebarEntry[]) => {
     let currentGroup: SidebarEntry[] = [];
-    console.log('sections', sections);
     sections.forEach((section) => {
-        if (section.type === 'group' && section.entries) {
-            console.log('parsing group', section.label);
+        if (section.isCurrent) {
+            currentGroup = section.type === 'group' ? [section] : sections;
+            return currentGroup;
+        } else if (section.type === 'group' && section.entries) {
             section.entries.forEach((entry) => {
                 if (entry.isCurrent) {
                     currentGroup = section.entries;
                 } else if (entry.type === 'group' && entry.entries) {
-                    console.log('going deeper into group', entry.label);
                     const group = findCurrentGroup(entry.entries);
                     if (group.length > 0) {
                         currentGroup = group;
                     }
                 }
             });
-        } else if (section.isCurrent) {
-            currentGroup = sections;
         }
     });
     return currentGroup;
