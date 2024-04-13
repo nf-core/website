@@ -22,12 +22,11 @@ export interface Props {
     showHiddenBtn?: boolean;
 }
 const { navTocHeadings = [], title, sections = [], showHiddenBtn = false } = Astro.props;
-let navbarTitle: [string, string];
+let navbarTitle: [string, string] | undefined;
 if (sections) {
-    // find "type=group" with an entry that has isCurrent set to true
-    const currentGroup = findCurrentGroup(sections)[0];
-    if (currentGroup && currentGroup.href) {
-        navbarTitle = [currentGroup.href.split('/')[1], currentGroup.label];
+    const currentEntry = findCurrentGroup(sections).find((entry) => entry.isCurrent);
+    if (currentEntry && currentEntry.href) {
+        navbarTitle = [currentEntry.href.split('/')[1], currentEntry.label];
     }
 }
 let newBlogPost: CollectionEntry<'blog'> | undefined;
@@ -210,7 +209,7 @@ newBlogPost = await getCollection('blog').then((posts) => {
         </div>
     </div>
     {
-        sections && sections.length > 0 && navbarTitle[0] !== undefined && (
+        sections && sections.length > 0 && navbarTitle && navbarTitle[0] !== undefined && (
             <NavbarDocsNav client:visible>
                 <NavbarDocsNavTitle slot="title" title={navbarTitle.flat()} />
                 <SidebarNav slot="menu" items={sections} />
