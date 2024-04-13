@@ -3,6 +3,8 @@ import PageLayout from '@layouts/PageLayout.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import type { SidebarEntry } from '@utils/types';
 
+import { createLinkOrGroup } from '@utils/functions';
+
 export async function getStaticPaths() {
     return ['tutorials', 'usage', 'checklists', 'guidelines'].map((subsection) => ({
         params: {
@@ -78,25 +80,6 @@ let subsectionDocs: CollectionEntry<'docs'>[] = docs.filter((doc) => doc.slug.st
 
 subsectionDocs.sort(sortDocs);
 const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[]) => {
-    const createLinkOrGroup = (part, path, isLastPart, weight) => {
-        let entry: SidebarEntry = {
-            label: part,
-            href: '/docs/' + path,
-            isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/' + path,
-            type: isLastPart ? 'link' : 'group',
-        };
-        if (isLastPart && weight) {
-            entry.weight = weight;
-        }
-
-        if (entry.type === 'group') {
-            entry.entries = [];
-            entry.collapsed = true; // You can set this dynamically as well
-        }
-
-        return entry;
-    };
-
     const docSlugs = docs.map((doc) => doc.slug);
     docSlugs.forEach((slug) => {
         const parts = slug.split('/');
@@ -111,8 +94,9 @@ const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[]) => {
             } else {
                 const newEntry = createLinkOrGroup(
                     part,
-                    slug,
+                    '/docs/' + slug,
                     i === parts.length - 1,
+                    Astro.url.pathname,
                     docs.find((doc) => doc.slug === slug)?.data.weight,
                 );
                 currentLevel.push(newEntry);
