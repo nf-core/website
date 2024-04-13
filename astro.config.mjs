@@ -63,7 +63,7 @@ export default defineConfig({
                 'fa-brands': ['github'],
                 'line-md': ['check-list-3-twotone'],
                 mdi: ['aws', 'slack', 'youtube'],
-                octicon: ['link-external-16', 'table-16'],
+                octicon: ['link-external-16', 'table-16', 'chevron-right-16'],
                 'simple-icons': ['bluesky'],
             },
         }),

@@ -5,6 +5,7 @@ import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import type { SidebarEntry } from '@utils/types';
 import { findCurrentGroup, createLinkOrGroup } from '@utils/functions';
+import { Icon } from 'astro-icon/components';
 
 export async function getStaticPaths() {
     const docs = await getCollection('docs');
@@ -191,14 +192,16 @@ const firstHeading = Astro.props.doc.body.match(/^(#|<h1)/);
             <ol class="breadcrumb">
                 {
                     splitUrl.slice(0, -1).map((slug, i) => (
-                        <li class="breadcrumb-item">
-                            <a class="" href={'/' + splitUrl.slice(0, i + 1).join('/')}>
-                                {slug.replaceAll('_', ' ').replace(/(^|\s)\S/g, (match) => match.toUpperCase())}
-                            </a>
-                        </li>
+                        <>
+                            <li class="breadcrumb-item">
+                                <a class="" href={'/' + splitUrl.slice(0, i + 1).join('/')}>
+                                    {slug.replaceAll('_', ' ').replace(/(^|\s)\S/g, (match) => match.toUpperCase())}
+                                </a>
+                            </li>
+                            <Icon name="octicon:chevron-right-16" class={'mt-1'} />
+                        </>
                     ))
                 }
-                <li class="breadcrumb-item active" aria-current="page"></li>
             </ol>
         </nav>
     </div>
