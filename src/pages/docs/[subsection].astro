@@ -161,13 +161,10 @@ sections.forEach((section) => {
         sortEntries(section.entries);
     }
 });
+const title = subsection.replace(/(^|\s)\S/g, (match) => match.toUpperCase());
 ---
 
-<PageLayout
-    title={subsection.replace(/(^|\s)\S/g, (match) => match.toUpperCase())}
-    subtitle={'Overview of sections about' + subsection.replace(/(^|\s)\S/g, (match) => match.toUpperCase())}
-    mainpage_container={false}
->
+<PageLayout title={title} subtitle={'Overview of sections about' + title} mainpage_container={false}>
     <div class="container-fluid main-content">
         <div class="row">
             <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left">

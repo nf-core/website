@@ -21,26 +21,15 @@ export interface Props {
 }
 const { navTocHeadings = [], title, sections = [], showHiddenBtn = false } = Astro.props;
 let navbarTitle = [];
-// if (sections?.length > 0) {
-//     // construct the breadcrumb for the navbarNav element
-//     let url = Astro.url.pathname;
-//     const maxDepth = Math.max(3, url.split('/').length - 3);
-
-//     const currentSection = sections.find((section) => {
-//         return section.children.find((child) => {
-//             return child.slug.startsWith(url.split('/').slice(0, maxDepth).join('/'));
-//         });
-//     });
-//     const shortenedURL = url.replace(currentSection?.section_slug, '');
-//     const currentChild = shortenedURL
-//         ? currentSection?.children?.find((child) => {
-//               return url.startsWith(child.slug);
-//           })?.title
-//         : '';
-//     if (currentSection) {
-//         navbarTitle = currentChild ? [currentSection?.section_name, currentChild] : [currentSection?.section_name];
-//     }
-// }
+if (sections) {
+    // find "type=group" with an entry that has isCurrent set to true
+    const currentSection = sections.find((section) => {
+        return section.type === 'group' && section.entries.find((entry) => entry.isCurrent);
+    });
+    if (currentSection && currentSection.href) {
+        navbarTitle = [currentSection.href.split('/')[1], currentSection.label];
+    }
+}
 let newBlogPost: CollectionEntry<'blog'> | undefined;
 newBlogPost = await getCollection('blog').then((posts) => {
     return posts.find(
