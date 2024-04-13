@@ -63,7 +63,7 @@ const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[]) => {
         let entry: SidebarEntry = {
             label: part,
             href: '/docs/' + path,
-            isCurrent: Astro.url.pathname === '/docs/' + path,
+            isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/' + path,
             type: isLastPart ? 'link' : 'group',
         };
         if (isLastPart && weight) {

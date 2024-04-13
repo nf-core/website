@@ -88,7 +88,7 @@ const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[]) => {
         let entry: SidebarEntry = {
             label: part,
             href: '/docs/' + path,
-            isCurrent: Astro.url.pathname === '/docs/' + path,
+            isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/' + path,
             type: isLastPart ? 'link' : 'group',
         };
         if (isLastPart && weight) {
@@ -231,7 +231,6 @@ const firstHeading = Astro.props.doc.body.match(/^(#|<h1)/);
     ]}
 >
     <div slot="header-top" class="d-none d-md-block">
-        {Astro.url.pathname}
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 {

@@ -48,7 +48,7 @@ const sections: SidebarEntry[] = years.map((year) => {
                     type: 'link',
                     label: post.data.title,
                     href: '/blog/' + post.slug,
-                    isCurrent: Astro.url.pathname === '/blog/' + post.slug,
+                    isCurrent: Astro.url.pathname.replace('.html', '') === '/blog/' + post.slug,
                 };
             }),
     };

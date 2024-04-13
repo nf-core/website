@@ -21,7 +21,7 @@ let sections: SidebarEntry[] = [
         label: 'Tutorials',
         href: '/docs/tutorials',
         entries: [],
-        isCurrent: Astro.url.pathname === '/docs/tutorials',
+        isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/tutorials',
         collapsed: Astro.url.pathname === '/docs/tutorials',
     },
     {
@@ -29,7 +29,7 @@ let sections: SidebarEntry[] = [
         label: 'Usage',
         href: '/docs/usage',
         entries: [],
-        isCurrent: Astro.url.pathname === '/docs/usage',
+        isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/usage',
         collapsed: Astro.url.pathname === '/docs/usage',
     },
     {
@@ -37,7 +37,7 @@ let sections: SidebarEntry[] = [
         label: 'Checklists',
         href: '/docs/checklists',
         entries: [],
-        isCurrent: Astro.url.pathname === '/docs/checklists',
+        isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/checklists',
         collapsed: Astro.url.pathname === '/docs/checklists',
     },
     {
@@ -45,7 +45,7 @@ let sections: SidebarEntry[] = [
         label: 'Guidelines',
         href: '/docs/guidelines',
         entries: [],
-        isCurrent: Astro.url.pathname === '/docs/guidelines',
+        isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/guidelines',
         collapsed: Astro.url.pathname === '/docs/guidelines',
     },
 ];
@@ -82,7 +82,7 @@ const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[]) => {
         let entry: SidebarEntry = {
             label: part,
             href: '/docs/' + path,
-            isCurrent: Astro.url.pathname === '/docs/' + path,
+            isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/' + path,
             type: isLastPart ? 'link' : 'group',
         };
         if (isLastPart && weight) {
