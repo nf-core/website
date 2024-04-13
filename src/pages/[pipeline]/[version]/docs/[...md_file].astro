@@ -6,6 +6,7 @@ import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
 import pipelines_json from '@public/pipelines.json';
 import { getEntry } from 'astro:content';
 import type { SidebarEntry } from '@utils/types';
+import { createLinkOrGroup } from '@utils/functions';
 
 import ExpandDetailsButton from '@components/sidebar/ExpandDetailsButton.svelte';
 
@@ -56,22 +57,6 @@ url = url.replace(/\.html\/$/, '/');
 const baseURL = url.split('/').slice(0, 4).join('/') + '/';
 if (leftSidebar) {
     const addEntriesToSection = (sections, md_files) => {
-        const createLinkOrGroup = (part, path, isLastPart) => {
-            let entry: SidebarEntry = {
-                label: part,
-                href: baseURL + path,
-                isCurrent: Astro.url.pathname.replace('.html', '') === baseURL + path,
-                type: isLastPart ? 'link' : 'group',
-            };
-
-            if (entry.type === 'group') {
-                entry.entries = [];
-                entry.collapsed = true; // You can set this dynamically as well
-            }
-
-            return entry;
-        };
-
         const docSlugs = md_files.map((doc) => doc.slug);
         docSlugs.forEach((slug) => {
             const parts = slug.split('/');
@@ -91,7 +76,12 @@ if (leftSidebar) {
                         currentLevel = existingEntry.entries;
                     }
                 } else {
-                    const newEntry = createLinkOrGroup(part, slug, i === parts.length - 1);
+                    const newEntry = createLinkOrGroup(
+                        part,
+                        baseURL + slug,
+                        i === parts.length - 1,
+                        Astro.url.pathname,
+                    );
                     currentLevel.push(newEntry);
 
                     if (newEntry.type === 'group' && newEntry.entries) {
