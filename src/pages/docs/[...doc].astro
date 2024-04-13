@@ -4,6 +4,7 @@ import FooterPrevNext from '@components/footer/FooterPrevNext.astro';
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import type { SidebarEntry } from '@utils/types';
+import { findCurrentGroup, createLinkOrGroup } from '@utils/functions';
 
 export async function getStaticPaths() {
     const docs = await getCollection('docs');
@@ -32,25 +33,6 @@ let sections: SidebarEntry[] = [
 ];
 
 const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[]) => {
-    const createLinkOrGroup = (part, path, isLastPart, weight) => {
-        let entry: SidebarEntry = {
-            label: part,
-            href: '/docs/' + path,
-            isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/' + path,
-            type: isLastPart ? 'link' : 'group',
-        };
-        if (isLastPart && weight) {
-            entry.weight = weight;
-        }
-
-        if (entry.type === 'group') {
-            entry.entries = [];
-            entry.collapsed = true; // You can set this dynamically as well
-        }
-
-        return entry;
-    };
-
     docs.sort((a, b) => a.slug.localeCompare(b.slug));
 
     docs.forEach((doc) => {
@@ -85,7 +67,13 @@ const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[]) => {
                     currentLevel = existingEntry.entries;
                 }
             } else {
-                const newEntry = createLinkOrGroup(part, doc.slug, i === parts.length - 1, doc.data.weight);
+                const newEntry = createLinkOrGroup(
+                    part,
+                    '/docs/' + doc.slug,
+                    i === parts.length - 1,
+                    Astro.url.pathname,
+                    doc.data.weight,
+                );
                 currentLevel.push(newEntry);
 
                 if (newEntry.type === 'group' && newEntry.entries) {
@@ -125,27 +113,8 @@ sections.forEach((section) => {
 });
 
 // go through all sections and section entries and section entries entries, etc, to find a group containing an elemnt with isCurrent and return all entries
-const findCurrentGroup = (sections: SidebarEntry[]) => {
-    let currentGroup: SidebarEntry[] = [];
-    sections.forEach((section) => {
-        if (section.type === 'group' && section.entries) {
-            section.entries.forEach((entry) => {
-                if (entry.isCurrent) {
-                    currentGroup = section.entries;
-                } else if (entry.type === 'group' && entry.entries) {
-                    const group = findCurrentGroup(entry.entries);
-                    if (group.length > 0) {
-                        currentGroup = group;
-                    }
-                }
-            });
-        }
-    });
-    return currentGroup;
-};
 
 const currentGroup = findCurrentGroup(sections);
-console.log('currentGroup', currentGroup);
 if (currentGroup.length > 0) {
     const currentGroupIndex = currentGroup.findIndex((entry) => entry.isCurrent);
     if (currentGroupIndex === -1) {

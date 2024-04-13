@@ -13,6 +13,8 @@ import Search from '@components/navbar/Search.svelte';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import type { SidebarEntry } from '@utils/types';
 
+import { findCurrentGroup } from '@utils/functions';
+
 export interface Props {
     navTocHeadings?: object[];
     title?: string;
@@ -20,14 +22,12 @@ export interface Props {
     showHiddenBtn?: boolean;
 }
 const { navTocHeadings = [], title, sections = [], showHiddenBtn = false } = Astro.props;
-let navbarTitle = [];
+let navbarTitle: [string, string];
 if (sections) {
     // find "type=group" with an entry that has isCurrent set to true
-    const currentSection = sections.find((section) => {
-        return section.type === 'group' && section.entries.find((entry) => entry.isCurrent);
-    });
-    if (currentSection && currentSection.href) {
-        navbarTitle = [currentSection.href.split('/')[1], currentSection.label];
+    const currentGroup = findCurrentGroup(sections)[0];
+    if (currentGroup && currentGroup.href) {
+        navbarTitle = [currentGroup.href.split('/')[1], currentGroup.label];
     }
 }
 let newBlogPost: CollectionEntry<'blog'> | undefined;
