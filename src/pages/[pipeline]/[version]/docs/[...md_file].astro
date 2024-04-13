@@ -60,7 +60,7 @@ if (leftSidebar) {
             let entry: SidebarEntry = {
                 label: part,
                 href: baseURL + path,
-                isCurrent: Astro.url.pathname === baseURL + path,
+                isCurrent: Astro.url.pathname.replace('.html', '') === baseURL + path,
                 type: isLastPart ? 'link' : 'group',
             };
 
