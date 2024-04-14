@@ -1,6 +1,7 @@
 ---
 title: Pipeline configuration
 subtitle: How configure Nextflow to work on your system
+weight: 3
 ---
 
 # Introduction
@@ -234,7 +235,7 @@ The [Nextflow DSL2](https://www.nextflow.io/docs/latest/dsl2.html) implementatio
 
 If for some reason you need to use a different version of a particular tool with the pipeline then you just need to identify the `process` name and override the Nextflow `container` or `conda` definition for that process using the `withName` declaration.
 
-For example, the [nf-core/viralrecon](https://nf-co.re/viralrecon) pipeline uses a tool called Pangolin that updates an internal database of COVID-19 lineages quite frequently. It doesn't make sense to re-release the nf-core/viralrecon everytime a new version of Pangolin has been released.
+For example, the [nf-core/viralrecon](https://nf-co.re/viralrecon) pipeline uses a tool called Pangolin that updates an internal database of COVID-19 lineages quite frequently. It doesn't make sense to re-release the nf-core/viralrecon every time a new version of Pangolin has been released.
 
 In this case, a user can override the default container used by the pipeline by creating a custom config file and passing it as a command-line argument via `-c custom.config`.
 
@@ -301,7 +302,7 @@ In some cases _some_ modules have mandatory information for a tool for it to be 
 
 ### Customising tool arguments
 
-If you want to modify which parameters are used by a given tool, you can do this by specyfing them in the the `ext.args` entry of a process in a [custom config](#custom-configuration-files).
+If you want to modify which parameters are used by a given tool, you can do this by specifying them in the the `ext.args` entry of a process in a [custom config](#custom-configuration-files).
 
 For example, lets say a pipeline does not yet support the `-n` parameter to a `BOWTIE_BUILD` step. You can add this in a custom config file like so:
 

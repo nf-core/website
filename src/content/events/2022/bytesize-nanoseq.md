@@ -8,9 +8,11 @@ endDate: '2022-06-21'
 endTime: '13:30+02:00'
 embedAt: 'nanoseq'
 youtubeEmbed: https://www.youtube.com/watch?v=KM1A0_GD2vQ
-locationURL:
-  - https://www.youtube.com/watch?v=KM1A0_GD2vQ
-  - https://doi.org/10.6084/m9.figshare.20115506.v1
+locations:
+  - name: Online
+    links:
+      - https://www.youtube.com/watch?v=KM1A0_GD2vQ
+      - https://doi.org/10.6084/m9.figshare.20115506.v1
 ---
 
 This week, Yuk Kei ([@yuukiiwa](https://github.com/yuukiiwa)) will talk about the newest developments in the nf-core/nanoseq pipeline.

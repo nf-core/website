@@ -1,5 +1,5 @@
 ---
-title: Pipeline Release Review Guidelines
+title: Guidelines for Pipeline Release Review
 subtitle: Suggestions for reviewing pipeline release PRs
 ---
 
@@ -29,7 +29,7 @@ Here we provide a general set of suggestions of what a reviewer should and do no
 
 ## Do: Documentation
 
-- Documention is only on the nf-core website (not pointed to other non-nf-core standard places, e.g. not read the docs )
+- Documentation is only on the nf-core website (not pointed to other non-nf-core standard places, e.g. not read the docs )
 - Is documentation sufficiently described (`usage.md`, `output.md`, `nextflow_schema.json`)?
   - nextflow_schema.json: check if types are correct and that `default` and `enum` are used where applicable
 - Are there any typos in the documentation (`usage.md`, `output.md`, `nextflow_schema.json`)

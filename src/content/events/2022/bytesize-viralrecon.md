@@ -8,9 +8,11 @@ endDate: '2022-06-07'
 endTime: '13:30+02:00'
 embedAt: 'viralrecon'
 youtubeEmbed: https://www.youtube.com/watch?v=K1ThKn4p4u0
-locationURL:
-  - https://www.youtube.com/watch?v=K1ThKn4p4u0
-  - https://doi.org/10.6084/m9.figshare.20020703.v1
+locations:
+  - name: Online
+    links:
+      - https://www.youtube.com/watch?v=K1ThKn4p4u0
+      - https://doi.org/10.6084/m9.figshare.20020703.v1
 ---
 
 This week, Sara Monzón ([@saramonzon](https://github.com/saramonzon)) will talk about the newest developments in the nf-core/viralrecon pipeline.

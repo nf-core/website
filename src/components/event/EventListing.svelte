@@ -126,8 +126,7 @@
                 {/each}
             </div>
         {/if}
-        <div>
-            <h1>General events</h1>
+        <div class="mt-5">
             <div class="d-flex flex-column">
                 <div class="mb-3">
                     <h2><i class="fa-duotone fa-calendar-day me-3" />Upcoming events</h2>

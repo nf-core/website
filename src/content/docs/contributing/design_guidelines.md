@@ -1,5 +1,5 @@
 ---
-title: Graphic design guidelines
+title: Guidelines for Graphic Design
 subtitle: Templates, common images, and design-related content for nf-core.
 ---
 
@@ -98,7 +98,7 @@ Some components that may be useful are shown below:
 ### Use draw.io
 
 The web app [draw.io](https://app.diagrams.net/) helps you create, render and export different diagrams including metro-maps.
-For even more convenience you can use the following asset library [NF-Core xml item library](https://github.com/LouisLeNezet/phaseimpute/blob/dev/docs/NfCore_library.xml). It contains all of the components from the cheatsheet above.
+For even more convenience you can use the following asset library [nf-core xml item library](https://github.com/LouisLeNezet/phaseimpute/blob/dev/docs/NfCore_library.xml). It contains all of the components from the cheatsheet above.
 To import it to draw.io use "File / Open library from / URL..." and paste:
 
 ```plaintext

@@ -6,10 +6,11 @@ startDate: '2024-03-18'
 startTime: '10:00+02:00'
 endDate: '2024-03-20'
 endTime: '17:00+02:00'
-locationName: Institute Genetics & Development of Rennes
-address: 2 avenue du Professeur Léon Bernard, CS 34317 / 35043 Rennes Cedex, France
-locationURL: https://igdr.univ-rennes1.fr/
-locationLatLng: [48.117546, -1.696719]
+locations:
+  - name: Institute Genetics & Development of Rennes
+    address: 2 avenue du Professeur Léon Bernard, CS 34317 / 35043 Rennes Cedex, France
+    links: https://igdr.univ-rennes1.fr/
+    geoCoordinates: [48.117546, -1.696719]
 ---
 
 Local event to be held at the The Institute Genetics & Development of Rennes.
@@ -67,7 +68,8 @@ Primary contact: [<i class="fab fa-slack"></i> Louis Le Nézet](https://nfcore.s
 
 ### Registration
 
-Please use the **main registration form** (_soon available_) to sign up and select the location you want.
+Please use the **main registration form** to sign up and select `Rennes, France (IGDR)`.
+This can be found on the [main hackathon event page](https://nf-co.re/events/2024/hackathon-march-2024), or you can go to it directly [here](https://seqera.typeform.com/mar24hackathon).
 We will therefore be able to plan everything based on the number of persons coming.
 
 ### Location

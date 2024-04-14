@@ -100,7 +100,7 @@ if (!isTruncated) {
     version={version}
     versions={versions}
     tabItems={md_files}
-    releaseSHA={releaseSHA}
+    viewTransitions={false}
 >
     <div class="mt-3">
         {
@@ -146,7 +146,8 @@ if (!isTruncated) {
                             <div class="row">
                                 <span class="col">Name</span>
                                 <span class="col">Last Modified</span>
-                                <span class="col-1">Size</span>
+                                <span class="col-1 text-end">Size</span>
+                                <span class="col" />
                             </div>
                         </li>
                         {depth > 2 && (

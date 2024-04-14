@@ -106,7 +106,7 @@ Dates are subject to change:
   <dd class="col-md-9">End of March 2023</dd>
 </dl>
 
-# Round 3
+# Round 3 (Closed)
 
 ## Key dates
 
@@ -123,9 +123,9 @@ Dates are subject to change:
   <dd class="col-md-9">End of September 2023</dd>
 </dl>
 
-# Application process
+<!-- # Application process
 
-Applications for Round 3 are now closed. Those who have applied will hear from us soon. Thank you!
+Applications for Round 3 are now closed. Those who have applied will hear from us soon. Thank you! -->
 
 <!-- Applications for Round 3 are now open!
 

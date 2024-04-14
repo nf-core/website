@@ -7,9 +7,11 @@ startTime: '13:00+01:00'
 endDate: '2023-02-21'
 endTime: '13:30+01:00'
 youtubeEmbed: https://www.youtube.com/watch?v=Em1cHCLQQ_c
-locationURL:
-  - https://doi.org/10.6084/m9.figshare.22140854.v1
-  - https://www.youtube.com/watch?v=Em1cHCLQQ_c
+locations:
+  - name: Online
+    links:
+      - https://doi.org/10.6084/m9.figshare.22140854.v1
+      - https://www.youtube.com/watch?v=Em1cHCLQQ_c
 ---
 
 This week, Solenne Correard ([@scorreard](https://github.com/scorreard)) is introducing us to the nextflow pipeline `variantcatalogue`. Though not an nf-core pipeline (yet), `variantcatalogue` is using nf-core derived material to aid in the creation of the pipeline.

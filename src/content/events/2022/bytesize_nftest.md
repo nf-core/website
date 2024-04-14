@@ -7,9 +7,11 @@ startTime: '14:00+01:00'
 endDate: '2022-12-06'
 endTime: '14:30+01:00'
 youtubeEmbed: https://www.youtube.com/watch?v=K9B7JRkMpQ4
-locationURL:
-  - https://doi.org/10.6084/m9.figshare.21695195.v1
-  - https://www.youtube.com/watch?v=K9B7JRkMpQ4
+locations:
+  - name: Online
+    links:
+      - https://doi.org/10.6084/m9.figshare.21695195.v1
+      - https://www.youtube.com/watch?v=K9B7JRkMpQ4
 ---
 
 This week Edmund Miller ([@edmundmiller](https://github.com/edmundmiller)) will share with us his impressions about nf-test from a user perspective. nf-test is a simple test framework for Nextflow pipelines.

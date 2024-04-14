@@ -3,7 +3,6 @@ import PageLayout from '@layouts/PageLayout.astro';
 import { getCollection } from 'astro:content';
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
 import GitHubProfilePictureExtended from '@components/GitHubProfilePictureExtended.svelte';
-import GitHubProfilePicture from '@components/GitHubProfilePicture.svelte';
 import { Image } from 'astro:assets';
 
 const images = import.meta.glob('../../assets/**/*.{png,jpg,jpeg,gif,svg}');
@@ -55,7 +54,12 @@ const sections = years.map((year) => {
 >
     <div class="row">
         <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left pt-1">
-            <strong class="h6 p-2 text-body">Blog posts</strong>
+            <a
+                href={sections[0].section_slug?.split('/').slice(0, 2).join('/').split('#')[0]}
+                class="sidebar-title text-decoration-none"
+            >
+                <strong class="h6 p-2 text-body">Blog posts</strong>
+            </a>
             <SidebarNav items={sections} />
         </div>
 
@@ -67,7 +71,27 @@ const sections = years.map((year) => {
                         {blogPosts
                             .filter((post) => new Date(post.data.pubDate).getFullYear() === year)
                             .map((post) => (
-                                <div class="card m-xl-3 m-1">
+                                <div
+                                    class:list={[
+                                        'card m-xl-3 m-1',
+                                        new Date(Date.now()) > new Date(post.data.pubDate) &&
+                                        new Date(post.data.pubDate) > new Date(Date.now() - 2 * 24 * 60 * 60 * 1000)
+                                            ? 'border-primary'
+                                            : '',
+                                    ]}
+                                >
+                                    <a
+                                        href={'/blog/' + post.slug}
+                                        class:list={[
+                                            'new-post-badge text-decoration-none badge text-bg-primary fs-6 mb-0 rounded-top-0 w-25 m-auto position-absolute top-0 start-0 end-0',
+                                            new Date(Date.now()) > new Date(post.data.pubDate) &&
+                                            new Date(post.data.pubDate) > new Date(Date.now() - 2 * 24 * 60 * 60 * 1000)
+                                                ? 'd-block'
+                                                : 'd-none',
+                                        ]}
+                                    >
+                                        New post!
+                                    </a>
                                     {post.data.headerImage && (
                                         <Image
                                             src={
@@ -93,24 +117,24 @@ const sections = years.map((year) => {
                                         </p>
                                         <a href={'/blog/' + post.slug} class="stretched-link" />
                                     </div>
-                                    <div class="card-footer d-flex align-items-center justify-space-between">
-                                        <div class="me-auto">
-                                            {post.data.authors.length > 2 &&
-                                                post.data.authors.map((author) => (
-                                                    <GitHubProfilePicture
-                                                        image={'https://github.com/' + author + '.png'}
-                                                        name={author}
-                                                        circle={true}
-                                                        size={40}
-                                                    />
-                                                ))}
-                                            {post.data.authors.length <= 2 &&
-                                                post.data.authors.map((author) => (
-                                                    <GitHubProfilePictureExtended username={author} size={40} />
-                                                ))}
+                                    <div class="card-footer d-flex justify-content-between">
+                                        <div class="me-auto authors d-flex flex-grow-1 flex-wrap">
+                                            {post.data.authors.map((author) => (
+                                                <GitHubProfilePictureExtended
+                                                    username={author}
+                                                    size={40}
+                                                    containerQuery={true}
+                                                />
+                                            ))}
                                         </div>
-                                        <span class="text-body-secondary text-small">
-                                            published at {new Date(post.data.pubDate).toLocaleDateString()}
+                                        <span class="text-body-secondary text-small text-end flex-grow-1 text-nowrap">
+                                            published at
+                                            <br />
+                                            {new Date(post.data.pubDate).toLocaleDateString('en-GB', {
+                                                year: 'numeric',
+                                                month: 'short',
+                                                day: 'numeric',
+                                            })}
                                         </span>
                                     </div>
                                 </div>
@@ -134,5 +158,11 @@ const sections = years.map((year) => {
         .card {
             width: 100%;
         }
+    }
+    .authors {
+        width: 100%;
+    }
+    .new-post-badge {
+        z-index: 10;
     }
 </style>

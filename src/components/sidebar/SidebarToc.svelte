@@ -21,11 +21,6 @@
 
     minHeadingDepth = Math.min(...headings.map((h) => h.depth));
 
-    // make margin classes from min to max heading depth
-    let headingMargin = {};
-    for (let i = minHeadingDepth; i <= 4; i++) {
-        headingMargin[i] = 'ps-' + (i - minHeadingDepth) * 2;
-    }
     let activeHeading = {};
     onMount(() => {
         // set the first heading as active on initial load
@@ -47,23 +42,23 @@
 </script>
 
 <div class="nav flex-column sticky-top-under align-items-end pt-1">
-    <div class="d-none d-md-inline">
-        {#if headings.length > 1}
+    <div class="d-none d-md-block w-100">
+        {#if headings.length > 2}
             <strong class="h6 my-2 text-body">On this page</strong>
         {/if}
         <!-- <hr class="my-1" /> -->
         <nav id="TableOfContents" class="d-none d-md-flex flex-column">
-            {#if headings.length > 1}
+            {#if headings.length > 2}
                 <ul class="mb-0 mt-1">
                     {#each headings as heading (heading)}
                         <li
-                            class={'nav-item ' + headingMargin[heading.depth]}
+                            class={'nav-item heading-padding-' + (heading.depth - minHeadingDepth)}
                             class:active={heading.slug === activeHeading}
                             class:collapse={heading.hidden && !$showHidden}
                         >
-                            <a class="nav-link py-1 ps-3 text-body-secondary" href={'#' + heading.slug}>
+                            <a class="nav-link py-1 ps-3 text-body-secondary small" href={'#' + heading.slug}>
                                 {#if heading.fa_icon}
-                                    <i class={heading.fa_icon} aria-hidden="true" />
+                                    <i class={heading.fa_icon + ' fa-fw '} aria-hidden="true" />
                                 {/if}
                                 {@html heading.text}
                             </a>
@@ -120,18 +115,32 @@
     :global([data-bs-theme='dark']) {
         li {
             border-inline-start: 2pt solid $border-color-dark;
-            & a:hover {
+            &:hover {
                 background-color: transparentize($success-dark, 0.6);
-
-                color: $gray-200 !important;
+                & a {
+                    color: $gray-300 !important;
+                }
             }
         }
         li.active {
             border-left: 2pt solid $success-dark;
             background-color: transparentize($success-dark, 0.35);
             & a {
-                color: $gray-200 !important;
+                color: $gray-300 !important;
             }
+        }
+    }
+    @mixin heading-padding($number) {
+        @if $number >= 0 and $number <= 6 {
+            padding-left: #{$number * 1rem};
+        } @else {
+            @warn "Invalid input. Please provide a number between 1 and 6.";
+        }
+    }
+
+    @for $i from 0 through 6 {
+        .heading-padding-#{$i} {
+            @include heading-padding($i);
         }
     }
 </style>

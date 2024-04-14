@@ -1,0 +1,192 @@
+---
+import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import { sequence } from 'astro:middleware';
+// 1. Generate a new path for every collection entry
+export async function getStaticPaths() {
+    const tools: CollectionEntry<'tools'>[] = await getCollection('tools');
+    const versions = [...new Set(tools.map((entry) => entry.id.split('/')[1]))].sort((a, b) => {
+        const a_version = a.split('.').map((entry) => parseInt(entry));
+        const b_version = b.split('.').map((entry) => parseInt(entry));
+        for (let i = 0; i < a_version.length; i++) {
+            if (a_version[i] > b_version[i]) {
+                return -1;
+            }
+            if (a_version[i] < b_version[i]) {
+                return 1;
+            }
+        }
+        return 0;
+    });
+    // put dev version first
+    versions.sort((a, b) => {
+        if (a === 'dev') {
+            return -1;
+        }
+        if (b === 'dev') {
+            return 1;
+        }
+        return 0;
+    });
+    let tools_path = tools.map((entry: CollectionEntry<'tools'>) => {
+        const version = entry.id.split('/')[1];
+        const versioned_tools = tools.filter((tool) => tool.id.split('/')[1] === version);
+        const section_names = [...new Set(versioned_tools.map((entry) => entry.id.split('/')[2]))];
+        const sections = section_names
+            .filter((entry) => entry !== 'index.md')
+            .map((entry) => {
+                return {
+                    section_name:
+                        entry === 'api' ? 'API' : entry.replace(/_/g, ' ').replace(/^\w/, (c) => c.toUpperCase()),
+                    section_slug:
+                        '/tools/' +
+                        versioned_tools
+                            .find(
+                                (tool_entry) =>
+                                    tool_entry.id.endsWith('index.md') && tool_entry.id.split('/')[2] === entry,
+                            )
+                            ?.id.replace(/index\.md$/, 'index'),
+                    children: versioned_tools
+                        .filter((child) => child.id.split('/')[2] === entry && child.id.split('/')[3])
+                        .filter((child) => child.id.split('/')[3] !== 'index.md')
+                        .map((tool_entry) => {
+                            return {
+                                title: `${tool_entry.id.split('/')[3].replace(/\.md$/, '')}`,
+                                slug: '/tools/' + tool_entry.id.replace(/\.md$/, ''),
+                            };
+                        }),
+                };
+            });
+        // reshuffle sections with section name pipeline_lint_tests first, then modules_lint_tests, then subworkflows_lint_tests and then api
+        sections.sort((a, b) => {
+            if (a.section_name === 'Pipeline lint tests') {
+                return -1;
+            }
+            if (b.section_name === 'Pipeline lint tests') {
+                return 1;
+            }
+            if (a.section_name === 'API') {
+                return -1;
+            }
+            if (b.section_name === 'API') {
+                return -1;
+            }
+            return 0;
+        });
+
+        return {
+            params: { version: version, slug: entry.id.replace(`docs/${version}/`, '').replace(/\.md$/, '') },
+            props: { entry: entry, sections: sections, versions: versions },
+        };
+    });
+    // add 'latest' as a version, which is a copy of the latest version
+    const latest_version = tools_path.filter((entry) => entry.params.version === versions[1]);
+    latest_version.map((entry) => {
+        tools_path.push({
+            params: { version: 'latest', slug: entry.params.slug },
+            props: { entry: entry.props.entry, sections: entry.props.sections, versions: versions },
+        });
+    });
+    return tools_path;
+}
+// 2. For your template, you can get the entry directly from the prop
+const { entry, sections, versions } = Astro.props;
+const { version } = Astro.params;
+let { headings, Content } = await entry.render();
+const title = 'nf-core/tools API documentation';
+const version_tag_name = version === 'latest' ? versions[1] : version;
+const subtitle =
+    'Automated documentation for nf-core/tools ' +
+    (version_tag_name === 'dev' ? '(`dev` version)' : '(`' + version_tag_name + '`)');
+
+const module_name = headings[0].text;
+headings.map((heading) => {
+    // remove everything inside paranthesis
+    heading.text = heading.text.replace(/\(.*\)/, '()');
+    // remove module name from headings
+    heading.text = heading.text.replace(module_name + '.', '');
+    // remove class in the beginning of the heading
+    heading.text = heading.text.replace(/^class/, '');
+    // add word-break hints after before periods
+    heading.text = heading.text.replaceAll(/\./g, '.\u200B');
+});
+
+// add top section wih link to the top index if it doesn't exist
+if (!sections.find((section) => section.section_name === 'Contents')) {
+    sections.unshift({
+        section_name: 'Contents',
+        section_slug: '/tools/docs/' + version + '/index',
+        children: [],
+    });
+}
+
+// try to figure out github URL to the source file from file path
+let md_github_url = '';
+const base_url = `https://github.com/nf-core/tools/blob/${version_tag_name}/nf_core/`;
+const file_name = entry.id?.split('/').pop()?.replace('.md', '.py') || '';
+// check if entry.id contains "pipeline_lint_tests"
+if (entry.id.includes('pipeline_lint_tests')) {
+    md_github_url = base_url + 'lint/' + file_name;
+} else if (entry.id.includes('module_lint_tests') || entry.id.includes('subworkflow_lint_tests')) {
+    // append to base url either to modules/lint or subworkflows/lint
+    const component_type = entry.id.includes('module_lint_tests') ? 'modules' : 'subworkflows';
+    md_github_url = base_url + component_type + '/lint/' + file_name;
+} else if (entry.id.includes('api')) {
+    md_github_url = base_url + file_name;
+}
+---
+
+<MarkdownTocLayout
+    title={title}
+    subtitle={subtitle}
+    md_github_url={md_github_url}
+    headings={headings}
+    viewTransitions={true}
+    leftSidebar={true}
+    sections={sections}
+    viewTransitions={true}
+    doubleNavbar={false}
+>
+    <div slot="right-sidebar-top" class="input-group input-group-sm justify-content-end justify-content-lg-center">
+        <label class="input-group-text" for="version_select">
+            <i class="fas fa-tags"></i>
+        </label>
+        <div class="dropdown">
+            <button
+                class="btn btn-secondary dropdown-toggle rounded-start-0"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+            >
+                {version_tag_name}
+            </button>
+
+            <ul class="dropdown-menu dropdown-menu-end w-100 pipeline-versions">
+                {
+                    versions &&
+                        versions.map((v) => {
+                            let url = Astro.url.pathname.replace(`tools/docs/${version}`, `tools/docs/${v}`);
+                            return (
+                                <li>
+                                    <a class={'dropdown-item ' + (v === version_tag_name ? 'active' : '')} href={url}>
+                                        {v}
+                                    </a>
+                                </li>
+                            );
+                        })
+                }
+            </ul>
+        </div>
+    </div>
+    <Content />
+</MarkdownTocLayout>
+<style lang="scss">
+    @import 'src/styles/_variables.scss';
+    :global(h3:not(:first-of-type), h4) {
+        margin-top: 2rem;
+        :global(code) {
+            font-size: 1.5rem;
+        }
+    }
+</style>

@@ -6,10 +6,11 @@ startDate: '2020-03-04'
 startTime: '09:00+01:00'
 endDate: '2020-03-06'
 endTime: '17:00+01:00'
-address: 1 Midland Rd, London NW1 1ST
-locationName: The Francis Crick Institute
-locationURL: https://www.crick.ac.uk/
-locationLatLng: [51.5317308, -0.129134219]
+locations:
+  - name: The Francis Crick Institute, London
+    url: https://www.crick.ac.uk/
+    geoCoordinates: [51.5317308, -0.129134219]
+    address: 1 Midland Rd, London NW1 1ST
 ---
 
 The Francis Crick Institute in London will be hosting a three-day

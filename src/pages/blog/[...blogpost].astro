@@ -64,7 +64,7 @@ const md_github_url = 'https://github.com/nf-core/website/blob/main/src/content/
     leftSidebar={true}
     sections={sections}
     viewTransitions={true}
-    doubleNavbar={false}
+    doubleNavbar={true}
     sidebarTitle="Blog posts"
 >
     {
@@ -99,16 +99,16 @@ const md_github_url = 'https://github.com/nf-core/website/blob/main/src/content/
         <SidebarStatsRow lastChild={true} content={[{ title: 'Written by' }]}>
             {
                 post.data.authors.map((author) => {
-                    return <GitHubProfilePictureExtended username={author} size={40} />;
+                    return <GitHubProfilePictureExtended username={author} size={40} imgClasses="mb-0" />;
                 })
             }
         </SidebarStatsRow>
     </div>
-    <div slot="right-sidebar" class="d-flex flex-column align-items-start">
+    <div slot="right-sidebar-bottom" class="d-flex flex-column align-items-start">
         <SidebarStatsRow lastChild={true} content={[{ title: 'Written by' }]}>
             {
                 post.data.authors.map((author) => {
-                    return <GitHubProfilePictureExtended username={author} size={40} />;
+                    return <GitHubProfilePictureExtended username={author} size={40} wrapperClasses="flex-grow-1" />;
                 })
             }
         </SidebarStatsRow>

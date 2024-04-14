@@ -7,9 +7,11 @@ startTime: '13:00+01:00'
 endDate: '2022-11-01'
 endTime: '13:30+01:00'
 youtubeEmbed: https://www.youtube.com/watch?v=chayGGPTnfM
-locationURL:
-  - https://doi.org/10.6084/m9.figshare.21444867.v1
-  - https://www.youtube.com/watch?v=chayGGPTnfM
+locations:
+  - name: Online
+    links:
+      - https://doi.org/10.6084/m9.figshare.21444867.v1
+      - https://www.youtube.com/watch?v=chayGGPTnfM
 ---
 
 This week, Edmund Miller ([@edmundmiller](https://github.com/edmundmiller)) will talk about the newest developments in the nf-core/nascent pipeline.

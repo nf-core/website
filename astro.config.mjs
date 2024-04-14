@@ -30,34 +30,42 @@ import icon from "astro-icon";
 const latestToolsRelease = await fetch('https://api.github.com/repos/nf-core/tools/releases/latest')
     .then((res) => res.json())
     .then((json) => json.tag_name);
-let latestPipelineReleases = {};
 
+let latestPipelineReleases = {};
 pipelines_json.remote_workflows.map(
     (pipeline) => (latestPipelineReleases[pipeline.name] = `/${pipeline.name}/${pipeline.releases[0].tag_name}/`),
 );
-const latestTollsURL = `/tools/docs/'+${latestToolsRelease}`;
 // https://astro.build/config
 export default defineConfig({
     site: 'https://nf-co.re/',
     output: 'hybrid',
     adapter: netlify(),
     redirects: {
-        [latestTollsURL]: 'https://oldsite.nf-co.re/tools/docs/latest/',
         ...latestPipelineReleases,
     },
     integrations: [
         svelte(),
         icon({
-            include:{
-            // only include a subset of icons
-            "file-icons":["nextflow"],
-            logos:["twitter","mastodon-icon","slack-icon","aws","microsoft-azure","github-actions", "youtube-icon"],
-            fa:["github"],
-            "fa-brands":["github"],
-            "line-md":["check-list-3-twotone"],
-            "mdi":["aws","slack","youtube"],
-            octicon:["link-external-16","table-16"],
-            }
+            include: {
+                // only include a subset of icons
+                'file-icons': ['nextflow'],
+                logos: [
+                    'twitter',
+                    'mastodon-icon',
+                    'slack-icon',
+                    'aws',
+                    'microsoft-azure',
+                    'github-actions',
+                    'youtube-icon',
+                    'linkedin',
+                ],
+                fa: ['github'],
+                'fa-brands': ['github'],
+                'line-md': ['check-list-3-twotone'],
+                mdi: ['aws', 'slack', 'youtube'],
+                octicon: ['link-external-16', 'table-16'],
+                'simple-icons': ['bluesky'],
+            },
         }),
         sitemap(),
         prefetch(),
@@ -151,7 +159,7 @@ export default defineConfig({
                 rehypeAutolinkHeadings,
                 {
                     behavior: 'append',
-                    content: h('i.ms-1.fas.fa-link.invisible'),
+                    content: h('i.ms-1.fas.fa-link.fa-xs.invisible'),
                 },
             ],
             [
@@ -190,7 +198,7 @@ export default defineConfig({
                     theme: {
                         dark: 'github-dark',
                         light: 'github-light',
-                    }
+                    },
                 },
             ],
             rehypeKatex,

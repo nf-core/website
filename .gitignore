@@ -26,3 +26,16 @@ pnpm-debug.log*
 src/content/pipelines
 playwright-report
 test-results
+
+# vale
+# We want to ignore our StylesPath *except* for our local
+# `vocabularies/Base` directory.
+
+.github/styles/*
+!.github/styles/config/
+
+.github/styles/config/*
+!.github/styles/config/vocabularies/
+
+.github/styles/config/vocabularies/*
+!.github/styles/config/vocabularies/Base
