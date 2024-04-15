@@ -1,20 +1,19 @@
 ---
 title: Subworkflow Specifications
 subtitle: Specifications for writing nf-core Nextflow DSL2 subworkflows
+addNumbersToHeadings: true
 ---
-
-## New subworkflow specifications
 
 The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
-### 1 General
+## General
 
-#### 1.1 Minimum subworkflow size
+### Minimum subworkflow size
 
 Subworkflows should combine tools that make up a logical unit in an analysis step.
 A subworkflow must contain at least two modules.
 
-#### 1.2 Version reporting channel
+### Version reporting channel
 
 Each `subworkflow` emits a channel containing all `versions.yml` collecting the tool(s) versions.
 They MUST be collected within the workflow and added to the output as `versions` :
@@ -35,9 +34,9 @@ emit:
   versions = ch_versions
 ```
 
-### 2 Naming conventions
+## Naming conventions
 
-#### 2.1 Name format of subworkflow files
+### Name format of subworkflow files
 
 1The directory structure for the subworkflow name must be all lowercase e.g. [`subworkflows/nf-core/bam_sort_stats_samtools/`](https://github.com/nf-core/modules/tree/master/subworkflows/nf-core/bam_sort_stats_samtools/).
 
@@ -47,53 +46,53 @@ For example if in a subworkflow, a binning tool has three required steps (e.g. `
 
 If in doubt regarding what to name your subworkflow, please contact us on the [nf-core Slack `#subworkflows` channel](https://nfcore.slack.com/channels/subworkflows) (you can join with [this invite](https://nf-co.re/join/slack)) to discuss possible options.
 
-#### 2.2 Name format of subworkflow parameters
+### Name format of subworkflow parameters
 
 All parameter names MUST follow the `snake_case` convention.
 
-#### 2.3 Name format subworkflow functions
+### Name format subworkflow functions
 
 All function names MUST follow the `camelCase` convention.
 
-#### 2.4 Name format subworkflow channels
+### Name format subworkflow channels
 
 Channel names MUST follow `snake_case` convention and be all lower case.
 
-#### 2.5 Input channel name structure
+### Input channel name structure
 
 Input channel names SHOULD signify the input object type.
 For example, a single value input channel will be prefixed with `val_`, whereas input channels with multiple elements (e.g. meta map + file) should be prefixed with `ch_`.
 
-#### 2.6 Output channel name structure
+### Output channel name structure
 
 Output channel names SHOULD only be named based on the major output file of that channel (i.e, an output channel of `[[meta], bam]` should be emitted as `bam`, not `ch_bam`).
 This is for more intuitive use of these output objects downstream with the `.out` attribute.
 
-### 3 Input/output options
+## Input/output options
 
-#### 3.1 Required input channels
+### Required input channels
 
 Input channel declarations MUST be defined for all _possible_ input files that will be required by the subworkflow (i.e. both required and optional files) within the `take` block.
 
-#### 3.2 Required output channels
+### Required output channels
 
 Named file extensions MUST be emitted for ALL output channels e.g. `path "*.txt", emit: txt`.
 
-#### 3.3 Optional inputs
+### Optional inputs
 
 Optional inputs are not currently supported by Nextflow.
 However, passing an empty list (`[]`) instead of a file as a subworkflow parameter can be used to work around this issue.
 
-### 4 Subworkflow parameters
+## Subworkflow parameters
 
-#### 4.1 Usage of parameters
+### Usage of parameters
 
 Named `params` defined in the parent workflow MUST NOT be assumed to be passed to the subworkflow to allow developers to call their parameters whatever they want.
 In general, it may be more suitable to use additional `input` value channels to cater for such scenarios.
 
-### 5 Documentation
+## Documentation
 
-#### 5.1 Code comment of channel structure
+### Code comment of channel structure
 
 Each input and output channel SHOULD have a comment describing the output structure of the channel e.g
 
@@ -108,7 +107,7 @@ bam = SAMTOOLS_VIEW.out.bam // channel: [ val(meta), path(bam) ]
 versions = ch_versions      // channel: [ path(versions.yml) ]
 ```
 
-#### 5.2 Meta.yml documentation of channel structure
+### Meta.yml documentation of channel structure
 
 Each input and output channel structure SHOULD also be described in the `meta.yml` in the description entry.
 
@@ -118,13 +117,13 @@ description: |
   (Sub)contig coverage table
 ```
 
-### 6 Testing
+## Testing
 
-#### 6.1 All output channels must be tested
+### All output channels must be tested
 
 All output channels SHOULD be present in the nf-test snapshot file, or at a minimum, it MUST be verified that the files exist.
 
-#### 6.2 Tags
+### Tags
 
 Tags for any dependent modules MUST be specified to ensure changes to upstream modules will re-trigger tests for the current subworkflow.
 
@@ -136,11 +135,11 @@ tag "<tool>" // Add each tool as a separate tag
 tag "<tool>/<subtool>" // Add each subtool as a separate tag
 ```
 
-#### 6.3 `assertAll()`
+### `assertAll()`
 
 The `assertAll()` function MUST be used to specify an assertion, and there MUST be a minimum of one success assertion and versions in the snapshot.
 
-#### 6.4 Assert each type of input and output
+### Assert each type of input and output
 
 There SHOULD be a test and assertions for each type of input and output.
 
@@ -151,7 +150,7 @@ Always check the snapshot to ensure that all outputs are correct!
 For exmaple, make sure there are no md5sums representing empty files.
 :::
 
-#### 6.5 Test names
+### Test names
 
 Test names SHOULD describe the test dataset and configuration used. some examples below:
 
@@ -161,7 +160,7 @@ test("sarscov2 - [ cram, crai ] - fasta - fai")
 test("Should search for zipped protein hits against a DIAMOND db and return a tab separated output file of hits")
 ```
 
-#### 6.6 Input data
+### Input data
 
 Input data SHOULD be referenced with the `modules_testdata_base_path` parameter:
 
@@ -169,8 +168,8 @@ Input data SHOULD be referenced with the `modules_testdata_base_path` parameter:
 file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
 ```
 
-### 7 Misc
+## Misc
 
-#### 7.1 General module code formatting
+### General module code formatting
 
 All code MUST be aligned to follow the '[Harshil Alignment™️](#what-is-the-harshil-alignment)' format.

@@ -1,23 +1,22 @@
 ---
 title: Module Specifications
 subtitle: Specifications for writing nf-core Nextflow DSL2 modules
+addNumbersToHeadings: true
 ---
-
-## New module specifications
 
 The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
-### 1 General
+## General
 
-#### 1.1 Required and optional input files
+### Required and optional input files
 
 All mandatory and optional input files MUST be included in `input` channel definitions.
 
-#### 1.2 Non-file mandatory command arguments
+### Non-file mandatory command arguments
 
 Non-file mandatory arguments or arguments needed to modify the command to make the module run with no error, SHOULD be provided as value channels (for example `lib_type` in [salmon/quant](https://github.com/nf-core/modules/blob/master/modules/nf-core/salmon/quant/main.nf)) - see 'Input/output options' below.
 
-#### 1.3 Optional command arguments
+### Optional command arguments
 
 All _non-mandatory_ command-line tool _non-file_ arguments MUST be provided as a string via the `$task.ext.args` variable.
 
@@ -67,7 +66,7 @@ ext.args = { "--id ${meta.id}" }
 
   </details>
 
-#### 1.4 Use of multi-command piping
+### Use of multi-command piping
 
 Software that can be piped together SHOULD be added to separate module files
 unless there is a run-time, storage advantage in implementing in this way.
@@ -97,7 +96,7 @@ Multi-tool modules
 should chain tools in an explicit order given by the module name, e.g. `SAMTOOLS/COLLATEFASTQ`.
 :::
 
-#### 1.5 Each command must have an $args variable
+### Each command must have an $args variable
 
 Each tool in a multi-tool module MUST have an `$args` e.g.,
 
@@ -118,7 +117,7 @@ gzip \\
 The numbering of each `$args` variable MUST correspond to the order of the tools, and MUST be documented in `meta.yml`.
 E.g. in the first example, `bwa mem` is the first tool so is given `$args`, `samtools view` is the second tool so is `$args2`, etc.
 
-#### 1.6 Types of meta fields
+### Types of meta fields
 
 Modules MUST NOT use 'custom' hardcoded `meta` fields.
 The only accepted 'standard' meta fields are `meta.id` or `meta.single_end`.
@@ -152,7 +151,7 @@ my_command $args input.txt output.txt
 
 </details>
 
-#### 1.7 Compression of input and output files
+### Compression of input and output files
 
 Where applicable, the usage and generation of compressed files SHOULD be enforced as input and output, respectively:
 
@@ -178,7 +177,7 @@ If a tool cannot read from STDIN, or has multiple input files, it is possible to
 
 Only if a tool reads the input multiple times, it is required to uncompress the file before running the tool.
 
-#### 1.8 Emission of versions
+### Emission of versions
 
 Where applicable, each module command MUST emit a file `versions.yml` containing the version number for each tool executed by the module, e.g.
 
@@ -258,7 +257,7 @@ END_VERSIONS
 
 If the HEREDOC cannot be used because the script is not bash, the `versions.yml` MUST be written directly e.g. [ascat module](https://github.com/nf-core/modules/blob/master/modules/nf-core/ascat/main.nf).
 
-#### 1.9 Presence of when statement
+### Presence of when statement
 
 The process definition MUST NOT change the `when` statement.
 `when` conditions can instead be supplied using the `process.ext.when` directive in a configuration file.
@@ -274,7 +273,7 @@ process {
 }
 ```
 
-#### 1.10 Capturing STDOUT and STDERR
+### Capturing STDOUT and STDERR
 
 In some cases, STDOUT and STDERR may need to be saved to file, for example for reporting purposes.
 Use the shell command `tee` to simultaneously capture and preserve the streams.
@@ -308,7 +307,7 @@ tool arguments
 """
 ```
 
-#### 1.11 Capturing exit codes
+### Capturing exit codes
 
 Occasionally, some tools do not exit with the expected exit code 0 upon successful use of the tool.
 In these cases one can use the `||` operator to run another useful command when the exit code is not 0 (for example, testing if a file is not size 0).
@@ -327,31 +326,31 @@ See the [Bash manual on file operators](https://tldp.org/LDP/abs/html/fto.html) 
 
 Alternate suggestions include using `grep -c` to search for a valid string match, or other tool which will appropriately error when the expected output is not successfully created.
 
-### 2 Naming conventions
+## Naming conventions
 
-### 2.1 Name format of subworkflow files
+### Name format of subworkflow files
 
 The directory structure for the module name must be all lowercase, and without punctuation, e.g. [`modules/nf-core/bwa/mem/`](https://github.com/nf-core/modules/tree/master/modules/nf-core/bwa/mem/). The name of the software (i.e. `bwa`) and tool (i.e. `mem`) MUST be all one word.
 
 Note that nf-core/tools will validate your suggested name.
 
-#### 2.2 Name format of module processes
+### Name format of module processes
 
 The process name in the module file MUST be all uppercase e.g. `process BWA_MEM {`. The name of the software (i.e. `BWA`) and tool (i.e. `MEM`) MUST be all one word separated by an underscore.
 
-#### 2.3 Name format of module parameters
+### Name format of module parameters
 
 All parameter names MUST follow the `snake_case` convention.
 
-#### 2.4 Name format of module functions
+### Name format of module functions
 
 All function names MUST follow the `camelCase` convention.
 
-#### 2.5 Name format of module channels
+### Name format of module channels
 
 Channel names MUST follow `snake_case` convention and be all lower case.
 
-#### 2.6 Command file output naming
+### Command file output naming
 
 Output file (and/or directory) names SHOULD just consist of only `${prefix}` and the file-format suffix (e.g. `${prefix}.fq.gz` or `${prefix}.bam`).
 
@@ -363,16 +362,16 @@ Output file (and/or directory) names SHOULD just consist of only `${prefix}` and
   if ("$bam" == "${prefix}.bam") error "Input and output names are the same, set prefix in module configuration to disambiguate!"
   ```
 
-### 3 Input/output options
+## Input/output options
 
-#### 3.1 Required `path` channel inputs
+### Required `path` channel inputs
 
 Input channel `path` declarations MUST be defined for all _possible_ input files (i.e. both required and optional files).
 
 - Directly associated auxiliary files to an input file MAY be defined within the same input channel alongside the main input channel (e.g. [BAM and BAI](https://github.com/nf-core/modules/blob/e937c7950af70930d1f34bb961403d9d2aa81c7d/modules/samtools/flagstat/main.nf#L22)).
 - Other generic auxiliary files used across different input files (e.g. common reference sequences) MAY be defined using a dedicated input channel (e.g. [reference files](https://github.com/nf-core/modules/blob/3cabc95d0ed8a5a4e07b8f9b1d1f7ff9a70f61e1/modules/bwa/mem/main.nf#L21-L23)).
 
-#### 3.2 Required `val` channel inputs
+### Required `val` channel inputs
 
 Input channel `val` declarations SHOULD be defined for all mandatory non-file inputs that are essential for the functioning of the tool (e.g. parameters, flags etc).
 
@@ -407,11 +406,11 @@ However it was felt that it was more important for stability in and 'installatio
   `if (((file1 ? 1:0) + (val1 ? 1:0) + (val2 ? 1:0)) != 1) error "One and only one argument required"`
   </details>
 
-#### 3.3 Output channel emissions
+### Output channel emissions
 
 Named file extensions MUST be emitted for ALL output channels e.g. `path "*.txt", emit: txt`.
 
-#### 3.4 Optional inputs
+### Optional inputs
 
 Optional inputs are not currently supported by Nextflow.
 However, passing an empty list (`[]`) instead of a file as a module parameter can be used to work around this issue.
@@ -423,7 +422,7 @@ MY_MODULE(cram, [])     // fasta is optional, the module will run without the fa
 MY_MODULE(cram, fasta)  // execution of the module will need an element in the fasta channel
 ```
 
-#### 3.5 Optional outputs
+### Optional outputs
 
 Optional outputs SHOULD be marked as optional:
 
@@ -431,17 +430,17 @@ Optional outputs SHOULD be marked as optional:
 tuple val(meta), path('*.tab'), emit: tab,  optional: true
 ```
 
-#### 3.6 One output channel per output file type
+### One output channel per output file type
 
 Each output file SHOULD be emitted in its own channel (and no more than one), along with the `meta` map if provided ( the exception is the versions.yml ).
 
-### 4 Documentation
+## Documentation
 
-#### 4.1 Module documentation is required
+### Module documentation is required
 
 Each module MUST have a `meta.yaml` in the same directory as the `main.nf` of the module itself.
 
-#### 4.2 Number of keywords
+### Number of keywords
 
 Keywords SHOULD be sufficient to make the module findable through research domain, data types, and tool function keywords
 
@@ -451,11 +450,11 @@ Keywords SHOULD be sufficient to make the module findable through research domai
 For multi-tool modules, please add the keyword `multi-tool`, as well as all the (sub)tools involved.
 :::
 
-#### 4.3 Keyword formatting
+### Keyword formatting
 
 Keywords MUST be all lower case
 
-#### 4.4 Documenting of all tools
+### Documenting of all tools
 
 The tools section MUST list every tool used in the module. For example
 
@@ -465,7 +464,7 @@ tools:
   - samtools: <....>
 ```
 
-#### 4.5. Documentation of args of each piped or multiple command
+### Documentation of args of each piped or multiple command
 
 The tools section MUST have a `args_id:` field for every tool in the module that describes which `$args` (`$args2`, `$args3`) variable is used for that specific module. A single tool module will only have `args_id: "$args"`.
 
@@ -479,86 +478,86 @@ tools:
       args_id: "$args2"
 ```
 
-#### 4.6 Required channel documentation
+### Required channel documentation
 
 Input and Output sections of the `meta.yaml` SHOULD only have entries of input and output channels
 
-#### 4.7 Documentation of tuples
+### Documentation of tuples
 
 Input and output tuples MUST be split into separate entries
 
 - i.e., `meta` should be a separate entry to the `file` it is associated with
 
-#### 4.8 Input and output channel types
+### Input and output channel types
 
 Input/output types MUST only be of the following categories: `map`, `file`, `directory`, `string`, `boolean`, `integer`, `float`, `boolean`, `list`
 
-#### 4.9 Correspondence of input/outputs entries to channels
+### Correspondence of input/outputs entries to channels
 
 Input/output entries MUST match a corresponding channel in the module itself
 
 - There should be a one-to-one relationship between the module and the `meta.yaml`
 - Input/output entries MUST NOT combine multiple output channels
 
-#### 4.10 Useful input/output descriptions
+### Useful input/output descriptions
 
 Input/output descriptions SHOULD be descriptive of the contents of file
 
 - i.e., not just 'A TSV file'
 
-#### 4.11 Input/output glob pattern
+### Input/output glob pattern
 
 Input/output patterns (if present) MUST follow a [Java glob pattern](https://docs.oracle.com/javase/tutorial/essential/io/fileOps.html#glob)
 
-#### 4.12 Indication of input channel requirement
+### Indication of input channel requirement
 
 Input entries should be marked as Mandatory or Optional
 
-### 5 Module parameters
+## Module parameters
 
-#### 5.1 Module input and outputs
+### Module input and outputs
 
 A module file SHOULD only define input and output files as command-line parameters to be executed within the process.
 
-#### 5.2 Use of parameters within modules
+### Use of parameters within modules
 
 All `params` within the module MUST only be initialised and used in the local context of the module.
 In other words, named `params` defined in the parent workflow MUST NOT be assumed to be passed to the module to allow developers to call their parameters whatever they want.
 In general, it may be more suitable to use additional `input` value channels to cater for such scenarios.
 
-#### 5.3 Specification of multiple-threads or cores
+### Specification of multiple-threads or cores
 
 If the tool supports multi-threading then you MUST provide the appropriate parameter using the Nextflow `task` variable e.g. `--threads $task.cpus`.
 
-#### 5.4. Evaluation of parameter within a module
+### Evaluation of parameter within a module
 
 Any parameters that need to be evaluated in the context of a particular sample e.g. single-end/paired-end data MUST also be defined within the process.
 
-### 6 Resource requirements
+## Resource requirements
 
-#### 6.1 Use of labels in modules
+### Use of labels in modules
 
 An appropriate resource `label` MUST be provided for the module as listed in the [nf-core pipeline template](https://github.com/nf-core/tools/blob/master/nf_core/pipeline-template/conf/base.config#L29-L46) e.g. `process_single`, `process_low`, `process_medium` or `process_high`.
 
-#### 6.2. Source of multiple threads or cores value
+### Source of multiple threads or cores value
 
 If the tool supports multi-threading then you MUST provide the appropriate parameter using the Nextflow `task` variable e.g. `--threads $task.cpus`.
 
 If the tool does not support multi-threading, consider `process_single` unless large amounts of RAM are required.
 
-#### 6.3 Specifying multiple threads for piped commands
+### Specifying multiple threads for piped commands
 
 If a module contains _multiple_ tools that supports multi-threading (e.g. [piping output into a samtools command](https://github.com/nf-core/modules/blob/c4cc1db284faba9fc4896f64bddf7703cedc7430/modules/nf-core/bowtie2/align/main.nf#L47-L54)), you can assign CPUs per tool.
 
 - Note that [`task.cpus`] is supplied unchanged when a process uses multiple cores
 - If one tool is multi-threaded and another uses a single thread, you can specify directly in the command itself e.g. with [`${task.cpus}`](https://github.com/nf-core/modules/blob/master/modules/nf-core/bwa/sampe/main.nf#L34)
 
-### 7 Software requirements
+## Software requirements
 
 [BioContainers](https://biocontainers.pro/#/) is a registry of Docker and Singularity containers automatically created from all of the software packages on [Bioconda](https://bioconda.github.io/).
 Where possible we will use BioContainers to fetch pre-built software containers and Bioconda to install software using Conda.
 
-#### 7.1 Use of container directives
+### Use of container directives
 
 Software requirements SHOULD be declared within the module file using the Nextflow `container` directive.
 For single-tool BioContainers, the `nf-core modules create` command will automatically fetch and fill-in the appropriate Conda / Docker / Singularity definitions by parsing the information provided in the first part of the module name:
@@ -570,7 +569,7 @@ container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity
     'biocontainers/fastqc:0.11.9--0' }"
 ```
 
-#### 7.2 Use of conda directive
+### Use of conda directive
 
 If the software is available on Conda it MUST also be defined in an `environment.yml` file alongside the `main.nf` of the module, and is passed to the Nextflow `conda` directive within `main.nf`.
 
@@ -578,7 +577,7 @@ Using `bioconda::bwa=0.7.17` as an example, software MUST be pinned to the chann
 
 Conda packages MUST not be pinned to a build because they can vary on different platforms.
 
-#### 7.3 Re-use of multi-tool containers
+### Re-use of multi-tool containers
 
 If required, multi-tool containers may also be available on BioContainers e.g. [`bwa` and `samtools`](https://biocontainers.pro/#/tools/mulled-v2-fe8faa35dbf6dc65a0f7f5d4ea12e31a79f73e40).
 You can install and use the [`galaxy-tool-util`](https://anaconda.org/bioconda/galaxy-tool-util) package to search for both single- and multi-tool containers available in Conda, Docker and Singularity format.
@@ -592,7 +591,7 @@ mulled-search --destination quay singularity --channel bioconda --search bowtie 
 Build information for all tools within a multi-tool container can be obtained in the `/usr/local/conda-meta/history` file within the container.
 :::
 
-#### 7.4 Creation of new multi-tool containers
+### Creation of new multi-tool containers
 
 It is also possible for a new multi-tool container to be built and added to BioContainers by submitting a pull request on their [`multi-package-containers`](https://github.com/BioContainers/multi-package-containers) repository.
 
@@ -625,21 +624,21 @@ It is also possible for a new multi-tool container to be built and added to BioC
 
 - If the multi-tool container already exists and you want to obtain the `mulled-*` path, you can use (this)[https://midnighter.github.io/mulled] helper tool.
 
-#### 7.5 Software not on Bioconda
+### Software not on Bioconda
 
 If the software is not available on Bioconda a `Dockerfile` MUST be provided within the module directory. We will use GitHub Actions to auto-build the containers on the [GitHub Packages registry](https://github.com/features/packages).
 
-### 8 Testing
+## Testing
 
-#### 8.1 All output channels must be tested
+### All output channels must be tested
 
 All output channels SHOULD be present in the nf-test snapshot file, or at a minimum, it MUST be verified that the files exist.
 
-#### 8.2 Stub tests
+### Stub tests
 
 A stub test MUST exist for the module.
 
-#### 8.3 Tags
+### Tags
 
 Tags for any dependent modules MUST be specified to ensure changes to upstream modules will re-trigger tests for the current module.
 
@@ -651,11 +650,11 @@ tag "<tool>/<subtool>" // Only if there is a subtool
 tag "<dependent_tool>/<dependent_subtool>" // Only if there is a tool this module depends on
 ```
 
-#### 8.4 `assertAll()`
+### `assertAll()`
 
 The `assertAll()` function MUST be used to specify an assertion, and there MUST be a minimum of one success assertion and versions in the snapshot.
 
-#### 8.5 Assert each type of input and output
+### Assert each type of input and output
 
 There SHOULD be a test and assertions for each type of input and output.
 
@@ -666,7 +665,7 @@ Always check the snapshot to ensure that all outputs are correct!
 For example, make sure there are no md5sums representing empty files (with the exception of stub tests!).
 :::
 
-#### 8.6 Test names
+### Test names
 
 Test names SHOULD describe the test dataset and configuration used. some examples below:
 
@@ -676,7 +675,7 @@ test("sarscov2 - [ cram, crai ] - fasta - fai")
 test("Should search for zipped protein hits against a DIAMOND db and return a tab separated output file of hits")
 ```
 
-#### 8.7 Input data
+### Input data
 
 Input data SHOULD be referenced with the `modules_testdata_base_path` parameter:
 
@@ -684,8 +683,8 @@ Input data SHOULD be referenced with the `modules_testdata_base_path` parameter:
 file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
 ```
 
-### 9 Misc
+## Misc
 
-#### 9.1 General module code formatting
+### General module code formatting
 
 All code MUST be aligned to follow the '[Harshil Alignment™️](#what-is-the-harshil-alignment)' format.

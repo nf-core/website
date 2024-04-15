@@ -1,5 +1,6 @@
 import admonitionsPlugin from './bin/remark-admonitions.js';
 import { mermaid } from './bin/remark-mermaid.ts';
+import { remarkHeadingNumbers } from './bin/remark-heading-numbers.ts';
 import pipelines_json from '/public/pipelines.json';
 import githubDarkDimmed from '/public/themes/github-dark-dimmed.json';
 import mdx from '@astrojs/mdx';
@@ -25,7 +26,7 @@ import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import remarkDescription from 'astro-remark-description';
 import markdownIntegration from '@astropub/md';
-import icon from "astro-icon";
+import icon from 'astro-icon';
 
 const latestToolsRelease = await fetch('https://api.github.com/repos/nf-core/tools/releases/latest')
     .then((res) => res.json())
@@ -119,6 +120,7 @@ export default defineConfig({
             admonitionsPlugin,
             mermaid,
             remarkMath,
+            remarkHeadingNumbers,
             [
                 remarkDescription,
                 {

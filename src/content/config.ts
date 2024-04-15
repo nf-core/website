@@ -80,6 +80,7 @@ const docs = defineCollection({
         weight: z.number().optional(),
         parent: z.string().optional(),
         type: z.enum(['tutorial', 'checklist']).optional(),
+        addNumbersToHeadings: z.boolean().optional(),
     }),
 });
 const about = defineCollection({
