@@ -1,5 +1,6 @@
 import admonitionsPlugin from './bin/remark-admonitions.js';
 import { mermaid } from './bin/remark-mermaid.ts';
+import { remarkcheckboxParser } from './bin/remark-checkbox-parser.ts';
 import { remarkHeadingNumbers } from './bin/remark-heading-numbers.ts';
 import pipelines_json from '/public/pipelines.json';
 import githubDarkDimmed from '/public/themes/github-dark-dimmed.json';
@@ -120,6 +121,7 @@ export default defineConfig({
             admonitionsPlugin,
             mermaid,
             remarkMath,
+            remarkcheckboxParser,
             remarkHeadingNumbers,
             [
                 remarkDescription,
