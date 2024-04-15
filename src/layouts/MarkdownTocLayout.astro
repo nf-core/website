@@ -156,12 +156,13 @@ if (showRightSidebar) {
     <slot name="pre-footer" slot="pre-footer" />
 </PageLayout>
 <style lang="scss">
+    @import '@styles/_variables.scss';
     .markdown-content :global(img[loading='lazy']) {
         aspect-ratio: attr(width) / attr(height);
         height: auto;
     }
     .markdown-content {
-        max-width: 50rem;
+        max-width: $content-width;
     }
     .sidebar-left {
         max-width: 25rem;

@@ -8,29 +8,33 @@ export interface Props {
 const { md_github_url, prev_page, next_page } = Astro.props;
 ---
 
-<footer class="d-flex justify-content-around mb-3">
+<footer class="mb-3 d-flex justify-content-between m-auto">
     {
         prev_page && (
-            <a
-                class="btn btn-outline-secondary d-flex flex-column align-items-end py-md-3 py-2 px-3 px-md-5 text-decoration-none text-end"
-                href={prev_page.slug}
-            >
-                <span class="d-none d-md-inline">Previous: </span>
-                <i class="fa-solid fa-arrow-left me-1 d-md-none" />
-                <span class="fw-semibold text-secondary-emphasis">{prev_page.title}</span>
-            </a>
+            <div class="">
+                <a
+                    class="btn btn-outline-secondary d-inline-flex flex-column align-items-end py-md-3 py-2 px-3 px-md-5 text-decoration-none text-end"
+                    href={prev_page.slug}
+                >
+                    <span class="d-none d-md-inline">Previous: </span>
+                    <i class="fa-solid fa-arrow-left me-1 d-md-none" />
+                    <span class="fw-semibold text-secondary-emphasis">{prev_page.title}</span>
+                </a>
+            </div>
         )
     }
     {
         next_page && (
-            <a
-                class="btn btn-outline-secondary d-flex flex-column align-items-start py-md-3 py-2 px-3  px-md-5 text-decoration-none text-start"
-                href={next_page.slug}
-            >
-                <span class="d-none d-md-inline">Next: </span>
-                <i class="fa-solid fa-arrow-right ms-1 d-md-none" />
-                <span class="fw-semibold text-secondary-emphasis">{next_page.title}</span>
-            </a>
+            <div class="ms-auto">
+                <a
+                    class="btn btn-outline-secondary  d-inline-flex flex-column align-items-start py-md-3 py-2 px-3  px-md-5 text-decoration-none text-start"
+                    href={next_page.slug}
+                >
+                    <span class="d-none d-md-inline">Next: </span>
+                    <i class="fa-solid fa-arrow-right ms-1 d-md-none" />
+                    <span class="fw-semibold text-secondary-emphasis">{next_page.title}</span>
+                </a>
+            </div>
         )
     }
 </footer>
@@ -40,5 +44,11 @@ const { md_github_url, prev_page, next_page } = Astro.props;
     svg {
         fill: currentColor;
         width: 2rem;
+    }
+    footer {
+        width: $content-width;
+    }
+    .btn-outline-secondary:hover .text-secondary-emphasis {
+        color: var(--bs-btn-hover-color) !important;
     }
 </style>
