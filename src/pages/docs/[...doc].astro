@@ -117,28 +117,47 @@ sections.forEach((section) => {
 // go through all sections and section entries and section entries entries, etc, to find a group containing an elemnt with isCurrent and return all entries
 
 const currentGroup = findCurrentGroup(sections);
+const currentElement = currentGroup.find((entry) => entry.isCurrent);
+
 let currentGroupIndex = -1;
 if (currentGroup.length > 0) {
     currentGroupIndex = currentGroup.findIndex((entry) => entry.isCurrent);
     if (currentGroupIndex === -1) {
         console.error('Could not find current page ' + Astro.url.pathname + ' in docs collection');
     }
-    if (currentGroup[currentGroupIndex - 1] && currentGroup[currentGroupIndex - 1].href) {
-        prev_page = {
-            title: currentGroup[currentGroupIndex - 1].label,
-            slug: currentGroup[currentGroupIndex - 1].href,
-        };
-    }
-    if (currentGroup[currentGroupIndex + 1] && currentGroup[currentGroupIndex + 1].href) {
+    if (currentElement && currentElement.type === 'group') {
         next_page = {
-            title: currentGroup[currentGroupIndex + 1].label,
-            slug: currentGroup[currentGroupIndex + 1].href,
+            title: currentElement.entries[0].label,
+            slug: currentElement.entries[0].href,
         };
+    } else {
+        if (currentGroup[currentGroupIndex - 1] && currentGroup[currentGroupIndex - 1].href) {
+            prev_page = {
+                title: currentGroup[currentGroupIndex - 1].label,
+                slug: currentGroup[currentGroupIndex - 1].href,
+            };
+        }
+        if (currentGroup[currentGroupIndex + 1] && currentGroup[currentGroupIndex + 1].href) {
+            next_page = {
+                title: currentGroup[currentGroupIndex + 1].label,
+                slug: currentGroup[currentGroupIndex + 1].href,
+            };
+        }
     }
 }
 
+// find subsection which contains the currentGroup
+const currentSection = sections
+    .map((section) => {
+        if (section.entries) {
+            return section.entries.find((entry) => entry.entries && entry.entries == currentGroup);
+        }
+    })
+    .filter((section) => section)[0];
+
 const docType = Astro.props.doc.data.type;
 
+console.log('currentElement', currentElement);
 const md_github_url = 'https://github.com/nf-core/website/blob/main/src/content/docs/' + Astro.props.doc.id;
 // remove leading and trailing slash
 const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, '').split('/');
@@ -183,41 +202,61 @@ const firstHeading = Astro.props.doc.body.trim().match(/^(#|<h1)/);
     {!firstHeading && <h1>{title}</h1>}
     <Content />
     {
-        docType === 'tutorial' && (
-            <div slot="right-sidebar-top">
-                {currentGroup &&
-                    currentGroupIndex !== -1 &&
-                    currentGroup.map((entry, i) => {
-                        if (i === currentGroupIndex) {
-                            return (
-                                <TutorialProgessIndicator
-                                    label={i + 1}
-                                    title={entry.label}
-                                    progress={0}
-                                    href={entry.href}
-                                    client:idle
-                                />
-                            );
-                        } else if (i < currentGroupIndex) {
-                            return (
-                                <TutorialProgessIndicator
-                                    label={i + 1}
-                                    title={entry.label}
-                                    progress={100}
-                                    href={entry.href}
-                                />
-                            );
-                        } else {
-                            return (
-                                <TutorialProgessIndicator
-                                    label={i + 1}
-                                    title={entry.label}
-                                    progress={0}
-                                    href={entry.href}
-                                />
-                            );
-                        }
-                    })}
+        docType === 'tutorial' && currentElement && currentElement?.type === 'link' && (
+            <div slot="right-sidebar-top" class="border border-success rounded p-3 pb-2">
+                <p>
+                    <strong class="h5 my-2">Tutorial:</strong>
+                    <a href={currentSection.href}>{currentSection.label}</a>
+                </p>
+                <div class="d-flex flex-column">
+                    {currentGroup &&
+                        currentGroupIndex !== -1 &&
+                        currentGroup.map((entry, i) => {
+                            if (i === currentGroupIndex) {
+                                return (
+                                    <TutorialProgessIndicator
+                                        label={i + 1}
+                                        title={entry.label}
+                                        progress={0}
+                                        href={entry.href}
+                                        client:idle
+                                    />
+                                );
+                            } else if (i < currentGroupIndex) {
+                                return (
+                                    <TutorialProgessIndicator
+                                        label={i + 1}
+                                        title={entry.label}
+                                        progress={100}
+                                        href={entry.href}
+                                    />
+                                );
+                            } else {
+                                return (
+                                    <TutorialProgessIndicator
+                                        label={i + 1}
+                                        title={entry.label}
+                                        progress={0}
+                                        href={entry.href}
+                                    />
+                                );
+                            }
+                        })}
+                </div>
+            </div>
+        )
+    }{
+        docType === 'tutorial' && currentElement?.type === 'group' && (
+            <div slot="right-sidebar-top" class="border border-success rounded p-3 pb-2">
+                <span>
+                    <strong class="h5 my-2">Tutorial:</strong>
+                    <a href={currentElement.href}>{currentElement.label}</a>
+                </span>
+                <div class="d-flex flex-column">
+                    {currentElement?.entries.map((entry, i) => (
+                        <TutorialProgessIndicator label={i + 1} title={entry.label} progress={0} href={entry.href} />
+                    ))}
+                </div>
             </div>
         )
     }

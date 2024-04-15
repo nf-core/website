@@ -1,6 +1,7 @@
 ---
 title: Gitpod
 subtitle: Testing, Code review and Website dev.
+type: tutorial
 ---
 
 # Introduction

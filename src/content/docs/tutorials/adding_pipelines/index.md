@@ -1,6 +1,7 @@
 ---
 title: Adding a new pipeline
 subtitle: Follow this walkthrough to add a new pipeline to nf-core.
+type: tutorial
 ---
 
 The steps covered in this tutorial are:

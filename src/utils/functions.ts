@@ -52,3 +52,4 @@ export const findCurrentGroup = (sections: SidebarEntry[]) => {
     });
     return currentGroup;
 };
+

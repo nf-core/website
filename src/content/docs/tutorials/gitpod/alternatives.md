@@ -2,6 +2,7 @@
 title: Alternatives to Gitpod
 subtitle: Alternative container-based environments
 weight: 7
+type: 'tutorial'
 ---
 
 # Introduction
