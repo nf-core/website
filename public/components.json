@@ -900,7 +900,7 @@
             }
           },
           {
-            "gff": {
+            "gxf": {
               "type": "file",
               "description": "Annotation file in GFF3/GTF format",
               "pattern": "*.{gff, gtf}"
@@ -2713,7 +2713,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -4768,6 +4768,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         },
         {
           "name": "rnafusion",
@@ -8497,7 +8501,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnaseq",
@@ -17848,7 +17852,7 @@
         },
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnadnavar",
@@ -26084,7 +26088,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -26371,10 +26375,6 @@
           "version": "2.5.1"
         },
         {
-          "name": "spatialtranscriptomics",
-          "version": "dev"
-        },
-        {
           "name": "ssds",
           "version": "dev"
         },
@@ -26507,7 +26507,7 @@
         },
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnaseq",
@@ -26953,7 +26953,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -27053,7 +27053,7 @@
         },
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -34641,7 +34641,7 @@
         },
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnadnavar",
@@ -34901,7 +34901,7 @@
         },
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnadnavar",
@@ -36684,7 +36684,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnaseq",
@@ -40179,6 +40179,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -40936,6 +40940,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -45943,6 +45951,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -52890,7 +52902,7 @@
         },
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnadnavar",
@@ -56907,6 +56919,10 @@
           "version": "2.0.0"
         },
         {
+          "name": "createtaxdb",
+          "version": "dev"
+        },
+        {
           "name": "cutandrun",
           "version": "3.2.2"
         },
@@ -56964,7 +56980,7 @@
         },
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnadnavar",
@@ -58968,10 +58984,6 @@
           "version": "dev"
         },
         {
-          "name": "riboseq",
-          "version": "dev"
-        },
-        {
           "name": "rnadnavar",
           "version": "dev"
         },
@@ -59056,10 +59068,6 @@
       "pipelines": [
         {
           "name": "circrna",
-          "version": "dev"
-        },
-        {
-          "name": "riboseq",
           "version": "dev"
         },
         {
@@ -60800,6 +60808,103 @@
         ],
         "maintainers": [
           "@zehrahazalsezer"
+        ]
+      }
+    },
+    {
+      "name": "htsnimtools_vcfcheck",
+      "path": "modules/nf-core/htsnimtools/vcfcheck/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "htsnimtools_vcfcheck",
+        "description": "This tools takes a background VCF, such as gnomad, that has full genome (though in some cases, users will instead want whole exome) coverage and uses that as an expectation of variants.",
+        "keywords": [
+          "validation",
+          "check",
+          "variation"
+        ],
+        "tools": [
+          {
+            "htsnimtools": {
+              "description": "useful command-line tools written to show-case hts-nim",
+              "homepage": "https://github.com/brentp/hts-nim-tools",
+              "documentation": "https://github.com/brentp/hts-nim-tools",
+              "tool_dev_url": "https://github.com/brentp/hts-nim-tools",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "The query VCF file",
+              "pattern": "*.{vcf,vcf.gz,bcf}"
+            }
+          },
+          {
+            "tbi": {
+              "type": "file",
+              "description": "The index of the query VCF file",
+              "pattern": "*.{tbi}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing background VCF information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "background_vcf": {
+              "type": "file",
+              "description": "The background VCF file",
+              "pattern": "*.{vcf,vcf.gz,bcf}"
+            }
+          },
+          {
+            "background_tbi": {
+              "type": "file",
+              "description": "The index of the background VCF file",
+              "pattern": "*.{tbi}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "tsv": {
+              "type": "file",
+              "description": "A tab-delimited file comparing the variant count of each region in the query VCF and background VCF",
+              "pattern": "*.tsv"
+            }
+          }
+        ],
+        "authors": [
+          "@nvnieuwk"
+        ],
+        "maintainers": [
+          "@nvnieuwk"
         ]
       }
     },
@@ -64103,7 +64208,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnaseq",
@@ -64238,7 +64343,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnaseq",
@@ -65395,7 +65500,13 @@
         "maintainers": [
           "@alxndrdiaz"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "createtaxdb",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "kraken2_build",
@@ -65475,7 +65586,13 @@
         "maintainers": [
           "@alxndrdiaz"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "createtaxdb",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "kraken2_kraken2",
@@ -78122,7 +78239,7 @@
         },
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnadnavar",
@@ -95099,7 +95216,13 @@
         "maintainers": [
           "@fasterius"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "spatialtranscriptomics",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "quast",
@@ -96545,7 +96668,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -96656,7 +96779,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -96816,7 +96939,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -96900,7 +97023,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -97293,7 +97416,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnaseq",
@@ -98599,7 +98722,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnaseq",
@@ -98716,7 +98839,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnaseq",
@@ -100701,7 +100824,7 @@
         },
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnadnavar",
@@ -100951,7 +101074,7 @@
         },
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnadnavar",
@@ -101260,7 +101383,7 @@
         },
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnadnavar",
@@ -102072,7 +102195,7 @@
         },
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnadnavar",
@@ -102278,7 +102401,7 @@
         },
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnadnavar",
@@ -111222,7 +111345,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnaseq",
@@ -113096,7 +113219,7 @@
         },
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnadnavar",
@@ -113218,7 +113341,7 @@
         },
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnadnavar",
@@ -114430,7 +114553,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -118655,7 +118778,7 @@
         },
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnaseq",
@@ -119470,7 +119593,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -120660,7 +120783,7 @@
         },
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnaseq",
@@ -120757,7 +120880,7 @@
         },
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnaseq",
@@ -120956,7 +121079,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -121296,7 +121419,7 @@
         },
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnadnavar",
@@ -126691,7 +126814,7 @@
         },
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnaseq",
@@ -127627,7 +127750,7 @@
         },
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnaseq",
@@ -127795,7 +127918,7 @@
         },
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnaseq",
@@ -128825,7 +128948,13 @@
         "maintainers": [
           "@jfy133"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "createtaxdb",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "fasta_clean_fcs",
@@ -130414,7 +130543,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -130876,7 +131005,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnaseq",
@@ -131045,7 +131174,7 @@
         },
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnaseq",
@@ -131268,7 +131397,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnaseq",
@@ -134897,7 +135026,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -135119,7 +135248,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -135265,7 +135394,7 @@
         },
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnadnavar",
@@ -135286,6 +135415,10 @@
         {
           "name": "smrnaseq",
           "version": "2.3.0"
+        },
+        {
+          "name": "spatialtranscriptomics",
+          "version": "dev"
         },
         {
           "name": "tfactivity",
@@ -135418,7 +135551,7 @@
         },
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnadnavar",
@@ -135439,6 +135572,10 @@
         {
           "name": "smrnaseq",
           "version": "2.3.0"
+        },
+        {
+          "name": "spatialtranscriptomics",
+          "version": "dev"
         },
         {
           "name": "tfactivity",
@@ -135601,7 +135738,7 @@
         },
         {
           "name": "riboseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnadnavar",
@@ -135622,6 +135759,10 @@
         {
           "name": "smrnaseq",
           "version": "2.3.0"
+        },
+        {
+          "name": "spatialtranscriptomics",
+          "version": "dev"
         },
         {
           "name": "tfactivity",
