@@ -2,6 +2,7 @@
 title: Other tutorials
 subtitle: Other Nextflow tutorials using Gitpod
 weight: 6
+type: 'tutorial'
 ---
 
 ## Other Nextflow tutorials using Gitpod

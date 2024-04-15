@@ -2,6 +2,7 @@
 title: Editing Markdown
 subtitle: How to develop Markdown for the website
 weight: 4
+type: 'tutorial'
 ---
 
 ## How to develop Markdown for the website

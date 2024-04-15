@@ -2,6 +2,7 @@
 title: Git and Gitpod
 subtitle: Making changes to a repository and committing to git
 weight: 2
+type: 'tutorial'
 ---
 
 ## Making changes to a repository and committing to git

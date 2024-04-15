@@ -55,6 +55,7 @@
             style="fill: var(--bs-success)">{label}</text
         >
     </svg>
+    {title}
 </a>
 
 <style>
