@@ -6,6 +6,7 @@ import type { CollectionEntry } from 'astro:content';
 import type { SidebarEntry } from '@utils/types';
 import { findCurrentGroup, createLinkOrGroup } from '@utils/functions';
 import { Icon } from 'astro-icon/components';
+import TutorialProgessIndicator from '@components/sidebar/TutorialProgessIndicator.svelte';
 
 export async function getStaticPaths() {
     const docs = await getCollection('docs');
@@ -116,8 +117,9 @@ sections.forEach((section) => {
 // go through all sections and section entries and section entries entries, etc, to find a group containing an elemnt with isCurrent and return all entries
 
 const currentGroup = findCurrentGroup(sections);
+let currentGroupIndex = -1;
 if (currentGroup.length > 0) {
-    const currentGroupIndex = currentGroup.findIndex((entry) => entry.isCurrent);
+    currentGroupIndex = currentGroup.findIndex((entry) => entry.isCurrent);
     if (currentGroupIndex === -1) {
         console.error('Could not find current page ' + Astro.url.pathname + ' in docs collection');
     }
@@ -135,40 +137,13 @@ if (currentGroup.length > 0) {
     }
 }
 
-// // add entries to sections
-// tutorialDocs.forEach((doc) => {
-//     // get sections for tutorials
-//     let index = sections.findIndex((section) => section.label === 'Tutorials');
+const docType = Astro.props.doc.data.type;
 
-//     sections[index].type === 'group' &&
-//         sections[index].entries.push({
-//             type: 'link',
-//             label: doc.data.title,
-//             href: '/docs/' + doc.slug,
-//             isCurrent: Astro.url.pathname.replace(".html","") === '/docs/' + doc.slug,
-//         });
-// });
-// if (!currentDocs) {
-//     console.error('Could not find current page ' + Astro.url.pathname + ' in docs collection');
-// } else {
-//     const current_page_index = currentDocs.findIndex((page) => '/docs/' + page.slug === url);
-
-//     if (current_page_index === -1) {
-//         console.error('Could not find current page ' + Astro.url.pathname + ' in docs collection');
-//     } else {
-//         prev_page = currentDocs[current_page_index - 1];
-//         prev_page =
-//             prev_page && prev_page.slug?.split('/').slice(-2)[0] === url.split('/').slice(-2)[0] ? prev_page : null;
-//         next_page = currentDocs[current_page_index + 1];
-//         next_page =
-//             next_page && next_page.slug?.split('/').slice(-2)[0] === url.split('/').slice(-2)[0] ? next_page : null;
-//     }
-// }
 const md_github_url = 'https://github.com/nf-core/website/blob/main/src/content/docs/' + Astro.props.doc.id;
 // remove leading and trailing slash
 const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, '').split('/');
 // check if markdown file starts with a heading (markdown or html)
-const firstHeading = Astro.props.doc.body.match(/^(#|<h1)/);
+const firstHeading = Astro.props.doc.body.trim().match(/^(#|<h1)/);
 ---
 
 <MarkdownTocLayout
@@ -207,6 +182,45 @@ const firstHeading = Astro.props.doc.body.match(/^(#|<h1)/);
     </div>
     {!firstHeading && <h1>{title}</h1>}
     <Content />
+    {
+        docType === 'tutorial' && (
+            <div slot="right-sidebar-top">
+                {currentGroup &&
+                    currentGroupIndex !== -1 &&
+                    currentGroup.map((entry, i) => {
+                        if (i === currentGroupIndex) {
+                            return (
+                                <TutorialProgessIndicator
+                                    label={i + 1}
+                                    title={entry.label}
+                                    progress={0}
+                                    href={entry.href}
+                                    client:idle
+                                />
+                            );
+                        } else if (i < currentGroupIndex) {
+                            return (
+                                <TutorialProgessIndicator
+                                    label={i + 1}
+                                    title={entry.label}
+                                    progress={100}
+                                    href={entry.href}
+                                />
+                            );
+                        } else {
+                            return (
+                                <TutorialProgessIndicator
+                                    label={i + 1}
+                                    title={entry.label}
+                                    progress={0}
+                                    href={entry.href}
+                                />
+                            );
+                        }
+                    })}
+            </div>
+        )
+    }
     <FooterPrevNext slot="pre-footer" md_github_url={md_github_url} prev_page={prev_page} next_page={next_page} />
 </MarkdownTocLayout>
 <style lang="scss">

@@ -43,6 +43,7 @@
 
 <div class="nav flex-column sticky-top-under align-items-end pt-1">
     <div class="d-none d-md-block w-100">
+        <slot name="right-sidebar-top" />
         {#if headings.length > minNumHeadings}
             <strong class="h6 my-2 text-body">On this page</strong>
         {/if}

@@ -21,6 +21,13 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
         entry.type === 'group' && entry.entries ? flattenSidebar(entry.entries) : entry,
     );
 };
+const sanitizeNfCoreLabels = (label: string) =>
+    (label.startsWith('Nf-') ? 'nf-' : '') +
+    label
+        .substring(label.startsWith('Nf-') ? 3 : 0)
+        .split('-nf-')
+        .map((part) => part.replace(/-/g, ' '))
+        .join(' nf-');
 ---
 
 <script is:inline>
@@ -46,7 +53,7 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
                             aria-current={item.isCurrent && 'page'}
                             class:list={[{ h6: !nested }, 'px-2']}
                         >
-                            <span>{item.label.replace('Nf-', 'nf-')}</span>
+                            <span>{sanitizeNfCoreLabels(item.label)}</span>
                         </a>
                     ) : (
                         <details open={containsCurrent || item.isCurrent || !item.collapsed}>
@@ -57,11 +64,11 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
                                 <div class="group-label flex-grow-1">
                                     {item.href && (
                                         <a href={item.href} class="h5 text-reset d-block">
-                                            {item.label.replace('Nf-', 'nf-')}
+                                            {sanitizeNfCoreLabels(item.label)}
                                         </a>
                                     )}
                                     {!item.href && (
-                                        <span class="h5 text-reset">{item.label.replace('Nf-', 'nf-')}</span>
+                                        <span class="h5 text-reset">{sanitizeNfCoreLabels(item.label)}</span>
                                     )}
                                 </div>
                                 <i
@@ -120,7 +127,7 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
     }
 
     ul ul li {
-        margin-inline-start: var(--sl-sidebar-item-padding-inline);
+        margin-inline-start: calc(var(--sl-sidebar-item-padding-inline));
         border-inline-start: 1pt solid var(--bs-border-color);
         padding-inline-start: var(--sl-sidebar-item-padding-inline);
     }

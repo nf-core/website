@@ -8,7 +8,7 @@ import type { SidebarEntry } from '@utils/types';
 
 export interface Props {
     title: string;
-    subtitle: string;
+    subtitle?: string;
     md_github_url: string;
     headings: ({ text: string; slug: string; depth: number; fa_icon?: string } | undefined)[];
     event_header?: {
@@ -138,7 +138,6 @@ if (showRightSidebar) {
             {
                 showRightSidebar && (
                     <div class={`col-12 col-xl-${rightSidebarWidth} sidebar-right toc`}>
-                        <slot name="right-sidebar-top" />
                         <SidebarToc
                             headings={headings}
                             minNumHeadings={minNumHeadings}
@@ -146,6 +145,7 @@ if (showRightSidebar) {
                             maxHeadingDepth={maxHeadingDepth}
                             client:idle
                         >
+                            <slot slot="right-sidebar-top" name="right-sidebar-top" />
                             <slot name="right-sidebar-bottom" />
                         </SidebarToc>
                     </div>
