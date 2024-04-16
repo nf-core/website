@@ -28,6 +28,12 @@ export const remarkHeadingNumbers: RemarkPlugin<[]> = () => {
 
                 // Add counter to heading
                 const counterText = counters.slice(1, depth).join('.');
+
+                // remove hard-coded heading numbers
+                if (node.children[0].type === 'text') {
+                    node.children[0].value = node.children[0].value.replace(/^\s*\d+(\.\d+)*\s/, '');
+                }
+
                 node.children.unshift({
                     type: 'text',
                     value: `${counterText} `,
