@@ -297,3 +297,24 @@ The lift $L$ is calculated as follows: $L = \frac{1}{2} \rho v^2 S C_L$
 gets rendered as:
 
 The lift $L$ is calculated as follows: $L = \frac{1}{2} \rho v^2 S C_L$.
+
+# Numbered headings
+
+If you want to get all headings numbered, based on their location and depth in the document, you can set `addNumbersToHeadings: true` in the frontmatter of the markdown file. This will add a number to each heading, e.g.:
+
+```md
+---
+title: My document
+addNumbersToHeadings: true
+---
+
+## Subheading
+
+### Subsubheading
+```
+
+gets rendered as:
+
+<h2>1. Subheading</h2>
+
+<h3>1.1. Subsubheading</h3>
