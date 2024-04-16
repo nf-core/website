@@ -161,6 +161,7 @@ process {
 ```
 
 - The [`check_max()`](https://github.com/nf-core/tools/blob/99961bedab1518f592668727a4d692c4ddf3c336/nf_core/pipeline-template/nextflow.config#L206-L237) function applies the thresholds set in `--max_cpus`, `--max_memory` and `--max_time`.
+    - If you want to use `check_max()` in a **custom config** file, you must copy the function to the end of your config _outside_ of any configuration scopes! It will _not_ be inherited from `base.config`. 
 - The `* task.attempt` means that these values are doubled if a process is automatically retried after failing with an exit code that corresponds to a lack of resources.
 
 :::warning
