@@ -283,9 +283,16 @@ code:not(pre code),
       padding-top: 0;
       padding-bottom: 0;
     }
-    &:not([data-line-numbers]) > span {
+    &:not([data-line-numbers]) {
+
+      & > span {
       padding-left: 1.5em;
       padding-right: 1.5em;
+      &[data-highlighted-line] {
+        padding-left: calc(1.5em - 2px);
+      }
+    }
+
     }
     &[data-line-numbers] {
       counter-reset: line;

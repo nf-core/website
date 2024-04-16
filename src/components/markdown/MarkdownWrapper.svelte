@@ -81,7 +81,7 @@
                             copiedLabel: copiedButtonLabel,
                             classes:
                                 SingleLine +
-                                ' copy-code-button btn btn-sm btn-outline-secondary position-absolute top-0 end-0 opacity-50',
+                                ' copy-code-button btn btn-sm btn-outline-secondary position-absolute top-0 end-0',
                             copiedClasses:
                                 SingleLine +
                                 ' copy-code-button btn btn-sm btn-outline-success position-absolute top-0 end-0',
