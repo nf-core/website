@@ -257,7 +257,7 @@ END_VERSIONS
 
 If the HEREDOC cannot be used because the script is not bash, the `versions.yml` MUST be written directly e.g. [ascat module](https://github.com/nf-core/modules/blob/master/modules/nf-core/ascat/main.nf).
 
-#### 1.9 Presence of when statemetn
+#### 1.9 Presence of when statement
 
 The process definition MUST NOT change the `when` statement.
 `when` conditions can instead be supplied using the `process.ext.when` directive in a configuration file.
@@ -328,7 +328,7 @@ Alternate suggestions include using `grep -c` to search for a valid string match
 
 ### 2 Naming conventions
 
-### 2.1 Name format of subworkflow files
+### 2.1 Name format of module files
 
 The directory structure for the module name must be all lowercase, and without punctuation, e.g. [`modules/nf-core/bwa/mem/`](https://github.com/nf-core/modules/tree/master/modules/nf-core/bwa/mem/). The name of the software (i.e. `bwa`) and tool (i.e. `mem`) MUST be all one word.
 
