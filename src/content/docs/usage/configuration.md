@@ -92,6 +92,10 @@ For Nextflow DSL2 nf-core pipelines - parameters defined in the parameter block 
 You can also generate such a JSON via each pipelines 'launch' button on the [nf-co.re website](https://nf-co.re/launch).
 :::
 
+:::warning
+When tuning your pipeline configuration resources, if you want to use the `check_max()` function in your custom config, you must copy the [function](https://github.com/nf-core/tools/blob/99961bedab1518f592668727a4d692c4ddf3c336/nf_core/pipeline-template/nextflow.config#L206-L237) in the link above to the bottom of your custom config
+:::
+
 See the [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html) for more information about configuration syntax and available parameters.
 
 # Running Nextflow on your system
@@ -157,7 +161,12 @@ process {
 ```
 
 - The [`check_max()`](https://github.com/nf-core/tools/blob/99961bedab1518f592668727a4d692c4ddf3c336/nf_core/pipeline-template/nextflow.config#L206-L237) function applies the thresholds set in `--max_cpus`, `--max_memory` and `--max_time`.
+  - If you want to use `check_max()` in a **custom config** file, you must copy the function to the end of your config _outside_ of any configuration scopes! It will _not_ be inherited from `base.config`.
 - The `* task.attempt` means that these values are doubled if a process is automatically retried after failing with an exit code that corresponds to a lack of resources.
+
+:::warning
+If you want to use the `check_max()` function in your custom config, you must copy the function in the link above to the bottom of your custom config
+:::
 
 :::warning
 You don't need to copy all of the labels into your own custom config file, only overwrite the things you wish to change
