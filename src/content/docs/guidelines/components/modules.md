@@ -328,7 +328,7 @@ Alternate suggestions include using `grep -c` to search for a valid string match
 
 ## Naming conventions
 
-### Name format of subworkflow files
+### Name format of module files
 
 The directory structure for the module name must be all lowercase, and without punctuation, e.g. [`modules/nf-core/bwa/mem/`](https://github.com/nf-core/modules/tree/master/modules/nf-core/bwa/mem/). The name of the software (i.e. `bwa`) and tool (i.e. `mem`) MUST be all one word.
 
