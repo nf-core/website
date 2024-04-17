@@ -4800,6 +4800,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -40281,6 +40285,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -41038,6 +41046,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -46061,6 +46073,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -126850,6 +126866,86 @@
           "version": "dev"
         }
       ]
+    },
+    {
+      "name": "bam_dedup_stats_samtools_umicollapse",
+      "path": "subworkflows/nf-core/bam_dedup_stats_samtools_umicollapse/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "bam_dedup_stats_samtools_umicollapse",
+        "description": "umicollapse, index BAM file and run samtools stats, flagstat and idxstats",
+        "keywords": [
+          "umi",
+          "dedup",
+          "index",
+          "bam",
+          "sam",
+          "cram"
+        ],
+        "components": [
+          "umicollapse",
+          "samtools/index",
+          "samtools/stats",
+          "samtools/idxstats",
+          "samtools/flagstat",
+          "bam_stats_samtools"
+        ],
+        "input": [
+          {
+            "ch_bam_bai": {
+              "description": "input BAM file\nStructure: [ val(meta), path(bam), path(bai) ]\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "bam": {
+              "description": "Umi deduplicated BAM/SAM file\nStructure: [ val(meta), path(bam) ]\n"
+            }
+          },
+          {
+            "bai": {
+              "description": "Umi deduplicated BAM/SAM samtools index\nStructure: [ val(meta), path(bai) ]\n"
+            }
+          },
+          {
+            "csi": {
+              "description": "CSI samtools index\nStructure: [ val(meta), path(csi) ]\n"
+            }
+          },
+          {
+            "dedupstats": {
+              "description": "File containing umicollapse deduplication stats\nStructure: [ val(meta), path(stats) ]\n"
+            }
+          },
+          {
+            "stats": {
+              "description": "File containing samtools stats output\nStructure: [ val(meta), path(stats) ]\n"
+            }
+          },
+          {
+            "flagstat": {
+              "description": "File containing samtools flagstat output\nStructure: [ val(meta), path(flagstat) ]\n"
+            }
+          },
+          {
+            "idxstats": {
+              "description": "File containing samtools idxstats output\nStructure: [ val(meta), path(idxstats) ]\n"
+            }
+          },
+          {
+            "versions": {
+              "description": "Files containing software versions\nStructure: [ path(versions.yml) ]\n"
+            }
+          }
+        ],
+        "authors": [
+          "@MatthiasZepper"
+        ],
+        "maintainers": [
+          "@MatthiasZepper"
+        ]
+      }
     },
     {
       "name": "bam_dedup_stats_samtools_umitools",
