@@ -318,3 +318,24 @@ gets rendered as:
 <h2>1. Subheading</h2>
 
 <h3>1.1. Subsubheading</h3>
+
+# Special documentation styling
+
+## Checklist
+
+Checklists are used to provide a list of items that need to be checked off. By adding `type: checklist` to the frontmatter of a markdown file, all list items will be pre-pended with a checkbox. E.g.,:
+
+```md
+---
+title: Important things to remember
+type: checklist
+---
+
+- Towel
+- Don't Panic
+```
+
+gets rendered as:
+
+- [ ] Towel
+- [ ] Don't Panic

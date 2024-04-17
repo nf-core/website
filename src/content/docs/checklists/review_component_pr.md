@@ -1,6 +1,7 @@
 ---
 title: PR Review Checklist for nf-core components
 subtitle: Guidelines for reviewing PRs in the nf-core/modules repository
+type: checklist
 ---
 
 A PR review is the process of examining a new component submission or the changes proposed to a component. The reviewer provides constructive feedback on those changes before they are merged into the nf-core repository.The goal of a PR review is to ensure that the code meets the coding standards of the project, is consistent and of high-quality.
