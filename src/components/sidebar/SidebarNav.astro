@@ -4,125 +4,16 @@ import SidebarSubNav from '@components/sidebar/SidebarSubNav.astro';
 
 export interface Props {
     items: SidebarEntry[];
-    minimal?: boolean;
-    accordion?: boolean;
 }
 
-let { items, minimal } = Astro.props;
+let { items } = Astro.props;
 let url = Astro.url.pathname.endsWith('/') ? Astro.url.pathname.slice(0, -1) : Astro.url.pathname;
 url = url.replace(/\.html$/, '');
-// items = [
-//     {
-//         type: 'group',
-//         label: 'Content',
-//         entries: [{ type: 'link', label: 'Home', href: '/', isCurrent: true }],
-//         collapsed: false,
-//     },
-// ];
 ---
 
 <div class:list={['nav']}>
     <div class="w-100 sticky-top-under mx-3">
         <SidebarSubNav items={items} />
-        <!-- {
-            items &&
-                items.map((item) => {
-                    return (
-                        <div class="mb-3">
-                            <h6 class="mb-0">
-                                {item.section_slug && (
-                                    <a
-                                        class:list={[
-                                            'text-decoration-none p-2 w-100 d-inline-block text-body section-header',
-                                            { active: item.section_slug && url.endsWith(item.section_slug) },
-                                        ]}
-                                        href={item.section_slug}
-                                    >
-                                        {item.section_name}
-                                    </a>
-                                )}
-                                {!item.section_slug && item.section_name}
-                            </h6>
-                            {minimal && (
-                                <ul class="minimal-list">
-                                    {item.children
-                                        .sort((child) => child.order || 0)
-                                        .map((child) => {
-                                            return (
-                                                <li
-                                                    class:list={[
-                                                        'mt-2 w-100 ps-4',
-                                                        {
-                                                            active:
-                                                                url.endsWith(child.slug) ||
-                                                                (url.split('/').length >= 5 &&
-                                                                    url
-                                                                        .split('/')
-                                                                        .slice(0, 4)
-                                                                        .join('/')
-                                                                        .endsWith(child.slug.replace(/\/$/, ''))),
-                                                        },
-                                                    ]}
-                                                >
-                                                    <a
-                                                        class:list={[
-                                                            'text-decoration-none p-1',
-                                                            'text-center',
-                                                            'd-none',
-                                                            'stretched-link',
-                                                        ]}
-                                                        href={child.slug}
-                                                    />
-                                                    <span set:html={child.title} />
-                                                </li>
-                                            );
-                                        })}
-                                </ul>
-                            )}
-                            {!minimal && (
-                                <ul class="list-unstyled">
-                                    {item.children &&
-                                        item.children
-                                            .sort((child) => child.order || 0)
-                                            .map((child) => {
-                                                return (
-                                                    <li
-                                                        class:list={[
-                                                            'w-100 py-1 ps-3 position-relative',
-                                                            {
-                                                                active:
-                                                                    url.endsWith(child.slug.replace(/\/$/, '')) ||
-                                                                    (url.split('/').length >= 5 &&
-                                                                        url
-                                                                            .split('/')
-                                                                            .slice(0, 4)
-                                                                            .join('/')
-                                                                            .endsWith(child.slug.replace(/\/$/, ''))),
-                                                            },
-                                                        ]}
-                                                    >
-                                                        <a
-                                                            class:list={[
-                                                                'text-decoration-none p-1',
-                                                                'd-inline-block',
-                                                                'stretched-link',
-                                                                {
-                                                                    'text-body-secondary': !url.endsWith(child.slug),
-                                                                },
-                                                            ]}
-                                                            href={child.slug}
-                                                        >
-                                                            {child.title}
-                                                        </a>
-                                                    </li>
-                                                );
-                                            })}
-                                </ul>
-                            )}
-                        </div>
-                    );
-                })
-        } -->
     </div>
 </div>
 
