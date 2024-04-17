@@ -1,6 +1,7 @@
 ---
 import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
 import FooterPrevNext from '@components/footer/FooterPrevNext.astro';
+import SubFooter from '@components/footer/SubFooter.astro';
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import type { SidebarEntry } from '@utils/types';
@@ -126,10 +127,15 @@ if (currentGroup.length > 0) {
         console.error('Could not find current page ' + Astro.url.pathname + ' in docs collection');
     }
     if (currentElement && currentElement.type === 'group') {
-        next_page = {
-            title: currentElement.entries[0].label,
-            slug: currentElement.entries[0].href,
-        };
+        currentElement.entries[0].href?.endsWith(Astro.url.pathname)
+            ? (next_page = {
+                  title: currentElement.entries[1].label,
+                  slug: currentElement.entries[1].href,
+              })
+            : (next_page = {
+                  title: currentElement.entries[0].label,
+                  slug: currentElement.entries[0].href,
+              });
     } else {
         if (currentGroup[currentGroupIndex - 1] && currentGroup[currentGroupIndex - 1].href) {
             prev_page = {
@@ -163,10 +169,9 @@ const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, '').split('/');
 // check if markdown file starts with a heading (markdown or html)
 const firstHeading = Astro.props.doc.body.trim().match(/^(#|<h1)/);
 
-console.log('checkboxes', remarkPluginFrontmatter.checkboxes);
 let extendedHeadings = headings.map((heading, i) => {
     heading.checkboxes = remarkPluginFrontmatter.checkboxes
-        ?.filter((checkbox) => checkbox.heading.children[0].value.startsWith(heading.text))
+        ?.filter((checkbox) => checkbox.headingId.startsWith(heading.slug))
         .map((checkbox) => ({ id: checkbox.id, checked: checkbox.checked }));
     return heading;
 });
@@ -185,7 +190,10 @@ let extendedHeadings = headings.map((heading, i) => {
     docSearchTags={[
         { name: 'page_type', content: 'Docs' },
         { name: 'page_rank', content: '8' },
-        // { name: 'page_subtype', content: currentDocs === usageDocs ? 'Usage' : 'Contributing' },
+        {
+            name: 'page_subtype',
+            content: splitUrl[1].replace(/(^|\s)\S/g, (match) => match.toUpperCase()),
+        },
     ]}
 >
     <div slot="header-top" class="d-none d-md-block">
@@ -208,6 +216,9 @@ let extendedHeadings = headings.map((heading, i) => {
     </div>
     {!firstHeading && <h1>{title}</h1>}
     <Content />
+    <FooterPrevNext md_github_url={md_github_url} prev_page={prev_page} next_page={next_page} />
+
+    <SubFooter slot="pre-footer" {md_github_url} />
     {
         docType === 'tutorial' && currentElement && currentElement?.type === 'link' && (
             <div slot="right-sidebar-top" class="border border-success rounded p-3 pb-2">
@@ -267,22 +278,16 @@ let extendedHeadings = headings.map((heading, i) => {
             </div>
         )
     }
-    <FooterPrevNext slot="pre-footer" md_github_url={md_github_url} prev_page={prev_page} next_page={next_page} />
 </MarkdownTocLayout>
 <style lang="scss">
     @import '@styles/_variables.scss';
     nav {
-        --bs-breadcrumb-divider: '\f054';
+        --bs-breadcrumb-divider: '';
     }
     .breadcrumb-item,
     .breadcrumb-item a,
     .breadcrumb-item::before {
         color: $gray-200 !important;
-    }
-    .breadcrumb-item::before {
-        font-family: 'Font Awesome 6 Pro';
-        font-size: 0.8rem;
-        margin-top: 0.2rem;
     }
     :global(li:has(input[type='checkbox'])) {
         list-style: none;

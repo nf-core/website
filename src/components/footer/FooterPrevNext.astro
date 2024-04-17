@@ -8,7 +8,7 @@ export interface Props {
 const { md_github_url, prev_page, next_page } = Astro.props;
 ---
 
-<footer class="mb-3 d-flex justify-content-between m-auto">
+<footer class="mb-3 mt-5 d-flex justify-content-between m-auto">
     {
         prev_page && (
             <div class="">
@@ -38,7 +38,6 @@ const { md_github_url, prev_page, next_page } = Astro.props;
         )
     }
 </footer>
-<SubFooter {md_github_url} />
 <style lang="scss">
     @import '@styles/_variables.scss';
     svg {
