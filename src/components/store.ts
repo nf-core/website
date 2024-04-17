@@ -27,3 +27,12 @@ export const EventIsOngoing = persistentAtom('EventIsOngoing', false, {
         return JSON.parse(value);
     },
 });
+
+export const checkboxes = persistentAtom('checkboxes', [], {
+    encode(value) {
+        return JSON.stringify(value);
+    },
+    decode(value) {
+        return JSON.parse(value);
+    },
+});

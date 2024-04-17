@@ -1,6 +1,7 @@
 <script lang="ts">
-    import { currentHeading, showHidden } from '@components/store';
+    import { currentHeading, showHidden, checkboxes } from '@components/store';
     import { onMount } from 'svelte';
+    import ProgressIndicator from '@components/sidebar/ProgressIndicator.svelte';
 
     export let headings: {
         text: string;
@@ -8,6 +9,11 @@
         depth: number;
         fa_icon?: string;
         hidden?: boolean;
+        checkboxes?: {
+            id: string;
+            label: string;
+            checked: boolean;
+        }[];
     }[];
     export let minNumHeadings: number = 2;
     export let minHeadingDepth: number = 1;
@@ -20,6 +26,8 @@
     headings = headings.filter((h) => h.depth <= maxHeadingDepth);
 
     minHeadingDepth = Math.min(...headings.map((h) => h.depth));
+
+    const showToc = headings.length > minNumHeadings || headings.some((h) => h.checkboxes);
 
     let activeHeading = {};
     onMount(() => {
@@ -39,17 +47,43 @@
             }
         });
     });
+
+    checkboxes.subscribe((checkboxes) => {
+        checkboxes.forEach((checkbox) => {
+            headings.forEach((heading) => {
+                if (heading.checkboxes) {
+                    heading.checkboxes.forEach((hCheckbox) => {
+                        if (hCheckbox.id === checkbox.id) {
+                            hCheckbox.checked = checkbox.checked;
+                        }
+                    });
+                }
+            });
+        });
+    });
+
+    const uncheckAll = () => {
+        headings.forEach((heading) => {
+            if (heading.checkboxes) {
+                heading.checkboxes.forEach((checkbox) => {
+                    const checkboxElement = document.getElementById(checkbox.id);
+                    checkboxElement.checked = false;
+                    checkboxes.set([]);
+                });
+            }
+        });
+    };
 </script>
 
 <div class="nav flex-column sticky-top-under align-items-end pt-1">
     <div class="d-none d-md-block w-100">
         <slot name="right-sidebar-top" />
-        {#if headings.length > minNumHeadings}
+        {#if showToc}
             <strong class="h6 my-2 text-body">On this page</strong>
         {/if}
         <!-- <hr class="my-1" /> -->
         <nav id="TableOfContents" class="d-none d-md-flex flex-column">
-            {#if headings.length > minNumHeadings}
+            {#if showToc}
                 <ul class="mb-0 mt-1">
                     {#each headings as heading (heading)}
                         <li
@@ -62,6 +96,13 @@
                                     <i class={heading.fa_icon + ' fa-fw '} aria-hidden="true" />
                                 {/if}
                                 {@html heading.text}
+                                {#if heading.checkboxes}
+                                    <ProgressIndicator
+                                        progress={(heading.checkboxes.filter((check) => check.checked).length /
+                                            heading.checkboxes.length) *
+                                            100}
+                                    />
+                                {/if}
                             </a>
                         </li>
                     {/each}
@@ -75,6 +116,11 @@
                         <i class="fa-solid fa-arrow-up-to-line" aria-hidden="true" /> Back to top
                     </a>
                 </div>
+            {/if}
+            {#if headings.some((h) => h.checkboxes)}
+                <button class="btn btn-sm btn-outline-secondary" on:click={uncheckAll} on:keydown={uncheckAll}>
+                    Uncheck all
+                </button>
             {/if}
             <slot />
         </nav>
