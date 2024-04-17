@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { currentHeading } from '@components/store';
+    import { currentHeading, checkboxes } from '@components/store';
     import * as icons from 'file-icons-js';
     import 'file-icons-js/css/style.css';
     import mermaid from 'mermaid';
@@ -60,7 +60,50 @@
             if (element) {
                 observer.observe(element);
             }
+            if (heading.checkboxes) {
+                heading.checkboxes.forEach((checkbox) => {
+                    const checkboxElement = document.getElementById(checkbox.id);
+                    // check checkboxes based on checkboxes store
+                    checkboxElement.checked = $checkboxes.find((c) => c.id === checkbox.id)?.checked || false;
+
+                    checkboxElement.addEventListener('change', () => {
+                        checkboxes.set(
+                            $checkboxes.find((c) => c.id === checkbox.id)
+                                ? $checkboxes.filter((c) => c.id !== checkbox.id)
+                                : [...$checkboxes, { id: checkbox.id, checked: checkboxElement.checked }],
+                        );
+                        // if all checkboxes are checked in the ul, check the parent checkbox
+                        const parentCheckbox = checkboxElement
+                            .closest('ul')
+                            ?.previousElementSibling?.querySelector('input[type="checkbox"]') as HTMLInputElement;
+                        // get input type checkbox element in parentCheckbox
+
+                        if (parentCheckbox) {
+                            const childChecks = checkboxElement
+                                .closest('ul')
+                                .querySelectorAll('input[type="checkbox"]');
+                            if (childChecks && Array.from(childChecks).every((c) => c.checked)) {
+                                parentCheckbox.checked = true;
+                            } else {
+                                parentCheckbox.checked = false;
+                            }
+                            // trigger change event on parent checkbox
+                            parentCheckbox.dispatchEvent(new Event('change'));
+                        }
+                    });
+                });
+            }
         });
+        const uncheckAll = () => {
+            headings.forEach((heading) => {
+                if (heading.checkboxes) {
+                    heading.checkboxes.forEach((checkbox) => {
+                        const checkboxElement = document.getElementById(checkbox.id);
+                        checkboxElement.checked = false;
+                    });
+                }
+            });
+        };
 
         // Add "Copy code" button in code blocks
         const copyButtonLabel = "<i class='fa-regular fa-clipboard'></i>";

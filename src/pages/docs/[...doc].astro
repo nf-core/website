@@ -157,12 +157,19 @@ const currentSection = sections
 
 const docType = Astro.props.doc.data.type;
 
-console.log('currentElement', currentElement);
 const md_github_url = 'https://github.com/nf-core/website/blob/main/src/content/docs/' + Astro.props.doc.id;
 // remove leading and trailing slash
 const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, '').split('/');
 // check if markdown file starts with a heading (markdown or html)
 const firstHeading = Astro.props.doc.body.trim().match(/^(#|<h1)/);
+
+console.log('checkboxes', remarkPluginFrontmatter.checkboxes);
+let extendedHeadings = headings.map((heading, i) => {
+    heading.checkboxes = remarkPluginFrontmatter.checkboxes
+        ?.filter((checkbox) => checkbox.heading.children[0].value.startsWith(heading.text))
+        .map((checkbox) => ({ id: checkbox.id, checked: checkbox.checked }));
+    return heading;
+});
 ---
 
 <MarkdownTocLayout
@@ -170,7 +177,7 @@ const firstHeading = Astro.props.doc.body.trim().match(/^(#|<h1)/);
     subtitle={subtitle}
     meta_title={'Docs: ' + title}
     md_github_url={md_github_url}
-    headings={headings}
+    headings={extendedHeadings}
     leftSidebar={true}
     rightSidebar={true}
     sections={sections}
@@ -276,5 +283,10 @@ const firstHeading = Astro.props.doc.body.trim().match(/^(#|<h1)/);
         font-family: 'Font Awesome 6 Pro';
         font-size: 0.8rem;
         margin-top: 0.2rem;
+    }
+    :global(li:has(input[type='checkbox'])) {
+        list-style: none;
+
+        list-style-position: outside;
     }
 </style>
