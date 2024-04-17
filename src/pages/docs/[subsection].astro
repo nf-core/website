@@ -1,9 +1,9 @@
 ---
 import PageLayout from '@layouts/PageLayout.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
-import type { SidebarEntry } from '@utils/types';
-
+import { Icon } from 'astro-icon/components';
 import { createLinkOrGroup } from '@utils/functions';
+import type { SidebarEntry } from '@utils/types';
 
 export async function getStaticPaths() {
     return ['tutorials', 'usage', 'checklists', 'guidelines'].map((subsection) => ({
@@ -77,6 +77,7 @@ const sortDocs = (a: CollectionEntry<'docs'>, b: CollectionEntry<'docs'>) => {
 };
 
 let subsectionDocs: CollectionEntry<'docs'>[] = docs.filter((doc) => doc.slug.startsWith(subsection + '/'));
+const subsections = sections.find((section) => section.href?.startsWith('/docs/' + subsection));
 
 subsectionDocs.sort(sortDocs);
 const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[]) => {
@@ -146,9 +147,28 @@ sections.forEach((section) => {
     }
 });
 const title = subsection.replace(/(^|\s)\S/g, (match) => match.toUpperCase());
+const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, '').split('/');
 ---
 
-<PageLayout title={title} subtitle={'Overview of sections about' + title} mainpage_container={false}>
+<PageLayout title={title} subtitle={'Overview of sections about ' + title} mainpage_container={false}>
+    <div slot="header-top" class="d-none d-md-block">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                {
+                    splitUrl.slice(0, -1).map((slug, i) => (
+                        <>
+                            <li class="breadcrumb-item">
+                                <a class="text-white" href={'/' + splitUrl.slice(0, i + 1).join('/')}>
+                                    {slug.replaceAll('_', ' ').replace(/(^|\s)\S/g, (match) => match.toUpperCase())}
+                                </a>
+                            </li>
+                            <Icon name="octicon:chevron-right-16" class={'mt-1'} />
+                        </>
+                    ))
+                }
+            </ol>
+        </nav>
+    </div>
     <div class="container-fluid main-content">
         <div class="row">
             <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left">
@@ -157,68 +177,34 @@ const title = subsection.replace(/(^|\s)\S/g, (match) => match.toUpperCase());
 
             <div class="col-12 col-md-10">
                 <p>
-                    Here you can find all documentation on how to use nf-core pipelines, and nf-core tools to start
-                    processing your data. You will also find information on how to contribute to nf-core pipelines,
-                    modules and subworkflows.
+                    This is the overview of the {subsection} section.
                 </p>
                 <div class="">
                     <h2>{subsection.slice(0, 1).toUpperCase() + subsection.slice(1)}</h2>
                     <div class="grid">
                         {
-                            subsectionDocs
-                                .filter((doc) => doc.slug.split('/').length === 2)
-                                .map((doc) => {
-                                    // check if this is a parent of a nested doc
-                                    const childDocs = subsectionDocs.filter((childDoc) =>
-                                        childDoc.slug.startsWith(doc.slug + '/'),
-                                    );
-                                    if (childDocs.length > 0) {
-                                        return (
-                                            <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3 card">
-                                                <span class="card-header">
-                                                    <a href={'/docs/' + doc.slug + '/'} class="text-decoration-none">
-                                                        {doc.data.title}
-                                                    </a>
-                                                    <button
-                                                        class="btn p-0"
-                                                        data-bs-toggle="collapse"
-                                                        data-bs-target={'#' + doc.slug.replace('/', '-')}
-                                                        aria-expanded="false"
-                                                        aria-controls={doc.slug.replace('/', '-')}
-                                                    >
-                                                        <i class="fa-solid fa-chevron-down" />
-                                                    </button>
-                                                </span>
-                                                <ul
-                                                    class="card-body collapse mx-3 mb-0"
-                                                    id={doc.slug.replace('/', '-')}
-                                                >
-                                                    {childDocs.map((childDoc) => {
-                                                        return (
-                                                            <li>
-                                                                <a href={'/docs/' + childDoc.slug + '/'}>
-                                                                    {childDoc.data.title}
-                                                                </a>
-                                                            </li>
-                                                        );
-                                                    })}
-                                                </ul>
-                                            </div>
-                                        );
-                                    } else {
-                                        return (
-                                            <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3 card">
-                                                <a
-                                                    href={'/docs/' + doc.slug + '/'}
-                                                    class="stretched-link text-decoration-none card-header"
-                                                >
-                                                    {doc.data.title}
-                                                </a>
-                                                <div class="card-body">{doc.data.subtitle}</div>
-                                            </div>
-                                        );
-                                    }
-                                })
+                            subsections &&
+                                subsections.entries.map((section) => (
+                                    <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3 card">
+                                        <span class="card-header">
+                                            <a href={'/docs/' + section.href + '/'} class="text-decoration-none">
+                                                {section.label}
+                                            </a>
+                                            <button class="btn p-0">
+                                                <i class="fa-solid fa-chevron-down" />
+                                            </button>
+                                        </span>
+                                        <ul class="card-body mx-3 mb-0" id={section.label?.replace('/', '-')}>
+                                            {section.entries?.map((entry) => {
+                                                return (
+                                                    <li>
+                                                        <a href={'/docs/' + entry.href + '/'}>{entry.label}</a>
+                                                    </li>
+                                                );
+                                            })}
+                                        </ul>
+                                    </div>
+                                ))
                         }
                     </div>
                 </div>
@@ -226,8 +212,4 @@ const title = subsection.replace(/(^|\s)\S/g, (match) => match.toUpperCase());
         </div>
     </div>
 </PageLayout>
-<style>
-    .btn[aria-expanded='true'] {
-        transform: rotate(180deg);
-    }
-</style>
+<style></style>

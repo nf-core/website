@@ -41,43 +41,47 @@ const sortDocs = (a: CollectionEntry<'docs'>, b: CollectionEntry<'docs'>) => {
     }
 };
 
-docs.map((doc) => {
-    if (doc.slug.startsWith('tutorials/')) {
-        tutorialDocs.push(doc);
-    }
-    if (doc.slug.startsWith('usage/')) {
-        usageDocs.push(doc);
-    }
-    if (doc.slug.startsWith('checklists/')) {
-        checklistDocs.push(doc);
-    }
-    if (doc.slug.startsWith('guidelines/')) {
-        guidelineDocs.push(doc);
-    }
-});
-tutorialDocs.sort(sortDocs);
-usageDocs.sort(sortDocs);
-checklistDocs.sort(sortDocs);
-guidelineDocs.sort(sortDocs);
 const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[]) => {
-    const docSlugs = docs.map((doc) => doc.slug);
-    docSlugs.forEach((slug) => {
-        const parts = slug.split('/');
+    docs.sort((a, b) => a.slug.localeCompare(b.slug));
+
+    docs.forEach((doc) => {
+        const parts = doc.slug.split('/');
         let currentLevel = sections;
 
         parts.forEach((part, i) => {
             part = part.replaceAll('_', ' ').replace(/(^)\S/g, (match) => match.toUpperCase());
             const existingEntry = currentLevel.find((entry) => entry.label === part);
+            if (parts[parts.length - 1].endsWith('bioconda')) {
+                debugger;
+            }
+            if (existingEntry) {
+                if (existingEntry.type === 'group') {
+                    // workaround for index files in nested events, where another element could already have created the group
+                    if (/index\.(md|mdx)$/.test(doc.id) && i === parts.length - 1) {
+                        existingEntry.href = '/docs/' + doc.slug;
+                        existingEntry.isCurrent = Astro.url.pathname === '/docs/' + doc.slug;
+                        existingEntry.collapsed = Astro.url.pathname === '/docs/' + doc.slug;
+                    }
+                    currentLevel = existingEntry.entries;
+                } else {
+                    existingEntry.type = 'group';
+                    existingEntry.collapsed = true;
+                    existingEntry.entries = [];
 
-            if (existingEntry && existingEntry.type === 'group') {
-                currentLevel = existingEntry.entries;
+                    if (/index\.(md|mdx)$/.test(doc.id) && i === parts.length - 1) {
+                        existingEntry.href = '/docs/' + doc.slug;
+                        existingEntry.isCurrent = Astro.url.pathname === '/docs/' + doc.slug;
+                        existingEntry.collapsed = Astro.url.pathname === '/docs/' + doc.slug;
+                    }
+                    currentLevel = existingEntry.entries;
+                }
             } else {
                 const newEntry = createLinkOrGroup(
                     part,
-                    '/docs/' + slug,
+                    '/docs/' + doc.slug,
                     i === parts.length - 1,
                     Astro.url.pathname,
-                    docs.find((doc) => doc.slug === slug)?.data.weight,
+                    doc.data.weight,
                 );
                 currentLevel.push(newEntry);
 
@@ -88,7 +92,6 @@ const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[]) => {
         });
     });
 };
-
 addEntriesToSection(sections, docs);
 // sort all entries by weight if available recursively
 const sortEntries = (entries: SidebarEntry[]) => {
@@ -97,20 +100,14 @@ const sortEntries = (entries: SidebarEntry[]) => {
             return -1;
         } else if (!a.weight && b.weight) {
             return 1;
-        } else if (a.weight && b.weight) {
+        } else if (a.weight && b.weight && a.weight !== b.weight) {
             if (a.weight < b.weight) {
                 return -1;
             } else if (a.weight > b.weight) {
                 return 1;
             }
         } else {
-            if (a.label < b.label) {
-                return -1;
-            } else if (a.label > b.label) {
-                return 1;
-            } else {
-                return 0;
-            }
+            return a.label.localeCompare(b.label);
         }
     });
     entries.forEach((entry) => {
@@ -123,6 +120,8 @@ const sortEntries = (entries: SidebarEntry[]) => {
 sections.forEach((section) => {
     sortEntries(section.entries);
 });
+
+console.log('sections.entries', sections[3].entries);
 ---
 
 <PageLayout
@@ -142,210 +141,48 @@ sections.forEach((section) => {
                     processing your data. You will also find information on how to contribute to nf-core pipelines,
                     modules and subworkflows.
                 </p>
-                <div class="row row-cols-1 row-cols-md-2 row-cols-xxl-4 justify-content-around">
-                    <div class="col">
-                        <h2>Tutorials</h2>
-                        <ul>
-                            {
-                                tutorialDocs
-                                    .filter((doc) => doc.slug.split('/').length === 2)
-                                    .map((doc) => {
-                                        // check if this is a parent of a nested doc
-                                        const childDocs = tutorialDocs.filter((childDoc) =>
-                                            childDoc.slug.startsWith(doc.slug),
-                                        );
-                                        if (childDocs.length > 0) {
-                                            return (
-                                                <li>
-                                                    <span>
-                                                        <a href={'/docs/' + doc.slug}>{doc.data.title}</a>
-                                                        <button
-                                                            class="btn p-0"
-                                                            data-bs-toggle="collapse"
-                                                            data-bs-target={'#' + doc.slug.replace('/', '-')}
-                                                            aria-expanded="false"
-                                                            aria-controls={doc.slug.replace('/', '-')}
-                                                        >
-                                                            <i class="fa-solid fa-chevron-down" />
-                                                        </button>
-                                                    </span>
-                                                    <ul class="collapse" id={doc.slug.replace('/', '-')}>
-                                                        {childDocs.map((childDoc) => {
-                                                            return (
-                                                                <li>
-                                                                    <a href={'/docs/' + childDoc.slug}>
-                                                                        {childDoc.data.title}
-                                                                    </a>
-                                                                </li>
-                                                            );
-                                                        })}
-                                                    </ul>
-                                                </li>
-                                            );
-                                        } else {
-                                            return (
-                                                <li>
-                                                    <a href={'/docs/' + doc.slug}>{doc.data.title}</a>
-                                                </li>
-                                            );
-                                        }
-                                    })
-                            }
-                        </ul>
-                    </div>
-
-                    <div class="col">
-                        <h2>Usage</h2>
-                        <ul>
-                            {
-                                usageDocs
-                                    .filter((doc) => doc.slug.split('/').length === 2)
-                                    .map((doc) => {
-                                        // check if this is a parent of a nested doc
-                                        const childDocs = usageDocs.filter((childDoc) =>
-                                            childDoc.slug.startsWith(doc.slug),
-                                        );
-                                        if (childDocs.length > 0) {
-                                            return (
-                                                <li>
-                                                    <span>
-                                                        <a href={'/docs/' + doc.slug}>{doc.data.title}</a>
-                                                        <button
-                                                            class="btn p-0"
-                                                            data-bs-toggle="collapse"
-                                                            data-bs-target={'#' + doc.slug.replace('/', '-')}
-                                                            aria-expanded="false"
-                                                            aria-controls={doc.slug.replace('/', '-')}
-                                                        >
-                                                            <i class="fa-solid fa-chevron-down" />
-                                                        </button>
-                                                    </span>
-                                                    <ul class="collapse" id={doc.slug.replace('/', '-')}>
-                                                        {childDocs.map((childDoc) => {
-                                                            return (
-                                                                <li>
-                                                                    <a href={'/docs/' + childDoc.slug}>
-                                                                        {childDoc.data.title}
-                                                                    </a>
-                                                                </li>
-                                                            );
-                                                        })}
-                                                    </ul>
-                                                </li>
-                                            );
-                                        } else {
-                                            return (
-                                                <li>
-                                                    <a href={'/docs/' + doc.slug}>{doc.data.title}</a>
-                                                </li>
-                                            );
-                                        }
-                                    })
-                            }
-                        </ul>
-                    </div>
-
-                    <div class="col">
-                        <h2>Checklists</h2>
-                        <ul>
-                            {
-                                checklistDocs
-                                    .filter((doc) => doc.slug.split('/').length === 2)
-                                    .map((doc) => {
-                                        // check if this is a parent of a nested doc
-                                        const childDocs = checklistDocs.filter((childDoc) =>
-                                            childDoc.slug.startsWith(doc.slug),
-                                        );
-                                        if (childDocs.length > 0) {
-                                            return (
-                                                <li>
-                                                    <span>
-                                                        <a href={'/docs/' + doc.slug}>{doc.data.title}</a>
-                                                        <button
-                                                            class="btn p-0"
-                                                            data-bs-toggle="collapse"
-                                                            data-bs-target={'#' + doc.slug.replace('/', '-')}
-                                                            aria-expanded="false"
-                                                            aria-controls={doc.slug.replace('/', '-')}
-                                                        >
-                                                            <i class="fa-solid fa-chevron-down" />
-                                                        </button>
-                                                    </span>
-                                                    <ul class="collapse" id={doc.slug.replace('/', '-')}>
-                                                        {childDocs.map((childDoc) => {
-                                                            return (
-                                                                <li>
-                                                                    <a href={'/docs/' + childDoc.slug}>
-                                                                        {childDoc.data.title}
-                                                                    </a>
-                                                                </li>
-                                                            );
-                                                        })}
-                                                    </ul>
-                                                </li>
-                                            );
-                                        } else {
-                                            return (
-                                                <li>
-                                                    <a href={'/docs/' + doc.slug}>{doc.data.title}</a>
-                                                </li>
-                                            );
-                                        }
-                                    })
-                            }
-                        </ul>
-                    </div>
-
-                    <div class="col">
-                        <h2>Guidelines</h2>
-                        <ul>
-                            {
-                                guidelineDocs
-                                    .filter((doc) => doc.slug.split('/').length === 2)
-                                    .map((doc) => {
-                                        // check if this is a parent of a nested doc
-                                        const childDocs = guidelineDocs.filter((childDoc) =>
-                                            childDoc.slug.startsWith(doc.slug),
-                                        );
-                                        if (childDocs.length > 0) {
-                                            return (
-                                                <li>
-                                                    <span>
-                                                        <a href={'/docs/' + doc.slug}>{doc.data.title}</a>
-                                                        <button
-                                                            class="btn p-0"
-                                                            data-bs-toggle="collapse"
-                                                            data-bs-target={'#' + doc.slug.replace('/', '-')}
-                                                            aria-expanded="false"
-                                                            aria-controls={doc.slug.replace('/', '-')}
-                                                        >
-                                                            <i class="fa-solid fa-chevron-down" />
-                                                        </button>
-                                                    </span>
-                                                    <ul class="collapse" id={doc.slug.replace('/', '-')}>
-                                                        {childDocs.map((childDoc) => {
-                                                            return (
-                                                                <li>
-                                                                    <a href={'/docs/' + childDoc.slug}>
-                                                                        {childDoc.data.title}
-                                                                    </a>
-                                                                </li>
-                                                            );
-                                                        })}
-                                                    </ul>
-                                                </li>
-                                            );
-                                        } else {
-                                            return (
-                                                <li>
-                                                    <a href={'/docs/' + doc.slug}>{doc.data.title}</a>
-                                                </li>
-                                            );
-                                        }
-                                    })
-                            }
-                        </ul>
-                    </div>
+                <div class="grid">
+                    {
+                        sections &&
+                            sections.map((section) => (
+                                <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3 card">
+                                    <span class="card-header">
+                                        <a href={section.href} class="text-decoration-none">
+                                            {section.label}
+                                        </a>
+                                        <button class="btn p-0">
+                                            <i class="fa-solid fa-chevron-down" />
+                                        </button>
+                                    </span>
+                                    <ul class="card-body mx-3 mb-0" id={section.label?.replace('/', '-')}>
+                                        {section.entries?.map((entry) => {
+                                            if (entry.type === 'link') {
+                                                return (
+                                                    <li>
+                                                        <a href={entry.href}>{entry.label}</a>
+                                                    </li>
+                                                );
+                                            } else {
+                                                return (
+                                                    <li>
+                                                        <a href={entry.href}>{entry.label}</a>
+                                                        {entry.entries && (
+                                                            <ul>
+                                                                {entry.entries.map((subentry) => (
+                                                                    <li>
+                                                                        <a href={subentry.href}>{subentry.label}</a>
+                                                                    </li>
+                                                                ))}
+                                                            </ul>
+                                                        )}
+                                                    </li>
+                                                );
+                                            }
+                                        })}
+                                    </ul>
+                                </div>
+                            ))
+                    }
                 </div>
             </div>
         </div>
