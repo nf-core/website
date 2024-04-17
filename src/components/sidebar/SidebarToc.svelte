@@ -30,6 +30,12 @@
     const showToc = headings.length > minNumHeadings || headings.some((h) => h.checkboxes);
 
     let activeHeading = {};
+    let hCheckboxes = headings
+        .map((h) => h.checkboxes)
+        .map((c) => c)
+        .flat()
+        .filter((checkbox) => checkbox !== undefined);
+
     onMount(() => {
         // set the first heading as active on initial load
         if (!$currentHeading || !headings.find((h) => h.slug === $currentHeading)) {
@@ -46,30 +52,25 @@
                 active.scrollIntoView({ block: 'nearest' });
             }
         });
-    });
-
-    checkboxes.subscribe((checkboxes) => {
-        checkboxes.forEach((checkbox) => {
-            headings.forEach((heading) => {
-                if (heading.checkboxes) {
-                    heading.checkboxes.forEach((hCheckbox) => {
-                        if (hCheckbox.id === checkbox.id) {
-                            hCheckbox.checked = checkbox.checked;
-                        }
-                    });
-                }
+        if (hCheckboxes) {
+            checkboxes.subscribe((checks) => {
+                hCheckboxes.forEach((hCheckbox) => {
+                    hCheckbox.checked = checks.find((check) => check.id === hCheckbox.id)?.checked || false;
+                });
+                hCheckboxes = hCheckboxes; // trigger reactivity
             });
-        });
+        }
     });
 
     const uncheckAll = () => {
         headings.forEach((heading) => {
-            if (heading.checkboxes) {
-                heading.checkboxes.forEach((checkbox) => {
+            if (hCheckboxes) {
+                hCheckboxes.forEach((checkbox) => {
                     const checkboxElement = document.getElementById(checkbox.id);
                     checkboxElement.checked = false;
                     checkboxes.set([]);
                 });
+                hCheckboxes = hCheckboxes; // trigger reactivity
             }
         });
     };
@@ -81,7 +82,6 @@
         {#if showToc}
             <strong class="h6 my-2 text-body">On this page</strong>
         {/if}
-        <!-- <hr class="my-1" /> -->
         <nav id="TableOfContents" class="d-none d-md-flex flex-column">
             {#if showToc}
                 <ul class="mb-0 mt-1">
@@ -96,10 +96,15 @@
                                     <i class={heading.fa_icon + ' fa-fw '} aria-hidden="true" />
                                 {/if}
                                 {@html heading.text}
-                                {#if heading.checkboxes}
+                                {#if hCheckboxes.length > 0}
                                     <ProgressIndicator
-                                        progress={(heading.checkboxes.filter((check) => check.checked).length /
-                                            heading.checkboxes.length) *
+                                        progress={(hCheckboxes.filter(
+                                            (check) =>
+                                                check?.id.startsWith('checkbox-' + heading.slug) && check?.checked,
+                                        ).length /
+                                            hCheckboxes.filter((check) =>
+                                                check?.id.startsWith('checkbox-' + heading.slug),
+                                            ).length) *
                                             100}
                                     />
                                 {/if}
@@ -107,6 +112,13 @@
                         </li>
                     {/each}
                 </ul>
+
+                {#if hCheckboxes.length > 0}
+                    <button class="btn btn-sm btn-outline-secondary mt-2" on:click={uncheckAll} on:keydown={uncheckAll}>
+                        Uncheck all
+                    </button>
+                {/if}
+
                 <div class="">
                     <a
                         href="#/"
@@ -116,11 +128,6 @@
                         <i class="fa-solid fa-arrow-up-to-line" aria-hidden="true" /> Back to top
                     </a>
                 </div>
-            {/if}
-            {#if headings.some((h) => h.checkboxes)}
-                <button class="btn btn-sm btn-outline-secondary" on:click={uncheckAll} on:keydown={uncheckAll}>
-                    Uncheck all
-                </button>
             {/if}
             <slot />
         </nav>

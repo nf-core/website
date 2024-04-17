@@ -94,17 +94,6 @@
                 });
             }
         });
-        const uncheckAll = () => {
-            headings.forEach((heading) => {
-                if (heading.checkboxes) {
-                    heading.checkboxes.forEach((checkbox) => {
-                        const checkboxElement = document.getElementById(checkbox.id);
-                        checkboxElement.checked = false;
-                    });
-                }
-            });
-        };
-
         // Add "Copy code" button in code blocks
         const copyButtonLabel = "<i class='fa-regular fa-clipboard'></i>";
         const copiedButtonLabel = `<span class='font-sans-serif'>Copied </span><i class='fa-regular fa-clipboard-check'></i>`;
