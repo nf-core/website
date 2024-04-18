@@ -1,7 +1,7 @@
 import admonitionsPlugin from './bin/remark-admonitions.js';
 import { mermaid } from './bin/remark-mermaid.ts';
 import { rehypeCheckboxParser } from './bin/rehype-checkbox-parser.ts';
-import { remarkHeadingNumbers } from './bin/remark-heading-numbers.ts';
+import { rehypeHeadingNumbers } from './bin/rehype-heading-numbers.ts';
 import pipelines_json from '/public/pipelines.json';
 import githubDarkDimmed from '/public/themes/github-dark-dimmed.json';
 import mdx from '@astrojs/mdx';
@@ -121,7 +121,6 @@ export default defineConfig({
             admonitionsPlugin,
             mermaid,
             remarkMath,
-            remarkHeadingNumbers,
             [
                 remarkDescription,
                 {
@@ -194,6 +193,7 @@ export default defineConfig({
                 },
             ],
             rehypeCheckboxParser,
+            rehypeHeadingNumbers,
             [
                 rehypePrettyCode,
                 {

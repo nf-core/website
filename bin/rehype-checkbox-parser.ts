@@ -1,5 +1,4 @@
 import { visit } from 'unist-util-visit';
-import type { Root } from 'mdast';
 import type { RehypePlugin } from '@astrojs/markdown-remark';
 
 export const rehypeCheckboxParser: RehypePlugin<[]> = () => (tree: any, file: any) => {
