@@ -24,7 +24,7 @@
                 {#each filteredGroups as group (group.id)}
                     <div class="g-col-12 g-col-lg-6 g-col-xl-6 g-col-xxl-4 g-col-xxxxl-2">
                         <ListingCard footer={true}>
-                            <a slot="card-header" href={'/special-interest-groups/' + group.slug} class="success"
+                            <a slot="card-header" href={'/special-interest-groupss/' + group.slug} class="success"
                                 >{group.data.groupName}</a
                             >
                             <p slot="card-body">{group.data.subtitle}</p>
