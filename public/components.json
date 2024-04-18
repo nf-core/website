@@ -4808,6 +4808,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -16104,6 +16108,78 @@
           "version": "1.1.6"
         }
       ]
+    },
+    {
+      "name": "bracken_build",
+      "path": "modules/nf-core/bracken/build/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "bracken_build",
+        "description": "Extends a Kraken2 database to be compatible with Bracken",
+        "keywords": [
+          "kraken2",
+          "bracken",
+          "database",
+          "build"
+        ],
+        "tools": [
+          {
+            "bracken": {
+              "description": "Bracken (Bayesian Reestimation of Abundance with KrakEN) is a highly accurate statistical method that computes the abundance of species in DNA sequences from a metagenomics sample.",
+              "homepage": "https://ccb.jhu.edu/software/bracken/",
+              "documentation": "https://ccb.jhu.edu/software/bracken/",
+              "tool_dev_url": "https://github.com/jenniferlu717/Bracken/",
+              "doi": "10.7717/peerj-cs.104 ",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "kraken2db": {
+              "type": "directory",
+              "description": "A Kraken2 database directory",
+              "pattern": "*/"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "db": {
+              "type": "directory",
+              "description": "A Kraken2 database directory with required bracken files in side",
+              "pattern": "*/"
+            }
+          }
+        ],
+        "authors": [
+          "@jfy133"
+        ],
+        "maintainers": [
+          "@jfy133"
+        ]
+      }
     },
     {
       "name": "bracken_combinebrackenoutputs",
@@ -40299,6 +40375,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -41056,6 +41136,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -46087,6 +46171,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -61061,6 +61149,112 @@
         ],
         "maintainers": [
           "@nvnieuwk"
+        ]
+      }
+    },
+    {
+      "name": "humid",
+      "path": "modules/nf-core/humid/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "humid",
+        "description": "HUMID is a tool to quickly and easily remove duplicate reads from FastQ files, with or without UMIs.",
+        "keywords": [
+          "umi",
+          "fastq",
+          "deduplication",
+          "hamming-distance",
+          "clustering"
+        ],
+        "tools": [
+          {
+            "humid": {
+              "description": "HUMID -- High-performance UMI Deduplicator",
+              "homepage": "https://github.com/jfjlaros/HUMID",
+              "documentation": "https://humid.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/jfjlaros/HUMID",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "reads": {
+              "type": "file",
+              "description": "Fastq file(s) to deduplicate",
+              "pattern": "*.{fastq,fq,fastq.gz,fq.gz}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "umis": {
+              "type": "file",
+              "description": "Fastq file(s) containing UMIs",
+              "pattern": "*.{fastq,fq,fastq.gz,fq.gz}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "dedup": {
+              "type": "file",
+              "description": "Deduplicated Fastq file(s)",
+              "pattern": "*.{fastq,fq,fastq.gz,fq.gz}"
+            }
+          },
+          {
+            "annotated": {
+              "type": "file",
+              "description": "Annotated Fastq file(s)",
+              "pattern": "*.{fastq,fq,fastq.gz,fq.gz}"
+            }
+          },
+          {
+            "stats": {
+              "type": "directory",
+              "description": "Directory containg statistics file, use for multiqc.",
+              "pattern": "${prefix}/"
+            }
+          },
+          {
+            "log": {
+              "type": "file",
+              "description": "Log file of humid, containing progress and errors",
+              "pattern": "*.log"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@Joon-Klaps"
+        ],
+        "maintainers": [
+          "@Joon-Klaps"
         ]
       }
     },
