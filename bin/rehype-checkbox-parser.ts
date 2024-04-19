@@ -4,20 +4,42 @@ import type { RehypePlugin } from '@astrojs/markdown-remark';
 export const rehypeCheckboxParser: RehypePlugin<[]> = () => (tree: any, file: any) => {
     let id = 0;
     let lastVisitedHeading = null;
-    if (file.data.astro.frontmatter.type === 'checklist') {
+    if (file.data.astro.frontmatter.markdownPlugin?.includes('checklist')) {
         file.data.astro.frontmatter.checkboxes = [];
         visit(tree, (node: any) => {
             if (node.type === 'element' && node.tagName.startsWith('h')) {
                 lastVisitedHeading = node;
             }
-            if (node.type === 'element' && node.tagName === 'li') {
+            if (node.type === 'element' && node.tagName === 'li' && node.children[0].tagName === 'input') {
                 const uniqueId = `checkbox-${lastVisitedHeading?.properties.id}-${id++}`;
-                const oldChildren = node.children.filter((c) => c.tagName !== 'input');
-                // convert it to an bootstrap checkbox element with label, with a special handling for nested lists
+
+                node.children[0].properties.id = uniqueId;
+                node.children[0].properties.name = uniqueId;
+                node.children[0].properties.type = 'checkbox';
+                node.children[0].properties.class = 'form-check-input';
+                node.children[0].properties.disabled = false;
+
+                const oldChildren = node.children;
 
                 const ulIndex = node.children.findIndex((c) => c.tagName === 'ul');
-                if (ulIndex !== -1) {
-                    // wrap all children except the ul in a div
+
+                if (ulIndex === -1) {
+                    const div = {
+                        type: 'element',
+                        tagName: 'div',
+                        properties: { class: 'form-check' },
+                        children: [
+                            {
+                                type: 'element',
+                                tagName: 'label',
+                                properties: { class: 'form-check-label' },
+                                children: oldChildren,
+                            },
+                        ],
+                    };
+
+                    node.children = [div];
+                } else {
                     const ul = node.children[ulIndex];
                     const divChildren = oldChildren.slice(0, ulIndex);
                     const div = {
@@ -29,53 +51,13 @@ export const rehypeCheckboxParser: RehypePlugin<[]> = () => (tree: any, file: an
                                 type: 'element',
                                 tagName: 'label',
                                 properties: { class: 'form-check-label' },
-                                children: [
-                                    {
-                                        type: 'element',
-                                        tagName: 'input',
-                                        properties: {
-                                            type: 'checkbox',
-                                            class: 'form-check-input',
-                                            id: uniqueId,
-                                            name: uniqueId,
-                                        },
-                                    },
-                                ],
+                                children: divChildren,
                             },
-                            ...divChildren,
                         ],
                     };
                     node.children = [];
                     node.children.push(div);
                     node.children.push(ul);
-                } else {
-                    node.children = [
-                        {
-                            type: 'element',
-                            tagName: 'div',
-                            properties: { class: 'form-check' },
-                            children: [
-                                {
-                                    type: 'element',
-                                    tagName: 'label',
-                                    properties: { class: 'form-check-label' },
-                                    children: [
-                                        {
-                                            type: 'element',
-                                            tagName: 'input',
-                                            properties: {
-                                                type: 'checkbox',
-                                                class: 'form-check-input',
-                                                id: uniqueId,
-                                                name: uniqueId,
-                                            },
-                                        },
-                                        ...oldChildren,
-                                    ],
-                                },
-                            ],
-                        },
-                    ];
                 }
                 file.data.astro.frontmatter.checkboxes.push({
                     id: uniqueId,

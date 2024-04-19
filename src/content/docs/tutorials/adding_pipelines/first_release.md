@@ -3,6 +3,7 @@ title: First release
 subtitle: Follow this walkthrough to add a new pipeline to nf-core.
 weight: 40
 type: 'tutorial'
+markdownPlugin: 'checklist'
 ---
 
 # Making the first release
@@ -36,13 +37,13 @@ core team.
 
 What happens next depends on the state of your master branch:
 
-- If you have developed in such a way that your master branch is clean, .i.e. doesn't have
-  any commits since the initial one, the PR will represent all changes
-  associated with the proposed release, and the core team will use it for review and
-  feedback.
-- If your master branch already contains changes associated with the release, the core
-  team may merge your PR and create a pseudo-PR against the first commit in the
-  pipeline. This gives the PR review interface showing all code that you've written.
+- [ ] If you have developed in such a way that your master branch is clean, .i.e. doesn't have
+      any commits since the initial one, the PR will represent all changes
+      associated with the proposed release, and the core team will use it for review and
+      feedback.
+- [ ] If your master branch already contains changes associated with the release, the core
+      team may merge your PR and create a pseudo-PR against the first commit in the
+      pipeline. This gives the PR review interface showing all code that you've written.
 
 In either case we will go through everything and request changes that we think are
 necessary until you're good to go. Common things that are flagged at this point are:

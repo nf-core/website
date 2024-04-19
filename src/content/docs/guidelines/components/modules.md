@@ -46,9 +46,8 @@ All _non-mandatory_ command-line tool _non-file_ arguments MUST be provided as a
     }
   ```
 
-<details markdown="1">
-  <summary>Rationale</summary>
-  A disadvantage of passing arguments via ext.args is that it splits up how information is passed to a module, which can be difficult to understand where module inputs are defined.
+:::info{title="Rational" collapse}
+A disadvantage of passing arguments via ext.args is that it splits up how information is passed to a module, which can be difficult to understand where module inputs are defined.
 
 The justification behind using the `ext.args` is to provide more flexibility to users.
 As `ext.args` is derived from the configuration (e.g. `modules.config`), advanced users can overwrite the default `ext.args` and supply their own arguments to modify the behaviour of a module.
@@ -64,7 +63,7 @@ A closure is used to make Nextflow evaluate the code in the code in the string.
 ext.args = { "--id ${meta.id}" }
 ```
 
-  </details>
+:::
 
 ### Use of multi-command piping
 
@@ -123,9 +122,8 @@ Modules MUST NOT use 'custom' hardcoded `meta` fields.
 The only accepted 'standard' meta fields are `meta.id` or `meta.single_end`.
 Proposals for other 'standard' fields for other disciplines must be discussed with the maintainers team.
 
-<details markdown="1">
-  <summary>Rationale</summary>
-  Modules should be written to allow as much flexibility to pipeline developers as possible.
+:::info{title="Rational" collapse}
+Modules should be written to allow as much flexibility to pipeline developers as possible.
 
 Hardcoding `meta` fields in a module will reduce the freedom of developers to use their own names for metadata, which would make more sense in that particular context.
 
@@ -149,7 +147,7 @@ ext.args = { "--r ${meta.<pipeline_authors_choice_of_name>}" }
 my_command $args input.txt output.txt
 ```
 
-</details>
+:::
 
 ### Compression of input and output files
 
@@ -199,8 +197,7 @@ resulting in, for instance,
 
 All reported versions MUST be without a leading `v` or similar (i.e. must start with a numeric character), or for unversioned software, a Git SHA commit id (40 character hexadecimal string).
 
-<details class="mb-3">
-<summary>Tips for extracting the version string</summary>
+:::tip{title="Tips for extracting the version string" collapse}
 
 `sed{:bash}` is a powerful stream editor that can be used to manipulate the input text into the desired output.
 Start by piping the output of the version command to `sed{:bash}` and try to select the line with the version number:
@@ -218,7 +215,7 @@ tool --version | sed '1!d'
 - It is not necessary to use `echo`, `head`, `tail`, or `grep`.
 - Use `|| true` for tools that exit with a non-zero error code: `command --version || true{:bash}` or `command --version | sed ... || true{:bash}`.
 
-</details>
+:::
 
 We chose a [HEREDOC](https://tldp.org/LDP/abs/html/here-docs.html) over piping into the versions file line-by-line as we believe the latter makes it easy to accidentally overwrite the file.
 Moreover, the exit status of the sub-shells evaluated in within the HEREDOC is ignored, ensuring that a tool's version command does no erroneously terminate the module.
@@ -379,21 +376,18 @@ Input channel `val` declarations SHOULD be defined for all mandatory non-file in
 - These non-file inputs are typically booleans or strings, and must be documented as such in the corresponding entry in the `meta.yaml`.
 - Options, flags, parameters that are _not_ required by the tool to function should NOT be included - rather these can be passed via `ext.args`.
 
- <details markdown="1">
- <summary>Rationale</summary>
- It was decided by a [vote](https://nfcore.slack.com/archives/C043UU89KKQ/p1677581560661679) amongst interested parties within the 2023 Maintainers group on 2023-02-28 to allow non-file mandatory input channels.
+:::info{title="Rational" collapse}
+It was decided by a [vote](https://nfcore.slack.com/archives/C043UU89KKQ/p1677581560661679) amongst interested parties within the 2023 Maintainers group on 2023-02-28 to allow non-file mandatory input channels.
 
 The reasoning behind this was that it is important to have documented (using the existing display on the website) the bare minimum information required for a module to run.
 It also allows module code to consume parameter values without parsing them out of the `ext.args` string and reduces possible risks of entire breakage of modules with future [expected config changes](https://github.com/nextflow-io/nextflow/issues/2723) at a Nextflow level.
 
 Downsides to this approach are readability (now multiple places must be checked on how to modify a module execution - modules.conf `ext.args`, the module invocation in pipeline code etc.), and reduced user freedom.
 However it was felt that it was more important for stability in and 'installation' and 'execution' of modules was preferred (e.g. for tools that require position arguments etc.)
+:::
 
-</details>
-
-<details markdown="1">
-<summary>Inputs particular cases</summary>
- When one and only one of multiple argument are required:
+:::info{title="Inputs particular cases" collapse}
+When one and only one of multiple argument are required:
 
 - If they all are string argument : use 1 argument that will be equal to the string
 
@@ -404,7 +398,7 @@ However it was felt that it was more important for stability in and 'installatio
   e.g. Grouping output parameters of [glimpse2 concordance](https://nf-co.re/modules/glimpse2_concordance)
 
   `if (((file1 ? 1:0) + (val1 ? 1:0) + (val2 ? 1:0)) != 1) error "One and only one argument required"`
-  </details>
+  :::
 
 ### Output channel emissions
 
