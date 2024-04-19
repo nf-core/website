@@ -14,19 +14,6 @@ export const DisplayStyle = persistentAtom('DisplayStyle', 'grid', {
         return JSON.parse(value);
     },
 });
-export const SearchQuery = atom('');
-export const showHidden = atom(false);
-export const showHelp = atom(false);
-export const currentHeading = atom('');
-export const currentPage = atom(1);
-export const EventIsOngoing = persistentAtom('EventIsOngoing', false, {
-    encode(value) {
-        return JSON.stringify(value);
-    },
-    decode(value) {
-        return JSON.parse(value);
-    },
-});
 
 export const checkboxes = persistentAtom('checkboxes', [], {
     encode(value) {
@@ -36,3 +23,19 @@ export const checkboxes = persistentAtom('checkboxes', [], {
         return JSON.parse(value);
     },
 });
+export const currentHeading = atom('');
+export const currentPage = atom(1);
+export const CurrentTab = atom('');
+
+export const EventIsOngoing = persistentAtom('EventIsOngoing', false, {
+    encode(value) {
+        return JSON.stringify(value);
+    },
+    decode(value) {
+        return JSON.parse(value);
+    },
+});
+
+export const SearchQuery = atom('');
+export const showHidden = atom(false);
+export const showHelp = atom(false);
