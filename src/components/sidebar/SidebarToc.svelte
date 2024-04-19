@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { currentHeading, showHidden, checkboxes } from '@components/store';
+    import { currentHeading, showHidden, Checkboxes } from '@components/store';
     import { onMount } from 'svelte';
     import ProgressIndicator from '@components/sidebar/ProgressIndicator.svelte';
 
@@ -35,7 +35,18 @@
         .map((c) => c)
         .flat()
         .filter((checkbox) => checkbox !== undefined);
-
+    const uncheckAll = () => {
+        headings.forEach((heading) => {
+            if (hCheckboxes) {
+                hCheckboxes.forEach((checkbox) => {
+                    const checkboxElement = document.getElementById(checkbox.id);
+                    checkboxElement.checked = false;
+                    Checkboxes.set([]);
+                });
+                hCheckboxes = hCheckboxes; // trigger reactivity
+            }
+        });
+    };
     onMount(() => {
         // set the first heading as active on initial load
         if (!$currentHeading || !headings.find((h) => h.slug === $currentHeading)) {
@@ -53,7 +64,7 @@
             }
         });
         if (hCheckboxes) {
-            checkboxes.subscribe((checks) => {
+            Checkboxes.subscribe((checks) => {
                 hCheckboxes.forEach((hCheckbox) => {
                     hCheckbox.checked = checks.find((check) => check.id === hCheckbox.id)?.checked || false;
                 });
@@ -61,19 +72,6 @@
             });
         }
     });
-
-    const uncheckAll = () => {
-        headings.forEach((heading) => {
-            if (hCheckboxes) {
-                hCheckboxes.forEach((checkbox) => {
-                    const checkboxElement = document.getElementById(checkbox.id);
-                    checkboxElement.checked = false;
-                    checkboxes.set([]);
-                });
-                hCheckboxes = hCheckboxes; // trigger reactivity
-            }
-        });
-    };
 </script>
 
 <div class="nav flex-column sticky-top-under align-items-end pt-1">
@@ -91,22 +89,30 @@
                             class:active={heading.slug === activeHeading}
                             class:collapse={heading.hidden && !$showHidden}
                         >
-                            <a class="nav-link py-1 ps-3 text-body-secondary small" href={'#' + heading.slug}>
+                            <a
+                                class="nav-link py-1 ps-3 text-body-secondary small d-inline-flex align-items-center"
+                                href={'#' + heading.slug}
+                            >
                                 {#if heading.fa_icon}
                                     <i class={heading.fa_icon + ' fa-fw '} aria-hidden="true" />
                                 {/if}
                                 {@html heading.text}
-                                {#if hCheckboxes.length > 0}
-                                    <ProgressIndicator
-                                        progress={(hCheckboxes.filter(
-                                            (check) =>
-                                                check?.id.startsWith('checkbox-' + heading.slug) && check?.checked,
-                                        ).length /
-                                            hCheckboxes.filter((check) =>
-                                                check?.id.startsWith('checkbox-' + heading.slug),
-                                            ).length) *
-                                            100}
-                                    />
+                                {#if hCheckboxes.find((hc) => hc?.id.startsWith('checkbox-' + heading.slug))}
+                                    <span class="ms-2">
+                                        <ProgressIndicator
+                                            progress={(hCheckboxes.filter(
+                                                (check) =>
+                                                    check?.id.startsWith('checkbox-' + heading.slug) && check?.checked,
+                                            ).length /
+                                                hCheckboxes.filter((check) =>
+                                                    check?.id.startsWith('checkbox-' + heading.slug),
+                                                ).length) *
+                                                100}
+                                            size={25}
+                                            strokeWidth={7}
+                                            isCurrent={true}
+                                        />
+                                    </span>
                                 {/if}
                             </a>
                         </li>
