@@ -1,5 +1,5 @@
 ---
-title: Training material guide
+title: Guide to writing training material
 subtitle: A guide to writing instructions for training material.
 ---
 
