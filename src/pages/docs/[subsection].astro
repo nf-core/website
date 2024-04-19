@@ -6,7 +6,7 @@ import { createLinkOrGroup } from '@utils/functions';
 import type { SidebarEntry } from '@utils/types';
 
 export async function getStaticPaths() {
-    return ['tutorials', 'usage', 'contributing', 'checklists', 'guidelines'].map((subsection) => ({
+    return ['tutorials', 'usage', 'contributing', 'nf-core-tools', 'checklists', 'guidelines'].map((subsection) => ({
         params: {
             subsection: subsection,
         },
@@ -41,6 +41,14 @@ let sections: SidebarEntry[] = [
         entries: [],
         isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/contributing',
         collapsed: Astro.url.pathname === '/docs/contributing',
+    },
+    {
+        type: 'group',
+        label: 'nf-core/tools',
+        href: '/docs/nf-core-tools',
+        entries: [],
+        isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/nf-core-tools',
+        collapsed: Astro.url.pathname === '/docs/nf-core-tools',
     },
     {
         type: 'group',
