@@ -1,13 +1,14 @@
 <script lang="ts">
-    import { currentHeading, checkboxes } from '@components/store';
+    import { currentHeading, Checkboxes } from '@components/store';
     import * as icons from 'file-icons-js';
     import 'file-icons-js/css/style.css';
     import mermaid from 'mermaid';
     import { onMount } from 'svelte';
     import CopyButton from '@components/CopyButton.svelte';
 
-    export let headings: { text: string; slug: string; depth: number; fa_icon?: string }[] | undefined = [];
-    // find current heading in viewport with IntersectionObserver
+    export let headings:
+        | { text: string; slug: string; depth: number; fa_icon?: string; checkboxes?: [] }[]
+        | undefined = [];
     onMount(() => {
         async function renderDiagrams(graphs) {
             mermaid.initialize({
@@ -36,6 +37,7 @@
             });
         }
 
+        // find current heading in viewport with IntersectionObserver
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
@@ -55,7 +57,68 @@
             }
         });
 
-        headings.forEach((heading) => {
+        const handleCheckboxes = (checkbox) => {
+            // handle nested checkboxes under current checkbox
+            const childChecks = checkbox.closest('li')?.querySelectorAll('input[type="checkbox"]');
+            if (childChecks) {
+                childChecks.forEach((c) => {
+                    c.checked = checkbox.checked;
+                    updateHeadingsCheckbox(c);
+                });
+            }
+            // handle parent checkbox
+            const parentCheckbox = checkbox
+                .closest('ul')
+                ?.previousElementSibling?.querySelector('input[type="checkbox"]');
+            if (parentCheckbox) {
+                const siblingChecks = checkbox.closest('ul')?.querySelectorAll('input[type="checkbox"]');
+                if (siblingChecks && Array.from(siblingChecks).every((c) => c.checked)) {
+                    parentCheckbox.checked = true;
+                    updateHeadingsCheckbox(parentCheckbox);
+                } else {
+                    parentCheckbox.checked = false;
+                    updateHeadingsCheckbox(parentCheckbox);
+                }
+            }
+
+            // update checkboxes store
+            Checkboxes.set(
+                headings
+                    ?.map((h) => h.checkboxes)
+                    .map((c) => c)
+                    .flat()
+                    .filter((checkbox) => checkbox !== undefined),
+            );
+
+            markAllCheckboxes(checkbox);
+        };
+        const updateHeadingsCheckbox = (c) => {
+            const heading = headings?.find((h) => h.checkboxes?.find((ch) => ch.id === c.id));
+            if (heading) {
+                const checkbox = heading.checkboxes?.find((ch) => ch.id === c.id);
+                if (checkbox) {
+                    checkbox.checked = c.checked;
+                }
+            }
+        };
+
+        const markAllCheckboxes = (checkbox) => {
+            // add is-valid class to all checked checkboxes if their id starts with the same string (everything except the number at the end)
+            const headingID = checkbox.id.replace('checkbox-', '').replace(/-[0-9]$/g, '');
+            const currentHeading = headings?.find((h) => h.slug === headingID);
+            const allChecked = currentHeading?.checkboxes?.every((c) => c.checked);
+            if (allChecked) {
+                document.querySelectorAll(`input[id^="checkbox-${headingID}"]`).forEach((c) => {
+                    c.classList.add('is-valid');
+                });
+            } else {
+                document.querySelectorAll(`input[id^="checkbox-${headingID}"]`).forEach((c) => {
+                    c.classList.remove('is-valid');
+                });
+            }
+        };
+
+        headings?.forEach((heading) => {
             const element = document.querySelector('#' + heading.slug);
             if (element) {
                 observer.observe(element);
@@ -64,33 +127,17 @@
                 heading.checkboxes.forEach((checkbox) => {
                     const checkboxElement = document.getElementById(checkbox.id);
                     // check checkboxes based on checkboxes store
-                    checkboxElement.checked = $checkboxes.find((c) => c.id === checkbox.id)?.checked || false;
-
-                    checkboxElement.addEventListener('change', () => {
-                        checkboxes.set(
-                            $checkboxes.find((c) => c.id === checkbox.id)
-                                ? $checkboxes.filter((c) => c.id !== checkbox.id)
-                                : [...$checkboxes, { id: checkbox.id, checked: checkboxElement.checked }],
-                        );
-                        // if all checkboxes are checked in the ul, check the parent checkbox
-                        const parentCheckbox = checkboxElement
-                            .closest('ul')
-                            ?.previousElementSibling?.querySelector('input[type="checkbox"]') as HTMLInputElement;
-                        // get input type checkbox element in parentCheckbox
-
-                        if (parentCheckbox) {
-                            const childChecks = checkboxElement
-                                .closest('ul')
-                                .querySelectorAll('input[type="checkbox"]');
-                            if (childChecks && Array.from(childChecks).every((c) => c.checked)) {
-                                parentCheckbox.checked = true;
-                            } else {
-                                parentCheckbox.checked = false;
-                            }
-                            // trigger change event on parent checkbox
-                            parentCheckbox.dispatchEvent(new Event('change'));
-                        }
-                    });
+                    if (checkboxElement) {
+                        // set checkbox to checked if it is in the Checkboxes store
+                        checkboxElement.checked = $Checkboxes.find((c) => c.id === checkbox.id)?.checked || false;
+                        // set checkboxes in headings to the state in the Checkboxes store
+                        updateHeadingsCheckbox(checkboxElement);
+                        markAllCheckboxes(checkboxElement);
+                        // add event listener to update Checkboxes store when checkbox is checked
+                        checkboxElement.addEventListener('change', () => {
+                            handleCheckboxes(checkboxElement);
+                        });
+                    }
                 });
             }
         });

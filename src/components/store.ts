@@ -15,7 +15,7 @@ export const DisplayStyle = persistentAtom('DisplayStyle', 'grid', {
     },
 });
 
-export const checkboxes = persistentAtom('checkboxes', [], {
+export const Checkboxes = persistentAtom('Checkboxes', [], {
     encode(value) {
         return JSON.stringify(value);
     },

@@ -7,7 +7,7 @@ import type { CollectionEntry } from 'astro:content';
 import type { SidebarEntry } from '@utils/types';
 import { findCurrentGroup, createLinkOrGroup } from '@utils/functions';
 import { Icon } from 'astro-icon/components';
-import TutorialProgessIndicator from '@components/sidebar/TutorialProgessIndicator.svelte';
+import ProgressIndicator from '@components/sidebar/ProgressIndicator.svelte';
 
 export async function getStaticPaths() {
     const docs = await getCollection('docs');
@@ -44,7 +44,7 @@ const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[]) => {
 
         parts.forEach((part, i) => {
             part = part.replaceAll('_', ' ').replace(/(^)\S/g, (match) => match.toUpperCase());
-            const existingEntry = currentLevel.find((entry) => entry.label === part);
+            const existingEntry = currentLevel.find((entry) => entry?.label === part);
             if (parts[parts.length - 1].endsWith('bioconda')) {
                 debugger;
             }
@@ -126,7 +126,7 @@ if (currentGroup.length > 0) {
     if (currentGroupIndex === -1) {
         console.error('Could not find current page ' + Astro.url.pathname + ' in docs collection');
     }
-    if (currentElement && currentElement.type === 'group') {
+    if (currentElement && currentElement.type === 'group' && currentElement.entries.length > 1) {
         currentElement.entries[0].href?.endsWith(Astro.url.pathname)
             ? (next_page = {
                   title: currentElement.entries[1].label,
@@ -232,17 +232,18 @@ let extendedHeadings = headings.map((heading, i) => {
                         currentGroup.map((entry, i) => {
                             if (i === currentGroupIndex) {
                                 return (
-                                    <TutorialProgessIndicator
+                                    <ProgressIndicator
                                         label={i + 1}
                                         title={entry.label}
                                         progress={0}
                                         href={entry.href}
+                                        onScroll={true}
                                         client:idle
                                     />
                                 );
                             } else if (i < currentGroupIndex) {
                                 return (
-                                    <TutorialProgessIndicator
+                                    <ProgressIndicator
                                         label={i + 1}
                                         title={entry.label}
                                         progress={100}
@@ -251,7 +252,7 @@ let extendedHeadings = headings.map((heading, i) => {
                                 );
                             } else {
                                 return (
-                                    <TutorialProgessIndicator
+                                    <ProgressIndicator
                                         label={i + 1}
                                         title={entry.label}
                                         progress={0}
@@ -272,7 +273,7 @@ let extendedHeadings = headings.map((heading, i) => {
                 </span>
                 <div class="d-flex flex-column">
                     {currentElement?.entries.map((entry, i) => (
-                        <TutorialProgessIndicator label={i + 1} title={entry.label} progress={0} href={entry.href} />
+                        <ProgressIndicator label={i + 1} title={entry.label} progress={0} href={entry.href} />
                     ))}
                 </div>
             </div>

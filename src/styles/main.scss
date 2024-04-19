@@ -1386,7 +1386,7 @@ div.mermaid {
   [data-rehype-pretty-code-title][data-theme*=' '] {
     border: 1px solid $border-color-dark;
   }
-  img {
+  img:not([src$=".svg"]) {
     filter: brightness(0.8) contrast(1.2); // dim images a bit https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/
   }
 
