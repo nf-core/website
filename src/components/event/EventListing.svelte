@@ -76,14 +76,12 @@
         hackathon: 'primary',
         talk: 'info',
         training: 'warning',
-        discussion: 'secondary',
     };
     const event_type_icons = {
         bytesize: 'fa-solid fa-apple-core',
         hackathon: 'fa-solid fa-laptop-code',
         talk: 'fa-solid fa-presentation',
         training: 'fa-solid fa-chalkboard-teacher',
-        discussion: 'fa-solid 'fa-solid fa-comments',
     };
     const event_types = Object.keys(event_type_classes).map((type) => {
         return {
