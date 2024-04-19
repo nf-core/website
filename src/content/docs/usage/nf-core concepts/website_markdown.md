@@ -300,7 +300,7 @@ The lift $L$ is calculated as follows: $L = \frac{1}{2} \rho v^2 S C_L$.
 
 # Numbered headings
 
-If you want to get all headings numbered, based on their location and depth in the document, you can set `addNumbersToHeadings: true` in the frontmatter of the markdown file. This will add a number to each heading, e.g.:
+If you want to get all headings numbered, based on their location and depth in the document, you can set `markdownPlugin: addNumbersToHeadings` in the frontmatter of the markdown file. This will add a number to each heading, e.g.:
 
 ```md
 ---
@@ -323,19 +323,4 @@ gets rendered as:
 
 ## Checklist
 
-Checklists are used to provide a list of items that need to be checked off. By adding `type: checklist` to the frontmatter of a markdown file, all list items will be pre-pended with a checkbox. E.g.,:
-
-```md
----
-title: Important things to remember
-type: checklist
----
-
-- Towel
-- Don't Panic
-```
-
-gets rendered as:
-
-- [ ] Towel
-- [ ] Don't Panic
+Checklists are used to provide a list of items that need to be checked off. By adding `markdownPlugin: checklist` to the frontmatter of a markdown file, all check-list items will be converted to special elements, including synced state per session and a progress bar next to their heading in the left Sidebar.

@@ -7,7 +7,7 @@ export const rehypeHeadingNumbers: RehypePlugin<[]> = () => {
         let counters: number[] = [1];
         let minDepth = 1;
 
-        if (file.data.astro.frontmatter.addNumbersToHeadings) {
+        if (file.data.astro.frontmatter.markdownPlugin?.includes('addNumbersToHeadings')) {
             // set mindepth to lowest heading depth
             visit(tree, 'element', (node: Element) => {
                 if (

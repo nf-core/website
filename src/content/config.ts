@@ -79,8 +79,8 @@ const docs = defineCollection({
         subtitle: z.string().optional(),
         weight: z.number().optional(),
         parent: z.string().optional(),
-        type: z.enum(['tutorial', 'checklist']).optional(),
-        addNumbersToHeadings: z.boolean().optional(),
+        type: z.enum(['tutorial']).optional(),
+        markdownPlugin: z.enum(['checklist', 'addNumbersToHeadings']).optional(),
     }),
 });
 const about = defineCollection({
