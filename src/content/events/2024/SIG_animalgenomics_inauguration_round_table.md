@@ -1,7 +1,7 @@
 ---
 title: '#animal-genomics: Inaugural Meeting'
 subtitle: Round table
-type: talk
+type: discussion
 startDate: '2024-04-17'
 startTime: '16:40+02:00'
 endDate: '2024-04-17'
