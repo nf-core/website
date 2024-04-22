@@ -1,6 +1,7 @@
 ---
 title: Update a module
 subtitle: Update modules in a pipeline
+shortTitle: update
 weight: 40
 ---
 

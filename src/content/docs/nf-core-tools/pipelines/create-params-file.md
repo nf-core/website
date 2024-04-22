@@ -1,6 +1,7 @@
 ---
 title: Create a parameter file
 subtitle: Create a skeleton / template parameter file for a pipeline
+shortTitle: create-params-file
 weight: 30
 ---
 

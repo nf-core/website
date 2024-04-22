@@ -1,6 +1,7 @@
 ---
 title: Code editor plugins
 subtitle: Additions to your coding environment that can help your workflow.
+parentWeight: 60
 ---
 
 # VSCode

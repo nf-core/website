@@ -1,7 +1,8 @@
 ---
 title: Pipeline sync
-weight: 100
 subtitle: Sync a pipeline with the template
+shortTitle: sync
+weight: 100
 ---
 
 Over time, the main nf-core pipeline template is updated. To keep all nf-core pipelines up to date,

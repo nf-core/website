@@ -1,6 +1,7 @@
 ---
 title: 'nf-test: Example assertions'
 description: A guide to using nf-test assertions for testing nf-core pipelines.
+parentWeight: 20
 ---
 
 This document details various assertions used in nf-test for testing Nextflow pipelines. It serves as a guide for implementing effective testing strategies in pipeline development. For more information on nf-test, see the [nf-test documentation](https://code.askimed.com/nf-test/docs/getting-started/).

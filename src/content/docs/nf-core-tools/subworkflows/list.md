@@ -1,7 +1,9 @@
 ---
 title: List subworkflows
 subtitle: List subworkflows, locally installed and remove
+shortTitle: list
 weight: 10
+parentWeight: 30
 ---
 
 The `nf-core subworkflows list` command provides the subcommands `remote` and `local` for listing subworkflows installed in a remote repository and in the local pipeline respectively. Both subcommands allow to use a pattern for filtering the subworkflows by keywords eg: `nf-core subworkflows list <subworkflow_name> <keyword>`.

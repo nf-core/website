@@ -1,6 +1,7 @@
 ---
 title: Lint a module
 subtitle: Check a module against nf-core guidelines
+shortTitle: lint
 weight: 80
 ---
 

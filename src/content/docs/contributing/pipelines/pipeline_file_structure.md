@@ -1,6 +1,7 @@
 ---
 title: Pipeline file structure
 subtitle: Description of the elements of an nf-core template
+parentWeight: 10
 ---
 
 When you create a new pipeline from the nf-core template, you are presented with

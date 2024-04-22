@@ -1,7 +1,8 @@
 ---
 title: Pipeline schema
-weight: 80
 subtitle: Building Nextflow schema files using a GUI
+shortTitle: schema
+weight: 80
 ---
 
 nf-core pipelines have a `nextflow_schema.json` file in their root which describes the different parameters used by the workflow.

@@ -1,6 +1,7 @@
 ---
 title: Patch a module
 subtitle: Create a patch file for a module
+shortTitle: patch
 weight: 60
 ---
 

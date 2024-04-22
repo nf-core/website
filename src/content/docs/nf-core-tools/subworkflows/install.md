@@ -1,6 +1,7 @@
 ---
 title: Install a subworkflow
 subtitle: Install subworkflows in a pipeline
+shortTitle: install
 weight: 30
 ---
 

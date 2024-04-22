@@ -1,7 +1,7 @@
 ---
 title: Remote component repositories
 subtitle: Custom remote modules and subworkflows
-weight: 10
+weight: 50
 ---
 
 The `modules` and `subworkflows` command groups come with two flags for specifying a custom remote:

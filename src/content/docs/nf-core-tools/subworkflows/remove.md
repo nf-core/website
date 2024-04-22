@@ -1,6 +1,7 @@
 ---
 title: Remove a subworkflow
 subtitle: Remove a subworkflow from a pipeline
+shortTitle: remove
 weight: 50
 ---
 
