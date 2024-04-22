@@ -5,6 +5,7 @@
     import mermaid from 'mermaid';
     import { onMount } from 'svelte';
     import CopyButton from '@components/CopyButton.svelte';
+    import { Confetti } from 'svelte-confetti';
 
     export let headings:
         | { text: string; slug: string; depth: number; fa_icon?: string; checkboxes?: [] }[]
@@ -89,8 +90,6 @@
                     .flat()
                     .filter((checkbox) => checkbox !== undefined),
             );
-
-            markAllCheckboxes(checkbox);
         };
         const updateHeadingsCheckbox = (c) => {
             const heading = headings?.find((h) => h.checkboxes?.find((ch) => ch.id === c.id));
@@ -104,7 +103,7 @@
 
         const markAllCheckboxes = (checkbox) => {
             // add is-valid class to all checked checkboxes if their id starts with the same string (everything except the number at the end)
-            const headingID = checkbox.id.replace('checkbox-', '').replace(/-[0-9]$/g, '');
+            const headingID = checkbox.id.replace('checkbox-', '').replace(/-[0-9]+$/g, '');
             const currentHeading = headings?.find((h) => h.slug === headingID);
             const allChecked = currentHeading?.checkboxes?.every((c) => c.checked);
             if (allChecked) {
@@ -117,6 +116,20 @@
                 });
             }
         };
+        if (headings?.some((h) => h.checkboxes)) {
+            // add Confetti component to last unchecked checkbox
+            const addConfetti = (checkbox) => {
+                const confetti = new Confetti({ target: checkbox.parentElement, props: { rounded: true } });
+            };
+
+            // add event listener to add Confetti component to last unchecked checkbox
+            document.addEventListener('change', (e) => {
+                const checkbox = e.target as HTMLInputElement;
+                if (checkbox.type === 'checkbox' && headings?.every((h) => h.checkboxes?.every((c) => c.checked))) {
+                    addConfetti(checkbox);
+                }
+            });
+        }
 
         headings?.forEach((heading) => {
             const element = document.querySelector('#' + heading.slug);
@@ -132,13 +145,15 @@
                         checkboxElement.checked = $Checkboxes.find((c) => c.id === checkbox.id)?.checked || false;
                         // set checkboxes in headings to the state in the Checkboxes store
                         updateHeadingsCheckbox(checkboxElement);
-                        markAllCheckboxes(checkboxElement);
                         // add event listener to update Checkboxes store when checkbox is checked
                         checkboxElement.addEventListener('change', () => {
                             handleCheckboxes(checkboxElement);
+                            markAllCheckboxes(checkbox);
                         });
                     }
                 });
+
+                markAllCheckboxes(document.getElementById(heading.checkboxes[0].id));
             }
         });
         // Add "Copy code" button in code blocks

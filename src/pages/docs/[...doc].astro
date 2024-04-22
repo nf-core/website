@@ -171,7 +171,7 @@ const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, '').split('/');
 // check if markdown file starts with a heading (markdown or html)
 const firstHeading = Astro.props.doc.body.trim().match(/^(#|<h1)/);
 
-let extendedHeadings = headings.map((heading, i) => {
+let extendedHeadings = headings.map((heading) => {
     heading.checkboxes = remarkPluginFrontmatter.checkboxes
         ?.filter((checkbox) => checkbox.headingId.startsWith(heading.slug))
         .map((checkbox) => ({ id: checkbox.id, checked: checkbox.checked }));

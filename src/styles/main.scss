@@ -1370,6 +1370,12 @@ div.mermaid {
       display: block;
     }
   }
+
+  .form-check-input.is-valid:checked {
+    background-color: $success;
+    border-color: shade-color($nf-core-color-dark, 25%);
+  }
+
   figure[data-rehype-pretty-code-figure] {
     code[data-theme*=' '],
     code[data-theme*=' '] span {
