@@ -6,15 +6,14 @@ startDate: '2024-04-17'
 startTime: '16:00+02:00'
 endDate: '2024-04-17'
 endTime: '17:20+02:00'
-youtube_embed: 
+youtube_embed:
   - https://youtu.be/quDPq1eNuDw
   - https://youtu.be/mOKVUDxj8F8
 locations:
   - name: Online
-    links: 
+    links:
       - https://youtu.be/quDPq1eNuDw
       - https://youtu.be/mOKVUDxj8F8
-
 ---
 
 Inaugural talk of the nf-core Animal Genomics special interest group. Christa Kühn, president of the Friedrich Loeffler Institute, BovReg project coordinator, and former coordinator of EuroFAANG RI discusses the future of animal genomics and what are the bioinformatics challenges to face for the analysis of data in this field.
