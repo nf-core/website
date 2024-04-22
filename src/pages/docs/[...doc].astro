@@ -56,7 +56,7 @@ const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[]) => {
                     if (/index\.(md|mdx)$/.test(doc.id) && i === parts.length - 1) {
                         existingEntry.href = '/docs/' + doc.slug;
                         existingEntry.isCurrent = Astro.url.pathname === '/docs/' + doc.slug;
-                        existingEntry.collapsed = Astro.url.pathname === '/docs/' + doc.slug;
+                        existingEntry.collapsed = Astro.url.pathname !== '/docs/' + doc.slug;
                     }
                     currentLevel = existingEntry.entries;
                 } else {
@@ -67,7 +67,7 @@ const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[]) => {
                     if (/index\.(md|mdx)$/.test(doc.id) && i === parts.length - 1) {
                         existingEntry.href = '/docs/' + doc.slug;
                         existingEntry.isCurrent = Astro.url.pathname === '/docs/' + doc.slug;
-                        existingEntry.collapsed = Astro.url.pathname === '/docs/' + doc.slug;
+                        existingEntry.collapsed = Astro.url.pathname !== '/docs/' + doc.slug;
                     }
                     currentLevel = existingEntry.entries;
                 }
