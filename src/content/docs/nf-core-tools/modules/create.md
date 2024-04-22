@@ -1,6 +1,7 @@
 ---
 title: Create a module
 subtitle: Create a new module
+shortTitle: create
 weight: 70
 ---
 

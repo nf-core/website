@@ -1,6 +1,7 @@
 ---
 title: Launch a pipeline
 subtitle: Launch any Nextflow pipeline via TUI or GUI
+shortTitle: launch
 weight: 20
 ---
 

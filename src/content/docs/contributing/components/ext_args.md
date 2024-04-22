@@ -1,6 +1,8 @@
 ---
 title: ext properties/keys
 description: Learn about the ext properties or keys in nf-core components
+shortTitle: <code>ext.args</code>
+parentWeight: 30
 ---
 
 Ext properties or keys are special process directives (See: [ext directive](https://www.nextflow.io/docs/latest/process.html#ext) ) that insert strings into the module scripts. For example, an nf-core module uses the string assigned to `ext.args` ( or `ext.args2`, `ext.args3`, ... ) to insert tool specific options in a module script:

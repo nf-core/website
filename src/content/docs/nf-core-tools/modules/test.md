@@ -1,6 +1,7 @@
 ---
 title: Test a module
 subtitle: Create a test for a module
+shortTitle: test
 weight: 90
 ---
 

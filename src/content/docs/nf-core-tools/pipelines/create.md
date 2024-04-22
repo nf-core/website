@@ -1,6 +1,7 @@
 ---
 title: Creating a new pipeline
 subtitle: Scaffolding a new pipeline using the nf-core template
+shortTitle: create
 weight: 60
 ---
 

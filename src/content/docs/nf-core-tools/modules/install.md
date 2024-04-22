@@ -1,6 +1,7 @@
 ---
 title: Install a module
 subtitle: Install modules in a pipeline
+shortTitle: install
 weight: 30
 ---
 

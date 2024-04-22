@@ -1,6 +1,7 @@
 ---
 title: Lint a subworkflow
 subtitle: Check a subworkflow against nf-core guidelines
+shortTitle: lint
 weight: 70
 ---
 

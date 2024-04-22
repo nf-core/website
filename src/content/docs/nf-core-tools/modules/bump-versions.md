@@ -1,6 +1,7 @@
 ---
 title: Test a module
 subtitle: Bump bioconda and container versions of modules
+shortTitle: bump-versions
 weight: 100
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: Remove a module
 subtitle: Remove modules from a pipeline
+shortTitle: remove
 weight: 50
 ---
 

@@ -2,8 +2,8 @@
 import PageLayout from '@layouts/PageLayout.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { Icon } from 'astro-icon/components';
-import { createLinkOrGroup } from '@utils/functions';
 import type { SidebarEntry } from '@utils/types';
+import { sanitizeNfCoreLabels, addEntriesToSection } from '@utils/functions';
 
 export async function getStaticPaths() {
     return ['tutorials', 'usage', 'contributing', 'nf-core-tools', 'checklists', 'guidelines'].map((subsection) => ({
@@ -96,37 +96,7 @@ let subsectionDocs: CollectionEntry<'docs'>[] = docs.filter((doc) => doc.slug.st
 const subsections = sections.find((section) => section.href?.startsWith('/docs/' + subsection));
 
 subsectionDocs.sort(sortDocs);
-const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[]) => {
-    const docSlugs = docs.map((doc) => doc.slug);
-    docSlugs.forEach((slug) => {
-        const parts = slug.split('/');
-        let currentLevel = sections;
-
-        parts.forEach((part, i) => {
-            part = part.replaceAll('_', ' ').replace(/(^)\S/g, (match) => match.toUpperCase());
-            const existingEntry = currentLevel.find((entry) => entry.label === part);
-
-            if (existingEntry && existingEntry.type === 'group') {
-                currentLevel = existingEntry.entries;
-            } else {
-                const newEntry = createLinkOrGroup(
-                    part,
-                    '/docs/' + slug,
-                    i === parts.length - 1,
-                    Astro.url.pathname,
-                    docs.find((doc) => doc.slug === slug)?.data.weight,
-                );
-                currentLevel.push(newEntry);
-
-                if (newEntry.type === 'group' && newEntry.entries) {
-                    currentLevel = newEntry.entries;
-                }
-            }
-        });
-    });
-};
-
-addEntriesToSection(sections, subsectionDocs);
+addEntriesToSection(sections, subsectionDocs, Astro.url.pathname);
 // sort all entries by weight if available recursively
 const sortEntries = (entries: SidebarEntry[]) => {
     entries.sort((a, b) => {
@@ -134,20 +104,14 @@ const sortEntries = (entries: SidebarEntry[]) => {
             return -1;
         } else if (!a.weight && b.weight) {
             return 1;
-        } else if (a.weight && b.weight) {
+        } else if (a.weight && b.weight && a.weight !== b.weight) {
             if (a.weight < b.weight) {
                 return -1;
             } else if (a.weight > b.weight) {
                 return 1;
             }
         } else {
-            if (a.label < b.label) {
-                return -1;
-            } else if (a.label > b.label) {
-                return 1;
-            } else {
-                return 0;
-            }
+            return a.label.localeCompare(b.label);
         }
     });
     entries.forEach((entry) => {
@@ -156,6 +120,7 @@ const sortEntries = (entries: SidebarEntry[]) => {
         }
     });
 };
+console.log(subsections);
 
 sections.forEach((section) => {
     if (section.type === 'group') {
@@ -204,7 +169,7 @@ const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, '').split('/');
                                     <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3 card">
                                         <span class="card-header">
                                             <a href={'/docs/' + section.href + '/'} class="text-decoration-none">
-                                                {section.label}
+                                                {sanitizeNfCoreLabels(section.label)}
                                             </a>
                                             <button class="btn p-0">
                                                 <i class="fa-solid fa-chevron-down" />
@@ -214,7 +179,7 @@ const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, '').split('/');
                                             {section.entries?.map((entry) => {
                                                 return (
                                                     <li>
-                                                        <a href={'/docs/' + entry.href + '/'}>{entry.label}</a>
+                                                        <a href={'/docs/' + entry.href + '/'} set:html={entry.label} />
                                                     </li>
                                                 );
                                             })}

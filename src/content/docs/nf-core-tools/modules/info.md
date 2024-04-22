@@ -1,6 +1,7 @@
 ---
 title: Module info
 subtitle: Show information about a module
+shortTitle: info
 weight: 20
 ---
 

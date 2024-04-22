@@ -1,7 +1,8 @@
 ---
 title: API Reference
 subtitle: This is a placeholder
-weight: 10
+shortTitle: API Reference
+weight: 100
 ---
 
 empty placeholder

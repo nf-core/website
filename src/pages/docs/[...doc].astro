@@ -3,9 +3,8 @@ import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
 import FooterPrevNext from '@components/footer/FooterPrevNext.astro';
 import SubFooter from '@components/footer/SubFooter.astro';
 import { getCollection } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
 import type { SidebarEntry } from '@utils/types';
-import { findCurrentGroup, createLinkOrGroup } from '@utils/functions';
+import { findCurrentGroup, addEntriesToSection } from '@utils/functions';
 import { Icon } from 'astro-icon/components';
 import ProgressIndicator from '@components/sidebar/ProgressIndicator.svelte';
 
@@ -37,58 +36,7 @@ let sections: SidebarEntry[] = [
     { type: 'group', label: 'Guidelines', href: '/docs/guidelines', entries: [], collapsed: true },
 ];
 
-const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[]) => {
-    docs.sort((a, b) => a.slug.localeCompare(b.slug));
-
-    docs.forEach((doc) => {
-        const parts = doc.slug.split('/');
-        let currentLevel = sections;
-
-        parts.forEach((part, i) => {
-            part = part.replaceAll('_', ' ').replace(/(^)\S/g, (match) => match.toUpperCase());
-            const existingEntry = currentLevel.find((entry) => entry?.label === part);
-            if (parts[parts.length - 1].endsWith('bioconda')) {
-                debugger;
-            }
-            if (existingEntry) {
-                if (existingEntry.type === 'group') {
-                    // workaround for index files in nested events, where another element could already have created the group
-                    if (/index\.(md|mdx)$/.test(doc.id) && i === parts.length - 1) {
-                        existingEntry.href = '/docs/' + doc.slug;
-                        existingEntry.isCurrent = Astro.url.pathname === '/docs/' + doc.slug;
-                        existingEntry.collapsed = Astro.url.pathname !== '/docs/' + doc.slug;
-                    }
-                    currentLevel = existingEntry.entries;
-                } else {
-                    existingEntry.type = 'group';
-                    existingEntry.collapsed = true;
-                    existingEntry.entries = [];
-
-                    if (/index\.(md|mdx)$/.test(doc.id) && i === parts.length - 1) {
-                        existingEntry.href = '/docs/' + doc.slug;
-                        existingEntry.isCurrent = Astro.url.pathname === '/docs/' + doc.slug;
-                        existingEntry.collapsed = Astro.url.pathname !== '/docs/' + doc.slug;
-                    }
-                    currentLevel = existingEntry.entries;
-                }
-            } else {
-                const newEntry = createLinkOrGroup(
-                    part,
-                    '/docs/' + doc.slug,
-                    i === parts.length - 1,
-                    Astro.url.pathname,
-                    doc.data.weight,
-                );
-                currentLevel.push(newEntry);
-
-                if (newEntry.type === 'group' && newEntry.entries) {
-                    currentLevel = newEntry.entries;
-                }
-            }
-        });
-    });
-};
-addEntriesToSection(sections, docs);
+addEntriesToSection(sections, docs, Astro.url.pathname);
 // sort all entries by weight if available recursively
 const sortEntries = (entries: SidebarEntry[]) => {
     entries.sort((a, b) => {

@@ -77,8 +77,10 @@ const docs = defineCollection({
     schema: z.object({
         title: z.string(),
         subtitle: z.string().optional(),
+        shortTitle: z.string().optional(),
         weight: z.number().optional(),
         parent: z.string().optional(),
+        parentWeight: z.number().optional(),
         type: z.enum(['tutorial']).optional(),
         markdownPlugin: z.enum(['checklist', 'addNumbersToHeadings']).optional(),
     }),

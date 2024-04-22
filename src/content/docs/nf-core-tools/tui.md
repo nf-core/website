@@ -1,7 +1,8 @@
 ---
 title: Terminal user interface
 subtitle: Explore the nf-core command line graphically
-weight: 20
+shortTitle: TUI
+weight: 40
 ---
 
 - Tools CLI TUI
