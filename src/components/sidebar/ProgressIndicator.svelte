@@ -1,6 +1,8 @@
 <script lang="ts">
     import { onMount } from 'svelte';
 
+    import { Confetti } from 'svelte-confetti';
+
     export let progress: number = 0;
     export let label: string | number = '';
     export let size: number = 40;
@@ -9,6 +11,7 @@
     export let title: string = '';
     export let isCurrent: boolean = false;
     export let onScroll: boolean = false;
+    export let confetti: boolean = false;
 
     // Calculate the circumference of the circle
     const circumference = 2 * Math.PI * (size - strokeWidth);
@@ -27,52 +30,57 @@
 </script>
 
 <a class="text-decoration-none" {href} data-bs-title={`${progress}% of items are checked`} data-bs-toggle="tooltip">
-    <svg width={size} height={size} viewBox={`0 0 ${size * 2} ${size * 2}`}>
-        <!-- rotate the circle to start from the top -->
-        <g transform={`rotate(-90 ${size} ${size})`}>
-            <circle
-                cx={size}
-                cy={size}
-                r={size - strokeWidth}
-                fill="none"
-                stroke-width={strokeWidth}
-                stroke={isCurrent ? 'var(--bs-primary-border-subtle)' : 'var(--bs-secondary)'}
-            />
-            <circle
-                class="circle-progress"
-                data-progress={progress}
-                class:is-current={isCurrent}
-                data-size={size}
-                data-strokeWidth={strokeWidth}
-                cx={size}
-                cy={size}
-                r={size - strokeWidth}
-                fill="none"
-                stroke="var(--bs-primary)"
-                stroke-width={strokeWidth}
-                stroke-dasharray={circumference}
-                stroke-dashoffset={circumference - (circumference * progress) / 100}
-            />
-        </g>
-        <text
-            x="50%"
-            y="50%"
-            class:d-none={progress === 100}
-            dominant-baseline="central"
-            text-anchor="middle"
-            style="fill: var(--bs-body-color)">{label}</text
-        >
-        <text
-            x="50%"
-            y="50%"
-            class:d-block={progress === 100}
-            class:d-none={progress !== 100}
-            class="success"
-            dominant-baseline="central"
-            text-anchor="middle"
-            style="fill: var(--bs-success)">{label}</text
-        >
-    </svg>
+    <span>
+        {#if confetti && progress === 100}
+            <Confetti rounded={true} />
+        {/if}
+        <svg width={size} height={size} viewBox={`0 0 ${size * 2} ${size * 2}`}>
+            <!-- rotate the circle to start from the top -->
+            <g transform={`rotate(-90 ${size} ${size})`}>
+                <circle
+                    cx={size}
+                    cy={size}
+                    r={size - strokeWidth}
+                    fill="none"
+                    stroke-width={strokeWidth}
+                    stroke={isCurrent ? 'var(--bs-primary-border-subtle)' : 'var(--bs-secondary)'}
+                />
+                <circle
+                    class="circle-progress"
+                    data-progress={progress}
+                    class:is-current={isCurrent}
+                    data-size={size}
+                    data-strokeWidth={strokeWidth}
+                    cx={size}
+                    cy={size}
+                    r={size - strokeWidth}
+                    fill="none"
+                    stroke="var(--bs-primary)"
+                    stroke-width={strokeWidth}
+                    stroke-dasharray={circumference}
+                    stroke-dashoffset={circumference - (circumference * progress) / 100}
+                />
+            </g>
+            <text
+                x="50%"
+                y="50%"
+                class:d-none={progress === 100}
+                dominant-baseline="central"
+                text-anchor="middle"
+                style="fill: var(--bs-body-color)">{label}</text
+            >
+            <text
+                x="50%"
+                y="50%"
+                class:d-block={progress === 100}
+                class:d-none={progress !== 100}
+                class="success"
+                dominant-baseline="central"
+                text-anchor="middle"
+                style="fill: var(--bs-success)">{label}</text
+            >
+        </svg>
+    </span>
     {title}
 </a>
 

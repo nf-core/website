@@ -241,15 +241,7 @@ let extendedHeadings = headings.map((heading) => {
                                         href={entry.href}
                                         onScroll={true}
                                         client:idle
-                                    />
-                                );
-                            } else if (i < currentGroupIndex) {
-                                return (
-                                    <ProgressIndicator
-                                        label={i + 1}
-                                        title={entry.label}
-                                        progress={100}
-                                        href={entry.href}
+                                        confetti={i === currentGroup.length - 1}
                                     />
                                 );
                             } else {
@@ -257,7 +249,7 @@ let extendedHeadings = headings.map((heading) => {
                                     <ProgressIndicator
                                         label={i + 1}
                                         title={entry.label}
-                                        progress={0}
+                                        progress={i < currentGroupIndex ? 100 : 0}
                                         href={entry.href}
                                     />
                                 );
