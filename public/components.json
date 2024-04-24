@@ -4856,6 +4856,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -18028,7 +18032,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "3.3.0"
+          "version": "4.0"
         },
         {
           "name": "bamtofastq",
@@ -18866,7 +18870,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "3.3.0"
+          "version": "4.0"
         }
       ]
     },
@@ -19138,7 +19142,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "3.3.0"
+          "version": "4.0"
         }
       ]
     },
@@ -34843,7 +34847,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "3.3.0"
+          "version": "4.0"
         },
         {
           "name": "bacass",
@@ -34995,7 +34999,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "3.3.0"
+          "version": "4.0"
         },
         {
           "name": "ampliseq",
@@ -40493,6 +40497,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -41250,6 +41258,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -45978,6 +45990,10 @@
       },
       "pipelines": [
         {
+          "name": "oncoanalyser",
+          "version": "dev"
+        },
+        {
           "name": "rnadnavar",
           "version": "dev"
         },
@@ -46329,6 +46345,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -78595,7 +78615,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "3.3.0"
+          "version": "4.0"
         },
         {
           "name": "ampliseq",
@@ -96017,7 +96037,9 @@
               "documentation": "https://github.com/rwdavies/quilt",
               "tool_dev_url": "https://github.com/rwdavies/quilt",
               "doi": "10.1038/s41588-021-00877-0",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -96040,13 +96062,6 @@
               "type": "file",
               "description": "(Mandatory) BAM/CRAM index files",
               "pattern": "*.{bai}"
-            }
-          },
-          {
-            "bamlist": {
-              "type": "file",
-              "description": "(Mandatory) \"Path to file with bam file locations. File is one row per entry, path to bam files. Bam index files should exist in same directory as for each bam, suffixed either .bam.bai or .bai.",
-              "pattern": "*.{txt}"
             }
           },
           {
@@ -96163,9 +96178,15 @@
             }
           },
           {
-            "RData": {
+            "rdata": {
               "type": "directory",
               "description": "Optional directory path to prepared RData file with reference objects (useful with --save_prepared_reference=TRUE)."
+            }
+          },
+          {
+            "plots": {
+              "type": "directory",
+              "description": "Optional directory path to save plots."
             }
           }
         ],
@@ -102843,6 +102864,10 @@
         {
           "name": "nascent",
           "version": "2.2.0"
+        },
+        {
+          "name": "oncoanalyser",
+          "version": "dev"
         },
         {
           "name": "phageannotator",
@@ -136141,7 +136166,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "3.3.0"
+          "version": "4.0"
         },
         {
           "name": "ampliseq",
@@ -136314,7 +136339,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "3.3.0"
+          "version": "4.0"
         },
         {
           "name": "ampliseq",
@@ -136517,7 +136542,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "3.3.0"
+          "version": "4.0"
         },
         {
           "name": "ampliseq",
