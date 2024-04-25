@@ -100,7 +100,7 @@ highlightSections = highlightSections.flat();
                                     {i % 2 !== 0 && <div class="d-none d-md-block g-col-md-4" />}
                                     <div class="g-col-12 g-col-md-8 card position-relative">
                                         <div class="card-body">
-                                            <a href={section.href} class="h4 stretched-link">
+                                            <a href={section.href} class="h4 stretched-link text-decoration-none">
                                                 {section.metadata.data.title}
                                             </a>
                                             <div class="card-text">{section.metadata.data.subtitle}</div>
@@ -169,5 +169,8 @@ highlightSections = highlightSections.flat();
     }
     .card.position-relative:hover {
         border-color: var(--bs-secondary-color);
+        & a {
+            text-decoration: underline !important;
+        }
     }
 </style>

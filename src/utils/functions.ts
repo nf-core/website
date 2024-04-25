@@ -110,8 +110,9 @@ export const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[], u
 export const sanitizeNfCoreLabels = (label: string) =>
     (label.startsWith('Nf-') ? 'nf-' : '') +
     label
-        .replace('Nf-core-tools', 'nf-core/tools')
         .substring(label.startsWith('Nf-') ? 3 : 0)
+        .replace('Nf-core-tools', 'nf-core/tools')
+        .replaceAll('nf-core-tools', 'nf-core/tools')
         .split('-nf-')
-        .map((part) => part.replace(/-/g, ' '))
+        .map((part) => part.replaceAll(/-/g, ' '))
         .join(' nf-');
