@@ -1,0 +1,78 @@
+---
+title: 'nf-core/sarek paper'
+subtitle: 'Harder, Better, Faster, Stronger'
+pubDate: 2024-04-25T00:13:00+01:00
+
+headerImage: '/assets/images/blog/core_retreat_Feb_2024/group_pic4.jpg'
+headerImageAlt: 'Viking core team'
+
+authors:
+    - 'FriederikeHanssen'
+    - 'maxulysse'
+label:
+    - 'community'
+embedHeaderImage: false
+---
+
+import work_pic1 from '@assets/images/blog/core_retreat_Feb_2024/work_pic1.png';
+import sarek_subway from '@assets/images/blog/sarek/sarek_subway.png';
+import cram_meme from '@assets/images/blog/sarek/cram_meme.png';
+import cram_graph from '@assets/images/blog/sarek/storage_preprocessing_reduced_cumulative.png';
+import dataflow from '@assets/images/blog/sarek/paper_dataflow.png';
+import illumina from '@assets/images/blog/sarek/benchmarking_snvs_combination.png';
+import not_illumina from '@assets/images/blog/sarek/benchmarking_snvs_combination_nonillumina.png';
+
+import { Image } from 'astro:assets';
+
+We are extremely happy to see this [paper](https://academic.oup.com/nargab/article/6/2/lqae031/7658070) out describing the changes and
+updates to nf-core/sarek, the DNA variant calling pipeline, in the last several years.
+
+In 2020 we embarked on the journey of rewriting the whole pipeline in DSL2. One of the major motivations was to bring down
+cloud computing costs and generally reduce storage space and computational resources. Overall, we reduced computational
+costs on AWS (last summer, using spot instances) by 70% to about $20 from FASTQs to annotated VCFs using Strelka, Manta, and VEP.
+
+But first an overview - no nf-core pipeline without a metro map :
+
+<Image src={sarek_subway} alt="Metromap of nf-core/sarek" height="300" />
+
+We ditched BAM format where possible and switched to CRAM saving us 4x work storage space.
+
+<Image src={cram_meme} alt="Toy story meme" height="300" />
+<Image src={cram_graph} alt="Bar chart showing reduction in storage space usage" height="300" />
+
+The `s`plitFastq()` operator was replaced by a FastP process to split the Fastq
+files before alignment (default 12), and changed the default grouping of the intervals for BQSR to 21 reducing storage space another 4x
+
+<Image src={dataflow} alt="Toy story meme" height="300" />
+
+We  added new tools: BwaMem2 and DragMap for alignment, more variant callers (DeepVariant, HaplotypeCaller Joint Calling &
+Single Sample variant recalibration, CNVKit, Tiddit), and more annotation possibilities.
+
+Some tools were replaced: Trimming is now done with FastP, CRAM quality control with Mosdepth. For convenience we added more
+quality control options: When starting from variant-calling directly, all input files can now run through the alignment QC steps.
+
+We benchmarked the germline track with Illumina, MGI, and BGI GiaB samples and the somatic track with Seq2C samples.
+We recently joined the NCBench effort to continuously validate the pipeline on release.
+
+<Image src={illumina} alt="" height="300" /> # TODO maybe use just the bar chart There
+<Image src={not_illumina} alt="" height="300" />
+
+If you want to know more, here are some recent talks detailing the changes and development journey:
+
+<YouTube id="https://www.youtube.com/watch?v=pfxEJJs63y8" />
+<YouTube id="https://www.youtube.com/watch?v=ivHBfilnUIY" />
+
+
+This was a gigantic team effort with @lassefolkersen, @asp8200, @lescai, @SusiJo, @edmundmiller, [Matthias Seybold](), @WackerO,
+@nickhsmith, @ggabernet, [Sven Nahnsen]() and many many others from the nf-core community.
+
+Also shout out to all the amazing people starting sarek way back in 2016:
+Szilveszter Juhos, Malin Larsson, Pall I. Olason, Marcel Martin, Jesper Eisfeldt,
+Sebastian DiLorenzo, Johanna Sandgren, Teresita Díaz De Ståhl, @ewels,
+Valtteri Wirta, Monica Nistér, Max Käller, Björn Nystedt
+
+If you want to join us, visit: https://nf-co.re/join/ we’re on the #sarek channel on slack,
+and you’re welcome to join #sarek_dev if you really want to get involved.
+
+
+
