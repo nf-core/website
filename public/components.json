@@ -4868,6 +4868,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -12076,6 +12080,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "circrna",
+          "version": "dev"
+        },
         {
           "name": "readsimulator",
           "version": "1.0.0"
@@ -26132,6 +26140,10 @@
       },
       "pipelines": [
         {
+          "name": "circrna",
+          "version": "dev"
+        },
+        {
           "name": "multiplesequencealign",
           "version": "dev"
         },
@@ -27181,6 +27193,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "circrna",
+          "version": "dev"
+        },
         {
           "name": "riboseq",
           "version": "1.0.1"
@@ -40635,6 +40651,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -41392,6 +41412,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -46487,6 +46511,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -54916,6 +54944,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "circrna",
+          "version": "dev"
+        },
         {
           "name": "isoseq",
           "version": "1.1.5"
@@ -92508,6 +92540,111 @@
       }
     },
     {
+      "name": "popscle_freemuxlet",
+      "path": "modules/nf-core/popscle/freemuxlet/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "popscle_freemuxlet",
+        "description": "Software to deconvolute sample identity and identify multiplets when multiple samples are pooled by barcoded single cell sequencing and external genotyping data for each sample is not available.",
+        "keywords": [
+          "popscle",
+          "demultiplexing",
+          "genotype-based deconvoltion",
+          "single cell"
+        ],
+        "tools": [
+          {
+            "popscle": {
+              "description": "A suite of population scale analysis tools for single-cell genomics data including implementation of Demuxlet / Freemuxlet methods and auxilary tools",
+              "homepage": "https://github.com/statgen/popscle",
+              "documentation": "https://github.com/statgen/popscle",
+              "tool_dev_url": "https://github.com/statgen/popscle",
+              "doi": "10.1038/nbt.4042",
+              "licence": [
+                "Apache-2.0"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+            }
+          },
+          {
+            "plp": {
+              "type": "directory",
+              "description": "Directory contains pileup files (CEL,VAR and PLP) produced by popscle/dsc_pileup."
+            }
+          },
+          {
+            "n_sample": {
+              "type": "integer",
+              "description": "Number of samples multiplexed together."
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "result": {
+              "type": "file",
+              "description": "Output file contains the best guess of the sample identity, with detailed statistics to reach to the best guess.",
+              "pattern": "*.clust1.samples.gz"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "Output vcf file for each sample inferred and clustered from freemuxlet.",
+              "pattern": "*.clust1.vcf.gz"
+            }
+          },
+          {
+            "lmix": {
+              "type": "file",
+              "description": "Output file contains basic statistics for each barcode.",
+              "pattern": "*.lmix"
+            }
+          },
+          {
+            "singlet_result": {
+              "type": "file",
+              "description": "Optional output file contains the best sample identity assuming all droplets are singlets when writing auxiliary output files is turned on.",
+              "pattern": "*.clust0.samples.gz"
+            }
+          },
+          {
+            "singlet_vcf": {
+              "type": "file",
+              "description": "Optional output vcf file for each sample inferred and clustered from freemuxlet assuming all droplets are singlets when writing auxiliary output files is turned on.",
+              "pattern": "*.clust0.vcf.gz"
+            }
+          }
+        ],
+        "authors": [
+          "@wxicu"
+        ],
+        "maintainers": [
+          "@wxicu"
+        ]
+      }
+    },
+    {
       "name": "porechop_abi",
       "path": "modules/nf-core/porechop/abi/meta.yml",
       "type": "module",
@@ -96827,6 +96964,76 @@
         "maintainers": [
           "@avantonder",
           "@aunderwo"
+        ]
+      }
+    },
+    {
+      "name": "repeatmodeler_builddatabase",
+      "path": "modules/nf-core/repeatmodeler/builddatabase/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "repeatmodeler_builddatabase",
+        "description": "Create a database for RepeatModeler",
+        "keywords": [
+          "genomics",
+          "fasta",
+          "repeat"
+        ],
+        "tools": [
+          {
+            "repeatmodeler": {
+              "description": "RepeatModeler is a de-novo repeat family identification and modeling package.",
+              "homepage": "https://github.com/Dfam-consortium/RepeatModeler",
+              "documentation": "https://github.com/Dfam-consortium/RepeatModeler",
+              "tool_dev_url": "https://github.com/Dfam-consortium/RepeatModeler",
+              "licence": [
+                "Open Software License v2.1"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Fasta file",
+              "pattern": "*.{fasta,fsa,fa}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "db": {
+              "type": "file",
+              "description": "Database files for repeatmodeler",
+              "pattern": "`${prefix}.*`"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@GallVp"
+        ],
+        "maintainers": [
+          "@GallVp"
         ]
       }
     },
@@ -101223,6 +101430,10 @@
         {
           "name": "circdna",
           "version": "1.1.0"
+        },
+        {
+          "name": "circrna",
+          "version": "dev"
         },
         {
           "name": "createpanelrefs",
@@ -120507,6 +120718,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "circrna",
+          "version": "dev"
+        },
         {
           "name": "riboseq",
           "version": "1.0.1"
