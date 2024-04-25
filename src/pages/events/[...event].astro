@@ -21,19 +21,21 @@ const { event, events } = Astro.props;
 const title = event.data.title;
 const subtitle = event.data.subtitle;
 let frontmatter = event.data;
-if (typeof frontmatter.locationURL == 'string') {
-    frontmatter.locationURL = [frontmatter.locationURL];
-}
 const { headings, Content } = await event.render();
 
 const md_github_url = 'https://github.com/nf-core/website/blob/main/src/content/events/' + event.id;
 
-let video = event.data.locationURL;
+let video = event.data.youtubeEmbed;
+// convert video to array if it is string
 if (typeof video === 'string') {
     video = [video];
 }
-video = video?.filter((v) => v.includes('youtube.com') || v.includes('youtu.be'))[0];
-const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https://youtu.be/', '');
+const id = video?.map((v) =>
+    v
+        .replace('https://www.youtube.com/watch?v=', '')
+        .replace('https://youtu.be/', '')
+        .replace('https://www.youtube.com/embed/', ''),
+);
 
 events
     .map((event) => {
@@ -114,10 +116,11 @@ const sections = years.map((year) => {
     }
     <Content />
     {
-        id && (
-            <VideoTranscript id={id} client:idle>
-                <YouTube id={id} poster={`https://img.youtube.com/vi/${id}/hqdefault.jpg`} />
-            </VideoTranscript>
-        )
+        id &&
+            id.map((i) => (
+                <VideoTranscript id={i} client:idle>
+                    <YouTube id={i} poster={`https://img.youtube.com/vi/${i}/hqdefault.jpg`} />
+                </VideoTranscript>
+            ))
     }
 </MarkdownTocLayout>
