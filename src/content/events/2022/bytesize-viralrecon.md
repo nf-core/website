@@ -18,6 +18,7 @@ locations:
 This week, Sara Monzón ([@saramonzon](https://github.com/saramonzon)) will talk about the newest developments in the nf-core/viralrecon pipeline.
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::

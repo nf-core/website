@@ -18,6 +18,7 @@ locations:
 This week, Annick Renevey ([@rannick](https://github.com/rannick)) will introduce the nf-core/rnafusion pipeline!
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::

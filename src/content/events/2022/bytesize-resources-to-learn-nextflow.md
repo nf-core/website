@@ -17,6 +17,7 @@ locations:
 This week, Sateesh Peri ([@sateeshperi](https://github.com/sateeshperi)) will talk about recources that are available for newcomers to Nextflow - but even more experienced Nextflow users might learn something!
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::
