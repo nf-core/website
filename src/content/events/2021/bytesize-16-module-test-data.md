@@ -22,6 +22,7 @@ This will cover:
 - How to use existing and add new test data for nf-core/modules
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::

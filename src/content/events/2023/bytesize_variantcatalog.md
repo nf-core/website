@@ -19,6 +19,7 @@ This week, Solenne Correard ([@scorreard](https://github.com/scorreard)) is intr
 The variant catalogue pipeline is a Nextflow workflow designed to generate variant catalogues (also called variant libraries): a list of variants and their frequencies in a population, from whole genome sequences. More information on the pipeline can be found [on Github](https://github.com/wassermanlab/Variant_catalogue_pipeline) or in the [associated preprint](https://www.biorxiv.org/content/10.1101/2022.10.03.508010v2).
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::

@@ -17,6 +17,7 @@ locations:
 This week, Edmund Miller ([@edmundmiller](https://github.com/edmundmiller)) will talk about the newest developments in the nf-core/nascent pipeline.
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::

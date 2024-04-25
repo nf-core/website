@@ -21,6 +21,7 @@ This week, Lorena Pantano ([@lpantano](https://github.com/lpantano/)) will tell 
 nf-core/smrnaseq is a bioinformatics best-practice analysis pipeline used for small RNA sequencing data.
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::
