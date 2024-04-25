@@ -109,10 +109,34 @@ if (showRightSidebar) {
     <slot name="header-top" slot="header-top" />
     <div class="container-fluid main-content">
         <div class="row">
+            <div class:list={`col-12 col-xl-${mainContentWidth} order-2`}>
+                <div class="markdown-content ms-auto" transition:animate="fade">
+                    <MarkdownWrapper headings={headings} client:idle>
+                        <slot />
+                    </MarkdownWrapper>
+                </div>
+            </div>
+
+            {
+                showRightSidebar && (
+                    <div class={`col-12 col-xl-${rightSidebarWidth} sidebar-right toc order-3`}>
+                        <SidebarToc
+                            headings={headings}
+                            minNumHeadings={minNumHeadings}
+                            minHeadingDepth={minHeadingDepth}
+                            maxHeadingDepth={maxHeadingDepth}
+                            client:idle
+                        >
+                            <slot slot="right-sidebar-top" name="right-sidebar-top" />
+                            <slot name="right-sidebar-bottom" />
+                        </SidebarToc>
+                    </div>
+                )
+            }
             {
                 leftSidebar && (
                     <div
-                        class={`col-12 col-xl-${leftSidebarWidth} d-none d-xl-block sidebar-left pt-1 sticky-top-under`}
+                        class={`col-12 col-xl-${leftSidebarWidth} d-none d-xl-block sidebar-left pt-1 sticky-top-under order-1`}
                     >
                         <div class="">
                             {sidebarTitle && (
@@ -125,29 +149,6 @@ if (showRightSidebar) {
                             )}
                             <SidebarNav items={sections} accordion={true} />
                         </div>
-                    </div>
-                )
-            }
-            <div class:list={['col-12', 'col-xl-' + mainContentWidth]}>
-                <div class="markdown-content ms-auto" transition:animate="fade">
-                    <MarkdownWrapper headings={headings} client:idle>
-                        <slot />
-                    </MarkdownWrapper>
-                </div>
-            </div>
-            {
-                showRightSidebar && (
-                    <div class={`col-12 col-xl-${rightSidebarWidth} sidebar-right toc`}>
-                        <SidebarToc
-                            headings={headings}
-                            minNumHeadings={minNumHeadings}
-                            minHeadingDepth={minHeadingDepth}
-                            maxHeadingDepth={maxHeadingDepth}
-                            client:idle
-                        >
-                            <slot slot="right-sidebar-top" name="right-sidebar-top" />
-                            <slot name="right-sidebar-bottom" />
-                        </SidebarToc>
                     </div>
                 )
             }
