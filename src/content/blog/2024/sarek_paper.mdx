@@ -37,6 +37,8 @@ No nf-core pipeline without a metro map 🚇:
 
 <Image src={sarek_subway} alt="Metromap of nf-core/sarek" height="500" />
 
+# New tools
+
 We added new tools: BwaMem2 and DragMap for alignment, more variant callers (DeepVariant, GATK HaplotypeCaller Joint Calling &
 Single Sample variant recalibration, CNVKit, Tiddit), and more annotation possibilities.
 
@@ -45,20 +47,27 @@ quality control options: When starting from variant-calling directly, all input 
 
 [Thor throwing a cup and screaming 'Another'](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMDMycW55dDFmNHNzODllanVxbndzZzA4eHZlNmM1NWQ0anFhZnFkMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ziLadIVnOGCKk/giphy.gif)
 
-# Use CRAM files
+# Resource optimization
+
+## Use CRAM files
 
 We ditched BAM format where possible and switched to CRAM saving us 4x work storage space.
 
 <Image src={cram_meme} alt="Toy story meme" height="300" />
 <Image src={cram_graph} alt="Bar chart showing reduction in storage space usage" height="300" />
 
-# Split files (but not too much)
+## Split files (but not too much)
 
 The `splitFastq()` operator was replaced by a FastP process to split the Fastq files before
 alignment (default 12) plus replacing trimgalore! for read trimming.
 We also changed the default grouping of the intervals for BQSR to 21 (instead of 124) reducing storage space another 4x and speeding up processing.
 
     <Image src={dataflow} alt="Evaluation of FastP usage and different interval group sizes for BQSR" height="300" />
+
+# Cost savings
+
+Overall, we reduced computational costs on AWS (last summer, using spot instances)
+by 70% to about $20 from FASTQs to annotated VCFs using Strelka, Manta, and VEP.
 
 # Benchmarking: a.k.a is it any good?
 
@@ -67,11 +76,6 @@ We recently joined the NCBench effort to continuously validate the pipeline on r
 
 <Image src={illumina} alt="" height="300" />
 <Image src={not_illumina} alt="" height="300" />
-
-# Cost savings
-
-Overall, we reduced computational costs on AWS (last summer, using spot instances)
-by 70% to about $20 from FASTQs to annotated VCFs using Strelka, Manta, and VEP.
 
 # Team work makes dream work
 
