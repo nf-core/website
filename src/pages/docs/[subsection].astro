@@ -24,7 +24,7 @@ let sections: SidebarEntry[] = [
         href: '/docs/tutorials',
         entries: [],
         isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/tutorials',
-        collapsed: Astro.url.pathname !== '/docs/tutorials',
+        collapsed: Astro.url.pathname !== '/docs/tutorials/',
     },
     {
         type: 'group',
@@ -32,7 +32,7 @@ let sections: SidebarEntry[] = [
         href: '/docs/usage',
         entries: [],
         isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/usage',
-        collapsed: Astro.url.pathname !== '/docs/usage',
+        collapsed: Astro.url.pathname !== '/docs/usage/',
     },
     {
         type: 'group',
@@ -40,7 +40,7 @@ let sections: SidebarEntry[] = [
         href: '/docs/contributing',
         entries: [],
         isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/contributing',
-        collapsed: Astro.url.pathname !== '/docs/contributing',
+        collapsed: Astro.url.pathname !== '/docs/contributing/',
     },
     {
         type: 'group',
@@ -48,7 +48,7 @@ let sections: SidebarEntry[] = [
         href: '/docs/nf-core-tools',
         entries: [],
         isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/nf-core-tools',
-        collapsed: Astro.url.pathname !== '/docs/nf-core-tools',
+        collapsed: Astro.url.pathname !== '/docs/nf-core-tools/',
     },
     {
         type: 'group',
@@ -56,7 +56,7 @@ let sections: SidebarEntry[] = [
         href: '/docs/checklists',
         entries: [],
         isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/checklists',
-        collapsed: Astro.url.pathname !== '/docs/checklists',
+        collapsed: Astro.url.pathname !== '/docs/checklists/',
     },
     {
         type: 'group',
@@ -64,7 +64,7 @@ let sections: SidebarEntry[] = [
         href: '/docs/guidelines',
         entries: [],
         isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/guidelines',
-        collapsed: Astro.url.pathname !== '/docs/guidelines',
+        collapsed: Astro.url.pathname !== '/docs/guidelines/',
     },
 ];
 // sort docs first depth, then by weight, then by title
@@ -165,18 +165,29 @@ const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, '').split('/');
                         {
                             subsections &&
                                 subsections.entries.map((section) => (
-                                    <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3 card">
+                                    <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3 card position-relative">
                                         <span class="card-header">
-                                            <a href={'/docs/' + section.href + '/'} class="text-decoration-none">
-                                                {sanitizeNfCoreLabels(section.label)}
-                                            </a>
+                                            {section.href && (
+                                                <a
+                                                    href={section.href}
+                                                    class:list={[
+                                                        'text-decoration-none',
+                                                        { 'stretched-link': section.type === 'link' },
+                                                    ]}
+                                                >
+                                                    {sanitizeNfCoreLabels(section.label)}
+                                                </a>
+                                            )}
+                                            {!section.href && sanitizeNfCoreLabels(section.label)}
                                         </span>
                                         {section.type === 'link' && (
                                             <div class="card-body">
-                                                {
-                                                    docs.find((doc) => '/docs/' + doc.slug === section.href)?.data
-                                                        .subtitle
-                                                }
+                                                <p>
+                                                    {
+                                                        docs.find((doc) => '/docs/' + doc.slug === section.href)?.data
+                                                            .subtitle
+                                                    }
+                                                </p>
                                             </div>
                                         )}
 
@@ -184,7 +195,10 @@ const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, '').split('/');
                                             {section.entries?.map((entry) => {
                                                 return (
                                                     <li>
-                                                        <a href={'/docs/' + entry.href + '/'} set:html={entry.label} />
+                                                        <a
+                                                            href={entry.href}
+                                                            set:html={sanitizeNfCoreLabels(entry.label)}
+                                                        />
                                                     </li>
                                                 );
                                             })}

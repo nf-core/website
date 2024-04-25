@@ -11,9 +11,9 @@ let sections: SidebarEntry[] = [
     { type: 'group', label: 'Tutorials', href: '/docs/tutorials', entries: [], collapsed: false },
     { type: 'group', label: 'Usage', href: '/docs/usage', entries: [], collapsed: false },
     { type: 'group', label: 'Contributing', href: '/docs/contributing', entries: [], collapsed: false },
-    { type: 'group', label: 'Nf-core-tools', href: '/docs/nf-core-tools', entries: [], collapsed: false },
     { type: 'group', label: 'Checklists', href: '/docs/checklists', entries: [], collapsed: false },
     { type: 'group', label: 'Guidelines', href: '/docs/guidelines', entries: [], collapsed: false },
+    { type: 'group', label: 'nf-core/tools', href: '/docs/nf-core-tools', entries: [], collapsed: false },
 ];
 
 addEntriesToSection(sections, docs, Astro.url.pathname);
@@ -133,9 +133,16 @@ highlightSections = highlightSections.flat();
                                             } else {
                                                 return (
                                                     <li>
-                                                        <a href={entry.href} class="fw-semibold">
-                                                            {sanitizeNfCoreLabels(entry.label)}
-                                                        </a>
+                                                        {entry.href && (
+                                                            <a href={entry.href} class="fw-semibold">
+                                                                {sanitizeNfCoreLabels(entry.label)}
+                                                            </a>
+                                                        )}
+                                                        {!entry.href && (
+                                                            <span class="fw-semibold">
+                                                                {sanitizeNfCoreLabels(entry.label)}
+                                                            </span>
+                                                        )}
                                                         {entry.entries && (
                                                             <ul>
                                                                 {entry.entries.map((subentry) => (
