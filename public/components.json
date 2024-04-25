@@ -4860,6 +4860,14 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -18063,6 +18071,10 @@
           "version": "2.5.4"
         },
         {
+          "name": "magmap",
+          "version": "dev"
+        },
+        {
           "name": "metatdenovo",
           "version": "1.0.1"
         },
@@ -29641,6 +29653,120 @@
       }
     },
     {
+      "name": "demuxem",
+      "path": "modules/nf-core/demuxem/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "demuxem",
+        "description": "Demultiplexing cell nucleus hashing data, using the estimated antibody background probability.",
+        "keywords": [
+          "demultiplexing",
+          "hashing-based deconvoltion",
+          "single-cell"
+        ],
+        "tools": [
+          {
+            "demuxem": {
+              "description": "DemuxEM is the demultiplexing module of Pegasus, which works on cell-hashing and nucleus-hashing genomics data.",
+              "homepage": "https://demuxEM.readthedocs.io",
+              "documentation": "https://demuxEM.readthedocs.io",
+              "tool_dev_url": "https://github.com/lilab-bcb/pegasus/tree/master",
+              "doi": "10.1038/s41467-019-10756-2",
+              "licence": [
+                "BSD-3-clause"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "input_raw_gene_bc_matrices_h5": {
+              "type": "string",
+              "description": "Path to file containing input raw RNA expression matrix in 10x hdf5 format\npattern: \"*.{h5}\"\n"
+            }
+          },
+          {
+            "input_hto_csv_file": {
+              "type": "string",
+              "description": "Path to file containing input HTO (antibody tag) count matrix in CSV format.\n",
+              "pattern": "*.{csv}"
+            }
+          },
+          {
+            "output_name": {
+              "type": "string",
+              "description": "Output name. All outputs will use it as the prefix.\n"
+            }
+          },
+          {
+            "generate_gender_plot": {
+              "type": "string",
+              "description": "Generate violin plots using gender-specific genes (e.g. Xist). It is a comma-separated list of gene names.\n"
+            }
+          },
+          {
+            "genome": {
+              "type": "string",
+              "description": "Reference genome name. If not provided, the tools infers it from the expression matrix file\n"
+            }
+          },
+          {
+            "generate_diagnostic_plots": {
+              "type": "string",
+              "description": "Generate diagnostic plots, including the background/signal between HTO counts, estimated background probabilities, HTO distributions.\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+            }
+          },
+          {
+            "zarr": {
+              "type": "file",
+              "description": "RNA expression matrix with demultiplexed sample identities in Zarr format.\n",
+              "pattern": "*_demux.zarr.zip"
+            }
+          },
+          {
+            "out_zarr": {
+              "type": "file",
+              "description": "DemuxEM-calculated results in Zarr format, containing two datasets, one for HTO and one for RNA.\n",
+              "pattern": "*.out.demuxEM.zarr.zip"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@mari-ga",
+          "@maxozo",
+          "@wxicu",
+          "@Zethson"
+        ],
+        "maintainers": [
+          "@mari-ga",
+          "@maxozo",
+          "@wxicu",
+          "@Zethson"
+        ]
+      }
+    },
+    {
       "name": "deseq2_differential",
       "path": "modules/nf-core/deseq2/differential/meta.yml",
       "type": "module",
@@ -40501,6 +40627,14 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -41258,6 +41392,14 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -46345,6 +46487,14 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -53757,7 +53907,13 @@
         "maintainers": [
           "@louislenezet"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phaseimpute",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "glimpse2_ligate",
@@ -54765,6 +54921,76 @@
           "version": "1.1.5"
         }
       ]
+    },
+    {
+      "name": "gnu_split",
+      "path": "modules/nf-core/gnu/split/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gnu_split",
+        "description": "Split a file into consecutive or interleaved sections",
+        "keywords": [
+          "gnu",
+          "split",
+          "coreutils",
+          "generic"
+        ],
+        "tools": [
+          {
+            "gnu": {
+              "description": "The GNU Core Utilities are the basic file, shell and text manipulation utilities of the GNU operating system. These are the core utilities which are expected to exist on every operating system.",
+              "homepage": "https://www.gnu.org/software/coreutils/",
+              "documentation": "https://www.gnu.org/software/coreutils/manual/html_node/index.html",
+              "tool_dev_url": "https://git.savannah.gnu.org/cgit/coreutils.git",
+              "doi": "10.5281/zenodo.581670",
+              "licence": [
+                "GPL"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "input": {
+              "type": "file",
+              "description": "Text file, possibly gzip file"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "split": {
+              "type": "file",
+              "description": "Split files",
+              "pattern": "*split*"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "The split files"
+            }
+          }
+        ],
+        "authors": [
+          "@k1sauce"
+        ],
+        "maintainers": [
+          "@k1sauce"
+        ]
+      }
     },
     {
       "name": "goat_taxonsearch",
@@ -57442,6 +57668,10 @@
         },
         {
           "name": "phageannotator",
+          "version": "dev"
+        },
+        {
+          "name": "phaseimpute",
           "version": "dev"
         },
         {
@@ -72259,7 +72489,7 @@
       "type": "module",
       "meta": {
         "name": "mcquant",
-        "description": "write your description here",
+        "description": "Mcquant extracts single-cell data given a multi-channel image and a segmentation mask.",
         "keywords": [
           "quantification",
           "image_analysis",
@@ -72274,7 +72504,9 @@
               "documentation": "https://github.com/labsyspharm/quantification/blob/master/README.md",
               "tool_dev_url": "https://github.com/labsyspharm/quantification",
               "doi": "10.1038/s41592-021-01308-y",
-              "licence": ""
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
