@@ -17,6 +17,7 @@ locations:
 This week, Evan Floden ([@evanfloden](http://github.com/evanfloden/)) will provide some updates on Nextflow Tower (<https://tower.nf>), including the new Community Showcase with nf-core pipelines, a first look at the datasets feature, the upcoming CLI, and some automations for triggering the execution of pipelines.
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::

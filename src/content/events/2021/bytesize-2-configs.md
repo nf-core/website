@@ -28,6 +28,7 @@ The talk will be presented on Zoom and live-streamed on YouTube:
 - YouTube: <https://youtu.be/cXBYusdjrc0>
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 This text has been edited to make it more suitable for readers.
 :::
