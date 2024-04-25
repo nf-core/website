@@ -30,11 +30,13 @@ let video = event.data.youtubeEmbed;
 if (typeof video === 'string') {
     video = [video];
 }
-const id = video?.map((v) =>
-    v
-        .replace('https://www.youtube.com/watch?v=', '')
-        .replace('https://youtu.be/', '')
-        .replace('https://www.youtube.com/embed/', ''),
+const id = video?.map(
+    (v) =>
+        v
+            .replace('https://www.youtube.com/watch?v=', '')
+            .replace('https://youtu.be/', '')
+            .replace('https://www.youtube.com/embed/', '')
+            .split('&list')[0],
 );
 
 events
