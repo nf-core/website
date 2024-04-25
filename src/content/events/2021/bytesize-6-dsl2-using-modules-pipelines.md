@@ -144,6 +144,8 @@ From the sub-workflows, you can propagate them by these named emit versions.
 
 So for the `bwa_mem_version`, you can get the version from the module and access it again in your workflow script as `TEST_SUBWORKFLOW.out.bwa_mem_version`, and then run your local module in the workflow.
 
+</details>
+
 ### DSL2 - Adding modules to nf-core
 
 Kevin Menden ([@KevinMenden](http://github.com/KevinMenden/))
