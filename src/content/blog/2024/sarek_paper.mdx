@@ -23,6 +23,7 @@ import cram_graph from '@assets/images/blog/sarek/storage_preprocessing_reduced_
 import dataflow from '@assets/images/blog/sarek/paper_dataflow.png';
 import illumina from '@assets/images/blog/sarek/benchmarking_snvs_combination.png';
 import not_illumina from '@assets/images/blog/sarek/benchmarking_snps_combination_nonillumina.png';
+import contirbutors from '@assets/images/blog/sarek/contributors.png';
 
 import { Image } from 'astro:assets';
 
@@ -39,12 +40,11 @@ But first an overview - no nf-core pipeline without a metro map:
 
 We ditched BAM format where possible and switched to CRAM saving us 4x work storage space.
 
-<Image src={cram_meme} alt="Toy story meme" height="300" />
-<Image src={cram_graph} alt="Bar chart showing reduction in storage space usage" height="300" />
+    <Image src={cram_meme} alt="Toy story meme" height="300" /> <Image src={cram_graph} alt="Bar chart showing reduction in storage space usage" height="300" />
 
 The `splitFastq()` operator was replaced by a FastP process to split the Fastq files before alignment (default 12)plus replacing trimgalore! for read trimming, and changed the default grouping of the intervals for BQSR to 21 reducing storage space another 4x and speeding up processing
 
-<Image src={dataflow} alt="Evaluation of FastP usage and different interval group sizes for BQSR" height="300" />
+    <Image src={dataflow} alt="Evaluation of FastP usage and different interval group sizes for BQSR" height="300" />
 
 We added new tools: BwaMem2 and DragMap for alignment, more variant callers (DeepVariant, HaplotypeCaller Joint Calling &
 Single Sample variant recalibration, CNVKit, Tiddit), and more annotation possibilities.
@@ -61,11 +61,13 @@ We recently joined the NCBench effort to continuously validate the pipeline on r
 
 If you want to know more, here are some recent talks detailing the changes and development journey:
 
-<YouTube id="https://www.youtube.com/watch?v=pfxEJJs63y8" /> <YouTube id="https://www.youtube.com/watch?v=ivHBfilnUIY" />
+    <YouTube id="https://www.youtube.com/watch?v=pfxEJJs63y8" /> <YouTube id="https://www.youtube.com/watch?v=ivHBfilnUIY" />
 
 This was a gigantic team effort with [Lasse Folkersen](https://github.com/lassefolkersen), [Anders Sune Pedersen](https://github.com/asp8200), [Francesco Lescai](https://github.com/lescai), [
 Susanne Jodoin](https://github.com/SusiJo), [Edmund Miller](https://github.com/Edmundmiller), Matthias Seybold, [Oskar Wacker](https://github.com/WackerO),
-[Nick Smith](https://github.com/nickhsmith), [Gisela Gabernet](https://github.com/ggabernet), [Sven Nahnsen](https://uni-tuebingen.de/forschung/forschungsinfrastruktur/zentrum-fuer-quantitative-biologie-qbic/team/prof-dr-sven-nahnsen/), and many many others from the nf-core community.
+[Nick Smith](https://github.com/nickhsmith), [Gisela Gabernet](https://github.com/ggabernet), [Sven Nahnsen](https://uni-tuebingen.de/forschung/forschungsinfrastruktur/zentrum-fuer-quantitative-biologie-qbic/team/prof-dr-sven-nahnsen/), and many many others from the nf-core community:
+
+        <Image src={contributors} alt="" height="300" />
 
 Also shout out to all the amazing people starting sarek way back in 2016:
 Szilveszter Juhos, Malin Larsson, Pall I. Olason, Marcel Martin, Jesper Eisfeldt,
