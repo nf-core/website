@@ -1,6 +1,7 @@
 ---
 title: Running offline
 subtitle: How to use nf-core pipelines without an internet connection.
+weight: 5
 ---
 
 # Introduction
