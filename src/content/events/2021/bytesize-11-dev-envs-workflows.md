@@ -41,6 +41,7 @@ You can see the slides on HackMD: <https://hackmd.io/@nf-core/bytesize-11#/> (sh
 </div>
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::
