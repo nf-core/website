@@ -36,7 +36,7 @@ This does not tell you _why_ the job failed to submit, but is often is due to a 
 
 Therefore, in this case I would switch to the working directory, and submit the `.command.run` file using SLURM's `sbatch` command (for submitting batch scripts).
 
-```bash
+```console
 $ cd  /<path>/<to>/work/e5/6cc8991c2b16c11a6356028228377e
 $ sbatch .command.run
 sbatch: error: job memory limit for shared nodes exceeded. Must be <= 120000 MB

@@ -18,7 +18,7 @@ You don't need to install the `nf-core` command line tools to run nf-core pipeli
 
 Nextflow runs on most POSIX systems (Linux, macOS, etc) and can typically be installed by running these commands:
 
-```console
+```bash
 # Make sure that Java v11+ is installed:
 java -version
 
@@ -63,11 +63,14 @@ To deactivate the conda environment, run the following command:
 conda deactivate
 ```
 
-> If you're already in the conda environment you want to use, you can just install Nextflow directly:
->
-> ```bash
-> conda install nextflow
-> ```
+:::tip
+If you're already in the conda environment you want to use, you can just install Nextflow directly:
+
+```bash
+conda install nextflow
+```
+
+:::
 
 If you want to develop your own pipelines or collaborate with others using the nf-core guidelines you will need the nf-core packages.
 Please follow the instructions [here](tutorials/nf_core_usage_tutorial.md)
