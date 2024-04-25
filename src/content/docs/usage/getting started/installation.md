@@ -1,6 +1,7 @@
 ---
-title: Installation
+title: Installation of nf-core dependencies
 subtitle: Install the software requirements needed to run nf-core pipelines.
+shortTitle: Dependency installation
 weight: 2
 ---
 

@@ -1,6 +1,6 @@
 ---
-title: meta map and ext properties
-subtitle: What are the meta map and ext properties in nf-core components?
+title: meta map
+subtitle: What are the meta map in nf-core components?
 ---
 
 In nf-core DSL2 pipelines, to add sample-specific information and metadata that is carried throughout the pipeline, we use a meta variable. This avoids the need to create separate channels for each new characteristic.

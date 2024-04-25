@@ -39,6 +39,9 @@ let sections: SidebarEntry[] = [
 addEntriesToSection(sections, docs, Astro.url.pathname);
 // sort all entries by weight if available recursively
 const sortEntries = (entries: SidebarEntry[]) => {
+    if (!entries) {
+        return;
+    }
     entries.sort((a, b) => {
         if (a.weight && !b.weight) {
             return -1;
