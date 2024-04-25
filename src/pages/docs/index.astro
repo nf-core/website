@@ -1,18 +1,19 @@
 ---
 import PageLayout from '@layouts/PageLayout.astro';
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
 import type { SidebarEntry } from '@utils/types';
-import { addEntriesToSection } from '@utils/functions';
+import { addEntriesToSection, sanitizeNfCoreLabels } from '@utils/functions';
+import HomepageCard from '@components/homepage/HomepageCard.astro';
 
 let docs = await getCollection('docs');
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
 let sections: SidebarEntry[] = [
-    { type: 'group', label: 'Tutorials', href: '/docs/tutorials', entries: [], collapsed: true },
-    { type: 'group', label: 'Usage', href: '/docs/usage', entries: [], collapsed: true },
-    { type: 'group', label: 'Contributing', href: '/docs/contributing', entries: [], collapsed: true },
-    { type: 'group', label: 'Nf-core-tools', href: '/docs/nf-core-tools', entries: [], collapsed: true },
-    { type: 'group', label: 'Checklists', href: '/docs/checklists', entries: [], collapsed: true },
-    { type: 'group', label: 'Guidelines', href: '/docs/guidelines', entries: [], collapsed: true },
+    { type: 'group', label: 'Tutorials', href: '/docs/tutorials', entries: [], collapsed: false },
+    { type: 'group', label: 'Usage', href: '/docs/usage', entries: [], collapsed: false },
+    { type: 'group', label: 'Contributing', href: '/docs/contributing', entries: [], collapsed: false },
+    { type: 'group', label: 'Nf-core-tools', href: '/docs/nf-core-tools', entries: [], collapsed: false },
+    { type: 'group', label: 'Checklists', href: '/docs/checklists', entries: [], collapsed: false },
+    { type: 'group', label: 'Guidelines', href: '/docs/guidelines', entries: [], collapsed: false },
 ];
 
 addEntriesToSection(sections, docs, Astro.url.pathname);
@@ -44,7 +45,39 @@ sections.forEach((section) => {
     sortEntries(section.entries);
 });
 
-console.log('sections.entries', sections[3].entries);
+const findEntriesWithLabel = (sections: SidebarEntry[], label: string, parentLabel: string | undefined) => {
+    let entries = [];
+    sections.forEach((section) => {
+        if (!parentLabel && section.label === label) {
+            section.metadata = docs.find((doc) => '/docs/' + doc.slug === section.href);
+            entries.push(section);
+        }
+        if (parentLabel && section.label === parentLabel) {
+            section.entries.forEach((entry) => {
+                if (entry.label === label) {
+                    entry.metadata = docs.find((doc) => '/docs/' + doc.slug === entry.href);
+                    entries.push(entry);
+                }
+            });
+        }
+        if (section.entries) {
+            entries.push(...findEntriesWithLabel(section.entries, label, parentLabel));
+        }
+    });
+    return entries;
+};
+
+let highlightSections = [];
+['Introduction', 'Adding modules to pipelines', 'Assertions', 'Nf-core-tools/Installation'].forEach((label) => {
+    let parentLabel = label.includes('/') ? label.split('/')[0] : undefined;
+    label = parentLabel ? label.split('/')[1] : label;
+    let entries = findEntriesWithLabel(sections, label, parentLabel);
+    if (entries.length === 0) {
+        console.error(`No entry found for label: ${label}`);
+    }
+    highlightSections.push(entries);
+});
+highlightSections = highlightSections.flat();
 ---
 
 <PageLayout
@@ -59,19 +92,31 @@ console.log('sections.entries', sections[3].entries);
             </div>
 
             <div class="col-12 col-md-9">
-                <p>
-                    Here you can find all documentation on how to use nf-core pipelines, and nf-core tools to start
-                    processing your data. You will also find information on how to contribute to nf-core pipelines,
-                    modules and subworkflows.
-                </p>
                 <div class="grid">
+                    {
+                        highlightSections &&
+                            highlightSections.map((section, i) => (
+                                <>
+                                    {i % 2 !== 0 && <div class="d-none d-md-block g-col-md-4" />}
+                                    <div class="g-col-12 g-col-md-8 card position-relative">
+                                        <div class="card-body">
+                                            <a href={section.href} class="h4 stretched-link">
+                                                {section.metadata.data.title}
+                                            </a>
+                                            <div class="card-text">{section.metadata.data.subtitle}</div>
+                                        </div>
+                                    </div>
+                                    {i % 2 === 0 && <div class="d-none d-md-block g-col-md-4" />}
+                                </>
+                            ))
+                    }
                     {
                         sections &&
                             sections.map((section) => (
                                 <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3 card">
                                     <span class="card-header">
                                         <a href={section.href} class="text-decoration-none">
-                                            {section.label}
+                                            {sanitizeNfCoreLabels(section.label)}
                                         </a>
                                         <button class="btn p-0">
                                             <i class="fa-solid fa-chevron-down" />
@@ -82,18 +127,25 @@ console.log('sections.entries', sections[3].entries);
                                             if (entry.type === 'link') {
                                                 return (
                                                     <li>
-                                                        <a href={entry.href}>{entry.label}</a>
+                                                        <a href={entry.href}>{sanitizeNfCoreLabels(entry.label)}</a>
                                                     </li>
                                                 );
                                             } else {
                                                 return (
                                                     <li>
-                                                        <a href={entry.href}>{entry.label}</a>
+                                                        <a href={entry.href} class="fw-semibold">
+                                                            {sanitizeNfCoreLabels(entry.label)}
+                                                        </a>
                                                         {entry.entries && (
                                                             <ul>
                                                                 {entry.entries.map((subentry) => (
                                                                     <li>
-                                                                        <a href={subentry.href}>{subentry.label}</a>
+                                                                        <a
+                                                                            href={subentry.href}
+                                                                            set:html={sanitizeNfCoreLabels(
+                                                                                subentry.label,
+                                                                            )}
+                                                                        />
                                                                     </li>
                                                                 ))}
                                                             </ul>
@@ -114,5 +166,8 @@ console.log('sections.entries', sections[3].entries);
 <style>
     .btn[aria-expanded='true'] {
         transform: rotate(180deg);
+    }
+    .card.position-relative:hover {
+        border-color: var(--bs-secondary-color);
     }
 </style>
