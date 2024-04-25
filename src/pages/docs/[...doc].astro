@@ -4,7 +4,7 @@ import FooterPrevNext from '@components/footer/FooterPrevNext.astro';
 import SubFooter from '@components/footer/SubFooter.astro';
 import { getCollection } from 'astro:content';
 import type { SidebarEntry } from '@utils/types';
-import { findCurrentGroup, addEntriesToSection } from '@utils/functions';
+import { findCurrentGroup, addEntriesToSection, sanitizeNfCoreLabels } from '@utils/functions';
 import { Icon } from 'astro-icon/components';
 import ProgressIndicator from '@components/sidebar/ProgressIndicator.svelte';
 
@@ -128,6 +128,14 @@ let extendedHeadings = headings.map((heading) => {
         .map((checkbox) => ({ id: checkbox.id, checked: checkbox.checked }));
     return heading;
 });
+
+// sanitize previous and next page titles
+if (prev_page) {
+    prev_page.title = sanitizeNfCoreLabels(prev_page.title);
+}
+if (next_page) {
+    next_page.title = sanitizeNfCoreLabels(next_page.title);
+}
 ---
 
 <MarkdownTocLayout
@@ -169,7 +177,7 @@ let extendedHeadings = headings.map((heading) => {
     </div>
     {!firstHeading && <h1>{title}</h1>}
     <Content />
-    <FooterPrevNext md_github_url={md_github_url} prev_page={prev_page} next_page={next_page} />
+    <FooterPrevNext prev_page={prev_page} next_page={next_page} />
 
     <SubFooter slot="pre-footer" {md_github_url} />
     {

@@ -65,7 +65,7 @@ export const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[], u
         parts.forEach((part, i) => {
             part = part.replaceAll('_', ' ')?.replace(/(^)\S/g, (match) => match.toUpperCase());
             // replace nf-core-tools with nf-core/tools
-            if (part === 'nf-ore-tools') {
+            if (part === 'Nf-core-tools') {
                 part = 'nf-core/tools';
             }
             const existingEntry = currentLevel.find((entry) => entry?.label === part);
@@ -81,8 +81,6 @@ export const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[], u
                 }
                 if (/index\.(md|mdx)$/.test(doc.id) && lastPart) {
                     existingEntry.href = '/docs/' + doc.slug;
-                    existingEntry.isCurrent = url === '/docs/' + doc.slug;
-                    existingEntry.collapsed = url !== '/docs/' + doc.slug;
                 }
 
                 currentLevel = existingEntry.entries;
@@ -113,6 +111,6 @@ export const sanitizeNfCoreLabels = (label: string) =>
         .substring(label.startsWith('Nf-') ? 3 : 0)
         .replace('Nf-core-tools', 'nf-core/tools')
         .replaceAll('nf-core-tools', 'nf-core/tools')
-        .split('-nf-')
+        .split('nf-')
         .map((part) => part.replaceAll(/-/g, ' '))
         .join(' nf-');
