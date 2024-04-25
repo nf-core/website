@@ -221,6 +221,9 @@ export const writePipelinesJson = async () => {
       repo: name,
     });
 
+    // remove empty values from releases (usually from draft releases)
+    releases = releases.filter((release) => release.tag_name !== '');
+
     // remove releases that are already in the pipelines.json file
     const index = pipelines.remote_workflows.findIndex((workflow) => workflow.name === name);
     let new_releases = releases;
