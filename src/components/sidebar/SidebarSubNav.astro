@@ -48,7 +48,7 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
                             class:list={[{ h6: !nested }, 'px-2']}
                             data-weight={item.weight}
                         >
-                            <span set:html={item.label} />
+                            <span set:html={sanitizeNfCoreLabels(item.label)} />
                         </a>
                     ) : (
                         <details open={containsCurrent || item.isCurrent || !item.collapsed}>
@@ -60,14 +60,14 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
                                     {item.href && (
                                         <a
                                             href={item.href}
-                                            class="h5 text-reset d-block"
+                                            class="fw-semibold d-block"
                                             data-weight={item.weight}
                                             set:html={sanitizeNfCoreLabels(item.label)}
                                         />
                                     )}
                                     {!item.href && (
                                         <span
-                                            class="h5 text-reset"
+                                            class="fw-semibold"
                                             data-weight={item.weight}
                                             set:html={sanitizeNfCoreLabels(item.label)}
                                         />
@@ -96,14 +96,12 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
         list-style: none;
         padding: 0;
     }
-
     li {
         overflow-wrap: anywhere;
-
-        a:not(.h5) {
+        a:not(.fw-semibold) {
             display: block;
             text-decoration: none;
-            color: var(--bs-secondary-color);
+            color: var(--bs-body-color);
             padding: 0.3em var(--sl-sidebar-item-padding-inline);
             border-inline-end: 2pt solid var(--bs-border-color);
             line-height: 1.4;
@@ -153,6 +151,8 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
             text-decoration: none;
             padding: 0.3em var(--sl-sidebar-item-padding-inline);
             margin-bottom: 0;
+            color: var(--bs-body-color);
+            font-family: $font-family-sans-serif;
         }
     }
     summary::marker,
@@ -165,7 +165,7 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
         flex-shrink: 0;
         &:hover {
             color: var(--bs-success);
-            font-size: 1.05rem;
+            font-size: 1rem;
         }
     }
     [open] > summary .caret {
