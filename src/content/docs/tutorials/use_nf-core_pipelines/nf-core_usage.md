@@ -1,6 +1,8 @@
 ---
 title: Getting started with nf-core
 subtitle: Tutorial covering the basics of using nf-core pipelines.
+shortTitle: Basics of nf-core pipelines
+weight: 10
 ---
 
 > Material originally written for the Nextflow Camp 2019, Barcelona 2019-09-19: **_"Getting started with nf-core"_** _(see [programme](https://www.nextflow.io/nfcamp/2019/phil2.html))._

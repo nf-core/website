@@ -8,9 +8,9 @@ import HomepageCard from '@components/homepage/HomepageCard.astro';
 let docs = await getCollection('docs');
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
 let sections: SidebarEntry[] = [
-    { type: 'group', label: 'Tutorials', href: '/docs/tutorials', entries: [], collapsed: false },
     { type: 'group', label: 'Usage', href: '/docs/usage', entries: [], collapsed: false },
     { type: 'group', label: 'Contributing', href: '/docs/contributing', entries: [], collapsed: false },
+    { type: 'group', label: 'Tutorials', href: '/docs/tutorials', entries: [], collapsed: false },
     { type: 'group', label: 'Checklists', href: '/docs/checklists', entries: [], collapsed: false },
     { type: 'group', label: 'Guidelines', href: '/docs/guidelines', entries: [], collapsed: false },
     { type: 'group', label: 'nf-core/tools', href: '/docs/nf-core-tools', entries: [], collapsed: false },
