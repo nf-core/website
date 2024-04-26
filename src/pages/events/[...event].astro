@@ -30,13 +30,24 @@ let video = event.data.youtubeEmbed;
 if (typeof video === 'string') {
     video = [video];
 }
-const id = video?.map(
+const ids = video?.map(
     (v) =>
         v
             .replace('https://www.youtube.com/watch?v=', '')
             .replace('https://youtu.be/', '')
             .replace('https://www.youtube.com/embed/', '')
             .split('&list')[0],
+);
+// Check if maxres thumbnail is available
+let posters = await Promise.all(
+    Array.from(ids || []).map(async (id) => {
+        const maxresPoster = `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+        const response = await fetch(maxresPoster);
+        if (response.status === 404) {
+            return `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+        }
+        return maxresPoster;
+    }),
 );
 
 events
@@ -118,10 +129,10 @@ const sections = years.map((year) => {
     }
     <Content />
     {
-        id &&
-            id.map((i) => (
-                <VideoTranscript id={i} client:idle>
-                    <YouTube id={i} poster={`https://img.youtube.com/vi/${i}/hqdefault.jpg`} />
+        ids &&
+            ids.map((id, i) => (
+                <VideoTranscript id={id} client:idle>
+                    <YouTube id={id} poster={posters[i]} />
                 </VideoTranscript>
             ))
     }
