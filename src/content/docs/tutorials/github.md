@@ -1,6 +1,7 @@
 ---
 title: Using GitHub to contribute to nf-core
 subtitle: A guide to contributing to nf-core using GitHub
+shortTitle: Contributing on GitHub
 ---
 
 # Fork the nf-core/modules repository and branch
