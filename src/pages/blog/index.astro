@@ -80,42 +80,45 @@ const sections = years.map((year) => {
                                             : '',
                                     ]}
                                 >
-                                    <a
-                                        href={'/blog/' + post.slug}
-                                        class:list={[
-                                            'new-post-badge text-decoration-none badge text-bg-primary fs-6 mb-0 rounded-top-0 w-25 m-auto position-absolute top-0 start-0 end-0',
-                                            new Date(Date.now()) > new Date(post.data.pubDate) &&
-                                            new Date(post.data.pubDate) > new Date(Date.now() - 2 * 24 * 60 * 60 * 1000)
-                                                ? 'd-block'
-                                                : 'd-none',
-                                        ]}
-                                    >
-                                        New post!
-                                    </a>
-                                    {post.data.headerImage && (
-                                        <Image
-                                            src={
-                                                post.data.headerImage.startsWith('/assets/')
-                                                    ? images['../..' + post.data.headerImage]()
-                                                    : post.data.headerImage
-                                            }
-                                            class="card-img-top object-fit-cover"
-                                            alt={post.data.headerImageAlt || ''}
-                                            height={240}
-                                            width={512}
-                                            transition:name="cover-image"
-                                        />
-                                    )}
-                                    <div class="card-body">
-                                        <h2 transition:name="title">{post.data.title}</h2>
-                                        <p class="lead">{post.data.subtitle}</p>
-                                        <p class="card-text small">
-                                            {async () => {
-                                                const { remarkPluginFrontmatter } = await post.render();
-                                                return remarkPluginFrontmatter.excerpt;
-                                            }}
-                                        </p>
-                                        <a href={'/blog/' + post.slug} class="stretched-link" />
+                                    <div class="position-relative">
+                                        <a
+                                            href={'/blog/' + post.slug}
+                                            class:list={[
+                                                'new-post-badge text-decoration-none badge text-bg-primary fs-6 mb-0  rounded-top-0 w-25 m-auto position-absolute top-0 start-0 end-0',
+                                                new Date(Date.now()) > new Date(post.data.pubDate) &&
+                                                new Date(post.data.pubDate) >
+                                                    new Date(Date.now() - 2 * 24 * 60 * 60 * 1000)
+                                                    ? 'd-block'
+                                                    : 'd-none',
+                                            ]}
+                                        >
+                                            New post!
+                                        </a>
+                                        {post.data.headerImage && (
+                                            <Image
+                                                src={
+                                                    post.data.headerImage.startsWith('/assets/')
+                                                        ? images['../..' + post.data.headerImage]()
+                                                        : post.data.headerImage
+                                                }
+                                                class="card-img-top object-fit-cover"
+                                                alt={post.data.headerImageAlt || ''}
+                                                height={240}
+                                                width={512}
+                                                transition:name="cover-image"
+                                            />
+                                        )}
+                                        <div class="card-body">
+                                            <h2 transition:name="title">{post.data.title}</h2>
+                                            <p class="lead">{post.data.subtitle}</p>
+                                            <p class="card-text small">
+                                                {async () => {
+                                                    const { remarkPluginFrontmatter } = await post.render();
+                                                    return remarkPluginFrontmatter.excerpt;
+                                                }}
+                                            </p>
+                                            <a href={'/blog/' + post.slug} class="stretched-link" />
+                                        </div>
                                     </div>
                                     <div class="card-footer d-flex justify-content-between">
                                         <div class="me-auto authors d-flex flex-grow-1 flex-wrap">
