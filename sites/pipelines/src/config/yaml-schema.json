@@ -1,0 +1,78 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "contributors": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "full_name": {
+                        "type": "string"
+                    },
+                    "short_name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "affiliation": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "string"
+                    },
+                    "url": {
+                        "type": "string",
+                        "format": "uri"
+                    },
+                    "affiliation_url": {
+                        "type": "string"
+                    },
+                    "image_fn": {
+                        "type": "string",
+                        "pattern": ".*.svg$"
+                    },
+                    "contact": {
+                        "type": "string"
+                    },
+                    "contact_email": {
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "contact_github": {
+                        "type": "string",
+                        "pattern": "^[^@].*$"
+                    },
+                    "location": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "twitter": {
+                        "type": "string"
+                    },
+                    "mastodon": {
+                        "type": "string"
+                    }
+                },
+                "required": ["full_name", "short_name", "description", "address", "url", "contact", "location"],
+                "anyOf": [
+                    {
+                        "required": ["twitter"]
+                    },
+                    {
+                        "required": ["mastodon"]
+                    },
+                    {
+                        "required": ["email"]
+                    },
+                    {
+                        "required": ["contact_github"]
+                    }
+                ]
+            }
+        }
+    }
+}
