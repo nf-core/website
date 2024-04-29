@@ -121,7 +121,7 @@ const sections = years.map((year) => {
                                         </div>
                                     </div>
                                     <div class="card-footer d-flex justify-content-between">
-                                        <div class="me-auto authors d-flex flex-grow-1 flex-wrap">
+                                        <div class="me-auto authors w-100 d-flex">
                                             {post.data.authors.map((author) => (
                                                 <GitHubProfilePictureExtended
                                                     username={author}
@@ -161,9 +161,6 @@ const sections = years.map((year) => {
         .card {
             width: 100%;
         }
-    }
-    .authors {
-        width: 100%;
     }
     .new-post-badge {
         z-index: 10;
