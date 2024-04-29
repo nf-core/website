@@ -2,7 +2,7 @@ import admonitionsPlugin from '../../bin/remark-admonitions.js';
 import { mermaid } from '../../bin/remark-mermaid.ts';
 import pipelines_json from './public/pipelines.json';
 import mdx from '@astrojs/mdx';
-import netlify from '@astrojs/netlify/functions';
+import netlify from '@astrojs/netlify';
 import partytown from '@astrojs/partytown';
 import sitemap from '@astrojs/sitemap';
 import svelte from '@astrojs/svelte';

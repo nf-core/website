@@ -1,7 +1,7 @@
 ---
 import ResultsLayout from '@layouts/ResultsLayout.astro';
 import pipelines_json from '@public/pipelines.json';
-import cache from 'bin/cache';
+import cache from '@root/bin/cache';
 
 export async function getStaticPaths() {
     let paths: {
