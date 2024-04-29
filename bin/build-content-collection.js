@@ -23,11 +23,11 @@ async function buildContentCollection() {
     }, []);
 
   const files = getAllMDFiles('.cache');
-  if (!existsSync('src/content/pipelines')) {
-    mkdirSync('src/content/pipelines', { recursive: true });
+  if (!existsSync('sites/pipelines/src/content/pipelines')) {
+    mkdirSync('sites/pipelines/src/content/pipelines', { recursive: true });
   }
   Promise.all(
-    // create src/content/pipelines folder if it doesn't exist
+    // create sites/pipelines/src/content/pipelines folder if it doesn't exist
 
     files.map(async (f) => {
       let content = await promises.readFile(f, 'utf8');
@@ -39,7 +39,7 @@ async function buildContentCollection() {
         /(\]\()(docs\/images\/.*?\.png|svg)/gmu,
         `$1${`https://raw.githubusercontent.com/nf-core/${pipeline}/${version}/$2`}`
       );
-      const newPath = f.replace('.cache', 'src/content/pipelines');
+      const newPath = f.replace('.cache', 'sites/pipelines/src/content/pipelines');
       const parent = newPath.split('/').slice(0, -1).join('/');
       await promises.mkdir(parent, { recursive: true });
       await promises.writeFile(newPath, content);
