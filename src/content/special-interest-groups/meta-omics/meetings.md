@@ -1,6 +1,6 @@
 ---
 title: 'Meetings'
-subtitle: 'When and where the Meta-Omics group meets'
+subtitle: 'When and where the Meta-omics group meets'
 groupName: Meta-omics
 ---
 
