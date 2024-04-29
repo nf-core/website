@@ -19,6 +19,7 @@ At the start of 2022, nf-core joined the Nextflow community to do a joint survey
 This week, Phil Ewels ([@ewels](https://github.com/ewels/)) will give an overview over the key results of the survey. If that's not enough excitement for you, Evan Floden ([@evanfloden](https://github.com/evanfloden) will wrap up with a live-draw to select the winners of the survey draw: one Apple Macbook Air M1 up for grabs alongiside ten sustainability-certified Seqera Labs merchandise packs.. 🤩 💚 💻 👕
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::

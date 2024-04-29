@@ -12,7 +12,7 @@
 
     const affiliation_str =
         affiliation.length > 0
-            ? `<div class="small"><abbr class="small d-block text-truncate" data-bs-placement="bottom" data-bs-toggle="tooltip" title="${affiliation}" style="max-width: 12rem;">${affiliation}</abbr></div>`
+            ? `<div class="small"><abbr class="small d-block affiliation" data-bs-placement="bottom" data-bs-toggle="tooltip" title="${affiliation}">${affiliation}</abbr></div>`
             : '';
     labelClasses = affiliation.length > 0 ? labelClasses + ' small' : labelClasses;
 </script>
@@ -40,5 +40,12 @@
 <style lang="scss">
     :global(.profile-name p) {
         margin-bottom: 0;
+    }
+    :global(.affiliation) {
+        max-width: 15rem;
+        overflow: hidden;
+    }
+    :global(.github-link:hover .affiliation) {
+        max-width: 100%;
     }
 </style>
