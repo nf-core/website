@@ -17,6 +17,7 @@ locations:
 This week, Chris Hakkaart ([@christopher-hakkaart](https://github.com/christopher-hakkaart)) will show how to integrate custom scripts, such as R or Perl o Python scripts, can be integrated into a Nextflow pipeline.
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::
