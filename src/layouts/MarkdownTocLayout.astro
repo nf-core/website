@@ -117,7 +117,7 @@ const {
             )
         }
         <div class:list={['col-12', { 'col-md-10': !leftSidebar, 'col-md-8': leftSidebar }]}>
-            <div class="markdown-content" transition:animate="morph">
+            <div class="markdown-content" transition:animate="fade">
                 <MarkdownWrapper headings={headings} client:idle>
                     <slot />
                 </MarkdownWrapper>
