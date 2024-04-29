@@ -444,7 +444,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -4900,6 +4900,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -8308,7 +8312,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -15828,7 +15832,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         },
         {
           "name": "viralrecon",
@@ -15955,7 +15959,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         },
         {
           "name": "viralrecon",
@@ -16211,7 +16215,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -16361,7 +16365,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -18172,7 +18176,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         },
         {
           "name": "viralrecon",
@@ -20156,7 +20160,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -20243,7 +20247,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -30296,7 +30300,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -33798,7 +33802,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -35081,7 +35085,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         },
         {
           "name": "viralrecon",
@@ -35377,7 +35381,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         },
         {
           "name": "variantcatalogue",
@@ -36448,7 +36452,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -38266,7 +38270,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -38354,7 +38358,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -38436,7 +38440,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -40715,6 +40719,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -41472,6 +41480,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -46599,6 +46611,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -53610,14 +53626,33 @@
         ],
         "input": [
           {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing meta data\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
             "gff": {
               "type": "file",
               "description": "A reference file in either the GFF3, GFF2 or GTF format.",
               "pattern": "*.{gff, gtf}"
             }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "A multi-fasta file with the genomic sequences",
+              "pattern": "*.{fasta,fa,faa,fas,fsa}"
+            }
           }
         ],
         "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing meta data\ne.g. [ id:'test' ]\n"
+            }
+          },
           {
             "gtf": {
               "type": "file",
@@ -53629,7 +53664,14 @@
             "gffread_gff": {
               "type": "file",
               "description": "GFF3 file resulting from the conversion of the GFF input file if '-T' argument is absent",
-              "pattern": "*.{gff3}"
+              "pattern": "*.gff3"
+            }
+          },
+          {
+            "gffread_fasta": {
+              "type": "file",
+              "description": "Fasta file produced when either of '-w', '-x', '-y' parameters is present",
+              "pattern": "*.fasta"
             }
           },
           {
@@ -53644,7 +53686,8 @@
           "@edmundmiller"
         ],
         "maintainers": [
-          "@edmundmiller"
+          "@edmundmiller",
+          "@gallvp"
         ]
       },
       "pipelines": [
@@ -57860,7 +57903,11 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
+        },
+        {
+          "name": "tfactivity",
+          "version": "dev"
         },
         {
           "name": "viralrecon",
@@ -64675,7 +64722,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -64753,7 +64800,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -64840,7 +64887,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -66188,7 +66235,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -66273,7 +66320,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -66676,7 +66723,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         },
         {
           "name": "viralrecon",
@@ -66757,7 +66804,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -66923,7 +66970,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -67199,7 +67246,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -67326,7 +67373,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -67405,7 +67452,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -70936,7 +70983,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -73234,7 +73281,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -75095,7 +75142,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -75196,7 +75243,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -75965,7 +76012,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -76049,7 +76096,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -77897,7 +77944,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -78002,7 +78049,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -79251,7 +79298,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         },
         {
           "name": "variantbenchmarking",
@@ -92936,7 +92983,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -93565,7 +93612,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -101834,7 +101881,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -102666,7 +102713,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         },
         {
           "name": "variantcatalogue",
@@ -103680,7 +103727,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         },
         {
           "name": "viralrecon",
@@ -103885,7 +103932,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         },
         {
           "name": "viralrecon",
@@ -118162,7 +118209,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -118247,7 +118294,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         }
       ]
     },
@@ -122704,7 +122751,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         },
         {
           "name": "viralrecon",
@@ -136859,7 +136906,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         },
         {
           "name": "tfactivity",
@@ -137036,7 +137083,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         },
         {
           "name": "tfactivity",
@@ -137243,7 +137290,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.6"
+          "version": "1.1.7"
         },
         {
           "name": "tfactivity",
