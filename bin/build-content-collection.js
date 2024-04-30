@@ -7,6 +7,7 @@ import path from 'path';
 (async () => {
 async function buildContentCollection() {
   // go through all files in .cache, move them to src/content
+  console.log('Building content collection');
 
   const getAllMDFiles = (dir) =>
     readdirSync(dir).reduce((files, file) => {
@@ -23,8 +24,10 @@ async function buildContentCollection() {
     }, []);
 
   const files = getAllMDFiles('.cache');
-  if (!existsSync('sites/pipelines/src/content/pipelines')) {
-    mkdirSync('sites/pipelines/src/content/pipelines', { recursive: true });
+  if (!existsSync('./sites/pipelines/src/content/pipelines')) {
+    mkdirSync('./sites/pipelines/src/content/pipelines', { recursive: true });
+    console.log('Created sites/pipelines/src/content/pipelines folder');
+    console.log('current path:', __dirname);
   }
   Promise.all(
     // create sites/pipelines/src/content/pipelines folder if it doesn't exist
