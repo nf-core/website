@@ -1,5 +1,5 @@
 import admonitionsPlugin from '../../bin/remark-admonitions.js';
-import { mermaid } from '../../bin/remark-mermaid.ts';
+import mermaid from '../../bin/remark-mermaid';
 import pipelines_json from './public/pipelines.json';
 import mdx from '@astrojs/mdx';
 import netlify from '@astrojs/netlify';
@@ -23,11 +23,7 @@ import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import remarkDescription from 'astro-remark-description';
 import markdownIntegration from '@astropub/md';
-import icon from "astro-icon";
-
-const latestToolsRelease = await fetch('https://api.github.com/repos/nf-core/tools/releases/latest')
-    .then((res) => res.json())
-    .then((json) => json.tag_name);
+import icon from 'astro-icon';
 
 let latestPipelineReleases = {};
 pipelines_json.remote_workflows.map(
@@ -91,10 +87,11 @@ export default defineConfig({
             }),
         ],
         ssr: {
-            noExternal: ['@popperjs/core', 'bin/cache.js'],
+            noExternal: ['@popperjs/core', '../../bin/cache.js'],
         },
         resolve: {
             preserveSymlinks: true,
+            browser: true,
         },
     },
     image: {
