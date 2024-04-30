@@ -12,7 +12,7 @@
         "build-md-cache-force": "node ../../bin/build-cache.js --force && tar -cvJf ../../.cache.tar.xz ../../.cache && node ../../bin/build-content-collection",
         "build-cache-no-tar": "npm run build-pipeline-json && npm run build-component-json && node ../../bin/build-cache.js && node ../../bin/build-content-collection",
         "build-cache-force": "npm run build-pipeline-json && npm run build-component-json && npm run build-md-cache-force",
-        "build": "tar -xf ../../.cache.tar.xz && node ../../bin/build-content-collection &&  NODE_OPTIONS='--max-old-space-size=4096' astro build",
+        "build": "tar -xf ../../.cache.tar.xz &&  NODE_OPTIONS='--max-old-space-size=4096' astro build",
         "build-without-cache": "npm run build-cache-no-tar && astro build",
         "preview": "astro preview",
         "build-pipeline-json": "tar -xf ../../.cache.tar.xz && node ../../bin/pipelines.json.js && tar -cvJf ../../.cache.tar.xz ../../.cache",
