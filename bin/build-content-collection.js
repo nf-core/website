@@ -23,12 +23,13 @@ async function buildContentCollection() {
       }
     }, []);
 
-  const files = getAllMDFiles('.cache');
-  if (!existsSync('./sites/pipelines/src/content/pipelines')) {
-    mkdirSync('./sites/pipelines/src/content/pipelines', { recursive: true });
-    console.log('Created sites/pipelines/src/content/pipelines folder');
-    console.log('current path:', __dirname);
-  }
+      console.log('current path:', path.resolve());
+      const files = getAllMDFiles('.cache');
+      if (!existsSync('./sites/pipelines/src/content/pipelines')) {
+        mkdirSync('./sites/pipelines/src/content/pipelines', { recursive: true });
+        console.log('Created sites/pipelines/src/content/pipelines folder');
+        console.log('current path:', path.resolve());
+      }
   Promise.all(
     // create sites/pipelines/src/content/pipelines folder if it doesn't exist
 
