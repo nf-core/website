@@ -4904,6 +4904,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -36503,10 +36507,24 @@
             }
           },
           {
-            "reads": {
+            "merged": {
               "type": "file",
               "description": "The merged fastq reads",
-              "pattern": "*fastq.gz"
+              "pattern": ".extendedFrags.fastq.gz"
+            }
+          },
+          {
+            "notcombined": {
+              "type": "file",
+              "description": "Not combined reads from flash",
+              "pattern": ".notCombined_*.fastq.gz"
+            }
+          },
+          {
+            "histogram": {
+              "type": "file",
+              "description": "HistogramNumeric histogram of merged read lengths.",
+              "pattern": ".hist"
             }
           },
           {
@@ -40723,6 +40741,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -41480,6 +41502,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -46611,6 +46637,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -97182,6 +97212,91 @@
               "type": "file",
               "description": "Database files for repeatmodeler",
               "pattern": "`${prefix}.*`"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@GallVp"
+        ],
+        "maintainers": [
+          "@GallVp"
+        ]
+      }
+    },
+    {
+      "name": "repeatmodeler_repeatmodeler",
+      "path": "modules/nf-core/repeatmodeler/repeatmodeler/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "repeatmodeler_repeatmodeler",
+        "description": "Performs de novo transposable element (TE) family identification with RepeatModeler",
+        "keywords": [
+          "genomics",
+          "fasta",
+          "repeat",
+          "transposable element"
+        ],
+        "tools": [
+          {
+            "repeatmodeler": {
+              "description": "RepeatModeler is a de-novo repeat family identification and modeling package.",
+              "homepage": "https://github.com/Dfam-consortium/RepeatModeler",
+              "documentation": "https://github.com/Dfam-consortium/RepeatModeler",
+              "tool_dev_url": "https://github.com/Dfam-consortium/RepeatModeler",
+              "licence": [
+                "Open Software License v2.1"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "db": {
+              "type": "file",
+              "description": "RepeatModeler database files generated with REPEATMODELER_BUILDDATABASE",
+              "pattern": "*"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Consensus repeat sequences",
+              "pattern": "*.fa"
+            }
+          },
+          {
+            "stk": {
+              "type": "file",
+              "description": "Seed alignments",
+              "pattern": "*.stk"
+            }
+          },
+          {
+            "log": {
+              "type": "file",
+              "description": "A summarized log of the run",
+              "pattern": "*.log"
             }
           },
           {
