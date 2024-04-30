@@ -23,7 +23,6 @@ async function buildContentCollection() {
       }
     }, []);
 
-      console.log('current path:', path.resolve());
       const files = getAllMDFiles('.cache');
       const targetPath = path.resolve().endsWith('sites/pipelines')
         ? 'src/content/pipelines'
@@ -49,7 +48,6 @@ async function buildContentCollection() {
           const newPath = f.replace('.cache', targetPath);
           const parent = newPath.split('/').slice(0, -1).join('/');
           await promises.mkdir(parent, { recursive: true });
-          console.log('Moving ', f, ' to ', newPath);
           await promises.writeFile(newPath, content);
         }),
       );
