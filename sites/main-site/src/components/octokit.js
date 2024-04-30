@@ -4,7 +4,7 @@ import { Octokit } from 'octokit';
 if (!import.meta.env) {
   dotenv.config();
 }
-const octokit = new Octokit({
+export const octokit = new Octokit({
   // different env vars for node (used for scripts in `bin/`) and astro
   auth: import.meta.env ? import.meta.env.GITHUB_TOKEN : process.env.GITHUB_TOKEN,
 });

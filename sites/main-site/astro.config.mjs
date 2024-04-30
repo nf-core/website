@@ -91,7 +91,7 @@ export default defineConfig({
             }),
         ],
         ssr: {
-            noExternal: ['@popperjs/core', 'bin/cache.js'],
+            noExternal: ['@popperjs/core', '../../bin/cache.js'],
         },
         resolve: {
             preserveSymlinks: true,

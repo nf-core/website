@@ -1,13 +1,12 @@
 <script lang="ts">
     import { currentHeading } from '@components/store';
-    import * as icons from 'file-icons-js';
+    import { db as icons } from 'file-icons-js';
     import 'file-icons-js/css/style.css';
     import mermaid from 'mermaid';
     import { onMount } from 'svelte';
     import CopyButton from '@components/CopyButton.svelte';
 
     export let headings: { text: string; slug: string; depth: number; fa_icon?: string }[] = [];
-    // find current heading in viewport with IntersectionObserver
     onMount(() => {
         async function renderDiagrams(graphs) {
             mermaid.initialize({
@@ -29,6 +28,7 @@
             }
         }
         const graphs = document.getElementsByClassName('mermaid');
+        console.log('grpahs', graphs);
         if (document.getElementsByClassName('mermaid').length > 0) {
             renderDiagrams(graphs);
             window.addEventListener('theme-changed', (e) => {
@@ -36,6 +36,7 @@
             });
         }
 
+        // find current heading in viewport with IntersectionObserver
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
