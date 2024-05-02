@@ -55,7 +55,17 @@ export const findCurrentGroup = (sections: SidebarEntry[]) => {
     return currentGroup;
 };
 
-export const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[], url: str) => {
+export const findByProperty = (obj: object, predicate: (obj: object) => boolean) => {
+    if (predicate(obj)) return obj;
+    for (let n of Object.values(obj)
+        .filter(Boolean)
+        .filter((v) => typeof v === 'object')) {
+        let found = findByProperty(n, predicate);
+        if (found) return n;
+    }
+};
+
+export const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[], url: string) => {
     docs.sort((a, b) => a.slug.localeCompare(b.slug));
 
     docs.forEach((doc) => {
@@ -71,18 +81,18 @@ export const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[], u
             const existingEntry = currentLevel.find((entry) => entry?.label === part);
             const lastPart = i === parts.length - 1;
             const secondToLastPart = i === parts.length - 2;
-            if (existingEntry) {
-                if (existingEntry.type === 'group') {
-                    // workaround for index files in nested events, where another element could already have created the group
-                } else {
-                    existingEntry.type = 'group';
-                    existingEntry.collapsed = true;
-                    existingEntry.entries = [];
-                }
-                if (/index\.(md|mdx)$/.test(doc.id) && lastPart) {
-                    existingEntry.href = '/docs/' + doc.slug;
-                }
 
+            if (existingEntry && existingEntry.type === 'link') {
+                existingEntry.type = 'group';
+                existingEntry.collapsed = true;
+                existingEntry.entries = [];
+            }
+
+            if (existingEntry && /index\.(md|mdx)$/.test(doc.id) && lastPart) {
+                existingEntry.href = '/docs/' + doc.slug;
+            }
+
+            if (existingEntry) {
                 currentLevel = existingEntry.entries;
                 if (secondToLastPart && doc.data.parentWeight) {
                     existingEntry.weight = doc.data.parentWeight;

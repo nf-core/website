@@ -4,7 +4,7 @@ import FooterPrevNext from '@components/footer/FooterPrevNext.astro';
 import SubFooter from '@components/footer/SubFooter.astro';
 import { getCollection } from 'astro:content';
 import type { SidebarEntry } from '@utils/types';
-import { findCurrentGroup, addEntriesToSection, sanitizeNfCoreLabels } from '@utils/functions';
+import { findCurrentGroup, addEntriesToSection, sanitizeNfCoreLabels, findByProperty } from '@utils/functions';
 import { Icon } from 'astro-icon/components';
 import ProgressIndicator from '@components/sidebar/ProgressIndicator.svelte';
 
@@ -90,7 +90,16 @@ if (currentGroup.length > 0) {
                   slug: currentElement.entries[0].href,
               });
     } else {
-        if (currentGroup[currentGroupIndex - 1] && currentGroup[currentGroupIndex - 1].href) {
+        if (currentGroupIndex === 0) {
+            const parentHref = currentGroup[0].href?.split('/').slice(0, -1).join('/');
+
+            // find parentHref in sections in different depths
+            const parentSection = findByProperty(sections, (val) => val.href === parentHref)?.entries?.find(
+                (entry) => entry.entries && entry.entries == currentGroup,
+            );
+
+            prev_page = parentSection && parentHref ? { title: 'Introduction', slug: parentHref } : null;
+        } else if (currentGroup[currentGroupIndex - 1] && currentGroup[currentGroupIndex - 1].href) {
             prev_page = {
                 title: currentGroup[currentGroupIndex - 1].label,
                 slug: currentGroup[currentGroupIndex - 1].href,
