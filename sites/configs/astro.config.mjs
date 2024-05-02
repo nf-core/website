@@ -25,19 +25,12 @@ import remarkDescription from 'astro-remark-description';
 import markdownIntegration from '@astropub/md';
 import icon from 'astro-icon';
 
-let latestPipelineReleases = {};
-pipelines_json.remote_workflows.map(
-    (pipeline) => (latestPipelineReleases[pipeline.name] = `/${pipeline.name}/${pipeline.releases[0].tag_name}/`),
-);
 // https://astro.build/config
 export default defineConfig({
     site: 'https://nf-co.re/',
-    output: 'hybrid',
+    output: 'static',
     adapter: netlify(),
     prefetch: false,
-    redirects: {
-        ...latestPipelineReleases,
-    },
     integrations: [
         svelte(),
         icon({

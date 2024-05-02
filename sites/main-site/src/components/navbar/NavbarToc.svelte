@@ -40,7 +40,7 @@
 </div>
 
 <style lang="scss">
-    @import 'src/styles/_variables.scss';
+    @import '@styles/_variables.scss';
     .toc-md {
         .dropdown-menu {
             max-height: 90dvh;

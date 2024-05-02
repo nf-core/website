@@ -81,7 +81,7 @@
 </div>
 
 <style lang="scss">
-    @import 'src/styles/_variables.scss';
+    @import '@styles/_variables.scss';
     nav > ul {
         font-size: 0.875rem;
         list-style: none;
