@@ -21905,9 +21905,9 @@
             "url": "https://api.github.com/repos/nf-core/oncoanalyser",
             "created_at": "2022-12-22T05:01:49Z",
             "updated_at": "2024-05-01T22:56:06Z",
-            "pushed_at": "2024-05-01T22:56:05Z",
+            "pushed_at": "2024-05-02T03:08:47Z",
             "homepage": "https://nf-co.re/oncoanalyser",
-            "size": 4557,
+            "size": 4571,
             "stargazers_count": 14,
             "watchers_count": 14,
             "language": "Nextflow",
@@ -26511,14 +26511,14 @@
             "forks_count": 2,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 10,
+            "open_issues_count": 11,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
             "topics": [],
             "visibility": "public",
             "forks": 2,
-            "open_issues": 10,
+            "open_issues": 11,
             "watchers": 4,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -33275,20 +33275,54 @@
             "team_core_permission_push": true,
             "team_core_permission_admin": true,
             "master_branch_exists": true,
-            "master_branch_protection_up_to_date": -1,
-            "master_branch_protection_status_checks": -1,
-            "master_branch_protection_required_reviews": -1,
-            "master_branch_protection_require_codeowner_review": -1,
-            "master_branch_protection_require_non_stale_review": -1,
-            "master_branch_protection_enforce_admins": -1,
+            "master_branch_protection_status_checks": {
+                "url": "https://api.github.com/repos/nf-core/scnanoseq/branches/master/protection/required_status_checks",
+                "strict": false,
+                "contexts": [
+                    "nf-core",
+                    "pre-commit"
+                ],
+                "contexts_url": "https://api.github.com/repos/nf-core/scnanoseq/branches/master/protection/required_status_checks/contexts",
+                "checks": [
+                    {
+                        "context": "nf-core",
+                        "app_id": 15368
+                    },
+                    {
+                        "context": "pre-commit",
+                        "app_id": 15368
+                    }
+                ]
+            },
+            "master_branch_protection_required_reviews": 2,
+            "master_branch_protection_require_codeowner_review": false,
+            "master_branch_protection_require_non_stale_review": false,
+            "master_branch_protection_enforce_admins": false,
             "master_restrict_push": -1,
             "dev_branch_exists": true,
-            "dev_branch_protection_up_to_date": -1,
-            "dev_branch_protection_status_checks": -1,
-            "dev_branch_protection_required_reviews": -1,
-            "dev_branch_protection_require_codeowner_review": -1,
-            "dev_branch_protection_require_non_stale_review": -1,
-            "dev_branch_protection_enforce_admins": -1,
+            "dev_branch_protection_status_checks": {
+                "url": "https://api.github.com/repos/nf-core/scnanoseq/branches/dev/protection/required_status_checks",
+                "strict": false,
+                "contexts": [
+                    "nf-core",
+                    "pre-commit"
+                ],
+                "contexts_url": "https://api.github.com/repos/nf-core/scnanoseq/branches/dev/protection/required_status_checks/contexts",
+                "checks": [
+                    {
+                        "context": "nf-core",
+                        "app_id": 15368
+                    },
+                    {
+                        "context": "pre-commit",
+                        "app_id": 15368
+                    }
+                ]
+            },
+            "dev_branch_protection_required_reviews": 1,
+            "dev_branch_protection_require_codeowner_review": false,
+            "dev_branch_protection_require_non_stale_review": false,
+            "dev_branch_protection_enforce_admins": false,
             "dev_restrict_push": -1,
             "TEMPLATE_branch_exists": true,
             "TEMPLATE_branch_protection_up_to_date": -1,
@@ -33297,7 +33331,7 @@
             "TEMPLATE_branch_protection_require_codeowner_review": -1,
             "TEMPLATE_branch_protection_require_non_stale_review": -1,
             "TEMPLATE_branch_protection_enforce_admins": -1,
-            "TEMPLATE_restrict_push": -1,
+            "TEMPLATE_restrict_push": true,
             "has_required_topics": false,
             "open_pr_count": 0,
             "repository_url": "https://github.com/nf-core/scnanoseq",
