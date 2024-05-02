@@ -1,6 +1,8 @@
 ---
 title: Writing nf-core modules and subworkflows
 subtitle: Tutorial for DSL2 modules and subworkflows
+shortTitle: Writing nf-core components
+weight: 20
 ---
 
 import Tabs from '@components/Tabs.svelte';
@@ -53,8 +55,8 @@ and proceed with Step 5.
     pre-commit install
     ```
 
-<Tabs names={["modules","subworkflows"]}>
-<TabItem name={"modules"}>
+<Tabs names={["modules","subworkflows"]} client:idle>
+<TabItem name={"modules"} client:idle>
 7. Set up git on your computer by adding a new git remote of the main nf-core git repo called `upstream`
 
     ```bash
@@ -124,18 +126,18 @@ git branch -d fastqc
 ```
 
 </TabItem>
-<TabItem name={"subworkflows"}>
+<TabItem name={"subworkflows"} client:idle>
 7. Set up git on your computer by adding a new git remote of the main nf-core git repo called `upstream`
 
-```bash
-git remote add upstream https://github.com/nf-core/modules.git
-```
+    ```bash
+    git remote add upstream https://github.com/nf-core/modules.git
+    ```
 
-Make a new branch for your subworkflow and check it out
+    Make a new branch for your subworkflow and check it out
 
-```bash
-git checkout -b bam_sort_stats_samtools
-```
+    ```bash
+    git checkout -b bam_sort_stats_samtools
+    ```
 
 8. Create a subworkflow using the [nf-core DSL2 subworkflow template](https://github.com/nf-core/tools/blob/master/nf_core/subworkflow-template/subworkflows/main.nf) in the root of the clone of the nf-core/modules repository:
 
@@ -207,23 +209,25 @@ If a new test dataset is added to [`tests/config/test_data.config`](https://gith
 
 For example: the nf-core/test-datasets file `genomics/sarscov2/genome/genome.fasta` labelled as `genome_fasta`, or `genomics/sarscov2/genome/genome.fasta.fai` as `genome_fasta_fai`.
 
-<Tabs names={["modules","subworkflows"]}>
-<TabItem name={"modules"}>
+<Tabs names={["modules","subworkflows"]}  client:idle>
+<TabItem name={"modules"} client:idle>
 #### Using a stub test when required test data is too big
 
-If the module absolute cannot run using tiny test data, there is a possibility to add [stub-run](https://www.nextflow.io/docs/edge/process.html#stub) to the test.yml. In this case it is required to test the module using larger scale data and document how this is done. In addition, an extra script-block labeled `stub:` must be added, and this block must create dummy versions of all expected output files as well as the `versions.yml`. An example is found in the [ascat module](https://github.com/nf-core/modules/blob/master/modules/nf-core/ascat/main.nf). In the `test.yml` the `-stub-run` argument is written as well as the md5sums for each of the files that are added in the stub-block. This causes the stub-code block to be activated when the unit test is run ([example](https://github.com/nf-core/modules/blob/master/tests/modules/nf-core/ascat/test.yml)):
+If the module absolute cannot run using tiny test data, there is a possibility to add [stub-run](https://www.nextflow.io/docs/edge/process.html#stub) to the test.yml. In this case it is required to test the module using larger scale data and document how this is done. In addition, an extra script-block labeled `stub:` must be added, and this block must create dummy versions of all expected output files as well as the `versions.yml`. An example is found in the [ascat module](https://github.com/nf-core/modules/blob/master/modules/nf-core/ascat/main.nf).
+
+In the `test.yml` the `-stub-run` argument is written as well as the md5sums for each of the files that are added in the stub-block. This causes the stub-code block to be activated when the unit test is run ([see for example](https://github.com/nf-core/modules/blob/master/tests/modules/nf-core/ascat/test.yml)):
 
 ```console
 nextflow run tests/modules/<nameofmodule> -entry test_<nameofmodule> -c tests/config/nextflow.config -stub-run
 ```
 
 </TabItem>
-<TabItem name={"subworkflows"}>
+<TabItem name={"subworkflows"} client:idle>
 #### Using a stub test when required test data is too big
 
 If the subworkflow absolute cannot run using tiny test data, there is a possibility to add [stub-run](https://www.nextflow.io/docs/edge/process.html#stub) to the test.yml. In this case it is required to test the subworkflow using larger scale data and document how this is done. In addition, an extra script-block labeled `stub:` must be added, and this block must create dummy versions of all expected output files as well as the `versions.yml`. An example is found in the [bam_sort_stats_samtools subworkflow](
 
-In the `test.yml` the `-stub-run` argument is written as well as the md5sums for each of the files that are added in the stub-block. This causes the stub-code block to be activated when the unit test is run ([example](
+In the `test.yml` the `-stub-run` argument is written as well as the md5sums for each of the files that are added in the stub-block. This causes the stub-code block to be activated when the unit test is run ([see for example](https://github.com/nf-core/modules/blob/71b1180a5a3de6398eb0eb4d55424cbda36f52d8/subworkflows/nf-core/fasta_explore_search_plot_tidk/tests/main.nf.test#L55-L80))
 
 ```console
 nextflow run tests/subworkflows/nf-core/<nameofsubworkflow> -entry test_<nameofsubworkflow> -c tests/config/nextflow.config -stub-run
