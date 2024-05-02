@@ -3,5 +3,5 @@ external_node_modules = ["vscode-oniguruma","shiki"]
 node_bundler = "esbuild"
 [build]
 environment = { NODE_VERSION = "20.4.0" }
-command = "npm run build -w sites/pipelines"
+command = "npm run build -w sites/configs"
 ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ." # don't build if there are no changes
