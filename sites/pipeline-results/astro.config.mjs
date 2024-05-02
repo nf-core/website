@@ -32,14 +32,11 @@ pipelines_json.remote_workflows.map(
 // https://astro.build/config
 export default defineConfig({
     site: 'https://nf-co.re/',
-    output: 'static',
+    output: 'hybrid',
     adapter: netlify(),
     prefetch: false,
     redirects: {
         ...latestPipelineReleases,
-    },
-    experimental: {
-        contentCollectionJsonSchema: true,
     },
     integrations: [
         svelte(),
