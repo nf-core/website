@@ -19,8 +19,6 @@ pipelines:
   - phyloplace
   - rnaseq
   - taxprofiler
-
-
 ---
 
 # Introduction
@@ -46,4 +44,3 @@ When were we thinking of having meetings?
 Are these going to be development meetings, or planning meetings?
 What platform should we post meetings on?
 Should we create a project board that we can post tasks on?
-

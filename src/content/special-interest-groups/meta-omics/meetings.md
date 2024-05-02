@@ -7,6 +7,5 @@ groupName: Meta-omics
 # Meeting schedule
 
 Details coming soon!
+
 # How to join
-
-
