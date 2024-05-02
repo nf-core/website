@@ -1,4 +1,4 @@
-import admonitionsPlugin from '../../bin/remark-admonitions.js';
+import admonitionsPlugin from '../../bin/remark-admonitions';
 import { mermaid } from '../../bin/remark-mermaid.ts';
 // import pipelines_json from './public/pipelines.json';
 import mdx from '@astrojs/mdx';
@@ -23,7 +23,7 @@ import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import remarkDescription from 'astro-remark-description';
 import markdownIntegration from '@astropub/md';
-import icon from "astro-icon";
+import icon from 'astro-icon';
 
 // const latestToolsRelease = await fetch('https://api.github.com/repos/nf-core/tools/releases/latest')
 //     .then((res) => res.json())
