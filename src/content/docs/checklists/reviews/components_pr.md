@@ -1,6 +1,7 @@
 ---
 title: PR Review Checklist for nf-core components
 subtitle: Guidelines for reviewing PRs in the nf-core/modules repository
+shortTitle: Component PR
 markdownPlugin: checklist
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Appendices
+title: Next steps
 subtitle: Follow this walkthrough to add a new pipeline to nf-core.
 weight: 50
 type: 'tutorial'
