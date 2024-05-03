@@ -10,4 +10,4 @@ locations:
   - links: https://kth-se.zoom.us/j/68390542812
 ---
 
-Join us when Phil Ewels ([@ewels](https://github.com/ewels/)) guides us through the process of fetching and changing pipeline container URLs using nextflow inspect. 
+Join us when Phil Ewels ([@ewels](https://github.com/ewels/)) guides us through the process of fetching and changing pipeline container URLs using nextflow inspect.
