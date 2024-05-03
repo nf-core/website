@@ -1,6 +1,7 @@
 ---
 title: 'Adding Modules to Pipelines'
 subtitle: Quick reference of the steps needed to add a new module to a pipeline.
+weight: 20
 ---
 
 This tutorial is a quick reference overview of the steps you will normally take when adding a new module to a pipeline.
