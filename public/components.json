@@ -4928,6 +4928,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -40882,6 +40886,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -41639,6 +41647,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -46794,6 +46806,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -98686,6 +98702,159 @@
       ]
     },
     {
+      "name": "ribowaltz",
+      "path": "modules/nf-core/ribowaltz/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "ribowaltz",
+        "description": "Calculation of optimal P-site offsets, diagnostic analysis and visual inspection of ribosome profiling data",
+        "keywords": [
+          "sort",
+          "example",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "ribowaltz": {
+              "description": "Calculation of optimal P-site offsets, diagnostic analysis and visual inspection of ribosome profiling data.",
+              "homepage": "https://github.com/LabTranslationalArchitectomics/riboWaltz",
+              "documentation": "https://github.com/LabTranslationalArchitectomics/riboWaltz",
+              "tool_dev_url": "https://github.com/LabTranslationalArchitectomics/riboWaltz",
+              "doi": "10.1371/journal.pcbi.1006169",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Map containing reference information for the reference genome GTF file\ne.g. `[ id:'Ensembl human v.111' ]`\n"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Map containing reference information for the reference genome FASTA file\ne.g. `[ id:'Ensembl human v.111' ]`\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "Transcriptome BAM file",
+              "pattern": "*.{bam}"
+            }
+          },
+          {
+            "gtf": {
+              "type": "file",
+              "description": "GTF file of reference genome",
+              "pattern": "*.{gtf.gz,gtf}"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "FASTA file of reference genome",
+              "pattern": "*.{fasta,fa,fasta.gz,fa.gz}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "best_offset": {
+              "type": "file",
+              "description": "Text file with the extremity used for the offset correction step and the best offset for each sample (optional, in case no offsets could be determined, usually because no reads pass filtering criteria)",
+              "pattern": "*.best_offset.txt"
+            }
+          },
+          {
+            "offset": {
+              "type": "file",
+              "description": "TSV file containing P-site offsets for each read length (optional, in case no offsets could be determined, usually because no reads pass filtering criteria)",
+              "pattern": "*.psite_offset.tsv.gz"
+            }
+          },
+          {
+            "offset_plot": {
+              "type": "file",
+              "description": "P-site offset plots for each read length (otional)",
+              "pattern": "offset_plot/*"
+            }
+          },
+          {
+            "psites": {
+              "type": "file",
+              "description": "TSV file containing P-site transcriptomic coordinates and information for each alignment (optional)",
+              "pattern": "*.psite.tsv.gz"
+            }
+          },
+          {
+            "codon_coverage_rpf": {
+              "type": "file",
+              "description": "TSV file with codon-level RPF coverage for each transcript (optional)",
+              "pattern": "*.codon_coverage_rpf.tsv.gz"
+            }
+          },
+          {
+            "codon_coverage_psite": {
+              "type": "file",
+              "description": "TSV file with codon-level P-site coverage for each transcript (optional)",
+              "pattern": "*.codon_coverage_psite.tsv.gz"
+            }
+          },
+          {
+            "cds_coverage": {
+              "type": "file",
+              "description": "TSV file with CDS P-site in-frame counts for each transcript (optional)",
+              "pattern": "*.cds_coverage_psite.tsv.gz"
+            }
+          },
+          {
+            "cds_window_coverage": {
+              "type": "file",
+              "description": "TSV file with CDS P-site in-frame counts for each transcript, excluding P-sites within defined distances to start and stop codons (defined by passing --exclude_start and --exclude_stop with the number of nucleotides) (optional)",
+              "pattern": "*nt_coverage_psite.tsv.gz"
+            }
+          },
+          {
+            "ribowaltz_qc": {
+              "type": "file",
+              "description": "riboWaltz diagnostic plots (optional)",
+              "pattern": "ribowaltz_qc/*"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@iraiosub"
+        ],
+        "maintainers": [
+          "@iraiosub"
+        ]
+      }
+    },
+    {
       "name": "rmarkdownnotebook",
       "path": "modules/nf-core/rmarkdownnotebook/meta.yml",
       "type": "module",
@@ -128183,7 +128352,8 @@
         ],
         "maintainers": [
           "@jfy133",
-          "@pinin4fjords"
+          "@pinin4fjords",
+          "@JoseEspinosa"
         ]
       },
       "pipelines": [
