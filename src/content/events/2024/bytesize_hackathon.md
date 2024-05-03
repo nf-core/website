@@ -105,4 +105,3 @@ As Fran mentioned, we have a Hackathon coming up in March from the 18th to the 2
 (host) Are there any more questions? No, I think we covered it all. Then I would like to thank you, Rike, for this great presentation and everyone in the audience for listening and as usual, the Chan Zuckerberg Initiative for funding our bytesize talks. If you're interested, don't forget to sign up for the Hackathon or maybe even to host a site. Thank you.
 
 </details>
-
