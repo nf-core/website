@@ -1,6 +1,7 @@
 ---
 title: Unable to acquire lock
 subtitle: How to troubleshoot common mistakes and issues
+shortTitle: Unable to acquire lock
 weight: 70
 ---
 

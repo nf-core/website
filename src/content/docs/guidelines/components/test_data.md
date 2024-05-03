@@ -2,6 +2,7 @@
 title: Test-data Specifications
 subtitle: Specifications for writing nf-core test dataset files
 addNumbersToHeadings: true
+weight: 30
 ---
 
 The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
