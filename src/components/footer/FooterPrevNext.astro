@@ -15,7 +15,7 @@ const { prev_page, next_page } = Astro.props;
                     class="btn btn-outline-secondary d-inline-flex align-items-center py-md-3 py-2 px-3  text-decoration-none text-end"
                     href={prev_page.slug}
                 >
-                    <i class="fa-solid fa-arrow-left me-auto pe-md-5" />
+                    <i class="fa-solid fa-arrow-left me-auto pe-3 pe-md-5" />
 
                     <span class="d-flex flex-column">
                         <span class="d-none d-md-inline">Previous: </span>
@@ -36,7 +36,7 @@ const { prev_page, next_page } = Astro.props;
                         <span class="d-none d-md-inline">Next: </span>
                         <span class="fw-semibold text-secondary-emphasis" set:html={next_page.title} />
                     </span>
-                    <i class="fa-solid fa-arrow-right ms-auto ps-md-5" />
+                    <i class="fa-solid fa-arrow-right ms-auto ps-3 ps-md-5" />
                 </a>
             </div>
         )
