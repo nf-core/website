@@ -167,7 +167,7 @@ const specialInterestGroups = defineCollection({
 
 const pipelines = defineCollection({});
 
-const tools = defineCollection({});
+const api_reference = defineCollection({});
 
 export const collections = {
     events: events,
@@ -175,6 +175,6 @@ export const collections = {
     about: about,
     pipelines: pipelines,
     blog: blog,
-    tools: tools,
+    api_reference: api_reference,
     'special-interest-groups': specialInterestGroups,
 };

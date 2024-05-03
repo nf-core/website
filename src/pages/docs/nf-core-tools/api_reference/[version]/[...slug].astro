@@ -6,8 +6,8 @@ import type { SidebarEntry } from '@utils/types';
 
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
-    const tools: CollectionEntry<'tools'>[] = await getCollection('tools');
-    const versions = [...new Set(tools.map((entry) => entry.id.split('/')[1]))].sort((a, b) => {
+    const api_reference: CollectionEntry<'api_reference'>[] = await getCollection('api_reference');
+    const versions = [...new Set(api_reference.map((entry) => entry.id.split('/')[0]))].sort((a, b) => {
         const a_version = a.split('.').map((entry) => parseInt(entry));
         const b_version = b.split('.').map((entry) => parseInt(entry));
         for (let i = 0; i < a_version.length; i++) {
@@ -30,25 +30,25 @@ export async function getStaticPaths() {
         }
         return 0;
     });
-    let tools_path = tools.map((entry: CollectionEntry<'tools'>) => {
-        const version = entry.id.split('/')[1];
+    let api_reference_path = api_reference.map((entry: CollectionEntry<'api_reference'>) => {
+        const version = entry.id.split('/')[0];
         return {
             params: {
                 version: version,
-                slug: entry.id.replace(`docs/${version}/`, '').replace('/index.md', '').replace(/\.md$/, ''),
+                slug: entry.id.replace(`${version}/`, '').replace(/\.md$/, '').replace('/index', '/'),
             },
             props: { entry: entry, versions: versions },
         };
     });
     // add 'latest' as a version, which is a copy of the latest version
-    const latest_version = tools_path.filter((entry) => entry.params.version === versions[1]);
+    const latest_version = api_reference_path.filter((entry) => entry.params.version === versions[1]);
     latest_version.map((entry) => {
-        tools_path.push({
+        api_reference_path.push({
             params: { version: 'latest', slug: entry.params.slug },
             props: { entry: entry.props.entry, versions: versions },
         });
     });
-    return tools_path;
+    return api_reference_path;
 }
 // 2. For your template, you can get the entry directly from the prop
 const { entry, versions } = Astro.props;
@@ -87,9 +87,9 @@ if (entry.id.includes('pipeline_lint_tests')) {
     md_github_url = base_url + file_name;
 }
 
-const tools: CollectionEntry<'tools'>[] = await getCollection('tools');
-const versioned_tools = tools.filter((tool) => tool.id.split('/')[1] === version_tag_name);
-const section_names = [...new Set(versioned_tools.map((entry) => entry.id.split('/')[2]))];
+const tools: CollectionEntry<'api_reference'>[] = await getCollection('api_reference');
+const versioned_tools = tools.filter((tool) => tool.id.split('/')[0] === version_tag_name);
+const section_names = [...new Set(versioned_tools.map((entry) => entry.id.split('/')[1]))];
 const sections: SidebarEntry[] = section_names
     .filter((entry) => entry !== 'index.md')
     .map((entry) => {
@@ -97,33 +97,34 @@ const sections: SidebarEntry[] = section_names
             type: 'group',
             label: entry === 'api' ? 'API' : entry.replace(/_/g, ' ').replace(/^\w/, (c) => c.toUpperCase()),
             href:
-                '/docs/usage/tools/api_reference/' +
+                '/docs/nf-core-tools/api_reference/' +
                 versioned_tools
-                    .find((tool_entry) => tool_entry.id.endsWith('index.md') && tool_entry.id.split('/')[2] === entry)
+                    .find((tool_entry) => tool_entry.id.endsWith('index.md') && tool_entry.id.split('/')[1] === entry)
                     ?.id.replace(/index\.md$/, '')
                     .replace('docs/', ''),
             collapsed: true,
             entries: versioned_tools
-                .filter((child) => child.id.split('/')[2] === entry && child.id.split('/')[3])
-                .filter((child) => child.id.split('/')[3] !== 'index.md')
+                .filter((child) => child.id.split('/')[1] === entry && child.id.split('/')[2])
+                .filter((child) => child.id.split('/')[2] !== 'index.md')
                 .map((tool_entry) => {
                     return {
                         type: 'link',
-                        label: `${tool_entry.id.split('/')[3].replace(/\.md$/, '')}`,
+                        label: `<code>${tool_entry.id.split('/')[2].replace(/\.md$/, '')}</code>`,
                         href:
-                            '/docs/usage/tools/api_reference/' +
+                            '/docs/nf-core-tools/api_reference/' +
                             tool_entry.id.replace('docs/', '').replace(/\.md$/, ''),
                         isCurrent: Astro.url.pathname
                             .replace('.html', '')
                             .replace('/latest/', `/${version_tag_name}/`)
                             .includes(
-                                '/docs/usage/tools/api_reference/' +
+                                '/docs/nf-core-tools/api_reference/' +
                                     tool_entry.id.replace('docs/', '').replace(/\.md$/, ''),
                             ),
                     };
                 }),
         };
     });
+console.log('sections', sections);
 // reshuffle sections with section name pipeline_lint_tests first, then modules_lint_tests, then subworkflows_lint_tests and then api
 sections.sort((a, b) => {
     if (a.label === 'Pipeline lint tests') {
