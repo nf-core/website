@@ -22,8 +22,6 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
         entry.type === 'group' && entry.entries ? flattenSidebar(entry.entries) : entry,
     );
 };
-console.log('nested', nested);
-console.log('items', items);
 ---
 
 <script is:inline>
