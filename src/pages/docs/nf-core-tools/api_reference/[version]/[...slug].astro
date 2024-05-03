@@ -124,7 +124,6 @@ const sections: SidebarEntry[] = section_names
                 }),
         };
     });
-console.log('sections', sections);
 // reshuffle sections with section name pipeline_lint_tests first, then modules_lint_tests, then subworkflows_lint_tests and then api
 sections.sort((a, b) => {
     if (a.label === 'Pipeline lint tests') {
