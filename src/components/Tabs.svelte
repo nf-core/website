@@ -1,6 +1,8 @@
 <script lang="ts">
     import { CurrentTab } from '@components/store';
     export let names: string[] = [];
+
+    CurrentTab.set(names[0]);
 </script>
 
 <ul class="nav nav-tabs nav-justified" role="tablist">
