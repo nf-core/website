@@ -21,7 +21,7 @@ The content has been edited to make it reader-friendly
 :::
 
 [0:01](https://youtu.be/nmp0pXL7GqQ&t=1)
-Welcome, everyone, to this week's bytesized talk. With us today is Rike Hansen from the QBiC in Tübingen, and she's going to talk about everything you need to know about hackathons. Keeping in mind, there's one coming up very soon. Off to you, Rike.
+Welcome, everyone, to this week's bytesize talk. With us today is Rike Hansen from the QBiC in Tübingen, and she's going to talk about everything you need to know about hackathons. Keeping in mind, there's one coming up very soon. Off to you, Rike.
 
 [0:16](https://youtu.be/nmp0pXL7GqQ&t=16)
 Hey, thank you. Or at least I'll try to talk about everything relating hackathons. To get started, maybe quickly, what do we mean by hackathon? I don't know what the official definition of hackathon is, but what we mean is we just want to meet up for a few days with other like-minded people and spend some time coding together, maybe actually close some issues that have been hanging out for a long time and just enjoy each other's company and work together. Who is this aimed at hugely? We aim hackathons at people that are experienced in Nextflow and are interested in contributing to nf-core pipelines, to various nf-core infrastructure things, or also to Nextflow plugins. If you're completely new to Nextflow, the hackathon might not be quite the right fit for you yet, but instead we have run several community trainings a year, usually also around the hackathon before, that you can attend. All the material for this is also online and the recordings of it are on YouTube. You can go back, rewatch it, or also do it whenever you have time to do so.
