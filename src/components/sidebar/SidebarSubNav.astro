@@ -9,7 +9,7 @@ export interface Props {
     nested?: boolean;
 }
 
-let { items, nested } = Astro.props;
+let { items, nested = false } = Astro.props;
 if (!items) {
     items = [];
 }
@@ -22,6 +22,8 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
         entry.type === 'group' && entry.entries ? flattenSidebar(entry.entries) : entry,
     );
 };
+console.log('nested', nested);
+console.log('items', items);
 ---
 
 <script is:inline>
@@ -45,7 +47,7 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
                         <a
                             href={item.href}
                             aria-current={item.isCurrent && 'page'}
-                            class:list={[{ h6: !nested }, 'px-2']}
+                            class:list={['px-2']}
                             data-weight={item.weight}
                         >
                             <span set:html={sanitizeNfCoreLabels(item.label)} />
@@ -54,18 +56,17 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
                         <details open={containsCurrent || item.isCurrent || !item.collapsed}>
                             <summary
                                 aria-current={item.isCurrent && 'page'}
-                                class:list={{ 'border-success': containsCurrent }}
+                                class:list={[{ 'border-success': containsCurrent }]}
                             >
-                                <div class="group-label flex-grow-1">
-                                    {item.href && (
+                                <div class:list={[{ h5: !nested }, 'group-label flex-grow-1']}>
+                                    {item.href ? (
                                         <a
                                             href={item.href}
                                             class="fw-semibold d-block"
                                             data-weight={item.weight}
                                             set:html={sanitizeNfCoreLabels(item.label)}
                                         />
-                                    )}
-                                    {!item.href && (
+                                    ) : (
                                         <span
                                             class="fw-semibold"
                                             data-weight={item.weight}
@@ -73,14 +74,16 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
                                         />
                                     )}
                                 </div>
-                                <i
-                                    class:list={[
-                                        'fa-solid fa-chevron-right fa-xs mx-3 caret',
-                                        { 'text-success': containsCurrent },
-                                    ]}
-                                />
+                                <div class="hover-target">
+                                    <i
+                                        class:list={[
+                                            'fa-solid fa-chevron-right fa-xs mx-3 h-100 caret',
+                                            { 'text-success': containsCurrent },
+                                        ]}
+                                    />
+                                </div>
                             </summary>
-                            <Astro.self items={item.entries} nested />
+                            <Astro.self items={item.entries} nested={true} />
                         </details>
                     )}
                 </li>
@@ -133,11 +136,9 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
         padding-inline-start: var(--sl-sidebar-item-padding-inline);
     }
 
-    .top-level > li + li {
-        summary {
-            padding-top: 0.25rem;
-            padding-bottom: 0.25rem;
-        }
+    .top-level summary .h5 {
+        padding-top: 0.15rem;
+        padding-bottom: 0.15rem;
     }
 
     summary {
@@ -162,11 +163,11 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
     }
 
     .caret {
-        transition: transform 0.1s ease-in-out;
+    }
+    .hover-target {
         flex-shrink: 0;
         &:hover {
             color: var(--bs-success);
-            font-size: 1rem;
         }
     }
     [open] > summary .caret {
