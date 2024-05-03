@@ -20,14 +20,6 @@ import SidebarNav from '@components/sidebar/SidebarNav.astro';
 let sections: SidebarEntry[] = [
     {
         type: 'group',
-        label: 'Tutorials',
-        href: '/docs/tutorials',
-        entries: [],
-        isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/tutorials',
-        collapsed: Astro.url.pathname !== '/docs/tutorials/',
-    },
-    {
-        type: 'group',
         label: 'Usage',
         href: '/docs/usage',
         entries: [],
@@ -44,11 +36,19 @@ let sections: SidebarEntry[] = [
     },
     {
         type: 'group',
-        label: 'nf-core/tools',
-        href: '/docs/nf-core-tools',
+        label: 'Tutorials',
+        href: '/docs/tutorials',
         entries: [],
-        isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/nf-core-tools',
-        collapsed: Astro.url.pathname !== '/docs/nf-core-tools/',
+        isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/tutorials',
+        collapsed: Astro.url.pathname !== '/docs/tutorials/',
+    },
+    {
+        type: 'group',
+        label: 'Guidelines',
+        href: '/docs/guidelines',
+        entries: [],
+        isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/guidelines',
+        collapsed: Astro.url.pathname !== '/docs/guidelines/',
     },
     {
         type: 'group',
@@ -60,11 +60,11 @@ let sections: SidebarEntry[] = [
     },
     {
         type: 'group',
-        label: 'Guidelines',
-        href: '/docs/guidelines',
+        label: 'nf-core/tools',
+        href: '/docs/nf-core-tools',
         entries: [],
-        isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/guidelines',
-        collapsed: Astro.url.pathname !== '/docs/guidelines/',
+        isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/nf-core-tools',
+        collapsed: Astro.url.pathname !== '/docs/nf-core-tools/',
     },
 ];
 // sort docs first depth, then by weight, then by title

@@ -2,6 +2,7 @@
 title: Module Specifications
 subtitle: Specifications for writing nf-core Nextflow DSL2 modules
 addNumbersToHeadings: true
+weight: 10
 ---
 
 The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).

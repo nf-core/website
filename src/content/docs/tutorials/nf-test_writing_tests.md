@@ -1,6 +1,7 @@
 ---
 title: 'nf-test: Writing tests'
 subtitle: Guidelines for writing nf-test tests
+shortTitle: Writing nf-test tests
 ---
 
 ## Philosophy of nf-tests

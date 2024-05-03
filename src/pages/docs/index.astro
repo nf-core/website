@@ -11,8 +11,8 @@ let sections: SidebarEntry[] = [
     { type: 'group', label: 'Usage', href: '/docs/usage', entries: [], collapsed: false },
     { type: 'group', label: 'Contributing', href: '/docs/contributing', entries: [], collapsed: false },
     { type: 'group', label: 'Tutorials', href: '/docs/tutorials', entries: [], collapsed: false },
-    { type: 'group', label: 'Checklists', href: '/docs/checklists', entries: [], collapsed: false },
     { type: 'group', label: 'Guidelines', href: '/docs/guidelines', entries: [], collapsed: false },
+    { type: 'group', label: 'Checklists', href: '/docs/checklists', entries: [], collapsed: false },
     { type: 'group', label: 'nf-core/tools', href: '/docs/nf-core-tools', entries: [], collapsed: false },
 ];
 
@@ -68,10 +68,10 @@ const findEntriesWithLabel = (sections: SidebarEntry[], label: string, parentLab
 };
 
 let highlightSections = [];
-['Introduction', 'Adding modules to pipelines', 'Assertions', 'Nf-core-tools/Installation'].forEach((label) => {
+['Introduction', 'Adding modules to pipelines', 'Assertions', 'nf-core-tools/Installation'].forEach((label) => {
     let parentLabel = label.includes('/') ? label.split('/')[0] : undefined;
     label = parentLabel ? label.split('/')[1] : label;
-    let entries = findEntriesWithLabel(sections, label, parentLabel);
+    let entries = findEntriesWithLabel(sections, label, parentLabel?.replace('nf-core-tools', 'nf-core/tools'));
     if (entries.length === 0) {
         console.error(`No entry found for label: ${label}`);
     }
@@ -118,11 +118,8 @@ highlightSections = highlightSections.flat();
                                         <a href={section.href} class="text-decoration-none">
                                             {sanitizeNfCoreLabels(section.label)}
                                         </a>
-                                        <button class="btn p-0">
-                                            <i class="fa-solid fa-chevron-down" />
-                                        </button>
                                     </span>
-                                    <ul class="card-body mx-3 mb-0" id={section.label?.replace('/', '-')}>
+                                    <ul class="card-body mx-3 mb-0 list-unstyled" id={section.label?.replace('/', '-')}>
                                         {section.entries?.map((entry) => {
                                             if (entry.type === 'link') {
                                                 return (
@@ -144,9 +141,9 @@ highlightSections = highlightSections.flat();
                                                             </span>
                                                         )}
                                                         {entry.entries && (
-                                                            <ul>
+                                                            <ul class="list-unstyled">
                                                                 {entry.entries.map((subentry) => (
-                                                                    <li>
+                                                                    <li class="">
                                                                         <a
                                                                             href={subentry.href}
                                                                             set:html={sanitizeNfCoreLabels(
@@ -171,8 +168,15 @@ highlightSections = highlightSections.flat();
     </div>
 </PageLayout>
 <style>
-    .btn[aria-expanded='true'] {
-        transform: rotate(180deg);
+    li a {
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    .list-unstyled li {
+        padding-left: 1rem;
     }
     .card.position-relative:hover {
         border-color: var(--bs-secondary-color);

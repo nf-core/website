@@ -2,6 +2,7 @@
 title: Subworkflow Specifications
 subtitle: Specifications for writing nf-core Nextflow DSL2 subworkflows
 addNumbersToHeadings: true
+weight: 20
 ---
 
 The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
