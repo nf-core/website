@@ -2540,8 +2540,8 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/bamtofastq",
             "created_at": "2020-08-03T15:02:23Z",
-            "updated_at": "2024-04-21T06:26:20Z",
-            "pushed_at": "2024-05-06T08:43:45Z",
+            "updated_at": "2024-05-06T09:55:24Z",
+            "pushed_at": "2024-05-06T09:59:25Z",
             "homepage": "https://nf-co.re/bamtofastq",
             "size": 161957,
             "stargazers_count": 13,
@@ -2556,7 +2556,7 @@
             "forks_count": 12,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 7,
+            "open_issues_count": 6,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -2567,7 +2567,7 @@
             ],
             "visibility": "public",
             "forks": 12,
-            "open_issues": 7,
+            "open_issues": 6,
             "watchers": 13,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -2677,12 +2677,12 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 1,
+            "open_pr_count": 0,
             "repository_url": "https://github.com/nf-core/bamtofastq",
             "contributors": [
                 {
                     "name": "FriederikeHanssen",
-                    "count": 232,
+                    "count": 233,
                     "avatar_url": "https://avatars.githubusercontent.com/u/12273093?v=4"
                 },
                 {
@@ -2691,36 +2691,76 @@
                     "avatar_url": "https://avatars.githubusercontent.com/u/43847534?v=4"
                 },
                 {
+                    "name": "asp8200",
+                    "count": 31,
+                    "avatar_url": "https://avatars.githubusercontent.com/u/37172585?v=4"
+                },
+                {
+                    "name": "maxulysse",
+                    "count": 22,
+                    "avatar_url": "https://avatars.githubusercontent.com/u/1019628?v=4"
+                },
+                {
                     "name": "ggabernet",
                     "count": 21,
                     "avatar_url": "https://avatars.githubusercontent.com/u/3973503?v=4"
                 },
                 {
-                    "name": "maxulysse",
-                    "count": 8,
-                    "avatar_url": "https://avatars.githubusercontent.com/u/1019628?v=4"
-                },
-                {
                     "name": "matrulda",
                     "count": 7,
                     "avatar_url": "https://avatars.githubusercontent.com/u/1584541?v=4"
+                },
+                {
+                    "name": "allaway",
+                    "count": 4,
+                    "avatar_url": "https://avatars.githubusercontent.com/u/20408008?v=4"
                 }
             ],
-            "released_after_tools": false,
-            "head_sha": "c70f49b20c83c72a0e6198e4b13edb5e2fb14725",
+            "released_after_tools": true,
+            "head_sha": "38fdb8becade1ac67dc733da62ddec0f188998dc",
             "last_release_is_head": true,
-            "last_release_vs_default_compare_url": "https://github.com/nf-core/bamtofastq/compare/c70f49b20c83c72a0e6198e4b13edb5e2fb14725...c70f49b20c83c72a0e6198e4b13edb5e2fb14725",
+            "last_release_vs_default_compare_url": "https://github.com/nf-core/bamtofastq/compare/38fdb8becade1ac67dc733da62ddec0f188998dc...38fdb8becade1ac67dc733da62ddec0f188998dc",
             "commits_to_dev": 30,
             "is_DSL2": true,
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": [
-                "nf-validation"
+                "nf-validation@1.1.3"
             ],
             "dev_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
             "releases": [
+                {
+                    "tag_name": "2.1.1",
+                    "published_at": "2024-05-06T09:59:25Z",
+                    "tag_sha": "38fdb8becade1ac67dc733da62ddec0f188998dc",
+                    "has_schema": true,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/usage.md"
+                    ],
+                    "components": {
+                        "modules": [
+                            "cat_fastq",
+                            "fastqc",
+                            "multiqc",
+                            "samtools_collatefastq",
+                            "samtools_faidx",
+                            "samtools_flagstat",
+                            "samtools_idxstats",
+                            "samtools_index",
+                            "samtools_merge",
+                            "samtools_stats",
+                            "samtools_view"
+                        ],
+                        "subworkflows": [
+                            "utils_nextflow_pipeline",
+                            "utils_nfcore_pipeline",
+                            "utils_nfvalidation_plugin"
+                        ]
+                    }
+                },
                 {
                     "tag_name": "2.1.0",
                     "published_at": "2023-10-06T14:43:51Z",
@@ -4187,7 +4227,7 @@
             "url": "https://api.github.com/repos/nf-core/circrna",
             "created_at": "2021-02-10T14:28:49Z",
             "updated_at": "2024-04-29T12:55:22Z",
-            "pushed_at": "2024-05-02T20:33:41Z",
+            "pushed_at": "2024-05-06T10:21:16Z",
             "homepage": "https://nf-co.re/circrna",
             "size": 64943,
             "stargazers_count": 40,
@@ -5294,7 +5334,7 @@
             "url": "https://api.github.com/repos/nf-core/crisprseq",
             "created_at": "2022-07-14T11:14:34Z",
             "updated_at": "2024-04-14T10:30:07Z",
-            "pushed_at": "2024-05-03T12:50:36Z",
+            "pushed_at": "2024-05-06T10:32:07Z",
             "homepage": "https://nf-co.re/crisprseq",
             "size": 7166,
             "stargazers_count": 21,
@@ -5309,7 +5349,7 @@
             "forks_count": 18,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 18,
+            "open_issues_count": 19,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -5321,7 +5361,7 @@
             ],
             "visibility": "public",
             "forks": 18,
-            "open_issues": 18,
+            "open_issues": 19,
             "watchers": 21,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -5392,7 +5432,7 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 3,
+            "open_pr_count": 4,
             "repository_url": "https://github.com/nf-core/crisprseq",
             "contributors": [
                 {
@@ -7431,6 +7471,148 @@
                         "docs/output.md",
                         "docs/usage.md"
                     ]
+                }
+            ]
+        },
+        {
+            "id": 796254656,
+            "node_id": "R_kgDOL3XhwA",
+            "name": "demo",
+            "full_name": "nf-core/demo",
+            "private": false,
+            "description": "An nf-core demo pipeline",
+            "fork": false,
+            "url": "https://api.github.com/repos/nf-core/demo",
+            "created_at": "2024-05-05T12:11:15Z",
+            "updated_at": "2024-05-06T10:29:20Z",
+            "pushed_at": "2024-05-06T10:17:15Z",
+            "homepage": null,
+            "size": 347,
+            "stargazers_count": 0,
+            "watchers_count": 0,
+            "language": "Nextflow",
+            "has_issues": true,
+            "has_projects": true,
+            "has_downloads": true,
+            "has_wiki": true,
+            "has_pages": false,
+            "has_discussions": false,
+            "forks_count": 0,
+            "archived": false,
+            "disabled": false,
+            "open_issues_count": 0,
+            "allow_forking": true,
+            "is_template": false,
+            "web_commit_signoff_required": false,
+            "topics": [],
+            "visibility": "public",
+            "forks": 0,
+            "open_issues": 0,
+            "watchers": 0,
+            "default_branch": "main",
+            "temp_clone_token": "",
+            "allow_squash_merge": true,
+            "allow_merge_commit": true,
+            "allow_rebase_merge": true,
+            "allow_auto_merge": false,
+            "delete_branch_on_merge": false,
+            "allow_update_branch": false,
+            "use_squash_pr_title_as_default": false,
+            "squash_merge_commit_message": "COMMIT_MESSAGES",
+            "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
+            "merge_commit_message": "PR_TITLE",
+            "merge_commit_title": "MERGE_MESSAGE",
+            "custom_properties": {},
+            "security_and_analysis": {
+                "secret_scanning": {
+                    "status": "disabled"
+                },
+                "secret_scanning_push_protection": {
+                    "status": "disabled"
+                },
+                "dependabot_security_updates": {
+                    "status": "disabled"
+                },
+                "secret_scanning_validity_checks": {
+                    "status": "disabled"
+                }
+            },
+            "network_count": 0,
+            "subscribers_count": 269,
+            "team_contributors_permission_push": true,
+            "team_contributors_permission_admin": false,
+            "team_core_permission_push": true,
+            "team_core_permission_admin": true,
+            "master_branch_exists": true,
+            "master_branch_protection_up_to_date": -1,
+            "master_branch_protection_status_checks": -1,
+            "master_branch_protection_required_reviews": -1,
+            "master_branch_protection_require_codeowner_review": -1,
+            "master_branch_protection_require_non_stale_review": -1,
+            "master_branch_protection_enforce_admins": -1,
+            "master_restrict_push": -1,
+            "dev_branch_exists": true,
+            "dev_branch_protection_up_to_date": -1,
+            "dev_branch_protection_status_checks": -1,
+            "dev_branch_protection_required_reviews": -1,
+            "dev_branch_protection_require_codeowner_review": -1,
+            "dev_branch_protection_require_non_stale_review": -1,
+            "dev_branch_protection_enforce_admins": -1,
+            "dev_restrict_push": -1,
+            "TEMPLATE_branch_exists": true,
+            "TEMPLATE_branch_protection_up_to_date": -1,
+            "TEMPLATE_branch_protection_status_checks": -1,
+            "TEMPLATE_branch_protection_required_reviews": -1,
+            "TEMPLATE_branch_protection_require_codeowner_review": -1,
+            "TEMPLATE_branch_protection_require_non_stale_review": -1,
+            "TEMPLATE_branch_protection_enforce_admins": -1,
+            "TEMPLATE_restrict_push": -1,
+            "has_required_topics": false,
+            "open_pr_count": 0,
+            "repository_url": "https://github.com/nf-core/demo",
+            "contributors": [
+                {
+                    "name": "christopher-hakkaart",
+                    "count": 1,
+                    "avatar_url": "https://avatars.githubusercontent.com/u/76951771?v=4"
+                }
+            ],
+            "released_after_tools": false,
+            "head_sha": "a645f202cf25398992f41fc084c329401d1433f5",
+            "last_release_is_head": false,
+            "last_release_vs_default_compare_url": "https://github.com/nf-core/demo/compare/a645f202cf25398992f41fc084c329401d1433f5...undefined",
+            "commits_to_dev": 11,
+            "is_DSL2": true,
+            "has_nf_test": false,
+            "has_nf_test_dev": false,
+            "master_nextflow_config_plugins": [
+                "nf-validation@1.1.3"
+            ],
+            "dev_nextflow_config_plugins": [
+                "nf-validation@1.1.3"
+            ],
+            "releases": [
+                {
+                    "tag_name": "dev",
+                    "published_at": "2024-05-06T10:17:11Z",
+                    "tag_sha": "226619177823b97c9d2c0e9614ca28b198b56387",
+                    "has_schema": true,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/usage.md"
+                    ],
+                    "components": {
+                        "modules": [
+                            "fastp",
+                            "fastqc",
+                            "multiqc"
+                        ],
+                        "subworkflows": [
+                            "utils_nextflow_pipeline",
+                            "utils_nfcore_pipeline",
+                            "utils_nfvalidation_plugin"
+                        ]
+                    }
                 }
             ]
         },
@@ -15847,7 +16029,7 @@
             "updated_at": "2024-04-12T08:04:34Z",
             "pushed_at": "2024-05-06T09:28:49Z",
             "homepage": "https://nf-co.re/mag",
-            "size": 19446,
+            "size": 19447,
             "stargazers_count": 182,
             "watchers_count": 182,
             "language": "Nextflow",
@@ -16976,11 +17158,11 @@
                 }
             },
             "network_count": 3,
-            "subscribers_count": 4,
-            "team_contributors_permission_push": false,
+            "subscribers_count": 270,
+            "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
-            "team_core_permission_push": false,
-            "team_core_permission_admin": false,
+            "team_core_permission_push": true,
+            "team_core_permission_admin": true,
             "master_branch_exists": true,
             "master_branch_protection_status_checks": {
                 "url": "https://api.github.com/repos/nf-core/magmap/branches/master/protection/required_status_checks",
@@ -22557,12 +22739,11 @@
             "master_branch_protection_enforce_admins": false,
             "master_restrict_push": -1,
             "dev_branch_exists": false,
-            "dev_branch_protection_up_to_date": -1,
             "dev_branch_protection_status_checks": -1,
             "dev_branch_protection_required_reviews": -1,
             "dev_branch_protection_require_codeowner_review": -1,
             "dev_branch_protection_require_non_stale_review": -1,
-            "dev_branch_protection_enforce_admins": -1,
+            "dev_branch_protection_enforce_admins": false,
             "dev_restrict_push": -1,
             "TEMPLATE_branch_exists": false,
             "TEMPLATE_branch_protection_up_to_date": -1,
@@ -24511,7 +24692,7 @@
             "updated_at": "2024-05-06T09:45:19Z",
             "pushed_at": "2024-05-06T09:35:48Z",
             "homepage": "https://nf-co.re/quantms",
-            "size": 22580,
+            "size": 22581,
             "stargazers_count": 26,
             "watchers_count": 26,
             "language": "Nextflow",
@@ -30662,7 +30843,7 @@
             "url": "https://api.github.com/repos/nf-core/sarek",
             "created_at": "2019-04-30T15:43:00Z",
             "updated_at": "2024-05-03T04:39:12Z",
-            "pushed_at": "2024-05-06T08:37:24Z",
+            "pushed_at": "2024-05-06T09:56:23Z",
             "homepage": "https://nf-co.re/sarek",
             "size": 86451,
             "stargazers_count": 340,
@@ -30677,7 +30858,7 @@
             "forks_count": 376,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 224,
+            "open_issues_count": 225,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -30696,7 +30877,7 @@
             ],
             "visibility": "public",
             "forks": 376,
-            "open_issues": 224,
+            "open_issues": 225,
             "watchers": 340,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -30788,7 +30969,7 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 19,
+            "open_pr_count": 20,
             "repository_url": "https://github.com/nf-core/sarek",
             "contributors": [
                 {
