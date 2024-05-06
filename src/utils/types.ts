@@ -4,6 +4,7 @@ export interface Link {
     href: string;
     isCurrent: boolean;
     weight?: number;
+    icon?: string;
 }
 
 interface Group {
@@ -14,6 +15,7 @@ interface Group {
     href?: string;
     isCurrent?: boolean;
     weight?: number;
+    icon?: string;
 }
 
 export type SidebarEntry = Link | Group;
