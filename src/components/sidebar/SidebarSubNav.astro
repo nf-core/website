@@ -99,7 +99,7 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
     @import '@styles/_variables.scss';
 
     ul {
-        --sl-sidebar-item-padding-inline: 0.5rem;
+        --sl-sidebar-item-padding-inline: 0.75rem;
         list-style: none;
         padding: 0;
     }
@@ -110,7 +110,7 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
             display: block;
             text-decoration: none;
             color: var(--bs-body-color);
-            padding: 0.3em var(--sl-sidebar-item-padding-inline);
+            padding: 0.3em calc(var(--sl-sidebar-item-padding-inline) / 2);
             border-inline-end: 2pt solid var(--bs-border-color);
             line-height: 1.4;
         }
