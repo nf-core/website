@@ -1,6 +1,6 @@
 ---
 title: API Reference
-subtitle: This is a placeholder
+subtitle: nf-core/tools API Reference
 shortTitle: API Reference
 weight: 100
 ---

@@ -3,6 +3,7 @@ title: Adding a new pipeline
 subtitle: Follow this walkthrough to add a new pipeline to nf-core.
 type: tutorial
 parentWeight: 10
+weight: 1
 ---
 
 The steps covered in this tutorial are:
