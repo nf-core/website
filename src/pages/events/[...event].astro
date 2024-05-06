@@ -75,7 +75,7 @@ const addEntriesToSection = (sections, events: CollectionEntry<'events'>[]) => {
                 }
             } else {
                 const lastPart = i === parts.length - 1;
-                let title = lastPart ? event.data.title : part;
+                let title = lastPart ? event.data.shortTitle ?? event.data.title : part;
                 const newEntry = createLinkOrGroup(title, '/events/' + event.slug, lastPart, Astro.url.pathname);
                 currentLevel.push(newEntry);
 

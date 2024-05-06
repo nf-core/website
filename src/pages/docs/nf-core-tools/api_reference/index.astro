@@ -4,7 +4,6 @@ import SidebarNav from '@components/sidebar/SidebarNav.astro';
 import { getCollection } from 'astro:content';
 const files = await getCollection('api_reference');
 let versions = [...new Set(files.map((file) => file.id.split('/')[0]))];
-console.log(files);
 // sort semver
 versions = versions.sort((a, b) => {
     const a_split = a.split('.');
