@@ -4,6 +4,8 @@
 import { type SidebarEntry } from '@utils/types';
 import { sanitizeNfCoreLabels } from '@utils/functions';
 
+import { Icon } from 'astro-icon/components';
+
 export interface Props {
     items: SidebarEntry[];
     nested?: boolean;
@@ -48,7 +50,7 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
                             class:list={['px-2']}
                             data-weight={item.weight}
                         >
-                            <span set:html={sanitizeNfCoreLabels(item.label)} />
+                            <span class="section-link" set:html={sanitizeNfCoreLabels(item.label)} />
                         </a>
                     ) : (
                         <details open={containsCurrent || item.isCurrent || !item.collapsed}>
@@ -60,16 +62,20 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
                                     {item.href ? (
                                         <a
                                             href={item.href}
-                                            class="fw-semibold d-block"
+                                            class="group-header d-flex align-items-center"
                                             data-weight={item.weight}
                                             set:html={sanitizeNfCoreLabels(item.label)}
-                                        />
+                                        >
+                                            {item.icon && <Icon name={item.icon} class={'me-2'} is:inline />}
+                                        </a>
                                     ) : (
                                         <span
-                                            class="fw-semibold"
+                                            class="group-header d-flex align-items-center"
                                             data-weight={item.weight}
                                             set:html={sanitizeNfCoreLabels(item.label)}
-                                        />
+                                        >
+                                            {item.icon && <Icon name={item.icon} class={'me-2'} is:inline />}
+                                        </span>
                                     )}
                                 </div>
                                 <div class="hover-target">
@@ -100,7 +106,7 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
     li {
         overflow-wrap: anywhere;
         font-size: 1rem;
-        a:not(.fw-semibold) {
+        a:not(.group-header) {
             display: block;
             text-decoration: none;
             color: var(--bs-body-color);
@@ -125,6 +131,9 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
                 background-color: transparentize($success, 0.75);
                 border-inline-end: 2pt solid var(--bs-success);
             }
+        }
+        .section-link {
+            color: var(--bs-tertiary-color);
         }
     }
 
@@ -154,6 +163,9 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
             margin-bottom: 0;
             color: var(--bs-body-color);
             font-family: $font-family-sans-serif;
+        }
+        svg[data-icon] {
+            margin-left: -7.25pt;
         }
     }
     summary::marker,

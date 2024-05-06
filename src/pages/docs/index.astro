@@ -3,19 +3,54 @@ import PageLayout from '@layouts/PageLayout.astro';
 import { getCollection } from 'astro:content';
 import type { SidebarEntry } from '@utils/types';
 import { addEntriesToSection, sanitizeNfCoreLabels } from '@utils/functions';
-import HomepageCard from '@components/homepage/HomepageCard.astro';
+import { Icon } from 'astro-icon/components';
 
 let docs = await getCollection('docs');
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
-let sections: SidebarEntry[] = [
-    { type: 'group', label: 'Usage', href: '/docs/usage', entries: [], collapsed: false },
-    { type: 'group', label: 'Contributing', href: '/docs/contributing', entries: [], collapsed: false },
-    { type: 'group', label: 'Tutorials', href: '/docs/tutorials', entries: [], collapsed: false },
-    { type: 'group', label: 'Guidelines', href: '/docs/guidelines', entries: [], collapsed: false },
-    { type: 'group', label: 'Checklists', href: '/docs/checklists', entries: [], collapsed: false },
-    { type: 'group', label: 'nf-core/tools', href: '/docs/nf-core-tools', entries: [], collapsed: false },
-];
 
+let sections: SidebarEntry[] = [
+    { type: 'group', label: 'Usage', href: '/docs/usage', entries: [], collapsed: false, icon: 'octicon:play-16' },
+    {
+        type: 'group',
+        label: 'Contributing',
+        href: '/docs/contributing',
+        entries: [],
+        collapsed: false,
+        icon: 'octicon:git-pull-request-16',
+    },
+    {
+        type: 'group',
+        label: 'Tutorials',
+        href: '/docs/tutorials',
+        entries: [],
+        collapsed: false,
+        icon: 'octicon:mortar-board-16',
+    },
+    {
+        type: 'group',
+        label: 'Guidelines',
+        href: '/docs/guidelines',
+        entries: [],
+        collapsed: false,
+        icon: 'octicon:law-16',
+    },
+    {
+        type: 'group',
+        label: 'Checklists',
+        href: '/docs/checklists',
+        entries: [],
+        collapsed: false,
+        icon: 'octicon:tasklist-16',
+    },
+    {
+        type: 'group',
+        label: 'nf-core/tools',
+        href: '/docs/nf-core-tools',
+        entries: [],
+        collapsed: false,
+        icon: 'octicon:tools-16',
+    },
+];
 addEntriesToSection(sections, docs, Astro.url.pathname);
 // sort all entries by weight if available recursively
 const sortEntries = (entries: SidebarEntry[]) => {
@@ -115,11 +150,12 @@ highlightSections = highlightSections.flat();
                             sections.map((section) => (
                                 <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxxxl-2 card">
                                     <span class="card-header">
-                                        <a href={section.href} class="text-decoration-none">
+                                        <a href={section.href} class="text-decoration-none d-flex align-items-center">
+                                            {section.icon && <Icon name={section.icon} class={'me-2'} />}
                                             {sanitizeNfCoreLabels(section.label)}
                                         </a>
                                     </span>
-                                    <ul class="card-body mx-3 mb-0 list-unstyled" id={section.label?.replace('/', '-')}>
+                                    <ul class="card-body mb-0 list-unstyled" id={section.label?.replace('/', '-')}>
                                         {section.entries?.map((entry) => {
                                             if (entry.type === 'link') {
                                                 return (
@@ -131,17 +167,15 @@ highlightSections = highlightSections.flat();
                                                 return (
                                                     <li>
                                                         {entry.href && (
-                                                            <a href={entry.href} class="fw-semibold">
+                                                            <a href={entry.href} class="">
                                                                 {sanitizeNfCoreLabels(entry.label)}
                                                             </a>
                                                         )}
                                                         {!entry.href && (
-                                                            <span class="fw-semibold">
-                                                                {sanitizeNfCoreLabels(entry.label)}
-                                                            </span>
+                                                            <span class="">{sanitizeNfCoreLabels(entry.label)}</span>
                                                         )}
                                                         {entry.entries && (
-                                                            <ul class="list-unstyled">
+                                                            <ul class="list-unstyled ps-3">
                                                                 {entry.entries.map((subentry) => (
                                                                     <li class="">
                                                                         <a
@@ -174,9 +208,6 @@ highlightSections = highlightSections.flat();
         &:hover {
             text-decoration: underline;
         }
-    }
-    .list-unstyled li {
-        padding-left: 1rem;
     }
     .card.position-relative:hover {
         border-color: var(--bs-secondary-color);
