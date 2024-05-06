@@ -135,7 +135,7 @@ if (showRightSidebar) {
             }
             {
                 leftSidebar && (
-                    <div class={`col-12 col-xl-${leftSidebarWidth} sidebar-right toc order-1`}>
+                    <div class={`col-12 col-xl-${leftSidebarWidth} d-none d-xl-block sidebar-left order-1`}>
                         {sidebarTitle && (
                             <a
                                 href={sections[0].href?.split('/').slice(0, 2).join('/').split('#')[0]}

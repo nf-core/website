@@ -1,6 +1,7 @@
 ---
 title: Hackathon - March 2024 (London)
 subtitle: Local node of the nf-core hackathon at Cosyne Therapeutics, London.
+shortTitle: London, UK
 type: hackathon
 startDate: '2024-03-18'
 startTime: '10:00+00:00'

@@ -1,6 +1,7 @@
 ---
 title: Hackathon - March 2024 (Argentina)
 subtitle: Local node of the nf-core hackathon
+shortTitle: Buenos Aires, Argentina
 type: hackathon
 startDate: '2024-03-18'
 startTime: '13:00+02:00'
