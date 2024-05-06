@@ -40,7 +40,4 @@ Depending on interest/activity, other potential activities could include:
 
 # Activities
 
-When were we thinking of having meetings?
-Are these going to be development meetings, or planning meetings?
-What platform should we post meetings on?
-Should we create a project board that we can post tasks on?
+Initial activities will involve a monthly meeting with developers and users, to identify the most relevant problems related meta-omics with nf-core pipelines. Future activities may include presentations and discussions from topic-experts, as well as  tutorials, workshops, and demo-days of nf-core pipelines.
