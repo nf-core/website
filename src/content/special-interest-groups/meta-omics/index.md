@@ -27,16 +27,16 @@ Meta-omics methods aim to simultaneously analyse the entire multi-species potent
 
 The initial aims of this interest group will be:
 
-1. helping coordinate compatibility between existing and potential meta-omic nf-core pipelines
-2. implementing semi-'chaining' of sequential pipelines
-3. developing standard parameters for different sub-disciplines (i.e. microbiome analysis) for each pipeline
-4. documenting usage of 'first level' meta-omic pipelines followed by complementary analyses with "secondary" pipelines such as #funcscan, #phageannotator, #phyloplace, #rnaseq, #differentialabundance etc.
+1. Helping coordinate compatibility between existing and potential meta-omic nf-core pipelines
+2. Implementing semi-'chaining' of sequential pipelines
+3. Developing standard parameters for different sub-disciplines (i.e. microbiome analysis) for each pipeline
+4. Documenting usage of 'first level' meta-omic pipelines followed by complementary analyses with "secondary" pipelines such as #funcscan, #phageannotator, #phyloplace, #rnaseq, #differentialabundance etc.
 
 Depending on interest/activity, other potential activities could include:
 
-1. benchmarking meta-omic pipelines using relevant datasets (i.e. CAMI2), or reads generated using #readsimulator
-2. adding nf-tests to meta-omic pipelines
-3. reducing functional redundancy between pipelines
+1. Benchmarking meta-omic pipelines using relevant datasets (i.e. CAMI2), or reads generated using #readsimulator
+2. Adding nf-tests to meta-omic pipelines
+3. Reducing functional redundancy between pipelines
 
 # Activities
 
