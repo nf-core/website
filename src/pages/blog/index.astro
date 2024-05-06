@@ -27,7 +27,6 @@ blogPosts = blogPosts
 
 // get years of all posts
 const years = [...new Set(blogPosts.map((post) => new Date(post.data.pubDate).getFullYear()))].sort((a, b) => b - a);
-console.log(years);
 const sections: SidebarEntry[] = years.map((year) => {
     return {
         type: 'group',

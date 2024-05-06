@@ -52,12 +52,11 @@ let sections: SidebarEntry[] = [];
 // add trailing slash to url if missing
 let url = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : Astro.url.pathname + '/';
 url = url.replace(/\.html\/$/, '/');
-
 // drop everything after docs/
 const baseURL = url.split('/').slice(0, 4).join('/') + '/';
 if (leftSidebar) {
     const addEntriesToSection = (sections, md_files) => {
-        const docSlugs = md_files.map((doc) => doc.slug);
+        const docSlugs = md_files.filter((f) => f.slug.startsWith(section)).map((doc) => doc.slug);
         docSlugs.forEach((slug) => {
             const parts = slug.split('/');
             let currentLevel = sections;
@@ -73,15 +72,12 @@ if (leftSidebar) {
                         existingEntry.type = 'group';
                         existingEntry.collapsed = Astro.url.pathname !== existingEntry.href;
                         existingEntry.entries = [];
+                        existingEntry.icon = 'fa-regular fa-book';
                         currentLevel = existingEntry.entries;
                     }
                 } else {
-                    const newEntry = createLinkOrGroup(
-                        part,
-                        baseURL + slug,
-                        i === parts.length - 1,
-                        Astro.url.pathname,
-                    );
+                    let newEntry: SidebarEntry;
+                    newEntry = createLinkOrGroup(part, baseURL + slug, i === parts.length - 1, Astro.url.pathname);
                     currentLevel.push(newEntry);
 
                     if (newEntry.type === 'group' && newEntry.entries) {

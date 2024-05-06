@@ -11,13 +11,13 @@ let url = Astro.url.pathname.endsWith('/') ? Astro.url.pathname.slice(0, -1) : A
 url = url.replace(/\.html$/, '');
 ---
 
-<div class="nav flex-column sticky-top-under align-items-end pt-1">
+<div class="nav sticky-top-under pt-1">
     <SidebarSubNav items={items} />
 </div>
 
 <style lang="scss">
     @import '@styles/_variables.scss';
     div.sticky-top-under {
-        max-width: 25rem;
+        max-width: 20rem;
     }
 </style>
