@@ -99,7 +99,8 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
     @import '@styles/_variables.scss';
 
     ul {
-        --sl-sidebar-item-padding-inline: 0.75rem;
+        --sl-sidebar-item-margin-inline: 0.75rem;
+        --sl-sidebar-item-padding-inline: 0.5rem;
         list-style: none;
         padding: 0;
     }
@@ -110,7 +111,7 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
             display: block;
             text-decoration: none;
             color: var(--bs-body-color);
-            padding: 0.3em calc(var(--sl-sidebar-item-padding-inline) / 2);
+            padding: 0.3em var(--sl-sidebar-item-padding-inline);
             border-inline-end: 2pt solid var(--bs-border-color);
             line-height: 1.4;
         }
@@ -138,7 +139,7 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
     }
 
     ul ul li {
-        margin-inline-start: calc(var(--sl-sidebar-item-padding-inline));
+        margin-inline-start: var(--sl-sidebar-item-margin-inline);
         border-inline-start: 1pt solid var(--bs-border-color);
         padding-inline-start: var(--sl-sidebar-item-padding-inline);
     }
@@ -159,7 +160,7 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
         a,
         span {
             text-decoration: none;
-            padding: 0.3em var(--sl-sidebar-item-padding-inline);
+            padding: 0.3em var(--sl-sidebar-item-margin-inline);
             margin-bottom: 0;
             color: var(--bs-body-color);
             font-family: $font-family-sans-serif;
