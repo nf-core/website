@@ -135,20 +135,16 @@ if (showRightSidebar) {
             }
             {
                 leftSidebar && (
-                    <div
-                        class={`col-12 col-xl-${leftSidebarWidth} d-none d-xl-block sidebar-left pt-1 sticky-top-under order-1`}
-                    >
-                        <div class="">
-                            {sidebarTitle && (
-                                <a
-                                    href={sections[0].href?.split('/').slice(0, 2).join('/').split('#')[0]}
-                                    class="sidebar-title text-decoration-none"
-                                >
-                                    <strong class="h6 p-2 text-body">{sidebarTitle}</strong>
-                                </a>
-                            )}
-                            <SidebarNav items={sections} accordion={true} />
-                        </div>
+                    <div class={`col-12 col-xl-${leftSidebarWidth} sidebar-right toc order-1`}>
+                        {sidebarTitle && (
+                            <a
+                                href={sections[0].href?.split('/').slice(0, 2).join('/').split('#')[0]}
+                                class="sidebar-title text-decoration-none"
+                            >
+                                <strong class="h6 p-2 text-body">{sidebarTitle}</strong>
+                            </a>
+                        )}
+                        <SidebarNav items={sections} />
                     </div>
                 )
             }
@@ -165,9 +161,7 @@ if (showRightSidebar) {
     .markdown-content {
         max-width: $content-width;
     }
-    .sidebar-left {
-        max-width: 25rem;
-    }
+    .sidebar-left,
     .sidebar-right {
         max-width: 25rem;
     }
