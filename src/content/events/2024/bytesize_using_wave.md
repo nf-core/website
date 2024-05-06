@@ -1,5 +1,5 @@
 ---
-title: 'Bytesize: differnt ways to use Nextflows wave'
+title: 'Bytesize: Explaining Wave containers'
 subtitle: Phil Ewels, Seqera
 type: talk
 startDate: '2024-06-11'
