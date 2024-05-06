@@ -88,10 +88,6 @@ export const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[], u
                 existingEntry.entries = [];
             }
 
-            if (existingEntry && /index\.(md|mdx)$/.test(doc.id) && lastPart) {
-                existingEntry.href = '/docs/' + doc.slug;
-            }
-
             if (existingEntry) {
                 currentLevel = existingEntry.entries;
                 if (secondToLastPart && doc.data.parentWeight) {
@@ -100,7 +96,7 @@ export const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[], u
             } else {
                 const newEntry = createLinkOrGroup(
                     lastPart ? doc.data.shortTitle || part : part,
-                    lastPart ? '/docs/' + doc.slug : /index\.(md|mdx)$/.test(doc.id) ? '/docs/' + doc.slug : '', // add href to group if they have an index file
+                    lastPart ? '/docs/' + doc.slug : '', // add href to group if they have an index file
                     lastPart,
                     url,
                     secondToLastPart && doc.data.parentWeight ? doc.data.parentWeight : doc.data.weight,

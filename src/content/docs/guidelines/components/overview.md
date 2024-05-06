@@ -1,6 +1,7 @@
 ---
 title: Specifications of nf-core components
 subtitle: Specifications for writing any nf-core component
+weight: 1
 ---
 
 nf-core aims to produce high-quality Nextflow pipelines.

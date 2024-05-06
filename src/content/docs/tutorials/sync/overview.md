@@ -1,6 +1,7 @@
 ---
 title: Synchronisation
 subtitle: Learn how nf-core pipelines are automatically kept up to date with community standards.
+weight: 1
 ---
 
 # Introduction
