@@ -99,8 +99,8 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
     @import '@styles/_variables.scss';
 
     ul {
-        --sl-sidebar-item-margin-inline: 0.75rem;
-        --sl-sidebar-item-padding-inline: 0.5rem;
+        --sl-sidebar-item-margin-inline: 9pt;
+        --sl-sidebar-item-padding-inline: 0.8rem;
         list-style: none;
         padding: 0;
     }
@@ -114,8 +114,6 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
             padding: 0.3em var(--sl-sidebar-item-padding-inline);
             border-inline-end: 2pt solid var(--bs-border-color);
             line-height: 1.4;
-        }
-        a {
             &:hover {
                 background-color: transparentize($success, 0.85);
             }
@@ -144,12 +142,6 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
         padding-inline-start: var(--sl-sidebar-item-padding-inline);
     }
 
-    .top-level summary .h5 {
-        padding-top: 0.15rem;
-        padding-bottom: 0.15rem;
-        margin-bottom: 0;
-    }
-
     summary {
         display: flex;
         align-items: center;
@@ -160,20 +152,30 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
         a,
         span {
             text-decoration: none;
-            padding: 0.3em var(--sl-sidebar-item-margin-inline);
+            padding: 0.3em 0.5rem;
             margin-bottom: 0;
             color: var(--bs-body-color);
             font-family: $font-family-sans-serif;
         }
+
         svg[data-icon] {
             margin-left: -7.25pt;
         }
-    }
-    summary::marker,
-    summary::-webkit-details-marker {
-        display: none;
+        &::marker,
+        &::-webkit-details-marker {
+            display: none;
+        }
     }
 
+    .top-level summary .h5 {
+        padding-top: 0.15rem;
+        padding-bottom: 0.15rem;
+        margin-bottom: 0;
+        a,
+        span {
+            padding-left: var(--sl-sidebar-item-margin-inline);
+        }
+    }
     .caret {
     }
     .hover-target {
