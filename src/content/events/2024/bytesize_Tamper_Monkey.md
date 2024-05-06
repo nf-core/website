@@ -10,7 +10,7 @@ locations:
   - links: https://kth-se.zoom.us/j/68390542812
 ---
 
-This week Phil Ewels ([@ewels](https://github.com/ewels/)) will show us how to modify any website using the Tamper Monkey browser plugin.
+This week Phil Ewels ([@ewels](https://github.com/ewels/)) will show us how to modify any website using the [Tamper Monkey browser plugin](https://www.tampermonkey.net/).
 
 The rough outline of the talk will be:
 
