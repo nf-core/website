@@ -10,7 +10,7 @@ Here you can read how we organise ourselves, how we are funded and how the nf-co
 
 Please note that all nf-core community members are expected to adhere to our [code of conduct](/code_of_conduct).
 
-# Financial Support
+# Financial support
 
 The vast majority of nf-core development is done as a labour of love, on a voluntary basis.
 Most of all, we would like to thank all contributors (and their employers!).
@@ -20,30 +20,6 @@ A number of projects and grants list nf-core as collaborators and also contribut
 If you work with a project that would benefit from an explicit link with nf-core, please let us know.
 
 Finally, we would specifically like to acknowledge and thank the following sponsors who help to support the project:
-
-## Chan Zuckerberg Initiative
-
-<img src="/images/contributors/colour/CZI.svg" alt="Chan Zuckerberg Initiative" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
-
-The Chan Zuckerberg Initiative (CZI) is a great supporter of scientific open-source software.
-We are very grateful to them for supporting nf-core and [Nextflow](https://nextflow.io/) with several grants through their _Essential Open Source Software for Science_ (EOSS) grants:
-
-- [EOSS - second round](https://chanzuckerberg.com/eoss/proposals/nextflow-and-nf-core/)
-- [EOSS - fourth round](https://chanzuckerberg.com/eoss/proposals/nextflow-and-nf-core-reproducible-workflows-for-the-scientific-community-cycle-4/)
-- [EOSS - Diversity & Inclusion](https://cziscience.medium.com/advancing-diversity-and-inclusion-in-scientific-open-source-eaabe6a5488b)
-
-Amongst other things, the CZI EOSS grant money has enabled the nf-core community to:
-
-- Hire a dedicated coordinator / safety officer (50%)
-- Hire a dedicated developer for nf-core (50%)
-- Cover operational costs, such as our Slack subscription fees
-- Organise events, such as hackathons
-- Run organised mentorship programmes
-- Hiring local community advocates from geographical areas where we currently lack representation
-
-The CZI grant employs personnel based at the [SciLifeLab National Genomics Infrastructure](https://ngisweden.scilifelab.se/), the [Quantitative Biology Center](http://qbic.life/) in Tübingen Germany, and [Seqera](https://seqera.io/).
-
-<div class="clearfix"></div>
 
 ## Seqera
 
@@ -57,9 +33,22 @@ Specifically, Seqera helps nf-core with:
 
 - Event organisation and costs
 - Website hosting
-- Employment of several core contributors
-- A [Seqera Cloud Pro](https://seqera.io/pricing/) account for launching and managing full-size release tests.
+- Employment of numerous major contributors
+- A [Seqera Cloud Pro](https://seqera.io/pricing/) account for launching and managing full-size release tests
 - Providing and maintaining Nextflow! ✨
+
+<div class="clearfix"></div>
+
+## SciLifeLab NGI
+
+<img src="/images/contributors/colour/NGI.svg" alt="SciLifeLab National Genomics Infrastructure" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
+
+The nf-core community was founded with pipelines from the [SciLifeLab National Genomics Infrastructure](https://ngisweden.scilifelab.se/) (NGI).
+The NGI continues to support nf-core across a number of fronts:
+
+- Funding a part time position for organisational support, covering organisation of bytesize talks and other outreach ([@FranBonath](https://github.com/FranBonath), Franziska Bonath)
+- Paying for the renewal fees of the nf-core <i class="fab fa-slack me-1"></i> Slack
+- Involvement in the steering group and grant writing
 
 <div class="clearfix"></div>
 
@@ -69,6 +58,15 @@ Specifically, Seqera helps nf-core with:
 
 The [SciLifeLab Data Centre](https://www.scilifelab.se/data/) supports nf-core with funding from the [SciLifeLab & Wallenberg National Program for Data-Driven Life Science](https://www.scilifelab.se/data-driven/).
 This funding covers a full-time position ([@mashehu](https://github.com/mashehu), Matthias Hörtenhuber) to work on maintainance of nf-core framework code. For example, the [nf-core website](https://nf-co.re/) and the [nf-core/tools package](https://github.com/nf-core/tools/).
+
+<div class="clearfix"></div>
+
+## Centre for Genomic Regulation
+
+<img src="/images/contributors/colour/CRG.svg" alt="Centre for Genomic Regulation" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
+
+Nextflow was initially written at the [Centre for Genomic Regulation](https://www.crg.eu/) in [Cedric Notredame's group](https://www.crg.eu/cedric_notredame).
+Cedric's group supports nf-core by funding a position with 50% time spent on core infrastructure development ([@mirpedrol](https://github.com/mirpedrol), Júlia Mir Pedrol).
 
 <div class="clearfix"></div>
 
@@ -93,7 +91,34 @@ You will soon be able to explore and download these pipeline results on the nf-c
 
 <div class="clearfix"></div>
 
-# Open Source Support
+# Past support
+
+## Chan Zuckerberg Initiative
+
+<img src="/images/contributors/colour/CZI.svg" alt="Chan Zuckerberg Initiative" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
+
+The Chan Zuckerberg Initiative (CZI) is a great supporter of scientific open-source software.
+We are very grateful to them for supporting nf-core and [Nextflow](https://nextflow.io/) with several grants through their _Essential Open Source Software for Science_ (EOSS) grants:
+
+- [EOSS - second round](https://chanzuckerberg.com/eoss/proposals/nextflow-and-nf-core/)
+- [EOSS - fourth round](https://chanzuckerberg.com/eoss/proposals/nextflow-and-nf-core-reproducible-workflows-for-the-scientific-community-cycle-4/)
+- [EOSS - Diversity & Inclusion](https://cziscience.medium.com/advancing-diversity-and-inclusion-in-scientific-open-source-eaabe6a5488b)
+
+The grants were awarded for the period of 2022-2024.
+Amongst other things, the CZI EOSS grant money enabled the nf-core community to:
+
+- Hire a dedicated coordinator / safety officer (50%)
+- Hire a dedicated developer for nf-core (50%)
+- Cover operational costs, such as our Slack subscription fees
+- Organise events, such as hackathons
+- Run organised mentorship programmes
+- Hiring local community advocates from geographical areas where we currently lack representation
+
+The CZI grant employed personnel based at the [SciLifeLab National Genomics Infrastructure](https://ngisweden.scilifelab.se/), the [Quantitative Biology Center](http://qbic.life/) in Tübingen Germany, and [Seqera](https://seqera.io/).
+
+<div class="clearfix"></div>
+
+# Open source support
 
 We also thank the following organisations for supporting nf-core through providing us 'open source plans' of their services:
 
@@ -117,11 +142,11 @@ We also thank the following organisations for supporting nf-core through providi
 
 # History of nf-core
 
-The nf-core project came about at the start of 2018. [Phil Ewels](http://phil.ewels.co.uk/) ([@ewels](https://github.com/ewels/)) was the head of the development facility at [NGI Stockholm](https://ngisweden.scilifelab.se/) (National Genomics Infrastructure), part of [SciLifeLab](https://www.scilifelab.se/) in Sweden.
+The nf-core project came about at the start of 2018 when [Phil Ewels](http://phil.ewels.co.uk/) ([@ewels](https://github.com/ewels/)) was the head of the development facility at [NGI Stockholm](https://ngisweden.scilifelab.se/) (National Genomics Infrastructure), part of [SciLifeLab](https://www.scilifelab.se/) in Sweden.
 
-The NGI had been developing analysis pipelines for use with it's genomics data for several years and started using a set of standards for each pipeline created. This helped other people run the pipelines on their own systems; typically Swedish research groups at first, but later on other groups and core genomics facilities too such as [QBIC](http://qbic.life/) in Tübingen.
+The NGI had been developing analysis pipelines for use with it's genomics data for several years and started using a set of standards for each pipeline created. This helped other people run the pipelines on their own systems; typically Swedish research groups at first, but later on other groups and core genomics facilities too such as [QBIC](http://qbic.life/) in Tübingen, Germany.
 
-As the number of users and contributors grew, the pipelines began to outgrow the SciLifeLab and NGI branding. To try to open up the effort into a truly collaborative project, [nf-core](https://github.com/nf-core) was created and all relevant pipelines moved to this new GitHub Organisation.
+As the number of users and contributors grew, the pipelines began to outgrow the SciLifeLab and NGI branding. To try to open up the effort into a truly collaborative project, [nf-core](https://github.com/nf-core) was created and all relevant pipelines moved to this new nf-core GitHub Organisation.
 
-The early days of nf-core were greatly shaped by [Alex Peltzer](https://apeltzer.github.io/) ([@apeltzer](https://github.com/apeltzer/)), [Sven Fillinger](https://uni-tuebingen.de/en/research/research-infrastructure/quantitative-biology-center-qbic/team0/sven-fillinger/) ([@sven1103](https://github.com/sven1103/)) and [Andreas Wilm](https://andreas-wilm.github.io/) ([@andreas-wilm](https://github.com/andreas-wilm/)).
+The very early days of nf-core were greatly shaped by [Alex Peltzer](https://apeltzer.github.io/) ([@apeltzer](https://github.com/apeltzer/)), [Sven Fillinger](https://uni-tuebingen.de/en/research/research-infrastructure/quantitative-biology-center-qbic/team0/sven-fillinger/) ([@sven1103](https://github.com/sven1103/)) and [Andreas Wilm](https://andreas-wilm.github.io/) ([@andreas-wilm](https://github.com/andreas-wilm/)).
 Without them, the project would not exist.
