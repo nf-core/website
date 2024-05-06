@@ -132,8 +132,8 @@ highlightSections = highlightSections.flat();
                         highlightSections &&
                             highlightSections.map((section, i) => (
                                 <>
-                                    {i % 2 !== 0 && <div class="d-none d-md-block g-col-md-4" />}
-                                    <div class="g-col-12 g-col-md-8 card position-relative">
+                                    {/* {i % 2 !== 0 && <div class="d-none d-md-block g-col-md-3" />} */}
+                                    <div class="g-col-12 g-col-md-6 card position-relative">
                                         <div class="card-body">
                                             <a href={section.href} class="h4 stretched-link text-decoration-none">
                                                 {section.metadata.data.title}
@@ -141,7 +141,7 @@ highlightSections = highlightSections.flat();
                                             <div class="card-text">{section.metadata.data.subtitle}</div>
                                         </div>
                                     </div>
-                                    {i % 2 === 0 && <div class="d-none d-md-block g-col-md-4" />}
+                                    {/* {i % 2 === 0 && <div class="d-none d-md-block g-col-md-3" />} */}
                                 </>
                             ))
                     }
@@ -174,7 +174,7 @@ highlightSections = highlightSections.flat();
                                                         {!entry.href && (
                                                             <span class="">{sanitizeNfCoreLabels(entry.label)}</span>
                                                         )}
-                                                        {entry.entries && (
+                                                        {/* {entry.entries && (
                                                             <ul class="list-unstyled ps-3">
                                                                 {entry.entries.map((subentry) => (
                                                                     <li class="">
@@ -187,7 +187,7 @@ highlightSections = highlightSections.flat();
                                                                     </li>
                                                                 ))}
                                                             </ul>
-                                                        )}
+                                                        )} */}
                                                     </li>
                                                 );
                                             }
