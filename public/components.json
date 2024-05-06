@@ -5289,6 +5289,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -26600,6 +26604,10 @@
         {
           "name": "multiplesequencealign",
           "version": "dev"
+        },
+        {
+          "name": "reportho",
+          "version": "dev"
         }
       ]
     },
@@ -30145,10 +30153,22 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing fasta information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "The reference fasta file",
               "pattern": "*.{fasta,fa}"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing fasta index information\ne.g. [ id:'test', single_end:false ]\n"
             }
           },
           {
@@ -41434,6 +41454,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -42191,6 +42215,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -47382,6 +47410,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -65283,7 +65315,9 @@
               "homepage": "https://github.com/mkirsche/Jasmine/wiki/Jasmine-User-Manual",
               "documentation": "https://github.com/mkirsche/Jasmine/wiki/Jasmine-User-Manual",
               "tool_dev_url": "https://github.com/mkirsche/Jasmine",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -65296,14 +65330,14 @@
           },
           {
             "vcfs": {
-              "type": "files",
+              "type": "list",
               "description": "The VCF files that need to be merged\n",
               "pattern": "*.{vcf,vcf.gz}"
             }
           },
           {
             "bams": {
-              "type": "files",
+              "type": "list",
               "description": "Optional - The BAM files from which the VCFs were created",
               "pattern": "*.bam"
             }
@@ -65316,10 +65350,22 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing fasta information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "Optional - The reference FASTA file used to create the VCFs",
               "pattern": "*.{fasta,fa}"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing fasta index information\ne.g. [ id:'test', single_end:false ]\n"
             }
           },
           {
@@ -72023,6 +72069,19 @@
               "type": "file",
               "description": "VCF file produces by Manta",
               "pattern": "*.vcf.gz"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing fasta information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "The reference fasta file",
+              "pattern": "*.{fasta,fa,fna}"
             }
           }
         ],
@@ -116198,7 +116257,13 @@
         "maintainers": [
           "@saulpierotti"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phaseimpute",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "stranger",
