@@ -11,11 +11,11 @@ of every month at 4 PM CET / 10 AM EDT / 7 AM PDT for 1h.
 
 The first meeting will be on Wednesday, April 17th, at 16:00 CEST. For this inaugural session, we are honored to announce Christa Kühn, president of the Friedrich Loeffler Institute, BovReg project coordinator and former coordinator of EuroFAANG RI, as the speaker. Christa is well-known in the Bovine field for her important contributions to animal genetics. Her talk will be followed by a round table where the structure of the series will be announced and discussed with the participants.
 
-| Date   |      Speaker       |
-|----------:|:-------------|
-| Apr 17 | Christa Kühn (BovReg; Friedrich Loeffler Institute, Germany) | 
-| May 15 | Alessandro Bagnato (Department of Veterinary Medicine, University of Milan, Italy)
-| Jun 19 | Yuliaxis Ramayo (HoloRuminant; Institute of Agrifood Research and Technology (IRTA), Spain) |
+|   Date | Speaker                                                                                                                                                                                                                                                                        |
+| -----: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Apr 17 | Christa Kühn (BovReg; Friedrich Loeffler Institute, Germany)                                                                                                                                                                                                                   |
+| May 15 | Alessandro Bagnato (Department of Veterinary Medicine, University of Milan, Italy)                                                                                                                                                                                             |
+| Jun 19 | Yuliaxis Ramayo (HoloRuminant; Institute of Agrifood Research and Technology (IRTA), Spain)                                                                                                                                                                                    |
 | Jul 17 | Cristina Casto / Michael Toscano (COST Action CA22112: EU-LI-PHE; Institute for Animal Science and Technology, Universitat Politècnica de València, Spain / Center for Proper Housing: Poultry and Rabbits, Division of Animal Welfare, VPHI, University of Bern, Switzerland) |
 
 # How to join
