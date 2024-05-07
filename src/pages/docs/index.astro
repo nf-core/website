@@ -117,11 +117,7 @@ highlightSections = highlightSections.flat();
 >
     <div class="container-fluid main-content">
         <div class="row">
-            <div class="col-12 col-md-3 sticky-top-under d-none d-md-inline sidebar-left">
-                <SidebarNav items={sections} />
-            </div>
-
-            <div class="col-12 col-md-8">
+            <div class="col-12 col-xl-8 order-2">
                 <div class="grid">
                     {
                         highlightSections &&
@@ -192,6 +188,9 @@ highlightSections = highlightSections.flat();
                             ))
                     }
                 </div>
+            </div>
+            <div class="col-12 col-xl-3 sticky-top-under d-none d-xl-inline sidebar-left order-1">
+                <SidebarNav items={sections} />
             </div>
         </div>
     </div>
