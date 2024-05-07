@@ -16,7 +16,7 @@ blogPosts = blogPosts
         if (process.env.CONTEXT === 'production') {
             return post.data.draft !== true && pubDate < new Date();
         } else {
-            return true;
+            return post.data.draft || pubDate < new Date();
         }
     })
     .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
