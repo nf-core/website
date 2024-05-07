@@ -9,13 +9,13 @@ let docs = await getCollection('docs');
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
 
 let sections: SidebarEntry[] = [
-    { type: 'group', label: 'Usage', href: '/docs/usage', entries: [], collapsed: false, icon: 'octicon:play-16' },
+    { type: 'group', label: 'Usage', href: '/docs/usage', entries: [], collapsed: true, icon: 'octicon:play-16' },
     {
         type: 'group',
         label: 'Contributing',
         href: '/docs/contributing',
         entries: [],
-        collapsed: false,
+        collapsed: true,
         icon: 'octicon:git-pull-request-16',
     },
     {
@@ -23,7 +23,7 @@ let sections: SidebarEntry[] = [
         label: 'Tutorials',
         href: '/docs/tutorials',
         entries: [],
-        collapsed: false,
+        collapsed: true,
         icon: 'octicon:mortar-board-16',
     },
     {
@@ -31,7 +31,7 @@ let sections: SidebarEntry[] = [
         label: 'Guidelines',
         href: '/docs/guidelines',
         entries: [],
-        collapsed: false,
+        collapsed: true,
         icon: 'octicon:law-16',
     },
     {
@@ -39,7 +39,7 @@ let sections: SidebarEntry[] = [
         label: 'Checklists',
         href: '/docs/checklists',
         entries: [],
-        collapsed: false,
+        collapsed: true,
         icon: 'octicon:tasklist-16',
     },
     {
@@ -47,7 +47,7 @@ let sections: SidebarEntry[] = [
         label: 'nf-core/tools',
         href: '/docs/nf-core-tools',
         entries: [],
-        collapsed: false,
+        collapsed: true,
         icon: 'octicon:tools-16',
     },
 ];
