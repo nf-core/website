@@ -64,7 +64,7 @@ const sections = years.map((year) => {
             {blogPosts.length === 0 && <div class="">Nothing to see her yet! Come back soon</div>}
             {
                 years.map((year) => (
-                    <div id={'year-' + year} class="d-flex align-items-start flex-wrap">
+                    <div id={'year-' + year} class="d-flex align-items-stretch flex-wrap">
                         {blogPosts
                             .filter((post) => new Date(post.data.pubDate).getFullYear() === year)
                             .map((post) => (
@@ -77,7 +77,7 @@ const sections = years.map((year) => {
                                             : '',
                                     ]}
                                 >
-                                    <div class="position-relative">
+                                    <div class="position-relative card-body">
                                         <a
                                             href={'/blog/' + post.slug}
                                             class:list={[
@@ -102,10 +102,11 @@ const sections = years.map((year) => {
                                                 alt={post.data.headerImageAlt || ''}
                                                 height={240}
                                                 width={512}
+                                                densities={[1.5, 2]}
                                                 transition:name="cover-image"
                                             />
                                         )}
-                                        <div class="card-body">
+                                        <div class="card-text">
                                             <h2 transition:name="title">{post.data.title}</h2>
                                             <p class="lead">{post.data.subtitle}</p>
                                             <p class="card-text small">
@@ -152,6 +153,9 @@ const sections = years.map((year) => {
         width: 32rem;
         .card-footer :global(a) {
             margin-bottom: 0 !important;
+        }
+        &:hover {
+            border-color: var(--bs-tertiary-color);
         }
     }
     @include media-breakpoint-down(md) {
