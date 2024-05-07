@@ -4,6 +4,7 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import { Icon } from 'astro-icon/components';
 import type { SidebarEntry } from '@utils/types';
 import { sanitizeNfCoreLabels, addEntriesToSection } from '@utils/functions';
+import SidebarSubNav from '@components/sidebar/SidebarSubNav.astro';
 
 export async function getStaticPaths() {
     return ['tutorials', 'usage', 'contributing', 'nf-core-tools', 'checklists', 'guidelines'].map((subsection) => ({
@@ -157,11 +158,7 @@ const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, '').split('/');
     </div>
     <div class="container-fluid main-content">
         <div class="row">
-            <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left">
-                <SidebarNav items={sections} />
-            </div>
-
-            <div class="col-12 col-md-10">
+            <div class="col-12 col-xl-8 order-2">
                 <p>
                     This is the overview of the {subsection} section.
                 </p>
@@ -171,7 +168,7 @@ const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, '').split('/');
                         {
                             subsections &&
                                 subsections.entries.map((section) => (
-                                    <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3 card position-relative">
+                                    <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxxxl-2 card position-relative">
                                         <span class="card-header">
                                             {section.href && (
                                                 <a
@@ -198,16 +195,7 @@ const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, '').split('/');
                                         )}
 
                                         <ul class="card-body mx-3 mb-0" id={section.label?.replace('/', '-')}>
-                                            {section.entries?.map((entry) => {
-                                                return (
-                                                    <li>
-                                                        <a
-                                                            href={entry.href}
-                                                            set:html={sanitizeNfCoreLabels(entry.label)}
-                                                        />
-                                                    </li>
-                                                );
-                                            })}
+                                            {section.entries && <SidebarSubNav items={section.entries} nested={true} />}
                                         </ul>
                                     </div>
                                 ))
@@ -215,7 +203,22 @@ const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, '').split('/');
                     </div>
                 </div>
             </div>
+
+            <div class="col-12 col-xl-3 sticky-top-under d-none d-xl-inline sidebar-left order-1">
+                <SidebarNav items={sections} />
+            </div>
         </div>
     </div>
 </PageLayout>
-<style></style>
+<style is:global>
+    .card li {
+        a,
+        summary {
+            border-inline-end: none !important;
+        }
+        a:hover {
+            text-decoration: underline !important;
+            background-color: transparent !important;
+        }
+    }
+</style>
