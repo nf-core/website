@@ -54,10 +54,7 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
                         </a>
                     ) : (
                         <details open={containsCurrent || item.isCurrent || !item.collapsed}>
-                            <summary
-                                aria-current={item.isCurrent && 'page'}
-                                class:list={[{ 'border-success': containsCurrent }]}
-                            >
+                            <summary aria-current={item.isCurrent && 'page'}>
                                 <div class:list={[{ h6: !nested }, 'group-label flex-grow-1']}>
                                     {item.href ? (
                                         <a
@@ -88,12 +85,7 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
                                     )}
                                 </div>
                                 <div class="hover-target">
-                                    <i
-                                        class:list={[
-                                            'fa-solid fa-chevron-right fa-xs mx-3 h-100 caret',
-                                            { 'text-success': containsCurrent },
-                                        ]}
-                                    />
+                                    <i class:list={['fa-solid fa-chevron-right fa-xs mx-3 h-100 caret']} />
                                 </div>
                             </summary>
                             <Astro.self items={item.entries} nested={true} />
