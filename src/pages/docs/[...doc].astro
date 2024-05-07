@@ -29,11 +29,10 @@ let next_page: { title: string; slug: string } | null = null;
 const docs = await getCollection('docs');
 
 let sections: SidebarEntry[] = [
-    { type: 'group', label: 'Usage', href: '/docs/usage', entries: [], collapsed: true, icon: 'octicon:play-16' },
+    { type: 'group', label: 'Usage', entries: [], collapsed: true, icon: 'octicon:play-16' },
     {
         type: 'group',
         label: 'Contributing',
-        href: '/docs/contributing',
         entries: [],
         collapsed: true,
         icon: 'octicon:git-pull-request-16',
@@ -41,7 +40,6 @@ let sections: SidebarEntry[] = [
     {
         type: 'group',
         label: 'Tutorials',
-        href: '/docs/tutorials',
         entries: [],
         collapsed: true,
         icon: 'octicon:mortar-board-16',
@@ -49,7 +47,6 @@ let sections: SidebarEntry[] = [
     {
         type: 'group',
         label: 'Guidelines',
-        href: '/docs/guidelines',
         entries: [],
         collapsed: true,
         icon: 'octicon:law-16',
@@ -57,7 +54,6 @@ let sections: SidebarEntry[] = [
     {
         type: 'group',
         label: 'Checklists',
-        href: '/docs/checklists',
         entries: [],
         collapsed: true,
         icon: 'octicon:tasklist-16',
@@ -65,7 +61,6 @@ let sections: SidebarEntry[] = [
     {
         type: 'group',
         label: 'nf-core/tools',
-        href: '/docs/nf-core-tools',
         entries: [],
         collapsed: true,
         icon: 'octicon:tools-16',
