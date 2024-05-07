@@ -81,7 +81,7 @@ const sections = years.map((year) => {
                                         <a
                                             href={'/blog/' + post.slug}
                                             class:list={[
-                                                'new-post-badge text-decoration-none badge text-bg-primary fs-6 mb-0  rounded-top-0 w-25 m-auto position-absolute top-0 start-0 end-0',
+                                                'post-badge text-decoration-none badge text-bg-primary fs-6 mb-0  rounded-top-0 w-25 m-auto position-absolute top-0 start-0 end-0',
                                                 new Date(Date.now()) > new Date(post.data.pubDate) &&
                                                 new Date(post.data.pubDate) >
                                                     new Date(Date.now() - 2 * 24 * 60 * 60 * 1000)
@@ -91,6 +91,16 @@ const sections = years.map((year) => {
                                         >
                                             New post!
                                         </a>
+                                        {post.data.draft && (
+                                            <a
+                                                href={'/blog/' + post.slug}
+                                                class:list={[
+                                                    'post-badge text-decoration-none badge text-bg-danger fs-6 mb-0  rounded-top-0 w-25 m-auto position-absolute top-0 start-0 end-0',
+                                                ]}
+                                            >
+                                                draft
+                                            </a>
+                                        )}
                                         {post.data.headerImage && (
                                             <Image
                                                 src={
@@ -159,7 +169,7 @@ const sections = years.map((year) => {
             width: 100%;
         }
     }
-    .new-post-badge {
+    .post-badge {
         z-index: 10;
     }
 </style>
