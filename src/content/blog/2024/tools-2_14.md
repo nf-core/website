@@ -45,7 +45,7 @@ This patch release contains some template changes and nf-core/tools updates. For
   These files are responsible for the Continuous Integration tests. In general, accept all changes made on these files.
 
   - `.github/workflows/ci.yml`: If you added your own tests to this file, for example, you added nf-test tests to your pipeline,
-    keep your changes, but accept the template updates related to versions, e.g.
+    keep your changes, but accept the template updates related to action versions, e.g.
 
     ```diff "v1" "v2"
     - uses: nf-core/setup-nextflow@v1
