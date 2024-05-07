@@ -64,7 +64,7 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
                                             set:html={sanitizeNfCoreLabels(item.label)}
                                         >
                                             {item.icon && item.icon.includes(':') ? (
-                                                <Icon name={item.icon} class={'me-2'} is:inline />
+                                                <Icon name={item.icon} class={'me-2 fs-5'} is:inline />
                                             ) : (
                                                 <i class={`me-2 ${item.icon}`} />
                                             )}
@@ -77,9 +77,11 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
                                         >
                                             {item.icon &&
                                                 (item.icon.includes(':') ? (
-                                                    <Icon name={item.icon} class={'me-2'} is:inline />
+                                                    <span class="h5">
+                                                        <Icon name={item.icon} class="me-2" is:inline />
+                                                    </span>
                                                 ) : (
-                                                    <i class={`me-2 fa-fw ${item.icon}`} />
+                                                    <i class={`me-2 fa-fw ${item.icon} text-reset`} />
                                                 ))}
                                         </span>
                                     )}
@@ -120,7 +122,11 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
             }
         }
         & summary[aria-current='page'] .group-label a:hover {
+            color: var(--bs-body-color);
             background-color: transparentize($success, 1);
+        }
+        .section-link {
+            color: var(--bs-secondary-color);
         }
         a,
         summary {
@@ -130,10 +136,10 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
                 color: var(--bs-body-color);
                 background-color: transparentize($success, 0.75);
                 border-inline-end: 2pt solid var(--bs-success);
+                .section-link {
+                    color: var(--bs-secondary-color);
+                }
             }
-        }
-        .section-link {
-            color: var(--bs-tertiary-color);
         }
     }
 
@@ -161,7 +167,7 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
 
         svg[data-icon],
         .fa-regular {
-            margin-left: -5.5pt;
+            margin-left: -7.25pt;
         }
         &::marker,
         &::-webkit-details-marker {
