@@ -9,7 +9,7 @@ label:
   - 'tools'
 ---
 
-This patch release contains some template changes and nf-core/tools updates. For a more detailed list of changes, you can read the [changelog](https://github.com/nf-core/tools/releases/tag/2.14.0).
+This release contains some template changes and nf-core/tools updates. For a more detailed list of changes, you can read the [changelog](https://github.com/nf-core/tools/releases/tag/2.14.0).
 
 # Highlights
 
