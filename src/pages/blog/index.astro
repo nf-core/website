@@ -70,14 +70,14 @@ const sections = years.map((year) => {
                             .map((post) => (
                                 <div
                                     class:list={[
-                                        'card m-xl-3 m-1',
+                                        'card m-xl-3 m-1 ',
                                         new Date(Date.now()) > new Date(post.data.pubDate) &&
                                         new Date(post.data.pubDate) > new Date(Date.now() - 2 * 24 * 60 * 60 * 1000)
                                             ? 'border-primary'
                                             : '',
                                     ]}
                                 >
-                                    <div class="position-relative card-body">
+                                    <div class=" card-body position-relative">
                                         <a
                                             href={'/blog/' + post.slug}
                                             class:list={[
@@ -154,9 +154,9 @@ const sections = years.map((year) => {
         .card-footer :global(a) {
             margin-bottom: 0 !important;
         }
-        &:hover {
-            border-color: var(--bs-tertiary-color);
-        }
+    }
+    .card-body:hover {
+        background-color: var(--bs-tertiary-bg);
     }
     @include media-breakpoint-down(md) {
         .card {
