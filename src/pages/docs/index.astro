@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 import type { SidebarEntry } from '@utils/types';
 import { addEntriesToSection, sanitizeNfCoreLabels } from '@utils/functions';
 import { Icon } from 'astro-icon/components';
+import SidebarSubNav from '@components/sidebar/SidebarSubNav.astro';
 
 let docs = await getCollection('docs');
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
@@ -141,48 +142,16 @@ highlightSections = highlightSections.flat();
                             sections.map((section) => (
                                 <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxxxl-2 card">
                                     <span class="card-header">
-                                        <a href={section.href} class="text-decoration-none d-flex align-items-center">
+                                        <a
+                                            href={`${section.label?.replace('/', '-').toLowerCase()}/`}
+                                            class="text-decoration-none d-flex align-items-center text-reset"
+                                        >
                                             {section.icon && <Icon name={section.icon} class={'me-2'} />}
                                             {sanitizeNfCoreLabels(section.label)}
                                         </a>
                                     </span>
                                     <ul class="card-body mb-0 list-unstyled" id={section.label?.replace('/', '-')}>
-                                        {section.entries?.map((entry) => {
-                                            if (entry.type === 'link') {
-                                                return (
-                                                    <li>
-                                                        <a href={entry.href}>{sanitizeNfCoreLabels(entry.label)}</a>
-                                                    </li>
-                                                );
-                                            } else {
-                                                return (
-                                                    <li>
-                                                        {entry.href && (
-                                                            <a href={entry.href} class="">
-                                                                {sanitizeNfCoreLabels(entry.label)}
-                                                            </a>
-                                                        )}
-                                                        {!entry.href && (
-                                                            <span class="">{sanitizeNfCoreLabels(entry.label)}</span>
-                                                        )}
-                                                        {/* {entry.entries && (
-                                                            <ul class="list-unstyled ps-3">
-                                                                {entry.entries.map((subentry) => (
-                                                                    <li class="">
-                                                                        <a
-                                                                            href={subentry.href}
-                                                                            set:html={sanitizeNfCoreLabels(
-                                                                                subentry.label,
-                                                                            )}
-                                                                        />
-                                                                    </li>
-                                                                ))}
-                                                            </ul>
-                                                        )} */}
-                                                    </li>
-                                                );
-                                            }
-                                        })}
+                                        {section.entries && <SidebarSubNav items={section.entries} nested={true} />}
                                     </ul>
                                 </div>
                             ))
@@ -203,10 +172,25 @@ highlightSections = highlightSections.flat();
             text-decoration: underline;
         }
     }
+    .card-header:hover {
+        text-decoration: underline;
+    }
     .card.position-relative:hover {
         border-color: var(--bs-secondary-color);
         & a {
             text-decoration: underline !important;
+        }
+    }
+</style>
+<style is:global>
+    .card li {
+        a,
+        summary {
+            border-inline-end: none !important;
+        }
+        a:hover {
+            text-decoration: underline !important;
+            background-color: transparent !important;
         }
     }
 </style>
