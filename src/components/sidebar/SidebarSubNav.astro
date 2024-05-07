@@ -58,11 +58,11 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
                                 aria-current={item.isCurrent && 'page'}
                                 class:list={[{ 'border-success': containsCurrent }]}
                             >
-                                <div class:list={[{ h5: !nested }, 'group-label flex-grow-1']}>
+                                <div class:list={[{ h6: !nested }, 'group-label flex-grow-1']}>
                                     {item.href ? (
                                         <a
                                             href={item.href}
-                                            class="group-header d-flex align-items-center"
+                                            class="group-header d-flex"
                                             data-weight={item.weight}
                                             set:html={sanitizeNfCoreLabels(item.label)}
                                         >
@@ -78,11 +78,12 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
                                             data-weight={item.weight}
                                             set:html={sanitizeNfCoreLabels(item.label)}
                                         >
-                                            {item.icon && item.icon.includes(':') ? (
-                                                <Icon name={item.icon} class={'me-2'} is:inline />
-                                            ) : (
-                                                <i class={`me-2 fa-fw ${item.icon}`} />
-                                            )}
+                                            {item.icon &&
+                                                (item.icon.includes(':') ? (
+                                                    <Icon name={item.icon} class={'me-2'} is:inline />
+                                                ) : (
+                                                    <i class={`me-2 fa-fw ${item.icon}`} />
+                                                ))}
                                         </span>
                                     )}
                                 </div>
@@ -176,7 +177,7 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
         }
     }
 
-    .top-level summary .h5 {
+    .top-level summary .h6 {
         padding-top: 0.15rem;
         padding-bottom: 0.15rem;
         margin-bottom: 0;
