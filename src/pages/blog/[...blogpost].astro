@@ -19,9 +19,9 @@ blogPosts = blogPosts
     .filter((post) => {
         const pubDate = new Date(post.data.pubDate);
         if (process.env.CONTEXT === 'production') {
-            return post.data.draft !== true && pubDate < new Date();
+            pubDate < new Date();
         } else {
-            return post.data.draft || pubDate < new Date();
+            return true;
         }
     })
     .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());

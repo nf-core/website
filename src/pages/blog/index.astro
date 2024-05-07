@@ -14,9 +14,9 @@ blogPosts = blogPosts
     .filter((post) => {
         const pubDate = new Date(post.data.pubDate);
         if (process.env.CONTEXT === 'production') {
-            return post.data.draft !== true && pubDate < new Date();
+            return pubDate < new Date();
         } else {
-            return post.data.draft || pubDate < new Date();
+            return true;
         }
     })
     .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
@@ -91,16 +91,6 @@ const sections = years.map((year) => {
                                         >
                                             New post!
                                         </a>
-                                        {post.data.draft && (
-                                            <a
-                                                href={'/blog/' + post.slug}
-                                                class:list={[
-                                                    'post-badge text-decoration-none badge text-bg-danger fs-6 mb-0  rounded-top-0 w-25 m-auto position-absolute top-0 start-0 end-0',
-                                                ]}
-                                            >
-                                                draft
-                                            </a>
-                                        )}
                                         {post.data.headerImage && (
                                             <Image
                                                 src={
