@@ -59,14 +59,14 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
                                     {item.href ? (
                                         <a
                                             href={item.href}
-                                            class="group-header d-flex"
+                                            class="group-header d-flex align-items-center"
                                             data-weight={item.weight}
                                             set:html={sanitizeNfCoreLabels(item.label)}
                                         >
                                             {item.icon && item.icon.includes(':') ? (
                                                 <Icon name={item.icon} class={'me-2 fs-5'} is:inline />
                                             ) : (
-                                                <i class={`me-2 ${item.icon}`} />
+                                                <i class={`me-2 fa-fw ${item.icon}`} />
                                             )}
                                         </a>
                                     ) : (
@@ -77,9 +77,7 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
                                         >
                                             {item.icon &&
                                                 (item.icon.includes(':') ? (
-                                                    <span class="h5">
-                                                        <Icon name={item.icon} class="me-2" is:inline />
-                                                    </span>
+                                                    <Icon name={item.icon} class="me-2 fs-5" is:inline />
                                                 ) : (
                                                     <i class={`me-2 fa-fw ${item.icon} text-reset`} />
                                                 ))}
