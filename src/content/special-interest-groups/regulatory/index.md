@@ -9,7 +9,6 @@ leads:
   - pbiology: Anders Lind
   - jemten: Anders Jemt
 
-
 pipelines:
   - rnaseq
   - smrnaseq
