@@ -13,11 +13,8 @@ let blogPosts = await getCollection('blog');
 blogPosts = blogPosts
     .filter((post) => {
         const pubDate = new Date(post.data.pubDate);
-        return pubDate < new Date();
-    })
-    .filter((post) => {
-        if (process.env.production) {
-            return post.data.draft !== true;
+        if (process.env.CONTEXT === 'production') {
+            return post.data.draft !== true && pubDate < new Date();
         } else {
             return true;
         }
