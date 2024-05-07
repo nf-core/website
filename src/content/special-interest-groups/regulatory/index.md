@@ -4,7 +4,7 @@ subtitle: 'Community of researchers with a shared interest in pipeline validatio
 groupName: Regulatory
 leads:
   - apeltzer: Alexander Peltzer
-  - gsturm: Gregor Sturm
+  - grst: Gregor Sturm
   - christopher-mohr: Christopher Mohr
   - pbiology: Anders Lind
   - jemten: Anders Jemt
