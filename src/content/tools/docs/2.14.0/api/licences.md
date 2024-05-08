@@ -1,8 +1,8 @@
-# nf\_core.licences
+# nf_core.licences
 
 Lists software licences for a given workflow.
 
-### *`class{:python}`*`nf_core.licences.WorkflowLicences(pipeline){:python}`
+### _`class{:python}`_`nf_core.licences.WorkflowLicences(pipeline){:python}`
 
 Bases: `object`
 
@@ -13,8 +13,8 @@ of a given nf-core pipeline.
 
 A condensed overview with license per dependency can be printed out.
 
-* **Parameters:**
-  **pipeline** (*str*) – An existing nf-core pipeline name, like nf-core/hlatyping
+- **Parameters:**
+  **pipeline** (_str_) – An existing nf-core pipeline name, like nf-core/hlatyping
   or short hlatyping.
 
 #### `fetch_conda_licences(){:python}`
@@ -29,8 +29,8 @@ Get the conda environment file for the pipeline
 
 Prints the fetched license information.
 
-* **Parameters:**
-  **as\_json** (*boolean*) – Prints the information in JSON. Defaults to False.
+- **Parameters:**
+  **as_json** (_boolean_) – Prints the information in JSON. Defaults to False.
 
 #### `run_licences(){:python}`
 

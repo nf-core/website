@@ -1,46 +1,46 @@
-# nf\_core.create
+# nf_core.create
 
 Creates a nf-core pipeline matching the current
 organization’s specification based on a template.
 
-### *`class{:python}`*`nf_core.create.PipelineCreate(name, description, author, version='1.0dev', no_git=False, force=False, outdir=None, template_yaml_path=None, plain=False, default_branch=None){:python}`
+### _`class{:python}`_`nf_core.create.PipelineCreate(name, description, author, version='1.0dev', no_git=False, force=False, outdir=None, template_yaml_path=None, plain=False, default_branch=None){:python}`
 
 Bases: `object`
 
 Creates a nf-core pipeline a la carte from the nf-core best-practice template.
 
-* **Parameters:**
-  * **name** (*str*) – Name for the pipeline.
-  * **description** (*str*) – Description for the pipeline.
-  * **author** (*str*) – Authors name of the pipeline.
-  * **version** (*str*) – Version flag. Semantic versioning only. Defaults to 1.0dev.
-  * **no\_git** (*bool*) – Prevents the creation of a local Git repository for the pipeline. Defaults to False.
-  * **force** (*bool*) – Overwrites a given workflow directory with the same name. Defaults to False.
+- **Parameters:**
+  - **name** (_str_) – Name for the pipeline.
+  - **description** (_str_) – Description for the pipeline.
+  - **author** (_str_) – Authors name of the pipeline.
+  - **version** (_str_) – Version flag. Semantic versioning only. Defaults to 1.0dev.
+  - **no_git** (_bool_) – Prevents the creation of a local Git repository for the pipeline. Defaults to False.
+  - **force** (_bool_) – Overwrites a given workflow directory with the same name. Defaults to False.
     May the force be with you.
-  * **outdir** (*str*) – Path to the local output directory.
-  * **template\_yaml\_path** (*str*) – Path to template.yml file for pipeline creation settings.
-  * **plain** (*bool*) – If true the Git repository will be initialized plain.
-  * **default\_branch** (*str*) – Specifies the –initial-branch name.
+  - **outdir** (_str_) – Path to the local output directory.
+  - **template_yaml_path** (_str_) – Path to template.yml file for pipeline creation settings.
+  - **plain** (_bool_) – If true the Git repository will be initialized plain.
+  - **default_branch** (_str_) – Specifies the –initial-branch name.
 
 #### `create_param_dict(name, description, author, version, template_yaml_path, plain, pipeline_dir){:python}`
 
 Creates a dictionary of parameters for the new pipeline.
 
-* **Parameters:**
-  * **name** (*str*) – Name for the pipeline.
-  * **description** (*str*) – Description for the pipeline.
-  * **author** (*str*) – Authors name of the pipeline.
-  * **version** (*str*) – Version flag.
-  * **template\_yaml\_path** (*str*) – Path to YAML file containing template parameters.
-  * **plain** (*bool*) – If true the pipeline template will be initialized plain, without customisation.
-  * **pipeline\_dir** (*str*) – Path to the pipeline directory.
+- **Parameters:**
+  - **name** (_str_) – Name for the pipeline.
+  - **description** (_str_) – Description for the pipeline.
+  - **author** (_str_) – Authors name of the pipeline.
+  - **version** (_str_) – Version flag.
+  - **template_yaml_path** (_str_) – Path to YAML file containing template parameters.
+  - **plain** (_bool_) – If true the pipeline template will be initialized plain, without customisation.
+  - **pipeline_dir** (_str_) – Path to the pipeline directory.
 
 #### `customize_template(template_areas){:python}`
 
 Customizes the template parameters.
 
-* **Parameters:**
-  **template\_areas** (*list<str>*) – List of available template areas to skip.
+- **Parameters:**
+  **template_areas** (_list<str>_) – List of available template areas to skip.
 
 #### `fix_linting(){:python}`
 
@@ -53,7 +53,7 @@ for a customized pipeline.
 
 Initialises the new pipeline as a Git repository and submits first commit.
 
-* **Raises:**
+- **Raises:**
   **UserWarning** – if Git default branch is set to ‘dev’ or ‘TEMPLATE’.
 
 #### `init_pipeline(){:python}`

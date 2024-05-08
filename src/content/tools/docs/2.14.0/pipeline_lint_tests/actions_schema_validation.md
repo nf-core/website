@@ -1,4 +1,4 @@
-# actions\_schema\_validation
+# actions_schema_validation
 
 #### `PipelineLint.actions_schema_validation(){:python}`
 
