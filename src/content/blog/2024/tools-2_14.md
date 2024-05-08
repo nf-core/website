@@ -58,6 +58,7 @@ This release contains some template changes and nf-core/tools updates. For a mor
 
   The version of nf-core used for the template update is added to the `.nf-core.yml` file.
   Accept the change of version.
+  Do NOT accept changes removing any other configurations that you added to this file.
 
 - `README.md`
 
@@ -75,17 +76,30 @@ This release contains some template changes and nf-core/tools updates. For a mor
 - `nextflow.config`:
 
   We fixed a bug with `conda.channels`. Accept the changes made to this file.
+  Don't accept changes removing any of your pipeline custom parameters.
+
+- `nextflow_schema.json`:
+
+  We added a new parameter `pipelines_testdata_base_path`, accept this change.
+  Do not accept changes which remove any of your pipeline paramters.
 
 - `pyproject.toml`:
 
   Python linting is now optional. If you have Python code on your pipeline and want to keep linting it, DON'T accept this change.
   Otherwise, it is safe to remove this file.
 
+- `test_full.config` and `test.config`:
+
+  We are using the parameter `params.pipelines_testdata_base_path` to specify the base path of the repo containing test data.
+  You will have to resolve this manually. Accept the change using this parameter on the `input`path, the new parameter will replace `https://raw.githubusercontent.com/nf-core/test-datasets/`.
+  But don't accept the change changing the last part of this path, which is specific of your pipeline.
+  Don't accept changes removing other custom configurations you added to your tests.
+
 - Changes on `docs/`:
 
   Do NOT accept any change that removes custom docs that you added to your pipeline.
 
-- Changes on CHANGELOG.md
+- Changes on `CHANGELOG.md`:
 
   Do NOT accept any change which modified custom points of your `CHANGELOG.md`.
 
