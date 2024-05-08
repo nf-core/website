@@ -56,33 +56,18 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
                         <details open={containsCurrent || item.isCurrent || !item.collapsed}>
                             <summary aria-current={item.isCurrent && 'page'}>
                                 <div class:list={[{ h6: !nested }, 'group-label flex-grow-1']}>
-                                    {item.href ? (
-                                        <a
-                                            href={item.href}
-                                            class="group-header d-flex align-items-center"
-                                            data-weight={item.weight}
-                                            set:html={sanitizeNfCoreLabels(item.label)}
-                                        >
-                                            {item.icon && item.icon.includes(':') ? (
-                                                <Icon name={item.icon} class={'me-2 fs-5'} is:inline />
+                                    <span
+                                        class="group-header d-flex align-items-center"
+                                        data-weight={item.weight}
+                                        set:html={sanitizeNfCoreLabels(item.label)}
+                                    >
+                                        {item.icon &&
+                                            (item.icon.includes(':') ? (
+                                                <Icon name={item.icon} class="me-2 fs-5" is:inline />
                                             ) : (
-                                                <i class={`me-2 fa-fw ${item.icon}`} />
-                                            )}
-                                        </a>
-                                    ) : (
-                                        <span
-                                            class="group-header d-flex align-items-center"
-                                            data-weight={item.weight}
-                                            set:html={sanitizeNfCoreLabels(item.label)}
-                                        >
-                                            {item.icon &&
-                                                (item.icon.includes(':') ? (
-                                                    <Icon name={item.icon} class="me-2 fs-5" is:inline />
-                                                ) : (
-                                                    <i class={`me-2 fa-fw ${item.icon} text-reset`} />
-                                                ))}
-                                        </span>
-                                    )}
+                                                <i class={`me-2 fa-fw ${item.icon} text-reset`} />
+                                            ))}
+                                    </span>
                                 </div>
                                 <div class="hover-target">
                                     <i class:list={['fa-solid fa-chevron-right fa-xs mx-3 h-100 caret']} />
