@@ -8,8 +8,8 @@ markdownPlugin: checklist
 
 1. [ ] Check the pipeline follows [nf-core guidelines](/docs/guidelines/pipelines).
 2. [ ] All continuous-integration tests on the `dev` branch should be passing
-   - [ ] [ ] Check the output of `nf-core lint` for warnings and address all that you can
-   - [ ] [ ] Update any software dependencies that are out of date.
+   - [ ] Check the output of `nf-core lint` for warnings and address all that you can
+   - [ ] Update any software dependencies that are out of date.
          The linting will warn about available updates via automated API calls to (bio-)conda
 3. [ ] Check that there are no outstanding issues that need to be addressed, especially bug reports.
 4. [ ] Finalize the description of the pipeline in the GitHub repository and ensure that you remove any "under development" labels in the description. This wording will be used when a new pipeline gets announced on Twitter.
