@@ -1,5 +1,5 @@
 ---
-title: Adding a new pipeline
+title: Overview
 subtitle: Follow this walkthrough to add a new pipeline to nf-core.
 type: tutorial
 parentWeight: 10

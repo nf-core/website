@@ -1,5 +1,5 @@
 ---
-title: Specifications of nf-core components
+title: Overview
 subtitle: Specifications for writing any nf-core component
 weight: 1
 ---
