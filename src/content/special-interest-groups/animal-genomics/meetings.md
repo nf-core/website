@@ -9,8 +9,6 @@ groupName: Animal Genomics
 The Animal Genomics special interest group meets on the third Wednesday
 of every month at 4 PM CET / 10 AM EDT / 7 AM PDT for 1h.
 
-The first meeting will be on Wednesday, April 17th, at 16:00 CEST. For this inaugural session, we are honored to announce Christa Kühn, president of the Friedrich Loeffler Institute, BovReg project coordinator and former coordinator of EuroFAANG RI, as the speaker. Christa is well-known in the Bovine field for her important contributions to animal genetics. Her talk will be followed by a round table where the structure of the series will be announced and discussed with the participants.
-
 |   Date | Speaker                                                                                                                                                                                                                                                                        | Event |
 | -----: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
 | Apr 17 | Christa Kühn (BovReg; Friedrich Loeffler Institute, Germany)                                                                                                                                                                                                                   | [Inauguration](/events/2024/SIG_animalgenomics_inauguration) |
