@@ -75,12 +75,12 @@
 </script>
 
 <div class="nav flex-column sticky-top-under align-items-end pt-1">
-    <div class="d-none d-md-block w-100">
+    <div class="d-none d-xl-block w-100">
         <slot name="right-sidebar-top" />
         {#if showToc}
             <strong class="h6 my-2 text-body">On this page</strong>
         {/if}
-        <nav id="TableOfContents" class="d-none d-md-flex flex-column">
+        <nav id="TableOfContents" class="d-flex flex-column">
             {#if showToc}
                 <ul class="mb-0 mt-1">
                     {#each headings as heading (heading)}
@@ -125,14 +125,15 @@
                     </button>
                 {/if}
 
-                <div class="">
+                <div class="d-flex flex-column flex-xl-row justify-content-between mt-xl-2">
                     <a
                         href="#/"
-                        class="back-to-top text-body-secondary text-small float-end mb-2"
+                        class="back-to-top text-body-secondary text-small mb-2"
                         on:click={() => window.scrollTo(0, 0)}
                     >
                         <i class="fa-solid fa-arrow-up-to-line" aria-hidden="true" /> Back to top
                     </a>
+                    <slot name="right-sidebar-link-bar" />
                 </div>
             {/if}
             <slot />
