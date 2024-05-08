@@ -31,8 +31,8 @@ The hackathon in March brought us some new contributors to the tools repository.
 
 ## nf-core/tools functionalities
 
--   We included a new linting test to assure that nf-test snapshots contain the versions.yml file.
--   Components (modules and subworkflows) can now handle more possible git URLs (ssh:// and ftp://).
+-   We included a new linting test to assure that nf-test snapshots contain the `versions.yml` file.
+-   Components (modules and subworkflows) can now handle more possible git URLs (`ssh://` and `ftp://`).
 -   The `nf-core download` command has a new argument `--tag`, which allows adding additional tags to select particular revisions in the Seqera Platform interface. For example, `--tag "3.10=validated"{:bash}` would allow you to quickly select the validated version of the pipeline.
 
 ## Pipeline template
@@ -57,7 +57,11 @@ The hackathon in March brought us some new contributors to the tools repository.
 
 # How to merge the pipeline template updates
 
--   Files inside the `.github` folder:
+-   `editorconfig`:
+
+    We removed redundant configurations from the `.editorconfig` file. Accept the changes made to this file.
+
+-   Files inside the `.github/` folder:
 
     These files are responsible for the Continuous Integration tests. In general, accept all changes made on these files.
 
@@ -70,6 +74,16 @@ The hackathon in March brought us some new contributors to the tools repository.
         ```
 
     -   `.github/workflows/download_pipeline.yml`: This file is responsible for testing if the pipeline can be downloaded correctly. Accept the changes made to this file.
+
+    -   `.github/PULL_REQUEST_TEMPLATE.md`: We were a bit too fast with adding nf-test commands to the PR template. Accept the changes made to this file, if your pipeline doesn't use nf-test yet.
+
+-   `pre-commit-config.yaml`:
+
+          We set the version of prettier to 3.2.5. Accept this change.
+
+-   `conf/base.config` and `conf/modules.config` directory:
+
+    We removed some remnants of the old custom_dumpsoftwareversions module. Accept the changes made to the files in this directory.
 
 -   `.nf-core-yml`:
 
@@ -105,7 +119,7 @@ The hackathon in March brought us some new contributors to the tools repository.
     Python linting is now optional. If you have Python code on your pipeline and want to keep linting it, DON'T accept this change.
     Otherwise, it is safe to remove this file.
 
--   `test_full.config` and `test.config`:
+-   `conf/test_full.config` and `conf/test.config`:
 
     We are using the parameter `params.pipelines_testdata_base_path` to specify the base path of the repo containing test data.
     You will have to resolve this manually. Accept the change using this parameter on the `input`path, the new parameter will replace `https://raw.githubusercontent.com/nf-core/test-datasets/`.
@@ -128,3 +142,7 @@ The hackathon in March brought us some new contributors to the tools repository.
     A safe way to add these changes is to NOT accept them.
     Then run `nf-core modules update{:bash}` and `nf-core subworkflows update{:bash}`.
     These commands will update all your modules and subworkflows and the `modules.json` file accordingly.
+
+-   `subworkflows/local/utils*nfcore*$PIPEPLINE_pipeline/main.nf
+
+We added a way to handle multiple DOIs in the manifest. Accept this change.
