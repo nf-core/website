@@ -1,7 +1,7 @@
 ---
 title: 'nf-core/tools - 2.14.0'
 subtitle: 'Spring cleaning :broom:'
-pubDate: 2024-05-7T00:00:00+01:00
+pubDate: 2024-05-08T12:00:00+01:00
 authors:
     - 'mirpedrol'
     - 'mashehu'
@@ -33,7 +33,7 @@ The hackathon in March brought us some new contributors to the tools repository.
 
 -   We included a new linting test to assure that nf-test snapshots contain the versions.yml file.
 -   Components (modules and subworkflows) can now handle more possible git URLs (ssh:// and ftp://).
--   The `nf-core download` command has a new argument `--tag` which allows adding with additional tags to select particular revisions in the Seqera Platform interface.
+-   The `nf-core download` command has a new argument `--tag`, which allows adding additional tags to select particular revisions in the Seqera Platform interface. For example, `--tag "3.10=validated"{:bash}` would allow you to quickly select the validated version of the pipeline.
 
 ## Pipeline template
 
@@ -126,5 +126,5 @@ The hackathon in March brought us some new contributors to the tools repository.
     Template modules and subworkflows are updated on every template release. You can accept those changes and the changes on `modules.json` related to these.
 
     A safe way to add these changes is to NOT accept them.
-    Then run `nf-core modules update` and `nf-core subworkflows update`.
+    Then run `nf-core modules update{:bash}` and `nf-core subworkflows update{:bash}`.
     These commands will update all your modules and subworkflows and the `modules.json` file accordingly.
