@@ -1,0 +1,15 @@
+# API Reference
+
+* [nf\_core.bump\_version](bump_version)
+* [nf\_core.create](create)
+* [nf\_core.download](download)
+* [nf\_core.launch](launch)
+* [nf\_core.licences](licences)
+* [nf\_core.lint](lint)
+* [nf\_core.list](list)
+* [nf\_core.modules](modules)
+* [nf\_core.params\_file](params-file)
+* [nf\_core.schema](schema)
+* [nf\_core.subworkflows](subworkflows)
+* [nf\_core.sync](sync)
+* [nf\_core.utils](utils)
