@@ -110,7 +110,7 @@ if (showRightSidebar) {
     <div class="container-fluid main-content">
         <div class="row">
             <div class:list={`col-12 col-xl-${mainContentWidth} order-2`}>
-                <div class="markdown-content ms-auto" transition:animate="fade">
+                <div class="markdown-content m-auto me-xl-0" transition:animate="fade">
                     <MarkdownWrapper headings={headings} client:idle>
                         <slot />
                     </MarkdownWrapper>
@@ -129,6 +129,13 @@ if (showRightSidebar) {
                         >
                             <slot slot="right-sidebar-top" name="right-sidebar-top" />
                             <slot name="right-sidebar-bottom" />
+                            <a
+                                class="text-small text-body-secondary"
+                                href={md_github_url}
+                                slot="right-sidebar-link-bar"
+                            >
+                                <i class="fas fa-pencil-alt" /> Edit this page on GitHub
+                            </a>
                         </SidebarToc>
                     </div>
                 )

@@ -145,14 +145,6 @@ if (currentGroup.length > 0) {
     }
 }
 
-// find subsection which contains the currentGroup
-const currentSection = sections
-    .map((section) => {
-        if (section.entries) {
-            return section.entries.find((entry) => entry.entries && entry.entries == currentGroup);
-        }
-    })
-    .filter((section) => section)[0];
 const docType = Astro.props.doc.data.type;
 
 const md_github_url = 'https://github.com/nf-core/website/blob/main/src/content/docs/' + Astro.props.doc.id;
@@ -177,7 +169,6 @@ if (next_page) {
 }
 
 const parentSections = getSectionParents(sections, currentElement);
-console.log('parentSections', parentSections);
 ---
 
 <MarkdownTocLayout
@@ -199,7 +190,7 @@ console.log('parentSections', parentSections);
         },
     ]}
 >
-    <div slot="header-top" class="d-none d-md-block">
+    <div slot="header-top" class="d-none d-xl-block">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
@@ -235,7 +226,9 @@ console.log('parentSections', parentSections);
             <div slot="right-sidebar-top" class="border border-success rounded p-3 pb-2">
                 <p>
                     <strong class="h5 my-2">Tutorial:</strong>
-                    <a href={currentSection.href}>{currentSection.label}</a>
+                    <a href={parentSections[parentSections.length - 1].entries[0].href}>
+                        {parentSections[parentSections.length - 1].label}
+                    </a>
                 </p>
                 <div class="d-flex flex-column">
                     {currentGroup &&
