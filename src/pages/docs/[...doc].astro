@@ -4,7 +4,13 @@ import FooterPrevNext from '@components/footer/FooterPrevNext.astro';
 import SubFooter from '@components/footer/SubFooter.astro';
 import { getCollection } from 'astro:content';
 import type { SidebarEntry } from '@utils/types';
-import { findCurrentGroup, addEntriesToSection, sanitizeNfCoreLabels, findByProperty } from '@utils/functions';
+import {
+    findCurrentGroup,
+    addEntriesToSection,
+    sanitizeNfCoreLabels,
+    findByProperty,
+    getSectionParents,
+} from '@utils/functions';
 import { Icon } from 'astro-icon/components';
 import ProgressIndicator from '@components/sidebar/ProgressIndicator.svelte';
 
@@ -29,75 +35,69 @@ let next_page: { title: string; slug: string } | null = null;
 const docs = await getCollection('docs');
 
 let sections: SidebarEntry[] = [
-    { type: 'group', label: 'Usage', entries: [], collapsed: true, icon: 'octicon:play-16' },
     {
         type: 'group',
+        id: 'usage',
+        href: '/docs/usage',
+        label: 'Usage',
+        entries: [],
+        collapsed: true,
+        icon: 'octicon:play-16',
+        weight: 1,
+    },
+    {
+        type: 'group',
+        id: 'contributing',
         label: 'Contributing',
+        href: '/docs/contributing',
         entries: [],
         collapsed: true,
         icon: 'octicon:git-pull-request-16',
+        weight: 2,
     },
     {
         type: 'group',
+        id: 'tutorials',
         label: 'Tutorials',
+        href: '/docs/tutorials',
         entries: [],
         collapsed: true,
         icon: 'octicon:mortar-board-16',
+        weight: 3,
     },
     {
         type: 'group',
+        id: 'guidelines',
         label: 'Guidelines',
+        href: '/docs/guidelines',
         entries: [],
         collapsed: true,
         icon: 'octicon:law-16',
+        weight: 4,
     },
     {
         type: 'group',
+        id: 'checklists',
         label: 'Checklists',
+        href: '/docs/checklists',
         entries: [],
         collapsed: true,
         icon: 'octicon:tasklist-16',
+        weight: 5,
     },
     {
         type: 'group',
+        id: 'nf-core-tools',
         label: 'nf-core/tools',
+        href: '/docs/nf-core-tools',
         entries: [],
         collapsed: true,
         icon: 'octicon:tools-16',
+        weight: 6,
     },
 ];
 
 addEntriesToSection(sections, docs, Astro.url.pathname);
-// sort all entries by weight if available recursively
-const sortEntries = (entries: SidebarEntry[]) => {
-    if (!entries) {
-        return;
-    }
-    entries.sort((a, b) => {
-        if (a.weight && !b.weight) {
-            return -1;
-        } else if (!a.weight && b.weight) {
-            return 1;
-        } else if (a.weight && b.weight && a.weight !== b.weight) {
-            if (a.weight < b.weight) {
-                return -1;
-            } else if (a.weight > b.weight) {
-                return 1;
-            }
-        } else {
-            return a.label.localeCompare(b.label);
-        }
-    });
-    entries.forEach((entry) => {
-        if (entry.type === 'group' && entry.entries) {
-            sortEntries(entry.entries);
-        }
-    });
-};
-
-sections.forEach((section) => {
-    sortEntries(section.entries);
-});
 
 // go through all sections and section entries and section entries entries, etc, to find a group containing an elemnt with isCurrent and return all entries
 
@@ -175,6 +175,9 @@ if (prev_page) {
 if (next_page) {
     next_page.title = sanitizeNfCoreLabels(next_page.title);
 }
+
+const parentSections = getSectionParents(sections, currentElement);
+console.log('parentSections', parentSections);
 ---
 
 <MarkdownTocLayout
@@ -199,13 +202,21 @@ if (next_page) {
     <div slot="header-top" class="d-none d-md-block">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="/docs"> Docs</a>
+                </li>
+                <Icon name="octicon:chevron-right-16" class={'mt-1'} />
                 {
-                    splitUrl.slice(0, -1).map((slug, i) => (
+                    parentSections.map((section) => (
                         <>
                             <li class="breadcrumb-item">
-                                <a class="" href={'/' + splitUrl.slice(0, i + 1).join('/')}>
-                                    {slug.replaceAll('_', ' ').replace(/(^|\s)\S/g, (match) => match.toUpperCase())}
-                                </a>
+                                {section.href ? (
+                                    <a class="" href={section.href}>
+                                        {section.label}
+                                    </a>
+                                ) : (
+                                    <span class="text-reset">{section.label}</span>
+                                )}
                             </li>
                             <Icon name="octicon:chevron-right-16" class={'mt-1'} />
                         </>
