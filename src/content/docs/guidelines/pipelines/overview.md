@@ -1,5 +1,5 @@
 ---
-title: Guidelines for Pipelines
+title: Overview
 subtitle: Guidelines and /requirements for nf-core pipelines.
 weight: 10
 parentWeight: 10

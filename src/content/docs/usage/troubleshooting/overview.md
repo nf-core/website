@@ -1,5 +1,5 @@
 ---
-title: Troubleshooting
+title: Overview
 subtitle: How to troubleshoot common mistakes and issues
 weight: 1
 ---
