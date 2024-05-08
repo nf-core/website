@@ -10,41 +10,51 @@ let docs = await getCollection('docs');
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
 
 let sections: SidebarEntry[] = [
-    { type: 'group', label: 'Usage', entries: [], collapsed: true, icon: 'octicon:play-16' },
+    { type: 'group', id: 'usage', label: 'Usage', entries: [], collapsed: true, icon: 'octicon:play-16', weight: 1 },
     {
         type: 'group',
+        id: 'contributing',
         label: 'Contributing',
         entries: [],
         collapsed: true,
         icon: 'octicon:git-pull-request-16',
+        weight: 2,
     },
     {
         type: 'group',
+        id: 'tutorials',
         label: 'Tutorials',
         entries: [],
         collapsed: true,
         icon: 'octicon:mortar-board-16',
+        weight: 3,
     },
     {
         type: 'group',
+        id: 'guidelines',
         label: 'Guidelines',
         entries: [],
         collapsed: true,
         icon: 'octicon:law-16',
+        weight: 4,
     },
     {
         type: 'group',
+        id: 'checklists',
         label: 'Checklists',
         entries: [],
         collapsed: true,
         icon: 'octicon:tasklist-16',
+        weight: 5,
     },
     {
         type: 'group',
+        id: 'nf-core-tools',
         label: 'nf-core/tools',
         entries: [],
         collapsed: true,
         icon: 'octicon:tools-16',
+        weight: 6,
     },
 ];
 addEntriesToSection(sections, docs, Astro.url.pathname);

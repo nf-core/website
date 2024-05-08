@@ -62,8 +62,8 @@ if (leftSidebar) {
             let currentLevel = sections;
 
             parts.forEach((part, i) => {
-                part = part.replaceAll('_', ' ').replace(/(^)\S/g, (match) => match.toUpperCase());
-                const existingEntry = currentLevel.find((entry) => entry.label === part);
+                const label = part.replaceAll('_', ' ').replace(/(^)\S/g, (match) => match.toUpperCase());
+                const existingEntry = currentLevel.find((entry) => entry.label === label);
 
                 if (existingEntry) {
                     if (existingEntry.type === 'group') {
@@ -77,7 +77,13 @@ if (leftSidebar) {
                     }
                 } else {
                     let newEntry: SidebarEntry;
-                    newEntry = createLinkOrGroup(part, baseURL + slug, i === parts.length - 1, Astro.url.pathname);
+                    newEntry = createLinkOrGroup(
+                        parts.slice(0, i + 1).join('_'),
+                        label,
+                        baseURL + slug,
+                        i === parts.length - 1,
+                        Astro.url.pathname,
+                    );
                     currentLevel.push(newEntry);
 
                     if (newEntry.type === 'group' && newEntry.entries) {

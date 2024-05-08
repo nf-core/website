@@ -1,5 +1,6 @@
 export interface Link {
     type: 'link';
+    id: string;
     label: string;
     href: string;
     isCurrent: boolean;
@@ -9,6 +10,7 @@ export interface Link {
 
 interface Group {
     type: 'group';
+    id: string;
     label: string;
     entries: (Link | Group)[];
     collapsed: boolean;

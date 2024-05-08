@@ -2,6 +2,7 @@ import type { SidebarEntry } from '@utils/types';
 import type { CollectionEntry } from 'astro:content';
 
 export const createLinkOrGroup = (
+    id: string,
     part: string,
     path: string,
     isLastPart: boolean,
@@ -9,6 +10,7 @@ export const createLinkOrGroup = (
     weight?: number,
 ) => {
     let entry: SidebarEntry = {
+        id: id,
         label: part,
         href: path,
         isCurrent: currentUrl.replace('.html', '') === path,
@@ -64,6 +66,23 @@ export const findByProperty = (obj: object, predicate: (obj: object) => boolean)
         if (found) return n;
     }
 };
+const sortEntries = (entries: SidebarEntry[]) => {
+    entries.sort((a, b) => {
+        const weightA = a.weight || 1000000;
+        const weightB = b.weight || 1000000;
+
+        if (weightA !== weightB) {
+            return weightA - weightB;
+        } else {
+            return a.label.localeCompare(b.label);
+        }
+    });
+    entries.forEach((entry) => {
+        if (entry.type === 'group' && entry.entries) {
+            sortEntries(entry.entries);
+        }
+    });
+};
 
 export const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[], url: string) => {
     docs.sort((a, b) => a.slug.localeCompare(b.slug));
@@ -73,12 +92,12 @@ export const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[], u
         let currentLevel = sections;
 
         parts.forEach((part, i) => {
-            part = part.replaceAll('_', ' ')?.replace(/(^)\S/g, (match) => match.toUpperCase());
+            let label = part.replaceAll('_', ' ')?.replace(/(^)\S/g, (match) => match.toUpperCase());
             // replace nf-core-tools with nf-core/tools
-            if (part === 'Nf-core-tools') {
-                part = 'nf-core/tools';
+            if (label === 'Nf-core-tools') {
+                label = 'nf-core/tools';
             }
-            const existingEntry = currentLevel.find((entry) => entry?.label === part);
+            const existingEntry = currentLevel.find((entry) => entry?.label === label);
             const lastPart = i === parts.length - 1;
             const secondToLastPart = i === parts.length - 2;
 
@@ -95,7 +114,8 @@ export const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[], u
                 }
             } else {
                 const newEntry = createLinkOrGroup(
-                    lastPart ? doc.data.shortTitle || part : part,
+                    parts.slice(0, i + 1).join('_'),
+                    lastPart ? doc.data.shortTitle || label : label,
                     lastPart ? '/docs/' + doc.slug : '', // add href to group if they have an index file
                     lastPart,
                     url,
@@ -109,14 +129,34 @@ export const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[], u
             }
         });
     });
+
+    sortEntries(sections);
+};
+export const getSectionParents = (sections: SidebarEntry[], currentSection: SidebarEntry) => {
+    let parents: SidebarEntry[] = [];
+    findByProperty(sections, (entry) => {
+        if (entry.type === 'group' && entry.entries) {
+            const found = entry.entries.find((subEntry) => subEntry.id === currentSection.id);
+            if (found) {
+                parents.push(entry);
+                parents = [getSectionParents(sections, entry).flat(), ...parents].flat();
+            }
+        }
+    });
+
+    return parents;
 };
 
-export const sanitizeNfCoreLabels = (label: string) =>
-    (label.startsWith('Nf-') ? 'nf-' : '') +
-    label
-        .substring(label.startsWith('Nf-') ? 3 : 0)
-        .replace('Nf-core-tools', 'nf-core/tools')
-        .replaceAll('nf-core-tools', 'nf-core/tools')
-        .split('nf-')
-        .map((part) => part.replaceAll(/-/g, ' '))
-        .join(' nf-');
+export const sanitizeNfCoreLabels = (label: string) => {
+    return (
+        (label.startsWith('Nf-') ? 'nf-' : '') +
+        label
+            .substring(label.startsWith('Nf-') ? 3 : 0)
+            .replace('Nf-core-tools', 'nf-core/tools')
+            .replaceAll('nf-core-tools', 'nf-core/tools')
+            .split('nf-')
+            .map((part) => part.replaceAll(/-/g, ' '))
+            .join(' nf-')
+    );
+};
+
