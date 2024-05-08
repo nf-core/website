@@ -28,7 +28,6 @@ import remarkMath from 'remark-math';
 import remarkDescription from 'astro-remark-description';
 import markdownIntegration from '@astropub/md';
 import icon from 'astro-icon';
-import { imageService } from '@unpic/astro/service';
 
 const latestToolsRelease = await fetch('https://api.github.com/repos/nf-core/tools/releases/latest')
     .then((res) => res.json())
@@ -115,9 +114,6 @@ export default defineConfig({
     },
     image: {
         domains: ['raw.githubusercontent.com', 'unsplash.com'],
-        service: {
-            entrypoint: imageService(),
-        },
     },
     markdown: {
         syntaxHighlight: false,
