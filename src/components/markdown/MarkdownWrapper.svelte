@@ -2,7 +2,6 @@
     import { currentHeading, Checkboxes } from '@components/store';
     import * as icons from 'file-icons-js';
     import 'file-icons-js/css/style.css';
-    import mermaid from 'mermaid';
     import { onMount } from 'svelte';
     import CopyButton from '@components/CopyButton.svelte';
     import { Confetti } from 'svelte-confetti';
@@ -10,8 +9,12 @@
     export let headings:
         | { text: string; slug: string; depth: number; fa_icon?: string; checkboxes?: [] }[]
         | undefined = [];
-    onMount(() => {
+
+    let mermaid;
+
+    onMount(async () => {
         async function renderDiagrams(graphs) {
+            mermaid = await import('mermaid').then((module) => module.default);
             mermaid.initialize({
                 startOnLoad: false,
                 fontFamily: 'var(--sans-font)',
