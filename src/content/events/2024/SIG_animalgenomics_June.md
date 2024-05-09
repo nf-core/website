@@ -11,5 +11,5 @@ locations:
     links: https://rediris.zoom.us/j/96065549412?pwd=L2txanpQMEFTOWVLNmtIZyt6M3NnUT09
 ---
 
-Join us on **June 19** for the monthyly meeting of the _#animal-genomics_ special interest group!
+Join us on **June 19** for the monthly meeting of the _#animal-genomics_ special interest group!
 This month, we are honored to announce Yuliaxis Ramayo from Institute of Agrifood Research and Technology (IRTA), Spain and part of HoloRuminant as speaker.
