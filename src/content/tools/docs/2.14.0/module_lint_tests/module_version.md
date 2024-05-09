@@ -1,4 +1,4 @@
-# module\_version
+# module_version
 
 #### `ModuleLint.module_version(module){:python}`
 

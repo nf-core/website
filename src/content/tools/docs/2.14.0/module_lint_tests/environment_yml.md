@@ -1,4 +1,4 @@
-# environment\_yml
+# environment_yml
 
 #### `ModuleLint.environment_yml(module: NFCoreComponent){:python}`
 
