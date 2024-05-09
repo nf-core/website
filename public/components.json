@@ -5333,6 +5333,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -17083,6 +17087,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -18931,7 +18939,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "rnavar",
@@ -27541,7 +27549,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "rnavar",
@@ -27692,7 +27700,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "viralrecon",
@@ -36260,7 +36268,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "rnavar",
@@ -41887,6 +41895,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -42644,6 +42656,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -49175,6 +49191,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -52882,9 +52902,8 @@
         "name": "gem3_gem3indexer",
         "description": "Create a GEM index from a FASTA file",
         "keywords": [
-          "fasta",
-          "index",
-          "reference",
+          "fastq",
+          "genomics",
           "mappability"
         ],
         "tools": [
@@ -52892,7 +52911,9 @@
             "gem3": {
               "description": "The GEM indexer (v3).",
               "homepage": "https://github.com/miqalvarez/gem3/tree/gem3-indexer",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -52944,6 +52965,91 @@
           "@miqalvarez"
         ],
         "maintainers": [
+          "@miqalvarez"
+        ]
+      }
+    },
+    {
+      "name": "gem3_gem3mapper",
+      "path": "modules/nf-core/gem3/gem3mapper/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gem3_gem3mapper",
+        "description": "Performs fastq alignment to a fasta reference using using gem3-mapper",
+        "keywords": [
+          "fastq",
+          "genomics",
+          "mappability"
+        ],
+        "tools": [
+          {
+            "gem3": {
+              "description": "The GEM indexer (v3).",
+              "homepage": "https://github.com/smarco/gem3-mapper",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing reference/index information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "fastq": {
+              "type": "file",
+              "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data, respectively.",
+              "pattern": "*.{fastq,fq,fastq.gz,fq.gz}"
+            }
+          },
+          {
+            "gem": {
+              "type": "file",
+              "description": "GEM3 genome index files",
+              "pattern": "*.{gem}"
+            }
+          },
+          {
+            "sort_bam": {
+              "type": "boolean",
+              "description": "use samtools sort (true) or samtools view (false)",
+              "pattern": "true or false"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "Sorted BAM/CRAM/SAM file",
+              "pattern": "*.{bam,cram,sam}"
+            }
+          }
+        ],
+        "authors": [
           "@miqalvarez"
         ]
       }
@@ -55069,7 +55175,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "rnavar",
@@ -59237,7 +59343,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "rnavar",
@@ -80742,7 +80848,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "rnavar",
@@ -100438,7 +100544,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         }
       ]
     },
@@ -101744,7 +101850,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         }
       ]
     },
@@ -101861,7 +101967,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         }
       ]
     },
@@ -103854,7 +103960,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "rnavar",
@@ -104104,7 +104210,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "rnavar",
@@ -104417,7 +104523,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "rnavar",
@@ -105233,7 +105339,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "rnavar",
@@ -105435,7 +105541,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "rnavar",
@@ -116263,7 +116369,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "rnavar",
@@ -116389,7 +116495,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "rnavar",
@@ -117479,7 +117585,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         }
       ]
     },
@@ -121830,7 +121936,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "ssds",
@@ -122727,7 +122833,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         }
       ]
     },
@@ -122831,7 +122937,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "ssds",
@@ -123942,7 +124048,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "smrnaseq",
@@ -124485,7 +124591,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "rnavar",
@@ -130893,7 +130999,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "scnanoseq",
@@ -131061,7 +131167,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "sammyseq",
@@ -131897,7 +132003,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         }
       ]
     },
@@ -134420,7 +134526,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         }
       ]
     },
