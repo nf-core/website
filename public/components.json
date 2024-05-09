@@ -718,7 +718,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -791,7 +791,8 @@
           "@toniher"
         ],
         "maintainers": [
-          "@toniher"
+          "@toniher",
+          "@gallvp"
         ]
       }
     },
@@ -856,6 +857,9 @@
         ],
         "authors": [
           "@rannick"
+        ],
+        "maintainers": [
+          "@gallvp"
         ]
       },
       "pipelines": [
@@ -1005,7 +1009,8 @@
           "@anoronh4"
         ],
         "maintainers": [
-          "@anoronh4"
+          "@anoronh4",
+          "@gallvp"
         ]
       }
     },
@@ -1071,7 +1076,8 @@
           "@toniher"
         ],
         "maintainers": [
-          "@toniher"
+          "@toniher",
+          "@gallvp"
         ]
       }
     },
@@ -1137,7 +1143,8 @@
           "@toniher"
         ],
         "maintainers": [
-          "@toniher"
+          "@toniher",
+          "@gallvp"
         ]
       }
     },
@@ -2813,7 +2820,9 @@
               "homepage": "https://lbgi.fr/AnnotSV/",
               "documentation": "https://lbgi.fr/AnnotSV/",
               "tool_dev_url": "https://github.com/lgmgeo/AnnotSV",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -5320,6 +5329,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -6963,7 +6976,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         },
         {
           "name": "tfactivity",
@@ -17066,6 +17079,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -17229,6 +17246,68 @@
           "@muffato",
           "@jvhagey",
           "@gallvp"
+        ]
+      }
+    },
+    {
+      "name": "busco_generateplot",
+      "path": "modules/nf-core/busco/generateplot/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "busco_generateplot",
+        "description": "BUSCO plot generation tool",
+        "keywords": [
+          "genome",
+          "fasta",
+          "annotation",
+          "busco",
+          "transcriptome",
+          "quality control"
+        ],
+        "tools": [
+          {
+            "busco": {
+              "description": "BUSCO provides measures for quantitative assessment of genome assembly, gene set, and transcriptome completeness based on evolutionarily informed expectations of gene content from near-universal single-copy orthologs selected from OrthoDB.",
+              "homepage": "https://busco.ezlab.org/",
+              "documentation": "https://busco.ezlab.org/busco_userguide.html",
+              "tool_dev_url": "https://gitlab.com/ezlab/busco",
+              "doi": "10.1007/978-1-4939-9173-0_14",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "short_summary_txt": {
+              "type": "file",
+              "description": "One or more short summary txt files from BUSCO",
+              "pattern": "short_summary.*.txt"
+            }
+          }
+        ],
+        "output": [
+          {
+            "png": {
+              "type": "file",
+              "description": "A summary plot in png format",
+              "pattern": "*.png"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@GallVp"
+        ],
+        "maintainers": [
+          "@GallVp"
         ]
       }
     },
@@ -20631,6 +20710,134 @@
         "authors": [
           "@ggabernet",
           "@heylf"
+        ]
+      }
+    },
+    {
+      "name": "cellsnp_modea",
+      "path": "modules/nf-core/cellsnp/modea/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "cellsnp_modea",
+        "description": "Cellsnp-lite is a C/C++ tool for efficient genotyping bi-allelic SNPs on single cells. You can use the mode A of cellsnp-lite after read alignment to obtain the snp x cell pileup UMI or read count matrices for each alleles of given or detected SNPs for droplet based single cell data.",
+        "keywords": [
+          "genotyping",
+          "single cell",
+          "SNP",
+          "droplet based single cells"
+        ],
+        "tools": [
+          {
+            "cellsnp": {
+              "description": "Efficient genotyping bi-allelic SNPs on single cells",
+              "homepage": "https://github.com/single-cell-genetics/cellsnp-lite",
+              "documentation": "https://cellsnp-lite.readthedocs.io",
+              "tool_dev_url": "https://github.com/single-cell-genetics/cellsnp-lite",
+              "doi": "10.1093/bioinformatics/btab358",
+              "licence": [
+                "Apache-2.0"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "A single BAM/SAM/CRAM file, e.g., from CellRanger.",
+              "pattern": "*.{bam,cram,sam}"
+            }
+          },
+          {
+            "bai": {
+              "type": "file",
+              "description": "The index of the BAM/CRAM file.",
+              "pattern": "*.{bai,crai}"
+            }
+          },
+          {
+            "region_vcf": {
+              "type": "file",
+              "description": "A optional vcf file listing all candidate SNPs for genotyping.",
+              "pattern": "*.{vcf, vcf.gz}"
+            }
+          },
+          {
+            "barcode": {
+              "type": "file",
+              "description": "A plain file listing all effective cell barcodes.",
+              "pattern": "*.tsv"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "base": {
+              "type": "file",
+              "description": "A VCF file listing genotyped SNPs and aggregated AD & DP infomation (without GT).",
+              "pattern": "*.base.vcf.gz"
+            }
+          },
+          {
+            "cell": {
+              "type": "file",
+              "description": "A VCF file listing genotyped SNPs and aggregated AD & DP infomation & genotype (GT) information for each cell or sample.",
+              "pattern": "*.cells.vcf.gz"
+            }
+          },
+          {
+            "sample": {
+              "type": "file",
+              "description": "A TSV file listing cell barcodes or sample IDs.",
+              "pattern": "*.tsv"
+            }
+          },
+          {
+            "allele_depth": {
+              "type": "file",
+              "description": "A file in “Matrix Market exchange formats”, containing the allele depths of the alternative (ALT) alleles.",
+              "pattern": "*.tag.AD.mtx"
+            }
+          },
+          {
+            "depth_coverage": {
+              "type": "file",
+              "description": "A file in “Matrix Market exchange formats”, containing the sum of allele depths of the reference and alternative alleles (REF + ALT).",
+              "pattern": "*.tag.DP.mtx"
+            }
+          },
+          {
+            "depth_other": {
+              "type": "file",
+              "description": "A file in “Matrix Market exchange formats”, containing the sum of allele depths of all the alleles other than REF and ALT.",
+              "pattern": "*.tag.OTH.mtx"
+            }
+          }
+        ],
+        "authors": [
+          "@wxicu"
+        ],
+        "maintainers": [
+          "@wxicu"
         ]
       }
     },
@@ -27189,10 +27396,6 @@
           "version": "1.4.1"
         },
         {
-          "name": "differentialabundance",
-          "version": "1.4.0"
-        },
-        {
           "name": "epitopeprediction",
           "version": "2.3.0"
         },
@@ -27623,7 +27826,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -27751,7 +27954,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -27822,7 +28025,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -30703,7 +30906,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         },
         {
           "name": "tfactivity",
@@ -41680,6 +41883,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -42437,6 +42644,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -48960,6 +49171,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -54095,7 +54310,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -56709,7 +56924,13 @@
         "authors": [
           "@WackerO"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "differentialabundance",
+          "version": "1.5.0"
+        }
+      ]
     },
     {
       "name": "graphmap2_align",
@@ -57609,7 +57830,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -58948,7 +59169,7 @@
         },
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         },
         {
           "name": "epitopeprediction",
@@ -70130,7 +70351,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -95777,7 +95998,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -99930,7 +100151,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -108649,7 +108870,8 @@
         "description": "match up paired-end reads from two fastq files",
         "keywords": [
           "seqkit",
-          "pair"
+          "pair",
+          "fastq"
         ],
         "tools": [
           {
@@ -108729,7 +108951,10 @@
         "description": "Use seqkit to find/replace strings within sequences and sequence headers",
         "keywords": [
           "seqkit",
-          "replace"
+          "replace",
+          "sequence",
+          "sequence headers",
+          "fasta"
         ],
         "tools": [
           {
@@ -108908,7 +109133,7 @@
             }
           },
           {
-            "windows": {
+            "fastx": {
               "type": "file",
               "description": "fasta/q window file",
               "pattern": "*.{fasta,fastq,fa,fq,fas,fna,faa}*"
@@ -109011,7 +109236,8 @@
         "description": "Split single or paired-end fastq.gz files",
         "keywords": [
           "split",
-          "fastq"
+          "fastq",
+          "seqkit"
         ],
         "tools": [
           {
@@ -109086,6 +109312,7 @@
         "description": "simple statistics of FASTA/Q files",
         "keywords": [
           "seqkit",
+          "fasta",
           "stats"
         ],
         "tools": [
@@ -111245,7 +111472,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -111350,7 +111577,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -111492,7 +111719,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -111626,7 +111853,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -124194,7 +124421,7 @@
         },
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         },
         {
           "name": "fetchngs",
@@ -129335,7 +129562,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         },
         {
           "name": "multiplesequencealign",
@@ -138364,6 +138591,10 @@
           "version": "1.0.0"
         },
         {
+          "name": "differentialabundance",
+          "version": "1.5.0"
+        },
+        {
           "name": "epitopeprediction",
           "version": "2.3.0"
         },
@@ -138555,6 +138786,10 @@
         {
           "name": "detaxizer",
           "version": "1.0.0"
+        },
+        {
+          "name": "differentialabundance",
+          "version": "1.5.0"
         },
         {
           "name": "epitopeprediction",
@@ -138778,6 +139013,10 @@
         {
           "name": "detaxizer",
           "version": "1.0.0"
+        },
+        {
+          "name": "differentialabundance",
+          "version": "1.5.0"
         },
         {
           "name": "epitopeprediction",
