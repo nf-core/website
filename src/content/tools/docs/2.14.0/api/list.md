@@ -1,8 +1,8 @@
-# nf\_core.list
+# nf_core.list
 
 Lists available nf-core pipelines and versions.
 
-### *`class{:python}`*`nf_core.list.LocalWorkflow(name){:python}`
+### _`class{:python}`_`nf_core.list.LocalWorkflow(name){:python}`
 
 Bases: `object`
 
@@ -12,17 +12,17 @@ Class to handle local workflows pulled by nextflow
 
 Get full details about a local cached workflow
 
-### *`class{:python}`*`nf_core.list.RemoteWorkflow(data){:python}`
+### _`class{:python}`_`nf_core.list.RemoteWorkflow(data){:python}`
 
 Bases: `object`
 
 A information container for a remote workflow.
 
-* **Parameters:**
-  **data** (*dict*) – workflow information as they are retrieved from the GitHub repository REST API request
+- **Parameters:**
+  **data** (_dict_) – workflow information as they are retrieved from the GitHub repository REST API request
   (<https://developer.github.com/v3/repos/#get>).
 
-### *`class{:python}`*`nf_core.list.Workflows(filter_by=None, sort_by='release', show_archived=False){:python}`
+### _`class{:python}`_`nf_core.list.Workflows(filter_by=None, sort_by='release', show_archived=False){:python}`
 
 Bases: `object`
 
@@ -31,9 +31,9 @@ Workflow container class.
 Is used to collect local and remote nf-core pipelines. Pipelines
 can be sorted, filtered and compared.
 
-* **Parameters:**
-  * **filter\_by** (*list*) – A list of strings that can be used for filtering.
-  * **sort\_by** (*str*) – workflows can be sorted by keywords. Keyword must be one of
+- **Parameters:**
+  - **filter_by** (_list_) – A list of strings that can be used for filtering.
+  - **sort_by** (_str_) – workflows can be sorted by keywords. Keyword must be one of
     release (default), name, stars.
 
 #### `compare_remote_local(){:python}`
@@ -50,9 +50,9 @@ is the latest.
 
 Filters remote workflows for keywords.
 
-* **Returns:**
+- **Returns:**
   Filtered remote workflows.
-* **Return type:**
+- **Return type:**
   list
 
 #### `get_local_nf_workflows(){:python}`
@@ -83,11 +83,11 @@ Check if this workflow has a local copy and use nextflow to pull it if not
 
 Prints out a list of all nf-core workflows.
 
-* **Parameters:**
-  * **filter\_by** (*list*) – A list of strings that can be used for filtering.
-  * **sort\_by** (*str*) – workflows can be sorted by keywords. Keyword must be one of
+- **Parameters:**
+  - **filter_by** (_list_) – A list of strings that can be used for filtering.
+  - **sort_by** (_str_) – workflows can be sorted by keywords. Keyword must be one of
     release (default), name, stars.
-  * **as\_json** (*boolean*) – Set to true, if the lists should be printed in JSON.
+  - **as_json** (_boolean_) – Set to true, if the lists should be printed in JSON.
 
 ### `nf_core.list.pretty_date(time){:python}`
 

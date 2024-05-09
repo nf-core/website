@@ -1,4 +1,4 @@
-# files\_exist
+# files_exist
 
 #### `PipelineLint.files_exist(){:python}`
 
@@ -13,7 +13,7 @@ If these files are not found then this cannot be a Nextflow pipeline and somethi
 All lint tests are stopped immediately with a critical error message.
 :::
 
-Files that *must* be present:
+Files that _must_ be present:
 
 ```bash
 .gitattributes
@@ -53,7 +53,7 @@ nextflow.config
 README.md
 ```
 
-Files that *should* be present:
+Files that _should_ be present:
 
 ```bash
 main.nf
@@ -64,7 +64,7 @@ conf/igenomes.config
 .github/workflows/awsfulltest.yml
 ```
 
-Files that *must not* be present, due to being renamed or removed in the template:
+Files that _must not_ be present, due to being renamed or removed in the template:
 
 ```bash
 .github/ISSUE_TEMPLATE/bug_report.md
@@ -88,13 +88,13 @@ pipeline_template.yml # saving information in .nf-core.yml
 Singularity
 ```
 
-Files that *should not* be present:
+Files that _should not_ be present:
 
 ```bash
 .travis.yml
 ```
 
-Files that *must not* be present if a certain entry is present in `nextflow.config`:
+Files that _must not_ be present if a certain entry is present in `nextflow.config`:
 
 ```bash
 lib/nfcore_external_java_deps.jar # if "nf-validation" is in nextflow.config
@@ -103,10 +103,13 @@ lib/nfcore_external_java_deps.jar # if "nf-validation" is in nextflow.config
 :::note
 You can configure the `nf-core lint` tests to ignore any of these checks by setting
 the `files_exist` key as follows in your `.nf-core.yml` config file. For example:
+
 ```yaml
+
 ```
+
 :::
 
 lint:
-: files\_exist:
-: - assets/multiqc\_config.yml
+: files_exist:
+: - assets/multiqc_config.yml

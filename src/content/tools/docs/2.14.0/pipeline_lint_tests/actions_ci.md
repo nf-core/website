@@ -1,4 +1,4 @@
-# actions\_ci
+# actions_ci
 
 #### `PipelineLint.actions_ci(){:python}`
 
@@ -10,17 +10,17 @@ Final result files are not checked, just that the pipeline exists successfully.
 
 This lint test checks this GitHub Actions workflow file for the following:
 
-* Workflow must be triggered on the following events:
+- Workflow must be triggered on the following events:
   ```yaml
   on:
-      push:
-      branches:
-          - dev
-      pull_request:
-      release:
-      types: [published]
+    push:
+    branches:
+      - dev
+    pull_request:
+    release:
+    types: [published]
   ```
-* The minimum Nextflow version specified in the pipeline’s `nextflow.config` matches that defined by `NXF_VER` in the test matrix:
+- The minimum Nextflow version specified in the pipeline’s `nextflow.config` matches that defined by `NXF_VER` in the test matrix:
 
   ```yaml
   strategy:
