@@ -70,48 +70,50 @@
             {/if}
         </div>
     {:else}
-        <table class="table table-hove table-responsive">
-            <thead>
-                <tr>
-                    <ListingTableHeader name="Name" />
-                    <th scope="col">Description</th>
-                    <th scope="col">Included pipelines</th>
-                    <th scope="col">Leads</th>
-                </tr>
-            </thead>
-            <tbody>
-                {#each filteredGroups as group (group.id)}
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
                     <tr>
-                        <td class=" name p-0">
-                            <div class="position-relative p-3">
-                                <a class="stretched-link" href={'/special-interest-groups' + group.slug + '/'}
-                                    >{group.data.title}</a
-                                >
-                            </div>
-                        </td>
-                        <td class="text-small">
-                            {group.data.subtitle}
-                        </td>
-                        <td class="pipeline-badges small">
-                            {#each group.data.pipelines ?? [] as pipeline}
-                                <span class={`badge me-2 pipeline-badge`}>{pipeline}</span>
-                            {/each}
-                        </td>
-                        <td>
-                            {#each group.data.leads ?? [] as lead}
-                                {#if typeof lead === 'string'}
-                                    <GitHubProfilePictureExtended username={lead} size={25} />
-                                {:else}
-                                    <GitHubProfilePictureExtended username={Object.keys(lead)[0]} size={25}>
-                                        {Object.values(lead)[0]}
-                                    </GitHubProfilePictureExtended>
-                                {/if}
-                            {/each}
-                        </td>
+                        <ListingTableHeader name="Name" />
+                        <th scope="col">Description</th>
+                        <th scope="col">Included pipelines</th>
+                        <th scope="col">Leads</th>
                     </tr>
-                {/each}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {#each filteredGroups as group (group.id)}
+                        <tr>
+                            <td class=" name p-0">
+                                <div class="position-relative p-3">
+                                    <a class="stretched-link" href={'/special-interest-groups/' + group.slug}
+                                        >{group.data.groupName}</a
+                                    >
+                                </div>
+                            </td>
+                            <td class="text-small">
+                                {group.data.subtitle}
+                            </td>
+                            <td class="pipeline-badges small">
+                                {#each group.data.pipelines ?? [] as pipeline}
+                                    <span class={`badge me-2 pipeline-badge`}>{pipeline}</span>
+                                {/each}
+                            </td>
+                            <td>
+                                {#each group.data.leads ?? [] as lead}
+                                    {#if typeof lead === 'string'}
+                                        <GitHubProfilePictureExtended username={lead} size={25} />
+                                    {:else}
+                                        <GitHubProfilePictureExtended username={Object.keys(lead)[0]} size={25}>
+                                            {Object.values(lead)[0]}
+                                        </GitHubProfilePictureExtended>
+                                    {/if}
+                                {/each}
+                            </td>
+                        </tr>
+                    {/each}
+                </tbody>
+            </table>
+        </div>
     {/if}
 </div>
 
