@@ -10,6 +10,9 @@ label:
     - 'maintainers'
 ---
 
+import drake_meme from '@assets/images/blog/maintainers-minutes-2024-05-03/maintainers-meme-2024-05-03.jpg';
+import { Image } from 'astro:assets';
+
 In this new initiative, the 'Maintainers Minutes' aims to further give insight into the workings of the [nf-core maintainers team](/governance#maintainers) by providing brief summaries of the monthly Maintainer's team meetings.
 
 If you're not familiar, the maintainers team takes an active role in managing nf-core repositories in collaboration with the wider nf-core community.
@@ -24,7 +27,13 @@ We had discussions on how to better distribute reviewing tasks among the maintai
 
 ## The hardest part of writing code is naming things
 
-![Drake meme, with top image showing Drake with his hand in his face in a 'don't bother me gesture' next to the text 'Actual programming', then the bottom image of him pointing like 'now that's more like it' with 'Debating for 30 minutes on how to name a subworkflow' text next to it.](@assets/images/blog/maintainers-minutes-2024-05-03/maintainers-meme-2024-05-03.jpg)
+<Image
+    src={drake_meme}
+    class="d-block m-auto"
+    width={400}
+    density={[1.5, 2]}
+    alt="Drake meme, with top image showing Drake with his hand in his face in a 'don't bother me gesture' next to the text 'Actual programming', then the bottom image of him pointing like 'now that's more like it' with 'Debating for 30 minutes on how to name a subworkflow' text next to it."
+/>
 
 Keeping in line with coding stereotypes, we had a discussion on the current naming scheme of subworkflows.
 In many PR reviews, comments often arise regarding the naming of the subworkflow.
