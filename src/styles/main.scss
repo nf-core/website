@@ -18,6 +18,23 @@ span[data-rehype-pretty-code-figure] {
   }
 }
 
+figure[data-rehype-pretty-code-figure] mark[data-highlighted-chars] {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  & span {
+    position: relative;
+    &::before {
+      content: attr(data-content);
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      opacity: 0.25;
+      background-color: var(--shiki-light);
+    }
+  }
+}
 body {
   font-feature-settings: 'ss03'; // curved r https://rsms.me/inter/#features/ss03
   text-rendering: optimizeLegibility; // enables kerning and ligatures for smaller font sizes
@@ -161,7 +178,6 @@ section:before {
   height: 20px;
   width: 20px;
 }
-
 
 .triangle-down,
 .triangle-up {
@@ -1276,15 +1292,15 @@ Launch Page
     font-variant: normal;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
-    font-family: "Font Awesome 6 Pro", "Font Awesome 6 Pro fallback";
+    font-family: 'Font Awesome 6 Pro', 'Font Awesome 6 Pro fallback';
     margin-left: 0.5rem;
     font-weight: 900;
     text-align: center; // same setting as .fa-w
     width: 1.25em; // same setting as .fa-w
-    content: "\f078";
+    content: '\f078';
   }
   .admonition-collapse-button.collapsed::after {
-    content: "\f054";
+    content: '\f054';
   }
   .admonition-body-content {
     font-size: 90%;
@@ -1300,7 +1316,7 @@ figure[data-rehype-pretty-code-figure] [data-theme*=' ']:not([data-rehype-pretty
     }
   }
   [data-highlighted-chars] {
-    background-color: tint-color($gray-500, 80%);
+    // background-color: tint-color($gray-500, 80%);
   }
 }
 
@@ -1399,6 +1415,9 @@ div.mermaid {
       color: var(--shiki-dark);
     }
   }
+  figure[data-rehype-pretty-code-figure] mark[data-highlighted-chars] span::before {
+      background-color: var(--shiki-dark);
+}
   [data-rehype-pretty-code-title][data-theme*=' '] {
     border: 1px solid $border-color-dark;
   }
