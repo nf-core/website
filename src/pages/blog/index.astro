@@ -109,7 +109,9 @@ const sections = years.map((year) => {
                                         )}
                                         <div class="card-text px-3 pt-2">
                                             <h2 transition:name="title">{post.data.title}</h2>
-                                            <p class="lead"><Markdown of={post.data.subtitle} /></p>
+                                            <p class="lead">
+                                                <Markdown of={post.data.subtitle} />
+                                            </p>
                                             <p class="small">
                                                 {async () => {
                                                     const { remarkPluginFrontmatter } = await post.render();
