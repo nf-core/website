@@ -18,11 +18,8 @@ let { post, blogPosts } = Astro.props;
 blogPosts = blogPosts
     .filter((post) => {
         const pubDate = new Date(post.data.pubDate);
-        return pubDate < new Date();
-    })
-    .filter((post) => {
-        if (process.env.production) {
-            return post.data.draft !== true;
+        if (process.env.CONTEXT === 'production') {
+            pubDate < new Date();
         } else {
             return true;
         }
