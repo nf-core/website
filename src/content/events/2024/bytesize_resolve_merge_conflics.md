@@ -10,4 +10,4 @@ locations:
   - links: https://kth-se.zoom.us/j/68390542812
 ---
 
-What Kübra ([@kubranarci](https://github.com/kubranarci)) live, as she is reloving merge conflics resulting from the newest tools release in the [pull request for nf-core/variantbenchmarking](https://github.com/nf-core/variantbenchmarking/pull/37)!
+Whatch Kübra ([@kubranarci](https://github.com/kubranarci)) live, as she is resolving merge conflicts and the changes from the automated PR resulting from the newest tools release in the [pull request for nf-core/variantbenchmarking](https://github.com/nf-core/variantbenchmarking/pull/37)!
