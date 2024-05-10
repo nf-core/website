@@ -40,21 +40,23 @@
                                 <div class="small g-col-4">
                                     {#if group.data.leads}
                                         <p class="text-muted small mb-2">Group leads:</p>
-                                        <div class="leads d-flex flex-wrap w-100">
+                                        <div class="leads d-flex w-100 h-100 flex-wrap">
                                             {#each group.data.leads as lead}
                                                 {#if typeof lead === 'string'}
                                                     <GitHubProfilePictureExtended
                                                         username={lead}
-                                                        size={25}
-                                                        wrapperClasses="flex-grow-1"
-                                                        labelClasses=""
+                                                        size={40}
+                                                        wrapperClasses=""
+                                                        imgClasses="pb-0"
+                                                        containerQuery={true}
                                                     />
                                                 {:else}
                                                     <GitHubProfilePictureExtended
                                                         username={Object.keys(lead)[0]}
-                                                        size={25}
-                                                        wrapperClasses="flex-grow-1"
-                                                        labelClasses=""
+                                                        size={40}
+                                                        wrapperClasses=""
+                                                        imgClasses="pb-0"
+                                                        containerQuery={true}
                                                     >
                                                         {Object.values(lead)[0]}
                                                     </GitHubProfilePictureExtended>
