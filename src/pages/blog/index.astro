@@ -77,7 +77,7 @@ const sections = years.map((year) => {
                                             : '',
                                     ]}
                                 >
-                                    <div class=" card-body position-relative">
+                                    <div class=" card-body p-0 position-relative">
                                         <a
                                             href={'/blog/' + post.slug}
                                             class:list={[
@@ -106,10 +106,10 @@ const sections = years.map((year) => {
                                                 transition:name="cover-image"
                                             />
                                         )}
-                                        <div class="card-text">
+                                        <div class="card-text px-3 pt-2">
                                             <h2 transition:name="title">{post.data.title}</h2>
                                             <p class="lead">{post.data.subtitle}</p>
-                                            <p class="card-text small">
+                                            <p class="small">
                                                 {async () => {
                                                     const { remarkPluginFrontmatter } = await post.render();
                                                     return remarkPluginFrontmatter.excerpt;
