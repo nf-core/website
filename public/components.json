@@ -5345,6 +5345,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -16152,6 +16156,76 @@
       }
     },
     {
+      "name": "blast_updateblastdb",
+      "path": "modules/nf-core/blast/updateblastdb/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "blast_updateblastdb",
+        "description": "Downloads a BLAST database from NCBI",
+        "keywords": [
+          "fasta",
+          "blast",
+          "download",
+          "database"
+        ],
+        "tools": [
+          {
+            "blast": {
+              "description": "BLAST finds regions of similarity between biological sequences.\n",
+              "homepage": "https://blast.ncbi.nlm.nih.gov/Blast.cgi",
+              "documentation": "https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=Blastdocs",
+              "doi": "10.1016/S0022-2836(05)80360-2",
+              "licence": [
+                "US-Government-Work"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'mito', single_end:false ]\n"
+            }
+          },
+          {
+            "name": {
+              "type": "string",
+              "description": "Name of the NCBI BLAST database to be downloaded"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'mito', single_end:false ]\n"
+            }
+          },
+          {
+            "db": {
+              "type": "directory",
+              "description": "Output directory containing blast database files",
+              "pattern": "*"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@toniher"
+        ],
+        "maintainers": [
+          "@toniher"
+        ]
+      }
+    },
+    {
       "name": "blat",
       "path": "modules/nf-core/blat/meta.yml",
       "type": "module",
@@ -17084,6 +17158,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -36693,7 +36771,9 @@
               "homepage": "https://www.ncbi.nlm.nih.gov/data-hub/cgr/data-quality-tools/",
               "documentation": "https://github.com/ncbi/fcs/wiki/FCS-adaptor",
               "tool_dev_url": "https://github.com/ncbi/fcs",
-              "licence": "United States Government Work"
+              "licence": [
+                "United States Government Work"
+              ]
             }
           }
         ],
@@ -36765,7 +36845,8 @@
           "@d4straub"
         ],
         "maintainers": [
-          "@d4straub"
+          "@d4straub",
+          "@gallvp"
         ]
       }
     },
@@ -41919,6 +42000,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -42676,6 +42761,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -47911,6 +48000,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -58550,6 +58643,79 @@
               "type": "file",
               "description": "FASTA output for inner regions when `-outinner` argument is present",
               "pattern": "*.{fa,fsa,fasta}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@GallVp"
+        ],
+        "maintainers": [
+          "@GallVp"
+        ]
+      }
+    },
+    {
+      "name": "gt_stat",
+      "path": "modules/nf-core/gt/stat/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gt_stat",
+        "description": "GenomeTools gt-stat utility to show statistics about features contained in GFF3 files",
+        "keywords": [
+          "genome",
+          "gff3",
+          "annotation",
+          "statistics",
+          "stats"
+        ],
+        "tools": [
+          {
+            "gt": {
+              "description": "The GenomeTools genome analysis system",
+              "homepage": "https://genometools.org/index.html",
+              "documentation": "https://genometools.org/documentation.html",
+              "tool_dev_url": "https://github.com/genometools/genometools",
+              "doi": "10.1109/TCBB.2013.68",
+              "licence": [
+                "ISC"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "gff3": {
+              "type": "file",
+              "description": "Input gff3 file",
+              "pattern": "*.{gff,gff3}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "stats": {
+              "type": "file",
+              "description": "Stats file in yaml format",
+              "pattern": "*.yml"
             }
           },
           {
