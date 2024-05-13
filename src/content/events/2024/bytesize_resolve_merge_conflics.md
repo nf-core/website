@@ -3,9 +3,9 @@ title: 'Bytesize: Resolving merge conflicts after a tools release'
 subtitle: Kübra Narci, GHGA/DKFZ
 type: talk
 startDate: '2024-05-14'
-startTime: '13:00+00:00'
+startTime: '13:00+02:00'
 endDate: '2024-05-14'
-endTime: '13:30+00:00'
+endTime: '13:30+02:00'
 locations:
   - links: https://kth-se.zoom.us/j/68390542812
 ---
