@@ -10,9 +10,9 @@ An important part of this is the use of community-agreed-upon standardised compo
 
 The following pages describe the specifications of standardised nf-core components:
 
-- [Test data](/docs/contributing/nfcore_component-specifications/test_data.md)
-- [Modules](/docs/contributing/nfcore_component-specifications/modules.md)
-- [Subworkflows](/docs/contributing/nfcore_component-specifications/subworkflows.md)
-- [Pipelines](/docs/contributing/guidelines/)
+- [Pipelines](/docs/guidelines/pipelines/overview)
+- [Modules](/docs/guidelines/components/modules)
+- [Subworkflows](/docs/guidelines/components/subworkflows)
+- [Test data](/docs/guidelines/components/test_data)
 
 These specifications can also be useful when reviewing pull requests of new or existing components, to ensure they reach nf-core standards.

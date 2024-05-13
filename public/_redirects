@@ -19,12 +19,14 @@
 /tools-docs/lint_tests/* /tools/docs/latest/pipeline_lint_tests/:splat
 
 # New docs structure April 2024 - URL changes
-/tools/* /docs/nf-core-tools/:splat
+/docs/nf-core-tools/api_reference/:splat
 /tools/docs/* /docs/nf-core-tools/api_reference/:splat
+/tools/* /docs/nf-core-tools/:splat
+/docs/nf-core-tools/api_reference/*/index /docs/nf-core-tools/api_reference/:splat
 
-/docs/usage/introduction /docs/usage/getting-started/introduction
-/docs/usage/installation /docs/usage/getting-started/installation
-/docs/usage/configuration /docs/usage/getting-started/configuration
-/docs/usage/offline /docs/usage/getting-started/offline
+/docs/usage/introduction /docs/usage/getting_started/introduction
+/docs/usage/installation /docs/usage/getting_started/installation
+/docs/usage/configuration /docs/usage/getting_started/configuration
+/docs/usage/offline /docs/usage/getting_started/offline
 /docs/usage/tutorials /docs/tutorials
 

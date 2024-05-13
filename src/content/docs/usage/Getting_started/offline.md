@@ -55,7 +55,7 @@ If you are downloading _directly_ to the offline storage (eg. a head node with i
 This downloads the singularity images to the `$NXF_SINGULARITY_CACHEDIR` folder and does not copy them into the target downloaded pipeline folder.
 This reduces total disk space usage and is faster.
 
-For more information, see the [documentation for `nf-core download`](https://nf-co.re/tools#downloading-pipelines-for-offline-use).
+For more information, see the [documentation for `nf-core download`](/docs/nf-core-tools/pipelines/download).
 
 ## Reference genomes
 

@@ -127,7 +127,7 @@ Each have the same initial commit, with the vanilla template:
 
 ![git log](/images/contributing/creating_with_nf_core/git_log.svg)
 
-This is important, because this shared git history with unmodified nf-core template in the `TEMPLATE` branch is how the [nf-core automated template synchronisation](https://nf-co.re/docs/contributing/sync) works (see the docs for more details).
+This is important, because this shared git history with unmodified nf-core template in the `TEMPLATE` branch is how the [nf-core automated template synchronisation](https://nf-co.re/docs/tutorials/sync/overview) works (see the docs for more details).
 
 The main thing to remember with this is that:
 

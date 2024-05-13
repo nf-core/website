@@ -13,7 +13,7 @@ While the team of [maintainers](https://github.com/orgs/nf-core/teams/maintainer
 
 In general, the main purpose of the review is to ensure
 
-- [ ] All components adhere to the nf-core [module specifications](/docs/contributing/component-specifications/modules) or [subworkflow specifications](/docs/contributing/component-specifications/subworkflows).
+- [ ] All components adhere to the nf-core [module specifications](/docs/guidelines/components/modules) or [subworkflow specifications](/docs/guidelines/components/subworkflows).
 - [ ] Ensure all checks pass, including linting, conda, singularity, and docker.
 
 Otherwise, you can cover most of the specifications by checking for the following:

@@ -6,7 +6,7 @@ markdownPlugin: checklist
 
 ## Before you release
 
-1. [ ] Check the pipeline follows [nf-core guidelines](/docs/guidelines/pipelines).
+1. [ ] Check the pipeline follows [nf-core guidelines](/docs/guidelines/pipelines/overview).
 2. [ ] All continuous-integration tests on the `dev` branch should be passing
    - [ ] Check the output of `nf-core lint` for warnings and address all that you can
    - [ ] Update any software dependencies that are out of date.
@@ -64,4 +64,4 @@ The last step is to bump up the pipeline version number in the development branc
    - [ ] Search for your pipeline on Zenodo and find the DOI that allows you to _"Cite all versions"_ of the pipeline.
    - [ ] Ask a core member to copy the DOI information you added to dev via the PR above to the master branch. The core member will uncomment the Zenodo-related `TODO` statement in the `Citation` section of the main `README.md` and add the DOI, as well as as updating the badge for the Zenodo DOI at the top of the main `README.md` e.g. [nf-core/atacseq](https://github.com/nf-core/atacseq/blob/fa1e3f8993cd20e249b9df09d29c5498eff311d2/README.md).
 6. [ ] (first release only) Ask a core member to change default branch from `dev` to `master`.
-7. [ ] (publication only) If a publication of the pipeline is being prepared, recommended [nf-core guidelines](/docs/contributing/guidelines/recommendations/publication_credit) are followed.
+7. [ ] (publication only) If a publication of the pipeline is being prepared, recommended [nf-core guidelines](/docs/guidelines/pipelines/recommendations/publication_credit) are followed.

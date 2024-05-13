@@ -334,4 +334,4 @@ It is important to note that updating tool parameters or changing `ext.args` com
 
 # Debugging
 
-If you have any problems configuring your profile, please see relevant sections in the [Troubleshooting documentation](https://nf-co.re/docs/usage/troubleshooting.md)
+If you have any problems configuring your profile, please see relevant sections in the [Troubleshooting documentation](/docs/usage/troubleshooting/overview)

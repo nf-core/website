@@ -15,7 +15,7 @@ nextflow run nf-core/<pipeline_name> -profile test,docker
 ```
 
 If Docker is not installed, you can replace `docker` with `singularity` or `conda`, see
-the [Getting Started](https://nf-co.re/docs/usage/introduction) tutorial for further information. If a test fails, it might indicate that
+the [Getting Started](/docs/usage/getting_started/introduction) tutorial for further information. If a test fails, it might indicate that
 there is an issue with the installation or configuration of Nextflow or software management tool, rather than a pipeline error.
 
 You might also want to check the following:
@@ -39,7 +39,7 @@ For this step you try to identify when the error occurs:
    -- Check '.nextflow.log' file for details
    ```
 
-2. During the first process: when an error appears during the first process it might indicate an issue with software dependencies, to specify how Nextflow should handle dependencies you need to select a [configuration profile](https://nf-co.re/docs/usage/configuration#basic-configuration-profiles). This type of error might also be related to a missing command required to run the pipeline. Example error:
+2. During the first process: when an error appears during the first process it might indicate an issue with software dependencies, to specify how Nextflow should handle dependencies you need to select a [configuration profile](https://nf-co.re/docs/usage/getting_started/configuration#basic-configuration-profiles). This type of error might also be related to a missing command required to run the pipeline. Example error:
 
    ```bash
    Command exit status:

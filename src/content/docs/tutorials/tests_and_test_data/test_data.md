@@ -13,7 +13,7 @@ The general philosophy to keep in mind for all new test data is: **as small as p
 
 ## Reviewing
 
-When reviewing, all modules should be checked that they follow [test-data specifications](/docs/contributing/component-specifications/test_data.md).
+When reviewing, all modules should be checked that they follow [test-data specifications](/docs/guidelines/components/test_data).
 
 ## Modules
 

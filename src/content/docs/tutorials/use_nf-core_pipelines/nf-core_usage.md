@@ -231,7 +231,7 @@ Their priority increases from left to right.
 
 > Our tip: Be clever with multiple Nextflow configuration locations. For example, use `-profile` for your cluster configuration, `~/.nextflow/config` for your personal config such as `params.email` and a working directory `config` (e.g. `custom.config` provided to the run with `-c custom.config`) file for reproducible run-specific configuration.
 
-To know more about Nextflow configurations you can check the [pipeline configuration tutorial](https://nf-co.re/docs/usage/configuration).
+To know more about Nextflow configurations you can check the [pipeline configuration tutorial](https://nf-co.re/docs/usage/getting_started/configuration).
 
 ### Running pipelines with test data
 
@@ -288,7 +288,7 @@ Not everything always runs smoothly and you might be getting some errors when ru
    - Start by running the pipeline tests as described [above](#running-pipelines-with-test-data). If these tests fail, there is a good chance that you are missing some of the components needed to run Nextflow pipelines.
    - Nextflow: check that you have the latest version installed.
    - Check that you have docker/singularity/conda installed and that you are using the right docker/singularity/conda/custom profile.
-   - Check the [troubleshooting docs](https://nf-co.re/docs/usage/troubleshooting).
+   - Check the [troubleshooting docs](/docs/usage/troubleshooting/overview).
 2. Categorize the type of error. Check the Nextflow low to figure out if the error occurs:
    - Before the first process
    - In the first process

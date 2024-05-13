@@ -50,7 +50,7 @@ Nextflow works best when you have an active internet connection, as it is able t
 
    - If you are a member of one of the institutions listed in the [documentation](https://github.com/nf-core/configs#documentation), please use the custom config file [nf-core/configs/conf](https://github.com/nf-core/configs/tree/master/conf) that has been created for your institution.
 
-   - For advanced Nextflow configuration options, see [_Nextflow configuration_](https://nf-co.re/docs/usage/configuration).
+   - For advanced Nextflow configuration options, see [_Nextflow configuration_](https://nf-co.re/docs/usage/getting_started/configuration).
 
 4. To test that everything is working properly, try running the tests for your pipeline of interest in the terminal:
 

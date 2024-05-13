@@ -3,7 +3,7 @@ title: Fixing a broken TEMPLATE branch
 description: How to fix a broken TEMPLATE branch in your nf-core pipeline repository
 ---
 
-If merge conflicts are resolved via the GitHub interface instead of after pulling changes to a fork as described [in the `sync` documentation](/docs/contributing/sync), the commit history from the `dev` branch will be merged into `TEMPLATE`.
+If merge conflicts are resolved via the GitHub interface instead of after pulling changes to a fork as described [in the `sync` documentation](/docs/tutorials/sync/overview), the commit history from the `dev` branch will be merged into `TEMPLATE`.
 This leads to complex problems in later `TEMPLATE` merges as the later updated `TEMPLATE` branch removes all the pipeline-specific files that were accidentally included in problematic merge, resulting in many (in some cases >100!) of files to resolve conflicts in.
 
 If during one of the automated syncs you see you have an usually high number of changed files you can check whether `dev` was accidentally merged into `TEMPLATE` by looking at how many commits the `TEMPLATE` branch has (should be in the range of 5-15ish, depending on how many template updates your pipeline has had). You can also look at your repository's GitHub Network Graph under the _"Insights"_ tab or even look through the `TEMPLATE` branch commit history to see if there is a commit described as 'Merge branch `dev` into `TEMPLATE`'.
@@ -66,4 +66,4 @@ If so, the easiest solution is to start your `TEMPLATE` branch from scratch.
   git push --force
   ```
 
-With this, you're now ready to re-make the pull request from `TEMPLATE` into `dev`, and locally manually resolve conflicts (if required) following the git instructions [in the `sync` documentation](/docs/contributing/sync#merge-template-into-main-branches).
+With this, you're now ready to re-make the pull request from `TEMPLATE` into `dev`, and locally manually resolve conflicts (if required) following the git instructions [in the `sync` documentation](/docs/tutorials/sync/overview#merge-template-into-main-branches).

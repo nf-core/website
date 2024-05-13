@@ -41,7 +41,7 @@ Test data files SHOULD be described on the given branch's README file, describin
 
 ### Module test data organisation
 
-Files SHOULD be generally organised based on [existing structure](/docs/contributing/test_data_guidelines.md#field-specific-guidance), typically (for bioinformatics pipelines) by discipline, organism, platform or format
+Files SHOULD be generally organised based on [existing structure](/docs/tutorials/tests_and_test_data/test_data#field-specific-guidance), typically (for bioinformatics pipelines) by discipline, organism, platform or format
 
 ### Relatedness of module test data
 
