@@ -29,16 +29,16 @@ Once you have a version of the pipeline that runs, ask the core team to _move_ t
 
 We generally don't create repositories within the nf-core organisation from the start, in case development takes longer than expected.
 This way we avoid having a lot of "empty" pipelines listed which are basically just the template.
-See [Adding your pipeline to the nf-core organisation](/docs/contributing/adding_pipelines/move-to-nf-core-organisation) for details on this process.
+See [Adding your pipeline to the nf-core organisation](/docs/tutorials/adding_a_pipeline/move_to_nf-core_org) for details on this process.
 
-All nf-core pipelines [_must_ use the nf-core template](https://nf-co.re/docs/contributing/guidelines/requirements/use_the_template).
-This is done by using the `nf-core create` command - see [the docs](https://nf-co.re/tools#creating-a-new-pipeline) for detailed instructions.
+All nf-core pipelines [_must_ use the nf-core template](/docs/guidelines/pipelines/requirements/use_the_template).
+This is done by using the `nf-core create` command - see [the docs](/docs/nf-core-tools/pipelines/create) for detailed instructions.
 This tool does lots of things for you: it gives you the correct file structure and boiler plate code
 and also sets up the required `git` infrastructure for you to keep your pipeline in sync in the future.
 
 If you already have a working Nextflow pipeline that you're starting from, it's usually easier in the long run to start fresh with the nf-core template and copy over your code in the relevant places.
 Some exceptions can be made - ask the core team on Slack if you're unsure.
-You'll need to set up [manual synchronisation](/docs/contributing/sync.md), not for the faint hearted!
+You'll need to set up [manual synchronisation](/docs/tutorials/sync/overview), not for the faint hearted!
 
 Once the template for your pipeline is created, make sure to switch branch to the `dev` branch with `git checkout dev`.
 All development should happen on dev (or on other branches that get merged into dev).
@@ -84,7 +84,7 @@ You can now start writing code for real.
 
 Follow usual git development practices, working on the `dev` branch and committing + pushing code as normal.
 
-Remember to run the `nf-core lint` command (see [docs](https://nf-co.re/tools#linting-a-workflow))
+Remember to run the `nf-core lint` command (see [docs](/docs/nf-core-tools/pipelines/lint))
 to make sure that your workflow passes all of the nf-core compatibility tests.
 The automated tests on Github Actions also run this, so you should get a
 notification from GitHub if something breaks.

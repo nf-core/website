@@ -62,14 +62,14 @@ code by `@`ing them.
 Once any requested changes have been made and the associated PR approved, you can go ahead
 with releasing the pipeline. Put in a basic changelog entry describing the general
 functionality at release. When you're ready, follow the instructions in the nf-core
-[release checklist](/docs/contributing/release_checklist). We recommend you also explicitly tag contributors with their GitHub handles, so each release on GitHub will display their icons.
+[release checklist](/docs/checklists/pipeline_release). We recommend you also explicitly tag contributors with their GitHub handles, so each release on GitHub will display their icons.
 
 The nf-core website and helper tools will automatically detect the new release and be updated accordingly.
 
 That's it, you're finished! Congratulations!
 
 :::note{title=Publications}
-If you wish to make a publication based on the pipeline, make sure you [give credit to nf-core](/docs/contributing/guidelines/recommendations/publication_credit).
+If you wish to make a publication based on the pipeline, make sure you [give credit to nf-core](/docs/guidelines/pipelines/recommendations/publication_credit).
 :::
 
 # Subsequent releases

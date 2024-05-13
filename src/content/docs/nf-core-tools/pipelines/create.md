@@ -21,11 +21,11 @@ working_dir: tmp
 Once you have run the command, create a new empty repository on GitHub under your username (not the `nf-core` organisation, yet) and push the commits from your computer using the example commands in the above log.
 You can then continue to edit, commit and push normally as you build your pipeline.
 
-Please see the [nf-core documentation](https://nf-co.re/developers/adding_pipelines) for a full walkthrough of how to create a new nf-core workflow.
+Please see the [nf-core documentation](/docs/tutorials/adding_a_pipeline/overview) for a full walkthrough of how to create a new nf-core workflow.
 
 > [!TIP]
 > As the log output says, remember to come and discuss your idea for a pipeline as early as possible!
-> See the [documentation](https://nf-co.re/developers/adding_pipelines#join-the-community) for instructions.
+> See the [documentation](/docs/tutorials/adding_a_pipeline/move_to_nf-core_org) for instructions.
 
 Note that if the required arguments for `nf-core create` are not given, it will interactively prompt for them. If you prefer, you can supply them as command line arguments. See `nf-core create --help` for more information.
 

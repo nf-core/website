@@ -8,15 +8,15 @@ weight: 10
 
 Pipeline release reviews are often quite an overwhelming task, particularly when doing one for the first time.
 
-Pipeline release PRs are often quite diverse in their contents, making it harder to provide a strict set of reviewing guidelines that the PR must meet for approval, when compared to [modules or subworkflows](/docs/checklist/review_component_pr).
+Pipeline release PRs are often quite diverse in their contents, making it harder to provide a strict set of reviewing guidelines that the PR must meet for approval, when compared to [modules or subworkflows](/docs/checklists/reviews/components_pr).
 
-Overall, the role of the reviewer of pipeline release PRs is to check for adherence to the central principles of nf-core (reproducibility, excellent reporting, documented, keeping to the template etc.,). These are detailed in the pipeline guidelines [here](docs/guidelines/pipelines).
+Overall, the role of the reviewer of pipeline release PRs is to check for adherence to the central principles of nf-core (reproducibility, excellent reporting, documented, keeping to the template etc.,). These are detailed in the pipeline guidelines [here](/docs/guidelines/pipelines/overview).
 
 Here we provide a general set of suggestions of what a reviewer should and do not need to look for when doing pipeline releases:
 
 ## Do: nf-core principles
 
-- [ ] Does the pipeline meet the general [nf-core guidelines](docs/guidelines/pipelines)?
+- [ ] Does the pipeline meet the general [nf-core guidelines](/docs/guidelines/pipelines/overview)?
 
 ## Do: Local code and modules
 

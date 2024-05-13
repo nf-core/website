@@ -19,7 +19,7 @@ Gitpod runs in your browser (recommended with Chrome, Firefox or Edge). Their we
 
 Each nf-core repository (including the nf-core webpage) should have a ready-to-go Gitpod environment waiting to be started. Since this is a new nf-core feature, check for the `.gitpod.yml` file in the root of the repository.
 If it's there, you're ready to start using Gitpod.
-If the file is absent, then please [synchronise your pipeline with the latest version of the template](https://nf-co.re/docs/contributing/sync).
+If the file is absent, then please [synchronise your pipeline with the latest version of the template](https://nf-co.re/docs/tutorials/sync/overview).
 Alternatively, if this is not possible, you can add it manually.
 Make a fork of the repository, start a new branch, and then in your new branch copy the `.gitpod.yml` file from the [nf-core tools repository](https://github.com/nf-core/tools/blob/master/nf_core/pipeline-template/.gitpod.yml). Then start Gitpod from this branch.
 
@@ -53,8 +53,8 @@ Then you should see something similar to the following:
 
 See the following guides for Gitpod use in different scenarios:
 
-- [Using git within Gitpod](gitpod/git_in_gitpod.md)
-- [Configuration of a Gitpod environment](gitpod/config.md)
-- [How to develop Markdown for the nf-core website](gitpod/webdev.md)
-- [How to develop nf core pipelines with Gitpod](gitpod/nf_core_repo.md)
-- [Other Gitpod tutorials](gitpod/other_tutorials.md)
+- [Using git within Gitpod](/docs/tutorials/gitpod/git_in_gitpod)
+- [Configuration of a Gitpod environment](/docs/tutorials/gitpod/config)
+- [How to develop Markdown for the nf-core website](/docs/tutorials/gitpod/webdev)
+- [How to develop nf core pipelines with Gitpod](/docs/tutorials/gitpod/nf-core_repo)
+- [Other Gitpod tutorials](/docs/tutorials/gitpod/other_tutorials)

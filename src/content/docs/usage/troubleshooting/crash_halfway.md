@@ -31,14 +31,14 @@ Each exit code can mean different things to different tools as well as in differ
 
 Common exit codes and and **_potential_** solutions are as follows:
 
-| Exit Code | Possible Cause | Solution                                                                                                                                                                                                     |
-| --------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `104`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/docs/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
-| `134`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/docs/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
-| `137`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/docs/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
-| `139`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/docs/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
-| `143`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/docs/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
-| `247`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/docs/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
+| Exit Code | Possible Cause | Solution                                                                                                                                                                                                                     |
+| --------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `104`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/docs/usage/getting_started/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
+| `134`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/docs/usage/getting_started/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
+| `137`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/docs/usage/getting_started/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
+| `139`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/docs/usage/getting_started/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
+| `143`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/docs/usage/getting_started/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
+| `247`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/docs/usage/getting_started/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
 
 If in doubt, Google is your friend! Many exit codes are roughly similar across many tools; even if search results don't mention your tool exactly, you can try a solution similar to the one proposed for the other tool.
 
@@ -48,15 +48,15 @@ If you are still unable to resolve the issue, please make a GitHub issue on the 
 
 If you hit an error such as `Process requirement exceeds available memory -- req: 100 GB; avail: 15.5 GB`, this implies the pipeline run has requested more memory than is available on your system.
 
-While Nextflow tries to make your life easier by automatically retrying jobs that run out of memory with more resources (until a [specified max-limit](https://nf-co.re/docs/usage/configuration#tuning-workflow-resources)), sometimes you may have such large data that you run out even after the default 3 retries.
+While Nextflow tries to make your life easier by automatically retrying jobs that run out of memory with more resources (until a [specified max-limit](https://nf-co.re/docs/usage/getting_started/configuration#tuning-workflow-resources)), sometimes you may have such large data that you run out even after the default 3 retries.
 
 To address this you will need to make a configuration file that tells Nextflow how much memory or CPUs are available on your system, and also how much memory or CPUs the failing step should use.
 
 Please see the two following sections of the [configuring nf-core pipelines]
-(https://nf-co.re/docs/usage/configuration) page:
+(https://nf-co.re/docs/usage/getting_started/configuration) page:
 
-- Setting limits: [Max Resources](https://nf-co.re/docs/usage/configuration#max-resources)
-- Adusting the process resources: [Tuning workflow resources](https://nf-co.re/docs/usage/configuration#tuning-workflow-resources)
+- Setting limits: [Max Resources](https://nf-co.re/docs/usage/getting_started/configuration#max-resources)
+- Adusting the process resources: [Tuning workflow resources](https://nf-co.re/docs/usage/getting_started/configuration#tuning-workflow-resources)
 
 The resulting configuration file can then be passed to your Nextflow run command with `-c <config_file> -resume` to resume the failed run but with the updated resource requirements.
 

@@ -12,8 +12,6 @@ If you decide to upload a module to `nf-core/modules` then this will ensure that
 
 ## Writing a new module reference
 
-See the [dsl2 modules tutorial](tutorials/dsl2_modules_tutorial/) for a step by step guide for how to add a module!
-
 ### Before you start
 
 Please check that the module you wish to add isn't already on [`nf-core/modules`](https://github.com/nf-core/modules/tree/master/modules):
@@ -89,7 +87,7 @@ and proceed with Step 5.
 
         Minimal test data required for your module may already exist within the [nf-core/modules repository](https://github.com/nf-core/modules/blob/master/tests/config/test_data.config), in which case you may just have to change a couple of paths in this file - see the [Test data](#test-data) section for more info and guidelines for adding new standardised data if required.
 
-        Refer to the section [writing nf-test tests](docs/contributing/writing-nf-test-tests) for more information on how to write nf-tests
+        Refer to the section [writing nf-test tests](/docs/tutorials/tests_and_test_data/nf-test_writing_tests) for more information on how to write nf-tests
 
     4. Create a snapshot of the tests
        ![nf-core modules test](/images/contributing/modules/nf-core-modules-test.svg)
@@ -98,7 +96,7 @@ and proceed with Step 5.
     See the [nf-test docs](https://code.askimed.com/nf-test/) if you would like to run the tests manually.
     :::
 
-9. Check that the new module you've added follows the [module specifications](docs/contributing/nfcore_component-specifications/modules/)
+9. Check that the new module you've added follows the [module specifications](/docs/guidelines/components/modules)
 
 10. Lint the module locally to check that it adheres to nf-core guidelines before submission
 
@@ -139,7 +137,7 @@ git branch -d fastqc
     git checkout -b bam_sort_stats_samtools
     ```
 
-8. Create a subworkflow using the [nf-core DSL2 subworkflow template](https://github.com/nf-core/tools/blob/master/nf_core/subworkflow-template/subworkflows/main.nf) in the root of the clone of the nf-core/modules repository:
+8. Create a subworkflow using the [nf-core DSL2 subworkflow template](https://github.com/nf-core/tools/blob/master/nf_core/subworkflow-template/main.nf) in the root of the clone of the nf-core/modules repository:
 
     ![nf-core subworkflows create](/images/contributing/modules/nf-core-subworkflows-create.svg)
 
@@ -159,7 +157,7 @@ git branch -d fastqc
 
         Minimal test data required for your subworkflow may already exist within the [nf-core/modules repository](https://github.com/nf-core/modules/blob/master/tests/config/test_data.config), in which case you may just have to change a couple of paths in this file - see the [Test data](#test-data) section for more info and guidelines for adding new standardised data if required.
 
-        Refer to the section [writing nf-test tests](#writing-nf-test-tests) for more information on how to write nf-tests
+        Refer to the section [writing nf-test tests](docs/contributing/writing-nf-test-tests) for more information on how to write nf-tests
 
     4. Create a snapshot of the tests
 
@@ -169,7 +167,7 @@ git branch -d fastqc
     See the [nf-test docs](https://code.askimed.com/nf-test/) if you would like to run the tests manually.
     :::
 
-9. Check that the new subworkflow you've added follows the [subworkflow specifications](docs/contributing/nfcore_component-specifications/subworkflows/)
+9. Check that the new subworkflow you've added follows the [subworkflow specifications](/docs/guidelines/components/subworkflows)
 
 10. Lint the subworkflow locally to check that it adheres to nf-core guidelines before submission
 
@@ -203,7 +201,7 @@ git branch -d bam_sort_stats_samtools
 
 In order to test that each component added to `nf-core/modules` is actually working and to be able to track any changes to results files between component updates we have set-up a number of Github Actions CI tests to run each module on a minimal test dataset using Docker, Singularity and Conda.
 
-Please adhere to the [test-data specifications](/docs/contributing/component-specifications/test_data.md) when adding new test-data
+Please adhere to the [test-data specifications](/docs/guidelines/components/test_data) when adding new test-data
 
 If a new test dataset is added to [`tests/config/test_data.config`](https://github.com/nf-core/modules/blob/master/tests/config/test_data.config), check that the config name of the added file(s) follows the scheme of the entire file name with dots replaced with underscores.
 
@@ -244,7 +242,7 @@ Once you<span class="x x-first x-last"> are </span>familiar with the module subm
 
 ### Writing tests
 
-nf-core components are tested using [nf-test](https://code.askimed.com/nf-test/). See the page on [writing nf-test tests](docs/contributing/writing-nf-test-tests) for more information and examples.
+nf-core components are tested using [nf-test](https://code.askimed.com/nf-test/). See the page on [writing nf-test tests](/docs/tutorials/tests_and_test_data/nf-test_writing_tests) for more information and examples.
 
 ### Publishing results
 

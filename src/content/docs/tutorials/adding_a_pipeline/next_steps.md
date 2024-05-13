@@ -52,7 +52,7 @@ This way, a review process will be very fast and we can merge the changes into t
 
 <!-- TODO: Delete / link to another section of the docs -->
 
-To assure that nf-core pipelines don't break after some change is made to the code, we use automated continuous integration (CI) testing. This is done via GitHub actions, which are defined in the `.github/workflows` directory. Parameters and file paths are set in the `conf/test.config` and `conf/test_full.config`. Please see also [here](/docs/contributing/adding_pipelines#add-some-test-data) for how to set-up the test workflow for your pipeline.
+To assure that nf-core pipelines don't break after some change is made to the code, we use automated continuous integration (CI) testing. This is done via GitHub actions, which are defined in the `.github/workflows` directory. Parameters and file paths are set in the `conf/test.config` and `conf/test_full.config`. Please see also [here](/docs/tutorials/adding_a_pipeline/test_data) for how to set-up the test workflow for your pipeline.
 
 ## DSL2 and modules
 
@@ -68,4 +68,4 @@ For more information and a comprehensive guide on the guidelines of how to imple
 
 ### Sample meta information
 
-In nf-core DSL2 pipelines, every channel that contains sample data in some way should also contain a `meta`variable, which must contain the fields `meta.id`, `meta.single_end` and `meta.strandedness`. The `meta` variable can be passed down to processes as a tuple of the channel containing the actual samples, e.g. FastQ files, and the `meta` variable. This meta information can easily be extracted from a samplesheet which specifies the input files. For an example process that reads a samplesheet, creates a `meta` variable and returns it along with the filepaths, have a look at the [rnaseq pipeline](https://github.com/nf-core/rnaseq/blob/master/modules/local/samplesheet_check.nf).
+In nf-core DSL2 pipelines, every channel that contains sample data in some way should also contain a `meta`variable, which must contain the fields `meta.id`, `meta.single_end` and `meta.strandedness`. The `meta` variable can be passed down to processes as a tuple of the channel containing the actual samples, e.g. FastQ files, and the `meta` variable. This meta information can easily be extracted from a samplesheet which specifies the input files. Use the nextflow plugin [nf-validation](https://nextflow-io.github.io/nf-validation/) to transform the samplesheet into a channel with the meta information.

@@ -30,7 +30,7 @@ In case you couldn't find your institution / group of contributors on the [commu
 
    - Upload a _white_ version to the folder `public_html/assets/img/contributors-white/`. It must be a single monochrome shape with no background colour.
    - Upload a _colour_ version to the folder `public_html/assets/img/contributors-colour/`.
-   - See the website repository for examples in [white](https://github.com/nf-core/website/tree/main/public/images/contributors/contributors-white) and [colour](https://github.com/nf-core/website/tree/main/public/images/contributors/contributors-colour).
+   - See the website repository for examples in [white](https://github.com/nf-core/website/tree/main/public/images/contributors/white) and [colour](https://github.com/nf-core/website/tree/main/public/images/contributors/colour).
    - Both images should have the **same name** - if you define `image_fn: foobar.svg` in the YAML file, then both files should be named `foobar.svg` in the respective folders.
    - If you have only raster images available, please search for a SVG version. Ask for help in the nf-core Slack if in doubt (please do not add SVG files with embedded raster images - vector only).
      - _Tip_: Wikipedia often uses the SVG format of displayed logos available for the download.

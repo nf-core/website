@@ -9,21 +9,21 @@ weight: 1
 The steps covered in this tutorial are:
 
 1. Introduction (this page!)
-1. [Create a pipeline](/docs/contributing/adding_pipelines/create_pipeline.md)
-1. [Running with test data](/docs/contributing/adding_pipelines/test_data.md)
-1. [Adding to the nf-core organisation](/docs/contributing/adding_pipelines/move-to-nf-core-organisation.md)
-1. [Making your first release](/docs/contributing/adding_pipelines/first_release.md)
-1. [Appendices](/docs/contributing/adding_pipelines/appendices.md)
+1. [Create a pipeline](/docs/tutorials/adding_a_pipeline/creating_a_pipeline)
+1. [Running with test data](/docs/tutorials/adding_a_pipeline/test_data)
+1. [Adding to the nf-core organisation](/docs/tutorials/adding_a_pipeline/move_to_nf-core_org)
+1. [Making your first release](/docs/tutorials/adding_a_pipeline/first_release)
+1. [Next steps](/docs/tutorials/adding_a_pipeline/next_steps)
 
 ## Before you start
 
 So, you want to add a new pipeline to nf-core - brilliant!
 Before you start typing, check that you're happy with the following points:
 
-- You're familiar with nf-core and nextflow (see our [introduction docs](/docs/usage/introduction.md)).
+- You're familiar with nf-core and nextflow (see our [introduction docs](/docs/usage/getting_started/introduction.md)).
 - You're used to working with `git` and [GitHub](https://github.com)
   (see a [nice tutorial here](https://blog.scottlowe.org/2015/01/27/using-fork-branch-git-workflow/))
-- The workflow you're thinking of meets the [nf-core guidelines](https://nf-co.re/docs/contributing/guidelines).
+- The workflow you're thinking of meets the [nf-core guidelines](https://nf-co.re/docs/guidelines/pipelines/overview).
 
 ## Join the community
 
@@ -34,7 +34,7 @@ Please join us on [Slack](https://nf-co.re/join/slack), and ask to be added to t
 It's good to introduce your idea early on so that it can be discussed, before you spend lots of time coding.
 :::
 
-The [nf-core guidelines](/docs/contributing/guidelines) state that no two pipelines should overlap too much
+The [nf-core guidelines](/docs/guidelines/pipelines/overview) state that no two pipelines should overlap too much
 in their purpose and results. There may be an existing pipeline that can be extended to give the
 functionality that you are looking for, or there could be another group working on a similar to the
 pipeline to the one you're planning.
@@ -43,7 +43,7 @@ To avoid problems at a later date, please come and discuss your plans with the n
 as possible. Ideally before you make a start on your pipeline!
 
 :::info
-Not all pipelines are suitable for inclusion in the main nf-core community (eg. bespoke or proprietary workflows). However, we hope that you may still wish to use the nf-core template and/or use components of nf-core code. All nf-core code is under a MIT license and where possible we have endeavoured to make the tools work with any Nextflow pipeline. If this is the case for you, please see the [unofficial pipelines tutorial](/docs/contributing/tutorials/unofficial_pipelines.md) for more details.
+Not all pipelines are suitable for inclusion in the main nf-core community (eg. bespoke or proprietary workflows). However, we hope that you may still wish to use the nf-core template and/or use components of nf-core code. All nf-core code is under a MIT license and where possible we have endeavoured to make the tools work with any Nextflow pipeline. If this is the case for you, please see the [unofficial pipelines guidelines](/docs/guidelines/external_use) for more details.
 :::
 
 All nf-core discussion happens on the nf-core Slack, which you can join here:

@@ -432,7 +432,7 @@ For example, with a release version `1.4.3`, bumping to `2.0` would correspond t
 Bumping to `1.5` would be a minor release, for example adding some new features.
 Bumping to `1.4.4` would be a patch release for minor things such as fixing bugs.
 
-We have compiled a detailed [release checklist](https://nf-co.re/docs/contributing/release_checklist) for your reference.
+We have compiled a detailed [release checklist](https://nf-co.re/docs/checklists/pipeline_release) for your reference.
 
 ### Template updates
 

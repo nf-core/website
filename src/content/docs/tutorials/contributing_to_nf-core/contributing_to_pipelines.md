@@ -8,7 +8,7 @@ subtitle: Follow this walkthrough to add features to an existing nf-core pipelin
 So, you want to add a new pipeline to nf-core - brilliant!
 Before you start typing, check that you're happy with the following points:
 
-- You're familiar with nf-core and Nextflow (see our [introduction docs](/docs/usage/introduction.md)).
+- You're familiar with nf-core and Nextflow (see our [introduction docs](/docs/usage/getting_started/introduction.md)).
 - You're used to working with `git` and [GitHub](https://github.com)
   (see a [nice tutorial here](https://blog.scottlowe.org/2015/01/27/using-fork-branch-git-workflow/))
 - The workflow you're thinking of meets the [nf-core guidelines](https://nf-co.re/docs/contributing/guidelines).
@@ -100,7 +100,7 @@ If you wish to contribute a new step, please use the following coding standards:
 6. Add sanity checks and validation for all relevant parameters.
 7. Perform local tests to validate that the new code works as expected.
 8. If applicable, add a new test command in `.github/workflow/ci.yml`.
-9. Update MultiQC config `assets/multiqc_config.yml` so relevant suffixes, file name clean up and module plots are in the appropriate order. If applicable, add a [MultiQC](https://https://multiqc.info/) module.
+9. Update MultiQC config `assets/multiqc_config.yml` so relevant suffixes, file name clean up and module plots are in the appropriate order. If applicable, add a [MultiQC](https://multiqc.info/) module.
 10. Add a description of the output files and if relevant any appropriate images from the MultiQC report to `docs/output.md`.
 
 #### Default values

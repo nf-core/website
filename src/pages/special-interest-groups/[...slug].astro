@@ -23,6 +23,7 @@ const indexPage = '/special-interest-groups/' + current_section.find((group) => 
 const sections: SidebarEntry[] = [
     {
         type: 'group',
+        id: current_section.find((group) => group.id.includes('index.md'))?.data.title ?? current_section[0].data.title,
         label:
             current_section.find((group) => group.id.includes('index.md'))?.data.title ?? current_section[0].data.title,
         href: indexPage,
@@ -33,6 +34,7 @@ const sections: SidebarEntry[] = [
             .map((group) => {
                 return {
                     type: 'link',
+                    id: group.data.title,
                     label: group.data.title,
                     href: '/special-interest-groups/' + group.slug,
                     isCurrent: Astro.url.pathname.replace('.html', '') === '/special-interest-groups/' + group.slug,

@@ -144,7 +144,7 @@ The `assertAll()` function MUST be used to specify an assertion, and there MUST 
 
 There SHOULD be a test and assertions for each type of input and output.
 
-[Different assertion types](https://nf-co.re/docs/contributing/tutorials/nf-test_assertions) should be used if a straightforward `workflow.out` snapshot is not feasible.
+[Different assertion types](/docs/contributing/nf-test/assertions) should be used if a straightforward `workflow.out` snapshot is not feasible.
 
 :::tip
 Always check the snapshot to ensure that all outputs are correct!
