@@ -19,7 +19,7 @@ blogPosts = blogPosts
     .filter((post) => {
         const pubDate = new Date(post.data.pubDate);
         if (process.env.CONTEXT === 'production') {
-            pubDate < new Date();
+            return pubDate < new Date();
         } else {
             return true;
         }
