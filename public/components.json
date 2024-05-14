@@ -5373,6 +5373,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -17244,6 +17248,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -42241,6 +42249,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -42998,6 +43010,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -48261,6 +48277,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -110743,6 +110763,73 @@
       }
     },
     {
+      "name": "seqtk_trim",
+      "path": "modules/nf-core/seqtk/trim/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "seqtk_trim",
+        "description": "Trim low quality bases from FastQ files",
+        "keywords": [
+          "trimfq",
+          "fastq",
+          "seqtk"
+        ],
+        "tools": [
+          {
+            "seqtk": {
+              "description": "Seqtk is a fast and lightweight tool for processing sequences in the FASTA or FASTQ format",
+              "homepage": "https://github.com/lh3/seqtk",
+              "documentation": "https://docs.csc.fi/apps/seqtk/",
+              "tool_dev_url": "https://github.com/lh3/seqtk",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "reads": {
+              "type": "file",
+              "description": "List of input FastQ files",
+              "pattern": "*.{fastq.gz}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "reads": {
+              "type": "file",
+              "description": "Filtered FastQ files",
+              "pattern": "*.{fastq.gz}"
+            }
+          }
+        ],
+        "authors": [
+          "@laramiellindsey"
+        ]
+      }
+    },
+    {
       "name": "sequencetools_pileupcaller",
       "path": "modules/nf-core/sequencetools/pileupcaller/meta.yml",
       "type": "module",
@@ -126644,6 +126731,84 @@
           "version": "dev"
         }
       ]
+    },
+    {
+      "name": "vcflib_vcffixup",
+      "path": "modules/nf-core/vcflib/vcffixup/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "vcflib_vcffixup",
+        "description": "Generates a VCF stream where AC and NS have been generated for each record using sample genotypes.",
+        "keywords": [
+          "vcf",
+          "vcflib",
+          "vcflib/vcffixup",
+          "AC/NS/AF"
+        ],
+        "tools": [
+          {
+            "vcflib": {
+              "description": "Command-line tools for manipulating VCF files",
+              "homepage": "https://github.com/vcflib/vcflib",
+              "documentation": "https://github.com/vcflib/vcflib#USAGE",
+              "doi": "10.1101/2021.05.21.445151",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "Compressed VCF file",
+              "pattern": "*.{.vcf.gz,vcf}"
+            }
+          },
+          {
+            "tbi": {
+              "type": "file",
+              "description": "Index of VCF file",
+              "pattern": "*.vcf.gz.tbi"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "Compressed VCF file",
+              "pattern": "*.vcf.gz"
+            }
+          }
+        ],
+        "authors": [
+          "@atrigila"
+        ],
+        "maintainers": [
+          "@atrigila"
+        ]
+      }
     },
     {
       "name": "vcflib_vcfuniq",
