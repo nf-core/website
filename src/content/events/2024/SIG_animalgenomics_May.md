@@ -6,10 +6,13 @@ startDate: '2024-05-15'
 startTime: '16:00+02:00'
 endDate: '2024-05-15'
 endTime: '17:00+02:00'
+youtubeEmbed:
+  - https://youtu.be/BM6DxxuD5Ek
 locations:
   - name: Online
-    links: https://rediris.zoom.us/j/96065549412?pwd=L2txanpQMEFTOWVLNmtIZyt6M3NnUT09
+    links:
+      - https://youtu.be/BM6DxxuD5Ek
 ---
 
-Join us on **May 15** for the monthly meeting of the _#animal-genomics_ special interest group!
-This month, we are honored to announce Alessandro Bagnato from the Department of Veterinary Medicine, University of Milan, Italy speaking about the _Next-Steps and Needs for Livestock Genomics Applications_.
+May talk of the monthly _#animal-genomics_ special interest group meeting.
+On this talk, Alessandro Bagnato from the Department of Veterinary Medicine, University of Milan, Italy discusses about the _Next-Steps and Needs for Livestock Genomics Applications_.
