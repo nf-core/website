@@ -5385,6 +5385,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -17319,6 +17323,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -18624,7 +18632,9 @@
               "documentation": "https://github.com/kircherlab/CADD-scripts/blob/master/README.md",
               "tool_dev_url": "https://github.com/kircherlab/CADD-scripts/",
               "doi": "10.1093/nar/gky1016",
-              "licence": "['Restricted. Free for non-commercial users.']"
+              "licence": [
+                "Restricted. Free for non-commercial users."
+              ]
             }
           }
         ],
@@ -42277,6 +42287,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -43034,6 +43048,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -48309,6 +48327,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -66131,6 +66153,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -73284,6 +73310,163 @@
           "version": "2.1.1"
         }
       ]
+    },
+    {
+      "name": "magus_align",
+      "path": "modules/nf-core/magus/align/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "magus_align",
+        "description": "Multiple Sequence Alignment using Graph Clustering",
+        "keywords": [
+          "MSA",
+          "alignment",
+          "genomics",
+          "graph"
+        ],
+        "tools": [
+          {
+            "magus": {
+              "description": "Multiple Sequence Alignment using Graph Clustering",
+              "homepage": "https://github.com/vlasmirnov/MAGUS",
+              "documentation": "https://github.com/vlasmirnov/MAGUS",
+              "tool_dev_url": "https://github.com/vlasmirnov/MAGUS",
+              "doi": "10.1093/bioinformatics/btaa992",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing the fasta meta information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing sample information for the specified guide tree (if supplied)\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Input sequences in FASTA format.",
+              "pattern": "*.{fa,fna,fasta}"
+            }
+          },
+          {
+            "tree": {
+              "type": "file",
+              "description": "Optional path to a file containing a guide tree in newick format to use as input. If empty, or overwritten by passing `-t [fasttree|fasttree-noml|clustal|parttree]`, MAGUS will construct its own guide tree. If empty, `fasttree` is used as a default.",
+              "pattern": "*.{dnd,tree}"
+            }
+          },
+          {
+            "compress": {
+              "type": "boolean",
+              "description": "Flag representing whether the output MSA should be compressed. Set to true to enable/false to disable compression. Compression is done using pigz, and is multithreaded."
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample meta information.\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "alignment": {
+              "type": "file",
+              "description": "File containing the output alignment, in FASTA format containing gaps. The sequences may be in a different order than in the input FASTA. The output file may or may not be gzipped, depending on the value supplied to `compress`.",
+              "pattern": "*.aln{.gz,}"
+            }
+          }
+        ],
+        "authors": [
+          "@lrauschning"
+        ]
+      }
+    },
+    {
+      "name": "magus_guidetree",
+      "path": "modules/nf-core/magus/guidetree/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "magus_guidetree",
+        "description": "Multiple Sequence Alignment using Graph Clustering",
+        "keywords": [
+          "MSA",
+          "guidetree",
+          "genomics",
+          "graph"
+        ],
+        "tools": [
+          {
+            "magus": {
+              "description": "Multiple Sequence Alignment using Graph Clustering",
+              "homepage": "https://github.com/vlasmirnov/MAGUS",
+              "documentation": "https://github.com/vlasmirnov/MAGUS",
+              "tool_dev_url": "https://github.com/vlasmirnov/MAGUS",
+              "doi": "10.1093/bioinformatics/btaa992",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing fasta meta information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Input sequences in FASTA format.",
+              "pattern": "*.{fa,fna,fasta}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "tree": {
+              "type": "file",
+              "description": "File containing the output guidetree, in newick format.",
+              "pattern": "*.tree"
+            }
+          }
+        ],
+        "authors": [
+          "@lrauschning"
+        ]
+      }
     },
     {
       "name": "malt_build",
@@ -92193,6 +92376,12 @@
         ],
         "input": [
           {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test']`\n"
+            }
+          },
+          {
             "zip": {
               "type": "file",
               "description": "Gzipped file",
@@ -92202,10 +92391,9 @@
         ],
         "output": [
           {
-            "versions": {
-              "type": "file",
-              "description": "File containing software versions",
-              "pattern": "versions.yml"
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test']`\n"
             }
           },
           {
@@ -92213,6 +92401,13 @@
               "type": "file",
               "description": "File to compress",
               "pattern": "*"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
             }
           }
         ],
@@ -117688,6 +117883,121 @@
           "@vivian-chen16",
           "@maxulysse",
           "@joaodemeirelles"
+        ]
+      }
+    },
+    {
+      "name": "staramr_search",
+      "path": "modules/nf-core/staramr/search/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "staramr_search",
+        "description": "Scans genome contigs against the ResFinder, PlasmidFinder, and PointFinder databases.",
+        "keywords": [
+          "amr",
+          "plasmid",
+          "mlst",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "staramr": {
+              "description": "Scan genome contigs against the ResFinder and PointFinder databases. In order to use the PointFinder databases, you will have to add --pointfinder-organism ORGANISM to the ext.args options.\n",
+              "homepage": "https://github.com/phac-nml/staramr",
+              "documentation": "https://github.com/phac-nml/staramr",
+              "tool_dev_url": "https://github.com/phac-nml/staramr",
+              "doi": "10.3390/microorganisms10020292",
+              "licence": [
+                "Apache Software License"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "genome_fasta": {
+              "type": "file",
+              "description": "Assembled/complete genome(s) in FASTA format to search for AMR/MLST/Plasmids.\n",
+              "pattern": "*.{fasta,fna,fsa,fa,fasta.gz,fna.gz,fsa.gz,fa.gz}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "results_xlsx": {
+              "type": "file",
+              "description": "Excel spreadsheet containing summary of StarAMR results.",
+              "pattern": "*_results/results.xlsx"
+            }
+          },
+          {
+            "summary_tsv": {
+              "type": "file",
+              "description": "A summary of all detected AMR genes/mutations/plasmids/sequence type in each genome, one genome per line.\nA series of descriptive statistics is also provided for each genome,\nas well as feedback for whether or not the genome passes several quality metrics and if not,\nfeedback on why the genome fails.\n",
+              "pattern": "*_results/summary.tsv"
+            }
+          },
+          {
+            "detailed_summary_tsv": {
+              "type": "file",
+              "description": "A summary of all detected AMR genes/mutations/plasmids/sequence type in each genome, one genome per line.\nA series of descriptive statistics is also provided for each genome,\nas well as feedback for whether or not the genome passes several quality metrics and if not,\nfeedback on why the genome fails.\n",
+              "pattern": "*_results/detailed_summary.tsv"
+            }
+          },
+          {
+            "resfinder_tsv": {
+              "type": "file",
+              "description": "A tabular file of each AMR gene and additional BLAST information from the ResFinder database, one gene per line.",
+              "pattern": "*_results/resfinder.tsv"
+            }
+          },
+          {
+            "plasmidfinder_tsv": {
+              "type": "file",
+              "description": "A tabular file of each AMR plasmid type and additional BLAST information from the PlasmidFinder database, one plasmid type per line.",
+              "pattern": "*_results/plasmidfinder.tsv"
+            }
+          },
+          {
+            "mlst_tsv": {
+              "type": "file",
+              "description": "A tabular file of each multi-locus sequence type (MLST) and it's corresponding locus/alleles, one genome per line.",
+              "pattern": "*_results/mlst.tsv"
+            }
+          },
+          {
+            "settings_txt": {
+              "type": "file",
+              "description": "The command-line, database versions, and other settings used to run staramr.",
+              "pattern": "*_results/settings.txt"
+            }
+          },
+          {
+            "pointfinder_tsv": {
+              "type": "file",
+              "description": "An optional tabular file of each AMR point mutation and additional BLAST information from the PointFinder database, one gene per line.",
+              "pattern": "*_results/pointfinder.tsv"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@apetkau"
+        ],
+        "maintainers": [
+          "@apetkau"
         ]
       }
     },
