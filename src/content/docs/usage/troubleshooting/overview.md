@@ -23,7 +23,7 @@ weight: 1
 3. Follow the [troubleshooting basics](/docs/usage/troubleshooting/basics), to
    - to try to reproduce the error
    - to inspect more places to gather information regarding the problem
-4. If you can't find your error message here, or a solution to your problem, fails, please [ask for help](#asking-for-help)
+4. If you can't find your error message here, or a solution to your problem, fails, please [ask for help](#extra-resources-and-getting-help)
 
 :::danger{.fa-brands .fa-youtube title="Bytesize talk"}
 There is a [Bytesize talk](https://www.youtube.com/embed/z9n2F4ByIkY) by Phil Ewels on the topic of troubleshooting, which you may find useful.
