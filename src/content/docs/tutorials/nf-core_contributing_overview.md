@@ -411,7 +411,7 @@ These can only be set up by _nf-core_ administrators, so please ask someone to d
 
 ### Initial community review
 
-Once everything is set up and all tests are passing on the `dev` branch, let us know on Slack and we will do a large community review.
+Once everything is set up and all tests are passing on the `dev` branch, let us know on the [#pipeline-maintainers](https://nfcore.slack.com/archives/C04QR0T3G3H) channel in the [nf-core Slack workspace](https://nf-co.re/join/slack) and we will do a large community review.
 This is a one-off process that is done before the first release for all pipelines.
 In order to give a nice interface to review _all_ pipeline code, we create a _"pseudo pull request"_ comparing `dev` against the first commit in the pipeline (hopefully the template creation).
 This PR will never be merged, but gives the GitHub review web pages where people can comment on specific lines in the code.
