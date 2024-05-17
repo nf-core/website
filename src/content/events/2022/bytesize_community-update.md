@@ -24,6 +24,7 @@ The nf-core core team recently met for their first ever retreat. A lot of topics
   - nf-core website updates
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::

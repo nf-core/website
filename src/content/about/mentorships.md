@@ -3,6 +3,12 @@ title: Mentorships
 description: Information about the Nextflow and nf-core mentorship program
 ---
 
+:::note
+The first three rounds of nf-core mentorships concluded in 2022 + 2023.
+They were a great success, we are looking into how we can continue the program.
+Please check back soon for updates.
+:::
+
 # Introduction
 
 As the Nextflow and nf-core communities continue to grow, we aim to prioritise inclusivity for everyone through active outreach to groups with low representation.

@@ -17,6 +17,7 @@ locations:
 This week, Maxime Garcia ([@maxulysse](https://github.com/maxulysse)) will share with us all there is to know (well, some of it) about the brand-new nf-core subworkflows!
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::
