@@ -1,6 +1,7 @@
 ---
 title: Hackathon - March 2024 (Sherbrooke, QC, Canada)
 subtitle: Local node of the nf-core hackathon at Université de Sherbrooke, QC, Canada.
+shortTitle: Sherbrooke, QC, Canada
 type: hackathon
 startDate: '2024-03-18'
 startTime: '10:00-05:00'

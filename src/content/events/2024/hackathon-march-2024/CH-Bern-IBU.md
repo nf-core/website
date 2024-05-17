@@ -1,6 +1,7 @@
 ---
 title: Hackathon - March 2024 (Bern)
 subtitle: Local site of the nf-core hackathon at the IBU, Bern.
+shortTitle: Bern, Switzerland
 type: hackathon
 startDate: '2024-03-18'
 startTime: '10:00+01:00'

@@ -1,6 +1,7 @@
 ---
 title: Hackathon - March 2024 (Cambridge)
 subtitle: Local node of the nf-core hackathon at the Wellcome Genome Campus, Cambridge.
+shortTitle: Cambridge, UK
 type: hackathon
 startDate: '2024-03-18'
 startTime: '09:30+00:00'
