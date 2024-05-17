@@ -28,7 +28,7 @@ In contrast, if your module requires many tests, steps, or heavy CPU usage, you 
 
 ### Adding new test data
 
-1. Always ask on the [#modules](https://nfcore.slack.com/channels/modules) or [#test-data](https://nfcore.slack.com/channels/modules) channels on the [nf-core slack](https://nf-co.re/join/slack) before adding test data.
+1. Always ask on the [#modules](https://nfcore.slack.com/channels/modules) or [#test-data](https://nfcore.slack.com/channels/test-data) channels on the [nf-core slack](https://nf-co.re/join/slack) before adding test data.
 
 2. Add any new test data via a pull request from the corresponding branch of a personal fork of the nf-core/test-dataset repository.
 

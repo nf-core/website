@@ -7,7 +7,7 @@ Many nf-core pipelines need a reference genome for alignment, annotation, or sim
 
 ## Illumina AWS iGenomes
 
-:::warning
+:::danger
 The transcriptome and GTF files in iGenomes are vastly out of date with respect to current annotations from Ensembl e.g. human iGenomes annotations are from Ensembl release 75, while the current Ensembl release is 108. Please consider downloading and using a more updated version of your reference genome as outlined in the next section.
 :::
 

@@ -186,4 +186,4 @@ Note that you should _only_ do this if you intend to make significant changes to
 
 Some pipelines come with built-in support for iGenomes references.
 We recommend downloading these references locally to avoid fetching the same reference many times.
-For more information, see [_Reference genomes_](reference_genomes.md).
+For more information, see [_Reference genomes_](/docs/usage/reference_genomes/reference_genomes.md).
