@@ -31,6 +31,7 @@ Once released in PyPI, releases via [Bioconda](https://bioconda.github.io/) are 
 Once in Bioconda, software will be available for Conda users, but also Docker + Singularity, via the [BioContainers](https://biocontainers.pro/) project.
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::

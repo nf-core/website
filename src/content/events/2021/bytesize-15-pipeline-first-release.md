@@ -25,6 +25,7 @@ This will cover:
 The talk will be presented on Zoom and live-streamed on YouTube.
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::
