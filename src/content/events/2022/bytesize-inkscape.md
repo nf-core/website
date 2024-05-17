@@ -19,6 +19,7 @@ This week, James Fellows Yates ([@jfy133](https://github.com/jfy133)) will give 
 ![nf-core/eager pipeline diagram in the style of a tube-map](https://raw.githubusercontent.com/nf-core/eager/master/docs/images/usage/eager2_metromap_complex.png)
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::

@@ -18,6 +18,7 @@ This week, Phil Ewels ([@ewels](https://github.com/ewels/)) will show us how to 
 He'll cover common problems, where to start looking for issues and how to ask for help in the most effective way.
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::

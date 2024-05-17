@@ -20,6 +20,7 @@ This week, Robert A. Petit III ([@rpetit3](https://github.com/rpetit3)) will int
 Robert will show us the pipeline and explain how he is using nf-core components (such as [modules](https://nf-co.re/modules)) in this pipeline, despite it being outside the main nf-core organisation.
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::

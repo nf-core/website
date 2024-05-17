@@ -21,6 +21,7 @@ This is the platform that we have used for recent online events, That we will us
 He'll do a full walk through of how to sign up, and, well - walk through the event!
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::

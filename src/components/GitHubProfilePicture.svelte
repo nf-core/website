@@ -15,10 +15,10 @@
     const avatar_url = image.match(/\?/) ? `${image}&s=${size}` : `${image}?s=${size}`;
 </script>
 
-<div class={wrapperClasses} class:github-profile={containerQuery}>
+<div class={'github-profile-wrapper ' + wrapperClasses} style="--size:{size};" class:github-profile={containerQuery}>
     <a
         href="https://github.com/{name}"
-        class={'text-decoration-none d-block ' + linkClasses}
+        class={'text-decoration-none github-link ' + linkClasses}
         target="_blank"
         rel="noopener noreferrer"
         style="--size:{size};"
@@ -35,7 +35,7 @@
             style="--size:{size};"
             class={' ' + imgClasses}
         />
-        <div class="profile-name text-nowrap">
+        <div class="profile-name text-nowrap overflow-x-scroll py-2">
             <slot />
         </div>
     </a>
@@ -46,22 +46,25 @@
     img {
         background-color: $white;
     }
+    .github-profile-wrapper {
+        min-width: fit-content;
+        width: calc(var(--size) * 1px + 1rem);
+    }
     .github-profile {
         container-type: size;
         container-name: github-profile;
-        flex-grow: 1;
     }
-    a {
-        width: fit-content;
+    .github-link {
+        max-width: fit-content;
     }
-    @container github-profile (width < 10rem) {
+    @container github-profile (width < 13rem) {
         :global(.profile-name) {
-            display: none;
+            display: none !important;
         }
     }
     :global(.github-profile:hover) {
         z-index: 1000;
-        width: 40%; // should cover most cases, but extra long usernames, will still be not completely covered
+        width: 54%; // should cover most cases, but extra long usernames, will still be not completely covered
         :global(.profile-name) {
             display: block !important;
             z-index: 1000;

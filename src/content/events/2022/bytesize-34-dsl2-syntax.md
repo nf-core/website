@@ -17,6 +17,7 @@ locations:
 This week, Maxime Garcia ([@maxulysse](https://github.com/maxulysse)) will tell us all about the latest changes to the DSL2 template.
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::

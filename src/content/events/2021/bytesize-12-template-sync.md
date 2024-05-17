@@ -31,6 +31,7 @@ The talk will be presented on Zoom and live-streamed on YouTube:
 - FigShare: <https://doi.org/10.6084/m9.figshare.14572866.v1>
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::
