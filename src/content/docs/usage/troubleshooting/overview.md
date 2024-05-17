@@ -2,6 +2,7 @@
 title: Overview
 subtitle: How to troubleshoot common mistakes and issues
 weight: 1
+parentWeight: 20
 ---
 
 ## Table of contents
