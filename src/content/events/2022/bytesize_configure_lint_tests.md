@@ -17,6 +17,7 @@ locations:
 This week, Phil Ewels ([@ewels](https://github.com/ewels)) will show how to configure lint tests.
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::

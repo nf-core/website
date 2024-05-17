@@ -25,6 +25,7 @@ nf-core/eager is one of the largest and/or most complex nf-core pipelines. It is
 - Cover some of the challenges and solutions encountered when writing this pipeline.
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::

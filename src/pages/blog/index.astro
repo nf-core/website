@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
 import GitHubProfilePictureExtended from '@components/GitHubProfilePictureExtended.svelte';
 import { Image } from 'astro:assets';
+import { Markdown } from '@astropub/md';
 import type { SidebarEntry } from '@utils/types';
 
 const images = import.meta.glob('../../assets/**/*.{png,jpg,jpeg,gif,svg}');
@@ -14,11 +15,8 @@ let blogPosts = await getCollection('blog');
 blogPosts = blogPosts
     .filter((post) => {
         const pubDate = new Date(post.data.pubDate);
-        return pubDate < new Date();
-    })
-    .filter((post) => {
-        if (process.env.production) {
-            return post.data.draft !== true;
+        if (process.env.CONTEXT === 'production') {
+            return pubDate < new Date();
         } else {
             return true;
         }
@@ -67,58 +65,64 @@ const sections: SidebarEntry[] = years.map((year) => {
             {blogPosts.length === 0 && <div class="">Nothing to see her yet! Come back soon</div>}
             {
                 years.map((year) => (
-                    <div id={'year-' + year} class="d-flex align-items-start flex-wrap">
+                    <div id={'year-' + year} class="d-flex align-items-stretch flex-wrap">
                         {blogPosts
                             .filter((post) => new Date(post.data.pubDate).getFullYear() === year)
                             .map((post) => (
                                 <div
                                     class:list={[
-                                        'card m-xl-3 m-1',
+                                        'card m-xl-3 m-1 ',
                                         new Date(Date.now()) > new Date(post.data.pubDate) &&
                                         new Date(post.data.pubDate) > new Date(Date.now() - 2 * 24 * 60 * 60 * 1000)
                                             ? 'border-primary'
                                             : '',
                                     ]}
                                 >
-                                    <a
-                                        href={'/blog/' + post.slug}
-                                        class:list={[
-                                            'new-post-badge text-decoration-none badge text-bg-primary fs-6 mb-0 rounded-top-0 w-25 m-auto position-absolute top-0 start-0 end-0',
-                                            new Date(Date.now()) > new Date(post.data.pubDate) &&
-                                            new Date(post.data.pubDate) > new Date(Date.now() - 2 * 24 * 60 * 60 * 1000)
-                                                ? 'd-block'
-                                                : 'd-none',
-                                        ]}
-                                    >
-                                        New post!
-                                    </a>
-                                    {post.data.headerImage && (
-                                        <Image
-                                            src={
-                                                post.data.headerImage.startsWith('/assets/')
-                                                    ? images['../..' + post.data.headerImage]()
-                                                    : post.data.headerImage
-                                            }
-                                            class="card-img-top object-fit-cover"
-                                            alt={post.data.headerImageAlt || ''}
-                                            height={240}
-                                            width={512}
-                                            transition:name="cover-image"
-                                        />
-                                    )}
-                                    <div class="card-body">
-                                        <h2 transition:name="title">{post.data.title}</h2>
-                                        <p class="lead">{post.data.subtitle}</p>
-                                        <p class="card-text small">
-                                            {async () => {
-                                                const { remarkPluginFrontmatter } = await post.render();
-                                                return remarkPluginFrontmatter.excerpt;
-                                            }}
-                                        </p>
-                                        <a href={'/blog/' + post.slug} class="stretched-link" />
+                                    <div class=" card-body p-0 position-relative">
+                                        <a
+                                            href={'/blog/' + post.slug}
+                                            class:list={[
+                                                'post-badge text-decoration-none badge text-bg-primary fs-6 mb-0  rounded-top-0 w-25 m-auto position-absolute top-0 start-0 end-0',
+                                                new Date(Date.now()) > new Date(post.data.pubDate) &&
+                                                new Date(post.data.pubDate) >
+                                                    new Date(Date.now() - 2 * 24 * 60 * 60 * 1000)
+                                                    ? 'd-block'
+                                                    : 'd-none',
+                                            ]}
+                                        >
+                                            New post!
+                                        </a>
+                                        {post.data.headerImage && (
+                                            <Image
+                                                src={
+                                                    post.data.headerImage.startsWith('/assets/')
+                                                        ? images['../..' + post.data.headerImage]()
+                                                        : post.data.headerImage
+                                                }
+                                                class="card-img-top object-fit-cover"
+                                                alt={post.data.headerImageAlt || ''}
+                                                height={240}
+                                                width={512}
+                                                densities={[1.5, 2]}
+                                                transition:name="cover-image"
+                                            />
+                                        )}
+                                        <div class="card-text px-3 pt-2">
+                                            <h2 transition:name="title">{post.data.title}</h2>
+                                            <p class="lead">
+                                                <Markdown of={post.data.subtitle} />
+                                            </p>
+                                            <p class="small">
+                                                {async () => {
+                                                    const { remarkPluginFrontmatter } = await post.render();
+                                                    return remarkPluginFrontmatter.excerpt;
+                                                }}
+                                            </p>
+                                            <a href={'/blog/' + post.slug} class="stretched-link" />
+                                        </div>
                                     </div>
                                     <div class="card-footer d-flex justify-content-between">
-                                        <div class="me-auto authors d-flex flex-grow-1 flex-wrap">
+                                        <div class="me-auto authors w-100 d-flex">
                                             {post.data.authors.map((author) => (
                                                 <GitHubProfilePictureExtended
                                                     username={author}
@@ -127,8 +131,14 @@ const sections: SidebarEntry[] = years.map((year) => {
                                                 />
                                             ))}
                                         </div>
-                                        <span class="text-body-secondary text-small text-end flex-grow-1">
-                                            published at {new Date(post.data.pubDate).toLocaleDateString()}
+                                        <span class="text-body-secondary text-small text-end flex-grow-1 text-nowrap">
+                                            published on
+                                            <br />
+                                            {new Date(post.data.pubDate).toLocaleDateString('en-GB', {
+                                                year: 'numeric',
+                                                month: 'short',
+                                                day: 'numeric',
+                                            })}
                                         </span>
                                     </div>
                                 </div>
@@ -148,15 +158,15 @@ const sections: SidebarEntry[] = years.map((year) => {
             margin-bottom: 0 !important;
         }
     }
+    .card-body:hover {
+        background-color: var(--bs-tertiary-bg);
+    }
     @include media-breakpoint-down(md) {
         .card {
             width: 100%;
         }
     }
-    .authors {
-        width: 100%;
-    }
-    .new-post-badge {
+    .post-badge {
         z-index: 10;
     }
 </style>

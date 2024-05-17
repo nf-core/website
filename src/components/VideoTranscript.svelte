@@ -10,7 +10,12 @@
         // get details element
 
         const details = document.querySelector('details');
-        if (details === null) {
+        // check if id is inside details
+        const containsId = Array.from(details.children).some((child) => {
+            return child.innerHTML.includes(id);
+        });
+
+        if (details === null || !containsId) {
             return;
         } else {
             noTranscript = false;

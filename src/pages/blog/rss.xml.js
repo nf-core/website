@@ -2,7 +2,12 @@ import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 
 export async function GET(context) {
-  const blogPosts = await getCollection('blog');
+  let blogPosts = await getCollection('blog');
+  blogPosts = blogPosts
+    .filter((post) => {
+      new Date(post.data.pubDate) < new Date();
+    })
+    .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
   return rss({
     title: 'nf-core blog',
     description: 'News and updates from the nf-core community.',

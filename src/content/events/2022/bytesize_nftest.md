@@ -17,6 +17,7 @@ locations:
 This week Edmund Miller ([@edmundmiller](https://github.com/edmundmiller)) will share with us his impressions about nf-test from a user perspective. nf-test is a simple test framework for Nextflow pipelines.
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::

@@ -1,6 +1,7 @@
 ---
 title: Reference Genomes
 subtitle: How reference genomes are handled in nf-core
+weight: 4
 ---
 
 Many nf-core pipelines need a reference genome for alignment, annotation, or similar purposes.
