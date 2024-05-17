@@ -1,8 +1,10 @@
 # Slack invite URL
 /join/slack https://join.slack.com/t/nfcore/shared_invite/zt-2gkfckttv-lG0aBbzOJZ5kUxaakhc2ag
 
-# Big docs restructure - April 2024
-/tools /docs/usage/tools
+# Force a 404 header on custom 404 page
+# See https://answers.netlify.com/t/bug-and-workaround-404-page-returns-http-200/21154
+/404.html /404 404!
+/404 /404.html 404!
 
 # Temporary oldsite redirections
 /logo/*  https://oldsite.nf-co.re/logo/:splat 200
@@ -18,7 +20,8 @@
 /assets/img/* /images/:splat
 /tools-docs/lint_tests/* /tools/docs/latest/pipeline_lint_tests/:splat
 
-# New docs structure April 2024 - URL changes
+# Big docs restructure - April 2024
+/tools /docs/usage/tools
 /tools/docs/* /docs/nf-core-tools/api_reference/:splat
 /tools/* /docs/nf-core-tools/:splat
 /docs/nf-core-tools/api_reference/*/index /docs/nf-core-tools/api_reference/:splat
@@ -29,3 +32,5 @@
 /docs/usage/offline /docs/usage/getting_started/offline
 /docs/usage/tutorials /docs/tutorials
 
+/docs/contributing/code_formatting /docs/contributing/code_editors_and_styling/code_formatting
+/docs/contributing/adding_pipelines /docs/tutorials/adding_a_pipeline/overview
