@@ -11,10 +11,10 @@ This ensures that updates to the community standards are propagated to all nf-co
 
 There are three topics covered in this documentation page:
 
-1. [Merging automated PRs](#merging-automated-prs)
-2. [Manual synchronisation](#manual-synchronisation)
-3. [Setting up a pipeline for syncing retrospectively](#setting-up-a-pipeline-for-syncing-retrospectively)
-4. [Fixing a broken `TEMPLATE` branch](#fixing-a-broken-template-branch)
+1. [Merging automated PRs](/docs/tutorials/sync/merging_automated_prs)
+2. [Manual synchronisation](/docs/tutorials/sync/manual_sync)
+3. [Setting up a pipeline for syncing retrospectively](/docs/tutorials/sync/sync_retrospectively)
+4. [Fixing a broken `TEMPLATE` branch](/docs/tutorials/sync/fixing_broken_template_branch)
 
 ### How template synchronisation works
 
