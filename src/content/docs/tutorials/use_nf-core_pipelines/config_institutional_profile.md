@@ -1,7 +1,7 @@
 ---
 title: Step-by-step guide to writing an institutional profile
 subtitle: Walkthrough on what you need to set up an nf-core institutional profile
-parentWeight: 10
+parentWeight: 5
 ---
 
 ## Introduction
