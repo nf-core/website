@@ -1,6 +1,7 @@
 ---
 title: Hackathon - March 2024 (San Francisco)
 subtitle: Local node of the nf-core hackathon at the Superfluid office in South San Francisco
+shortTitle: San Francisco, USA
 type: hackathon
 startDate: '2024-03-18'
 startTime: '10:00-06:00'
