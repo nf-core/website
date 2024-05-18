@@ -93,4 +93,4 @@ To help you manage your nf-core pipelines and discover updates, we have written 
 These allow you to list all available pipelines and versions, with information about the versions you're running locally.
 There are also commands to download pipelines for offline use.
 
-To find out more about these tools, see the [Tools](/tools) page.
+To find out more about these tools, see the [Tools](/docs/nf-core-tools) page.
