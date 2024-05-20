@@ -10,4 +10,4 @@ locations:
   - links: https://kth-se.zoom.us/j/68390542812
 ---
 
-This week Marco ([@marcodelapierre](https://github.com/marcodelapierre/)) will show us how to create singularity containers for high performance cluster (HPCs).
+This week Marco ([@marcodelapierre](https://github.com/marcodelapierre/)) will show us how to deploy software for Nextflow pipelines using Singularity containers, an optimal choice for high performance computing (HPC) clusters.
