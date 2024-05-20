@@ -5397,6 +5397,34 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -8566,7 +8594,7 @@
         "tools": [
           {
             "basicpy": {
-              "description": "BaSiCPy is a python package for background and shading correction of optical microscopy images. It is developed based on the Matlab version of BaSiC tool with major improvements in the algorithm. The container of this tool needs to be initialized with an empty Entrypoint. See the nextflow.config of the tests for details.",
+              "description": "BaSiCPy is a python package for background and shading correction of optical microscopy images. It is developed based on the Matlab version of BaSiC tool with major improvements in the algorithm.",
               "homepage": "https://github.com/peng-lab/BaSiCPy",
               "documentation": "https://basicpy.readthedocs.io/en/latest/index.html",
               "tool_dev_url": "https://github.com/peng-lab/BaSiCPy",
@@ -17343,6 +17371,34 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -17654,7 +17710,8 @@
           "@jfy133"
         ],
         "maintainers": [
-          "@jfy133"
+          "@jfy133",
+          "@gallvp"
         ]
       },
       "pipelines": [
@@ -17736,7 +17793,8 @@
         ],
         "maintainers": [
           "@drpatelh",
-          "@maxulysse"
+          "@maxulysse",
+          "@gallvp"
         ]
       },
       "pipelines": [
@@ -18471,6 +18529,213 @@
           "version": "3.4.2"
         }
       ]
+    },
+    {
+      "name": "bwameme_index",
+      "path": "modules/nf-core/bwameme/index/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "bwameme_index",
+        "description": "Create BWA-MEME index for reference genome",
+        "keywords": [
+          "index",
+          "fasta",
+          "genome",
+          "reference"
+        ],
+        "tools": [
+          {
+            "bwameme": {
+              "description": "Faster BWA-MEM2 using learned-index",
+              "homepage": "https://github.com/kaist-ina/BWA-MEME",
+              "documentation": "https://github.com/kaist-ina/BWA-MEME#getting-started",
+              "doi": "10.1093/bioinformatics/btac137",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Input genome fasta file"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "index": {
+              "type": "file",
+              "description": "BWA-MEME genome index files",
+              "pattern": "*.{0123,amb,ann,pac,pos_packed,suffixarray_uint64,suffixarray_uint64_L0_PARAMETERS,suffixarray_uint64_L1_PARAMETERS,suffixarray_uint64_L2_PARAMETERS}"
+            }
+          }
+        ],
+        "authors": [
+          "@ramprasadn"
+        ],
+        "maintainers": [
+          "@ramprasadn"
+        ]
+      }
+    },
+    {
+      "name": "bwameme_mem",
+      "path": "modules/nf-core/bwameme/mem/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "bwameme_mem",
+        "description": "Performs fastq alignment to a fasta reference using BWA-MEME",
+        "keywords": [
+          "mem",
+          "bwa",
+          "bwamem2",
+          "bwameme",
+          "alignment",
+          "map",
+          "fastq",
+          "bam",
+          "sam",
+          "cram"
+        ],
+        "tools": [
+          {
+            "bwameme": {
+              "description": "Faster BWA-MEM2 using learned-index",
+              "homepage": "https://github.com/kaist-ina/BWA-MEME",
+              "documentation": "https://github.com/kaist-ina/BWA-MEME#getting-started",
+              "doi": "10.1093/bioinformatics/btac137",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "reads": {
+              "type": "file",
+              "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data,\nrespectively.\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference/index information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "index": {
+              "type": "file",
+              "description": "BWA genome index files",
+              "pattern": "Directory containing BWA index *.{0132,amb,ann,bwt.2bit.64,pac}"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Reference genome in FASTA format",
+              "pattern": "*.{fa,fasta,fna}"
+            }
+          },
+          {
+            "sort_bam": {
+              "type": "boolean",
+              "description": "use samtools sort (true) or samtools view (false)",
+              "pattern": "true or false"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "sam": {
+              "type": "file",
+              "description": "Output SAM file containing read alignments",
+              "pattern": "*.{sam}"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "Output BAM file containing read alignments",
+              "pattern": "*.{bam}"
+            }
+          },
+          {
+            "cram": {
+              "type": "file",
+              "description": "Output CRAM file containing read alignments",
+              "pattern": "*.{cram}"
+            }
+          },
+          {
+            "crai": {
+              "type": "file",
+              "description": "Index file for CRAM file",
+              "pattern": "*.{crai}"
+            }
+          },
+          {
+            "csi": {
+              "type": "file",
+              "description": "Index file for BAM file",
+              "pattern": "*.{csi}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@ramprasadn"
+        ],
+        "maintainers": [
+          "@ramprasadn"
+        ]
+      }
     },
     {
       "name": "bwameth_align",
@@ -27763,10 +28028,6 @@
         {
           "name": "demultiplex",
           "version": "1.4.1"
-        },
-        {
-          "name": "epitopeprediction",
-          "version": "2.3.0"
         },
         {
           "name": "funcscan",
@@ -42315,6 +42576,34 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -43072,6 +43361,34 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -48359,6 +48676,34 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -59888,7 +60233,7 @@
         },
         {
           "name": "epitopeprediction",
-          "version": "2.3.0"
+          "version": "2.3.1"
         },
         {
           "name": "funcscan",
@@ -66186,6 +66531,34 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
         {
           "name": "isoseq",
           "version": "1.1.5"
@@ -81823,7 +82196,7 @@
         },
         {
           "name": "epitopeprediction",
-          "version": "2.3.0"
+          "version": "2.3.1"
         },
         {
           "name": "fastquorum",
@@ -117008,7 +117381,8 @@
           "@Midnighter"
         ],
         "maintainers": [
-          "@Midnighter"
+          "@Midnighter",
+          "@gallvp"
         ]
       },
       "pipelines": [
@@ -117097,7 +117471,8 @@
           "@Midnighter"
         ],
         "maintainers": [
-          "@Midnighter"
+          "@Midnighter",
+          "@gallvp"
         ]
       },
       "pipelines": [
@@ -140311,7 +140686,7 @@
         },
         {
           "name": "epitopeprediction",
-          "version": "2.3.0"
+          "version": "2.3.1"
         },
         {
           "name": "fastquorum",
@@ -140516,7 +140891,7 @@
         },
         {
           "name": "epitopeprediction",
-          "version": "2.3.0"
+          "version": "2.3.1"
         },
         {
           "name": "fastquorum",
@@ -140751,7 +141126,7 @@
         },
         {
           "name": "epitopeprediction",
-          "version": "2.3.0"
+          "version": "2.3.1"
         },
         {
           "name": "fastquorum",
