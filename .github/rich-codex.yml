@@ -50,14 +50,14 @@ outputs:
     fake_command: nf-core modules create fastqc --author @janedoe --label process_low --meta
     img_paths:
       - public/images/contributing/modules/nf-core-modules-create.svg
-  - commmand: nf-core list
+  - command: nf-core list
     head: 19
     img_paths:
       - public/images/tools/nf-core-list.svg
-  - commmand: nf-core list rna rna-seq
+  - command: nf-core list rna rna-seq
     img_paths:
       - public/images/tools/nf-core-list-rna.svg
-  - commmand: nf-core list -s stars
+  - command: nf-core list -s stars
     head: 18
     img_paths:
       - public/images/tools/nf-core-list-stars.svg
@@ -65,7 +65,7 @@ outputs:
     trim_after: 'Command line'
     img_paths:
       - public/images/tools/nf-core-launch-rnaseq.svg
-  - commmand: mkdir tmp && cd tmp && nf-core download rnaseq -r 3.8 --outdir nf-core-rnaseq -x none -s none -d
+  - command: mkdir tmp && cd tmp && nf-core download rnaseq -r 3.8 --outdir nf-core-rnaseq -x none -s none -d
     img_paths:
       - public/images/tools/nf-core-download.svg
   - command: cd tmp && tree -L 2 nf-core-rnaseq/
