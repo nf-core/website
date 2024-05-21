@@ -1,9 +1,7 @@
 ---
 title: Testing
 subtitle: Use nf-test to validate pipeline
-menu:
-  main:
-    weight: 210
+weight: 210
 ---
 
 Pipelines should use nf-test for valid pipeline testing.
