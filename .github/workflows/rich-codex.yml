@@ -1,0 +1,34 @@
+name: Generate images for docs
+on:
+  workflow_dispatch:
+jobs:
+  rich_codex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4
+      - name: Set up Python
+        uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d # v5
+        with:
+          python-version: 3.x
+
+      - name: Install Nextflow
+        uses: nf-core/setup-nextflow@561fcfc7146dcb12e3871909b635ab092a781f34 # v2
+
+      - name: Install nf-test
+        uses: nf-core/setup-nf-test@v1
+
+      - name: Install nf-core/tools
+        run: pip install nf-core
+
+      - name: Generate terminal images with rich-codex
+        uses: ewels/rich-codex@v1
+        env:
+          COLUMNS: 100
+          HIDE_PROGRESS: 'true'
+          NXF_ANSI_LOG: false
+        with:
+          commit_changes: 'true'
+          terminal_width: 100
+          skip_git_checks: 'true'
+          search_include: '.github/workflows/rich-codex.yml'
