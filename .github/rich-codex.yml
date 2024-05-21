@@ -62,7 +62,7 @@ outputs:
     img_paths:
       - public/images/tools/nf-core-list-stars.svg
   - command: nf-core launch rnaseq -r 3.8.1
-    trim_after: "Command line"
+    trim_after: 'Command line'
     img_paths:
       - public/images/tools/nf-core-launch-rnaseq.svg
   - commmand: mkdir tmp && cd tmp && nf-core download rnaseq -r 3.8 --outdir nf-core-rnaseq -x none -s none -d
