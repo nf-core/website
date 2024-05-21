@@ -1,9 +1,10 @@
 ---
 # based on https://github.com/gitpod-io/template-docker-compose
 
-tasks:
-  - init: docker-compose pull && chmod a+x /workspace/nf-co.re
-    command: docker-compose up
+# TODO: Update to build Astro
+#tasks:
+#  - init: docker-compose pull && chmod a+x /workspace/nf-co.re
+#    command: docker-compose up
 
 ports:
   - port: 8888
