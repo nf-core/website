@@ -51,6 +51,7 @@ All nf-core pipelines _should_ follow the following guidelines, if possible / ap
 
 - [Use Bioconda](/docs/guidelines/pipelines/recommendations/bioconda): Package software using bioconda and biocontainers.
 - [File formats](/docs/guidelines/pipelines/recommendations/file_formats): Use community accepted modern file formats such as `CRAM`.
+- [Testing](/docs/guidelines/pipelines/recommendations/testing): Use nf-test to test pipeline completes successfully with valid outputs using a minimal example.
 - [DOIs](/docs/guidelines/pipelines/recommendations/dois): Pipelines should have digital object identifiers (DOIs).
 - [Cloud compatible](/docs/guidelines/pipelines/recommendations/cloud_compatible): Pipelines should be tested on cloud computing environments.
 - [Publication credit](/docs/guidelines/pipelines/recommendations/publication_credit): Pipeline publications should acknowledge the nf-core community.
