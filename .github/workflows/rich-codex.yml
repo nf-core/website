@@ -15,6 +15,9 @@ jobs:
       - name: Install Nextflow
         uses: nf-core/setup-nextflow@561fcfc7146dcb12e3871909b635ab092a781f34 # v2
 
+      - name: Install nf-test
+        uses: nf-core/setup-nf-test@v1
+
       - name: Install nf-core/tools
         run: pip install nf-core
 
