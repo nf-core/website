@@ -35,13 +35,11 @@ Use `nf-core lint --release`. This will check that your code conforms to nf-core
 Ok - now the tough bit - does your workflow stand up to the scrutiny of the nf-core team?!
 Not to worry, we're a friendly bunch.
 
-To get your pipeline reviewed for its initial release, do the following:
-
 1. Make a pull-request from the `dev` branch to `master` on the nf-core fork. This is a
-special case and all of the tests should pass.
+   special case and all of the tests should pass.
 
 1. Once the tests are passing, request a review from the core team. You can use the
-[#request-review](https://app.slack.com/client/TE6CZUZPH/CQY2U5QU9) slack channel for this.
+   [#request-review](https://app.slack.com/client/TE6CZUZPH/CQY2U5QU9) slack channel for this.
 
 What happens next depends on the state of your master branch:
 
