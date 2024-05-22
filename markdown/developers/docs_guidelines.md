@@ -1,9 +1,7 @@
 ---
 title: Documentation
 subtitle: Guidelines for contributing to nf-core documentation.
-menu:
-  main:
-    weight: 10
+weight: 10
 ---
 
 # nf-core/website - Documentation contribution guidelines
