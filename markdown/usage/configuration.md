@@ -6,11 +6,11 @@ subtitle: How configure Nextflow to work on your system
 # Introduction
 
 One of the strongest features of Nextflow is that it can run on virtually any computational infrastructure.
-It has built-in support for HPC execution schedulers (such as [Slurm](https://slurm.schedmd.com/quickstart.html), [SGE](https://docs.oracle.com/cd/E19680-01/html/821-1541/ciagcgha.html#scrolltoc), [PBS](https://www.openpbs.org/), and [LSF](https://www.ibm.com/support/knowledgecenter/en/SSWRJV_10.1.0/lsf_welcome/lsf_welcome.html)) and cloud compute infrastructure (such as [AWS Batch](https://aws.amazon.com/batch/) and [Google Cloud](https://cloud.google.com/)).
+It has built-in support for HPC execution schedulers (such as [Slurm](https://slurm.schedmd.com/quickstart.html), [SGE](https://docs.oracle.com/cd/E19680-01/html/821-1541/ciagcgha.html#scrolltoc), and [others](https://www.nextflow.io/docs/latest/executor.html)) and cloud compute infrastructure (such as [AWS Batch](https://aws.amazon.com/batch/), [Google Cloud](https://cloud.google.com/) and [others](https://www.nextflow.io/docs/latest/executor.html)).
 
-Nextflow also supports container engines such as [Docker](https://www.docker.com/), [Singularity](https://sylabs.io/), [Podman](https://podman.io/), [Charliecloud](https://hpc.github.io/charliecloud/), [Shifter](https://www.nersc.gov/research-and-development/user-defined-images/), as well as the [Conda](https://docs.conda.io/en/latest/) package management system to deploy the pipelines.
+For dependency management, Nextflow supports container engines such as [Docker](https://www.docker.com/), [Singularity](https://sylabs.io/), and [others](https://www.nextflow.io/docs/latest/container.html), and dependency management systems ([Conda](https://docs.conda.io/en/latest/) and [Spack](https://spack.readthedocs.io/en/latest/)) to deploy the pipelines.
 
-In order to get nf-core pipelines to run properly on your system, you will need to install one of the aforementioned software (See [Installation](https://nf-co.re/docs/usage/installation) page) and configure Nextflow so that it knows how best to run your analysis jobs.
+To get nf-core pipelines to run properly on your system, you must install your dependency management software of choice (see [Installation](../usage/installation.md)) and configure Nextflow to run your workflows.
 
 # Different config locations
 
