@@ -33,7 +33,7 @@ Example: "Run pipelines to produce results." not "Running pipelines produces res
 
 Be direct and brief in your instructions and descriptions. Avoid words and qualifiers like may, might, should, could, just, or even.
 
-Examples: 
+Examples:
 
 "To make changes to the pipeline", not "If you would like to make changes to the pipeline"
 "Install with Conda", not "You can also install with Conda"
@@ -58,16 +58,16 @@ Use inline code formatting for commands, file names, and code snippets.
 Example: Use `nextflow run nf-core/<pipeline_name>` to execute the pipeline.
 
 1. Headings and titles:
-Use sentence case for headings and titles. Only the first word and proper nouns should be capitalized.
+   Use sentence case for headings and titles. Only the first word and proper nouns should be capitalized.
 
 "Tuning workflow resources"
 "Use a specific Nextflow version"
 
 1. Lists:
-Use bullet points for lists where the order of items is not important. Use numbered lists for sequential steps.
+   Use bullet points for lists where the order of items is not important. Use numbered lists for sequential steps.
 
 1. Hyperlinks:
-Write descriptive link text instead of using URLs directly.
+   Write descriptive link text instead of using URLs directly.
 
 Example: See the [nf-core docs](https://nf-co.re/docs) for more information.
 
