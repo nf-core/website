@@ -10,9 +10,9 @@ Many thanks for taking an interest in improving the nf-core documentation. To ma
 
 ## General writing guidelines
 
-1. Use US English:
+1. Use British English:
 
-Write in US English, not British English. For example, "color" instead of "colour" and "organize" instead of "organise."
+Write in British English, not US English. For example, "colour" instead of "color" and "organise" instead of "organize."
 
 1. Use active voice:
 
