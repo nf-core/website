@@ -6,7 +6,7 @@ subtitle: How configure Nextflow to work on your system
 # Introduction
 
 One of the strongest features of Nextflow is that it can run on virtually any computational infrastructure.
-It has built-in support for HPC execution schedulers such as [Slurm](https://slurm.schedmd.com/quickstart.html), [SGE](https://docs.oracle.com/cd/E19680-01/html/821-1541/ciagcgha.html#scrolltoc), [PBS](https://www.openpbs.org/), [LSF](https://www.ibm.com/support/knowledgecenter/en/SSWRJV_10.1.0/lsf_welcome/lsf_welcome.html) and more as well as cloud compute infrastructure such as [AWS Batch](https://aws.amazon.com/batch/) and [Google Cloud](https://cloud.google.com/).
+It has built-in support for HPC execution schedulers (such as [Slurm](https://slurm.schedmd.com/quickstart.html), [SGE](https://docs.oracle.com/cd/E19680-01/html/821-1541/ciagcgha.html#scrolltoc), [PBS](https://www.openpbs.org/), and [LSF](https://www.ibm.com/support/knowledgecenter/en/SSWRJV_10.1.0/lsf_welcome/lsf_welcome.html)) and cloud compute infrastructure (such as [AWS Batch](https://aws.amazon.com/batch/) and [Google Cloud](https://cloud.google.com/)).
 
 Nextflow also supports container engines such as [Docker](https://www.docker.com/), [Singularity](https://sylabs.io/), [Podman](https://podman.io/), [Charliecloud](https://hpc.github.io/charliecloud/), [Shifter](https://www.nersc.gov/research-and-development/user-defined-images/), as well as the [Conda](https://docs.conda.io/en/latest/) package management system to deploy the pipelines.
 
