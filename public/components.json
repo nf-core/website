@@ -5437,6 +5437,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -17308,6 +17312,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -36113,7 +36121,9 @@
               "description": "A fast K-mer counter for high-fidelity shotgun datasets",
               "homepage": "https://github.com/thegenemyers/FASTK",
               "tool_dev_url": "https://github.com/thegenemyers/FASTK",
-              "licence": "https://github.com/thegenemyers/FASTK/blob/master/LICENSE"
+              "licence": [
+                "https://github.com/thegenemyers/FASTK/blob/master/LICENSE"
+              ]
             }
           }
         ],
@@ -36171,7 +36181,8 @@
           "@mahesh-panchal"
         ],
         "maintainers": [
-          "@mahesh-panchal"
+          "@mahesh-panchal",
+          "@gallvp"
         ]
       },
       "pipelines": [
@@ -42644,6 +42655,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -43401,6 +43416,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -48728,6 +48747,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -66707,6 +66730,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -77507,7 +77534,7 @@
             "meryl_db": {
               "type": "directory",
               "description": "A Meryl k-mer database",
-              "pattern": "*.meryldb"
+              "pattern": "*.meryl"
             }
           }
         ],
@@ -77515,7 +77542,8 @@
           "@mahesh-panchal"
         ],
         "maintainers": [
-          "@mahesh-panchal"
+          "@mahesh-panchal",
+          "@gallvp"
         ]
       },
       "pipelines": [
@@ -77558,7 +77586,7 @@
             }
           },
           {
-            "meryl_dbs": {
+            "meryl_db": {
               "type": "directory",
               "description": "Meryl k-mer database"
             }
@@ -77596,7 +77624,8 @@
           "@mahesh-panchal"
         ],
         "maintainers": [
-          "@mahesh-panchal"
+          "@mahesh-panchal",
+          "@gallvp"
         ]
       },
       "pipelines": [
@@ -77669,7 +77698,7 @@
             "meryl_db": {
               "type": "directory",
               "description": "A Meryl k-mer database that is the union sum of the input databases",
-              "pattern": "*.unionsum.meryldb"
+              "pattern": "*.unionsum.meryl"
             }
           }
         ],
@@ -77677,7 +77706,8 @@
           "@mahesh-panchal"
         ],
         "maintainers": [
-          "@mahesh-panchal"
+          "@mahesh-panchal",
+          "@gallvp"
         ]
       },
       "pipelines": [
