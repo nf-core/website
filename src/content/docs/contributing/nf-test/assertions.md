@@ -83,7 +83,7 @@ log[0][1]
 ```groovy
 assertAll(
     { assert process.success },
-    { assert snapshot(process.out.version).match("version") }
+    { assert snapshot(process.out.versions).match("versions") }
 )
 ```
 
