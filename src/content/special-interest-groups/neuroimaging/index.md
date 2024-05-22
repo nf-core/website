@@ -15,6 +15,7 @@ pipelines:
 The Neuroimaging SIG aims to accelerate the integration of Nextflow and nf-core in all fields of neuroimaging. Its first goal is to put in place guidelines and standards tailored for neuroimaging. Its second is to create educational content and a common base of tailored modules and subworkflows for neuroimaging purposes, in order to streamline the integration of Nextflow and nf-core pipelines in neuroimaging, and of new researchers in the nf-core community.
 
 To do so, the SIG need to indentify :
+
 1. Common use-cases and challenges of doing Neuroimaging with Nextflow and nf-core
 2. Educational requirements to get the Neuroimaging field in line with Nextflow and nf-core
 3. Nextflow and nf-core practices that need to translate to Neuroimaging
