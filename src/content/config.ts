@@ -6,6 +6,7 @@ const events = defineCollection({
         .object({
             title: z.string(),
             subtitle: z.string(),
+            shortTitle: z.string().optional(),
             type: z.enum(['bytesize', 'talk', 'hackathon', 'training']),
             startDate: z.string().refine((s) => /^(\d{4}-\d{2}-\d{2})$/.test(s), {
                 message: 'startDate must be in the format YYYY-MM-DD',
@@ -77,8 +78,12 @@ const docs = defineCollection({
     schema: z.object({
         title: z.string(),
         subtitle: z.string().optional(),
+        shortTitle: z.string().optional(),
         weight: z.number().optional(),
         parent: z.string().optional(),
+        parentWeight: z.number().optional(),
+        type: z.enum(['tutorial']).optional(),
+        markdownPlugin: z.enum(['checklist', 'addNumbersToHeadings']).optional(),
     }),
 });
 const about = defineCollection({
@@ -98,6 +103,7 @@ const blog = defineCollection({
         .object({
             title: z.string(),
             subtitle: z.string(),
+            shortTitle: z.string().optional(),
             headerImage: z.string().url().optional().or(z.string().startsWith('/assets/images/blog/')).optional(),
             headerImageAlt: z.string().optional(),
             label: z.array(z.string()),
@@ -163,7 +169,7 @@ const specialInterestGroups = defineCollection({
 
 const pipelines = defineCollection({});
 
-const tools = defineCollection({});
+const api_reference = defineCollection({});
 
 export const collections = {
     events: events,
@@ -171,6 +177,6 @@ export const collections = {
     about: about,
     pipelines: pipelines,
     blog: blog,
-    tools: tools,
+    api_reference: api_reference,
     'special-interest-groups': specialInterestGroups,
 };

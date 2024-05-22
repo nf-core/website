@@ -1,6 +1,7 @@
 ---
 title: Hackathon - March 2024 (Dallas)
 subtitle: Local node of the nf-core hackathon at the University of Texas at Dallas
+shortTitle: Dallas, USA
 type: hackathon
 startDate: '2024-03-18'
 startTime: '09:00-06:00'

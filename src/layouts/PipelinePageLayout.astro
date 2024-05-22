@@ -3,6 +3,7 @@ import PageLayout from '@layouts/PageLayout.astro';
 import SubHeader from '@components/header/SubHeader.astro';
 import TabBar from '@components/TabBar.astro';
 import pipelines_json from '@public/pipelines.json';
+import type { SidebarEntry } from '@utils/types';
 
 export interface Props {
     pipeline: string | undefined;
@@ -15,7 +16,7 @@ export interface Props {
     tabItems?: string[];
     md_github_url?: string;
     showHiddenBtn?: boolean;
-    sections?: { section_name: string; children: {}[] }[] | never[];
+    sections?: SidebarEntry[];
     docSearchTags?: { name: string; content: string | string[] }[];
     viewTransitions?: boolean;
 }

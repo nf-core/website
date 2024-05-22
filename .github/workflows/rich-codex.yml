@@ -6,7 +6,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
-        uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4
+        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4
+        with:
+          # Use @nf-core-bot token to check out so we can push without a PR
+          token: ${{ secrets.NF_CORE_BOT_AUTH_TOKEN }}
       - name: Set up Python
         uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d # v5
         with:
@@ -15,12 +18,14 @@ jobs:
       - name: Install Nextflow
         uses: nf-core/setup-nextflow@561fcfc7146dcb12e3871909b635ab092a781f34 # v2
 
+      - name: Install nf-test
+        uses: nf-core/setup-nf-test@v1
+
       - name: Install nf-core/tools
         run: pip install nf-core
 
       - name: Generate terminal images with rich-codex
-        # Change back to @v1 when v1.2.7 is released
-        uses: ewels/rich-codex@main
+        uses: ewels/rich-codex@v1
         env:
           COLUMNS: 100
           HIDE_PROGRESS: 'true'
@@ -29,3 +34,4 @@ jobs:
           commit_changes: 'true'
           terminal_width: 100
           skip_git_checks: 'true'
+          search_include: '.github/workflows/rich-codex.yml'
