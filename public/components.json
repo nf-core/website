@@ -5433,6 +5433,14 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -17304,6 +17312,14 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -36105,7 +36121,9 @@
               "description": "A fast K-mer counter for high-fidelity shotgun datasets",
               "homepage": "https://github.com/thegenemyers/FASTK",
               "tool_dev_url": "https://github.com/thegenemyers/FASTK",
-              "licence": "https://github.com/thegenemyers/FASTK/blob/master/LICENSE"
+              "licence": [
+                "https://github.com/thegenemyers/FASTK/blob/master/LICENSE"
+              ]
             }
           }
         ],
@@ -36163,7 +36181,8 @@
           "@mahesh-panchal"
         ],
         "maintainers": [
-          "@mahesh-panchal"
+          "@mahesh-panchal",
+          "@gallvp"
         ]
       },
       "pipelines": [
@@ -36843,6 +36862,10 @@
         {
           "name": "methylseq",
           "version": "2.6.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "dev"
         },
         {
           "name": "nanoseq",
@@ -42628,6 +42651,14 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -43385,6 +43416,14 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -48708,6 +48747,14 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -57960,6 +58007,59 @@
       ]
     },
     {
+      "name": "grabix_check",
+      "path": "modules/nf-core/grabix/check/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "grabix_check",
+        "description": "Checks if the input file is bgzip compressed or not",
+        "keywords": [
+          "compression",
+          "bgzip",
+          "grabix"
+        ],
+        "tools": [
+          {
+            "grabix": {
+              "description": "a wee tool for random access into BGZF files.",
+              "homepage": "https://github.com/arq5x/grabix",
+              "documentation": "https://github.com/arq5x/grabix"
+            }
+          }
+        ],
+        "input": [
+          {
+            "input": {
+              "type": "file",
+              "pattern": "*.gz",
+              "description": "file to check compression"
+            }
+          }
+        ],
+        "output": [
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "compress_bgzip": {
+              "type": "string",
+              "description": "environmental variable with value \"yes\" or \"no\""
+            }
+          }
+        ],
+        "authors": [
+          "@MartaSantanaSilva"
+        ],
+        "maintainers": [
+          "@MartaSantanaSilva"
+        ]
+      }
+    },
+    {
       "name": "graphmap2_align",
       "path": "modules/nf-core/graphmap2/align/meta.yml",
       "type": "module",
@@ -66626,6 +66726,14 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -73866,7 +73974,13 @@
         "authors": [
           "@lrauschning"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "multiplesequencealign",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "magus_guidetree",
@@ -73935,7 +74049,13 @@
         "authors": [
           "@lrauschning"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "multiplesequencealign",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "malt_build",
@@ -77414,7 +77534,7 @@
             "meryl_db": {
               "type": "directory",
               "description": "A Meryl k-mer database",
-              "pattern": "*.meryldb"
+              "pattern": "*.meryl"
             }
           }
         ],
@@ -77422,7 +77542,8 @@
           "@mahesh-panchal"
         ],
         "maintainers": [
-          "@mahesh-panchal"
+          "@mahesh-panchal",
+          "@gallvp"
         ]
       },
       "pipelines": [
@@ -77465,7 +77586,7 @@
             }
           },
           {
-            "meryl_dbs": {
+            "meryl_db": {
               "type": "directory",
               "description": "Meryl k-mer database"
             }
@@ -77503,7 +77624,8 @@
           "@mahesh-panchal"
         ],
         "maintainers": [
-          "@mahesh-panchal"
+          "@mahesh-panchal",
+          "@gallvp"
         ]
       },
       "pipelines": [
@@ -77576,7 +77698,7 @@
             "meryl_db": {
               "type": "directory",
               "description": "A Meryl k-mer database that is the union sum of the input databases",
-              "pattern": "*.unionsum.meryldb"
+              "pattern": "*.unionsum.meryl"
             }
           }
         ],
@@ -77584,7 +77706,8 @@
           "@mahesh-panchal"
         ],
         "maintainers": [
-          "@mahesh-panchal"
+          "@mahesh-panchal",
+          "@gallvp"
         ]
       },
       "pipelines": [
@@ -101916,6 +102039,62 @@
         ],
         "maintainers": [
           "@rpetit3"
+        ]
+      }
+    },
+    {
+      "name": "rrnatranscripts",
+      "path": "modules/nf-core/rrnatranscripts/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "rrnatranscripts",
+        "description": "Ribosomal RNA extraction from a GTF file.",
+        "keywords": [
+          "ribosomal",
+          "rna",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "rrnatranscripts": {
+              "description": "Extraction of ribosomal RNA\n",
+              "homepage": "https://github.com/nf-core/rnafusion",
+              "licence": [
+                "GPL-3.0-or-later"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "gtf": {
+              "type": "file",
+              "description": "GTF file",
+              "pattern": "*.{gtf}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "rrna_gtf": {
+              "type": "file",
+              "description": "GTF file with ribosomal RNA only",
+              "pattern": "*.{gtf}"
+            }
+          }
+        ],
+        "authors": [
+          "@rannick"
+        ],
+        "maintainers": [
+          "@rannick"
         ]
       }
     },
