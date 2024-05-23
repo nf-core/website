@@ -7,7 +7,7 @@ markdownPlugin: checklist
 ## Before you release
 
 :::warning
-If this is your first release, make sure to follow the [first release tutorial](/docs/tutorials/adding_a_pipeline/first_release) for extra reviewing requirements!
+If this is your first release, make sure to follow the [first release tutorial](/docs/tutorials/adding_a_pipeline/first_release) for extra review requirements!
 :::
 
 1. [ ] Check the pipeline follows [nf-core guidelines](/docs/guidelines/pipelines/overview).
