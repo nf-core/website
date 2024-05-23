@@ -1,7 +1,7 @@
 ---
 title: Subworkflow Specifications
 subtitle: Specifications for writing nf-core Nextflow DSL2 subworkflows
-addNumbersToHeadings: true
+markdownPlugin: addNumbersToHeadings
 weight: 20
 ---
 
