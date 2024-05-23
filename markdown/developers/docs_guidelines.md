@@ -29,7 +29,7 @@ Example: "Run pipelines to produce results." not "Running pipelines produces res
 
 1. Be direct and brief:
 
-Be direct and brief in your instructions and descriptions. Avoid words and qualifiers like *may*, *might*, *should*, *could*, *just*, or *even*.
+Be direct and brief in your instructions and descriptions. Avoid words and qualifiers like _may_, _might_, _should_, _could_, _just_, or _even_.
 
 Examples:
 
