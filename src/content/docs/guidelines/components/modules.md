@@ -682,4 +682,4 @@ file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.pa
 
 ### General module code formatting
 
-All code MUST be aligned to follow the '[Harshil Alignment™️](#what-is-the-harshil-alignment)' format.
+All code MUST be aligned to follow the '[Harshil Alignment™️](/docs/contributing/code_editors_and_styling/harshil_alignment)' format.
