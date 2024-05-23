@@ -1,7 +1,7 @@
 ---
 title: Test-data Specifications
 subtitle: Specifications for writing nf-core test dataset files
-addNumbersToHeadings: true
+markdownPlugin: addNumbersToHeadings
 weight: 30
 ---
 
