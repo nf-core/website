@@ -306,7 +306,7 @@ If you want to get all headings numbered, based on their location and depth in t
 ```md
 ---
 title: My document
-addNumbersToHeadings: true
+markdownPlugin: addNumbersToHeadings
 ---
 
 ## Subheading
