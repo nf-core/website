@@ -5441,6 +5441,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -7992,6 +7996,77 @@
         ],
         "authors": [
           "@johnoooh"
+        ]
+      }
+    },
+    {
+      "name": "bamtofastq10x",
+      "path": "modules/nf-core/bamtofastq10x/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "bamtofastq10x",
+        "description": "Tool for converting 10x BAMs produced by Cell Ranger, Space Ranger, Cell Ranger ATAC, Cell Ranger DNA, and Long Ranger back to FASTQ files that can be used as inputs to re-run analysis",
+        "keywords": [
+          "bam",
+          "convert",
+          "fastq",
+          "10x"
+        ],
+        "tools": [
+          {
+            "bamtofastq10x": {
+              "description": "Tool for converting 10x BAMs produced by Cell Ranger, Space Ranger, Cell Ranger ATAC, Cell Ranger DNA, and Long Ranger back to FASTQ files that can be used as inputs to re-run analysis",
+              "homepage": "https://github.com/10XGenomics/bamtofastq",
+              "documentation": "https://github.com/10XGenomics/bamtofastq",
+              "tool_dev_url": "https://github.com/10XGenomics/bamtofastq",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "BAM file",
+              "pattern": "*.bam"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "fastq": {
+              "type": "file",
+              "description": "fastq compressed file",
+              "pattern": "*.fastq.gz"
+            }
+          }
+        ],
+        "authors": [
+          "@BlueBicycleBlog"
+        ],
+        "maintainers": [
+          "@BlueBicycleBlog"
         ]
       }
     },
@@ -17312,6 +17387,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -42659,6 +42738,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -43416,6 +43499,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -48747,6 +48834,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -66671,6 +66762,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
         {
           "name": "isoseq",
           "version": "1.1.5"
@@ -103753,7 +103848,9 @@
               "documentation": "https://github.com/marbl/SALSA",
               "tool_dev_url": "https://github.com/marbl/SALSA",
               "doi": "10.1186/s12864-017-3879-z",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -129329,6 +129426,206 @@
         ],
         "maintainers": [
           "@nvnieuwk"
+        ]
+      }
+    },
+    {
+      "name": "viennarna_rnacofold",
+      "path": "modules/nf-core/viennarna/rnacofold/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "viennarna_rnacofold",
+        "description": "calculate secondary structures of two RNAs with dimerization",
+        "keywords": [
+          "RNA",
+          "fasta",
+          "rna_structure"
+        ],
+        "tools": [
+          {
+            "viennarna": {
+              "description": "calculate secondary structures of two RNAs with dimerization\n\nThe program works much like RNAfold, but allows one to specify two RNA\nsequences which are then allowed to form a dimer structure. RNA sequences\nare read from stdin in the usual format, i.e. each line of input\ncorresponds to one sequence, except for lines starting with > which\ncontain the name of the next sequence. To compute the hybrid structure\nof two molecules, the two sequences must be concatenated using the &\ncharacter as separator. RNAcofold can compute minimum free energy (mfe)\nstructures, as well as partition function (pf) and base pairing\nprobability matrix (using the -p switch) Since dimer formation is\nconcentration dependent, RNAcofold can be used to compute equilibrium\nconcentrations for all five monomer and (homo/hetero)-dimer species,\ngiven input concentrations for the monomers. Output consists of the\nmfe structure in bracket notation as well as PostScript structure\nplots and “dot plot” files containing the pair probabilities, see\nthe RNAfold man page for details. In the dot plots a cross marks\nthe chain break between the two concatenated sequences. The program\nwill continue to read new sequences until a line consisting of the\nsingle character @ or an end of file condition is encountered.\n",
+              "homepage": "https://www.tbi.univie.ac.at/RNA/",
+              "documentation": "https://viennarna.readthedocs.io/en/latest/",
+              "doi": "10.1186/1748-7188-6-26",
+              "licence": [
+                "custom"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "rnacofold_fasta": {
+              "type": "file",
+              "description": "A fasta file containing RNA or transcript sequences\n",
+              "pattern": "*.{fasta,fa}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "rnacofold_csv": {
+              "type": "file",
+              "description": "The CSV Output of RNAcofold that has the predicted structure and energies",
+              "pattern": "*.{csv}"
+            }
+          },
+          {
+            "rnacofold_ps": {
+              "type": "file",
+              "description": "The text Output of RNAfold that contains the predicted secondary structure in postscript format",
+              "pattern": "*.{ps}"
+            }
+          }
+        ],
+        "authors": [
+          "@kokul-atx"
+        ],
+        "maintainers": [
+          "@kokul-atx"
+        ]
+      }
+    },
+    {
+      "name": "viennarna_rnafold",
+      "path": "modules/nf-core/viennarna/rnafold/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "viennarna_rnafold",
+        "description": "Predict RNA secondary structure using the ViennaRNA RNAfold tools. Calculate minimum free energy secondary structures and partition function of RNAs.",
+        "keywords": [
+          "RNA",
+          "fasta",
+          "rna_structure"
+        ],
+        "tools": [
+          {
+            "viennarna": {
+              "description": "Calculate minimum free energy secondary structures and partition function of RNAs\n\nThe program reads RNA sequences, calculates their minimum free energy (mfe) structure and\nprints the mfe structure in bracket notation and its free energy. If not specified differently\nusing commandline arguments, input is accepted from stdin or read from an input file, and\noutput printed to stdout. If the -p option was given it also computes the partition function\n(pf) and base pairing probability matrix, and prints the free energy of the thermodynamic\nensemble, the frequency of the mfe structure in the ensemble, and the ensemble diversity to stdout.\n",
+              "homepage": "https://www.tbi.univie.ac.at/RNA/",
+              "documentation": "https://viennarna.readthedocs.io/en/latest/",
+              "doi": "10.1186/1748-7188-6-26",
+              "licence": [
+                "custom"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "fasta": {
+              "type": "file",
+              "description": "A fasta file containing RNA or transcript sequences\n",
+              "pattern": "*.{fasta,fa}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "rnafold_txt": {
+              "type": "file",
+              "description": "The text Output of RNAfold that",
+              "pattern": "*.{fold}"
+            }
+          },
+          {
+            "rnafold_ps": {
+              "type": "file",
+              "description": "The text Output of RNAfold that",
+              "pattern": "*.ss"
+            }
+          }
+        ],
+        "authors": [
+          "@kokul-atx"
+        ],
+        "maintainers": [
+          "@kokul-atx"
+        ]
+      }
+    },
+    {
+      "name": "viennarna_rnalfold",
+      "path": "modules/nf-core/viennarna/rnalfold/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "viennarna_rnalfold",
+        "description": "calculate locally stable secondary structures of RNAs",
+        "keywords": [
+          "RNA",
+          "fasta",
+          "rna_structure"
+        ],
+        "tools": [
+          {
+            "viennarna": {
+              "description": "calculate locally stable secondary structures of RNAs\n\nCompute locally stable RNA secondary structure with a maximal base pair span.\nFor a sequence of length n and a base pair span of L the algorithm uses only\nO(n+L*L) memory and O(n*L*L) CPU time. Thus it is practical to “scan” very\nlarge genomes for short RNA structures. Output consists of a list of\nsecondary structure components of size <= L, one entry per line. Each\noutput line contains the predicted local structure its energy in\nkcal/mol and the starting position of the local structure.\n",
+              "homepage": "https://www.tbi.univie.ac.at/RNA/",
+              "documentation": "https://viennarna.readthedocs.io/en/latest/",
+              "doi": "10.1186/1748-7188-6-26",
+              "licence": [
+                "custom"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "fasta": {
+              "type": "file",
+              "description": "A fasta file containing RNA or transcript sequences\n",
+              "pattern": "*.{fasta,fa}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "rnalfold_txt": {
+              "type": "file",
+              "description": "The text Output of RNALfold",
+              "pattern": "*.{lfold}"
+            }
+          }
+        ],
+        "authors": [
+          "@kokul-atx"
+        ],
+        "maintainers": [
+          "@kokul-atx"
         ]
       }
     },
