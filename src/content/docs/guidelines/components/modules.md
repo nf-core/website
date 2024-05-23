@@ -1,7 +1,7 @@
 ---
 title: Module Specifications
 subtitle: Specifications for writing nf-core Nextflow DSL2 modules
-addNumbersToHeadings: true
+markdownPlugin: addNumbersToHeadings
 weight: 10
 ---
 
