@@ -6,7 +6,7 @@ leads:
   - AlexVCaron: Alex Valcourt Caron
   - arnaudbore: Arnaud Boré
 
-pipelines:
+pipelines: []
 ---
 
 # Introduction
