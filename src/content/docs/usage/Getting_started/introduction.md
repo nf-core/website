@@ -50,7 +50,7 @@ To run a pipeline:
 
    - Conda is also supported with `-profile conda`. However, this option is not recommended, as reproducibility of results can't be guaranteed without containerization.
 
-   - If you are a member of one of the [listed institutions](https://github.com/nf-core/configs#documentation), use the [custom config file](https://github.com/nf-core/configs/tree/master/conf) created for your institution.
+   - If you are a member of one of the [listed institutions](https://github.com/nf-core/configs#documentation), use the [institutional config file](https://github.com/nf-core/configs/tree/master/conf) created for your institution.
 
    - See [Nextflow configuration](https://nf-co.re/docs/usage/getting_started/configuration) for advanced Nextflow configuration options.
 
