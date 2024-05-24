@@ -10,7 +10,7 @@ parentWeight: 10
 nf-core is a community effort to collect a curated set of analysis pipelines built with [Nextflow](https://www.nextflow.io/docs/latest/index.html).
 
 nf-core has three target audiences: facilities, single users, and developers.
-For facilities, it provides highly automated and optimized pipelines that guarantee reproducibility of results for users.
+For facilities, it provides highly automated and optimised pipelines that guarantee reproducibility of results for users.
 Single users benefit from portable, documented, and easy-to-use workflows.
 Developers can write Nextflow pipelines with nf-core's ready-made templates and tools.
 
