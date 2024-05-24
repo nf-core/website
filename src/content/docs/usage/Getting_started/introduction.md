@@ -76,7 +76,7 @@ To run a pipeline:
    nextflow run nf-core/methylseq -profile docker --input 'input_data/*.fastq.gz' --outdir myproj/results --genome GRCh38
    ```
 
-7. Once complete, check the pipeline execution and quality control reports. Each pipeline's documentation describes the outputs to expect.
+7. Once complete, check the pipeline execution and quality control reports (such as `multiqc_report.html` files for [MultiQC](https://multiqc.info/docs/usage/pipelines/#nextflow) reports). Each pipeline's documentation describes the outputs to expect.
 
 ## Tips and tricks
 
