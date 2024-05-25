@@ -1,0 +1,213 @@
+---
+title: 'nf-core/fastquorum introduce'
+subtitle: 'The nf-core fgbio Best Practices FASTQ to Consensus Pipeline'
+pubDate: 2024-04-25T00:19:00+01:00
+authors:
+    - 'nh13'
+label:
+    - 'pipeline'
+    - 'bioinformatics'
+    - 'genomics'
+    - 'fgbio'
+    - 'fastquorum'
+---
+
+import { YouTube } from '@astro-community/astro-embed-youtube';
+
+import but_why from '@assets/images/blog/fastquorum/but_why.gif';
+import i_want_the_truth from '@assets/images/blog/fastquorum/i_want_the_truth.gif';
+import darwin from '@assets/images/blog/fastquorum/darwin.png';
+import duplex_sequencing_schema from '@assets/images/blog/fastquorum/duplex_sequencing_schema.png';
+import explaining_umis from '@assets/images/blog/fastquorum/explaining_umis.png';
+import bioconda_download from '@assets/images/blog/fastquorum/bioconda_download.png';
+import big_deal from '@assets/images/blog/fastquorum/big_deal.jpg';
+import fastquorum_diagram from '@assets/images/blog/fastquorum/fastquorum_diagram.png';
+
+We are thrilled to announce the first release of [`nf-core/fastquorum`][nf-core-fastquorum-link] pipeline, which implements the [fgbio Best Practices FASTQ to Consensus Pipeline][fgbio-best-practices-link] to produce consensus reads using unique molecular indexes/barcodes (UMIs).
+Developed by [Fulcrum Genomics][fulcrum-genomics-link], the pipeline utilizes the [`fgbio` Bioinformatics toolkit][fgbio-link] to enable producing ultra-accurate reads for low frequency variant detection.
+
+# But Why?
+
+        <Image src={but_why} alt="Ryan Reynolds asking 'But why?'" height="300" />
+
+As described in [Salk et al 2018][salk-2018-link], finding the one in a thousand frequency variant, or even the one in the million frequency variant, is extremely important across a diversity of applications, including but not limited to:
+
+1. Cancer (ctDNA)
+2. Prenatal diagnosis (cffDNA)
+3. Mutagenesis
+4. Aging
+5. Antimicrobial Resistance
+6. Forensics
+
+# Sequencing Errors Obscure the Truth
+
+        <Image src={i_want_the_truth} alt="Tom Cruise in 'A Few Good Men' saying 'I want the truth'" height="300" />
+
+Sequencing error, and errors from the library preparation process itself, makes it extremely difficult to obtain this accuracy at such incredible resolution.
+
+# Molecular Barcoding to the Rescue
+
+        <a href="https://twinstrandbio.com/wp-content/uploads/EMGS-2023-Novel-DNA-Standards-for-Assessing-Technical-Sensitivity-and-Reproducibility-Duplex-Sequencing-Mutagenesis-Assays-1.pdf"><Image src={darwin} alt="Charles Darwin in three pictures: blurry on the left showing vanilla NGS, in the middle slightly more clear with single-strand error-corrected NGS, and on the right very clear with duplex sequencing.  From : Novel DNA Standards for Assessing Technical Sensitivity and Reproducibility Duplex Sequencing Mutagenesis Assays. TwinStrand Biosciences. Retrieved May 20 2024." height="300" /></a>
+
+Obtaining such high accuracy has been achieved through molecular barcoding that enables squashing random error through multiple observations of a single DNA source molecule.
+These molecular barcodes are commonly referred to as Unique Molecular Indexes, or UMIs.
+They are attached to a DNA source molecule to uniquely identify it. After amplification, the multiple observations can be compared vote on a consensus.
+Or form a quorum, if you will.
+
+        <a href="https://doi.org/10.1038/nprot.2014.170"><Image src={duplex_sequencing_schema} alt="Duplex Sequencing Schema from Kennedy et al 2014" height="300" /></a>
+
+Molecular barcodes can be added at various points in the library preparation process, including prior to or during amplification, for a single strand or to both strands of a double-stranded duplex molecule
+In particular, [Duplex Sequencing][duplex-sequencing-link] can be used to identify reads from both strands of a double-stranded source molecule, squashing strand-specific errors that can occur during library preparation (e.g. PCR errors, oxidative damage due to hybrid capture).
+
+This means UMIs can be found in the index/sample-barcoding reads (i7/i5 reads in Illumina parlance), or inline in the genomic/template reads themselves (R1/R2). Furthermore, there sometimes exists extra “spacer” sequence which should be removed prior to alignment and downstream analysis.
+
+        <Image src={explaining_umis} alt="Always Sunny in Philadelphia conspiracy meme with caption 'Explaining where UMI bases are found'" height="300" />
+
+We utilize a [Read Structure][read-structure-link] to describe how the bases in a sequencing run should be allocated into logical reads.
+It serves a similar purpose to the `--use-bases-mask` in Illumina's `bcltofastq` software, but provides some additional capabilities.
+A few examples from the [fgbio wiki][read-structure-examples-link] are shown below:
+
+1. A simple 2x150bp paired end run with no sample or molecular indices:
+
+-   `150T150T`
+-   `[+T, +T]`
+
+2. A 2x75bp paired end run with an 8bp I1 index read:
+
+-   `75T8B75T`
+-   `[+T, 8B, +T]`
+
+3. A 2x150bp paired end run with an 8bp I1 index read and an inline 6bp UMI in read 1:
+
+-   `8M142T8B150T`
+-   `[8M+T, 8B, +T]`
+
+4. A 2x150bp duplex sequencing run with dual sample-barcoding (I1 and I2) and both a 10bp UMI and 5bp monotemplate at the start of both R1 and R2:
+
+-   `10M5S135T8B8B10M5S135T`
+-   `[10M5S+T, 8B, 8B, 10M5S+T]`
+
+By utilizing the [fgbio toolkit][fgbio-homepage-link] and the [Read Structure][read-structure-link] description, [nf-core/fastquorum][nf-core-fastquorum-link] is able to support the diversity of molecular barcoding schemes.
+A few of commercially available are described below:
+
+| Verified | Assay                                                     | Company                     | Strand | Randomness | URL                                                                                                                                                                                 |
+| -------- | --------------------------------------------------------- | --------------------------- | ------ | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| No       | SureSelect XT HS                                          | Agilent Technologies        | Single | Random     | [link](https://www.agilent.com/en/product/next-generation-sequencing/ngs-library-prep-target-enrichment-reagents/dna-seq-reagents/sureselectxt-hs-reagent-kits-4252208)             |
+| No       | SureSelect XT HS2 (MBC)                                   | Agilent Technologies        | Dual   | Random     | [link](https://www.agilent.com/en/product/next-generation-sequencing/ngs-library-prep-target-enrichment-reagents/dna-seq-reagents/sureselect-xt-hs2-dna-reagent-kit-4252207)        |
+| No       | TruSight Oncology (TSO)                                   | Illumina                    | Dual   | Nonrandom  | [link](https://www.illumina.com/products/by-type/clinical-research-products/trusight-oncology-umi.html)                                                                             |
+| No       | xGen dual index UMI Adapters                              | Integrated DNA Technologies | Single | Random     | [link](https://www.idtdna.com/pages/products/next-generation-sequencing/workflow/xgen-ngs-library-preparation/ngs-adapters-indexing-primers/adapters-indexing-primers-for-illumina) |
+| No       | xGen Prism (xGen cfDNA & FFPE DNA Library Prep MC v2 Kit) | Integrated DNA Technologies | Dual   | Nonrandom  | [link](https://www.idtdna.com/pages/products/next-generation-sequencing/workflow/xgen-ngs-library-preparation/dna-library-preparation/cfdna-ffpe-prep-kit)                          |
+| No       | NEBNext                                                   | New England Biosciences     | Single | Random     | [link](https://www.neb.com/en-us/products/e7874nebnext-multiplex-oligos-for-illumina-unique-dual-index-umi-adaptors-dna-set-2)                                                      |
+| No       | AML MRD                                                   | TwinStrand Biosciences      | Dual   | Random     | [link](https://twinstrandbio.com/aml-assay/)                                                                                                                                        |
+| No       | Mutagenesis                                               | TwinStrand Biosciences      | Dual   | Random     | [link](https://twinstrandbio.com/mutagenesis-assay/)                                                                                                                                |
+| No       | UMI Adapter System                                        | Twist Biosciences           | Dual   | Random     | [link](https://www.twistbioscience.com/products/ngs/library-preparation/twist-umi-adapter-system)                                                                                   |
+
+# fgbio: the Fulcrum Genomics Bioinformatics toolkit
+
+That brings us to [fgbio][fgbio-github-link].
+
+Like popular Bioinformatic toolkits like samtools, the `GATK`, and `bedtools`, `fgbio` is a collection of command line tools to analyze primary Genomics data developed by [Fulcrum Genomics][fulcrum-genomics-link].
+Since its conception in 2015, `fgbio` has been downloaded from [Bioconda][fgbio-bioconda-link] over three-hundred thousand times, and we use it extensively with our clients at [Fulcrum Genomics][fulcrum-genomics-link].
+It’s been downloaded mostly by us, but hopefully a few of you have too.
+
+        <Image src={bioconda_download} alt="Chart of Bioconda downloads placing fgbio with three-hundred-thousand downloads" height="300" />
+
+        <Image src={big_deal} alt="Will Ferrell in Anchorman meme with caption '>300K downloads on BioConda, we are kind of a big deal'" height="300" />
+
+The [fgbio toolkit has a wide variety of available tools][fgbio-list-of-tools-link], but particularly relevant for the [`nf-core/fastquorum`][nf-core-fastquorum-link] pipeline are the tools for working with read-level data containing these unique molecular indexes.
+
+# Pipeline Overview
+
+To support the various molecular barcoding schemes, [`nf-core/fastquorum`][nf-core-fastquorum-link] is organized into two main phases, according to the fgbio best practices: grouping and consensus calling. The pipeline steps for each phase can be best explained with a metro map 🚇:
+
+        <Image src={fastquorum_diagram} alt="Subway diagram of the fastquorum pipeline" height="300" />
+
+Thank-you [James Fellows Yates][james-fellows-yates-link] for these diagrams!
+
+# Phase 1: Pre-processing and Grouping
+
+The first phase takes FASTQs as input, and performs the following steps:
+
+1. Performs basic Quality Control (with [`FASTQC`][fastqc-link]).
+2. Extracts the UMI bases based on the molecular barcoding scheme (with [`fgbio FastqToBam`][fgbio-fastqtobam-link]).
+3. Aligns the raw reads to the genome (with [`bwa`][bwa-link], [`samtools`][samtools-link], and [`fgbio ZipperBams`][fgbio-zipperbams-link]).
+4. Then groups them by genomics coordinate and UMI (with [`fgbio GroupReadsByUmi`][fgbio-groupreadsbyumi-link]).
+
+This produces the grouped BAM file, where raw reads originating from the same original source molecule are grouped together and tagged.
+
+# Phase 2: Consensus Calling
+
+The second phase takes the grouped BAM from phase one, and performs the following steps:
+
+1. For each group of raw reads and calls a consensus sequence, thereby eliminating random errors, significantly improving the accuracy of resulting data. [`fgbio CallMolecularConsensusReads`][fgbio-callmolecularconsensusreads-link] is used for single-strand UMI schemes, while [`fgbio CallDuplexConsensusReads`][fgbio-callduplexconsensusreads-link] is used for duplex sequencing.
+2. The consensus reads are aligned back to the genome (with [`bwa`][bwa-link], [`samtools`][samtools-link], and [`fgbio ZipperBams`][fgbio-zipperbams-link]).
+3. The consensus reads are filtered based on various properties, such as minimum per-molecule or per-base coverage (with [`fgbio FilterConsensusReads`][fgbio-filterconsensusreads-link]).
+
+The filtered consensus BAM is ready for downstream analysis, such as variant calling.
+
+Importantly, this _R&D version_ of the second phase allows users to test various tool-level parameters, to optimize them for their data.
+
+The second phase also has a _High-Throughput_ version, for when performance and throughput take precedence over flexibility.
+This version consensus calls and filters in one step, thereby reducing the number of consensus reads that need to be aligned as well as reducing the number of files that are written to disk.
+
+# Release Early, Release Often
+
+... and listen to your nf-core customers.
+
+With the help of some very responsive nf-core maintainers and members, [`nf-core/fastquorum`][nf-core-fastquorum-link] had its [first official release][nf-core-fastquorum-first-release-link] at the [Nextflow Summit in Boston (2024)][nextflow-summit-boston-2024-link].
+
+It supports single-strand and duplex sequencing data, both the R&D and high-throughput fgbio best practices, combining FASTQs across runs and lanes, as well as flexible support for molecular barcoding or UMI schemes.
+
+For more documentation, head over to the [`nf-core/fastquorum`][nf-core-fastquorum-link] page, visit the [`fgbio` toolkit homepage][fgbio-homepage-link] and [`fgbio` wiki][fgbio-wiki-link], and join us on our [Slack Channel][nf-core-fastquorum-slack-link].
+
+# It Takes a Nextflow Village
+
+A number of organizations have sponsored and contributed to the development of the [`fgbio` toolkit][fgbio-github-link] including [Fulcrum Genomics][fulcrum-genomics-link], [TwinStrand Biosciences][twinstrand-biosciences-link], and [Integrated DNA Technologies][idt-link].
+Both [Fulcrum Genomics][fulcrum-genomics-link] and its [current and past team members][fulcrum-genomics-about-link], along with the nf-core community of maintainers, core team, and contributors have enabled [`nf-core/fastquorum`][nf-core-fastquorum-link]'s first release.
+
+| Fulcrum Genomics | TwinStrand Biosciences | `nf-core` Community |
+| ---------------- | ---------------------- | ------------------- |
+| Nils Homer       | Michael Hipp           | Simon Pearce        |
+| Tim Fennell      | John McGuigan          | Adam Talbot         |
+| Clint Valentine  | Thomas Smith           | Chad Young          |
+| Yossi Farjoun    | Robert N. Azad         | Peter Hickey        |
+| Jay Carey        |                        | Brad Langhorst      |
+| Kari Stromhaug   |                        | Jordi Camps         |
+| Nathan Roach     |                        | Brent Pedersen      |
+
+If you want to hear this all over again, please check out the recent talk announcing the first release of this pipeline at the Nextflow Summit in Boston (2024):
+
+    <YouTube id="https://www.youtube.com/watch?v=qW4kgr3x9Mo" poster='https://img.youtube.com/vi/qW4kgr3x9Mo/maxresdefault.jpg'/> <YouTube id="https://www.youtube.com/watch?v=qW4kgr3x9Mo" poster='https://img.youtube.com/vi/qW4kgr3x9Mo/maxresdefault.jpg' />
+
+[nf-core-fastquorum-link]: https://nf-co.re/fastquorum
+[fgbio-best-practices-link]: https://github.com/fulcrumgenomics/fgbio/blob/main/docs/best-practice-consensus-pipeline.md
+[fulcrum-genomics-link]: https://www.fulcrumgenomics.com/
+[fgbio-link]: https://github.com/fulcrumgenomics/fgbio
+[salk-2018-link]: https://doi.org/10.1038/nrg.2017.117
+[twinstrand-poster-link]: https://twinstrandbio.com/wp-content/uploads/EMGS-2023-Novel-DNA-Standards-for-Assessing-Technical-Sensitivity-and-Reproducibility-Duplex-Sequencing-Mutagenesis-Assays-1.pdf
+[duplex-sequencing-link]: https://en.wikipedia.org/wiki/Duplex_sequencing
+[kennedy-2014-link]: https://doi.org/10.1038/nprot.2014.170
+[read-structure-link]: https://github.com/fulcrumgenomics/fgbio/wiki/Read-Structures
+[read-structure-examples-link]: https://github.com/fulcrumgenomics/fgbio/wiki/Read-Structures#examples
+[fgbio-homepage-link]: https://fulcrumgenomics.github.io/fgbio/
+[fgbio-github-link]: https://github.com/fulcrumgenomics/fgbio
+[fgbio-bioconda-link]: https://bioconda.github.io/recipes/fgbio/README.html
+[fgbio-list-of-tools-link]: https://github.com/fulcrumgenomics/fgbio?tab=readme-ov-file#list-of-tools
+[james-fellows-yates-link]: https://www.jafy.eu/
+[fastqc-link]: https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
+[fgbio-fastqtobam-link]: http://fulcrumgenomics.github.io/fgbio/tools/latest/FastqToBam.html
+[bwa-link]: https://github.com/lh3/bwa
+[samtools-link]: https://www.htslib.org/
+[fgbio-zipperbams-link]: http://fulcrumgenomics.github.io/fgbio/tools/latest/ZipperBams.html
+[fgbio-groupreadsbyumi-link]: http://fulcrumgenomics.github.io/fgbio/tools/latest/GroupReadsByUmi.html
+[fgbio-callmolecularconsensusreads-link]: http://fulcrumgenomics.github.io/fgbio/tools/latest/CallMolecularConsensusReads.html
+[fgbio-callduplexconsensusreads-link]: http://fulcrumgenomics.github.io/fgbio/tools/latest/CallDuplexConsensusReads.html
+[fgbio-filterconsensusreads-link]: http://fulcrumgenomics.github.io/fgbio/tools/latest/FilterConsensusReads.html
+[nf-core-fastquorum-first-release-link]: https://github.com/nf-core/fastquorum/releases/tag/1.0.0
+[nextflow-summit-boston-2024-link]: https://summit.nextflow.io/2024/boston/
+[fgbio-homepage-link]: http://fulcrumgenomics.github.io/fgbio/
+[fgbio-wiki-link]: https://github.com/fulcrumgenomics/fgbio/wiki
+[nf-core-fastquorum-slack-link]: https://nfcore.slack.com/archives/C0453Q2SFCM
+[twinstrand-biosciences-link]: https://twinstrandbio.com/
+[idt-link]: https://www.idtdna.com/
+[fulcrum-genomics-about-link]: https://fulcrumgenomics.com/about
