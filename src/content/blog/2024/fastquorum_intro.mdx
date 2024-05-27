@@ -92,17 +92,19 @@ A few examples from the [fgbio wiki][read-structure-examples-link] are shown bel
 By utilizing the [fgbio toolkit][fgbio-homepage-link] and the [Read Structure][read-structure-link] description, [nf-core/fastquorum][nf-core-fastquorum-link] is able to support the diversity of molecular barcoding schemes.
 A few of commercially available are described below:
 
-| Verified | Assay                                                     | Company                     | Strand | Randomness | URL                                                                                                                                                                                 |
-| -------- | --------------------------------------------------------- | --------------------------- | ------ | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| No       | SureSelect XT HS                                          | Agilent Technologies        | Single | Random     | [link](https://www.agilent.com/en/product/next-generation-sequencing/ngs-library-prep-target-enrichment-reagents/dna-seq-reagents/sureselectxt-hs-reagent-kits-4252208)             |
-| No       | SureSelect XT HS2 (MBC)                                   | Agilent Technologies        | Dual   | Random     | [link](https://www.agilent.com/en/product/next-generation-sequencing/ngs-library-prep-target-enrichment-reagents/dna-seq-reagents/sureselect-xt-hs2-dna-reagent-kit-4252207)        |
-| No       | TruSight Oncology (TSO)                                   | Illumina                    | Dual   | Nonrandom  | [link](https://www.illumina.com/products/by-type/clinical-research-products/trusight-oncology-umi.html)                                                                             |
-| No       | xGen dual index UMI Adapters                              | Integrated DNA Technologies | Single | Random     | [link](https://www.idtdna.com/pages/products/next-generation-sequencing/workflow/xgen-ngs-library-preparation/ngs-adapters-indexing-primers/adapters-indexing-primers-for-illumina) |
-| No       | xGen Prism (xGen cfDNA & FFPE DNA Library Prep MC v2 Kit) | Integrated DNA Technologies | Dual   | Nonrandom  | [link](https://www.idtdna.com/pages/products/next-generation-sequencing/workflow/xgen-ngs-library-preparation/dna-library-preparation/cfdna-ffpe-prep-kit)                          |
-| No       | NEBNext                                                   | New England Biosciences     | Single | Random     | [link](https://www.neb.com/en-us/products/e7874nebnext-multiplex-oligos-for-illumina-unique-dual-index-umi-adaptors-dna-set-2)                                                      |
-| No       | AML MRD                                                   | TwinStrand Biosciences      | Dual   | Random     | [link](https://twinstrandbio.com/aml-assay/)                                                                                                                                        |
-| No       | Mutagenesis                                               | TwinStrand Biosciences      | Dual   | Random     | [link](https://twinstrandbio.com/mutagenesis-assay/)                                                                                                                                |
-| No       | UMI Adapter System                                        | Twist Biosciences           | Dual   | Random     | [link](https://www.twistbioscience.com/products/ngs/library-preparation/twist-umi-adapter-system)                                                                                   |
+| Assay                                                     | Company                     | Strand | Randomness | URL                                                                                                                                                                                 |
+| --------------------------------------------------------- | --------------------------- | ------ | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| SureSelect XT HS                                          | Agilent Technologies        | Single | Random     | [link](https://www.agilent.com/en/product/next-generation-sequencing/ngs-library-prep-target-enrichment-reagents/dna-seq-reagents/sureselectxt-hs-reagent-kits-4252208)             |
+| SureSelect XT HS2 (MBC)                                   | Agilent Technologies        | Dual   | Random     | [link](https://www.agilent.com/en/product/next-generation-sequencing/ngs-library-prep-target-enrichment-reagents/dna-seq-reagents/sureselect-xt-hs2-dna-reagent-kit-4252207)        |
+| TruSight Oncology (TSO)                                   | Illumina                    | Dual   | Nonrandom  | [link](https://www.illumina.com/products/by-type/clinical-research-products/trusight-oncology-umi.html)                                                                             |
+| xGen dual index UMI Adapters                              | Integrated DNA Technologies | Single | Random     | [link](https://www.idtdna.com/pages/products/next-generation-sequencing/workflow/xgen-ngs-library-preparation/ngs-adapters-indexing-primers/adapters-indexing-primers-for-illumina) |
+| xGen Prism (xGen cfDNA & FFPE DNA Library Prep MC v2 Kit) | Integrated DNA Technologies | Dual   | Nonrandom  | [link](https://www.idtdna.com/pages/products/next-generation-sequencing/workflow/xgen-ngs-library-preparation/dna-library-preparation/cfdna-ffpe-prep-kit)                          |
+| NEBNext                                                   | New England Biosciences     | Single | Random     | [link](https://www.neb.com/en-us/products/e7874nebnext-multiplex-oligos-for-illumina-unique-dual-index-umi-adaptors-dna-set-2)                                                      |
+| AML MRD                                                   | TwinStrand Biosciences      | Dual   | Random     | [link](https://twinstrandbio.com/aml-assay/)                                                                                                                                        |
+| Mutagenesis                                               | TwinStrand Biosciences      | Dual   | Random     | [link](https://twinstrandbio.com/mutagenesis-assay/)                                                                                                                                |
+| UMI Adapter System                                        | Twist Biosciences           | Dual   | Random     | [link](https://www.twistbioscience.com/products/ngs/library-preparation/twist-umi-adapter-system)                                                                                   |
+
+We are working with some of the vendors above to verify that their assays are supported by this pipeline by to obtain test/example data, along with appropriate parameters with which to run this pipeline.
 
 # fgbio: the Fulcrum Genomics Bioinformatics toolkit
 
@@ -116,7 +118,28 @@ It’s been downloaded mostly by us, but hopefully a few of you have too.
 
         <Image src={big_deal} alt="Will Ferrell in Anchorman meme with caption '>300K downloads on BioConda, we are kind of a big deal'" height="300" />
 
-The [fgbio toolkit has a wide variety of available tools][fgbio-list-of-tools-link], but particularly relevant for the [`nf-core/fastquorum`][nf-core-fastquorum-link] pipeline are the tools for working with read-level data containing these unique molecular indexes.
+The [fgbio toolkit has a wide variety of available tools][fgbio-list-of-tools-link], with many tools producing tabular [quality control metrics][fgbio-list-of-metrics-link].
+
+Particularly relevant for the [`nf-core/fastquorum`][nf-core-fastquorum-link] pipeline are the tools for working with read-level data containing these unique molecular indexes.
+
+-   Tools for working with Unique Molecular Indexes (UMIs, aka Molecular IDs or Molecular Barcodes):
+    -   Annotating/Extract Umis from read-level data: [`FastqToBam`][fgbio-fastqtobam-link], [`AnnotateBamWithUmis`][fgbio-annotatebamwithumis-link], [`ExtractUmisFromBam`][fgbio-extractumisfrombam-link], and [`CopyUmiFromReadName`][fgbio-copyumifromreadname-link].
+    -   Manipulate read-level data containing Umis: [`CorrectUmis`][fgbio-correctumis-link], [`GroupReadsByUmi`][fgbio-groupreadsbyumi-link], [`CallMolecularConsensusReads`][fgbio-callmolecularconsensusreads-link], [`CallDuplexConsensusReads`][fgbio-callduplexconsensusreads-link], and [`FilterConsensusReads`][fgbio-filterconsensusreads-link].
+    -   Collect metrics and review consensus reads: [`CollectDuplexSeqMetrics`][fgbio-collectduplexseqmetrics-link] and [`ReviewConsensusVariants`][fgbio-reviewconsensusvariants-link].
+-   Tools to manipulate read-level data:
+    -   Fastq Manipulation: [`FastqToBam`][fgbio-fastqtobam-link], [`ZipperBams`][fgbio-zipperbams-link], and [`DemuxFastqs`][fgbio-demuxfastqs-link] (see `[fqtk`][fqtk-link], our rust re-implementation for sample demultiplexing).
+    -   Filter, clip, randomize, sort, and update metadata for read-level data: [`FilterBam`][fgbio-filterbam-link], [`ClipBam`][fgbio-clipbam-link], [`RandomizeBam`][fgbio-randomizebam-link], [`SortBam`][fgbio-sortbam-link], [`SetMateInformation`][fgbio-setmateinformation-link] and [`UpdateReadGroups`][fgbio-updatereadgroups-link].
+-   Tools for quality control assessment:
+    -   Detailed substitution error rate evaluation: [`ErrorRateByReadPosition`][fgbio-errorratebyreadposition-link].
+    -   Sample pooling QC: [`EstimatePoolingFractions`]: [fgbio-estimatepoolingfractions-link].
+    -   Splice-aware insert size QC for RNA-seq libraries: [`EstimateRnaSeqInsertSize`][fgbio-estimaternaseqinsertsize-link].
+-   Tools for adding or manipulating alternate contig names:
+    -   Extract from a NCBI Assembly Report: [`CollectAlternateContigNames`][fgbio-collectalternatecontignames-link].
+    -   Update contig names in common file formats: [`UpdateFastaContigNames`][fgbio-updatefastacontignames-link], [`UpdateVcfContigNames`][fgbio-updatevcfcontignames-link], [`UpdateGffContigNames`][fgbio-updategffcontignames-link], [`UpdateIntervalListContigNames`][fgbio-updateintervallistcontignames-link], [`UpdateDelimitedFileContigNames`][fgbio-updatedelimitedfilecontignames-link].
+-   Miscellaneous tools:
+    -   Pick molecular indices (ex. sample barcodes, or molecular indexes): [`PickIlluminaIndices`][fgbio-pickilluminaindices-link] and [`PickLongIndices`][fgbio-picklongindices-link].
+    -   Find technical/synthetic, or switch-back sequences in read-level data: [`FindTechnicalReads`][fgbio-findtechnicalreads-link] and [`FindSwitchbackReads`][fgbio-findswitchbackreads-link].
+    -   Make synthetic mixture VCFs: [`MakeMixtureVcf`][fgbio-makemixturevcf-link] and [`MakeTwoSampleMixtureVcf`][fgbio-maketwosamplemixturevcf-link].
 
 # Pipeline Overview
 
@@ -141,7 +164,7 @@ This produces the grouped BAM file, where raw reads originating from the same or
 
 The second phase takes the grouped BAM from phase one, and performs the following steps:
 
-1. For each group of raw reads and calls a consensus sequence, thereby eliminating random errors, significantly improving the accuracy of resulting data. 
+1. For each group of raw reads and calls a consensus sequence, thereby eliminating random errors, significantly improving the accuracy of resulting data.
     - [`fgbio CallMolecularConsensusReads`][fgbio-callmolecularconsensusreads-link] is used for single-strand UMI schemes, while [`fgbio CallDuplexConsensusReads`][fgbio-callduplexconsensusreads-link] is used for duplex sequencing.
 2. The consensus reads are aligned back to the genome (with [`bwa`][bwa-link], [`samtools`][samtools-link], and [`fgbio ZipperBams`][fgbio-zipperbams-link]).
 3. The consensus reads are filtered based on various properties, such as minimum per-molecule or per-base coverage (with [`fgbio FilterConsensusReads`][fgbio-filterconsensusreads-link]).
@@ -195,7 +218,9 @@ If you want to hear this all over again, please check out the recent talk announ
 [fgbio-homepage-link]: https://fulcrumgenomics.github.io/fgbio/
 [fgbio-github-link]: https://github.com/fulcrumgenomics/fgbio
 [fgbio-bioconda-link]: https://bioconda.github.io/recipes/fgbio/README.html
-[fgbio-list-of-tools-link]: https://github.com/fulcrumgenomics/fgbio?tab=readme-ov-file#list-of-tools
+[fgbio-list-of-tools-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/
+[fgbio-list-of-metrics-link]: https://fulcrumgenomics.github.io/fgbio/metrics/latest/
+[fqtk-link]: https://github.com/fulcrumgenomics/fqtk
 [james-fellows-yates-link]: https://www.jafy.eu/
 [fastqc-link]: https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
 [fgbio-fastqtobam-link]: http://fulcrumgenomics.github.io/fgbio/tools/latest/FastqToBam.html
@@ -214,3 +239,38 @@ If you want to hear this all over again, please check out the recent talk announ
 [twinstrand-biosciences-link]: https://twinstrandbio.com/
 [idt-link]: https://www.idtdna.com/
 [fulcrum-genomics-about-link]: https://fulcrumgenomics.com/about
+[fgbio-fastqtobam-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/FastqToBam.html
+[fgbio-annotatebamwithumis-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/AnnotateBamWithUmis.html
+[fgbio-extractumisfrombam-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/ExtractUmisFromBam.html
+[fgbio-copyumifromreadname-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/CopyUmiFromReadName.html
+[fgbio-correctumis-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/CorrectUmis.html
+[fgbio-groupreadsbyumi-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/GroupReadsByUmi.html
+[fgbio-callmolecularconsensusreads-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/CallMolecularConsensusReads.html
+[fgbio-callduplexconsensusreads-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/CallDuplexConsensusReads.html
+[fgbio-filterconsensusreads-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/FilterConsensusReads.html
+[fgbio-collectduplexseqmetrics-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/CollectDuplexSeqMetrics.html
+[fgbio-reviewconsensusvariants-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/ReviewConsensusVariants.html
+[fgbio-fastqtobam-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/FastqToBam.html
+[fgbio-zipperbams-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/ZipperBams.html
+[fgbio-demuxfastqs-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/DemuxFastqs.html
+[fgbio-filterbam-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/FilterBam.html
+[fgbio-clipbam-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/ClipBam.html
+[fgbio-randomizebam-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/RandomizeBam.html
+[fgbio-setmateinformation-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/SetMateInformation.html
+[fgbio-updatereadgroups-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/UpdateReadGroups.html
+[fgbio-collectalternatecontignames-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/CollectAlternateContigNames.html
+[fgbio-updatefastacontignames-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/UpdateFastaContigNames.html
+[fgbio-updatevcfcontignames-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/UpdateVcfContigNames.html
+[fgbio-updategffcontignames-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/UpdateGffContigNames.html
+[fgbio-updateintervallistcontignames-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/UpdateIntervalListContigNames.html
+[fgbio-updatedelimitedfilecontignames-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/UpdateDelimitedFileContigNames.html
+[fgbio-errorratebyreadposition-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/ErrorRateByReadPosition.html
+[fgbio-estimatepoolingfractions-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/EstimatePoolingFractions.html
+[fgbio-estimaternaseqinsertsize-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/EstimateRnaSeqInsertSize.html
+[fgbio-pickilluminaindices-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/PickIlluminaIndices.html
+[fgbio-picklongindices-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/PickLongIndices.html
+[fgbio-findtechnicalreads-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/FastqToBam.html
+[fgbio-sortbam-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/SortBam.html
+[fgbio-makemixturevcf-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/MakeMixtureVcf.html
+[fgbio-maketwosamplemixturevcf-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/MakeTwoSampleMixtureVcf.html
+[fgbio-findswitchbackreads-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/FindSwitchbackReads.html
