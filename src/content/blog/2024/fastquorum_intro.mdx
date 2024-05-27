@@ -1,7 +1,7 @@
 ---
 title: 'nf-core/fastquorum introduce'
 subtitle: 'The nf-core fgbio Best Practices FASTQ to Consensus Pipeline'
-pubDate: 2024-04-25T00:19:00+01:00
+pubDate: 2024-05-27T00:19:00+01:00
 authors:
     - 'nh13'
 label:
@@ -65,7 +65,7 @@ This means UMIs can be found in the index/sample-barcoding reads (i7/i5 reads in
 
         <Image src={explaining_umis} alt="Always Sunny in Philadelphia conspiracy meme with caption 'Explaining where UMI bases are found'" height="300" />
 
-We utilize a [Read Structure][read-structure-link] to describe how the bases in a sequencing run should be allocated into logical reads.
+[Read Structures][read-structure-link] are used to describe how the bases in a sequencing run should be allocated into logical reads.
 It serves a similar purpose to the `--use-bases-mask` in Illumina's `bcltofastq` software, but provides some additional capabilities.
 A few examples from the [fgbio wiki][read-structure-examples-link] are shown below:
 
@@ -124,7 +124,7 @@ To support the various molecular barcoding schemes, [`nf-core/fastquorum`][nf-co
 
         <Image src={fastquorum_diagram} alt="Subway diagram of the fastquorum pipeline" height="300" />
 
-Thank-you [James Fellows Yates][james-fellows-yates-link] for these diagrams!
+Thank you to [James Fellows Yates][james-fellows-yates-link] for these diagrams!
 
 # Phase 1: Pre-processing and Grouping
 
@@ -141,7 +141,8 @@ This produces the grouped BAM file, where raw reads originating from the same or
 
 The second phase takes the grouped BAM from phase one, and performs the following steps:
 
-1. For each group of raw reads and calls a consensus sequence, thereby eliminating random errors, significantly improving the accuracy of resulting data. [`fgbio CallMolecularConsensusReads`][fgbio-callmolecularconsensusreads-link] is used for single-strand UMI schemes, while [`fgbio CallDuplexConsensusReads`][fgbio-callduplexconsensusreads-link] is used for duplex sequencing.
+1. For each group of raw reads and calls a consensus sequence, thereby eliminating random errors, significantly improving the accuracy of resulting data. 
+    - [`fgbio CallMolecularConsensusReads`][fgbio-callmolecularconsensusreads-link] is used for single-strand UMI schemes, while [`fgbio CallDuplexConsensusReads`][fgbio-callduplexconsensusreads-link] is used for duplex sequencing.
 2. The consensus reads are aligned back to the genome (with [`bwa`][bwa-link], [`samtools`][samtools-link], and [`fgbio ZipperBams`][fgbio-zipperbams-link]).
 3. The consensus reads are filtered based on various properties, such as minimum per-molecule or per-base coverage (with [`fgbio FilterConsensusReads`][fgbio-filterconsensusreads-link]).
 
@@ -179,7 +180,7 @@ Both [Fulcrum Genomics][fulcrum-genomics-link] and its [current and past team me
 
 If you want to hear this all over again, please check out the recent talk announcing the first release of this pipeline at the Nextflow Summit in Boston (2024):
 
-    <YouTube id="https://www.youtube.com/watch?v=qW4kgr3x9Mo" poster='https://img.youtube.com/vi/qW4kgr3x9Mo/maxresdefault.jpg'/> <YouTube id="https://www.youtube.com/watch?v=qW4kgr3x9Mo" poster='https://img.youtube.com/vi/qW4kgr3x9Mo/maxresdefault.jpg' />
+    <YouTube id="https://www.youtube.com/watch?v=qW4kgr3x9Mo" poster='https://img.youtube.com/vi/qW4kgr3x9Mo/maxresdefault.jpg'/>
 
 [nf-core-fastquorum-link]: https://nf-co.re/fastquorum
 [fgbio-best-practices-link]: https://github.com/fulcrumgenomics/fgbio/blob/main/docs/best-practice-consensus-pipeline.md
