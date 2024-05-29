@@ -2,7 +2,7 @@
 
 Synchronise a pipeline TEMPLATE branch with the template.
 
-### _`class{:python}`_`nf_core.sync.PipelineSync(pipeline_dir, from_branch=None, make_pr=False, gh_repo=None, gh_username=None, template_yaml_path=None){:python}`
+### _`class{:python}`_`nf_core.sync.PipelineSync(pipeline_dir, from_branch=None, make_pr=False, gh_repo=None, gh_username=None, template_yaml_path=None, force_pr=False){:python}`
 
 Bases: `object`
 
@@ -15,6 +15,7 @@ Object to hold syncing information and results.
   - **gh_username** (_str_) – GitHub username
   - **gh_repo** (_str_) – GitHub repository name
   - **template_yaml_path** (_str_) – Path to template.yml file for pipeline creation settings. DEPRECATED
+  - **force_pr** (_bool_) – Force the creation of a pull request, even if there are no changes to the template
 
 #### `pipeline_dir{:python}`
 
