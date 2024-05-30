@@ -18,5 +18,5 @@ This error suggests that a user did not clealy kill a previous Nextflow run in t
 To fix this, delete the [workDir](https://www.nextflow.io/docs/latest/config.html#miscellaneous), which is called `work` by default.
 
 :::warning
-`ctrl +z` is **not** a recommended way of killing a Nextflow job. Runs that take a long time to fail are often still running because other job submissions are still running. Nextflow will normally wait for those processes to complete before cleaning shutting down the run (to allow rerunning of a run with `-resume`). `ctrl + c` is much safer as it will tell Nextflow to stop earlier but cleanly.
+<kbd>ctrl</kbd> + <kbd>z</kbd> is **not** a recommended way of killing a Nextflow job. Runs that take a long time to fail are often still running because other job submissions are still running. Nextflow will normally wait for those processes to complete before cleaning shutting down the run (to allow rerunning of a run with `-resume`). <kbd>ctrl</kbd> + <kbd>c</kbd> is much safer as it will tell Nextflow to stop earlier but cleanly.
 :::
