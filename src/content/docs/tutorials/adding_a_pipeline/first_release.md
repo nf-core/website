@@ -21,8 +21,8 @@ When developing the pipeline, the version numbers should be numeric with `dev` a
 e.g. `0.0.0dev`. When making a release, version numbers should all be numeric. Pipeline
 release numbers MUST use [Semantic Versioning](https://semver.org/).
 
-:::note
-Use the `nf-core bump-version` command to increment the version numbers. The version number
+:::tip
+Instead of manually changing the version number, use the `nf-core bump-version` command to increment the version numbers. The version number
 exists in many places in the codebase, and this tool consistently updates all of them.
 :::
 
