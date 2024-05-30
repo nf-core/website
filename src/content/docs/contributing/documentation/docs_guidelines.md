@@ -1,7 +1,8 @@
 ---
-title: Documentation
+title: Writing style
 subtitle: Guidelines for contributing to nf-core documentation.
 weight: 10
+parentWeight: 40
 ---
 
 # nf-core/website - Documentation contribution guidelines
