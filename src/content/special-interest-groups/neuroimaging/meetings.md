@@ -1,6 +1,6 @@
 ---
 title: 'Meetings'
-subtitle: 'When and where the neuroimaging group meets'
+subtitle: 'When and where the neuroimaging Special Interest Group meets'
 groupName: Neuroimaging
 ---
 
