@@ -95,4 +95,4 @@ nf-core includes command-line tools to help you manage your nf-core pipelines an
 These allow you to list all available pipelines and versions, with information about the versions you're running locally.
 You can also download pipelines for offline use.
 
-See [nf-core tools](/docs/nf-core-tools) for more information.
+See [nf-core/tools](/docs/nf-core-tools) for more information.
