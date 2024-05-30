@@ -5501,6 +5501,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -11000,7 +11004,13 @@
         "maintainers": [
           "@nvnieuwk"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phaseimpute",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "bcftools_query",
@@ -17494,6 +17504,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -42953,6 +42967,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -43710,6 +43728,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -49101,6 +49123,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -67419,6 +67445,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -70706,7 +70736,13 @@
         "maintainers": [
           "@jfy133"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "createtaxdb",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "krakenuniq_download",
@@ -77591,6 +77627,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -90478,6 +90518,131 @@
         ],
         "maintainers": [
           "@nvnieuwk"
+        ]
+      }
+    },
+    {
+      "name": "paraphase",
+      "path": "modules/nf-core/paraphase/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "paraphase",
+        "description": "HiFi-based caller for highly homologous genes",
+        "keywords": [
+          "paraphase",
+          "long-read",
+          "HiFi"
+        ],
+        "tools": [
+          {
+            "paraphase": {
+              "description": "HiFi-based caller for highly homologous genes",
+              "homepage": "https://github.com/PacificBiosciences/paraphase",
+              "documentation": "https://github.com/PacificBiosciences/paraphase",
+              "tool_dev_url": "https://github.com/PacificBiosciences/paraphase",
+              "doi": "10.1016/j.ajhg.2023.01.001",
+              "licence": [
+                "BSD-3-clause-Clear"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:true ]`\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "Sorted BAM file",
+              "pattern": "*.bam"
+            }
+          },
+          {
+            "bai": {
+              "type": "file",
+              "description": "Index of BAM file",
+              "pattern": "*.bai"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "The reference fasta file",
+              "pattern": "*.fasta"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing config information\ne.g. [ id:'config' ]\n"
+            }
+          },
+          {
+            "config": {
+              "type": "file",
+              "description": "Config file",
+              "pattern": "*.yaml"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:true ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "(re)aligned BAM file",
+              "pattern": "*.paraphase.bam"
+            }
+          },
+          {
+            "bai": {
+              "type": "file",
+              "description": "Index of (re)aligned BAM file",
+              "pattern": "*.paraphase.bam.bai"
+            }
+          },
+          {
+            "json": {
+              "type": "file",
+              "description": "Summary of haplotype and variant calls",
+              "pattern": "*.paraphase.json"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "VCF file(s) per gene",
+              "pattern": "*.vcf"
+            }
+          }
+        ],
+        "authors": [
+          "@fellen31"
+        ],
+        "maintainers": [
+          "@fellen31"
         ]
       }
     },
@@ -109116,7 +109281,9 @@
               "homepage": "https://www.bioinf.uni-leipzig.de/Software/segemehl/",
               "documentation": "https://www.bioinf.uni-leipzig.de/Software/segemehl/",
               "doi": "10.1186/gb-2014-15-2-r34",
-              "licence": "GPL v3"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -109157,10 +109324,31 @@
             }
           },
           {
-            "results": {
-              "type": "directory",
-              "description": "Directory containing genomic alignments in SAM format\n  (please add \"-b\" flag to task.ext.args for BAM)\nIn addition to split-read alignments files when -S parameter used.\n  [ *.{sam,bam}, *.trns.txt, *.mult.bed, *.sngl.bed ]\n",
-              "pattern": "${meta.id}*"
+            "alignment": {
+              "type": "file",
+              "description": "File containing genomic alignments in SAM format\n  (please add \"-b\" flag to task.ext.args for BAM)\n",
+              "pattern": "*.{sam,bam}"
+            }
+          },
+          {
+            "trans_alignments": {
+              "type": "file",
+              "description": "Custom text file containing all single split alignments predicted to be in trans\n  (optional, only if -S flag is set in task.ext.args)\n",
+              "pattern": "*.trns.txt"
+            }
+          },
+          {
+            "single_bed": {
+              "type": "file",
+              "description": "Bed file containing all single splice events predicted\nin the split read alignments.\n  (optional, only if -S flag is set in task.ext.args)\n",
+              "pattern": "*.sngl.bed"
+            }
+          },
+          {
+            "multi_bed": {
+              "type": "file",
+              "description": "Bed file containing all splice events predicted\nin the split read alignments.\n  (optional, only if -S flag is set in task.ext.args)\n",
+              "pattern": "*.mult.bed"
             }
           },
           {
@@ -109172,10 +109360,11 @@
           }
         ],
         "authors": [
-          "@BarryDigby"
+          "@BarryDigby",
+          "@nictru"
         ],
         "maintainers": [
-          "@BarryDigby"
+          "@nictru"
         ]
       },
       "pipelines": [
