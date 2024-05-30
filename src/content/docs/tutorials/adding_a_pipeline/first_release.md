@@ -10,30 +10,38 @@ markdownPlugin: 'checklist'
 
 ## Reset the default branch
 
-When the code is stable and ready for a release, set the `master` branch to be the default
-branch again.
+When the code is stable and ready for a release, set the default branch to `master`.
 
 ## Bump the version
 
-At this point you should bump the version numbers on `dev`.
+Use `nf-core bump-version` to increment the version number on the `dev` branch to remove
+the `dev` suffix.
 
-When developing the pipeline, the version numbers should be numeric with `dev` at the end.
-Use the `nf-core bump-version` command to do this - there are quite a few locations in the
-code that need updating and this ensures that it happens in the correct places.
+When developing the pipeline, the version numbers should be numeric with `dev` at the end,
+e.g. `0.0.0dev`. When making a release, version numbers should all be numeric. Pipeline
+release numbers MUST use [Semantic Versioning](https://semver.org/).
 
-When making a release, version numbers should all be numeric. Use `nf-core lint --release`
-when ready - this will check that everything looks correct. Pipeline release numbers MUST
-use [Semantic Versioning](https://semver.org/).
+:::tip
+Instead of manually changing the version number, use the `nf-core bump-version` command to increment the version numbers. The version number
+exists in many places in the codebase, and this tool consistently updates all of them.
+:::
+
+## Lint the pipeline
+
+Use `nf-core lint --release`. This will check that your code conforms to nf-core expectations.
 
 ## Core pipeline review
 
 Ok - now the tough bit - does your workflow stand up to the scrutiny of the nf-core team?!
-Not to worry, we're a friendly bunch, just let us know about the new pipeline, when you're
-ready, following the process below.
+Not to worry, we're a friendly bunch.
 
-Make a pull-request from the `dev` branch to `master` on the nf-core fork. This is a
-special case and the tests should pass, and once they do you can request a review from the
-core team.
+To get your pipeline reviewed for its initial release, do the following:
+
+1. Make a pull-request from the `dev` branch to `master` on the nf-core fork. This is a
+   special case and all of the tests should pass.
+
+1. Once the tests are passing, request a review from the core team. You can use the
+   [#request-review](https://app.slack.com/client/TE6CZUZPH/CQY2U5QU9) slack channel for this.
 
 What happens next depends on the state of your master branch:
 
@@ -62,7 +70,8 @@ code by `@`ing them.
 Once any requested changes have been made and the associated PR approved, you can go ahead
 with releasing the pipeline. Put in a basic changelog entry describing the general
 functionality at release. When you're ready, follow the instructions in the nf-core
-[release checklist](/docs/checklists/pipeline_release). We recommend you also explicitly tag contributors with their GitHub handles, so each release on GitHub will display their icons.
+[release checklist](/docs/checklists/pipeline_release). We recommend that you also explicitly
+tag contributors with their GitHub handles, so each release on GitHub will display their icons.
 
 The nf-core website and helper tools will automatically detect the new release and be updated accordingly.
 
@@ -78,8 +87,9 @@ Once you've made your first release you can continue to work on your fork and ma
 against the `dev` branch on the nf-core repository. Now that we have a stable `master` branch,
 there should be reviews of each PR against `dev` before merging.
 
-When ready to make new releases, make sure that the version number is increased and create a
-pull-request against `master`. If tests pass, it can be merged and a new release made.
+When ready to make new releases, make sure that the version number is increased with
+`nf-core bump-version` and create a pull-request against `master`. If tests pass, it
+can be merged and a new release made.
 
 The `master` branch should always have only the commit from the latest release. This is important
 because the commit ID is used to reference whether the pipeline is up to date or not.
