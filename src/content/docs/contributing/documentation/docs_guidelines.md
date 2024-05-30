@@ -64,11 +64,17 @@ Example: Use `nextflow run nf-core/<pipeline_name>` to execute the pipeline.
 
 1. Lists:
    Use bullet points for lists where the order of items is not important. Use numbered lists for sequential steps.
+   Use [checklists](/docs/contributing/website/markdown#checklist) if you're expecting someone to run through
+   a set of instructions.
 
 1. Hyperlinks:
    Write descriptive link text instead of using URLs directly.
 
-Example: See the [nf-core docs](https://nf-co.re/docs) for more information.
+:::tip
+See [Markdown on the nf-core website](/docs/contributing/website/markdown#checklist) for instructions
+on how to use markdown formatting and special elements such as "admonitions" for nice formatting.
+You're reading text in a tip admonition right now!
+:::
 
 ## Getting help
 
