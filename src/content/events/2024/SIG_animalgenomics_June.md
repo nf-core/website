@@ -12,4 +12,4 @@ locations:
 ---
 
 Join us on **June 19** for the monthly meeting of the _#animal-genomics_ special interest group!
-This month, we are honored to announce Yuliaxis Ramayo from Institute of Agrifood Research and Technology (IRTA), Spain and part of HoloRuminant as speaker.
+This month, we are honored to announce **Yuliaxis Ramayo-Caldas** from Institute of Agrifood Research and Technology (IRTA), Spain and part of HoloRuminant as speaker.
