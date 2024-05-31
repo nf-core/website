@@ -1,7 +1,7 @@
 ---
 title: PR Review Checklist for nf-core/tools
 subtitle: Guidelines for reviewing PRs in the nf-core/tools repository
-shortTitle: Tools PR
+shortTitle: nf-core/tools PR
 markdownPlugin: checklist
 ---
 
