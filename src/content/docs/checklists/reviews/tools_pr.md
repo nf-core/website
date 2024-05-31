@@ -5,7 +5,6 @@ shortTitle: Tools PR
 markdownPlugin: checklist
 ---
 
-
 While the [infrastructure team](https://github.com/orgs/nf-core/teams/infrastucture/members) is responsible for overseeing the PR review process for nf-core/tools, these guidelines can assist community members in reviewing PRs and ensure that the review process is consistent and effective. The following is a collection of points to have into account during the review process.
 
 :::note
