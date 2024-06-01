@@ -5509,6 +5509,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -17695,6 +17699,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -19702,7 +19710,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "4.0"
+          "version": "4.1.0"
         },
         {
           "name": "bamtofastq",
@@ -20544,7 +20552,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "4.0"
+          "version": "4.1.0"
         }
       ]
     },
@@ -20816,7 +20824,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "4.0"
+          "version": "4.1.0"
         }
       ]
     },
@@ -36849,7 +36857,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "4.0"
+          "version": "4.1.0"
         },
         {
           "name": "bacass",
@@ -37005,7 +37013,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "4.0"
+          "version": "4.1.0"
         },
         {
           "name": "ampliseq",
@@ -42983,6 +42991,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -43740,6 +43752,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -49139,6 +49155,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -67473,6 +67493,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -77718,6 +77742,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -83310,7 +83338,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "4.0"
+          "version": "4.1.0"
         },
         {
           "name": "ampliseq",
@@ -107589,6 +107617,19 @@
               "type": "file",
               "description": "BAM/CRAM/SAM file",
               "pattern": "*.{bam,cram,sam}"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "A reference genome in FASTA format",
+              "pattern": "*.fasta"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
             }
           }
         ],
@@ -142647,7 +142688,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "4.0"
+          "version": "4.1.0"
         },
         {
           "name": "ampliseq",
@@ -142856,7 +142897,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "4.0"
+          "version": "4.1.0"
         },
         {
           "name": "ampliseq",
@@ -143095,7 +143136,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "4.0"
+          "version": "4.1.0"
         },
         {
           "name": "ampliseq",
