@@ -22,3 +22,8 @@ Users of the pipeline should be able to get a good idea of what the pipeline doe
 Names must be approved by the nf-core community [(`#new-pipelines`)](https://nfcore.slack.com/archives/CE6SDEDAA).
 
 Please refer to your pipeline with the `nf-core` prefix in written materials, for example `nf-core/yourpipeline`.
+
+:::note
+We are aware that some nf-core pipelines don't follow this requirement, notably nf-core/sarek and nf-core/eager.
+These pipelines predate nf-core and were part of it's initial creation.
+:::
