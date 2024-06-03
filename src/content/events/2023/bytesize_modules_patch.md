@@ -19,6 +19,7 @@ Have you ever wanted to tweak an nf-core module for your own use? No need to cop
 Sounds too good to be true? Join us to hear more at this week's bytesize talk with Phil Ewels ([@ewels](https://github.com/ewels))!
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::

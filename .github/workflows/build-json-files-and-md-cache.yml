@@ -18,7 +18,7 @@ jobs:
         id: date
         run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
       # Set up the main website repo
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4
         with:
           fetch-depth: 0 # Don't do a shallow clone
           token: ${{secrets.NF_CORE_BOT_AUTH_TOKEN}} # Needed for pushing back to the repo
@@ -90,7 +90,7 @@ jobs:
       # Create a PR if there are too many lines changed
       - name: Create PR with changes
         if: ${{ steps.check_lines.outputs.changes }}
-        uses: peter-evans/create-pull-request@70a41aba780001da0a30141984ae2a0c95d8704e # v6
+        uses: peter-evans/create-pull-request@6d6857d36972b65feb161a90e484f2984215f83e # v6
         with:
           token: ${{ secrets.CREATE_PR_TOKEN }}
           commit-message: 'chore: update pipeline.json and component.json'

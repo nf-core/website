@@ -1,182 +1,206 @@
 ---
 import PageLayout from '@layouts/PageLayout.astro';
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+import type { SidebarEntry } from '@utils/types';
+import { addEntriesToSection, sanitizeNfCoreLabels } from '@utils/functions';
+import { Icon } from 'astro-icon/components';
+import SidebarSubNav from '@components/sidebar/SidebarSubNav.astro';
+
 let docs = await getCollection('docs');
-let usageDocs: CollectionEntry<'docs'>[] = [];
-let contributingDocs: CollectionEntry<'docs'>[] = [];
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
-let sections: { section_name: string; children: { title: string; slug: string }[] }[] = [
-    { section_name: 'Usage', children: [] },
-    { section_name: 'Contributing', children: [] },
+
+let sections: SidebarEntry[] = [
+    { type: 'group', id: 'usage', label: 'Usage', entries: [], collapsed: true, icon: 'octicon:play-16', weight: 1 },
+    {
+        type: 'group',
+        id: 'contributing',
+        label: 'Contributing',
+        entries: [],
+        collapsed: true,
+        icon: 'octicon:git-pull-request-16',
+        weight: 2,
+    },
+    {
+        type: 'group',
+        id: 'tutorials',
+        label: 'Tutorials',
+        entries: [],
+        collapsed: true,
+        icon: 'octicon:mortar-board-16',
+        weight: 3,
+    },
+    {
+        type: 'group',
+        id: 'guidelines',
+        label: 'Guidelines',
+        entries: [],
+        collapsed: true,
+        icon: 'octicon:law-16',
+        weight: 4,
+    },
+    {
+        type: 'group',
+        id: 'checklists',
+        label: 'Checklists',
+        entries: [],
+        collapsed: true,
+        icon: 'octicon:tasklist-16',
+        weight: 5,
+    },
+    {
+        type: 'group',
+        id: 'nf-core-tools',
+        label: 'nf-core/tools',
+        entries: [],
+        collapsed: true,
+        icon: 'octicon:tools-16',
+        weight: 6,
+    },
 ];
-// sort docs first depth, then by weight, then by title
-const sortDocs = (a: CollectionEntry<'docs'>, b: CollectionEntry<'docs'>) => {
-    if (a.slug.split('/').length < b.slug.split('/').length) {
-        return 1;
-    } else if (a.slug.split('/').length > b.slug.split('/').length) {
-        return -1;
-    } else {
-        a.data.weight = a.data.weight || 100;
-        b.data.weight = b.data.weight || 100;
-        if (a.data.weight < b.data.weight) {
+addEntriesToSection(sections, docs, Astro.url.pathname);
+// sort all entries by weight if available recursively
+const sortEntries = (entries: SidebarEntry[]) => {
+    entries.sort((a, b) => {
+        if (a.weight && !b.weight) {
             return -1;
-        } else if (a.data.weight > b.data.weight) {
+        } else if (!a.weight && b.weight) {
             return 1;
-        } else {
-            if (a.data.title < b.data.title) {
+        } else if (a.weight && b.weight && a.weight !== b.weight) {
+            if (a.weight < b.weight) {
                 return -1;
-            } else if (a.data.title > b.data.title) {
+            } else if (a.weight > b.weight) {
                 return 1;
-            } else {
-                return 0;
             }
+        } else {
+            return a.label.localeCompare(b.label);
         }
-    }
+    });
+    entries.forEach((entry) => {
+        if (entry.type === 'group' && entry.entries) {
+            sortEntries(entry.entries);
+        }
+    });
 };
 
-docs.map((doc) => {
-    if (doc.slug.startsWith('usage/')) {
-        usageDocs.push(doc);
-    }
-    if (doc.slug.startsWith('contributing/')) {
-        contributingDocs.push(doc);
-    }
+sections.forEach((section) => {
+    sortEntries(section.entries);
 });
-usageDocs.sort(sortDocs);
-contributingDocs.sort(sortDocs);
 
-usageDocs
-    .filter((doc) => doc.slug.split('/').length === 2)
-    .map((doc) => {
-        sections[0].children.push({ title: doc.data.title, slug: '/docs/' + doc.slug + '/' });
+const findEntriesWithLabel = (sections: SidebarEntry[], label: string, parentLabel: string | undefined) => {
+    let entries = [];
+    sections.forEach((section) => {
+        if (!parentLabel && section.label === label) {
+            section.metadata = docs.find((doc) => '/docs/' + doc.slug === section.href);
+            entries.push(section);
+        }
+        if (parentLabel && section.label === parentLabel) {
+            section.entries.forEach((entry) => {
+                if (entry.label === label) {
+                    entry.metadata = docs.find((doc) => '/docs/' + doc.slug === entry.href);
+                    entries.push(entry);
+                }
+            });
+        }
+        if (section.entries) {
+            entries.push(...findEntriesWithLabel(section.entries, label, parentLabel));
+        }
     });
-contributingDocs
-    .filter((doc) => doc.slug.split('/').length === 2)
-    .map((doc) => {
-        sections[1].children.push({ title: doc.data.title, slug: '/docs/' + doc.slug + '/' });
-    });
+    return entries;
+};
+
+let highlightSections = [];
+['Introduction', 'Adding modules to pipelines', 'Assertions', 'nf-core-tools/Installation'].forEach((label) => {
+    let parentLabel = label.includes('/') ? label.split('/')[0] : undefined;
+    label = parentLabel ? label.split('/')[1] : label;
+    let entries = findEntriesWithLabel(sections, label, parentLabel?.replace('nf-core-tools', 'nf-core/tools'));
+    if (entries.length === 0) {
+        console.error(`No entry found for label: ${label}`);
+    }
+    highlightSections.push(entries);
+});
+highlightSections = highlightSections.flat();
 ---
 
-<PageLayout title="Docs" subtitle="How to use nf-core pipelines and contribute to the nf-core community">
-    <div class="row">
-        <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left">
-            <SidebarNav items={sections} />
-        </div>
-
-        <div class="col-12 col-md-10">
-            <p>
-                Here you can find all documentation on how to use nf-core pipelines, and nf-core tools to start
-                processing your data. You will also find information on how to contribute to nf-core pipelines, modules
-                and subworkflows.
-            </p>
-            <div class="row row-cols-1 row-cols-md-2 justify-content-around">
-                <div class="col">
-                    <h2>Usage</h2>
-                    <ul>
-                        {
-                            usageDocs
-                                .filter((doc) => doc.slug.split('/').length === 2)
-                                .map((doc) => {
-                                    // check if this is a parent of a nested doc
-                                    const childDocs = usageDocs.filter((childDoc) =>
-                                        childDoc.slug.startsWith(doc.slug + '/'),
-                                    );
-                                    if (childDocs.length > 0) {
-                                        return (
-                                            <li>
-                                                <span>
-                                                    <a href={'/docs/' + doc.slug + '/'}>{doc.data.title}</a>
-                                                    <button
-                                                        class="btn p-0"
-                                                        data-bs-toggle="collapse"
-                                                        data-bs-target={'#' + doc.slug.replace('/', '-')}
-                                                        aria-expanded="false"
-                                                        aria-controls={doc.slug.replace('/', '-')}
-                                                    >
-                                                        <i class="fa-solid fa-chevron-down" />
-                                                    </button>
-                                                </span>
-                                                <ul class="collapse" id={doc.slug.replace('/', '-')}>
-                                                    {childDocs.map((childDoc) => {
-                                                        return (
-                                                            <li>
-                                                                <a href={'/docs/' + childDoc.slug + '/'}>
-                                                                    {childDoc.data.title}
-                                                                </a>
-                                                            </li>
-                                                        );
-                                                    })}
-                                                </ul>
-                                            </li>
-                                        );
-                                    } else {
-                                        return (
-                                            <li>
-                                                <a href={'/docs/' + doc.slug + '/'}>{doc.data.title}</a>
-                                            </li>
-                                        );
-                                    }
-                                })
-                        }
-                    </ul>
+<PageLayout
+    title="Docs"
+    subtitle="How to use nf-core pipelines and contribute to the nf-core community"
+    mainpage_container={false}
+>
+    <div class="container-fluid main-content">
+        <div class="row">
+            <div class="col-12 col-xl-8 order-2">
+                <div class="grid">
+                    {
+                        highlightSections &&
+                            highlightSections.map((section, i) => (
+                                <>
+                                    {/* {i % 2 !== 0 && <div class="d-none d-md-block g-col-md-3" />} */}
+                                    <div class="g-col-12 g-col-md-6 card position-relative">
+                                        <div class="card-body">
+                                            <a href={section.href} class="h4 stretched-link text-decoration-none">
+                                                {section.metadata.data.title}
+                                            </a>
+                                            <div class="card-text">{section.metadata.data.subtitle}</div>
+                                        </div>
+                                    </div>
+                                    {/* {i % 2 === 0 && <div class="d-none d-md-block g-col-md-3" />} */}
+                                </>
+                            ))
+                    }
+                    {
+                        sections &&
+                            sections.map((section) => (
+                                <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxxxl-2 card">
+                                    <span class="card-header">
+                                        <a
+                                            href={`/docs/${section.label?.replace('/', '-').toLowerCase()}/`}
+                                            class="text-decoration-none d-flex align-items-center text-reset"
+                                        >
+                                            {section.icon && <Icon name={section.icon} class={'me-2'} />}
+                                            {sanitizeNfCoreLabels(section.label)}
+                                        </a>
+                                    </span>
+                                    <ul class="card-body mb-0 list-unstyled" id={section.label?.replace('/', '-')}>
+                                        {section.entries && <SidebarSubNav items={section.entries} nested={true} />}
+                                    </ul>
+                                </div>
+                            ))
+                    }
                 </div>
-
-                <div class="col">
-                    <h2>Contributing</h2>
-                    <ul>
-                        {
-                            contributingDocs
-                                .filter((doc) => doc.slug.split('/').length === 2)
-                                .map((doc) => {
-                                    // check if this is a parent of a nested doc
-                                    const childDocs = contributingDocs.filter((childDoc) =>
-                                        childDoc.slug.startsWith(doc.slug + '/'),
-                                    );
-                                    if (childDocs.length > 0) {
-                                        return (
-                                            <li>
-                                                <span>
-                                                    <a href={'/docs/' + doc.slug + '/'}>{doc.data.title}</a>
-                                                    <button
-                                                        class="btn p-0"
-                                                        data-bs-toggle="collapse"
-                                                        data-bs-target={'#' + doc.slug.replace('/', '-')}
-                                                        aria-expanded="false"
-                                                        aria-controls={doc.slug.replace('/', '-')}
-                                                    >
-                                                        <i class="fa-solid fa-chevron-down" />
-                                                    </button>
-                                                </span>
-                                                <ul class="collapse" id={doc.slug.replace('/', '-')}>
-                                                    {childDocs.map((childDoc) => {
-                                                        return (
-                                                            <li>
-                                                                <a href={'/docs/' + childDoc.slug + '/'}>
-                                                                    {childDoc.data.title}
-                                                                </a>
-                                                            </li>
-                                                        );
-                                                    })}
-                                                </ul>
-                                            </li>
-                                        );
-                                    } else {
-                                        return (
-                                            <li>
-                                                <a href={'/docs/' + doc.slug + '/'}>{doc.data.title}</a>
-                                            </li>
-                                        );
-                                    }
-                                })
-                        }
-                    </ul>
-                </div>
+            </div>
+            <div class="col-12 col-xl-3 sticky-top-under d-none d-xl-inline sidebar-left order-1">
+                <SidebarNav items={sections} />
             </div>
         </div>
     </div>
 </PageLayout>
 <style>
-    .btn[aria-expanded='true'] {
-        transform: rotate(180deg);
+    li a {
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    .card-header:hover {
+        text-decoration: underline;
+    }
+    .card.position-relative:hover {
+        border-color: var(--bs-secondary-color);
+        & a {
+            text-decoration: underline !important;
+        }
+    }
+</style>
+<style is:global>
+    .card li {
+        a,
+        summary {
+            border-inline-end: none !important;
+        }
+        a:hover {
+            text-decoration: underline !important;
+            background-color: transparent !important;
+        }
     }
 </style>
