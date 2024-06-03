@@ -19,6 +19,7 @@ This week, Francesco Lescai ([@lescai](https://github.com/lescai)) is presenting
 It uses metagenomic classification of paired-read alignments against a reference genome to identify the presence of non-host microbial sequences within read pairs, and to infer potential integration sites into the host genome.
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::

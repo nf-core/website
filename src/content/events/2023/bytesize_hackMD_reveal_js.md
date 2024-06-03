@@ -18,6 +18,7 @@ HackMD.io is an open source, collaborative Markdown editor, which allows people 
 This week, Maxime Garcia ([@maxulysse](https://github.com/maxulysse)) will show us how to create Presentation Slides on HackMD using the `reveal.js` integration.
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::

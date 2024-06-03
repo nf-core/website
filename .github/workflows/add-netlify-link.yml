@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Check for changed files
         id: changed-files
-        uses: tj-actions/changed-files@2d756ea4c53f7f6b397767d8723b3a10a9f35bf2 # v44
+        uses: tj-actions/changed-files@d6babd6899969df1a11d14c368283ea4436bca78 # v44
 
       - name: Add Netlify link to PR
         if: steps.changed-files.outputs.all_changed_files != ''
@@ -26,8 +26,9 @@ jobs:
             // handle normal pages
             let netlifyLinks = changedFiles
               .filter(file => file.startsWith('src/pages/'))
+              .filter(file => !file.endsWith('].astro')) // skip dynamic routes
               .map(file => `@netlify ${file?.replace('src/pages/', '/')}`)[0]
-              ?.replace(/\.md$/, '').replace(/\.mdx$/, '').replace(/\/index$/, '');
+              ?.replace(/\.md$/, '').replace(/\.mdx$/, '').replace(/\.astro$/, '').replace(/\/index$/, '');
 
             // handle pages in content collections
             if (!netlifyLinks) {

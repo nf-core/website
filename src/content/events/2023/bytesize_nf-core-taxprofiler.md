@@ -19,6 +19,7 @@ locations:
 This week Sofia Stamouli ([@sofstam](https://github.com/sofstam)) will talk about nf-core/taxprofiler, a bioinformatics best-practice analysis pipeline for taxonomic profiling of shotgun metagenomic data. It allows for in-parallel profiling with multiple profiling tools against multiple databases, produces standardised output tables.
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::

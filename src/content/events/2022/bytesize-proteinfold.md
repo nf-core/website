@@ -18,6 +18,7 @@ locations:
 This week, Athanasios Baltzis ([@athbaltzis](https://github.com/athbaltzis)) will talk about the newest developments in the nf-core/proteinfold pipeline.
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::

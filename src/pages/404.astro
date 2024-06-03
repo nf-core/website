@@ -3,13 +3,22 @@ import PageLayout from '@layouts/PageLayout.astro';
 ---
 
 <PageLayout title="Error 404: Page Not Found" subtitle="The page you were looking for has been moved or removed.">
-    <p class="mb-3">Apologies, the link you followed is broken and the page cannot be found.</p>
+    <p class="mb-3">
+        Apologies, the link you followed (<a id="url" class="small"> </a>) is broken and the page cannot be found.
+    </p>
+
     <p class="mb-2">If you believe this is an error, please report it on the website repository:</p>
     <a
+        id="report-issue"
         class="btn btn-sm btn-primary"
-        href="https://github.com/nf-core/website/issues/new?assignees=&labels=bug&template=bug_report.md"
+        href="https://github.com/nf-core/website/issues/new?assignees=&labels=bug&template=bug_report.md&title=%5B404%5D+Page+not+found%3A+"
     >
         <i class="fa-brands fa-github me-2"></i>
         Open an issue on GitHub
     </a>
+    <script is:inline>
+        document.getElementById('url').textContent = document.referrer;
+        document.getElementById('url').attributes.href = document.referrer;
+        document.getElementById('report-issue').attributes.href.value += document.referrer;
+    </script>
 </PageLayout>

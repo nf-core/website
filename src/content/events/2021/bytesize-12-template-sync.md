@@ -31,6 +31,7 @@ The talk will be presented on Zoom and live-streamed on YouTube:
 - FigShare: <https://doi.org/10.6084/m9.figshare.14572866.v1>
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::
@@ -113,7 +114,7 @@ The content has been edited to make it reader-friendly
 
 [14:50](https://youtu.be/-CZKoo5Y_08?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=890) Most importantly, follow the documentation.
 
-[14:55](https://youtu.be/-CZKoo5Y_08?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=895) If I go to [developers template synchronisation](https://nf-co.re/docs/contributing/sync), there is a step-by-step walkthrough on how to do everything that I’ve just described.
+[14:55](https://youtu.be/-CZKoo5Y_08?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=895) If I go to [developers template synchronisation](https://nf-co.re/docs/tutorials/sync/overview), there is a step-by-step walkthrough on how to do everything that I’ve just described.
 
 [15:09](https://youtu.be/-CZKoo5Y_08?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=909) It says how it works, and then we say how to actually fix the minor conflicts and how to deal with the things I just described during my talk. There are example commands etc, so I follow this documentation myself as well.
 

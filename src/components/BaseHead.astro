@@ -83,7 +83,13 @@ const { title, description, image = '/social_img.png', docSearchTags = [], viewT
 </script>
 <script>
     import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
-
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    [...tooltipTriggerList].map((tooltipTriggerEl) => {
+        const tooltip = bootstrap.Tooltip.getInstance(tooltipTriggerEl);
+        if (!tooltip) {
+            new bootstrap.Tooltip(tooltipTriggerEl);
+        }
+    });
     document.addEventListener('astro:after-swap', () => {
         const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
         [...tooltipTriggerList].map((tooltipTriggerEl) => {

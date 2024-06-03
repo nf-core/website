@@ -1,5 +1,10 @@
 # Slack invite URL
-/join/slack https://join.slack.com/t/nfcore/shared_invite/zt-2c1fa7aeb-Jdmmm6CzHIC_EJPt25UTgw
+/join/slack https://join.slack.com/t/nfcore/shared_invite/zt-2gkfckttv-lG0aBbzOJZ5kUxaakhc2ag
+
+# Force a 404 header on custom 404 page
+# See https://answers.netlify.com/t/bug-and-workaround-404-page-returns-http-200/21154
+/404.html /404      404!
+/404      /404.html 404!
 
 # Temporary oldsite redirections
 /logo/*  https://oldsite.nf-co.re/logo/:splat 200
@@ -15,3 +20,51 @@
 /assets/img/* /images/:splat
 /tools-docs/lint_tests/* /tools/docs/latest/pipeline_lint_tests/:splat
 
+# Big docs restructure - April 2024
+/tools                                     /docs/nf-core-tools
+/tools/docs/*                              /docs/nf-core-tools/api_reference/:splat
+/tools/*                                   /docs/nf-core-tools/:splat
+/docs/nf-core-tools/api_reference/*/index  /docs/nf-core-tools/api_reference/:splat
+
+/docs/usage/introduction                                     /docs/usage/getting_started/introduction
+/docs/usage/installation                                     /docs/usage/getting_started/installation
+/docs/usage/configuration                                    /docs/usage/getting_started/configuration
+/docs/usage/offline                                          /docs/usage/getting_started/offline
+/docs/usage/troubleshooting                                  /docs/usage/troubleshooting/overview
+/docs/usage/tutorials                                        /docs/tutorials
+/docs/usage/tutorials/step_by_step_institutional_profile     /docs/tutorials/use_nf-core_pipelines/config_institutional_profile
+/docs/usage/tutorials/nf_core_usage_tutorial                 /docs/tutorials/nf-core_contributing_overview
+/docs/usage/tutorials/institution                            /docs/tutorials/contributing_to_nf-core/contributors_institution
+/docs/usage/data_management                                  /blog/2020/data_management
+
+/docs/contributing/code_formatting                           /docs/contributing/code_editors_and_styling/code_formatting
+/docs/contributing/website_markdown                          /docs/contributing/website/markdown
+/docs/contributing/editor_plugins                            /docs/contributing/code_editors_and_styling/editor_plugins
+/docs/contributing/tutorials/nf-test_assertions              /docs/contributing/nf-test/assertions
+/docs/contributing/release_checklist                         /docs/checklists/pipeline_release
+/docs/contributing/pipeline_release_review_guidelines        /docs/checklists/reviews/pipeline_release_pr
+/docs/contributing/tutorials                                 /docs/tutorials
+/docs/contributing/adding_pipelines                          /docs/tutorials/adding_a_pipeline/overview
+/docs/contributing/contributing_to_pipelines                 /docs/tutorials/contributing_to_nf-core/contributing_to_pipelines
+/docs/contributing/gitpod                                    /docs/tutorials/gitpod/overview
+/docs/contributing/gitpod/nf_core_repo                       /docs/tutorials/gitpod/nf-core_repo
+/docs/contributing/gitpod/other_tutorials                    /docs/tutorials/gitpod/overview
+/docs/contributing/gitpod/*                                  /docs/tutorials/gitpod/:splat
+/docs/contributing/tutorials/adding_modules_to_pipelines     /docs/tutorials/nf-core_components/adding_modules_to_pipelines
+/docs/contributing/tutorials/nf_core_configs_outside_nf_core /docs/tutorials/external_usage/nf-core_configs_outside_nf-core
+/docs/contributing/subworkflows                              /docs/tutorials/nf-core_components/components
+/docs/contributing/modules                                   /docs/tutorials/nf-core_components/components
+/docs/contributing/sync                                      /docs/tutorials/sync/overview
+/docs/contributing/test_data_guidelines                      /docs/tutorials/tests_and_test_data/test_data
+/docs/contributing/training_guide                            /docs/tutorials/contributing_to_nf-core/writing_training
+/docs/contributing/tutorials/creating_with_nf_core           /docs/tutorials/nextflow_training/creating_with_nf-core
+/docs/usage/tutorials/nextflow                               /docs/tutorials/nextflow_training/nextflow
+/docs/contributing/tutorials/dsl2_modules_tutorial           /docs/tutorials/nf-core_components/components  # Not the same page, but equivalent
+/docs/contributing/tutorials/nf_core_contributing_overview   /docs/tutorials/nf-core_contributing_overview
+/docs/contributing/design_guidelines                         /docs/guidelines/graphic_design
+/docs/contributing/guidelines                                /docs/guidelines/pipelines/overview
+/docs/contributing/guidelines/recommendations/*              /docs/guidelines/pipelines/recommendations/:splat
+/docs/contributing/guidelines/requirements/*                 /docs/guidelines/pipelines/requirements/:splat
+/docs/contributing/nfcore_component-specifications           /docs/guidelines/components/overview
+/docs/contributing/nfcore_component-specifications/*         /docs/guidelines/components/:splat
+/docs/contributing/tutorials/unofficial_pipelines            /docs/guidelines/external_use

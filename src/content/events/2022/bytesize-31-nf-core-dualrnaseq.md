@@ -20,6 +20,7 @@ This week, Regan Hayward ([@reganhayward](https://github.com/reganhayward/)) wil
 nf-core/dualrnaseq is specifically used for the analysis of Dual RNA-seq data, interrogating host-pathogen interactions through simultaneous RNA-seq.
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::

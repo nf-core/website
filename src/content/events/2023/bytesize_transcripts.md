@@ -17,6 +17,7 @@ locations:
 This week, Franziska Bonath ([@FranBonath](https://github.com/FranBonath)) will talk about her work to generate transcripts of bytesize talks and what these might be used for in the future.
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::

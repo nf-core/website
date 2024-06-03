@@ -17,6 +17,7 @@ locations:
 This week, Matthias Hörtenhuber ([@mashehu](https://github.com/mashehu)) is going to explain the use the newly added pre-commit tool added to nf-core/tools. Pre-commits were developed to inspect the snapshot that is about to be committed and helps to check formatting etc. before adding the code to the repository.
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::

@@ -17,6 +17,7 @@ locations:
 Join us for this weeks bytesize with Phil Ewels ([@ewels](https://github.com/ewels/)). You will get information about how to use the GitHub CLI and VSCode to make your work more efficient and less annoying!
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::

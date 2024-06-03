@@ -18,6 +18,7 @@ locations:
 This week, Sabrina Krakau ([@skrakau](https://github.com/skrakau)) is going to introduce nf-core/mag. nf-core/mag is a bioinformatics best-practise analysis pipeline for assembly, binning and annotation of metagenomes.
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::

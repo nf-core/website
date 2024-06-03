@@ -20,6 +20,7 @@ This week, Chris Cheshire ([@chris-cheshire](https://github.com/chris-cheshire/)
 Chris is going to give an overview and highlight the new features in the recent release of nf-core/cutandrun. Nf-core/cutand run is a pipeline for CUT&Run and CUT&Tag experimental protocols that where developed to study protein-DNA interactions and epigenomic profiling.
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::

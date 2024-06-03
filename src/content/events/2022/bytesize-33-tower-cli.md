@@ -17,6 +17,7 @@ locations:
 This week, Evan Floden ([@evanfloden](https://github.com/evanfloden/)) will tell us all about the new [Nextflow Tower command line client](https://github.com/seqeralabs/tower-cli).
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::
