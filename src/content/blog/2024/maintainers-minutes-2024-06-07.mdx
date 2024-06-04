@@ -1,0 +1,78 @@
+---
+title: 'Maintainers Minutes: June 2024'
+subtitle: 'Keeping you informed of the latest maintainers discussions'
+pubDate: 2024-06-07T17:00:00+02:00
+headerImage: '/assets/images/blog/maintainers-minutes-2024-06-07/sad-maintainers-duck.png'
+headerImageAlt: "XXXX"
+authors:
+    - 'jfy133'
+label:
+    - 'maintainers'
+---
+
+import sad_maintainers_duck from '@assets/images/blog/maintainers-minutes-2024-06-07/sad-maintainers-duck.png';
+import { Image } from 'astro:assets';
+
+In this new initiative, the 'Maintainers Minutes' aims to further give insight into the workings of the [nf-core maintainers team](/governance#maintainers) by providing brief summaries of the monthly Maintainer's team meetings.
+
+## Goodbyes and welcomes!
+
+The maintainers team has been now running for over a year and half, and it is time to expand the team to keep up with the community!
+
+We first would like to say thank you to the following people for their service and contributions during their terms, and will be becoming maintainers team alumni:
+
+- Louisa Perelo
+- Daniel Lundin
+- Matthieu Muffato
+- Alex Peltzer
+
+And we are happy to announce that the following people were nominated by current members of the team as being highly active community members, and have accepted to join in keeping the community healthy:
+
+- Igor Trujnara ([@itrujnara](https://github.com/itrujnara))
+- Carson Miller ([@CarsonJM](https://github.com/CarsonJM))
+- Nico Trummer ([@nictru](https://github.com/nictru))
+- Mahesh Binzer-Panchal ([@mahesh-panchal](https://github.com/mahesh-panchal))
+- Luisa Santus ([@luisas](https://github.com/luisas))
+- Joon Klaps ([@Joon-Klaps](https://github.com/Joon-Klaps))
+- Lili Andersson-Lili ([@LilyAnderssonLee](https://github.com/LilyAnderssonLee))
+
+## Still naming things...
+
+We once again again spent some time talking about the naming of subworkflows, talking about the tricky balance of keeping findability but conciseness in understanding what a particular subworkflow does.
+
+There was general agreement that actually the _length_ of the subworkflow name isn't as important as ensuring knowing exactly what the subworkflow does.
+In some cases it was argued that describing every operation and tool of the subworkflow was unnecessary and made it harder to understand.
+
+One factor brought up is in complex subworkflows the current '_<tool>` suffix can make subworkflow names very long, and doesn't provide much information compared to active 'verbs'.
+However it was countered that you may have multiple subworkflows that do similar things (e.g. deduplication), so having the tool name performing the activity can be useful.
+
+We agreed as 'homework' for each team member to idependently rename the '[preprocess_rnaseq](https://github.com/nf-core/modules/blob/master/subworkflows/nf-core/preprocess_rnaseq/main.nf)', in their preferred manner, and see if we can find a majority consensus of a naming specification..
+
+If you also want to participate, please let us know of your own ideas!
+
+## Improving new pipeline proposals experience
+
+A point recently raised by a few of core team members has been that the experiences of people submitting new pipeline proposals can be quite variable.
+Currently new proposals require two core team members to approve the proposal (and you guessed it, the name!).
+However, as the community grows, as does the number of proposals as well, as does the diversity of the types of analyses the proposals are addressing.
+This increased workload coupled with the backgrounds of the core team not being able to cover all areas of biology, has lead to a slow down in proposal reviews and 'stalling' of proposals while waiting for core team members to make a decision.
+
+To improve the experience of proposers by increasing turnaround time, and reducing the load on the core team on evaluating proposals outside their 'comfort zone', the maintainers team has agreed to help monitor the #new-pipelines-proposal channel and evaluate each new submission.
+From now one each proposal can have one core-team member and one maintainer approval for a pipeline to be accepted!
+
+## Infrastructure Team Updates
+
+Júlia updated us on a couple of developments happening from the infrastructure team.
+
+The version of nf-core tools used for setting up pipelines, and also as to which version of the nf-core template is being used will now be recorded in each pipeline.
+
+A discussion on how to reformat the nf-core modules `meta.yml` file was had, mainly in regards to better displaying metadata associated to input channels with tuples.
+
+Maxime brought up a long running request to have additional fields for better recording publication information (e.g. bibtext information), to potentially allow auto-generation of methods texts with proper attribution of tools.
+
+
+## Upcoming discussions
+
+Points for the next agenda will to confirm the experience of the first office hours and do our 'preprocess_rna' subworkflow renaming homework.
+
+\- :heart: from your #maintainers team!
