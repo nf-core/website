@@ -54,8 +54,8 @@ Pretext is a suite of tools used to curate the chromosome level structure of lon
 1. [PretextMap](https://github.com/sanger-tol/PretextMap)
 
   Produces a Pretext map file from Hi-C data mapped to an assembly in
-  SAM/BAM/CRAM or [Pairs]
-  (https://github.com/4dn-dcic/pairix/blob/master/pairs_format_specification.md)
+  SAM/BAM/CRAM or
+  [Pairs](https://github.com/4dn-dcic/pairix/blob/master/pairs_format_specification.md)
   format. The Pretext map file stores the Hi-C contact map in an OpenGL
   texture.
 
