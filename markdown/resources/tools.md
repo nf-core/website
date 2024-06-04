@@ -38,12 +38,7 @@ Genomes on a Tree (GoaT), an Elasticsearch-powered datastore and search index fo
 
 ## Oatk
 
-Developed for _de novo_ assembly of complex plant organelle genomes using
-PacBio HiFi data, [Oatk](https://github.com/c-zhou/oatk) can also be used to
-assemble other, simpler organelle genomes such as animal mitochondria. From
-whole genome sequencing data input, Oatk's tools produce annotation
-(using profile HMMs from [OatkDB](https://github.com/c-zhou/OatkDB.git)) and
-cirularised graph assemblies of plastid and mitochondrial genomes.
+Developed for _de novo_ assembly of complex plant organelle genomes using PacBio HiFi data, [Oatk](https://github.com/c-zhou/oatk) can also be used to assemble other, simpler organelle genomes such as animal mitochondria. From whole genome sequencing data input, Oatk's tools produce annotation (using profile HMMs from [OatkDB](https://github.com/c-zhou/OatkDB.git)) and cirularised graph assemblies of plastid and mitochondrial genomes.
 
 <br/>
 
@@ -51,40 +46,16 @@ cirularised graph assemblies of plastid and mitochondrial genomes.
 
 Pretext is a suite of tools used to curate the chromosome level structure of long read assemblies of novel genomes using Hi-C contact maps:
 
-1. [PretextMap](https://github.com/sanger-tol/PretextMap)
+- [PretextMap](https://github.com/sanger-tol/PretextMap) - Produces a Pretext map file from Hi-C data mapped to an assembly in SAM/BAM/CRAM or [Pairs](https://github.com/4dn-dcic/pairix/blob/master/pairs_format_specification.md) format. The Pretext map file stores the Hi-C contact map in an OpenGL texture.
 
-  Produces a Pretext map file from Hi-C data mapped to an assembly in
-  SAM/BAM/CRAM or
-  [Pairs](https://github.com/4dn-dcic/pairix/blob/master/pairs_format_specification.md)
-  format. The Pretext map file stores the Hi-C contact map in an OpenGL
-  texture.
+- [PretextGraph](https://github.com/sanger-tol/PretextGraph) - Used to add BED-Graph format anntoation to a Pretext map file.
 
-2. [PretextGraph](https://github.com/sanger-tol/PretextGraph)
+- [PretextView](https://github.com/sanger-tol/PretextView) - An interactive, OpenGL based viewer and editor of Pretext map files, used to curate the chromosome level structure of assemblies. The edited genome is exported in an AGP format file, and includes tags introduced during curation which label contaminants, haplotigs, chromosome names and haplotypes.
 
-  Used to add BED-Graph format anntoation to a Pretext map file.
-
-3. [PretextView](https://github.com/sanger-tol/PretextView)
-
-  An interactive, OpenGL based viewer and editor of Pretext map files, used to
-  curate the chromosome level structure of assemblies. The edited genome is
-  exported in an AGP format file, and includes tags introduced during
-  curation which label contaminants, haplotigs, chromosome names and
-  haplotypes.
-
-4. [PretextSnapshot](https://github.com/sanger-tol/PretextSnapshot)
-
-  Extracts Hi-C contact map images from Pretext map files.
+- [PretextSnapshot](https://github.com/sanger-tol/PretextSnapshot) - Extracts Hi-C contact map images from Pretext map files.
 
 <br/>
 
 ## AGP / TPF Utilities
 
-Nucleotide coodinates (other than the start or end of contigs) in AGP files
-produced by
-[PretextView](https://github.com/sanger-tol/PretextView)
-are only accurate to the number of bases spanned by each pixel in its
-map file. The `pretext-to-tpf` command of
-[AGP / TPF Utilites](https://github.com/sanger-tol/agp-tpf-utils/)
-uses the orginal, unedited assembly to correct the coordinates of the assembly
-contigs. It also uses tags from PretextView to label chromosomes, and to
-separate haplotypes, haplotigs and contaminants.
+Nucleotide coodinates (other than the start or end of contigs) in AGP files produced by [PretextView](https://github.com/sanger-tol/PretextView) are only accurate to the number of bases spanned by each pixel in its map file. The `pretext-to-tpf` command of [AGP / TPF Utilites](https://github.com/sanger-tol/agp-tpf-utils/) uses the orginal, unedited assembly to correct the coordinates of the assembly contigs. It also uses tags from PretextView to label chromosomes, and to separate haplotypes, haplotigs and contaminants.
