@@ -40,6 +40,8 @@ Genomes on a Tree (GoaT), an Elasticsearch-powered datastore and search index fo
 
 Developed for _de novo_ assembly of complex plant organelle genomes using PacBio HiFi data, [Oatk](https://github.com/c-zhou/oatk) can also be used to assemble other, simpler organelle genomes such as animal mitochondria. From whole genome sequencing data input, Oatk's tools produce annotation (using profile HMMs from [OatkDB](https://github.com/c-zhou/OatkDB.git)) and cirularised graph assemblies of plastid and mitochondrial genomes.
 
+**Pipelines:** [genomeassembly](/genomeassembly)
+
 <br/>
 
 ## Pretext
@@ -53,6 +55,8 @@ Pretext is a suite of tools used to curate the chromosome level structure of lon
 - [PretextView](https://github.com/sanger-tol/PretextView) - An interactive, OpenGL based viewer and editor of Pretext map files, used to curate the chromosome level structure of assemblies. The edited genome is exported in an AGP format file, and includes tags introduced during curation which label contaminants, haplotigs, chromosome names and haplotypes.
 
 - [PretextSnapshot](https://github.com/sanger-tol/PretextSnapshot) - Extracts Hi-C contact map images from Pretext map files.
+
+**Pipelines:** [genomeassembly](/genomeassembly) | [treeval](/treeval)
 
 <br/>
 
