@@ -5529,6 +5529,18 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -10294,7 +10306,7 @@
             }
           },
           {
-            "VCF": {
+            "vcf": {
               "type": "file",
               "description": "VCF file (optionally GZIPPED)",
               "pattern": "*.{vcf,vcf.gz}"
@@ -10309,7 +10321,7 @@
             }
           },
           {
-            "version": {
+            "versions": {
               "type": "file",
               "description": "File containing software version",
               "pattern": "versions.yml"
@@ -17528,6 +17540,18 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -43043,6 +43067,18 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -43800,6 +43836,18 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -49219,6 +49267,18 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -67618,6 +67678,18 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -74620,7 +74692,9 @@
               "documentation": "https://sourceforge.net/p/mageck/wiki/Home/",
               "tool_dev_url": "https://bitbucket.org/liulab/mageck/src",
               "doi": "10.1186/s13059-015-0843-6",
-              "licence": "['BSD License']"
+              "licence": [
+                "BSD"
+              ]
             }
           }
         ],
@@ -77796,6 +77870,18 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -106385,6 +106471,73 @@
           "version": "dev"
         }
       ]
+    },
+    {
+      "name": "samtools_cramsize",
+      "path": "modules/nf-core/samtools/cramsize/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "samtools_cramsize",
+        "description": "List CRAM Content-ID and Data-Series sizes",
+        "keywords": [
+          "cram-size",
+          "cram",
+          "size"
+        ],
+        "tools": [
+          {
+            "samtools": {
+              "description": "SAMtools is a set of utilities for interacting with and post-processing\nshort DNA sequence read alignments in the SAM, BAM and CRAM formats, written by Heng Li.\nThese files are generated as output by short read aligners like BWA.\n",
+              "homepage": "http://www.htslib.org/",
+              "documentation": "http://www.htslib.org/doc/samtools.html",
+              "doi": "10.1093/bioinformatics/btp352",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "cram": {
+              "type": "file",
+              "description": "CRAM file",
+              "pattern": "*.cram"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "size": {
+              "type": "file",
+              "description": "Size information file",
+              "pattern": "*.size"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@limrp"
+        ]
+      }
     },
     {
       "name": "samtools_depth",
