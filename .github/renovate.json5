@@ -8,13 +8,13 @@
             matchStrings: ["https://github.com/(?<depName>.*)/releases/download/(?<currentValue>.*)/.*.tar.gz"],
             datasourceTemplate: "github-release-attachments"
         }
-    ]
+    ],
     "packageRules": [
         {
             "packageName": "*",
             "dependencyType": "direct",
             "manager": "npm",
-            "enabled": false
+            "automerge": false
         }
     ]
 }
