@@ -5549,6 +5549,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -17550,6 +17554,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -43101,6 +43109,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -43858,6 +43870,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -49297,6 +49313,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -67736,6 +67756,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -69911,7 +69935,9 @@
               "documentation": "https://github.com/shenwei356/kmcp#documents",
               "tool_dev_url": "https://github.com/shenwei356/kmcp",
               "doi": "10.1093/bioinformatics/btac845",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -78023,8 +78049,124 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
+    },
+    {
+      "name": "merqury_hapmers",
+      "path": "modules/nf-core/merqury/hapmers/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "merqury_hapmers",
+        "description": "A script to generate hap-mer dbs for trios",
+        "keywords": [
+          "genomics",
+          "quality check",
+          "qc",
+          "kmer"
+        ],
+        "tools": [
+          {
+            "merqury": {
+              "description": "Evaluate genome assemblies with k-mers and more.",
+              "tool_dev_url": "https://github.com/marbl/merqury",
+              "doi": "10.1186/s13059-020-02134-9",
+              "licence": [
+                "United States Government Work"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "child_meryl": {
+              "type": "directory",
+              "description": "Childs' k-mers (all, from WGS reads)",
+              "pattern": "*.meryl"
+            }
+          },
+          {
+            "maternal_meryl": {
+              "type": "directory",
+              "description": "Haplotype1 k-mers (all, ex. maternal)",
+              "pattern": "*.meryl"
+            }
+          },
+          {
+            "paternal_meryl": {
+              "type": "directory",
+              "description": "Haplotype2 k-mers (all, ex. paternal)",
+              "pattern": "*.meryl"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "mat_hapmer_meryl": {
+              "type": "directory",
+              "description": "Inherited maternal hap-mer dbs",
+              "pattern": "*_mat.hapmer.meryl"
+            }
+          },
+          {
+            "pat_hapmer_meryl": {
+              "type": "directory",
+              "description": "Inherited paternal hap-mer dbs",
+              "pattern": "*_pat.hapmer.meryl"
+            }
+          },
+          {
+            "inherited_hapmers_fl_png": {
+              "type": "file",
+              "description": "k-mer distribution of the inherited dbs and cutoffs used to generate hap-mer dbs",
+              "pattern": "*_inherited_hapmers.fl.png"
+            }
+          },
+          {
+            "inherited_hapmers_ln_png": {
+              "type": "file",
+              "description": "k-mer distribution of the inherited dbs and cutoffs used to generate hap-mer dbs",
+              "pattern": "*_inherited_hapmers.ln.png"
+            }
+          },
+          {
+            "inherited_hapmers_st_png": {
+              "type": "file",
+              "description": "k-mer distribution of the inherited dbs and cutoffs used to generate hap-mer dbs",
+              "pattern": "*_inherited_hapmers.st.png"
+            }
+          }
+        ],
+        "authors": [
+          "@GallVp"
+        ],
+        "maintainers": [
+          "@GallVp"
+        ]
+      }
     },
     {
       "name": "merqury_merqury",
@@ -123386,6 +123528,10 @@
         {
           "name": "raredisease",
           "version": "2.1.0"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "variantbenchmarking",
