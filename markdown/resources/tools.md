@@ -56,10 +56,21 @@ Pretext is a suite of tools used to curate the chromosome level structure of lon
 
 - [PretextSnapshot](https://github.com/sanger-tol/PretextSnapshot) - Extracts Hi-C contact map images from Pretext map files.
 
-**Pipelines:** [genomeassembly](/genomeassembly) | [treeval](/treeval)
+**Pipelines:** [curationpretext](/curationpretext) | [genomeassembly](/genomeassembly) | [treeval](/treeval)
 
 <br/>
 
 ## AGP / TPF Utilities
 
 Nucleotide coodinates (other than the start or end of contigs) in AGP files produced by [PretextView](https://github.com/sanger-tol/PretextView) are only accurate to the number of bases spanned by each pixel in its map file. The `pretext-to-tpf` command of [AGP / TPF Utilites](https://github.com/sanger-tol/agp-tpf-utils/) uses the orginal, unedited assembly to correct the coordinates of the assembly contigs. It also uses tags from PretextView to label chromosomes, and to separate haplotypes, haplotigs and contaminants.
+
+<br/>
+
+## Arima mapping pipeline
+
+Arima Genomics provides us the kits used to do genome-wide Hi-C for genome assembly.
+They have released some [open source scripts](https://github.com/ArimaGenomics/mapping_pipeline) to aid mapping the reads onto a genome assembly.
+We have slightly modified the scripts to support the CRAM files we get from Sanger's sequencing teams.
+The code is on our fork of the repostitory on GitHub: <https://github.com/sanger-tol/arima_mapping_pipeline>.
+
+**Pipelines:** [curationpretext](/curationpretext) | [genomeassembly](/genomeassembly) | [treeval](/treeval)
