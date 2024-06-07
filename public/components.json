@@ -5557,6 +5557,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -11165,6 +11169,10 @@
       "pipelines": [
         {
           "name": "phaseimpute",
+          "version": "dev"
+        },
+        {
+          "name": "variantbenchmarking",
           "version": "dev"
         },
         {
@@ -17558,6 +17566,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -43125,6 +43137,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -43882,6 +43898,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -49329,6 +49349,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -67784,6 +67808,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -70285,7 +70313,9 @@
               "documentation": "https://github.com/shenwei356/kmcp#documents",
               "tool_dev_url": "https://github.com/shenwei356/kmcp",
               "doi": "10.1093/bioinformatics/btac845",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -70297,17 +70327,17 @@
             }
           },
           {
-            "db": {
-              "type": "directory",
-              "description": "Database directory created by \"kmcp index\"",
-              "pattern": "*"
-            }
-          },
-          {
             "reads": {
               "type": "file",
               "description": "gzipped fasta or fastq files",
               "pattern": "*.{fq.gz,fastq.gz,fa.gz}"
+            }
+          },
+          {
+            "db": {
+              "type": "directory",
+              "description": "Database directory created by \"kmcp index\"",
+              "pattern": "*"
             }
           }
         ],
@@ -77968,6 +77998,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -119241,7 +119275,14 @@
             "log": {
               "type": "file",
               "description": "Spades log file\n",
-              "pattern": "*.log"
+              "pattern": "*.spades.log"
+            }
+          },
+          {
+            "log": {
+              "type": "file",
+              "description": "Spades warning log file\n",
+              "pattern": "*.warning.log"
             }
           },
           {
@@ -121904,7 +121945,13 @@
         "maintainers": [
           "@nvnieuwk"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "survivor_simsv",
@@ -144649,13 +144696,7 @@
         "maintainers": [
           "@LouisLeNezet"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "phaseimpute",
-          "version": "dev"
-        }
-      ]
+      }
     }
   ]
 }
