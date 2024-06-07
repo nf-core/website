@@ -1,6 +1,6 @@
 ---
 title: '#animal-genomics: June Meeting'
-subtitle: Yuliaxis Ramayo, Institute of Agrifood Research and Technology (IRTA), Spain
+subtitle: Yuliaxis Ramayo-Caldas, Institute of Agrifood Research and Technology (IRTA), Spain
 type: talk
 startDate: '2024-06-19'
 startTime: '16:00+02:00'
