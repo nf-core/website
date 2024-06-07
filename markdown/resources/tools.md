@@ -68,9 +68,9 @@ Nucleotide coodinates (other than the start or end of contigs) in AGP files prod
 
 ## Arima mapping pipeline
 
-Arima Genomics provides us the kits used to do genome-wide Hi-C for genome assembly.
-They have released some [open source scripts](https://github.com/ArimaGenomics/mapping_pipeline) to aid mapping the reads onto a genome assembly.
-We have slightly modified the scripts to support the CRAM files we get from Sanger's sequencing teams.
-The code is on our fork of the repostitory on GitHub: <https://github.com/sanger-tol/arima_mapping_pipeline>.
+Arima Genomics, who supply the kits we use to produce Hi-C data for genome assembly,
+have released [open source scripts](https://github.com/ArimaGenomics/mapping_pipeline) which aid mapping the reads to a genome assembly.
+We have modified them to support the CRAM files produced by Sanger's sequencing teams,
+and have made these changes are available in our [fork of the repository on GitHub](https://github.com/sanger-tol/arima_mapping_pipeline).
 
 **Pipelines:** [curationpretext](/curationpretext) | [genomeassembly](/genomeassembly) | [treeval](/treeval)
