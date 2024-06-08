@@ -5561,6 +5561,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -17566,6 +17570,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -43141,6 +43149,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -43898,6 +43910,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -49349,6 +49365,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -67812,6 +67832,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -70223,7 +70247,9 @@
               "documentation": "https://bioinf.shenwei.me/kmcp/usage/#profile",
               "tool_dev_url": "https://github.com/shenwei356/kmcp",
               "doi": "10.1093/bioinformatics/btac845",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -70235,12 +70261,6 @@
             }
           },
           {
-            "db": {
-              "type": "directory",
-              "description": "Database directory containing taxdump files and taxid file"
-            }
-          },
-          {
             "search_results": {
               "type": "file",
               "description": "Gzipped file output from kmcp search module",
@@ -70248,9 +70268,9 @@
             }
           },
           {
-            "mode": {
-              "type": "integer",
-              "description": "Profiling mode. 0-pathogen detection 1-higher recall 2-high recall 3-default 4-high precision 5-higher precision"
+            "db": {
+              "type": "directory",
+              "description": "Database directory containing taxdump files and taxid file"
             }
           }
         ],
@@ -77998,6 +78018,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
