@@ -5573,6 +5573,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -16267,11 +16271,13 @@
         "tools": [
           {
             "blast": {
-              "description": "BLAST+ is a new suite of BLAST tools that utilizes the NCBI C++ Toolkit.",
+              "description": "BLAST+ is a new suite of BLAST tools that utilizes the NCBI C++ Toolkit.\n",
               "homepage": "https://blast.ncbi.nlm.nih.gov/Blast.cgi",
               "documentation": "https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=Blastdocs",
               "doi": "10.1016/S0022-2836(05)80360-2",
-              "licence": "['US-Government-Work']"
+              "licence": [
+                "US-Government-Work"
+              ]
             }
           }
         ],
@@ -17578,6 +17584,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -43270,6 +43280,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -44027,6 +44041,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -49490,6 +49508,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -67977,6 +67999,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -78290,6 +78316,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -87025,7 +87055,7 @@
             }
           },
           {
-            "npa": {
+            "png": {
               "type": "file",
               "description": "PNG file of the Nonpareil curve",
               "pattern": "*.png"
@@ -87187,7 +87217,7 @@
             }
           },
           {
-            "npo": {
+            "npos": {
               "type": "file",
               "description": "A list of npo redundancy summary files from nonpareil itself",
               "pattern": "*.npo"
@@ -87209,7 +87239,7 @@
             }
           },
           {
-            "npa": {
+            "png": {
               "type": "file",
               "description": "PNG file of all the Nonpareil curves of the input npo files",
               "pattern": "*.png"
