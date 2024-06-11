@@ -26,7 +26,7 @@ before_command: git config --global user.email "nf-core_bot@example.com" && git 
 
 The sync command tries to check out the `TEMPLATE` branch from the `origin` remote or an existing local branch called `TEMPLATE`.
 It will fail if it cannot do either of these things.
-The `nf-core create` command should make this template automatically when you first start your pipeline.
+The `nf-core pipelines create` command should make this template automatically when you first start your pipeline.
 Please see the [nf-core website sync documentation](https://nf-co.re/developers/sync) if you have difficulties.
 
 To specify a directory to sync other than the current working directory, use the `--dir <pipline_dir>`.

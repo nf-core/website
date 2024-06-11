@@ -32,7 +32,7 @@ This way we avoid having a lot of "empty" pipelines listed which are basically j
 See [Adding your pipeline to the nf-core organisation](/docs/tutorials/adding_a_pipeline/move_to_nf-core_org) for details on this process.
 
 All nf-core pipelines [_must_ use the nf-core template](/docs/guidelines/pipelines/requirements/use_the_template).
-This is done by using the `nf-core create` command - see [the docs](/docs/nf-core-tools/pipelines/create) for detailed instructions.
+This is done by using the `nf-core pipelines create` command - see [the docs](/docs/nf-core-tools/pipelines/create) for detailed instructions.
 This tool does lots of things for you: it gives you the correct file structure and boiler plate code
 and also sets up the required `git` infrastructure for you to keep your pipeline in sync in the future.
 
@@ -50,6 +50,9 @@ This is to allow consistent names between platforms.
 
 ## Push to GitHub
 
+The `nf-core pipelines create` command provides the option to create a GitHub repository and push the initial commit to it.
+If you have selected this option, you are all set! If you skipped this option, you can follow these steps:
+
 Create an empty repository on GitHub for your new pipeline under your personal account.
 Do this by going to the GitHub website and clicking + then _New Repository_.
 
@@ -57,7 +60,7 @@ Make sure _not_ to initialise it with _any_ file, `README` or `LICENSE`: you jus
 You already have these files generated from the nf-core template.
 
 Once created, copy the git URL and add this as a remote to your local git repository.
-The `nf-core create` command will have initialised a git repository for you,
+The `nf-core pipelines create` command will have initialised a git repository for you,
 so all you need to do is add the remote:
 
 ```bash

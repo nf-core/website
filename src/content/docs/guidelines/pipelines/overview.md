@@ -77,7 +77,7 @@ Indeed, numerous pipelines outside of nf-core now extensively use and contribute
 
 If using nf-core tools and especially the template, please don't call your pipeline `nf-core/<yourpipeline>`.
 Please say that your pipeline _"uses"_ nf-core rather than rather than _"is"_ nf-core.
-Remember that you can generate a pipeline with `nf-core create` that excludes nf-core branding.
+Remember that you can generate a pipeline with `nf-core pipelines create` that excludes nf-core branding.
 Citation and acknowledgement of the work that goes into these tools and templates is welcome.
 
 > Non nf-core pipelines can be added to [nextflow-io/awesome-nextflow](https://github.com/nextflow-io/awesome-nextflow) for added visibility.

@@ -7,8 +7,8 @@ outputs:
     head: 19
     img_paths:
       - public/images/contributing/creating_with_nf_core/nfcore_list.svg
-  - command: nf-core create --name demo --description "Pipeline for training" --author "Phil" --plain
-    fake_command: nf-core create
+  - command: nf-core pipelines create --name demo --description "Pipeline for training" --author "Phil"
+    fake_command: nf-core pipelines create
     img_paths:
       - public/images/contributing/creating_with_nf_core/nfcore_create.svg
   - command: cd nf-core-demo && git status
@@ -75,8 +75,8 @@ outputs:
     timeout: 10
     img_paths:
       - public/images/tools/nf-core-licences.svg
-  - command: cd tmp && nf-core create -n nextbigthing -d "This pipeline analyses data from the next big omics technique" -a "Big Steve" --plain
-    fake_command: nf-core create -n nextbigthing -d "This pipeline analyses data from the next big omics technique" -a "Big Steve" --plain
+  - command: cd tmp && nf-core pipelines create -n nextbigthing -d "This pipeline analyses data from the next big omics technique" -a "Big Steve"
+    fake_command: nf-core pipelines create -n nextbigthing -d "This pipeline analyses data from the next big omics technique" -a "Big Steve"
     img_paths:
       - public/images/tools/nf-core-create.svg
   - command: |

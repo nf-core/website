@@ -3,9 +3,9 @@ title: Setting up a pipeline for syncing retrospectively
 subtitle: How to set up a correct TEMPLATE branch in your nf-core pipeline repository
 ---
 
-This section describes how to set up a correct TEMPLATE branch in the case your pipeline was not created with a TEMPLATE branch from the beginning. If you created a pipeline with the `nf-core create` command, you should be all ready to go and can skip this step. Otherwise proceed with caution. It is probably a good idea to make sure you have all your local changes pushed to github and you could even make a local backup clone of your repository before proceeding.
+This section describes how to set up a correct TEMPLATE branch in the case your pipeline was not created with a TEMPLATE branch from the beginning. If you created a pipeline with the `nf-core pipelines create` command, you should be all ready to go and can skip this step. Otherwise proceed with caution. It is probably a good idea to make sure you have all your local changes pushed to github and you could even make a local backup clone of your repository before proceeding.
 
-You should also consider the option to restart your pipeline project by running the `nf-core create` command and simply copy in the modifications you need into the newly created pipeline.
+You should also consider the option to restart your pipeline project by running the `nf-core pipelines create` command and simply copy in the modifications you need into the newly created pipeline.
 
 ### Step-by-step procedure
 
@@ -43,14 +43,14 @@ Regenerate your pipeline from scratch using the most recent template:
 > Make sure you are within your pipeline root directory before running these commands.
 
 ```bash
-nf-core create --no-git
+nf-core pipelines create --no-git
 ```
 
 If your pipeline already has versioned releases (eg. you are not currently on `1.0dev`),
 then specify the version number that you are currently on:
 
 ```bash
-nf-core create --no-git --version 1.3dev
+nf-core pipelines create --no-git --version 1.3dev
 ```
 
 > The version you choose should match the branch that you intend to merge with.

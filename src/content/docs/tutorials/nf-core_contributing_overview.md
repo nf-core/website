@@ -123,7 +123,7 @@ nf-core --help
 
 The heart of _nf-core_ is the standardisation of pipeline code structure.
 To achieve this, all pipelines adhere to a generalised pipeline template.
-The best way to build an _nf-core_ pipeline is to start by using this template via the `nf-core create` command.
+The best way to build an _nf-core_ pipeline is to start by using this template via the `nf-core pipelines create` command.
 This launches an interactive prompt on the command line which asks for things such as pipeline name, a short description and the author's name.
 These values are then propagated throughout the template files automatically.
 
@@ -438,7 +438,7 @@ We have compiled a detailed [release checklist](https://nf-co.re/docs/checklists
 
 Over time, new versions of nf-core/tools will be released with changes to the template.
 In order to keep all _nf-core_ pipelines in sync, we have developed an automated synchronisation procedure.
-A GitHub bot account, [@nf-core-bot](https://github.com/nf-core-bot) is scripted on a new tools release to use `nf-core create` with the new template using the input values you used on your pipeline.
+A GitHub bot account, [@nf-core-bot](https://github.com/nf-core-bot) is scripted on a new tools release to use `nf-core pipelines create` with the new template using the input values you used on your pipeline.
 This is committed to the `TEMPLATE` branch and a pull-request created to incorporate these changes into `dev`.
 
 Note that these PRs can sometimes create git _merge conflicts_ which will need to be resolved manually.

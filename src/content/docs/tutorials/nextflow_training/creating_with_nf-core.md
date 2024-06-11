@@ -96,12 +96,12 @@ In this tutorial we will focus on creating a pipeline, but please do look at the
 To get started with your new pipeline, run the create command:
 
 ```bash
-nf-core create
+nf-core pipelines create
 ```
 
-Although you can provide options on the command line, it's easiest to use the interactive prompts.
+Although you can provide options on the command line, it's easiest to use the interactive interface.
 
-![nf-core create](/images/contributing/creating_with_nf_core/nfcore_create.svg)
+![nf-core pipelines create](/images/contributing/creating_with_nf_core/nfcore_create.svg)
 
 Follow the instructions and you should see a new pipeline appear in your file explorer.
 
@@ -114,7 +114,7 @@ cd nf-core-demo/
 
 ### Pipeline git repo
 
-The `nf-core create` command has made a fully fledged pipeline for you.
+The `nf-core pipelines create` command has made a fully fledged pipeline for you.
 Before getting too carried away looking at all of the files, note that it has also initiated a git repository:
 
 ![git status](/images/contributing/creating_with_nf_core/git_status.svg)

@@ -12,7 +12,7 @@ describing what each file is and what it does.
 
 ## Files
 
-You will find the following files in each nf-core pipeline. They are automatically generated, when running `nf-core create`.
+You will find the following files in each nf-core pipeline. They are automatically generated, when running `nf-core pipelines create`.
 
 | Filename               | Description                                                                                                                                                                                                                                                                                                                                                                                         |
 | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
