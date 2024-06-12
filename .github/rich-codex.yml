@@ -46,7 +46,7 @@ outputs:
     title: nextflow run
     img_paths:
       - public/images/contributing/creating_with_nf_core/nextflow_run_no_outdir.svg
-  - command: git clone https://github.com/nf-core/modules.git --depth 1 && cd modules && nf-core modules create fastqc --author @janedoe --label process_low --meta
+  - command: git clone https://github.com/nf-core/modules.git --depth 1 && cd modules && nf-core modules create fastqc --author @janedoe --label process_low --meta --force
     fake_command: nf-core modules create fastqc --author @janedoe --label process_low --meta
     img_paths:
       - public/images/contributing/modules/nf-core-modules-create.svg
@@ -97,7 +97,7 @@ outputs:
       - public/images/tools/nf-core-schema-validate.svg
   - command: |
       cd tmp/nf-core-nextbigthing && \
-      sed '25,30d' nextflow_schema.json > nextflow_schema.json.tmpsed '25,30d' nextflow_schema.json > nextflow_schema.json.tmp && \
+      sed '25,30d' nextflow_schema.json > nextflow_schema.json.tmp && \
       mv nextflow_schema.json.tmp nextflow_schema.json && \
       nf-core schema build --no-prompts
     timeout: 10
@@ -108,10 +108,6 @@ outputs:
     fake_command: nf-core schema lint
     img_paths:
       - public/images/tools/nf-core-schema-lint.svg
-  - command: cd tmp/nf-core-nextbigthing && nf-core bump-version 1.1
-    fake_command: nf-core bump-version 1.1
-    img_paths:
-      - public/images/tools/nf-core-bump-version.svg
   - command: |
       cd tmp/nf-core-nextbigthing && \
       git config --global user.email "nf-core_bot@example.com" && \
@@ -121,6 +117,10 @@ outputs:
     fake_command: nf-core sync
     img_paths:
       - public/images/tools/nf-core-sync.svg
+  - command: cd tmp/nf-core-nextbigthing && nf-core bump-version 1.1
+    fake_command: nf-core bump-version 1.1
+    img_paths:
+      - public/images/tools/nf-core-bump-version.svg
   - command: cd tmp && nf-core create-logo nextbigthing
     fake_command: nf-core create-logo nextbigthing
     img_paths:
@@ -169,8 +169,7 @@ outputs:
       - public/images/tools/nf-core-modules-create.svg
   - command: |
       cd tmp/modules && \
-      sed 's/1.13a/1.10/g' modules/multiqc/main.nf > modules/multiqc/main.nf.tmp && \
-      mv modules/multiqc/main.nf.tmp modules/multiqc/main.nf && \
+      sed -i 's/1.13a/1.10/g' modules/multiqc/main.nf && \
       nf-core modules lint multiqc
     fake_command: nf-core modules lint multiqc
     img_paths:
@@ -182,8 +181,8 @@ outputs:
     fake_command: nf-core modules test fastqc --no-prompts
     img_paths:
       - public/images/tools/nf-core-modules-test.svg
-  - command: cd tmp/modules && nf-core modules bump-version fastqc
-    fake_command: nf-core modules bump-version fastqc
+  - command: cd tmp/modules && nf-core modules bump-versions fastqc
+    fake_command: nf-core modules bump-versions fastqc
     img_paths:
       - public/images/tools/nf-core-modules-bump-version.svg
   - command: cd tmp/nf-core-nextbigthing && nf-core subworkflows list remote
