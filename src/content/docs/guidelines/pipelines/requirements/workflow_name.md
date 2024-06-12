@@ -24,6 +24,7 @@ Names must be approved by the nf-core community [(`#new-pipelines`)](https://nfc
 Please refer to your pipeline with the `nf-core` prefix in written materials, for example `nf-core/yourpipeline`.
 
 :::note
-We are aware that some nf-core pipelines don't follow this requirement, notably nf-core/sarek and nf-core/eager.
-These pipelines predate nf-core and were part of it's initial creation.
+In _very_ rare occasions, we may be willing to bend this requirement. This has happened in the past when
+a pipeline predates nf-core or comes with a substantial existing community.
+This has happened for only a small handful of pipelines out of the >100 that we have in the community.
 :::
