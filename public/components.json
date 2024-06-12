@@ -5585,6 +5585,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -17704,6 +17708,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -43434,6 +43442,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -44191,6 +44203,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -49666,6 +49682,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -68177,6 +68197,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -78406,6 +78430,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -119960,6 +119988,78 @@
       }
     },
     {
+      "name": "spotiflow",
+      "path": "modules/nf-core/spotiflow/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "spotiflow",
+        "description": "Spotiflow, accurate and efficient spot detection with stereographic flow.",
+        "keywords": [
+          "imaging",
+          "spatial",
+          "spot",
+          "detection"
+        ],
+        "tools": [
+          {
+            "spotiflow": {
+              "description": "Spotiflow allows for accurate and efficient spot detection with stereographic flow",
+              "homepage": "https://weigertlab.github.io/spotiflow/",
+              "documentation": "https://weigertlab.github.io/spotiflow/",
+              "tool_dev_url": "https://github.com/weigertlab/spotiflow",
+              "doi": "10.1101/2024.02.01.578426",
+              "licence": [
+                "BSD-3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "image_2d": {
+              "type": "file",
+              "description": "2D TIF Image file with the spots to be detected",
+              "pattern": "*.{tif,tiff,png,jpg,jpeg}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "spots": {
+              "type": "file",
+              "description": "CSV file with the X, Y positions of the detected spots.",
+              "pattern": "*.{csv}"
+            }
+          }
+        ],
+        "authors": [
+          "@migueLib"
+        ],
+        "maintainers": [
+          "@migueLib"
+        ]
+      }
+    },
+    {
       "name": "spring_compress",
       "path": "modules/nf-core/spring/compress/meta.yml",
       "type": "module",
@@ -124596,7 +124696,9 @@
               "homepage": "https://taxpasta.readthedocs.io/",
               "documentation": "https://taxpasta.readthedocs.io/",
               "tool_dev_url": "https://github.com/taxprofiler/taxpasta",
-              "licence": "['Apache-2.0']"
+              "licence": [
+                "Apache-2.0"
+              ]
             }
           }
         ],
@@ -124615,10 +124717,17 @@
             }
           },
           {
-            "samplesheet": {
-              "type": "file",
-              "description": "A samplesheet describing the sample name and a filepath to a taxonomic abundance profile that needs to be relative from the work environment. The profiles must be provided even if you give a samplesheet as argument (optional)",
-              "pattern": "*.{tsv,csv,ods,xlsx,arrow,parquet}"
+            "profiler": {
+              "type": "string",
+              "description": "Name of the profiler used to generate the profile (mandatory)",
+              "pattern": "bracken|centrifuge|diamond|ganon|kaiju|kmcp|kraken2|krakenuniq|megan6|metaphlan|motus"
+            }
+          },
+          {
+            "format": {
+              "type": "string",
+              "description": "Type of output file to be generated",
+              "pattern": "tsv|csv|ods|xlsx|arrow|parquet|biom"
             }
           },
           {
@@ -124626,6 +124735,13 @@
               "type": "directory",
               "description": "Directory containing at a minimum nodes.dmp and names.dmp files (optional)",
               "pattern": "*/"
+            }
+          },
+          {
+            "samplesheet": {
+              "type": "file",
+              "description": "A samplesheet describing the sample name and a filepath to a taxonomic abundance profile that needs to be relative from the Nextflow work directory of the executed process. The profiles must be provided even if you give a samplesheet as argument (optional)",
+              "pattern": "*.{tsv,csv,ods,xlsx,arrow,parquet}"
             }
           }
         ],
@@ -124690,7 +124806,9 @@
               "homepage": "https://taxpasta.readthedocs.io/",
               "documentation": "https://taxpasta.readthedocs.io/",
               "tool_dev_url": "https://github.com/taxprofiler/taxpasta",
-              "licence": "['Apache-2.0']"
+              "licence": [
+                "Apache-2.0"
+              ]
             }
           }
         ],
@@ -124706,6 +124824,20 @@
               "type": "file",
               "description": "profiler output file (mandatory)",
               "pattern": "*"
+            }
+          },
+          {
+            "profiler": {
+              "type": "string",
+              "description": "Name of the profiler used to generate the profile (mandatory)",
+              "pattern": "bracken|centrifuge|diamond|ganon|kaiju|kmcp|kraken2|krakenuniq|megan6|metaphlan|motus"
+            }
+          },
+          {
+            "format": {
+              "type": "string",
+              "description": "Type of output file to be generated",
+              "pattern": "tsv|csv|ods|xlsx|arrow|parquet|biom"
             }
           },
           {
