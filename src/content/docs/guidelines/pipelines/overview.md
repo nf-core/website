@@ -11,10 +11,19 @@ The aim of nf-core is to have standardised best-practice pipelines.
 To ensure this standardisation, we maintain a set of guidelines which all nf-core
 pipelines must adhere to.
 
-> If you're thinking of adding a new pipeline to nf-core or contributing to an existing pipeline, please read the documentation
-> about [adding a new pipeline](/docs/tutorials/adding_a_pipeline/overview) and [contributing to a pipeline](/docs/tutorials/contributing_to_nf-core/contributing_to_pipelines).
+:::tip
+If you're thinking of adding a new pipeline to nf-core or contributing to an existing pipeline, please read the documentation
+about [adding a new pipeline](/docs/tutorials/adding_a_pipeline/overview) and [contributing to a pipeline](/docs/tutorials/contributing_to_nf-core/contributing_to_pipelines).
+:::
 
 The following lists an overview of the guidelines. Follow links to dedicated pages for more details about a given topic.
+
+:::warning{title="Build with the community"}
+nf-core is a community of builders, not a registry of pipelines.
+Please propose your pipeline and develop with us, rather than
+proposing an already-complete pipeline.
+See recommendation: [Build with the community](/docs/guidelines/pipelines/recommendations/build_with_community)
+:::
 
 ### Ask the community
 
@@ -26,7 +35,8 @@ You can join the nf-core Slack [here](https://nf-co.re/join).
 
 All nf-core pipelines _must_ follow the following guidelines:
 
-- Nextflow: Workflows must be built using Nextflow.
+- [Nextflow](/docs/guidelines/pipelines/requirements/nextflow): Workflows must be built using Nextflow.
+- [Community owned](/docs/guidelines/pipelines/requirements/community_owned): Pipelines are owned by the community.
 - [Identity and branding](/docs/guidelines/pipelines/requirements/identity_branding): Primary development must on the nf-core organisation.
 - [Workflow specificity](/docs/guidelines/pipelines/requirements/workflow_specificity): There should only be a single pipeline per data / analysis type.
 - [Workflow size](/docs/guidelines/pipelines/requirements/workflow_size): Not too big, not too small.

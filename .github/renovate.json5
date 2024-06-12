@@ -9,4 +9,12 @@
             datasourceTemplate: "github-release-attachments"
         }
     ]
+    "packageRules": [
+        {
+            "packageName": "*",
+            "dependencyType": "direct",
+            "manager": "npm",
+            "enabled": false
+        }
+    ]
 }

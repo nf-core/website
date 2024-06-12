@@ -123,7 +123,7 @@ Increasing these values from the defaults will not _increase_ the resources avai
 Most pipelines will attempt to automatically restart jobs that fail due to lack of resources with double-requests, these caps keep those requests from getting out of hand and crashing the entire pipeline run. If a particular job exceeds the process-specific default resources and is retried, only resource requests (cpu, memory, or time) that have not yet reached the value set with `--max_<resource>` will be increased during the retry.
 
 :::warning
-Setting the `--max-<resource>` parameters do not represent the total sum of resource usage of the pipeline at a given time - only a single pipeline job!
+Setting the `--max_<resource>` parameters do not represent the total sum of resource usage of the pipeline at a given time - only a single pipeline job!
 :::
 
 ## Tuning workflow resources
