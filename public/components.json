@@ -5593,6 +5593,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -17983,6 +17987,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -22411,14 +22419,14 @@
             }
           },
           {
-            "checkm_output": {
+            "checkm2_output": {
               "type": "directory",
               "description": "CheckM2 output directory",
               "pattern": "${prefix}/"
             }
           },
           {
-            "checkm_tsv": {
+            "checkm2_tsv": {
               "type": "file",
               "description": "CheckM2 summary completeness statistics table",
               "pattern": "*.tsv"
@@ -43458,6 +43466,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -44215,6 +44227,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -49698,6 +49714,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -68225,6 +68245,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -78605,6 +78629,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -80010,6 +80038,146 @@
           "version": "3.0.1"
         }
       ]
+    },
+    {
+      "name": "metamaps_classify",
+      "path": "modules/nf-core/metamaps/classify/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "metamaps_classify",
+        "description": "Strain-level metagenomic assignment",
+        "keywords": [
+          "metamaps",
+          "long reads",
+          "metagenomics",
+          "taxonomy"
+        ],
+        "tools": [
+          {
+            "metamaps": {
+              "description": "MetaMaps is a tool for long-read metagenomic analysis",
+              "homepage": "https://github.com/DiltheyLab/MetaMaps",
+              "documentation": "https://github.com/DiltheyLab/MetaMaps/blob/master/README.md",
+              "tool_dev_url": "https://github.com/DiltheyLab/MetaMaps",
+              "doi": "10.1038/s41467-019-10934-2",
+              "licence": [
+                "Public Domain"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "classification_res": {
+              "type": "file",
+              "description": "Coordinates where reads map",
+              "pattern": "*.{classification_res}"
+            }
+          },
+          {
+            "meta_file": {
+              "type": "file",
+              "description": "Statistics for mapping result",
+              "pattern": "*.{classification_res.meta}"
+            }
+          },
+          {
+            "meta_unmappedreadsLengths": {
+              "type": "file",
+              "description": "Statistics for length of unmapped reads",
+              "pattern": "*.{classification_res.meta.unmappedReadsLengths}"
+            }
+          },
+          {
+            "para_file": {
+              "type": "file",
+              "description": "Log with parameters",
+              "pattern": "*.{classification_res.parameters}"
+            }
+          },
+          {
+            "database_folder": {
+              "type": "directory",
+              "description": "Path to MetaMaps database",
+              "pattern": "*"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "wimp": {
+              "type": "file",
+              "description": "Sample composition at different taxonomic levels",
+              "pattern": "*.{classification_res.EM.WIMP}"
+            }
+          },
+          {
+            "evidence_unknown_species": {
+              "type": "file",
+              "description": "Statistics on read identities and zero-coverage regions",
+              "pattern": "*.{classification_res.EM.evidenceUnknownSpecies}"
+            }
+          },
+          {
+            "reads2taxon": {
+              "type": "file",
+              "description": "Taxon ID assignement of reads",
+              "pattern": "*.{classification_res.EM.reads2Taxon}"
+            }
+          },
+          {
+            "em": {
+              "type": "file",
+              "description": "The final and complete set of approximate read mappings",
+              "pattern": "*.{classification_res.EM}"
+            }
+          },
+          {
+            "contig_coverage": {
+              "type": "file",
+              "description": "Read coverage for contigs",
+              "pattern": "*.{classification_res.EM.contigCoverage}"
+            }
+          },
+          {
+            "length_and_id": {
+              "type": "file",
+              "description": "Read length and estimated identity for all reads",
+              "pattern": "*.{classification_res.EM.lengthAndIdentitiesPerMappingUnit}"
+            }
+          },
+          {
+            "krona": {
+              "type": "file",
+              "description": "Taxon ID assignement of reads in Krona format",
+              "pattern": "*.{classification_res.EM.reads2Taxon.krona}"
+            }
+          }
+        ],
+        "authors": [
+          "@henningonsbring",
+          "@sofstam"
+        ]
+      }
     },
     {
       "name": "metamaps_mapdirectly",
@@ -89409,6 +89577,80 @@
           "version": "2.0.0"
         }
       ]
+    },
+    {
+      "name": "orthofinder",
+      "path": "modules/nf-core/orthofinder/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "orthofinder",
+        "description": "OrthoFinder is a fast, accurate and comprehensive platform for comparative genomics.",
+        "keywords": [
+          "genomics",
+          "orthogroup",
+          "orthologs",
+          "gene",
+          "duplication",
+          "tree",
+          "phylogeny"
+        ],
+        "tools": [
+          {
+            "orthofinder": {
+              "description": "Accurate inference of orthogroups, orthologues, gene trees and rooted species tree made easy!",
+              "homepage": "https://github.com/davidemms/OrthoFinder",
+              "documentation": "https://github.com/davidemms/OrthoFinder",
+              "tool_dev_url": "https://github.com/davidemms/OrthoFinder",
+              "doi": "10.1186/s13059-019-1832-y",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "fastas": {
+              "type": "list",
+              "description": "Input fasta files",
+              "pattern": "*.{fa,faa,fasta,fas,pep}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "orthofinder": {
+              "type": "directory",
+              "description": "Orthofinder output directory"
+            }
+          }
+        ],
+        "authors": [
+          "@GallVp"
+        ],
+        "maintainers": [
+          "@GallVp"
+        ]
+      }
     },
     {
       "name": "paftools_sam2paf",
