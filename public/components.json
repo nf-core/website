@@ -440,7 +440,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "taxprofiler",
@@ -3533,7 +3533,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "magmap",
@@ -5105,6 +5105,74 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         },
         {
           "name": "rnafusion",
@@ -7613,7 +7681,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "funcscan",
@@ -7682,7 +7750,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "funcscan",
@@ -7776,7 +7844,9 @@
         "name": "bamaligncleaner",
         "description": "removes unused references from header of sorted BAM/CRAM files.",
         "keywords": [
-          "bam"
+          "bam",
+          "clean",
+          "align"
         ],
         "tools": [
           {
@@ -9174,7 +9244,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "metatdenovo",
@@ -9686,17 +9756,31 @@
             }
           },
           {
-            "versions": {
-              "type": "file",
-              "description": "File containing software versions",
-              "pattern": "versions.yml"
-            }
-          },
-          {
             "vcf": {
               "type": "file",
               "description": "Compressed annotated VCF file",
               "pattern": "*{vcf,vcf.gz,bcf,bcf.gz}"
+            }
+          },
+          {
+            "csi": {
+              "type": "file",
+              "description": "Default VCF file index",
+              "pattern": "*.csi"
+            }
+          },
+          {
+            "tbi": {
+              "type": "file",
+              "description": "Alternative VCF file index",
+              "pattern": "*.tbi"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
             }
           }
         ],
@@ -9807,6 +9891,20 @@
             }
           },
           {
+            "csi": {
+              "type": "file",
+              "description": "Default VCF file index",
+              "pattern": "*.csi"
+            }
+          },
+          {
+            "tbi": {
+              "type": "file",
+              "description": "Alternative VCF file index",
+              "pattern": "*.tbi"
+            }
+          },
+          {
             "versions": {
               "type": "file",
               "description": "File containing software versions",
@@ -9882,6 +9980,20 @@
               "type": "file",
               "description": "VCF concatenated output file",
               "pattern": "*.{vcf.gz}"
+            }
+          },
+          {
+            "csi": {
+              "type": "file",
+              "description": "Default VCF file index",
+              "pattern": "*.csi"
+            }
+          },
+          {
+            "tbi": {
+              "type": "file",
+              "description": "Alternative VCF file index",
+              "pattern": "*.tbi"
             }
           },
           {
@@ -10008,7 +10120,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "viralrecon",
@@ -10222,6 +10334,20 @@
             }
           },
           {
+            "csi": {
+              "type": "file",
+              "description": "Default VCF file index",
+              "pattern": "*.csi"
+            }
+          },
+          {
+            "tbi": {
+              "type": "file",
+              "description": "Alternative VCF file index",
+              "pattern": "*.tbi"
+            }
+          },
+          {
             "versions": {
               "type": "file",
               "description": "File containing software versions",
@@ -10290,7 +10416,7 @@
             }
           },
           {
-            "VCF": {
+            "vcf": {
               "type": "file",
               "description": "VCF file (optionally GZIPPED)",
               "pattern": "*.{vcf,vcf.gz}"
@@ -10305,7 +10431,7 @@
             }
           },
           {
-            "version": {
+            "versions": {
               "type": "file",
               "description": "File containing software version",
               "pattern": "versions.yml"
@@ -10336,7 +10462,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "phaseimpute",
@@ -10772,6 +10898,20 @@
             }
           },
           {
+            "csi": {
+              "type": "file",
+              "description": "Default VCF file index",
+              "pattern": "*.csi"
+            }
+          },
+          {
+            "tbi": {
+              "type": "file",
+              "description": "Alternative VCF file index",
+              "pattern": "*.tbi"
+            }
+          },
+          {
             "versions": {
               "type": "file",
               "description": "File containing software versions",
@@ -10910,6 +11050,20 @@
               "type": "file",
               "description": "The resulting files of the scattering",
               "pattern": "*.{vcf,vcf.gz,bcf,bcf.gz}"
+            }
+          },
+          {
+            "csi": {
+              "type": "file",
+              "description": "Default VCF file index",
+              "pattern": "*.csi"
+            }
+          },
+          {
+            "tbi": {
+              "type": "file",
+              "description": "Alternative VCF file index",
+              "pattern": "*.tbi"
             }
           }
         ],
@@ -11131,6 +11285,10 @@
       "pipelines": [
         {
           "name": "phaseimpute",
+          "version": "dev"
+        },
+        {
+          "name": "variantbenchmarking",
           "version": "dev"
         },
         {
@@ -11423,6 +11581,20 @@
               "type": "file",
               "description": "Sorted VCF file",
               "pattern": "*.{vcf.gz}"
+            }
+          },
+          {
+            "csi": {
+              "type": "file",
+              "description": "Default VCF file index",
+              "pattern": "*.csi"
+            }
+          },
+          {
+            "tbi": {
+              "type": "file",
+              "description": "Alternative VCF file index",
+              "pattern": "*.tbi"
             }
           }
         ],
@@ -11758,6 +11930,20 @@
             }
           },
           {
+            "csi": {
+              "type": "file",
+              "description": "Default VCF file index",
+              "pattern": "*.csi"
+            }
+          },
+          {
+            "tbi": {
+              "type": "file",
+              "description": "Alternative VCF file index",
+              "pattern": "*.tbi"
+            }
+          },
+          {
             "versions": {
               "type": "file",
               "description": "File containing software versions",
@@ -11775,7 +11961,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "phaseimpute",
@@ -16213,11 +16399,13 @@
         "tools": [
           {
             "blast": {
-              "description": "BLAST+ is a new suite of BLAST tools that utilizes the NCBI C++ Toolkit.",
+              "description": "BLAST+ is a new suite of BLAST tools that utilizes the NCBI C++ Toolkit.\n",
               "homepage": "https://blast.ncbi.nlm.nih.gov/Blast.cgi",
               "documentation": "https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=Blastdocs",
               "doi": "10.1016/S0022-2836(05)80360-2",
-              "licence": "['US-Government-Work']"
+              "licence": [
+                "US-Government-Work"
+              ]
             }
           }
         ],
@@ -17727,6 +17915,74 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -17977,7 +18233,7 @@
             "bwa": {
               "description": "BWA is a software package for mapping DNA sequences against\na large reference genome, such as the human genome.\n",
               "homepage": "http://bio-bwa.sourceforge.net/",
-              "documentation": "http://bio-bwa.sourceforge.net/",
+              "documentation": "https://bio-bwa.sourceforge.net/bwa.shtml",
               "doi": "10.1093/bioinformatics/btp324",
               "licence": [
                 "GPL-3.0-or-later"
@@ -18071,7 +18327,7 @@
             "bwa": {
               "description": "BWA is a software package for mapping DNA sequences against\na large reference genome, such as the human genome.\n",
               "homepage": "http://bio-bwa.sourceforge.net/",
-              "documentation": "http://www.htslib.org/doc/samtools.html",
+              "documentation": "https://bio-bwa.sourceforge.net/bwa.shtml",
               "arxiv": "arXiv:1303.3997",
               "licence": [
                 "GPL-3.0-or-later"
@@ -18225,7 +18481,7 @@
             "bwa": {
               "description": "BWA is a software package for mapping DNA sequences against\na large reference genome, such as the human genome.\n",
               "homepage": "http://bio-bwa.sourceforge.net/",
-              "documentation": "http://www.htslib.org/doc/samtools.html",
+              "documentation": "https://bio-bwa.sourceforge.net/bwa.shtml",
               "arxiv": "arXiv:1303.3997",
               "licence": [
                 "GPL-3.0-or-later"
@@ -18400,7 +18656,7 @@
             "bwa": {
               "description": "BWA is a software package for mapping DNA sequences against\na large reference genome, such as the human genome.\n",
               "homepage": "http://bio-bwa.sourceforge.net/",
-              "documentation": "http://bio-bwa.sourceforge.net/",
+              "documentation": "https://bio-bwa.sourceforge.net/bwa.shtml",
               "doi": "10.1093/bioinformatics/btp324",
               "licence": [
                 "GPL-3.0-or-later"
@@ -18506,7 +18762,7 @@
             "bwa": {
               "description": "BWA is a software package for mapping DNA sequences against\na large reference genome, such as the human genome.\n",
               "homepage": "http://bio-bwa.sourceforge.net/",
-              "documentation": "http://bio-bwa.sourceforge.net/",
+              "documentation": "https://bio-bwa.sourceforge.net/bwa.shtml",
               "doi": "10.1093/bioinformatics/btp324",
               "licence": [
                 "GPL-3.0-or-later"
@@ -19537,7 +19793,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.0"
         }
       ]
     },
@@ -19762,7 +20018,7 @@
         },
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "magmap",
@@ -21937,6 +22193,10 @@
       },
       "pipelines": [
         {
+          "name": "mag",
+          "version": "3.0.1"
+        },
+        {
           "name": "taxprofiler",
           "version": "1.1.7"
         }
@@ -22023,6 +22283,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "mag",
+          "version": "3.0.1"
+        },
         {
           "name": "taxprofiler",
           "version": "1.1.7"
@@ -22273,7 +22537,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "magmap",
@@ -22390,7 +22654,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "magmap",
@@ -23345,7 +23609,7 @@
           {
             "elong": {
               "type": "integer",
-              "description": "elongation value for the modified reference genome"
+              "description": "The number of bases that the ends of the target chromosome in the reference genome should be elongated by"
             }
           }
         ],
@@ -23376,6 +23640,99 @@
         ],
         "maintainers": [
           ""
+        ]
+      }
+    },
+    {
+      "name": "circularmapper_realignsamfile",
+      "path": "modules/nf-core/circularmapper/realignsamfile/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "circularmapper_realignsamfile",
+        "description": "Realign reads mapped with BWA to elongated reference genome",
+        "keywords": [
+          "realign",
+          "circular",
+          "map",
+          "reference",
+          "fasta",
+          "bam",
+          "short-read",
+          "bwa"
+        ],
+        "tools": [
+          {
+            "circularmapper": {
+              "description": "A method to improve mappings on circular genomes such as Mitochondria.",
+              "homepage": "https://circularmapper.readthedocs.io/en/latest/index.html",
+              "documentation": "https://circularmapper.readthedocs.io/en/latest/index.html",
+              "tool_dev_url": "https://github.com/apeltzer/CircularMapper/",
+              "doi": "10.1186/s13059-016-0918-z",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "BAM/SAM file",
+              "pattern": "*.{bam,sam}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Input elongated genome fasta"
+            }
+          },
+          {
+            "elongation_factor": {
+              "type": "integer",
+              "description": "The elongation factor used when running circulargenerator, i.e. the number of bases that the ends of the target chromosome in the reference genome was elongated by"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "Realigned BAM file",
+              "pattern": "*.bam"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@shyama-mama",
+          "@jbv2",
+          "@TCLamnidis"
         ]
       }
     },
@@ -25792,7 +26149,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         }
       ]
     },
@@ -25886,7 +26243,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         }
       ]
     },
@@ -25978,7 +26335,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         }
       ]
     },
@@ -26066,7 +26423,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         }
       ]
     },
@@ -26146,7 +26503,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         }
       ]
     },
@@ -27986,7 +28343,7 @@
         },
         {
           "name": "reportho",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -28070,7 +28427,7 @@
         },
         {
           "name": "reportho",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -28411,7 +28768,7 @@
         },
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "magmap",
@@ -29545,7 +29902,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         }
       ]
     },
@@ -29635,7 +29992,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         }
       ]
     },
@@ -32565,7 +32922,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.0"
         }
       ]
     },
@@ -36751,7 +37108,7 @@
       "pipelines": [
         {
           "name": "reportho",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -36800,6 +37157,12 @@
             }
           },
           {
+            "discard_trimmed_pass": {
+              "type": "boolean",
+              "description": "Specify true to not write any reads that pass trimming thresholds. | This can be used to use fastp for the output report only."
+            }
+          },
+          {
             "save_trimmed_fail": {
               "type": "boolean",
               "description": "Specify true to save files that failed to pass trimming thresholds ending in `*.fail.fastq.gz`"
@@ -36808,7 +37171,7 @@
           {
             "save_merged": {
               "type": "boolean",
-              "description": "Specify true to save all merged reads to the a file ending in `*.merged.fastq.gz`"
+              "description": "Specify true to save all merged reads to a file ending in `*.merged.fastq.gz`"
             }
           }
         ],
@@ -36885,7 +37248,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "demo",
@@ -36901,7 +37264,7 @@
         },
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "nascent",
@@ -37049,7 +37412,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "bamtofastq",
@@ -37129,7 +37492,7 @@
         },
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "magmap",
@@ -37186,10 +37549,6 @@
         {
           "name": "readsimulator",
           "version": "1.0.1"
-        },
-        {
-          "name": "reportho",
-          "version": "dev"
         },
         {
           "name": "riboseq",
@@ -39411,7 +39770,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "radseq",
@@ -43031,6 +43390,74 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -43788,6 +44215,74 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -50703,6 +51198,74 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -55252,7 +55815,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "phageannotator",
@@ -55433,7 +55996,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "phageannotator",
@@ -60393,7 +60956,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "magmap",
@@ -60635,7 +61198,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         }
       ]
     },
@@ -60724,7 +61287,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         }
       ]
     },
@@ -60817,7 +61380,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         }
       ]
     },
@@ -60893,7 +61456,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "chipseq",
@@ -60937,7 +61500,7 @@
         },
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "magmap",
@@ -66032,14 +66595,39 @@
           {
             "sites": {
               "type": "file",
-              "description": "VCF, BED, MAF, BEDPE, or generic tab delimited file of genomic variant sites"
+              "description": "VCF, BED, MAF, BEDPE, or generic tab delimited file of genomic variant sites\n"
             }
           },
           {
-            "genomeFasta": {
+            "tracks": {
+              "type": "file",
+              "description": "List of any set of files of the types that IGV can display,\neg BAM/CRAM, GTF/GFF, VCF, BED, etc\n"
+            }
+          },
+          {
+            "tracks_indices": {
+              "type": "file",
+              "description": "Track index files, eg bai/crai files. This may not be required,\nbut for some file types, eg BAM/CRAM, they are. They are not used in the\nigvreports cmds, but may need to exist in the working directory\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing genome information\ne.g. [ id:'genome_name' ]\n"
+            }
+          },
+          {
+            "fasta": {
               "type": "file",
               "description": "Reference fasta file",
               "pattern": "*.{fasta,fa}"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "Reference fasta file index",
+              "pattern": "*.{fai}"
             }
           }
         ],
@@ -66054,7 +66642,7 @@
           {
             "report": {
               "type": "file",
-              "description": "html report  with a table of genomic sites and an embedded IGV genome browser for viewing data for each site",
+              "description": "html report  with a table of genomic sites and an embedded\nIGV genome browser for viewing data for each site\n",
               "pattern": "*.{html}"
             }
           }
@@ -67018,7 +67606,7 @@
         },
         {
           "name": "reportho",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -67422,6 +68010,74 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
         {
           "name": "isoseq",
           "version": "1.1.5"
@@ -69744,7 +70400,9 @@
               "documentation": "https://github.com/shenwei356/kmcp#documents",
               "tool_dev_url": "https://github.com/shenwei356/kmcp",
               "doi": "10.1093/bioinformatics/btac845",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -69824,7 +70482,9 @@
               "documentation": "https://github.com/shenwei356/kmcp#documents",
               "tool_dev_url": "https://github.com/shenwei356/kmcp",
               "doi": "10.1093/bioinformatics/btac845",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -69836,7 +70496,7 @@
             }
           },
           {
-            "outdir": {
+            "compute_dir": {
               "type": "directory",
               "description": "Output directory generated by \"kmcp compute\"",
               "pattern": "*/"
@@ -69976,7 +70636,9 @@
               "documentation": "https://bioinf.shenwei.me/kmcp/usage/#profile",
               "tool_dev_url": "https://github.com/shenwei356/kmcp",
               "doi": "10.1093/bioinformatics/btac845",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -69988,12 +70650,6 @@
             }
           },
           {
-            "db": {
-              "type": "directory",
-              "description": "Database directory containing taxdump files and taxid file"
-            }
-          },
-          {
             "search_results": {
               "type": "file",
               "description": "Gzipped file output from kmcp search module",
@@ -70001,9 +70657,9 @@
             }
           },
           {
-            "mode": {
-              "type": "integer",
-              "description": "Profiling mode. 0-pathogen detection 1-higher recall 2-high recall 3-default 4-high precision 5-higher precision"
+            "db": {
+              "type": "directory",
+              "description": "Database directory containing taxdump files and taxid file"
             }
           }
         ],
@@ -70066,7 +70722,9 @@
               "documentation": "https://github.com/shenwei356/kmcp#documents",
               "tool_dev_url": "https://github.com/shenwei356/kmcp",
               "doi": "10.1093/bioinformatics/btac845",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -70078,17 +70736,17 @@
             }
           },
           {
-            "db": {
-              "type": "directory",
-              "description": "Database directory created by \"kmcp index\"",
-              "pattern": "*"
-            }
-          },
-          {
             "reads": {
               "type": "file",
               "description": "gzipped fasta or fastq files",
               "pattern": "*.{fq.gz,fastq.gz,fa.gz}"
+            }
+          },
+          {
+            "db": {
+              "type": "directory",
+              "description": "Database directory created by \"kmcp index\"",
+              "pattern": "*"
             }
           }
         ],
@@ -70515,7 +71173,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "detaxizer",
@@ -70772,6 +71430,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "mag",
+          "version": "3.0.1"
+        },
         {
           "name": "taxprofiler",
           "version": "1.1.7"
@@ -71117,7 +71779,13 @@
         "maintainers": [
           "@mjakobs"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "mag",
+          "version": "3.0.1"
+        }
+      ]
     },
     {
       "name": "krona_ktimporttaxonomy",
@@ -71193,6 +71861,10 @@
         {
           "name": "hgtseq",
           "version": "1.1.0"
+        },
+        {
+          "name": "mag",
+          "version": "3.0.1"
         },
         {
           "name": "taxprofiler",
@@ -71354,7 +72026,7 @@
               "documentation": "https://gitlab.com/mcfrith/last/-/blob/main/doc/last-dotplot.rst",
               "tool_dev_url": "https://gitlab.com/mcfrith/last",
               "licence": [
-                "GPL-3.0-or-later"
+                "GPL v3-or-later"
               ]
             }
           }
@@ -71363,7 +72035,7 @@
           {
             "meta": {
               "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
             }
           },
           {
@@ -71381,6 +72053,12 @@
           }
         ],
         "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
           {
             "png": {
               "type": "file",
@@ -71417,7 +72095,7 @@
       "type": "module",
       "meta": {
         "name": "last_lastal",
-        "description": "Find suitable score parameters for sequence alignment",
+        "description": "Aligns query sequences to target sequences indexed with lastdb",
         "keywords": [
           "LAST",
           "align",
@@ -71439,16 +72117,9 @@
         ],
         "input": [
           {
-            "index": {
-              "type": "directory",
-              "description": "Directory containing the files of the LAST index",
-              "pattern": "lastdb/"
-            }
-          },
-          {
             "meta": {
               "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
             }
           },
           {
@@ -71462,7 +72133,14 @@
             "param_file": {
               "type": "file",
               "description": "Trained parameter file",
-              "pattern": "*.par"
+              "pattern": "*.train"
+            }
+          },
+          {
+            "index": {
+              "type": "directory",
+              "description": "Directory containing the files of the LAST index",
+              "pattern": "lastdb/"
             }
           }
         ],
@@ -71470,7 +72148,7 @@
           {
             "meta": {
               "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
             }
           },
           {
@@ -71517,7 +72195,7 @@
               "documentation": "https://gitlab.com/mcfrith/last/-/blob/main/doc/lastdb.rst",
               "tool_dev_url": "https://gitlab.com/mcfrith/last",
               "licence": [
-                "GPL-3.0-or-later"
+                "GPL v3-or-later"
               ]
             }
           }
@@ -71526,7 +72204,7 @@
           {
             "meta": {
               "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
             }
           },
           {
@@ -71538,6 +72216,12 @@
           }
         ],
         "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
           {
             "versions": {
               "type": "file",
@@ -71591,7 +72275,7 @@
           {
             "meta": {
               "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
             }
           },
           {
@@ -71612,7 +72296,7 @@
           {
             "meta": {
               "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
             }
           },
           {
@@ -71672,14 +72356,14 @@
             }
           },
           {
-            "SAM": {
+            "sam_gz": {
               "type": "file",
               "description": "Gzipped pairwise alignment in SAM format (optional)",
               "pattern": "*.sam.gz"
             }
           },
           {
-            "tab": {
+            "tab_gz": {
               "type": "file",
               "description": "Gzipped pairwise alignment in TAB format (optional)",
               "pattern": "*.tab.gz"
@@ -71687,10 +72371,11 @@
           }
         ],
         "authors": [
-          "@aleksandrabliznina"
+          "@aleksandrabliznina",
+          "@charles-plessy"
         ],
         "maintainers": [
-          "@aleksandrabliznina"
+          "@charles-plessy"
         ]
       }
     },
@@ -71715,7 +72400,7 @@
               "documentation": "https://gitlab.com/mcfrith/last/-/blob/main/doc/",
               "tool_dev_url": "https://gitlab.com/mcfrith/last",
               "licence": [
-                "GPL-3.0-or-later"
+                "GPL v3-or-later"
               ]
             }
           }
@@ -71724,7 +72409,7 @@
           {
             "meta": {
               "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
             }
           },
           {
@@ -71737,10 +72422,9 @@
         ],
         "output": [
           {
-            "maf": {
-              "type": "file",
-              "description": "Multiple Aligment Format (MAF) file, compressed with gzip",
-              "pattern": "*.{maf.gz}"
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
             }
           },
           {
@@ -71748,6 +72432,13 @@
               "type": "file",
               "description": "File containing software versions",
               "pattern": "versions.yml"
+            }
+          },
+          {
+            "maf": {
+              "type": "file",
+              "description": "Multiple Aligment Format (MAF) file, compressed with gzip",
+              "pattern": "*.{maf.gz}"
             }
           }
         ],
@@ -71781,7 +72472,7 @@
               "tool_dev_url": "https://gitlab.com/mcfrith/last",
               "doi": "10.1371/journal.pone.0028819",
               "licence": [
-                "GPL-3.0-or-later"
+                "GPL v3-or-later"
               ]
             }
           }
@@ -71790,7 +72481,7 @@
           {
             "meta": {
               "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
             }
           },
           {
@@ -71803,10 +72494,9 @@
         ],
         "output": [
           {
-            "maf": {
-              "type": "file",
-              "description": "Multiple Aligment Format (MAF) file, compressed with gzip",
-              "pattern": "*.{maf.gz}"
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
             }
           },
           {
@@ -71814,6 +72504,13 @@
               "type": "file",
               "description": "File containing software versions",
               "pattern": "versions.yml"
+            }
+          },
+          {
+            "maf": {
+              "type": "file",
+              "description": "Multiple Aligment Format (MAF) file, compressed with gzip",
+              "pattern": "*.{maf.gz}"
             }
           }
         ],
@@ -71856,7 +72553,7 @@
           {
             "meta": {
               "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
             }
           },
           {
@@ -71871,7 +72568,7 @@
           {
             "meta": {
               "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
             }
           },
           {
@@ -71890,10 +72587,11 @@
           }
         ],
         "authors": [
-          "@aleksandrabliznina"
+          "@aleksandrabliznina",
+          "@charles-plessy"
         ],
         "maintainers": [
-          "@aleksandrabliznina"
+          "@charles-plessy"
         ]
       }
     },
@@ -71925,16 +72623,9 @@
         ],
         "input": [
           {
-            "index": {
-              "type": "directory",
-              "description": "Directory containing the files of the LAST index",
-              "pattern": "lastdb/"
-            }
-          },
-          {
             "meta": {
               "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
             }
           },
           {
@@ -71943,13 +72634,20 @@
               "description": "FASTA/FASTQ file",
               "pattern": "*.{fasta,fastq}"
             }
+          },
+          {
+            "index": {
+              "type": "directory",
+              "description": "Directory containing the files of the LAST index",
+              "pattern": "lastdb/"
+            }
           }
         ],
         "output": [
           {
             "meta": {
               "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
             }
           },
           {
@@ -71963,15 +72661,16 @@
             "param_file": {
               "type": "file",
               "description": "Trained parameter file",
-              "pattern": "*.par"
+              "pattern": "*.train"
             }
           }
         ],
         "authors": [
-          "@aleksandrabliznina"
+          "@aleksandrabliznina",
+          "@charles-plessy"
         ],
         "maintainers": [
-          "@aleksandrabliznina"
+          "@charles-plessy"
         ]
       }
     },
@@ -74571,7 +75270,9 @@
               "documentation": "https://sourceforge.net/p/mageck/wiki/Home/",
               "tool_dev_url": "https://bitbucket.org/liulab/mageck/src",
               "doi": "10.1186/s13059-015-0843-6",
-              "licence": "['BSD License']"
+              "licence": [
+                "BSD"
+              ]
             }
           }
         ],
@@ -75845,7 +76546,9 @@
               "homepage": "https://github.com/mpieva/mapAD",
               "documentation": "https://github.com/mpieva/mapAD",
               "tool_dev_url": "https://github.com/mpieva/mapAD",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -75933,7 +76636,9 @@
               "homepage": "https://github.com/mpieva/mapAD",
               "documentation": "https://github.com/mpieva/mapAD",
               "tool_dev_url": "https://github.com/mpieva/mapAD",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -76704,7 +77409,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         }
       ]
     },
@@ -76985,7 +77690,9 @@
               "description": "Create an MD5 (128-bit) checksum",
               "homepage": "https://www.gnu.org",
               "documentation": "https://man7.org/linux/man-pages/man1/md5sum.1.html",
-              "licence": "GPLv3+"
+              "licence": [
+                "GPL-3.0-or-later"
+              ]
             }
           }
         ],
@@ -77830,8 +78537,188 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
+    },
+    {
+      "name": "merqury_hapmers",
+      "path": "modules/nf-core/merqury/hapmers/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "merqury_hapmers",
+        "description": "A script to generate hap-mer dbs for trios",
+        "keywords": [
+          "genomics",
+          "quality check",
+          "qc",
+          "kmer"
+        ],
+        "tools": [
+          {
+            "merqury": {
+              "description": "Evaluate genome assemblies with k-mers and more.",
+              "tool_dev_url": "https://github.com/marbl/merqury",
+              "doi": "10.1186/s13059-020-02134-9",
+              "licence": [
+                "United States Government Work"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "child_meryl": {
+              "type": "directory",
+              "description": "Childs' k-mers (all, from WGS reads)",
+              "pattern": "*.meryl"
+            }
+          },
+          {
+            "maternal_meryl": {
+              "type": "directory",
+              "description": "Haplotype1 k-mers (all, ex. maternal)",
+              "pattern": "*.meryl"
+            }
+          },
+          {
+            "paternal_meryl": {
+              "type": "directory",
+              "description": "Haplotype2 k-mers (all, ex. paternal)",
+              "pattern": "*.meryl"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "mat_hapmer_meryl": {
+              "type": "directory",
+              "description": "Inherited maternal hap-mer dbs",
+              "pattern": "*_mat.hapmer.meryl"
+            }
+          },
+          {
+            "pat_hapmer_meryl": {
+              "type": "directory",
+              "description": "Inherited paternal hap-mer dbs",
+              "pattern": "*_pat.hapmer.meryl"
+            }
+          },
+          {
+            "inherited_hapmers_fl_png": {
+              "type": "file",
+              "description": "k-mer distribution of the inherited dbs and cutoffs used to generate hap-mer dbs",
+              "pattern": "*_inherited_hapmers.fl.png"
+            }
+          },
+          {
+            "inherited_hapmers_ln_png": {
+              "type": "file",
+              "description": "k-mer distribution of the inherited dbs and cutoffs used to generate hap-mer dbs",
+              "pattern": "*_inherited_hapmers.ln.png"
+            }
+          },
+          {
+            "inherited_hapmers_st_png": {
+              "type": "file",
+              "description": "k-mer distribution of the inherited dbs and cutoffs used to generate hap-mer dbs",
+              "pattern": "*_inherited_hapmers.st.png"
+            }
+          }
+        ],
+        "authors": [
+          "@GallVp"
+        ],
+        "maintainers": [
+          "@GallVp"
+        ]
+      }
     },
     {
       "name": "merqury_merqury",
@@ -78901,7 +79788,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         }
       ]
     },
@@ -79018,7 +79905,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         }
       ]
     },
@@ -79120,7 +80007,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         }
       ]
     },
@@ -80246,7 +81133,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.0"
         }
       ]
     },
@@ -80309,6 +81196,12 @@
             }
           },
           {
+            "bam_index_extension": {
+              "type": "string",
+              "description": "BAM alignment index extension (e.g. \"bai\")"
+            }
+          },
+          {
             "cigar_paf_format": {
               "type": "boolean",
               "description": "Specify that output CIGAR should be in PAF format"
@@ -80343,6 +81236,13 @@
             }
           },
           {
+            "index": {
+              "type": "file",
+              "description": "BAM alignment index",
+              "pattern": "*.bam.*"
+            }
+          },
+          {
             "versions": {
               "type": "file",
               "description": "File containing software versions",
@@ -80354,19 +81254,21 @@
           "@heuermh",
           "@sofstam",
           "@sateeshperi",
-          "@jfy133"
+          "@jfy133",
+          "@fellen31"
         ],
         "maintainers": [
           "@heuermh",
           "@sofstam",
           "@sateeshperi",
-          "@jfy133"
+          "@jfy133",
+          "@fellen31"
         ]
       },
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "circdna",
@@ -81424,7 +82326,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         }
       ]
     },
@@ -81901,6 +82803,124 @@
         ],
         "maintainers": [
           "@rpetit3"
+        ]
+      }
+    },
+    {
+      "name": "modkit_pileup",
+      "path": "modules/nf-core/modkit/pileup/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "modkit_pileup",
+        "description": "A bioinformatics tool for working with modified bases",
+        "keywords": [
+          "methylation",
+          "ont",
+          "long-read"
+        ],
+        "tools": [
+          {
+            "modkit": {
+              "description": "A bioinformatics tool for working with modified bases in Oxford Nanopore sequencing data",
+              "homepage": "https://github.com/nanoporetech/modkit",
+              "documentation": "https://github.com/nanoporetech/modkit",
+              "tool_dev_url": "https://github.com/nanoporetech/modkit",
+              "licence": [
+                "Oxford Nanopore Technologies PLC. Public License Version 1.0"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "Sorted BAM/CRAM file",
+              "pattern": "*.{bam,cram}"
+            }
+          },
+          {
+            "bai": {
+              "type": "file",
+              "description": "Associated index file for BAM",
+              "pattern": "*.bai"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. `[ id:'hg38' ]`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Reference sequence in FASTA format. Required for motif (e.g. CpG) filtering",
+              "pattern": "*.fasta"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing BED file information\ne.g. `[ id:'regions' ]`\n"
+            }
+          },
+          {
+            "bed": {
+              "type": "file",
+              "description": "BED file that will restrict threshold estimation and pileup results to positions overlapping intervals in the file",
+              "pattern": "*.bed"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "bed": {
+              "type": "file",
+              "description": "bedMethyl output file(s)",
+              "pattern": "*.bed"
+            }
+          },
+          {
+            "bedgraph": {
+              "type": "file",
+              "description": "bedgraph output files",
+              "pattern": "*.bedgraph"
+            }
+          },
+          {
+            "log": {
+              "type": "file",
+              "description": "File for debug logs to be written to",
+              "pattern": "*.log"
+            }
+          }
+        ],
+        "authors": [
+          "@Michal-Babins",
+          "@fellen31"
+        ],
+        "maintainers": [
+          "@fellen31"
         ]
       }
     },
@@ -83429,10 +84449,6 @@
           "version": "2.9.0"
         },
         {
-          "name": "bacass",
-          "version": "2.2.0"
-        },
-        {
           "name": "bamtofastq",
           "version": "2.1.1"
         },
@@ -83522,7 +84538,7 @@
         },
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "magmap",
@@ -83626,7 +84642,7 @@
         },
         {
           "name": "reportho",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "riboseq",
@@ -83655,6 +84671,10 @@
         {
           "name": "sarek",
           "version": "3.4.2"
+        },
+        {
+          "name": "scdownstream",
+          "version": "dev"
         },
         {
           "name": "scnanoseq",
@@ -84924,7 +85944,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "genomeassembler",
@@ -86118,7 +87138,7 @@
         ],
         "input": [
           {
-            "meta1": {
+            "meta": {
               "type": "map",
               "description": "Groovy Map containing sample information about the bed file\ne.g. `[ id:'test', single_end:false ]`\n"
             }
@@ -86152,7 +87172,7 @@
         ],
         "output": [
           {
-            "meta1": {
+            "meta": {
               "type": "map",
               "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
             }
@@ -86438,7 +87458,7 @@
             }
           },
           {
-            "npa": {
+            "png": {
               "type": "file",
               "description": "PNG file of the Nonpareil curve",
               "pattern": "*.png"
@@ -86600,7 +87620,7 @@
             }
           },
           {
-            "npo": {
+            "npos": {
               "type": "file",
               "description": "A list of npo redundancy summary files from nonpareil itself",
               "pattern": "*.npo"
@@ -86622,7 +87642,7 @@
             }
           },
           {
-            "npa": {
+            "png": {
               "type": "file",
               "description": "PNG file of all the Nonpareil curves of the input npo files",
               "pattern": "*.png"
@@ -89094,6 +90114,79 @@
       ]
     },
     {
+      "name": "pairtools_split",
+      "path": "modules/nf-core/pairtools/split/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "pairtools_split",
+        "description": "Split a .pairsam file into .pairs and .sam.",
+        "keywords": [
+          "split",
+          "pairs",
+          "bam"
+        ],
+        "tools": [
+          {
+            "pairtools": {
+              "description": "CLI tools to process mapped Hi-C data",
+              "homepage": "http://pairtools.readthedocs.io/",
+              "documentation": "http://pairtools.readthedocs.io/",
+              "tool_dev_url": "https://github.com/mirnylab/pairtools",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "pairs": {
+              "type": "file",
+              "description": "pairsam file"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "pairs": {
+              "type": "file",
+              "description": "Duplicates removed pairs",
+              "pattern": "*.{pairs.gz}"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "Output BAM file",
+              "pattern": "*.bam"
+            }
+          }
+        ],
+        "authors": [
+          "@nservant"
+        ]
+      }
+    },
+    {
       "name": "pairtools_stats",
       "path": "modules/nf-core/pairtools/stats/meta.yml",
       "type": "module",
@@ -91170,7 +92263,9 @@
               "description": "paired-end read merger",
               "homepage": "https://cme.h-its.org/exelixis/web/software/pear/",
               "documentation": "https://cme.h-its.org/exelixis/web/software/pear/doc.html",
-              "licence": "['Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported']"
+              "licence": [
+                "Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported"
+              ]
             }
           }
         ],
@@ -92355,7 +93450,7 @@
             }
           },
           {
-            "fai": {
+            "dict": {
               "type": "file",
               "description": "Sequence dictionary of FASTA file. Only needed when bed interval lists are supplied.",
               "pattern": "*.dict"
@@ -97508,7 +98603,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "taxprofiler",
@@ -98248,7 +99343,7 @@
         },
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "metapep",
@@ -98419,7 +99514,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "funcscan",
@@ -98427,7 +99522,7 @@
         },
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "magmap",
@@ -100308,7 +101403,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         }
       ]
     },
@@ -100393,7 +101488,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         }
       ]
     },
@@ -101080,7 +102175,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "genomeassembler",
@@ -101373,7 +102468,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "crisprseq",
@@ -106244,6 +107339,73 @@
       ]
     },
     {
+      "name": "samtools_cramsize",
+      "path": "modules/nf-core/samtools/cramsize/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "samtools_cramsize",
+        "description": "List CRAM Content-ID and Data-Series sizes",
+        "keywords": [
+          "cram-size",
+          "cram",
+          "size"
+        ],
+        "tools": [
+          {
+            "samtools": {
+              "description": "SAMtools is a set of utilities for interacting with and post-processing\nshort DNA sequence read alignments in the SAM, BAM and CRAM formats, written by Heng Li.\nThese files are generated as output by short read aligners like BWA.\n",
+              "homepage": "http://www.htslib.org/",
+              "documentation": "http://www.htslib.org/doc/samtools.html",
+              "doi": "10.1093/bioinformatics/btp352",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "cram": {
+              "type": "file",
+              "description": "CRAM file",
+              "pattern": "*.cram"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "size": {
+              "type": "file",
+              "description": "Size information file",
+              "pattern": "*.size"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@limrp"
+        ]
+      }
+    },
+    {
       "name": "samtools_depth",
       "path": "modules/nf-core/samtools/depth/meta.yml",
       "type": "module",
@@ -106328,7 +107490,13 @@
           "@louperelo",
           "@nevinwu"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phaseimpute",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "samtools_dict",
@@ -106541,7 +107709,7 @@
         },
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "methylseq",
@@ -107514,7 +108682,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "bamtofastq",
@@ -108375,7 +109543,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "callingcards",
@@ -113067,7 +114235,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "metatdenovo",
@@ -118719,7 +119887,14 @@
             "log": {
               "type": "file",
               "description": "Spades log file\n",
-              "pattern": "*.log"
+              "pattern": "*.spades.log"
+            }
+          },
+          {
+            "log": {
+              "type": "file",
+              "description": "Spades warning log file\n",
+              "pattern": "*.warning.log"
             }
           },
           {
@@ -118837,6 +120012,78 @@
         ],
         "maintainers": [
           "@rpetit3"
+        ]
+      }
+    },
+    {
+      "name": "spotiflow",
+      "path": "modules/nf-core/spotiflow/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "spotiflow",
+        "description": "Spotiflow, accurate and efficient spot detection with stereographic flow.",
+        "keywords": [
+          "imaging",
+          "spatial",
+          "spot",
+          "detection"
+        ],
+        "tools": [
+          {
+            "spotiflow": {
+              "description": "Spotiflow allows for accurate and efficient spot detection with stereographic flow",
+              "homepage": "https://weigertlab.github.io/spotiflow/",
+              "documentation": "https://weigertlab.github.io/spotiflow/",
+              "tool_dev_url": "https://github.com/weigertlab/spotiflow",
+              "doi": "10.1101/2024.02.01.578426",
+              "licence": [
+                "BSD-3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "image_2d": {
+              "type": "file",
+              "description": "2D TIF Image file with the spots to be detected",
+              "pattern": "*.{tif,tiff,png,jpg,jpeg}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "spots": {
+              "type": "file",
+              "description": "CSV file with the X, Y positions of the detected spots.",
+              "pattern": "*.{csv}"
+            }
+          }
+        ],
+        "authors": [
+          "@migueLib"
+        ],
+        "maintainers": [
+          "@migueLib"
         ]
       }
     },
@@ -121382,7 +122629,13 @@
         "maintainers": [
           "@nvnieuwk"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "survivor_simsv",
@@ -123038,6 +124291,10 @@
           "version": "2.1.0"
         },
         {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
           "name": "variantbenchmarking",
           "version": "dev"
         },
@@ -123467,7 +124724,9 @@
               "homepage": "https://taxpasta.readthedocs.io/",
               "documentation": "https://taxpasta.readthedocs.io/",
               "tool_dev_url": "https://github.com/taxprofiler/taxpasta",
-              "licence": "['Apache-2.0']"
+              "licence": [
+                "Apache-2.0"
+              ]
             }
           }
         ],
@@ -123486,10 +124745,17 @@
             }
           },
           {
-            "samplesheet": {
-              "type": "file",
-              "description": "A samplesheet describing the sample name and a filepath to a taxonomic abundance profile that needs to be relative from the work environment. The profiles must be provided even if you give a samplesheet as argument (optional)",
-              "pattern": "*.{tsv,csv,ods,xlsx,arrow,parquet}"
+            "profiler": {
+              "type": "string",
+              "description": "Name of the profiler used to generate the profile (mandatory)",
+              "pattern": "bracken|centrifuge|diamond|ganon|kaiju|kmcp|kraken2|krakenuniq|megan6|metaphlan|motus"
+            }
+          },
+          {
+            "format": {
+              "type": "string",
+              "description": "Type of output file to be generated",
+              "pattern": "tsv|csv|ods|xlsx|arrow|parquet|biom"
             }
           },
           {
@@ -123497,6 +124763,13 @@
               "type": "directory",
               "description": "Directory containing at a minimum nodes.dmp and names.dmp files (optional)",
               "pattern": "*/"
+            }
+          },
+          {
+            "samplesheet": {
+              "type": "file",
+              "description": "A samplesheet describing the sample name and a filepath to a taxonomic abundance profile that needs to be relative from the Nextflow work directory of the executed process. The profiles must be provided even if you give a samplesheet as argument (optional)",
+              "pattern": "*.{tsv,csv,ods,xlsx,arrow,parquet}"
             }
           }
         ],
@@ -123561,7 +124834,9 @@
               "homepage": "https://taxpasta.readthedocs.io/",
               "documentation": "https://taxpasta.readthedocs.io/",
               "tool_dev_url": "https://github.com/taxprofiler/taxpasta",
-              "licence": "['Apache-2.0']"
+              "licence": [
+                "Apache-2.0"
+              ]
             }
           }
         ],
@@ -123577,6 +124852,20 @@
               "type": "file",
               "description": "profiler output file (mandatory)",
               "pattern": "*"
+            }
+          },
+          {
+            "profiler": {
+              "type": "string",
+              "description": "Name of the profiler used to generate the profile (mandatory)",
+              "pattern": "bracken|centrifuge|diamond|ganon|kaiju|kmcp|kraken2|krakenuniq|megan6|metaphlan|motus"
+            }
+          },
+          {
+            "format": {
+              "type": "string",
+              "description": "Type of output file to be generated",
+              "pattern": "tsv|csv|ods|xlsx|arrow|parquet|biom"
             }
           },
           {
@@ -123857,7 +125146,7 @@
         },
         {
           "name": "reportho",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -124374,7 +125663,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         }
       ]
     },
@@ -126213,6 +127502,108 @@
         ],
         "maintainers": [
           "@watsonar"
+        ]
+      }
+    },
+    {
+      "name": "tsebra",
+      "path": "modules/nf-core/tsebra/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "tsebra",
+        "description": "Transcript Selector for BRAKER TSEBRA combines gene predictions by selecing transcripts based on their extrisic evidence support",
+        "keywords": [
+          "genomics",
+          "transcript",
+          "selector",
+          "gene",
+          "prediction",
+          "evidence"
+        ],
+        "tools": [
+          {
+            "tsebra": {
+              "description": "TSEBRA is a combiner tool that selects transcripts from gene predictions based on the support by extrisic evidence in form of introns and start/stop codons",
+              "homepage": "https://github.com/Gaius-Augustus/TSEBRA",
+              "documentation": "https://github.com/Gaius-Augustus/TSEBRA",
+              "tool_dev_url": "https://github.com/Gaius-Augustus/TSEBRA",
+              "doi": "10.1186/s12859-021-04482-0",
+              "licence": [
+                "Artistic-2.0"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "gtfs": {
+              "type": "list",
+              "description": "List of gene prediction files in gtf",
+              "pattern": "*.gtf"
+            }
+          },
+          {
+            "hints_files": {
+              "type": "list",
+              "description": "List of files containing extrinsic evidence in gff",
+              "pattern": "*.gff"
+            }
+          },
+          {
+            "keep_gtfs": {
+              "type": "list",
+              "description": "List of gene prediction files in gtf. These gene sets are used the same way as other inputs, but TSEBRA ensures that all\ntranscripts from these gene sets are included in the output\n",
+              "pattern": "*.gtf"
+            }
+          },
+          {
+            "config": {
+              "type": "file",
+              "description": "Configuration file that sets the parameter for TSEBRA",
+              "pattern": "*.cfg"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "tsebra_gtf": {
+              "type": "file",
+              "description": "Output file for the combined gene predictions in gtf",
+              "pattern": "*.gtf"
+            }
+          },
+          {
+            "tsebra_scores": {
+              "type": "file",
+              "description": "Transcript scores as a table",
+              "pattern": "*.tsv"
+            }
+          }
+        ],
+        "authors": [
+          "@GallVp"
+        ],
+        "maintainers": [
+          "@GallVp"
         ]
       }
     },
@@ -128139,7 +129530,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "chipseq",
@@ -128168,6 +129559,10 @@
         {
           "name": "hgtseq",
           "version": "1.1.0"
+        },
+        {
+          "name": "mag",
+          "version": "3.0.1"
         },
         {
           "name": "magmap",
@@ -134046,6 +135441,11 @@
             }
           },
           {
+            "deduplog": {
+              "description": "UMI-tools deduplication log\nStructure: [ val(meta), path(log) ]\n"
+            }
+          },
+          {
             "stats": {
               "description": "File containing samtools stats output\nStructure: [ val(meta), path(stats) ]\n"
             }
@@ -135001,10 +136401,6 @@
           "version": "3.2.2"
         },
         {
-          "name": "magmap",
-          "version": "dev"
-        },
-        {
           "name": "metatdenovo",
           "version": "1.0.1"
         },
@@ -135167,10 +136563,6 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
-        },
-        {
-          "name": "magmap",
-          "version": "dev"
         },
         {
           "name": "metatdenovo",
@@ -136135,7 +137527,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         }
       ]
     },
@@ -138986,7 +140378,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.0"
         }
       ]
     },
@@ -142780,7 +144172,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "bamtofastq",
@@ -142828,7 +144220,7 @@
         },
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "magmap",
@@ -142884,7 +144276,7 @@
         },
         {
           "name": "reportho",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "riboseq",
@@ -142901,6 +144293,10 @@
         {
           "name": "sarek",
           "version": "3.4.2"
+        },
+        {
+          "name": "scdownstream",
+          "version": "dev"
         },
         {
           "name": "scnanoseq",
@@ -142989,7 +144385,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "bamtofastq",
@@ -143037,7 +144433,7 @@
         },
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "magmap",
@@ -143093,7 +144489,7 @@
         },
         {
           "name": "reportho",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "riboseq",
@@ -143110,6 +144506,10 @@
         {
           "name": "sarek",
           "version": "3.4.2"
+        },
+        {
+          "name": "scdownstream",
+          "version": "dev"
         },
         {
           "name": "scnanoseq",
@@ -143228,7 +144628,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "bamtofastq",
@@ -143276,7 +144676,7 @@
         },
         {
           "name": "mag",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "magmap",
@@ -143332,7 +144732,7 @@
         },
         {
           "name": "reportho",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "riboseq",
@@ -143349,6 +144749,10 @@
         {
           "name": "sarek",
           "version": "3.4.2"
+        },
+        {
+          "name": "scdownstream",
+          "version": "dev"
         },
         {
           "name": "scnanoseq",
@@ -144021,13 +145425,7 @@
         "maintainers": [
           "@LouisLeNezet"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "phaseimpute",
-          "version": "dev"
-        }
-      ]
+      }
     }
   ]
 }
