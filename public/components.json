@@ -5601,6 +5601,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -17720,6 +17724,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -43482,6 +43490,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -44239,6 +44251,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -49730,6 +49746,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -68273,6 +68293,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -78502,6 +78526,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -106709,7 +106737,9 @@
               "homepage": "https://lomereiter.github.io/sambamba/docs/sambamba-view.html",
               "documentation": "https://lomereiter.github.io/sambamba/docs/sambamba-view.html",
               "tool_dev_url": "https://github.com/biod/sambamba",
-              "licence": "['GPL v2']"
+              "licence": [
+                "GPL v2"
+              ]
             }
           }
         ],
@@ -106747,6 +106777,13 @@
               "type": "file",
               "description": "Sorted BAM/CRAM/SAM file",
               "pattern": "*.{bam,cram,sam}"
+            }
+          },
+          {
+            "bai": {
+              "type": "file",
+              "description": "An optional BAM index file.",
+              "pattern": "*.{bai}"
             }
           }
         ],
