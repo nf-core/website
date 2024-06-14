@@ -5605,6 +5605,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -17724,6 +17728,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -43494,6 +43502,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -44251,6 +44263,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -49746,6 +49762,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -68297,6 +68317,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -78526,6 +78550,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -106253,6 +106281,131 @@
       }
     },
     {
+      "name": "sageproteomics_sage",
+      "path": "modules/nf-core/sageproteomics/sage/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "sageproteomics_sage",
+        "description": "sage is a search software for proteomics data",
+        "keywords": [
+          "proteomics",
+          "sage",
+          "mass spectrometry"
+        ],
+        "tools": [
+          {
+            "sageproteomics": {
+              "description": "Proteomics searching so fast it feels like magic.",
+              "homepage": "https://lazear.github.io/sage/",
+              "documentation": "https://lazear.github.io/sage/",
+              "tool_dev_url": "https://github.com/lazear/sage",
+              "doi": "10.1021/acs.jproteome.3c00486",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+            }
+          },
+          {
+            "\"*.mzML\"": {
+              "type": "file",
+              "description": "mzML open source mass spectrometry raw data format",
+              "pattern": "*.{mzML, mzML.gz}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing information about fasta_proteome\ne.g. `[ id:'sample1']`\n"
+            }
+          },
+          {
+            "fasta_proteome": {
+              "type": "file",
+              "description": "proteome database in fasta format",
+              "pattern": "*.{fasta, fasta.gz}"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing information about base_config\ne.g. `[ id:'sample1']`\n"
+            }
+          },
+          {
+            "base_config": {
+              "type": "file",
+              "description": "sage configuration json",
+              "pattern": "*.{json}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "results_tsv": {
+              "type": "file",
+              "description": "tsv output results",
+              "pattern": "results.sage.tsv"
+            }
+          },
+          {
+            "results_json": {
+              "type": "file",
+              "description": "json output results",
+              "pattern": "results.json"
+            }
+          },
+          {
+            "results_pin": {
+              "type": "file",
+              "description": "pin format output results",
+              "pattern": "results.sage.pin"
+            }
+          },
+          {
+            "tmt_tsv": {
+              "type": "file",
+              "description": "tandem mass tag quantification",
+              "pattern": "tmt.tsv"
+            }
+          },
+          {
+            "lfq_tsv": {
+              "type": "file",
+              "description": "label free quantification",
+              "pattern": "lfq.tsv"
+            }
+          }
+        ],
+        "authors": [
+          "@dgemperline-lilly"
+        ],
+        "maintainers": [
+          "@dgemperline-lilly"
+        ]
+      }
+    },
+    {
       "name": "salmon_index",
       "path": "modules/nf-core/salmon/index/meta.yml",
       "type": "module",
@@ -119593,7 +119746,9 @@
               "documentation": "https://sourmash.readthedocs.io/",
               "tool_dev_url": "https://github.com/sourmash-bio/sourmash",
               "doi": "10.21105/joss.00027",
-              "licence": "['BSD-3-clause']"
+              "licence": [
+                "BSD-3-clause"
+              ]
             }
           }
         ],
@@ -139872,6 +140027,89 @@
           "version": "1.12.0"
         }
       ]
+    },
+    {
+      "name": "fastq_extract_kraken_krakentools",
+      "path": "subworkflows/nf-core/fastq_extract_kraken_krakentools/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "fastq_extract_kraken_krakentools",
+        "description": "Extract classified Kraken2 reads by taxonomic id",
+        "keywords": [
+          "classify",
+          "metagenomics",
+          "fastq",
+          "db",
+          "kraken2",
+          "krakentools",
+          "extract",
+          "extractreads"
+        ],
+        "components": [
+          "kraken2/kraken2",
+          "krakentools/extractkrakenreads"
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "ch_reads": {
+              "type": "file",
+              "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data,\nrespectively.\n"
+            }
+          },
+          {
+            "ch_db": {
+              "type": "directory",
+              "description": "Kraken2 database"
+            }
+          },
+          {
+            "val_taxid": {
+              "type": "string",
+              "description": "A string of one or more of taxonomic IDs (e.g. from NCBI Taxonomy) separated by spaces"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "report": {
+              "type": "file",
+              "description": "Kraken2 report containing stats about classified\nand not classified reads.\n"
+            }
+          },
+          {
+            "extracted_kraken2_reads": {
+              "type": "file",
+              "description": "FASTQ or FASTA file of just reads assigned to the requested taxonomic IDs.\n",
+              "pattern": "*.{fastq,fasta}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@MarieLataretu"
+        ],
+        "maintainers": [
+          "@MarieLataretu"
+        ]
+      }
     },
     {
       "name": "fastq_fastqc_umitools_fastp",
