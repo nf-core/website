@@ -5637,6 +5637,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -9504,6 +9508,100 @@
         ],
         "maintainers": [
           "@tamuanand"
+        ]
+      }
+    },
+    {
+      "name": "bbmap_filterbyname",
+      "path": "modules/nf-core/bbmap/filterbyname/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "bbmap_filterbyname",
+        "description": "Filter out sequences by sequence header name(s)",
+        "keywords": [
+          "fastq",
+          "fasta",
+          "filter"
+        ],
+        "tools": [
+          {
+            "bbmap": {
+              "description": "BBMap is a short read aligner, as well as various other bioinformatic tools.",
+              "homepage": "https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-tools-user-guide/clumpify-guide/",
+              "documentation": "https://www.biostars.org/p/225338/",
+              "licence": [
+                "UC-LBL license (see package)"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "reads": {
+              "type": "file",
+              "description": "List of input FastQ files of size 1 and 2 for single-end and\npaired-end data, respectively.\n"
+            }
+          },
+          {
+            "names_to_filter": {
+              "type": "string",
+              "description": "String containing names of reads to filter out of the fastq files.\n"
+            }
+          },
+          {
+            "output_format": {
+              "type": "string",
+              "description": "String with the format of the output file, e.g. fastq.gz, fasta, fasta.bz2\n"
+            }
+          },
+          {
+            "interleaved_output": {
+              "type": "boolean",
+              "description": "Whether to produce an interleaved fastq output file\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "reads": {
+              "type": "file",
+              "description": "The trimmed/modified fastq reads",
+              "pattern": "*${output_format}"
+            }
+          },
+          {
+            "log": {
+              "type": "file",
+              "description": "filterbyname.sh log file",
+              "pattern": "*.filterbyname.log"
+            }
+          }
+        ],
+        "authors": [
+          "@tokarevvasily",
+          "@sppearce"
+        ],
+        "maintainers": [
+          "@sppearce"
         ]
       }
     },
@@ -18075,6 +18173,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -19358,6 +19460,12 @@
               "type": "boolean",
               "description": "use samtools sort (true) or samtools view (false)",
               "pattern": "true or false"
+            }
+          },
+          {
+            "mbuffer": {
+              "type": "integer",
+              "description": "memory for mbuffer in megabytes"
             }
           }
         ],
@@ -43586,6 +43694,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -44343,6 +44455,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -49870,6 +49986,10 @@
         {
           "name": "sarek",
           "version": "3.3.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnadnavar",
@@ -68607,6 +68727,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -78838,6 +78962,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
