@@ -33,6 +33,7 @@ A portal is being developed to automate the production of genome note publicatio
 
 ### Planned features:
 
+- Prepare a file that can be used to populate BAM headers
 - Update pipeline template
 - Update samplesheet validation steps
 
@@ -50,6 +51,7 @@ If you have an idea for a new feature – [send us your request](https://github.
 
 ### Planned features:
 
+- Repeat density sub-workflow
 - Update pipeline template
 - Update samplesheet validation steps
 
@@ -68,6 +70,7 @@ If you have an idea for a new feature – [send us your request](https://github.
 
 ### Planned features:
 
+- Gene density sub-workflow
 - Update pipeline template
 - Update samplesheet validation steps
 
@@ -86,9 +89,13 @@ If you have an idea for a new feature – [send us your request](https://github.
 ### Planned features:
 
 - Add [TRASH (Tandem Repeat Annotation and Structural Hierarchy)](https://github.com/vlothec/TRASH) pipeline
+- Add [Pantera](https://github.com/piosierra/pantera) pipeline
+- Add [EarlGreyTE](https://github.com/TobyBaril/EarlGrey) pipeline
+- Add [stainedglass](https://github.com/mrvollger/StainedGlass) and/or [ModDotPlot](https://github.com/marbl/ModDotPlot) pipeline
 - Convert all outputs to bigBed and build a public track-hub
 - Update pipeline template
 - Update samplesheet validation steps
+
 
 ### Potential features:
 
@@ -138,6 +145,8 @@ If you have an idea for a new feature or would like this pipeline to run on othe
 
 ### Current features:
 
+- Can combine multiple libraries from the same sample
+- Optional read mapping subworkflow
 - Calls variants using DeepVariant for PacBio long read data.
 - Speed improvements made by splitting the genome before calling variants.
 - Outputs both VCF and GVCF formats.
@@ -149,11 +158,9 @@ If you have an idea for a new feature or would like this pipeline to run on othe
 - Add calculation for heterozygosity, flag for homozygous alternatives, and InDel size distribution
 - Create bedGraph for distribution of heterozygous sites across genome
 - Add support for creating indices for aligned reads and the genome
-- Add support for combining multiple libraries from the same sample
-- Add support to map PacBio reads before calling variants
 - Add structural variation detection
-- Add variant calling for short read data with FreeBayes
-- Add optional read mapping subworkflow
+- Add variant calling for short read data
+- Ability to process and analyse population genomics data
 
 If you have an idea for a new feature or would like this pipeline to run on other assemblies – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=muffato&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
 
@@ -168,18 +175,15 @@ If you have an idea for a new feature or would like this pipeline to run on othe
 - Calculate coverage in 1kb windows using `blobtk depth`.
 - Aggregate 1kb values into windows of fixed proportion (10%, 1% of contig length) and fixed length (100kb, 1Mb).
 - `Diamond blastp` search of BUSCO gene models for basal lineages (archaea_odb10, bacteria_odb10 and eukaryota_odb10) against the UniProt reference proteomes.
+- `Diamond blastx` search of assembly contigs against the UniProt reference proteomes
+- NCBI `blastn` search of assembly contigs with no `Diamond blastx` match against the NCBI nt database
+- Optional read mapping subworkflow
 - Import analysis results into a BlobDir dataset.
 - BlobDir validation and static image generation.
 
 ### Planned features:
 
 - Update pipeline template
-- Update samplesheet validation steps
-- Improved BlobDir validation
-- Improved generation of the summary Yaml file
-- `Diamond blastx` search of assembly contigs against the UniProt reference proteomes
-- NCBI `blastn` search of assembly contigs with no `Diamond blastx` match against the NCBI nt database
-- Add optional read mapping subworkflow
 
 If you have an idea for a new feature or would like this pipeline to run on other assemblies – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=muffato&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
 
@@ -199,5 +203,7 @@ If you have an idea for a new feature or would like this pipeline to run on othe
 - Improve genome metadata fetching and processing
 - Combine results and metadata with template Word document
 - Add optional read mapping subworkflow
+- Support Merqury and Meryl for k-mer analysis
+- Run GFA stats
 
 If you have an idea for a new feature or would like this pipeline to run on other assemblies – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=muffato&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
