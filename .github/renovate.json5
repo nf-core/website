@@ -1,6 +1,6 @@
 {
     $schema: "https://docs.renovatebot.com/renovate-schema.json",
-    extends: ["github>nf-core/ops//.github/renovate/default.json5", "config:recommended", "schedule:monthly"],
+    extends: ["github>nf-core/ops//.github/renovate/default.json5", "config:js-app", "schedule:monthly"],
     customManagers: [
         {
             customType: "regex",
@@ -8,13 +8,13 @@
             matchStrings: ["https://github.com/(?<depName>.*)/releases/download/(?<currentValue>.*)/.*.tar.gz"],
             datasourceTemplate: "github-release-attachments"
         }
-    ]
+    ],
     "packageRules": [
         {
             "packageName": "*",
             "dependencyType": "direct",
             "manager": "npm",
-            "enabled": false
+            "automerge": false
         }
     ]
 }
