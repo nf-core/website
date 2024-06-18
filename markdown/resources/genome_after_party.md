@@ -17,7 +17,7 @@ A portal is being developed to automate the production of genome note publicatio
 
 > You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
 > Currently, we plan to **download** all primary and alternative ToL assemblies, as well as non-ToL (VGP, _Lepidoptera_, and requests) assemblies, and run the analysis pipelines **only on the primary** assemblies.
-> [Let us know](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=muffato&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+) if some analyses would be useful to have on the other assemblies too.
+> [Let us know](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=muffato&labels=user%20request&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+) if some analyses would be useful to have on the other assemblies too.
 
 # INSDC Download {#insdcdownload}
 
@@ -37,7 +37,7 @@ A portal is being developed to automate the production of genome note publicatio
 - Update pipeline template
 - Update samplesheet validation steps
 
-If you have an idea for a new feature – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=muffato&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
+If you have an idea for a new feature – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=muffato&labels=user%20request&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
 
 # Ensembl Repeat Download {#ensemblrepeatdownload}
 
@@ -55,7 +55,7 @@ If you have an idea for a new feature – [send us your request](https://github.
 - Update pipeline template
 - Update samplesheet validation steps
 
-If you have an idea for a new feature – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=muffato&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
+If you have an idea for a new feature – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=muffato&labels=user%20request&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
 
 # Ensembl Gene Download {#ensemblgenedownload}
 
@@ -74,7 +74,7 @@ If you have an idea for a new feature – [send us your request](https://github.
 - Update pipeline template
 - Update samplesheet validation steps
 
-If you have an idea for a new feature – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=muffato&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
+If you have an idea for a new feature – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=muffato&labels=user%20request&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
 
 # Sequence Composition {#sequencecomposition}
 
@@ -110,7 +110,7 @@ _Only if there is an actual demand! Use the form below to indicate interest._
   - Telomeric repeat annotation (tool to be confirmed)
   - Centromeric repeat annotation (tool to be confirmed)
 
-If you have an idea for a new feature or would like this pipeline to run on other assemblies – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=muffato&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
+If you have an idea for a new feature or would like this pipeline to run on other assemblies – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=muffato&labels=user%20request&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
 
 # Read Mapping {#readmapping}
 
@@ -137,7 +137,7 @@ If you have an idea for a new feature or would like this pipeline to run on othe
 - Support compression with `crumble` for aligned files
 - Support multiple output options – BAM, compressed BAM, CRAM, compressed CRAM
 
-If you have an idea for a new feature or would like this pipeline to run on other assemblies – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=muffato&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
+If you have an idea for a new feature or would like this pipeline to run on other assemblies – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=muffato&labels=user%20request&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
 
 # Variant Calling {#variantcalling}
 
@@ -162,7 +162,7 @@ If you have an idea for a new feature or would like this pipeline to run on othe
 - Add variant calling for short read data
 - Ability to process and analyse population genomics data
 
-If you have an idea for a new feature or would like this pipeline to run on other assemblies – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=muffato&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
+If you have an idea for a new feature or would like this pipeline to run on other assemblies – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=muffato&labels=user%20request&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
 
 # BlobToolKit {#blobtoolkit}
 
@@ -185,7 +185,7 @@ If you have an idea for a new feature or would like this pipeline to run on othe
 
 - Update pipeline template
 
-If you have an idea for a new feature or would like this pipeline to run on other assemblies – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=muffato&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
+If you have an idea for a new feature or would like this pipeline to run on other assemblies – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=muffato&labels=user%20request&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
 
 # Genome Note {#genomenote}
 
@@ -206,4 +206,4 @@ If you have an idea for a new feature or would like this pipeline to run on othe
 - Support Merqury and Meryl for k-mer analysis
 - Run GFA stats
 
-If you have an idea for a new feature or would like this pipeline to run on other assemblies – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=muffato&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
+If you have an idea for a new feature or would like this pipeline to run on other assemblies – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=muffato&labels=user%20request&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
