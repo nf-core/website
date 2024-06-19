@@ -1,6 +1,7 @@
 ---
 title: Markdown on the nf-core website
 subtitle: Guides on special content elements on nf-co.re
+weight: 20
 parentWeight: 40
 ---
 
