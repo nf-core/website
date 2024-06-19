@@ -5649,6 +5649,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -17866,6 +17870,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -68732,6 +68740,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -78965,6 +78977,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -96169,6 +96185,10 @@
         {
           "name": "metatdenovo",
           "version": "1.0.1"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "dev"
         }
       ]
     },
@@ -135562,28 +135582,14 @@
             "query_vcf": {
               "type": "file",
               "description": "A VCF with called variants to benchmark against the standard",
-              "pattern": "*.{vcf,vcf.gz}"
-            }
-          },
-          {
-            "query_vcf_index": {
-              "type": "file",
-              "description": "The index of the called VCF (optional)",
-              "pattern": "*.tbi"
+              "pattern": "*.{vcf}"
             }
           },
           {
             "truth_vcf": {
               "type": "file",
               "description": "A standard VCF to compare against",
-              "pattern": "*.{vcf,vcf.gz}"
-            }
-          },
-          {
-            "truth_vcf_index": {
-              "type": "file",
-              "description": "The index of the standard VCF (optional)",
-              "pattern": "*.tbi"
+              "pattern": "*.{vcf}"
             }
           },
           {
