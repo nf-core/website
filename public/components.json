@@ -5641,6 +5641,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -17858,6 +17862,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -39969,10 +39977,6 @@
           "version": "dev"
         },
         {
-          "name": "rnadnavar",
-          "version": "dev"
-        },
-        {
           "name": "sarek",
           "version": "3.4.2"
         }
@@ -43822,10 +43826,6 @@
         ]
       },
       "pipelines": [
-        {
-          "name": "rnadnavar",
-          "version": "dev"
-        },
         {
           "name": "sarek",
           "version": "3.4.2"
@@ -47682,10 +47682,6 @@
       },
       "pipelines": [
         {
-          "name": "rnadnavar",
-          "version": "dev"
-        },
-        {
           "name": "sarek",
           "version": "3.4.2"
         }
@@ -48166,10 +48162,6 @@
       },
       "pipelines": [
         {
-          "name": "rnadnavar",
-          "version": "dev"
-        },
-        {
           "name": "sarek",
           "version": "3.4.2"
         }
@@ -48471,10 +48463,6 @@
           "version": "dev"
         },
         {
-          "name": "rnadnavar",
-          "version": "dev"
-        },
-        {
           "name": "sarek",
           "version": "3.4.2"
         }
@@ -48615,10 +48603,6 @@
         ]
       },
       "pipelines": [
-        {
-          "name": "rnadnavar",
-          "version": "dev"
-        },
         {
           "name": "sarek",
           "version": "3.4.2"
@@ -49309,10 +49293,6 @@
         {
           "name": "raredisease",
           "version": "2.1.0"
-        },
-        {
-          "name": "rnadnavar",
-          "version": "dev"
         },
         {
           "name": "rnavar",
@@ -67516,6 +67496,8 @@
         "keywords": [
           "annotation",
           "fasta",
+          "protein",
+          "dna",
           "interproscan"
         ],
         "tools": [
@@ -67526,7 +67508,9 @@
               "documentation": "https://interproscan-docs.readthedocs.io",
               "tool_dev_url": "https://github.com/ebi-pf-team/interproscan",
               "doi": "10.1093/bioinformatics/btu031",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -67540,15 +67524,14 @@
           {
             "fasta": {
               "type": "file",
-              "description": "Input fasta file containing the amino acid query sequences",
+              "description": "Input fasta file containing the amino acid or dna query sequences",
               "pattern": "*.{fa,fasta,fa.gz,fasta.gz}"
             }
           },
           {
-            "out_ext": {
-              "type": "string",
-              "description": "Specify the type of output file to be generated",
-              "pattern": "tsv|xml|gff3|json"
+            "interproscan_database": {
+              "type": "directory",
+              "description": "Path to the interproscan database (untarred http://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/${version_major}-${version_minor}/interproscan-${version_major}-${version_minor}-64-bit.tar.gz)"
             }
           }
         ],
@@ -67590,11 +67573,13 @@
           }
         ],
         "authors": [
-          "@toniher"
+          "@toniher",
+          "@mahesh-panchal"
         ],
         "maintainers": [
           "@toniher",
-          "@vagkaratzas"
+          "@vagkaratzas",
+          "@mahesh-panchal"
         ]
       }
     },
@@ -68468,6 +68453,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
         {
           "name": "isoseq",
           "version": "1.1.5"
@@ -75869,7 +75858,9 @@
               "documentation": "https://sourceforge.net/p/mageck/wiki/Home/",
               "tool_dev_url": "https://bitbucket.org/liulab/mageck/src",
               "doi": "10.1186/s13059-015-0843-6",
-              "licence": "['BSD License']"
+              "licence": [
+                "BSD License"
+              ]
             }
           }
         ],
@@ -79161,6 +79152,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -79918,7 +79913,9 @@
               "description": "FastK based version of Merqury",
               "homepage": "https://github.com/thegenemyers/MERQURY.FK",
               "tool_dev_url": "https://github.com/thegenemyers/MERQURY.FK",
-              "licence": "https://github.com/thegenemyers/MERQURY.FK/blob/main/LICENSE"
+              "licence": [
+                "https://github.com/thegenemyers/MERQURY.FK/blob/main/LICENSE"
+              ]
             }
           }
         ],
@@ -93048,6 +93045,87 @@
         ],
         "maintainers": [
           "@rpetit3"
+        ]
+      }
+    },
+    {
+      "name": "pbtk_bam2fastq",
+      "path": "modules/nf-core/pbtk/bam2fastq/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "pbtk_bam2fastq",
+        "description": "converts pacbio bam files to fastq.gz using PacBioToolKit (pbtk) bam2fastq",
+        "keywords": [
+          "convert",
+          "bam",
+          "genomics",
+          "pacbio"
+        ],
+        "tools": [
+          {
+            "pbtk": {
+              "description": "pbtk - PacBio BAM toolkit",
+              "homepage": "https://github.com/PacificBiosciences/pbtk",
+              "documentation": "https://github.com/PacificBiosciences/pbtk#usage",
+              "tool_dev_url": "https://github.com/PacificBiosciences/pbtk",
+              "doi": "no DOI available",
+              "licence": [
+                "BSD-3-clause-Clear"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "PacBio BAM file",
+              "pattern": "*.bam"
+            }
+          },
+          {
+            "pbi": {
+              "type": "file",
+              "description": "PacBio BAM file index (.pbi)",
+              "pattern": "*.pbi"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "fastq": {
+              "type": "file",
+              "description": "Gzipped FASTQ file",
+              "pattern": "*.fastq.gz"
+            }
+          }
+        ],
+        "authors": [
+          "@mbeavitt",
+          "@gallvp"
+        ],
+        "maintainers": [
+          "@mbeavitt",
+          "@gallvp"
         ]
       }
     },
@@ -137436,6 +137514,10 @@
           "version": "1.0.1"
         },
         {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
           "name": "rnaseq",
           "version": "3.14.0"
         },
@@ -137598,6 +137680,10 @@
         {
           "name": "riboseq",
           "version": "1.0.1"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnaseq",
@@ -140003,6 +140089,10 @@
       },
       "pipelines": [
         {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
           "name": "rnaseq",
           "version": "3.14.0"
         }
@@ -140326,6 +140416,10 @@
         {
           "name": "riboseq",
           "version": "1.0.1"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -146005,6 +146099,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
         {
           "name": "sarek",
           "version": "3.4.2"
