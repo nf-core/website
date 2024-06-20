@@ -5668,6 +5668,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -17153,7 +17157,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "cutandrun",
@@ -17280,7 +17284,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "cutandrun",
@@ -18224,6 +18228,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -18645,7 +18653,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "fastquorum",
@@ -18830,7 +18838,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "hgtseq",
@@ -19512,7 +19520,13 @@
           {
             "mbuffer": {
               "type": "integer",
-              "description": "memory for mbuffer in megabytes"
+              "description": "memory for mbuffer in megabytes (default 3072)"
+            }
+          },
+          {
+            "sort_threads": {
+              "type": "integer",
+              "description": "number of threads to used during samtools sort (default 2)."
             }
           }
         ],
@@ -20253,7 +20267,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "cutandrun",
@@ -28393,7 +28407,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         }
       ]
     },
@@ -28964,10 +28978,6 @@
         {
           "name": "createtaxdb",
           "version": "dev"
-        },
-        {
-          "name": "crisprseq",
-          "version": "2.1.1"
         },
         {
           "name": "demultiplex",
@@ -29772,7 +29782,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "hicar",
@@ -37671,7 +37681,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "cutandrun",
@@ -68771,6 +68781,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -75794,7 +75808,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         }
       ]
     },
@@ -75885,7 +75899,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         }
       ]
     },
@@ -75976,7 +75990,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         }
       ]
     },
@@ -78376,7 +78390,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         }
       ]
     },
@@ -79004,6 +79018,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -82036,7 +82054,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "isoseq",
@@ -82124,7 +82142,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "radseq",
@@ -85230,7 +85248,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "datasync",
@@ -93280,7 +93298,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         }
       ]
     },
@@ -103427,7 +103445,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         }
       ]
     },
@@ -109799,7 +109817,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "cutandrun",
@@ -115562,7 +115580,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "metatdenovo",
@@ -134190,7 +134208,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         }
       ]
     },
@@ -134355,7 +134373,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         }
       ]
     },
