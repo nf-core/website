@@ -30,7 +30,7 @@ Developed by [Fulcrum Genomics][fulcrum-genomics-link], the pipeline utilizes th
 
 # But Why?
 
-        <Image src={but_why} alt="Ryan Reynolds asking 'But why?'" height="300" />
+        <Image class="d-block m-auto" src={but_why} alt="Ryan Reynolds asking 'But why?'" height="400" />
 
 As described in [Salk et al 2018][salk-2018-link], finding the one in a thousand frequency variant, or even the one in the million frequency variant, is extremely important across a diversity of applications, including but not limited to:
 
@@ -43,27 +43,27 @@ As described in [Salk et al 2018][salk-2018-link], finding the one in a thousand
 
 # Sequencing Errors Obscure the Truth
 
-        <Image src={i_want_the_truth} alt="Tom Cruise in 'A Few Good Men' saying 'I want the truth'" height="300" />
+        <Image class="d-block m-auto" src={i_want_the_truth} alt="Tom Cruise in 'A Few Good Men' saying 'I want the truth'" height="300" />
 
 Sequencing error, and errors from the library preparation process itself, makes it extremely difficult to obtain this accuracy at such incredible resolution.
 
 # Molecular Barcoding to the Rescue
 
-        <a href="https://twinstrandbio.com/wp-content/uploads/EMGS-2023-Novel-DNA-Standards-for-Assessing-Technical-Sensitivity-and-Reproducibility-Duplex-Sequencing-Mutagenesis-Assays-1.pdf"><Image src={darwin} alt="Charles Darwin in three pictures: blurry on the left showing vanilla NGS, in the middle slightly more clear with single-strand error-corrected NGS, and on the right very clear with duplex sequencing.  From : Novel DNA Standards for Assessing Technical Sensitivity and Reproducibility Duplex Sequencing Mutagenesis Assays. TwinStrand Biosciences. Retrieved May 20 2024." height="300" /></a>
+        <a href="https://twinstrandbio.com/wp-content/uploads/EMGS-2023-Novel-DNA-Standards-for-Assessing-Technical-Sensitivity-and-Reproducibility-Duplex-Sequencing-Mutagenesis-Assays-1.pdf"><Image class="d-block m-auto" src={darwin} alt="Charles Darwin in three pictures: blurry on the left showing vanilla NGS, in the middle slightly more clear with single-strand error-corrected NGS, and on the right very clear with duplex sequencing.  From : Novel DNA Standards for Assessing Technical Sensitivity and Reproducibility Duplex Sequencing Mutagenesis Assays. TwinStrand Biosciences. Retrieved May 20 2024." height="300" /></a>
 
 Obtaining such high accuracy has been achieved through molecular barcoding that enables squashing random error through multiple observations of a single DNA source molecule.
 These molecular barcodes are commonly referred to as Unique Molecular Indexes, or UMIs.
 They are attached to a DNA source molecule to uniquely identify it. After amplification, the multiple observations can be compared vote on a consensus.
 Or form a quorum, if you will.
 
-        <a href="https://doi.org/10.1038/nprot.2014.170"><Image src={duplex_sequencing_schema} alt="Duplex Sequencing Schema from Kennedy et al 2014" height="300" /></a>
+        <a href="https://doi.org/10.1038/nprot.2014.170"><Image class="d-block m-auto" src={duplex_sequencing_schema} alt="Duplex Sequencing Schema from Kennedy et al 2014" height="400" /></a>
 
 Molecular barcodes can be added at various points in the library preparation process, including prior to or during amplification, for a single strand or to both strands of a double-stranded duplex molecule
 In particular, [Duplex Sequencing][duplex-sequencing-link] can be used to identify reads from both strands of a double-stranded source molecule, squashing strand-specific errors that can occur during library preparation (e.g. PCR errors, oxidative damage due to hybrid capture).
 
 This means UMIs can be found in the index/sample-barcoding reads (i7/i5 reads in Illumina parlance), or inline in the genomic/template reads themselves (R1/R2). Furthermore, there sometimes exists extra “spacer” sequence which should be removed prior to alignment and downstream analysis.
 
-        <Image src={explaining_umis} alt="Always Sunny in Philadelphia conspiracy meme with caption 'Explaining where UMI bases are found'" height="300" />
+        <Image class="d-block m-auto" src={explaining_umis} alt="Always Sunny in Philadelphia conspiracy meme with caption 'Explaining where UMI bases are found'" height="300" />
 
 [Read Structures][read-structure-link] are used to describe how the bases in a sequencing run should be allocated into logical reads.
 It serves a similar purpose to the `--use-bases-mask` in Illumina's `bcltofastq` software, but provides some additional capabilities.
@@ -114,9 +114,9 @@ Like popular Bioinformatic toolkits like samtools, the `GATK`, and `bedtools`, `
 Since its conception in 2015, `fgbio` has been downloaded from [Bioconda][fgbio-bioconda-link] over three-hundred thousand times, and we use it extensively with our clients at [Fulcrum Genomics][fulcrum-genomics-link].
 It’s been downloaded mostly by us, but hopefully a few of you have too.
 
-        <Image src={bioconda_download} alt="Chart of Bioconda downloads placing fgbio with three-hundred-thousand downloads" height="300" />
+        <Image class="d-block m-auto" src={bioconda_download} alt="Chart of Bioconda downloads placing fgbio with three-hundred-thousand downloads" height="300" />
 
-        <Image src={big_deal} alt="Will Ferrell in Anchorman meme with caption '>300K downloads on BioConda, we are kind of a big deal'" height="300" />
+        <Image class="d-block m-auto" src={big_deal} alt="Will Ferrell in Anchorman meme with caption '>300K downloads on BioConda, we are kind of a big deal'" height="300" />
 
 The [fgbio toolkit has a wide variety of available tools][fgbio-list-of-tools-link], with many tools producing tabular [quality control metrics][fgbio-list-of-metrics-link].
 
@@ -145,7 +145,7 @@ Particularly relevant for the [`nf-core/fastquorum`][nf-core-fastquorum-link] pi
 
 To support the various molecular barcoding schemes, [`nf-core/fastquorum`][nf-core-fastquorum-link] is organized into two main phases, according to the fgbio best practices: grouping and consensus calling. The pipeline steps for each phase can be best explained with a metro map 🚇:
 
-        <Image src={fastquorum_diagram} alt="Subway diagram of the fastquorum pipeline" height="300" />
+        <Image class="d-block m-auto" src={fastquorum_diagram} alt="Subway diagram of the fastquorum pipeline" width="600" />
 
 Thank you to [James Fellows Yates][james-fellows-yates-link] for these diagrams!
 
