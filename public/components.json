@@ -5664,6 +5664,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -17881,6 +17885,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -37482,10 +37490,6 @@
           "version": "2.3.0"
         },
         {
-          "name": "demo",
-          "version": "dev"
-        },
-        {
           "name": "demultiplex",
           "version": "1.4.1"
         },
@@ -37675,7 +37679,7 @@
         },
         {
           "name": "demo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "detaxizer",
@@ -68763,6 +68767,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -79211,6 +79219,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -85226,7 +85238,7 @@
         },
         {
           "name": "demo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "demultiplex",
@@ -115692,7 +115704,13 @@
         "authors": [
           "@laramiellindsey"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "demo",
+          "version": "1.0.0"
+        }
+      ]
     },
     {
       "name": "sequencetools_pileupcaller",
@@ -145437,7 +145455,7 @@
         },
         {
           "name": "demo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "detaxizer",
@@ -145654,7 +145672,7 @@
         },
         {
           "name": "demo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "detaxizer",
@@ -145901,7 +145919,7 @@
         },
         {
           "name": "demo",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "detaxizer",
