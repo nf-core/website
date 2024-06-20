@@ -123,6 +123,13 @@
               "description": "FASTA, GenBank or EMBL formatted file",
               "pattern": "*.{fa,fasta,fna,fa.gz,fasta.gz,fna.gz,gbk,gbk.gz,embl,embl.gz}"
             }
+          },
+          {
+            "databasedir": {
+              "type": "directory",
+              "description": "Optional location of local copy of database files, possibly with custom databases set up with `abricate --setupdb`",
+              "pattern": "*/"
+            }
           }
         ],
         "output": [
@@ -5105,6 +5112,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         },
         {
           "name": "rnafusion",
@@ -17870,6 +17881,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -68744,6 +68759,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -78977,6 +78996,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
