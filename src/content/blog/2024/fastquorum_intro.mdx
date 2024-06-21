@@ -22,11 +22,14 @@ import explaining_umis from '@assets/images/blog/fastquorum/explaining_umis.png'
 import bioconda_download from '@assets/images/blog/fastquorum/bioconda_download.png';
 import big_deal from '@assets/images/blog/fastquorum/big_deal.jpg';
 import fastquorum_diagram from '@assets/images/blog/fastquorum/fastquorum_diagram.png';
+import fulcrumgenomics_logo from '@assets/images/blog/fastquorum/fulcrumgenomics.svg';
 
 import { Image } from 'astro:assets';
 
 We are thrilled to announce the first release of [`nf-core/fastquorum`][nf-core-fastquorum-link] pipeline, which implements the [fgbio Best Practices FASTQ to Consensus Pipeline][fgbio-best-practices-link] to produce consensus reads using unique molecular indexes/barcodes (UMIs).
-Developed by [Fulcrum Genomics][fulcrum-genomics-link], the pipeline utilizes the [`fgbio` Bioinformatics toolkit][fgbio-link] to enable producing ultra-accurate reads for low frequency variant detection.
+Developed by [Nils Homer][nilshomer-linkedin-link] at [Fulcrum Genomics][fulcrum-genomics-link], the pipeline utilizes the [`fgbio` Bioinformatics toolkit][fgbio-link] to enable producing ultra-accurate reads for low frequency variant detection.
+
+        <a href="https://www.fulcrumgenomics.com/"><Image class="d-block m-auto" src={fulcrumgenomics_logo} alt="The Fulcrum Genomisc logo" width="800" /></a>
 
 # But Why?
 
@@ -65,9 +68,13 @@ This means UMIs can be found in the index/sample-barcoding reads (i7/i5 reads in
 
         <Image class="d-block m-auto" src={explaining_umis} alt="Always Sunny in Philadelphia conspiracy meme with caption 'Explaining where UMI bases are found'" height="300" />
 
-[Read Structures][read-structure-link] are used to describe how the bases in a sequencing run should be allocated into logical reads.
+In [fgbio][fgbio-link], as well as in [fqtk][fqtk-link], [sgdemux][sgdemux-link], and also in [Picard][picard-link], [Read Structures][read-structure-link] are used to describe how the bases in a sequencing run should be allocated into logical reads.
 It serves a similar purpose to the `--use-bases-mask` in Illumina's `bcltofastq` software, but provides some additional capabilities.
-A few examples from the [fgbio wiki][read-structure-examples-link] are shown below:
+
+The following [handful of examples from the fgbio wiki][read-structure-examples-link] a attempt to describe the recommended way to describe a sequencing run in two different ways.
+Firstly as a single Read Structure for the entire run as you might use with [`picard IlluminaBasecallsToSam`][picard-illuminabasecallstosam-link], and secondly as a set of Read Structures that would map one-to-one with the physical reads after fastq-conversion and optionally adapter trimming (which will create variable length reads):
+
+A few examples from the re shown below:
 
 1. A simple 2x150bp paired end run with no sample or molecular indices:
 
@@ -201,6 +208,8 @@ Both [Fulcrum Genomics][fulcrum-genomics-link] and its [current and past team me
 | Kari Stromhaug   |                        | Jordi Camps         |
 | Nathan Roach     |                        | Brent Pedersen      |
 
+        <a href="https://www.fulcrumgenomics.com/"><Image class="d-block m-auto" src={fulcrumgenomics_logo} alt="The Fulcrum Genomisc logo" width="800" /></a>
+
 If you want to hear this all over again, please check out the recent talk announcing the first release of this pipeline at the Nextflow Summit in Boston (2024):
 
     <YouTube id="https://www.youtube.com/watch?v=qW4kgr3x9Mo" poster='https://img.youtube.com/vi/qW4kgr3x9Mo/maxresdefault.jpg'/>
@@ -274,3 +283,7 @@ If you want to hear this all over again, please check out the recent talk announ
 [fgbio-makemixturevcf-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/MakeMixtureVcf.html
 [fgbio-maketwosamplemixturevcf-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/MakeTwoSampleMixtureVcf.html
 [fgbio-findswitchbackreads-link]: https://fulcrumgenomics.github.io/fgbio/tools/latest/FindSwitchbackReads.html
+[picard-link]: https://broadinstitute.github.io/picard/
+[picard-illuminabasecallstosam-link]: https://broadinstitute.github.io/picard/command-line-overview.html#IlluminaBasecallsToSam
+[sgdemux-link]: https://github.com/Singular-Genomics/singular-demux
+[nilshomer-linkedin-link]: https://www.linkedin.com/in/nilshomer/
