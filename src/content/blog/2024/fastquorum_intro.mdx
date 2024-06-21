@@ -56,7 +56,7 @@ Sequencing error, and errors from the library preparation process itself, makes 
 
 Obtaining such high accuracy has been achieved through molecular barcoding that enables squashing random error through multiple observations of a single DNA source molecule.
 These molecular barcodes are commonly referred to as Unique Molecular Indexes, or UMIs.
-They are attached to a DNA source molecule to uniquely identify it. After amplification, the multiple observations can be compared vote on a consensus.
+They are attached to a DNA source molecule to uniquely identify it. After amplification, the multiple observations can be compared to vote on a consensus.
 Or form a quorum, if you will.
 
         <a href="https://doi.org/10.1038/nprot.2014.170"><Image class="d-block m-auto" src={duplex_sequencing_schema} alt="Duplex Sequencing Schema from Kennedy et al 2014" height="400" /></a>
@@ -119,7 +119,6 @@ That brings us to [fgbio][fgbio-github-link].
 
 Like popular Bioinformatic toolkits like samtools, the `GATK`, and `bedtools`, `fgbio` is a collection of command line tools to analyze primary Genomics data developed by [Fulcrum Genomics][fulcrum-genomics-link].
 Since its conception in 2015, `fgbio` has been downloaded from [Bioconda][fgbio-bioconda-link] over three-hundred thousand times, and we use it extensively with our clients at [Fulcrum Genomics][fulcrum-genomics-link].
-It’s been downloaded mostly by us, but hopefully a few of you have too.
 
         <Image class="d-block m-auto" src={bioconda_download} alt="Chart of Bioconda downloads placing fgbio with three-hundred-thousand downloads" height="300" />
 
@@ -129,24 +128,29 @@ The [fgbio toolkit has a wide variety of available tools][fgbio-list-of-tools-li
 
 Particularly relevant for the [`nf-core/fastquorum`][nf-core-fastquorum-link] pipeline are the tools for working with read-level data containing these unique molecular indexes.
 
--   Tools for working with Unique Molecular Indexes (UMIs, aka Molecular IDs or Molecular Barcodes):
+<details><summary>Tools for working with Unique Molecular Indexes (UMIs, aka Molecular IDs or Molecular Barcodes):</summary>
     -   Annotating/Extract Umis from read-level data: [`FastqToBam`][fgbio-fastqtobam-link], [`AnnotateBamWithUmis`][fgbio-annotatebamwithumis-link], [`ExtractUmisFromBam`][fgbio-extractumisfrombam-link], and [`CopyUmiFromReadName`][fgbio-copyumifromreadname-link].
     -   Manipulate read-level data containing Umis: [`CorrectUmis`][fgbio-correctumis-link], [`GroupReadsByUmi`][fgbio-groupreadsbyumi-link], [`CallMolecularConsensusReads`][fgbio-callmolecularconsensusreads-link], [`CallDuplexConsensusReads`][fgbio-callduplexconsensusreads-link], and [`FilterConsensusReads`][fgbio-filterconsensusreads-link].
     -   Collect metrics and review consensus reads: [`CollectDuplexSeqMetrics`][fgbio-collectduplexseqmetrics-link] and [`ReviewConsensusVariants`][fgbio-reviewconsensusvariants-link].
--   Tools to manipulate read-level data:
-    -   Fastq Manipulation: [`FastqToBam`][fgbio-fastqtobam-link], [`ZipperBams`][fgbio-zipperbams-link], and [`DemuxFastqs`][fgbio-demuxfastqs-link] (see `[fqtk`][fqtk-link], our rust re-implementation for sample demultiplexing).
+</details>
+<details><summary>Tools to manipulate read-level data:</summary>
+    -   Fastq Manipulation: [`FastqToBam`][fgbio-fastqtobam-link], [`ZipperBams`][fgbio-zipperbams-link], and [`DemuxFastqs`][fgbio-demuxfastqs-link] (see [`fqtk`][fqtk-link], our rust re-implementation for sample demultiplexing).
     -   Filter, clip, randomize, sort, and update metadata for read-level data: [`FilterBam`][fgbio-filterbam-link], [`ClipBam`][fgbio-clipbam-link], [`RandomizeBam`][fgbio-randomizebam-link], [`SortBam`][fgbio-sortbam-link], [`SetMateInformation`][fgbio-setmateinformation-link] and [`UpdateReadGroups`][fgbio-updatereadgroups-link].
--   Tools for quality control assessment:
+</details>
+<details><summary>Tools for quality control assessment:</summary>
     -   Detailed substitution error rate evaluation: [`ErrorRateByReadPosition`][fgbio-errorratebyreadposition-link].
     -   Sample pooling QC: [`EstimatePoolingFractions`]: [fgbio-estimatepoolingfractions-link].
     -   Splice-aware insert size QC for RNA-seq libraries: [`EstimateRnaSeqInsertSize`][fgbio-estimaternaseqinsertsize-link].
--   Tools for adding or manipulating alternate contig names:
+</details>
+<details><summary>Tools for adding or manipulating alternate contig names:</summary>
     -   Extract from a NCBI Assembly Report: [`CollectAlternateContigNames`][fgbio-collectalternatecontignames-link].
     -   Update contig names in common file formats: [`UpdateFastaContigNames`][fgbio-updatefastacontignames-link], [`UpdateVcfContigNames`][fgbio-updatevcfcontignames-link], [`UpdateGffContigNames`][fgbio-updategffcontignames-link], [`UpdateIntervalListContigNames`][fgbio-updateintervallistcontignames-link], [`UpdateDelimitedFileContigNames`][fgbio-updatedelimitedfilecontignames-link].
--   Miscellaneous tools:
+</details>
+<details><summary>Miscellaneous tools:</summary>
     -   Pick molecular indices (ex. sample barcodes, or molecular indexes): [`PickIlluminaIndices`][fgbio-pickilluminaindices-link] and [`PickLongIndices`][fgbio-picklongindices-link].
     -   Find technical/synthetic, or switch-back sequences in read-level data: [`FindTechnicalReads`][fgbio-findtechnicalreads-link] and [`FindSwitchbackReads`][fgbio-findswitchbackreads-link].
     -   Make synthetic mixture VCFs: [`MakeMixtureVcf`][fgbio-makemixturevcf-link] and [`MakeTwoSampleMixtureVcf`][fgbio-maketwosamplemixturevcf-link].
+</details>
 
 # Pipeline Overview
 
@@ -163,7 +167,7 @@ The first phase takes FASTQs as input, and performs the following steps:
 1. Performs basic Quality Control (with [`FASTQC`][fastqc-link]).
 2. Extracts the UMI bases based on the molecular barcoding scheme (with [`fgbio FastqToBam`][fgbio-fastqtobam-link]).
 3. Aligns the raw reads to the genome (with [`bwa`][bwa-link], [`samtools`][samtools-link], and [`fgbio ZipperBams`][fgbio-zipperbams-link]).
-4. Then groups them by genomics coordinate and UMI (with [`fgbio GroupReadsByUmi`][fgbio-groupreadsbyumi-link]).
+4. Then groups them by genomic coordinate and UMI (with [`fgbio GroupReadsByUmi`][fgbio-groupreadsbyumi-link]).
 
 This produces the grouped BAM file, where raw reads originating from the same original source molecule are grouped together and tagged.
 
@@ -171,7 +175,7 @@ This produces the grouped BAM file, where raw reads originating from the same or
 
 The second phase takes the grouped BAM from phase one, and performs the following steps:
 
-1. For each group of raw reads and calls a consensus sequence, thereby eliminating random errors, significantly improving the accuracy of resulting data.
+1. For each group of raw reads, calls a consensus sequence, thereby eliminating random errors, significantly improving the accuracy of resulting data.
     - [`fgbio CallMolecularConsensusReads`][fgbio-callmolecularconsensusreads-link] is used for single-strand UMI schemes, while [`fgbio CallDuplexConsensusReads`][fgbio-callduplexconsensusreads-link] is used for duplex sequencing.
 2. The consensus reads are aligned back to the genome (with [`bwa`][bwa-link], [`samtools`][samtools-link], and [`fgbio ZipperBams`][fgbio-zipperbams-link]).
 3. The consensus reads are filtered based on various properties, such as minimum per-molecule or per-base coverage (with [`fgbio FilterConsensusReads`][fgbio-filterconsensusreads-link]).
