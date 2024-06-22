@@ -5680,6 +5680,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -18248,6 +18252,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -26455,7 +26463,9 @@
               "documentation": "https://concoct.readthedocs.io/en/latest/index.html",
               "tool_dev_url": "https://github.com/BinPro/CONCOCT",
               "doi": "10.1038/nmeth.3103",
-              "licence": "['FreeBSD']"
+              "licence": [
+                "FreeBSD"
+              ]
             }
           }
         ],
@@ -68811,6 +68821,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -79275,6 +79289,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -85557,7 +85575,9 @@
               "documentation": "https://github.com/alexherbig/MultiVCFAnalyzer",
               "tool_dev_url": "https://github.com/alexherbig/MultiVCFAnalyzer",
               "doi": "10.1038/nature13591",
-              "licence": "['GPL >=3']"
+              "licence": [
+                "GPL >=3"
+              ]
             }
           }
         ],
@@ -85610,13 +85630,13 @@
           },
           {
             "homozygous_freq": {
-              "type": "number",
+              "type": "integer",
               "description": "Fraction of reads a base must have to be called 'homozygous'"
             }
           },
           {
             "heterozygous_freq": {
-              "type": "mumber",
+              "type": "integer",
               "description": "Fraction of which whereby if a call falls above this value, and lower\nthan the homozygous threshold, a base will be called 'heterozygous'.\n"
             }
           },
