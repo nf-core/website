@@ -29,8 +29,6 @@ import { Image } from 'astro:assets';
 We are thrilled to announce the first release of [`nf-core/fastquorum`][nf-core-fastquorum-link] pipeline, which implements the [fgbio Best Practices FASTQ to Consensus Pipeline][fgbio-best-practices-link] to produce consensus reads using unique molecular indexes/barcodes (UMIs).
 Developed by [Nils Homer][nilshomer-linkedin-link] at [Fulcrum Genomics][fulcrum-genomics-link], the pipeline utilizes the [`fgbio` Bioinformatics toolkit][fgbio-link] to enable producing ultra-accurate reads for low frequency variant detection.
 
-        <a href="https://www.fulcrumgenomics.com/"><Image class="d-block m-auto" src={fulcrumgenomics_logo} alt="The Fulcrum Genomisc logo" width="800" /></a>
-
 # But Why?
 
         <Image class="d-block m-auto" src={but_why} alt="Ryan Reynolds asking 'But why?'" height="400" />
@@ -125,12 +123,12 @@ Since its conception in 2015, `fgbio` has been downloaded from [Bioconda][fgbio-
         <Image class="d-block m-auto" src={big_deal} alt="Will Ferrell in Anchorman meme with caption '>300K downloads on BioConda, we are kind of a big deal'" height="300" />
 
 The [fgbio toolkit has a wide variety of available tools][fgbio-list-of-tools-link], with many tools producing tabular [quality control metrics][fgbio-list-of-metrics-link].
-
 Particularly relevant for the [`nf-core/fastquorum`][nf-core-fastquorum-link] pipeline are the tools for working with read-level data containing these unique molecular indexes.
+Click the arrows below to expand specific topic areas for the tools:
 
 {/* prettier-ignore */}
 <details>
-<summary>Tools for working with Unique Molecular Indexes (UMIs, aka Molecular IDs or Molecular Barcodes):</summary>
+<summary>Tools for working with Unique Molecular Indexes (UMIs, aka Molecular IDs/Barcodes):</summary>
 -   Annotating/Extract Umis from read-level data: [`FastqToBam`][fgbio-fastqtobam-link], [`AnnotateBamWithUmis`][fgbio-annotatebamwithumis-link], [`ExtractUmisFromBam`][fgbio-extractumisfrombam-link], and [`CopyUmiFromReadName`][fgbio-copyumifromreadname-link].
 -   Manipulate read-level data containing Umis: [`CorrectUmis`][fgbio-correctumis-link], [`GroupReadsByUmi`][fgbio-groupreadsbyumi-link], [`CallMolecularConsensusReads`][fgbio-callmolecularconsensusreads-link], [`CallDuplexConsensusReads`][fgbio-callduplexconsensusreads-link], and [`FilterConsensusReads`][fgbio-filterconsensusreads-link].
 -   Collect metrics and review consensus reads: [`CollectDuplexSeqMetrics`][fgbio-collectduplexseqmetrics-link] and [`ReviewConsensusVariants`][fgbio-reviewconsensusvariants-link].
