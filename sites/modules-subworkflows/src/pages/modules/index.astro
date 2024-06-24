@@ -1,5 +1,6 @@
 ---
 import ListingLayout from '@layouts/ListingLayout.astro';
+import ComponentListing from '@components/component/ComponentListing.svelte';
 
 import components from '@public/components.json';
 const modules = components.modules;
@@ -11,8 +12,6 @@ import pipelines from '@public/pipelines.json';
 <ListingLayout
     title={title}
     description={description}
-    components={modules}
-    pipelines={pipelines.remote_workflows}
     filter={[]}
     sortBy={['Name', '# Pipeline integrations']}
     displayStyle={[
@@ -20,5 +19,7 @@ import pipelines from '@public/pipelines.json';
         { name: 'table', icon: 'fa-regular fa-bars' },
     ]}
     viewTransitions={true}
-/>
+>
+    <ComponentListing components={modules} slot="listing-components" client:load />
+</ListingLayout>
 <style></style>
