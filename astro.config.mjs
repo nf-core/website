@@ -1,5 +1,7 @@
 import admonitionsPlugin from './bin/remark-admonitions.js';
 import { mermaid } from './bin/remark-mermaid.ts';
+import { rehypeCheckboxParser } from './bin/rehype-checkbox-parser.ts';
+import { rehypeHeadingNumbers } from './bin/rehype-heading-numbers.ts';
 import pipelines_json from '/public/pipelines.json';
 import githubDarkDimmed from '/public/themes/github-dark-dimmed.json';
 import mdx from '@astrojs/mdx';
@@ -25,7 +27,7 @@ import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import remarkDescription from 'astro-remark-description';
 import markdownIntegration from '@astropub/md';
-import icon from "astro-icon";
+import icon from 'astro-icon';
 
 const latestToolsRelease = await fetch('https://api.github.com/repos/nf-core/tools/releases/latest')
     .then((res) => res.json())
@@ -63,7 +65,18 @@ export default defineConfig({
                 'fa-brands': ['github'],
                 'line-md': ['check-list-3-twotone'],
                 mdi: ['aws', 'slack', 'youtube'],
-                octicon: ['link-external-16', 'table-16'],
+                octicon: [
+                    'chevron-right-16',
+                    'git-pull-request-16',
+                    'law-16',
+                    'link-external-16',
+                    'mortar-board-16',
+                    'play-16',
+                    'table-16',
+                    'tasklist-16',
+                    'terminal-16',
+                    'tools-16',
+                ],
                 'simple-icons': ['bluesky'],
             },
         }),
@@ -101,9 +114,6 @@ export default defineConfig({
     },
     image: {
         domains: ['raw.githubusercontent.com', 'unsplash.com'],
-        service: {
-            entrypoint: 'astro/assets/services/sharp',
-        },
     },
     markdown: {
         syntaxHighlight: false,
@@ -190,6 +200,8 @@ export default defineConfig({
                     }
                 },
             ],
+            rehypeCheckboxParser,
+            rehypeHeadingNumbers,
             [
                 rehypePrettyCode,
                 {

@@ -18,6 +18,23 @@ span[data-rehype-pretty-code-figure] {
   }
 }
 
+figure[data-rehype-pretty-code-figure] mark[data-highlighted-chars] {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  & span {
+    position: relative;
+    &::before {
+      content: attr(data-content);
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      opacity: 0.25;
+      background-color: var(--shiki-light);
+    }
+  }
+}
 body {
   font-feature-settings: 'ss03'; // curved r https://rsms.me/inter/#features/ss03
   text-rendering: optimizeLegibility; // enables kerning and ligatures for smaller font sizes
@@ -162,7 +179,6 @@ section:before {
   width: 20px;
 }
 
-
 .triangle-down,
 .triangle-up {
   margin-top: -2px;
@@ -197,29 +213,6 @@ section:before {
 }
 
 // buttons
-
-// make hover and active states more obvious for outline buttons
-.btn-outline-success:not(:disabled):not(.disabled):hover:not(.active) {
-  background-color: shade-color($nf-core-color, 15%);
-  color: $white;
-}
-
-.btn-outline-primary:not(:disabled):not(.disabled):hover:not(.active) {
-  background-color: shade-color($primary, 15%);
-}
-.btn-outline-secondary:not(:disabled):not(.disabled):hover:not(.active) {
-  background-color: shade-color($secondary, 15%);
-}
-.btn-outline-info:not(:disabled):not(.disabled):hover:not(.active) {
-  background-color: shade-color($info, 15%);
-}
-.btn-outline-warning:not(:disabled):not(.disabled):hover:not(.active) {
-  background-color: shade-color($warning, 15%);
-}
-.btn-outline-danger:not(:disabled):not(.disabled):hover:not(.active) {
-  background-color: shade-color($danger, 15%);
-}
-
 .btn-outline-success:not(:disabled):not(.disabled).active,
 .btn-outline-success:not(:disabled):not(.disabled):active,
 .btn-success:not(:disabled):not(.disabled).active,
@@ -306,9 +299,16 @@ code:not(pre code),
       padding-top: 0;
       padding-bottom: 0;
     }
-    &:not([data-line-numbers]) > span {
+    &:not([data-line-numbers]) {
+
+      & > span {
       padding-left: 1.5em;
       padding-right: 1.5em;
+      &[data-highlighted-line] {
+        padding-left: calc(1.5em - 2px);
+      }
+    }
+
     }
     &[data-line-numbers] {
       counter-reset: line;
@@ -1180,7 +1180,7 @@ Launch Page
 .breadcrumb-item:not(.active) {
   & a,
   & span {
-    color: $gray-600 !important;
+    color: $gray-600;
   }
 }
 
@@ -1250,11 +1250,6 @@ Launch Page
   }
 }
 
-.sidebar-left {
-  max-height: calc(100vh - 4rem);
-  overflow-y: auto;
-}
-
 .admonition {
   margin-top: 0.5rem;
   p {
@@ -1276,15 +1271,15 @@ Launch Page
     font-variant: normal;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
-    font-family: "Font Awesome 6 Pro", "Font Awesome 6 Pro fallback";
+    font-family: 'Font Awesome 6 Pro', 'Font Awesome 6 Pro fallback';
     margin-left: 0.5rem;
     font-weight: 900;
     text-align: center; // same setting as .fa-w
     width: 1.25em; // same setting as .fa-w
-    content: "\f078";
+    content: '\f078';
   }
   .admonition-collapse-button.collapsed::after {
-    content: "\f054";
+    content: '\f054';
   }
   .admonition-body-content {
     font-size: 90%;
@@ -1300,7 +1295,7 @@ figure[data-rehype-pretty-code-figure] [data-theme*=' ']:not([data-rehype-pretty
     }
   }
   [data-highlighted-chars] {
-    background-color: tint-color($gray-500, 80%);
+    // background-color: tint-color($gray-500, 80%);
   }
 }
 
@@ -1386,6 +1381,12 @@ div.mermaid {
       display: block;
     }
   }
+
+  .form-check-input.is-valid:checked {
+    background-color: $success;
+    border-color: shade-color($nf-core-color-dark, 25%);
+  }
+
   figure[data-rehype-pretty-code-figure] {
     code[data-theme*=' '],
     code[data-theme*=' '] span {
@@ -1399,10 +1400,13 @@ div.mermaid {
       color: var(--shiki-dark);
     }
   }
+  figure[data-rehype-pretty-code-figure] mark[data-highlighted-chars] span::before {
+      background-color: var(--shiki-dark);
+}
   [data-rehype-pretty-code-title][data-theme*=' '] {
     border: 1px solid $border-color-dark;
   }
-  img {
+  img:not([src$=".svg"]) {
     filter: brightness(0.8) contrast(1.2); // dim images a bit https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/
   }
 

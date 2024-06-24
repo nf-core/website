@@ -1,6 +1,7 @@
 ---
 title: Hackathon - March 2024 (Ghent)
 subtitle: Local node of the nf-core hackathon at Ghent University, Belgium.
+shortTitle: Ghent, Belgium
 type: hackathon
 startDate: '2024-03-18'
 startTime: '10:00+02:00'
