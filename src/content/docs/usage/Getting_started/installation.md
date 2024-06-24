@@ -45,7 +45,6 @@ You can also install Nextflow using [Bioconda](https://bioconda.github.io/).
 First, set up Bioconda according to the [Bioconda documentation](https://bioconda.github.io/#usage), notably setting up channels:
 
 ```bash
-conda config --add channels defaults
 conda config --add channels bioconda
 conda config --add channels conda-forge
 ```
