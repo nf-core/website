@@ -34,6 +34,7 @@ export default defineConfig({
     integrations: [
         svelte(),
         icon({
+            iconDir: '../main-site/src/icons',
             include: {
                 // only include a subset of icons
                 'file-icons': ['nextflow'],
@@ -51,7 +52,18 @@ export default defineConfig({
                 'fa-brands': ['github'],
                 'line-md': ['check-list-3-twotone'],
                 mdi: ['aws', 'slack', 'youtube'],
-                octicon: ['link-external-16', 'table-16'],
+                octicon: [
+                    'chevron-right-16',
+                    'git-pull-request-16',
+                    'law-16',
+                    'link-external-16',
+                    'mortar-board-16',
+                    'play-16',
+                    'table-16',
+                    'tasklist-16',
+                    'terminal-16',
+                    'tools-16',
+                ],
                 'simple-icons': ['bluesky'],
             },
         }),

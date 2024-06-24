@@ -64,7 +64,7 @@
         return components.sort(sortComponents).filter(searchComponents);
     }
 
-    $: filteredComponents = searchFilterSortComponents(components) || [];
+    $: filteredComponents = searchFilterSortComponents(components) || components;
 
     let pageSize: number = 12;
     let lastPage = Math.ceil(components.length / pageSize);

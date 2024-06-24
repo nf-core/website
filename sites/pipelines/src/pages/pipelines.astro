@@ -1,6 +1,7 @@
 ---
 import pipelines_json from '@public/pipelines.json';
 import ListingLayout from '@layouts/ListingLayout.astro';
+import PipelinesListing from '@components/pipeline/PipelinesListing.svelte';
 
 const pipelines = pipelines_json.remote_workflows.sort((a, b) => {
     if (a.releases.length == 1 && b.releases.length > 1) return 1;
@@ -18,23 +19,23 @@ const description = `Browse the  ${pipelines.length} pipelines that are currentl
 const num_released = pipelines.filter((p) => p.releases.length > 1 && !p.archived).length;
 const num_dev = pipelines.filter((p) => p.releases.length == 1 && !p.archived).length;
 const num_archived = pipelines.filter((p) => p.archived).length;
+const filter = [
+    { name: 'Released', count: num_released },
+    { name: 'Under development', count: num_dev },
+    { name: 'Archived', count: num_archived },
+];
 ---
 
 <ListingLayout
     title={title}
     description={description}
-    pipelines={pipelines}
-    filter={[
-        { name: 'Released', count: num_released },
-        { name: 'Under development', count: num_dev },
-        { name: 'Archived', count: num_archived },
-    ]}
+    filter={filter}
     sortBy={['Last release', 'Name', 'Stars']}
     displayStyle={[
         { name: 'grid', icon: 'fa-regular fa-grid-2' },
         { name: 'table', icon: 'fa-regular fa-bars' },
     ]}
     viewTransitions={false}
-/>
-
-<style></style>
+>
+    <PipelinesListing filters={filter} pipelines={pipelines} client:load slot="listing-components" />
+</ListingLayout>
