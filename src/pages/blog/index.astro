@@ -4,6 +4,8 @@ import { getCollection } from 'astro:content';
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
 import GitHubProfilePictureExtended from '@components/GitHubProfilePictureExtended.svelte';
 import { Image } from 'astro:assets';
+import { Markdown } from '@astropub/md';
+import type { SidebarEntry } from '@utils/types';
 
 const images = import.meta.glob('../../assets/**/*.{png,jpg,jpeg,gif,svg}');
 
@@ -13,11 +15,8 @@ let blogPosts = await getCollection('blog');
 blogPosts = blogPosts
     .filter((post) => {
         const pubDate = new Date(post.data.pubDate);
-        return pubDate < new Date();
-    })
-    .filter((post) => {
-        if (process.env.production) {
-            return post.data.draft !== true;
+        if (process.env.CONTEXT === 'production') {
+            return pubDate < new Date();
         } else {
             return true;
         }
@@ -26,18 +25,20 @@ blogPosts = blogPosts
 
 // get years of all posts
 const years = [...new Set(blogPosts.map((post) => new Date(post.data.pubDate).getFullYear()))].sort((a, b) => b - a);
-
-const sections = years.map((year) => {
+const sections: SidebarEntry[] = years.map((year) => {
     return {
-        section_name: year,
-        section_slug: '#year-' + year,
-        children: blogPosts
+        type: 'group',
+        label: year.toString(),
+        href: '/blog/#year-' + year,
+        collapsed: new Date().getFullYear() !== year,
+        entries: blogPosts
             .filter((post) => new Date(post.data.pubDate).getFullYear() === year)
             .map((post) => {
                 return {
-                    title: post.data.title,
-                    slug: '/blog/' + post.slug,
-                    pubDate: post.data.pubDate,
+                    type: 'link',
+                    label: post.data.title,
+                    href: '/blog/' + post.slug,
+                    isCurrent: false,
                 };
             }),
     };
@@ -54,10 +55,7 @@ const sections = years.map((year) => {
 >
     <div class="row">
         <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left pt-1">
-            <a
-                href={sections[0].section_slug?.split('/').slice(0, 2).join('/').split('#')[0]}
-                class="sidebar-title text-decoration-none"
-            >
+            <a href="/blog" class="sidebar-title text-decoration-none">
                 <strong class="h6 p-2 text-body">Blog posts</strong>
             </a>
             <SidebarNav items={sections} />
@@ -67,24 +65,24 @@ const sections = years.map((year) => {
             {blogPosts.length === 0 && <div class="">Nothing to see her yet! Come back soon</div>}
             {
                 years.map((year) => (
-                    <div id={'year-' + year} class="d-flex align-items-start flex-wrap">
+                    <div id={'year-' + year} class="d-flex align-items-stretch flex-wrap">
                         {blogPosts
                             .filter((post) => new Date(post.data.pubDate).getFullYear() === year)
                             .map((post) => (
                                 <div
                                     class:list={[
-                                        'card m-xl-3 m-1',
+                                        'card m-xl-3 m-1 ',
                                         new Date(Date.now()) > new Date(post.data.pubDate) &&
                                         new Date(post.data.pubDate) > new Date(Date.now() - 2 * 24 * 60 * 60 * 1000)
                                             ? 'border-primary'
                                             : '',
                                     ]}
                                 >
-                                    <div class="position-relative">
+                                    <div class=" card-body p-0 position-relative">
                                         <a
                                             href={'/blog/' + post.slug}
                                             class:list={[
-                                                'new-post-badge text-decoration-none badge text-bg-primary fs-6 mb-0  rounded-top-0 w-25 m-auto position-absolute top-0 start-0 end-0',
+                                                'post-badge text-decoration-none badge text-bg-primary fs-6 mb-0  rounded-top-0 w-25 m-auto position-absolute top-0 start-0 end-0',
                                                 new Date(Date.now()) > new Date(post.data.pubDate) &&
                                                 new Date(post.data.pubDate) >
                                                     new Date(Date.now() - 2 * 24 * 60 * 60 * 1000)
@@ -105,13 +103,16 @@ const sections = years.map((year) => {
                                                 alt={post.data.headerImageAlt || ''}
                                                 height={240}
                                                 width={512}
+                                                densities={[1.5, 2]}
                                                 transition:name="cover-image"
                                             />
                                         )}
-                                        <div class="card-body">
+                                        <div class="card-text px-3 pt-2">
                                             <h2 transition:name="title">{post.data.title}</h2>
-                                            <p class="lead">{post.data.subtitle}</p>
-                                            <p class="card-text small">
+                                            <p class="lead">
+                                                <Markdown of={post.data.subtitle} />
+                                            </p>
+                                            <p class="small">
                                                 {async () => {
                                                     const { remarkPluginFrontmatter } = await post.render();
                                                     return remarkPluginFrontmatter.excerpt;
@@ -131,7 +132,7 @@ const sections = years.map((year) => {
                                             ))}
                                         </div>
                                         <span class="text-body-secondary text-small text-end flex-grow-1 text-nowrap">
-                                            published at
+                                            published on
                                             <br />
                                             {new Date(post.data.pubDate).toLocaleDateString('en-GB', {
                                                 year: 'numeric',
@@ -157,12 +158,15 @@ const sections = years.map((year) => {
             margin-bottom: 0 !important;
         }
     }
+    .card-body:hover {
+        background-color: var(--bs-tertiary-bg);
+    }
     @include media-breakpoint-down(md) {
         .card {
             width: 100%;
         }
     }
-    .new-post-badge {
+    .post-badge {
         z-index: 10;
     }
 </style>

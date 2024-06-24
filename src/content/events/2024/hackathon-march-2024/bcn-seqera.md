@@ -1,6 +1,7 @@
 ---
 title: Hackathon - March 2024 (Seqera HQ)
 subtitle: Local node at the Seqera offices in Barcelona
+shortTitle: Seqera, Barcelona, Spain
 type: hackathon
 startDate: '2024-03-18'
 startTime: '10:00+02:00'

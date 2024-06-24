@@ -2,7 +2,7 @@
     import ListingTableHeader from '@components/ListingTableHeader.svelte';
     import ListingCard from './ListingCard.svelte';
     import { DisplayStyle, SearchQuery } from '@components/store';
-    import GitHubProfilePictureExtended from '@components/GitHubProfilePictureExtended.svelte';
+    import GitHubProfilePicture from '@components/GitHubProfilePicture.svelte';
 
     import type { CollectionEntry } from 'astro:content';
 
@@ -30,7 +30,7 @@
                             <p slot="card-body">{group.data.subtitle}</p>
                             <div slot="card-footer" class="grid align-content-start">
                                 <div class="pipeline-badges small g-col-8">
-                                    {#if group.data.pipelines}
+                                    {#if group.data.pipelines && group.data.pipelines.length > 0}
                                         <p class="text-muted small mb-1">Pipelines:</p>
                                         {#each group.data.pipelines as pipeline}
                                             <span class={`badge me-2 pipeline-badge small`}>{pipeline}</span>
@@ -40,24 +40,16 @@
                                 <div class="small g-col-4">
                                     {#if group.data.leads}
                                         <p class="text-muted small mb-2">Group leads:</p>
-                                        <div class="leads d-flex flex-wrap w-100">
+                                        <div class="leads d-flex w-100 h-100 flex-wrap align-content-start">
                                             {#each group.data.leads as lead}
                                                 {#if typeof lead === 'string'}
-                                                    <GitHubProfilePictureExtended
-                                                        username={lead}
-                                                        size={25}
-                                                        wrapperClasses="flex-grow-1"
-                                                        labelClasses=""
-                                                    />
+                                                    <GitHubProfilePicture name={lead} size={40} circle={true} />
                                                 {:else}
-                                                    <GitHubProfilePictureExtended
-                                                        username={Object.keys(lead)[0]}
-                                                        size={25}
-                                                        wrapperClasses="flex-grow-1"
-                                                        labelClasses=""
-                                                    >
-                                                        {Object.values(lead)[0]}
-                                                    </GitHubProfilePictureExtended>
+                                                    <GitHubProfilePicture
+                                                        name={Object.keys(lead)[0]}
+                                                        size={40}
+                                                        circle={true}
+                                                    ></GitHubProfilePicture>
                                                 {/if}
                                             {/each}
                                         </div>
@@ -70,48 +62,50 @@
             {/if}
         </div>
     {:else}
-        <table class="table table-hove table-responsive">
-            <thead>
-                <tr>
-                    <ListingTableHeader name="Name" />
-                    <th scope="col">Description</th>
-                    <th scope="col">Included pipelines</th>
-                    <th scope="col">Leads</th>
-                </tr>
-            </thead>
-            <tbody>
-                {#each filteredGroups as group (group.id)}
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
                     <tr>
-                        <td class=" name p-0">
-                            <div class="position-relative p-3">
-                                <a class="stretched-link" href={'/special-interest-groups' + group.slug + '/'}
-                                    >{group.data.title}</a
-                                >
-                            </div>
-                        </td>
-                        <td class="text-small">
-                            {group.data.subtitle}
-                        </td>
-                        <td class="pipeline-badges small">
-                            {#each group.data.pipelines ?? [] as pipeline}
-                                <span class={`badge me-2 pipeline-badge`}>{pipeline}</span>
-                            {/each}
-                        </td>
-                        <td>
-                            {#each group.data.leads ?? [] as lead}
-                                {#if typeof lead === 'string'}
-                                    <GitHubProfilePictureExtended username={lead} size={25} />
-                                {:else}
-                                    <GitHubProfilePictureExtended username={Object.keys(lead)[0]} size={25}>
-                                        {Object.values(lead)[0]}
-                                    </GitHubProfilePictureExtended>
-                                {/if}
-                            {/each}
-                        </td>
+                        <ListingTableHeader name="Name" />
+                        <th scope="col">Description</th>
+                        <th scope="col">Included pipelines</th>
+                        <th scope="col">Leads</th>
                     </tr>
-                {/each}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {#each filteredGroups as group (group.id)}
+                        <tr>
+                            <td class=" name p-0">
+                                <div class="position-relative p-3">
+                                    <a class="stretched-link" href={'/special-interest-groups/' + group.slug}
+                                        >{group.data.groupName}</a
+                                    >
+                                </div>
+                            </td>
+                            <td class="text-small">
+                                {group.data.subtitle}
+                            </td>
+                            <td class="pipeline-badges small">
+                                {#each group.data.pipelines ?? [] as pipeline}
+                                    <span class={`badge me-2 pipeline-badge`}>{pipeline}</span>
+                                {/each}
+                            </td>
+                            <td>
+                                {#each group.data.leads ?? [] as lead}
+                                    {#if typeof lead === 'string'}
+                                        <GitHubProfilePicture username={lead} size={25} />
+                                    {:else}
+                                        <GitHubProfilePicture username={Object.keys(lead)[0]} size={25}>
+                                            {Object.values(lead)[0]}
+                                        </GitHubProfilePicture>
+                                    {/if}
+                                {/each}
+                            </td>
+                        </tr>
+                    {/each}
+                </tbody>
+            </table>
+        </div>
     {/if}
 </div>
 
