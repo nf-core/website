@@ -2,7 +2,7 @@
     import ListingTableHeader from '@components/ListingTableHeader.svelte';
     import ListingCard from './ListingCard.svelte';
     import { DisplayStyle, SearchQuery } from '@components/store';
-    import GitHubProfilePictureExtended from '@components/GitHubProfilePictureExtended.svelte';
+    import GitHubProfilePicture from '@components/GitHubProfilePicture.svelte';
 
     import type { CollectionEntry } from 'astro:content';
 
@@ -30,7 +30,7 @@
                             <p slot="card-body">{group.data.subtitle}</p>
                             <div slot="card-footer" class="grid align-content-start">
                                 <div class="pipeline-badges small g-col-8">
-                                    {#if group.data.pipelines}
+                                    {#if group.data.pipelines && group.data.pipelines.length > 0}
                                         <p class="text-muted small mb-1">Pipelines:</p>
                                         {#each group.data.pipelines as pipeline}
                                             <span class={`badge me-2 pipeline-badge small`}>{pipeline}</span>
@@ -40,26 +40,16 @@
                                 <div class="small g-col-4">
                                     {#if group.data.leads}
                                         <p class="text-muted small mb-2">Group leads:</p>
-                                        <div class="leads d-flex w-100 h-100 flex-wrap">
+                                        <div class="leads d-flex w-100 h-100 flex-wrap align-content-start">
                                             {#each group.data.leads as lead}
                                                 {#if typeof lead === 'string'}
-                                                    <GitHubProfilePictureExtended
-                                                        username={lead}
-                                                        size={40}
-                                                        wrapperClasses=""
-                                                        imgClasses="pb-0"
-                                                        containerQuery={true}
-                                                    />
+                                                    <GitHubProfilePicture name={lead} size={40} circle={true} />
                                                 {:else}
-                                                    <GitHubProfilePictureExtended
-                                                        username={Object.keys(lead)[0]}
+                                                    <GitHubProfilePicture
+                                                        name={Object.keys(lead)[0]}
                                                         size={40}
-                                                        wrapperClasses=""
-                                                        imgClasses="pb-0"
-                                                        containerQuery={true}
-                                                    >
-                                                        {Object.values(lead)[0]}
-                                                    </GitHubProfilePictureExtended>
+                                                        circle={true}
+                                                    ></GitHubProfilePicture>
                                                 {/if}
                                             {/each}
                                         </div>
@@ -103,11 +93,11 @@
                             <td>
                                 {#each group.data.leads ?? [] as lead}
                                     {#if typeof lead === 'string'}
-                                        <GitHubProfilePictureExtended username={lead} size={25} />
+                                        <GitHubProfilePicture username={lead} size={25} />
                                     {:else}
-                                        <GitHubProfilePictureExtended username={Object.keys(lead)[0]} size={25}>
+                                        <GitHubProfilePicture username={Object.keys(lead)[0]} size={25}>
                                             {Object.values(lead)[0]}
-                                        </GitHubProfilePictureExtended>
+                                        </GitHubProfilePicture>
                                     {/if}
                                 {/each}
                             </td>

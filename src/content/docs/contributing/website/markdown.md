@@ -275,7 +275,7 @@ graph TD
 
 # LaTeX formulas
 
-We support latex based formulas using [KaTeX](https://katex.org/). To display them correctly on an nf-co.re page, you need to wrap them in a block surrounded by `$$`, e.g.:
+We support LaTeX based formulas using [KaTeX](https://katex.org/). To display them correctly on an nf-co.re page, you need to wrap them in a block surrounded by `$$`, e.g.:
 
 ```md
 $$
