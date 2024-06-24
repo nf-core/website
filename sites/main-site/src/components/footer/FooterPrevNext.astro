@@ -1,62 +1,57 @@
 ---
-import { CollectionEntry } from 'astro:content';
-
+import { Icon } from 'astro-icon/components';
 export interface Props {
-    md_github_url?: string;
-    prev_page: CollectionEntry<'docs'> | null;
-    next_page: CollectionEntry<'docs'> | null;
+    prev_page: { title: string; slug: string } | null;
+    next_page: { title: string; slug: string } | null;
 }
-const { md_github_url, prev_page, next_page } = Astro.props;
+const { prev_page, next_page } = Astro.props;
 ---
 
-<footer class="d-flex bg-body-tertiary text-body-tertiary align-items-start">
-    <div class="flex-fill text-body w-100 h-100">
-        {
-            prev_page && (
+<footer class="mb-3 mt-5 d-flex justify-content-between m-auto">
+    {
+        prev_page && (
+            <div class="">
                 <a
-                    class="btn nav-btn text-body-secondary rounded-0 d-flex flex-column align-items-end py-md-3 py-2 px-3 px-md-5 text-body text-decoration-none text-end"
-                    href={'/docs/' + prev_page.slug + '/'}
+                    class="btn btn-outline-secondary d-inline-flex align-items-center py-md-3 py-2 px-3  text-decoration-none text-end"
+                    href={prev_page.slug}
                 >
-                    <span class="d-none d-md-inline">Previous: </span>
-                    <i class="fa-solid fa-arrow-left me-1 d-md-none" />
-                    <span>{prev_page.data.title}</span>
+                    <i class="fa-solid fa-arrow-left me-auto pe-3 pe-md-5" />
+
+                    <span class="d-flex flex-column">
+                        <span class="d-none d-md-inline">Previous: </span>
+                        <span class="fw-semibold text-secondary-emphasis" set:html={prev_page.title} />
+                    </span>
                 </a>
-            )
-        }
-    </div>
-    <div class="flex-shrink-1 text-center align-self-center">
-        <p class="m-0 pt-0 pt-md-1 px-3 text-center d-flex flex-column align-items-center">
-            <i class="fab fa-github me-2 text-body"></i>
-            <a class="md-link text-body" href={md_github_url}> Markdown source</a>
-        </p>
-    </div>
-    <div class="flex-fill text-body w-100 h-100">
-        {
-            next_page && (
+            </div>
+        )
+    }
+    {
+        next_page && (
+            <div class="ms-auto">
                 <a
-                    class="btn nav-btn text-body-secondary rounded-0 d-flex flex-column align-items-start py-md-3 py-2 px-3  px-md-5 text-body text-decoration-none text-start"
-                    href={'/docs/' + next_page.slug + '/'}
+                    class="btn btn-outline-secondary  d-inline-flex align-items-center py-md-3 py-2 px-3 text-decoration-none text-start"
+                    href={next_page.slug}
                 >
-                    <span class="d-none d-md-inline">Next: </span>
-                    <i class="fa-solid fa-arrow-right ms-1 d-md-none" />
-                    <span>{next_page.data.title}</span>
+                    <span class="d-flex flex-column">
+                        <span class="d-none d-md-inline">Next: </span>
+                        <span class="fw-semibold text-secondary-emphasis" set:html={next_page.title} />
+                    </span>
+                    <i class="fa-solid fa-arrow-right ms-auto ps-3 ps-md-5" />
                 </a>
-            )
-        }
-    </div>
-    <style lang="scss">
-        @import '@styles/_variables.scss';
-        svg {
-            fill: currentColor;
-            width: 2rem;
-        }
-        .nav-btn:hover {
-            background-color: shade-color($body-tertiary-bg, 3%);
-        }
-        @include media-breakpoint-up(md) {
-            .md-link {
-                white-space: nowrap;
-            }
-        }
-    </style>
+            </div>
+        )
+    }
 </footer>
+<style lang="scss">
+    @import '@styles/_variables.scss';
+    svg {
+        fill: currentColor;
+        width: 2rem;
+    }
+    footer {
+        max-width: $content-width;
+    }
+    .btn-outline-secondary:hover .text-secondary-emphasis {
+        color: var(--bs-btn-hover-color) !important;
+    }
+</style>

@@ -42,9 +42,8 @@
 </div>
 
 <style lang="scss">
-    @import '../styles/_variables.scss';
     img {
-        background-color: $white;
+        background-color: var(--bs-light);
     }
     .github-profile {
         container-type: size;

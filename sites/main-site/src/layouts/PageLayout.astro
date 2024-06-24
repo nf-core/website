@@ -2,6 +2,7 @@
 import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Header from '@components/header/Header.astro';
+import type { SidebarEntry } from '@utils/types';
 
 let {
     title = SITE_TITLE,
@@ -49,7 +50,7 @@ export interface Props {
     showHiddenBtn?: boolean;
     frontmatter?: any;
     topics?: string[];
-    sections?: { section_name: string; children: {}[] }[] | never[];
+    sections?: SidebarEntry[];
     viewTransitions?: boolean;
     docSearchTags?: {
         name: string;
@@ -94,6 +95,7 @@ if (frontmatter) {
             header_btn_text={header_btn_text}
             topics={topics}
         >
+            <slot name="header-top" slot="header-top" />
             <slot name="sub-header" />
         </Header>
         {

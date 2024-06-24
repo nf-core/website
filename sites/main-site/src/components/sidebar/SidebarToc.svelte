@@ -1,6 +1,7 @@
 <script lang="ts">
-    import { currentHeading, showHidden } from '@components/store';
+    import { currentHeading, showHidden, Checkboxes } from '@components/store';
     import { onMount } from 'svelte';
+    import ProgressIndicator from '@components/sidebar/ProgressIndicator.svelte';
 
     export let headings: {
         text: string;
@@ -8,8 +9,13 @@
         depth: number;
         fa_icon?: string;
         hidden?: boolean;
+        checkboxes?: {
+            id: string;
+            label: string;
+            checked: boolean;
+        }[];
     }[];
-
+    export let minNumHeadings: number = 2;
     export let minHeadingDepth: number = 1;
     export let maxHeadingDepth: number = 4;
 
@@ -21,7 +27,26 @@
 
     minHeadingDepth = Math.min(...headings.map((h) => h.depth));
 
+    const showToc = headings.length > minNumHeadings || headings.some((h) => h.checkboxes);
+
     let activeHeading = {};
+    let hCheckboxes = headings
+        .map((h) => h.checkboxes)
+        .map((c) => c)
+        .flat()
+        .filter((checkbox) => checkbox !== undefined);
+    const uncheckAll = () => {
+        headings.forEach((heading) => {
+            if (hCheckboxes) {
+                hCheckboxes.forEach((checkbox) => {
+                    const checkboxElement = document.getElementById(checkbox.id);
+                    checkboxElement.checked = false;
+                    Checkboxes.set([]);
+                });
+                hCheckboxes = hCheckboxes; // trigger reactivity
+            }
+        });
+    };
     onMount(() => {
         // set the first heading as active on initial load
         if (!$currentHeading || !headings.find((h) => h.slug === $currentHeading)) {
@@ -38,17 +63,25 @@
                 active.scrollIntoView({ block: 'nearest' });
             }
         });
+        if (hCheckboxes) {
+            Checkboxes.subscribe((checks) => {
+                hCheckboxes.forEach((hCheckbox) => {
+                    hCheckbox.checked = checks.find((check) => check.id === hCheckbox.id)?.checked || false;
+                });
+                hCheckboxes = hCheckboxes; // trigger reactivity
+            });
+        }
     });
 </script>
 
 <div class="nav flex-column sticky-top-under align-items-end pt-1">
-    <div class="d-none d-md-block w-100">
-        {#if headings.length > 2}
+    <div class="d-none d-xl-block w-100">
+        <slot name="right-sidebar-top" />
+        {#if showToc}
             <strong class="h6 my-2 text-body">On this page</strong>
         {/if}
-        <!-- <hr class="my-1" /> -->
-        <nav id="TableOfContents" class="d-none d-md-flex flex-column">
-            {#if headings.length > 2}
+        <nav id="TableOfContents" class="d-flex flex-column">
+            {#if showToc}
                 <ul class="mb-0 mt-1">
                     {#each headings as heading (heading)}
                         <li
@@ -56,23 +89,51 @@
                             class:active={heading.slug === activeHeading}
                             class:collapse={heading.hidden && !$showHidden}
                         >
-                            <a class="nav-link py-1 ps-3 text-body-secondary small" href={'#' + heading.slug}>
+                            <a
+                                class="nav-link py-1 ps-3 text-body-secondary small d-inline-flex align-items-center"
+                                href={'#' + heading.slug}
+                            >
                                 {#if heading.fa_icon}
                                     <i class={heading.fa_icon + ' fa-fw '} aria-hidden="true" />
                                 {/if}
                                 {@html heading.text}
+                                {#if hCheckboxes.find((hc) => hc?.id.startsWith('checkbox-' + heading.slug))}
+                                    <span class="ms-2">
+                                        <ProgressIndicator
+                                            progress={(hCheckboxes.filter(
+                                                (check) =>
+                                                    check?.id.startsWith('checkbox-' + heading.slug) && check?.checked,
+                                            ).length /
+                                                hCheckboxes.filter((check) =>
+                                                    check?.id.startsWith('checkbox-' + heading.slug),
+                                                ).length) *
+                                                100}
+                                            size={25}
+                                            strokeWidth={7}
+                                            isCurrent={true}
+                                        />
+                                    </span>
+                                {/if}
                             </a>
                         </li>
                     {/each}
                 </ul>
-                <div class="">
+
+                {#if hCheckboxes.length > 0}
+                    <button class="btn btn-sm btn-outline-secondary mt-2" on:click={uncheckAll} on:keydown={uncheckAll}>
+                        Uncheck all
+                    </button>
+                {/if}
+
+                <div class="d-flex flex-column flex-xl-row justify-content-between mt-xl-2">
                     <a
                         href="#/"
-                        class="back-to-top text-body-secondary text-small float-end mb-2"
+                        class="back-to-top text-body-secondary text-small mb-2"
                         on:click={() => window.scrollTo(0, 0)}
                     >
                         <i class="fa-solid fa-arrow-up-to-line" aria-hidden="true" /> Back to top
                     </a>
+                    <slot name="right-sidebar-link-bar" />
                 </div>
             {/if}
             <slot />
@@ -81,7 +142,6 @@
 </div>
 
 <style lang="scss">
-    @import '@styles/_variables.scss';
     nav > ul {
         font-size: 0.875rem;
         list-style: none;
@@ -93,40 +153,36 @@
     }
 
     li {
-        border-inline-start: 2pt solid $border-color;
+        border-inline-start: 2pt solid var(--bs-border-color);
         transition:
             background-color 0.3s ease-out,
             border-left 0.3s ease-out;
         scroll-margin-top: 6rem;
         scroll-margin-bottom: 6rem;
         &:hover {
-            background-color: transparentize($success, 0.85);
+            background-color: rgba(var(--bs-success), 0.85);
         }
     }
 
     li.active {
         a {
-            color: $green-800 !important;
+            color: var(--bs-green-800) !important;
         }
-        border-left: 2pt solid $success;
-        background-color: transparentize($success, 0.75);
+        border-left: 2pt solid var(--bs-success);
+        background-color: rgba(var(--bs-success), 0.85);
     }
 
     :global([data-bs-theme='dark']) {
         li {
-            border-inline-start: 2pt solid $border-color-dark;
             &:hover {
-                background-color: transparentize($success-dark, 0.6);
                 & a {
-                    color: $gray-300 !important;
+                    color: var(--bs-gray-300) !important;
                 }
             }
         }
         li.active {
-            border-left: 2pt solid $success-dark;
-            background-color: transparentize($success-dark, 0.35);
             & a {
-                color: $gray-300 !important;
+                color: var(--bs-gray-300) !important;
             }
         }
     }

@@ -175,8 +175,7 @@
 </div>
 
 <style lang="scss">
-    @import '../styles/_variables.scss';
     .searchbar {
-        font-family: $font-family-sans-serif, 'Font Awesome 6 Pro';
+        font-family: 'sans-serif', 'Font Awesome 6 Pro';
     }
 </style>

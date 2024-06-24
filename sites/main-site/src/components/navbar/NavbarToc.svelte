@@ -40,7 +40,6 @@
 </div>
 
 <style lang="scss">
-    @import '@styles/_variables.scss';
     .toc-md {
         .dropdown-menu {
             max-height: 90dvh;
@@ -51,12 +50,12 @@
         z-index: 1050;
     }
     li.active {
-        background-color: transparentize($success, 0.75);
+        background-color: rgba(var(--bs-success), 0.75);
     }
 
     :global([data-bs-theme='dark']) {
         li.active {
-            background-color: transparentize($success-dark, 0.75);
+            background-color: rgba(var(--bs-success), 0.75);
         }
     }
 </style>

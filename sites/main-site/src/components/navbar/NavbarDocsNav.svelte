@@ -25,21 +25,19 @@
             tabindex="0"
         />
         <nav class="side-nav bg-body pb-2 px-0 text-gray-400 overflow-y-auto">
-            <button type="button" class="btn-close float-end me-2" on:click={toggleVisible} aria-label="Close" />
             <slot name="menu" />
         </nav>
     </div>
 {/if}
 
 <style lang="scss">
-    @import '../../styles/_variables.scss';
     .docs-nav {
         margin-top: 3rem;
     }
     .side-nav {
         padding-top: 3rem; //offset for navbar + sectionNavbar from sidebarNav
         max-height: calc(100dvh - 3rem);
-        width: 75vw;
+        width: 100vw;
     }
     :global(.navbar.fixed-top:has(.collapse.show)) {
         & .docs-nav,
