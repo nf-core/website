@@ -176,6 +176,6 @@
 
 <style lang="scss">
     .searchbar {
-        font-family: 'sans-serif', 'Font Awesome 6 Pro';
+        font-family: 'Inter Variable', 'Inter override', sans-serif, 'Font Awesome 6 Pro';
     }
 </style>

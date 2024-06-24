@@ -1,6 +1,7 @@
 ---
 import octokit from '@components/octokit';
 import ListingLayout from '@layouts/ListingLayout.astro';
+import ConfigListing from '@components/ConfigListing.svelte';
 
 //get contents of markdown files in docs dir in https://github.com/nf-core/configs/tree/master/docs using request
 const files = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
@@ -102,6 +103,8 @@ const description = 'Browse the ' + configs.length + ' configs that are currentl
         The following configs are common Nextflow pipeline configurations and options for particular institutional
         clusters or compute environments.
     </p>
+
+    <ConfigListing configs={configs} slot="listing-components" client:load />
 </ListingLayout>
 
 <style></style>
