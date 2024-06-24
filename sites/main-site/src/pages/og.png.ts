@@ -5,7 +5,6 @@ import type { APIRoute } from 'astro';
 import sharp from 'sharp';
 // @ts-ignore: no types
 import initYoga from 'yoga-wasm-web/asm';
-import GitHubProfilePicture from '@components/GitHubProfilePicture.svelte';
 
 const YOGA = initYoga();
 initSatori(YOGA);
