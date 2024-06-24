@@ -5696,6 +5696,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -17913,6 +17917,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -68861,6 +68869,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -79094,6 +79106,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -121414,7 +121430,9 @@
               "documentation": "https://github.com/shubhamchandak94/Spring/blob/master/README.md",
               "tool_dev_url": "https://github.com/shubhamchandak94/Spring",
               "doi": "10.1093/bioinformatics/bty1015",
-              "licence": "['Free for non-commercial use']"
+              "licence": [
+                "Free for non-commercial use"
+              ]
             }
           }
         ],
@@ -121430,6 +121448,13 @@
               "type": "file",
               "description": "Spring file to decompress.",
               "pattern": "*.{spring}"
+            }
+          },
+          {
+            "write_one_fastq_gz": {
+              "type": "boolean",
+              "description": "Controls whether spring should write one fastq.gz file with reads from both directions or two fastq.gz files with reads from distinct directions\n",
+              "pattern": "true or false"
             }
           }
         ],
