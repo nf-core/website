@@ -18,7 +18,7 @@
 </script>
 
 <th
-    class="text-nowrap sortable"
+    class="text-lg-nowrap sortable"
     class:text-end={textEnd}
     class:text-center={textCenter}
     scope="col"
@@ -38,20 +38,14 @@
 </th>
 
 <style lang="scss">
-    @import '../styles/_variables.scss';
     .sortable {
         cursor: pointer;
         &:hover {
-            background-color: $secondary-bg-subtle;
+            background-color: var(--bs-secondary-bg-subtle);
         }
         :global([data-bs-theme='dark']) &:hover {
-            color: $white;
-            background-color: $body-tertiary-bg-dark;
-        }
-    }
-    @include media-breakpoint-down(lg) {
-        .text-nowrap {
-            white-space: normal !important;
+            color: var(--bs-white);
+            background-color: var(--bs-tertiary-bg);
         }
     }
 </style>

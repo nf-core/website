@@ -66,12 +66,12 @@
 <div class="map m-auto" use:mapAction />
 
 <style lang="scss">
-    @import '../styles/_variables.scss';
     .map {
         height: 480px;
         width: 90%;
     }
-    @include media-breakpoint-down(md) {
+    @media (max-width: 767.98px) {
+        // md-breakpoint
         .map {
             height: 350px;
             width: 100%;

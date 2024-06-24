@@ -19,28 +19,37 @@
 <div {id} />
 
 <style lang="scss">
-    @import '../../styles/_variables.scss';
-
     :global(:root) {
-        --docsearch-text-color: #{$input-color};
-        --docsearch-searchbox-background: #{$input-bg};
+        --docsearch-text-color: var(--bs-body-color);
+        --docsearch-searchbox-background: var(--bs-body-bg);
         --docsearch-searchbox-shadow: none;
-        --docsearch-searchbox-focus-background: #{$input-bg};
-        --docsearch-primary-color: #{$nf-core-color};
-        --docsearch-container-background: #{rgba($black, 0.5)};
+        --docsearch-searchbox-focus-background: var(--bs-body-bg);
+        --docsearch-primary-color: #{var(--bs-success)};
+        --docsearch-container-background: #{rgba(var(--bs-black), 0.5)};
+        --docsearch-modal-background: #{var(--bs-body-bg)};
         --docsearch-modal-shadow: 'none';
         --docsearch-footer-shadow: none;
+        --docsearch-muted-color: #{var(--bs-secondary)};
     }
-    :global(.DocSearch-Modal) {
-        background: $body-secondary-bg;
+    :global([data-bs-theme='dark']:root) {
+        --docsearch-hit-color: #{var(--bs-body-color)};
+        --docsearch-hit-background: #{var(--bs-body-bg)};
+        --docsearch-hit-shadow: 'none';
+        --docsearch-footer-shadow: none;
+    }
+    // :global(.DocSearch-Modal) {
+    //     background: var(--bs-secondary-bg);
+    // }
+    :global(.DocSearch-Form) {
+        border: 1pt solid var(--bs-border-color);
     }
     :global(button.DocSearch-Button) {
-        border-radius: $border-radius;
+        border-radius: var(--bs-border-radius);
         margin-left: 0;
     }
     :global(button.DocSearch-Button .DocSearch-Button-Keys) {
         background: none;
-        border-radius: $border-radius-sm;
+        border-radius: var(--bs-border-radius-sm);
 
         //   padding: 0.2rem;
         margin-top: 0.15rem;
@@ -58,8 +67,8 @@
     }
     :global(.DocSearch-Button-Key, .DocSearch-Commands-Key) {
         align-items: center;
-        background: $white;
-        box-shadow: 0 0 0 1px $secondary;
+        background: var(--bs-body-bg);
+        box-shadow: 0 0 0 1px var(--bs-secondary);
         margin-right: 0.2rem;
         padding: 0;
     }
@@ -83,39 +92,10 @@
         line-height: 20px;
     }
 
-    :global([data-bs-theme='dark']:root) {
-        --docsearch-text-color: #{$input-color};
-        --docsearch-searchbox-background: #{$input-bg};
-        --docsearch-searchbox-shadow: none;
-        --docsearch-searchbox-focus-background: #{$input-bg};
-        --docsearch-primary-color: #{$nf-core-color-dark};
-        --docsearch-container-background: #{rgba($black, 0.5)};
-        --docsearch-modal-shadow: 'none';
-        --docsearch-hit-color: #{$body-color-dark};
-        --docsearch-hit-background: #{$body-bg-dark};
-        --docsearch-hit-shadow: 'none';
-        --docsearch-footer-background: #{$body-secondary-bg-dark};
-        --docsearch-footer-shadow: none;
-    }
     :global(.DocSearch-Hit-source) {
         font-size: 1rem;
     }
-
-    :global(.DocSearch-Container) {
-        @include media-breakpoint-down(xl) {
-            padding-top: 3rem;
-        }
-    }
-    :global(.double-navbar ~ .DocSearch-Container) {
-        @include media-breakpoint-down(xl) {
-            padding-top: 5rem;
-        }
-    }
-    :global([data-bs-theme='dark'] .DocSearch-Modal, [data-bs-theme='dark'] .DocSearch-Hit-source) {
-        background: $body-secondary-bg-dark;
-    }
-    :global([data-bs-theme='dark'] .DocSearch-Button-Key, [data-bs-theme='dark'] .DocSearch-Commands-Key) {
-        background: $black;
-        box-shadow: 0 0 0 1px $secondary-border-subtle-dark;
+    :global([data-bs-theme='dark'] .DocSearch-Hit[aria-selected='true'] a) {
+        background-color: rgba(var(--bs-success-rgb), 0.75);
     }
 </style>

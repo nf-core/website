@@ -47,9 +47,9 @@
 </div>
 
 <style lang="scss">
-    @import '@styles/_variables.scss';
-    input {
-        border-color: $border-color;
+    input,
+    .input-group-text {
+        border-color: var(--bs-border-color);
         &:focus {
             box-shadow: none;
         }
@@ -58,30 +58,15 @@
         margin-bottom: -1px;
     }
     .btn.copy-txt {
-        background-color: $border-color;
-        color: $body-color;
+        background-color: var(--bs-border-color);
+        color: var(--bs-body-color);
         border-top-right-radius: 3px;
         &:hover {
-            background-color: $secondary;
-            color: $white;
+            background-color: var(--bs-secondary);
+            color: var(--bs-white);
         }
         :global(.sidebar) & {
             border-bottom-right-radius: 0;
-        }
-    }
-
-    :global([data-bs-theme='dark']) {
-        input {
-            border-color: $border-color-dark;
-        }
-        & .btn.copy-txt {
-            background-color: $border-color-dark;
-            color: $body-color-dark;
-            &:hover,
-            &.active {
-                background-color: $secondary;
-                color: $white;
-            }
         }
     }
 </style>

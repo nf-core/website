@@ -11,51 +11,32 @@ import ThemeSwitch from '@components/ThemeSwitch.svelte';
 import { Icon } from 'astro-icon/components';
 import Search from '@components/navbar/Search.svelte';
 import { getCollection, type CollectionEntry } from 'astro:content';
+import type { SidebarEntry } from '@utils/types';
+
+import { findCurrentGroup } from '@utils/functions';
 
 export interface Props {
     navTocHeadings?: object[];
     title?: string;
-    sections?: {
-        section_name: string;
-        section_slug?: string;
-        children: {
-            title: string;
-            slug: string;
-            order?: number;
-        }[];
-    }[];
+    sections?: SidebarEntry[];
     showHiddenBtn?: boolean;
 }
 const { navTocHeadings = [], title, sections = [], showHiddenBtn = false } = Astro.props;
-let navbarTitle = [];
-if (sections?.length > 0) {
-    // construct the breadcrumb for the navbarNav element
-    let url = Astro.url.pathname;
-    const maxDepth = Math.max(3, url.split('/').length - 3);
-
-    const currentSection = sections.find((section) => {
-        return section.children.find((child) => {
-            return child.slug.startsWith(url.split('/').slice(0, maxDepth).join('/'));
-        });
-    });
-    const shortenedURL = url.replace(currentSection?.section_slug, '');
-    const currentChild = shortenedURL
-        ? currentSection?.children?.find((child) => {
-              return url.startsWith(child.slug);
-          })?.title
-        : '';
-    if (currentSection) {
-        navbarTitle = currentChild ? [currentSection?.section_name, currentChild] : [currentSection?.section_name];
+let navbarTitle: [string, string] | undefined;
+if (sections) {
+    const currentEntry = findCurrentGroup(sections).find((entry) => entry.isCurrent);
+    if (currentEntry && currentEntry.href) {
+        navbarTitle = [currentEntry.href.split('/')[1], currentEntry.label];
     }
 }
 let newBlogPost: CollectionEntry<'blog'> | undefined;
-newBlogPost = await getCollection('blog').then((posts) => {
-    return posts.find(
-        (post) =>
-            new Date(Date.now()) > new Date(post.data.pubDate) &&
-            new Date(post.data.pubDate) > new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
-    );
-});
+// newBlogPost = await getCollection('blog').then((posts) => { TODO: Replace this with a query to an endpoint
+//     return posts.find(
+//         (post) =>
+//             new Date(Date.now()) > new Date(post.data.pubDate) &&
+//             new Date(post.data.pubDate) > new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
+//     );
+// });
 ---
 
 <nav
@@ -104,12 +85,8 @@ newBlogPost = await getCollection('blog').then((posts) => {
                         <li><a class="dropdown-item" href="/modules/">Modules</a></li>
                         <li><a class="dropdown-item" href="/subworkflows/">Subworkflows</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><span class="dropdown-header">Configs & tools</span></li>
+                        <li><span class="dropdown-header">Configs</span></li>
                         <li><a class="dropdown-item" href="/configs/">Shared configs</a></li>
-                        <li><a class="dropdown-item" href="/tools/">Tools</a></li>
-                        <li>
-                            <a class="dropdown-item" href="/tools/docs/latest/index">Linting Docs</a>
-                        </li>
                     </ul>
                 </li>
                 <li class="nav-item p-1 px-3 px-xl-1">
@@ -228,7 +205,7 @@ newBlogPost = await getCollection('blog').then((posts) => {
         </div>
     </div>
     {
-        sections && sections.length > 0 && navbarTitle[0] !== undefined && (
+        sections && sections.length > 0 && navbarTitle && navbarTitle[0] !== undefined && (
             <NavbarDocsNav client:visible>
                 <NavbarDocsNavTitle slot="title" title={navbarTitle.flat()} />
                 <SidebarNav slot="menu" items={sections} />
