@@ -59,7 +59,7 @@ Or form a quorum, if you will.
 
         <a href="https://doi.org/10.1038/nprot.2014.170"><Image class="d-block m-auto" src={duplex_sequencing_schema} alt="Duplex Sequencing Schema from Kennedy et al 2014" height="400" /></a>
 
-Molecular barcodes can be added at various points in the library preparation process, including prior to or during amplification, for a single strand or to both strands of a double-stranded duplex molecule
+Molecular barcodes can be added at various points in the library preparation process, including prior to or during amplification, for a single strand or to both strands of a double-stranded duplex molecule.
 In particular, [Duplex Sequencing][duplex-sequencing-link] can be used to identify reads from both strands of a double-stranded source molecule, squashing strand-specific errors that can occur during library preparation (e.g. PCR errors, oxidative damage due to hybrid capture).
 
 This means UMIs can be found in the index/sample-barcoding reads (i7/i5 reads in Illumina parlance), or inline in the genomic/template reads themselves (R1/R2). Furthermore, there sometimes exists extra “spacer” sequence which should be removed prior to alignment and downstream analysis.
@@ -69,10 +69,10 @@ This means UMIs can be found in the index/sample-barcoding reads (i7/i5 reads in
 In [fgbio][fgbio-link], as well as in [fqtk][fqtk-link], [sgdemux][sgdemux-link], and also in [Picard][picard-link], [Read Structures][read-structure-link] are used to describe how the bases in a sequencing run should be allocated into logical reads.
 It serves a similar purpose to the `--use-bases-mask` in Illumina's `bcltofastq` software, but provides some additional capabilities.
 
-The following [handful of examples from the fgbio wiki][read-structure-examples-link] a attempt to describe the recommended way to describe a sequencing run in two different ways.
-Firstly as a single Read Structure for the entire run as you might use with [`picard IlluminaBasecallsToSam`][picard-illuminabasecallstosam-link], and secondly as a set of Read Structures that would map one-to-one with the physical reads after fastq-conversion and optionally adapter trimming (which will create variable length reads):
+The following [handful of examples from the fgbio wiki][read-structure-examples-link] demonstrate the recommended way to describe a sequencing run in two different ways.
+Firstly as a single Read Structure for the entire run as you might use with [`picard IlluminaBasecallsToSam`][picard-illuminabasecallstosam-link], and secondly as a set of Read Structures that would map one-to-one with the physical reads after fastq-conversion and optionally adapter trimming (which will create variable length reads).
 
-A few examples from the re shown below:
+A few examples:
 
 1. A simple 2x150bp paired end run with no sample or molecular indices:
 
@@ -95,7 +95,7 @@ A few examples from the re shown below:
 -   `[10M5S+T, 8B, 8B, 10M5S+T]`
 
 By utilizing the [fgbio toolkit][fgbio-homepage-link] and the [Read Structure][read-structure-link] description, [nf-core/fastquorum][nf-core-fastquorum-link] is able to support the diversity of molecular barcoding schemes.
-A few of commercially available are described below:
+A few that are commercially available are described below:
 
 | Assay                                                     | Company                     | Strand | Randomness | URL                                                                                                                                                                                 |
 | --------------------------------------------------------- | --------------------------- | ------ | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -109,13 +109,13 @@ A few of commercially available are described below:
 | Mutagenesis                                               | TwinStrand Biosciences      | Dual   | Random     | [link](https://twinstrandbio.com/mutagenesis-assay/)                                                                                                                                |
 | UMI Adapter System                                        | Twist Biosciences           | Dual   | Random     | [link](https://www.twistbioscience.com/products/ngs/library-preparation/twist-umi-adapter-system)                                                                                   |
 
-We are working with some of the vendors above to verify that their assays are supported by this pipeline by to obtain test/example data, along with appropriate parameters with which to run this pipeline.
+We are working with some of the vendors above to verify that their assays are supported by this pipeline by obtaining test/example data, along with appropriate parameters with which to run this pipeline.
 
 # fgbio: the Fulcrum Genomics Bioinformatics toolkit
 
 That brings us to [fgbio][fgbio-github-link].
 
-Like popular Bioinformatic toolkits like samtools, the `GATK`, and `bedtools`, `fgbio` is a collection of command line tools to analyze primary Genomics data developed by [Fulcrum Genomics][fulcrum-genomics-link].
+Similar to popular Bioinformatic toolkits samtools, the GATK, and bedtools, fgbio is a collection of command line tools developed by Fulcrum Genomics][fulcrum-genomics-link] to analyze primary Genomics data.
 Since its conception in 2015, `fgbio` has been downloaded from [Bioconda][fgbio-bioconda-link] over three-hundred thousand times, and we use it extensively with our clients at [Fulcrum Genomics][fulcrum-genomics-link].
 
         <Image class="d-block m-auto" src={bioconda_download} alt="Chart of Bioconda downloads placing fgbio with three-hundred-thousand downloads" height="300" />
@@ -129,21 +129,21 @@ Click the arrows below to expand specific topic areas for the tools:
 {/* prettier-ignore */}
 <details>
 <summary>Tools for working with Unique Molecular Indexes (UMIs, aka Molecular IDs/Barcodes):</summary>
--   Annotating/Extract Umis from read-level data: [`FastqToBam`][fgbio-fastqtobam-link], [`AnnotateBamWithUmis`][fgbio-annotatebamwithumis-link], [`ExtractUmisFromBam`][fgbio-extractumisfrombam-link], and [`CopyUmiFromReadName`][fgbio-copyumifromreadname-link].
--   Manipulate read-level data containing Umis: [`CorrectUmis`][fgbio-correctumis-link], [`GroupReadsByUmi`][fgbio-groupreadsbyumi-link], [`CallMolecularConsensusReads`][fgbio-callmolecularconsensusreads-link], [`CallDuplexConsensusReads`][fgbio-callduplexconsensusreads-link], and [`FilterConsensusReads`][fgbio-filterconsensusreads-link].
+-   Annotating/Extract UMIs from read-level data: [`FastqToBam`][fgbio-fastqtobam-link], [`AnnotateBamWithUmis`][fgbio-annotatebamwithumis-link], [`ExtractUmisFromBam`][fgbio-extractumisfrombam-link], and [`CopyUmiFromReadName`][fgbio-copyumifromreadname-link].
+-   Manipulate read-level data containing UMIs: [`CorrectUmis`][fgbio-correctumis-link], [`GroupReadsByUmi`][fgbio-groupreadsbyumi-link], [`CallMolecularConsensusReads`][fgbio-callmolecularconsensusreads-link], [`CallDuplexConsensusReads`][fgbio-callduplexconsensusreads-link], and [`FilterConsensusReads`][fgbio-filterconsensusreads-link].
 -   Collect metrics and review consensus reads: [`CollectDuplexSeqMetrics`][fgbio-collectduplexseqmetrics-link] and [`ReviewConsensusVariants`][fgbio-reviewconsensusvariants-link].
 </details>
 {/* prettier-ignore */}
 <details>
 <summary>Tools to manipulate read-level data:</summary>
--   Fastq Manipulation: [`FastqToBam`][fgbio-fastqtobam-link], [`ZipperBams`][fgbio-zipperbams-link], and [`DemuxFastqs`][fgbio-demuxfastqs-link] (see [`fqtk`][fqtk-link], our rust re-implementation for sample demultiplexing).
+-   FASTQ Manipulation: [`FastqToBam`][fgbio-fastqtobam-link], [`ZipperBams`][fgbio-zipperbams-link], and [`DemuxFastqs`][fgbio-demuxfastqs-link] (see [`fqtk`][fqtk-link], our rust re-implementation for sample demultiplexing).
 -   Filter, clip, randomize, sort, and update metadata for read-level data: [`FilterBam`][fgbio-filterbam-link], [`ClipBam`][fgbio-clipbam-link], [`RandomizeBam`][fgbio-randomizebam-link], [`SortBam`][fgbio-sortbam-link], [`SetMateInformation`][fgbio-setmateinformation-link] and [`UpdateReadGroups`][fgbio-updatereadgroups-link].
 </details>
 {/* prettier-ignore */}
 <details>
 <summary>Tools for quality control assessment:</summary>
 -   Detailed substitution error rate evaluation: [`ErrorRateByReadPosition`][fgbio-errorratebyreadposition-link].
--   Sample pooling QC: [`EstimatePoolingFractions`]: [fgbio-estimatepoolingfractions-link].
+-   Sample pooling QC: [`EstimatePoolingFractions`][fgbio-estimatepoolingfractions-link].
 -   Splice-aware insert size QC for RNA-seq libraries: [`EstimateRnaSeqInsertSize`][fgbio-estimaternaseqinsertsize-link].
 </details>
 {/* prettier-ignore */}
