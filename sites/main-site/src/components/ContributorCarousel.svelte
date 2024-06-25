@@ -5,6 +5,14 @@
     let contributors = contributors_yml.contributors
         .filter((contributor) => contributor.image_fn)
         .sort((a, b) => 0.5 - Math.random());
+
+    let displayContributors = contributors.slice(0, 10); // start by displaying 10 contributors
+
+    function addMoreContributors() {
+        let moreContributors = contributors.slice(displayContributors.length, displayContributors.length + 5);
+        displayContributors = displayContributors.concat(moreContributors);
+    }
+    setInterval(addMoreContributors, 10000); // Add more contributors every 10 seconds
 </script>
 
 <div id="community" class="homepage-usedby">
@@ -24,7 +32,7 @@
 
         <div class="homepage_contrib_logos">
             <Marquee pauseOnHover={true} speed={50}>
-                {#each contributors as contributor (contributor)}
+                {#each displayContributors as contributor (contributor)}
                     <a href="/contributors/#{contributor.full_name.toLowerCase().replace(/[^a-z]+/i, '-')}">
                         <img
                             src="/images/contributors/white/{contributor.image_fn}"
