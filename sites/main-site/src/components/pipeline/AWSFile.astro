@@ -14,9 +14,9 @@ const hrefPrefix = 'https://nf-core-awsmegatests.s3-eu-west-1.amazonaws.com/';
 <span class="list-group-item list-group-item-action">
     <div class="row align-items-center">
         <div class="col">
-            <a href={'?file=' + item.name}
+            <a href={'?file=' + item.name} class="text-decoration-none"
                 >{fileIcon ? <span class={fileIcon + ' file-icon me-2'} /> : <i class="fa-regular fa-file me-2" />}
-                <span>{item.name}</span></a
+                <span class="file-name">{item.name}</span></a
             >
         </div>
         <span class="col">{formatDistanceToNow(new Date(item.lastModified))}</span>
@@ -27,3 +27,13 @@ const hrefPrefix = 'https://nf-core-awsmegatests.s3-eu-west-1.amazonaws.com/';
         </span>
     </div>
 </span>
+
+<style>
+    a:hover {
+        color: var(--bs-body-color);
+        .file-name {
+            text-decoration: underline;
+            text-underline-offset: 0.2em;
+        }
+    }
+</style>
