@@ -1,6 +1,6 @@
 <script lang="ts">
     import { EventIsOngoing } from '@components/store';
-    import { formatDistanceToNow, set } from 'date-fns';
+    import { formatDistanceToNow } from 'date-fns';
     import ExportEventButton from '@components/event/ExportEventButton.svelte';
     import VideoButton from '@components/VideoButton.svelte';
     import { onMount } from 'svelte';
@@ -128,12 +128,6 @@
             .sort((a, b) => {
                 return new Date(b.data.start).getTime() - new Date(a.data.start).getTime();
             });
-
-        if (events.length > 0) {
-            EventIsOngoing.set(true);
-        } else {
-            EventIsOngoing.set(false);
-        }
     }
 
     let heading_title = event_time_category.charAt(0).toUpperCase() + event_time_category.slice(1) + ' event';

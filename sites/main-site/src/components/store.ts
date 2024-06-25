@@ -36,6 +36,15 @@ export const EventIsOngoing = persistentAtom('EventIsOngoing', false, {
     },
 });
 
+export const newBlogPost = persistentAtom('newBlogPost', false, {
+    encode(value) {
+        return JSON.stringify(value);
+    },
+    decode(value) {
+        return JSON.parse(value);
+    },
+});
+
 export const SearchQuery = atom('');
 export const showHidden = atom(false);
 export const showHelp = atom(false);
