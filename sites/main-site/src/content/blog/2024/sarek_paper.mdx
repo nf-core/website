@@ -9,7 +9,7 @@ authors:
     - 'maxulysse'
 label:
     - 'pipeline'
-embedHeaderImage: false
+embedHeaderImage: true
 ---
 
 import { YouTube } from '@astro-community/astro-embed-youtube';
@@ -35,7 +35,7 @@ cloud computing costs and generally reduce storage space and computational resou
 
 No nf-core pipeline without a metro map 🚇:
 
-<Image src={sarek_subway} alt="Metromap of nf-core/sarek" height="500" />
+<Image src={sarek_subway} alt="Metromap of nf-core/sarek" height="700" densities={[1.5, 2]} />
 
 # New tools
 
@@ -53,8 +53,8 @@ quality control options: When starting from variant-calling directly, all input 
 
 We ditched BAM format where possible and switched to CRAM saving us 4x work storage space.
 
-<Image src={cram_meme} alt="Toy story meme" height="300" />
-<Image src={cram_graph} alt="Bar chart showing reduction in storage space usage" height="300" />
+<Image src={cram_meme} alt="Toy story meme" height="300" densities={[1.5, 2]} />
+<Image src={cram_graph} alt="Bar chart showing reduction in storage space usage" height="400" densities={[1.5, 2]} />
 
 ## Split files (but not too much)
 
@@ -62,7 +62,7 @@ The `splitFastq()` operator was replaced by a FastP process to split the Fastq f
 alignment (default 12) plus replacing trimgalore! for read trimming.
 We also changed the default grouping of the intervals for BQSR to 21 (instead of 124) reducing storage space another 4x and speeding up processing.
 
-    <Image src={dataflow} alt="Evaluation of FastP usage and different interval group sizes for BQSR" height="300" />
+    <Image src={dataflow} alt="Evaluation of FastP usage and different interval group sizes for BQSR" height="500" densities={[1.5, 2]} />
 
 # Cost savings
 
@@ -76,8 +76,8 @@ by 70% to about $20 from FASTQs to annotated VCFs using Strelka, Manta, and VEP.
 We benchmarked the germline track with Illumina, MGI, and BGI GiaB samples and the somatic track with Seq2C samples.
 We recently joined the NCBench effort to continuously validate the pipeline on release.
 
-<Image src={illumina} alt="" height="300" />
-<Image src={not_illumina} alt="" height="300" />
+<Image src={illumina} alt="" height="385" densities={[1.5, 2]} />
+<Image src={not_illumina} alt="" height="385" densities={[1.5, 2]} />
 
 # Team work makes dream work
 
@@ -86,7 +86,7 @@ Susanne Jodoin](https://github.com/SusiJo), [Edmund Miller](https://github.com/E
 [Nick Smith](https://github.com/nickhsmith), [Gisela Gabernet](https://github.com/ggabernet), [Sven Nahnsen](https://uni-tuebingen.de/forschung/forschungsinfrastruktur/zentrum-fuer-quantitative-biologie-qbic/team/prof-dr-sven-nahnsen/),
 and many many others from the nf-core community:
 
-    <Image src={contributors} alt="" height="300" />
+    <Image src={contributors} alt="" height="500" densities={[1.5, 2]} />
 
 Also shout out to all the amazing people starting sarek way back in 2016:
 Szilveszter Juhos, Malin Larsson, Pall I. Olason, Marcel Martin, Jesper Eisfeldt,
@@ -102,4 +102,4 @@ and you’re welcome to join #sarek_dev if you really want to get involved.
 
 If you want to know more, here are some recent talks detailing the changes and development journey:
 
-    <YouTube id="https://www.youtube.com/watch?v=pfxEJJs63y8" /> <YouTube id="https://www.youtube.com/watch?v=ivHBfilnUIY" />
+    <YouTube id="https://www.youtube.com/watch?v=pfxEJJs63y8" poster='https://img.youtube.com/vi/pfxEJJs63y8/maxresdefault.jpg'/> <YouTube id="https://www.youtube.com/watch?v=ivHBfilnUIY" poster='https://img.youtube.com/vi/ivHBfilnUIY/maxresdefault.jpg' />
