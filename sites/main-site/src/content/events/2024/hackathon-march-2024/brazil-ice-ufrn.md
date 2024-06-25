@@ -1,6 +1,7 @@
 ---
 title: Hackathon - March 2024 (Natal)
 subtitle: Local node of the nf-core hackathon at Instituto do Cérebro, UFRN, Natal - Brazil
+shortTitle: Natal, Brazil
 type: hackathon
 startDate: '2024-03-18'
 startTime: '13:00+02:00'

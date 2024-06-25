@@ -198,7 +198,7 @@ Ensure you have read/signed up/joined/installed the following resources before t
 - If you haven’t already, set up a GitHub account and [join the nf-core GitHub organization](https://nf-co.re/join#github)
 - Join the nf-core slack and the [#hackathon-march-2023 channel](https://nfcore.slack.com/archives/C04U29Y97SB)
 - Create a Gather account using the email you used to register (see above)
-- Have [Nextflow](https://nextflow.io/), [nf-core/tools](https://nf-co.re/tools/#installation), and one of [Docker](https://docs.docker.com/get-docker/), Singularity, or [Conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)/[Mamba](https://mamba.readthedocs.io/en/latest/installation.html) installed on your computer
+- Have [Nextflow](https://nextflow.io/), [nf-core/tools](/docs/nf-core-tools/installation), and one of [Docker](https://docs.docker.com/get-docker/), Singularity, or [Conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)/[Mamba](https://mamba.readthedocs.io/en/latest/installation.html) installed on your computer
 - Familiarize yourself with the [documentation on the nf-core website](https://nf-co.re/docs)
 
 # How to hack!
@@ -302,7 +302,7 @@ The nf-core website and central tooling are always being improved. If you enjoy 
 
 ### Pipelines
 
-The pipelines group will focus on any pipeline-related work. This could be a DSL2 conversion of a pipeline, a new or improved feature for a pipeline, or an entirely new pipeline (please let us register a new pipeline already before the hackathon, following [our guidelines](https://nf-co.re/docs/contributing/adding_pipelines#before-you-start)). These are typically led by the main pipeline developers if they also attend the hackathon.
+The pipelines group will focus on any pipeline-related work. This could be a DSL2 conversion of a pipeline, a new or improved feature for a pipeline, or an entirely new pipeline (please let us register a new pipeline already before the hackathon, following [our guidelines](/docs/tutorials/adding_a_pipeline/overview#before-you-start)). These are typically led by the main pipeline developers if they also attend the hackathon.
 
 [<i class="fab fa-slack"></i> `#hackathon-march-2023-pipelines`](https://nfcore.slack.com/archives/C04UK9FMKN0)
 

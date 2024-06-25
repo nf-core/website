@@ -1,6 +1,7 @@
 ---
 title: Hackathon - March 2024
 subtitle: Local node of the nf-core hackathon at UKRI Hartree centre, Daresbury
+shortTitle: Daresbury, UK
 type: hackathon
 startDate: '2024-03-18'
 startTime: '10:00+00:00'
