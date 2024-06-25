@@ -1,5 +1,5 @@
 ---
-import EventIndicator from '@components/event/EventIndicator.svelte';
+import EventIndicator from '@components/navbar/EventIndicator.svelte';
 import NavbarToc from '@components/navbar/NavbarToc.svelte';
 import NavbarDocsNav from '@components/navbar/NavbarDocsNav.svelte';
 import NavbarDocsNavTitle from '@components/navbar/NavbarDocsNavTitle.astro';
@@ -10,10 +10,11 @@ import IconSocial from '@components/IconSocial.astro';
 import ThemeSwitch from '@components/ThemeSwitch.svelte';
 import { Icon } from 'astro-icon/components';
 import Search from '@components/navbar/Search.svelte';
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { findCurrentGroup } from '@utils/functions';
+import BlogPostLabel from '@components/navbar/BlogPostLabel.svelte';
 import type { SidebarEntry } from '@utils/types';
 
-import { findCurrentGroup } from '@utils/functions';
+await fetch('https://nf-co.re/ongoing'); // trigger the event and blog post indicator
 
 export interface Props {
     navTocHeadings?: object[];
@@ -29,14 +30,6 @@ if (sections) {
         navbarTitle = [currentEntry.href.split('/')[1], currentEntry.label];
     }
 }
-let newBlogPost: CollectionEntry<'blog'> | undefined;
-// newBlogPost = await getCollection('blog').then((posts) => { TODO: Replace this with a query to an endpoint
-//     return posts.find(
-//         (post) =>
-//             new Date(Date.now()) > new Date(post.data.pubDate) &&
-//             new Date(post.data.pubDate) > new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
-//     );
-// });
 ---
 
 <nav
@@ -94,8 +87,8 @@ let newBlogPost: CollectionEntry<'blog'> | undefined;
                 </li>
                 <li class="nav-item p-1 px-3 px-xl-1 dropdown">
                     <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
-                        {newBlogPost && <Icon name="circle" class="new-post" />}
-                        <EventIndicator client:idle><Icon name="circle" /></EventIndicator>
+                        <EventIndicator type={'blog'} client:idle><Icon name="circle" /></EventIndicator>
+                        <EventIndicator type={'event'} client:idle><Icon name="circle" /></EventIndicator>
                         Community
                     </a>
                     <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
@@ -103,19 +96,13 @@ let newBlogPost: CollectionEntry<'blog'> | undefined;
                         <li class="">
                             <a class="dropdown-item d-flex align-items-center justify-content-between" href="/blog/"
                                 >Blog
-                                {
-                                    newBlogPost && (
-                                        <span class="float-end text-primary-emphasis  border border-primary badge rounded-pill fw-normal text btn-sm text-nowrap ">
-                                            new post
-                                        </span>
-                                    )
-                                }
-                            </a>
+                                <BlogPostLabel client:idle /></a
+                            >
                         </li>
                         <li><hr class="dropdown-divider" /></li>
                         <li>
                             <span class="dropdown-header">
-                                <EventIndicator client:idle><Icon name="circle" /></EventIndicator>
+                                <EventIndicator client:idle type={'event'}><Icon name="circle" /></EventIndicator>
                                 Events
                             </span>
                         </li>
@@ -270,13 +257,6 @@ let newBlogPost: CollectionEntry<'blog'> | undefined;
         fill: $navbar-light-color;
         :global(.active) & {
             fill: $white;
-        }
-    }
-    :global(.new-post) {
-        width: 10pt;
-        color: $primary;
-        & symbol {
-            fill: $danger;
         }
     }
 </style>
