@@ -87,6 +87,7 @@ export default defineConfig({
     build: {
         inlineStylesheets: 'auto',
         format: 'file',
+        assetsPrefix: 'https://npm-pipeline-results.netlify.app/',
     },
     vite: {
         plugins: [
