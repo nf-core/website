@@ -16,7 +16,8 @@
         "build-without-cache": "npm run build-cache-no-tar && astro build",
         "preview": "astro preview",
         "build-pipeline-json": "tar -xf ../../.cache.tar.xz && node ../../bin/pipelines.json.js && tar -cvJf ../../.cache.tar.xz ../../.cache",
-        "build-component-json": "node ../../bin/components.json.js"
+        "build-component-json": "node ../../bin/components.json.js",
+        "test": "playwright test"
     },
     "dependencies": {
         "@astrojs/mdx": "^3.1.2",
