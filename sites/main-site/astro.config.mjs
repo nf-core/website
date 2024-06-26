@@ -40,7 +40,6 @@ pipelines_json.remote_workflows.map(
         (pipelineNames[`${pipeline.name}/*`] =
             `https://npm-workspace--npm-pipelines.netlify.app/${pipeline.name}:splat 200!`),
 );
-console.log(pipelineNames);
 // https://astro.build/config
 export default defineConfig({
     site: 'https://nf-co.re/',
