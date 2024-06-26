@@ -5,18 +5,12 @@
     "private": true,
     "scripts": {
         "dev": "astro dev",
-        "start": "astro dev",
-        "build-preview": "astro build && astro preview",
-        "build-cache": "npm run build-pipeline-json && npm run build-component-json && npm run build-md-cache",
-        "build-md-cache": "node ../../bin/build-cache.js && tar -cvJf ../../.cache.tar.xz ../../.cache && node ../../bin/build-content-collection",
-        "build-md-cache-force": "node ../../bin/build-cache.js --force && tar -cvJf ../../.cache.tar.xz ../../.cache && node ../../bin/build-content-collection",
-        "build-cache-no-tar": "npm run build-pipeline-json && npm run build-component-json && node ../../bin/build-cache.js && node ../../bin/build-content-collection",
-        "build-cache-force": "npm run build-pipeline-json && npm run build-component-json && npm run build-md-cache-force",
         "build": "tar -xf ../../.cache.tar.xz &&  NODE_OPTIONS='--max-old-space-size=4096' astro build",
+        "build-md-cache": "node ../../bin/build-cache.js && tar -cvJf ../../.cache.tar.xz ../../.cache",
+        "build-md-cache-force": "node ../../bin/build-cache.js --force && tar -cvJf ../../.cache.tar.xz ../../.cache",
+        "build-cache-no-tar": "node ../../bin/build-cache.js",
         "build-without-cache": "npm run build-cache-no-tar && astro build",
-        "preview": "astro preview",
-        "build-pipeline-json": "tar -xf ../../.cache.tar.xz && node ../../bin/pipelines.json.js && tar -cvJf ../../.cache.tar.xz ../../.cache",
-        "build-component-json": "node ../../bin/components.json.js"
+        "test": "playwright test"
     },
     "dependencies": {
         "@astro-community/astro-embed-youtube": "^0.5.2",
@@ -43,6 +37,7 @@
         "@iconify-json/simple-icons": "^1.1.107",
         "@iconify/utils": "^2.1.25",
         "@nanostores/persistent": "^0.10.1",
+        "@octokit/types": "^13.5.0",
         "astro": "^4.11.1",
         "astro-icon": "^1.1.0",
         "astro-remark-description": "^1.1.2",
