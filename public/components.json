@@ -5720,6 +5720,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -18328,6 +18332,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -30436,6 +30444,78 @@
         ],
         "maintainers": [
           "@maxibor"
+        ]
+      }
+    },
+    {
+      "name": "datavzrd",
+      "path": "modules/nf-core/datavzrd/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "datavzrd",
+        "description": "Datavzrd is a tool to create visual HTML reports from collections of CSV/TSV tables.",
+        "keywords": [
+          "visualisation",
+          "tsv",
+          "csv"
+        ],
+        "tools": [
+          {
+            "datavzrd": {
+              "description": "Datavzrd is a tool to create visual HTML reports from collections of CSV/TSV tables.",
+              "homepage": "https://datavzrd.github.io/",
+              "documentation": "https://datavzrd.github.io/docs/index.html",
+              "tool_dev_url": "https://github.com/datavzrd/datavzrd",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "config_file": {
+              "type": "file",
+              "description": "configuration file used for visualisation",
+              "pattern": "*.{yml,yaml}"
+            }
+          },
+          {
+            "table": {
+              "type": "file",
+              "description": "file used for visualisation",
+              "pattern": "*.{tsv,csv}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "report": {
+              "type": "directory",
+              "description": "directory with HTML report of provided CSV/TSV files",
+              "pattern": "/output/"
+            }
+          }
+        ],
+        "authors": [
+          "@vickylaram",
+          "@famosab"
+        ],
+        "maintainers": [
+          "@famosab"
         ]
       }
     },
@@ -68945,6 +69025,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -79178,6 +79262,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
