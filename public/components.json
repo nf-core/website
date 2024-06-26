@@ -5716,6 +5716,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -18320,6 +18324,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -26415,7 +26423,9 @@
               "documentation": "https://concoct.readthedocs.io/en/latest/index.html",
               "tool_dev_url": "https://github.com/BinPro/CONCOCT",
               "doi": "10.1038/nmeth.3103",
-              "licence": "['FreeBSD']"
+              "licence": [
+                "FreeBSD"
+              ]
             }
           }
         ],
@@ -26427,7 +26437,7 @@
             }
           },
           {
-            "coverage": {
+            "coverage_file": {
               "type": "file",
               "description": "Subcontig coverage TSV table (typically generated with concoct_coverage_table.py)",
               "pattern": "*.tsv"
@@ -26728,7 +26738,9 @@
               "documentation": "https://concoct.readthedocs.io/en/latest/index.html",
               "tool_dev_url": "https://github.com/BinPro/CONCOCT",
               "doi": "10.1038/nmeth.3103",
-              "licence": "['FreeBSD']"
+              "licence": [
+                "FreeBSD"
+              ]
             }
           }
         ],
@@ -26815,7 +26827,9 @@
               "documentation": "https://concoct.readthedocs.io/en/latest/index.html",
               "tool_dev_url": "https://github.com/BinPro/CONCOCT",
               "doi": "10.1038/nmeth.3103",
-              "licence": "['FreeBSD']"
+              "licence": [
+                "FreeBSD"
+              ]
             }
           }
         ],
@@ -68927,6 +68941,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -79160,6 +79178,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
