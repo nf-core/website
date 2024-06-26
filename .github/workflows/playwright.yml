@@ -34,8 +34,11 @@ jobs:
         run: |
           CHANGED_DIRECTORY=$(git diff --name-only HEAD~1 HEAD | grep 'sites/' | cut -d/ -f2 | uniq) >> $GITHUB_OUTPUT
 
-      - name: Run Playwright tests
-        run: npm run test -w ${{ steps.determine_changed_directory.outputs.CHANGED_DIRECTORY }}
+      - name: Loop through changed directories and run Playwright tests
+        run: |
+          for dir in $CHANGED_DIRECTORY; do
+            npm run test -w $dir
+          done
         env:
           PLAYWRIGHT_TEST_BASE_URL: 'https://deploy-preview-${{github.event.pull_request.number}}--nf-core.netlify.app'
       - uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808 # v4
