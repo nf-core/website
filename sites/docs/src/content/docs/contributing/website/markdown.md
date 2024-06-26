@@ -256,6 +256,7 @@ process {
 ````md
 ```mermaid
 %% https://xkcd.com/1195/
+
 graph TD
     start[Start] --> trap{Hey, wait, <br/> this flowchart <br/> is a trap!}
     trap -- yes --> trap
