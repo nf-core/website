@@ -8,11 +8,4 @@ import baseConfig from '../../playwright.config';
 export default defineConfig({
     ...baseConfig,
     testDir: './tests/',
-    /* Run your local dev server before starting the tests */
-    webServer: {
-        command: 'npm run dev',
-        url: 'http://localhost:4321/',
-        timeout: 120 * 1000,
-        reuseExistingServer: false,
-    },
 });
