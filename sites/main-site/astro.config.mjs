@@ -21,7 +21,7 @@ import remarkDirective from 'remark-directive';
 import emoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
-import remarkDescription from 'astro-remark-description';
+import pipelines_json from './public/pipelines.json';
 import markdownIntegration from '@astropub/md';
 import icon from 'astro-icon';
 
@@ -33,15 +33,23 @@ import icon from 'astro-icon';
 // pipelines_json.remote_workflows.map(
 //     (pipeline) => (latestPipelineReleases[pipeline.name] = `/${pipeline.name}/${pipeline.releases[0].tag_name}/`),
 // );
+
+let pipelineNames = {};
+pipelines_json.remote_workflows.map(
+    (pipeline) =>
+        (pipelineNames[`${pipeline.name}/*`] =
+            `https://npm-workspace--npm-pipelines.netlify.app/${pipeline}:splat 200`),
+);
+console.log(pipelineNames);
 // https://astro.build/config
 export default defineConfig({
     site: 'https://nf-co.re/',
     output: 'hybrid',
     adapter: netlify(),
     prefetch: false,
-    // redirects: {
-    //     ...latestPipelineReleases,
-    // },
+    redirects: {
+        ...pipelineNames,
+    },
     integrations: [
         svelte(),
         icon({
