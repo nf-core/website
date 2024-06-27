@@ -56,7 +56,7 @@ bars with different columns / layouts.
 
 Get a number of renderables for the progress display.
 
-### _`class{:python}`_`nf_core.download.DownloadWorkflow(pipeline=None, revision=None, outdir=None, compress_type=None, force=False, platform=False, download_configuration=None, container_system=None, container_library=None, container_cache_utilisation=None, container_cache_index=None, parallel_downloads=4){:python}`
+### _`class{:python}`_`nf_core.download.DownloadWorkflow(pipeline=None, revision=None, outdir=None, compress_type=None, force=False, platform=False, download_configuration=None, additional_tags=None, container_system=None, container_library=None, container_cache_utilisation=None, container_cache_index=None, parallel_downloads=4){:python}`
 
 Bases: `object`
 
@@ -66,10 +66,18 @@ Can also download its Singularity container image if required.
 
 - **Parameters:**
   - **pipeline** (_str_) – A nf-core pipeline name.
-  - **revision** (_List_ \*\[\*_str_ _]_) – The workflow revision to download, like 1.0. Defaults to None.
-  - **container** (_bool_) – Flag, if the Singularity container should be downloaded as well. Defaults to False.
-  - **platform** (_bool_) – Flag, to customize the download for Seqera Platform (convert to git bare repo). Defaults to False.
+  - **revision** (_List_ \*\[\*_str_ _]_) – The workflow revision(s) to download, like 1.0 or dev . Defaults to None.
   - **outdir** (_str_) – Path to the local download directory. Defaults to None.
+  - **compress_type** (_str_) – Type of compression for the downloaded files. Defaults to None.
+  - **force** (_bool_) – Flag to force download even if files already exist (overwrite existing files). Defaults to False.
+  - **platform** (_bool_) – Flag to customize the download for Seqera Platform (convert to git bare repo). Defaults to False.
+  - **download_configuration** (_str_) – Download the configuration files from nf-core/configs. Defaults to None.
+  - **tag** (_List_ \*\[\*_str_ _]_) – Specify additional tags to add to the downloaded pipeline. Defaults to None.
+  - **container_system** (_str_) – The container system to use (e.g., “singularity”). Defaults to None.
+  - **container_library** (_List_ \*\[\*_str_ _]_) – The container libraries (registries) to use. Defaults to None.
+  - **container_cache_utilisation** (_str_) – If a local or remote cache of already existing container images should be considered. Defaults to None.
+  - **container_cache_index** (_str_) – An index for the remote container cache. Defaults to None.
+  - **parallel_downloads** (_int_) – The number of parallel downloads to use. Defaults to 4.
 
 #### `compress_download(){:python}`
 
@@ -287,7 +295,7 @@ before to ensure that it is really the base name.
 
 Edit the downloaded nextflow.config file to use the local config files
 
-### _`class{:python}`_`nf_core.download.WorkflowRepo(remote_url, revision, commit, location=None, hide_progress=False, in_cache=True){:python}`
+### _`class{:python}`_`nf_core.download.WorkflowRepo(remote_url, revision, commit, additional_tags, location=None, hide_progress=False, in_cache=True){:python}`
 
 Bases: `SyncedRepo`
 
@@ -296,6 +304,8 @@ An object to store details about a locally cached workflow repository.
 Important Attributes:
 : fullname: The full name of the repository, `nf-core/{self.pipelinename}`.
 local_repo_dir (str): The local directory, where the workflow is cloned into. Defaults to `$HOME/.cache/nf-core/nf-core/{self.pipeline}`.
+
+#### `__add_additional_tags(){:python}`
 
 #### `access(){:python}`
 
@@ -319,6 +329,8 @@ Get all branches from a remote repository
 - **Return type:**
   (set\[str])
 
+#### _`property{:python}`_`heads{:python}`
+
 #### `retry_setup_local_repo(skip_confirm=False){:python}`
 
 #### `setup_local_repo(remote, location=None, in_cache=True){:python}`
@@ -333,6 +345,8 @@ the provided remote URL and returns a git.Repo of the new clone.
   - **in_cache** (_bool_ _,_ _optional_) – Whether to clone the repository from the cache. Defaults to False.
 
 Sets self.repo
+
+#### _`property{:python}`_`tags{:python}`
 
 #### `tidy_tags_and_branches(){:python}`
 

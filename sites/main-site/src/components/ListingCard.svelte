@@ -13,7 +13,7 @@
         <slot name="card-body" />
     </div>
     {#if footer}
-        <div class="card-footer">
+        <div class="card-footer h-100">
             <slot name="card-footer" />
         </div>
     {/if}

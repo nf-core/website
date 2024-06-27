@@ -1,6 +1,7 @@
 import admonitionsPlugin from '../../bin/remark-admonitions';
 import { mermaid } from '../../bin/remark-mermaid.ts';
-// import pipelines_json from './public/pipelines.json';
+import { rehypeCheckboxParser } from '../../bin/rehype-checkbox-parser.ts';
+import { rehypeHeadingNumbers } from '../../bin/rehype-heading-numbers.ts';
 import mdx from '@astrojs/mdx';
 import netlify from '@astrojs/netlify';
 import partytown from '@astrojs/partytown';
@@ -202,6 +203,8 @@ export default defineConfig({
                     }
                 },
             ],
+            rehypeCheckboxParser,
+            rehypeHeadingNumbers,
             [
                 rehypePrettyCode,
                 {
