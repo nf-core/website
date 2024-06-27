@@ -1,4 +1,5 @@
 ---
+import SpecialInterestGroupsListing from '@components/SpecialInterestGroupsListing.svelte';
 import ListingLayout from '@layouts/ListingLayout.astro';
 import { getCollection } from 'astro:content';
 let groups = await getCollection('special-interest-groups');
@@ -16,7 +17,6 @@ groups = groups
         <i class="fa-solid fa-circle-info me-2"></i>
         To find out more about Special Interest Groups, read the <a href='/blog/2024/special_interest_groups'>announcement blog post</a>.
     `
-    specialInterestGroups={groups}
     displayStyle={[
         { name: 'grid', icon: 'fa-regular fa-grid-2' },
         { name: 'table', icon: 'fa-regular fa-bars' },
@@ -24,4 +24,6 @@ groups = groups
     viewTransitions={true}
     filter={[]}
     sortBy={[]}
-/>
+>
+    <SpecialInterestGroupsListing groups={groups} client:load slot="listing-components" />
+</ListingLayout>
