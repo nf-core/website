@@ -1,6 +1,5 @@
 import admonitionsPlugin from '../../bin/remark-admonitions';
 import mermaid from '../../bin/remark-mermaid';
-import pipelines_json from './public/pipelines.json';
 import mdx from '@astrojs/mdx';
 import netlify from '@astrojs/netlify';
 import partytown from '@astrojs/partytown';
