@@ -49,8 +49,17 @@ You should then be able to access the website in your browser at [http://localho
 
 ### File structure
 
-We follow Astro's [file structure](https://docs.astro.build/guides/project-structure) for the website.
-The main files are:
+We follow for the website, with a mono-repo setup.
+The main sub-sites are:
+
+- `sites/main-site` - The main nf-core website, including components, events, blog posts
+- `sites/configs` - listing pages for nf-core configs
+- `sites/docs` - docs pages
+- `sites/modules-subworkflows` - modules and subworkflows pages
+- `sites/pipelines` - pipeline pages
+- `sites/pipeline-results` - AWS megatest result pages for each pipeline (split up from the rest to allow static generation of the main pipeline pages)
+
+Each site has its own `src` directory with the following structure, typical for an [Astro project](https://docs.astro.build/guides/project-structure):
 
 - `src/pages/` - Astro pages
 - `src/content/` - [Astro content collections](https://docs.astro.build/en/guides/content-collections/) (markdown files for events, docs, blog)
@@ -125,10 +134,26 @@ npm run build-component-json
 npm run build-cache-force
 ```
 
+### Adding a new sub-site to the mono-repo
+
+The following steps are necessary to add a new sub-site to the mono-repo:
+
+- [ ] Copy the `sites/pipelines` directory to a new directory with the name of the new sub-site, e.g. newsite.
+- [ ] Update the following files in the new directory:
+
+  - [ ] `astro.config.mjs`
+    - [ ] Update the `assetsPrefix` field to point to the new site's netlify URL, e.g. `assetsPrefix: 'https://nf-core-website-newsite.netlify.app/'`.
+  - [ ] `package.json` - Update the `name` field to the new site name, e.g. `"name": "newsite"`.
+  - [ ] `netlify.toml` - Update the paths in the `command` and the `ignore` field to point to the new site's source directory, e.g.
+
+  ```toml
+  command = "npm run build -w sites/newsite"
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF sites/main-site/src/components sites/newsite"
+  ```
+
 ### Tools API docs
 
-Tools docs are built using GitHub Actions on the nf-core/tools repo using Sphinx.
-[These actions](https://github.com/nf-core/tools/blob/master/.github/workflows/tools-api-docs-release.yml) sync the built HTML files via FTP.
+nf-core/tools API reference docs are built using Sphinx via the `add-tools-api-docs.yml` GitHub Action and a webhook from the nf-core/tools repo.
 
 ## Contribution guidelines
 
