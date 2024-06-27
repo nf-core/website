@@ -134,7 +134,9 @@
 </div>
 
 <style lang="scss">
-    @import '@styles/_variables.scss';
+    @import 'bootstrap/scss/functions';
+    @import 'bootstrap/scss/mixins';
+    @import 'bootstrap/scss/variables';
     .card.rounded-0 {
         border-left: 5px solid;
     }
