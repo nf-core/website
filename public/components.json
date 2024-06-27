@@ -5724,6 +5724,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -17941,6 +17945,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -61999,7 +62007,8 @@
         "maintainers": [
           "@joseespinosa",
           "@drpatelh",
-          "@jfy133"
+          "@jfy133",
+          "@gallvp"
         ]
       },
       "pipelines": [
@@ -68690,6 +68699,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
         {
           "name": "isoseq",
           "version": "1.1.5"
@@ -79262,6 +79275,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -119989,6 +120006,13 @@
               "description": "Text file containing counts of constant sites",
               "pattern": "*.{sites.txt}"
             }
+          },
+          {
+            "constant_sites_string": {
+              "type": "integer",
+              "description": "Value with the number of constant sites",
+              "pattern": "*.{sites.txt}"
+            }
           }
         ],
         "authors": [
@@ -137900,6 +137924,10 @@
           "version": "3.2.2"
         },
         {
+          "name": "magmap",
+          "version": "dev"
+        },
+        {
           "name": "metatdenovo",
           "version": "1.0.1"
         },
@@ -138066,6 +138094,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "magmap",
+          "version": "dev"
         },
         {
           "name": "metatdenovo",
