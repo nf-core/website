@@ -70,7 +70,7 @@ Each site has its own `src` directory with the following structure, typical for 
 
 ## Adding an event
 
-To add an event, create a new markdown (or .mdx) file in `src/content/events/` with the following frontmatter:
+To add an event, create a new markdown (or .mdx) file in `sites/main-site/src/content/events/` with the following frontmatter:
 
 ```yaml
 title: "Event Title"
@@ -84,10 +84,11 @@ announcement:
   text: "Text on the announcement banner" # (optional)
   start: "YYYY-MM-DDTHH:MM:SS+HH:MM" # (required if announcement.text is used)
   end: "YYYY-MM-DDTHH:MM:SS+HH:MM" # (required if announcement.text is used)
-locationName: "Name of the location" # (optional)
-locationURL: "URL to the location or to the section in the text with location description (e.g. `#gather-town`)" # (optional)
-locationLatLng: [48.2082, 16.3738] # Latitude and longitude of the location as an array " (optional)
-address: "Address of the location" (optional)
+locations: # (optional)
+  name: "Name of the location" # (optional)
+  links: "URL(s) to the location or to the section in the text with location description (e.g. `#gather-town`)" # (optional)
+  geoCoordinates: [48.2082, 16.3738] # Latitude and longitude of the location as an array " (optional)
+  address: "Address of the location" #(optional)
 duration: "Duration of the event in days" (optional)
 embedAt: "in case this should be shown in the sidebar of a pipeline page (e.g. for a bytesize talk about the pipeline)" (optional)
 importTypeform: true # If true, the event will be imported from a Typeform (see below)
@@ -95,7 +96,7 @@ importTypeform: true # If true, the event will be imported from a Typeform (see 
 
 ## Adding a blog post
 
-To add a blog post, create a new markdown (or mdx) file in `src/content/blog/` with the following frontmatter:
+To add a blog post, create a new markdown (or mdx) file in `sites/main-site/src/content/blog/` with the following frontmatter:
 
 ```yaml
 title: "Your Blog Post Title"
@@ -113,7 +114,7 @@ announcement:
 
 ### Adding an announcement banner
 
-You can show a short announcement banner on the website by adding additional information to the frontmatter of either a file inside `src/content/blog` or `src/content/events`. The following fields are available:
+You can show a short announcement banner on the website by adding additional information to the frontmatter of either a file inside `sites/main-site/src/content/blog` or `sites/main-site/src/content/events`. The following fields are available:
 
 ```yaml
 announcement:
@@ -161,7 +162,7 @@ If you are looking forward to contribute to the website or add your institution 
 
 ### Crafting a Blog Post
 
-To publish a new blog post on the website, you'll need to create a Markdown file within the `src/content/blog/` directory. In this file, include the following frontmatter at the beginning:
+To publish a new blog post on the website, you'll need to create a Markdown file within the `sites/main-site/src/content/blog/` directory. In this file, include the following frontmatter at the beginning:
 
 ```yaml
 ---
