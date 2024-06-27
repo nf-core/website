@@ -3573,11 +3573,19 @@
               "documentation": "https://sanger-pathogens.github.io/ariba/",
               "tool_dev_url": "https://github.com/sanger-pathogens/ariba",
               "doi": "10.1099/mgen.0.000131",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
         "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+            }
+          },
           {
             "db_name": {
               "type": "string",
@@ -5112,6 +5120,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         },
         {
           "name": "rnafusion",
@@ -17418,10 +17430,22 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing genome information\ne.g. [ id:'sarscov2' ]\n"
+            }
+          },
+          {
             "index": {
               "type": "file",
               "description": "Bowtie genome index files",
               "pattern": "*.ebwt"
+            }
+          },
+          {
+            "save_unaligned": {
+              "type": "boolean",
+              "description": "Whether to save fastq files containing the reads which did not align."
             }
           }
         ],
@@ -17434,17 +17458,24 @@
             }
           },
           {
-            "versions": {
-              "type": "file",
-              "description": "File containing software versions",
-              "pattern": "versions.yml"
-            }
-          },
-          {
             "fastq": {
               "type": "file",
               "description": "Unaligned FastQ files",
               "pattern": "*.fastq.gz"
+            }
+          },
+          {
+            "log": {
+              "type": "file",
+              "description": "Log file",
+              "pattern": "*.log"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
             }
           }
         ],
@@ -17494,6 +17525,12 @@
         ],
         "input": [
           {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing information about the genome fasta\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "Input genome fasta file"
@@ -17502,9 +17539,15 @@
         ],
         "output": [
           {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing nformation about the genome fasta\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
             "index": {
               "type": "file",
-              "description": "Bowtie genome index files",
+              "description": "Folder containing bowtie genome index files",
               "pattern": "*.ebwt"
             }
           },
@@ -17945,6 +17988,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -29906,7 +29953,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "crisprseq",
@@ -35847,7 +35894,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "phyloplace",
@@ -35938,7 +35985,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "phyloplace",
@@ -37849,7 +37896,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "atacseq",
@@ -41360,7 +41407,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "phyloplace",
@@ -41437,7 +41484,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "phyloplace",
@@ -41552,7 +41599,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "phyloplace",
@@ -64892,7 +64939,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "phyloplace",
@@ -64970,7 +65017,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "phyloplace",
@@ -65057,7 +65104,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "phyloplace",
@@ -65139,7 +65186,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "phyloplace",
@@ -69042,6 +69089,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -71986,7 +72037,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "bacass",
@@ -72866,6 +72917,20 @@
             "format": {
               "type": "string",
               "description": "Output format (PNG or GIF)."
+            }
+          },
+          {
+            "annot_a": {
+              "type": "file",
+              "description": "Annotation file in BED, Repeamasker, genePred or AGP format for the first (horizontal) sequence",
+              "pattern": "*.{bed,bed.gz,out,out.gz,rmsk.txt,rmsk.txt.gz,genePred,genePred.gz,gff,gff.gz,gtf,gtf.gz,gap.txt,gap.txt.gz}"
+            }
+          },
+          {
+            "annot_b": {
+              "type": "file",
+              "description": "Annotation file in BED, Repeamasker, genePred or AGP format for the second (vertical) sequence",
+              "pattern": "*.{bed,bed.gz,out,out.gz,rmsk.txt,rmsk.txt.gz,genePred,genePred.gz,gff,gff.gz,gtf,gtf.gz,gap.txt,gap.txt.gz}"
             }
           }
         ],
@@ -75962,7 +76027,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "multiplesequencealign",
@@ -79275,6 +79340,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -85537,7 +85606,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "bamtofastq",
@@ -96625,7 +96694,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "multiplesequencealign",
@@ -96653,7 +96722,9 @@
               "documentation": "https://github.com/broadinstitute/pilon/wiki/Requirements-&-Usage",
               "tool_dev_url": "https://github.com/broadinstitute/pilon",
               "doi": "10.1371/journal.pone.0112963",
-              "licence": "['GPL v2']"
+              "licence": [
+                "GPL-2.0-or-later"
+              ]
             }
           }
         ],
@@ -96661,7 +96732,7 @@
           {
             "meta": {
               "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              "description": "Groovy Map containing sample information for the fasta\ne.g. [ id:'test', single_end:false ]\n"
             }
           },
           {
@@ -96669,6 +96740,12 @@
               "type": "file",
               "description": "FASTA of the input genome",
               "pattern": "*.{fasta}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing sample information for the bam file\ne.g. [ id:'test', single_end:false ]\n"
             }
           },
           {
@@ -128260,7 +128337,9 @@
               "homepage": "http://www.usadellab.org/cms/?page=trimmomatic",
               "documentation": "https://github.com/usadellab/Trimmomatic",
               "doi": "10.1093/bioinformatics/btu170",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -128301,9 +128380,16 @@
             }
           },
           {
-            "log": {
+            "trim_log": {
               "type": "file",
-              "description": "trimmomatic log file",
+              "description": "trimmomatic log file, from the trim_log parameter",
+              "pattern": "*.log"
+            }
+          },
+          {
+            "out_log": {
+              "type": "file",
+              "description": "log of output from the standard out",
               "pattern": "*.log"
             }
           },
@@ -131059,7 +131145,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "atacseq",
@@ -134549,7 +134635,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "crisprseq",
@@ -134627,7 +134713,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         }
       ]
     },
@@ -134869,7 +134955,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         }
       ]
     },
@@ -139675,7 +139761,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "phyloplace",
@@ -145798,7 +145884,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "bacass",
@@ -146019,7 +146105,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "bacass",
@@ -146270,7 +146356,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "bacass",
