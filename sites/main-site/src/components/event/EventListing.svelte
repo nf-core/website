@@ -1,7 +1,7 @@
 <script lang="ts">
     import FilterBar from '@components/FilterBar.svelte';
     import EventCard from '@components/event/EventCard.svelte';
-    import { CurrentFilter, SearchQuery, EventIsOngoing } from '@components/store';
+    import { CurrentFilter, SearchQuery } from '@components/store';
     import { onMount } from 'svelte';
 
     export let events = [];
@@ -64,13 +64,6 @@
         const today = new Date();
         return event.data.start < today && event.data.end > today;
     });
-
-    $: if (currentEvents.length > 0) {
-        EventIsOngoing.set(true);
-    } else {
-        EventIsOngoing.set(false);
-    }
-
     const event_type_classes = {
         bytesize: 'success',
         hackathon: 'primary',
