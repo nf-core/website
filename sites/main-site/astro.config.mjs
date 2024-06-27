@@ -53,7 +53,7 @@ export default defineConfig({
     adapter: netlify(),
     prefetch: false,
     redirects: {
-        // ...pipelineNames,
+        ...pipelineNames,
         ...pipelineResults,
     },
     integrations: [
