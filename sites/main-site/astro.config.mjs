@@ -34,7 +34,12 @@ import icon from 'astro-icon';
 // pipelines_json.remote_workflows.map(
 //     (pipeline) => (latestPipelineReleases[pipeline.name] = `/${pipeline.name}/${pipeline.releases[0].tag_name}/`),
 // );
-
+let pipelineResults = {};
+pipelines_json.remote_workflows.map(
+    (pipeline) =>
+        (pipelineResults[`/${pipeline.name}/:version/results/*`] =
+            `https://npm-workspace--npm-pipeline-results.netlify.app/${pipeline.name}/:version/results/:splat 200!`),
+);
 let pipelineNames = {};
 pipelines_json.remote_workflows.map(
     (pipeline) =>
