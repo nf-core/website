@@ -37,7 +37,7 @@ import icon from 'astro-icon';
 let pipelineNames = {};
 pipelines_json.remote_workflows.map(
     (pipeline) =>
-        (pipelineNames[`${pipeline.name}/*`] =
+        (pipelineNames[`/${pipeline.name}/*`] =
             `https://npm-workspace--npm-pipelines.netlify.app/${pipeline.name}:splat 200!`),
 );
 // https://astro.build/config
