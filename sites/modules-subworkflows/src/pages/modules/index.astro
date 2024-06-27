@@ -6,7 +6,6 @@ import components from '@public/components.json';
 const modules = components.modules;
 const title = 'nf-core/modules';
 const description = 'Browse the ' + modules.length + ' modules that are currently available as part of nf-core.';
-import pipelines from '@public/pipelines.json';
 ---
 
 <ListingLayout
@@ -22,4 +21,3 @@ import pipelines from '@public/pipelines.json';
 >
     <ComponentListing components={modules} slot="listing-components" client:load />
 </ListingLayout>
-<style></style>
