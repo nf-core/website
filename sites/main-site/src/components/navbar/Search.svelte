@@ -35,7 +35,8 @@
         --docsearch-hit-color: #{var(--bs-body-color)};
         --docsearch-hit-background: #{var(--bs-body-bg)};
         --docsearch-hit-shadow: 'none';
-        --docsearch-footer-shadow: none;
+        --docsearch-footer-background: #{var(--bs-tertiary-bg)};
+        --docsearch-muted-color: #{var(--bs-tertiary-emphasis)};
     }
     // :global(.DocSearch-Modal) {
     //     background: var(--bs-secondary-bg);
