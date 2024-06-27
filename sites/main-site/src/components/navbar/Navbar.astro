@@ -13,8 +13,7 @@ import Search from '@components/navbar/Search.svelte';
 import { findCurrentGroup } from '@utils/functions';
 import BlogPostLabel from '@components/navbar/BlogPostLabel.svelte';
 import type { SidebarEntry } from '@utils/types';
-
-const ongoing = await fetch('https://npm-workspace--npm-main-site.netlify.app/ongoing'); // trigger the event and blog post indicator
+import { getCollection, type CollectionEntry } from 'astro:content';
 
 export interface Props {
     navTocHeadings?: object[];
@@ -29,6 +28,43 @@ if (sections) {
     if (currentEntry && currentEntry.href) {
         navbarTitle = [currentEntry.href.split('/')[1], currentEntry.label];
     }
+}
+
+// get most recent blogpost and most ongoing events
+const now = new Date().getTime();
+let mostRecentBlogPost = await getCollection('blog', ({ data }) => {
+    return data.pubDate.getTime() < now && data.pubDate.getTime() > now - 1000 * 60 * 60 * 24 * 1;
+});
+// sort by pubdate
+mostRecentBlogPost.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+let blogPostTimeSpan: [number, number] = [0, 0];
+// get time span of blogposts as an array
+if (mostRecentBlogPost.length > 0) {
+    blogPostTimeSpan = [
+        new Date(mostRecentBlogPost[0].data.pubDate).getTime(),
+        new Date(mostRecentBlogPost[mostRecentBlogPost.length - 1].data.pubDate).getTime() + 1000 * 60 * 60 * 24 * 1,
+    ];
+}
+
+let onGoingEvents = await getCollection('events', ({ data }) => {
+    return data.start.getTime() - 1000 * 60 * 60 * 24 * 1 < now && data.end.getTime() > now - 1000 * 60 * 60 * 24 * 1;
+});
+
+// sort by start date
+onGoingEvents.sort((a, b) => {
+    if (a.data.start === b.data.start) {
+        return a.data.end - b.data.end;
+    } else {
+        return a.data.start - b.data.start;
+    }
+});
+// // get time span of events
+let eventTimeSpan: [number, number] = [0, 0];
+if (onGoingEvents.length > 0) {
+    eventTimeSpan = [
+        onGoingEvents[0].data.start?.getTime(),
+        onGoingEvents[onGoingEvents.length - 1]?.data.end.getTime(),
+    ];
 }
 ---
 
@@ -87,8 +123,12 @@ if (sections) {
                 </li>
                 <li class="nav-item p-1 px-3 px-xl-1 dropdown">
                     <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
-                        <EventIndicator type={'blog'} client:idle><Icon name="circle" /></EventIndicator>
-                        <EventIndicator type={'event'} client:idle><Icon name="circle" /></EventIndicator>
+                        <EventIndicator type={'blog'} timeSpan={blogPostTimeSpan} client:idle
+                            ><Icon name="circle" /></EventIndicator
+                        >
+                        <EventIndicator type={'event'} timeSpan={eventTimeSpan} client:idle
+                            ><Icon name="circle" /></EventIndicator
+                        >
                         Community
                     </a>
                     <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
@@ -96,13 +136,15 @@ if (sections) {
                         <li class="">
                             <a class="dropdown-item d-flex align-items-center justify-content-between" href="/blog/"
                                 >Blog
-                                <BlogPostLabel client:idle /></a
+                                <BlogPostLabel client:idle timeSpan={blogPostTimeSpan} /></a
                             >
                         </li>
                         <li><hr class="dropdown-divider" /></li>
                         <li>
                             <span class="dropdown-header">
-                                <EventIndicator client:idle type={'event'}><Icon name="circle" /></EventIndicator>
+                                <EventIndicator type={'event'} timeSpan={eventTimeSpan} client:idle
+                                    ><Icon name="circle" /></EventIndicator
+                                >
                                 Events
                             </span>
                         </li>

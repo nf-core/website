@@ -4,7 +4,7 @@ subtitle: Marco Claudio De La Pierre, Seqera
 type: talk
 startDate: '2024-06-25'
 startTime: '13:00+02:00'
-endDate: '2024-06-25'
+endDate: '2024-06-28'
 endTime: '13:30+02:00'
 locations:
   - links: https://kth-se.zoom.us/j/68390542812

@@ -1,15 +1,9 @@
 <script lang="ts">
-    import { EventIsOngoing, newBlogPost } from '@components/store';
-
     export let type: 'event' | 'blog';
+    export let timeSpan: [number, number] = [0, 0];
 
-    let show = false;
-
-    if (type === 'event' && $EventIsOngoing) {
-        show = true;
-    } else if (type === 'blog' && $newBlogPost) {
-        show = true;
-    }
+    const now = new Date().getTime();
+    const show = timeSpan[0] < now && timeSpan[1] > now;
 </script>
 
 <div class={`event-indicator align-center d-inline-block ${type}`} class:d-none={!show}>
