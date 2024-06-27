@@ -9,7 +9,7 @@ export const GET: APIRoute = async ({}) => {
     newPost = (await getCollection('blog')).find(
         (post) =>
             now > new Date(post.data.pubDate) &&
-            new Date(post.data.pubDate) > new Date(now.getTime() - 1 * 24 * 60 * 60 * 1000),
+            new Date(post.data.pubDate) > new Date(now.getTime() - 100 * 24 * 60 * 60 * 1000),
     );
     newBlogPost.set(Boolean(newPost));
 
@@ -24,7 +24,9 @@ export const GET: APIRoute = async ({}) => {
         .filter((event) => event.slug.split('/').length === 2);
 
     const ongoingEvents = events.filter(
-        (event) => event.data.start.getTime() < now.getTime() && event.data.end.getTime() > now.getTime(),
+        (event) =>
+            event.data.start.getTime() < now.getTime() &&
+            event.data.end.getTime() > now.getTime() - 100 * 24 * 60 * 60 * 1000,
     );
 
     EventIsOngoing.set(ongoingEvents.length > 0);
