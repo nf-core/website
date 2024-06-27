@@ -82,7 +82,7 @@ export default defineConfig({
     build: {
         inlineStylesheets: 'auto',
         format: 'file',
-        assetsPrefix: 'https://npm-docs.netlify.app/',
+        assetsPrefix: 'https://npm-workspace--npm-docs.netlify.app/',
     },
     vite: {
         plugins: [
