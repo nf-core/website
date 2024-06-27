@@ -5,9 +5,9 @@
 
     let show = false;
 
-    if (type === 'event' && EventIsOngoing) {
+    if (type === 'event' && $EventIsOngoing) {
         show = true;
-    } else if (type === 'blog' && newBlogPost) {
+    } else if (type === 'blog' && $newBlogPost) {
         show = true;
     }
 </script>
