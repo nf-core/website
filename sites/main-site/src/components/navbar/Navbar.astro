@@ -14,7 +14,7 @@ import { findCurrentGroup } from '@utils/functions';
 import BlogPostLabel from '@components/navbar/BlogPostLabel.svelte';
 import type { SidebarEntry } from '@utils/types';
 
-await fetch('https://nf-co.re/ongoing'); // trigger the event and blog post indicator
+const ongoing = await fetch('https://npm-workspace--npm-main-site.netlify.app/ongoing'); // trigger the event and blog post indicator
 
 export interface Props {
     navTocHeadings?: object[];
