@@ -14,6 +14,9 @@
 /subworkflows/* https://npm-workspace--npm-modules-subworkflows.netlify.app/subworkflows/:splat 200!
 /configs/* https://npm-workspace--npm-configs.netlify.app/configs/:splat 200!
 
+#Debugging pipeline redirects
+taxprofiler/* https://npm-workspace--npm-pipelines.netlify.app/pipelines/taxprofiler/:splat 200!
+
 # Temporary oldsite redirections
 /logo/*  https://oldsite.nf-co.re/logo/:splat 200
 /pipeline_schema_builder/* https://oldsite.nf-co.re/pipeline_schema_builder/:splat 200
