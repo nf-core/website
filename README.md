@@ -49,8 +49,17 @@ You should then be able to access the website in your browser at [http://localho
 
 ### File structure
 
-We follow Astro's [file structure](https://docs.astro.build/guides/project-structure) for the website.
-The main files are:
+We follow for the website, with a mono-repo setup.
+The main sub-sites are:
+
+- `sites/main-site` - The main nf-core website, including components, events, blog posts
+- `sites/configs` - listing pages for nf-core configs
+- `sites/docs` - docs pages
+- `sites/modules-subworkflows` - modules and subworkflows pages
+- `sites/pipelines` - pipeline pages
+- `sites/pipeline-results` - AWS megatest result pages for each pipeline (split up from the rest to allow static generation of the main pipeline pages)
+
+Each site has its own `src` directory with the following structure, typical for an [Astro project](https://docs.astro.build/guides/project-structure):
 
 - `src/pages/` - Astro pages
 - `src/content/` - [Astro content collections](https://docs.astro.build/en/guides/content-collections/) (markdown files for events, docs, blog)
@@ -61,7 +70,7 @@ The main files are:
 
 ## Adding an event
 
-To add an event, create a new markdown (or .mdx) file in `src/content/events/` with the following frontmatter:
+To add an event, create a new markdown (or .mdx) file in `sites/main-site/src/content/events/` with the following frontmatter:
 
 ```yaml
 title: "Event Title"
@@ -75,10 +84,11 @@ announcement:
   text: "Text on the announcement banner" # (optional)
   start: "YYYY-MM-DDTHH:MM:SS+HH:MM" # (required if announcement.text is used)
   end: "YYYY-MM-DDTHH:MM:SS+HH:MM" # (required if announcement.text is used)
-locationName: "Name of the location" # (optional)
-locationURL: "URL to the location or to the section in the text with location description (e.g. `#gather-town`)" # (optional)
-locationLatLng: [48.2082, 16.3738] # Latitude and longitude of the location as an array " (optional)
-address: "Address of the location" (optional)
+locations: # (optional)
+  name: "Name of the location" # (optional)
+  links: "URL(s) to the location or to the section in the text with location description (e.g. `#gather-town`)" # (optional)
+  geoCoordinates: [48.2082, 16.3738] # Latitude and longitude of the location as an array " (optional)
+  address: "Address of the location" #(optional)
 duration: "Duration of the event in days" (optional)
 embedAt: "in case this should be shown in the sidebar of a pipeline page (e.g. for a bytesize talk about the pipeline)" (optional)
 importTypeform: true # If true, the event will be imported from a Typeform (see below)
@@ -86,7 +96,7 @@ importTypeform: true # If true, the event will be imported from a Typeform (see 
 
 ## Adding a blog post
 
-To add a blog post, create a new markdown (or mdx) file in `src/content/blog/` with the following frontmatter:
+To add a blog post, create a new markdown (or mdx) file in `sites/main-site/src/content/blog/` with the following frontmatter:
 
 ```yaml
 title: "Your Blog Post Title"
@@ -104,7 +114,7 @@ announcement:
 
 ### Adding an announcement banner
 
-You can show a short announcement banner on the website by adding additional information to the frontmatter of either a file inside `src/content/blog` or `src/content/events`. The following fields are available:
+You can show a short announcement banner on the website by adding additional information to the frontmatter of either a file inside `sites/main-site/src/content/blog` or `sites/main-site/src/content/events`. The following fields are available:
 
 ```yaml
 announcement:
@@ -125,10 +135,26 @@ npm run build-component-json
 npm run build-cache-force
 ```
 
+### Adding a new sub-site to the mono-repo
+
+The following steps are necessary to add a new sub-site to the mono-repo:
+
+- [ ] Copy the `sites/pipelines` directory to a new directory with the name of the new sub-site, e.g. newsite.
+- [ ] Update the following files in the new directory:
+
+  - [ ] `astro.config.mjs`
+    - [ ] Update the `assetsPrefix` field to point to the new site's netlify URL, e.g. `assetsPrefix: 'https://nf-core-website-newsite.netlify.app/'`.
+  - [ ] `package.json` - Update the `name` field to the new site name, e.g. `"name": "newsite"`.
+  - [ ] `netlify.toml` - Update the paths in the `command` and the `ignore` field to point to the new site's source directory, e.g.
+
+  ```toml
+  command = "npm run build -w sites/newsite"
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF sites/main-site/src/components sites/newsite"
+  ```
+
 ### Tools API docs
 
-Tools docs are built using GitHub Actions on the nf-core/tools repo using Sphinx.
-[These actions](https://github.com/nf-core/tools/blob/master/.github/workflows/tools-api-docs-release.yml) sync the built HTML files via FTP.
+nf-core/tools API reference docs are built using Sphinx via the `add-tools-api-docs.yml` GitHub Action and a webhook from the nf-core/tools repo.
 
 ## Contribution guidelines
 
@@ -136,7 +162,7 @@ If you are looking forward to contribute to the website or add your institution 
 
 ### Crafting a Blog Post
 
-To publish a new blog post on the website, you'll need to create a Markdown file within the `src/content/blog/` directory. In this file, include the following frontmatter at the beginning:
+To publish a new blog post on the website, you'll need to create a Markdown file within the `sites/main-site/src/content/blog/` directory. In this file, include the following frontmatter at the beginning:
 
 ```yaml
 ---
