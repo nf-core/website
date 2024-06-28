@@ -36,7 +36,7 @@ let pipelineResults = {};
 pipelines_json.remote_workflows.map(
     (pipeline) =>
         (pipelineResults[`/${pipeline.name}/:version/results/*`] =
-            `https://npm-workspace--npm-pipeline-results.netlify.app/${pipeline.name}/:version/results/:splat 200!`),
+            `https://nf-core-pipeline-results.netlify.app/${pipeline.name}/:version/results/:splat 200!`),
 );
 // https://astro.build/config
 export default defineConfig({
@@ -100,7 +100,7 @@ export default defineConfig({
     build: {
         inlineStylesheets: 'auto',
         format: 'file',
-        assetsPrefix: 'https://npm-workspace--npm-pipelines.netlify.app/',
+        assetsPrefix: 'https://nf-core-pipelines.netlify.app/',
     },
     vite: {
         plugins: [

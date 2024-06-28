@@ -8,11 +8,11 @@
 
 
 # Redirects to subsites
-/docs/* https://npm-workspace--npm-docs.netlify.app/docs/:splat 200!
-/pipelines https://npm-workspace--npm-pipelines.netlify.app/pipelines 200!
-/modules/* https://npm-workspace--npm-modules-subworkflows.netlify.app/modules/:splat 200!
-/subworkflows/* https://npm-workspace--npm-modules-subworkflows.netlify.app/subworkflows/:splat 200!
-/configs/* https://npm-workspace--npm-configs.netlify.app/configs/:splat 200!
+/docs/* https://nf-core-docs.netlify.app/docs/:splat 200!
+/pipelines https://nf-core-pipelines.netlify.app/pipelines 200!
+/modules/* https://nf-core-modules-subworkflows.netlify.app/modules/:splat 200!
+/subworkflows/* https://nf-core-modules-subworkflows.netlify.app/subworkflows/:splat 200!
+/configs/* https://nf-core-configs.netlify.app/configs/:splat 200!
 
 # Temporary oldsite redirections
 /logo/*  https://oldsite.nf-co.re/logo/:splat 200
