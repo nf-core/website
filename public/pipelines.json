@@ -1979,9 +1979,9 @@
             "url": "https://api.github.com/repos/nf-core/bacass",
             "created_at": "2019-01-31T08:03:31Z",
             "updated_at": "2024-06-24T09:07:58Z",
-            "pushed_at": "2024-06-27T15:39:02Z",
+            "pushed_at": "2024-06-28T12:08:07Z",
             "homepage": "https://nf-co.re/bacass",
-            "size": 5047,
+            "size": 5055,
             "stargazers_count": 55,
             "watchers_count": 55,
             "language": "Nextflow",
@@ -1994,7 +1994,7 @@
             "forks_count": 38,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 15,
+            "open_issues_count": 14,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -2010,7 +2010,7 @@
             ],
             "visibility": "public",
             "forks": 38,
-            "open_issues": 15,
+            "open_issues": 14,
             "watchers": 55,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -2095,7 +2095,7 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 1,
+            "open_pr_count": 0,
             "repository_url": "https://github.com/nf-core/bacass",
             "contributors": [
                 {
@@ -2383,8 +2383,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2024-06-24T08:29:52Z",
-                    "tag_sha": "b3eda16ac8bb4637122820961e57bda53e2761e4",
+                    "published_at": "2024-06-28T12:08:07Z",
+                    "tag_sha": "03f0dc89394050e8d3983a7b52bda0a58bc2b875",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -2409,6 +2409,7 @@
                             "racon",
                             "samtools_index",
                             "samtools_sort",
+                            "unicycler",
                             "untar"
                         ],
                         "subworkflows": [
@@ -9331,7 +9332,7 @@
             "updated_at": "2024-05-22T22:47:15Z",
             "pushed_at": "2024-06-28T08:47:28Z",
             "homepage": "https://nf-co.re/differentialabundance",
-            "size": 8103,
+            "size": 8242,
             "stargazers_count": 46,
             "watchers_count": 46,
             "language": "Nextflow",
@@ -10085,10 +10086,10 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/eager",
             "created_at": "2018-06-03T15:52:24Z",
-            "updated_at": "2024-06-17T08:55:36Z",
-            "pushed_at": "2024-06-28T08:59:39Z",
+            "updated_at": "2024-06-28T12:11:47Z",
+            "pushed_at": "2024-06-28T12:42:12Z",
             "homepage": "https://nf-co.re/eager",
-            "size": 67151,
+            "size": 67260,
             "stargazers_count": 127,
             "watchers_count": 127,
             "language": "Nextflow",
@@ -10101,7 +10102,7 @@
             "forks_count": 78,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 54,
+            "open_issues_count": 50,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -10116,7 +10117,7 @@
             ],
             "visibility": "public",
             "forks": 78,
-            "open_issues": 54,
+            "open_issues": 50,
             "watchers": 127,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -10261,12 +10262,12 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 6,
+            "open_pr_count": 4,
             "repository_url": "https://github.com/nf-core/eager",
             "contributors": [
                 {
                     "name": "jfy133",
-                    "count": 1900,
+                    "count": 1904,
                     "avatar_url": "https://avatars.githubusercontent.com/u/17950287?v=4"
                 },
                 {
@@ -10276,7 +10277,7 @@
                 },
                 {
                     "name": "TCLamnidis",
-                    "count": 215,
+                    "count": 222,
                     "avatar_url": "https://avatars.githubusercontent.com/u/22079185?v=4"
                 },
                 {
@@ -10375,10 +10376,10 @@
                     "avatar_url": "https://avatars.githubusercontent.com/u/61977721?v=4"
                 }
             ],
-            "released_after_tools": false,
-            "head_sha": "4eb0ffea9d5661ae2c555228c85caa6f800daee9",
+            "released_after_tools": true,
+            "head_sha": "65055295800d081fb5c5b9ae14267906c7c55b80",
             "last_release_is_head": true,
-            "last_release_vs_default_compare_url": "https://github.com/nf-core/eager/compare/4eb0ffea9d5661ae2c555228c85caa6f800daee9...4eb0ffea9d5661ae2c555228c85caa6f800daee9",
+            "last_release_vs_default_compare_url": "https://github.com/nf-core/eager/compare/65055295800d081fb5c5b9ae14267906c7c55b80...65055295800d081fb5c5b9ae14267906c7c55b80",
             "commits_to_dev": 30,
             "is_DSL2": false,
             "has_nf_test": false,
@@ -10388,6 +10389,16 @@
                 "nf-validation@1.1.3"
             ],
             "releases": [
+                {
+                    "tag_name": "2.5.2",
+                    "published_at": "2024-06-28T12:14:29Z",
+                    "tag_sha": "65055295800d081fb5c5b9ae14267906c7c55b80",
+                    "has_schema": true,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/usage.md"
+                    ]
+                },
                 {
                     "tag_name": "2.5.1",
                     "published_at": "2024-02-21T11:12:38Z",
@@ -10670,8 +10681,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2024-06-22T06:04:40Z",
-                    "tag_sha": "11abe6ec594d1f0a57470e316bf5d50dc069e530",
+                    "published_at": "2024-06-28T09:17:32Z",
+                    "tag_sha": "0e0fe5ebfabb592b22490cb0866bf43184aeb6ed",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -19375,7 +19386,7 @@
             "forks_count": 133,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 47,
+            "open_issues_count": 48,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -19391,7 +19402,7 @@
             ],
             "visibility": "public",
             "forks": 133,
-            "open_issues": 47,
+            "open_issues": 48,
             "watchers": 135,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -24595,7 +24606,7 @@
             "updated_at": "2024-05-28T11:48:15Z",
             "pushed_at": "2024-06-28T08:37:03Z",
             "homepage": "https://nf-co.re/pixelator",
-            "size": 4498,
+            "size": 4503,
             "stargazers_count": 6,
             "watchers_count": 6,
             "language": "Nextflow",
@@ -25900,10 +25911,10 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/rangeland",
             "created_at": "2023-10-20T13:58:07Z",
-            "updated_at": "2024-05-30T08:18:36Z",
-            "pushed_at": "2024-05-30T08:18:32Z",
+            "updated_at": "2024-06-28T09:52:03Z",
+            "pushed_at": "2024-06-28T09:52:00Z",
             "homepage": "https://nf-co.re/rangeland",
-            "size": 2607,
+            "size": 2619,
             "stargazers_count": 3,
             "watchers_count": 3,
             "language": "Nextflow",
@@ -26020,15 +26031,15 @@
             "contributors": [
                 {
                     "name": "Felix-Kummer",
-                    "count": 16,
+                    "count": 18,
                     "avatar_url": "https://avatars.githubusercontent.com/u/77002738?v=4"
                 }
             ],
             "released_after_tools": false,
-            "head_sha": "665e8624760b0c0e6e81692311fa7c43939d3d77",
+            "head_sha": "f292928178fdaf06b6e631a47d4cb61881148e2e",
             "last_release_is_head": false,
-            "last_release_vs_default_compare_url": "https://github.com/nf-core/rangeland/compare/665e8624760b0c0e6e81692311fa7c43939d3d77...undefined",
-            "commits_to_dev": 23,
+            "last_release_vs_default_compare_url": "https://github.com/nf-core/rangeland/compare/f292928178fdaf06b6e631a47d4cb61881148e2e...undefined",
+            "commits_to_dev": 25,
             "is_DSL2": true,
             "has_nf_test": false,
             "has_nf_test_dev": false,
@@ -26041,8 +26052,8 @@
             "releases": [
                 {
                     "tag_name": "dev",
-                    "published_at": "2024-05-30T08:17:42Z",
-                    "tag_sha": "665e8624760b0c0e6e81692311fa7c43939d3d77",
+                    "published_at": "2024-06-28T09:51:18Z",
+                    "tag_sha": "f292928178fdaf06b6e631a47d4cb61881148e2e",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -34810,7 +34821,7 @@
             "forks_count": 154,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 42,
+            "open_issues_count": 43,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -34827,7 +34838,7 @@
             ],
             "visibility": "public",
             "forks": 154,
-            "open_issues": 42,
+            "open_issues": 43,
             "watchers": 178,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -39354,10 +39365,10 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/variantbenchmarking",
             "created_at": "2023-12-07T10:56:32Z",
-            "updated_at": "2024-06-26T13:21:43Z",
-            "pushed_at": "2024-06-28T09:00:17Z",
+            "updated_at": "2024-06-28T12:49:25Z",
+            "pushed_at": "2024-06-28T12:49:25Z",
             "homepage": "https://nf-co.re/variantbenchmarking",
-            "size": 2841,
+            "size": 2850,
             "stargazers_count": 5,
             "watchers_count": 5,
             "language": "Nextflow",
@@ -39477,12 +39488,12 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 2,
+            "open_pr_count": 1,
             "repository_url": "https://github.com/nf-core/variantbenchmarking",
             "contributors": [
                 {
                     "name": "kubranarci",
-                    "count": 96,
+                    "count": 104,
                     "avatar_url": "https://avatars.githubusercontent.com/u/25736789?v=4"
                 },
                 {
@@ -39497,9 +39508,9 @@
                 }
             ],
             "released_after_tools": false,
-            "head_sha": "fa846633556732f5a866ff0f40da73aeb57e442d",
+            "head_sha": "29a348c1973159ebf61d21ec3b4ca589cf1166d0",
             "last_release_is_head": false,
-            "last_release_vs_default_compare_url": "https://github.com/nf-core/variantbenchmarking/compare/fa846633556732f5a866ff0f40da73aeb57e442d...undefined",
+            "last_release_vs_default_compare_url": "https://github.com/nf-core/variantbenchmarking/compare/29a348c1973159ebf61d21ec3b4ca589cf1166d0...undefined",
             "commits_to_dev": 30,
             "is_DSL2": true,
             "has_nf_test": false,
@@ -39513,8 +39524,8 @@
             "releases": [
                 {
                     "tag_name": "dev",
-                    "published_at": "2024-06-26T13:21:39Z",
-                    "tag_sha": "fa846633556732f5a866ff0f40da73aeb57e442d",
+                    "published_at": "2024-06-28T12:49:21Z",
+                    "tag_sha": "29a348c1973159ebf61d21ec3b4ca589cf1166d0",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -39523,6 +39534,7 @@
                     "components": {
                         "modules": [
                             "bcftools_filter",
+                            "bcftools_merge",
                             "bcftools_norm",
                             "bcftools_query",
                             "bcftools_reheader",
