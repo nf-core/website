@@ -14,7 +14,7 @@ In case you couldn't find your institution / group of contributors on the [commu
 
    - `full_name:` Full Name of the Institution
    - `short_name:` Short Name of the Institution (e.g. an acronym)
-   - `description:` Short description of the main activities of the Institution (see [`contributors.yaml`](https://github.com/nf-core/website/blob/main/src/config/contributors.yaml) for examples)
+   - `description:` Short description of the main activities of the Institution (see [`contributors.yaml`](https://github.com/nf-core/website/blob/main/sites/main-site/src/config/contributors.yaml) for examples)
    - `address:` Postal Address
    - `url:` Institution URL
    - `affiliation:` Affiliation - could be the subunit or department of your institution where you work (if _Fancy University_ is the Institution, then Affiliation would be the _McFancyDepartment_)
