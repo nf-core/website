@@ -34,18 +34,19 @@ import icon from 'astro-icon';
 // pipelines_json.remote_workflows.map(
 //     (pipeline) => (latestPipelineReleases[pipeline.name] = `/${pipeline.name}/${pipeline.releases[0].tag_name}/`),
 // );
-let pipelineResults = {};
-pipelines_json.remote_workflows.map(
-    (pipeline) =>
-        (pipelineResults[`/${pipeline.name}/:version/results/*`] =
-            `https://npm-workspace--npm-pipeline-results.netlify.app/${pipeline.name}/:version/results/:splat 200!`),
-);
-let pipelineNames = {};
-pipelines_json.remote_workflows.map(
-    (pipeline) =>
-        (pipelineNames[`/${pipeline.name}/*`] =
-            `https://npm-workspace--npm-pipelines.netlify.app/${pipeline.name}/:splat 200!`),
-);
+let pipelineRedirects = {};
+pipelines_json.remote_workflows.map((pipeline) => {
+    pipelineRedirects[`/${pipeline.name}/:version/results/*`] =
+        `https://npm-workspace--npm-pipeline-results.netlify.app/${pipeline.name}/:version/results/:splat 200!`;
+    pipelineRedirects[`/${pipeline.name}/:version/*`] =
+        `https://npm-workspace--npm-pipelines.netlify.app/${pipeline.name}/:version/:splat 200!`;
+});
+// let pipelineNames = {};
+// pipelines_json.remote_workflows.map(
+//     (pipeline) =>
+//         (pipelineNames[`/${pipeline.name}/*`] =
+//             `https://npm-workspace--npm-pipelines.netlify.app/${pipeline.name}/:splat 200!`),
+// );
 // https://astro.build/config
 export default defineConfig({
     site: 'https://nf-co.re/',
@@ -53,8 +54,7 @@ export default defineConfig({
     adapter: netlify(),
     prefetch: false,
     redirects: {
-        ...pipelineNames,
-        ...pipelineResults,
+        ...pipelineRedirects,
     },
     integrations: [
         svelte(),
