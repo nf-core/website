@@ -5740,6 +5740,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -13033,6 +13037,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "tfactivity",
+          "version": "dev"
         }
       ]
     },
@@ -13525,6 +13533,10 @@
         },
         {
           "name": "radseq",
+          "version": "dev"
+        },
+        {
+          "name": "tfactivity",
           "version": "dev"
         }
       ]
@@ -14206,7 +14218,13 @@
           "@sruthipsuresh",
           "@drpatelh"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tfactivity",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "bedtools_sort",
@@ -17988,6 +18006,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -59243,6 +59265,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "tfactivity",
+          "version": "dev"
         }
       ]
     },
@@ -68746,6 +68772,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
         {
           "name": "isoseq",
           "version": "1.1.5"
@@ -79340,6 +79370,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -93932,7 +93966,9 @@
               "documentation": "https://github.com/kundajelab/phantompeakqualtools",
               "tool_dev_url": "https://github.com/kundajelab/phantompeakqualtools",
               "doi": "10.1101/gr.136184.111",
-              "licence": "['BSD-3-clause']"
+              "licence": [
+                "BSD-3-clause"
+              ]
             }
           }
         ],
@@ -129831,13 +129867,7 @@
           "@BarryDigby",
           "@anoronh4"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "tfactivity",
-          "version": "dev"
-        }
-      ]
+      }
     },
     {
       "name": "ucsc_liftover",
