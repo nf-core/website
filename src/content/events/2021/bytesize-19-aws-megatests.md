@@ -18,6 +18,7 @@ locations:
 This week, Gisela Gabernet ([@ggabernet](http://github.com/ggabernet/)) will tell us all about the nf-core _AWS megatests_‚ and how to set them up in your nf-core pipeline.
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::

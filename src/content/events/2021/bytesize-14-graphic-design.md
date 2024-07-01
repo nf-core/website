@@ -28,6 +28,7 @@ The talk will be presented on Zoom and live-streamed on YouTube.
 - Bilibili: <https://www.bilibili.com/video/BV1Z54y1V78h>
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::

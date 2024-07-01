@@ -20,6 +20,7 @@ This week, Harshil Patel ([@drpatelh](https://github.com/drpatelh/)) will tell u
 nf-core/rnaseq is a bioinformatics analysis pipeline used for RNA sequencing data.
 
 <details markdown="1"><summary>Video transcription</summary>
+
 :::note
 The content has been edited to make it reader-friendly
 :::
