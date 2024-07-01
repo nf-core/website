@@ -6,10 +6,11 @@ startDate: '2024-06-19'
 startTime: '16:00+02:00'
 endDate: '2024-06-19'
 endTime: '17:00+02:00'
+youtubeEmbed: https://youtu.be/KJDSzKLyiPk
 locations:
   - name: Online
-    links: https://rediris.zoom.us/j/96065549412?pwd=L2txanpQMEFTOWVLNmtIZyt6M3NnUT09
+    links: https://youtu.be/KJDSzKLyiPk
 ---
 
-Join us on **June 19** for the monthly meeting of the _#animal-genomics_ special interest group!
-This month, we are honored to announce **Yuliaxis Ramayo-Caldas** from Institute of Agrifood Research and Technology (IRTA), Spain and part of HoloRuminant as speaker.
+June 2024 talk of the the monthly meeting of the _#animal-genomics_ special interest group meeting.
+In this talk, **Yuliaxis Ramayo-Caldas** from the Institute of Agrifood Research and Technology (IRTA), Spain and member of the [HoloRuminant](https://holoruminant.eu/) project discusses the HoloRuminant effort to decode the ruminant microbiome.
