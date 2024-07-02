@@ -1,0 +1,75 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import { spreadshopLocales } from '../../config';
+
+export function getStaticPaths() {
+    return spreadshopLocales.map((data) => ({
+        params: {
+            shopLocale: data[1].toLowerCase(),
+        },
+        props: {
+            domain: data[2],
+        },
+    }));
+}
+const { shopLocale } = Astro.params;
+const domain = Astro.props.domain;
+---
+
+<PageLayout
+    title="nf-core/shop"
+    subtitle="Share your love for the nf-core community! <a class='ms-3' href='/shop'>[back to shop index]</a>"
+    mainpage_container={false}
+>
+    <div id="nf-core-shop-embed" class="text-center mt-5">
+        <a href={'https://nf-core.myspreadshop.' + domain}>nf-core</a>
+    </div>
+    <script define:vars={{ shopLocale, domain }}>
+        window.spread_shop_config = {
+            shopName: 'nf-core',
+            locale: shopLocale,
+            prefix: 'https://nf-core.myspreadshop.' + domain,
+            baseId: 'nf-core-shop-embed',
+        };
+    </script>
+
+    <script
+        is:inline
+        type="text/javascript"
+        src={'https://nf-core.myspreadshop.' + domain + '/shopfiles/shopclient/shopclient.nocache.js'}></script>
+</PageLayout>
+
+<style is:global>
+    :root {
+        --sprd-main1: var(--bs-body-bg) !important;
+        --sprd-main2: var(--bs-body-bg) !important;
+        --sprd-main3: var(--bs-body-bg) !important;
+        --sprd-sub1: var(--bs-body-color) !important;
+        --sprd-sub2: var(--bs-body-color) !important;
+        --sprd-sub3: var(--bs-body-color) !important;
+    }
+    .sprd-c-m3.sprd-bg-s2 {
+        color: var(--bs-body-color) !important;
+        background-color: var(--bs-body-bg) !important;
+    }
+    .sprd-hc-m2:hover {
+        color: inherit !important;
+        text-decoration: underline !important;
+    }
+    .SprdMain .customPageBackground {
+        background-color: var(--sprd-main1) !important;
+    }
+    #sprd-main {
+        margin-top: 30px !important;
+    }
+    .sprd-header.sprd-bg-m1.sprd-c-s3 {
+        display: none;
+    }
+    .sprd-btn-primary {
+        background-color: var(--bs-green) !important;
+        border-color: var(--bs-green) !important;
+    }
+    a[href='#!/about'] {
+        display: none !important;
+    }
+</style>
