@@ -9,7 +9,8 @@ endTime: '13:30+02:00'
 youtubeEmbed: https://youtu.be/XB96efweCLI
 locations:
   - name: Online
-    links: https://youtu.be/XB96efweCLI
+    links:
+      - https://youtu.be/XB96efweCLI
 ---
 
 This week, Phil Ewels ([@ewels](http://github.com/ewels/)) will present: _**Development environments & workflows**_

@@ -9,4 +9,4 @@ remote_images = ["https://raw.githubusercontent.com/.*", "https://images.unsplas
 [[headers]]
 for = "/_astro/*"
 [headers.values]
-Access-Control-Allow-Origin = "https://nf-core-main-site.netlify.app"
+Access-Control-Allow-Origin = "*"

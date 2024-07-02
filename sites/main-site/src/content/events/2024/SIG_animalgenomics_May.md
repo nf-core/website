@@ -9,7 +9,8 @@ endTime: '17:00+02:00'
 youtubeEmbed: https://youtu.be/BM6DxxuD5Ek
 locations:
   - name: Online
-    links: https://youtu.be/BM6DxxuD5Ek
+    links:
+      - https://youtu.be/BM6DxxuD5Ek
 ---
 
 May 2024 talk of the monthly _#animal-genomics_ special interest group meeting.
