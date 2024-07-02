@@ -13,5 +13,5 @@ locations:
       - https://youtu.be/BM6DxxuD5Ek
 ---
 
-May talk of the monthly _#animal-genomics_ special interest group meeting.
+May 2024 talk of the monthly _#animal-genomics_ special interest group meeting.
 On this talk, Alessandro Bagnato from the Department of Veterinary Medicine, University of Milan, Italy discusses about the _Next-Steps and Needs for Livestock Genomics Applications_.
