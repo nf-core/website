@@ -27,7 +27,7 @@ modular way. We landed on a monorepo/microsite structure.
 
 <Image
     src={horsesizedduck}
-    class="d-block m-auto"
+    class="d-block m-auto mb-2"
     width={400}
     density={[1.5, 2]}
     alt="a drawing of a large duck standing next to several tiny horses and the word 'vs' in-between. 
@@ -38,7 +38,7 @@ The term "monorepo" might seem somewhat misleading, as we already had our entire
 
 <Image
     src={subsites}
-    class="d-block m-auto"
+    class="d-block m-auto mb-2"
     width={400}
     density={[1.5, 2]}
     alt="Three headed dragon meme cartoon, with the title 'nf-co.re sub-sites'. The left head looks angry and has the title 'pipelines', the second head has the title 'docs' and looks stern at the third head, which looks very goofy and has the title 'pipeline-results'."
@@ -47,13 +47,19 @@ The term "monorepo" might seem somewhat misleading, as we already had our entire
 # Results: build fast
 
 ```mermaid
-
+---
+config:
+    xyChart:
+        width: 900
+        height: 600
+    themeVariables:
+        xyChart:
+            plotColorPalette: '#1a9655'
+---
 xychart-beta
-    title "Sales Revenue"
-    x-axis [old, site/configs, site, apr, may, jun, jul, aug, sep, oct, nov, dec]
-    y-axis "average build times (in minutes)" 0 --> 11000
-    bar [5000, 6000, 7500, 8200, 9500, 10500, 11000, 10200, 9200, 8500, 7000, 6000]
-    line [5000, 6000, 7500, 8200, 9500, 10500, 11000, 10200, 9200, 8500, 7000, 6000]
+    x-axis "sites" ["old", "sites/configs", "sites/docs", "sites/main-sites", "sites/pipelines", "sites/pipelin-releases"]
+    y-axis "average build times [in minutes]" 0 --> 15
+    bar [12, 0.85, 1.5, 1.85, 4.3, 1.5]
 ```
 
 # Technical setup
