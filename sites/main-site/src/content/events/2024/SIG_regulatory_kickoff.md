@@ -9,7 +9,8 @@ endTime: '17:30+02:00'
 youtubeEmbed: https://youtu.be/_hYPuzkd2H0
 locations:
   - name: YouTube
-    - links: https://youtu.be/_hYPuzkd2H0
+    links:
+      - https://youtu.be/_hYPuzkd2H0
 ---
 
 Kickoff meeting of the regulatory special interest group. The new nf-core ["Regulatory" special interest group](https://nf-co.re/special-interest-groups/regulatory) is intended to bring people together to discuss topics around pipeline validation and qualification for clinical applications. We hope to make key nf-core pipelines even more complete in terms of testing, adherence to standards and documentation. By bringing different stakeholders with interests in validation & qualification together, we aim to improve standards and fill gaps with respect to FDA/EMA requirements.
