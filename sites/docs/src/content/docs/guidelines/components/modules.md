@@ -359,6 +359,7 @@ Output file (and/or directory) names SHOULD just consist of only `${prefix}` and
   script:
   if ("$bam" == "${prefix}.bam") error "Input and output names are the same, set prefix in module configuration to disambiguate!"
   ```
+
 - If the input and output files are likely to have the same name, then an appropriate default prefix may be set, for example:
 
   ```nextflow
