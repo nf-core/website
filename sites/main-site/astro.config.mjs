@@ -40,6 +40,7 @@ pipelines_json.remote_workflows.map((pipeline) => {
         `https://nf-core-pipeline-results.netlify.app/${pipeline.name}/:version/results/:splat 200!`;
     pipelineRedirects[`/${pipeline.name}/:version/*`] =
         `https://nf-core-pipelines.netlify.app/${pipeline.name}/:version/:splat 200!`;
+    pipelineRedirects[`/${pipeline.name}/`] = `https://nf-core-pipelines.netlify.app/${pipeline.name} 200!`;
 });
 // let pipelineNames = {};
 // pipelines_json.remote_workflows.map(
