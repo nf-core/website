@@ -10,7 +10,8 @@ endTime: '16:30+00:00'
 locations:
   - name: Rosalind Franklin Pavillion, Conference Centre, Wellcome Genome Campus
     address: Wellcome Genome Campus, Hinxton CB10 1SA
-    links: https://www.wellcomegenomecampus.org
+    links:
+      - https://www.wellcomegenomecampus.org
     geoCoordinates: [52.079047, 0.187607]
 importTypeform: true
 ---

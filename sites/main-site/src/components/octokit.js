@@ -37,7 +37,7 @@ export const getGitHubFile = async (repo, path, ref) => {
       if (path.endsWith('.md') || path.endsWith('.mdx')) {
         const parent_directory = path.split('/').slice(0, -1).join('/');
         // add github url to image links in markdown if they are relative
-        content = content.replaceAll(/!\[([^\]\[]*\[?[^\]\[]*\]?[^\]\[]*)\]\((.*?)\)/g, (match, p1, p2) => {
+        content = content.replaceAll(/!\[([^\][]*[?[^\][]*\]?[^\][]*)\]\((.*?)\)/g, (match, p1, p2) => {
           if (p2.startsWith('http')) {
             return match;
           } else {
@@ -99,7 +99,7 @@ export const getGitHubFile = async (repo, path, ref) => {
         );
 
         // remove .md(x) from links with anchor tags
-        content = content.replaceAll(/\[([^\]\[]*)\]\((.*?)\.mdx?#(.*?)\)/g, '[$1]($2#$3)');
+        content = content.replaceAll(/\[([^\][]*)\]\((.*?)\.mdx?#(.*?)\)/g, '[$1]($2#$3)');
 
         // remove github warning and everything before from docs
         content = content.replace(/(.*?)(## :warning:)(.*?)usage\)/s, '');

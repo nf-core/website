@@ -9,7 +9,8 @@ endTime: '17:00+01:00'
 address: Tomtebodavägen 23A, 17165 Solna, Sweden
 locations:
   - name: SciLifeLab
-    links: https://scilifelab.se/
+    links:
+      - https://scilifelab.se/
     geoCoordinates: [59.3505174, 18.0221508]
 ---
 

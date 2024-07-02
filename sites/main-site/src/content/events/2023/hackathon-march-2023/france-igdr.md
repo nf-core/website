@@ -9,7 +9,8 @@ endTime: '17:00+02:00'
 locations:
   - name: Institute Genetics & Development of Rennes
     address: 2 avenue du Professeur Léon Bernard, CS 34317 / 35043 Rennes Cedex, France
-    links: https://igdr.univ-rennes1.fr/
+    links:
+      - https://igdr.univ-rennes1.fr/
     geoCoordinates: [48.117546, -1.696719]
 ---
 

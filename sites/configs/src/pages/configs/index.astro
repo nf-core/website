@@ -37,7 +37,7 @@ function parseConfig(fileContent) {
     }
     if (config.executor.includes('?') && config.executor.includes(':')) {
         config.executor = config.executor
-            .match(/{.*\?(.*)\:(.*)}/)
+            .match(/{.*\?(.*):(.*)}/)
             ?.slice(1, 3)
             .map((item) => item.trim().replace(/'/g, ''))
             .join(', ');

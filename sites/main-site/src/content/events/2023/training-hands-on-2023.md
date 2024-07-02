@@ -10,7 +10,8 @@ locationName: YouTube
 importTypeform: true
 locations:
   - name: Online
-    links: https://www.youtube.com/playlist?list=PL3xpfTVZLcNiCJRgKnBFYtmnXj1U31szQ
+    links:
+      - https://www.youtube.com/playlist?list=PL3xpfTVZLcNiCJRgKnBFYtmnXj1U31szQ
 ---
 
 # Welcome

@@ -6,28 +6,17 @@ import EventCard from '@components/event/EventCard.svelte';
 
 const events = await getCollection('events');
 const bytesizes = events.filter((event) => event.data.title.toLowerCase().match('bytesize'));
-let lastYoutubeUrls = bytesizes
-    .slice()
-    .reverse()
-    .find((Bytesize) => {
-        let urls = Bytesize.data.locationURL;
-        if (urls === undefined) {
-            return false;
-        }
-        if (typeof urls === 'string') {
-            urls = [urls];
-        }
 
-        return urls.find((url) => url.startsWith('https://www.youtube.com') || url.startsWith('https://youtu.be'));
-    });
+const latestBytesize = bytesizes
+    .sort((a, b) => new Date(b.data.start).getTime() - new Date(a.data.start).getTime())
+    .find((bs) =>
+        bs.data.locations?.some((loc) => Array.isArray(loc.links) && loc.links?.some((link) => link.includes('youtu'))),
+    )
+    ?.data.locations?.find((loc) => Array.isArray(loc.links) && loc.links?.some((link) => link.includes('youtu')))
+    ?.links?.find((link) => link.includes('youtu'))
+    .split('youtu.be/')[1];
+// get the most recent bytesize with a youtube link in locations.links
 
-lastYoutubeUrls = ([] as string[])
-    .concat(lastYoutubeUrls?.data.locationURL ?? [])
-    .find((url) => url.startsWith('https://www.youtube.com') || url.startsWith('https://youtu.be'));
-
-const latestBytesize = lastYoutubeUrls
-    ?.replace('https://www.youtube.com/watch?v=', '')
-    .replace('https://youtu.be/', '');
 const bytesizeSearch = bytesizes.map((bs) => {
     return { href: '/events/' + bs.slug + '/', name: bs.data.title };
 });
@@ -37,15 +26,14 @@ const eventPreview = events
         return new Date(b.data.start) - new Date(a.data.start);
     });
 
-let { eventPreviewCurrent, eventPreviewFuture, eventPreviewPast } = [];
-eventPreviewCurrent = eventPreview
+let eventPreviewCurrent = eventPreview
     .filter((event) => {
         const today = new Date();
         return event.data.start < today && event.data.end > today;
     })
     .slice(0, 3);
 
-eventPreviewFuture = eventPreview
+let eventPreviewFuture = eventPreview
     .reverse()
     .filter((event) => {
         const today = new Date();
@@ -53,7 +41,7 @@ eventPreviewFuture = eventPreview
     })
     .slice(0, 3);
 
-eventPreviewPast = eventPreview
+let eventPreviewPast = eventPreview
     .filter((event) => {
         const today = new Date();
         return event.data.end < today;
