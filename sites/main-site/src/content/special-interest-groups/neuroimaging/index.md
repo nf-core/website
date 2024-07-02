@@ -5,6 +5,7 @@ groupName: Neuroimaging
 leads:
   - AlexVCaron: Alex Valcourt Caron
   - arnaudbore: Arnaud Boré
+  - GuillaumeTh: Guillaume Theaud
 
 pipelines: []
 ---
