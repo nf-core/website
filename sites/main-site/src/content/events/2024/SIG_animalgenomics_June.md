@@ -8,7 +8,8 @@ endDate: '2024-06-19'
 endTime: '17:00+02:00'
 locations:
   - name: Online
-    links: https://rediris.zoom.us/j/96065549412?pwd=L2txanpQMEFTOWVLNmtIZyt6M3NnUT09
+    links:
+      - https://rediris.zoom.us/j/96065549412?pwd=L2txanpQMEFTOWVLNmtIZyt6M3NnUT09
 ---
 
 Join us on **June 19** for the monthly meeting of the _#animal-genomics_ special interest group!

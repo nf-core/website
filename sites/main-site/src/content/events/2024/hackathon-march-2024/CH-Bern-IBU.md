@@ -10,7 +10,8 @@ endTime: '17:00+01:00'
 locations:
   - name: IBU
     address: Baltzerstrasse 6, 3012 Bern, Switzerland
-    links: https://www.bioinformatics.unibe.ch/
+    links:
+      - https://www.bioinformatics.unibe.ch/
     geoCoordinates: [46.952096, 7.428005]
 ---
 

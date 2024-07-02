@@ -9,7 +9,8 @@ endTime: '17:00+01:00'
 locations:
   - name: Startit Centar, Beograd
     address: Savska 5, Belgrade 11000, Serbia
-    links: https://startit.rs/beograd/
+    links:
+      - https://startit.rs/beograd/
     geoCoordinates: [44.80696373983825, 20.45561989400684]
 ---
 

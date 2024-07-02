@@ -10,7 +10,8 @@ locationName: YouTube
 locationURL: https://www.youtube.com/nf-core
 locations:
   - name: YouTube
-    links: https://www.youtube.com/nf-core
+    links:
+      - https://www.youtube.com/nf-core
 ---
 
 # Welcome

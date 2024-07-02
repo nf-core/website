@@ -10,7 +10,8 @@ endTime: '17:00-06:00'
 locations:
   - name: Superfluid Dx Office
     address: 259 E. Grand Ave., South San Francisco, CA 94080
-    links: https://maps.app.goo.gl/S2bbwxMkF12Tgm4U7
+    links:
+      - https://maps.app.goo.gl/S2bbwxMkF12Tgm4U7
     geoCoordinates: [37.6545572, -122.3973615]
 ---
 

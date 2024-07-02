@@ -9,7 +9,8 @@ endTime: '13:30+02:00'
 youtubeEmbed: https://www.youtube.com/watch?v=hOuS6mXCwhk
 locations:
   - name: Online
-    links: https://www.youtube.com/watch?v=hOuS6mXCwhk
+    links:
+      - https://www.youtube.com/watch?v=hOuS6mXCwhk
 ---
 
 This week, Phil Ewels ([@ewels](https://github.com/ewels/)) will show you how to take a Python script and turn it into a stand-alone command-line tool, ready for distribution via the [Python Package Index](https://pypi.org/) (PyPI).

@@ -8,7 +8,8 @@ endDate: '2021-12-01'
 endTime: '18:00+01:00'
 locations:
   - name: Online
-    links: https://www.genomeweb.com/events/managing-bioinformatics-pipelines-cloud-do-more-science
+    links:
+      - https://www.genomeweb.com/events/managing-bioinformatics-pipelines-cloud-do-more-science
 ---
 
 Online webinar. Register for free at <https://www.genomeweb.com/events/managing-bioinformatics-pipelines-cloud-do-more-science>

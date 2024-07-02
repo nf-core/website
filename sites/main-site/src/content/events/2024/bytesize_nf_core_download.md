@@ -7,7 +7,8 @@ startTime: '13:00+02:00'
 endDate: '2024-07-09'
 endTime: '13:30+02:00'
 locations:
-  - links: https://kth-se.zoom.us/j/68390542812
+  - links:
+      - https://kth-se.zoom.us/j/68390542812
 ---
 
 Today's bytesize talk can be regarded as a continuation of and supplement to an ongoing series of talks focused on container image management in computational workflows. Over the past weeks, you already heard about the [`nextflow inspect` subcommand to list the container images required by a Nextflow pipeline](https://nf-co.re/events/2024/bytesize_singularity_containers_hpc) and learned how to best use [Singularity](https://nf-co.re/events/2024/bytesize_singularity_containers_hpc) and [Wave](https://nf-co.re/events/2024/bytesize_using_wave) for your containerization needs.

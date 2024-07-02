@@ -10,7 +10,8 @@ endTime: '18:00+02:00'
 locations:
   - name: RKI
     address: Seestraße 10, 13353 Berlin, Germany
-    links: https://www.rki.de
+    links:
+      - https://www.rki.de
     geoCoordinates: [52.54357, 13.33978]
 ---
 

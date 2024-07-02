@@ -9,7 +9,8 @@ endTime: '13:30+01:00'
 youtubeEmbed: https://youtu.be/R0fqk5OS-nw
 locations:
   - name: Online
-    links: https://youtu.be/R0fqk5OS-nw
+    links:
+      - https://youtu.be/R0fqk5OS-nw
 ---
 
 Building pipelines is one thing, but have you ever wanted to make a contribution

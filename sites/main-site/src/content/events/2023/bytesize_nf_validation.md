@@ -9,7 +9,8 @@ endTime: '13:30+02:00'
 youtubeEmbed: https://www.youtube.com/watch?v=rr9FTlQayIE
 locations:
   - name: Online
-    links: https://www.youtube.com/watch?v=rr9FTlQayIE
+    links:
+      - https://www.youtube.com/watch?v=rr9FTlQayIE
 ---
 
 This week Júlia Mir Pedrol ([@mirpedrol](https://github.com/mirpedrol)) and Nicolas Vannieuwkerke ([@nvnieuwk](https://github.com/nvnieuwk)) are presenting nf-validation, the soon to be released plugin to validate the input parameters and sample sheets for Nextflow pipelines.
