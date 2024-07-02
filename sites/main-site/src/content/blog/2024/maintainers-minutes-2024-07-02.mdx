@@ -1,0 +1,73 @@
+---
+title: 'Maintainers Minutes: July 2024'
+subtitle: 'Keeping you informed of the latest maintainers discussions'
+pubDate: 2024-07-02T17:00:00+02:00
+headerImage: '/assets/images/blog/maintainers-minutes-2024-07-02/nf-core-daisychain.jpg'
+headerImageAlt: 'Picture of a daisy chain on a table with the nf-core apple logo on each of the foreground flowers.'
+authors:
+    - 'jfy133'
+label:
+    - 'maintainers'
+---
+
+import nf_core_daisychain from '@assets/images/blog/maintainers-minutes-2024-07-02/nf-core-daisychain.jpg';
+import { Image } from 'astro:assets';
+
+<Image
+    src={nf_core_daisychain}
+    class="d-block m-auto"
+    width={750}
+    density={[1.5, 2]}
+    style="padding-bottom: 20px;"
+    alt="Picture of a daisy chain on a table with the nf-core apple logo on each of the foreground flowers."
+/>
+
+The 'Maintainers Minutes' aims to further give insight into the workings of the [nf-core maintainers team](/governance#maintainers)
+by providing brief summaries of the monthly Maintainer's team meetings.
+
+## End of the subworkflow naming saga?
+
+📚 The first point of order was reviewing our homework from last time.
+
+We reviewed various proposals put forward for how nf-core should name our subworkflows, and after comparison, it was decided to go with a less strict or structured name, and go with more flexible and descriptive names.
+This allows subworkflows to be understandable in what they do, without making them too long.
+In general short subworkflows with only one tool option in each step can simply list the main modules used, whereas longer subworkflows with more option can be descriptive without explicitly listing all modules.
+To compensate the loss of detail, Matthias (@mashehu) will investigate adding more metadata and keywords to the [nf-core subworkflow](https://nf-co.re/subworkflows) page for findability purposes.
+
+✍ Jon (@pinin4fjords) has been tasked formalising the discussions in proper guidelines, and will be posted on the nf-core website [guidelines page](https://nf-co.re/docs/guidelines/components/subworkflows) soon.
+
+## Daisy chains
+
+🌻 We discussed a recent pipeline proposal from Maxime (@maxulysse) which acts as one of the first nf-core forays into 'daisy-chaining' pipelines (i.e., importing pipelines into other pipelines).
+
+In this case the maintainers team collectively decided against making it an official pipeline at the moment.
+This was primarily due to concerns about a current lack of tooling and infrastructure in this context, particularly in how would documentation be 'merged' together, but also due to unresolved 'philosophical' discussions on what is the distinction between a subworkflow versus a workflow.
+
+🤔 However given the burning need by the community to have such functionality, we decided to set up the first (of two!) 'working groups', let by Rike (@FriederikeHanssen), to address this question. Feel free to join [#wg-meta-pipelines](https://nfcore.slack.com/archives/C07B5FK9GKA) join in.
+
+## Cleaning up our closet
+
+🧹 The second working group, named 'test-data task-force' was set up to clean up the nf-core test-data repository.
+
+In various areas of nf-core, it has been brought up that submitting and using the test-data repository is not optimal.
+Community members have said they find the turnaround time for reviews on the test-data repository take too long.
+Furthermore, members have said that knowing where to put, and then where to find existing test-data is hard to find due to insufficient documentation.
+In particular, the `delete_me/` folder has ballooned turning into a wild-west, contributing to the difficulties finding data.
+
+⛏ This working group will be led by Simon (@SPPearce), and if you want to give your input or get involved, you can join the [#wg-test-data-task-force](https://nfcore.slack.com/archives/C07B5FK9GKA) slack channel.
+
+## Ensuring quality
+
+☁️ Finally, there was a discussion about AWS megatests runs (runs of full-sized 'realistic' data executed on each pipeline release) regularly failing.
+
+It was brough up this often happens due to conflicts with Seqera's [Fusion](https://seqera.io/fusion/) file system, but more critically - these were only being discovered _after_ release.
+
+It was decided that documentation will be improved and that pipeline developers will be made aware they are allowed to trigger (a limited number) of manual full-test run.
+
+🤖 Matthias (@mashehu) would also investigate to see if we can semi-automate a test being triggered prior release (without them executing too many times).
+
+## Upcoming discussions
+
+Next meeting we will be reviewing the progress of the various new task-forces established during the meeting.
+
+\- :heart: from your #maintainers team!
