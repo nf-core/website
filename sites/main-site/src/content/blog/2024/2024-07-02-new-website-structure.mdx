@@ -51,16 +51,18 @@ The term "monorepo" might seem somewhat misleading, as we already had our entire
 ---
 config:
     xyChart:
-        width: 900
+        width: 1000
         height: 600
     themeVariables:
         xyChart:
-            plotColorPalette: '#1a9655'
+            plotColorPalette: '#495057,#1a9655'
+            backgroundColor: 'transparent'
 ---
 xychart-beta
-    x-axis "sites" ["old", "sites/configs", "sites/docs", "sites/main-sites", "sites/pipelines", "sites/pipelin-releases"]
-    y-axis "average build times [in minutes]" 0 --> 15
-    bar [12, 0.85, 1.5, 1.85, 4.3, 1.5]
+    x-axis "sites" ["old structure","old structure Astro 4", "sites/configs", "sites/docs", "sites/main-sites", "sites/pipelines", "sites/pipelin-releases"]
+    y-axis "average build times [in minutes]" 0.5 --> 20
+    bar [8, 18, 0.85, 1.5, 1.85, 4.3, 1.5]
+    bar [0, 0, 0.85, 1.5, 1.85, 4.3, 1.5]
 ```
 
 # Technical setup
