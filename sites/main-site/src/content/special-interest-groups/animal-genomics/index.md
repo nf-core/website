@@ -4,6 +4,8 @@ subtitle: 'The Animal Genomics Special Interest Group is a community of research
 groupName: Animal Genomics
 leads:
   - bjlang: Björn Langer
+  - joseespinosa: Jose Espinosa-Carrasco
+  - cnotred: Cedric Notredame
 pipelines:
   - rnaseq
   - smrnaseq
