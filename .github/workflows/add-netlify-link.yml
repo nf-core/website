@@ -3,8 +3,8 @@ name: Add Netlify Link to PR
 on:
   pull_request_target:
     paths:
-      - 'src/pages/**'
-      - 'src/content/**'
+      - 'sites/**/src/pages/**'
+      - 'sites/**/src/content/**'
 
 jobs:
   add-comment:
