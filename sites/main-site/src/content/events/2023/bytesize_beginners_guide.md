@@ -9,7 +9,8 @@ endTime: '13:30+02:00'
 youtubeEmbed: https://www.youtube.com/watch?v=2hEYtrGXrKo
 locations:
   - name: Online
-    links: https://www.youtube.com/watch?v=2hEYtrGXrKo
+    links:
+      - https://www.youtube.com/watch?v=2hEYtrGXrKo
 ---
 
 This week, Franziska ([@FranBonath](https://github.com/FranBonath)) will share her experiences as a beginner in using nf-core provided material and will give tips on how to get started.

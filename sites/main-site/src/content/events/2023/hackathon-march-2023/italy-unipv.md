@@ -9,7 +9,8 @@ endTime: '18:00+02:00'
 locations:
   - name: DBB
     address: Via Ferrata 9, 27100 Pavia, Italy
-    links: https://dbb.dip.unipv.it/en
+    links:
+      - https://dbb.dip.unipv.it/en
     geoCoordinates: [45.202990, 9.141067]
 ---
 

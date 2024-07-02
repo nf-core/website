@@ -10,7 +10,8 @@ endTime: '13:00-06:00'
 locations:
   - name: University of Washington
     address: 1607 NE Pacific St, Seattle, WA
-    links: https://www.washington.edu/maps/#!/hsrr
+    links:
+      - https://www.washington.edu/maps/#!/hsrr
     geoCoordinates: [47.649292, -122.308287]
 ---
 
