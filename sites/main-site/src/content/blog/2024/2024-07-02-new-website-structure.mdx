@@ -14,6 +14,7 @@ label:
 
 import subsites from '@assets/images/blog/new-website-structure/sub-site-meme.png';
 import horsesizedduck from '@assets/images/blog/new-website-structure/horse-sized-duck.jpg';
+import harderstronger from '@assets/images/blog/new-website-structure/harder-stronger.gif';
 import { Image } from 'astro:assets';
 
 # Build big
@@ -108,3 +109,11 @@ if you want to see the changes to a blog entry. Be aware that pages not part of 
 # Additional Changes
 
 We couldn't update to Astro 4 with the old website structure, because it increased the build time to > 20 minutes leading to a timeout on netlify. With the new structure, we are now able to use newer Astro versions and benefit from the new features and optimizations, including [content collection caching](https://astro.build/blog/astro-350/#content-collections-build-cache-experimental), decreasing the build time for repeated builds even more.
+
+<Image
+    src={harderstronger}
+    class="d-block m-auto mb-2"
+    width={600}
+    density={[1.5, 2]}
+    alt="Flashing words from the Lyrics of Daft Punk's 'Harder, Better, Faster, Stronger' on a black background. The words are 'Work it harder, make it better, do it faster, makes us stronger, more than ever, hour after hour, work is never over.'"
+/>
