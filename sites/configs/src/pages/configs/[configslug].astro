@@ -107,7 +107,6 @@ export async function getStaticPaths() {
 }
 const { configslug } = Astro.params;
 let { content, config, raw_config, path } = Astro.props;
-
 // remove nf-core/configs (with or without :) from markdown heading
 
 content = content?.replace(/nf-core\/configs(:)?\s*/g, '');
@@ -166,20 +165,23 @@ const gh_url = 'https://github.com/nf-core/configs/blob/master/docs/' + configsl
                         ]}
                     />
                 )
+            }{
+                config.config_profile_url && (
+                    <SidebarStatsRow
+                        content={[
+                            {
+                                title: 'homepage',
+                            },
+                        ]}
+                    >
+                        <a class="text-truncate text-nowrap overflow-x-auto" href={config.config_profile_url}>
+                            {config.config_profile_url}
+                        </a>
+                    </SidebarStatsRow>
+                )
             }
-            <SidebarStatsRow
-                content={[
-                    {
-                        title: 'homepage',
-                    },
-                ]}
-            >
-                <a class="text-truncate text-nowrap overflow-x-auto" href={config.config_profile_url}
-                    >{config.config_profile_url}</a
-                >
-            </SidebarStatsRow>
             {
-                !config.executor && (
+                !config.executor && contact && (
                     <SidebarStatsRow
                         content={[
                             {
