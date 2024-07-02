@@ -34,17 +34,17 @@ jobs:
         run: npm ci
 
       - name: create pipeline.json
-        run: npm run build-pipeline-json
+        run: npm run -w sites/pipelines build-pipeline-json
         env:
           GITHUB_TOKEN: ${{ secrets.PIPLINE_JSON_BUILD_TOKEN }}
 
       - name: create component.json
-        run: npm run build-component-json
+        run: npm run -w sites/modules-subworkflows build-component-json
         env:
           GITHUB_TOKEN: ${{ secrets.PIPLINE_JSON_BUILD_TOKEN }}
 
       - name: make md cache
-        run: node bin/build-cache.js && tar -cvJf .cache.tar.xz .cache
+        run: npm run -w sites/main-site build-md-cache
         env:
           GITHUB_TOKEN: ${{ secrets.CREATE_CACHE_MD_TOKEN }}
 
