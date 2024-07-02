@@ -1,5 +1,4 @@
 <script lang="ts">
-    // Import GitHubProfilePicture.svelte component
     import GitHubProfilePicture from './GitHubProfilePicture.svelte';
 
     export let username: string;
