@@ -39,10 +39,12 @@ let mostRecentBlogPost = await getCollection('blog', ({ data }) => {
     return data.pubDate.getTime() < now && data.pubDate.getTime() > now - 1000 * 60 * 60 * 24 * 1;
 });
 // sort by pubdate
-mostRecentBlogPost.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+if (mostRecentBlogPost?.length > 0) {
+    mostRecentBlogPost.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+}
 let blogPostTimeSpan: [number, number] = [0, 0];
 // get time span of blogposts as an array
-if (mostRecentBlogPost.length > 0) {
+if (mostRecentBlogPost?.length > 0) {
     blogPostTimeSpan = [
         new Date(mostRecentBlogPost[0].data.pubDate).getTime(),
         new Date(mostRecentBlogPost[mostRecentBlogPost.length - 1].data.pubDate).getTime() + 1000 * 60 * 60 * 24 * 1,
@@ -54,16 +56,18 @@ let onGoingEvents = await getCollection('events', ({ data }) => {
 });
 
 // sort by start date
-onGoingEvents.sort((a, b) => {
-    if (a.data.start === b.data.start) {
-        return a.data.end - b.data.end;
-    } else {
-        return a.data.start - b.data.start;
-    }
-});
+if (onGoingEvents?.length > 0) {
+    onGoingEvents.sort((a, b) => {
+        if (a.data.start === b.data.start) {
+            return a.data.end - b.data.end;
+        } else {
+            return a.data.start - b.data.start;
+        }
+    });
+}
 // // get time span of events
 let eventTimeSpan: [number, number] = [0, 0];
-if (onGoingEvents.length > 0) {
+if (onGoingEvents?.length > 0) {
     eventTimeSpan = [
         onGoingEvents[0].data.start?.getTime(),
         onGoingEvents[onGoingEvents.length - 1]?.data.end.getTime(),
@@ -126,12 +130,12 @@ if (onGoingEvents.length > 0) {
                 </li>
                 <li class="nav-item p-1 px-3 px-xl-1 dropdown">
                     <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
-                        <EventIndicator type={'blog'} timeSpan={blogPostTimeSpan} client:idle
-                            ><Icon name="circle" /></EventIndicator
-                        >
-                        <EventIndicator type={'event'} timeSpan={eventTimeSpan} client:idle
-                            ><Icon name="circle" /></EventIndicator
-                        >
+                        <EventIndicator type={'blog'} timeSpan={blogPostTimeSpan} client:idle>
+                            <Icon name="circle" />
+                        </EventIndicator>
+                        <EventIndicator type={'event'} timeSpan={eventTimeSpan} client:idle>
+                            <Icon name="circle" />
+                        </EventIndicator>
                         Community
                     </a>
                     <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
@@ -145,9 +149,9 @@ if (onGoingEvents.length > 0) {
                         <li><hr class="dropdown-divider" /></li>
                         <li>
                             <span class="dropdown-header">
-                                <EventIndicator type={'event'} timeSpan={eventTimeSpan} client:idle
-                                    ><Icon name="circle" /></EventIndicator
-                                >
+                                <EventIndicator type={'event'} timeSpan={eventTimeSpan} client:idle>
+                                    <Icon name="circle" />
+                                </EventIndicator>
                                 Events
                             </span>
                         </li>
