@@ -33,6 +33,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: debug path
+        run: |
+          ls -l .
+          ls -l sites
+
       - name: create pipeline.json
         run: npm run build-pipeline-json
         env:
