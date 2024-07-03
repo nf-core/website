@@ -30,12 +30,14 @@ jobs:
         id: get_changed_subsite
         run: |
           CHANGED_DIRECTORY=$(git diff --name-only HEAD~1 HEAD | grep 'sites/' | cut -d/ -f2 | uniq) >> $GITHUB_ENV
+    outputs:
+      changed_directory: ${{ env.CHANGED_DIRECTORY }}
 
   deploy-main-site:
     name: 'Deploy preview for main-site'
     runs-on: ubuntu-latest
     needs: pre-build
-    if: github.repository == 'nf-core/website' && env.CHANGED_DIRECTORY == 'docs'
+    if: github.repository == 'nf-core/website' && needs.pre-build.outputs.changed_directory == 'main-site'
     permissions:
       pull-requests: write
     steps:
@@ -60,7 +62,7 @@ jobs:
     name: 'Deploy preview for docs'
     runs-on: ubuntu-latest
     needs: pre-build
-    if: github.repository == 'nf-core/website'
+    if: github.repository == 'nf-core/website' && needs.pre-build.outputs.changed_directory == 'docs'
     permissions:
       pull-requests: write
     steps:
