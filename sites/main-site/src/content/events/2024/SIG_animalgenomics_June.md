@@ -11,6 +11,7 @@ locations:
   - name: Online
     links:
       - https://youtu.be/KJDSzKLyiPk
+      - https://doi.org/10.6084/m9.figshare.26155489.v1
 ---
 
 June 2024 talk of the the monthly meeting of the _#animal-genomics_ special interest group meeting.
