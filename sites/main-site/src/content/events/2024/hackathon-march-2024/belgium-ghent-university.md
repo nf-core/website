@@ -10,7 +10,8 @@ endTime: '18:00+02:00'
 locations:
   - name: Ghent University
     address: Hermann von Helmholtz, campus Ardoyen, iGent, 9052 Zwijnaarde, Belgium
-    links: https://www.ugent.be/en
+    links:
+      - https://www.ugent.be/en
     geoCoordinates: [51.01287821684896, 3.708004390525348]
 ---
 

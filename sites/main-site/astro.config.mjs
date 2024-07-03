@@ -26,27 +26,14 @@ import pipelines_json from './public/pipelines.json';
 import markdownIntegration from '@astropub/md';
 import icon from 'astro-icon';
 
-// const latestToolsRelease = await fetch('https://api.github.com/repos/nf-core/tools/releases/latest')
-//     .then((res) => res.json())
-//     .then((json) => json.tag_name);
-
-// let latestPipelineReleases = {};
-// pipelines_json.remote_workflows.map(
-//     (pipeline) => (latestPipelineReleases[pipeline.name] = `/${pipeline.name}/${pipeline.releases[0].tag_name}/`),
-// );
 let pipelineRedirects = {};
 pipelines_json.remote_workflows.map((pipeline) => {
     pipelineRedirects[`/${pipeline.name}/:version/results/*`] =
         `https://nf-core-pipeline-results.netlify.app/${pipeline.name}/:version/results/:splat 200!`;
     pipelineRedirects[`/${pipeline.name}/:version/*`] =
         `https://nf-core-pipelines.netlify.app/${pipeline.name}/:version/:splat 200!`;
+    pipelineRedirects[`/${pipeline.name}/`] = `https://nf-core-pipelines.netlify.app/${pipeline.name} 200!`;
 });
-// let pipelineNames = {};
-// pipelines_json.remote_workflows.map(
-//     (pipeline) =>
-//         (pipelineNames[`/${pipeline.name}/*`] =
-//             `https://nf-core-pipelines.netlify.app/${pipeline.name}/:splat 200!`),
-// );
 // https://astro.build/config
 export default defineConfig({
     site: 'https://nf-co.re/',
@@ -124,7 +111,13 @@ export default defineConfig({
         },
     },
     image: {
-        domains: ['raw.githubusercontent.com', 'unsplash.com'],
+        domains: [
+            'raw.githubusercontent.com',
+            'unsplash.com',
+            'netlify.app',
+            'nf-co.re',
+            'nf-core-main-site.netlify.app',
+        ],
         service: {
             entrypoint: 'astro/assets/services/sharp',
         },

@@ -9,7 +9,8 @@ endTime: '18:00+02:00'
 locations:
   - name: Institut Pasteur, Dakar
     address: 36 Avenue Pasteur, BP220, Dakar - Senegal
-    links: https://www.pasteur.sn/en
+    links:
+      - https://www.pasteur.sn/en
     geoCoordinates: [14.656219, -17.435057]
 ---
 

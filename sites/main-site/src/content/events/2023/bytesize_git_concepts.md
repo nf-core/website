@@ -8,7 +8,8 @@ endDate: '2023-12-12'
 endTime: '15:00+01:00'
 locations:
   - name: Online
-    links: https://kth-se.zoom.us/j/68390542812
+    links:
+      - https://kth-se.zoom.us/j/68390542812
 ---
 
 Ever wondered what else git can do? Wonder no more! Edmund ([@edmundmiller](https://github.com/edmundmiller)) is going to present you some git concepts like re-base, magit and Git Lens. Join this bytesize and advance you git-game!

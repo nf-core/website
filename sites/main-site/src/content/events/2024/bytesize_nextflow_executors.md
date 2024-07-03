@@ -9,7 +9,8 @@ endDate: '2024-01-16'
 endTime: '13:30+01:00'
 locations:
   - name: Online
-    links: https://www.youtube.com/watch?v=ncYcxyiGyds
+    links:
+      - https://www.youtube.com/watch?v=ncYcxyiGyds
 ---
 
 In this weeks bytesize talk, Maxime Garcia [@maxulysse](https://github.com/maxulysse) will shed light on how to use and configure executors in Nextflow. This includes a short intro to slurm and sbatch scripts, as well as showing an example `command.run` with the headers.

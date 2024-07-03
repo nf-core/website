@@ -7,7 +7,8 @@ startTime: '13:00+02:00'
 endDate: '2024-07-16'
 endTime: '13:30+02:00'
 locations:
-  - links: https://kth-se.zoom.us/j/68390542812
+  - links:
+      - https://kth-se.zoom.us/j/68390542812
 ---
 
 Collaboration is central to the nf-core experience.

@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { EventIsOngoing } from '@components/store';
     import { formatDistanceToNow } from 'date-fns';
     import ExportEventButton from '@components/event/ExportEventButton.svelte';
     import VideoButton from '@components/VideoButton.svelte';

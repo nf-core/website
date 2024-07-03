@@ -10,7 +10,8 @@ endTime: '18:00+02:00'
 locations:
   - name: CRG
     address: C/ del Dr. Aiguader, 88, 08003 Barcelona, Spain
-    links: https://www.crg.eu/
+    links:
+      - https://www.crg.eu/
     geoCoordinates: [41.3855236, 2.1940409]
 ---
 

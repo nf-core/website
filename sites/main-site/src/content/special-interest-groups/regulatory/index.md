@@ -8,6 +8,7 @@ leads:
   - christopher-mohr: Christopher Mohr
   - pbiology: Anders Lind
   - jemten: Anders Jemt
+  - tschwarzl: Thomas Schwarzl
 
 pipelines:
   - rnaseq

@@ -9,7 +9,8 @@ endTime: '17:00+01:00'
 locations:
   - name: Garden Room, Main Building, EMBL-EBI, Wellcome Genome Campus
     address: Wellcome Genome Campus, Hinxton CB10 1SA
-    links: https://www.wellcomegenomecampus.org
+    links:
+      - https://www.wellcomegenomecampus.org
     geoCoordinates: [48.8583, 2.2923]
 ---
 

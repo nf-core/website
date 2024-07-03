@@ -9,7 +9,8 @@ endTime: '18:00+02:00'
 locations:
   - name: University of Texas at Dallas
     address: 860 N Loop Rd, Richardson, TX 75080
-    links: https://map.concept3d.com/?id=1772#!m/434445
+    links:
+      - https://map.concept3d.com/?id=1772#!m/434445
     geoCoordinates: [32.991185005884084, -96.75017317150136]
 ---
 

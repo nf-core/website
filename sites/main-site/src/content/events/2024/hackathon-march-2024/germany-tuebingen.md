@@ -10,7 +10,8 @@ endTime: '18:00+02:00'
 locations:
   - name: Tübingen
     address: Auf der Morgenstelle 6, 72076 Tübingen, Germany
-    links: https://uni-tuebingen.de/einrichtungen/personalvertretungen-beratung-beauftragte/lageplaene/karte-a-morgenstelle/auf-der-morgenstelle-6
+    links:
+      - https://uni-tuebingen.de/einrichtungen/personalvertretungen-beratung-beauftragte/lageplaene/karte-a-morgenstelle/auf-der-morgenstelle-6
     geoCoordinates: [48.53757295717644, 9.035516078124646]
 ---
 

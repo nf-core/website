@@ -9,7 +9,8 @@ endTime: '22:00+02:00'
 locations:
   - name: Brain Institute, Federal University of Rio Grande do Norte
     address: Av. Senador Salgado Filho, 3000 Campus Universitário, Lagoa Nova - Natal / RN 59078-900
-    links: https://neuro.ufrn.br
+    links:
+      - https://neuro.ufrn.br
     geoCoordinates: [-5.833184, -35.204875]
 ---
 

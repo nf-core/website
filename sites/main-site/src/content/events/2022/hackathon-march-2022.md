@@ -11,7 +11,8 @@ locationURL: https://gather.town/
 locations:
   - name: Gather town and Slack.
     url: https://gather.town/
-    links: https://gather.town/
+    links:
+      - https://gather.town/
 ---
 
 # Welcome
