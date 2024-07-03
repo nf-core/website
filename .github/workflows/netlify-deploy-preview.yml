@@ -53,11 +53,20 @@ jobs:
   deploy-main-site:
     name: 'Deploy preview for main-site'
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: website
     needs: pre-build
     if: github.repository == 'nf-core/website' && needs.pre-build.outputs.main-site_any_changed == 'true'
     permissions:
       pull-requests: write
     steps:
+      - name: debug
+        run: |
+          ls -l .
+          ls -l ..
+          pwd
+
       - name: Build website
         run: npm run build --workspace sites/main-site
 
@@ -78,6 +87,9 @@ jobs:
   deploy-docs:
     name: 'Deploy preview for docs'
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: website
     needs: pre-build
     if: github.repository == 'nf-core/website' && needs.pre-build.outputs.docs_any_changed == 'true'
     permissions:
