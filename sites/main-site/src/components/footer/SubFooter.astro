@@ -7,14 +7,9 @@ const { md_github_url } = Astro.props;
         {
             md_github_url && (
                 <p class="mb-0">
-                    <span class="d-xl-inline-block d-none">
-                        <i class="fab fa-github" /> Read this page on GitHub:
-                        <code>
-                            <a href={md_github_url}>{md_github_url}</a>
-                        </code>
-                    </span>
-                    <a class="d-xl-none" href={md_github_url}>
-                        <i class="fab fa-github" /> Read this page on GitHub
+                    <a class="" href={md_github_url}>
+                        <i class="fab fa-github me-2" />
+                        See the source code for this page
                     </a>
                 </p>
             )
