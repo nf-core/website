@@ -94,7 +94,7 @@
                                 href={'#' + heading.slug}
                             >
                                 {#if heading.fa_icon}
-                                    <i class={heading.fa_icon + ' fa-fw '} aria-hidden="true" />
+                                    <i class={heading.fa_icon + ' fa-fw me-2'} aria-hidden="true" />
                                 {/if}
                                 {@html heading.text}
                                 {#if hCheckboxes.find((hc) => hc?.id.startsWith('checkbox-' + heading.slug))}
