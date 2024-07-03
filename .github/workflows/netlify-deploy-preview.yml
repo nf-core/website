@@ -5,38 +5,12 @@ on:
     paths: ['sites/docs/**', 'sites/main-site/**']
 
 jobs:
-  pre-build:
-    name: 'prepare build setup'
+  change-detection:
+    name: 'detect changed sub-sites'
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./website
     steps:
       - name: Checkout website repo
         uses: actions/checkout@v4
-        with:
-          path: ./website
-      - name: debug
-        run: |
-          ls -l .
-          ls -l ..
-          pwd
-      - name: Set up Node.js 20
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-          cache-dependency-path: ./website/package-lock.json
-
-      - name: Install npm deps
-        run: npm ci
-
-      - name: debug
-        run: |
-          ls -l .
-          ls -l ..
-          pwd
-          git status
 
       - name: Check changed files
         id: changed-files-yaml
@@ -50,22 +24,30 @@ jobs:
     outputs:
       main-site_any_changed: ${{ steps.changed-files-yaml.outputs.main-site_any_changed }}
       docs_any_changed: ${{ steps.changed-files-yaml.outputs.docs_any_changed }}
+
   deploy-main-site:
     name: 'Deploy preview for main-site'
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: website
-    needs: pre-build
-    if: github.repository == 'nf-core/website' && needs.pre-build.outputs.main-site_any_changed == 'true'
+    needs: change-detection
+    if: github.repository == 'nf-core/website' && needs.change-detection.outputs.main-site_any_changed == 'true'
     permissions:
       pull-requests: write
     steps:
-      - name: debug
-        run: |
-          ls -l .
-          ls -l ..
-          pwd
+      - name: Checkout website repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: ./website/package-lock.json
+
+      - name: Install npm deps
+        run: npm ci
 
       - name: Build website
         run: npm run build --workspace sites/main-site
@@ -90,11 +72,23 @@ jobs:
     defaults:
       run:
         working-directory: website
-    needs: pre-build
-    if: github.repository == 'nf-core/website' && needs.pre-build.outputs.docs_any_changed == 'true'
+    needs: change-detection
+    if: github.repository == 'nf-core/website' && needs.change-detection.outputs.docs_any_changed == 'true'
     permissions:
       pull-requests: write
     steps:
+      - name: Checkout website repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: ./website/package-lock.json
+
+      - name: Install npm deps
+        run: npm ci
       - name: Build website
         run: npm run build --workspace sites/docs
 
