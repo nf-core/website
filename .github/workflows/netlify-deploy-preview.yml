@@ -40,7 +40,7 @@ jobs:
       - name: get changed sub-site
         id: get_changed_subsite
         run: |
-          CHANGED_DIRECTORY=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -E 'sites/(main-site|docs)' | head -n1 | cut -d'/' -f2) >> $GITHUB_ENV
+          CHANGED_DIRECTORY=$(git diff --name-only ${{ github.event.before }} HEAD | grep -E 'sites/(main-site|docs)' | head -n1 | cut -d'/' -f2) >> $GITHUB_ENV
     outputs:
       changed_directory: ${{ env.CHANGED_DIRECTORY }}
 
