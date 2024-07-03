@@ -38,7 +38,9 @@ pipelines_json.remote_workflows.map((pipeline) => {
 export default defineConfig({
     site: 'https://nf-co.re/',
     output: 'hybrid',
-    adapter: netlify(),
+    adapter: netlify({
+        imageCDN: false,
+    }),
     prefetch: false,
     redirects: {
         ...pipelineRedirects,
