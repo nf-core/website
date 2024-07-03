@@ -1,0 +1,82 @@
+name: trigger Netlify deploy preview
+
+on:
+  pull_request:
+    paths: ['sites/docs/**', 'sites/main-site/**']
+
+jobs:
+  pre-build:
+    name: 'prepare build setup'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./website
+    steps:
+      - name: Checkout website repo
+        uses: actions/checkout@v4
+        with:
+          path: ./website
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install npm deps
+        run: npm ci
+
+      - name: get changed sub-site
+        id: get_changed_subsite
+        run: |
+          CHANGED_DIRECTORY=$(git diff --name-only HEAD~1 HEAD | grep 'sites/' | cut -d/ -f2 | uniq) >> $GITHUB_ENV
+
+  deploy-main-site:
+    name: 'Deploy preview for main-site'
+    runs-on: ubuntu-latest
+    needs: pre-build
+    if: github.repository == 'nf-core/website' && env.CHANGED_DIRECTORY == 'docs'
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Build website
+        run: npm run build --workspace sites/main-site
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v3.0.0
+        with:
+          publish-dir: './sites/main-site/dist'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: 'nf-core/main-site PR #${{ github.event.pull_request.number }}: ${{ github.event.pull_request.title }}'
+          alias: nf-core-main-site-pr-${{ github.event.pull_request.number }}
+          enable-commit-comment: false
+          enable-commit-status: false
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_MAIN_SITE_ID }}
+        timeout-minutes: 1
+
+  deploy-docs:
+    name: 'Deploy preview for docs'
+    runs-on: ubuntu-latest
+    needs: pre-build
+    if: github.repository == 'nf-core/website'
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Build website
+        run: npm run build --workspace sites/docs
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v3.0.0
+        with:
+          publish-dir: './sites/docs/dist'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: 'nf-core/docs PR #${{ github.event.pull_request.number }}: ${{ github.event.pull_request.title }}'
+          alias: nf-core-docs-pr-${{ github.event.pull_request.number }}
+          enable-commit-comment: false
+          enable-commit-status: false
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_DOCS_ID }}
+        timeout-minutes: 1
