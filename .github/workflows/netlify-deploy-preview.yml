@@ -38,12 +38,17 @@ jobs:
           pwd
           git status
 
-      - name: get changed sub-site
-        id: get_changed_subsite
-        run: |
-          CHANGED_DIRECTORY=$(git diff --name-only ${{ github.base_ref }}...${{github.head_ref}} | grep -E 'sites/(main-site|docs)' | head -n 1 | cut -d'/' -f2)
+      - name: Check changed files
+        id: changed-files-yaml
+        uses: tj-actions/changed-files@v44
+        with:
+          files_yaml: |
+            docs:
+              - sites/docs/**
+            main-site:
+              - sites/main-site/**
     outputs:
-      changed_directory: ${{ env.CHANGED_DIRECTORY }}
+      changed_directory: ${{ env.changed_files_yaml }}
 
   deploy-main-site:
     name: 'Deploy preview for main-site'
@@ -52,7 +57,7 @@ jobs:
       run:
         working-directory: ./website
     needs: pre-build
-    if: github.repository == 'nf-core/website' && needs.pre-build.outputs.changed_directory == 'main-site'
+    if: github.repository == 'nf-core/website' && needs.pre-build.outputs.changed_directory.main-site_any_changed == 'true'
     permissions:
       pull-requests: write
     steps:
@@ -80,7 +85,7 @@ jobs:
       run:
         working-directory: ./website
     needs: pre-build
-    if: github.repository == 'nf-core/website' && needs.pre-build.outputs.changed_directory == 'docs'
+    if: github.repository == 'nf-core/website' && needs.pre-build.outputs.changed_directory.docs_any_changed == 'true'
     permissions:
       pull-requests: write
     steps:
