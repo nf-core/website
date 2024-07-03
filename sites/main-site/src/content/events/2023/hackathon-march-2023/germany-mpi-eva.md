@@ -9,7 +9,8 @@ endTime: '18:00+02:00'
 locations:
   - name: MPI-EVA
     address: Deutscher Pl. 6, 04103 Leipzig
-    links: https://www.eva.mpg.de/
+    links:
+      - https://www.eva.mpg.de/
     geoCoordinates: [51.321402, 12.395295]
 ---
 

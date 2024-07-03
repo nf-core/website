@@ -9,7 +9,8 @@ endTime: '13:30+01:00'
 youtubeEmbed: https://youtu.be/nmp0pXL7GqQ
 locations:
   - name: Online
-    links: https://youtu.be/nmp0pXL7GqQ
+    links:
+      - https://youtu.be/nmp0pXL7GqQ
 ---
 
 Curious what we do at nf-core hackathons? Ever wondered if you should sign up? In this weeks bytesize, Friederike Hansen ([@FriederikeHanssen](https://github.com/FriederikeHanssen)) will have all the answers for these questions and more!

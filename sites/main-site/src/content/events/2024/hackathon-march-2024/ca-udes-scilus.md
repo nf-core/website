@@ -10,7 +10,8 @@ endTime: '17:00-05:00'
 locations:
   - name: Sherbrooke Connectivity Imaging Lab (SCIL), Université de Sherbrooke
     address: 2500 Bd de l'Université, Sherbrooke, QC J1K 2R1
-    links: https://scil.usherbrooke.ca/
+    links:
+      - https://scil.usherbrooke.ca/
     geoCoordinates: [45.3797289, -71.9276139]
 ---
 

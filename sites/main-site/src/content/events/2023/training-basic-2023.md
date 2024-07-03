@@ -9,7 +9,8 @@ endTime: '18:00+02:00'
 importTypeform: true
 locations:
   - name: Online
-    links: https://www.youtube.com/playlist?list=PL3xpfTVZLcNiLFLiDqk_H5b3TBwvgO_-W
+    links:
+      - https://www.youtube.com/playlist?list=PL3xpfTVZLcNiLFLiDqk_H5b3TBwvgO_-W
 ---
 
 # Welcome

@@ -10,7 +10,8 @@ endTime: '17:00+00:00'
 locations:
   - name: Cosyne Therapeutics
     address: Medius House, 2 Sheraton St, London W1F 8BH
-    links: https://maps.app.goo.gl/G327eD8PEQefbHcs8
+    links:
+      - https://maps.app.goo.gl/G327eD8PEQefbHcs8
     geoCoordinates: [51.51565268907713, -0.13365964707324154]
 ---
 

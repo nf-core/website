@@ -9,7 +9,8 @@ endTime: '16:30+01:00'
 locations:
   - name: Chestnut Suite, Hinxton Hall, Wellcome Genome Campus
     address: Wellcome Genome Campus, Hinxton CB10 1SA
-    links: https://www.wellcomegenomecampus.org
+    links:
+      - https://www.wellcomegenomecampus.org
     geoCoordinates: [52.079047, 0.187607]
 ---
 

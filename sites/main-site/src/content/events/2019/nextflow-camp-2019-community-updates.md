@@ -9,7 +9,8 @@ endTime: '09:45+01:00'
 locationName: Centre for Genomic Regulation, Barcelona
 locations:
   - name: Centre for Genomic Regulation, Barcelona
-    links: https://www.crg.eu/
+    links:
+      - https://www.crg.eu/
     geoCoordinates: [41.385242, 2.194323]
     address: Carrer del Dr. Aiguader, 88, 08003 Barcelona, Spain
 ---

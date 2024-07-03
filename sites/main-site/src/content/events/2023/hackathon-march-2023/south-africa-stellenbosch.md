@@ -8,7 +8,8 @@ endDate: '2023-03-29'
 endTime: '16:00+02:00'
 locations:
   - name: Tygerberg campus, Stellenbosch University
-    links: https://www.sun.ac.za/english/faculty/healthsciences/
+    links:
+      - https://www.sun.ac.za/english/faculty/healthsciences/
 ---
 
 Local event to be held at the BMRI building, Tygerberg Campus, University of Stellenbosch.

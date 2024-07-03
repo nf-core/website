@@ -10,7 +10,8 @@ endTime: '17:00+00:00'
 locations:
   - name: Quadram Institute Bioscience
     address: Rosalind Franklin Rd, Norwich, NR4 7UQ, UK
-    links: https://maps.app.goo.gl/xkDwoMQhnvPVGWVL7
+    links:
+      - https://maps.app.goo.gl/xkDwoMQhnvPVGWVL7
     geoCoordinates: [52.6209296, 1.2158586]
 ---
 

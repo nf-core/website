@@ -9,7 +9,8 @@ endTime: '13:30+01:00'
 youtubeEmbed: https://www.youtube.com/watch?v=A357C-ux6Dw
 locations:
   - name: Online
-    links: https://www.youtube.com/watch?v=A357C-ux6Dw
+    links:
+      - https://www.youtube.com/watch?v=A357C-ux6Dw
 ---
 
 This week, Rob Syme ([@robsyme](https://github.com/robsyme)) will talk about how to avoid introducing subtle concurrency bugs in your Nextflow workflows by safely modifying objects (or more specifically, by _not_ modifying objects) when writing Groovy closures.

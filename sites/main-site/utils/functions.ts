@@ -59,10 +59,10 @@ export const findCurrentGroup = (sections: SidebarEntry[]) => {
 
 export const findByProperty = (obj: object, predicate: (obj: object) => boolean) => {
     if (predicate(obj)) return obj;
-    for (let n of Object.values(obj)
+    for (const n of Object.values(obj)
         .filter(Boolean)
         .filter((v) => typeof v === 'object')) {
-        let found = findByProperty(n, predicate);
+        const found = findByProperty(n, predicate);
         if (found) return n;
     }
 };

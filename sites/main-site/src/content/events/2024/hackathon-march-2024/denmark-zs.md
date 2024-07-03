@@ -10,7 +10,8 @@ endTime: '17:00+02:00'
 locations:
   - name: ZS Associates
     address: Lottenborgvej 26 DK-2800 Lyngby, Denmark
-    links: https://www.zs.com/careers/where-we-work/europe/copenhagen
+    links:
+      - https://www.zs.com/careers/where-we-work/europe/copenhagen
     geoCoordinates: [55.780384, 12.488322]
 ---
 
