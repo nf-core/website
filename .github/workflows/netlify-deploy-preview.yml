@@ -26,6 +26,12 @@ jobs:
       - name: Install npm deps
         run: npm ci
 
+      - name: debug
+        run: |
+          ls -l .
+          ls -l ..
+          pwd
+
       - name: get changed sub-site
         id: get_changed_subsite
         run: |
@@ -36,6 +42,9 @@ jobs:
   deploy-main-site:
     name: 'Deploy preview for main-site'
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./website
     needs: pre-build
     if: github.repository == 'nf-core/website' && needs.pre-build.outputs.changed_directory == 'main-site'
     permissions:
@@ -61,6 +70,9 @@ jobs:
   deploy-docs:
     name: 'Deploy preview for docs'
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./website
     needs: pre-build
     if: github.repository == 'nf-core/website' && needs.pre-build.outputs.changed_directory == 'docs'
     permissions:
