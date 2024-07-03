@@ -447,11 +447,11 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -725,7 +725,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -1018,6 +1018,92 @@
         "maintainers": [
           "@anoronh4",
           "@gallvp"
+        ]
+      }
+    },
+    {
+      "name": "agat_spfilterfeaturefromkilllist",
+      "path": "modules/nf-core/agat/spfilterfeaturefromkilllist/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "agat_spfilterfeaturefromkilllist",
+        "description": "The script aims to remove features based on a kill list. The default behaviour is to look at the features's ID.\nIf the feature has an ID (case insensitive) listed among the kill list it will be removed. /!\\ Removing a level1\nor level2 feature will automatically remove all linked subfeatures, and removing all children of a feature will\nautomatically remove this feature too.\n",
+        "keywords": [
+          "genomics",
+          "gff",
+          "remove",
+          "feature"
+        ],
+        "tools": [
+          {
+            "agat": {
+              "description": "Another Gff Analysis Toolkit (AGAT). Suite of tools to handle gene annotations in any GTF/GFF format.",
+              "homepage": "https://agat.readthedocs.io/en/latest/",
+              "documentation": "https://agat.readthedocs.io/en/latest/tools/agat_sp_filter_feature_from_kill_list.html",
+              "tool_dev_url": "https://github.com/NBISweden/AGAT",
+              "doi": "10.5281/zenodo.3552717",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "gff": {
+              "type": "file",
+              "description": "Input GFF3 file that will be read",
+              "pattern": "*.{gff,gff3}"
+            }
+          },
+          {
+            "kill_list": {
+              "type": "file",
+              "description": "Kill list. One value per line.",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "config": {
+              "type": "file",
+              "description": "Input agat config file. By default AGAT takes as input agat_config.yaml file from the working directory if any, otherwise it takes the orignal agat_config.yaml shipped with AGAT. To get the agat_config.yaml locally type: \"agat config --expose\". The --config option gives you the possibility to use your own AGAT config file (located elsewhere or named differently).\n",
+              "pattern": "*.yaml"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "gff": {
+              "type": "file",
+              "description": "Output GFF file.",
+              "pattern": "*.gff"
+            }
+          }
+        ],
+        "authors": [
+          "@GallVp"
+        ],
+        "maintainers": [
+          "@GallVp"
         ]
       }
     },
@@ -3540,7 +3626,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         },
         {
           "name": "magmap",
@@ -3548,7 +3634,7 @@
         },
         {
           "name": "proteinfold",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -5260,6 +5346,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -6039,7 +6129,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -6903,7 +6993,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         },
         {
           "name": "tfactivity",
@@ -7348,7 +7438,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.1"
         },
         {
           "name": "funcscan",
@@ -7417,7 +7507,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.1"
         },
         {
           "name": "funcscan",
@@ -8741,7 +8831,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -8911,7 +9001,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         },
         {
           "name": "metatdenovo",
@@ -9561,11 +9651,11 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         },
         {
           "name": "variantcatalogue",
@@ -9785,11 +9875,11 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -9881,7 +9971,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         },
         {
           "name": "viralrecon",
@@ -10128,7 +10218,11 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
+        },
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
         },
         {
           "name": "viralrecon",
@@ -10219,7 +10313,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         },
         {
           "name": "phaseimpute",
@@ -10443,7 +10537,11 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
+        },
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
         }
       ]
     },
@@ -10571,7 +10669,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         },
         {
           "name": "viralrecon",
@@ -10692,7 +10790,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "variantbenchmarking",
@@ -10935,7 +11033,13 @@
         "maintainers": [
           "@nvnieuwk"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phaseimpute",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "bcftools_query",
@@ -11036,6 +11140,10 @@
       "pipelines": [
         {
           "name": "phaseimpute",
+          "version": "dev"
+        },
+        {
+          "name": "variantbenchmarking",
           "version": "dev"
         },
         {
@@ -11147,7 +11255,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "variantbenchmarking",
@@ -11264,7 +11372,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -11363,7 +11471,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "rnadnavar",
@@ -11371,7 +11479,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         },
         {
           "name": "variantbenchmarking",
@@ -11577,6 +11685,10 @@
       },
       "pipelines": [
         {
+          "name": "phaseimpute",
+          "version": "dev"
+        },
+        {
           "name": "radseq",
           "version": "dev"
         },
@@ -11586,7 +11698,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         },
         {
           "name": "variantbenchmarking",
@@ -11708,7 +11820,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         },
         {
           "name": "phaseimpute",
@@ -11716,7 +11828,11 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
+        },
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
         }
       ]
     },
@@ -12531,6 +12647,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "tfactivity",
+          "version": "dev"
         }
       ]
     },
@@ -12740,7 +12860,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -13023,6 +13143,10 @@
         },
         {
           "name": "radseq",
+          "version": "dev"
+        },
+        {
+          "name": "tfactivity",
           "version": "dev"
         }
       ]
@@ -13375,7 +13499,7 @@
       "pipelines": [
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "viralrecon",
@@ -13704,7 +13828,13 @@
           "@sruthipsuresh",
           "@drpatelh"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tfactivity",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "bedtools_sort",
@@ -16711,7 +16841,7 @@
         },
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "chipseq",
@@ -16723,7 +16853,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "cutandrun",
@@ -16751,7 +16881,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         },
         {
           "name": "viralrecon",
@@ -16838,7 +16968,7 @@
         },
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "chipseq",
@@ -16850,7 +16980,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "cutandrun",
@@ -16878,7 +17008,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         },
         {
           "name": "viralrecon",
@@ -16987,7 +17117,7 @@
       "pipelines": [
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "circrna",
@@ -17069,7 +17199,7 @@
       "pipelines": [
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "circrna",
@@ -17165,7 +17295,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -17239,7 +17369,13 @@
         "maintainers": [
           "@jfy133"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "createtaxdb",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "bracken_combinebrackenoutputs",
@@ -17315,7 +17451,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -17480,6 +17616,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -17805,7 +17945,7 @@
       "pipelines": [
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sammyseq",
@@ -17892,7 +18032,7 @@
         },
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "chipseq",
@@ -17908,7 +18048,11 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
+        },
+        {
+          "name": "fastquorum",
+          "version": "1.0.0"
         },
         {
           "name": "hgtseq",
@@ -17936,7 +18080,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "rnadnavar",
@@ -17948,7 +18092,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         },
         {
           "name": "ssds",
@@ -18089,7 +18233,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "hgtseq",
@@ -18113,7 +18257,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "rnadnavar",
@@ -18121,7 +18265,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         },
         {
           "name": "ssds",
@@ -18231,7 +18375,7 @@
       "pipelines": [
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sammyseq",
@@ -18337,7 +18481,7 @@
       "pipelines": [
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sammyseq",
@@ -18416,7 +18560,7 @@
       "pipelines": [
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "hgtseq",
@@ -18427,12 +18571,16 @@
           "version": "2.2.0"
         },
         {
+          "name": "oncoanalyser",
+          "version": "dev"
+        },
+        {
           "name": "radseq",
           "version": "dev"
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "rnadnavar",
@@ -18440,7 +18588,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -18582,7 +18730,7 @@
       "pipelines": [
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "hgtseq",
@@ -18598,7 +18746,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "rnadnavar",
@@ -18606,7 +18754,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -18678,7 +18826,13 @@
         "maintainers": [
           "@ramprasadn"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "raredisease",
+          "version": "2.1.0"
+        }
+      ]
     },
     {
       "name": "bwameme_mem",
@@ -18827,7 +18981,13 @@
         "maintainers": [
           "@ramprasadn"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "raredisease",
+          "version": "2.1.0"
+        }
+      ]
     },
     {
       "name": "bwameth_align",
@@ -19065,7 +19225,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -19289,7 +19449,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.1"
         }
       ]
     },
@@ -19387,7 +19547,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "rnadnavar",
@@ -19399,7 +19559,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         },
         {
           "name": "scnanoseq",
@@ -19486,11 +19646,11 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "4.0"
+          "version": "4.1.0"
         },
         {
           "name": "bamtofastq",
-          "version": "2.1.0"
+          "version": "2.1.1"
         },
         {
           "name": "circdna",
@@ -19502,7 +19662,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "cutandrun",
@@ -19514,7 +19674,7 @@
         },
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         },
         {
           "name": "magmap",
@@ -19534,7 +19694,7 @@
         },
         {
           "name": "pixelator",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "riboseq",
@@ -19554,7 +19714,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "rnavar",
@@ -19566,7 +19726,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         },
         {
           "name": "scnanoseq",
@@ -19578,7 +19738,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         },
         {
           "name": "viralrecon",
@@ -20025,7 +20185,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.5.1"
+          "version": "2.7.0"
         }
       ]
     },
@@ -20162,7 +20322,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.5.1"
+          "version": "2.7.0"
         }
       ]
     },
@@ -20239,7 +20399,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.5.1"
+          "version": "2.7.0"
         }
       ]
     },
@@ -20328,7 +20488,11 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "4.0"
+          "version": "4.1.0"
+        },
+        {
+          "name": "scrnaseq",
+          "version": "2.7.0"
         }
       ]
     },
@@ -20519,7 +20683,13 @@
         "maintainers": [
           "@klkeys"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "scrnaseq",
+          "version": "2.7.0"
+        }
+      ]
     },
     {
       "name": "cellranger_vdj",
@@ -20600,7 +20770,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "4.0"
+          "version": "4.1.0"
         }
       ]
     },
@@ -20674,7 +20844,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.5.1"
+          "version": "2.7.0"
         }
       ]
     },
@@ -20804,7 +20974,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.5.1"
+          "version": "2.7.0"
         }
       ]
     },
@@ -20893,7 +21063,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.5.1"
+          "version": "2.7.0"
         }
       ]
     },
@@ -21689,8 +21859,12 @@
       },
       "pipelines": [
         {
+          "name": "mag",
+          "version": "3.0.1"
+        },
+        {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -21776,8 +21950,12 @@
       },
       "pipelines": [
         {
+          "name": "mag",
+          "version": "3.0.1"
+        },
+        {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -22025,7 +22203,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         },
         {
           "name": "magmap",
@@ -22142,7 +22320,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         },
         {
           "name": "magmap",
@@ -22985,7 +23163,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -24069,7 +24247,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -24259,7 +24437,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -24496,7 +24674,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -24586,7 +24764,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -24800,7 +24978,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -24874,7 +25052,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -25735,7 +25913,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         }
       ]
     },
@@ -25831,7 +26009,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         }
       ]
     },
@@ -25925,7 +26103,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         }
       ]
     },
@@ -26015,7 +26193,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         }
       ]
     },
@@ -26097,7 +26275,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         }
       ]
     },
@@ -26261,7 +26439,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -26493,7 +26671,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -26572,7 +26750,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -26651,7 +26829,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -26848,7 +27026,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -27740,7 +27918,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         }
       ]
     },
@@ -27934,6 +28112,10 @@
         {
           "name": "multiplesequencealign",
           "version": "dev"
+        },
+        {
+          "name": "reportho",
+          "version": "1.0.0"
         }
       ]
     },
@@ -28017,7 +28199,7 @@
         },
         {
           "name": "reportho",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -28289,12 +28471,8 @@
           "version": "2.1.2"
         },
         {
-          "name": "bamtofastq",
-          "version": "2.1.0"
-        },
-        {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "chipseq",
@@ -28313,24 +28491,8 @@
           "version": "dev"
         },
         {
-          "name": "crisprseq",
-          "version": "2.1.1"
-        },
-        {
           "name": "demultiplex",
           "version": "1.4.1"
-        },
-        {
-          "name": "differentialabundance",
-          "version": "1.4.0"
-        },
-        {
-          "name": "epitopeprediction",
-          "version": "2.3.0"
-        },
-        {
-          "name": "fastquorum",
-          "version": "dev"
         },
         {
           "name": "funcscan",
@@ -28374,7 +28536,7 @@
         },
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         },
         {
           "name": "magmap",
@@ -28395,10 +28557,6 @@
         {
           "name": "methylseq",
           "version": "2.6.0"
-        },
-        {
-          "name": "mhcquant",
-          "version": "2.5.0"
         },
         {
           "name": "molkart",
@@ -28433,14 +28591,6 @@
           "version": "1.0.0"
         },
         {
-          "name": "pixelator",
-          "version": "1.1.0"
-        },
-        {
-          "name": "proteinfold",
-          "version": "1.0.0"
-        },
-        {
           "name": "quantms",
           "version": "1.2.0"
         },
@@ -28449,20 +28599,8 @@
           "version": "dev"
         },
         {
-          "name": "rangeland",
-          "version": "dev"
-        },
-        {
           "name": "readsimulator",
           "version": "1.0.1"
-        },
-        {
-          "name": "reportho",
-          "version": "dev"
-        },
-        {
-          "name": "rnadnavar",
-          "version": "dev"
         },
         {
           "name": "rnaseq",
@@ -28470,7 +28608,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "rnavar",
@@ -28483,10 +28621,6 @@
         {
           "name": "scnanoseq",
           "version": "dev"
-        },
-        {
-          "name": "scrnaseq",
-          "version": "2.5.1"
         },
         {
           "name": "ssds",
@@ -28625,7 +28759,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "viralrecon",
@@ -28765,7 +28899,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -28893,7 +29027,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -28964,7 +29098,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -29157,11 +29291,11 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "hicar",
@@ -29530,7 +29664,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         }
       ]
     },
@@ -29620,7 +29754,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         }
       ]
     },
@@ -31480,11 +31614,11 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         },
         {
           "name": "variantcatalogue",
@@ -31917,7 +32051,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         },
         {
           "name": "tfactivity",
@@ -32222,7 +32356,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -32428,7 +32562,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -32512,7 +32646,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -32622,7 +32756,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.1"
         }
       ]
     },
@@ -33710,7 +33844,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -34492,7 +34626,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -34574,7 +34708,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -34717,7 +34851,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "rnadnavar",
@@ -34725,7 +34859,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         },
         {
           "name": "variantcatalogue",
@@ -35098,7 +35232,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "phyloplace",
@@ -35189,7 +35323,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "phyloplace",
@@ -35502,7 +35636,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -35807,7 +35941,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -36891,7 +37025,7 @@
       "pipelines": [
         {
           "name": "reportho",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -37027,11 +37161,11 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "4.0"
+          "version": "4.1.0"
         },
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.1"
         },
         {
           "name": "demultiplex",
@@ -37043,7 +37177,7 @@
         },
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         },
         {
           "name": "nascent",
@@ -37059,7 +37193,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "riboseq",
@@ -37079,7 +37213,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         },
         {
           "name": "smrnaseq",
@@ -37087,7 +37221,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         },
         {
           "name": "viralrecon",
@@ -37179,11 +37313,11 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "4.0"
+          "version": "4.1.0"
         },
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "atacseq",
@@ -37191,15 +37325,15 @@
         },
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.1"
         },
         {
           "name": "bamtofastq",
-          "version": "2.1.0"
+          "version": "2.1.1"
         },
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "chipseq",
@@ -37215,11 +37349,15 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "demo",
+          "version": "1.0.0"
         },
         {
           "name": "detaxizer",
@@ -37227,7 +37365,7 @@
         },
         {
           "name": "fastquorum",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "genomeannotator",
@@ -37267,7 +37405,7 @@
         },
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         },
         {
           "name": "magmap",
@@ -37288,6 +37426,10 @@
         {
           "name": "methylseq",
           "version": "2.6.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "dev"
         },
         {
           "name": "nanoseq",
@@ -37315,15 +37457,11 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "readsimulator",
           "version": "1.0.1"
-        },
-        {
-          "name": "reportho",
-          "version": "dev"
         },
         {
           "name": "riboseq",
@@ -37343,7 +37481,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "rnavar",
@@ -37355,7 +37493,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         },
         {
           "name": "scnanoseq",
@@ -37363,7 +37501,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.5.1"
+          "version": "2.7.0"
         },
         {
           "name": "seqinspector",
@@ -37383,7 +37521,11 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         },
         {
           "name": "variantcatalogue",
@@ -38138,7 +38280,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -38219,7 +38361,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -38417,7 +38559,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -38691,7 +38833,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -39644,19 +39786,15 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         },
         {
           "name": "radseq",
           "version": "dev"
         },
         {
-          "name": "rnadnavar",
-          "version": "dev"
-        },
-        {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -40527,7 +40665,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -40615,7 +40753,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -40697,7 +40835,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -40793,7 +40931,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "phyloplace",
@@ -40870,7 +41008,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "phyloplace",
@@ -40985,7 +41123,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "phyloplace",
@@ -41413,7 +41551,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -43109,12 +43247,8 @@
       },
       "pipelines": [
         {
-          "name": "rnadnavar",
-          "version": "dev"
-        },
-        {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -43389,7 +43523,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -45050,7 +45184,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "rnadnavar",
@@ -45154,7 +45288,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -45407,7 +45541,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -45549,7 +45683,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -46125,7 +46259,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "rnadnavar",
@@ -46141,7 +46275,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -46351,7 +46485,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -46472,7 +46606,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -46572,12 +46706,8 @@
       },
       "pipelines": [
         {
-          "name": "rnadnavar",
-          "version": "dev"
-        },
-        {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -46920,7 +47050,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "rnadnavar",
@@ -46928,7 +47058,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         },
         {
           "name": "variantcatalogue",
@@ -47056,12 +47186,8 @@
       },
       "pipelines": [
         {
-          "name": "rnadnavar",
-          "version": "dev"
-        },
-        {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -47143,7 +47269,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -47226,7 +47352,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -47361,12 +47487,8 @@
           "version": "dev"
         },
         {
-          "name": "rnadnavar",
-          "version": "dev"
-        },
-        {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -47506,12 +47628,8 @@
       },
       "pipelines": [
         {
-          "name": "rnadnavar",
-          "version": "dev"
-        },
-        {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -47628,7 +47746,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -47770,7 +47888,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -47949,7 +48067,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -48117,7 +48235,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -48198,11 +48316,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
-        },
-        {
-          "name": "rnadnavar",
-          "version": "dev"
+          "version": "2.1.0"
         },
         {
           "name": "rnavar",
@@ -48281,7 +48395,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -48538,7 +48652,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         },
         {
           "name": "variantcatalogue",
@@ -50200,7 +50314,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -50282,7 +50396,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         },
         {
           "name": "variantcatalogue",
@@ -50376,7 +50490,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "rnadnavar",
@@ -50388,7 +50502,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         },
         {
           "name": "variantcatalogue",
@@ -50573,7 +50687,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "rnadnavar",
@@ -50581,7 +50695,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         },
         {
           "name": "variantcatalogue",
@@ -50689,7 +50803,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -50826,7 +50940,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -50964,7 +51078,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "variantcatalogue",
@@ -51273,7 +51387,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -51343,7 +51457,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "variantcatalogue",
@@ -51447,7 +51561,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -51580,7 +51694,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -51890,7 +52004,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -52374,7 +52488,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "rnadnavar",
@@ -52528,7 +52642,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -52657,7 +52771,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -52787,7 +52901,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -52899,7 +53013,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -53434,7 +53548,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         },
         {
           "name": "tfactivity",
@@ -54329,7 +54443,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -54405,7 +54519,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -54495,7 +54609,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -54585,7 +54699,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -54645,7 +54759,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         },
         {
           "name": "phageannotator",
@@ -54826,7 +54940,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         },
         {
           "name": "phageannotator",
@@ -55317,7 +55431,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -56076,7 +56190,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "rnavar",
@@ -56084,7 +56198,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.5.1"
+          "version": "2.7.0"
         }
       ]
     },
@@ -57381,7 +57495,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "variantcatalogue",
@@ -57465,6 +57579,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "tfactivity",
+          "version": "dev"
         }
       ]
     },
@@ -57931,7 +58049,13 @@
         "authors": [
           "@WackerO"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "differentialabundance",
+          "version": "1.5.0"
+        }
+      ]
     },
     {
       "name": "grabix_check",
@@ -58884,7 +59008,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -59780,7 +59904,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         },
         {
           "name": "magmap",
@@ -60022,7 +60146,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         }
       ]
     },
@@ -60111,7 +60235,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         }
       ]
     },
@@ -60204,7 +60328,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         }
       ]
     },
@@ -60281,7 +60405,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.1"
         },
         {
           "name": "chipseq",
@@ -60297,11 +60421,11 @@
         },
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         },
         {
           "name": "epitopeprediction",
-          "version": "2.3.0"
+          "version": "2.3.1"
         },
         {
           "name": "funcscan",
@@ -60325,7 +60449,7 @@
         },
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         },
         {
           "name": "magmap",
@@ -60334,6 +60458,10 @@
         {
           "name": "marsseq",
           "version": "1.0.3"
+        },
+        {
+          "name": "mhcquant",
+          "version": "2.6.0"
         },
         {
           "name": "nascent",
@@ -60349,7 +60477,7 @@
         },
         {
           "name": "proteinfold",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "riboseq",
@@ -60365,7 +60493,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "rnavar",
@@ -60381,11 +60509,11 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.5.1"
+          "version": "2.7.0"
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         },
         {
           "name": "tfactivity",
@@ -61257,7 +61385,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "variantcatalogue",
@@ -61339,7 +61467,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -61907,7 +62035,13 @@
         "authors": [
           "@kubranarci"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "hicap",
@@ -63145,7 +63279,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "phyloplace",
@@ -63223,7 +63357,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "phyloplace",
@@ -63310,7 +63444,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "phyloplace",
@@ -63392,7 +63526,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "phyloplace",
@@ -63692,7 +63826,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -65687,6 +65821,10 @@
       },
       "pipelines": [
         {
+          "name": "mcmicro",
+          "version": "dev"
+        },
+        {
           "name": "molkart",
           "version": "1.0.0"
         }
@@ -65771,6 +65909,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "mcmicro",
+          "version": "dev"
+        },
         {
           "name": "molkart",
           "version": "1.0.0"
@@ -66540,7 +66682,7 @@
         },
         {
           "name": "reportho",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -66944,6 +67086,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
         {
           "name": "isoseq",
           "version": "1.1.5"
@@ -67908,7 +68054,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -67986,7 +68132,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -68073,7 +68219,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -68653,7 +68799,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.5.1"
+          "version": "2.7.0"
         }
       ]
     },
@@ -68770,7 +68916,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.5.1"
+          "version": "2.7.0"
         }
       ]
     },
@@ -69421,7 +69567,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -69508,7 +69654,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -69895,11 +70041,11 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.1"
         },
         {
           "name": "detaxizer",
@@ -69911,7 +70057,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         },
         {
           "name": "viralrecon",
@@ -69992,7 +70138,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -70157,8 +70303,12 @@
       },
       "pipelines": [
         {
+          "name": "mag",
+          "version": "3.0.1"
+        },
+        {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -70240,7 +70390,13 @@
         "maintainers": [
           "@jfy133"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "createtaxdb",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "krakenuniq_download",
@@ -70447,7 +70603,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -70495,7 +70651,13 @@
         "maintainers": [
           "@mjakobs"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "mag",
+          "version": "3.0.1"
+        }
+      ]
     },
     {
       "name": "krona_ktimporttaxonomy",
@@ -70573,8 +70735,12 @@
           "version": "1.1.0"
         },
         {
+          "name": "mag",
+          "version": "3.0.1"
+        },
+        {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -70653,7 +70819,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -72232,7 +72398,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -73865,7 +74031,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "multiplesequencealign",
@@ -73968,7 +74134,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         }
       ]
     },
@@ -74059,7 +74225,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         }
       ]
     },
@@ -74150,7 +74316,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         }
       ]
     },
@@ -74240,7 +74406,13 @@
         "authors": [
           "@lrauschning"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "multiplesequencealign",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "magus_guidetree",
@@ -74309,7 +74481,13 @@
         "authors": [
           "@lrauschning"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "multiplesequencealign",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "malt_build",
@@ -74494,7 +74672,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -74854,11 +75032,11 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -75062,7 +75240,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -75234,7 +75412,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -76121,7 +76299,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         }
       ]
     },
@@ -76538,7 +76716,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         }
       ]
     },
@@ -76811,7 +76989,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -77166,6 +77344,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -78358,7 +78540,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         }
       ]
     },
@@ -78475,7 +78657,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         }
       ]
     },
@@ -78577,7 +78759,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         }
       ]
     },
@@ -79113,7 +79295,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -79214,7 +79396,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -79843,7 +80025,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.1"
         }
       ]
     },
@@ -79978,7 +80160,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.1"
         },
         {
           "name": "circdna",
@@ -79986,7 +80168,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "isoseq",
@@ -79998,7 +80180,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -80074,7 +80256,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "radseq",
@@ -80082,7 +80264,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -80874,7 +81056,7 @@
       "pipelines": [
         {
           "name": "proteinfold",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -81036,7 +81218,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         }
       ]
     },
@@ -81421,7 +81603,7 @@
       "pipelines": [
         {
           "name": "proteinfold",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -81887,7 +82069,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "rnadnavar",
@@ -81895,7 +82077,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         },
         {
           "name": "variantcatalogue",
@@ -82048,7 +82230,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -82153,7 +82335,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -82638,7 +82820,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -82715,7 +82897,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -82809,7 +82991,13 @@
         "maintainers": [
           "@lrauschning"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "multiplesequencealign",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "mtnucratio",
@@ -83146,23 +83334,19 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "4.0"
+          "version": "4.1.0"
         },
         {
           "name": "ampliseq",
-          "version": "2.9.0"
-        },
-        {
-          "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.10.0"
         },
         {
           "name": "bamtofastq",
-          "version": "2.1.0"
+          "version": "2.1.1"
         },
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "circrna",
@@ -83178,11 +83362,15 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "datasync",
           "version": "dev"
+        },
+        {
+          "name": "demo",
+          "version": "1.0.0"
         },
         {
           "name": "demultiplex",
@@ -83194,11 +83382,11 @@
         },
         {
           "name": "epitopeprediction",
-          "version": "2.3.0"
+          "version": "2.3.1"
         },
         {
           "name": "fastquorum",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "funcscan",
@@ -83242,7 +83430,7 @@
         },
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         },
         {
           "name": "magmap",
@@ -83274,7 +83462,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "2.5.0"
+          "version": "2.6.0"
         },
         {
           "name": "molkart",
@@ -83322,7 +83510,7 @@
         },
         {
           "name": "proteinfold",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "quantms",
@@ -83338,7 +83526,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "readsimulator",
@@ -83346,7 +83534,7 @@
         },
         {
           "name": "reportho",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "riboseq",
@@ -83362,7 +83550,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "rnavar",
@@ -83374,7 +83562,11 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
+        },
+        {
+          "name": "scdownstream",
+          "version": "dev"
         },
         {
           "name": "scnanoseq",
@@ -83382,7 +83574,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.5.1"
+          "version": "2.7.0"
         },
         {
           "name": "seqinspector",
@@ -83402,7 +83594,11 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         },
         {
           "name": "variantbenchmarking",
@@ -84642,7 +84838,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.1"
         },
         {
           "name": "genomeassembler",
@@ -85678,7 +85874,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -85888,7 +86084,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -87656,7 +87852,13 @@
         "maintainers": [
           "@jonasscheid"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "mhcquant",
+          "version": "2.6.0"
+        }
+      ]
     },
     {
       "name": "openms_idfilter",
@@ -87735,7 +87937,13 @@
         "maintainers": [
           "@jonasscheid"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "mhcquant",
+          "version": "2.6.0"
+        }
+      ]
     },
     {
       "name": "openms_idmerger",
@@ -87804,7 +88012,13 @@
         "authors": [
           "@jonasscheid"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "mhcquant",
+          "version": "2.6.0"
+        }
+      ]
     },
     {
       "name": "openms_idripper",
@@ -87876,7 +88090,13 @@
         "maintainers": [
           "@jonasscheid"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "mhcquant",
+          "version": "2.6.0"
+        }
+      ]
     },
     {
       "name": "openms_idscoreswitcher",
@@ -87949,7 +88169,13 @@
         "maintainers": [
           "@jonasscheid"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "mhcquant",
+          "version": "2.6.0"
+        }
+      ]
     },
     {
       "name": "openms_peakpickerhires",
@@ -88021,7 +88247,13 @@
         "maintainers": [
           "@jonasscheid"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "mhcquant",
+          "version": "2.6.0"
+        }
+      ]
     },
     {
       "name": "openms_peptideindexer",
@@ -91184,6 +91416,77 @@
       }
     },
     {
+      "name": "pbtk_pbindex",
+      "path": "modules/nf-core/pbtk/pbindex/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "pbtk_pbindex",
+        "description": "Minimalistic tool which creates an index file that enables random access into PacBio BAM files",
+        "keywords": [
+          "genomics",
+          "bam",
+          "index",
+          "pacbio"
+        ],
+        "tools": [
+          {
+            "pbtk": {
+              "description": "pbtk - PacBio BAM toolkit",
+              "homepage": "https://github.com/PacificBiosciences/pbtk",
+              "documentation": "https://github.com/PacificBiosciences/pbtk",
+              "tool_dev_url": "https://github.com/PacificBiosciences/pbtk",
+              "licence": [
+                "BSD-3-clause-Clear"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "Input BAM file",
+              "pattern": "*.bam"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "pbi": {
+              "type": "file",
+              "description": "Index file",
+              "pattern": "*.bam.pbi"
+            }
+          }
+        ],
+        "authors": [
+          "@GallVp"
+        ],
+        "maintainers": [
+          "@GallVp"
+        ]
+      }
+    },
+    {
       "name": "pear",
       "path": "modules/nf-core/pear/meta.yml",
       "type": "module",
@@ -91267,7 +91570,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         }
       ]
     },
@@ -91379,7 +91682,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -92126,7 +92429,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -92431,7 +92734,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "variantcatalogue",
@@ -92641,7 +92944,7 @@
         },
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "chipseq",
@@ -92649,7 +92952,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "ssds",
@@ -92882,7 +93185,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "rnafusion",
@@ -93523,7 +93826,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -93676,7 +93979,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "rnaseq",
@@ -93848,7 +94151,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -94132,7 +94435,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -94209,6 +94512,10 @@
         {
           "name": "metatdenovo",
           "version": "1.0.1"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "dev"
         }
       ]
     },
@@ -94277,7 +94584,11 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "dev"
         }
       ]
     },
@@ -97547,11 +97858,11 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.1"
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -97636,7 +97947,7 @@
       "pipelines": [
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "nascent",
@@ -98193,7 +98504,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -98300,7 +98611,7 @@
         },
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         },
         {
           "name": "metapep",
@@ -98471,7 +98782,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.1"
         },
         {
           "name": "funcscan",
@@ -98479,7 +98790,7 @@
         },
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         },
         {
           "name": "magmap",
@@ -99105,7 +99416,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -100360,7 +100671,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         }
       ]
     },
@@ -100445,7 +100756,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         }
       ]
     },
@@ -100710,7 +101021,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -101132,7 +101443,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.1"
         },
         {
           "name": "genomeassembler",
@@ -101425,11 +101736,11 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.1"
         },
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         }
       ]
     },
@@ -102369,7 +102680,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -102459,7 +102770,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -103258,7 +103569,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -103601,7 +103912,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         }
       ]
     },
@@ -103673,7 +103984,7 @@
       "pipelines": [
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnaseq",
@@ -103756,7 +104067,7 @@
       "pipelines": [
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "nascent",
@@ -103871,7 +104182,7 @@
       "pipelines": [
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnaseq",
@@ -103996,7 +104307,7 @@
       "pipelines": [
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnaseq",
@@ -104086,7 +104397,7 @@
       "pipelines": [
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnaseq",
@@ -104169,7 +104480,7 @@
       "pipelines": [
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "nascent",
@@ -104282,7 +104593,7 @@
       "pipelines": [
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "nascent",
@@ -104381,7 +104692,7 @@
       "pipelines": [
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnaseq",
@@ -104475,7 +104786,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "variantbenchmarking",
@@ -104823,7 +105134,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "variantbenchmarking",
@@ -105112,7 +105423,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         }
       ]
     },
@@ -105229,7 +105540,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         }
       ]
     },
@@ -105656,7 +105967,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -105844,7 +106155,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -106191,7 +106502,7 @@
       "pipelines": [
         {
           "name": "bamtofastq",
-          "version": "2.1.0"
+          "version": "2.1.1"
         },
         {
           "name": "hlatyping",
@@ -106203,7 +106514,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -106322,7 +106633,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -106581,7 +106892,13 @@
           "@louperelo",
           "@nevinwu"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phaseimpute",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "samtools_dict",
@@ -106653,6 +106970,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "fastquorum",
+          "version": "1.0.0"
+        },
         {
           "name": "oncoanalyser",
           "version": "dev"
@@ -106762,11 +107083,11 @@
       "pipelines": [
         {
           "name": "bamtofastq",
-          "version": "2.1.0"
+          "version": "2.1.1"
         },
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "circdna",
@@ -106785,8 +107106,12 @@
           "version": "3.2.2"
         },
         {
+          "name": "fastquorum",
+          "version": "1.0.0"
+        },
+        {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         },
         {
           "name": "methylseq",
@@ -106818,7 +107143,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "rnadnavar",
@@ -106838,7 +107163,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         },
         {
           "name": "scnanoseq",
@@ -107059,7 +107384,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -107224,11 +107549,11 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.1.0"
+          "version": "2.1.1"
         },
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "chipseq",
@@ -107300,7 +107625,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "rnavar",
@@ -107482,11 +107807,11 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.1.0"
+          "version": "2.1.1"
         },
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "chipseq",
@@ -107550,7 +107875,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "rnavar",
@@ -107759,15 +108084,15 @@
         },
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.1"
         },
         {
           "name": "bamtofastq",
-          "version": "2.1.0"
+          "version": "2.1.1"
         },
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "chipseq",
@@ -107787,7 +108112,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "cutandrun",
@@ -107839,7 +108164,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "readsimulator",
@@ -107863,7 +108188,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "rnavar",
@@ -107875,7 +108200,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         },
         {
           "name": "scnanoseq",
@@ -107891,7 +108216,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         },
         {
           "name": "variantcatalogue",
@@ -108120,15 +108445,23 @@
       "pipelines": [
         {
           "name": "bamtofastq",
-          "version": "2.1.0"
+          "version": "2.1.1"
         },
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
+        },
+        {
+          "name": "fastquorum",
+          "version": "1.0.0"
         },
         {
           "name": "hicar",
           "version": "1.0.0"
+        },
+        {
+          "name": "phaseimpute",
+          "version": "dev"
         },
         {
           "name": "radseq",
@@ -108136,7 +108469,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "rnadnavar",
@@ -108148,7 +108481,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         },
         {
           "name": "scnanoseq",
@@ -108249,7 +108582,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -108612,11 +108945,11 @@
         },
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.1"
         },
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "chipseq",
@@ -108672,7 +109005,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "riboseq",
@@ -108692,7 +109025,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "rnavar",
@@ -108818,11 +109151,11 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.1.0"
+          "version": "2.1.1"
         },
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "chipseq",
@@ -108878,7 +109211,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "riboseq",
@@ -108894,7 +109227,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "rnavar",
@@ -108906,7 +109239,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         },
         {
           "name": "scnanoseq",
@@ -108918,7 +109251,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         },
         {
           "name": "viralrecon",
@@ -109081,7 +109414,7 @@
       "pipelines": [
         {
           "name": "bamtofastq",
-          "version": "2.1.0"
+          "version": "2.1.1"
         },
         {
           "name": "circdna",
@@ -109113,7 +109446,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "rnadnavar",
@@ -109125,7 +109458,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         },
         {
           "name": "scnanoseq",
@@ -109137,7 +109470,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         },
         {
           "name": "viralrecon",
@@ -110075,7 +110408,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -110150,7 +110483,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -110271,11 +110604,11 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -110415,7 +110748,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -110565,11 +110898,11 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -110695,11 +111028,11 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -110896,11 +111229,11 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -111020,7 +111353,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -111164,7 +111497,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -111283,7 +111616,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -111935,7 +112268,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -112053,7 +112386,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -112943,7 +113276,7 @@
       "pipelines": [
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -113318,7 +113651,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         },
         {
           "name": "metatdenovo",
@@ -113556,7 +113889,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "metatdenovo",
@@ -113698,7 +114031,13 @@
         "authors": [
           "@laramiellindsey"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "demo",
+          "version": "1.0.0"
+        }
+      ]
     },
     {
       "name": "sequencetools_pileupcaller",
@@ -115183,7 +115522,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -115288,7 +115627,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -115430,7 +115769,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -115564,7 +115903,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -116232,7 +116571,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -117214,7 +117553,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -117317,7 +117656,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -120097,7 +120436,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "rnavar",
@@ -120202,6 +120541,10 @@
           "version": "1.0.3"
         },
         {
+          "name": "oncoanalyser",
+          "version": "dev"
+        },
+        {
           "name": "riboseq",
           "version": "1.0.1"
         },
@@ -120219,7 +120562,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "rnavar",
@@ -120227,7 +120570,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.5.1"
+          "version": "2.7.0"
         },
         {
           "name": "viralintegration",
@@ -120724,7 +121067,13 @@
         "maintainers": [
           "@saulpierotti"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phaseimpute",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "stranger",
@@ -120813,7 +121162,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -120948,7 +121297,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -121115,7 +121464,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -121394,7 +121743,7 @@
         },
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "chipseq",
@@ -121418,7 +121767,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         }
       ]
     },
@@ -121815,7 +122164,13 @@
         "maintainers": [
           "@nvnieuwk"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "survivor_simsv",
@@ -122527,11 +122882,11 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -122641,7 +122996,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -123468,7 +123823,11 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "variantbenchmarking",
@@ -123578,7 +123937,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "rnadnavar",
@@ -123590,7 +123949,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         },
         {
           "name": "variantbenchmarking",
@@ -123697,7 +124056,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "rnadnavar",
@@ -123709,7 +124068,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         },
         {
           "name": "variantbenchmarking",
@@ -123983,7 +124342,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -124084,7 +124443,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         }
       ]
     },
@@ -124322,7 +124681,7 @@
         },
         {
           "name": "reportho",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -124752,7 +125111,13 @@
         "maintainers": [
           "@jonasscheid"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "mhcquant",
+          "version": "2.6.0"
+        }
+      ]
     },
     {
       "name": "tiara_tiara",
@@ -124839,7 +125204,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         }
       ]
     },
@@ -124938,7 +125303,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -125054,11 +125419,11 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -125872,7 +126237,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "ssds",
@@ -125980,7 +126345,7 @@
       "pipelines": [
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sammyseq",
@@ -127037,7 +127402,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         }
       ]
     },
@@ -127141,7 +127506,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "ssds",
@@ -127546,7 +127911,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -128234,7 +128599,7 @@
         },
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "riboseq",
@@ -128246,7 +128611,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "smrnaseq",
@@ -128621,7 +128986,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.5.1"
+          "version": "2.7.0"
         }
       ]
     },
@@ -128701,7 +129066,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "atacseq",
@@ -128709,7 +129074,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.1"
         },
         {
           "name": "chipseq",
@@ -128725,7 +129090,7 @@
         },
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
+          "version": "1.5.0"
         },
         {
           "name": "fetchngs",
@@ -128738,6 +129103,10 @@
         {
           "name": "hgtseq",
           "version": "1.1.0"
+        },
+        {
+          "name": "mag",
+          "version": "3.0.1"
         },
         {
           "name": "magmap",
@@ -128765,7 +129134,7 @@
         },
         {
           "name": "proteinfold",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "rangeland",
@@ -128773,7 +129142,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "riboseq",
@@ -128789,7 +129158,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "rnavar",
@@ -128801,7 +129170,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         },
         {
           "name": "spatialvi",
@@ -128809,7 +129178,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
         },
         {
           "name": "viralrecon",
@@ -128980,11 +129349,11 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         },
         {
           "name": "scrnaseq",
-          "version": "2.5.1"
+          "version": "2.7.0"
         }
       ]
     },
@@ -129131,7 +129500,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -129772,7 +130141,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -130037,7 +130406,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         }
       ]
     },
@@ -130274,7 +130643,13 @@
         "maintainers": [
           "@atrigila"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phaseimpute",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "vcflib_vcfuniq",
@@ -130872,7 +131247,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -132181,11 +132556,11 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         }
       ]
     },
@@ -132259,7 +132634,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         }
       ]
     },
@@ -132350,7 +132725,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         }
       ]
     },
@@ -132501,7 +132876,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         }
       ]
     },
@@ -134249,11 +134624,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.4.0"
-        },
-        {
-          "name": "multiplesequencealign",
-          "version": "dev"
+          "version": "1.5.0"
         }
       ]
     }
@@ -135024,7 +135395,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -135429,7 +135800,7 @@
       "pipelines": [
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnaseq",
@@ -135580,12 +135951,16 @@
           "version": "1.0.1"
         },
         {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
           "name": "rnaseq",
           "version": "3.14.0"
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "scnanoseq",
@@ -135713,7 +136088,7 @@
         },
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "circdna",
@@ -135748,12 +136123,16 @@
           "version": "1.0.1"
         },
         {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
           "name": "rnaseq",
           "version": "3.14.0"
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "name": "sammyseq",
@@ -136589,7 +136968,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         }
       ]
     },
@@ -136694,7 +137073,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.5.4"
+          "version": "3.0.1"
         }
       ]
     },
@@ -136775,13 +137154,7 @@
         "maintainers": [
           "@jfy133"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "createtaxdb",
-          "version": "dev"
-        }
-      ]
+      }
     },
     {
       "name": "fasta_build_add_kraken2_bracken",
@@ -136869,7 +137242,13 @@
         "maintainers": [
           "@jfy133"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "createtaxdb",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "fasta_clean_fcs",
@@ -137303,7 +137682,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "phyloplace",
@@ -137723,7 +138102,7 @@
       "pipelines": [
         {
           "name": "callingcards",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sammyseq",
@@ -138151,6 +138530,10 @@
       },
       "pipelines": [
         {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
           "name": "rnaseq",
           "version": "3.14.0"
         }
@@ -138474,6 +138857,10 @@
         {
           "name": "riboseq",
           "version": "1.0.1"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -139195,7 +139582,7 @@
         },
         {
           "name": "rnasplice",
-          "version": "1.0.3"
+          "version": "1.0.4"
         }
       ]
     },
@@ -139628,7 +140015,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.1"
         }
       ]
     },
@@ -143414,15 +143801,19 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "4.0"
+          "version": "4.1.0"
         },
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.1"
+        },
+        {
+          "name": "bamtofastq",
+          "version": "2.1.1"
         },
         {
           "name": "circrna",
@@ -143441,16 +143832,32 @@
           "version": "dev"
         },
         {
+          "name": "demo",
+          "version": "1.0.0"
+        },
+        {
           "name": "detaxizer",
           "version": "1.0.0"
         },
         {
+          "name": "differentialabundance",
+          "version": "1.5.0"
+        },
+        {
           "name": "epitopeprediction",
-          "version": "2.3.0"
+          "version": "2.3.1"
+        },
+        {
+          "name": "fastquorum",
+          "version": "1.0.0"
         },
         {
           "name": "fetchngs",
           "version": "1.12.0"
+        },
+        {
+          "name": "mag",
+          "version": "3.0.1"
         },
         {
           "name": "magmap",
@@ -143473,6 +143880,10 @@
           "version": "dev"
         },
         {
+          "name": "mhcquant",
+          "version": "2.6.0"
+        },
+        {
           "name": "multiplesequencealign",
           "version": "dev"
         },
@@ -143490,11 +143901,19 @@
         },
         {
           "name": "pixelator",
+          "version": "1.2.0"
+        },
+        {
+          "name": "proteinfold",
           "version": "1.1.0"
         },
         {
+          "name": "rangeland",
+          "version": "dev"
+        },
+        {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "readsimulator",
@@ -143502,7 +143921,7 @@
         },
         {
           "name": "reportho",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "riboseq",
@@ -143518,11 +143937,19 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
+        },
+        {
+          "name": "scdownstream",
+          "version": "dev"
         },
         {
           "name": "scnanoseq",
           "version": "dev"
+        },
+        {
+          "name": "scrnaseq",
+          "version": "2.7.0"
         },
         {
           "name": "seqinspector",
@@ -143538,7 +143965,11 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         },
         {
           "name": "tfactivity",
@@ -143591,15 +144022,19 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "4.0"
+          "version": "4.1.0"
         },
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.1"
+        },
+        {
+          "name": "bamtofastq",
+          "version": "2.1.1"
         },
         {
           "name": "circrna",
@@ -143618,16 +144053,32 @@
           "version": "dev"
         },
         {
+          "name": "demo",
+          "version": "1.0.0"
+        },
+        {
           "name": "detaxizer",
           "version": "1.0.0"
         },
         {
+          "name": "differentialabundance",
+          "version": "1.5.0"
+        },
+        {
           "name": "epitopeprediction",
-          "version": "2.3.0"
+          "version": "2.3.1"
+        },
+        {
+          "name": "fastquorum",
+          "version": "1.0.0"
         },
         {
           "name": "fetchngs",
           "version": "1.12.0"
+        },
+        {
+          "name": "mag",
+          "version": "3.0.1"
         },
         {
           "name": "magmap",
@@ -143650,6 +144101,10 @@
           "version": "dev"
         },
         {
+          "name": "mhcquant",
+          "version": "2.6.0"
+        },
+        {
           "name": "multiplesequencealign",
           "version": "dev"
         },
@@ -143667,11 +144122,19 @@
         },
         {
           "name": "pixelator",
+          "version": "1.2.0"
+        },
+        {
+          "name": "proteinfold",
           "version": "1.1.0"
         },
         {
+          "name": "rangeland",
+          "version": "dev"
+        },
+        {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "readsimulator",
@@ -143679,7 +144142,7 @@
         },
         {
           "name": "reportho",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "riboseq",
@@ -143695,11 +144158,19 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
+        },
+        {
+          "name": "scdownstream",
+          "version": "dev"
         },
         {
           "name": "scnanoseq",
           "version": "dev"
+        },
+        {
+          "name": "scrnaseq",
+          "version": "2.7.0"
         },
         {
           "name": "seqinspector",
@@ -143715,7 +144186,11 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         },
         {
           "name": "tfactivity",
@@ -143798,15 +144273,19 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "4.0"
+          "version": "4.1.0"
         },
         {
           "name": "ampliseq",
-          "version": "2.9.0"
+          "version": "2.10.0"
         },
         {
           "name": "bacass",
-          "version": "2.2.0"
+          "version": "2.3.1"
+        },
+        {
+          "name": "bamtofastq",
+          "version": "2.1.1"
         },
         {
           "name": "circrna",
@@ -143825,16 +144304,32 @@
           "version": "dev"
         },
         {
+          "name": "demo",
+          "version": "1.0.0"
+        },
+        {
           "name": "detaxizer",
           "version": "1.0.0"
         },
         {
+          "name": "differentialabundance",
+          "version": "1.5.0"
+        },
+        {
           "name": "epitopeprediction",
-          "version": "2.3.0"
+          "version": "2.3.1"
+        },
+        {
+          "name": "fastquorum",
+          "version": "1.0.0"
         },
         {
           "name": "fetchngs",
           "version": "1.12.0"
+        },
+        {
+          "name": "mag",
+          "version": "3.0.1"
         },
         {
           "name": "magmap",
@@ -143857,6 +144352,10 @@
           "version": "dev"
         },
         {
+          "name": "mhcquant",
+          "version": "2.6.0"
+        },
+        {
           "name": "multiplesequencealign",
           "version": "dev"
         },
@@ -143874,11 +144373,19 @@
         },
         {
           "name": "pixelator",
+          "version": "1.2.0"
+        },
+        {
+          "name": "proteinfold",
           "version": "1.1.0"
         },
         {
+          "name": "rangeland",
+          "version": "dev"
+        },
+        {
           "name": "raredisease",
-          "version": "2.0.1"
+          "version": "2.1.0"
         },
         {
           "name": "readsimulator",
@@ -143886,7 +144393,7 @@
         },
         {
           "name": "reportho",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "riboseq",
@@ -143902,11 +144409,19 @@
         },
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
+        },
+        {
+          "name": "scdownstream",
+          "version": "dev"
         },
         {
           "name": "scnanoseq",
           "version": "dev"
+        },
+        {
+          "name": "scrnaseq",
+          "version": "2.7.0"
         },
         {
           "name": "seqinspector",
@@ -143922,7 +144437,11 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.1.7"
+          "version": "1.1.8"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         },
         {
           "name": "tfactivity",
@@ -144034,8 +144553,12 @@
       },
       "pipelines": [
         {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -144218,7 +144741,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.4.1"
+          "version": "3.4.2"
         }
       ]
     },
@@ -144567,13 +145090,7 @@
         "maintainers": [
           "@LouisLeNezet"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "phaseimpute",
-          "version": "dev"
-        }
-      ]
+      }
     }
   ]
 }
