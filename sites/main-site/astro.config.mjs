@@ -111,7 +111,13 @@ export default defineConfig({
         },
     },
     image: {
-        domains: ['raw.githubusercontent.com', 'unsplash.com', 'netlify.app', 'nf-co.re'],
+        domains: [
+            'raw.githubusercontent.com',
+            'unsplash.com',
+            'netlify.app',
+            'nf-co.re',
+            'nf-core-main-site.netlify.app',
+        ],
         service: {
             entrypoint: 'astro/assets/services/sharp',
         },
