@@ -28,9 +28,6 @@ jobs:
   deploy-main-site:
     name: 'Deploy preview for main-site'
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: website
     needs: change-detection
     if: github.repository == 'nf-core/website' && needs.change-detection.outputs.main-site_any_changed == 'true'
     permissions:
@@ -68,9 +65,6 @@ jobs:
   deploy-docs:
     name: 'Deploy preview for docs'
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: website
     needs: change-detection
     if: github.repository == 'nf-core/website' && needs.change-detection.outputs.docs_any_changed == 'true'
     permissions:
