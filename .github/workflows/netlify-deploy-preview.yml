@@ -36,6 +36,7 @@ jobs:
           ls -l .
           ls -l ..
           pwd
+          git status
 
       - name: get changed sub-site
         id: get_changed_subsite
