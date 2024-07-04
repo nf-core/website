@@ -8,7 +8,8 @@ endDate: '2021-12-01'
 endTime: '15:00+02:00'
 locations:
   - name: Online
-    links: https://elixir-workflow-workshop.github.io/2021/
+    links:
+      - https://elixir-workflow-workshop.github.io/2021/
 ---
 
 ## Nextflow and nf-core training as part of the ELIXIR Reproducible Research Workshop

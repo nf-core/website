@@ -6,3 +6,7 @@ environment = { NODE_VERSION = "20.4.0" }
 command = "npm run build -w sites/main-site"
 [images]
 remote_images = ["https://raw.githubusercontent.com/.*", "https://images.unsplash.com/.*"]
+[[headers]]
+for = "/_astro/*"
+[headers.values]
+Access-Control-Allow-Origin = "*"

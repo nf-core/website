@@ -8,7 +8,8 @@ endDate: '2020-07-01'
 endTime: '11:40+01:00'
 locations:
   - name: Online
-    links: https://jobim2020.sciencesconf.org/
+    links:
+      - https://jobim2020.sciencesconf.org/
 ---
 
 ## About the conference

@@ -8,7 +8,8 @@ endDate: '2022-04-07'
 endTime: '15:50+02:00'
 locations:
   - name: Registration
-    links: https://embl-org.zoom.us/meeting/register/tJAtfuuhrDMjGdORfl_Wu72X2f9HsR9zOmt2
+    links:
+      - https://embl-org.zoom.us/meeting/register/tJAtfuuhrDMjGdORfl_Wu72X2f9HsR9zOmt2
 ---
 
 ## Best practice for preparing pipelines in nf-core and recording pipeline usage in FAANG submission

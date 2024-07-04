@@ -8,7 +8,8 @@ endDate: '2022-10-05'
 endTime: '21:30+02:00'
 locations:
   - name: YouTube
-    links: https://youtube.com/playlist?list=PL3xpfTVZLcNiqYQ41g0fvyTQazpafFvOn
+    links:
+      - https://youtube.com/playlist?list=PL3xpfTVZLcNiqYQ41g0fvyTQazpafFvOn
 ---
 
 # Welcome

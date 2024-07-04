@@ -10,7 +10,8 @@ endTime: '21:00+02:00'
 locations:
   - name: Instituto do Cérebro, UFRN
     address: R. do Horto - Lagoa Nova, Natal - RN, 59076-550
-    links: https://neuro.ufrn.br/
+    links:
+      - https://neuro.ufrn.br/
     geoCoordinates: [-5.833473893839016, -35.20483247479188]
 ---
 

@@ -68,7 +68,7 @@
                     <tr>
                         <ListingTableHeader name="Name" />
                         <th scope="col">Description</th>
-                        <th scope="col">Included pipelines</th>
+                        <th scope="col-1">Included pipelines</th>
                         <th scope="col">Leads</th>
                     </tr>
                 </thead>
@@ -85,21 +85,22 @@
                             <td class="text-small">
                                 {group.data.subtitle}
                             </td>
-                            <td class="pipeline-badges small">
+                            <td class="pipeline-badges small col-3">
                                 {#each group.data.pipelines ?? [] as pipeline}
                                     <span class={`badge me-2 pipeline-badge`}>{pipeline}</span>
                                 {/each}
                             </td>
-                            <td>
-                                {#each group.data.leads ?? [] as lead}
-                                    {#if typeof lead === 'string'}
-                                        <GitHubProfilePicture username={lead} size={25} />
-                                    {:else}
-                                        <GitHubProfilePicture username={Object.keys(lead)[0]} size={25}>
-                                            {Object.values(lead)[0]}
-                                        </GitHubProfilePicture>
-                                    {/if}
-                                {/each}
+                            <td class="">
+                                <div class="d-flex flex-wrap">
+                                    {#each group.data.leads ?? [] as lead}
+                                        {#if typeof lead === 'string'}
+                                            <GitHubProfilePicture name={lead} size={40} />
+                                        {:else}
+                                            <GitHubProfilePicture name={Object.keys(lead)[0]} size={40}
+                                            ></GitHubProfilePicture>
+                                        {/if}
+                                    {/each}
+                                </div>
                             </td>
                         </tr>
                     {/each}
