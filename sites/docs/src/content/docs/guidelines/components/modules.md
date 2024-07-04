@@ -330,6 +330,10 @@ Alternate suggestions include using `grep -c` to search for a valid string match
 
 [A stub block](https://www.nextflow.io/docs/latest/process.html#stub) MUST exist for all modules. This is a block of code that replaces the `script` command when the option `-stub` is set. This enables quick testing of the workflow logic, as a "dry-run".
 
+#### Stub block prefix and versions
+
+The stub block MUST include the same variables (e.g. `prefix`) and HEREDOC code as the main script block. 
+
 #### Stub files for all output channels 
 
 The stub block MUST include the creation of at least one file for every output channel (both mandatory and optional), generated with touch, e.g.
