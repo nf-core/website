@@ -343,6 +343,7 @@ stub:
 """
 touch ${prefix}.txt
 """
+```
 
 Ideally, the stub block should reproduce as much as possible the number of, and filenames structure, of the files expected as output.
 
