@@ -96,7 +96,6 @@ If you have an idea for a new feature – [send us your request](https://github.
 - Update pipeline template
 - Update samplesheet validation steps
 
-
 ### Potential features:
 
 _Only if there is an actual demand! Use the form below to indicate interest._
