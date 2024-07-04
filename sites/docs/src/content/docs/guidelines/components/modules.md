@@ -332,9 +332,9 @@ Alternate suggestions include using `grep -c` to search for a valid string match
 
 #### Stub block prefix and versions
 
-The stub block MUST include the same variables (e.g. `prefix`) and HEREDOC code as the main script block. 
+The stub block MUST include the same variables (e.g. `prefix`) and HEREDOC code as the main script block.
 
-#### Stub files for all output channels 
+#### Stub files for all output channels
 
 The stub block MUST include the creation of at least one file for every output channel (both mandatory and optional), generated with touch, e.g.
 
