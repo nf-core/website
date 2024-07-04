@@ -328,15 +328,17 @@ Alternate suggestions include using `grep -c` to search for a valid string match
 
 #### Stub block must exist
 
-A stub block MUST exist for all modules
+[A stub block](https://www.nextflow.io/docs/latest/process.html#stub) MUST exist for all modules. This is a block of code that replaces the `script` command when the option `-stub` is set. This enables quick testing of the workflow logic, as a "dry-run".
 
 #### Stub files for all output channels 
 
 The stub block MUST include the creation of at least one file for every output channel (both mandatory and optional), generated with touch, e.g.
 
-```bash
+```groovy
+stub:
+"""
 touch ${prefix}.txt
-```
+"""
 
 Ideally, the stub block should reproduce as much as possible the number of, and filenames structure, of the files expected as output.
 
@@ -348,7 +350,7 @@ Stub files that should be output as gzip compressed, MUST use the syntax in the 
 echo "" | gzip > ${prefix}.txt.gz
 ```
 
-:::info{title="Rational" collapse}
+:::info{title="Rationale" collapse}
 Simply touching a file with the file name ending in `.gz` will break nf-test's Gzip file parser, as the file is not actually gzipped and thus cannot be read.
 
 Therefore we must make sure we generate a valid gzipped file for nf-test to accept it during tests.
