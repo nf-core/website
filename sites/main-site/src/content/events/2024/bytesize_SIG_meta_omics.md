@@ -7,7 +7,8 @@ startTime: '13:00+02:00'
 endDate: '2024-09-03'
 endTime: '13:30+02:00'
 locations:
-  - links: https://kth-se.zoom.us/j/68390542812
+  - links:
+      - https://kth-se.zoom.us/j/68390542812
 ---
 
 In this week's bytesize Daniel Lundin ([@erikrikarddaniel](https://github.com/erikrikarddaniel)), James A. Fellows Yates ([@jfy133](https://github.com/jfy133)) and Carson J. Miller ([@carsonjm](https://github.com/carsonjm)) introduce the [Special Interest Group "meta-omics"](https://nf-co.re/special-interest-groups/meta-omics).

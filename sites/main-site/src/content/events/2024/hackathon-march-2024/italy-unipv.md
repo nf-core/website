@@ -10,7 +10,8 @@ endTime: '18:00+02:00'
 locations:
   - name: UNIPV
     address: via Ferrata, 9 27100 Pavia, Italy
-    links: https://dbb.dip.unipv.it/it
+    links:
+      - https://dbb.dip.unipv.it/it
     geoCoordinates: [45.20249873618614, 9.138235385755026]
 ---
 

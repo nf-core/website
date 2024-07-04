@@ -10,7 +10,8 @@ endTime: '17:00+02:00'
 locations:
   - name: Ardigen
     address: Podole, 76, 30-394, Kraków, Poland
-    links: https://ardigen.com/
+    links:
+      - https://ardigen.com/
     geoCoordinates: [50.02159965915289, 19.89199888650787]
 ---
 

@@ -8,7 +8,8 @@ endDate: '2021-04-22'
 endTime: '19:00+02:00'
 locations:
   - name: Online
-    links: https://us02web.zoom.us/webinar/register/4216189082422/WN_51zfR1OBQmWicoc09Jgf8g
+    links:
+      - https://us02web.zoom.us/webinar/register/4216189082422/WN_51zfR1OBQmWicoc09Jgf8g
 ---
 
 # Seqera Labs Cloud Webinar Series
