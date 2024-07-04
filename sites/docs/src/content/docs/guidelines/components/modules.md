@@ -338,6 +338,8 @@ The stub block MUST include the creation of at least one file for every output c
 touch ${prefix}.txt
 ```
 
+Ideally, the stub block should reproduce as much as possible the number of, and filenames structure, of the files expected as output.
+
 #### Stub gzip files must use echo and pipe
 
 Stub files that should be output as gzip compressed, MUST use the syntax in the following example:
