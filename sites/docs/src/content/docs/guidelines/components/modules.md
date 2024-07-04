@@ -324,6 +324,34 @@ See the [Bash manual on file operators](https://tldp.org/LDP/abs/html/fto.html) 
 
 Alternate suggestions include using `grep -c` to search for a valid string match, or other tool which will appropriately error when the expected output is not successfully created.
 
+### Stubs
+
+#### Stub block must exist
+
+A stub block MUST exist for all modules
+
+#### Stub files for all output channels 
+
+The stub block MUST include the creation of a file for every output channel (both mandatory and optional), generated with touch, e.g.
+
+```bash
+touch ${prefix}.txt
+```
+
+#### Stub gzip files must use echo and pipe
+
+Stub files that should be output as gzip compressed, MUST use the syntax in the following example:
+
+```bash
+echo "" | gzip > ${prefix}.txt.gz
+```
+
+:::info{title="Rational" collapse}
+Simply touching a file with the file name ending in `.gz` will break nf-test's Gzip file parser, as the file is not actually gzipped and thus cannot be read.
+
+Therefore we must make sure we generate a valid gzipped file for nf-test to accept it during tests.
+:::
+
 ## Naming conventions
 
 ### Name format of module files
