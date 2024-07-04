@@ -77,6 +77,8 @@
 /:pipeline/docs/usage https://nf-core-pipelines.netlify.app/:pipeline/latest/docs/usage 200!
 /:pipeline/docs/output https://nf-core-pipelines.netlify.app/:pipeline/latest/docs/output 200!
 /:pipeline/parameters https://nf-core-pipelines.netlify.app/:pipeline/latest/parameters 200!
+/:pipeline/results/* https://nf-core-pipeline-results.netlify.app/:pipeline/latest/results/:splat 200!
+/:pipeline/:version/results https://nf-core-pipeline-results.netlify.app/:pipeline/:version/results/:splat 200!
 /modules/* https://nf-core-modules-subworkflows.netlify.app/modules/:splat 200!
 /subworkflows/* https://nf-core-modules-subworkflows.netlify.app/subworkflows/:splat 200!
 /configs/* https://nf-core-configs.netlify.app/configs/:splat 200!
