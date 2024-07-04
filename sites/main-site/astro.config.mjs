@@ -39,6 +39,7 @@ export default defineConfig({
     adapter: netlify(),
     prefetch: false,
     redirects: {
+        '/:pipeline/results': 'https://nf-core-pipeline-results.netlify.app/:pipeline/latest/results 200!',
         ...pipelineRedirects,
     },
     integrations: [
