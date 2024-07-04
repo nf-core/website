@@ -332,7 +332,7 @@ A stub block MUST exist for all modules
 
 #### Stub files for all output channels 
 
-The stub block MUST include the creation of a file for every output channel (both mandatory and optional), generated with touch, e.g.
+The stub block MUST include the creation of at least one file for every output channel (both mandatory and optional), generated with touch, e.g.
 
 ```bash
 touch ${prefix}.txt
