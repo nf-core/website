@@ -60,7 +60,9 @@
         const copyButtonLabel = "<i class='fa-regular fa-clipboard'></i>";
         const copiedButtonLabel = `<span class='font-sans-serif'>Copied </span><i class='fa-regular fa-clipboard-check'></i>`;
         document
-            .querySelectorAll("figure[data-rehype-pretty-code-figure] pre:not([data-language='console'])")
+            .querySelectorAll(
+                "figure[data-rehype-pretty-code-figure] pre:not([data-language='console']):not([data-language='tree'])",
+            )
             .forEach((block) => {
                 block.classList.add('position-relative');
                 const copyText = block.querySelector('code')?.innerText;
