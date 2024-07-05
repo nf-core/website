@@ -28,8 +28,6 @@ import icon from 'astro-icon';
 
 let pipelineRedirects = {};
 pipelines_json.remote_workflows.map((pipeline) => {
-    pipelineRedirects[`/${pipeline.name}/:version/results/*`] =
-        `https://nf-core-pipeline-results.netlify.app/${pipeline.name}/:version/results/:splat 200!`;
     pipelineRedirects[`/${pipeline.name}/:version/*`] =
         `https://nf-core-pipelines.netlify.app/${pipeline.name}/:version/:splat 200!`;
     pipelineRedirects[`/${pipeline.name}/`] = `https://nf-core-pipelines.netlify.app/${pipeline.name} 200!`;
