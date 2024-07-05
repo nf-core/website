@@ -46,15 +46,6 @@ export default defineConfig({
     prefetch: false,
     redirects: {
         ...latestPipelineReleases,
-        ...{
-            '/:pipeline/usage': '/:pipeline/latest/docs/usage 301',
-            '/:pipeline/output': '/:pipeline/latest/docs/output 301',
-            '/:pipeline/docs/usage': '/:pipeline/latest/docs/usage 301',
-            '/:pipeline/docs/output': '/:pipeline/latest/docs/output 301',
-            '/:pipeline/parameters': '/:pipeline/latest/parameters 301',
-            '/:pipeline/results/* https://nf-core-pipeline-results.netlify.app/:pipeline/latest/results/:splat 301',
-            '/:pipeline/:version/results/* https://nf-core-pipeline-results.netlify.app/:pipeline/:version/results/:splat 301',
-        },
         ...pipelineResults,
     },
     experimental: {
