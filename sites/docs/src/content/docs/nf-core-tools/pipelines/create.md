@@ -9,7 +9,7 @@ The `create` subcommand makes a new pipeline using the nf-core base template.
 With a given pipeline name, description and author, it makes a starter pipeline which follows nf-core best practices.
 
 After creating the files, the command initialises the folder as a git repository and makes an initial commit.
-This first "vanilla" commit which is identical to the output from the templating tool is important, as it allows us to keep your pipeline in sync with the base template in the future. A full description of the file structure and all files created in the initial pipeline setup can be found [here](https://nf-co.re/docs/contributing/pipelines/pipeline_file_structure). See the [nf-core syncing docs](https://nf-co.re/developers/sync) for more information on how the syncing works.
+This first "vanilla" commit which is identical to the output from the templating tool is important, as it allows us to keep your pipeline in sync with the base template in the future. A full description of the file structure and all files created in the initial pipeline setup can be found [here](https://nf-co.re/docs/contributing/pipelines/pipeline_file_structure). See the [nf-core syncing docs](https://nf-co.re/docs/tutorials/sync/overview) for more information on how the syncing works.
 
 <!-- RICH-CODEX
 working_dir: tmp
