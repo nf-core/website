@@ -8,7 +8,7 @@ import type { SidebarEntry } from '@utils/types';
 export interface Props {
     pipeline: string | undefined;
     meta_title: string;
-    subtitle?: string | null;
+    subtitle?: string;
     version?: string;
     versions?: string[];
     is_archived?: boolean;
@@ -37,12 +37,15 @@ let {
     viewTransitions = true,
 } = Astro.props;
 
+let tag_name = version;
+
 if (version === 'latest') {
-    version = versions[0];
+    tag_name = versions[0];
 }
 
 const url = Astro.url.pathname;
-const baseUrl = '/' + pipeline + '/' + version;
+const baseUrl = '/' + pipeline + '/' + tag_name;
+
 let allTabItems: { label: string; href: string; active: boolean; icon?: string }[] = [];
 
 allTabItems = tabItems
@@ -53,7 +56,7 @@ allTabItems = tabItems
                 return txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase();
             }),
             href: baseUrl + '/docs/' + file + '/',
-            active: url.includes(baseUrl + '/docs/' + file),
+            active: url.includes(`/${pipeline}/`) && url.endsWith(file),
             icon: tabItems.some((f) => f.startsWith(file + '/')) ? 'fa-regular fa-books' : '',
         };
     });
@@ -61,7 +64,7 @@ allTabItems = tabItems
 allTabItems.unshift({
     label: 'Introduction',
     href: `/${pipeline}/${version}/`,
-    active: url === `/${pipeline}/${version}/` || url === `/${pipeline}/${version}`,
+    active: url === `/${pipeline}/${version}/` || url === `/${pipeline}/`,
     icon: 'fa-solid fa-sign-in',
 });
 
@@ -85,7 +88,7 @@ if (version !== 'dev') {
     allTabItems.splice(1, 0, {
         label: 'Results',
         href: `/${pipeline}/${version}/results/${pipeline}/results-${releaseSHA}/`,
-        active: url.includes(`/${pipeline}/${version}/results/`),
+        active: url.includes(`/${pipeline}/`) && url.includes(`/results/`),
         icon: 'fa-brands fa-aws',
     });
 }
@@ -126,7 +129,7 @@ const isDsl2 = pipelineData?.is_DSL2;
 >
     <SubHeader
         pipeline={pipeline}
-        version={version}
+        version={tag_name}
         latestVersion={latestVersion}
         gh_url={gh_url}
         isDsl2={isDsl2}
@@ -148,7 +151,7 @@ const isDsl2 = pipelineData?.is_DSL2;
                                 data-bs-toggle="dropdown"
                                 aria-expanded="false"
                             >
-                                {version}
+                                {tag_name}
                             </button>
 
                             <ul class="dropdown-menu dropdown-menu-end w-100 pipeline-versions">
