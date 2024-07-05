@@ -74,6 +74,8 @@
 # Redirects to subsites
 /docs/* https://nf-core-docs.netlify.app/docs/:splat 200!
 /pipelines https://nf-core-pipelines.netlify.app/pipelines 200!
+/:pipeline/usage https://nf-core-pipelines.netlify.app/:pipeline/latest/docs/usage 200!
+/:pipeline/output https://nf-core-pipelines.netlify.app/:pipeline/latest/docs/output 200!
 /:pipeline/docs/usage https://nf-core-pipelines.netlify.app/:pipeline/latest/docs/usage 200!
 /:pipeline/docs/output https://nf-core-pipelines.netlify.app/:pipeline/latest/docs/output 200!
 /:pipeline/parameters https://nf-core-pipelines.netlify.app/:pipeline/latest/parameters 200!
