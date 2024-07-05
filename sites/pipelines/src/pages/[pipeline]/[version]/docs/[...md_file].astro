@@ -101,6 +101,9 @@ const version_tag_name = version === 'latest' ? versions[0] : version;
 const cache_key = `${pipeline}/${version_tag_name?.replaceAll('.', '')}/docs/${md_file?.toLowerCase()}`;
 
 const entry = await getEntry('pipelines', cache_key);
+if (!entry) {
+    return Astro.redirect('/404');
+}
 let { Content, headings } = await entry.render();
 const max_heading_depth = 2;
 
