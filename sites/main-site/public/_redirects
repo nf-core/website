@@ -26,7 +26,11 @@
 /tools                                     https://nf-core-docs.netlify.app/docs/nf-core-tools 200
 /tools/docs/*                              https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/:splat 200
 /tools/*                                   https://nf-core-docs.netlify.app/docs/nf-core-tools/:splat 200
-/docs/nf-core-tools/api_reference/*/index  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/:splat 200
+
+/docs/nf-core-tools/api_reference/:version/api/index  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/:version/api 200
+
+/docs/nf-core-tools/api_reference/:version/:command  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/:version/api/:command 200
+
 
 /docs/usage/introduction                                     https://nf-core-docs.netlify.app/docs/usage/getting_started/introduction 200
 /docs/usage/installation                                     https://nf-core-docs.netlify.app/docs/usage/getting_started/installation 200
