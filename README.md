@@ -149,7 +149,7 @@ The following steps are necessary to add a new sub-site to the mono-repo:
 
   ```toml
   command = "npm run build -w sites/newsite"
-  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF sites/main-site/src/components sites/newsite"
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF sites/main-site/src/components sites/main-site/src/layouts sites/newsite"
   ```
 
 ### Tools API docs
