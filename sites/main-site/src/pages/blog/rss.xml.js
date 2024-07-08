@@ -7,7 +7,6 @@ export async function GET(context) {
   });
   blogPosts = blogPosts.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
 
-
   return rss({
     title: 'nf-core blog',
     description: 'News and updates from the nf-core community.',
