@@ -66,7 +66,7 @@ To run a pipeline:
 
    - Nextflow will pull the code from the GitHub repository and fetch the software requirements automatically, so there is no need to download anything first.
 
-   - If the pipeline fails, see [Troubleshooting](troubleshooting.md) or ask for help on the [nf-core Slack channel](https://nf-co.re/join) for your pipeline.
+   - If the pipeline fails, see [Troubleshooting](/docs/usage/troubleshooting/overview) or ask for help on the [nf-core Slack channel](https://nf-co.re/join) for your pipeline.
 
 5. Read the pipeline documentation to see which command-line parameters are required. This will be specific to your data type and usage.
 
