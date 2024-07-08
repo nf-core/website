@@ -26,7 +26,11 @@
 /tools                                     https://nf-core-docs.netlify.app/docs/nf-core-tools 200
 /tools/docs/*                              https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/:splat 200
 /tools/*                                   https://nf-core-docs.netlify.app/docs/nf-core-tools/:splat 200
-/docs/nf-core-tools/api_reference/*/index  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/:splat 200
+
+/docs/nf-core-tools/api_reference/:version/api/index  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/:version/api 200
+
+/docs/nf-core-tools/api_reference/:version/:command  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/:version/api/:command 200
+
 
 /docs/usage/introduction                                     https://nf-core-docs.netlify.app/docs/usage/getting_started/introduction 200
 /docs/usage/installation                                     https://nf-core-docs.netlify.app/docs/usage/getting_started/installation 200
@@ -74,6 +78,15 @@
 # Redirects to subsites
 /docs/* https://nf-core-docs.netlify.app/docs/:splat 200!
 /pipelines https://nf-core-pipelines.netlify.app/pipelines 200!
+/:pipeline/usage https://nf-core-pipelines.netlify.app/:pipeline/latest/docs/usage 200!
+/:pipeline/output https://nf-core-pipelines.netlify.app/:pipeline/latest/docs/output 200!
+/:pipeline/docs/usage https://nf-core-pipelines.netlify.app/:pipeline/latest/docs/usage 200!
+/:pipeline/docs/output https://nf-core-pipelines.netlify.app/:pipeline/latest/docs/output 200!
+/:pipeline/parameters https://nf-core-pipelines.netlify.app/:pipeline/latest/parameters 200!
+/:pipeline/results/* https://nf-core-pipeline-results.netlify.app/:pipeline/latest/results/:splat 200!
+/:pipeline/:version/results/* https://nf-core-pipeline-results.netlify.app/:pipeline/:version/results/:splat 200!
+/:pipeline/:version/docs/usage/usage/* https://nf-core-pipelines.netlify.app/:pipeline/latest/docs/usage/:splat 200!
+/:pipeline/:version/docs/output/output/* https://nf-core-pipelines.netlify.app/:pipeline/latest/docs/output/:splat 200!
 /modules/* https://nf-core-modules-subworkflows.netlify.app/modules/:splat 200!
 /subworkflows/* https://nf-core-modules-subworkflows.netlify.app/subworkflows/:splat 200!
 /configs/* https://nf-core-configs.netlify.app/configs/:splat 200!
