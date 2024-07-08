@@ -20,7 +20,16 @@ const { title, description, image = '/social_img.png', docSearchTags = [], viewT
 <meta name="color-scheme" content="light dark" />
 <meta name="theme-color" content="#1d9655" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="alternate" type="application/rss+xml" title="nf-core: Events" href="/events/rss" />
+{
+    Astro.url.pathname.includes('events') && (
+        <link rel="alternate" type="application/rss+xml" title="nf-core bv Events" href="/events/rss.xml" />
+    )
+}
+{
+    Astro.url.pathname.includes('blog') && (
+        <link rel="alternate" type="application/rss+xml" title="nf-core Blog" href="/blog/rss.xml" />
+    )
+}
 <meta name="generator" content={Astro.generator} />
 <link rel="sitemap" href="/sitemap-index.xml" />
 
