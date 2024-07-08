@@ -13,7 +13,7 @@ import ExpandDetailsButton from '@components/sidebar/ExpandDetailsButton.svelte'
 export function getStaticPaths() {
     let paths: {
         params: { pipeline: string; version: string; md_file: string };
-        props: { versions: string[]; md_files: string[]; description: string };
+        props: { versions: string[]; md_files: { slug: string }[]; description: string | null };
     }[] = [];
     pipelines_json.remote_workflows.forEach((pipeline) => {
         const releases = pipeline.releases;
@@ -22,6 +22,7 @@ export function getStaticPaths() {
             const md_files = release.doc_files.map((file) => {
                 return { slug: file.replace('docs/', '').replace('.mdx', '').replace('.md', '') };
             });
+
             md_files.forEach((md_file) => {
                 paths.push({
                     params: {
@@ -100,6 +101,9 @@ const version_tag_name = version === 'latest' ? versions[0] : version;
 const cache_key = `${pipeline}/${version_tag_name?.replaceAll('.', '')}/docs/${md_file?.toLowerCase()}`;
 
 const entry = await getEntry('pipelines', cache_key);
+if (!entry) {
+    return Astro.redirect('/404');
+}
 let { Content, headings } = await entry.render();
 const max_heading_depth = 2;
 
