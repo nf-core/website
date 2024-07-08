@@ -164,7 +164,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         }
       ]
     },
@@ -1653,7 +1653,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         }
       ]
     },
@@ -2080,7 +2080,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         }
       ]
     },
@@ -2164,7 +2164,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         }
       ]
     },
@@ -2378,7 +2378,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         }
       ]
     },
@@ -2440,7 +2440,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         }
       ]
     },
@@ -3355,7 +3355,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         }
       ]
     },
@@ -3451,7 +3451,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         }
       ]
     },
@@ -3549,6 +3549,95 @@
         ],
         "maintainers": [
           "@christopher-mohr"
+        ]
+      }
+    },
+    {
+      "name": "argnorm",
+      "path": "modules/nf-core/argnorm/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "argnorm",
+        "description": "Normalize antibiotic resistance genes (ARGs) using the ARO ontology (developed by CARD).",
+        "keywords": [
+          "amr",
+          "antimicrobial resistance",
+          "arg",
+          "antimicrobial resistance genes",
+          "genomics",
+          "metagenomics",
+          "normalization",
+          "drug categorization"
+        ],
+        "tools": [
+          {
+            "argnorm": {
+              "description": "Normalize antibiotic resistance genes (ARGs) using the ARO ontology (developed by CARD).",
+              "homepage": "https://argnorm.readthedocs.io/en/latest/",
+              "documentation": "https://argnorm.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/BigDataBiology/argNorm",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "input_tsv": {
+              "type": "file",
+              "description": "ARG annotation output",
+              "pattern": "*.tsv"
+            }
+          },
+          {
+            "tool": {
+              "type": "string",
+              "description": "ARG annotation tool used",
+              "pattern": "argsoap|abricate|deeparg|resfinder|amrfinderplus"
+            }
+          },
+          {
+            "db": {
+              "type": "string",
+              "description": "Database used for ARG annotation",
+              "pattern": "sarg|ncbi|resfinder|deeparg|megares|argannot|resfinderfg"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "tsv": {
+              "type": "file",
+              "description": "Normalized argNorm output",
+              "pattern": "*.tsv"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@Vedanth-Ramji"
+        ],
+        "maintainers": [
+          "@Vedanth-Ramji"
         ]
       }
     },
@@ -5206,6 +5295,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         },
         {
           "name": "rnafusion",
@@ -7482,7 +7575,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         },
         {
           "name": "pathogensurveillance",
@@ -7551,7 +7644,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         }
       ]
     },
@@ -14294,7 +14387,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         }
       ]
     },
@@ -17657,6 +17750,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -28591,7 +28688,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         },
         {
           "name": "genomeannotator",
@@ -30250,7 +30347,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         }
       ]
     },
@@ -30367,7 +30464,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         }
       ]
     },
@@ -30430,7 +30527,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         }
       ]
     },
@@ -30584,7 +30681,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         }
       ]
     },
@@ -33418,6 +33515,112 @@
         ],
         "maintainers": [
           "@pinin4fjords"
+        ]
+      }
+    },
+    {
+      "name": "dysgu",
+      "path": "modules/nf-core/dysgu/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "dysgu",
+        "description": "Dysgu calls structural variants (SVs) from mapped sequencing reads. It is designed for accurate and efficient detection of structural variations.",
+        "keywords": [
+          "structural variants",
+          "sv",
+          "vcf"
+        ],
+        "tools": [
+          {
+            "dysgu": {
+              "description": "Structural variant caller for mapped sequencing data",
+              "homepage": "https://github.com/kcleal/dysgu",
+              "documentation": "https://github.com/kcleal/dysgu/blob/master/README.rst",
+              "tool_dev_url": "https://github.com/kcleal/dysgu",
+              "doi": "10.1093/nar/gkac039",
+              "licence": [
+                "GPL-3.0-or-later"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "input": {
+              "type": "file",
+              "description": "Input BAM file",
+              "pattern": "*.bam"
+            }
+          },
+          {
+            "index": {
+              "type": "file",
+              "description": "BAM index file",
+              "pattern": "*.bai"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Genome reference FASTA file",
+              "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "Genome reference FASTA index file",
+              "pattern": "*.{fa.fai,fasta.fai}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "VCF file with identified structural variants",
+              "pattern": "*.{vcf.gz}"
+            }
+          },
+          {
+            "tbi": {
+              "type": "file",
+              "description": "The index of the BCF/VCF file",
+              "pattern": "*.{vcf.gz.tbi}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@famosab",
+          "@poddarharsh15"
+        ],
+        "maintainers": [
+          "@poddarharsh15"
         ]
       }
     },
@@ -36511,7 +36714,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         }
       ]
     },
@@ -53784,7 +53987,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         }
       ]
     },
@@ -60542,7 +60745,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         },
         {
           "name": "genomeannotator",
@@ -60809,7 +61012,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         }
       ]
     },
@@ -60916,7 +61119,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         }
       ]
     },
@@ -61021,7 +61224,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         }
       ]
     },
@@ -61128,7 +61331,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         }
       ]
     },
@@ -61235,7 +61438,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         }
       ]
     },
@@ -61320,7 +61523,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         }
       ]
     },
@@ -63859,7 +64062,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         },
         {
           "name": "metatdenovo",
@@ -67199,6 +67402,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
         {
           "name": "isoseq",
           "version": "1.1.5"
@@ -73902,7 +74109,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         }
       ]
     },
@@ -77497,6 +77704,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -83587,7 +83798,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         },
         {
           "name": "genomeannotator",
@@ -98816,7 +99027,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         },
         {
           "name": "mag",
@@ -98995,7 +99206,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         },
         {
           "name": "mag",
@@ -101071,7 +101282,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         }
       ]
     },
@@ -102788,7 +102999,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         }
       ]
     },
@@ -124032,7 +124243,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         },
         {
           "name": "nanoseq",
@@ -129329,7 +129540,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.1.5"
+          "version": "1.1.6"
         },
         {
           "name": "hgtseq",
