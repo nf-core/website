@@ -1,6 +1,6 @@
 <script lang="ts">
     import { currentHeading } from '@components/store';
-    import { db as icons } from 'file-icons-js';
+    import * as icons from 'file-icons-js';
     import 'file-icons-js/css/style.css';
     import mermaid from 'mermaid';
     import { onMount } from 'svelte';
