@@ -39,6 +39,8 @@ To get your pipeline reviewed for its initial release, do the following:
 
 1. Create a new branch based on `TEMPLATE`, called `TEMPLATE_<TOOLS_VERSION>` from the latest tools sync that was merged in `dev`.
    The commit message from @nf-core-bot will help you figure what was the tools versions used.
+   For example, if this commit message `Template update for nf-core/tools version 1.13` is the one that used for a tools sync,
+   the branch should be called `TEMPLATE_1.13`.
 
 3. Make a pull-request from the `dev` branch to this `TEMPLATE_<TOOLS_VERSION>` branch on the nf-core fork. This is a
    special case and all of the tests should pass.
