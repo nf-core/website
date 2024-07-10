@@ -37,7 +37,10 @@ Not to worry, we're a friendly bunch.
 
 To get your pipeline reviewed for its initial release, do the following:
 
-1. Make a pull-request from the `dev` branch to `master` on the nf-core fork. This is a
+1. Create a new branch based on `TEMPLATE`, called `TEMPLATE_<TOOLS_VERSION>` from the latest tools sync that was merged in `dev`.
+   The commit message from @nf-core-bot will help you figure what was the tools versions used.
+
+3. Make a pull-request from the `dev` branch to this `TEMPLATE_<TOOLS_VERSION>` branch on the nf-core fork. This is a
    special case and all of the tests should pass.
 
 1. Once the tests are passing, request a review from the core team. You can use the
