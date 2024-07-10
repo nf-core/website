@@ -6,7 +6,7 @@ startDate: '2024-06-11'
 startTime: '13:00+02:00'
 endDate: '2024-06-11'
 endTime: '13:30+02:00'
-youtube_embed: https://youtu.be/6HVnB_WTyJU
+youtubeEmbed: https://youtu.be/6HVnB_WTyJU
 locations:
   - name: Online
     links:
