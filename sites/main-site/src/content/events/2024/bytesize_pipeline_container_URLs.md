@@ -21,3 +21,5 @@ This command retrieves all of the containers that will be used by a pipeline run
 In this talk, Phil Ewels ([@ewels](https://github.com/ewels/)) will guides us through the process of fetching container URIs using `nextflow inspect`
 and show how this can be used to customise containers in a pipeline. This may be of particular use to people working in environments that cannot
 access our public container registries or who may need additional steps in their container verification steps.
+
+**Unfortunately, the recordings for this bytesize was corrupted. Some of the content, however, was repeated in the bytesize [Bytesize: Explaining Wave containers](https://nf-co.re/events/2024/bytesize_using_wave).**
