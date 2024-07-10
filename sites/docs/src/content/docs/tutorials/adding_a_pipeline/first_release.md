@@ -37,7 +37,7 @@ Not to worry, we're a friendly bunch.
 
 To get your pipeline reviewed for its initial release, do the following:
 
-1. Create a new branch based on `TEMPLATE`, called `TEMPLATE_<TOOLS_VERSION>` from the latest tools sync that was merged in `dev`.
+1. Create a new branch based on `TEMPLATE`, called `TEMPLATE_<TOOLS_VERSION>` from the version of the TEMPLATE (i.e., latest tools sync) that is in the `dev` branch you wish merge into `master`.
    The commit message from @nf-core-bot will help you figure what was the tools versions used.
    For example, if this commit message `Template update for nf-core/tools version 1.13` is the one that used for a tools sync,
    the branch should be called `TEMPLATE_1.13`.
