@@ -9,7 +9,7 @@ endTime: '13:30+02:00'
 youtubeEmbed: https://youtu.be/zoCC_dkhjD0
 locations:
   - name: Online
-    links: 
+    links:
       - https://youtu.be/zoCC_dkhjD0
 ---
 
