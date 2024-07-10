@@ -300,15 +300,13 @@ code:not(pre code),
       padding-bottom: 0;
     }
     &:not([data-line-numbers]) {
-
       & > span {
-      padding-left: 1.5em;
-      padding-right: 1.5em;
-      &[data-highlighted-line] {
-        padding-left: calc(1.5em - 2px);
+        padding-left: 1.5em;
+        padding-right: 1.5em;
+        &[data-highlighted-line] {
+          padding-left: calc(1.5em - 2px);
+        }
       }
-    }
-
     }
     &[data-line-numbers] {
       counter-reset: line;
@@ -1300,25 +1298,26 @@ figure[data-rehype-pretty-code-figure] [data-theme*=' ']:not([data-rehype-pretty
   }
 }
 
-.main-content figure[data-rehype-pretty-code-figure] pre .copy-code-button {
-  margin-top: 0.75rem;
-  margin-bottom: 0.75rem;
-  margin-right: 0.7rem;
-  &:hover {
-    opacity: 1 !important;
+.main-content figure[data-rehype-pretty-code-figure] {
+  &:has([data-rehype-pretty-code-title]) pre {
+    code {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
   }
-  &.single-line {
-    margin-top: 0.425rem;
-  }
-}
-
-.main-content figure[data-rehype-pretty-code-figure]:has([data-rehype-pretty-code-title]) pre {
-  code {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
-  .copy-code-button {
+  pre .copy-code-button {
     margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+    margin-right: 0.425rem;
+    &.single-line {
+      margin-top: 0.425rem;
+    }
+    &:hover {
+      opacity: 1 !important;
+    }
+  }
+  &:has(.single-line) code{
+    padding-top: 0.75rem;
   }
 }
 
@@ -1402,12 +1401,12 @@ div.mermaid {
     }
   }
   figure[data-rehype-pretty-code-figure] mark[data-highlighted-chars] span::before {
-      background-color: var(--shiki-dark);
-}
+    background-color: var(--shiki-dark);
+  }
   [data-rehype-pretty-code-title][data-theme*=' '] {
     border: 1px solid $border-color-dark;
   }
-  img:not([src$=".svg"]) {
+  img:not([src$='.svg']) {
     filter: brightness(0.8) contrast(1.2); // dim images a bit https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/
   }
 
