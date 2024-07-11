@@ -5503,6 +5503,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -8557,7 +8561,9 @@
               "homepage": "https://github.com/tseemann/barrnap",
               "documentation": "https://github.com/tseemann/barrnap",
               "tool_dev_url": "https://github.com/tseemann/barrnap",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -8573,6 +8579,12 @@
               "type": "file",
               "description": "fastq or fasta file nucleotides (it can be amino acids as well)",
               "pattern": "*.{fna,fasta,faa,fastq}"
+            }
+          },
+          {
+            "dbname": {
+              "type": "string",
+              "description": "database to use(bacteria, archaea, eukaryota, metazoan mitochondria)"
             }
           }
         ],
@@ -17770,6 +17782,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -67517,6 +67533,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -77764,6 +77784,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
