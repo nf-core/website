@@ -39,17 +39,23 @@ npm install
 
 ### Running a local server
 
-Ok, you're ready! To run the website locally, just start astro dev mode:
+Ok, you're ready! The website is split up into sub-sites using npm workspaces ([see blogpost](https://nf-co.re/blog/2024/new-website-structure)). One usually works on just one sub-site, e.g. `sites/main-site` for blog posts, event pages and general code components, or `sites/docs` for changes to the documentation. To run the website locally, just start astro dev mode for the specific workspace,e.g.,:
 
 ```bash
-npm run dev
+npm run dev --workspace site/main-site
 ```
 
-You should then be able to access the website in your browser at [http://localhost:4321/](http://localhost:4321/).
+or
+
+```bash
+npm run dev --workspace site/docs
+```
+
+You should then be able to access the website in your browser at [http://localhost:4321/](http://localhost:4321/). Because the sub-sites are disjunct from each other some pages will not work for the specific dev server, e.g. when starting the local server for `sites/docs`, [http://localhost:4321/](http://localhost:4321/) and [http://localhost:4321/pipelines](http://localhost:4321/pipelines) will throw 404 errors.
 
 ### File structure
 
-We follow for the website, with a mono-repo setup.
+The website follows a mono-repo setup with sub-sites.
 The main sub-sites are:
 
 - `sites/main-site` - The main nf-core website, including components, events, blog posts
