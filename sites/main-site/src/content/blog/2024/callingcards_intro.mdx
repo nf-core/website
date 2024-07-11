@@ -16,6 +16,7 @@ label:
 
 import { YouTube } from '@astro-community/astro-embed-youtube';
 
+import alf_gif from '@assets/images/blog/callingcards/alf_what_is_this.webp';
 import callingcards_vs_chip from '@assets/images/blog/callingcards/callingcards_vs_chip.png';
 import callingcards_metro from '@assets/images/blog/callingcards/callingcards_metromap.png';
 import callingcards_mammals from '@assets/images/blog/callingcards/callingcards_mammals.png';
@@ -24,10 +25,11 @@ import { Image } from 'astro:assets';
 
 The [`nf-core/callingcards`][nf-core-callingcards-link] workflow is here!
 
-<div style="text-align: center;">
-  <iframe src="https://giphy.com/embed/apvx5lPCPsjN6" width="480" height="358" style="display: block; margin: 0 auto;" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-  <p><a href="https://giphy.com/gifs/what-confused-alf-apvx5lPCPsjN6"></a></p>
-</div>
+<Image
+    class="d-block m-auto"
+    src={alf_gif}
+    alt="Alf from the TV show Alf, sitting at a table in front of a plate with a burning birthday candle and asking 'What is this?'."
+/>
 
 # What is Calling Cards?
 
@@ -42,17 +44,19 @@ genome, to deposit a molecular barcode into the genome when a TF binds.
 
 # Calling Cards in Yeast
 
-<div style={{ textAlign: 'center', margin: '20px 0' }}>
-  <Image class="d-block m-auto" src={callingcards_vs_chip} alt="A graphic comparing Calling Cards to ChIP-seq" />
-  <i>
-    Figure 1: A comparison of Calling Cards to the more familiar method of interrogating transcription factors, ChIP-Seq.
-    The calling cards figure is from <a href="http://www.genome.org/cgi/doi/10.1101/gr.6510207">Calling cards for DNA-binding-proteins</a> by Wang et al., which originally described calling cards.
-    The ChIP-seq diagram is from <a href="https://doi.org/10.4161/15384101.2014.949201">Role of ChIP-seq in the discovery of transcription factor binding sites</a> by Mundade et al.
-  </i>
-</div>
-
-Figure 1 compares calling cards to the more familiar ChIP-Seq procedure for interrogating
-Transcription Factors.
+<figure>
+    <Image class="d-block m-auto" src={callingcards_vs_chip} alt="A graphic comparing Calling Cards to ChIP-seq" />
+    <figcaption>
+        Figure 1: A comparison of Calling Cards to the more familiar method of interrogating transcription factors,
+        ChIP-Seq. The calling cards figure is from{' '}
+        <a href="http://www.genome.org/cgi/doi/10.1101/gr.6510207">Calling cards for DNA-binding-proteins</a> by Wang et
+        al., which originally described calling cards. The ChIP-seq diagram is from{' '}
+        <a href="https://doi.org/10.4161/15384101.2014.949201">
+            Role of ChIP-seq in the discovery of transcription factor binding sites
+        </a>{' '}
+        by Mundade et al.
+    </figcaption>
+</figure>
 
 In the yeast version of calling cards, a retrotransposon complex is linked to
 the TF of interest. When the TF binds to the genome, the Ty5 sequence is inserted,
@@ -69,32 +73,35 @@ mammalian system. This differs in technical detail from the yeast procedure, tho
 outcome is similar. Figure 2 below provides a graphic overview of the biochemical
 procedure.
 
-<div style={{ textAlign: 'center', margin: '20px 0' }}>
-  <Image class="d-block m-auto" src={callingcards_mammals} alt="A graphic describing the calling cards protocol in mammals" />
-  <i>
-  Figure 2: Barcoding the self-reporting transposon. (A) Schematic overview of the SRT
-  construct, Calling Card method, and sequencing library preparation. Candidate sites
-  for barcode insertions are indicated with gold stars. The TR-Genome junction, used to
-  map transposon insertions, is circled in dotted magenta line. (B) Barcode site 3 is
-  within the piggyBac TR sequence, immediately adjacent to the TR-Genome junction.
-  Underlined nucleotides in the 13-bp terminal inverted repeat region (‘CTA’, gold)
-  were targeted for mutagenesis by mutagenic PCR. (C) Overview of calling card rapid
-  mutagenesis scheme. Mutant amplicons were transfected into cells with piggyBac
-  transposase and integrated calling cards were collected. Nucleotide frequency for
-  each mutagenized position of integrated SRTs were calculated. Nucleotide frequency
-  at (D) position 1, (E) position 2 and (F) position 3 of integrated mutated SRTs.
-  Wild-type sequences are outlined in red. All four possible nucleotides were
-  well-represented at all three mutated positions. IR: internal repeat. TR: terminal
-  repeat. EF1a: eukaryotic translation elongation factor 1 α promoter.
-  SRT: self-reporting transposon. nt: nucleotide. kb: kilobase.
-  PuroR: puromycin resistance cassette. WT: wild-type. Mut: mutant.
-  <br></br>Figure and caption from:
-  <a href="https://doi.org/10.1093/nargab/lqac061">Matthew Lalli, Allen Yen, Urvashi Thopte, Fengping Dong, Arnav Moudgil, Xuhua Chen, Jeffrey Milbrandt, Joseph D Dougherty, Robi D Mitra, Measuring transcription factor binding and gene expression using barcoded self-reporting transposon calling cards and transcriptomes</a>
-  </i>
-</div>
+<figure>
+    <Image
+        class="d-block m-auto"
+        src={callingcards_mammals}
+        alt="A graphic describing the calling cards protocol in mammals"
+    />
+    <figcaption>
+        Figure 2: Barcoding the self-reporting transposon. (A) Schematic overview of the SRT construct, Calling Card
+        method, and sequencing library preparation. Candidate sites for barcode insertions are indicated with gold
+        stars. The TR-Genome junction, used to map transposon insertions, is circled in dotted magenta line. (B) Barcode
+        site 3 is within the piggyBac TR sequence, immediately adjacent to the TR-Genome junction. Underlined
+        nucleotides in the 13-bp terminal inverted repeat region (‘CTA’, gold) were targeted for mutagenesis by
+        mutagenic PCR. (C) Overview of calling card rapid mutagenesis scheme. Mutant amplicons were transfected into
+        cells with piggyBac transposase and integrated calling cards were collected. Nucleotide frequency for each
+        mutagenized position of integrated SRTs were calculated. Nucleotide frequency at (D) position 1, (E) position 2
+        and (F) position 3 of integrated mutated SRTs. Wild-type sequences are outlined in red. All four possible
+        nucleotides were well-represented at all three mutated positions. IR: internal repeat. TR: terminal repeat.
+        EF1a: eukaryotic translation elongation factor 1 α promoter. SRT: self-reporting transposon. nt: nucleotide. kb:
+        kilobase. PuroR: puromycin resistance cassette. WT: wild-type. Mut: mutant.
+        <br></br>Figure and caption from:
+        <a href="https://doi.org/10.1093/nargab/lqac061">
+            Matthew Lalli, Allen Yen, Urvashi Thopte, Fengping Dong, Arnav Moudgil, Xuhua Chen, Jeffrey Milbrandt,
+            Joseph D Dougherty, Robi D Mitra, Measuring transcription factor binding and gene expression using barcoded
+            self-reporting transposon calling cards and transcriptomes
+        </a>
+    </figcaption>
+</figure>
 
 # The Calling Cards Processing Pipeline
-
 
 <Image class="d-block m-auto" src={callingcards_metro} alt="A graphic comparing Calling Cards to ChIP-seq" />
 
