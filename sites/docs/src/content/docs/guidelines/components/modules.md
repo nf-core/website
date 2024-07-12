@@ -47,7 +47,7 @@ All _non-mandatory_ command-line tool _non-file_ arguments MUST be provided as a
     }
   ```
 
-:::info{title="Rational" collapse}
+:::info{title="Rationale" collapse}
 A disadvantage of passing arguments via ext.args is that it splits up how information is passed to a module, which can be difficult to understand where module inputs are defined.
 
 The justification behind using the `ext.args` is to provide more flexibility to users.
@@ -58,9 +58,9 @@ Initially these were passed via the main workflow script using custom functions 
 Therefore using the 'native' `ext` functionality provided by Nextflow was easier to understand, maintain and use.
 
 Note that sample-specific parameters can still be provided to an instance of a process by storing these in `meta`, and providing these to the `ext.args` definition in `modules.config`.
-A closure is used to make Nextflow evaluate the code in the code in the string.
+A closure is used to make Nextflow evaluate the code in the string.
 
-```nextflow
+```groovy
 ext.args = { "--id ${meta.id}" }
 ```
 
@@ -123,28 +123,28 @@ Modules MUST NOT use 'custom' hardcoded `meta` fields.
 The only accepted 'standard' meta fields are `meta.id` or `meta.single_end`.
 Proposals for other 'standard' fields for other disciplines must be discussed with the maintainers team.
 
-:::info{title="Rational" collapse}
+:::info{title="Rationale" collapse}
 Modules should be written to allow as much flexibility to pipeline developers as possible.
 
 Hardcoding `meta` fields in a module will reduce the freedom of developers to use their own names for metadata, which would make more sense in that particular context.
 
 As all non-mandatory arguments MUST go via `$args`, pipeline developers can insert such `meta` information into `$args` with whatever name they wish.
 
-So, in the module code we DO NOT do:
+So, in the module code DO NOT:
 
-```bash
+```bash title="main.nf"
 my_command -r ${meta.strand} input.txt output.txt
 ```
 
-... but rather, in `modules.conf`
+... but rather:
 
-```nextflow
+```groovy title="modules.conf"
 ext.args = { "--r ${meta.<pipeline_authors_choice_of_name>}" }
 ```
 
-... and then in the module code `main.nf`:
+and then in the module code:
 
-```bash
+```bash title="main.nf"
 my_command $args input.txt output.txt
 ```
 
@@ -225,7 +225,7 @@ If the software is unable to output a version number on the command-line then a 
 
 Please include the accompanying comments above the software packing directives and beside the version string.
 
-```nextflow {4,15,21}
+```groovy {4,15,21}
 process TOOL {
 
 ...
@@ -281,7 +281,7 @@ This also ensures that they are captured by Nextflow.
 
 If information is only written to files, it could potentially be lost when the job scheduler gives up the job allocation.
 
-```nextflow {7-8}
+```groovy {7-8}
 script:
 """
 tool \\
@@ -296,7 +296,7 @@ tool \\
 Similarly, if the tool captures STDOUT or STDERR to a file itself, it is best to send those to the corresponding streams as well.
 Since a timeout may mean execution is aborted, it may make most sense to have background tasks do that.
 
-```nextflow {3-4}
+```groovy {3-4}
 script:
 """
 tail -F stored_stderr.log >&2 &
@@ -310,7 +310,7 @@ tool arguments
 Occasionally, some tools do not exit with the expected exit code 0 upon successful use of the tool.
 In these cases one can use the `||` operator to run another useful command when the exit code is not 0 (for example, testing if a file is not size 0).
 
-```nextflow {6}
+```groovy {6}
 script:
 """
 tool \\
@@ -392,7 +392,7 @@ Output file (and/or directory) names SHOULD just consist of only `${prefix}` and
 - This is primarily for re-usability so that other developers have complete flexibility to name their output files however they wish when using the same module.
 - As a result of using this syntax, if the module has the same named inputs and outputs then you can add a line in the `script` section like below (another example [here](https://github.com/nf-core/modules/blob/e20e57f90b6787ac9a010a980cf6ea98bd990046/modules/lima/main.nf#L37)) which will raise an error asking the developer to change the `args.prefix` variable to rename the output files so they don't clash.
 
-  ```nextflow
+  ```groovy
   script:
   if ("$bam" == "${prefix}.bam") error "Input and output names are the same, set prefix in module configuration to disambiguate!"
   ```
@@ -414,7 +414,7 @@ Input channel `val` declarations SHOULD be defined for all mandatory non-file in
 - These non-file inputs are typically booleans or strings, and must be documented as such in the corresponding entry in the `meta.yaml`.
 - Options, flags, parameters that are _not_ required by the tool to function should NOT be included - rather these can be passed via `ext.args`.
 
-:::info{title="Rational" collapse}
+:::info{title="Rationale" collapse}
 It was decided by a [vote](https://nfcore.slack.com/archives/C043UU89KKQ/p1677581560661679) amongst interested parties within the 2023 Maintainers group on 2023-02-28 to allow non-file mandatory input channels.
 
 The reasoning behind this was that it is important to have documented (using the existing display on the website) the bare minimum information required for a module to run.
@@ -435,7 +435,7 @@ When one and only one of multiple argument are required:
 
   e.g. Grouping output parameters of [glimpse2 concordance](https://nf-co.re/modules/glimpse2_concordance)
 
-  `if (((file1 ? 1:0) + (val1 ? 1:0) + (val2 ? 1:0)) != 1) error "One and only one argument required"`
+  `if (((file1 ? 1:0) + (val1 ? 1:0) + (val2 ? 1:0)) != 1) error "One and only one argument required"{:bash}`
   :::
 
 ### Output channel emissions
@@ -449,7 +449,7 @@ However, passing an empty list (`[]`) instead of a file as a module parameter ca
 
 For example, having a module (`MY_MODULE`) that can take a `cram` channel and an optional `fasta` channel as input, can be used in the following ways:
 
-```nextflow
+```groovy
 MY_MODULE(cram, [])     // fasta is optional, the module will run without the fasta present
 MY_MODULE(cram, fasta)  // execution of the module will need an element in the fasta channel
 ```
@@ -458,7 +458,7 @@ MY_MODULE(cram, fasta)  // execution of the module will need an element in the f
 
 Optional outputs SHOULD be marked as optional:
 
-```nextflow
+```groovy
 tuple val(meta), path('*.tab'), emit: tab,  optional: true
 ```
 
@@ -594,7 +594,7 @@ Where possible we will use BioContainers to fetch pre-built software containers 
 Software requirements SHOULD be declared within the module file using the Nextflow `container` directive.
 For single-tool BioContainers, the `nf-core modules create` command will automatically fetch and fill-in the appropriate Conda / Docker / Singularity definitions by parsing the information provided in the first part of the module name:
 
-```nextflow
+```groovy
 conda "bioconda::fastqc=0.11.9"
 container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
     'https://depot.galaxyproject.org/singularity/fastqc:0.11.9--0' :
