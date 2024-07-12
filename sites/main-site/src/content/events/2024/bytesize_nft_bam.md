@@ -11,4 +11,4 @@ locations:
       - https://kth-se.zoom.us/j/68390542812
 ---
 
-Writing tests using `nf-test` can be a daunting task, but the plugin `nft-bam` (find the docs [here](https://nvnieuwk.github.io/nft-bam/latest/)) just made it so much easier for any nf-tests for SAM, BAM or CRAM files! Join us for this weeks bytesize with Nicolas Vannieuwkerke ([@nvnieuwk](https://github.com/nvnieuwk)) to see how to use `nft-bam`.
+Getting stable nf-test snapshots for SAM, BAM or CRAM files can be tricky, but the plugin [`nft-bam`](https://nvnieuwk.github.io/nft-bam/latest/) just made it so much easier! Join us for this weeks bytesize with Nicolas Vannieuwkerke ([@nvnieuwk](https://github.com/nvnieuwk)) to see how to use `nft-bam`.
