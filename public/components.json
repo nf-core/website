@@ -5519,6 +5519,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -11316,10 +11320,6 @@
         ]
       },
       "pipelines": [
-        {
-          "name": "phaseimpute",
-          "version": "dev"
-        },
         {
           "name": "variantbenchmarking",
           "version": "dev"
@@ -17794,6 +17794,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -58864,7 +58868,9 @@
               "documentation": "https://github.com/PapenfussLab/gridss/wiki/GRIDSS-Documentation",
               "tool_dev_url": "https://github.com/PapenfussLab/gridss",
               "doi": "10.1186/s13059-021-02423-x",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -58872,21 +58878,14 @@
           {
             "meta": {
               "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test']\n"
             }
           },
           {
             "inputs": {
-              "type": "file(s)",
+              "type": "file",
               "description": "One or more input BAM/CRAM file(s)",
               "pattern": "*.{bam,cram}"
-            }
-          },
-          {
-            "assembly": {
-              "type": "file",
-              "description": "OPTIONAL - An assembly BAM file created by the assembly step of Gridss",
-              "pattern": "*.bam"
             }
           },
           {
@@ -58914,7 +58913,7 @@
           {
             "meta": {
               "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
             }
           },
           {
@@ -58929,13 +58928,6 @@
               "type": "file",
               "description": "The called VCF file created by Gridss' call step",
               "pattern": "*.vcf.gz"
-            }
-          },
-          {
-            "assembly": {
-              "type": "file",
-              "description": "The assembly BAM file created by Gridss' assembly step",
-              "pattern": "*.assembly.bam"
             }
           }
         ],
@@ -67482,6 +67474,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
         {
           "name": "isoseq",
           "version": "1.1.5"
@@ -77950,6 +77946,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -83880,6 +83880,20 @@
               "type": "file",
               "description": "Optional logo file for MultiQC",
               "pattern": "*.{png}"
+            }
+          },
+          {
+            "replace_names": {
+              "type": "file",
+              "description": "Optional two-column sample renaming file. First column a set of\npatterns, second column a set of corresponding replacements. Passed via\nMultiQC's `--replace-names` option.\n",
+              "pattern": "*.{tsv}"
+            }
+          },
+          {
+            "sample_names": {
+              "type": "file",
+              "description": "Optional TSV file with headers, passed to the MultiQC --sample_names\nargument.\n",
+              "pattern": "*.{tsv}"
             }
           }
         ],
