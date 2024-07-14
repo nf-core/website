@@ -5503,6 +5503,38 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -8557,7 +8589,9 @@
               "homepage": "https://github.com/tseemann/barrnap",
               "documentation": "https://github.com/tseemann/barrnap",
               "tool_dev_url": "https://github.com/tseemann/barrnap",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -8573,6 +8607,12 @@
               "type": "file",
               "description": "fastq or fasta file nucleotides (it can be amino acids as well)",
               "pattern": "*.{fna,fasta,faa,fastq}"
+            }
+          },
+          {
+            "dbname": {
+              "type": "string",
+              "description": "database to use(bacteria, archaea, eukaryota, metazoan mitochondria)"
             }
           }
         ],
@@ -11292,10 +11332,6 @@
         ]
       },
       "pipelines": [
-        {
-          "name": "phaseimpute",
-          "version": "dev"
-        },
         {
           "name": "variantbenchmarking",
           "version": "dev"
@@ -17770,6 +17806,38 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -57049,7 +57117,7 @@
           {
             "input": {
               "type": "file",
-              "description": "Either multiple BAM/CRAM files containing low-coverage sequencing reads or one VCF/BCF file containing the genotype likelihoods.\nWhen using BAM/CRAM the name of the file is used as samples name.\n",
+              "description": "Either one or multiple BAM/CRAM files in an array containing low-coverage sequencing reads or one VCF/BCF file containing the genotype likelihoods.\nWhen using BAM/CRAM the name of the file is used as samples name.\n",
               "pattern": "*.{bam,cram,vcf,vcf.gz,bcf,bcf.gz}"
             }
           },
@@ -58824,7 +58892,9 @@
               "documentation": "https://github.com/PapenfussLab/gridss/wiki/GRIDSS-Documentation",
               "tool_dev_url": "https://github.com/PapenfussLab/gridss",
               "doi": "10.1186/s13059-021-02423-x",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -58832,21 +58902,14 @@
           {
             "meta": {
               "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test']\n"
             }
           },
           {
             "inputs": {
-              "type": "file(s)",
+              "type": "file",
               "description": "One or more input BAM/CRAM file(s)",
               "pattern": "*.{bam,cram}"
-            }
-          },
-          {
-            "assembly": {
-              "type": "file",
-              "description": "OPTIONAL - An assembly BAM file created by the assembly step of Gridss",
-              "pattern": "*.bam"
             }
           },
           {
@@ -58874,7 +58937,7 @@
           {
             "meta": {
               "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
             }
           },
           {
@@ -58889,13 +58952,6 @@
               "type": "file",
               "description": "The called VCF file created by Gridss' call step",
               "pattern": "*.vcf.gz"
-            }
-          },
-          {
-            "assembly": {
-              "type": "file",
-              "description": "The assembly BAM file created by Gridss' assembly step",
-              "pattern": "*.assembly.bam"
             }
           }
         ],
@@ -67517,6 +67573,38 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -71470,6 +71558,13 @@
               "description": "Gzipped MAF (Multiple Alignment Format) file",
               "pattern": "*.{maf.gz}"
             }
+          },
+          {
+            "multiqc": {
+              "type": "file",
+              "description": "Alignment summary for MultiQC",
+              "pattern": "*.tsv"
+            }
           }
         ],
         "authors": [
@@ -71890,6 +71985,13 @@
               "description": "Multiple Aligment Format (MAF) file, compressed with gzip",
               "pattern": "*.{maf.gz}"
             }
+          },
+          {
+            "multiqc": {
+              "type": "file",
+              "description": "Alignment summary for MultiQC",
+              "pattern": "*.tsv"
+            }
           }
         ],
         "authors": [
@@ -71969,11 +72071,19 @@
               "description": "Trained parameter file",
               "pattern": "*.train"
             }
+          },
+          {
+            "multiqc": {
+              "type": "file",
+              "description": "Alignment parameter summary for MultiQC",
+              "pattern": "*.tsv"
+            }
           }
         ],
         "authors": [
           "@aleksandrabliznina",
-          "@charles-plessy"
+          "@charles-plessy",
+          "@U13bs1125"
         ],
         "maintainers": [
           "@charles-plessy"
@@ -73090,7 +73200,7 @@
           {
             "bam": {
               "type": "file",
-              "description": "Sorted BAM file",
+              "description": "Tumor sample sorted BAM file",
               "pattern": "*.{bam}"
             }
           },
@@ -73098,7 +73208,7 @@
             "bai": {
               "type": "file",
               "description": "BAM index file",
-              "pattern": "*.{bai}"
+              "pattern": "*.{bam.bai}"
             }
           },
           {
@@ -73109,10 +73219,22 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing sample information about the reference fasta\ne.g. [ id:'reference' ]\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "Reference genome FASTA file",
               "pattern": "*.{fasta}"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing sample information about the reference fasta fai\ne.g. [ id:'reference' ]\n"
             }
           },
           {
@@ -73151,7 +73273,9 @@
         ],
         "maintainers": [
           "@kaurravneet4123",
-          "@bjohnnyd"
+          "@bjohnnyd",
+          "@nevinwu",
+          "@AitorPeseta"
         ]
       }
     },
@@ -73324,7 +73448,9 @@
               "homepage": "https://csb5.github.io/lofreq/",
               "documentation": "https://csb5.github.io/lofreq/commands/",
               "doi": "10.1093/nar/gks918",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -73348,31 +73474,31 @@
             }
           },
           {
-            "tumor_bam": {
+            "tumor": {
               "type": "file",
               "description": "tumor sample input BAM file",
               "pattern": "*.{bam}"
             }
           },
           {
-            "tumor_bai": {
+            "tumor_index": {
               "type": "file",
               "description": "tumor sample BAM index file",
-              "pattern": "*.{bai}"
+              "pattern": "*.{bam.bai}"
             }
           },
           {
-            "normal_bam": {
+            "normal": {
               "type": "file",
               "description": "normal sample input BAM file",
               "pattern": "*.{bam}"
             }
           },
           {
-            "normal_bai": {
+            "normal_index": {
               "type": "file",
               "description": "normal sample BAM index file",
-              "pattern": "*.{bai}"
+              "pattern": "*.{bam.bai}"
             }
           },
           {
@@ -73423,7 +73549,8 @@
           "@nevinwu"
         ],
         "maintainers": [
-          "@nevinwu"
+          "@nevinwu",
+          "@AitorPeseta"
         ]
       }
     },
@@ -77764,6 +77891,38 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -83770,6 +83929,20 @@
               "description": "Optional logo file for MultiQC",
               "pattern": "*.{png}"
             }
+          },
+          {
+            "replace_names": {
+              "type": "file",
+              "description": "Optional two-column sample renaming file. First column a set of\npatterns, second column a set of corresponding replacements. Passed via\nMultiQC's `--replace-names` option.\n",
+              "pattern": "*.{tsv}"
+            }
+          },
+          {
+            "sample_names": {
+              "type": "file",
+              "description": "Optional TSV file with headers, passed to the MultiQC --sample_names\nargument.\n",
+              "pattern": "*.{tsv}"
+            }
           }
         ],
         "output": [
@@ -85413,7 +85586,7 @@
             "stats": {
               "type": "file",
               "description": "Summary report of reads statistics.",
-              "pattern": "*.stats"
+              "pattern": "*.{stats,json}"
             }
           },
           {
@@ -105383,7 +105556,9 @@
               "homepage": "https://www.realtimegenomics.com/products/rtg-tools",
               "documentation": "https://github.com/RealTimeGenomics/rtg-tools",
               "tool_dev_url": "https://github.com/RealTimeGenomics/rtg-tools",
-              "licence": "['BSD']"
+              "licence": [
+                "BSD"
+              ]
             }
           }
         ],
@@ -140779,13 +140954,7 @@
         "maintainers": [
           "@LouisLeNezet"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "phaseimpute",
-          "version": "dev"
-        }
-      ]
+      }
     },
     {
       "name": "nextflowpipelineutils",
@@ -145527,13 +145696,7 @@
         "maintainers": [
           "@LouisLeNezet"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "phaseimpute",
-          "version": "dev"
-        }
-      ]
+      }
     },
     {
       "name": "vcf_phase_shapeit5",
