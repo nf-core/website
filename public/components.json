@@ -5539,6 +5539,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -17921,6 +17925,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -29074,6 +29082,78 @@
           "version": "2.6.0"
         }
       ]
+    },
+    {
+      "name": "custom_gtffilter",
+      "path": "modules/nf-core/custom/gtffilter/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "custom_gtffilter",
+        "description": "Filter a gtf file to keep only regions that are located on a chromosome represented in a given fasta file",
+        "keywords": [
+          "gtf",
+          "fasta",
+          "filter"
+        ],
+        "tools": [
+          {
+            "gtffilter": {
+              "description": "Filter a gtf file to keep only regions that are located on a chromosome represented in a given fasta file",
+              "tool_dev_url": "https://github.com/nf-core/modules/blob/master/modules/nf-core/custom/gtffilter/main.nf"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "gtf": {
+              "type": "file",
+              "description": "GTF file",
+              "pattern": "*.{gtf}"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Genome fasta file",
+              "pattern": "*.{fasta,fa}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "gtf": {
+              "type": "file",
+              "description": "Filtered GTF file",
+              "pattern": "*.{gtf}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@nictru"
+        ],
+        "maintainers": [
+          "@nictru"
+        ]
+      }
     },
     {
       "name": "custom_matrixfilter",
@@ -67617,6 +67697,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -77903,6 +77987,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
