@@ -1108,6 +1108,85 @@
       }
     },
     {
+      "name": "agat_spmergeannotations",
+      "path": "modules/nf-core/agat/spmergeannotations/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "agat_spmergeannotations",
+        "description": "This script merge different gff annotation files in one. It uses the AGAT parser that takes care of duplicated names and fixes other oddities met in those files.\n",
+        "keywords": [
+          "genomics",
+          "gff",
+          "merge",
+          "combine"
+        ],
+        "tools": [
+          {
+            "agat": {
+              "description": "Another Gff Analysis Toolkit (AGAT). Suite of tools to handle gene annotations in any GTF/GFF format.",
+              "homepage": "https://agat.readthedocs.io/en/latest/",
+              "documentation": "https://agat.readthedocs.io/en/latest/tools/agat_sp_merge_annotations.html",
+              "tool_dev_url": "https://github.com/NBISweden/AGAT",
+              "doi": "10.5281/zenodo.3552717",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "gffs": {
+              "type": "list",
+              "description": "A list of GFFs to merge",
+              "pattern": "[ *.{gff,gff3} ]"
+            }
+          },
+          {
+            "config": {
+              "type": "file",
+              "description": "Input agat config file. By default AGAT takes as input agat_config.yaml file from the working directory if any,\notherwise it takes the orignal agat_config.yaml shipped with AGAT. To get the agat_config.yaml\nlocally type: \"agat config --expose\". The --config option gives you the possibility to use your\nown AGAT config file (located elsewhere or named differently).\n",
+              "pattern": "*.yaml"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "gff": {
+              "type": "file",
+              "description": "Output GFF file.",
+              "pattern": "*.gff"
+            }
+          }
+        ],
+        "authors": [
+          "@GallVp"
+        ],
+        "maintainers": [
+          "@GallVp"
+        ]
+      }
+    },
+    {
       "name": "agat_spstatistics",
       "path": "modules/nf-core/agat/spstatistics/meta.yml",
       "type": "module",
@@ -5295,6 +5374,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         },
         {
           "name": "rnafusion",
@@ -17929,6 +18012,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -29153,7 +29240,13 @@
         "maintainers": [
           "@nictru"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "circrna",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "custom_matrixfilter",
@@ -67701,6 +67794,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -77987,6 +78084,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
