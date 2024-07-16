@@ -1,0 +1,38 @@
+---
+title: Using wave for nf-core/modules
+subtitle: 'Migratation from Biocontainers to Seqera Containers'
+headerImage: TODO
+headerImageAlt: TODO
+authors:
+    - 'ewels'
+    - 'edmundmiller'
+label:
+    - 'modules'
+embedHeaderImage: false
+---
+
+## Fun Features
+
+<!-- Free wins? -->
+
+### Update container environments on the fly
+
+```nextflow
+process {
+    withName: 'STAR_ALIGN' {
+        conda "bioconda::star=2.6.1d bioconda::samtools=1.16.1 conda-forge::gawk=5.1.0"
+    }
+}
+```
+
+```bash
+nextflow run nf-core/rnaseq -with-wave
+```
+
+Boom a aws-igenomes compatible container for the process. You may need to patch the modules if you're changing the version too much.
+
+### Pipeline module patches
+
+In the above example pipeline maintainers will be able to more easily update crucial versions inside the module, or lock them down and not be dependent on the upstream nf-core/modules if versions need to stay out of sync. It's just a patch to the `environment.yml`.
+
+<!-- TODO Come up with a practical example of why this might happen-->
