@@ -11,11 +11,45 @@ label:
 embedHeaderImage: false
 ---
 
-## Fun Features
+# Background
+
+## Biocontainers
+
+nf-core/modules has been making use of biocontainers, a service which accomplishes a Herculean effort of packaging up every release on Bioconda and creates both a Docker and Singularity image, and then hosts them publicly.
+
+It's a part of the Galaxy project, and we've been extremely grateful for their generosity in hosting all of our mulled containers.
+
+### Mulled Containers
+
+What's a mulled container you say? It's a system that biocontainers has setup that packages up multiple pieces of software. Like a mulled wine for my fellow Americans.
+
+If you can imagine most bioinformatics processes will probably need more than one tool. Even if it's just piping an output to `samtools` or using `pigz`.
+
+#### Workflow
+
+The way to get a mulled container built is a bit of an insider secret.
+
+#### Issues with Mulled containers
+
+<!-- TODO Maybe mention we've gotten push back about the cost when updating samtools versions? -->
+
+## Enter Seqera Containers
+
+# What's Happening
+
+# What do we get?
+
+Democratization of the power to contribute(infrastructure), which enables to community to be the PR they want to see in the repo.
+
+## Automation
+## Which eases contributor workflow
+## Which eases maintainer burden
+
+# Fun Features
 
 <!-- Free wins? -->
 
-### Update container environments on the fly
+## Update container environments on the fly
 
 ```nextflow
 process {
@@ -31,7 +65,7 @@ nextflow run nf-core/rnaseq -with-wave
 
 Boom a aws-igenomes compatible container for the process. You may need to patch the modules if you're changing the version too much.
 
-### Pipeline module patches
+## Pipeline module patches
 
 In the above example pipeline maintainers will be able to more easily update crucial versions inside the module, or lock them down and not be dependent on the upstream nf-core/modules if versions need to stay out of sync. It's just a patch to the `environment.yml`.
 
