@@ -15,6 +15,7 @@ embedHeaderImage: false
 <!-- Containers background -->
 <!-- nf-core Containers automation -->
 <!-- Fun with nf-core containers? -->
+<!-- nf-core/tools containers command -->
 
 # Background
 
@@ -97,7 +98,42 @@ Things coming down the pipeline:
 
 ## Which eases contributor workflow
 
-#### nf-core/modules Contribution Flow with Renovate
+### Simplified Modules
+
+<!-- FIXME Idk if there's a syntax to combine Nextflow highlighting and diff-->
+
+```diff nextflow title="bowtie2/align/main.nf"
+process BOWTIE2_ALIGN {
+    tag "$meta.id"
+    label 'process_high'
+
+    conda "${moduleDir}/environment.yml"
+-    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+-        'https://depot.galaxyproject.org/singularity/mulled-v2-ac74a7f02cebcfcc07d8e8d1d750af9c83b4d45a:f70b31a2db15c023d641c32f433fb02cd04df5a6-0' :
+-        'biocontainers/mulled-v2-ac74a7f02cebcfcc07d8e8d1d750af9c83b4d45a:f70b31a2db15c023d641c32f433fb02cd04df5a6-0' }"
+
+    input:
+    tuple val(meta) , path(reads)
+    // ...
+}
+```
+
+By using Wave properly as Paolo intended, we no longer have to specify both the conda and container directive(And more importantly get rid of the scary Elvis operator of singularity or docker). We generate the container repo url on the fly ™️ in line with the original vision. That means you can easily swap to your container registry of choice and the wave service will push the containers up for you.
+
+<!-- NOTE hopeful thinking -->
+
+`nf-core download` has also gotten a refactor through the process and great simplifying the code necessary to download the containers.
+
+We were also able to remove the dependency on the biocontainers API, which had some uptime issues that created problems around testing nf-core/tools, and around new module creation and finding the desired containers for a bioconda package.
+
+Summary for the contributor:
+
+1. Remove container directive use on modules that are just 3 conda packages in a Docker image 🧥
+2. Ease of hosting your own container registry
+3. Simplify `nf-core download` into `nf-core containers`
+4. Remove need to wrangle biocontainers API and API nf-core can't contribute to.
+
+### nf-core/modules Contribution Flow with Renovate
 
 Say a contributor wants to add a piece of software to a module
 
