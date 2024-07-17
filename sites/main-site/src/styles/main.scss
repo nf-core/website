@@ -101,14 +101,18 @@ blockquote {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
+
 .main-content figcaption {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: $body-secondary-color;
   padding: 0.2rem 0.5rem;
+}
+
+.main-content pre figcaption {
   border: 1px solid $border-color;
   border-top: 0;
 }
-.main-content figcaption:last-child {
+.main-content pre figcaption:last-child {
   margin-bottom: 1.5rem;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
