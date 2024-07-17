@@ -6,9 +6,11 @@ startDate: '2024-07-16'
 startTime: '13:00+02:00'
 endDate: '2024-07-16'
 endTime: '13:30+02:00'
+youtubeEmbed: https://youtu.be/gA6oBjtRlJA
 locations:
-  - links:
-      - https://kth-se.zoom.us/j/68390542812
+  - name: Online
+    links:
+      - https://youtu.be/gA6oBjtRlJA
 ---
 
 Collaboration is central to the nf-core experience.
