@@ -5630,6 +5630,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -17901,6 +17905,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -67806,6 +67814,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -78092,6 +78104,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -140749,6 +140765,19 @@
             "umi_discard_read": {
               "type": "integer",
               "description": "After UMI barcode extraction discard either R1 or R2 by setting this\nparameter to 1 or 2, respectively\n"
+            }
+          },
+          {
+            "stranded_threshold": {
+              "type": "float",
+              "min": 0.5,
+              "description": "The fraction of stranded reads that must be assigned to a strandedness\nfor confident assignment. Must be at least 0.5.\n"
+            }
+          },
+          {
+            "unstranded_threshold": {
+              "type": "float",
+              "description": "The difference in fraction of stranded reads assigned to 'forward' and\n'reverse' below which a sample is classified as 'unstranded'.\n"
             }
           }
         ],
