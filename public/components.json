@@ -5642,6 +5642,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -18048,6 +18052,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -28550,7 +28558,7 @@
         },
         {
           "name": "reportho",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -28634,7 +28642,7 @@
         },
         {
           "name": "reportho",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -37650,7 +37658,7 @@
       "pipelines": [
         {
           "name": "reportho",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -67427,7 +67435,7 @@
         },
         {
           "name": "reportho",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -67831,6 +67839,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
         {
           "name": "isoseq",
           "version": "1.1.5"
@@ -78394,6 +78406,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -84587,7 +84603,7 @@
         },
         {
           "name": "reportho",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "riboseq",
@@ -113471,6 +113487,77 @@
       ]
     },
     {
+      "name": "seqfu_derep",
+      "path": "modules/nf-core/seqfu/derep/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "seqfu_derep",
+        "description": "Dereplicate FASTX sequences, removing duplicate sequences and printing the number of identical sequences in the sequence header. Can dereplicate already dereplicated FASTA files, summing the numbers found in the headers.",
+        "keywords": [
+          "dereplicate",
+          "fasta",
+          "uniques"
+        ],
+        "tools": [
+          {
+            "seqfu": {
+              "description": "DNA sequence utilities for FASTX files",
+              "homepage": "https://telatin.github.io/seqfu2/",
+              "documentation": "https://telatin.github.io/seqfu2/",
+              "tool_dev_url": "https://telatin.github.io/seqfu2/tools/derep.html",
+              "doi": "10.3390/bioengineering8050059",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "fastas": {
+              "type": "file",
+              "description": "Input files (mainly FASTA, FASTQ supported)",
+              "pattern": "*.{fa,fna,faa,fasta,fq,fastq}[.gz]"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "dereplicated file (FASTA format)",
+              "pattern": "*.{fasta.gz}"
+            }
+          }
+        ],
+        "authors": [
+          "@telatin"
+        ],
+        "maintainers": [
+          "@telatin"
+        ]
+      }
+    },
+    {
       "name": "seqfu_stats",
       "path": "modules/nf-core/seqfu/stats/meta.yml",
       "type": "module",
@@ -125769,7 +125856,7 @@
         },
         {
           "name": "reportho",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -145221,7 +145308,7 @@
         },
         {
           "name": "reportho",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "riboseq",
@@ -145446,7 +145533,7 @@
         },
         {
           "name": "reportho",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "riboseq",
@@ -145701,7 +145788,7 @@
         },
         {
           "name": "reportho",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "riboseq",
