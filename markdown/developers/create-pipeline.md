@@ -79,10 +79,11 @@ Then, ask [@muffato](https://github.com/muffato) or [@mcshane](https://github.co
 1. The ["nextflow_all"](https://github.com/orgs/sanger-tol/teams/nextflow_all) team with the "write" permission
 2. The ["nextflow_admin"](https://github.com/orgs/sanger-tol/teams/nextflow_admin) team with the "admin" permission
 3. Remove your individual access to the repository
+4. Share the CI secrets with your repository at <https://github.com/organizations/sanger-tol/settings/secrets/actions>
 
 Finally, ask [@gq1](https://github.com/gq1) to set up the pipeline settings via <https://pipelines.tol.sanger.ac.uk/pipeline_health>.
 
-## Other bits
+## Other bits
 
 The repository needs to be integrated with Zenodo before making the first release.
 Better to do it now before anyone forgets !
