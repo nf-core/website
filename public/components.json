@@ -5650,6 +5650,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -6580,7 +6584,13 @@
           "@sateeshperi",
           "@mjcipriano"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pairgenomealign",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "ataqv_ataqv",
@@ -18064,6 +18074,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -23809,7 +23823,7 @@
           {
             "meta": {
               "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              "description": "Groovy Map containing reference information\ne.g. `[ id:'sample1' ]`\n"
             }
           },
           {
@@ -23820,9 +23834,27 @@
             }
           },
           {
-            "elong": {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "elongation_factor": {
               "type": "integer",
               "description": "The number of bases that the ends of the target chromosome in the reference genome should be elongated by"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "target": {
+              "type": "string",
+              "description": "The name of the chromosome in the reference genome that should be elongated"
             }
           }
         ],
@@ -23849,7 +23881,8 @@
           }
         ],
         "authors": [
-          "@apalleja"
+          "@apalleja",
+          "@TCLamnidis"
         ],
         "maintainers": [
           ""
@@ -23911,6 +23944,12 @@
             "fasta": {
               "type": "file",
               "description": "Input elongated genome fasta"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. `[ id:'test' ]`\n"
             }
           },
           {
@@ -56559,7 +56598,13 @@
         "maintainers": [
           "@mahesh-panchal"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pairgenomealign",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "gfatools_gfa2fa",
@@ -67990,6 +68035,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -71866,7 +71915,13 @@
         "maintainers": [
           "@charles-plessy"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pairgenomealign",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "last_lastal",
@@ -71958,7 +72013,13 @@
         "maintainers": [
           "@charles-plessy"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pairgenomealign",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "last_lastdb",
@@ -72029,7 +72090,13 @@
         "maintainers": [
           "@charles-plessy"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pairgenomealign",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "last_mafconvert",
@@ -72234,7 +72301,13 @@
         "maintainers": [
           "@charles-plessy"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pairgenomealign",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "last_postmask",
@@ -72386,7 +72459,13 @@
         "maintainers": [
           "@charles-plessy"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pairgenomealign",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "last_train",
@@ -72473,7 +72552,13 @@
         "maintainers": [
           "@charles-plessy"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pairgenomealign",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "learnmsa_align",
@@ -73744,6 +73829,8 @@
         "name": "lofreq_indelqual",
         "description": "Inserts indel qualities in a BAM file",
         "keywords": [
+          "variant calling",
+          "variants",
           "bam",
           "indel",
           "qualities"
@@ -73775,10 +73862,16 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing sample information about the reference fasta\ne.g. [ id:'reference' ]\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "Reference genome FASTA file",
-              "pattern": "*.{fasta}"
+              "pattern": "*.{fasta,fa}"
             }
           }
         ],
@@ -73808,7 +73901,8 @@
           "@kaurravneet4123"
         ],
         "maintainers": [
-          "@kaurravneet4123"
+          "@kaurravneet4123",
+          "@krannich479"
         ]
       }
     },
@@ -78283,6 +78377,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -84571,6 +84669,10 @@
         },
         {
           "name": "omicsgenetraitassociation",
+          "version": "dev"
+        },
+        {
+          "name": "pairgenomealign",
           "version": "dev"
         },
         {
@@ -114760,7 +114862,13 @@
         "maintainers": [
           "@DLBPointon"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pairgenomealign",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "seqtk_mergepe",
@@ -145295,6 +145403,10 @@
           "version": "dev"
         },
         {
+          "name": "pairgenomealign",
+          "version": "dev"
+        },
+        {
           "name": "pangenome",
           "version": "1.1.2"
         },
@@ -145517,6 +145629,10 @@
         },
         {
           "name": "oncoanalyser",
+          "version": "dev"
+        },
+        {
+          "name": "pairgenomealign",
           "version": "dev"
         },
         {
@@ -145772,6 +145888,10 @@
         },
         {
           "name": "oncoanalyser",
+          "version": "dev"
+        },
+        {
+          "name": "pairgenomealign",
           "version": "dev"
         },
         {
