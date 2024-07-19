@@ -30,6 +30,25 @@ assert snapshot(function.result).match()
 
 The first test run generates a json snapshot file. Subsequent runs compare against this file. Commit snapshot files with code changes and review them in your code review process.
 
+## Assigning parameters or configs
+
+nf-test allows to specify params (for a pipeline test) or including config files.
+
+```groovy
+params {
+  foo = 'bar'
+}
+``` 
+
+```groovy
+config "./nextflow.config"
+```
+
+Use withName selectors to assign `ext.args` values to a specific process.
+
+Both these directives work within the scope they are defined in.
+So either for the full set of test within the `main.nf.test` file if written in the main `nextflow_process`, `nextflow_workflow` or `nextflow_pipeline` scope, or for a single test if written within the `test` scope.
+
 ## File Paths
 
 nf-test replaces paths in snapshots with a unique fingerprint (md5 sum by default) to ensure file content consistency.
