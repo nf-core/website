@@ -32,7 +32,7 @@ The first test run generates a json snapshot file. Subsequent runs compare again
 
 ## Assigning parameters or configs
 
-nf-test allows to specify params (for a pipeline test) or including config files.
+nf-test allows to specify params or including config files.
 
 ```groovy
 params {
