@@ -125,11 +125,11 @@ const shaking = version === 'dev' ? '3deg' : '1deg';
     // shaking taken from https://www.w3schools.com/howto/howto_css_shake_image.asp
     .btn.launch-btn:hover i,
     .btn.launch-btn-dev:hover i {
+        animation: shake 0.5s;
+        animation-iteration-count: infinite;
         &::after {
             content: '\e027\e027';
         }
-        animation: shake 0.5s;
-        animation-iteration-count: infinite;
     }
 
     @keyframes shake {
