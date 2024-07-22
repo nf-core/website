@@ -521,30 +521,30 @@ pipelines.sort((a, b) => {
         pointer: hand;
     }
     .status--healthy {
+        background-color: $success;
         i {
             color: $success-text-emphasis;
         }
-        background-color: $success;
     }
     .status--unhealthy {
+        background-color: $danger;
         i {
             color: $danger-text-emphasis;
         }
-        background-color: $danger;
     }
 
     :global([data-bs-theme='dark']) {
         .status--healthy {
+            background-color: $success-border-subtle-dark;
             i {
                 color: $success-text-emphasis-dark;
             }
-            background-color: $success-border-subtle-dark;
         }
         .status--unhealthy {
+            background-color: $danger-border-subtle-dark;
             i {
                 color: $danger-text-emphasis-dark;
             }
-            background-color: $danger-border-subtle-dark;
         }
     }
     .status--unknown {
