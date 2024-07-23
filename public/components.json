@@ -5678,6 +5678,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -18126,6 +18130,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -22840,6 +22848,67 @@
           "version": "dev"
         }
       ]
+    },
+    {
+      "name": "checkqc",
+      "path": "modules/nf-core/checkqc/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "checkqc",
+        "description": "A simple program to parse Illumina NGS data and check it for quality criteria",
+        "keywords": [
+          "QC",
+          "Illumina",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "checkqc": {
+              "description": "A simple program to parse Illumina NGS data and check it for quality criteria.",
+              "homepage": "https://github.com/Molmed/checkQC",
+              "documentation": "http://checkqc.readthedocs.io/en/latest/",
+              "doi": "10.21105/joss.00556",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "run_dir": {
+              "type": "file",
+              "description": "Illumina sequencing run directory\nCan be directory or a compressed tar (tar.gz) of the directory\n"
+            }
+          },
+          {
+            "checkqc_config": {
+              "type": "file",
+              "description": "CheckQC configuration file",
+              "pattern": "*.{yml,yaml}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "report": {
+              "type": "file",
+              "description": "CheckQC report in json format",
+              "pattern": "*checkqc_report.json"
+            }
+          }
+        ],
+        "authors": [
+          "@matrulda"
+        ]
+      }
     },
     {
       "name": "checkv_downloaddatabase",
@@ -68117,6 +68186,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -74991,6 +75064,117 @@
       ]
     },
     {
+      "name": "macs3_callpeak",
+      "path": "modules/nf-core/macs3/callpeak/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "macs3_callpeak",
+        "description": "Peak calling of enriched genomic regions of ChIP-seq and ATAC-seq experiments",
+        "keywords": [
+          "alignment",
+          "atac-seq",
+          "chip-seq",
+          "peak-calling"
+        ],
+        "tools": [
+          {
+            "macs3": {
+              "description": "Model Based Analysis for ChIP-Seq data",
+              "homepage": "https://macs3-project.github.io/MACS/",
+              "documentation": "https://macs3-project.github.io/MACS/",
+              "tool_dev_url": "https://github.com/macs3-project/MACS/",
+              "doi": "10.1101/496521",
+              "licence": [
+                "BSD-3-clause"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample_1', single_end:false ]`\n"
+            }
+          },
+          {
+            "ipbam": {
+              "type": "file",
+              "description": "The ChIP-seq treatment file"
+            }
+          },
+          {
+            "controlbam": {
+              "type": "file",
+              "description": "The control file"
+            }
+          },
+          {
+            "macs2_gsize": {
+              "type": "string",
+              "description": "Effective genome size. It can be 1.0e+9 or 1000000000,\nor shortcuts:'hs' for human (2,913,022,398), 'mm' for mouse\n(2,652,783,500), 'ce' for C. elegans (100,286,401)\nand 'dm' for fruitfly (142,573,017), Default:hs.\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software version",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "peak": {
+              "type": "file",
+              "description": "BED file containing annotated peaks",
+              "pattern": "*.gappedPeak,*.narrowPeak}"
+            }
+          },
+          {
+            "xls": {
+              "type": "file",
+              "description": "xls file containing annotated peaks",
+              "pattern": "*.xls"
+            }
+          },
+          {
+            "gapped": {
+              "type": "file",
+              "description": "Optional BED file containing gapped peak",
+              "pattern": "*.gappedPeak"
+            }
+          },
+          {
+            "bed": {
+              "type": "file",
+              "description": "Optional BED file containing peak summits locations for every peak",
+              "pattern": "*.bed"
+            }
+          },
+          {
+            "bdg": {
+              "type": "file",
+              "description": "Optional bedGraph files for input and treatment input samples",
+              "pattern": "*.bdg"
+            }
+          }
+        ],
+        "authors": [
+          "@JoseEspinosa"
+        ],
+        "maintainers": [
+          "@JoseEspinosa"
+        ]
+      }
+    },
+    {
       "name": "mafft",
       "path": "modules/nf-core/mafft/meta.yml",
       "type": "module",
@@ -78455,6 +78639,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
