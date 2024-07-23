@@ -5682,6 +5682,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -17196,7 +17200,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "cutandrun",
@@ -17323,7 +17327,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "cutandrun",
@@ -18134,6 +18138,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -18561,7 +18569,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "fastquorum",
@@ -18746,7 +18754,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "hgtseq",
@@ -20179,7 +20187,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "cutandrun",
@@ -28531,7 +28539,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         }
       ]
     },
@@ -29986,7 +29994,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "hicar",
@@ -38156,7 +38164,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "cutandrun",
@@ -68190,6 +68198,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -74271,6 +74283,131 @@
       }
     },
     {
+      "name": "longphase_phase",
+      "path": "modules/nf-core/longphase/phase/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "longphase_phase",
+        "description": "LongPhase is an ultra-fast program for simultaneously co-phasing SNPs, small indels, large SVs, and (5mC) modifications for Nanopore and PacBio platforms.",
+        "keywords": [
+          "phase",
+          "long-read",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "longphase": {
+              "description": "LongPhase is an ultra-fast program for simultaneously co-phasing SNPs, small indels, large SVs, and (5mC) modifications for Nanopore and PacBio platforms.",
+              "homepage": "https://github.com/twolinin/longphase",
+              "documentation": "https://github.com/twolinin/longphase",
+              "tool_dev_url": "https://github.com/twolinin/longphase",
+              "doi": "10.1093/bioinformatics/btac058",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "Sorted BAM/CRAM file(s)",
+              "pattern": "*.{bam,cram}"
+            }
+          },
+          {
+            "bai": {
+              "type": "file",
+              "description": "Index of sorted BAM/CRAM file(s)",
+              "pattern": "*.{bai,crai,csi}"
+            }
+          },
+          {
+            "snps": {
+              "type": "file",
+              "description": "VCF file with SNPs (and INDELs)",
+              "pattern": "*.{vcf,vcf.gz}"
+            }
+          },
+          {
+            "svs": {
+              "type": "file",
+              "description": "VCF file with SVs",
+              "pattern": "*.{vcf,vcf.gz}"
+            }
+          },
+          {
+            "mods": {
+              "type": "file",
+              "description": "modcall-generated VCF with modifications",
+              "pattern": "*.{vcf,vcf.gz}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. `[ id:'hg38' ]`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Reference fasta file",
+              "pattern": "*.fasta"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. `[ id:'hg38' ]`\n"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "Reference fai index",
+              "pattern": "*.fai"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "Compressed VCF file with phased variants",
+              "pattern": "*.vcf.gz"
+            }
+          }
+        ],
+        "authors": [
+          "@fellen31"
+        ],
+        "maintainers": [
+          "@fellen31"
+        ]
+      }
+    },
+    {
       "name": "ltrfinder",
       "path": "modules/nf-core/ltrfinder/meta.yml",
       "type": "module",
@@ -75110,7 +75247,7 @@
             }
           },
           {
-            "macs2_gsize": {
+            "macs3_gsize": {
               "type": "string",
               "description": "Effective genome size. It can be 1.0e+9 or 1000000000,\nor shortcuts:'hs' for human (2,913,022,398), 'mm' for mouse\n(2,652,783,500), 'ce' for C. elegans (100,286,401)\nand 'dm' for fruitfly (142,573,017), Default:hs.\n"
             }
@@ -75429,7 +75566,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         }
       ]
     },
@@ -75520,7 +75657,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         }
       ]
     },
@@ -75611,7 +75748,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         }
       ]
     },
@@ -78011,7 +78148,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         }
       ]
     },
@@ -78639,6 +78776,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -81627,7 +81768,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "isoseq",
@@ -81715,7 +81856,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "radseq",
@@ -84835,7 +84976,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "datasync",
@@ -93055,7 +93196,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         }
       ]
     },
@@ -103229,7 +103370,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         }
       ]
     },
@@ -109611,7 +109752,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "cutandrun",
@@ -115470,7 +115611,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "metatdenovo",
@@ -134156,7 +134297,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         }
       ]
     },
@@ -134321,7 +134462,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         }
       ]
     },
