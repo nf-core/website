@@ -466,14 +466,14 @@ tuple val(meta), path('*.tab'), emit: tab,  optional: true
 
 Each output file type SHOULD be emitted in its own channel (and no more than one), along with the `meta` map if provided ( the exception is the versions.yml ).
 
-:::info{title="Rationale" collapse}
-The instruction to emit each output file type in its own channel ensures better organization and manageability of the output files. By assigning a dedicated channel to each file type, you can prevent clutter and potential confusion that might arise from mixing different file types in a single channel. This approach also simplifies the process of retrieving and processing specific types of output, as each type can be easily identified and accessed within its designated channel.
-
 In some cases the file format can be different between files of the same type (e.g. indices: `.bai` and `.crai`). These different file formats SHOULD be part of the same output channel since they are the same file type.
 
 ```groovy
 tuple val(meta), path("*.{bai,crai}"), emit: index
 ```
+
+:::info{title="Rationale" collapse}
+The instruction to emit each output file type in its own channel ensures better organization and manageability of the output files. This approach also simplifies the process of retrieving and processing specific types of output, as each type can be easily identified and accessed within its designated channel.
 
 :::
 
