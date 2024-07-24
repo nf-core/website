@@ -474,6 +474,7 @@ In some cases the file format can be different between files of the same type (e
 ```groovy
 tuple val(meta), path("*.{bai,crai}"), emit: index
 ```
+
 :::
 
 ## Documentation
