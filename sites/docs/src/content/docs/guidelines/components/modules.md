@@ -476,11 +476,13 @@ tuple val(meta), path("*.{bai,crai}"), emit: index
 This approach simplifies the process of retrieving and processing specific types of output, as each type can be easily identified and accessed within its designated channel.
 
 So when the output definition of module called `TXT_MODULE` looks like this:
+
 ```groovy
 tuple val(meta), path("*.txt"), emit: txt
 ```
 
 The output files can be accessed like this:
+
 ```groovy
 TXT_MODULE.out.txt
 ```
