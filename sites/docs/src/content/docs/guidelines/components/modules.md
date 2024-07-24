@@ -473,7 +473,7 @@ tuple val(meta), path("*.{bai,crai}"), emit: index
 ```
 
 :::info{title="Rationale" collapse}
-The instruction to emit each output file type in its own channel ensures better organization and manageability of the output files. This approach also simplifies the process of retrieving and processing specific types of output, as each type can be easily identified and accessed within its designated channel.
+This approach also simplifies the process of retrieving and processing specific types of output, as each type can be easily identified and accessed within its designated channel.
 
 :::
 
