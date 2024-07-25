@@ -29,7 +29,7 @@ Finally, the group will be a place where users can share their experience with n
 
 # Activities
 
-The format will involve a [monthly meeting](meetings.md) featuring a presentation and round table discussions on pre-identified topics. The presentation will feature a diverse range of topics in the field of animal genomics, including:
+The format will involve a [monthly meeting](/special-interest-groups/animal-genomics/meetings.md) featuring a presentation and round table discussions on pre-identified topics. The presentation will feature a diverse range of topics in the field of animal genomics, including:
 
 - Inspiring talks from top genomics researchers.
 - Novel ongoing efforts in animal genomics (new consortiums, new calls, etc).
