@@ -33,4 +33,4 @@ The format will involve a [monthly meeting](meetings.md) featuring a presentatio
 
 # How to join
 
-Join the [nf-core Slack](/join#slack) and find us in the [#animal-genomics channel](https://nfcore.slack.com/archives/CE5EL6326)
+Join the [nf-core Slack](/join#slack) and find us in the #animal-genomics channel
