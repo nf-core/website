@@ -34,7 +34,8 @@ The format will involve a [monthly meeting](meetings.md) featuring a presentatio
 - Inspiring talks from top genomics researchers.
 - Novel ongoing efforts in animal genomics (new consortiums, new calls, etc).
 - More technical sessions on practical examples of how to use nf-core pipelines applied to animal genomics research.
-  The discussion will often be a follow-up on the talk.
+
+The discussion will often be a follow-up on the talk.
 
 # How to join
 
