@@ -32,6 +32,8 @@ The initial aims of this interest group will be:
 3. Developing standard parameters for different sub-disciplines (i.e. microbiome analysis) for each pipeline
 4. Documenting usage of 'first level' meta-omic pipelines (createtaxdb, ampliseq, eager, taxprofiler, mag, metatdenovo) followed by complementary analyses with "secondary" pipelines such as (funcscan, phageannotator, phyloplace, rnaseq, differentialabundance) etc.
 
+![London Underground style 'tube map' showing how potentially nf-core pipelines can be used for complementary and sequential analysis within meta-omics disciplines](nf-core-meta-omics-metro.png)
+
 Depending on interest/activity, other potential activities could include:
 
 1. Benchmarking meta-omic pipelines using relevant datasets (i.e. CAMI2), or reads generated using #readsimulator
