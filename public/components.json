@@ -5710,6 +5710,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -17987,6 +17991,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -33106,6 +33114,78 @@
           "version": "1.1.8"
         }
       ]
+    },
+    {
+      "name": "diamond_cluster",
+      "path": "modules/nf-core/diamond/cluster/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "diamond_cluster",
+        "description": "calculate clusters of highly similar sequences",
+        "keywords": [
+          "clustering",
+          "alignment",
+          "genomics",
+          "proteomics"
+        ],
+        "tools": [
+          {
+            "diamond": {
+              "description": "Accelerated BLAST compatible local sequence aligner",
+              "homepage": "https://github.com/bbuchfink/diamond/wiki",
+              "documentation": "https://github.com/bbuchfink/diamond/wiki",
+              "tool_dev_url": "https://github.com/bbuchfink/diamond",
+              "doi": "10.1038/s41592-021-01101-x",
+              "licence": [
+                "GPL v3-or-later"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "db": {
+              "type": "file",
+              "description": "The input sequence database. Supported formats are FASTA and DIAMOND (.dmnd) format.",
+              "pattern": "*.{dmnd,fa,faa,fasta}(.gz)"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "tsv": {
+              "type": "file",
+              "description": "a 2-column tabular file with the representative accession as the first column and the member sequence accession as the second column",
+              "pattern": "*.tsv"
+            }
+          }
+        ],
+        "authors": [
+          "@itrujnara"
+        ],
+        "maintainers": [
+          "@itrujnara"
+        ]
+      }
     },
     {
       "name": "diamond_makedb",
@@ -68274,6 +68354,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -78848,6 +78932,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
