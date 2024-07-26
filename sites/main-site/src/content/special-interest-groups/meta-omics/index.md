@@ -30,7 +30,7 @@ The initial aims of this interest group will be:
 1. Helping coordinate compatibility between existing and potential meta-omic nf-core pipelines
 2. Implementing semi-'chaining' of sequential pipelines
 3. Developing standard parameters for different sub-disciplines (i.e. microbiome analysis) for each pipeline
-4. Documenting usage of 'first level' meta-omic pipelines followed by complementary analyses with "secondary" pipelines such as #funcscan, #phageannotator, #phyloplace, #rnaseq, #differentialabundance etc.
+4. Documenting usage of 'first level' meta-omic pipelines (createtaxdb, ampliseq, eager, taxprofiler, mag, metatdenovo) followed by complementary analyses with "secondary" pipelines such as (funcscan, phageannotator, phyloplace, rnaseq, differentialabundance) etc.
 
 Depending on interest/activity, other potential activities could include:
 
