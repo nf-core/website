@@ -5706,6 +5706,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -17983,6 +17987,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -68262,6 +68270,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -71236,7 +71248,7 @@
       "type": "module",
       "meta": {
         "name": "krakentools_combinekreports",
-        "description": "Takes a Kraken report file and prints out a krona-compatible TEXT file",
+        "description": "Takes multiple kraken-style reports and combines them into a single report file",
         "keywords": [
           "kraken",
           "krakentools",
@@ -78836,6 +78848,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
