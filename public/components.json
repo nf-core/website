@@ -5734,6 +5734,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -7902,6 +7906,10 @@
         {
           "name": "funcscan",
           "version": "1.1.6"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -18237,6 +18245,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         }
       ]
@@ -40138,7 +40154,13 @@
         "maintainers": [
           "@mirpedrol"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "foldcomp_compress",
@@ -68418,6 +68440,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -79219,6 +79245,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -86737,6 +86767,10 @@
         {
           "name": "nanoseq",
           "version": "3.1.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         },
         {
           "name": "scnanoseq",
@@ -113411,6 +113445,148 @@
       ]
     },
     {
+      "name": "sentieon_qualcal",
+      "path": "modules/nf-core/sentieon/qualcal/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "sentieon_qualcal",
+        "description": "Generate recalibration table and optionally perform base quality recalibration",
+        "keywords": [
+          "base quality score recalibration",
+          "bqsr",
+          "sentieon"
+        ],
+        "tools": [
+          {
+            "sentieon": {
+              "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
+              "homepage": "https://www.sentieon.com/",
+              "documentation": "https://www.sentieon.com/"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "input": {
+              "type": "file",
+              "description": "BAM/CRAM file from alignment",
+              "pattern": "*.{bam,cram}"
+            }
+          },
+          {
+            "input_index": {
+              "type": "file",
+              "description": "BAI/CRAI file from alignment",
+              "pattern": "*.{bai,crai}"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "The reference fasta file",
+              "pattern": "*.fasta"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "Index of reference fasta file",
+              "pattern": "*.fasta.fai"
+            }
+          },
+          {
+            "known_sites": {
+              "type": "file",
+              "description": "VCF files with known sites for indels / snps (optional)",
+              "pattern": "*.vcf.gz"
+            }
+          },
+          {
+            "known_sites_tbi": {
+              "type": "file",
+              "description": "Tabix index of the known_sites (optional)",
+              "pattern": "*.vcf.gz.tbi"
+            }
+          },
+          {
+            "recalibration_table": {
+              "type": "file",
+              "description": "File containing recalibration values (optional)",
+              "pattern": "*.table"
+            }
+          },
+          {
+            "generate_recalibrated_bams": {
+              "type": "boolean",
+              "description": "If truem, writes recalibrated bams to disc"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "table": {
+              "type": "file",
+              "description": "Pre Recalibration table (optional)",
+              "pattern": "*.table"
+            }
+          },
+          {
+            "table_post": {
+              "type": "file",
+              "description": "Post recalibration table (optional)",
+              "pattern": "*.table.post"
+            }
+          },
+          {
+            "recal_alignment": {
+              "type": "file",
+              "description": "Recalibrated input files (optional)",
+              "pattern": "*.{bam,cram}"
+            }
+          },
+          {
+            "csv": {
+              "type": "file",
+              "description": "Recalibration results output file used for plotting. (optional)",
+              "pattern": "*.csv"
+            }
+          },
+          {
+            "pdf": {
+              "type": "file",
+              "description": "PDF file containing graphs (optional)",
+              "pattern": "*.pdf"
+            }
+          }
+        ],
+        "authors": [
+          "@FriederikeHanssen"
+        ],
+        "maintainers": [
+          "@FriederikeHanssen"
+        ]
+      }
+    },
+    {
       "name": "sentieon_readwriter",
       "path": "modules/nf-core/sentieon/readwriter/meta.yml",
       "type": "module",
@@ -115110,7 +115286,13 @@
         "maintainers": [
           "@DLBPointon"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "seqkit_sort",
@@ -115797,7 +115979,13 @@
           "@sidorov-si",
           "@adamrtalbot"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "seqtk_seq",
@@ -131198,6 +131386,10 @@
         {
           "name": "nascent",
           "version": "2.2.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         },
         {
           "name": "phageannotator",
