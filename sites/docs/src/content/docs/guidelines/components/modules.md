@@ -662,9 +662,19 @@ If the software is not available on Bioconda a `Dockerfile` MUST be provided wit
 
 ## Testing
 
-### All output channels must be tested
+### Snapshots
 
-All output channels SHOULD be present in the nf-test snapshot file, or at a minimum, it MUST be verified that the files exist.
+Only one snapshot is allowed per module test, which SHOULD contain all assertions present in this test. Having multiple snapshots per test will make the snapshot file less readable.
+
+All output channels SHOULD be present in the snapshot for each test, or at a minimum, it MUST contain some verification that the file exists.
+
+Thus by default, the `then` block of a test should contain this:
+
+```groovy
+assert snapshot(process.out).match()
+```
+
+When the snapshot is unstable another way MUST be used to test the output files. See [nf-test assertions](/docs/contributing/nf-test/assertions) for examples on how to do this.
 
 ### Stub tests
 
