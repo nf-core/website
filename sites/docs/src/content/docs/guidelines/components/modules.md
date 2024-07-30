@@ -666,7 +666,7 @@ If the software is not available on Bioconda a `Dockerfile` MUST be provided wit
 
 Only one snapshot is allowed per module test, which SHOULD contain all assertions present in this test. Having multiple snapshots per test will make the snapshot file less readable.
 
-All output channels SHOULD be present in the snapshot for each test, or at a minimum, it MUST contain some verification that the file exists
+All output channels SHOULD be present in the snapshot for each test, or at a minimum, it MUST contain some verification that the file exists.
 
 Thus by default, the `then` block of a test should contain this:
 
