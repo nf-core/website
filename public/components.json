@@ -5746,6 +5746,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -18253,6 +18257,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -68483,6 +68495,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -79057,6 +79073,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -99677,7 +99697,9 @@
               "documentation": "https://github.com/bonsai-team/Porechop_ABI",
               "tool_dev_url": "https://github.com/bonsai-team/Porechop_ABI",
               "doi": "10.1101/2022.07.07.499093",
-              "licence": "['GPL v3']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -99714,7 +99736,7 @@
             "reads": {
               "type": "file",
               "description": "Adapter-trimmed fastq.gz file",
-              "pattern": "*fastq.gz"
+              "pattern": "*.fastq.gz"
             }
           },
           {
@@ -99726,10 +99748,12 @@
           }
         ],
         "authors": [
-          "@sofstam"
+          "@sofstam",
+          "LilyAnderssonLee"
         ],
         "maintainers": [
-          "@sofstam"
+          "@sofstam",
+          "LilyAnderssonLee"
         ]
       }
     },
