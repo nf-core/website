@@ -5738,6 +5738,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -18254,6 +18258,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -23022,6 +23034,13 @@
               "type": "file",
               "description": "CheckQC report in json format",
               "pattern": "*checkqc_report.json"
+            }
+          },
+          {
+            "log": {
+              "type": "file",
+              "description": "CheckQC log in txt format",
+              "pattern": "*_log.txt"
             }
           }
         ],
@@ -68444,6 +68463,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -79018,6 +79041,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
