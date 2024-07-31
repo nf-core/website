@@ -5754,6 +5754,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -18261,6 +18265,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -68515,6 +68527,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -79089,6 +79105,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -108548,6 +108568,79 @@
       ]
     },
     {
+      "name": "samtools_consensus",
+      "path": "modules/nf-core/samtools/consensus/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "samtools_consensus",
+        "description": "Produces a consensus FASTA/FASTQ/PILEUP",
+        "keywords": [
+          "consensus",
+          "bam",
+          "fastq",
+          "fasta",
+          "pileup"
+        ],
+        "tools": [
+          {
+            "samtools": {
+              "description": "SAMtools is a set of utilities for interacting with and post-processing\nshort DNA sequence read alignments in the SAM, BAM and CRAM formats, written by Heng Li.\nThese files are generated as output by short read aligners like BWA.\n",
+              "homepage": "http://www.htslib.org/",
+              "documentation": "http://www.htslib.org/doc/samtools.html",
+              "tool_dev_url": "https://github.com/samtools/samtools",
+              "doi": "10.1093/bioinformatics/btp352",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "input": {
+              "type": "file",
+              "description": "Sorted BAM/CRAM/SAM file",
+              "pattern": "*.{bam,cram,sam}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "output": {
+              "type": "file",
+              "description": "Consensus sequences",
+              "pattern": "*.{fasta,fastq,pileup}"
+            }
+          }
+        ],
+        "authors": [
+          "@LilyAnderssonLee"
+        ],
+        "maintainers": [
+          "@LilyAnderssonLee"
+        ]
+      }
+    },
+    {
       "name": "samtools_convert",
       "path": "modules/nf-core/samtools/convert/meta.yml",
       "type": "module",
@@ -136747,6 +136840,78 @@
         ],
         "maintainers": [
           "@ksenia-krasheninnikova"
+        ]
+      }
+    },
+    {
+      "name": "yak_count",
+      "path": "modules/nf-core/yak/count/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "yak_count",
+        "description": "a tool to build k-mer hash table for fasta and fastq files",
+        "keywords": [
+          "kmer",
+          "fastq",
+          "sequence",
+          "count",
+          "assembly"
+        ],
+        "tools": [
+          {
+            "yak": {
+              "description": "Yet another k-mer analyzer",
+              "homepage": "https://github.com/lh3/yak",
+              "documentation": "https://github.com/lh3/yak/blob/master/README.md",
+              "tool_dev_url": "https://github.com/lh3/yak",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "fastq": {
+              "type": "file",
+              "description": "reads fastq/fasta file",
+              "pattern": "*.{fastq.gz,fq.gz,fasta.gz,fa.gz}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "yak": {
+              "type": "file",
+              "description": "k-mer hash table of input",
+              "pattern": "*.{yak}"
+            }
+          }
+        ],
+        "authors": [
+          "@yumisims"
+        ],
+        "maintainers": [
+          "@yumisims"
         ]
       }
     },
