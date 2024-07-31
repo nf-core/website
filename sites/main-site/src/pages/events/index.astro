@@ -1,0 +1,21 @@
+---
+import EventLayout from '@layouts/EventLayout.astro';
+import { getCollection } from 'astro:content';
+
+let events = await getCollection('events');
+
+events = events.filter((event) => {
+    return event.slug.split('/').length === 2;
+});
+
+const title = 'Events';
+const subtitle = 'Details of past and future events around nf-core.';
+const event_types = ['bytesize', 'talk', 'training', 'hackathon'];
+const filters = event_types.map((type) => {
+    return {
+        name: type,
+    };
+});
+---
+
+<EventLayout {events} {title} {subtitle} currentFilters={filters} />
