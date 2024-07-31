@@ -1,0 +1,49 @@
+name: Playwright Tests
+on:
+  pull_request:
+    paths:
+      - 'sites/**'
+
+# Cancel if a newer run is started
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  run_test:
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4
+      - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4
+        with:
+          node-version: 18
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Waiting for 200 from the Netlify Preview
+        uses: jakepartusch/wait-for-netlify-action@f1e137043864b9ab9034ae3a5adc1c108e3f1a48 # v1.4
+        id: waitFor200
+        with:
+          site_name: 'nf-core-main-site'
+          max_timeout: 180 # 3 Minutes
+      - name: determine the changed directory
+        id: determine_changed_directory
+        run: |
+          CHANGED_DIRECTORY=$(git diff --name-only HEAD~1 HEAD | grep 'sites/' | cut -d/ -f2 | uniq) >> $GITHUB_OUTPUT
+
+      - name: Loop through changed directories and run Playwright tests
+        run: |
+          # for dir in $CHANGED_DIRECTORY; do
+            npm run test -w sites/main-site
+          # done
+        env:
+          PLAYWRIGHT_TEST_BASE_URL: 'https://deploy-preview-${{github.event.pull_request.number}}--nf-core-main-site.netlify.app'
+      - uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808 # v4
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 1
