@@ -38,7 +38,7 @@ nf-test allows to specify params or including config files.
 params {
   foo = 'bar'
 }
-``` 
+```
 
 ```groovy
 config "./nextflow.config"
