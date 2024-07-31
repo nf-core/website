@@ -1,7 +1,7 @@
-<img src="public_html/assets/img/logo/nf-core-logo.png#gh-light-mode-only" width="400">
-<img src="public_html/assets/img/logo/nf-core-logo-darkbg.png#gh-dark-mode-only" width="400">
+<img src="public/images/logo/nf-core-logo.svg#gh-light-mode-only" width="400">
+<img src="public/images/logo/nf-core-logo-darkbg.svg#gh-dark-mode-only" width="400">
 
-# [nf-co.re](https://github.com/nf-core/nf-co.re)
+# [nf-co.re](https://github.com/nf-core/website)
 
 This repository contains code for the nf-core website: **<http://nf-co.re/>**
 
@@ -9,22 +9,13 @@ This repository contains code for the nf-core website: **<http://nf-co.re/>**
 
 Here's how the website is built:
 
-- Language: PHP
-- HTML / CSS / JS framework: [Bootstrap v5](http://getbootstrap.com/)
-- JavaScript libraries:
-  - [jQuery](https://jquery.com/)
-  - [Popper.js](https://popper.js.org/) _(used for bootstrap tooltips)_
-  - [highlightjs](https://highlightjs.org/) _(syntax highlighting)_
-  - [Leaflet](https://leafletjs.com/) _(contributor map)_
-  - [Moment.js](https://momentjs.com/) _(time and date parsing)_
-  - [Chart.js](https://www.chartjs.org/) _(statistics plots)_
-  - [hammer.js](https://hammerjs.github.io/) _(mobile touch interaction handling)_
-  - [chartjs-plugin-zoom](https://github.com/chartjs/chartjs-plugin-zoom) _(Zoom and pan plugin for Chart.js)_
-  - [Canvas2Svg.js](https://gliffy.github.io/canvas2svg/) _(SVG exports of Chart.JS plots)_
-  - [FileSaver.js](https://github.com/eligrey/FileSaver.js/) _(Trigger browser downloads from in-page data, used to save plot SVGs to files)_
-  - [jQuery table sorter](https://mottie.github.io/tablesorter/) _(sorting tables)_
-- PHP Markdown parsing: [Parsedown](https://github.com/erusev/parsedown/) and [Parsedown Extra](https://github.com/erusev/parsedown-extra/)
-- SVG icons: <http://www.flaticon.com>, <https://worldvectorlogo.com/>
+- Language: Javascript
+- Frameworks:
+  - [Astro](https://astro.build/) (static site generator),
+  - [Svelte](https://svelte.dev/) (interactive components),
+  - [Bootstrap](https://getbootstrap.com/docs/) (CSS framework)
+- Tools:
+  - [npm](https://www.npmjs.com/) (package manager)
 
 ## Development
 
@@ -33,124 +24,180 @@ Here's how the website is built:
 To make edits to the website, fork the repository to your own user on GitHub and then clone to your local system.
 
 ```bash
-git clone git@github.com:[USERNAME]/nf-co.re.git
-cd nf-co.re/
+gh repo fork nf-core/website nf-core_website
+cd nf-core_website/
+```
+
+### Installing dependencies
+
+The website is built using [Astro](https://astro.build/), a static site generator.
+To install the dependencies, run:
+
+```bash
+npm install
 ```
 
 ### Running a local server
 
-Ok, you're ready! To run the website locally, just start the apache-php server with:
+Ok, you're ready! The website is split up into sub-sites using npm workspaces ([see blogpost](https://nf-co.re/blog/2024/new-website-structure)). One usually works on just one sub-site, e.g., `sites/main-site` for blog posts, event pages and general code components, or `sites/docs` for changes to the documentation. To run the website locally, just start astro dev mode for the specific workspace,e.g.:
 
 ```bash
-docker compose up
+npm run dev --workspace site/main-site
 ```
 
-You should then be able to access the website in your browser at [http://localhost:8888/](http://localhost:8888/).
-
-If you prefer, you can also use a tool such as [MAMP](https://www.mamp.info/) - if so,
-set the base directory to `/path/to/nf-co.re/public_html` in _Preferences > Web-Server > Document Root_ and then hit _Start Servers_.
-
-Most of the hand-written text is in `/markdown`, to make it easier to write. The PHP files in `/public_html` then parse this into HTML dynamically, if supplied with a filename.
-
-Note that the `.htaccess` file is set up to remove the `.php` file extensions in URLs.
-
-### First-run
-
-Much of the site is powered by a `pipelines.json` file.
-The webserver does this automatically when GitHub events trigger an update, but you'll need to run the script manually.
-
-#### Access tokens
-
-First you'll need a `config.ini` text file with values for `github_username` and `github_access_token`.
-See [instructions on how to get a GitHub OAuth token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line) (the token only needs the `public_repo` permission).
-This file is ignored in `.gitignore` for security reasons.
-
-For the MySQL database you should also add the following values:
-
-```ini
-host = 'db'
-port = '3306';
-dbname = 'nfcore';
-username = 'nfcore_admin';
-password = 'PEBBLY8exhibit_mead1cilium6despise'
-```
-
-#### Running PHP scripts
-
-It's easiest to run these first manual update scripts on the command line. If you have PHP available
-then you may be able to do this directly. Alternatively, if you are using Docker as above then you can
-open a shell inside the running container. The container is typically named `web` (you can check this
-with the `docker ps` command), so you can open an interactive shell using the following command:
+or
 
 ```bash
-docker exec -it web /bin/bash
-cd var/www/
+npm run dev --workspace site/docs
 ```
 
-#### Update scripts
+You should then be able to access the website in your browser at [http://localhost:4321/](http://localhost:4321/). Some pages will not work when rendered using a specific dev server because the sub-sites are disjunct from each other, e.g., when starting the local server for `sites/docs`, [http://localhost:4321/](http://localhost:4321/) the [http://localhost:4321/pipelines](http://localhost:4321/pipelines) pages will throw 404 errors.
 
-The following command will create `public_html/pipelines.json`, which is used by the website.
+### File structure
+
+The website follows a mono-repo setup with sub-sites.
+The main sub-sites are:
+
+- `sites/main-site` - The main nf-core website, including components, events, blog posts
+- `sites/configs` - listing pages for nf-core configs
+- `sites/docs` - docs pages
+- `sites/modules-subworkflows` - modules and subworkflows pages
+- `sites/pipelines` - pipeline pages
+- `sites/pipeline-results` - AWS megatest result pages for each pipeline (split up from the rest to allow static generation of the main pipeline pages)
+
+Each site has its own `src` directory with the following structure, typical for an [Astro project](https://docs.astro.build/guides/project-structure):
+
+- `src/pages/` - Astro pages
+- `src/content/` - [Astro content collections](https://docs.astro.build/en/guides/content-collections/) (markdown files for events, docs, blog)
+- `src/components/` - Astro/Svelte components
+- `src/layouts/` - HTML layouts
+- `src/styles/` - (S)CSS stylesheets
+- `public/` - Static files (images, json files etc)
+
+## Adding an event
+
+To add an event, create a new markdown (or .mdx) file in `sites/main-site/src/content/events/` with the following frontmatter:
+
+```yaml
+title: "Event Title"
+subtitle: "A brief overview of the event"
+type: "talk"  # Can be "talk", "hackathon", "training", "bytesize"
+startDate: "YYYY-MM-DD"
+endDate: "YYYY-MM-DD"
+startTime: "HH:MM"
+endTime: "HH:MM"
+announcement:
+  text: "Text on the announcement banner" # (optional)
+  start: "YYYY-MM-DDTHH:MM:SS+HH:MM" # (required if announcement.text is used)
+  end: "YYYY-MM-DDTHH:MM:SS+HH:MM" # (required if announcement.text is used)
+locations: # (optional)
+  name: "Name of the location" # (optional)
+  links: "URL(s) to the location or to the section in the text with location description (e.g. `#gather-town`)" # (optional)
+  geoCoordinates: [48.2082, 16.3738] # Latitude and longitude of the location as an array " (optional)
+  address: "Address of the location" #(optional)
+duration: "Duration of the event in days" (optional)
+embedAt: "in case this should be shown in the sidebar of a pipeline page (e.g. for a bytesize talk about the pipeline)" (optional)
+importTypeform: true # If true, the event will be imported from a Typeform (see below)
+```
+
+## Adding a blog post
+
+To add a blog post, create a new markdown (or mdx) file in `sites/main-site/src/content/blog/` with the following frontmatter:
+
+```yaml
+title: "Your Blog Post Title"
+subtitle: "A brief overview of your post's content"
+headerImage: "Direct URL to an optional header image" (optional)
+headerImageAlt: "Descriptive alt text for the header image (mandatory if a header image is used)"
+pubDate: "Scheduled publication date and time (the post will go live post-website rebuild if the current date surpasses this timestamp). Format: YYYY-MM-DDTHH:MM:SS+HH:MM" (without quotes!)
+authors: ["Author's Name"]  // Use a list format even if there is only one author.
+label: ["Category1", "Category2"]  // This is optional and can include multiple categories.
+announcement:
+  text: "Text on the announcement banner" # (optional)
+  start: "YYYY-MM-DDTHH:MM:SS+HH:MM" # (required if announcement.text is used)
+  end: "YYYY-MM-DDTHH:MM:SS+HH:MM" # (required if announcement.text is used)
+```
+
+### Adding an announcement banner
+
+You can show a short announcement banner on the website by adding additional information to the frontmatter of either a file inside `sites/main-site/src/content/blog` or `sites/main-site/src/content/events`. The following fields are available:
+
+```yaml
+announcement:
+  text: 'Your announcement text'
+  start: YYYY-MM-DDTHH:MM:SS+HH:MM # Start date and time of the announcement (without quotes!)
+  end: YYYY-MM-DDTHH:MM:SS+HH:MM # End date and time of the announcement. (without quotes!) This is an optional field for events, where the start date of the event is the end date of the announcement by default.
+```
+
+### Updating the JSON files and cached markdown
+
+Much of the site is powered by the JSON files in `/public` and the cached markdown files (from the pipeline docs) in `/.cache`.
+
+They come pre-built with the repository, but if you want to rebuild them then you'll need to run the following commands. Note that you need to add a GITHUB_TOKEN inside a `.env` file to avoid hitting API limits (too early). See [instructions on how to get a GitHub OAuth token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line) (the token only needs the `public_repo` permission).
 
 ```bash
-php update_pipeline_details.php
+npm run build-pipeline-json
+npm run build-component-json
+npm run build-cache-force
 ```
 
-To update the modules database (from within the docker container) run:
+### Adding a new sub-site to the mono-repo
 
-```bash
-docker exec -it nf-core-web /usr/local/bin/php /var/www/update_module_details.php
-```
+The following steps are necessary to add a new sub-site to the mono-repo:
 
-Note that this is also ignored in the `.gitignore` file and will not be tracked in git history.
+- [ ] Copy the `sites/pipelines` directory to a new directory with the name of the new sub-site, e.g. newsite.
+- [ ] Update the following files in the new directory:
 
-Optionally, once you've done that, you can grab the pipeline traffic, issue statistics and font awesome icons:
+  - [ ] `astro.config.mjs`
+    - [ ] Update the `assetsPrefix` field to point to the new site's netlify URL, e.g. `assetsPrefix: 'https://nf-core-website-newsite.netlify.app/'`.
+  - [ ] `package.json` - Update the `name` field to the new site name, e.g. `"name": "newsite"`.
+  - [ ] `netlify.toml` - Update the paths in the `command` and the `ignore` field to point to the new site's source directory, e.g.
 
-```bash
-php update_issue_stats.php
-php update_stats.php
-php update_fontawesome_icons.php
-```
-
-Note that your GitHub account needs push rights for the nf-core permission for the `update_stats.php` to work.
-
-This creates `nfcore_stats.json`, `nfcore_issue_stats.json` and `public_html/assets/js/fa-icons.json`,
-all also ignored in `.gitignore`.
-
-## Production Server Setup
-
-### Deployment
-
-The website is deployed via GitHub Actions ([`.github/workflows/web-deploy.yml`](https://github.com/nf-core/nf-co.re/blob/master/.github/workflows/web-deploy.yml)).
-This script runs PHP composer and npm, then syncs the required files to the web server via FTP.
+  ```toml
+  command = "npm run build -w sites/newsite"
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF sites/main-site/src/components sites/main-site/src/layouts sites/newsite"
+  ```
 
 ### Tools API docs
 
-Tools docs are built using GitHub Actions on the nf-core/tools repo using Sphinx.
-[These actions](https://github.com/nf-core/tools/blob/master/.github/workflows/tools-api-docs-release.yml) sync the built HTML files via FTP.
-
-### GitHub web hooks
-
-There is a GitHub web hook at the nf-core organisation level which triggers the pipeline update script whenever a repo is created, or has a release etc.
-This pings the `deploy_pipelines.php` script.
-
-### Stats cronjob
-
-The web server needs the following cronjobs running to scrape statistics and udates:
-
-```cron
-0 0 * * * /usr/local/bin/php /path/to/deployment/update_stats.php >> /home/nfcore/update.log 2>&1
-0 2 * * * /usr/local/bin/php /path/to/deployment/update_issue_stats.php >> /home/nfcore/update.log 2>&1
-0 0 * * 0 /usr/local/bin/php /path/to/deployment/update_fontawesome_icons.php >> /home/nfcore/update.log 2>&
-```
-
-Remember to replace `/path/to/deployment/` with your actual deployment directory.
-
-The `update_issue_stats.php` script can use a lot of GitHub API calls, so should run at least one hour after the `update_stats.php` script last finished.
-This is not because the script takes an hour to run, but because the GitHub API rate-limiting counts the number of calls within an hour.
+nf-core/tools API reference docs are built using Sphinx via the `add-tools-api-docs.yml` GitHub Action and a webhook from the nf-core/tools repo.
 
 ## Contribution guidelines
 
 If you are looking forward to contribute to the website or add your institution to the official list of contributors, please have a look at the [CONTRIBUTING.md](./.github/CONTRIBUTING.md).
+
+### Crafting a Blog Post
+
+To publish a new blog post on the website, you'll need to create a Markdown file within the `sites/main-site/src/content/blog/` directory. In this file, include the following frontmatter at the beginning:
+
+```yaml
+---
+title: "Your Blog Post Title"
+subtitle: "A brief overview of your post's content"
+headerImage: "Direct URL to an optional header image"
+headerImageAlt: "Descriptive alt text for the header image (mandatory if a header image is used)"
+pubDate: "Scheduled publication date and time (the post will go live post-website rebuild if the current date surpasses this timestamp). Format: YYYY-MM-DDTHH:MM:SS.000+HH:MM"
+authors: ["Author's Name"]  // Use a list format even if there is only one author.
+label: ["Category1", "Category2"]  // This is optional and can include multiple categories.
+---
+```
+
+> [!NOTE]
+> The blog post will be visible on the website only if a rebuild of the site occurs after the date and time specified in the `pubDate` field.
+
+By default the first paragraph of the blog post will be used as the preview text on the blog page. If you want to use a different paragraph, add the following comment after the paragraph you want to use:
+
+```markdown
+<!-- end of excerpt -->
+```
+
+or for MDX
+
+<!-- prettier-ignore-start -->
+```mdx
+/* end of excerpt */
+```
+<!-- prettier-ignore-end -->
 
 ## Community
 
@@ -158,8 +205,9 @@ If you have any questions or issues please send us a message on [Slack](https://
 
 ## Credits
 
-Phil Ewels ([@ewels](http://github.com/ewels/)) built the website, but there have been many contributors to the content and documentation.
-More recently, [@mashehu](https://github.com/mashehu) has done a great deal of work with the code.
-See the [repo contributors](https://github.com/nf-core/nf-co.re/graphs/contributors) for more.
+Phil Ewels ([@ewels](http://github.com/ewels/)) built the initial website, but there have been many contributors to the content and documentation.
+Matthias Hörtenhuber ([@mashehu](https://github.com/mashehu)) worked on the concept and code for the new website rewrite.
+
+See the [repo contributors](https://github.com/nf-core/website/graphs/contributors) for more details.
 
 Kudos to the excellent [npm website](https://www.npmjs.com), which provided inspiration for the design of the pipeline pages.
