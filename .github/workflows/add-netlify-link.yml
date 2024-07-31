@@ -3,8 +3,8 @@ name: Add Netlify Link to PR
 on:
   pull_request_target:
     paths:
-      - 'src/pages/**'
-      - 'src/content/**'
+      - 'sites/**/src/pages/**'
+      - 'sites/**/src/content/**'
 
 jobs:
   add-comment:
@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Check for changed files
         id: changed-files
-        uses: tj-actions/changed-files@03334d095e2739fa9ac4034ec16f66d5d01e9eba # v44
+        uses: tj-actions/changed-files@d6babd6899969df1a11d14c368283ea4436bca78 # v44
 
       - name: Add Netlify link to PR
         if: steps.changed-files.outputs.all_changed_files != ''
@@ -20,7 +20,7 @@ jobs:
         with:
           github-token: ${{ secrets.NF_CORE_BOT_AUTH_TOKEN }}
           script: |
-            const changedFiles = `${{ steps.changed-files.outputs.all_changed_files }}`.split(' ');
+            const changedFiles = `${{ steps.changed-files.outputs.all_changed_files }}`.split(' ').slice(0, 50);
             console.log('Changed files:', changedFiles)
 
             // handle normal pages

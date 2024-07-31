@@ -1,6 +1,8 @@
 name: Playwright Tests
 on:
   pull_request:
+    paths:
+      - 'sites/**'
 
 # Cancel if a newer run is started
 concurrency:
@@ -25,12 +27,20 @@ jobs:
         uses: jakepartusch/wait-for-netlify-action@f1e137043864b9ab9034ae3a5adc1c108e3f1a48 # v1.4
         id: waitFor200
         with:
-          site_name: 'nf-core'
-          max_timeout: 600 # 10 Minutes
-      - name: Run Playwright tests
-        run: npx playwright test
+          site_name: 'nf-core-main-site'
+          max_timeout: 180 # 3 Minutes
+      - name: determine the changed directory
+        id: determine_changed_directory
+        run: |
+          CHANGED_DIRECTORY=$(git diff --name-only HEAD~1 HEAD | grep 'sites/' | cut -d/ -f2 | uniq) >> $GITHUB_OUTPUT
+
+      - name: Loop through changed directories and run Playwright tests
+        run: |
+          # for dir in $CHANGED_DIRECTORY; do
+            npm run test -w sites/main-site
+          # done
         env:
-          PLAYWRIGHT_TEST_BASE_URL: 'https://deploy-preview-${{github.event.pull_request.number}}--nf-core.netlify.app'
+          PLAYWRIGHT_TEST_BASE_URL: 'https://deploy-preview-${{github.event.pull_request.number}}--nf-core-main-site.netlify.app'
       - uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808 # v4
         if: always()
         with:
