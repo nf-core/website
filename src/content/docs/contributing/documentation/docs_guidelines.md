@@ -1,14 +1,12 @@
 ---
 title: Writing style
 subtitle: Guidelines for contributing to nf-core documentation.
-weight: 10
-parentWeight: 40
 markdownPlugin: addNumbersToHeadings
 ---
 
 # Documentation contribution guidelines
 
-Many thanks for taking an interest in improving the nf-core documentation. To maintain consistency and clarity across our documentation, please follow these contribution guidelines.
+Many thanks for taking an interest in improving the nf-core documentation. To maintain consistency and clarity across the documentation, please follow these guidelines.
 
 ## General writing guidelines
 
@@ -56,7 +54,7 @@ Maintain a professional and direct tone by avoiding the use of ❌ _"please"_ an
 ## Formatting guidelines
 
 :::tip
-See [Markdown on the nf-core website](/docs/contributing/website/markdown#checklist) for instructions
+See [Markdown on the nf-core website](/docs/contributing/website/markdown) for instructions
 on how to use markdown formatting and special elements such as "admonitions" for nice formatting.
 You're reading an admonition right now!
 :::
@@ -78,7 +76,7 @@ Use sentence case for headings and titles. Only the first word and proper nouns 
 
 - Use bullet points for lists where the order of items is not important.
 - Use numbered lists for sequential steps.
-- Use [numbered headings](/docs/contributing/documentation/markdown#numbered-headings) for guidelines where it is useful to be able to easily refer to a specific section of the docs (like this page!)
+- Use [numbered headings](/docs/contributing/website/markdown#numbered-headings) for guidelines where it is useful to be able to easily refer to a specific section of the docs (like this page!)
 - Use [checklists](/docs/contributing/website/markdown#checklist) if you're expecting someone to run through
   a set of instructions.
 
