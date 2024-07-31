@@ -11,7 +11,7 @@ It has built-in support for HPC execution schedulers (such as [Slurm](https://sl
 
 For dependency management, Nextflow supports container engines such as [Docker](https://www.docker.com/), [Singularity](https://sylabs.io/), and [others](https://www.nextflow.io/docs/latest/container.html), and dependency management systems ([Conda](https://docs.conda.io/en/latest/) and [Spack](https://spack.readthedocs.io/en/latest/)) to deploy the pipelines.
 
-To get nf-core pipelines to run properly on your system, you must install your dependency management software of choice (see [Installation](../usage/installation.md)) and configure Nextflow to run your workflows.
+To get nf-core pipelines to run properly on your system, you must install your dependency management software of choice (see [Installation](/docs/usage/getting_started/installation)) and configure Nextflow to run your workflows.
 
 # Different config locations
 
