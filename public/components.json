@@ -5766,6 +5766,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -18273,6 +18277,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -68563,6 +68575,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -79137,6 +79153,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -113896,7 +113916,7 @@
           {
             "output": {
               "type": "file",
-              "description": "BAM/CRAM file",
+              "description": "BAM/CRAM file. Depends on how ext.prefix is set. BAM \"ext.prefix = <filename>.bam\", CRAM \"ext.prefix = <filename>.cram\". Defaults to cram",
               "pattern": "*.{bam,cram}"
             }
           },
