@@ -5,9 +5,11 @@ shortTitle: Dependency installation
 weight: 2
 ---
 
-## Nextflow
+## Installation requirements
 
 Nextflow must be installed on the system where you launch an nf-core pipeline.
+
+Nextflow can be used on any POSIX-compatible system (Linux, macOS, etc), and on Windows through [WSL](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux). It requires Bash 3.2 (or later) and [Java 11 (or later, up to 22)](https://www.oracle.com/java/technologies/downloads/?er=221886).
 
 A personal installation of Nextflow is recommended to simplify updates and version control.
 
@@ -15,9 +17,7 @@ A personal installation of Nextflow is recommended to simplify updates and versi
 You don't need to install the `nf-core` command line tools to run nf-core pipelines. However, `nf-core` tools offer a number of helpful commands for users and are essential for pipeline developers. See the [tools page](/tools) for more information.
 :::
 
-### Requirements
-
-Nextflow can be used on any POSIX-compatible system (Linux, macOS, etc), and on Windows through [WSL](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux). It requires Bash 3.2 (or later) and [Java 11 (or later, up to 22)](https://www.oracle.com/java/technologies/downloads/?er=221886).
+### Java
 
 You can see which version of Java you have installed using the following command:
 
@@ -49,7 +49,7 @@ To install Java with SDKMAN:
     java -version
     ```
 
-### Nextflow installation
+### Nextflow
 
 Nextflow is distributed as a self-installing package, in order to make the installation process as simple as possible:
 
@@ -86,37 +86,32 @@ This will create the `nextflow` executable in the current directory.
     nextflow info
     ```
 
-#### Bioconda installation
+Alternatively, Nextflow can be installed using [Bioconda](https://bioconda.github.io/):
 
-Nextflow can also be installed using [Bioconda](https://bioconda.github.io/).
+1. Add conda channels:
 
-Set up Bioconda according to the [Bioconda documentation](https://bioconda.github.io/#usage), notably setting up channels:
+    ```bash
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
 
-```bash
-conda config --add channels bioconda
-conda config --add channels conda-forge
-```
+    :::warning
+    This is important - if not done, dependencies (such as Java) will be installed from
+    the wrong channels and things may break in strange ways.
+    :::
 
-:::warning
-This is important - if not done, dependencies (such as Java) will be installed from
-the wrong channels and things may break in strange ways.
-:::
+2. Create and activate a dedicated Nextflow conda environment.
 
-A best practice with conda is to use a dedicated conda environment.
-This can help to prevent version conflicts and keep everything clean:
+    ```bash
+    conda create --name env_nf nextflow
+    conda activate env_nf
+    ```
 
-```bash
-conda create --name env_nf nextflow
-conda activate env_nf
-```
+    :::note
+    To deactivate the `env_nf` conda environment, run `conda deactivate`.
+    :::
 
-To deactivate the conda environment, run:
-
-```bash
-conda deactivate
-```
-
-#### Windows installation
+## Windows installation
 
 The installation procedure for Windows computers is more complex.
 
@@ -132,7 +127,7 @@ See the [guide for setting up a Nextflow environment on Windows 10](https://next
 Some information in the [guide for setting up a Nextflow environment on Windows 10](https://nextflow.io/blog/2021/setup-nextflow-on-windows.html) may be out of date.
 :::
 
-### Updating Nextflow
+## Updating Nextflow
 
 With Nextflow installed in your environment, you can update to the latest version using the following command:
 
@@ -160,7 +155,7 @@ NXF_VER=23.10.0 nextflow run hello
 The `conda update nextflow` command can be used to update Nextflow Bioconda installations.
 :::
 
-### Edge releases
+## Edge releases
 
 A stable version of Nextflow is released every six months, in the 4th and 10th month of each year. Additionally, an edge version is released on a monthly basis. The edge releases can be used to access the latest updates and experimental features.
 
@@ -176,7 +171,7 @@ You can also use `NXF_VER` to temporarily switch to any edge release. For exampl
 NXF_VER=24.06.0-edge nextflow info
 ```
 
-## Pipeline software
+## Software dependencies
 
 Analysis pipelines often chain together the execution of multiple tools.
 Historically, all tools would need to be installed manually - often a source of great frustration and a major source of irreproducibility.
@@ -184,7 +179,8 @@ Historically, all tools would need to be installed manually - often a source of 
 nf-core pipelines utilise the built-in support for software packaging that Nextflow offers.
 Using profiles, software dependencies can be managed through various packaging (e.g., container runtimes).
 To use any of the below, simply execute your nf-core pipeline with the `-profile` option.
-For example, `-profile docker` or `-profile singularity`. The respective tooling for each profile (e.g., [Docker](https://docs.docker.com/install/)) must be installed prior to execution.
+For example, `-profile docker` or `-profile singularity`.
+The respective tooling for each profile (e.g., [Docker](https://docs.docker.com/install/)) must be installed prior to execution.
 
 - [Docker](https://docs.docker.com/install/)
   - Typically used locally, on single-user servers, and the cloud
@@ -206,7 +202,7 @@ For example, `-profile docker` or `-profile singularity`. The respective tooling
     to the `apptainer` command.
     :::
 
-- [Podman](https://podman.io/), [Charliecloud](https://hpc.github.io/charliecloud/) and [Shifter](https://www.nersc.gov/research-and-development/user-defined-images/)
+- [Podman](https://podman.io/), [Charliecloud](https://hpc.github.io/charliecloud/), and [Shifter](https://www.nersc.gov/research-and-development/user-defined-images/)
   - All alternatives to Docker, often used on HPC systems
 - [Conda](https://conda.io/)
   - Packaging system that manages environments instead of running analysis in containers
