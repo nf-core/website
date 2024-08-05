@@ -74,7 +74,7 @@ This will create the `nextflow` executable in the current directory.
     mv nextflow $HOME/.local/bin/
     ```
 
-    Ensure the directory `$HOME/.local/bin/` is included in your `PATH` variable. If it is not, add it by setting `export PATH="$PATH:$HOME/.local/bin"`. Setting your `PATH` variable in your `.bashrc` or `.zshrc` file will fix your version of Nextflow across sessions. Alternatively, you could move Nextflow to a directory already in your `PATH`.
+    Ensure the directory `$HOME/.local/bin/` is included in your `PATH` variable. If it is not, you can add it temporarily using `export PATH="$PATH:$HOME/.local/bin"`. To permanently add it to your `PATH` this command can be added to your shell configuration file, such as `~/.bashrc` or `~/.zshrc`. Alternatively, you could move the `nextflow` executable to a directory already in your `PATH`.
 
     :::warning
     Nextflow will update its executable during the self update process and it should not be placed in a directory with restricted permissions.
