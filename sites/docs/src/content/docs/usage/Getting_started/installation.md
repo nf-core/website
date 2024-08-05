@@ -7,41 +7,94 @@ weight: 2
 
 ## Nextflow
 
-All nf-core pipelines use Nextflow, so this must be installed on the system where you launch your analysis.
+Nextflow must be installed on the system where you launch an nf-core pipeline.
 
-We recommend using a personal installation of Nextflow where possible, instead of using a system-wide installation.
-This makes it easier to update and control versions.
+A personal installation of Nextflow is recommended to simplify updates and version control.
 
-We generally recommend following the official installation instructions from the Nextflow documentation.
-However on this page we provide '[quick start](#quick-start-installation)' version of these instructions, as well as instructions for [installing via Conda](#bioconda-instllation), and on [Windows operating systems](#installation-on-windows).
-
-If in doubt, see the [official Nextflow installation documentation](https://www.nextflow.io/docs/latest/getstarted.html#installation).
-Any instructions on this page are provided for convinence, and may not be up-to-date.
+The [Nextflow documentation](https://www.nextflow.io/docs/latest/install.html#installation) is the most accurate and up-to-date installation guide.
+However, on this page, we provide a Nextflow [quick start](#quick-start-installation) guide, instructions for [installing Nextflow via Conda](#bioconda-instllation), and installing Nextflow on [Windows operating systems](#installation-on-windows).
 
 :::note
-You don't need to install the `nf-core` command line tools to run nf-core pipelines, you only need Nextflow.
-However, they offer a number of helpful functions and are essential for pipeline development using nf-core components.
-See the [tools page](/tools) for more information.
+You don't need to install the `nf-core` command line tools to run nf-core pipelines. However, `nf-core` tools offer a number of helpful commands for users and are essential for pipeline developers. See the [tools page](/tools) for more information.
 :::
 
-### Official Nextflow installation.
+### Nextflow installation
 
 The Nextflow installation docs can be found [here](https://www.nextflow.io/docs/latest/getstarted.html#installation) for the latest instructions.
 
-### Quick-start installation
+### Requirements
 
-Nextflow runs on most POSIX systems (Linux, macOS, etc) and can typically be installed by running these commands:
+Nextflow can be used on any POSIX-compatible system (Linux, macOS, etc), and on Windows through [WSL](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux). It requires Bash 3.2 (or later) and [Java 11 (or later, up to 22)](https://www.oracle.com/java/technologies/downloads/?er=221886).
+
+You can see which version of Java you have installed using the following command:
 
 ```bash
-java -version                           # Check that Java v11+ is installed
-curl -s https://get.nextflow.io | bash  # Download Nextflow
-chmod +x nextflow                       # Make executable
-mv nextflow ~/bin/                      # Add to user's $PATH
+java -version
 ```
+
+If you don’t have a compatible version of Java installed in your computer, it is recommended that you install it through [SDKMAN!](https://sdkman.io/), and that you use the latest LTS version of Temurin. See [this website](https://whichjdk.com/) for more information.
+
+To install Java with SDKMAN:
+
+1. Install SDKMAN:
+
+  ```bash
+  curl -s https://get.sdkman.io | bash
+  ```
+
+2. Open a new terminal.
+
+3. Install Java:
+
+    ```bash
+    sdk install java 17.0.10-tem
+    ```
+
+4. Confirm that Java is installed correctly:
+
+    ```bash
+    java -version
+    ```
+
+### Nextflow
+
+Nextflow is distributed as a self-installing package, in order to make the installation process as simple as possible:
+
+1. Install Nextflow:
+
+    ```bash
+    curl -s https://get.nextflow.io | bash
+    ```
+
+This will create the `nextflow` executable in the current directory.
+
+2. Make Nextflow executable:
+
+    ```
+    chmod +x nextflow
+    ```
+
+3. Move Nextflow into an executable path. For example:
+
+    ```bash
+    mkdir -p $HOME/.local/bin/
+    mv nextflow $HOME/.local/bin/
+    ```
+
+    :::tip
+    Ensure the directory `$HOME/.local/bin/` is included in your `PATH` variable. If it is not, add it by setting `export PATH="$PATH:$HOME/.local/bin"`. Alternatively, you could move Nextflow to a directory already in your `PATH`. Be aware that Nextflow will update its executable during the self update process and it should not be placed in a directory with restricted permissions.
+    :::
+
+4. Confirm that Nextflow is installed correctly:
+
+    ```bash
+    nextflow info
+    ```
 
 ### Bioconda installation
 
-You can also install Nextflow using [Bioconda](https://bioconda.github.io/).
+Nextflow can also be installed using [Bioconda](https://bioconda.github.io/).
+
 First, set up Bioconda according to the [Bioconda documentation](https://bioconda.github.io/#usage), notably setting up channels:
 
 ```bash
@@ -70,67 +123,75 @@ conda deactivate
 
 ### Installation on Windows
 
-For Windows the installation procedure is more complex and is fully described on the [Nextflow website](https://nextflow.io/blog/2021/setup-nextflow-on-windows.html).
+The installation procedure for Windows computers is more complex.
 
-The main steps will be the following:
+The main steps include:
 
-- Install Windows PowerShell
-- Configure the Windows Subsystem for Linux (WSL2)
-- Install a Linux distribution (on WSL2)
+- Installing Windows PowerShell
+- Configuring the Windows Subsystem for Linux (WSL2)
+- Installing a Linux distribution (on WSL2)
 
-The step to install Nextflow in itself will afterwards be the same as previously mentioned.
+See the [guide for setting up a Nextflow environment on Windows 10](https://nextflow.io/blog/2021/setup-nextflow-on-windows.html) for more information.
+
+:::warning
+Some information in the [guide for setting up a Nextflow environment on Windows 10](https://nextflow.io/blog/2021/setup-nextflow-on-windows.html) may be out of date.
+:::
 
 ### Updating Nextflow
 
-Updating nextflow is as simple as running:
+With Nextflow installed in your environment, you can update to the latest version using the following command:
 
 ```bash
 nextflow self-update
 ```
 
-or `conda update nextflow`, depending on how it was installed.
-
-### Specific Nextflow versions
-
-You can install a specific version of Nextflow by using the `NXF_VER` environment version.
-Nextflow will automatically install that version at the start of the next command
-(be it `nextflow self-update` or `nextflow run`).
-
-You can `export` this bash env variable, which is good to do in analysis scripts for full reproducibility:
+Specific versions of Nextflow can be installed using the `NXF_VER` environment version.
+Nextflow will automatically install that version at the start of the next command.
 
 ```bash
 export NXF_VER=23.10.1
 nextflow run hello-world
 ```
 
-Or even just prepend it to a Nextflow command:
+:::note
+Setting the `NXF_VER` variable in your `.bashrc` or `.zshrc` file will fix your version of Nextflow across sessions.
+:::
+
+You can also temporarily switch to a specific version of Nextflow with the `NXF_VER` environment variable. For example:
 
 ```bash
-NXF_VER=23.10.1 nextflow run hello-world
+NXF_VER=23.10.0 nextflow run hello
 ```
+
+:::note
+The `conda update nextflow` command can be used to update Nextflow Bioconda installations.
+:::
 
 ### Edge releases
 
-Nextflow has two `stable` releases per year and monthly `edge` releases.
-Some pipelines may require the use of Nextflow `edge` releases in order to exploit _cutting edge_ features.
+A stable version of Nextflow is released every six months, in the 4th and 10th month of each year. Additionally, an edge version is released on a monthly basis. The edge releases can be used to access the latest updates and experimental features.
 
-Nextflow installs the latest stable version by default.
-You can get an edge release either by defining the exact version with `NXF_VER`
-or by using the `NXF_EDGE` environment variable:
+To use the latest edge release, set `NXF_EDGE=1` when updating:
 
 ```bash
-NXF_VER=24.02.0-edge nextflow run hello-world
 NXF_EDGE=1 nextflow self-update
+```
+
+You can also use `NXF_VER` to temporarily switch to any edge release. For example:
+
+```bash
+NXF_VER=24.06.0-edge nextflow info
 ```
 
 ## Pipeline software
 
-An analysis pipeline chains the execution of multiple tools together.
-Historically, all tools would have to be manually installed — often a source of great frustration and a key step where reproducibility between analyses is lost.
-nf-core pipelines utilise the built-in support for software packaging that Nextflow offers: all can work with Docker and Singularity, and most pipelines also support Conda.
+Analysis pipelines often chain together the execution of multiple tools.
+Historically, all tools would need to be installed manually - often a source of great frustration and a major source of irreproducibility.
 
-To use any of the below, simply run your nf-core pipeline with `-profile <type>`.
-For example, `-profile docker` or `-profile conda`.
+nf-core pipelines utilise the built-in support for software packaging that Nextflow offers.
+Using profiles, software dependencies can be managed through various packaging (e.g., container runtimes).
+To use any of the below, simply execute your nf-core pipeline with the `-profile` option.
+For example, `-profile docker` or `-profile singularity`.
 
 - [Docker](https://docs.docker.com/install/)
   - Typically used locally, on single-user servers, and the cloud
@@ -160,18 +221,8 @@ For example, `-profile docker` or `-profile conda`.
     - There can be changes in low-level package dependencies over time
     - The software still runs in your native operating system environment and so core system functions can differ
 - [Mamba](https://mamba.readthedocs.io/)
-  - A faster reimplementation of Conda
+  - A faster implementation of Conda
 
-## Pipeline code
-
-### Automatic
-
-The pipeline needs no installation - Nextflow will automatically fetch it from GitHub if `nf-core/<pipeline-name>` is specified as the pipeline name.
-
-This method requires an internet connection. If you're running on a system that has no internet connection, please see [Running Offline](offline.md).
-
-### Development
-
-If you would like to make changes to the pipeline, fork the GitHub repository and then clone the files. Once cloned, you can run the pipeline with `nextflow run <path-to-repo>`.
-
-Note that you should _only_ do this if you intend to make significant changes to the pipeline. All configuration options can be changed without editing the pipeline code. Forking the pipeline repositories means that you cannot use stable releases and you will fall behind new updates.
+:::note
+The respective tooling for each profile (e.g., [Docker](https://docs.docker.com/install/)) must be installed prior to execution.
+:::
