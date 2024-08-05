@@ -201,7 +201,7 @@
             }
           },
           {
-            "assembly": {
+            "reports": {
               "type": "file",
               "description": "FASTA, GenBank or EMBL formatted file",
               "pattern": "*.{fa,fasta,fna,fa.gz,fasta.gz,fna.gz,gbk,gbk.gz,embl,embl.gz}"
@@ -223,7 +223,7 @@
             }
           },
           {
-            "summary": {
+            "report": {
               "type": "file",
               "description": "Tab-delimited report of aggregated results",
               "pattern": "*.{txt}"
@@ -603,14 +603,14 @@
             }
           },
           {
-            "Q-ancestry-fractions": {
+            "ancestry_fractions": {
               "type": "file",
               "description": "Space-delimited files containing ancestry fractions. The output filenames have the number of populations (K) that was assumed for the analysis.",
               "pattern": "*.{Q}"
             }
           },
           {
-            "P-allele-frequencies": {
+            "allele_frequencies": {
               "type": "file",
               "description": "Space-delimited files containing the allele frequencies of the inferred ancestral populations. The output filenames have the number of populations (K) that was assumed for the analysis.",
               "pattern": "*.{P}"
@@ -621,7 +621,8 @@
           "@atrigila"
         ],
         "maintainers": [
-          "@atrigila"
+          "@atrigila",
+          "@gallvp"
         ]
       }
     },
@@ -5770,6 +5771,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -6011,7 +6016,9 @@
               "description": "ART is a set of simulation tools to generate synthetic next-generation sequencing reads. ART simulates sequencing reads by mimicking real sequencing process with empirical error models or quality profiles summarized from large recalibrated sequencing data. ART can also simulate reads using user own read error model or quality profiles. ",
               "homepage": "https://www.niehs.nih.gov/research/resources/software/biostatistics/art/index.cfm",
               "doi": "10.1093/bioinformatics/btr708",
-              "licence": "GPL version 3 license"
+              "licence": [
+                "GPL version 3 license"
+              ]
             }
           }
         ],
@@ -6088,7 +6095,8 @@
           "@MarieLataretu"
         ],
         "maintainers": [
-          "@MarieLataretu"
+          "@MarieLataretu",
+          "@gallvp"
         ]
       },
       "pipelines": [
@@ -15852,7 +15860,7 @@
           },
           {
             "index": {
-              "type": "dir",
+              "type": "directory",
               "description": "Bismark genome index directory",
               "pattern": "BismarkIndex"
             }
@@ -15955,7 +15963,7 @@
           },
           {
             "index": {
-              "type": "dir",
+              "type": "directory",
               "description": "Bismark genome index directory",
               "pattern": "BismarkIndex"
             }
@@ -16142,7 +16150,7 @@
         "output": [
           {
             "index": {
-              "type": "dir",
+              "type": "directory",
               "description": "Bismark genome index directory",
               "pattern": "BismarkIndex"
             }
@@ -16350,12 +16358,6 @@
               "type": "file",
               "description": "Text file containing methylation bias information",
               "pattern": "*.{txt}"
-            }
-          },
-          {
-            "fasta": {
-              "type": "file",
-              "description": "Input genome fasta file"
             }
           }
         ],
@@ -18277,6 +18279,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -30205,7 +30215,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "crisprseq",
@@ -31296,6 +31306,12 @@
               "type": "file",
               "description": "FASTA/GenBank/Pfam CSV file",
               "pattern": "*.{fasta,fa,fna,gbk,csv}"
+            }
+          },
+          {
+            "db": {
+              "type": "directory",
+              "description": "Database path"
             }
           }
         ],
@@ -36324,7 +36340,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "phyloplace",
@@ -36415,7 +36431,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "phyloplace",
@@ -38419,7 +38435,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "atacseq",
@@ -42163,7 +42179,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "phyloplace",
@@ -42240,7 +42256,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "phyloplace",
@@ -42355,7 +42371,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "phyloplace",
@@ -56052,12 +56068,6 @@
               "type": "directory",
               "description": "Directory pointing to geNomad database"
             }
-          },
-          {
-            "score_calibration": {
-              "type": "boolean",
-              "description": "true/false value to indicate if score calibration should be enabled"
-            }
           }
         ],
         "output": [
@@ -56170,7 +56180,8 @@
           "@CarsonJM"
         ],
         "maintainers": [
-          "@CarsonJM"
+          "@CarsonJM",
+          "@gallvp"
         ]
       },
       "pipelines": [
@@ -58996,7 +59007,9 @@
               "documentation": "https://github.com/brentp/goleft",
               "tool_dev_url": "https://github.com/brentp/goleft",
               "doi": "10.1093/gigascience/gix090",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -64509,7 +64522,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "phyloplace",
@@ -64587,7 +64600,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "phyloplace",
@@ -64674,7 +64687,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "phyloplace",
@@ -64756,7 +64769,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "phyloplace",
@@ -68579,6 +68592,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -71523,7 +71540,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "bacass",
@@ -71769,7 +71786,7 @@
             }
           },
           {
-            "krona": {
+            "txt": {
               "type": "file",
               "description": "Krona text-based input file converted from Kraken report",
               "pattern": "*.{txt,krona}"
@@ -75840,7 +75857,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "multiplesequencealign",
@@ -79153,6 +79170,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -85202,6 +85223,12 @@
               "type": "directory",
               "description": "Annotation index created by mudskipper/index"
             }
+          },
+          {
+            "rad": {
+              "type": "string",
+              "description": "File type"
+            }
           }
         ],
         "output": [
@@ -85413,7 +85440,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "bamtofastq",
@@ -89930,7 +89957,7 @@
             }
           },
           {
-            "fasta": {
+            "decoy_fasta": {
               "type": "file",
               "description": "Fasta file containing proteins and decoy proteins",
               "pattern": "*.{fasta}"
@@ -89941,7 +89968,8 @@
           "@jonasscheid"
         ],
         "maintainers": [
-          "@jonasscheid"
+          "@jonasscheid",
+          "@gallvp"
         ]
       },
       "pipelines": [
@@ -96675,7 +96703,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "multiplesequencealign",
@@ -100235,10 +100263,10 @@
             }
           },
           {
-            "valid_fasta": {
+            "invalid_fasta": {
               "type": "file",
               "description": "Fasta file containing sequences which didn't pass the qc (\"invalid.fasta\"). If true is set on the \"compress\" input value, the files are gz-compressed.",
-              "pattern": "*.{fasta.gz, fasta}"
+              "pattern": "*_invalid.{fasta.gz, fasta}"
             }
           },
           {
@@ -100260,7 +100288,8 @@
           "@paulwolk"
         ],
         "maintainers": [
-          "@paulwolk"
+          "@paulwolk",
+          "@gallvp"
         ]
       }
     },
@@ -100973,6 +101002,13 @@
             }
           },
           {
+            "session_info": {
+              "type": "file",
+              "description": "R session log",
+              "pattern": "*.R_sessionInfo.log"
+            }
+          },
+          {
             "versions": {
               "type": "file",
               "description": "File containing software versions",
@@ -101286,6 +101322,13 @@
               "type": "file",
               "description": "dump of R SessionInfo",
               "pattern": "*.R_sessionInfo.log"
+            }
+          },
+          {
+            "warnings": {
+              "type": "file",
+              "description": "Warnings",
+              "pattern": "*.warnings.log"
             }
           },
           {
@@ -128314,24 +128357,10 @@
             }
           },
           {
-            "seq_summary": {
+            "ontfile": {
               "type": "file",
-              "description": "Basecaller sequencing summary source",
-              "pattern": "*.txt"
-            }
-          },
-          {
-            "fastq": {
-              "type": "file",
-              "description": "FASTQ file (necessary if no sequencing summary file)",
-              "pattern": "*.{fq,fastq,fq.gz,fastq.gz}"
-            }
-          },
-          {
-            "bam": {
-              "type": "file",
-              "description": "BAM file (necessary if no sequencing summary file)",
-              "pattern": "*.bam"
+              "description": "Input ONT file",
+              "pattern": "*.{fastq,fastq.gz,fq,fq.gz,txt,txt.gz,bam}"
             }
           }
         ],
@@ -131575,7 +131604,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "atacseq",
@@ -135069,7 +135098,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "crisprseq",
@@ -135147,7 +135176,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         }
       ]
     },
@@ -135389,7 +135418,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         }
       ]
     },
@@ -140267,7 +140296,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "phyloplace",
@@ -146592,7 +146621,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "bacass",
@@ -146821,7 +146850,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "bacass",
@@ -147080,7 +147109,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "bacass",
