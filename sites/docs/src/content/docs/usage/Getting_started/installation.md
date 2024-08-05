@@ -11,16 +11,9 @@ Nextflow must be installed on the system where you launch an nf-core pipeline.
 
 A personal installation of Nextflow is recommended to simplify updates and version control.
 
-The [Nextflow documentation](https://www.nextflow.io/docs/latest/install.html#installation) is the most accurate and up-to-date installation guide.
-However, on this page, we provide a Nextflow [quick start](#quick-start-installation) guide, instructions for [installing Nextflow via Conda](#bioconda-instllation), and installing Nextflow on [Windows operating systems](#installation-on-windows).
-
 :::note
 You don't need to install the `nf-core` command line tools to run nf-core pipelines. However, `nf-core` tools offer a number of helpful commands for users and are essential for pipeline developers. See the [tools page](/tools) for more information.
 :::
-
-### Nextflow installation
-
-The Nextflow installation docs can be found [here](https://www.nextflow.io/docs/latest/getstarted.html#installation) for the latest instructions.
 
 ### Requirements
 
@@ -56,7 +49,7 @@ To install Java with SDKMAN:
     java -version
     ```
 
-### Nextflow
+### Nextflow installation
 
 Nextflow is distributed as a self-installing package, in order to make the installation process as simple as possible:
 
@@ -81,8 +74,10 @@ This will create the `nextflow` executable in the current directory.
     mv nextflow $HOME/.local/bin/
     ```
 
-    :::tip
-    Ensure the directory `$HOME/.local/bin/` is included in your `PATH` variable. If it is not, add it by setting `export PATH="$PATH:$HOME/.local/bin"`. Alternatively, you could move Nextflow to a directory already in your `PATH`. Be aware that Nextflow will update its executable during the self update process and it should not be placed in a directory with restricted permissions.
+    Ensure the directory `$HOME/.local/bin/` is included in your `PATH` variable. If it is not, add it by setting `export PATH="$PATH:$HOME/.local/bin"`. Setting your `PATH` variable in your `.bashrc` or `.zshrc` file will fix your version of Nextflow across sessions. Alternatively, you could move Nextflow to a directory already in your `PATH`.
+
+    :::warning
+    Nextflow will update its executable during the self update process and it should not be placed in a directory with restricted permissions.
     :::
 
 4. Confirm that Nextflow is installed correctly:
@@ -91,11 +86,11 @@ This will create the `nextflow` executable in the current directory.
     nextflow info
     ```
 
-### Bioconda installation
+#### Bioconda installation
 
 Nextflow can also be installed using [Bioconda](https://bioconda.github.io/).
 
-First, set up Bioconda according to the [Bioconda documentation](https://bioconda.github.io/#usage), notably setting up channels:
+Set up Bioconda according to the [Bioconda documentation](https://bioconda.github.io/#usage), notably setting up channels:
 
 ```bash
 conda config --add channels bioconda
@@ -121,7 +116,7 @@ To deactivate the conda environment, run:
 conda deactivate
 ```
 
-### Installation on Windows
+#### Windows installation
 
 The installation procedure for Windows computers is more complex.
 
@@ -153,9 +148,7 @@ export NXF_VER=23.10.1
 nextflow run hello-world
 ```
 
-:::note
 Setting the `NXF_VER` variable in your `.bashrc` or `.zshrc` file will fix your version of Nextflow across sessions.
-:::
 
 You can also temporarily switch to a specific version of Nextflow with the `NXF_VER` environment variable. For example:
 
@@ -191,7 +184,7 @@ Historically, all tools would need to be installed manually - often a source of 
 nf-core pipelines utilise the built-in support for software packaging that Nextflow offers.
 Using profiles, software dependencies can be managed through various packaging (e.g., container runtimes).
 To use any of the below, simply execute your nf-core pipeline with the `-profile` option.
-For example, `-profile docker` or `-profile singularity`.
+For example, `-profile docker` or `-profile singularity`. The respective tooling for each profile (e.g., [Docker](https://docs.docker.com/install/)) must be installed prior to execution.
 
 - [Docker](https://docs.docker.com/install/)
   - Typically used locally, on single-user servers, and the cloud
@@ -204,7 +197,7 @@ For example, `-profile docker` or `-profile singularity`.
 - [Apptainer](https://apptainer.org/)
 
   - Open source version of Singularity (split from Singularity in 2021)
-  - :::warning
+    :::warning
     Currently, nf-core pipelines run with `-profile apptainer` will build using
     docker containers instead of using pre-built singularity containers.
 
@@ -222,7 +215,3 @@ For example, `-profile docker` or `-profile singularity`.
     - The software still runs in your native operating system environment and so core system functions can differ
 - [Mamba](https://mamba.readthedocs.io/)
   - A faster implementation of Conda
-
-:::note
-The respective tooling for each profile (e.g., [Docker](https://docs.docker.com/install/)) must be installed prior to execution.
-:::
