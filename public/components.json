@@ -5775,6 +5775,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -12297,7 +12301,9 @@
               "description": "Demultiplex Illumina BCL files",
               "homepage": "https://support.illumina.com/sequencing/sequencing_software/bcl2fastq-conversion-software",
               "documentation": "https://support.illumina.com/content/dam/illumina-support/documents/documentation/software_documentation/bcl2fastq/bcl2fastq2-v2-20-software-guide-15051736-03.pdf",
-              "licence": "ILLUMINA"
+              "licence": [
+                "ILLUMINA"
+              ]
             }
           }
         ],
@@ -18279,6 +18285,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -40638,7 +40652,8 @@
         "description": "fq lint is a FASTQ file pair validator.",
         "keywords": [
           "lint",
-          "fastq"
+          "fastq",
+          "validate"
         ],
         "tools": [
           {
@@ -40647,7 +40662,9 @@
               "homepage": "https://github.com/stjude-rust-labs/fq",
               "documentation": "https://github.com/stjude-rust-labs/fq",
               "tool_dev_url": "https://github.com/stjude-rust-labs/fq",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -40667,6 +40684,13 @@
           }
         ],
         "output": [
+          {
+            "lint": {
+              "type": "file",
+              "description": "Lint output",
+              "pattern": "*.fq_lint.txt"
+            }
+          },
           {
             "versions": {
               "type": "file",
@@ -68596,6 +68620,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -79170,6 +79198,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -97813,6 +97845,13 @@
               "description": "PLINK 2 variant information file",
               "pattern": "*.{pvar.zst}"
             }
+          },
+          {
+            "pvar_zst": {
+              "type": "file",
+              "description": "PLINK 2 variant information zst file",
+              "pattern": "*.pvar.zst"
+            }
           }
         ],
         "authors": [
@@ -116313,7 +116352,7 @@
             }
           },
           {
-            "sequences": {
+            "fastx": {
               "type": "file",
               "description": "A FASTQ or FASTA file",
               "pattern": "*.{fastq.gz, fastq, fq, fq.gz, fasta, fastq.gz, fa, fa.gz, fas, fas.gz, fna, fna.gz}"
@@ -116335,7 +116374,7 @@
             }
           },
           {
-            "sequences": {
+            "fastx": {
               "type": "file",
               "description": "FASTQ/FASTA file containing renamed sequences",
               "pattern": "*.{fastq.gz, fasta.gz}"
