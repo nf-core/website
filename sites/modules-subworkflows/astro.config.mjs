@@ -40,9 +40,6 @@ export default defineConfig({
     redirects: {
         ...latestPipelineReleases,
     },
-    experimental: {
-        contentCollectionJsonSchema: true,
-    },
     integrations: [
         svelte(),
         icon({

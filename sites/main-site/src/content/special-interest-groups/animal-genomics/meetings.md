@@ -6,7 +6,7 @@ groupName: Animal Genomics
 
 # Meeting schedule
 
-The Animal Genomics special interest group meets on the third Wednesday
+The [Animal Genomics special interest group](/special-interest-groups/animal-genomics) meets on the third Wednesday
 of every month at 4 PM CET / 10 AM EDT / 7 AM PDT for 1h.
 
 |   Date | Speaker                                                                                                                 | Event                                                        |
