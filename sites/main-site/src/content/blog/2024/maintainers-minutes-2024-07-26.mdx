@@ -1,0 +1,102 @@
+---
+title: 'Maintainers Minutes: August 2024'
+subtitle: 'Keeping you informed of the latest maintainers discussions'
+pubDate: 2024-08-07T12:00:00+02:00
+embedHeaderImage: true
+authors:
+    - 'jfy133'
+    - 'FriederikeHanssen'
+label:
+    - 'maintainers'
+---
+
+The 'Maintainers Minutes' aims to further give insight into the workings of the [nf-core maintainers team](/governance#maintainers)
+by providing brief summaries of the monthly team meetings.
+
+
+
+## Review of action points from last time
+
+We got about half way through our action points from last time.
+
+Slack channels were created for the new working groups:
+    - #wg-meta-pipelines
+    - #wg-modules-update
+    - #wg-test-data-task-force
+
+Please join if you want to be involved in one of those.
+
+## More (or less) testing
+
+Júlia encountered several failing tests on nf-core/crisprseq with conda and singularity. This was caused by tests only running
+on docker. Moving forward we agreed that at least some tests should also be run
+with `singularity` and `conda`.
+
+We discussed several ideas. On the one hand we'd like to make sure everything works at all times, on the other hand running tons of tests
+makes development slow, costs money, and is not great for the planet 🌳. As a compromise, we agreed on the following:
+    - Singularity & conda tests are run on PR to master
+        - Make singularity required
+        - Conda optional opt-out
+    - Add `workflow dispatch` button for easier manual testing
+
+## Nf-test best practices
+
+- (Nicolas) nf-test - a single snapshot per test vs a single snapshot per file (meaning many per test)
+    - nf-test snapshot format:
+    - One snapshot per file is bad!
+    - All assertions in a snapshot
+
+## Bulk updates of modules
+- [x] (Júlia) Bulk update of modules (https://github.com/nf-core/modules/issues/5828)
+- (Júlia) Restructuring of meta.yml (https://github.com/nf-core/modules/pull/5867)
+ Bulk updates of modules:
+    - Plan: update all modules with:
+        - meta.yml -> channel structure
+        - subworkflows ->
+        - bio.tools identifiers
+        - edam ontologies for all input/output files
+        - removing defaults from conda channel
+        - adding lock files
+        - adding version topic channels
+        - adding lint for stub tests for all modules
+    - Version topic channels:
+        - Maybe should be gradual overtime
+        - Requries pipeline changes anyway
+        - You can actually mix and match topic/non-topic channels
+        - Hackathon task
+
+## Obligatory argument
+
+subworkflow meta.yml restrucutre:
+    - Only has name of the channel, being expanded to better match the channel construct (not just files)
+    - What is the name of the overall channel XYZ - NMaming stuff: now FIGHT!
+        - Structure -> Accepted by majority (only Mattias unhappy)
+
+## Versioning of modules guidelines
+- [ ] Versioning module guidelines? Suggested by Arthur Gymer.
+ Versioning guidelines
+    - Everyone think it's a good idea
+    - Linked with too tools version (but docs independent) or date?
+    - Linting against tools release, but can have a `dev` version of modules guidelines?
+    - Problem: linting can be against tools dev, but this is a not a stable modules version guidelines specification... could change a lot prior next tools release
+    - Commits to website markdown file (too regular/fast)?
+    - Major issue: how to render on website, without copying the entire markdown page every time etc
+        - Also plans (although James found 🤢) to split current guideline pages into multiple pages
+
+## Next time
+- (Mahesh) use params for ext.args: https://nfcore.slack.com/archives/C049MBCEW06/p1721042240473589
+
+
+## Action points
+
+ - [ ] Matthias to attempt again to list modules on subworkflow page
+ - [ ] Julia to include  singulairty/conda tests in template (deadline: next template release)
+ - [ ] Nicolas to update module guidelines to say all assertions in one snapshot (definitely not one per file)
+ - [ ] Mahesh to talk about params ext.args next time
+ - [ ] Matthias to think about new ways of versioning module guidelines
+
+## Upcoming discussions
+
+Next meeting we will be reviewing the progress of the various new task-forces established during the meeting.
+
+\- :heart: from your #maintainers team!
