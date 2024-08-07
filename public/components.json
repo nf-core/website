@@ -201,7 +201,7 @@
             }
           },
           {
-            "assembly": {
+            "reports": {
               "type": "file",
               "description": "FASTA, GenBank or EMBL formatted file",
               "pattern": "*.{fa,fasta,fna,fa.gz,fasta.gz,fna.gz,gbk,gbk.gz,embl,embl.gz}"
@@ -223,7 +223,7 @@
             }
           },
           {
-            "summary": {
+            "report": {
               "type": "file",
               "description": "Tab-delimited report of aggregated results",
               "pattern": "*.{txt}"
@@ -603,14 +603,14 @@
             }
           },
           {
-            "Q-ancestry-fractions": {
+            "ancestry_fractions": {
               "type": "file",
               "description": "Space-delimited files containing ancestry fractions. The output filenames have the number of populations (K) that was assumed for the analysis.",
               "pattern": "*.{Q}"
             }
           },
           {
-            "P-allele-frequencies": {
+            "allele_frequencies": {
               "type": "file",
               "description": "Space-delimited files containing the allele frequencies of the inferred ancestral populations. The output filenames have the number of populations (K) that was assumed for the analysis.",
               "pattern": "*.{P}"
@@ -621,7 +621,8 @@
           "@atrigila"
         ],
         "maintainers": [
-          "@atrigila"
+          "@atrigila",
+          "@gallvp"
         ]
       }
     },
@@ -3802,7 +3803,7 @@
         },
         {
           "name": "proteinfold",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -5690,6 +5691,106 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -5931,7 +6032,9 @@
               "description": "ART is a set of simulation tools to generate synthetic next-generation sequencing reads. ART simulates sequencing reads by mimicking real sequencing process with empirical error models or quality profiles summarized from large recalibrated sequencing data. ART can also simulate reads using user own read error model or quality profiles. ",
               "homepage": "https://www.niehs.nih.gov/research/resources/software/biostatistics/art/index.cfm",
               "doi": "10.1093/bioinformatics/btr708",
-              "licence": "GPL version 3 license"
+              "licence": [
+                "GPL version 3 license"
+              ]
             }
           }
         ],
@@ -6008,7 +6111,8 @@
           "@MarieLataretu"
         ],
         "maintainers": [
-          "@MarieLataretu"
+          "@MarieLataretu",
+          "@gallvp"
         ]
       },
       "pipelines": [
@@ -7858,6 +7962,10 @@
         {
           "name": "funcscan",
           "version": "1.1.6"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -12205,7 +12313,9 @@
               "description": "Demultiplex Illumina BCL files",
               "homepage": "https://support.illumina.com/sequencing/sequencing_software/bcl2fastq-conversion-software",
               "documentation": "https://support.illumina.com/content/dam/illumina-support/documents/documentation/software_documentation/bcl2fastq/bcl2fastq2-v2-20-software-guide-15051736-03.pdf",
-              "licence": "ILLUMINA"
+              "licence": [
+                "ILLUMINA"
+              ]
             }
           }
         ],
@@ -13384,7 +13494,13 @@
         "maintainers": [
           "@mashehu"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "circrna",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "bedtools_intersect",
@@ -15768,7 +15884,7 @@
           },
           {
             "index": {
-              "type": "dir",
+              "type": "directory",
               "description": "Bismark genome index directory",
               "pattern": "BismarkIndex"
             }
@@ -15871,7 +15987,7 @@
           },
           {
             "index": {
-              "type": "dir",
+              "type": "directory",
               "description": "Bismark genome index directory",
               "pattern": "BismarkIndex"
             }
@@ -16058,7 +16174,7 @@
         "output": [
           {
             "index": {
-              "type": "dir",
+              "type": "directory",
               "description": "Bismark genome index directory",
               "pattern": "BismarkIndex"
             }
@@ -16266,12 +16382,6 @@
               "type": "file",
               "description": "Text file containing methylation bias information",
               "pattern": "*.{txt}"
-            }
-          },
-          {
-            "fasta": {
-              "type": "file",
-              "description": "Input genome fasta file"
             }
           }
         ],
@@ -18149,6 +18259,162 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         }
       ]
@@ -20231,7 +20497,7 @@
         },
         {
           "name": "pixelator",
-          "version": "1.3.0"
+          "version": "1.3.1"
         },
         {
           "name": "riboseq",
@@ -22918,6 +23184,13 @@
               "type": "file",
               "description": "CheckQC report in json format",
               "pattern": "*checkqc_report.json"
+            }
+          },
+          {
+            "log": {
+              "type": "file",
+              "description": "CheckQC log in txt format",
+              "pattern": "*_log.txt"
             }
           }
         ],
@@ -29998,7 +30271,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "crisprseq",
@@ -31090,6 +31363,12 @@
               "description": "FASTA/GenBank/Pfam CSV file",
               "pattern": "*.{fasta,fa,fna,gbk,csv}"
             }
+          },
+          {
+            "db": {
+              "type": "directory",
+              "description": "Database path"
+            }
           }
         ],
         "output": [
@@ -31487,11 +31766,13 @@
         ],
         "authors": [
           "@FriederikeHanssen",
-          "@SusiJo"
+          "@SusiJo",
+          "@JoseEspinosa"
         ],
         "maintainers": [
           "@FriederikeHanssen",
-          "@SusiJo"
+          "@SusiJo",
+          "@JoseEspinosa"
         ]
       },
       "pipelines": [
@@ -31619,7 +31900,9 @@
         "description": "Computes read coverage for genomic regions (bins) across the entire genome.",
         "keywords": [
           "bam",
-          "coverage"
+          "coverage",
+          "genome",
+          "bin"
         ],
         "tools": [
           {
@@ -31642,7 +31925,7 @@
             }
           },
           {
-            "bam": {
+            "bams": {
               "type": "file",
               "description": "One or more BAM files",
               "pattern": "*.{bam}"
@@ -31686,11 +31969,13 @@
         ],
         "authors": [
           "@tamara-hodgetts",
-          "@chris-cheshire"
+          "@chris-cheshire",
+          "@joseespinosa"
         ],
         "maintainers": [
           "@tamara-hodgetts",
-          "@chris-cheshire"
+          "@chris-cheshire",
+          "@joseespinosa"
         ]
       },
       "pipelines": [
@@ -31742,14 +32027,14 @@
           },
           {
             "method": {
-              "type": "value",
+              "type": "string",
               "description": "Correlation coefficient to use for heatmap or scatterplot generation\n",
               "pattern": "{spearman,pearson}"
             }
           },
           {
             "plot_type": {
-              "type": "value",
+              "type": "string",
               "description": "Type of output plot to display sample correlation\n",
               "pattern": "{heatmap,scatterplot}"
             }
@@ -31786,11 +32071,13 @@
         ],
         "authors": [
           "@tamara-hodgetts",
-          "@chris-cheshire"
+          "@chris-cheshire",
+          "@joseespinosa"
         ],
         "maintainers": [
           "@tamara-hodgetts",
-          "@chris-cheshire"
+          "@chris-cheshire",
+          "@joseespinosa"
         ]
       },
       "pipelines": [
@@ -32016,10 +32303,12 @@
       "type": "module",
       "meta": {
         "name": "deeptools_plotpca",
-        "description": "Generates principal component analysis (PCA) plot using a compressed matrix generated by mutlibamsummary or multibigwigsummary as input.",
+        "description": "Generates principal component analysis (PCA) plot using a compressed matrix generated by multibamsummary or multibigwigsummary as input.",
         "keywords": [
           "PCA",
-          "matrix"
+          "matrix",
+          "bam",
+          "bigwig"
         ],
         "tools": [
           {
@@ -32080,11 +32369,13 @@
         ],
         "authors": [
           "@tamara-hodgetts",
-          "@chris-cheshire"
+          "@chris-cheshire",
+          "@joseespinosa"
         ],
         "maintainers": [
           "@tamara-hodgetts",
-          "@chris-cheshire"
+          "@chris-cheshire",
+          "@joseespinosa"
         ]
       },
       "pipelines": [
@@ -33066,6 +33357,78 @@
           "version": "1.1.8"
         }
       ]
+    },
+    {
+      "name": "diamond_cluster",
+      "path": "modules/nf-core/diamond/cluster/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "diamond_cluster",
+        "description": "calculate clusters of highly similar sequences",
+        "keywords": [
+          "clustering",
+          "alignment",
+          "genomics",
+          "proteomics"
+        ],
+        "tools": [
+          {
+            "diamond": {
+              "description": "Accelerated BLAST compatible local sequence aligner",
+              "homepage": "https://github.com/bbuchfink/diamond/wiki",
+              "documentation": "https://github.com/bbuchfink/diamond/wiki",
+              "tool_dev_url": "https://github.com/bbuchfink/diamond",
+              "doi": "10.1038/s41592-021-01101-x",
+              "licence": [
+                "GPL v3-or-later"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "db": {
+              "type": "file",
+              "description": "The input sequence database. Supported formats are FASTA and DIAMOND (.dmnd) format.",
+              "pattern": "*.{dmnd,fa,faa,fasta}(.gz)"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "tsv": {
+              "type": "file",
+              "description": "a 2-column tabular file with the representative accession as the first column and the member sequence accession as the second column",
+              "pattern": "*.tsv"
+            }
+          }
+        ],
+        "authors": [
+          "@itrujnara"
+        ],
+        "maintainers": [
+          "@itrujnara"
+        ]
+      }
     },
     {
       "name": "diamond_makedb",
@@ -34275,6 +34638,12 @@
               "type": "directory",
               "description": "Directory containing eggnog database files (e.g. eggnog-mapper/data)",
               "pattern": "*"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing database information\ne.g. `[ id:'test' ]`\n"
             }
           },
           {
@@ -36045,7 +36414,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "phyloplace",
@@ -36136,7 +36505,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "phyloplace",
@@ -38140,7 +38509,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "atacseq",
@@ -39978,7 +40347,13 @@
         "maintainers": [
           "@mirpedrol"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "foldcomp_compress",
@@ -40337,7 +40712,8 @@
         "description": "fq lint is a FASTQ file pair validator.",
         "keywords": [
           "lint",
-          "fastq"
+          "fastq",
+          "validate"
         ],
         "tools": [
           {
@@ -40346,7 +40722,9 @@
               "homepage": "https://github.com/stjude-rust-labs/fq",
               "documentation": "https://github.com/stjude-rust-labs/fq",
               "tool_dev_url": "https://github.com/stjude-rust-labs/fq",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -40366,6 +40744,13 @@
           }
         ],
         "output": [
+          {
+            "lint": {
+              "type": "file",
+              "description": "Lint output",
+              "pattern": "*.fq_lint.txt"
+            }
+          },
           {
             "versions": {
               "type": "file",
@@ -41878,7 +42263,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "phyloplace",
@@ -41955,7 +42340,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "phyloplace",
@@ -42070,7 +42455,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "phyloplace",
@@ -55767,12 +56152,6 @@
               "type": "directory",
               "description": "Directory pointing to geNomad database"
             }
-          },
-          {
-            "score_calibration": {
-              "type": "boolean",
-              "description": "true/false value to indicate if score calibration should be enabled"
-            }
           }
         ],
         "output": [
@@ -55885,7 +56264,8 @@
           "@CarsonJM"
         ],
         "maintainers": [
-          "@CarsonJM"
+          "@CarsonJM",
+          "@gallvp"
         ]
       },
       "pipelines": [
@@ -58711,7 +59091,9 @@
               "documentation": "https://github.com/brentp/goleft",
               "tool_dev_url": "https://github.com/brentp/goleft",
               "doi": "10.1093/gigascience/gix090",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -61422,7 +61804,7 @@
         },
         {
           "name": "proteinfold",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "riboseq",
@@ -64224,7 +64606,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "phyloplace",
@@ -64302,7 +64684,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "phyloplace",
@@ -64389,7 +64771,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "phyloplace",
@@ -64471,7 +64853,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "phyloplace",
@@ -66900,12 +67282,6 @@
             }
           },
           {
-            "meta2": {
-              "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
-            }
-          },
-          {
             "profiles": {
               "type": "directory",
               "description": "InStrain profile folders",
@@ -66946,6 +67322,34 @@
               "type": "directory",
               "description": "inStrain compare folders",
               "pattern": "*.IS_compare/"
+            }
+          },
+          {
+            "comparisons_table": {
+              "type": "file",
+              "description": "Comparisons table",
+              "pattern": "*.tsv"
+            }
+          },
+          {
+            "pooled_snv": {
+              "type": "file",
+              "description": "Pooled SNV",
+              "pattern": "*.tsv"
+            }
+          },
+          {
+            "snv_info": {
+              "type": "file",
+              "description": "SNV information",
+              "pattern": "*.tsv"
+            }
+          },
+          {
+            "snv_keys": {
+              "type": "file",
+              "description": "SNV keys",
+              "pattern": "*.tsv"
             }
           }
         ],
@@ -67047,6 +67451,48 @@
               "type": "directory",
               "description": "InStrain profile folder",
               "pattern": "*.IS/"
+            }
+          },
+          {
+            "gene_info": {
+              "type": "file",
+              "description": "Gene information",
+              "pattern": "*.tsv"
+            }
+          },
+          {
+            "genome_info": {
+              "type": "file",
+              "description": "Genome information",
+              "pattern": "*.tsv"
+            }
+          },
+          {
+            "linkage": {
+              "type": "file",
+              "description": "Linkage information",
+              "pattern": "*.tsv"
+            }
+          },
+          {
+            "mapping_info": {
+              "type": "file",
+              "description": "Mapping information",
+              "pattern": "*.tsv"
+            }
+          },
+          {
+            "scaffold_info": {
+              "type": "file",
+              "description": "Scaffold information",
+              "pattern": "*.tsv"
+            }
+          },
+          {
+            "snvs": {
+              "type": "file",
+              "description": "SNVs",
+              "pattern": "*.tsv"
             }
           }
         ],
@@ -68031,6 +68477,106 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
         {
           "name": "isoseq",
           "version": "1.1.5"
@@ -71158,7 +71704,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "bacass",
@@ -71188,7 +71734,7 @@
       "type": "module",
       "meta": {
         "name": "krakentools_combinekreports",
-        "description": "Takes a Kraken report file and prints out a krona-compatible TEXT file",
+        "description": "Takes multiple kraken-style reports and combines them into a single report file",
         "keywords": [
           "kraken",
           "krakentools",
@@ -71404,7 +71950,7 @@
             }
           },
           {
-            "krona": {
+            "txt": {
               "type": "file",
               "description": "Krona text-based input file converted from Kraken report",
               "pattern": "*.{txt,krona}"
@@ -75475,7 +76021,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "multiplesequencealign",
@@ -78788,6 +79334,106 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -82672,7 +83318,7 @@
       "pipelines": [
         {
           "name": "proteinfold",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -83219,7 +83865,7 @@
       "pipelines": [
         {
           "name": "proteinfold",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -84757,6 +85403,12 @@
               "type": "directory",
               "description": "Annotation index created by mudskipper/index"
             }
+          },
+          {
+            "rad": {
+              "type": "string",
+              "description": "File type"
+            }
           }
         ],
         "output": [
@@ -84968,7 +85620,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "bamtofastq",
@@ -85144,7 +85796,7 @@
         },
         {
           "name": "proteinfold",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "quantms",
@@ -86489,6 +87141,10 @@
         {
           "name": "nanoseq",
           "version": "3.1.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         },
         {
           "name": "scnanoseq",
@@ -89481,7 +90137,7 @@
             }
           },
           {
-            "fasta": {
+            "decoy_fasta": {
               "type": "file",
               "description": "Fasta file containing proteins and decoy proteins",
               "pattern": "*.{fasta}"
@@ -89492,7 +90148,8 @@
           "@jonasscheid"
         ],
         "maintainers": [
-          "@jonasscheid"
+          "@jonasscheid",
+          "@gallvp"
         ]
       },
       "pipelines": [
@@ -96226,7 +96883,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "multiplesequencealign",
@@ -97335,6 +97992,13 @@
               "type": "file",
               "description": "PLINK 2 variant information file",
               "pattern": "*.{pvar.zst}"
+            }
+          },
+          {
+            "pvar_zst": {
+              "type": "file",
+              "description": "PLINK 2 variant information zst file",
+              "pattern": "*.pvar.zst"
             }
           }
         ],
@@ -99348,7 +100012,9 @@
               "documentation": "https://github.com/bonsai-team/Porechop_ABI",
               "tool_dev_url": "https://github.com/bonsai-team/Porechop_ABI",
               "doi": "10.1101/2022.07.07.499093",
-              "licence": "['GPL v3']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -99385,7 +100051,7 @@
             "reads": {
               "type": "file",
               "description": "Adapter-trimmed fastq.gz file",
-              "pattern": "*fastq.gz"
+              "pattern": "*.fastq.gz"
             }
           },
           {
@@ -99397,10 +100063,12 @@
           }
         ],
         "authors": [
-          "@sofstam"
+          "@sofstam",
+          "LilyAnderssonLee"
         ],
         "maintainers": [
-          "@sofstam"
+          "@sofstam",
+          "LilyAnderssonLee"
         ]
       }
     },
@@ -99782,10 +100450,10 @@
             }
           },
           {
-            "valid_fasta": {
+            "invalid_fasta": {
               "type": "file",
               "description": "Fasta file containing sequences which didn't pass the qc (\"invalid.fasta\"). If true is set on the \"compress\" input value, the files are gz-compressed.",
-              "pattern": "*.{fasta.gz, fasta}"
+              "pattern": "*_invalid.{fasta.gz, fasta}"
             }
           },
           {
@@ -99807,7 +100475,8 @@
           "@paulwolk"
         ],
         "maintainers": [
-          "@paulwolk"
+          "@paulwolk",
+          "@gallvp"
         ]
       }
     },
@@ -100520,6 +101189,13 @@
             }
           },
           {
+            "session_info": {
+              "type": "file",
+              "description": "R session log",
+              "pattern": "*.R_sessionInfo.log"
+            }
+          },
+          {
             "versions": {
               "type": "file",
               "description": "File containing software versions",
@@ -100833,6 +101509,13 @@
               "type": "file",
               "description": "dump of R SessionInfo",
               "pattern": "*.R_sessionInfo.log"
+            }
+          },
+          {
+            "warnings": {
+              "type": "file",
+              "description": "Warnings",
+              "pattern": "*.warnings.log"
             }
           },
           {
@@ -108175,6 +108858,79 @@
       ]
     },
     {
+      "name": "samtools_consensus",
+      "path": "modules/nf-core/samtools/consensus/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "samtools_consensus",
+        "description": "Produces a consensus FASTA/FASTQ/PILEUP",
+        "keywords": [
+          "consensus",
+          "bam",
+          "fastq",
+          "fasta",
+          "pileup"
+        ],
+        "tools": [
+          {
+            "samtools": {
+              "description": "SAMtools is a set of utilities for interacting with and post-processing\nshort DNA sequence read alignments in the SAM, BAM and CRAM formats, written by Heng Li.\nThese files are generated as output by short read aligners like BWA.\n",
+              "homepage": "http://www.htslib.org/",
+              "documentation": "http://www.htslib.org/doc/samtools.html",
+              "tool_dev_url": "https://github.com/samtools/samtools",
+              "doi": "10.1093/bioinformatics/btp352",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "input": {
+              "type": "file",
+              "description": "Sorted BAM/CRAM/SAM file",
+              "pattern": "*.{bam,cram,sam}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "output": {
+              "type": "file",
+              "description": "Consensus sequences",
+              "pattern": "*.{fasta,fastq,pileup}"
+            }
+          }
+        ],
+        "authors": [
+          "@LilyAnderssonLee"
+        ],
+        "maintainers": [
+          "@LilyAnderssonLee"
+        ]
+      }
+    },
+    {
       "name": "samtools_convert",
       "path": "modules/nf-core/samtools/convert/meta.yml",
       "type": "module",
@@ -113067,6 +113823,12 @@
             }
           },
           {
+            "recal_table": {
+              "type": "file",
+              "description": "Recalibration table from sentieon/qualcal (optional)"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "Genome fasta file",
@@ -113163,6 +113925,148 @@
       ]
     },
     {
+      "name": "sentieon_qualcal",
+      "path": "modules/nf-core/sentieon/qualcal/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "sentieon_qualcal",
+        "description": "Generate recalibration table and optionally perform base quality recalibration",
+        "keywords": [
+          "base quality score recalibration",
+          "bqsr",
+          "sentieon"
+        ],
+        "tools": [
+          {
+            "sentieon": {
+              "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
+              "homepage": "https://www.sentieon.com/",
+              "documentation": "https://www.sentieon.com/"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "input": {
+              "type": "file",
+              "description": "BAM/CRAM file from alignment",
+              "pattern": "*.{bam,cram}"
+            }
+          },
+          {
+            "input_index": {
+              "type": "file",
+              "description": "BAI/CRAI file from alignment",
+              "pattern": "*.{bai,crai}"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "The reference fasta file",
+              "pattern": "*.fasta"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "Index of reference fasta file",
+              "pattern": "*.fasta.fai"
+            }
+          },
+          {
+            "known_sites": {
+              "type": "file",
+              "description": "VCF files with known sites for indels / snps (optional)",
+              "pattern": "*.vcf.gz"
+            }
+          },
+          {
+            "known_sites_tbi": {
+              "type": "file",
+              "description": "Tabix index of the known_sites (optional)",
+              "pattern": "*.vcf.gz.tbi"
+            }
+          },
+          {
+            "recalibration_table": {
+              "type": "file",
+              "description": "File containing recalibration values (optional)",
+              "pattern": "*.table"
+            }
+          },
+          {
+            "generate_recalibrated_bams": {
+              "type": "boolean",
+              "description": "If truem, writes recalibrated bams to disc"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "table": {
+              "type": "file",
+              "description": "Pre Recalibration table (optional)",
+              "pattern": "*.table"
+            }
+          },
+          {
+            "table_post": {
+              "type": "file",
+              "description": "Post recalibration table (optional)",
+              "pattern": "*.table.post"
+            }
+          },
+          {
+            "recal_alignment": {
+              "type": "file",
+              "description": "Recalibrated input files (optional)",
+              "pattern": "*.{bam,cram}"
+            }
+          },
+          {
+            "csv": {
+              "type": "file",
+              "description": "Recalibration results output file used for plotting. (optional)",
+              "pattern": "*.csv"
+            }
+          },
+          {
+            "pdf": {
+              "type": "file",
+              "description": "PDF file containing graphs (optional)",
+              "pattern": "*.pdf"
+            }
+          }
+        ],
+        "authors": [
+          "@FriederikeHanssen"
+        ],
+        "maintainers": [
+          "@FriederikeHanssen"
+        ]
+      }
+    },
+    {
       "name": "sentieon_readwriter",
       "path": "modules/nf-core/sentieon/readwriter/meta.yml",
       "type": "module",
@@ -113242,7 +114146,7 @@
           {
             "output": {
               "type": "file",
-              "description": "BAM/CRAM file",
+              "description": "BAM/CRAM file. Depends on how ext.prefix is set. BAM \"ext.prefix = <filename>.bam\", CRAM \"ext.prefix = <filename>.cram\". Defaults to cram",
               "pattern": "*.{bam,cram}"
             }
           },
@@ -114862,7 +115766,13 @@
         "maintainers": [
           "@DLBPointon"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "seqkit_sort",
@@ -115549,7 +116459,13 @@
           "@sidorov-si",
           "@adamrtalbot"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "seqtk_seq",
@@ -115584,7 +116500,7 @@
             }
           },
           {
-            "sequences": {
+            "fastx": {
               "type": "file",
               "description": "A FASTQ or FASTA file",
               "pattern": "*.{fastq.gz, fastq, fq, fq.gz, fasta, fastq.gz, fa, fa.gz, fas, fas.gz, fna, fna.gz}"
@@ -115606,7 +116522,7 @@
             }
           },
           {
-            "sequences": {
+            "fastx": {
               "type": "file",
               "description": "FASTQ/FASTA file containing renamed sequences",
               "pattern": "*.{fastq.gz, fasta.gz}"
@@ -115665,6 +116581,12 @@
           }
         ],
         "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+            }
+          },
           {
             "sequences": {
               "type": "file",
@@ -120501,6 +121423,12 @@
               "description": "Files containing signature (hash sketches) of reference genomes",
               "pattern": "*.{sig}"
             }
+          },
+          {
+            "ksize": {
+              "type": "integer",
+              "description": "ksize value"
+            }
           }
         ],
         "output": [
@@ -121214,6 +122142,76 @@
         ],
         "maintainers": [
           "@rpetit3"
+        ]
+      }
+    },
+    {
+      "name": "splitubam",
+      "path": "modules/nf-core/splitubam/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "splitubam",
+        "description": "split one ubam into multiple, per line, fast",
+        "keywords": [
+          "long-read",
+          "bam",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "splitubam": {
+              "description": "Split one ubam into multiple, per line, fast",
+              "homepage": "https://github.com/fellen31/splitubam",
+              "documentation": "https://github.com/fellen31/splitubam",
+              "tool_dev_url": "https://github.com/fellen31/splitubam",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:true ]`\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "(u)BAM file",
+              "pattern": "*.{bam}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "Split (u)BAM file",
+              "pattern": "*.{bam}"
+            }
+          }
+        ],
+        "authors": [
+          "@fellen31"
+        ],
+        "maintainers": [
+          "@fellen31"
         ]
       }
     },
@@ -127558,24 +128556,10 @@
             }
           },
           {
-            "seq_summary": {
+            "ontfile": {
               "type": "file",
-              "description": "Basecaller sequencing summary source",
-              "pattern": "*.txt"
-            }
-          },
-          {
-            "fastq": {
-              "type": "file",
-              "description": "FASTQ file (necessary if no sequencing summary file)",
-              "pattern": "*.{fq,fastq,fq.gz,fastq.gz}"
-            }
-          },
-          {
-            "bam": {
-              "type": "file",
-              "description": "BAM file (necessary if no sequencing summary file)",
-              "pattern": "*.bam"
+              "description": "Input ONT file",
+              "pattern": "*.{fastq,fastq.gz,fq,fq.gz,txt,txt.gz,bam}"
             }
           }
         ],
@@ -130819,7 +131803,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "atacseq",
@@ -130882,12 +131866,16 @@
           "version": "2.2.0"
         },
         {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
           "name": "phageannotator",
           "version": "dev"
         },
         {
           "name": "proteinfold",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "rangeland",
@@ -134309,7 +135297,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "crisprseq",
@@ -134387,7 +135375,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         }
       ]
     },
@@ -134629,7 +135617,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         }
       ]
     },
@@ -136146,6 +137134,78 @@
         ],
         "maintainers": [
           "@ksenia-krasheninnikova"
+        ]
+      }
+    },
+    {
+      "name": "yak_count",
+      "path": "modules/nf-core/yak/count/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "yak_count",
+        "description": "a tool to build k-mer hash table for fasta and fastq files",
+        "keywords": [
+          "kmer",
+          "fastq",
+          "sequence",
+          "count",
+          "assembly"
+        ],
+        "tools": [
+          {
+            "yak": {
+              "description": "Yet another k-mer analyzer",
+              "homepage": "https://github.com/lh3/yak",
+              "documentation": "https://github.com/lh3/yak/blob/master/README.md",
+              "tool_dev_url": "https://github.com/lh3/yak",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "fastq": {
+              "type": "file",
+              "description": "reads fastq/fasta file",
+              "pattern": "*.{fastq.gz,fq.gz,fasta.gz,fa.gz}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "yak": {
+              "type": "file",
+              "description": "k-mer hash table of input",
+              "pattern": "*.{yak}"
+            }
+          }
+        ],
+        "authors": [
+          "@yumisims"
+        ],
+        "maintainers": [
+          "@yumisims"
         ]
       }
     },
@@ -139435,7 +140495,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "phyloplace",
@@ -145760,7 +146820,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "bacass",
@@ -145864,11 +146924,11 @@
         },
         {
           "name": "pixelator",
-          "version": "1.3.0"
+          "version": "1.3.1"
         },
         {
           "name": "proteinfold",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "rangeland",
@@ -145989,7 +147049,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "bacass",
@@ -146093,11 +147153,11 @@
         },
         {
           "name": "pixelator",
-          "version": "1.3.0"
+          "version": "1.3.1"
         },
         {
           "name": "proteinfold",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "rangeland",
@@ -146248,7 +147308,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.10.0"
+          "version": "2.11.0"
         },
         {
           "name": "bacass",
@@ -146352,11 +147412,11 @@
         },
         {
           "name": "pixelator",
-          "version": "1.3.0"
+          "version": "1.3.1"
         },
         {
           "name": "proteinfold",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "rangeland",
