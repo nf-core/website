@@ -48,9 +48,6 @@ export default defineConfig({
         ...latestPipelineReleases,
         ...pipelineResults,
     },
-    experimental: {
-        contentCollectionJsonSchema: true,
-    },
     integrations: [
         svelte(),
         icon({
