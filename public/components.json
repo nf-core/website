@@ -5795,6 +5795,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -10124,6 +10128,10 @@
           "version": "3.4.3"
         },
         {
+          "name": "variantbenchmarking",
+          "version": "dev"
+        },
+        {
           "name": "variantcatalogue",
           "version": "dev"
         }
@@ -14065,6 +14073,10 @@
         },
         {
           "name": "tfactivity",
+          "version": "dev"
+        },
+        {
+          "name": "variantbenchmarking",
           "version": "dev"
         },
         {
@@ -18307,6 +18319,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -64978,6 +64998,99 @@
       }
     },
     {
+      "name": "hmmer_hmmrank",
+      "path": "modules/nf-core/hmmer/hmmrank/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "hmmer_hmmrank",
+        "description": "R script that scores output from multiple runs of hmmer/hmmsearch",
+        "keywords": [
+          "hmmer",
+          "hmmsearch",
+          "rank"
+        ],
+        "tools": [
+          {
+            "hmmer": {
+              "description": "Biosequence analysis using profile hidden Markov models",
+              "homepage": "http://hmmer.org/",
+              "documentation": "http://hmmer.org/documentation.html",
+              "tool_dev_url": "https://github.com/EddyRivasLab/hmmer",
+              "doi": "10.1371/journal.pcbi.1002195",
+              "licence": [
+                "BSD"
+              ]
+            }
+          },
+          {
+            "R": {
+              "description": "A Language and Environment for Statistical Computing",
+              "homepage": "https://www.r-project.org/",
+              "documentation": "https://www.r-project.org/",
+              "licence": [
+                "GPL v2"
+              ]
+            }
+          },
+          {
+            "Tidyverse": {
+              "description": "Tidyverse: R packages for data science",
+              "homepage": "https://www.tidyverse.org/",
+              "documentation": "https://www.tidyverse.org/",
+              "tool_dev_url": "https://github.com/tidyverse",
+              "doi": "10.21105/joss.01686",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "tblouts": {
+              "type": "file",
+              "description": "table outputs from hmmsearch",
+              "pattern": "*.tsv.gz"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "hmmrank": {
+              "type": "file",
+              "description": "TSV file with ranked hmmer results",
+              "pattern": "*.hmmrank.tsv.gz"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@erikrikarddaniel"
+        ],
+        "maintainers": [
+          "@erikrikarddaniel"
+        ]
+      }
+    },
+    {
       "name": "hmmer_hmmsearch",
       "path": "modules/nf-core/hmmer/hmmsearch/meta.yml",
       "type": "module",
@@ -68501,6 +68614,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
         {
           "name": "isoseq",
           "version": "1.1.5"
@@ -79362,6 +79479,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -95609,6 +95730,10 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
         }
       ]
     },
@@ -96158,6 +96283,10 @@
         {
           "name": "raredisease",
           "version": "2.1.0"
+        },
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
         }
       ]
     },
@@ -113060,6 +113189,163 @@
           "version": "3.4.3"
         }
       ]
+    },
+    {
+      "name": "sentieon_coveragemetrics",
+      "path": "modules/nf-core/sentieon/coveragemetrics/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "sentieon_coveragemetrics",
+        "description": "Accelerated implementation of the GATK DepthOfCoverage tool.",
+        "keywords": [
+          "coverage",
+          "sentieon",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "sentieon": {
+              "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
+              "homepage": "https://www.sentieon.com/",
+              "documentation": "https://www.sentieon.com/",
+              "licence": [
+                "Commercial (requires license for use; redistribution allowed)"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "Sorted BAM/CRAM/SAM file",
+              "pattern": "*.{bam,cram,sam}"
+            }
+          },
+          {
+            "bai": {
+              "type": "file",
+              "description": "BAM/CRAM/SAM file index",
+              "pattern": "*.{bai,crai}"
+            }
+          },
+          {
+            "interval": {
+              "type": "file",
+              "description": "BED file of genome regions to draw coverage from",
+              "pattern": "*.bed"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Genome fasta file",
+              "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "Index of the genome fasta file",
+              "pattern": "*.fai"
+            }
+          },
+          {
+            "gene_list": {
+              "type": "file",
+              "description": "RefSeq file used to aggregate the results",
+              "pattern": "*"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "per_locus": {
+              "type": "file",
+              "description": "The per locus coverage with no partition.",
+              "pattern": "${sample_id}"
+            }
+          },
+          {
+            "sample_summary": {
+              "type": "file",
+              "description": "The summary for PARTITION_GROUP sample, aggregated over all bases.",
+              "pattern": "${sample_id}.sample_summary"
+            }
+          },
+          {
+            "statistics": {
+              "type": "file",
+              "description": "The statistics for PARTITION_GROUP library, aggregated by interval.",
+              "pattern": "${sample_id}.interval_statistics"
+            }
+          },
+          {
+            "coverage_counts": {
+              "type": "file",
+              "description": "Contains the histogram of loci with depth larger than x.",
+              "pattern": "${sample_id}.interval_statistics"
+            }
+          },
+          {
+            "coverage_proportions": {
+              "type": "file",
+              "description": "Contains the normalized histogram of loci with depth larger than x.",
+              "pattern": "${sample_id}.interval_statistics"
+            }
+          },
+          {
+            "interval_summary": {
+              "type": "file",
+              "description": "The summary for PARTITION_GROUP library, aggregated by interval.",
+              "pattern": "${sample_id}.interval_summary"
+            }
+          }
+        ],
+        "authors": [
+          "@adamrtalbot"
+        ],
+        "maintainers": [
+          "@adamrtalbot"
+        ]
+      }
     },
     {
       "name": "sentieon_datametrics",
@@ -130608,7 +130894,13 @@
         "maintainers": [
           "@nebfield"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "ucsc_wigtobigwig",
