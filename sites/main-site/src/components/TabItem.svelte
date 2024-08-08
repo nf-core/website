@@ -15,3 +15,15 @@
 >
     <slot />
 </div>
+
+<style lang="scss">
+    .tab-pane {
+        :global(.admonition),
+        :global(figure),
+        :global(pre) {
+            &:last-child {
+                margin-bottom: 0.25rem !important;
+            }
+        }
+    }
+</style>

@@ -29,15 +29,17 @@ config "./nextflow.config"
 
 - When your test data is too big, the tests take too long or require too much resources, you can opt to run your tests in stub mode by adding the following option:
 
-```groovy title="main.nf.test"
-options "-stub"
-```
+  ```groovy title="main.nf.test"
+  options "-stub"
+  ```
 
-:::note
-this can be added at the top of `main.nf.test` to have all tests run in stub mode or this can also be added to a single test
+  :::note
+  this can be added at the top of `main.nf.test` to have all tests run in stub mode or this can also be added to a single test
+  :::
+
+:::tip
+See the [assertions documentation](/docs/contributing/nf-test/assertions) for examples on how to handle different types of test data and scenarios.
 :::
-
-- You can find examples of different nf-tests assertions on [this tutorial](/docs/contributing/nf-test/assertions).
 
 ## nf-test guidelines for a chained module
 
