@@ -1,6 +1,7 @@
 <script lang="ts">
     import { CurrentTab } from '@components/store';
     export let names: string[] = [];
+    export let icons: string[] = [];
 
     CurrentTab.set(names[0]);
 </script>
@@ -21,7 +22,7 @@
                     if (e.key === 'Enter') {
                         CurrentTab.set(name);
                     }
-                }}>{name}</button
+                }}>{@html icons[index]}{name}</button
             >
         </li>
     {/each}
