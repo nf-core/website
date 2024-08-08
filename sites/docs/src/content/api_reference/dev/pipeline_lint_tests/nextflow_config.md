@@ -20,7 +20,7 @@ are not checked and will be assumed to be missing.
 - `manifest.description`: A description of the pipeline
 - `manifest.version`
   - The version of this pipeline. This should correspond to a [GitHub release](https://help.github.com/articles/creating-releases/).
-  - If `--release` is set when running `nf-core lint`, the version number must not contain the string `dev`
+  - If `--release` is set when running `nf-core pipelines lint`, the version number must not contain the string `dev`
   - If `--release` is \_not\_ set, the version should end in `dev` (warning triggered if not)
 - `manifest.nextflowVersion`
   - The minimum version of Nextflow required to run the pipeline.

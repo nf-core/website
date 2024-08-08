@@ -127,8 +127,10 @@ Helper function to take a list of filenames and format with markdown.
 
 - **Returns:**
   Formatted string of paths separated by word `or`, eg:
+
   ```default
   `foo` or bar` or `baz`
   ```
+
 - **Return type:**
   markdown (str)

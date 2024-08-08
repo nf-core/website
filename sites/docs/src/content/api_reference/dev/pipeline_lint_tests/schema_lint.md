@@ -9,7 +9,7 @@ pipeline parameters (eg. `params.something`, `--something`).
 
 :::note
 Reminder: you should generally never need to edit this JSON file by hand.
-The `nf-core schema build` command can create _and edit_ the file for you
+The `nf-core pipelines schema build` command can create _and edit_ the file for you
 to keep it up to date, with a friendly user-interface for customisation.
 :::
 
@@ -56,5 +56,5 @@ For example, an _extremely_ minimal schema could look like this:
 
 :::note
 You can check your pipeline schema without having to run the entire pipeline lint
-by running `nf-core schema lint` instead of `nf-core lint`
+by running `nf-core pipelines schema lint` instead of `nf-core pipelines lint`
 :::

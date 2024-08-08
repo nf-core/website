@@ -101,7 +101,7 @@ lib/nfcore_external_java_deps.jar # if "nf-validation" is in nextflow.config
 ```
 
 :::note
-You can configure the `nf-core lint` tests to ignore any of these checks by setting
+You can configure the `nf-core pipelines lint` tests to ignore any of these checks by setting
 the `files_exist` key as follows in your `.nf-core.yml` config file. For example:
 
 ```yaml
