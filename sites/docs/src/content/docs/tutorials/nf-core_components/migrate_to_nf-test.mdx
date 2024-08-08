@@ -27,7 +27,12 @@ Here are the steps to follow:
             nf-core modules create <tool>/<subtool> --migrate-pytest
             ```
             :::info{title="Technical details" collapse}
-            This command will: - rename the current module directory to `<module>_old` to avoid conflicts with the new module, - create a new module named `<module>`, based on the nf-test template. - copy the `main.nf`, `meta.yml` and `environment.yml` files over to preserve the original module code. - (optional) If your module has a `nextflow.config` file to run (e.g. for `ext.args` specification), the command will also copy it to the module's `tests/` directory and the path will be added to the `main.nf.test` file.
+            This command will:
+
+            - rename the current module directory to `<module>_old` to avoid conflicts with the new module,
+            - create a new module named `<module>`, based on the nf-test template.
+            - copy the `main.nf`, `meta.yml` and `environment.yml` files over to preserve the original module code.
+            - (optional) If your module has a `nextflow.config` file to run (e.g. for `ext.args` specification), the command will also copy it to the module's `tests/` directory and the path will be added to the `main.nf.test` file.
 
                         ```groovy title="main.nf.test"
                         process "MODULE"
@@ -50,7 +55,7 @@ Here are the steps to follow:
 
     </Tabs>
 
--   You will then be asked if you want to delete the old files or keep them. No worries, we will print the content of the old pytests in the terminal so you copy the information to the new nf-test files.
+-   You will then be asked if you want to delete the old files or keep them. No worries, we will print the content of the old pytests in the terminal so you can copy the information to the new nf-test files.
 
 -   Copy the inputs from the pytests and provide them as positional inputs `input[0]` in the `main.nf.test` file
 
