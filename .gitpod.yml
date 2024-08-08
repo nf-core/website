@@ -33,7 +33,6 @@ github:
     # add a "Review in Gitpod" button to the pull request's description (defaults to false)
     addBadge: true
 tasks:
+  # NOTE adding multiple tasks causes them to all run
   - name: Dev Server main-site
     init: npm install
-    command: npm run dev --workspace sites/main-site
-    # Note adding multiple tasks causes them to all run
