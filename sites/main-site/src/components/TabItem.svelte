@@ -18,6 +18,7 @@
 
 <style lang="scss">
     .tab-pane {
+        margin-bottom: 0.5rem;
         :global(.admonition),
         :global(figure),
         :global(pre) {
