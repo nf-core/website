@@ -7,7 +7,7 @@
         title: string;
         description: string;
         type: string;
-        $defs: {
+        definitions: {
             [key: string]: {
                 type: string;
                 properties: {
@@ -30,12 +30,12 @@
         title: '',
         description: '',
         type: '',
-        $defs: {},
+        definitions: {},
     };
-
+    console.log('schema', schema);
     let items =
-        schema && schema['$defs'] && Object.values(schema['$defs'])
-            ? Object.entries(Object.values(schema['$defs'])[0]['properties'])
+        schema && schema['definitions'] && Object.values(schema['definitions'])
+            ? Object.entries(Object.values(schema['definitions'])[0]['properties'])
             : [];
     console.log('items', items);
 </script>
