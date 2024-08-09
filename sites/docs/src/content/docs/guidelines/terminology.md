@@ -26,5 +26,3 @@ Component is our umbrella term for both modules and subworkflows, because they s
 ### Workflow
 
 An end-to-end pipeline where one or more inputs produce a series of outputs. This can either be implemented using a large monolithic script or by using a combination of DSL2 modules and subworkflows. nf-core pipelines can have multiple workflows, such as processing different data types for the same ultimate purpose (such as in [nf-core/viralrecon](https://github.com/nf-core/viralrecon/tree/master/workflows))
-
-- Specify `--hook_url YOUR-HOOK-URL` or set the `params.hook_url` in `nextflow.config` to receive notifications from your pipeline in Microsoft Teams or Slack. Learn how to set up an incoming webhook in [MS Teams](https://learn.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook?tabs=dotnet) and in [Slack](https://api.slack.com/messaging/webhooks).
