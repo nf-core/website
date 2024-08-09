@@ -1,7 +1,7 @@
 ---
 title: Code of Conduct
 description: The nf-core code of conduct
-md_github_url: https://github.com/nf-core/nf-co.re/blob/main/CODE_OF_CONDUCT.md
+md_github_url: https://github.com/nf-core/website/blob/main/CODE_OF_CONDUCT.md
 ---
 
 # Code of Conduct at nf-core (v1.4)
@@ -61,11 +61,17 @@ Members of the core team or the Safety Team who violate the CoC will be required
 Participation in the nf-core community is contingent on following these guidelines in all our workspaces and events, such as hackathons, workshops, bytesize, and collaborative workspaces on gather.town. These guidelines include, but are not limited to, the following (listed alphabetically and therefore in no order of preference):
 
 - Communicating with an official project email address.
-- Communicating with community members within the nf-core Slack channel.
+- Communicating with community members within the nf-core Slack organisation.
 - Participating in hackathons organised by nf-core (both online and in-person events).
 - Participating in collaborative work on GitHub, Google Suite, community calls, mentorship meetings, email correspondence, and on the nf-core gather.town workspace.
 - Participating in workshops, training, and seminar series organised by nf-core (both online and in-person events). This applies to events hosted on web-based platforms such as Zoom, gather.town, Jitsi, YouTube live etc.
 - Representing nf-core on social media. This includes both official and personal accounts.
+
+:::tip
+We have a page specifically for [guidelines regarding marketing activities](/marketing).
+If you're involved in any commercial activity within our community then you must
+also abide by those rules.
+:::
 
 ## nf-core cares 😊
 
@@ -92,6 +98,11 @@ The following behaviours from any participants within the nf-core community (inc
 - Spamming or trolling of individuals on social media.
 - Use of sexual or discriminatory imagery, comments, jokes, or unwelcome sexual attention.
 - Verbal and text comments that reinforce social structures of domination related to gender, gender identity and expression, sexual orientation, ability, physical appearance, body size, race, age, religion, or work experience.
+
+Other more subtle behaviours are also against our code of conduct, and may result in an immediate ban:
+
+- Sending unsolicited direct-messages or emails solely for marketing purposes to community members.
+- Posting in nf-core spaces specifically to criticise or detract from Nextflow and nf-core solely for the purposes of promoting alternatives.
 
 ### Online Trolling
 
