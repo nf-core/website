@@ -10,7 +10,7 @@ When running Nextflow pipelines on a IPv6 machine, you might encounter network e
 
 You might encounter the following error when running a Nextflow pipeline on a IPv6 machine:
 
-```bash
+```console
 nextflow run nf-core/fetchngs -r 1.12.0 -profile test,docker --outdir test
 
 WARN: Cannot read project manifest -- Cause: Network is unreachable (connect failed)
