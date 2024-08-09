@@ -1,12 +1,11 @@
 ---
-title: nf-core Terminology
-subtitle: Specification of the terms used in the nf-core community
-shortTitle: nf-core terminology
+title: Terminology
+subtitle: nf-core terminology
 ---
 
-The features offered by Nextflow DSL2 can be used in various ways depending on the granularity with which you would like to write pipelines. Please see the listing below for the hierarchy and associated terminology we have decided to use when referring to DSL2 components.
+## Introduction
 
-## Terminology
+The features offered by Nextflow DSL2 can be used in various ways depending on the granularity with which you would like to write pipelines. Please see the listing below for the hierarchy and associated terminology nf-core uses when referring to DSL2 components.
 
 ### Domain-Specific Language (DSL)
 
@@ -27,3 +26,5 @@ Component is our umbrella term for both modules and subworkflows, because they s
 ### Workflow
 
 An end-to-end pipeline where one or more inputs produce a series of outputs. This can either be implemented using a large monolithic script or by using a combination of DSL2 modules and subworkflows. nf-core pipelines can have multiple workflows, such as processing different data types for the same ultimate purpose (such as in [nf-core/viralrecon](https://github.com/nf-core/viralrecon/tree/master/workflows))
+
+- Specify `--hook_url YOUR-HOOK-URL` or set the `params.hook_url` in `nextflow.config` to receive notifications from your pipeline in Microsoft Teams or Slack. Learn how to set up an incoming webhook in [MS Teams](https://learn.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook?tabs=dotnet) and in [Slack](https://api.slack.com/messaging/webhooks).
