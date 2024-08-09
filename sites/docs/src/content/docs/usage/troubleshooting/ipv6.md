@@ -29,7 +29,7 @@ If a model tries to fetch information of download data by using a Docker contane
 If this did not resolve your issue, try the `--network host` flag when running the container:
 
 Create a `custom.config` file that you want to add to your nextflow run via `-c`:
-```bash
+```groovy title="custom.config
 process {
     withName: YOUR_MODULE {
         containerOptions = <boilerplate docker.runOptions/containerOptions> + '--network host'
