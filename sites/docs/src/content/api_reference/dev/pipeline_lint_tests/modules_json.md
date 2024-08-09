@@ -1,4 +1,4 @@
-# nextflow_config
+# modules_json
 
 #### `PipelineLint.modules_json(){:python}`
 

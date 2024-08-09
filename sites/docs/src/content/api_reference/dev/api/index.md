@@ -1,15 +1,11 @@
-# API Reference
+# nf-core/tools documentation
 
-- [nf_core.bump_version](bump_version)
-- [nf_core.create](create)
-- [nf_core.download](download)
-- [nf_core.launch](launch)
-- [nf_core.licences](licences)
-- [nf_core.lint](lint)
-- [nf_core.list](list)
-- [nf_core.modules](modules)
-- [nf_core.params_file](params-file)
-- [nf_core.schema](schema)
-- [nf_core.subworkflows](subworkflows)
-- [nf_core.sync](sync)
-- [nf_core.utils](utils)
+This API documentation is for the [`nf-core/tools`](https://github.com/nf-core/tools) package.
+
+## Contents
+
+- [Pipeline commands]() (run by `nf-core pipelines lint`)
+- [Module commands]() (run by `nf-core modules lint`)
+- [Subworkflow commands]() (run by `nf-core subworkflows lint`)
+- [nf-core/tools Python package API reference]()
+  - [nf-core/tools pipeline commands API referece]()
