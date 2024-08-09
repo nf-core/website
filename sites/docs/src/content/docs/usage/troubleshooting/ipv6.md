@@ -16,6 +16,7 @@ nextflow run nf-core/fetchngs -r 1.12.0 -profile test,docker --outdir test
 WARN: Cannot read project manifest -- Cause: Network is unreachable (connect failed)
 Cannot find `nf-core/fetchngs` -- Make sure exists a GitHub repository at this address `https://github.com/nf-core/fetchngs`
 ```
+
 Your machine uses IPv6, but Nextflow or Java defaults to IPv4, causing network issues. Set the Java network stack to prefer IPv6 by exporting this variable before running your pipeline or globally add it to your `~/.bashrc`:
 
 ```bash
@@ -29,6 +30,7 @@ If a model tries to fetch information of download data by using a Docker contane
 If this did not resolve your issue, try the `--network host` flag when running the container:
 
 Create a `custom.config` file that you want to add to your nextflow run via `-c`:
+
 ```groovy title="custom.config
 process {
     withName: YOUR_MODULE {
@@ -40,5 +42,3 @@ Then try running your pipeline again:
 ```bash
 nextflow run nf-core/fetchngs -r 1.12.0 -profile test,docker --outdir test -c custom.config
 ```
-
-
