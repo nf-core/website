@@ -1,0 +1,95 @@
+# Slack invite URL
+/join/slack https://join.slack.com/t/nfcore/shared_invite/zt-2gkgdsy8z-DPRHZpNKnH6g_oX_cuupog
+
+# Force a 404 header on custom 404 page
+# See https://answers.netlify.com/t/bug-and-workaround-404-page-returns-http-200/21154
+/404.html /404      404!
+/404      /404.html 404!
+
+
+# Temporary oldsite redirections
+/logo/*  https://oldsite.nf-co.re/logo/:splat 200
+/pipeline_schema_builder/* https://oldsite.nf-co.re/pipeline_schema_builder/:splat 200
+/launch/* https://oldsite.nf-co.re/launch/:splat 200
+/assets/* https://oldsite.nf-co.re/assets/:splat 200
+
+# New site July 2023 - URL changes
+/community /contributors
+/usage/* /docs/usage/:splat
+/developers/* /docs/contributing/:splat
+/contributing/* /docs/contributing/:splat
+/assets/img/* /images/:splat
+/tools-docs/lint_tests/* /tools/docs/latest/pipeline_lint_tests/:splat
+
+
+# Big docs restructure - April 2024
+/tools                                     https://nf-core-docs.netlify.app/docs/nf-core-tools 200
+/tools/docs/*                              https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/:splat 200
+/tools/*                                   https://nf-core-docs.netlify.app/docs/nf-core-tools/:splat 200
+
+/docs/nf-core-tools/api_reference/:version/api/index  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/:version/api 200
+/docs/nf-core-tools/api_reference/:version/pipeline_lint_tests  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/:version/pipeline_lint_tests 200
+/docs/nf-core-tools/api_reference/:version/module_lint_tests  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/:version/module_lint_tests 200
+/docs/nf-core-tools/api_reference/:version/subworkflow_lint_tests  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/:version/subworkflow_lint_tests 200
+/docs/nf-core-tools/api_reference/:version/:command  https://nf-core-docs.netlify.app/docs/nf-core-tools/api_reference/:version/api/:command 200
+
+
+/docs/usage/introduction                                     https://nf-core-docs.netlify.app/docs/usage/getting_started/introduction 200
+/docs/usage/installation                                     https://nf-core-docs.netlify.app/docs/usage/getting_started/installation 200
+/docs/usage/configuration                                    https://nf-core-docs.netlify.app/docs/usage/getting_started/configuration 200
+/docs/usage/offline                                          https://nf-core-docs.netlify.app/docs/usage/getting_started/offline 200
+/docs/usage/troubleshooting                                  https://nf-core-docs.netlify.app/docs/usage/troubleshooting/overview 200
+/docs/usage/tutorials                                        https://nf-core-docs.netlify.app/docs/tutorials 200
+/docs/usage/tutorials/step_by_step_institutional_profile     https://nf-core-docs.netlify.app/docs/tutorials/use_nf-core_pipelines/config_institutional_profile 200
+/docs/usage/tutorials/nf_core_usage_tutorial                 https://nf-core-docs.netlify.app/docs/tutorials/nf-core_contributing_overview 200
+/docs/usage/tutorials/institution                            https://nf-core-docs.netlify.app/docs/tutorials/contributing_to_nf-core/contributors_institution 200
+/docs/usage/data_management                                  /blog/2020/data_management
+
+/docs/contributing/code_formatting                           https://nf-core-docs.netlify.app/docs/contributing/code_editors_and_styling/code_formatting 200
+/docs/contributing/website_markdown                          https://nf-core-docs.netlify.app/docs/contributing/website/markdown 200
+/docs/contributing/editor_plugins                            https://nf-core-docs.netlify.app/docs/contributing/code_editors_and_styling/editor_plugins 200
+/docs/contributing/tutorials/nf-test_assertions              https://nf-core-docs.netlify.app/docs/contributing/nf-test/assertions 200
+/docs/contributing/release_checklist                         https://nf-core-docs.netlify.app/docs/checklists/pipeline_release 200
+/docs/contributing/pipeline_release_review_guidelines        https://nf-core-docs.netlify.app/docs/checklists/reviews/pipeline_release_pr 200
+/docs/contributing/tutorials                                 https://nf-core-docs.netlify.app/docs/tutorials 200
+/docs/contributing/adding_pipelines                          https://nf-core-docs.netlify.app/docs/tutorials/adding_a_pipeline/overview 200
+/docs/contributing/contributing_to_pipelines                 https://nf-core-docs.netlify.app/docs/tutorials/contributing_to_nf-core/contributing_to_pipelines 200
+/docs/contributing/gitpod                                    https://nf-core-docs.netlify.app/docs/tutorials/gitpod/overview 200
+/docs/contributing/gitpod/nf_core_repo                       https://nf-core-docs.netlify.app/docs/tutorials/gitpod/nf-core_repo 200
+/docs/contributing/gitpod/other_tutorials                    https://nf-core-docs.netlify.app/docs/tutorials/gitpod/overview 200
+/docs/contributing/gitpod/*                                  https://nf-core-docs.netlify.app/docs/tutorials/gitpod/:splat 200
+/docs/contributing/tutorials/adding_modules_to_pipelines     https://nf-core-docs.netlify.app/docs/tutorials/nf-core_components/adding_modules_to_pipelines 200
+/docs/contributing/tutorials/nf_core_configs_outside_nf_core https://nf-core-docs.netlify.app/docs/tutorials/external_usage/nf-core_configs_outside_nf-core 200
+/docs/contributing/subworkflows                              https://nf-core-docs.netlify.app/docs/tutorials/nf-core_components/components 200
+/docs/contributing/modules                                   https://nf-core-docs.netlify.app/docs/tutorials/nf-core_components/components 200
+/docs/contributing/sync                                      https://nf-core-docs.netlify.app/docs/tutorials/sync/overview 200
+/docs/contributing/test_data_guidelines                      https://nf-core-docs.netlify.app/docs/tutorials/tests_and_test_data/test_data 200
+/docs/contributing/training_guide                            https://nf-core-docs.netlify.app/docs/tutorials/contributing_to_nf-core/writing_training 200
+/docs/contributing/tutorials/creating_with_nf_core           https://nf-core-docs.netlify.app/docs/tutorials/nextflow_training/creating_with_nf-core 200
+/docs/usage/tutorials/nextflow                               https://nf-core-docs.netlify.app/docs/tutorials/nextflow_training/nextflow 200
+/docs/contributing/tutorials/dsl2_modules_tutorial           https://nf-core-docs.netlify.app/docs/tutorials/nf-core_components/components  # Not the same page, but equivalent 200
+/docs/contributing/tutorials/nf_core_contributing_overview   https://nf-core-docs.netlify.app/docs/tutorials/nf-core_contributing_overview 200
+/docs/contributing/design_guidelines                         https://nf-core-docs.netlify.app/docs/guidelines/graphic_design 200
+/docs/contributing/guidelines                                https://nf-core-docs.netlify.app/docs/guidelines/pipelines/overview 200
+/docs/contributing/guidelines/recommendations/*              https://nf-core-docs.netlify.app/docs/guidelines/pipelines/recommendations/:splat 200
+/docs/contributing/guidelines/requirements/*                 https://nf-core-docs.netlify.app/docs/guidelines/pipelines/requirements/:splat 200
+/docs/contributing/nfcore_component-specifications           https://nf-core-docs.netlify.app/docs/guidelines/components/overview 200
+/docs/contributing/nfcore_component-specifications/*         https://nf-core-docs.netlify.app/docs/guidelines/components/:splat 200
+/docs/contributing/tutorials/unofficial_pipelines            https://nf-core-docs.netlify.app/docs/guidelines/external_use 200
+
+# Redirects to subsites
+/docs/* https://nf-core-docs.netlify.app/docs/:splat 200!
+/pipelines https://nf-core-pipelines.netlify.app/pipelines 200!
+/pipeline_health https://nf-core-pipelines.netlify.app/pipeline_health 200!
+/:pipeline/usage/* https://nf-core-pipelines.netlify.app/:pipeline/latest/docs/usage/:splat 200!
+/:pipeline/output/* https://nf-core-pipelines.netlify.app/:pipeline/latest/docs/output/:splat 200!
+/:pipeline/docs/usage/* https://nf-core-pipelines.netlify.app/:pipeline/latest/docs/usage/:splat 200!
+/:pipeline/docs/output/* https://nf-core-pipelines.netlify.app/:pipeline/latest/docs/output/:splat 200!
+/:pipeline/parameters https://nf-core-pipelines.netlify.app/:pipeline/latest/parameters 200!
+/:pipeline/results/* https://nf-core-pipeline-results.netlify.app/:pipeline/latest/results/:splat 200!
+/:pipeline/:version/results/* https://nf-core-pipeline-results.netlify.app/:pipeline/:version/results/:splat 200!
+/:pipeline/:version/docs/usage/usage/* https://nf-core-pipelines.netlify.app/:pipeline/latest/docs/usage/:splat 200!
+/:pipeline/:version/docs/output/output/* https://nf-core-pipelines.netlify.app/:pipeline/latest/docs/output/:splat 200!
+/modules/* https://nf-core-modules-subworkflows.netlify.app/modules/:splat 200!
+/subworkflows/* https://nf-core-modules-subworkflows.netlify.app/subworkflows/:splat 200!
+/configs/* https://nf-core-configs.netlify.app/configs/:splat 200!
