@@ -5803,6 +5803,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -18464,6 +18468,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -23642,7 +23654,9 @@
               "documentation": "https://github.com/wdecoster/chopper",
               "tool_dev_url": "https://github.com/wdecoster/chopper",
               "doi": "10.1093/bioinformatics/bty149",
-              "licence": "['MIT']",
+              "licence": [
+                "MIT"
+              ],
               "args_id": "$args2"
             }
           },
@@ -69086,6 +69100,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -79723,6 +79741,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -124137,6 +124159,77 @@
       }
     },
     {
+      "name": "stardist",
+      "path": "modules/nf-core/stardist/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "stardist",
+        "description": "Cell and nuclear segmentation with star-convex shapes",
+        "keywords": [
+          "stardist",
+          "segmentation",
+          "image"
+        ],
+        "tools": [
+          {
+            "stardist": {
+              "description": "Stardist is an cell segmentation tool developed in Python by Martin Weigert and Uwe Schmidt",
+              "homepage": "https://stardist.net/",
+              "documentation": "https://stardist.net/faq/",
+              "tool_dev_url": "https://github.com/stardist/stardist",
+              "doi": "10.1109/ISBIC56247.2022.9854534",
+              "licence": [
+                "BSD 3-Clause"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "image": {
+              "type": "file",
+              "description": "Single channel nuclear image",
+              "pattern": "*.{tiff,tif}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "mask": {
+              "type": "file",
+              "description": "labelled mask output from stardist in tif format.",
+              "pattern": "*.{tiff,tif}"
+            }
+          }
+        ],
+        "authors": [
+          "@migueLib"
+        ],
+        "maintainers": [
+          "@migueLib"
+        ]
+      }
+    },
+    {
       "name": "stecfinder",
       "path": "modules/nf-core/stecfinder/meta.yml",
       "type": "module",
@@ -139694,6 +139787,77 @@
         ],
         "maintainers": [
           "@GCJMackenzie"
+        ]
+      }
+    },
+    {
+      "name": "bam_tumor_normal_somatic_variant_calling_strelka",
+      "path": "subworkflows/nf-core/bam_tumor_normal_somatic_variant_calling_strelka/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "bam_tumor_normal_somatic_variant_calling_strelka",
+        "description": "Perform variant calling on a paired tumor normal set of samples using strelka somatic mode.\nf1r2 output of mutect2 is run through learnreadorientationmodel to get the artifact priors.\nRun the input bam files through getpileupsummarries and then calculatecontamination to get the contamination and segmentation tables.\nFilter the mutect2 output vcf using filtermutectcalls, artifact priors and the contamination & segmentation tables for additional filtering.\n",
+        "keywords": [
+          "strelka",
+          "variant_calling",
+          "filtered_vcf"
+        ],
+        "components": [
+          "gatk4/mergevcfs",
+          "strelka/somatic"
+        ],
+        "input": [
+          {
+            "ch_cram": {
+              "description": "The normal and tumor CRAM files, in that order.\nStructure: [ meta, normal_cram, normal_crai, tumor_cram, tumor_crai, manta_vcf, manta_tbi ] manta* are optional\n"
+            }
+          },
+          {
+            "ch_dict": {
+              "description": "GATK sequence dictionary, optional\nStructure: [ meta, dict ]\n"
+            }
+          },
+          {
+            "ch_fasta": {
+              "type": "file",
+              "description": "reference fasta file",
+              "pattern": ".{fa,fa.gz,fasta,fasta.gz}"
+            }
+          },
+          {
+            "ch_fasta_fai": {
+              "type": "file",
+              "description": "reference fasta file index",
+              "pattern": "*.{fa,fasta}.fai"
+            }
+          },
+          {
+            "ch_intervals": {
+              "description": "Intervals to be used for variant calling.\nStructure: [ interval.bed.gz, interval.bed.gz.tbi, num_intervals ] or [ [], [], 0 ] if no intervals\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "Compressed vcf files for indels and snvs, in that order.\nStructure: [ val(meta), path(vcf), path(vcf) ]\n",
+              "pattern": "*.{vcf.gz}"
+            }
+          }
+        ],
+        "authors": [
+          "@famosab"
+        ],
+        "maintainers": [
+          "@famosab"
         ]
       }
     },
