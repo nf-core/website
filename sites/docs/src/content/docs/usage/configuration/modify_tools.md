@@ -80,11 +80,7 @@ A user can override the default container used by the pipeline by creating a cus
 
 
 :::warning
-Updated tools may come with major changes and may break a pipeline.
-:::
-
-:::warning
-Updating containers may break version reporting within the pipeline and result in missing values in MultiQC version tables.
+Updated tools may come with major changes and may break a pipeline and/or create missing values in MultiQC version tables.
 :::
 
 ### Tool arguments
