@@ -2,7 +2,7 @@
 title: 'nf-test: Writing tests'
 subtitle: Guidelines for writing nf-test tests
 shortTitle: Writing nf-test tests
-weight: 50
+weight: 10
 ---
 
 ## Philosophy of nf-tests for nf-core components
