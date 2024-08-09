@@ -106,7 +106,9 @@ process {
 }
 ```
 
-See the [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html#process-selectors) for more information.
+If you think that the default resources for a pipeline are drastically too high or low please contact the developers know either on Slack in the channel for the pipeline or via a GitHub issue on the pipeline repository.
+
+See the [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html#process-selectors) for more information about process selectors.
 
 :::warning
 Be careful with your syntax - if you set the memory to be `200` then it will get 200 _bytes_ of memory. <br/>
@@ -114,8 +116,4 @@ Memory should be in quotes with a space or without quotes using a dot: `"200 GB"
 See the Nextflow docs for [memory](https://www.nextflow.io/docs/latest/process.html#memory),
 [cpus](https://www.nextflow.io/docs/latest/process.html#cpus) (int) and
 [time](https://www.nextflow.io/docs/latest/process.html#time) for more information.
-:::
-
-:::note
-If you think that the default resources for a pipeline are drastically too high or low please contact the developers know either on Slack in the channel for the pipeline or via a GitHub issue on the pipeline repository.
 :::
