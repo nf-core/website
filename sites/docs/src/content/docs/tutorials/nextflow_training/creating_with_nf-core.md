@@ -368,7 +368,7 @@ Write some code to invoke the process above:
     // MODULE: Echo reads
     //
     ECHO_READS (
-        INPUT_CHECK.out.reads
+        ch_samplesheet
     )
 ```
 
@@ -380,7 +380,7 @@ and call it in the main `workflow` definition after `FASTQC`:
     // MODULE: Run FastQC
     //
     FASTQC (
-        INPUT_CHECK.out.reads
+        ch_samplesheet
     )
     ch_versions = ch_versions.mix(FASTQC.out.versions.first())
 
@@ -745,7 +745,7 @@ We now just need to call the `FASTP` process in the main `workflow`. Paste the s
     // MODULE: Run Fastp trimming
     //
     FASTP (
-        INPUT_CHECK.out.reads,
+        ch_samplesheet,
         [],
         false,
         false
