@@ -46,4 +46,33 @@ Each released pipeline has a dedicated page that includes 6 documentation sectio
 
 Each section should be explored to understand what the pipeline does and how it can be configured.
 
-Follow on to the next sections to learn how to install Java, Nextflow, and nf-core, and launch your first pipelines!
+### Join the nf-core community!
+
+The nf-core Slack is the place to get help, share expertise, and connect with other community members.
+
+<p>
+    <a class="btn btn-success me-2" href="/join/slack"
+        ><i class="fab fa-slack"></i> Join the nf-core Slack</a
+    >
+</p>
+
+We hope to see you there!
+
+**Important to know**
+
+- **Community conduct**: It’s important that this community is an open, collaborative, and welcoming environment. Read our nf-core [Code of Conduct](https://nf-co.re/code_of_conduct).
+- **Channels**: The nf-core Slack has a channel for just about everything! Common topics and each pipeline has its own channel. When you join, you will automatically be signed up to some of our favorite channels. You can leave and join groups at any time.
+- **Github invitations**: Post your GitHub username on the [`#github-invitations`](https://nfcore.slack.com/archives/CEB982K2T) channel and we will send you an invitation to join the nf-core GitHub organization.
+- **Your Slack profile**: Don’t forget to fill in your profile (especially your GitHub username) so your accounts are linked.
+- **Nextflow forum**: There is also a Nextflow Community Forum for asking Nextflow questions. Follow [this link](https://community.seqera.io/) to join.
+- **Say hey!**: Introduce yourself in [`#say-hello`](https://nfcore.slack.com/archives/C04F9UNM46M) If you need inspiration, community members often share a few fun notes about their backgrounds, their goals, and some of their favorite things.
+
+There are also several groups that promote diversity and inclusion, e.g., `#nf-women-nb`, please join any that apply to you.
+
+:::note
+You’ll probably end up joining lot of channels, so it can be a good idea to organize your sidebar with custom sections.
+:::
+
+:::warning
+Avoid using `@here` and `@channel` unless absolutely necessary. The `@here` command will notify all currently active channel members. The `@channel` command will send a message to all channel members, regardless of their activity status. If you are responding to a question or comment, try to respond in a thread to help keep conversations organised and together, especially if the channel is busy with other posts.
+:::

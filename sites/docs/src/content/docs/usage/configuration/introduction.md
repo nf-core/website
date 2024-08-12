@@ -14,7 +14,7 @@ While the defaults are a great place to start, you will certainly want to modify
 When a pipeline is launched, Nextflow will look for config files in several locations.
 As each source can contain conflicting settings, the sources are ranked to decide which settings to apply.
 
-nf-core pipelines may utilize any of these configuration files so it is worthwhile to understand how they fit together.
+nf-core pipelines may utilize any of these configuration files.
 
 Configuration sources are reported below and listed in order of priority:
 
@@ -28,15 +28,10 @@ Configuration sources are reported below and listed in order of priority:
 
 While some of these files are already included in the nf-core pipeline repository (e.g., the `nextflow.config` file in the nf-core pipeline repository), some are automatically identified on your local system (e.g., the `nextflow.config` in the launch directory), and others are only included if they are specified using run options (e.g., `-params-file`, and `-c`).
 
-If you clone and manually edit an nf-core pipeline then you cannot update to more recent versions of the pipeline without overwriting your changes.
-You also risk moving away from the canonical pipeline and losing reproducibility.
+If you clone and manually edit an nf-core pipeline then you cannot update to more recent versions of the pipeline without overwriting your changes. You also risk moving away from the canonical pipeline and losing reproducibility.
 
 :::tip
 Configuration locations can be used to your benefit. For example, use `-profile` for your cluster configuration, `~/.nextflow/config` for your personal configuration, and `nextflow.config` in your working directory for run-specific configuration.
-:::
-
-:::warning
-If you clone and manually edit an nf-core pipeline then you cannot update to more recent versions of the pipeline without overwriting your changes. You also risk moving away from the canonical pipeline and losing reproducibility.
 :::
 
 ### Parameters
@@ -50,13 +45,13 @@ At the highest level, parameters can be customized using the command line. Any p
 ```
 
 Depending on the parameter type, you may be required to add additional information after your parameter flag.
-For example, you would add string parameter after the parameter flag.
+For example, you would add string parameter after the parameter flag for the `nf-core/rnaseq` `--input` and `--output` parameters.
 
 ```bash
-nextflow nf-core/rnaseq --input <path/to/input? --outdir <results>
+nextflow nf-core/rnaseq --input <path/to/input> --outdir <results>
 ```
 
-Every nf-core pipeline has a full list of parameters on the nf-core website. You will be shown a description and the type of the parameter when viewing these parameters. Some parameters will also have additional text to help you understand how a parameter should be used. For example, the [parameters page of the nf-core rnaseq pipeline](https://nf-co.re/rnaseq/3.14.0/parameters/).
+Every nf-core pipeline has a full list of parameters on the nf-core website. You will be shown a description and the type of the parameter when viewing these parameters. Some parameters will also have additional text to help you understand how a parameter should be used. See the [parameters page of the nf-core rnaseq pipeline](https://nf-co.re/rnaseq/3.14.0/parameters/).
 
 ### Default configuration files
 
@@ -67,7 +62,7 @@ There are also several `includeConfig` statements in the `nextflow.config` file 
 - `base.config`
     - Included by the pipeline by default
     - Generous resource allocations using labels
-    - Does not specify any method for software management and expects software to be available (or specified elsewhere)
+    - Does not specify any method for software dependencies and expects software to be available (or specified elsewhere)
 - `igenomes.config`
     - Included by the pipeline by default
     - Default configuration to access reference files stored on AWS iGenomes
@@ -82,7 +77,7 @@ There are also several `includeConfig` statements in the `nextflow.config` file 
     - A configuration profile to test the pipeline with a full-size test dataset
 
 :::note
-Some config files contain the definition of profiles that can be flexibly applied. For example, the `docker`, `singularity`, and `conda` profiles are defined in the `nextflow.config` file in the pipeline project directory.
+Some configuration files contain the definition of profiles that can be flexibly applied. For example, the `docker`, `singularity`, and `conda` profiles are defined in the `nextflow.config` file in the pipeline project directory.
 :::
 
 Profiles are sets of configuration options that can be flexibly applied to a pipeline.
@@ -91,11 +86,11 @@ They are also commonly defined in the `nextflow.config` file in the root of the 
 Profiles used by nf-core pipelines can be broadly categorized into two groups:
 
 - Software management profiles
-    - Profiles for the management of software using software management tools, for example, `docker`, `singularity`, and `conda`.
+    - Profiles for the management of software dependencies using container or environment management tools, for example, `docker`, `singularity`, and `conda`.
 - Test profiles
     - Profiles to execute the pipeline with a standardized set of test data and parameters, for example, `test` and `test_full`.
 
-nf-core pipelines are required to define software containers and environments that can be activated using profiles. Although it is possible to run the pipelines with software installed by other methods (e.g., environment modules or manual installation), using Docker or Singularity is more sharable, convenient, and reproducible.
+nf-core pipelines are required to define software containers and environments that can be activated using profiles. Although it is possible to run the pipelines with software installed by other methods (e.g., environment modules or manual installation), using container technology is more sharable, convenient, and reproducible.
 
 ### Shared configuration files
 
@@ -107,7 +102,7 @@ Follow [this tutorial](https://nf-co.re/docs/usage/tutorials/step_by_step_instit
 
 ### Custom parameter and configuration files
 
-Nextflow will also look for files that are external to the pipeline project directory. These files include:
+Nextflow will look for files that are external to the pipeline project directory. These files include:
 
 - The config file `$HOME/.nextflow/config`
 - A config file named `nextflow.config` in your current directory
@@ -115,7 +110,7 @@ Nextflow will also look for files that are external to the pipeline project dire
     - A parameter file that is provided using the `-params-file` option
     - A config file that are provided using the `-c` option
 
-**Parameter files**
+**Parameter file format**
 
 Parameter files are `.json` files that can contain an unlimited number of parameters:
 
@@ -133,7 +128,7 @@ You can override default parameters by creating a `.json` file and passing it as
 nextflow run nf-core/rnaseq -profile docker --input <path/to/input? --outdir <results> -param-file <path/to/nf-params.json>
 ```
 
-**Configuration files**
+**Configuration file format**
 
 Configuration files are `.config` files that can contain various pipeline properties and can be passed to Nextflow using the `-c` option in your execution command:
 
@@ -158,6 +153,8 @@ alpha {
     y = 'string value'
 }
 ```
+
+### Scopes
 
 Scopes allow you to quickly configure settings required to deploy a pipeline on different infrastructure using different software management.
 
