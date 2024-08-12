@@ -7,7 +7,7 @@ startTime: '16:00+02:00'
 endDate: '2024-09-09'
 endTime: '17:30+02:00'
 locations:
-  - name: Online
+  - name: Online (Zoom)
     links: https://seqera-io.zoom.us/j/82732124470
 ---
 
