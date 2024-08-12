@@ -29,23 +29,23 @@ To install Java with SDKMAN:
 
 1. Install SDKMAN:
 
-  ```bash
-  curl -s https://get.sdkman.io | bash
-  ```
+```bash
+curl -s https://get.sdkman.io | bash
+```
 
 2. Open a new terminal.
 
 3. Install Java:
 
-    ```bash
-    sdk install java 17.0.10-tem
-    ```
+   ```bash
+   sdk install java 17.0.10-tem
+   ```
 
 4. Confirm that Java is installed correctly:
 
-    ```bash
-    java -version
-    ```
+   ```bash
+   java -version
+   ```
 
 ### Install Nextflow
 
@@ -53,61 +53,61 @@ Nextflow is distributed as a self-installing package. It can be installed using 
 
 1. Install Nextflow:
 
-    ```bash
-    curl -s https://get.nextflow.io | bash
-    ```
+   ```bash
+   curl -s https://get.nextflow.io | bash
+   ```
 
 This will create the `nextflow` executable in the current directory.
 
 2. Make Nextflow executable:
 
-    ```
-    chmod +x nextflow
-    ```
+   ```
+   chmod +x nextflow
+   ```
 
 3. Move `nextflow` to an executable path. For example:
 
-    ```bash
-    mkdir -p $HOME/.local/bin/
-    mv nextflow $HOME/.local/bin/
-    ```
+   ```bash
+   mkdir -p $HOME/.local/bin/
+   mv nextflow $HOME/.local/bin/
+   ```
 
-    Ensure the directory `$HOME/.local/bin/` is included in your `PATH` variable. Execute `export PATH="$PATH:$HOME/.local/bin"` to add this directory to `PATH` temporarily . Add this command to your shell configuration file (e.g., `~/.bashrc` or `~/.zshrc`) to add this directory to `PATH` permanently.
+   Ensure the directory `$HOME/.local/bin/` is included in your `PATH` variable. Execute `export PATH="$PATH:$HOME/.local/bin"` to add this directory to `PATH` temporarily . Add this command to your shell configuration file (e.g., `~/.bashrc` or `~/.zshrc`) to add this directory to `PATH` permanently.
 
-    :::warning
-    Nextflow will update its executable during the self update process and it should not be placed in a directory with restricted permissions.
-    :::
+   :::warning
+   Nextflow will update its executable during the self update process and it should not be placed in a directory with restricted permissions.
+   :::
 
 4. Confirm that Nextflow is installed correctly:
 
-    ```bash
-    nextflow info
-    ```
+   ```bash
+   nextflow info
+   ```
 
 Alternatively, Nextflow can be installed using [Bioconda](https://bioconda.github.io/):
 
 1. Add conda channels:
 
-    ```bash
-    conda config --add channels bioconda
-    conda config --add channels conda-forge
-    ```
+   ```bash
+   conda config --add channels bioconda
+   conda config --add channels conda-forge
+   ```
 
-    :::warning
-    Conda channels are the locations where packages are stored. If the channels are not configured accurately your dependencies may be installed from
-    the wrong channels and be incompatible.
-    :::
+   :::warning
+   Conda channels are the locations where packages are stored. If the channels are not configured accurately your dependencies may be installed from
+   the wrong channels and be incompatible.
+   :::
 
 2. Create and activate a dedicated Nextflow conda environment.
 
-    ```bash
-    conda create --name env_nf nextflow
-    conda activate env_nf
-    ```
+   ```bash
+   conda create --name env_nf nextflow
+   conda activate env_nf
+   ```
 
-    :::note
-    To deactivate the `env_nf` conda environment you can use the `conda deactivate` command.
-    :::
+   :::note
+   To deactivate the `env_nf` conda environment you can use the `conda deactivate` command.
+   :::
 
 ### Update Nextflow
 
@@ -158,7 +158,6 @@ You don't need to install nf-core tools to run nf-core pipelines. However, nf-co
 nf-core tools includes commands tools to list, launch, configure, and download nf-core pipelines.
 
 See [nf-core tools](/docs/nf-core-tools) for more information.
-
 
 ## Software dependencies
 

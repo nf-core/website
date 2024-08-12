@@ -77,8 +77,6 @@ A user can override the default container used by the pipeline by creating a cus
      }
      ```
 
-
-
 :::warning
 Updated tools may come with major changes and may break a pipeline and/or create missing values in MultiQC version tables.
 :::
