@@ -23,17 +23,16 @@ You need to have Nextflow installed on your local system.
 You can do this by installing Nextflow on a machine that _does_ have an internet connection and transferring to the offline system:
 
 1. Install Nextflow locally
-  :::warning
-  do _not_ use the `-all` package, as this does not allow the use of custom plugins.
-  :::
+   :::warning
+   do _not_ use the `-all` package, as this does not allow the use of custom plugins.
+   :::
 2. Run a Nextflow pipeline locally so that Nextflow fetches the required plugins.
-    - It does not need to run to completion.
+   - It does not need to run to completion.
 3. Copy the Nextflow executable and your `$HOME/.nextflow` folder to your offline environment
 4. Specify the name and version each plugin that you downloaded in your local Nextflow configuration file
-    - This will prevent Nextflow from trying to download newer versions of plugins.
+   - This will prevent Nextflow from trying to download newer versions of plugins.
 5. Set `export NXF_OFFLINE='true'`
-    - Add this command to your shell configuration file (e.g., `~/.bashrc` or `~/.zshrc`) to add this directory to `PATH` permanently
-
+   - Add this command to your shell configuration file (e.g., `~/.bashrc` or `~/.zshrc`) to add this directory to `PATH` permanently
 
 ### Pipeline assets
 

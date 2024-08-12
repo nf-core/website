@@ -60,21 +60,21 @@ All parameters have a default configuration that is defined using the `nextflow.
 There are also several `includeConfig` statements in the `nextflow.config` file that are used to include additional config files from the `conf/` folder. Each additional `.config` file contains categorized configuration information for your pipeline execution, some of which can be optionally included as profiles:
 
 - `base.config`
-    - Included by the pipeline by default
-    - Generous resource allocations using labels
-    - Does not specify any method for software dependencies and expects software to be available (or specified elsewhere)
+  - Included by the pipeline by default
+  - Generous resource allocations using labels
+  - Does not specify any method for software dependencies and expects software to be available (or specified elsewhere)
 - `igenomes.config`
-    - Included by the pipeline by default
-    - Default configuration to access reference files stored on AWS iGenomes
+  - Included by the pipeline by default
+  - Default configuration to access reference files stored on AWS iGenomes
 - `modules.config`
-    - Included by the pipeline by default
-    - Module-specific configuration options (both mandatory and optional)
+  - Included by the pipeline by default
+  - Module-specific configuration options (both mandatory and optional)
 - `test.config`
-    - Only included if specified as a profile
-    - A configuration profile to test the pipeline with a small test dataset
+  - Only included if specified as a profile
+  - A configuration profile to test the pipeline with a small test dataset
 - `test_full.config`
-    - Only included if specified as a profile
-    - A configuration profile to test the pipeline with a full-size test dataset
+  - Only included if specified as a profile
+  - A configuration profile to test the pipeline with a full-size test dataset
 
 :::note
 Some configuration files contain the definition of profiles that can be flexibly applied. For example, the `docker`, `singularity`, and `conda` profiles are defined in the `nextflow.config` file in the pipeline project directory.
@@ -86,9 +86,9 @@ They are also commonly defined in the `nextflow.config` file in the root of the 
 Profiles used by nf-core pipelines can be broadly categorized into two groups:
 
 - Software management profiles
-    - Profiles for the management of software dependencies using container or environment management tools, for example, `docker`, `singularity`, and `conda`.
+  - Profiles for the management of software dependencies using container or environment management tools, for example, `docker`, `singularity`, and `conda`.
 - Test profiles
-    - Profiles to execute the pipeline with a standardized set of test data and parameters, for example, `test` and `test_full`.
+  - Profiles to execute the pipeline with a standardized set of test data and parameters, for example, `test` and `test_full`.
 
 nf-core pipelines are required to define software containers and environments that can be activated using profiles. Although it is possible to run the pipelines with software installed by other methods (e.g., environment modules or manual installation), using container technology is more sharable, convenient, and reproducible.
 
@@ -107,8 +107,8 @@ Nextflow will look for files that are external to the pipeline project directory
 - The config file `$HOME/.nextflow/config`
 - A config file named `nextflow.config` in your current directory
 - Custom configuration files specified using the command line
-    - A parameter file that is provided using the `-params-file` option
-    - A config file that are provided using the `-c` option
+  - A parameter file that is provided using the `-params-file` option
+  - A config file that are provided using the `-c` option
 
 **Parameter file format**
 
@@ -116,9 +116,9 @@ Parameter files are `.json` files that can contain an unlimited number of parame
 
 ```json title="nf-params.json"
 {
-    "<parameter1_name>": 1,
-    "<parameter2_name>": "<string>",
-    "<parameter3_name>": true
+  "<parameter1_name>": 1,
+  "<parameter2_name>": "<string>",
+  "<parameter3_name>": true
 }
 ```
 
