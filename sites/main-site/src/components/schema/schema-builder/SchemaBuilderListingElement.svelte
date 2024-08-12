@@ -24,7 +24,6 @@
             help_text: '',
         },
     ];
-    let name = schemaEntry[0];
     let schemaEntryValue = schemaEntry[1];
 </script>
 
@@ -37,9 +36,10 @@
     </button>
     <div class="col">
         <label
-            >ID
-            <input type="text" class="font-monospace" value={name} />
+            ><span class:d-none={schemaEntry[0].length == 0}>ID</span>
+            <input type="text" class="font-monospace" bind:value={schemaEntry[0]} placeholder="ID" />
         </label>
+        {schemaEntry[0]}
     </div>
     <div class="d-sm-none w-100"></div>
     <div class="col">

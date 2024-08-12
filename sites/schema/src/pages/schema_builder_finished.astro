@@ -1,6 +1,6 @@
 ---
 import PageLayout from '@layouts/PageLayout.astro';
-import SchemaBuilderListing from '@components/schema/schema-builder/SchemaBuilderListing.svelte';
+import SchemaListing from '@components/schema/SchemaListing.svelte';
 
 const id = Astro.url.searchParams.get('id');
 let schemaData = {};
@@ -17,5 +17,7 @@ export const prerender = false;
 ---
 
 <PageLayout title=" Schema Builder" subtitle="Create or modify your `nextflow_schema.json` file.">
-    <SchemaBuilderListing schema={schemaData} {id} client:idle />
+    Finished editing schema!
+    <a href={`/schema_builder?id=${id}`} class="btn btn-secondary">Back to editor</a>
+    <SchemaListing schema={schemaData} client:load />
 </PageLayout>
