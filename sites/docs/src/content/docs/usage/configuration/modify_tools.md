@@ -11,7 +11,7 @@ Each tool in an nf-core pipeline come preconfigured with a set arguments for an 
 The arguments are a great place to start and have been tested as a part of the development process.
 However, you may want to modify these to fit your own purposes.
 
-**It is unlikely you will need to edit the pipeline code to configure a tool.**
+**It is unlikely that you will need to edit the pipeline code to configure a tool.**
 
 ### Docker registries
 

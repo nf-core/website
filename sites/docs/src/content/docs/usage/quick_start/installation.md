@@ -65,7 +65,7 @@ This will create the `nextflow` executable in the current directory.
     chmod +x nextflow
     ```
 
-3. Move Nextflow into an executable path. For example:
+3. Move `nextflow` to an executable path. For example:
 
     ```bash
     mkdir -p $HOME/.local/bin/
@@ -106,19 +106,19 @@ Alternatively, Nextflow can be installed using [Bioconda](https://bioconda.githu
     ```
 
     :::note
-    Run `conda deactivate` to deactivate the `env_nf` conda environment.
+    To deactivate the `env_nf` conda environment you can use the `conda deactivate` command.
     :::
 
 ### Update Nextflow
 
-To update your version of Nextflow installed in your environment, you can update to the latest version using the following command:
+You can update to the latest version of Nextflow using the self update command:
 
 ```bash
 nextflow self-update
 ```
 
-Specific versions of Nextflow can be installed using the `NXF_VER` environment version.
-Nextflow will automatically install that version at the start of the next command.
+Specific versions of Nextflow can be installed using the `NXF_VER` environment variable.
+Nextflow will automatically install the specified version at the start of the next command.
 
 ```bash
 export NXF_VER=23.10.1
@@ -126,7 +126,7 @@ nextflow run hello-world
 ```
 
 :::note
-Set the `NXF_VER` variable in your `.bashrc` or `.zshrc` to fix your version of Nextflow.
+Set the `NXF_VER` variable in your `.bashrc` or `.zshrc` to fix your version of Nextflow for all sessions.
 :::
 
 You can also temporarily switch to a specific version of Nextflow with the `NXF_VER` environment variable. For example:
@@ -145,7 +145,7 @@ To use the latest edge release, set `NXF_EDGE=1` when updating:
 NXF_EDGE=1 nextflow self-update
 ```
 
-You can also use `NXF_VER` to temporarily switch to any edge release. For example:
+You can also use `NXF_VER` to temporarily switch to any specific edge release. For example:
 
 ```bash
 NXF_VER=24.06.0-edge nextflow info
