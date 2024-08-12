@@ -487,7 +487,7 @@ The output files can be accessed like this:
 SAMTOOLS_INDEX.out.index
 ```
 
-Regardless whether they are a `bai` or `crai` as downstream SAMTOOLS modules should accept either without an issue. 
+Regardless whether they are a `bai` or `crai` as downstream SAMTOOLS modules should accept either without an issue.
 
 :::
 
