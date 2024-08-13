@@ -5831,6 +5831,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -18548,6 +18552,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -20946,6 +20958,202 @@
         "maintainers": [
           "@LukasHats",
           "@ArozHada"
+        ]
+      }
+    },
+    {
+      "name": "cellbender_merge",
+      "path": "modules/nf-core/cellbender/merge/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "cellbender_merge",
+        "description": "Module to use CellBender to remove ambient RNA from single-cell RNA-seq data",
+        "keywords": [
+          "single-cell",
+          "scRNA-seq",
+          "ambient RNA removal"
+        ],
+        "tools": [
+          {
+            "cellbender": {
+              "description": "CellBender is a software package for eliminating technical artifacts from high-throughput single-cell RNA sequencing (scRNA-seq) data.",
+              "documentation": "https://cellbender.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/broadinstitute/CellBender",
+              "licence": [
+                "BSD-3-Clause"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "filtered": {
+              "type": "file",
+              "description": "AnnData file containing filtered data (without empty droplets)",
+              "pattern": "*.h5ad"
+            }
+          },
+          {
+            "unfiltered": {
+              "type": "file",
+              "description": "AnnData file containing unfiltered data (with empty droplets)",
+              "pattern": "*.h5ad"
+            }
+          },
+          {
+            "cellbender_h5": {
+              "type": "file",
+              "description": "CellBender h5 file containing ambient RNA estimates",
+              "pattern": "*.h5"
+            }
+          }
+        ],
+        "output": [
+          {
+            "h5ad": {
+              "type": "file",
+              "description": "AnnData file containing decontaminated counts as `adata.X`",
+              "pattern": "*.h5ad"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software version",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@nictru"
+        ],
+        "maintainers": [
+          "@nictru"
+        ]
+      }
+    },
+    {
+      "name": "cellbender_removebackground",
+      "path": "modules/nf-core/cellbender/removebackground/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "cellbender_removebackground",
+        "description": "Module to use CellBender to estimate ambient RNA from single-cell RNA-seq data",
+        "keywords": [
+          "single-cell",
+          "scRNA-seq",
+          "ambient RNA removal"
+        ],
+        "tools": [
+          {
+            "cellbender": {
+              "description": "CellBender is a software package for eliminating technical artifacts from high-throughput single-cell RNA sequencing (scRNA-seq) data.",
+              "documentation": "https://cellbender.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/broadinstitute/CellBender",
+              "licence": [
+                "BSD-3-Clause"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "h5ad": {
+              "type": "file",
+              "description": "AnnData file containing unfiltered data (with empty droplets)",
+              "pattern": "*.h5ad"
+            }
+          }
+        ],
+        "output": [
+          {
+            "h5": {
+              "type": "file",
+              "description": "Full count matrix as an h5 file, with background RNA removed. This file contains all the original droplet barcodes.",
+              "pattern": "*.h5"
+            }
+          },
+          {
+            "filtered_h5": {
+              "type": "file",
+              "description": "Full count matrix as an h5 file, with background RNA removed. This file contains only the droplet barcodes which were determined to have a > 50% posterior probability of containing cells.\n",
+              "pattern": "*.h5"
+            }
+          },
+          {
+            "posterior_h5": {
+              "type": "file",
+              "description": "The full posterior probability of noise counts. This is not normally used downstream.\n",
+              "pattern": "*.h5"
+            }
+          },
+          {
+            "barcodes": {
+              "type": "file",
+              "description": "CSV file containing all the droplet barcodes which were determined to have a > 50% posterior probability of containing cells. |\nBarcodes are written in plain text. This information is also contained in each of the above outputs, |\nbut is included as a separate output for convenient use in certain downstream applications.\n",
+              "pattern": "*.csv"
+            }
+          },
+          {
+            "metrics": {
+              "type": "file",
+              "description": "Metrics describing the run, potentially to be used to flag problematic runs |\nwhen using CellBender as part of a large-scale automated pipeline.\n",
+              "pattern": "*.csv"
+            }
+          },
+          {
+            "report": {
+              "type": "file",
+              "description": "HTML report including plots and commentary, along with any warnings or suggestions for improved parameter settings.\n",
+              "pattern": "*.html"
+            }
+          },
+          {
+            "pdf": {
+              "type": "file",
+              "description": "PDF file that provides a standard graphical summary of the inference procedure.",
+              "pattern": "*.pdf"
+            }
+          },
+          {
+            "log": {
+              "type": "file",
+              "description": "Log file produced by the cellbender remove-background run.",
+              "pattern": "*.log"
+            }
+          },
+          {
+            "checkpoint": {
+              "type": "file",
+              "description": "Checkpoint file which contains the trained model and the full posterior.",
+              "pattern": "*.ckpt"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software version",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@nictru"
+        ],
+        "maintainers": [
+          "@nictru"
         ]
       }
     },
@@ -37672,8 +37880,15 @@
           {
             "hmm": {
               "type": "file",
-              "description": "output from hmmsearch",
+              "description": "output from hmmsearch (both single gene annotations + contigs)",
               "pattern": "*.{out}"
+            }
+          },
+          {
+            "hmm_genes": {
+              "type": "file",
+              "description": "output from hmmsearch (single gene annotations only)",
+              "pattern": "retrieved-*.{out}"
             }
           },
           {
@@ -69204,6 +69419,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -79984,6 +80203,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -113826,6 +114049,148 @@
           "version": "3.4.3"
         }
       ]
+    },
+    {
+      "name": "sentieon_collectvcmetrics",
+      "path": "modules/nf-core/sentieon/collectvcmetrics/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "sentieon_collectvcmetrics",
+        "description": "Accelerated implementation of the Picard CollectVariantCallingMetrics tool.",
+        "keywords": [
+          "vcf",
+          "sentieon",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "sentieon": {
+              "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
+              "homepage": "https://www.sentieon.com/",
+              "documentation": "https://www.sentieon.com/",
+              "licence": [
+                "Commercial (requires license for use; redistribution allowed)"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "meta5": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "Sorted VCF file [required]",
+              "pattern": "*.vcf"
+            }
+          },
+          {
+            "tbi": {
+              "type": "file",
+              "description": "VCF index file [required]",
+              "pattern": "*.vcf{,.gz}.tbi"
+            }
+          },
+          {
+            "dbsnp": {
+              "type": "file",
+              "description": "dbsnp VCF file [required]",
+              "pattern": "*.vcf{,.gz}"
+            }
+          },
+          {
+            "dbsnp_tbi": {
+              "type": "file",
+              "description": "dbsnp VCF index file [required]",
+              "pattern": "*.vcf{,.gz}.tbi"
+            }
+          },
+          {
+            "interval": {
+              "type": "file",
+              "description": "BED file of genome regions to draw coverage from",
+              "pattern": "*.bed"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Genome fasta file [required]",
+              "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "Index of the genome fasta file [required]",
+              "pattern": "*.fai"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "metrics": {
+              "type": "file",
+              "description": "Metrics file from VCF\n",
+              "pattern": "*.variant_calling_detail_metrics"
+            }
+          },
+          {
+            "summary": {
+              "type": "file",
+              "description": "Summary of VCF metrics\n",
+              "pattern": "*.collectvcmetrics.txt"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@adamrtalbot"
+        ],
+        "maintainers": [
+          "@adamrtalbot"
+        ]
+      }
     },
     {
       "name": "sentieon_coveragemetrics",
