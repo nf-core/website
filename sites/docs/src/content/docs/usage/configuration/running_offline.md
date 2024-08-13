@@ -13,7 +13,7 @@ To run a pipeline offline you will need three things:
 
 - [Nextflow](#nextflow)
 - [Pipeline assets](#pipeline-assets)
-- [Reference genomes](#reference-genomes) (if required)
+- [Reference genomes](#reference-genomes) _(if required)_
 
 These will first need to be fetched on a system that _does_ have an internet connection and transferred to your offline system.
 
