@@ -1,34 +1,15 @@
 ---
-# based on https://github.com/gitpod-io/template-docker-compose
-
-# TODO: Update to build Astro
-#tasks:
-#  - init: docker-compose pull && chmod a+x /workspace/nf-co.re
-#    command: docker-compose up
-
 ports:
-  - port: 8888
+  - port: 4321
     onOpen: open-preview
   - port: 3306
     onOpen: ignore
 
 vscode:
   extensions:
-    - EditorConfig.EditorConfig
+    - editorconfig.editorconfig
     - esbenp.prettier-vscode
-github:
-  prebuilds:
-    # enable for the default branch (defaults to true)
-    master: true
-    # enable for all branches in this repo (defaults to false)
-    branches: false
-    # enable for pull requests coming from this repo (defaults to true)
-    pullRequests: true
-    # enable for pull requests coming from forks (defaults to false)
-    pullRequestsFromForks: true
-    # add a check to pull requests (defaults to true)
-    addCheck: true
-    # add a "Review in Gitpod" button as a comment to pull requests (defaults to false)
-    addComment: false
-    # add a "Review in Gitpod" button to the pull request's description (defaults to false)
-    addBadge: true
+tasks:
+  # NOTE adding multiple tasks causes them to all run
+  - name: install dependencies and extract cache
+    init: npm install && npm run extract-cache
