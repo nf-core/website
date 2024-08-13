@@ -5835,6 +5835,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -18359,6 +18363,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -32942,6 +32954,19 @@
               "type": "file",
               "description": "GZI index of reference fasta file",
               "pattern": "*.gzi"
+            }
+          },
+          {
+            "meta5": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+            }
+          },
+          {
+            "par_bed": {
+              "type": "file",
+              "description": "BED file containing PAR regions",
+              "pattern": "*.bed"
             }
           }
         ],
@@ -69423,6 +69448,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -80203,6 +80232,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
