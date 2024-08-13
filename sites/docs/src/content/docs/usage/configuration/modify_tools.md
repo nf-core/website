@@ -18,19 +18,27 @@ However, you may want to modify these to fit your own purposes.
 nf-core pipelines use `quay.io` as the default docker registry for Docker and Podman images.
 When specifying a Docker container, it will pull the image from `quay.io` unless a full URI is specified. For example, if the process container is:
 
-- `biocontainers/fastqc:0.11.7--4`
+`````bash
+biocontainers/fastqc:0.11.7--4
+```
 
 The image will be pulled from quay.io by default, resulting in a full URI of:
 
-- `quay.io/biocontainers/fastqc:0.11.7--4`
+````bash
+quay.io/biocontainers/fastqc:0.11.7--4
+```
 
 If `docker.registry` is specified, it will be used first. For example, if the config value `docker.registry = 'public.ecr.aws'` is specified the image will be pulled from:
 
-- `public.ecr.aws/biocontainers/fastqc:0.11.7--4`
+````bash
+public.ecr.aws/biocontainers/fastqc:0.11.7--4
+```
 
 However, the `docker.registry` setting will be ignored if you specify a full URI:
 
-- `docker.io/biocontainers/fastqc:v0.11.9_cv8`
+````bash
+docker.io/biocontainers/fastqc:v0.11.9_cv8
+```
 
 ### Tool versions
 
@@ -109,3 +117,4 @@ process {
 :::warning
 It is recommended to copy and paste existing arguments in a pipelines `conf/modules.config` file to ensure the pipeline can function as expected.
 :::
+`````
