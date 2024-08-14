@@ -2,33 +2,20 @@
     import { onMount } from 'svelte';
 
     // import { dnd } from 'svelte-pragmatic-list';
-    import SchemaBuilderListingElement from './SchemaBuilderListingElement.svelte';
+    import SchemaBuilderListingGroup from './SchemaBuilderListingGroup.svelte';
     import SchemaBuilderToolbar from './SchemaBuilderToolbar.svelte';
+
+    import CopyButton from '@components/CopyButton.svelte';
     let schema = {};
 
-    let properties = {};
+    let defName = 'definitions';
     let id = '';
 
-    // rename key in the schema
-    const updateSchemaKey = (e, oldKey) => {
-        // handle edge cases
-        const newKey = e.target.value;
-        if (newKey === oldKey) return;
-        if (newKey in properties) return;
-        if (newKey.length == 0) return;
-        const newSchema = {};
-        const keys = Object.keys(properties);
+    let status = 'loading';
+    let collapseGroups = false;
 
-        // rename the key in the schema, but keep the order the sam
-        for (let i = 0; i < keys.length; i++) {
-            if (keys[i] === oldKey) {
-                newSchema[newKey] = properties[oldKey];
-            } else {
-                newSchema[keys[i]] = properties[keys[i]];
-            }
-        }
-        schema.definitions['input_output_options'].properties = newSchema;
-    };
+    // rename key in the schema
+
     // post schema to the server
     const postSchema = async () => {
         const response = await fetch(`http://localhost:8000/process-schema?id=${id}`, {
@@ -39,9 +26,11 @@
             },
             body: JSON.stringify({ status: 'web_builder_edited', schema }),
         });
-        console.log(await response.json());
+        const data = await response.json();
+        if (data.status === 'web_builder_edited') {
+            status = 'saved';
+        }
     };
-    let loading = true;
     onMount(async () => {
         // read id from URL
         const url = new URL(window.location.href);
@@ -55,47 +44,60 @@
             const data = await response.json();
 
             schema = data.data.schema;
-            console.log('schema', schema);
-
-            properties = schema.definitions['input_output_options'].properties;
-            loading = false;
+            status = 'loaded';
         } catch (error) {
             console.error('Error fetching schema:', error);
-            loading = false;
+            status = 'loaded';
             // Handle the error, maybe show an error message to the user
         }
     });
-    console.log('properties', schema);
 </script>
 
-<SchemaBuilderToolbar on:update={({ detail }) => (schema = detail)}>
-    <button id="finish" class="btn btn-primary" on:click={postSchema}>Finish</button>
+<SchemaBuilderToolbar bind:schema>
+    <div class="d-flex">
+        <button
+            class="btn btn-outline-secondary"
+            on:click={() => {
+                collapseGroups = !collapseGroups;
+            }}>Collapse Groups</button
+        >
+    </div>
+    <button id="finish" class="btn btn-primary" class:disabled={status !== 'loaded'} on:click={postSchema}
+        >Finish</button
+    >
 </SchemaBuilderToolbar>
 
-<div class="border rounded-md p-2">
-    {#if loading}
+<div class="border rounded-md" class:border-success={status === 'saved'}>
+    {#if status === 'loading'}
         <p>Loading schema...</p>
-    {:else}
-        {#each Object.keys(properties) as key (key)}
-            <SchemaBuilderListingElement bind:schema={properties} name={key}>
-                <label
-                    ><span class:d-none={key.length == 0}>ID</span>
-                    <input
-                        type="text"
-                        class="font-monospace"
-                        value={key}
-                        placeholder="ID"
-                        on:change={(e) => {
-                            updateSchemaKey(e, key);
-                        }}
-                    />
-                </label>
-                {key}
-            </SchemaBuilderListingElement>
-        {/each}
-        <div data-dnd-indicator hidden style="height: 20px; background-color: red; width: 100%;"></div>
+    {:else if status === 'loaded'}
+        <div class="p-2" class:collapse={collapseGroups}>
+            {#each Object.keys(schema[defName]) as key (key)}
+                <SchemaBuilderListingGroup name={key} {schema}></SchemaBuilderListingGroup>
+            {/each}
+            <div data-dnd-indicator hidden style="height: 20px; background-color: red; width: 100%;"></div>
+        </div>
+    {:else if (status = 'saved')}
+        <p class="m-2">Schema saved! See terminal log for more details.</p>
     {/if}
 </div>
-<pre class="border rounded p-2">
-  {JSON.stringify(schema, null, 2)}
-</pre>
+<figure>
+    <figcaption
+        data-rehype-pretty-code-title=""
+        data-language="json"
+        class="d-flex align-items-center justify-content-between"
+    >
+        <span><i class="fa-solid fa-database ms-1 me-2"></i>nf-params.json</span><CopyButton
+            text={JSON.stringify(schema, null, 2)}
+            label="Copy Schema <i class='fa-regular fa-clipboard'></i>"
+            copiedLabel="Copied Schema <i class='fa-regular px-1 fa-clipboard-check' />"
+            classes={'m-2  copy-code-button btn btn-sm btn-outline-secondary opacity-50'}
+            copiedClasses={'m-2 copy-code-button btn btn-sm btn-outline-success'}
+        />
+    </figcaption>
+    <pre class="text-secondary p-0">
+        <code class="" data-language="json">
+            {JSON.stringify(schema, null, 2)}
+        </code>
+    </pre>
+</figure>

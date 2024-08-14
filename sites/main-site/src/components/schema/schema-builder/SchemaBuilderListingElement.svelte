@@ -4,6 +4,7 @@
     export let name: string = '';
 
     export let schema: any = {};
+    export let required: boolean = false;
 
     $: schemaEntry = schema[name];
 
@@ -34,6 +35,19 @@
                 placeholder="description"
                 on:input={(e) => updateSchema(e, 'description')}
             />
+        </label>
+    </div>
+    <!-- check box for required -->
+    <div class="col-auto align-self-center">
+        <label>
+            <input
+                type="checkbox"
+                class="form-check-input"
+                data-param_key="required"
+                bind:checked={required}
+                on:change={(e) => updateSchema(e, 'required')}
+            />
+            Required
         </label>
     </div>
 </div>
