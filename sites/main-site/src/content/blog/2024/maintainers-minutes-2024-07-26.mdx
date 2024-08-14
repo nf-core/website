@@ -18,12 +18,17 @@ by providing brief summaries of the monthly team meetings.
 
 ## More (or less) testing
 
-Júlia encountered several failing tests on nf-core/crisprseq with conda and singularity. This was caused by tests only running
-on docker. Moving forward we agreed that at least some tests should also be run
-with `singularity` and `conda`.
+Júlia encountered several failing tests on nf-core/crisprseq with conda and singularity (currently, our CI tests only run with docker).
+Moving forward we agreed that at least some tests should also be run with `singularity` and `conda` at some point during the development process but before release.
 
-We discussed several ideas. On the one hand we'd like to make sure everything works at all times, on the other hand running tons of tests
-makes development slow, costs money, and is not great for the planet 🌳. As a compromise, we agreed on the following: - Singularity & conda tests are run on PR to master - Make singularity required - Conda optional opt-out - Add `workflow dispatch` button for easier manual testing
+We discussed several ideas. 
+On the one hand we'd like to make sure everything works at all times, on the other hand running tons of essentially duplicate tests makes development slow, costs money, and is not great for the planet 🌳.
+As a compromise, we agreed on the following: 
+
+- Singularity & conda tests are run on PR to master 
+- Make singularity required 
+- Conda optional opt-out 
+- Add `workflow dispatch` button for easier manual testing during earlier stages of development
 
 ## Nf-test best practices
 
