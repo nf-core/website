@@ -5843,6 +5843,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -18367,6 +18371,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -69484,6 +69496,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -80268,6 +80284,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -114083,17 +114103,10 @@
             }
           },
           {
-            "bam": {
+            "bam_and_bai": {
               "type": "file",
-              "description": "BAM file.",
-              "pattern": "*.bam"
-            }
-          },
-          {
-            "bai": {
-              "type": "file",
-              "description": "BAI file",
-              "pattern": "*.bai"
+              "description": "BAM file with corresponding index.",
+              "pattern": "*.{bam,bai}"
             }
           },
           {
