@@ -5839,6 +5839,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -9082,7 +9086,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.4.1"
+          "version": "1.5.0"
         }
       ]
     },
@@ -12460,7 +12464,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.4.1"
+          "version": "1.5.0"
         }
       ]
     },
@@ -12578,7 +12582,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.4.1"
+          "version": "1.5.0"
         }
       ]
     },
@@ -18572,6 +18576,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -21413,7 +21425,13 @@
           "@edmundmiller",
           "@RHReynolds"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "demultiplex",
+          "version": "1.5.0"
+        }
+      ]
     },
     {
       "name": "cellranger_mkgtf",
@@ -23549,7 +23567,13 @@
         "authors": [
           "@matrulda"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "demultiplex",
+          "version": "1.5.0"
+        }
+      ]
     },
     {
       "name": "checkv_downloaddatabase",
@@ -29780,7 +29804,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.4.1"
+          "version": "1.5.0"
         },
         {
           "name": "funcscan",
@@ -37524,7 +37548,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.4.1"
+          "version": "1.5.0"
         },
         {
           "name": "taxprofiler",
@@ -38763,7 +38787,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.4.1"
+          "version": "1.5.0"
         },
         {
           "name": "denovotranscript",
@@ -38956,6 +38980,10 @@
         {
           "name": "demo",
           "version": "1.0.0"
+        },
+        {
+          "name": "demultiplex",
+          "version": "1.5.0"
         },
         {
           "name": "denovotranscript",
@@ -41350,7 +41378,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.4.1"
+          "version": "1.5.0"
         }
       ]
     },
@@ -69452,6 +69480,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -72464,6 +72496,10 @@
         {
           "name": "bacass",
           "version": "2.3.1"
+        },
+        {
+          "name": "demultiplex",
+          "version": "1.5.0"
         },
         {
           "name": "detaxizer",
@@ -79519,7 +79555,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.4.1"
+          "version": "1.5.0"
         }
       ]
     },
@@ -80232,6 +80268,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -86602,7 +86642,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.4.1"
+          "version": "1.5.0"
         },
         {
           "name": "denovotranscript",
@@ -117815,6 +117855,10 @@
       },
       "pipelines": [
         {
+          "name": "demultiplex",
+          "version": "1.5.0"
+        },
+        {
           "name": "pathogensurveillance",
           "version": "dev"
         }
@@ -118669,7 +118713,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.4.1"
+          "version": "1.5.0"
         }
       ]
     },
@@ -133259,7 +133303,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.4.1"
+          "version": "1.5.0"
         },
         {
           "name": "differentialabundance",
@@ -141177,7 +141221,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.4.1"
+          "version": "1.5.0"
         }
       ]
     },
@@ -143255,7 +143299,13 @@
         "maintainers": [
           "@apeltzer"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "demultiplex",
+          "version": "1.5.0"
+        }
+      ]
     },
     {
       "name": "fastq_create_umi_consensus_fgbio",
@@ -148365,6 +148415,10 @@
           "version": "1.0.0"
         },
         {
+          "name": "demultiplex",
+          "version": "1.5.0"
+        },
+        {
           "name": "denovotranscript",
           "version": "dev"
         },
@@ -148596,6 +148650,10 @@
         {
           "name": "demo",
           "version": "1.0.0"
+        },
+        {
+          "name": "demultiplex",
+          "version": "1.5.0"
         },
         {
           "name": "denovotranscript",
@@ -148859,6 +148917,10 @@
         {
           "name": "demo",
           "version": "1.0.0"
+        },
+        {
+          "name": "demultiplex",
+          "version": "1.5.0"
         },
         {
           "name": "denovotranscript",
