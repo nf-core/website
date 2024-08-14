@@ -1,21 +1,9 @@
 ---
 import PageLayout from '@layouts/PageLayout.astro';
 import SchemaBuilderListing from '@components/schema/schema-builder/SchemaBuilderListing.svelte';
-
-const id = Astro.url.searchParams.get('id');
-let schemaData = {};
-if (id) {
-    schemaData = await fetch(Astro.url.origin + '/.netlify/functions/process_schema?id=' + id, {
-        method: 'GET',
-    }).then(async (res) => {
-        const data = await res.json();
-        return data.data.schema;
-    });
-}
-
-export const prerender = false;
+import schemaData from 'public/nextflow_schema.json';
 ---
 
 <PageLayout title=" Schema Builder" subtitle="Create or modify your `nextflow_schema.json` file.">
-    <SchemaBuilderListing schema={schemaData} {id} client:idle />
+    <SchemaBuilderListing client:idle />
 </PageLayout>

@@ -4,7 +4,6 @@ import pipelines_json from './public/pipelines.json';
 import { rehypeCheckboxParser } from '../../bin/rehype-checkbox-parser.ts';
 import { rehypeHeadingNumbers } from '../../bin/rehype-heading-numbers.ts';
 import mdx from '@astrojs/mdx';
-import netlify from '@astrojs/netlify';
 import partytown from '@astrojs/partytown';
 import sitemap from '@astrojs/sitemap';
 import svelte from '@astrojs/svelte';
@@ -33,13 +32,9 @@ pipelines_json.remote_workflows.map(
 );
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://nf-co.re/',
-    output: 'hybrid',
-    adapter: netlify(),
+    site: 'http://localhost',
+    output: 'static',
     prefetch: false,
-    redirects: {
-        ...latestPipelineReleases,
-    },
     integrations: [
         svelte(),
         icon({
@@ -89,7 +84,6 @@ export default defineConfig({
     build: {
         inlineStylesheets: 'auto',
         format: 'file',
-        assetsPrefix: 'https://nf-core-pipeline-schema.netlify.app/',
     },
     vite: {
         plugins: [
