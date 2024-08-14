@@ -19,10 +19,7 @@ by providing brief summaries of the monthly team meetings.
 
 We got about half way through our action points from last time.
 
-Slack channels were created for the new working groups:
-    - #wg-meta-pipelines
-    - #wg-modules-update
-    - #wg-test-data-task-force
+Slack channels were created for the new working groups: - #wg-meta-pipelines - #wg-modules-update - #wg-test-data-task-force
 
 Please join if you want to be involved in one of those.
 
@@ -33,11 +30,7 @@ on docker. Moving forward we agreed that at least some tests should also be run
 with `singularity` and `conda`.
 
 We discussed several ideas. On the one hand we'd like to make sure everything works at all times, on the other hand running tons of tests
-makes development slow, costs money, and is not great for the planet 🌳. As a compromise, we agreed on the following:
-    - Singularity & conda tests are run on PR to master
-        - Make singularity required
-        - Conda optional opt-out
-    - Add `workflow dispatch` button for easier manual testing
+makes development slow, costs money, and is not great for the planet 🌳. As a compromise, we agreed on the following: - Singularity & conda tests are run on PR to master - Make singularity required - Conda optional opt-out - Add `workflow dispatch` button for easier manual testing
 
 ## Nf-test best practices
 
@@ -51,16 +44,7 @@ Nicolas will make updates to the guidelines that all assertions should go into a
 
 Júlia is coordinating the bulk update of modules in https://github.com/nf-core/modules/issues/5828 (join #wg-modules-update to stay tuned)
 
-This includes:
-    - meta.yml accounting for the channel structure (https://github.com/nf-core/modules/pull/5867)
-    - subworkflows
-    - bio.tools identifiers
-    - edam ontologies for all input/output files
-    - removing defaults from conda channel
-    - adding lock files
-    - adding version topic channels
-    - adding lint for stub tests for all modules
-
+This includes: - meta.yml accounting for the channel structure (https://github.com/nf-core/modules/pull/5867) - subworkflows - bio.tools identifiers - edam ontologies for all input/output files - removing defaults from conda channel - adding lock files - adding version topic channels - adding lint for stub tests for all modules
 
 ### Topic channels for `version`
 
@@ -75,7 +59,6 @@ After settling somewhat on how we want to name subworkflows in the previous meet
 The meta.yml currently only includes the channel name. It is now being expanded to match the channel construct, like: "meta, bam, bai" (not just files).
 We also argued over the overall channel names.
 
-
 ## Versioning of modules guidelines
 
 Arthur Gymer suggested that the module guidelines should be versioned.
@@ -89,8 +72,7 @@ Matthias will think about a few ways on how this could be tackled.
 
 ## Next time
 
-Mahesh figured out a cool way to handle args in nf-tests without the `nextflow.config` copying issue:  https://nfcore.slack.com/archives/C049MBCEW06/p1721042240473589
+Mahesh figured out a cool way to handle args in nf-tests without the `nextflow.config` copying issue: https://nfcore.slack.com/archives/C049MBCEW06/p1721042240473589
 We'll discuss this in detail next time.
-
 
 \- :heart: from your #maintainers team!
