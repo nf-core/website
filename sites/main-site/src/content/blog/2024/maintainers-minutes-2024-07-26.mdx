@@ -13,8 +13,6 @@ label:
 The 'Maintainers Minutes' aims to further give insight into the workings of the [nf-core maintainers team](/governance#maintainers)
 by providing brief summaries of the monthly team meetings.
 
-
-
 ## Review of action points from last time
 
 We got about half way through our action points from last time.
@@ -41,62 +39,56 @@ makes development slow, costs money, and is not great for the planet 🌳. As a 
 
 ## Nf-test best practices
 
-- (Nicolas) nf-test - a single snapshot per test vs a single snapshot per file (meaning many per test)
-    - nf-test snapshot format:
-    - One snapshot per file is bad!
-    - All assertions in a snapshot
+Nicolas brought up that snapshots should be readable to quickly determine that they do what they should. Since the order of snapshots in the `.snap` file
+does not correspond to the order they are defined in the test file, having one snapshot per file in the same test
+scrambles the entries all over the place.
+
+Nicolas will make updates to the guidelines that all assertions should go into a single snapshot per test.
 
 ## Bulk updates of modules
-- [x] (Júlia) Bulk update of modules (https://github.com/nf-core/modules/issues/5828)
-- (Júlia) Restructuring of meta.yml (https://github.com/nf-core/modules/pull/5867)
- Bulk updates of modules:
-    - Plan: update all modules with:
-        - meta.yml -> channel structure
-        - subworkflows ->
-        - bio.tools identifiers
-        - edam ontologies for all input/output files
-        - removing defaults from conda channel
-        - adding lock files
-        - adding version topic channels
-        - adding lint for stub tests for all modules
-    - Version topic channels:
-        - Maybe should be gradual overtime
-        - Requries pipeline changes anyway
-        - You can actually mix and match topic/non-topic channels
-        - Hackathon task
+
+Júlia is coordinating the bulk update of modules in https://github.com/nf-core/modules/issues/5828 (join #wg-modules-update to stay tuned)
+
+This includes:
+    - meta.yml accounting for the channel structure (https://github.com/nf-core/modules/pull/5867)
+    - subworkflows
+    - bio.tools identifiers
+    - edam ontologies for all input/output files
+    - removing defaults from conda channel
+    - adding lock files
+    - adding version topic channels
+    - adding lint for stub tests for all modules
+
+
+### Topic channels for `version`
+
+In addition, we discussed how to incorporate the topics version channels. Edmund created a [POC](https://github.com/nf-core/nascent/pull/150) showing that
+it is possible to handle topic and non-topic version channels together.
+This also requires a pipeline update by all developers, pinning a recent nextflow version, and adding the `preview` flag.
+It was concluded that this should be a hackathon task.
 
 ## Obligatory argument
 
-subworkflow meta.yml restrucutre:
-    - Only has name of the channel, being expanded to better match the channel construct (not just files)
-    - What is the name of the overall channel XYZ - NMaming stuff: now FIGHT!
-        - Structure -> Accepted by majority (only Mattias unhappy)
+After settling somewhat on how we want to name subworkflows in the previous meeting, we now discussed the meta.yml restructuring for subworkflows.
+The meta.yml currently only includes the channel name. It is now being expanded to match the channel construct, like: "meta, bam, bai" (not just files).
+We also argued over the overall channel names.
+
 
 ## Versioning of modules guidelines
-- [ ] Versioning module guidelines? Suggested by Arthur Gymer.
- Versioning guidelines
-    - Everyone think it's a good idea
-    - Linked with too tools version (but docs independent) or date?
-    - Linting against tools release, but can have a `dev` version of modules guidelines?
-    - Problem: linting can be against tools dev, but this is a not a stable modules version guidelines specification... could change a lot prior next tools release
-    - Commits to website markdown file (too regular/fast)?
-    - Major issue: how to render on website, without copying the entire markdown page every time etc
-        - Also plans (although James found 🤢) to split current guideline pages into multiple pages
+
+Arthur Gymer suggested that the module guidelines should be versioned.
+Everyone think it's a good idea and we discussed how to best approach this since the guidelines are listed on the website, linting is linked to nf-core/tools versions
+and not everything can/is linted for at the moment.
+
+Some ideas included linking the docs with the tools version and date stamp the docs, have dev docs version to account for incremental updates. We agreed that linting against the tools dev version may cause
+problems with changes during the developemt.
+One of the major technical challenges we discussed were how to best account for various doc versions on the website with the additional complication the the guidelines page is planned to be split up (which James finds 🤢)
+Matthias will think about a few ways on how this could be tackled.
 
 ## Next time
-- (Mahesh) use params for ext.args: https://nfcore.slack.com/archives/C049MBCEW06/p1721042240473589
 
+Mahesh figured out a cool way to handle args in nfjtests without the `nextflow.config` copying issue:  https://nfcore.slack.com/archives/C049MBCEW06/p1721042240473589
+We'll discuss this in detail next time.
 
-## Action points
-
- - [ ] Matthias to attempt again to list modules on subworkflow page
- - [ ] Julia to include  singulairty/conda tests in template (deadline: next template release)
- - [ ] Nicolas to update module guidelines to say all assertions in one snapshot (definitely not one per file)
- - [ ] Mahesh to talk about params ext.args next time
- - [ ] Matthias to think about new ways of versioning module guidelines
-
-## Upcoming discussions
-
-Next meeting we will be reviewing the progress of the various new task-forces established during the meeting.
 
 \- :heart: from your #maintainers team!
