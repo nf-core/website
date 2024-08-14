@@ -42,7 +42,16 @@ Nicolas will make updates to the guidelines that all assertions should go into a
 
 Júlia is coordinating an upcoming bulk update of all modules in https://github.com/nf-core/modules/issues/5828 (join #wg-modules-update to stay tuned)
 
-This includes: - meta.yml accounting for the channel structure (https://github.com/nf-core/modules/pull/5867) - subworkflows - bio.tools identifiers - edam ontologies for all input/output files - removing defaults from conda channel - adding lock files - adding version topic channels - adding lint for stub tests for all modules
+This will include a lot of new exciting things:
+
+  - improved `meta.yml` layout accounting for the channel structure (https://github.com/nf-core/modules/pull/5867) 
+  - subworkflows 
+  - bio.tools identifiers (for better linked metadata across registries)
+  - edam ontologies for all input/output files  (for better standardisation of file types)
+  - removing defaults from conda channel (to reduce chances of ToS violations)
+  - adding lock files (for better conda dependency version stability)
+  - adding version topic channels (for simplified version reporting in pipelines)
+  - adding lint for stub tests for all modules (to help us move to having complete 'dry run' functionality in pipelines)
 
 ### Topic channels for `version`
 
