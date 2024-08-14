@@ -32,11 +32,11 @@ As a compromise, we agreed on the following:
 
 ## Nf-test best practices
 
-Nicolas brought up that snapshots should be readable to quickly determine that they do what they should. Since the order of snapshots in the `.snap` file
-does not correspond to the order they are defined in the test file, having one snapshot per file in the same test
-scrambles the entries all over the place.
+Nicolas brought up that nf-test snapshots (i.e., files that record e.g. md5sums or presence of strings) should be readable to quickly determine that they include everything they should.
+He had noticed that some people in module tests had started using a snapshot for every single file (rather than all in one), seemingly to be able to 'label' each snapshot.
+However, since the order of each 'snapshot' recorded in the `.snap` file does not necessarily correspond to the order they are defined in the test file, having one snapshot _per file_ in the same test scrambles the entries all over the place, e.g. out of order from the output channels as defined in the module.
 
-Nicolas will make updates to the guidelines that all assertions should go into a single snapshot per test.
+Nicolas will make updates to the guidelines that all assertions should go into a single snapshot per test for modules.
 
 ## Bulk updates of modules
 
