@@ -5851,6 +5851,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -6724,7 +6728,9 @@
         "description": "Assembly summary statistics in JSON format",
         "keywords": [
           "assembly",
-          "statistics"
+          "statistics",
+          "summary",
+          "json"
         ],
         "tools": [
           {
@@ -18608,6 +18614,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -21376,7 +21390,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         }
       ]
     },
@@ -21519,7 +21533,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         }
       ]
     },
@@ -21596,7 +21610,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         }
       ]
     },
@@ -21689,7 +21703,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         }
       ]
     },
@@ -21884,7 +21898,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         }
       ]
     },
@@ -22041,7 +22055,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         }
       ]
     },
@@ -22171,7 +22185,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         }
       ]
     },
@@ -22260,7 +22274,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         }
       ]
     },
@@ -39151,7 +39165,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         },
         {
           "name": "seqinspector",
@@ -57997,7 +58011,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         }
       ]
     },
@@ -62439,7 +62453,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         },
         {
           "name": "taxprofiler",
@@ -69516,6 +69530,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -71218,7 +71236,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         }
       ]
     },
@@ -71335,7 +71353,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         }
       ]
     },
@@ -80643,6 +80661,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -86886,7 +86908,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         },
         {
           "name": "seqinspector",
@@ -118556,6 +118578,218 @@
       }
     },
     {
+      "name": "severus",
+      "path": "modules/nf-core/severus/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "severus",
+        "description": "Severus is a somatic structural variation (SV) caller for long reads (both PacBio and ONT)",
+        "keywords": [
+          "structural",
+          "variation",
+          "somatic",
+          "germline",
+          "long-read"
+        ],
+        "tools": [
+          {
+            "severus": {
+              "description": "A tool for somatic structural variant calling using long reads",
+              "homepage": "https://github.com/KolmogorovLab/Severus",
+              "documentation": "https://github.com/KolmogorovLab/Severus",
+              "tool_dev_url": "https://github.com/KolmogorovLab/Severus",
+              "doi": "10.1101/2024.03.22.24304756",
+              "licence": [
+                "BSD-3-clause"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "target_input": {
+              "type": "file",
+              "description": "path to one or multiple target BAM/CRAM files (e.g. tumor, must be indexed)",
+              "pattern": "*.{bam,cram}"
+            }
+          },
+          {
+            "target_index": {
+              "type": "file",
+              "description": "path to one or multiple target BAM/CRAM index files",
+              "pattern": "*.{bai,crai,csi}"
+            }
+          },
+          {
+            "control_input": {
+              "type": "file",
+              "description": "path to the control BAM/CRAM file (e.g. normal, must be indexed)",
+              "pattern": "*.{bam,cram}"
+            }
+          },
+          {
+            "control_index": {
+              "type": "file",
+              "description": "path to the control BAM/CRAM file index",
+              "pattern": "*.{bai,crai,csi}"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "path to vcf file used for phasing (if using haplotype specific SV calling",
+              "pattern": "*.{vcf,vcf.gz}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing tandem repeat regions information\ne.g. `[ id:'hg38']`\n"
+            }
+          },
+          {
+            "bed": {
+              "type": "file",
+              "description": "path to bed file for tandem repeat regions (must be ordered)",
+              "pattern": "*.bed"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "log": {
+              "type": "file",
+              "description": "Severus log file",
+              "pattern": "${prefix}/severus.log"
+            }
+          },
+          {
+            "read_qual": {
+              "type": "file",
+              "description": "Severus read_qual file",
+              "pattern": "${prefix}/read_qual.txt"
+            }
+          },
+          {
+            "breakpoints_double": {
+              "type": "file",
+              "description": "Severus breakpoints_double file",
+              "pattern": "${prefix}/breakpoints_double.csv"
+            }
+          },
+          {
+            "read_alignments": {
+              "type": "file",
+              "description": "read alignments file",
+              "pattern": "${prefix}/read_alignments"
+            }
+          },
+          {
+            "read_ids": {
+              "type": "file",
+              "description": "read IDs for support reads",
+              "pattern": "${prefix}/read_ids"
+            }
+          },
+          {
+            "collapsed_dup": {
+              "type": "file",
+              "description": "a bed file with identified collapsed duplication regions",
+              "pattern": "${prefix}/severus_collaped_dup"
+            }
+          },
+          {
+            "loh": {
+              "type": "file",
+              "description": "a bed file with predicted LOH regions",
+              "pattern": "${prefix}/severus_LOH.bed"
+            }
+          },
+          {
+            "all_vcf": {
+              "type": "file",
+              "description": "VCF file with all SVs (somatic + germline)",
+              "pattern": "${prefix}/all_SVs/severus_all.vcf"
+            }
+          },
+          {
+            "all_breakpoints_clusters_list": {
+              "type": "file",
+              "description": "Severus breakpoints clusters list file",
+              "pattern": "${prefix}/all_SVs/breakpoints_clusters_list.tsv"
+            }
+          },
+          {
+            "all_breakpoints_clusters": {
+              "type": "file",
+              "description": "Severus breakpoints clusters file",
+              "pattern": "${prefix}/all_SVs/breakpoints_clusters.tsv"
+            }
+          },
+          {
+            "all_plots": {
+              "type": "file",
+              "description": "Severus plots",
+              "pattern": "${prefix}/all_SVs/plots/*.html"
+            }
+          },
+          {
+            "somatic_vcf": {
+              "type": "file",
+              "description": "VCF file with somatic SVs",
+              "pattern": "${prefix}/somatic_SVs/severus_all.vcf"
+            }
+          },
+          {
+            "somatic_breakpoints_clusters_list": {
+              "type": "file",
+              "description": "Severus somatic breakpoints clusters list file",
+              "pattern": "${prefix}/somatic_SVs/breakpoints_clusters_list.tsv"
+            }
+          },
+          {
+            "somatic_breakpoints_clusters": {
+              "type": "file",
+              "description": "Severus somatic breakpoints clusters file",
+              "pattern": "${prefix}/somatic_SVs/breakpoints_clusters.tsv"
+            }
+          },
+          {
+            "somatic_plots": {
+              "type": "file",
+              "description": "Severus somatic plots",
+              "pattern": "${prefix}/somatic_SVs/plots/*.html"
+            }
+          }
+        ],
+        "authors": [
+          "@fellen31"
+        ],
+        "maintainers": [
+          "@fellen31"
+        ]
+      }
+    },
+    {
       "name": "sexdeterrmine",
       "path": "modules/nf-core/sexdeterrmine/meta.yml",
       "type": "module",
@@ -124751,7 +124985,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         },
         {
           "name": "viralintegration",
@@ -133236,7 +133470,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         }
       ]
     },
@@ -133607,7 +133841,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         }
       ]
     },
@@ -148573,7 +148807,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         },
         {
           "name": "seqinspector",
@@ -148810,7 +149044,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         },
         {
           "name": "seqinspector",
@@ -149077,7 +149311,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.7.0"
+          "version": "2.7.1"
         },
         {
           "name": "seqinspector",
