@@ -9,7 +9,7 @@
     let schema = {};
 
     let defName = 'definitions';
-    let id = '';
+    let schema_path = '';
 
     let status = 'loading';
     let collapseGroups = false;
@@ -17,33 +17,34 @@
     // rename key in the schema
 
     // post schema to the server
-    const postSchema = async () => {
-        const response = await fetch(`http://localhost:8000/process-schema?id=${id}`, {
+    const postSchema = async (postStatus: string) => {
+        const response = await fetch(`http://localhost:8000/process-schema`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 message: 'Schema created successfully',
             },
-            body: JSON.stringify({ status: 'web_builder_edited', schema }),
+            body: JSON.stringify({ status: postStatus, schema, schema_path }),
         });
         const data = await response.json();
         if (data.status === 'web_builder_edited') {
             status = 'saved';
         }
     };
+
     onMount(async () => {
-        // read id from URL
+        // read schema_path from URL
         const url = new URL(window.location.href);
-        id = url.searchParams.get('id') || '';
-        if (!id) {
-            console.error('No id found in the URL');
+        schema_path = url.searchParams.get('schema_path') || '';
+        if (!schema_path) {
+            console.error('No schema_path found in the URL');
             return;
         }
         try {
-            const response = await fetch(`http://localhost:8000/process-schema?id=${id}`);
+            const response = await fetch(`http://localhost:8000/process-schema?schema_path=${schema_path}`);
             const data = await response.json();
 
-            schema = data.data.schema;
+            schema = data.data;
             status = 'loaded';
         } catch (error) {
             console.error('Error fetching schema:', error);
@@ -62,8 +63,13 @@
             }}>Collapse Groups</button
         >
     </div>
-    <button id="finish" class="btn btn-primary" class:disabled={status !== 'loaded'} on:click={postSchema}
-        >Finish</button
+    <button
+        id="finish"
+        class="btn btn-primary"
+        class:disabled={status !== 'loaded'}
+        on:click={() => {
+            postSchema('web_builder_edited');
+        }}>Finish</button
     >
 </SchemaBuilderToolbar>
 

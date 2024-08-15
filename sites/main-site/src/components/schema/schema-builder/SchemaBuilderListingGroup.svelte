@@ -1,8 +1,12 @@
 <script lang="ts">
+    import { showHelp, showHidden } from '@components/store';
     import SchemaBuilderListingElement from './SchemaBuilderListingElement.svelte';
-
+    import SchemaListingElement from '@components/schema/SchemaListingElement.svelte';
     export let name: string = '';
     export let schema: any = {};
+
+    showHelp.set(true);
+    showHidden.set(true);
 
     $: group = schema.definitions[name];
     const updateSchemaKey = (e, oldKey) => {
@@ -32,6 +36,7 @@
         <p>{group.description}</p>
     {/if}
     {#each Object.keys(group.properties) as key (key)}
+        <SchemaListingElement title={key} property={group.properties[key]} />
         <SchemaBuilderListingElement bind:schema={group.properties} name={key} required={group.required?.includes(key)}>
             <label
                 ><span class:d-none={key.length == 0}>ID</span>

@@ -33,7 +33,7 @@
                 {#if property.fa_icon}
                     <i class="fa fa-fw {property.fa_icon}" />
                 {/if}
-                <code>--{title}</code>
+                <code>{title}<span class="opacity-50">:{property.type}</span></code>
             </span>
         </a>
     </div>
@@ -47,9 +47,6 @@
         {#if property.required}
             <span class="badge text-bg-warning mb-1">required</span>
         {/if}
-        <div class="text-body-secondary">
-            type: <code>{property.type}</code>
-        </div>
         {#if property.enum}
             <select class="form-select mt-2" value={property.default} aria-label="Parameter enum options">
                 {#each property.enum as value}
