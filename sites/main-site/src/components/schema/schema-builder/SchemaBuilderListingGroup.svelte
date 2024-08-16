@@ -38,19 +38,19 @@
     {#each Object.keys(group.properties) as key (key)}
         <SchemaListingElement title={key} property={group.properties[key]} />
         <SchemaBuilderListingElement bind:schema={group.properties} name={key} required={group.required?.includes(key)}>
-            <label
-                ><span class:d-none={key.length == 0}>ID</span>
+            <div class="form-floating">
                 <input
+                    id="param_id"
                     type="text"
-                    class="font-monospace"
+                    class="font-monospace form-control"
                     value={key}
                     placeholder="ID"
                     on:change={(e) => {
                         updateSchemaKey(e, key);
                     }}
                 />
-            </label>
-            {key}
+                <label for="param_id">ID </label>
+            </div>
         </SchemaBuilderListingElement>
     {/each}
 </div>

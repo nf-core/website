@@ -9,7 +9,7 @@
 
     const pattern = property.pattern;
     let longPattern = [];
-    // explicitely handle patterns which are an enum work around, i.e. they have multiple values, eg. "^(foo|bar)$"
+    // explicitly handle patterns which are an enum work around, i.e. they have multiple values, eg. "^(foo|bar)$"
     if (
         pattern &&
         pattern.startsWith('^(') &&

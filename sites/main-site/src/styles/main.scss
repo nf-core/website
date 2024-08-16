@@ -64,7 +64,11 @@ body {
 // additional variables based on bootstrap variables
 $navbar-height: $navbar-brand-height + 2 * $navbar-brand-padding-y + 2 * $navbar-padding-y;
 $navbar-height-collapsed: $navbar-brand-height;
-
+// define as css variable
+:root {
+  --navbar-height: #{$navbar-height};
+  --navbar-height-collapsed: #{$navbar-height-collapsed};
+}
 // general classes
 strong {
   font-weight: 600;

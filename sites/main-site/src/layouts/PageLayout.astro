@@ -24,6 +24,7 @@ let {
     viewTransitions = false,
     docSearchTags = [],
     doubleNavbar = true,
+    showNavbar = true,
 } = Astro.props;
 
 export interface Props {
@@ -57,6 +58,7 @@ export interface Props {
         content: string | string[];
     }[];
     doubleNavbar?: boolean;
+    showNavbar?: boolean;
 }
 if (frontmatter) {
     title = frontmatter.title || title;
@@ -73,27 +75,28 @@ if (frontmatter) {
 
 <BaseLayout
     title={meta_title}
-    subtitle={subtitle}
-    image={image}
-    md_github_url={md_github_url}
-    subfooter={subfooter}
+    {subtitle}
+    {image}
+    {md_github_url}
+    {subfooter}
     {showHiddenBtn}
-    navTocHeadings={navTocHeadings}
-    sections={sections}
-    viewTransitions={viewTransitions}
-    docSearchTags={docSearchTags}
-    doubleNavbar={doubleNavbar}
+    {navTocHeadings}
+    {sections}
+    {viewTransitions}
+    {docSearchTags}
+    {doubleNavbar}
+    {showNavbar}
 >
     <div class="mainpage">
         <Header
-            title={title}
-            subtitle={subtitle}
-            header_html={header_html}
-            event_header={event_header}
-            md_github_url={md_github_url}
-            header_btn_url={header_btn_url}
-            header_btn_text={header_btn_text}
-            topics={topics}
+            {title}
+            {subtitle}
+            {header_html}
+            {event_header}
+            {md_github_url}
+            {header_btn_url}
+            {header_btn_text}
+            {topics}
         >
             <slot name="header-top" slot="header-top" />
             <slot name="sub-header" />
