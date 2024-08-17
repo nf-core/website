@@ -5863,6 +5863,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -18389,6 +18393,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -69566,6 +69578,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -80350,6 +80366,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -100882,6 +100902,116 @@
         ],
         "maintainers": [
           "@rpetit3"
+        ]
+      }
+    },
+    {
+      "name": "poolsnp",
+      "path": "modules/nf-core/poolsnp/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "poolsnp",
+        "description": "PoolSNP is a heuristic SNP caller, which uses an MPILEUP file and a reference genome in FASTA format as inputs.",
+        "keywords": [
+          "poolseq",
+          "mpileup",
+          "variant-calling"
+        ],
+        "tools": [
+          {
+            "poolsnp": {
+              "description": "PoolSNP is a heuristic SNP caller, which uses an MPILEUP file and a reference genome in FASTA format as inputs.",
+              "homepage": "https://github.com/capoony/PoolSNP",
+              "documentation": "https://github.com/capoony/PoolSNP/blob/master/README.md",
+              "licence": [
+                "Apache-2.0"
+              ],
+              "args_id": "$args"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information.\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "mpileup": {
+              "type": "file",
+              "description": "MPILEUP file. This file contains the base calls and alignment information\nfor each position in the reference genome.\nIt is used as input for variant calling and other downstream analyses.\n",
+              "pattern": "*.mpileup"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing sample information.\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "reference": {
+              "type": "file",
+              "description": "Reference genome in FASTA format.\nMay NOT contain any special characters such as \"/|,:\"\n",
+              "pattern": "*.{fasta,fa}"
+            }
+          },
+          {
+            "max_cov": {
+              "type": "float",
+              "description": "Maximum coverage is calculated for every library and chromosomal arm\nas the percentile of a coverage distribution,\ne.g. max-cov=0.98 will only consider positions within the 98% coverage percentile\nfor a given sample and chromosomal arm.\nNote: Provide `max_cov` or `max_cov_file` but not both.\nRead more: https://github.com/capoony/PoolSNP\n"
+            }
+          },
+          {
+            "max_cov_file": {
+              "type": "file",
+              "description": "File containing the maximum coverage thresholds for all chromosomal arms and libraries.\nThis file needs to be tab-delimited with two columns:\n1. Chromosomal name\n2. Comma-separated list of coverage thresholds for each sample in the mpileup file.\ne.g. `2L 100,100,100,200,200` would mean a threshold of 100 for the first three samples\nand 200 for the last two samples on chromosomal arm 2L.\nNote: Provide `max_cov` or `max_cov_file` but not both.\nRead more: https://github.com/capoony/PoolSNP\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "Gzipped VCF file containing allele counts and frequencies for every position and library",
+              "pattern": "*.vcf.gz"
+            }
+          },
+          {
+            "max_cov": {
+              "type": "file",
+              "description": "File containing the maximum coverage thresholds for all chromosomal arms and libraries",
+              "pattern": "*cov-*.txt"
+            }
+          },
+          {
+            "bad_sites": {
+              "type": "file",
+              "description": "File containing a list of sites (variable and invariable) that did not pass the SNP calling criteria",
+              "pattern": "*BS.txt.gz",
+              "optional": true
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@abhilesh"
+        ],
+        "maintainers": [
+          "@abhilesh"
         ]
       }
     },
@@ -132314,6 +132444,13 @@
               "description": "Browser Extensible Data (BED) file",
               "pattern": "*.{bed}"
             }
+          },
+          {
+            "chain": {
+              "type": "file",
+              "description": "Chain file",
+              "pattern": "*.{chain,chain.gz}"
+            }
           }
         ],
         "output": [
@@ -132324,7 +132461,7 @@
             }
           },
           {
-            "version": {
+            "versions": {
               "type": "file",
               "description": "File containing software version",
               "pattern": "versions.yml"
