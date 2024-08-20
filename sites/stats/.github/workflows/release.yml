@@ -1,0 +1,100 @@
+# This installs the dependencies, zips the files, uploads the artifact, and creates a GitHub release.
+# This appears to work for Windows, but in macOS it has permissions issues. Linux not tested.
+name: Package and Release
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          # MacOS
+          - os: macos-latest
+            arch: x86_64
+            node: 18
+          - os: macos-latest
+            arch: arm64
+            node: 18
+          - os: macos-latest
+            arch: x86_64
+            node: 20
+          - os: macos-latest
+            arch: arm64
+            node: 20
+          # Ubuntu
+          - os: ubuntu-latest
+            arch: x86_64
+            node: 18
+          - os: ubuntu-latest
+            arch: arm64
+            node: 18
+          - os: ubuntu-latest
+            arch: x86_64
+            node: 20
+          - os: ubuntu-latest
+            arch: arm64
+            node: 20
+          # Windows
+          - os: windows-latest
+            arch: x86_64
+            node: 18
+          - os: windows-latest
+            arch: x86_64
+            node: 20
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Zip files (Windows)
+        if: runner.os == 'Windows'
+        run: powershell.exe -Command "Compress-Archive -Path . -DestinationPath evidence-${{ matrix.os }}-${{ matrix.arch }}-node${{ matrix.node }}.zip -Force"
+
+      - name: Zip files (Unix)
+        if: runner.os != 'Windows'
+        run: zip -r evidence-${{ matrix.os }}-${{ matrix.arch }}-node${{ matrix.node }}.zip . -x "*.git*"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: evidence-${{ matrix.os }}-${{ matrix.arch }}-node${{ matrix.node }}
+          path: evidence-${{ matrix.os }}-${{ matrix.arch }}-node${{ matrix.node }}.zip
+
+  release:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v2
+        with:
+          path: .
+
+      - name: Create or Update GitHub Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: '**/evidence-*.zip'
+          token: ${{ secrets.GH_ACTIONS_RELEASE_TOKEN }}
+          tag: ${{ github.ref }}
+          name: Release ${{ github.ref_name }}
+          body: |
+            Preinstalled templates for ${{ github.ref_name }}.
+            These may be useful if you cannot access the npm registry (e.g. in a secure environment).
+            Otherwise, use the install instructions in the readme.
+          draft: false
+          prerelease: false
+          allowUpdates: true
