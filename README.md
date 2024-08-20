@@ -64,6 +64,7 @@ The main sub-sites are:
 - `sites/modules-subworkflows` - modules and subworkflows pages
 - `sites/pipelines` - pipeline pages
 - `sites/pipeline-results` - AWS megatest result pages for each pipeline (split up from the rest to allow static generation of the main pipeline pages)
+- `sites/stats` - Stats for nf-core activity written with [Evidence](https://evidence.dev/)
 
 Each site has its own `src` directory with the following structure, typical for an [Astro project](https://docs.astro.build/guides/project-structure):
 
