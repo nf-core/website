@@ -1,0 +1,27 @@
+{
+    // This file is only used in Codespaces. If you are developing locally, you can remove the .devcontainer directory without consequences
+
+    "image": "mcr.microsoft.com/devcontainers/javascript-node:0-18-bullseye",
+
+    "hostRequirements": {
+      "cpus": 4,
+      "memory": "4gb",
+      "storage": "32gb"
+    },
+
+    // Use 'postCreateCommand' to run commands after the container is created.
+    "postCreateCommand": "rm .vscode/extensions.json && rmdir .vscode",
+    // Configure tool-specific properties
+    "customizations": {
+      "vscode": {
+        "extensions": [
+          // "GitHub.codespaces",
+          "evidence.evidence-vscode",
+          "svelte.svelte-vscode"
+        ]
+      }
+    }
+    // "forwardPorts": [3000]
+  }
+  // For format details, see https://aka.ms/devcontainer.json. For config options, see the
+  // README at: https://github.com/devcontainers/templates/tree/main/src/python
