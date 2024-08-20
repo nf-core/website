@@ -5887,6 +5887,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -18718,6 +18722,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -21194,7 +21206,13 @@
         "maintainers": [
           "@nictru"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "scdownstream",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "cellbender_removebackground",
@@ -21313,7 +21331,13 @@
         "maintainers": [
           "@nictru"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "scdownstream",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "cellpose",
@@ -69662,6 +69686,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -80446,6 +80474,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
