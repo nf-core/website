@@ -7,7 +7,7 @@ Slack is a real-time messaging tool, with discussion split into channels and gro
 ```sql view_days
 select
     timestamp
-from slack_users
+from slack.users
 group by 1
 ```
 
@@ -24,9 +24,7 @@ group by 1
 ```views_long_filtered
 SELECT
     timestamp,
-    sum_total_views AS value,
-    'total_views' AS category
-from slack_users.view_counts
+from slack.users
 where timestamp between '${inputs.range_filtering_a_query.start}' and '${inputs.range_filtering_a_query.end}'
 
 UNION ALL
