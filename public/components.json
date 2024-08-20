@@ -5891,6 +5891,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -9136,7 +9140,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.0"
+          "version": "1.5.1"
         }
       ]
     },
@@ -12514,7 +12518,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.0"
+          "version": "1.5.1"
         }
       ]
     },
@@ -12632,7 +12636,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.0"
+          "version": "1.5.1"
         }
       ]
     },
@@ -18730,6 +18734,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -21587,7 +21599,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.0"
+          "version": "1.5.1"
         }
       ]
     },
@@ -23729,7 +23741,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.0"
+          "version": "1.5.1"
         }
       ]
     },
@@ -29959,10 +29971,6 @@
         {
           "name": "createtaxdb",
           "version": "dev"
-        },
-        {
-          "name": "demultiplex",
-          "version": "1.5.0"
         },
         {
           "name": "funcscan",
@@ -37706,7 +37714,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.0"
+          "version": "1.5.1"
         },
         {
           "name": "taxprofiler",
@@ -38945,7 +38953,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.5.0"
+          "version": "1.5.1"
         },
         {
           "name": "denovotranscript",
@@ -39141,7 +39149,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.5.0"
+          "version": "1.5.1"
         },
         {
           "name": "denovotranscript",
@@ -41536,7 +41544,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.0"
+          "version": "1.5.1"
         }
       ]
     },
@@ -63673,7 +63681,9 @@
               "homepage": "https://www.illumina.com/products/by-type/informatics-products/basespace-sequence-hub/apps/hap-py-benchmarking.html",
               "documentation": "https://github.com/Illumina/hap.py",
               "tool_dev_url": "https://github.com/Illumina/hap.py",
-              "licence": "['BSD-2-clause']"
+              "licence": [
+                "BSD-2-clause"
+              ]
             }
           }
         ],
@@ -63682,6 +63692,36 @@
             "meta": {
               "type": "map",
               "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing fasta file information\ne.g. [ id:'test2']\n"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing fai file information\ne.g. [ id:'test3']\n"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing false_positives_bed file information\ne.g. [ id:'test4']\n"
+            }
+          },
+          {
+            "meta5": {
+              "type": "map",
+              "description": "Groovy Map containing stratification_tsv file information\ne.g. [ id:'test5']\n"
+            }
+          },
+          {
+            "meta6": {
+              "type": "map",
+              "description": "Groovy Map containing stratification_beds file information\ne.g. [ id:'test6']\n"
             }
           },
           {
@@ -63742,7 +63782,7 @@
           },
           {
             "stratification_beds": {
-              "type": "file(s)",
+              "type": "file",
               "description": "One or more BED files used for stratification (these should be referenced in the stratification TSV)",
               "pattern": "*.bed"
             }
@@ -63805,7 +63845,7 @@
             }
           },
           {
-            "json": {
+            "metrics_json": {
               "type": "file",
               "description": "A JSON file containing the run info",
               "pattern": "*.runinfo.json"
@@ -69690,6 +69730,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -72705,7 +72749,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.5.0"
+          "version": "1.5.1"
         },
         {
           "name": "detaxizer",
@@ -79761,7 +79805,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.0"
+          "version": "1.5.1"
         }
       ]
     },
@@ -80474,6 +80518,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -86896,7 +86944,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.5.0"
+          "version": "1.5.1"
         },
         {
           "name": "denovotranscript",
@@ -118213,7 +118261,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.0"
+          "version": "1.5.1"
         },
         {
           "name": "pathogensurveillance",
@@ -119282,7 +119330,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.0"
+          "version": "1.5.1"
         }
       ]
     },
@@ -133879,7 +133927,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.5.0"
+          "version": "1.5.1"
         },
         {
           "name": "differentialabundance",
@@ -141797,7 +141845,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.0"
+          "version": "1.5.1"
         }
       ]
     },
@@ -143879,7 +143927,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.0"
+          "version": "1.5.1"
         }
       ]
     },
@@ -148992,7 +149040,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.5.0"
+          "version": "1.5.1"
         },
         {
           "name": "denovotranscript",
@@ -149229,7 +149277,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.5.0"
+          "version": "1.5.1"
         },
         {
           "name": "denovotranscript",
@@ -149496,7 +149544,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.5.0"
+          "version": "1.5.1"
         },
         {
           "name": "denovotranscript",
