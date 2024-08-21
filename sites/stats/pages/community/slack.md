@@ -48,9 +48,5 @@ where timestamp between '${inputs.range_filtering_a_query.start}' and '${inputs.
     subtitle="nf-core repository web views per day from {inputs.range_filtering_a_query.start} to {inputs.range_filtering_a_query.end}"
 />
 
-
-[^1][^2]
-
-[^1]: Slack considers users to be inactive when they haven't used slack for the previous 14 days.
-
-[^2]: Data from before 2019-07-24 fudged by reverse-engineering billing details on the slack admin pages.
+ℹ️Slack considers users to be inactive when they haven't used slack for the previous 14 days.
+⚠️Data from before 2019-07-24 fudged by reverse-engineering billing details on the slack admin pages.
