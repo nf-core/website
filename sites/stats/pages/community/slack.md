@@ -6,7 +6,7 @@ Slack is a real-time messaging tool, with discussion split into channels and gro
 
 ```sql view_days
 select
-    timestamp
+    to_timestamp(unix_time) AS timestamp,
 from slack.users
 group by 1
 ```
@@ -15,7 +15,7 @@ group by 1
     name=range_filtering_a_query
     data={view_days}
     dates=timestamp
-    defaultValue="Last Year"
+    defaultValue="All Time"
 />
 
 <!-- https://github.com/nf-core/website/blob/33acd6a2fab2bf9251e14212ce731ef3232b5969/public_html/stats.php#L714 -->
@@ -23,7 +23,7 @@ group by 1
 
 ```users_long_filtered
 SELECT
-    timestamp,
+    to_timestamp(unix_time) AS timestamp,
     total_users AS value,
     'total_users' AS category
 from slack.users
@@ -32,7 +32,7 @@ where timestamp between '${inputs.range_filtering_a_query.start}' and '${inputs.
 UNION ALL
 
 SELECT
-    timestamp,
+    to_timestamp(unix_time) AS timestamp,
     active_users AS value,
     'active_users' AS category
 from slack.users
