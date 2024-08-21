@@ -5895,6 +5895,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -18421,6 +18425,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -69734,6 +69746,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -79260,6 +79276,85 @@
       ]
     },
     {
+      "name": "mashmap",
+      "path": "modules/nf-core/mashmap/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "mashmap",
+        "description": "Mashmap is an approximate long read or contig mapper based on Jaccard similarity",
+        "keywords": [
+          "mapper",
+          "aligner",
+          "minhash",
+          "kmer"
+        ],
+        "tools": [
+          {
+            "mashmap": {
+              "description": "A fast approximate aligner for long DNA sequences.",
+              "homepage": "https://github.com/marbl/MashMap",
+              "documentation": "https://github.com/marbl/MashMap",
+              "tool_dev_url": "https://github.com/marbl/MashMap",
+              "doi": "10.1007/978-3-319-56970-3_5",
+              "licence": [
+                "Public Domain"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Input fasta file containing query sequences",
+              "pattern": "*.{fa,fasta,fa.gz,fasta.gz}"
+            }
+          },
+          {
+            "reference": {
+              "type": "file",
+              "description": "Input fasta file containing reference sequences",
+              "pattern": "*.{fa,fasta,fa.gz,fasta.gz}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "paf": {
+              "type": "file",
+              "description": "Alignment in PAF format",
+              "pattern": "*.paf"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@mberacochea"
+        ],
+        "maintainers": [
+          "@mberacochea"
+        ]
+      }
+    },
+    {
       "name": "mashtree",
       "path": "modules/nf-core/mashtree/meta.yml",
       "type": "module",
@@ -80518,6 +80613,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
