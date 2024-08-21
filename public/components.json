@@ -2623,7 +2623,9 @@
               "documentation": "http://www.popgen.dk/angsd/",
               "tool_dev_url": "https://github.com/ANGSD/angsd",
               "doi": "10.1186/s12859-014-0356-4",
-              "licence": "['GPL v3, MIT']"
+              "licence": [
+                "GPL v3, MIT"
+              ]
             }
           }
         ],
@@ -5375,6 +5377,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         },
         {
           "name": "rnafusion",
@@ -10510,6 +10516,13 @@
               "type": "file",
               "description": "FASTA reference file",
               "pattern": "*.{fasta,fa}"
+            }
+          },
+          {
+            "mask": {
+              "type": "file",
+              "description": "BED file used for masking",
+              "pattern": "*.{bed}"
             }
           }
         ],
@@ -18425,6 +18438,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -26876,7 +26897,9 @@
         "name": "cnvpytor_view",
         "description": "view function to generate vcfs",
         "keywords": [
-          "cnv calling"
+          "cnv",
+          "calling",
+          "vcf"
         ],
         "tools": [
           {
@@ -55128,7 +55151,11 @@
               "description": "The full Genome Analysis Toolkit (GATK) framework, license restricted.",
               "homepage": "https://gatk.broadinstitute.org/hc/en-us",
               "documentation": "https://github.com/broadinstitute/gatk-docs",
-              "licence": "['https://software.broadinstitute.org/gatk/download/licensing', 'BSD', 'https://www.broadinstitute.org/gatk/about/#licensing']"
+              "licence": [
+                "https://software.broadinstitute.org/gatk/download/licensing",
+                "BSD",
+                "https://www.broadinstitute.org/gatk/about/#licensing"
+              ]
             }
           }
         ],
@@ -69750,6 +69777,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -80613,6 +80644,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -139448,6 +139483,12 @@
         ],
         "input": [
           {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "Input genome fasta file"
@@ -139520,6 +139561,12 @@
             "reads": {
               "type": "file",
               "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data,\nrespectively.\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing index information\ne.g. [ id:'test' ]\n"
             }
           },
           {
