@@ -24,8 +24,8 @@ group by 1
 ```users_long_filtered
 SELECT
     to_timestamp(unix_time) AS timestamp,
-    total_users AS value,
-    'total_users' AS category
+    inactive_users AS value,
+    'inactive_users' AS category
 from slack.users
 where timestamp between '${inputs.range_filtering_a_query.start}' and '${inputs.range_filtering_a_query.end}'
 
