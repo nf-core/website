@@ -21,9 +21,11 @@ group by 1
 <!-- https://github.com/nf-core/website/blob/33acd6a2fab2bf9251e14212ce731ef3232b5969/public_html/stats.php#L714 -->
 
 
-```views_long_filtered
+```users_long_filtered
 SELECT
     timestamp,
+    total_users AS value,
+    'total_users' AS category
 from slack.users
 where timestamp between '${inputs.range_filtering_a_query.start}' and '${inputs.range_filtering_a_query.end}'
 
@@ -31,14 +33,14 @@ UNION ALL
 
 SELECT
     timestamp,
-    sum_total_views_unique AS value,
-    'total_views_unique' AS category
-from nfcore_db.view_counts
+    active_users AS value,
+    'active_users' AS category
+from slack.users
 where timestamp between '${inputs.range_filtering_a_query.start}' and '${inputs.range_filtering_a_query.end}'
 ```
 
 <AreaChart
-    data={views_long_filtered}
+    data={users_long_filtered}
     x=timestamp
     y=value
     series=category
