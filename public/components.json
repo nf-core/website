@@ -3557,7 +3557,9 @@
               "documentation": "https://github.com/RabadanLab/arcasHLA",
               "tool_dev_url": "https://github.com/RabadanLab/arcasHLA",
               "doi": "10.1093/bioinformatics/btz474",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -5377,6 +5379,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         },
         {
           "name": "rnafusion",
@@ -18438,6 +18444,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -69781,6 +69795,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -80644,6 +80662,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
