@@ -5915,6 +5915,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -11135,6 +11139,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "phaseimpute",
+          "version": "dev"
+        },
         {
           "name": "raredisease",
           "version": "2.1.0"
@@ -18448,6 +18456,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -69815,6 +69831,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -81081,6 +81101,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -89163,7 +89187,7 @@
           },
           {
             "prefix": {
-              "type": "path",
+              "type": "directory",
               "description": "A directory containing the dataset files needed for nextclade run",
               "pattern": "prefix"
             }
@@ -92438,7 +92462,9 @@
         "name": "pairix",
         "description": "a tool for indexing and querying on a block-compressed text file\ncontaining pairs of genomic coordinates\n",
         "keywords": [
-          "index"
+          "index",
+          "block-compressed",
+          "pairs"
         ],
         "tools": [
           {
@@ -104376,7 +104402,9 @@
               "documentation": "https://github.com/dfguan/purge_dups",
               "tool_dev_url": "https://github.com/dfguan/purge_dups",
               "doi": "10.1093/bioinformatics/btaa025",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -104534,8 +104562,10 @@
         "name": "purgedups_splitfa",
         "description": "Split fasta file by 'N's to aid in self alignment for duplicate purging",
         "keywords": [
-          "split assembly",
-          "duplicate purging"
+          "split",
+          "assembly",
+          "duplicate",
+          "purging"
         ],
         "tools": [
           {
@@ -104545,7 +104575,9 @@
               "documentation": "https://github.com/dfguan/purge_dups",
               "tool_dev_url": "https://github.com/dfguan/purge_dups",
               "doi": "10.1093/bioinformatics/btaa025",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -108911,7 +108943,9 @@
               "homepage": "https://www.realtimegenomics.com/products/rtg-tools",
               "documentation": "https://github.com/RealTimeGenomics/rtg-tools",
               "tool_dev_url": "https://github.com/RealTimeGenomics/rtg-tools",
-              "licence": "['BSD']"
+              "licence": [
+                "BSD"
+              ]
             }
           }
         ],
@@ -109871,7 +109905,9 @@
               "homepage": "https://lomereiter.github.io/sambamba/docs/sambamba-view.html",
               "documentation": "https://lomereiter.github.io/sambamba/docs/sambamba-view.html",
               "tool_dev_url": "https://github.com/biod/sambamba",
-              "licence": "['GPL v2']"
+              "licence": [
+                "GPL v2"
+              ]
             }
           }
         ],
@@ -120122,7 +120158,7 @@
           },
           {
             "results": {
-              "type": "dir",
+              "type": "directory",
               "description": "Resulting assembly directory",
               "pattern": "ShastaRun"
             }
@@ -130237,7 +130273,9 @@
               "documentation": "https://ibe-uw.github.io/tiara/\"",
               "tool_dev_url": "https://github.com/ibe-uw/tiara",
               "doi": "10.1093/bioinformatics/btab672",
-              "licence": "MIT"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -139439,7 +139477,9 @@
               "documentation": "https://github.com/c-zhou/yahs",
               "tool_dev_url": "https://github.com/c-zhou/yahs",
               "doi": "10.1093/bioinformatics/btac808",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -141355,6 +141395,64 @@
           "version": "2.6.0"
         }
       ]
+    },
+    {
+      "name": "bam_subsampledepth_samtools",
+      "path": "subworkflows/nf-core/bam_subsampledepth_samtools/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "bam_subsampledepth_samtools",
+        "description": "Subsample a BAM/CRAM/SAM file using samtools to a given mean depth",
+        "keywords": [
+          "subsample",
+          "bam",
+          "sam",
+          "cram"
+        ],
+        "components": [
+          "samtools/depth",
+          "samtools/view",
+          "gawk"
+        ],
+        "input": [
+          {
+            "ch_bam": {
+              "type": "file",
+              "description": "The input channel containing the BAM/CRAM/SAM files and their indexes and the depth at which to subsample them.\nStructure: [ val(meta), path(bam), path(bai), val(depth) ]\n",
+              "pattern": "*.{bam,cram,sam}"
+            }
+          },
+          {
+            "ch_fasta": {
+              "type": "file",
+              "description": "The reference genome channel containing the fasta files and its index\nStructure: [ val(meta), path(fasta), path(fai) ]\n",
+              "pattern": "*.{fa(sta)?}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "bam_subsampled": {
+              "type": "file",
+              "description": "Channel containing subsampled BAM/CRAM/SAM files and their indexes\nStructure: [ val(meta), path(bam), path(csi) ]\n",
+              "pattern": "*.{bam,cram,sam}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@louislenezet"
+        ],
+        "maintainers": [
+          "@louislenezet"
+        ]
+      }
     },
     {
       "name": "bam_tumor_normal_somatic_variant_calling_gatk",
