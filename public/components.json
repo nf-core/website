@@ -5939,6 +5939,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -7096,7 +7100,9 @@
               "documentation": "https://bitbucket.org/wegmannlab/atlas/wiki/Home",
               "tool_dev_url": "https://bitbucket.org/wegmannlab/atlas",
               "doi": "10.1101/105346",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -7158,7 +7164,7 @@
           },
           {
             "method": {
-              "type": "character",
+              "type": "string",
               "description": "Which variant calling algorithm to use. Some may require additional parameters supplied via ext.args. Check atlas documentation.",
               "pattern": "MLE|Bayesian|allelePresence|randomBase|majorityBase"
             }
@@ -7179,7 +7185,7 @@
             }
           },
           {
-            "bam": {
+            "vcf": {
               "type": "file",
               "description": "VCF file with variant calls",
               "pattern": "*.vcf.gz"
@@ -7214,7 +7220,9 @@
               "documentation": "https://bitbucket.org/wegmannlab/atlas/wiki/Home",
               "tool_dev_url": "https://bitbucket.org/wegmannlab/atlas",
               "doi": "10.1101/105346",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -7320,10 +7328,11 @@
       "type": "module",
       "meta": {
         "name": "atlas_recal",
-        "description": "gives an estimation of the sequencing bias based on known invariant sites",
+        "description": "Gives an estimation of the sequencing bias based on known invariant sites",
         "keywords": [
           "sequencing_bias",
-          "ATLAS"
+          "ATLAS",
+          "bias"
         ],
         "tools": [
           {
@@ -7332,7 +7341,9 @@
               "homepage": "https://bitbucket.org/wegmannlab/atlas/wiki/Home",
               "documentation": "https://bitbucket.org/wegmannlab/atlas/wiki/Home",
               "doi": "10.1101/105346",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -7430,7 +7441,9 @@
               "documentation": "https://bitbucket.org/wegmannlab/atlas/wiki/Home",
               "tool_dev_url": "https://bitbucket.org/wegmannlab/atlas",
               "doi": "10.1101/105346",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -7456,7 +7469,7 @@
             }
           },
           {
-            "read_group_setting": {
+            "read_group_settings": {
               "type": "file",
               "description": "TXT file containing the split and merge settings for\neach readgroup. Each line consist of one readgroup,\nsingle/double identifier and the maximum cycle number\nof the sequencer. e.g. \"RG1 single 100\"\n",
               "pattern": "*.txt"
@@ -7492,7 +7505,7 @@
             }
           },
           {
-            "filelist": {
+            "txt": {
               "type": "file",
               "description": "A file listing all reads that were filtered out in the merging process with suffix_ignoredReads.txt.gz",
               "pattern": "*.txt.gz"
@@ -10097,7 +10110,9 @@
               "description": "BBMap is a short read aligner, as well as various other bioinformatic tools.",
               "homepage": "https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/",
               "documentation": "https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/",
-              "licence": "['UC-LBL license (see package)']"
+              "licence": [
+                "UC-LBL license (see package)"
+              ]
             }
           }
         ],
@@ -10132,7 +10147,7 @@
           },
           {
             "hits": {
-              "type": "txt",
+              "type": "file",
               "description": ".txt file containing hits from a query seuqnce to various reference sequences output",
               "pattern": "*.{txt}"
             }
@@ -18476,6 +18491,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -64162,7 +64185,9 @@
               "homepage": "https://www.illumina.com/products/by-type/informatics-products/basespace-sequence-hub/apps/hap-py-benchmarking.html",
               "documentation": "https://github.com/Illumina/hap.py/blob/master/doc/sompy.md",
               "tool_dev_url": "https://github.com/Illumina/hap.py",
-              "licence": "['BSD-2-clause']"
+              "licence": [
+                "BSD-2-clause"
+              ]
             }
           }
         ],
@@ -64171,6 +64196,36 @@
             "meta": {
               "type": "map",
               "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing fasta file information\ne.g. [ id:'test2']\n"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing fai file information\ne.g. [ id:'test3']\n"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing false_positives_bed file information\ne.g. [ id:'test4']\n"
+            }
+          },
+          {
+            "meta5": {
+              "type": "map",
+              "description": "Groovy Map containing ambiguous_beds file information\ne.g. [ id:'test5']\n"
+            }
+          },
+          {
+            "meta6": {
+              "type": "map",
+              "description": "Groovy Map containing bam file information\ne.g. [ id:'test6']\n"
             }
           },
           {
@@ -69556,6 +69611,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
         {
           "name": "isoseq",
           "version": "1.1.5"
@@ -80846,6 +80905,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
