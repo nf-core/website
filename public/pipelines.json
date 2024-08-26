@@ -4473,9 +4473,9 @@
             "url": "https://api.github.com/repos/nf-core/circrna",
             "created_at": "2021-02-10T14:28:49Z",
             "updated_at": "2024-08-09T09:13:45Z",
-            "pushed_at": "2024-08-24T21:22:54Z",
+            "pushed_at": "2024-08-25T15:22:02Z",
             "homepage": "https://nf-co.re/circrna",
-            "size": 65537,
+            "size": 65538,
             "stargazers_count": 43,
             "watchers_count": 43,
             "language": "Nextflow",
@@ -12057,7 +12057,7 @@
             "has_wiki": false,
             "has_pages": false,
             "has_discussions": false,
-            "forks_count": 69,
+            "forks_count": 70,
             "archived": false,
             "disabled": false,
             "open_issues_count": 27,
@@ -12074,7 +12074,7 @@
                 "synapse"
             ],
             "visibility": "public",
-            "forks": 69,
+            "forks": 70,
             "open_issues": 27,
             "watchers": 132,
             "default_branch": "master",
@@ -12108,7 +12108,7 @@
                     "status": "disabled"
                 }
             },
-            "network_count": 69,
+            "network_count": 70,
             "subscribers_count": 94,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
@@ -23638,7 +23638,7 @@
             "url": "https://api.github.com/repos/nf-core/oncoanalyser",
             "created_at": "2022-12-22T05:01:49Z",
             "updated_at": "2024-08-23T00:32:23Z",
-            "pushed_at": "2024-08-23T00:32:23Z",
+            "pushed_at": "2024-08-26T01:59:09Z",
             "homepage": "https://nf-co.re/oncoanalyser",
             "size": 4841,
             "stargazers_count": 22,
@@ -23653,14 +23653,14 @@
             "forks_count": 5,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 14,
+            "open_issues_count": 13,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
             "topics": [],
             "visibility": "public",
             "forks": 5,
-            "open_issues": 14,
+            "open_issues": 13,
             "watchers": 22,
             "default_branch": "dev",
             "temp_clone_token": "",
@@ -23758,7 +23758,7 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 2,
+            "open_pr_count": 1,
             "repository_url": "https://github.com/nf-core/oncoanalyser",
             "contributors": [
                 {
@@ -23777,19 +23777,48 @@
                     "avatar_url": "https://avatars.githubusercontent.com/u/13191541?v=4"
                 }
             ],
-            "released_after_tools": false,
+            "released_after_tools": true,
             "head_sha": "0648ad62b203bda4ddb68bdee11da5457e365d88",
             "last_release_is_head": false,
-            "last_release_vs_default_compare_url": "https://github.com/nf-core/oncoanalyser/compare/0648ad62b203bda4ddb68bdee11da5457e365d88...undefined",
+            "last_release_vs_default_compare_url": "https://github.com/nf-core/oncoanalyser/compare/0648ad62b203bda4ddb68bdee11da5457e365d88...4227bc1083209d79c8735d32e6c75f762a640006",
             "commits_to_dev": 30,
             "is_DSL2": true,
             "has_nf_test": false,
             "has_nf_test_dev": false,
-            "master_nextflow_config_plugins": null,
+            "master_nextflow_config_plugins": [
+                "nf-validation@1.1.3"
+            ],
             "dev_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
             "releases": [
+                {
+                    "tag_name": "1.0.0",
+                    "published_at": "2024-08-26T01:59:09Z",
+                    "tag_sha": "4227bc1083209d79c8735d32e6c75f762a640006",
+                    "has_schema": true,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/usage.md"
+                    ],
+                    "components": {
+                        "modules": [
+                            "bwa_index",
+                            "bwamem2_index",
+                            "gatk4_markduplicates",
+                            "samtools_dict",
+                            "samtools_faidx",
+                            "samtools_flagstat",
+                            "samtools_sort",
+                            "star_genomegenerate"
+                        ],
+                        "subworkflows": [
+                            "utils_nextflow_pipeline",
+                            "utils_nfcore_pipeline",
+                            "utils_nfvalidation_plugin"
+                        ]
+                    }
+                },
                 {
                     "tag_name": "dev",
                     "published_at": "2024-08-23T00:32:19Z",
@@ -36492,12 +36521,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/scrnaseq",
             "created_at": "2019-04-08T13:12:00Z",
-            "updated_at": "2024-08-16T09:09:47Z",
+            "updated_at": "2024-08-25T15:52:30Z",
             "pushed_at": "2024-08-21T07:23:32Z",
             "homepage": "https://nf-co.re/scrnaseq",
             "size": 44011,
-            "stargazers_count": 191,
-            "watchers_count": 191,
+            "stargazers_count": 192,
+            "watchers_count": 192,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": false,
@@ -36526,7 +36555,7 @@
             "visibility": "public",
             "forks": 164,
             "open_issues": 41,
-            "watchers": 191,
+            "watchers": 192,
             "default_branch": "master",
             "temp_clone_token": "",
             "allow_squash_merge": false,
