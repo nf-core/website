@@ -3,8 +3,15 @@ import PageLayout from '@layouts/PageLayout.astro';
 import SchemaBuilderListing from '@components/schema/schema-builder/SchemaBuilderListing.svelte';
 ---
 
-<PageLayout title=" Schema Builder" subtitle="Create or modify your `nextflow_schema.json` file." showNavbar={false}>
-    <SchemaBuilderListing client:idle />
+<PageLayout
+    title=" Schema Builder"
+    subtitle="Create or modify your `nextflow_schema.json` file."
+    showNavbar={false}
+    mainpage_container={false}
+>
+    <div class="container-fluid">
+        <SchemaBuilderListing client:idle />
+    </div>
 </PageLayout>
 <style>
     :root {

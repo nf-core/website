@@ -26,14 +26,14 @@
     class:collapse={property.hidden}
     class:show={$showHidden}
 >
-    <div id={title} class="col-12 col-md-3 title border-right border-secondary text-nowrap p-0 pe-2">
+    <div id={title} class="col-12 col-md-4 title border-right border-secondary text-nowrap p-0 pe-2">
         <a class="text-decoration-none d-block overflow-x-scroll" aria-hidden="true" tabindex="-1" href={'#' + title}
             ><i class="ms-1 fas invisible" aria-hidden="true" />
             <span class="">
                 {#if property.fa_icon}
                     <i class="fa fa-fw {property.fa_icon}" />
                 {/if}
-                <code>{title}<span class="opacity-50">:{property.type}</span></code>
+                <code>{title}</code><span class="opacity-50 font-monospace small">:{property.type}</span>
             </span>
         </a>
     </div>
