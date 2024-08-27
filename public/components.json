@@ -5943,6 +5943,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -9575,7 +9579,9 @@
               "homepage": "https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/",
               "documentation": "https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/",
               "tool_dev_url": "https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-tools-user-guide/bbnorm-guide/",
-              "licence": "BBMap - Bushnell B. - sourceforge.net/projects/bbmap/"
+              "licence": [
+                "BBMap - Bushnell B. - sourceforge.net/projects/bbmap/"
+              ]
             }
           }
         ],
@@ -9966,7 +9972,7 @@
         "input": [
           {
             "fasta": {
-              "type": "fasta",
+              "type": "file",
               "description": "fasta formatted file with nucleotide sequences",
               "pattern": "*.{fna,fa,fasta}"
             }
@@ -12719,7 +12725,8 @@
         "description": "Beagle v5.2 is a software package for phasing genotypes and for imputing ungenotyped markers.",
         "keywords": [
           "phasing",
-          "imputation"
+          "imputation",
+          "genotype"
         ],
         "tools": [
           {
@@ -12728,7 +12735,9 @@
               "homepage": "https://faculty.washington.edu/browning/beagle/b5_2.html",
               "documentation": "https://faculty.washington.edu/browning/beagle/beagle_5.2_13Oct21.pdf",
               "doi": "10.1016/j.ajhg.2021.08.005; doi:10.1016/j.ajhg.2018.07.015",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -18491,6 +18500,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -61253,7 +61270,7 @@
       "path": "modules/nf-core/gstama/collapse/meta.yml",
       "type": "module",
       "meta": {
-        "name": "GSTAMA_COLLAPSE",
+        "name": "gstama_collapse",
         "description": "Collapse redundant transcript models in Iso-Seq data.",
         "keywords": [
           "tama_collapse.py",
@@ -61272,7 +61289,9 @@
               "documentation": "https://github.com/GenomeRIK/tama/wiki",
               "tool_dev_url": "https://github.com/sguizard/gs-tama",
               "doi": "10.1186/s12864-020-07123-7",
-              "licence": "GNU GPL3"
+              "licence": [
+                "GNU GPL3"
+              ]
             }
           }
         ],
@@ -69611,6 +69630,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
         {
           "name": "isoseq",
           "version": "1.1.5"
@@ -80905,6 +80928,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -96691,7 +96718,7 @@
             }
           },
           {
-            "sam": {
+            "bam": {
               "type": "file",
               "description": "BAM file",
               "pattern": "*.{bam}"
@@ -96713,7 +96740,7 @@
             }
           },
           {
-            "sam": {
+            "bam": {
               "type": "file",
               "description": "Cleaned BAM file",
               "pattern": "*.{bam}"
@@ -150173,6 +150200,57 @@
           "version": "dev"
         }
       ]
+    },
+    {
+      "name": "utils_nfschema_plugin",
+      "path": "subworkflows/nf-core/utils_nfschema_plugin/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "utils_nfschema_plugin",
+        "description": "Run nf-schema to validate parameters and create a summary of changed parameters",
+        "keywords": [
+          "validation",
+          "JSON schema",
+          "plugin",
+          "parameters",
+          "summary"
+        ],
+        "components": [],
+        "input": [
+          {
+            "input_workflow": {
+              "type": "object",
+              "description": "The workflow object of the used pipeline.\nThis object contains meta data used to create the params summary log\n"
+            }
+          },
+          {
+            "validate_params": {
+              "type": "boolean",
+              "description": "Validate the parameters and error if invalid."
+            }
+          },
+          {
+            "parameters_schema": {
+              "type": "string",
+              "description": "Path to the parameters JSON schema.\nThis has to be the same as the schema given to the `validation.parametersSchema` config\noption. When this input is empty it will automatically use the configured schema or\n\"${projectDir}/nextflow_schema.json\" as default. The schema should not be given in this way\nfor meta pipelines.\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "dummy_emit": {
+              "type": "boolean",
+              "description": "Dummy emit to make nf-core subworkflows lint happy"
+            }
+          }
+        ],
+        "authors": [
+          "@nvnieuwk"
+        ],
+        "maintainers": [
+          "@nvnieuwk"
+        ]
+      }
     },
     {
       "name": "utils_nfvalidation_plugin",
