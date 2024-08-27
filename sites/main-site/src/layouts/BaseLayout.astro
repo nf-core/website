@@ -30,8 +30,8 @@ export interface Props {
         content: string | string[];
     }[];
     doubleNavbar?: boolean;
+    showNavbar?: boolean;
 }
-// get entry for page_type in docsearchtags
 
 let {
     title = SITE_TITLE,
@@ -47,7 +47,10 @@ let {
     viewTransitions = false,
     docSearchTags = [],
     doubleNavbar = true,
+    showNavbar = true,
 } = Astro.props;
+
+// get entry for page_type in docsearchtags
 const pageTypeTag = docSearchTags.find((tag) => tag.name === 'page_type');
 const pageSubtypeTag = docSearchTags.find((tag) => tag.name === 'page_subtype');
 
@@ -70,7 +73,7 @@ image += category;
     </head>
 
     <body tabindex="0">
-        <Navbar navTocHeadings={navTocHeadings} title={title} sections={sections} {showHiddenBtn} />
+        {showNavbar && <Navbar navTocHeadings={navTocHeadings} title={title} sections={sections} {showHiddenBtn} />}
         <div class:list={['content', { 'double-navbar': sections.length > 0 && doubleNavbar }]}>
             <slot />
         </div>
@@ -85,16 +88,16 @@ image += category;
                 position: relative;
             }
             .content {
-                padding-top: 4rem; //offset for navbar
+                padding-top: var(--navbar-height); //offset for navbar
             }
             @include media-breakpoint-down(xl) {
                 .content {
-                    padding-top: 3rem; //offset for navbar
+                    padding-top: var(--navbar-height); //offset for navbar
                 }
             }
             @include media-breakpoint-down(md) {
                 .content {
-                    padding-top: 3rem; //offset for navbar
+                    padding-top: var(--navbar-height); //offset for navbar
                     &.double-navbar {
                         padding-top: 5.5rem; //offset for navbar + sectionNavbar from sidebarNav
                     }

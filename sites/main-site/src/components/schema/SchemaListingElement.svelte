@@ -9,7 +9,7 @@
 
     const pattern = property.pattern;
     let longPattern = [];
-    // explicitely handle patterns which are an enum work around, i.e. they have multiple values, eg. "^(foo|bar)$"
+    // explicitly handle patterns which are an enum work around, i.e. they have multiple values, eg. "^(foo|bar)$"
     if (
         pattern &&
         pattern.startsWith('^(') &&
@@ -26,14 +26,14 @@
     class:collapse={property.hidden}
     class:show={$showHidden}
 >
-    <div id={title} class="col-12 col-md-3 title border-right border-secondary text-nowrap p-0 pe-2">
+    <div id={title} class="col-12 col-md-4 title border-right border-secondary text-nowrap p-0 pe-2">
         <a class="text-decoration-none d-block overflow-x-scroll" aria-hidden="true" tabindex="-1" href={'#' + title}
             ><i class="ms-1 fas invisible" aria-hidden="true" />
             <span class="">
                 {#if property.fa_icon}
                     <i class="fa fa-fw {property.fa_icon}" />
                 {/if}
-                <code>--{title}</code>
+                <code>{title}</code><span class="opacity-50 font-monospace small">:{property.type}</span>
             </span>
         </a>
     </div>
@@ -47,9 +47,6 @@
         {#if property.required}
             <span class="badge text-bg-warning mb-1">required</span>
         {/if}
-        <div class="text-body-secondary">
-            type: <code>{property.type}</code>
-        </div>
         {#if property.enum}
             <select class="form-select mt-2" value={property.default} aria-label="Parameter enum options">
                 {#each property.enum as value}
