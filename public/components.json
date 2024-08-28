@@ -5951,6 +5951,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -6890,7 +6894,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -18929,6 +18933,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -20536,6 +20548,111 @@
           "version": "2.1.0"
         }
       ]
+    },
+    {
+      "name": "cafe",
+      "path": "modules/nf-core/cafe/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "cafe",
+        "description": "Analysis of gene family evolution",
+        "keywords": [
+          "gene",
+          "phylogeny",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "cafe": {
+              "description": "Computational Analysis of gene Family Evolution (CAFE)",
+              "homepage": "https://github.com/hahnlab/CAFE5",
+              "documentation": "https://github.com/hahnlab/CAFE5",
+              "tool_dev_url": "https://github.com/hahnlab/CAFE5",
+              "doi": "10.1093/bioinformatics/btaa1027",
+              "licence": [
+                "IU OPEN SOURCE LICENSE (see https://github.com/hahnlab/CAFE5/blob/master/LICENSE)"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "infile": {
+              "type": "file",
+              "description": "Gene counts table (from OrthoMCL, SwiftOrtho, FastOrtho, OrthAgogue or OrthoFinder)",
+              "pattern": "*.{txt,tsv,tab}"
+            }
+          },
+          {
+            "tree": {
+              "type": "file",
+              "description": "Newick formatted tree",
+              "pattern": "*.{txt}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "cafe": {
+              "type": "directory",
+              "description": "A folder with all the cafe output"
+            }
+          },
+          {
+            "cafe_base_count": {
+              "type": "file",
+              "description": "File containing counts of genes per orthogroup",
+              "pattern": "*_count.tab"
+            }
+          },
+          {
+            "cafe_significant_trees": {
+              "type": "file",
+              "description": "File containing significant trees (newick format)",
+              "pattern": "*.tre"
+            }
+          },
+          {
+            "cafe_report": {
+              "type": "file",
+              "description": "File containing the final report from cafe",
+              "pattern": "*_report.cafe"
+            }
+          },
+          {
+            "cafe_results": {
+              "type": "file",
+              "description": "File containing the main result files from cafe",
+              "pattern": "*results.txt"
+            }
+          }
+        ],
+        "authors": [
+          "@chriswyatt1"
+        ],
+        "maintainers": [
+          "@chriswyatt1"
+        ]
+      }
     },
     {
       "name": "calder2",
@@ -57910,7 +58027,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -70073,6 +70190,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -74022,7 +74143,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -74120,7 +74241,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -74197,7 +74318,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -74408,7 +74529,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -74566,7 +74687,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -74659,7 +74780,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -81375,6 +81496,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -87556,7 +87681,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "pangenome",
@@ -118656,7 +118781,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -149941,7 +150066,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "pangenome",
@@ -150182,7 +150307,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "pangenome",
@@ -150504,7 +150629,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "pangenome",
