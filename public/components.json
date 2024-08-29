@@ -5959,6 +5959,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -15021,7 +15025,8 @@
         "description": "Merge a list of sorted bam files",
         "keywords": [
           "merge",
-          "bam"
+          "bam",
+          "sorted"
         ],
         "tools": [
           {
@@ -18955,6 +18960,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -20452,7 +20465,7 @@
         "output": [
           {
             "index": {
-              "type": "dir",
+              "type": "directory",
               "description": "Directory containing bwameth genome index",
               "pattern": "index"
             }
@@ -24914,6 +24927,7 @@
         "name": "circexplorer2_annotate",
         "description": "Annotate circRNAs detected in the output from CIRCexplorer2 parse",
         "keywords": [
+          "rna",
           "circrna",
           "annotate"
         ],
@@ -24924,7 +24938,9 @@
               "homepage": "https://github.com/YangLab/CIRCexplorer2/",
               "documentation": "https://circexplorer2.readthedocs.io/en/latest/",
               "doi": "10.1101/gr.202895.115",
-              "licence": "['MIT License']"
+              "licence": [
+                "MIT License"
+              ]
             }
           }
         ],
@@ -26858,9 +26874,11 @@
       "type": "module",
       "meta": {
         "name": "cnvpytor_callcnvs",
-        "description": "command line tool for calling CNVs in whole genome sequencing data",
+        "description": "Command line tool for calling CNVs in whole genome sequencing data",
         "keywords": [
-          "CNV calling"
+          "CNV",
+          "call",
+          "wgs"
         ],
         "tools": [
           {
@@ -27014,7 +27032,9 @@
         "description": "command line tool for CNV/CNA analysis. This step imports the read depth data into a root pytor file.",
         "keywords": [
           "read depth",
-          "cnv calling"
+          "cnv",
+          "cna",
+          "call"
         ],
         "tools": [
           {
@@ -39869,7 +39889,8 @@
         "description": "Produces a Newick format phylogeny from a multiple sequence alignment. Capable of bacterial genome size alignments.",
         "keywords": [
           "phylogeny",
-          "newick"
+          "newick",
+          "alignment"
         ],
         "tools": [
           {
@@ -70309,6 +70330,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -81179,6 +81204,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -120784,7 +120813,9 @@
               "description": "Create an SHA256 (256-bit) checksum.",
               "homepage": "https://www.gnu.org",
               "documentation": "https://linux.die.net/man/1/shasum",
-              "licence": "GPLv3+"
+              "licence": [
+                "GPLv3+"
+              ]
             }
           }
         ],
@@ -138422,6 +138453,87 @@
         ],
         "maintainers": [
           "@chriswyatt1"
+        ]
+      }
+    },
+    {
+      "name": "vsearch_fastqfilter",
+      "path": "modules/nf-core/vsearch/fastqfilter/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "vsearch_fastqfilter",
+        "description": "Performs quality filtering and / or conversion of a FASTQ file to FASTA format.",
+        "keywords": [
+          "vsearch/fastqfilter",
+          "vsearch",
+          "fastqfilter",
+          "amplicon sequences",
+          "metagenomics",
+          "genomics",
+          "population genetics"
+        ],
+        "tools": [
+          {
+            "vsearch": {
+              "description": "VSEARCH is a versatile open-source tool for microbiome analysis, including chimera detection, clustering, dereplication and rereplication, extraction, FASTA/FASTQ/SFF file processing, masking, orienting, pair-wise alignment, restriction site cutting, searching, shuffling, sorting, subsampling, and taxonomic classification of amplicon sequences for metagenomics, genomics, and population genetics. (USEARCH alternative)",
+              "homepage": "https://github.com/torognes/vsearch",
+              "tool_dev_url": "https://github.com/torognes/vsearch",
+              "doi": "10.7717/peerj.2584",
+              "licence": [
+                "GPL v3-or-later OR BSD-2-clause"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information e.g. [ id:'sample1']"
+            }
+          },
+          {
+            "fastq": {
+              "type": "file",
+              "description": "FASTQ file to filter",
+              "pattern": "*.{fastq,fq,fastq.gz,fq.gz}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information e.g. [ id:'sample1']"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Filtered FASTA file",
+              "pattern": "*.fasta"
+            }
+          },
+          {
+            "log": {
+              "type": "file",
+              "description": "Log file of the run",
+              "pattern": "*.log"
+            }
+          }
+        ],
+        "authors": [
+          "@FernandoDuarteF"
+        ],
+        "maintainers": [
+          "@FernandoDuarteF"
         ]
       }
     },
