@@ -5963,6 +5963,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -15709,7 +15713,7 @@
         "output": [
           {
             "index": {
-              "type": "dir",
+              "type": "directory",
               "description": "Biscuit genome index directory",
               "pattern": "BiscuitIndex"
             }
@@ -18519,6 +18523,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -35643,7 +35655,9 @@
               "homepage": "http://eido.databio.org/en/latest/",
               "documentation": "http://eido.databio.org/en/latest/",
               "doi": "10.1093/gigascience/giab077",
-              "licence": "BSD-2-Clause"
+              "licence": [
+                "BSD-2-Clause"
+              ]
             }
           }
         ],
@@ -36218,7 +36232,8 @@
         "description": "Split bam file into manageable chunks",
         "keywords": [
           "bam",
-          "split by chromosome"
+          "split by chromosome",
+          "chunk"
         ],
         "tools": [
           {
@@ -36228,7 +36243,9 @@
               "documentation": "https://github.com/ExaScience/elprep",
               "tool_dev_url": "https://github.com/ExaScience/elprep",
               "doi": "10.1371/journal.pone.0244471",
-              "licence": "['AGPL v3']"
+              "licence": [
+                "AGPL v3"
+              ]
             }
           }
         ],
@@ -37090,13 +37107,13 @@
           },
           {
             "database": {
-              "type": "value",
+              "type": "string",
               "description": "Value must be a valid Entrez database name ('assembly', etc)."
             }
           },
           {
             "uid": {
-              "type": "value",
+              "type": "string",
               "description": "Unique Identifier (UID) of record in NCBI database. Cannot be used at the same time as uids_file"
             }
           },
@@ -37247,7 +37264,9 @@
               "documentation": "https://github.com/Pbdas/epa-ng/wiki/Full-Stack-Example",
               "tool_dev_url": "https://github.com/Pbdas/epa-ng",
               "doi": "10.1093/sysbio/syy054",
-              "licence": "['GNU Affero General Public License v3.0']"
+              "licence": [
+                "GNU Affero General Public License v3.0"
+              ]
             }
           }
         ],
@@ -38710,7 +38729,9 @@
             "fastawindows": {
               "description": "fasta_windows is a tool written for Darwin Tree of Life chromosomal level genome assemblies. The executable takes a fasta formatted file and calculates some statistics of interest in windows",
               "homepage": "https://github.com/tolkit/fasta_windows",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -39558,6 +39579,10 @@
           "version": "1.0.1"
         },
         {
+          "name": "methylarray",
+          "version": "dev"
+        },
+        {
           "name": "methylseq",
           "version": "2.6.0"
         },
@@ -39862,8 +39887,36 @@
           {
             "fastq_screen": {
               "type": "directory",
-              "description": "Output fastq_screen file containing alignment statistics",
+              "description": "Output fastq_screen file containing png, html, txt and no_hits_fastq files",
               "pattern": "*.{_fq_screen}"
+            }
+          },
+          {
+            "png": {
+              "type": "file",
+              "description": "PNG file with graphical representation of alignments",
+              "pattern": "*.png"
+            }
+          },
+          {
+            "html": {
+              "type": "file",
+              "description": "HTML file containing mapping results as a table and graphical representation",
+              "pattern": "*.html"
+            }
+          },
+          {
+            "txt": {
+              "type": "file",
+              "description": "TXT file containing alignment statistics",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "no_hits_fastq": {
+              "type": "file",
+              "description": "FastQ file containing reads that did not align to any database (optional)",
+              "pattern": "*_nohits.fastq"
             }
           },
           {
@@ -41522,7 +41575,13 @@
         "maintainers": [
           "@luisas"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "multiplesequencealign",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "foldseek_createdb",
@@ -43226,7 +43285,9 @@
               "documentation": "https://github.com/lczech/gappa/wiki",
               "tool_dev_url": "https://github.com/lczech/gappa",
               "doi": "10.1093/bioinformatics/btaa070",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -43403,7 +43464,9 @@
               "documentation": "https://github.com/lczech/gappa/wiki",
               "tool_dev_url": "https://github.com/lczech/gappa",
               "doi": "10.1093/bioinformatics/btaa070",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -58186,7 +58249,9 @@
               "documentation": "https://github.com/lh3/gfatools",
               "tool_dev_url": "https://github.com/lh3/gfatools",
               "doi": "no DOI available",
-              "licence": "['Unknown']"
+              "licence": [
+                "Unknown"
+              ]
             }
           }
         ],
@@ -58258,7 +58323,9 @@
               "documentation": "https://github.com/lh3/gfatools",
               "tool_dev_url": "https://github.com/lh3/gfatools",
               "doi": "no DOI available",
-              "licence": "['Unknown']"
+              "licence": [
+                "Unknown"
+              ]
             }
           }
         ],
@@ -58438,7 +58505,8 @@
           "@jemten"
         ],
         "maintainers": [
-          "@jemten"
+          "@jemten",
+          "@gallvp"
         ]
       }
     },
@@ -63050,7 +63118,9 @@
               "homepage": "https://sites.google.com/site/gvcftools/home",
               "documentation": "https://sites.google.com/site/gvcftools/home/configuration-and-analysis",
               "tool_dev_url": "https://github.com/sequencing/gvcftools",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -70334,6 +70404,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -72422,8 +72496,10 @@
         "name": "kleborate",
         "description": "Kleborate is a tool to screen genome assemblies of Klebsiella pneumoniae and the Klebsiella pneumoniae species complex (KpSC).",
         "keywords": [
-          "screening assemblies",
-          "Klebsiella pneumoniae"
+          "screen",
+          "assembly",
+          "Klebsiella",
+          "pneumoniae"
         ],
         "tools": [
           {
@@ -72448,7 +72524,7 @@
           },
           {
             "fastas": {
-              "type": "files",
+              "type": "list",
               "description": "Klebsiella genome assemblies to be screened",
               "pattern": "*.fasta"
             }
@@ -79618,7 +79694,10 @@
         "name": "mash_dist",
         "description": "Calculate Mash distances between reference and query seqeunces",
         "keywords": [
-          "mash/dist"
+          "distance",
+          "estimate",
+          "reference",
+          "query"
         ],
         "tools": [
           {
@@ -80355,7 +80434,8 @@
         "description": "Analysis of mcr-1 gene (mobilized colistin resistance) for sequence variation",
         "keywords": [
           "resistance",
-          "fasta"
+          "fasta",
+          "mcr-1"
         ],
         "tools": [
           {
@@ -80364,7 +80444,9 @@
               "homepage": "https://github.com/liampshaw/mcroni",
               "documentation": "https://github.com/liampshaw/mcroni",
               "tool_dev_url": "https://github.com/liampshaw/mcroni",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -81204,6 +81286,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -84776,7 +84862,9 @@
               "homepage": "https://cbio.mskcc.org/miRNA2003/miranda.html",
               "documentation": "https://cbio.mskcc.org/miRNA2003/miranda.html",
               "doi": "10.1186/gb-2003-5-1-r1",
-              "licence": "GNU Public License"
+              "licence": [
+                "GNU Public License"
+              ]
             }
           }
         ],
@@ -85942,7 +86030,8 @@
         "description": "A tool to reconstruct plasmids in bacterial assemblies",
         "keywords": [
           "bacteria",
-          "plasmid"
+          "plasmid",
+          "cluster"
         ],
         "tools": [
           {
@@ -86771,7 +86860,10 @@
         "name": "msisensor2_scan",
         "description": "msisensor2 detection of MSI regions.",
         "keywords": [
-          "msi"
+          "microsatellite",
+          "instability",
+          "detection",
+          "tumor"
         ],
         "tools": [
           {
@@ -86780,7 +86872,9 @@
               "homepage": "https://github.com/niu-lab/msisensor2",
               "documentation": "https://github.com/niu-lab/msisensor2/blob/master/README.md",
               "tool_dev_url": "https://github.com/niu-lab/msisensor2",
-              "licence": "GPL-3.0"
+              "licence": [
+                "GPL-3.0"
+              ]
             }
           }
         ],
@@ -86794,7 +86888,7 @@
           },
           {
             "output": {
-              "type": "val",
+              "type": "string",
               "description": "Name of output MSI scan to write."
             }
           }
@@ -87085,7 +87179,7 @@
           {
             "msisensor_scan": {
               "type": "file",
-              "description": "Output from msisensor-pro/scan, conaining list of msi regions",
+              "description": "Output from msisensor-pro/scan, containing list of msi regions",
               "pattern": "*.list"
             }
           }
@@ -87126,13 +87220,6 @@
               "type": "file",
               "description": "File containing software versions",
               "pattern": "versions.yml"
-            }
-          },
-          {
-            "list": {
-              "type": "file",
-              "description": "File containing microsatellite list",
-              "pattern": "*.{list}"
             }
           }
         ],
@@ -87805,6 +87892,10 @@
         {
           "name": "metatdenovo",
           "version": "1.0.1"
+        },
+        {
+          "name": "methylarray",
+          "version": "dev"
         },
         {
           "name": "methylseq",
@@ -88545,7 +88636,9 @@
               "documentation": "https://github.com/Mykrobe-tools/mykrobe/wiki",
               "tool_dev_url": "https://github.com/Mykrobe-tools/mykrobe",
               "doi": "10.1038/ncomms10063",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -88894,7 +88987,9 @@
         "name": "nanolyse",
         "description": "DNA contaminant removal using NanoLyse",
         "keywords": [
-          "contaminant_removal"
+          "contaminant",
+          "removal",
+          "dna"
         ],
         "tools": [
           {
@@ -94014,7 +94109,9 @@
               "documentation": "https://gtonkinhill.github.io/panaroo/#/gettingstarted/quickstart",
               "tool_dev_url": "https://github.com/gtonkinhill/panaroo",
               "doi": "10.1186/s13059-020-02090-4",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -95271,7 +95368,9 @@
               "documentation": "https://github.com/Illumina/paragraph",
               "tool_dev_url": "https://github.com/Illumina/paragraph",
               "doi": "10.1101/635011",
-              "licence": "['Apache License 2.0']"
+              "licence": [
+                "Apache License 2.0"
+              ]
             }
           }
         ],
@@ -95465,7 +95564,9 @@
               "homepage": "https://github.com/rpetit3/pasty",
               "documentation": "https://github.com/rpetit3/pasty",
               "tool_dev_url": "https://github.com/rpetit3/pasty",
-              "licence": "['Apache-2.0']"
+              "licence": [
+                "Apache-2.0"
+              ]
             }
           }
         ],
@@ -95537,7 +95638,8 @@
         "description": "The pbbam software package provides components to create, query, & edit PacBio BAM files and associated indices. These components include a core C++ library, bindings for additional languages, and command-line utilities.",
         "keywords": [
           "pbbam",
-          "pbbam/pbmerge"
+          "pbmerge",
+          "bam"
         ],
         "tools": [
           {
@@ -95748,7 +95850,9 @@
               "homepage": "https://github.com/rpetit3/pbptyper",
               "documentation": "https://github.com/rpetit3/pbptyper",
               "tool_dev_url": "https://github.com/rpetit3/pbptyper",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -99320,7 +99424,9 @@
               "description": "Pindel can detect breakpoints of large deletions, medium sized insertions, inversions, tandem duplications and other structural variants at single-based resolution from next-gen sequence data",
               "homepage": "https://gmt.genome.wustl.edu/packages/pindel/",
               "documentation": "https://gmt.genome.wustl.edu/packages/pindel/user-manual.html",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -99683,7 +99789,9 @@
               "documentation": "https://bitbucket.org/genomicepidemiology/plasmidfinder",
               "tool_dev_url": "https://bitbucket.org/genomicepidemiology/plasmidfinder",
               "doi": "10.1128/AAC.02412-14",
-              "licence": "['Apache-2.0']"
+              "licence": [
+                "Apache-2.0"
+              ]
             }
           }
         ],
@@ -99901,8 +100009,10 @@
         "name": "platypus",
         "description": "Platypus is a tool that efficiently and accurately calling genetic variants from next-generation DNA sequencing data",
         "keywords": [
-          "variant calling",
-          "dna sequencing"
+          "variant",
+          "call",
+          "dna",
+          "genetic"
         ],
         "tools": [
           {
@@ -101741,7 +101851,9 @@
         "description": "Analyses variant calling files using plink",
         "keywords": [
           "plink",
-          "vcf"
+          "vcf",
+          "variant",
+          "call"
         ],
         "tools": [
           {
@@ -101866,7 +101978,7 @@
           },
           {
             "threshold": {
-              "type": "value",
+              "type": "float",
               "description": "Post-mortem damage score threshold"
             }
           },
@@ -104508,7 +104620,9 @@
               "documentation": "https://bioconductor.org/packages/release/bioc/html/PureCN.html",
               "tool_dev_url": "https://github.com/lima1/PureCN",
               "doi": "10.1186/s13029-016-0060-z",
-              "licence": "Artistic-2.0",
+              "licence": [
+                "Artistic-2.0"
+              ],
               "args_id": "$args"
             }
           }
@@ -105618,7 +105732,9 @@
         "name": "qcat",
         "description": "Demultiplexer for Nanopore samples",
         "keywords": [
-          "demultiplex"
+          "demultiplex",
+          "nanopore",
+          "sample"
         ],
         "tools": [
           {
@@ -114334,7 +114450,9 @@
               "homepage": "https://scimap.xyz/",
               "documentation": "https://scimap.xyz/All%20Functions/A.%20Pre%20Processing/sm.pp.mcmicro_to_scimap/",
               "tool_dev_url": "https://github.com/labsyspharm/scimap",
-              "licence": "MIT License"
+              "licence": [
+                "MIT License"
+              ]
             }
           }
         ],
@@ -114346,7 +114464,7 @@
             }
           },
           {
-            "cellByFeature": {
+            "cellbyfeature": {
               "type": "file",
               "description": "CSV file with cell by feature table",
               "pattern": "*.{csv}"
@@ -114368,14 +114486,14 @@
             }
           },
           {
-            "annotedDataCsv": {
+            "csv": {
               "type": "file",
               "description": "Sorted CSV file",
               "pattern": "*.{csv}"
             }
           },
           {
-            "annotedDataH5ad": {
+            "h5ad": {
               "type": "file",
               "description": "Sorted H5AD file",
               "pattern": "*.{h5ad}"
@@ -121620,7 +121738,9 @@
               "description": "a tool that determines clipping of reads on 3' end and 5'end based on base quality ",
               "homepage": "https://github.com/najoshi/sickle",
               "tool_dev_url": "https://github.com/najoshi/sickle",
-              "licence": "['MIT License']"
+              "licence": [
+                "MIT License"
+              ]
             }
           }
         ],
@@ -122565,7 +122685,9 @@
               "documentation": "https://1drv.ms/b/s!AhuEg_0yZD86hcpblUt-muHKYsG8fA?e=R8ogug",
               "tool_dev_url": "https://github.com/amplab/snap",
               "doi": "10.1101/2021.11.23.469039",
-              "licence": "['Apache v2']"
+              "licence": [
+                "Apache v2"
+              ]
             }
           }
         ],
@@ -122658,17 +122780,17 @@
             }
           },
           {
-            "bam": {
+            "input": {
               "type": "file",
-              "description": "BAM file",
-              "pattern": "*.bam"
+              "description": "A single .bam/.cram file - OR - one or more .snf files - OR - a single .tsv file containing a list of .snf files and optional sample ids as input",
+              "pattern": "*.{bam,cram,snf,tsv}"
             }
           },
           {
-            "bai": {
+            "index": {
               "type": "file",
-              "description": "Index of BAM file",
-              "pattern": "*.bai"
+              "description": "Index of BAM/CAM file",
+              "pattern": "*.{bai,crai}"
             }
           },
           {
@@ -122681,6 +122803,19 @@
             "fasta": {
               "type": "file",
               "description": "Reference database in FASTA format\n"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing tandem repeat information\ne.g. [ id:'hg38' ]\n"
+            }
+          },
+          {
+            "tandem_file": {
+              "type": "file",
+              "description": "Tandem repeat file",
+              "pattern": "*.bed"
             }
           }
         ],
@@ -122699,10 +122834,17 @@
             }
           },
           {
+            "tbi": {
+              "type": "file",
+              "description": "Compressed VCF file index",
+              "pattern": "*.tbi"
+            }
+          },
+          {
             "snf": {
               "type": "file",
-              "description": "Compressed SNF file",
-              "pattern": "*.snf.gz"
+              "description": "SNF file",
+              "pattern": "*.snf"
             }
           },
           {
@@ -122719,7 +122861,8 @@
         ],
         "maintainers": [
           "@christopher-hakkaart",
-          "@yuukiiwa"
+          "@yuukiiwa",
+          "@fellen31"
         ]
       }
     },
@@ -125777,7 +125920,9 @@
               "homepage": "https://github.com/jkbonfield/io_lib",
               "documentation": "https://github.com/jkbonfield/io_lib/blob/master/README.md",
               "tool_dev_url": "https://github.com/jkbonfield/io_lib",
-              "licence": "['BSD']"
+              "licence": [
+                "BSD"
+              ]
             }
           }
         ],
@@ -125840,7 +125985,7 @@
           },
           {
             "gzi": {
-              "type": "Optional file",
+              "type": "file",
               "description": "gzip index file for BAM outputs",
               "pattern": ".{bam.gzi}"
             }
@@ -131666,10 +131811,12 @@
       "type": "module",
       "meta": {
         "name": "transdecoder_longorf",
-        "description": "TransDecoder itentifies candidate coding regions within transcript sequences. it is used to build gff file.",
+        "description": "TransDecoder identifies candidate coding regions within transcript sequences. it is used to build gff file.",
         "keywords": [
           "eucaryotes",
-          "gff"
+          "gff",
+          "transcript",
+          "coding"
         ],
         "tools": [
           {
@@ -131715,28 +131862,28 @@
           },
           {
             "pep": {
-              "type": "Amino acids fasta file",
+              "type": "file",
               "description": "all ORFs meeting the minimum length criteria, regardless of coding potential. file",
               "pattern": "*.{pep}"
             }
           },
           {
             "gff3": {
-              "type": "gff file",
+              "type": "file",
               "description": "positions of all ORFs as found in the target transcripts. file",
               "pattern": "*.{gff3}"
             }
           },
           {
             "cds": {
-              "type": "fasta file",
+              "type": "file",
               "description": "the nucleotide coding sequence for all detected ORFs. file",
               "pattern": "*{cds}"
             }
           },
           {
             "dat": {
-              "type": "tsv file",
+              "type": "file",
               "description": "nucleotide frequencies",
               "pattern": "*{dat}"
             }
@@ -135618,7 +135765,9 @@
               "documentation": "https://varlociraptor.github.io/docs/estimating/",
               "tool_dev_url": "https://github.com/varlociraptor/varlociraptor",
               "doi": "10.1186/s13059-020-01993-6",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -137453,14 +137602,14 @@
           },
           {
             "input": {
-              "type": "file(s)",
+              "type": "list",
               "description": "Either one or more VCF files containing different contigs or a multiple sequence alignment file\n",
               "pattern": "*.{vcf.gz,fa,fasta,fna,clustal}"
             }
           },
           {
             "tbis": {
-              "type": "file(s)",
+              "type": "list",
               "description": "The index files for the VCF files",
               "pattern": "*.tbi"
             }
@@ -137637,7 +137786,7 @@
           },
           {
             "input": {
-              "type": "file(s)",
+              "type": "list",
               "description": "One or more input graph files created with `vg/construct`",
               "pattern": "*.vg"
             }
@@ -138957,7 +139106,9 @@
               "homepage": "https://genome.sph.umich.edu/wiki/Vt",
               "documentation": "https://genome.sph.umich.edu/wiki/Vt",
               "tool_dev_url": "https://github.com/atks/vt",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -150302,6 +150453,10 @@
           "version": "dev"
         },
         {
+          "name": "methylarray",
+          "version": "dev"
+        },
+        {
           "name": "mhcquant",
           "version": "2.6.0"
         },
@@ -150540,6 +150695,10 @@
         },
         {
           "name": "metapep",
+          "version": "dev"
+        },
+        {
+          "name": "methylarray",
           "version": "dev"
         },
         {
@@ -150862,6 +151021,10 @@
         },
         {
           "name": "metapep",
+          "version": "dev"
+        },
+        {
+          "name": "methylarray",
           "version": "dev"
         },
         {
