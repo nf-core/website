@@ -5967,6 +5967,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -18523,6 +18527,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -43372,9 +43384,11 @@
       "type": "module",
       "meta": {
         "name": "gappa_examinegraft",
-        "description": "grafts query sequences from phylogenetic placement on the reference tree",
+        "description": "Grafts query sequences from phylogenetic placement on the reference tree",
         "keywords": [
-          "sort"
+          "sort",
+          "graft",
+          "phylogeny"
         ],
         "tools": [
           {
@@ -43384,7 +43398,9 @@
               "documentation": "https://github.com/lczech/gappa/wiki",
               "tool_dev_url": "https://github.com/lczech/gappa",
               "doi": "10.1093/bioinformatics/btaa070",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -63901,7 +63917,9 @@
               "documentation": "https://github.com/genepi/haplocheck",
               "tool_dev_url": "https://github.com/genepi/haplocheck",
               "doi": "10.1101/gr.256545.119",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -68363,7 +68381,9 @@
               "documentation": "https://github.com/igvteam/igv.js/wiki",
               "tool_dev_url": "https://github.com/igvteam/igv.js",
               "doi": "10.1093/bioinformatics/btac830",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -69953,6 +69973,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
+        },
         {
           "name": "isoseq",
           "version": "1.1.5"
@@ -81741,6 +81765,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -84925,6 +84953,111 @@
           "version": "dev"
         }
       ]
+    },
+    {
+      "name": "mirtrace_qc",
+      "path": "modules/nf-core/mirtrace/qc/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "mirtrace_qc",
+        "description": "A tool for quality control and tracing taxonomic origins of microRNA sequencing data",
+        "keywords": [
+          "microRNA",
+          "smrnaseq",
+          "QC"
+        ],
+        "tools": [
+          {
+            "mirtrace": {
+              "description": "miRTrace is a new quality control and taxonomic tracing tool developed specifically for small RNA sequencing data (sRNA-Seq). Each sample is characterized by profiling sequencing quality, read length, sequencing depth and miRNA complexity and also the amounts of miRNAs versus undesirable sequences (derived from tRNAs, rRNAs and sequencing artifacts). In addition to these routine quality control (QC) analyses, miRTrace can accurately and sensitively resolve taxonomic origins of small RNA-Seq data based on the composition of clade-specific miRNAs. This feature can be used to detect cross-clade contaminations in typical lab settings. It can also be applied for more specific applications in forensics, food quality control and clinical diagnosis, for instance tracing the origins of meat products or detecting parasitic microRNAs in host serum.",
+              "homepage": "https://github.com/friedlanderlab/mirtrace/tree/master",
+              "documentation": "https://github.com/friedlanderlab/mirtrace/blob/master/release-bundle-includes/doc/manual/mirtrace_manual.pdf",
+              "tool_dev_url": "https://github.com/friedlanderlab/mirtrace/tree/master",
+              "doi": "10.1186/s13059-018-1588-9",
+              "licence": [
+                "GPL v2"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "reads": {
+              "type": "file",
+              "description": "microRNA sequencing data",
+              "pattern": "*.{fastq,fastq.gz}"
+            }
+          },
+          {
+            "mirtrace_species": {
+              "type": "string",
+              "description": "Target species in microRNA sequencing data (miRbase encoding, e.g. “hsa” for Homo sapiens)"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "html": {
+              "type": "file",
+              "description": "HTML file",
+              "pattern": "*.{html}"
+            }
+          },
+          {
+            "json": {
+              "type": "file",
+              "description": "JSON file",
+              "pattern": "*.{json}"
+            }
+          },
+          {
+            "tsv": {
+              "type": "file",
+              "description": "TSV file",
+              "pattern": "*.{tsv}"
+            }
+          },
+          {
+            "all_fa": {
+              "type": "file",
+              "description": "QC-passed reads in FASTA file. Identical reads are collapsed. Entries are sorted by abundance.",
+              "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "rnatype_unknown_fa": {
+              "type": "file",
+              "description": "Unknown RNA type QC-passed reads in FASTA file. Identical reads are collapsed. Entries are sorted by abundance.",
+              "pattern": "*.{fa,fasta}"
+            }
+          }
+        ],
+        "authors": [
+          "@atrigila"
+        ],
+        "maintainers": [
+          "@atrigila"
+        ]
+      }
     },
     {
       "name": "mitohifi_findmitoreference",
