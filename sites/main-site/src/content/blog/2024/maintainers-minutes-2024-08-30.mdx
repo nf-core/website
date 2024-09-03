@@ -30,15 +30,15 @@ package name duplication across multiple channels:
 
 ```yaml
 channels:
-  - conda-forge
-  - bioconda
+    - conda-forge
+    - bioconda
 dependencies:
-  # renovate: datasource=conda depName=bioconda/bwa
-  - bioconda::bwa=0.7.18
-  # renovate: datasource=conda depName=bioconda/samtools
-  - bioconda::samtools=1.20
-  # renovate: datasource=conda depName=bioconda/htslib
-  - bioconda::htslib=1.20.0
+    # renovate: datasource=conda depName=bioconda/bwa
+    - bioconda::bwa=0.7.18
+    # renovate: datasource=conda depName=bioconda/samtools
+    - bioconda::samtools=1.20
+    # renovate: datasource=conda depName=bioconda/htslib
+    - bioconda::htslib=1.20.0
 ```
 
 ## Testing
