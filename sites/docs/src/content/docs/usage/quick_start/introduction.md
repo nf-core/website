@@ -10,7 +10,7 @@ parentWeight: 10
 
 nf-core is a community effort to collect a curated set of analysis pipelines built using [Nextflow](https://www.nextflow.io/docs/latest/index.html).
 
-nf-core provides a standardised set of best practices, guidelines, and templates for building and sharing bioinformatics pipelines. Pipelines are designed to be modular, scalable, and portable, allowing researchers to easily adapt and execute them using their own data and compute resources.
+nf-core provides a standardised set of best practices, guidelines, and templates for building and sharing bioinformatics pipelines. Pipelines are designed to be modular, scalable, efficient and portable, allowing researchers to easily adapt and execute them using their own data and compute resources.
 
 One of the key benefits of nf-core is that it promotes open development, testing, and peer review, ensuring that the pipelines are robust, well-documented, and validated against real-world datasets. This helps to increase the reliability and reproducibility of bioinformatics analyses and ultimately enables researchers to accelerate their scientific discoveries.
 
