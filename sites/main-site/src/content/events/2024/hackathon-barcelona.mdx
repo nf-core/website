@@ -174,8 +174,8 @@ You can move freely between projects throughout the event.
 
 </HackathonGroup>
 
-<HackathonGroup title="Single cell analysis: [nf-core/scrnaseq](https://nf-co.re/scrnaseq) and [nf-core/scdownstream](https://nf-co.re/scdownstream)" color="#238636" leaders={{'nictru': 'Nico Trummer'}}>
-    nf-core/scrnaseq transforms FASTQ files into expression matrices, while nf-core/scdownstream receives expression matrices as input and performs quality control, integration, clustering and more.
+<HackathonGroup title="Single cell analysis: nf-core/scrnaseq and nf-core/scdownstream" color="#238636" leaders={{'nictru': 'Nico Trummer'}}>
+    [nf-core/scrnaseq](https://nf-co.re/scrnaseq) transforms FASTQ files into expression matrices, while [nf-core/scdownstream](https://nf-co.re/scdownstream) receives expression matrices as input and performs quality control, integration, clustering and more.
     This project has two main parts:
         1) Move some local modules from scdownstream to nf-core/modules so that they can be re-used in scrnaseq. Basically the preprocessing of scdownstream should be the postprocessing of scrnaseq, so that users can either use scrnaseq and perform their own downstream analysis or they perform their own quantification and use scdownstream afterwards.
         Here you can:
