@@ -7,16 +7,27 @@ weight: 3
 
 ## System requirements
 
-nf-core pipelines are reproducible, portable, and scalable, and are designed to work "out of the box". However, it is likely you will need to configure each pipeline to suit your data and system requirements.
+nf-core pipelines are reproducible, portable, and scalable, and are designed to work "out of the box". However to maximise efficiency and benefit from all the advantages of Nextflow, it is likely you will need to configure each pipeline to suit your data and system requirements.
 
 The following sections are common considerations for nf-core pipeline users.
+
+All of the following options can be can be specified within a Nextflow config file.
 
 ### Executors
 
 Nextflow pipelines will run locally by default.
 Most users will need to specify an "executor" to submit jobs to a scheduler (e.g. SGE, LSF, SLURM, PBS, and AWS Batch).
 
-Schedulers can be configured using scopes settings that can be specified using [shared configuration profiles](#shared-configuration-files) or [custom configuration files](#custom-parameter-and-configuration-files).
+A simple example of a config file specifying this could be:
+
+    ```nextflow
+    process {
+        executor = 'slurm'
+        queue = { task.time >= '24.d' ? 'long' : 'short' }
+    }
+    ```
+
+For more complex examples, see the various institutional configs on the [nf-core/configs repository](https://github.com/nf-core/configs/tree/master/conf)
 See the [Nextflow executor documentation](https://www.nextflow.io/docs/latest/executor.html#executor-page) for more information about specific schedulers.
 
 ### Max resources
@@ -44,11 +55,15 @@ As a result, you may find that the jobs are given more resources than they need 
 At the other end of the scale, you may want to increase the resources given to a specific task to make it run faster.
 You may wish to increase resources if you get a pipeline reporting a step failing with an `Command exit status`, such as `137`.
 
-Where possible, tools are tuned to make use of the resources available, for example with a tool parameter (e.g., `-p ${task.cpus}`, where `${task.cpus}` is dynamically set according to what has been specified in the pipeline configuration files). However, this is not possible with all tools, in which case required resources are estimated for an average user.
+:::warning
+You should not modify the `base.config` of the pipeline! But always modify resource requests in your own custom or institutioanl config file!
+:::
 
-Workflow resources can modified through [shared configuration profiles](#shared-configuration-files) or [custom configuration files](#custom-parameter-and-configuration-files) to match your requirements.
+Where possible, pipeline steps are tuned to make use of the resources available.
+For example, if a tool allows specification of the number of CPUs or threads to use with the parameter (e.g., `-p`), nf-core pipeline modules will use this parameter when executing the tool, with the number of CPUs being derived from either the `base.config` or your own custom config file.
 
-Most process resources are specified using process labels by default. For example:
+
+By default, process resources are inherited by a label. For example:
 
 ```groovy
 process {
@@ -76,7 +91,7 @@ The [`check_max()`](https://github.com/nf-core/tools/blob/99961bedab1518f5926687
 If you want to use the `check_max()` function in a custom configuration file, you must copy the [check_max function](https://github.com/nf-core/tools/blob/99961bedab1518f592668727a4d692c4ddf3c336/nf_core/pipeline-template/nextflow.config#L206-L237) to the bottom of your custom config
 :::
 
-To modify the memory to all processes with the `process_high` label you would use the `withLabel` process selector. For example:
+To modify the memory to all processes with the `process_high` label you can use the `withLabel` process selector in your config file. For example:
 
 ```groovy
 process {
@@ -86,7 +101,8 @@ process {
 }
 ```
 
-To modify the memory of a specific process with the name `STAR_ALIGN` you would use the `withName` process selector. For example:
+You can also modify the memory of a specific process by using the process'  name. 
+For example, for the step of the pipeline with the name `STAR_ALIGN`, you would use the `withName` process selector. For example:
 
 ```groovy
 process {
@@ -96,7 +112,7 @@ process {
 }
 ```
 
-If a pipeline uses a tool multiple times you will need to specify the whole execution path of the module. For example:
+If a pipeline uses a tool multiple times you may need to specify the whole 'execution path' of the module. For example:
 
 ```groovy
 process {
@@ -109,7 +125,7 @@ process {
 See the [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html#process-selectors) for more information about process selectors.
 
 :::note
-If you think that the default resources for a pipeline are drastically too high or low please contact the developers know either on Slack in the channel for the pipeline or via a GitHub issue on the pipeline repository.
+If you think that the default resources for a pipeline are drastically too high or low please contact the developers of the given pipeline know either on Slack in the channel for the pipeline or via a GitHub issue on the pipeline repository.
 :::
 
 :::warning
