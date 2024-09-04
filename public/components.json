@@ -5979,6 +5979,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -19023,6 +19027,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -29822,7 +29834,9 @@
               "documentation": "https://github.com/jkbonfield/crumble",
               "tool_dev_url": "https://github.com/jkbonfield/crumble",
               "doi": "10.1093/bioinformatics/bty608",
-              "licence": "['multiple BSD style licenses']"
+              "licence": [
+                "multiple BSD style licenses"
+              ]
             }
           }
         ],
@@ -70474,6 +70488,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -81961,6 +81979,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -89046,7 +89068,9 @@
               "description": "Compare multiple runs of long read sequencing data and alignments",
               "homepage": "https://github.com/wdecoster/nanocomp",
               "documentation": "https://github.com/wdecoster/nanocomp",
-              "licence": "MIT License"
+              "licence": [
+                "MIT License"
+              ]
             }
           }
         ],
@@ -131026,6 +131050,103 @@
           "version": "dev"
         }
       ]
+    },
+    {
+      "name": "tcoffee_consensus",
+      "path": "modules/nf-core/tcoffee/consensus/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "tcoffee_consensus",
+        "description": "Computes a consensus alignment using T_COFFEE",
+        "keywords": [
+          "alignment",
+          "MSA",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "tcoffee": {
+              "description": "A collection of tools for Computing, Evaluating and Manipulating Multiple Alignments of DNA, RNA, Protein Sequences and Structures.",
+              "homepage": "http://www.tcoffee.org/Projects/tcoffee/",
+              "documentation": "https://tcoffee.readthedocs.io/en/latest/tcoffee_main_documentation.html",
+              "tool_dev_url": "https://github.com/cbcrg/tcoffee",
+              "doi": "10.1006/jmbi.2000.4042",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          },
+          {
+            "pigz": {
+              "description": "Parallel implementation of the gzip algorithm.",
+              "homepage": "https://zlib.net/pigz/",
+              "documentation": "https://zlib.net/pigz/pigz.pdf"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "aln": {
+              "type": "file",
+              "description": "List of multiple sequence alignments in FASTA format to be used to compute the consensus",
+              "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing tree information\ne.g. `[ id:'test_tree']`\n"
+            }
+          },
+          {
+            "tree": {
+              "type": "file",
+              "description": "Input guide tree in Newick format",
+              "pattern": "*.{dnd}"
+            }
+          },
+          {
+            "compress": {
+              "type": "boolean",
+              "description": "Flag representing whether the output MSA should be compressed. Set to true to enable/false to disable compression. Compression is done using pigz, and is multithreaded."
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "alignment": {
+              "type": "file",
+              "description": "Consensus alignment in FASTA format",
+              "pattern": "*.{fa,fasta,aln}"
+            }
+          }
+        ],
+        "authors": [
+          "@luisas"
+        ],
+        "maintainers": [
+          "@luisas"
+        ]
+      }
     },
     {
       "name": "tcoffee_irmsd",
