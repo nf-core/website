@@ -5983,6 +5983,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -11725,6 +11729,107 @@
           "version": "dev"
         }
       ]
+    },
+    {
+      "name": "bcftools_plugintag2tag",
+      "path": "modules/nf-core/bcftools/plugintag2tag/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "bcftools_plugintag2tag",
+        "description": "Converts between similar tags, such as GL,PL,GP or QR,QA,QS or localized alleles, eg LPL,LAD.",
+        "keywords": [
+          "tag2tag",
+          "bcftools",
+          "VCF"
+        ],
+        "tools": [
+          {
+            "view": {
+              "description": "Converts between similar tags, such as GL,PL,GP or QR,QA,QS or localized alleles, eg LPL,LAD.\n",
+              "homepage": "http://samtools.github.io/bcftools/bcftools.html",
+              "documentation": "https://samtools.github.io/bcftools/howtos/plugin.tag2tag.html",
+              "doi": "10.1093/bioinformatics/btp352",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "The vcf file to be inspected.\ne.g. 'file.vcf'\n"
+            }
+          },
+          {
+            "index": {
+              "type": "file",
+              "description": "The tab index for the VCF file to be inspected.\ne.g. 'file.tbi'\n"
+            }
+          },
+          {
+            "regions": {
+              "type": "file",
+              "description": "Optionally, restrict the operation to regions listed in this file.\ne.g. 'file.vcf'\n"
+            }
+          },
+          {
+            "targets": {
+              "type": "file",
+              "description": "Optionally, restrict the operation to regions listed in this file (doesn't rely upon index files)\ne.g. 'file.vcf'\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "VCF normalized output file",
+              "pattern": "*.{vcf,vcf.gz,bcf,bcf.gz}"
+            }
+          },
+          {
+            "csi": {
+              "type": "file",
+              "description": "Default VCF file index",
+              "pattern": "*.csi"
+            }
+          },
+          {
+            "tbi": {
+              "type": "file",
+              "description": "Alternative VCF file index",
+              "pattern": "*.tbi"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@eweizy"
+        ],
+        "maintainers": [
+          "@eweizy"
+        ]
+      }
     },
     {
       "name": "bcftools_query",
@@ -18546,6 +18651,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -70492,6 +70605,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -81512,6 +81629,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
