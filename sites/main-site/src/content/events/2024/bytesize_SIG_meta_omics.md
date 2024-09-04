@@ -10,8 +10,6 @@ youtubeEmbed: https://youtu.be/qaLUkB6t5Sw
 locations:
   - Name: Online
     links: https://youtu.be/qaLUkB6t5Sw
-      
-      
 ---
 
 In this week's bytesize Daniel Lundin ([@erikrikarddaniel](https://github.com/erikrikarddaniel)), James A. Fellows Yates ([@jfy133](https://github.com/jfy133)) and Carson J. Miller ([@carsonjm](https://github.com/carsonjm)) introduce the [Special Interest Group "meta-omics"](https://nf-co.re/special-interest-groups/meta-omics).
