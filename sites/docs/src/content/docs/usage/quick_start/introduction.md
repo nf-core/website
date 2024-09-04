@@ -25,28 +25,28 @@ One of the key benefits of nf-core is that it promotes open development, testing
 - **Packaged software**
   - Pipeline dependencies are automatically downloaded and handled using Docker, Singularity, Conda, or other software management tools. There is no need for any software installations.
 - **Portable and reproducible**
-  - nf-core pipelines follow best practices to ensure maximum portability and reproducibility. The large community makes the pipelines exceptionally well-tested and easy to execute.
+  - nf-core pipelines follow best practices to ensure maximum portability and reproducibility. You can run nf-core pipelines on most local machines, HPCs and in the cloud with minimal configuration changes.
 - **Cloud-ready**
   - nf-core pipelines are tested on AWS after every major release. You can even browse results live on the website and use outputs for your own benchmarking.
 
-nf-core is published in [Nature Biotechnology: Nat Biotechnol 38, 276–278 (2020)](https://www.nature.com/articles/s41587-020-0439-x). Nature Biotechnology. An updated preprint is available at [bioRxiv](https://www.biorxiv.org/content/10.1101/2024.05.10.592912v1).
+nf-core is published in [Nature Biotechnology: Nat Biotechnol 38, 276–278 (2020)](https://www.nature.com/articles/s41587-020-0439-x). Nature Biotechnology. A new preprint describing the latest updates to nf-core is available at [bioRxiv](https://www.biorxiv.org/content/10.1101/2024.05.10.592912v1).
 
 ## Pipelines
 
-There are currently >110 nf-core pipelines at various stages of development.
+There are currently >110 [nf-core pipelines](https://nf-co.re/pipelines) at various stages of development.
 
 Each released pipeline has a dedicated page that includes 6 documentation sections:
 
 - **Introduction**: An introduction and overview of the pipeline
 - **Usage**: Descriptions of how to execute the pipeline
-- **Parameters**: Grouped pipeline parameters with descriptions
+- **Parameters**: Descriptions of each pipeline parameter with additional help information
 - **Output**: Descriptions and examples of the expected output files
-- **Results**: Example output files generated from the full test dataset
+- **Results**: Example output files generated from a realistic and full-sized dataset
 - **Releases & Statistics**: pipeline version history and statistics
 
 Each section should be explored to understand what the pipeline does and how it can be configured.
 
-## Join the nf-core community!
+## Any questions? Wanna help out? Join the nf-core community!
 
 The nf-core Slack is the place to get help, share expertise, and connect with other community members.
 
@@ -62,7 +62,7 @@ We hope to see you there!
 
 - **Community conduct**: It’s important that this community is an open, collaborative, and welcoming environment. Read our nf-core [Code of Conduct](https://nf-co.re/code_of_conduct).
 - **Channels**: The nf-core Slack has a channel for just about everything! Common topics and each pipeline has its own channel. When you join, you will automatically be signed up to some of our favorite channels. You can leave and join groups at any time.
-- **Github invitations**: Post your GitHub username on the [`#github-invitations`](https://nfcore.slack.com/archives/CEB982K2T) channel and we will send you an invitation to join the nf-core GitHub organization.
+- **Github invitations**: If you want to get involved with development of any kind (even documentation!), post your GitHub username on the [`#github-invitations`](https://nfcore.slack.com/archives/CEB982K2T) channel and we will send you an invitation to join the nf-core GitHub organization.
 - **Your Slack profile**: Don’t forget to fill in your profile (especially your GitHub username) so your accounts are linked.
 - **Nextflow forum**: There is also a Nextflow Community Forum for asking Nextflow questions. Follow [this link](https://community.seqera.io/) to join.
 - **Say hey!**: Introduce yourself in [`#say-hello`](https://nfcore.slack.com/archives/C04F9UNM46M) If you need inspiration, community members often share a few fun notes about their backgrounds, their goals, and some of their favorite things.

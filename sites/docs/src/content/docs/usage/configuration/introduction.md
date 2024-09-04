@@ -48,7 +48,7 @@ Depending on the parameter type, you may be required to add additional informati
 For example, you would add string parameter after the parameter flag for the `nf-core/rnaseq` `--input` and `--output` parameters.
 
 ```bash
-nextflow nf-core/rnaseq --input <path/to/input> --outdir <results>
+nextflow nf-core/rnaseq --input <path/to/input> --outdir <path/to/results>
 ```
 
 Every nf-core pipeline has a full list of parameters on the nf-core website. You will be shown a description and the type of the parameter when viewing these parameters. Some parameters will also have additional text to help you understand how a parameter should be used. See the [parameters page of the nf-core rnaseq pipeline](https://nf-co.re/rnaseq/3.14.0/parameters/).
@@ -57,7 +57,7 @@ Every nf-core pipeline has a full list of parameters on the nf-core website. You
 
 All parameters have a default configuration that is defined using the `nextflow.config` file in the root of the pipeline directory. Many parameters are set to `null` or `false` by default and are only activated by a profile or config file.
 
-There are also several `includeConfig` statements in the `nextflow.config` file that are used to include additional config files from the `conf/` folder. Each additional `.config` file contains categorized configuration information for your pipeline execution, some of which can be optionally included as profiles:
+nf-core pipelines also include additional config files from the `conf/` folder of a pipeline repository. Each additional `.config` file contains categorized configuration information for your pipeline execution, some of which can be optionally included as profiles:
 
 - `base.config`
   - Included by the pipeline by default
@@ -83,7 +83,7 @@ Some configuration files contain the definition of profiles that can be flexibly
 Profiles are sets of configuration options that can be flexibly applied to a pipeline.
 They are also commonly defined in the `nextflow.config` file in the root of the pipeline directory.
 
-Profiles used by nf-core pipelines can be broadly categorized into two groups:
+Profiles that come with nf-core pipelines can be broadly categorized into two groups:
 
 - Software management profiles
   - Profiles for the management of software dependencies using container or environment management tools, for example, `docker`, `singularity`, and `conda`.
@@ -94,7 +94,7 @@ nf-core pipelines are required to define software containers and environments th
 
 ### Shared configuration files
 
-An `includeConfig` statement in the `nextflow.config` file is also used to include custom institutional profiles that have been submitted to the [nf-core config repository](https://github.com/nf-core/configs). At run time, nf-core pipelines will fetch these configuration profiles from the [nf-core config repository](https://github.com/nf-core/configs) and make them available.
+nf-core pipelines can also load custom institutional profiles that have been submitted to the [nf-core config repository](https://github.com/nf-core/configs). At run time, nf-core pipelines will fetch these configuration profiles from the [nf-core config repository](https://github.com/nf-core/configs) and make them available.
 
 For shared resources such as an HPC cluster, you may consider developing a shared institutional profile.
 
