@@ -5975,6 +5975,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -18538,6 +18542,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -37508,7 +37520,9 @@
               "documentation": "https://sourceforge.net/projects/est-usfs/",
               "tool_dev_url": "https://sourceforge.net/projects/est-usfs/files/est-sfs-release-2.04.tar.gz",
               "doi": "10.1534/genetics.118.301120",
-              "licence": "['Free for Academic Use']"
+              "licence": [
+                "Free for Academic Use"
+              ]
             }
           }
         ],
@@ -70456,6 +70470,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -81476,6 +81494,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -138619,7 +138641,10 @@
               "documentation": "https://github.com/AnantharamanLab/vRhyme",
               "tool_dev_url": "https://github.com/AnantharamanLab/vRhyme",
               "doi": "10.1093/nar/gkac341",
-              "licence": "['GPL v3', 'GPL v3 license']"
+              "licence": [
+                "GPL v3",
+                "GPL v3 license"
+              ]
             }
           }
         ],
