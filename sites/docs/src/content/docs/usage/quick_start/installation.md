@@ -160,7 +160,7 @@ NXF_VER=24.06.0-edge nextflow info
 You don't need to install nf-core tools to run nf-core pipelines. However, nf-core tools offer a number of helpful commands for users and are essential for pipeline developers.
 
 For users:
-  
+
   - list nf-core pipelines
   - download nf-core pipelines
   - configure pipeline runs
@@ -185,7 +185,8 @@ Using profiles, software dependencies can be managed through various packaging (
 These ensure that you have the correct tool and version of the tool that each pipeline needs to correctly execute.
 
 The respective tooling for a profile must be installed prior to pipeline execution. Follow the links below to install the required profile tooling:
-
+  - Typically requires system root access, though a _"rootless mode"_ is available
+  - Needs system administrator for install
 - [Docker](https://docs.docker.com/install/)
   - Typically used locally, on single-user servers, and the cloud
   - Analysis runs in a _container_, which behaves like an isolated operating system

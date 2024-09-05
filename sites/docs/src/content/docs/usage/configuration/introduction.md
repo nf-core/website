@@ -8,8 +8,8 @@ parentWeight: 20
 
 ## Configure nf-core pipelines
 
-Each nf-core pipeline comes with a set of “sensible defaults”.
-While the defaults are a great place to start, you will certainly want to modify these to fit your own purposes and system requirements.
+Each nf-core pipeline comes with a set of “sensible defaults” for a typical analysis of full size data.
+While the defaults are a great place to start, you will certainly want to modify these to fit your own data and system requirements. For example, modifying a tool flag of compute resources allocated for a process.
 
 When a pipeline is launched, Nextflow will look for config files in several locations.
 As each source can contain conflicting settings, the sources are ranked to decide which settings to apply.
@@ -28,10 +28,10 @@ Configuration sources are reported below and listed in order of priority:
 
 While some of these files are already included in the nf-core pipeline repository (e.g., the `nextflow.config` file in the nf-core pipeline repository), some are automatically identified on your local system (e.g., the `nextflow.config` in the launch directory), and others are only included if they are specified using run options (e.g., `-params-file`, and `-c`).
 
-If you clone and manually edit an nf-core pipeline then you cannot update to more recent versions of the pipeline without overwriting your changes. You also risk moving away from the canonical pipeline and losing reproducibility.
+You should not clone and manually edit an nf-core pipeline. Manually edited nf-core pipelines cannot be updated to more recent versions of the pipeline without overwriting your changes. You also risk moving away from the canonical pipeline and losing reproducibility.
 
 :::tip
-Configuration locations can be used to your benefit. For example, use `-profile` for your cluster configuration, `~/.nextflow/config` for your personal configuration, and `nextflow.config` in your working directory for run-specific configuration.
+Configuration locations can be used to your benefit. For example, use `-profile` for your cluster configuration, `~/.nextflow/config` for your personal configuration, and `-c specific_run.config` for run-specific configuration.
 :::
 
 ### Parameters
@@ -77,7 +77,7 @@ nf-core pipelines also include additional config files from the `conf/` folder o
   - A configuration profile to test the pipeline with a full-size test dataset
 
 :::note
-Some configuration files contain the definition of profiles that can be flexibly applied. For example, the `docker`, `singularity`, and `conda` profiles are defined in the `nextflow.config` file in the pipeline project directory.
+Some configuration files contain the definition of profiles that can be flexibly applied. For example, the `docker`, `singularity`, and `conda` profiles are defined in the `nextflow.config` file in the pipeline project directory. You should not need to manually edit any of these configuration files.
 :::
 
 Profiles are sets of configuration options that can be flexibly applied to a pipeline.
@@ -153,8 +153,6 @@ alpha {
     y = 'string value'
 }
 ```
-
-### Scopes
 
 Scopes allow you to quickly configure settings required to deploy a pipeline on different infrastructure using different software management.
 

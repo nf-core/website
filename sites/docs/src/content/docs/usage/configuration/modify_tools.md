@@ -1,7 +1,7 @@
 ---
-title: Tool arguments
+title: Modifying pipelines
 subtitle: Configure tool containers and arguments
-shortTitle: Tool arguments
+shortTitle: Modifying pipelines
 weight: 3
 ---
 
@@ -14,35 +14,38 @@ However, you may want to modify these to fit your own purposes.
 
 **It is very unlikely that you will need to edit the pipeline code to configure a tool.**
 
-### Docker registries
+### Tool arguments
 
-nf-core pipelines use `quay.io` as the default docker registry for Docker and Podman images.
-When specifying a Docker container, it will pull the image from `quay.io` unless a full URI is specified. For example, if the process container is:
+You may wish to understand which tool arguments a pipeline uses, or update to add additional arguments not supported currently by the pipeline.
 
-```bash
-biocontainers/fastqc:0.11.7--4
+You can sometimes find out what parameters are used in a tool in by checking the longer 'help' description of different pipeline parameters, e.g., by pressing the 'help' button next to [this parameter](https://nf-co.re/funcscan/1.0.1/parameters#annotation_bakta_mincontig) in [nf-core/funcscan](https://nf-co.re/funcscan).
+
+There are two main places that a tool can have a tool argument specified:
+
+- The process `script` block
+- The `conf/modules.conf` file
+
+Most arguments (both mandatory or optional) are defined in the `conf/modules.conf` file under the `ext.args` entry. Arguments that are defined in the `conf/modules.conf` file can be flexible modified using custom configuration files.
+
+Arguments specified in `ext.args` are then inserted into the module itself via the `$args` variable in the module's bash code
+
+For example, the `-n` parameter could be added to the `BOWTIE_BUILD` process:
+
+```groovy
+process {
+    withName: BOWTIE_BUILD {
+        ext.args = "-n 0.1"
+    }
+Updated tools may come with major changes and may break a pipeline and/or create missing values in MultiQC version tables.
+
+Such changes come with no warranty or support by the the pipeline developers!
 ```
 
-The image will be pulled from quay.io by default, resulting in a full URI of:
-
-```bash
-quay.io/biocontainers/fastqc:0.11.7--4
-```
-
-If `docker.registry` is specified, it will be used first. For example, if the config value `docker.registry = 'public.ecr.aws'` is specified the image will be pulled from:
-
-```bash
-public.ecr.aws/biocontainers/fastqc:0.11.7--4
-```
-
-However, the `docker.registry` setting will be ignored if you specify a full URI:
-
-```bash
-docker.io/biocontainers/fastqc:v0.11.9_cv8
-```
+:::warning
+It is recommended to copy and paste existing arguments in a pipelines `conf/modules.config` file to ensure the pipeline can function as expected.
+:::
 
 ### Changing tool versions
-
 
 You can tell the pipeline to use a different container image within a config file and the `process` scope.
 
@@ -90,34 +93,32 @@ To update the container specification, you can do the following steps:
 :::warning
 Updated tools may come with major changes and may break a pipeline and/or create missing values in MultiQC version tables.
 
-Such changes come with no warranty or support by the the pipeline developers! 
+Such changes come with no warranty or support by the the pipeline developers!
 :::
 
-### Tool arguments
+### Docker registries
 
-You may wish to understand which tool arguments a pipeline uses, or update to add additional arguments not supported currently by the pipeline. 
+nf-core pipelines use `quay.io` as the default docker registry for Docker and Podman images.
+When specifying a Docker container, it will pull the image from `quay.io` unless a full URI is specified. For example, if the process container is:
 
-You can sometimes find out what parameters are used in a tool in by checking the longer 'help' description of different pipeline parameters, e.g., by pressing the 'help' button next to [this parameter](https://nf-co.re/funcscan/1.0.1/parameters#annotation_bakta_mincontig) in [nf-core/funcscan](https://nf-co.re/funcscan).
-
-There are two main places that a tool can have a tool argument specified:
-
-- The process `script` block
-- The `conf/modules.conf` file
-
-Most arguments (both mandatory or optional) are defined in the `conf/modules.conf` file under the `ext.args` entry. Arguments that are defined in the `conf/modules.conf` file can be flexible modified using custom configuration files.
-
-Arguments specified in `ext.args` are then inserted into the module itself via the `$args` variable in the module's bash code
-
-For example, the `-n` parameter could be added to the `BOWTIE_BUILD` process:
-
-```groovy
-process {
-    withName: BOWTIE_BUILD {
-        ext.args = "-n 0.1"
-    }
-}
+```bash
+biocontainers/fastqc:0.11.7--4
 ```
 
-:::warning
-It is recommended to copy and paste existing arguments in a pipelines `conf/modules.config` file to ensure the pipeline can function as expected.
-:::
+The image will be pulled from quay.io by default, resulting in a full URI of:
+
+```bash
+quay.io/biocontainers/fastqc:0.11.7--4
+```
+
+If `docker.registry` is specified, it will be used first. For example, if the config value `docker.registry = 'public.ecr.aws'` is specified the image will be pulled from:
+
+```bash
+public.ecr.aws/biocontainers/fastqc:0.11.7--4
+```
+
+However, the `docker.registry` setting will be ignored if you specify a full URI:
+
+```bash
+docker.io/biocontainers/fastqc:v0.11.9_cv8
+```

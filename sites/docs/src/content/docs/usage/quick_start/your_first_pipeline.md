@@ -29,6 +29,10 @@ It is best to test it is working using a small dataset that is known to work bef
 
 nf-core pipelines come packed with a `test` profile that uses small files from the [nf-core/test-datasets](https://github.com/nf-core/test-datasets) repository. The `test` profile is extensively tested and should run without extra configuration. nf-core pipelines come packed with directives for containers and environments that can be flexibly enabled using software dependency profiles (e.g., `docker`, `singularity`, and `conda`). By using a profile for software dependencies an nf-core pipeline should run with all required tools.
 
+:::note
+Profiles are not just for software management, but also deeper configuration on different computing infrastructure. Some institutes have profiles to help you run nf-core pipelines on your local infrastructure. See https://nf-co.re/configs to see if yours is listed!
+:::
+
 Run the `nf-core/rnaseq` pipeline using the `test` profile and a software dependencies profile (e.g., `docker`) to confirm Nextflow is installed and that you have an active internet connection:
 
 ```bash
@@ -37,4 +41,6 @@ nextflow run nf-core/rnaseq -profile test,docker --outdir results
 
 If everything has been installed properly you should see the pipeline launch and run to completion.
 
-Congratulations! You have just run your first nf-core pipeline! You are now ready to start adding your own data and configure the pipeline to better suit your requirements.
+Congratulations! You have just run your first nf-core pipeline!
+
+What's next? Check out the [Configuration](/docs/usage/configuration/introduction) guide for more information about adding your own data and configuring a pipeline to better suit your needs.
