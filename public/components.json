@@ -164,7 +164,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -1729,13 +1729,7 @@
           "@darcy220606",
           "@louperelo"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "funcscan",
-          "version": "1.1.6"
-        }
-      ]
+      }
     },
     {
       "name": "ampcombi2_cluster",
@@ -1811,7 +1805,13 @@
         "maintainers": [
           "@darcy220606"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "funcscan",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "ampcombi2_complete",
@@ -1886,7 +1886,13 @@
         "maintainers": [
           "@darcy220606"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "funcscan",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "ampcombi2_parsetables",
@@ -2057,7 +2063,13 @@
         "maintainers": [
           "@darcy220606"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "funcscan",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "ampir",
@@ -2160,7 +2172,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -2244,7 +2256,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -2458,7 +2470,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -2520,7 +2532,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -3437,7 +3449,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -3533,7 +3545,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -3723,7 +3735,13 @@
         "maintainers": [
           "@Vedanth-Ramji"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "funcscan",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "aria2",
@@ -5379,6 +5397,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         },
         {
           "name": "rnafusion",
@@ -8103,7 +8125,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.1.6"
+          "version": "2.0.0"
         },
         {
           "name": "pathogensurveillance",
@@ -8172,7 +8194,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.1.6"
+          "version": "2.0.0"
         },
         {
           "name": "pathogensurveillance",
@@ -9815,7 +9837,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         }
       ]
     },
@@ -13663,6 +13685,10 @@
         {
           "name": "raredisease",
           "version": "2.1.0"
+        },
+        {
+          "name": "rnaseq",
+          "version": "3.15.0"
         }
       ]
     },
@@ -15068,10 +15094,6 @@
         {
           "name": "circrna",
           "version": "dev"
-        },
-        {
-          "name": "funcscan",
-          "version": "1.1.6"
         }
       ]
     },
@@ -19160,6 +19182,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -20576,7 +20606,7 @@
           },
           {
             "index": {
-              "type": "dir",
+              "type": "directory",
               "description": "Directory containing bwameth genome index"
             }
           }
@@ -21362,7 +21392,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         },
         {
           "name": "rnasplice",
@@ -30415,6 +30445,10 @@
         {
           "name": "riboseq",
           "version": "1.0.1"
+        },
+        {
+          "name": "rnaseq",
+          "version": "3.15.0"
         }
       ]
     },
@@ -30507,10 +30541,6 @@
         {
           "name": "createtaxdb",
           "version": "dev"
-        },
-        {
-          "name": "funcscan",
-          "version": "1.1.6"
         },
         {
           "name": "genomeannotator",
@@ -30607,10 +30637,6 @@
         {
           "name": "readsimulator",
           "version": "1.0.1"
-        },
-        {
-          "name": "rnaseq",
-          "version": "3.14.0"
         },
         {
           "name": "rnasplice",
@@ -30761,7 +30787,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         },
         {
           "name": "rnasplice",
@@ -31292,6 +31318,10 @@
         {
           "name": "riboseq",
           "version": "1.0.1"
+        },
+        {
+          "name": "rnaseq",
+          "version": "3.15.0"
         }
       ]
     },
@@ -32239,7 +32269,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -32356,7 +32386,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -32419,7 +32449,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -32579,7 +32609,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -35511,7 +35541,13 @@
         "maintainers": [
           "@pinin4fjords"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnaseq",
+          "version": "3.15.0"
+        }
+      ]
     },
     {
       "name": "dysgu",
@@ -38735,7 +38771,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -39540,7 +39576,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         },
         {
           "name": "sarek",
@@ -39816,7 +39852,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         },
         {
           "name": "rnasplice",
@@ -42116,7 +42152,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         }
       ]
     },
@@ -50144,9 +50180,9 @@
             }
           },
           {
-            "gvcf": {
+            "input": {
               "type": "file",
-              "description": "gVCF(.gz) file or to a GenomicsDB\n",
+              "description": "gVCF(.gz) file or a GenomicsDB\n",
               "pattern": "*.{vcf,vcf.gz}"
             }
           },
@@ -50170,10 +50206,22 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing fasta information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "Reference fasta file",
               "pattern": "*.fasta"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing fai information\ne.g. [ id:'test' ]\n"
             }
           },
           {
@@ -50184,6 +50232,12 @@
             }
           },
           {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing dict information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
             "dict": {
               "type": "file",
               "description": "Reference fasta sequence dict file",
@@ -50191,10 +50245,22 @@
             }
           },
           {
+            "meta5": {
+              "type": "map",
+              "description": "Groovy Map containing dbsnp information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
             "dbsnp": {
               "type": "file",
               "description": "dbSNP VCF file",
               "pattern": "*.vcf.gz"
+            }
+          },
+          {
+            "meta6": {
+              "type": "map",
+              "description": "Groovy Map containing dbsnp tbi information\ne.g. [ id:'test' ]\n"
             }
           },
           {
@@ -56296,7 +56362,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -58817,7 +58883,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         },
         {
           "name": "rnasplice",
@@ -63193,7 +63259,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.1.6"
+          "version": "2.0.0"
         },
         {
           "name": "genomeannotator",
@@ -63253,7 +63319,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         },
         {
           "name": "rnasplice",
@@ -63458,7 +63524,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -63565,7 +63631,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -63670,7 +63736,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -63777,7 +63843,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -63884,7 +63950,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -63969,7 +64035,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -64165,7 +64231,9 @@
         "name": "haplogrep2_classify",
         "description": "classification into haplogroups",
         "keywords": [
-          "haplogroups."
+          "haplogroups",
+          "classify",
+          "mtDNA"
         ],
         "tools": [
           {
@@ -64174,7 +64242,9 @@
               "homepage": "https://github.com/seppinho/haplogrep-cmd",
               "documentation": "https://github.com/seppinho/haplogrep-cmd",
               "tool_dev_url": "https://github.com/seppinho/haplogrep-cmd",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -65334,7 +65404,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         }
       ]
     },
@@ -65446,7 +65516,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         }
       ]
     },
@@ -65533,7 +65603,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         }
       ]
     },
@@ -66667,7 +66737,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.6"
+          "version": "2.0.0"
         },
         {
           "name": "metatdenovo",
@@ -70625,6 +70695,10 @@
         {
           "name": "isoseq",
           "version": "1.1.5"
+        },
+        {
+          "name": "isoseq",
+          "version": "1.1.5"
         }
       ]
     },
@@ -72073,7 +72147,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         }
       ]
     },
@@ -72208,7 +72282,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         }
       ]
     },
@@ -77710,7 +77784,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -82124,6 +82198,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -84644,7 +84722,9 @@
         "name": "minia",
         "description": "Minia is a short-read assembler based on a de Bruijn graph",
         "keywords": [
-          "assembly"
+          "assembler",
+          "short-read",
+          "de Bruijn"
         ],
         "tools": [
           {
@@ -85887,7 +85967,13 @@
           "@Joon-Klaps",
           "@vagkaratzas"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "funcscan",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "mmseqs_createindex",
@@ -86058,7 +86144,13 @@
         "maintainers": [
           "@Joon-Klaps"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "funcscan",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "mmseqs_databases",
@@ -86118,6 +86210,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "funcscan",
+          "version": "2.0.0"
+        },
         {
           "name": "mag",
           "version": "3.0.3"
@@ -86440,7 +86536,13 @@
         "maintainers": [
           "@darcy220606"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "funcscan",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "mmseqs_tsv2exprofiledb",
@@ -88315,7 +88417,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.1.6"
+          "version": "2.0.0"
         },
         {
           "name": "genomeannotator",
@@ -88480,6 +88582,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnaseq",
+          "version": "3.15.0"
         },
         {
           "name": "rnasplice",
@@ -99062,7 +99168,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         },
         {
           "name": "sammyseq",
@@ -103377,7 +103483,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         }
       ]
     },
@@ -103931,7 +104037,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.6"
+          "version": "2.0.0"
         },
         {
           "name": "mag",
@@ -104110,7 +104216,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.1.6"
+          "version": "2.0.0"
         },
         {
           "name": "mag",
@@ -105009,8 +105115,9 @@
               "documentation": "https://bioconductor.org/packages/release/bioc/html/PureCN.html",
               "tool_dev_url": "https://github.com/lima1/PureCN",
               "doi": "10.1186/s13029-016-0060-z.",
-              "licence": "Artistic-2.0",
-              "args_id": "$args"
+              "licence": [
+                "Artistic-2.0"
+              ]
             }
           }
         ],
@@ -106210,7 +106317,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -106550,7 +106657,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         }
       ]
     },
@@ -107810,7 +107917,13 @@
           "@jfy133",
           "@jasmezz"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "funcscan",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "rgi_main",
@@ -107929,7 +108042,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -109174,7 +109287,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         }
       ]
     },
@@ -109258,7 +109371,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         },
         {
           "name": "rnasplice",
@@ -109338,7 +109451,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         }
       ]
     },
@@ -109425,7 +109538,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         }
       ]
     },
@@ -109536,7 +109649,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         }
       ]
     },
@@ -109661,7 +109774,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         }
       ]
     },
@@ -109751,7 +109864,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         }
       ]
     },
@@ -109838,7 +109951,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         },
         {
           "name": "scnanoseq",
@@ -109951,7 +110064,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         }
       ]
     },
@@ -110046,7 +110159,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         }
       ]
     },
@@ -110777,7 +110890,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         },
         {
           "name": "rnasplice",
@@ -110898,7 +111011,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         },
         {
           "name": "rnasplice",
@@ -113060,7 +113173,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         },
         {
           "name": "rnasplice",
@@ -113310,7 +113423,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         },
         {
           "name": "rnasplice",
@@ -113623,7 +113736,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         },
         {
           "name": "rnasplice",
@@ -114464,7 +114577,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         },
         {
           "name": "rnasplice",
@@ -114666,7 +114779,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         },
         {
           "name": "rnasplice",
@@ -119023,7 +119136,13 @@
         "maintainers": [
           "@GallVp"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "funcscan",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "seqkit_sliding",
@@ -124705,7 +124824,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         }
       ]
     },
@@ -126771,7 +126890,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         },
         {
           "name": "rnasplice",
@@ -126897,7 +127016,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         },
         {
           "name": "rnasplice",
@@ -128058,7 +128177,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         }
       ]
     },
@@ -128173,7 +128292,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         },
         {
           "name": "rnasplice",
@@ -128290,6 +128409,10 @@
         {
           "name": "riboseq",
           "version": "1.0.1"
+        },
+        {
+          "name": "rnaseq",
+          "version": "3.15.0"
         }
       ]
     },
@@ -130223,7 +130346,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.6"
+          "version": "2.0.0"
         },
         {
           "name": "nanoseq",
@@ -132738,7 +132861,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         },
         {
           "name": "rnasplice",
@@ -133828,6 +133951,10 @@
         {
           "name": "riboseq",
           "version": "1.0.1"
+        },
+        {
+          "name": "rnaseq",
+          "version": "3.15.0"
         }
       ]
     },
@@ -133909,7 +134036,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         },
         {
           "name": "rnasplice",
@@ -134013,7 +134140,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         },
         {
           "name": "rnasplice",
@@ -135034,7 +135161,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         },
         {
           "name": "scnanoseq",
@@ -135131,7 +135258,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         },
         {
           "name": "rnasplice",
@@ -135327,6 +135454,10 @@
         {
           "name": "riboseq",
           "version": "1.0.1"
+        },
+        {
+          "name": "rnaseq",
+          "version": "3.15.0"
         }
       ]
     },
@@ -135622,7 +135753,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.1.6"
+          "version": "2.0.0"
         },
         {
           "name": "hgtseq",
@@ -135682,7 +135813,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         },
         {
           "name": "rnasplice",
@@ -141834,7 +141965,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         }
       ]
     },
@@ -142018,7 +142149,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         },
         {
           "name": "sammyseq",
@@ -142622,7 +142753,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         }
       ]
     },
@@ -142774,7 +142905,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         },
         {
           "name": "rnasplice",
@@ -142946,7 +143077,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         },
         {
           "name": "rnasplice",
@@ -143911,7 +144042,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         },
         {
           "name": "rnasplice",
@@ -145482,7 +145613,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         }
       ]
     },
@@ -146362,7 +146493,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         },
         {
           "name": "smrnaseq",
@@ -146531,7 +146662,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         },
         {
           "name": "rnasplice",
@@ -146838,7 +146969,13 @@
         "maintainers": [
           "@pinin4fjords"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnaseq",
+          "version": "3.15.0"
+        }
+      ]
     },
     {
       "name": "fastq_subsample_fq_salmon",
@@ -146958,7 +147095,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.14.0"
+          "version": "3.15.0"
         }
       ]
     },
@@ -150891,6 +151028,10 @@
         {
           "name": "riboseq",
           "version": "1.0.1"
+        },
+        {
+          "name": "rnaseq",
+          "version": "3.15.0"
         }
       ]
     },
@@ -151019,6 +151160,10 @@
           "version": "1.12.0"
         },
         {
+          "name": "funcscan",
+          "version": "2.0.0"
+        },
+        {
           "name": "mag",
           "version": "3.0.3"
         },
@@ -151109,6 +151254,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnaseq",
+          "version": "3.15.0"
         },
         {
           "name": "sarek",
@@ -151264,6 +151413,10 @@
           "version": "1.12.0"
         },
         {
+          "name": "funcscan",
+          "version": "2.0.0"
+        },
+        {
           "name": "mag",
           "version": "3.0.3"
         },
@@ -151354,6 +151507,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnaseq",
+          "version": "3.15.0"
         },
         {
           "name": "sarek",
@@ -151590,6 +151747,10 @@
           "version": "1.12.0"
         },
         {
+          "name": "funcscan",
+          "version": "2.0.0"
+        },
+        {
           "name": "mag",
           "version": "3.0.3"
         },
@@ -151680,6 +151841,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnaseq",
+          "version": "3.15.0"
         },
         {
           "name": "sarek",
