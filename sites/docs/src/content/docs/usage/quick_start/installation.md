@@ -65,14 +65,14 @@ This will create the `nextflow` executable in the current directory.
    chmod +x nextflow
    ```
 
-3. Move `nextflow` to an executable path. For example:
+3. Move `nextflow` to a location on your systems `$PATH`. For example:
 
    ```bash
    mkdir -p $HOME/.local/bin/
    mv nextflow $HOME/.local/bin/
    ```
 
-   Ensure the directory `$HOME/.local/bin/` is included in your `PATH` variable. Execute `export PATH="$PATH:$HOME/.local/bin"` to add this directory to `PATH` temporarily . Add this command to your shell configuration file (e.g., `~/.bashrc` or `~/.zshrc`) to add this directory to `PATH` permanently.
+   Ensure the directory `$HOME/.local/bin/` is included in your `PATH` variable. Execute `export PATH="$PATH:$HOME/.local/bin"` to add this directory to `PATH` temporarily. Add this command to your shell configuration file (e.g., `~/.bashrc` or `~/.zshrc`) to add this directory to `PATH` permanently.
 
    :::warning
    Nextflow will update its executable during the self update process and it should not be placed in a directory with restricted permissions.
@@ -94,7 +94,7 @@ Alternatively, Nextflow can be installed using `conda` via [Bioconda](https://bi
    ```
 
    :::warning
-   Conda channels are the locations where packages are stored. If the channels are not configured accurately your dependencies may be installed from
+   Conda channels are the locations where packages are distributed from. If the channels are not configured accurately your dependencies may be installed from
    the wrong channels and be incompatible.
    :::
 
@@ -117,8 +117,8 @@ You can update to the latest version of Nextflow using the self update command:
 nextflow self-update
 ```
 
-Specific versions of Nextflow can be installed using the `NXF_VER` environment variable.
-Nextflow will automatically install the specified version at the start of the next command.
+Specific versions of Nextflow can be installed for a particular terminal session using the `NXF_VER` environment variable.
+Nextflow will automatically install the specified version at the start of the next command, and re-use this version until you close your terminal session.
 
 ```bash
 export NXF_VER=23.10.1
@@ -129,7 +129,7 @@ nextflow run hello-world
 Set the `NXF_VER` variable in your `.bashrc` or `.zshrc` if you want to fix your version of Nextflow for all sessions.
 :::
 
-You can also temporarily switch to a specific version of Nextflow with the `NXF_VER` environment variable. For example:
+You can also temporarily switch to a specific version of Nextflow for a specific run with the `NXF_VER` environment variable. For example:
 
 ```bash
 NXF_VER=23.10.0 nextflow run hello
@@ -159,7 +159,19 @@ NXF_VER=24.06.0-edge nextflow info
 
 You don't need to install nf-core tools to run nf-core pipelines. However, nf-core tools offer a number of helpful commands for users and are essential for pipeline developers.
 
-nf-core tools includes commands tools to list, launch, configure, and download nf-core pipelines.
+For users:
+  
+  - list nf-core pipelines
+  - download nf-core pipelines
+  - configure pipeline runs
+  - launch pipeline runs
+
+For developers:
+
+  - Create nf-core components from nf-core templates
+  - Lint nf-core components
+  - Manage nf-core pipeline schemas
+  - and more!
 
 See [nf-core tools](/docs/nf-core-tools) for more information.
 
@@ -178,10 +190,13 @@ The respective tooling for a profile must be installed prior to pipeline executi
   - Typically used locally, on single-user servers, and the cloud
   - Analysis runs in a _container_, which behaves like an isolated operating system
   - Typically requires system root access, though a _"rootless mode"_ is available
+  - Needs system administrator for install
 - [Singularity](https://www.sylabs.io/)
   - Often used as an alternative to Docker on HPC systems
   - Also runs _containers_, and can optionally create these from Docker images
   - Does not need root access or any daemon processes
+  - Needs system administrator for install
+  - Needs system administrator for install
 - [Apptainer](https://apptainer.org/)
 
   - Open source version of Singularity (split from Singularity in 2021)
@@ -198,7 +213,9 @@ The respective tooling for a profile must be installed prior to pipeline executi
   - All alternatives to Docker, often used on HPC systems
 - [Conda](https://conda.io/)
   - Packaging system that manages environments instead of running analysis in containers
-  - Poorer reproducibility than Docker / Singularity
+  - Can be installed by any user
+  - Can be installed by any user
+  - Less reproducible than Docker / Singularity
     - There can be changes in low-level package dependencies over time
     - The software still runs in your native operating system environment and so core system functions can differ
 - [Mamba](https://mamba.readthedocs.io/)
