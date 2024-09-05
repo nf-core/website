@@ -19,11 +19,11 @@ One of the key benefits of nf-core is that it promotes open development, testing
 - **Documentation**
   - nf-core pipelines have extensive documentation covering installation, usage, and description of output files to ensure that you won't be left in the dark.
 - **CI Testing**
-  - Every time a change is made to the pipeline code, nf-core pipelines use continuous-integration testing to ensure that nothing has broken.
+  - Every time a change is made to the pipeline code, nf-core pipelines use continuous-integration testing to check that nothing has broken.
 - **Stable Releases**
   - nf-core pipelines use GitHub releases to tag stable versions of the code and software, making pipeline runs totally reproducible.
 - **Packaged software**
-  - Pipeline dependencies are automatically downloaded and handled using Docker, Singularity, Conda, or other software management tools. There is no need for any software installations.
+  - Tools used by pipelines can be downloaded and handled using Docker, Singularity, Conda, or other software management tools.
 - **Portable and reproducible**
   - nf-core pipelines follow best practices to ensure maximum portability and reproducibility. You can run nf-core pipelines on most local machines, HPCs and in the cloud with minimal configuration changes.
 - **Cloud-ready**

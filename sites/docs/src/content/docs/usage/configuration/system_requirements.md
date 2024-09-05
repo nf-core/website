@@ -1,11 +1,11 @@
 ---
-title: System requirements
+title: Configure your system
 subtitle: Configure your system requirements
-shortTitle: System requirements
+shortTitle: Configure your system
 weight: 3
 ---
 
-## System requirements
+## Configure your system
 
 nf-core pipelines are reproducible, portable, and scalable, and are designed to work "out of the box". However to maximise efficiency and benefit from all the advantages of Nextflow, it is likely you will need to configure each pipeline to suit your data and system requirements.
 
@@ -108,7 +108,7 @@ process {
 }
 ```
 
-You can also modify the memory of a specific process by using the process'  name. 
+You can also modify the memory of a specific process by using the process'  name.
 For example, for the step of the pipeline with the name `STAR_ALIGN`, you would use the `withName` process selector. For example:
 
 ```groovy
