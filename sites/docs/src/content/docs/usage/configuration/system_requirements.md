@@ -13,6 +13,8 @@ The following sections are common considerations for nf-core pipeline users.
 
 All of the following options can be can be specified within a Nextflow config file.
 
+All of the following options can be can be specified within a Nextflow config file.
+
 ### Executors
 
 Nextflow pipelines will run locally by default.
@@ -59,6 +61,10 @@ You may wish to increase resources if you get a pipeline reporting a step failin
 You should not modify the `base.config` of the pipeline! But always modify resource requests in your own custom or institutioanl config file!
 :::
 
+:::warning
+You should not modify the `base.config` of the pipeline! But always modify resource requests in your own custom or institutioanl config file!
+:::
+
 Where possible, pipeline steps are tuned to make use of the resources available.
 For example, if a tool allows specification of the number of CPUs or threads to use with the parameter (e.g., `-p`), nf-core pipeline modules will use this parameter when executing the tool, with the number of CPUs being derived from either the `base.config` or your own custom config file.
 
@@ -85,7 +91,8 @@ process {
 }
 ```
 
-The [`check_max()`](https://github.com/nf-core/tools/blob/99961bedab1518f592668727a4d692c4ddf3c336/nf_core/pipeline-template/nextflow.config#L206-L237) function applies the thresholds set in `--max_cpus`, `--max_memory` and `--max_time`. The `* task.attempt` means that these values are doubled and automatically retried after failing with an exit code that corresponds to a lack of resources.
+A default [`check_max()`](https://github.com/nf-core/tools/blob/99961bedab1518f592668727a4d692c4ddf3c336/nf_core/pipeline-template/nextflow.config#L206-L237) function will apply the thresholds set in `--max_cpus`, `--max_memory` and `--max_time` (or `params.max_cpus` etc. in  a config file).
+The `* task.attempt` means that these values are doubled and automatically retried after failing with an exit code that corresponds to a lack of resources.
 
 :::warning
 If you want to use the `check_max()` function in a custom configuration file, you must copy the [check_max function](https://github.com/nf-core/tools/blob/99961bedab1518f592668727a4d692c4ddf3c336/nf_core/pipeline-template/nextflow.config#L206-L237) to the bottom of your custom config
@@ -111,6 +118,8 @@ process {
   }
 }
 ```
+
+Using `withName` allows you to optimise the resource usage of the pipeline to a very fine grained level.
 
 If a pipeline uses a tool multiple times you may need to specify the whole 'execution path' of the module. For example:
 

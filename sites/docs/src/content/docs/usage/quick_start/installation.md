@@ -192,6 +192,7 @@ The respective tooling for a profile must be installed prior to pipeline executi
   - Also runs _containers_, and can optionally create these from Docker images
   - Does not need root access or any daemon processes
   - Needs system administrator for install
+  - Needs system administrator for install
 - [Apptainer](https://apptainer.org/)
 
   - Open source version of Singularity (split from Singularity in 2021)
@@ -208,6 +209,7 @@ The respective tooling for a profile must be installed prior to pipeline executi
   - All alternatives to Docker, often used on HPC systems
 - [Conda](https://conda.io/)
   - Packaging system that manages environments instead of running analysis in containers
+  - Can be installed by any user
   - Can be installed by any user
   - Less reproducible than Docker / Singularity
     - There can be changes in low-level package dependencies over time
