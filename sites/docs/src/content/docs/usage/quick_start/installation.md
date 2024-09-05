@@ -161,17 +161,17 @@ You don't need to install nf-core tools to run nf-core pipelines. However, nf-co
 
 For users:
 
-  - list nf-core pipelines
-  - download nf-core pipelines
-  - configure pipeline runs
-  - launch pipeline runs
+- list nf-core pipelines
+- download nf-core pipelines
+- configure pipeline runs
+- launch pipeline runs
 
 For developers:
 
-  - Create nf-core components from nf-core templates
-  - Lint nf-core components
-  - Manage nf-core pipeline schemas
-  - and more!
+- Create nf-core components from nf-core templates
+- Lint nf-core components
+- Manage nf-core pipeline schemas
+- and more!
 
 See [nf-core tools](/docs/nf-core-tools) for more information.
 
@@ -185,8 +185,9 @@ Using profiles, software dependencies can be managed through various packaging (
 These ensure that you have the correct tool and version of the tool that each pipeline needs to correctly execute.
 
 The respective tooling for a profile must be installed prior to pipeline execution. Follow the links below to install the required profile tooling:
-  - Typically requires system root access, though a _"rootless mode"_ is available
-  - Needs system administrator for install
+
+- Typically requires system root access, though a _"rootless mode"_ is available
+- Needs system administrator for install
 - [Docker](https://docs.docker.com/install/)
   - Typically used locally, on single-user servers, and the cloud
   - Analysis runs in a _container_, which behaves like an isolated operating system

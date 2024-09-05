@@ -68,7 +68,6 @@ You should not modify the `base.config` of the pipeline! But always modify resou
 Where possible, pipeline steps are tuned to make use of the resources available.
 For example, if a tool allows specification of the number of CPUs or threads to use with the parameter (e.g., `-p`), nf-core pipeline modules will use this parameter when executing the tool, with the number of CPUs being derived from either the `base.config` or your own custom config file.
 
-
 By default, process resources are inherited by a label. For example:
 
 ```groovy
@@ -91,7 +90,7 @@ process {
 }
 ```
 
-A default [`check_max()`](https://github.com/nf-core/tools/blob/99961bedab1518f592668727a4d692c4ddf3c336/nf_core/pipeline-template/nextflow.config#L206-L237) function will apply the thresholds set in `--max_cpus`, `--max_memory` and `--max_time` (or `params.max_cpus` etc. in  a config file).
+A default [`check_max()`](https://github.com/nf-core/tools/blob/99961bedab1518f592668727a4d692c4ddf3c336/nf_core/pipeline-template/nextflow.config#L206-L237) function will apply the thresholds set in `--max_cpus`, `--max_memory` and `--max_time` (or `params.max_cpus` etc. in a config file).
 The `* task.attempt` means that these values are doubled and automatically retried after failing with an exit code that corresponds to a lack of resources.
 
 :::warning
@@ -108,7 +107,7 @@ process {
 }
 ```
 
-You can also modify the memory of a specific process by using the process'  name.
+You can also modify the memory of a specific process by using the process' name.
 For example, for the step of the pipeline with the name `STAR_ALIGN`, you would use the `withName` process selector. For example:
 
 ```groovy
