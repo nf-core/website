@@ -24,23 +24,23 @@ You can do this by installing Nextflow on a machine that _does_ have an internet
 
 1. Install Nextflow locally
    :::warning
-   do _not_ use the `-all` package, as this does not allow the use of custom plugins.
+   Do _not_ use the `-all` package, as this does not allow the use of custom plugins.
    :::
 2. Run a Nextflow pipeline locally so that Nextflow fetches the required plugins.
    - It does not need to run to completion.
 3. Copy the Nextflow executable and your `$HOME/.nextflow` folder to your offline environment
-4. Specify the name and version each plugin that you downloaded in your local Nextflow configuration file
+4. Specify the name and version each plugin that you downloaded in a local Nextflow configuration file
    - This will prevent Nextflow from trying to download newer versions of plugins.
-5. Set `export NXF_OFFLINE='true'`
-   - Add this command to your shell configuration file (e.g., `~/.bashrc` or `~/.zshrc`) to add this directory to `PATH` permanently
+5. Set `export NXF_OFFLINE='true'` in your terminal
+   - To set this permanently, add this command to your shell configuration file (e.g., `~/.bashrc` or `~/.zshrc`)
 
 ### Pipeline assets
 
-To run a pipeline offline, you need the pipeline code, the software dependencies, and the shared nf-core/configs profiles.
+To run a pipeline offline, you next need the pipeline code, the software dependencies, and the shared nf-core/configs profiles.
 We have created a helper tool as part of the _nf-core_ package to automate this for you.
 
 On a computer with an internet connection, run `nf-core download <pipeline>` to download the pipeline and config profiles.
-Add the argument `--container singularity` to also fetch the singularity container(s).
+Add the argument `--container singularity` to also fetch the singularity container(s). Note that only singularity is supported.
 
 The pipeline and requirements will be downloaded, configured with their relative paths, and packaged into a `.tar.gz` file by default.
 This can then be transferred to your offline system and unpacked.
