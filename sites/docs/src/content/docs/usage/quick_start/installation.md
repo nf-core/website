@@ -84,7 +84,7 @@ This will create the `nextflow` executable in the current directory.
    nextflow info
    ```
 
-Alternatively, Nextflow can be installed using [Bioconda](https://bioconda.github.io/):
+Alternatively, Nextflow can be installed using `conda` via [Bioconda](https://bioconda.github.io/):
 
 1. Add conda channels:
 
@@ -126,7 +126,7 @@ nextflow run hello-world
 ```
 
 :::note
-Set the `NXF_VER` variable in your `.bashrc` or `.zshrc` to fix your version of Nextflow for all sessions.
+Set the `NXF_VER` variable in your `.bashrc` or `.zshrc` if you want to fix your version of Nextflow for all sessions.
 :::
 
 You can also temporarily switch to a specific version of Nextflow with the `NXF_VER` environment variable. For example:
@@ -138,6 +138,10 @@ NXF_VER=23.10.0 nextflow run hello
 ### Edge releases
 
 A stable version of Nextflow is released every six months, in the 4th and 10th month of each year. Additionally, an edge version is released on a monthly basis. The edge releases can be used to access the latest updates and experimental features.
+
+:::note
+Edge versions are not stable and may be subject to change.
+:::
 
 To use the latest edge release, set `NXF_EDGE=1` when updating:
 
@@ -166,6 +170,7 @@ Historically, all tools would need to be installed manually and was often a sour
 
 nf-core pipelines utilise the built-in support for software packaging that Nextflow offers.
 Using profiles, software dependencies can be managed through various packaging (e.g., Docker, Singularity, and Conda).
+These ensure that you have the correct tool and version of the tool that each pipeline needs to correctly execute.
 
 The respective tooling for a profile must be installed prior to pipeline execution. Follow the links below to install the required profile tooling:
 
