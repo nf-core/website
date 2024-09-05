@@ -22,7 +22,7 @@ These will first need to be fetched on a system that _does_ have an internet con
 You need to have Nextflow installed on your local system.
 You can do this by installing Nextflow on a machine that _does_ have an internet connection and transferring to the offline system:
 
-1. Install Nextflow locally
+1. [Install Nextflow locally](/docs/usage/quick_start/installation.md)
    :::warning
    Do _not_ use the `-all` package, as this does not allow the use of custom plugins.
    :::
