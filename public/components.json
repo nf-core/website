@@ -6013,6 +6013,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -8744,7 +8748,7 @@
       "pipelines": [
         {
           "name": "isoseq",
-          "version": "1.1.5"
+          "version": "2.0.0"
         }
       ]
     },
@@ -11182,6 +11186,12 @@
             }
           },
           {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing bed information\ne.g. [ id:'genome' ]\n"
+            }
+          },
+          {
             "bed": {
               "type": "file",
               "description": "(Optional) The bed regions to merge on",
@@ -11197,31 +11207,17 @@
             }
           },
           {
-            "vcf_gz": {
-              "type": "file",
-              "description": "VCF merged output file (bgzipped) => when `--output-type z` is used",
-              "pattern": "*.vcf.gz"
-            }
-          },
-          {
             "vcf": {
               "type": "file",
-              "description": "VCF merged output file => when `--output-type v` is used",
-              "pattern": "*.vcf"
+              "description": "merged output file",
+              "pattern": "*.{vcf,vcf.gz,bcf,bcf.gz}"
             }
           },
           {
-            "bcf_gz": {
+            "index": {
               "type": "file",
-              "description": "BCF merged output file (bgzipped) => when `--output-type b` is used",
-              "pattern": "*.bcf.gz"
-            }
-          },
-          {
-            "bcf": {
-              "type": "file",
-              "description": "BCF merged output file => when `--output-type u` is used",
-              "pattern": "*.bcf"
+              "description": "index of merged output",
+              "pattern": "*.{csi,tbi}"
             }
           },
           {
@@ -18677,6 +18673,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -30576,7 +30580,7 @@
         },
         {
           "name": "isoseq",
-          "version": "1.1.5"
+          "version": "2.0.0"
         },
         {
           "name": "magmap",
@@ -60416,7 +60420,7 @@
         },
         {
           "name": "isoseq",
-          "version": "1.1.5"
+          "version": "2.0.0"
         },
         {
           "name": "tfactivity",
@@ -61980,7 +61984,7 @@
       "pipelines": [
         {
           "name": "isoseq",
-          "version": "1.1.5"
+          "version": "2.0.0"
         }
       ]
     },
@@ -62083,7 +62087,7 @@
       "pipelines": [
         {
           "name": "isoseq",
-          "version": "1.1.5"
+          "version": "2.0.0"
         }
       ]
     },
@@ -62178,7 +62182,7 @@
       "pipelines": [
         {
           "name": "isoseq",
-          "version": "1.1.5"
+          "version": "2.0.0"
         }
       ]
     },
@@ -63275,7 +63279,7 @@
         },
         {
           "name": "isoseq",
-          "version": "1.1.5"
+          "version": "2.0.0"
         },
         {
           "name": "mag",
@@ -64058,7 +64062,9 @@
               "homepage": "https://github.com/browning-lab/hap-ibd/blob/master/README.md",
               "documentation": "https://github.com/browning-lab/hap-ibd/blob/master/README.md",
               "doi": "10.1016/j.ajhg.2020.02.010",
-              "licence": "['Apache-2.0']"
+              "licence": [
+                "Apache-2.0"
+              ]
             }
           }
         ],
@@ -66372,7 +66378,9 @@
               "documentation": "http://hmmer.org/documentation.html",
               "tool_dev_url": "https://github.com/EddyRivasLab/hmmer",
               "doi": "10.1371/journal.pcbi.1002195",
-              "licence": "['BSD']"
+              "licence": [
+                "BSD"
+              ]
             }
           }
         ],
@@ -67655,7 +67663,9 @@
               "documentation": "https://github.com/kensung-lab/hypo/blob/master/README.md",
               "tool_dev_url": "https://github.com/kensung-lab/hypo",
               "doi": "10.1101/2019.12.19.882506",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -71034,7 +71044,13 @@
         "maintainers": [
           "@sguizard"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "isoseq",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "ivar_consensus",
@@ -71569,6 +71585,142 @@
         ],
         "maintainers": [
           "@grst"
+        ]
+      }
+    },
+    {
+      "name": "jvarkit_vcfpolyx",
+      "path": "modules/nf-core/jvarkit/vcfpolyx/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "jvarkit_vcfpolyx",
+        "description": "annotate VCF files for poly repeats",
+        "keywords": [
+          "vcf",
+          "bcf",
+          "annotation",
+          "repeats"
+        ],
+        "tools": [
+          {
+            "jvarkit": {
+              "description": "Java utilities for Bioinformatics.",
+              "homepage": "https://github.com/lindenb/jvarkit",
+              "documentation": "https://jvarkit.readthedocs.io/",
+              "tool_dev_url": "https://github.com/lindenb/jvarkit",
+              "doi": "10.6084/m9.figshare.1425030",
+              "licence": [
+                "MIT License"
+              ]
+            }
+          },
+          {
+            "bcftools": {
+              "description": "View, subset and filter VCF or BCF files by position and filtering expression. Convert between VCF and BCF\n",
+              "homepage": "http://samtools.github.io/bcftools/bcftools.html",
+              "documentation": "http://www.htslib.org/doc/bcftools.html",
+              "doi": "10.1093/bioinformatics/btp352",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing VCF information\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing fasta information\n"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing fasta.fai information\n"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing fasta.dict information\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "Groovy Map containing reference genome information for vcf",
+              "pattern": "*.{vcf,bcf,vcf.gz,bcf.gz}"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Groovy Map containing reference genome information for fai reference fasta file",
+              "pattern": "*.fasta"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "Groovy Map containing reference genome information for fai",
+              "pattern": "*.fasta.fai"
+            }
+          },
+          {
+            "dict": {
+              "type": "file",
+              "description": "Groovy Map containing reference genome information for GATK sequence dictionary",
+              "pattern": "*.dict"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing VCF information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "VCF filtered output file",
+              "pattern": "*.{vcf,bcf,vcf.gz,bcf.gz}"
+            }
+          },
+          {
+            "csi": {
+              "type": "file",
+              "description": "Default VCF file index",
+              "pattern": "*.csi"
+            }
+          },
+          {
+            "tbi": {
+              "type": "file",
+              "description": "Alternative VCF file index",
+              "pattern": "*.tbi"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@lindenb"
+        ],
+        "maintainers": [
+          "@lindenb"
         ]
       }
     },
@@ -75510,7 +75662,9 @@
         "description": "Typing of clinical and environmental isolates of Legionella pneumophila",
         "keywords": [
           "bacteria",
-          "legionella"
+          "legionella",
+          "clinical",
+          "pneumophila"
         ],
         "tools": [
           {
@@ -76000,7 +76154,7 @@
       "pipelines": [
         {
           "name": "isoseq",
-          "version": "1.1.5"
+          "version": "2.0.0"
         }
       ]
     },
@@ -82202,6 +82356,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -85039,7 +85197,7 @@
         },
         {
           "name": "isoseq",
-          "version": "1.1.5"
+          "version": "2.0.0"
         },
         {
           "name": "radseq",
@@ -88449,7 +88607,7 @@
         },
         {
           "name": "isoseq",
-          "version": "1.1.5"
+          "version": "2.0.0"
         },
         {
           "name": "liverctanalysis",
@@ -93634,6 +93792,18 @@
               "description": "Input fasta files",
               "pattern": "*.{fa,faa,fasta,fas,pep}"
             }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing a name\ne.g. `[ id:'folder1' ]`\n"
+            }
+          },
+          {
+            "prior_run": {
+              "type": "directory",
+              "description": "A folder container containing a previous WorkingDirectory from Orthofinder.\n"
+            }
           }
         ],
         "output": [
@@ -93654,6 +93824,12 @@
             "orthofinder": {
               "type": "directory",
               "description": "Orthofinder output directory"
+            }
+          },
+          {
+            "working": {
+              "type": "directory",
+              "description": "Orthofinder output WorkingDirectory (used for the orthofinder resume function)"
             }
           }
         ],
@@ -96422,7 +96598,7 @@
       "pipelines": [
         {
           "name": "isoseq",
-          "version": "1.1.5"
+          "version": "2.0.0"
         }
       ]
     },
@@ -134661,7 +134837,7 @@
       "pipelines": [
         {
           "name": "isoseq",
-          "version": "1.1.5"
+          "version": "2.0.0"
         }
       ]
     },
@@ -134741,7 +134917,7 @@
       "pipelines": [
         {
           "name": "isoseq",
-          "version": "1.1.5"
+          "version": "2.0.0"
         }
       ]
     },
@@ -151164,6 +151340,10 @@
           "version": "2.0.0"
         },
         {
+          "name": "isoseq",
+          "version": "2.0.0"
+        },
+        {
           "name": "mag",
           "version": "3.0.3"
         },
@@ -151414,6 +151594,10 @@
         },
         {
           "name": "funcscan",
+          "version": "2.0.0"
+        },
+        {
+          "name": "isoseq",
           "version": "2.0.0"
         },
         {
@@ -151748,6 +151932,10 @@
         },
         {
           "name": "funcscan",
+          "version": "2.0.0"
+        },
+        {
+          "name": "isoseq",
           "version": "2.0.0"
         },
         {
