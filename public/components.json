@@ -6017,6 +6017,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -19194,6 +19198,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -25254,7 +25266,9 @@
               "homepage": "https://github.com/YangLab/CIRCexplorer2/",
               "documentation": "https://circexplorer2.readthedocs.io/en/latest/",
               "doi": "10.1101/gr.202895.115",
-              "licence": "['MIT License']"
+              "licence": [
+                "MIT License"
+              ]
             }
           }
         ],
@@ -58061,7 +58075,9 @@
               "documentation": "https://bioconductor.org/packages/release/bioc/vignettes/GEOquery/inst/doc/GEOquery.html",
               "tool_dev_url": "https://github.com/seandavi/GEOquery",
               "doi": "10.1093/bioinformatics/btm254",
-              "licence": "MIT"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -60682,7 +60698,9 @@
               "documentation": "https://github.com/brentp/goleft",
               "tool_dev_url": "https://github.com/brentp/goleft",
               "doi": "10.1093/gigascience/gix090",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -61229,7 +61247,9 @@
               "documentation": "https://github.com/DecodeGenetics/graphtyper/wiki/User-guide",
               "tool_dev_url": "https://github.com/DecodeGenetics/graphtyper",
               "doi": "10.1038/ng.3964",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -62816,7 +62836,8 @@
         ],
         "keywords": [
           "recombination",
-          "alignment"
+          "alignment",
+          "phylogeny"
         ],
         "tools": [
           {
@@ -68553,21 +68574,21 @@
         "input": [
           {
             "peaks": {
-              "type": "tuple of two files",
+              "type": "list",
               "description": "BED, narrowPeak or broadPeak files of replicates",
               "pattern": "*"
             }
           },
           {
             "peak_type": {
-              "type": "value",
+              "type": "string",
               "description": "Type of peak file",
               "pattern": "{narrowPeak,broadPeak,bed}"
             }
           },
           {
             "prefix": {
-              "type": "value",
+              "type": "string",
               "description": "Prefix for output files"
             }
           }
@@ -81873,6 +81894,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -96303,8 +96328,15 @@
           {
             "vcf": {
               "type": "file",
-              "description": "VCF file(s) per gene",
-              "pattern": "*.vcf"
+              "description": "compressed VCF file(s) per gene",
+              "pattern": "*.vcf.gz"
+            }
+          },
+          {
+            "vcf_index": {
+              "type": "file",
+              "description": "compressed VCF file index",
+              "pattern": "*.vcf.gz.{tbi,csi}"
             }
           }
         ],
@@ -144693,6 +144725,70 @@
         ],
         "maintainers": [
           "@GallVp"
+        ]
+      }
+    },
+    {
+      "name": "fasta_hmmsearch_rank_fastas",
+      "path": "subworkflows/nf-core/fasta_hmmsearch_rank_fastas/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "fasta_hmmsearch_rank_fastas",
+        "description": "Run hmmsearch and output separate fasta files for top scoring hits to each profile",
+        "keywords": [
+          "hmmer",
+          "search",
+          "rank",
+          "fasta"
+        ],
+        "components": [
+          "hmmer/hmmsearch",
+          "hmmer/hmmrank",
+          "seqtk/subseq"
+        ],
+        "input": [
+          {
+            "ch_hmms": {
+              "type": "file",
+              "description": "The input channel containing hmm profiles\nStructure: [ val(meta), path(hmm) ]\n",
+              "pattern": "*.{hmm}"
+            }
+          },
+          {
+            "ch_fasta": {
+              "type": "file",
+              "description": "The input channel containing sequences to be searched and ranked\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "hmmrank": {
+              "type": "file",
+              "description": "Channel containing the TSV file from ranking hmmsearch hits\nStructure: [ val(meta), path(hmmrank) ]\n",
+              "pattern": "*.hmmrank.tsv.gz"
+            }
+          },
+          {
+            "bai": {
+              "type": "file",
+              "description": "Channel containing subsets of sequences\nStructure: [ val(meta), path(fasta) ]\n",
+              "pattern": "*.fa.gz"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@erikrikarddaniel"
+        ],
+        "maintainers": [
+          "@erikrikarddaniel"
         ]
       }
     },
