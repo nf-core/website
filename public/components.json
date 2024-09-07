@@ -6021,6 +6021,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -6506,20 +6510,20 @@
           },
           {
             "medaka_model_string": {
-              "type": "value",
+              "type": "string",
               "description": "Medaka model string to use (if option --medaka is set)\n",
               "pattern": "*"
             }
           },
           {
             "scheme": {
-              "type": "value",
+              "type": "string",
               "description": "Name of the primer scheme"
             }
           },
           {
             "scheme_version": {
-              "type": "value",
+              "type": "string",
               "description": "Version of the primer scheme"
             }
           }
@@ -7114,7 +7118,9 @@
               "homepage": "https://github.com/ParkerLab/ataqv/blob/master/README.rst",
               "documentation": "https://github.com/ParkerLab/ataqv/blob/master/README.rst",
               "tool_dev_url": "https://github.com/ParkerLab/ataqv",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -7715,7 +7721,9 @@
               "documentation": "https://github.com/StephanePeyregne/AuthentiCT",
               "tool_dev_url": "https://github.com/StephanePeyregne/AuthentiCT",
               "doi": "10.1186/s13059-020-02123-y",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -9300,7 +9308,9 @@
               "documentation": "https://basicpy.readthedocs.io/en/latest/index.html",
               "tool_dev_url": "https://github.com/peng-lab/BaSiCPy",
               "doi": "10.1038/ncomms14836",
-              "licence": "MIT License"
+              "license": [
+                "MIT License"
+              ]
             }
           }
         ],
@@ -10847,6 +10857,134 @@
           "version": "dev"
         }
       ]
+    },
+    {
+      "name": "bcftools_csq",
+      "path": "modules/nf-core/bcftools/csq/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "bcftools_csq",
+        "description": "bcftools Haplotype-aware consequence caller",
+        "keywords": [
+          "annotation",
+          "gff",
+          "gff3",
+          "protein",
+          "functional",
+          "vcf",
+          "bcf",
+          "bcftools"
+        ],
+        "tools": [
+          {
+            "reheader": {
+              "description": "Haplotype-aware consequence caller\n",
+              "homepage": "http://samtools.github.io/bcftools/bcftools.html",
+              "documentation": "http://samtools.github.io/bcftools/bcftools.html#csq",
+              "doi": "10.1093/gigascience/giab008",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "VCF/BCF file",
+              "pattern": "*.{vcf.gz,vcf,bcf}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing fasta information\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Fasta reference",
+              "pattern": "*.{fasta,fa}"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing fai information\n"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "Fasta index",
+              "pattern": "*.{fai}"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing gff3 information\n"
+            }
+          },
+          {
+            "gff3": {
+              "type": "file",
+              "description": "GFF3 file",
+              "pattern": "*.{gff,gff.gz,gff3,gff3.gz}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "VCF with annotation, bgzipped per default",
+              "pattern": "*.{vcf,vcf.gz,bcf,bcf.gz}"
+            }
+          },
+          {
+            "tbi": {
+              "type": "file",
+              "description": "Alternative VCF file index",
+              "pattern": "*.tbi"
+            }
+          },
+          {
+            "csi": {
+              "type": "file",
+              "description": "Default VCF file index",
+              "pattern": "*.csi"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@lindenb"
+        ],
+        "maintainers": [
+          "@lindenb"
+        ]
+      }
     },
     {
       "name": "bcftools_filter",
@@ -15381,7 +15519,9 @@
               "documentation": "https://github.com/phac-nml/biohansel",
               "tool_dev_url": "https://github.com/phac-nml/biohansel",
               "doi": "10.1101/2020.01.10.902056",
-              "licence": "['Apache-2.0 license']"
+              "licence": [
+                "Apache-2.0 license"
+              ]
             }
           }
         ],
@@ -17459,7 +17599,9 @@
               "homepage": "https://kentinformatics.com/",
               "documentation": "https://kentinformatics.com/documentation",
               "doi": "10.1101/gr.229202",
-              "licence": "['Free for academic, nonprofit and personal use']"
+              "licence": [
+                "Free for academic, nonprofit and personal use"
+              ]
             }
           }
         ],
@@ -18677,6 +18819,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -21025,7 +21175,9 @@
               "documentation": "https://canu.readthedocs.io/en/latest/tutorial.html",
               "tool_dev_url": "https://github.com/marbl/canu",
               "doi": "10.1101/gr.215087.116",
-              "licence": "['GPL v2 and others']"
+              "licence": [
+                "GPL v2 and others"
+              ]
             }
           }
         ],
@@ -21045,14 +21197,14 @@
           },
           {
             "mode": {
-              "type": "value",
+              "type": "string",
               "description": "Canu mode depending on the input data (source and error rate)",
               "pattern": "-pacbio|-nanopore|-pacbio-hifi"
             }
           },
           {
             "genomesize": {
-              "type": "value",
+              "type": "string",
               "description": "An estimate of the size of the genome. Common suffices are allowed, for example, 3.7m or 2.8g",
               "pattern": "<number>[g|m|k]"
             }
@@ -23000,7 +23152,9 @@
               "homepage": "https://support.10xgenomics.com/single-cell-atac/software/pipelines/latest/what-is-cell-ranger-atac",
               "documentation": "https://support.10xgenomics.com/single-cell-atac/software/pipelines/latest/what-is-cell-ranger-atac",
               "tool_dev_url": "https://support.10xgenomics.com/single-cell-atac/software/pipelines/latest/what-is-cell-ranger-atac",
-              "licence": "10x Genomics EULA"
+              "licence": [
+                "10x Genomics EULA"
+              ]
             }
           }
         ],
@@ -23139,7 +23293,9 @@
               "homepage": "https://support.10xgenomics.com/single-cell-atac/software/pipelines/latest/what-is-cell-ranger-atac",
               "documentation": "https://support.10xgenomics.com/single-cell-atac/software/pipelines/latest/what-is-cell-ranger-atac",
               "tool_dev_url": "https://support.10xgenomics.com/single-cell-atac/software/pipelines/latest/what-is-cell-ranger-atac",
-              "licence": "10x Genomics EULA"
+              "licence": [
+                "10x Genomics EULA"
+              ]
             }
           }
         ],
@@ -23273,7 +23429,9 @@
               "homepage": "https://support.10xgenomics.com/single-cell-atac/software/pipelines/latest/what-is-cell-ranger-atac",
               "documentation": "https://support.10xgenomics.com/single-cell-atac/software/pipelines/latest/what-is-cell-ranger-atac",
               "tool_dev_url": "https://support.10xgenomics.com/single-cell-atac/software/pipelines/latest/what-is-cell-ranger-atac",
-              "licence": "10x Genomics EULA"
+              "licence": [
+                "10x Genomics EULA"
+              ]
             }
           }
         ],
@@ -25661,7 +25819,9 @@
               "documentation": "https://github.com/ulelab/clippy",
               "tool_dev_url": "https://github.com/ulelab/clippy",
               "doi": "10.7554/eLife.84034",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -26926,7 +27086,9 @@
               "homepage": "https://github.com/abyzovlab/CNVnator",
               "documentation": "https://github.com/abyzovlab/CNVnator/blob/master/README.md",
               "tool_dev_url": "https://github.com/abyzovlab/CNVnator",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -27053,7 +27215,9 @@
               "homepage": "https://github.com/abyzovlab/CNVnator",
               "documentation": "https://github.com/abyzovlab/CNVnator/blob/master/README.md",
               "tool_dev_url": "https://github.com/abyzovlab/CNVnator",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -27194,7 +27358,8 @@
         "description": "calculates read depth histograms",
         "keywords": [
           "cnv calling",
-          "histogram"
+          "histogram",
+          "read depth"
         ],
         "tools": [
           {
@@ -27367,7 +27532,8 @@
         "description": "partitioning read depth histograms",
         "keywords": [
           "cnv calling",
-          "partition histograms"
+          "partition histograms",
+          "read depth"
         ],
         "tools": [
           {
@@ -29685,7 +29851,9 @@
               "documentation": "https://mcmicro.org/troubleshooting/tuning/coreograph.html",
               "tool_dev_url": "https://github.com/HMS-IDAC/UNetCoreograph",
               "doi": "10.1038/s41592-021-01308-y",
-              "licence": "MIT License"
+              "license": [
+                "MIT License"
+              ]
             }
           }
         ],
@@ -29924,7 +30092,9 @@
               "documentation": "https://github.com/francescojm/CRISPRcleanR/blob/master/Quick_start.pdf",
               "tool_dev_url": "https://github.com/francescojm/CRISPRcleanR/tree/v3.0.0",
               "doi": "10.1186/s12864-018-4989-y",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -31452,7 +31622,8 @@
         "description": "structural-variant calling with cutesv",
         "keywords": [
           "cutesv",
-          "structural-variant calling"
+          "structural-variant calling",
+          "sv"
         ],
         "tools": [
           {
@@ -31612,7 +31783,7 @@
           },
           {
             "results": {
-              "type": "dir",
+              "type": "directory",
               "description": "DamageProfiler results directory",
               "pattern": "*/*"
             }
@@ -31847,7 +32018,7 @@
           },
           {
             "extension": {
-              "type": "val",
+              "type": "string",
               "description": "Fasta file extension (fa | fas | fasta | ...), without .gz suffix, if gzipped input."
             }
           }
@@ -31937,7 +32108,7 @@
           },
           {
             "extension": {
-              "type": "val",
+              "type": "string",
               "description": "Fasta file extension (fa | fas | fasta | ...), but without .gz suffix, even if gzipped input."
             }
           }
@@ -35348,7 +35519,10 @@
         "name": "duphold",
         "description": "SV callers like lumpy look at split-reads and pair distances to find structural variants. This tool is a fast way to add depth information to those calls. This can be used as additional information for filtering variants; for example we will be skeptical of deletion calls that do not have lower than average coverage compared to regions with similar gc-content.",
         "keywords": [
-          "sort"
+          "sort",
+          "duphold",
+          "structural variation",
+          "depth information"
         ],
         "tools": [
           {
@@ -35358,7 +35532,9 @@
               "documentation": "https://github.com/brentp/duphold",
               "tool_dev_url": "https://github.com/brentp/duphold",
               "doi": "10.1093/gigascience/giz040",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -36034,7 +36210,9 @@
               "description": "A set of tools to compare and manipulate the contents of EingenStrat databases, and to calculate SNP coverage statistics in such databases.",
               "documentation": "https://github.com/TCLamnidis/EigenStratDatabaseTools/README.md",
               "tool_dev_url": "https://github.com/TCLamnidis/EigenStratDatabaseTools",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -36227,7 +36405,9 @@
               "documentation": "https://github.com/ExaScience/elprep",
               "tool_dev_url": "https://github.com/ExaScience/elprep",
               "doi": "10.1371/journal.pone.0244471",
-              "licence": "['AGPL v3']"
+              "licence": [
+                "AGPL v3"
+              ]
             }
           }
         ],
@@ -36279,7 +36459,7 @@
             }
           },
           {
-            "known_sites": {
+            "known_sites_elsites": {
               "type": "file",
               "description": "Optional elsites file containing known SNPs for BQSR.",
               "pattern": "*.elsites"
@@ -36337,6 +36517,13 @@
               "type": "file",
               "description": "Sorted, markdup, optionally BQSR BAM/SAM file",
               "pattern": "*.{bam,sam}"
+            }
+          },
+          {
+            "logs": {
+              "type": "list",
+              "description": "Runtime log files",
+              "pattern": "elprep-*.log"
             }
           },
           {
@@ -36410,7 +36597,9 @@
               "documentation": "https://github.com/ExaScience/elprep",
               "tool_dev_url": "https://github.com/ExaScience/elprep",
               "doi": "10.1371/journal.pone.0244471",
-              "licence": "['AGPL v3']"
+              "licence": [
+                "AGPL v3"
+              ]
             }
           }
         ],
@@ -36846,7 +37035,9 @@
               "documentation": "https://github.com/aidaanva/endorS.py",
               "tool_dev_url": "https://github.com/aidaanva/endorS.py",
               "doi": "10.7717/peerj.10947",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -37264,13 +37455,13 @@
           },
           {
             "database": {
-              "type": "value",
+              "type": "string",
               "description": "Value must be a valid Entrez database name."
             }
           },
           {
             "term": {
-              "type": "value",
+              "type": "string",
               "description": "Entrez text query. All special characters must be URL encoded.\nSpaces may be replaced by '+' signs.\n"
             }
           }
@@ -37433,19 +37624,19 @@
           },
           {
             "pattern": {
-              "type": "value",
+              "type": "string",
               "description": "String in xml_input that encloses element to search."
             }
           },
           {
             "element": {
-              "type": "value",
+              "type": "string",
               "description": "Space-delimited strings that will be converted to columns."
             }
           },
           {
             "sep": {
-              "type": "value",
+              "type": "string",
               "description": "Separator/delimiter between columns (for instance \",\" or \"\\t\")."
             }
           }
@@ -37622,7 +37813,9 @@
               "documentation": "https://github.com/Pbdas/epa-ng/wiki/Full-Stack-Example",
               "tool_dev_url": "https://github.com/Pbdas/epa-ng",
               "doi": "10.1093/sysbio/syy054",
-              "licence": "['GNU Affero General Public License v3.0']"
+              "licence": [
+                "GNU Affero General Public License v3.0"
+              ]
             }
           }
         ],
@@ -38029,7 +38222,9 @@
               "homepage": "https://github.com/Illumina/ExpansionHunterDenovo",
               "documentation": "https://github.com/Illumina/ExpansionHunterDenovo/blob/master/documentation/00_Introduction.md",
               "tool_dev_url": "https://github.com/Illumina/ExpansionHunterDenovo",
-              "licence": "['Apache License 2.0']"
+              "licence": [
+                "Apache License 2.0"
+              ]
             }
           }
         ],
@@ -39144,7 +39339,8 @@
         "description": "A fast K-mer counter for high-fidelity shotgun datasets",
         "keywords": [
           "k-mer",
-          "histogram"
+          "histogram",
+          "fastk"
         ],
         "tools": [
           {
@@ -39152,7 +39348,9 @@
               "description": "A fast K-mer counter for high-fidelity shotgun datasets",
               "homepage": "https://github.com/thegenemyers/FASTK",
               "tool_dev_url": "https://github.com/thegenemyers/FASTK",
-              "licence": "https://github.com/thegenemyers/FASTK/blob/master/LICENSE"
+              "license": [
+                "https://github.com/thegenemyers/FASTK/blob/master/LICENSE"
+              ]
             }
           }
         ],
@@ -39226,7 +39424,9 @@
               "description": "A fast K-mer counter for high-fidelity shotgun datasets",
               "homepage": "https://github.com/thegenemyers/FASTK",
               "tool_dev_url": "https://github.com/thegenemyers/FASTK",
-              "licence": "https://github.com/thegenemyers/FASTK/blob/master/LICENSE"
+              "license": [
+                "https://github.com/thegenemyers/FASTK/blob/master/LICENSE"
+              ]
             }
           }
         ],
@@ -40420,7 +40620,9 @@
               "homepage": "https://www.ncbi.nlm.nih.gov/data-hub/cgr/data-quality-tools/",
               "documentation": "https://github.com/ncbi/fcs/wiki/FCS-GX",
               "tool_dev_url": "https://github.com/ncbi/fcs",
-              "licence": "United States Government Work"
+              "license": [
+                "United States Government Work"
+              ]
             }
           }
         ],
@@ -41494,7 +41696,9 @@
               "documentation": "https://github.com/fenderglass/Flye/blob/flye/docs/USAGE.md",
               "tool_dev_url": "https://github.com/fenderglass/Flye",
               "doi": "10.1038/s41592-020-00971-x",
-              "licence": "['BSD-3-clause']"
+              "licence": [
+                "BSD-3-clause"
+              ]
             }
           }
         ],
@@ -41979,7 +42183,9 @@
         "description": "fq generate is a FASTQ file pair generator. It creates two reads, formatting names as described by Illumina. While generate creates \"valid\" FASTQ reads, the content of the files are completely random. The sequences do not align to any genome. This requires a seed (--seed) to be supplied in ext.args.\n",
         "keywords": [
           "generate",
-          "fastq"
+          "fastq",
+          "random",
+          "sequence"
         ],
         "tools": [
           {
@@ -41988,7 +42194,9 @@
               "homepage": "https://github.com/stjude-rust-labs/fq",
               "documentation": "https://github.com/stjude-rust-labs/fq",
               "tool_dev_url": "https://github.com/stjude-rust-labs/fq",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -42835,7 +43043,9 @@
               "documentation": "https://github.com/wwood/galah",
               "tool_dev_url": "https://github.com/wwood/galah",
               "doi": "10.1111/NODOI",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -43031,7 +43241,9 @@
               "documentation": "https://github.com/gymreklab/GangSTR",
               "tool_dev_url": "https://github.com/gymreklab/GangSTR",
               "doi": "10.1093/nar/gkz501",
-              "licence": "['GPL v3-or-later']"
+              "licence": [
+                "GPL v3-or-later"
+              ]
             }
           }
         ],
@@ -55738,7 +55950,11 @@
               "description": "The full Genome Analysis Toolkit (GATK) framework, license restricted.",
               "homepage": "https://gatk.broadinstitute.org/hc/en-us",
               "documentation": "https://github.com/broadinstitute/gatk-docs",
-              "licence": "['https://software.broadinstitute.org/gatk/download/licensing', 'BSD', 'https://www.broadinstitute.org/gatk/about/#licensing']"
+              "licence": [
+                "https://software.broadinstitute.org/gatk/download/licensing",
+                "BSD",
+                "https://www.broadinstitute.org/gatk/about/#licensing"
+              ]
             }
           }
         ],
@@ -56402,7 +56618,9 @@
             "gem2": {
               "description": "GEM2 is a high-performance mapping tool. It also provide a unique tool to evaluate mappability.",
               "homepage": "https://paoloribeca.science/gem",
-              "licence": "['Custom']"
+              "licence": [
+                "Custom"
+              ]
             }
           }
         ],
@@ -56489,7 +56707,9 @@
             "gem2": {
               "description": "GEM2 is a high-performance mapping tool. It also provide a unique tool to evaluate mappability.",
               "homepage": "https://paoloribeca.science/gem",
-              "licence": "['Custom']"
+              "licence": [
+                "Custom"
+              ]
             }
           }
         ],
@@ -56563,7 +56783,9 @@
             "gem2": {
               "description": "GEM2 is a high-performance mapping tool. It also provide a unique tool to evaluate mappability.",
               "homepage": "https://paoloribeca.science/gem",
-              "licence": "['Custom']"
+              "licence": [
+                "Custom"
+              ]
             }
           }
         ],
@@ -56796,7 +57018,9 @@
               "description": "A derivative of GenomeScope2.0 modified to work with FastK",
               "homepage": "https://github.com/thegenemyers/GENESCOPE.FK",
               "tool_dev_url": "https://github.com/thegenemyers/GENESCOPE.FK",
-              "licence": "https://github.com/thegenemyers/GENESCOPE.FK/blob/main/LICENSE"
+              "licence": [
+                "https://github.com/thegenemyers/GENESCOPE.FK/blob/main/LICENSE"
+              ]
             }
           }
         ],
@@ -57794,7 +58018,8 @@
         "description": "Genotype Salmonella Typhi from Mykrobe results",
         "keywords": [
           "genotype",
-          "Salmonella Typhi"
+          "Salmonella Typhi",
+          "Mykrobe"
         ],
         "tools": [
           {
@@ -57803,7 +58028,9 @@
               "homepage": "https://github.com/katholt/genotyphi",
               "documentation": "https://github.com/katholt/genotyphi",
               "tool_dev_url": "https://github.com/katholt/genotyphi",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -58396,7 +58623,9 @@
               "documentation": "https://github.com/vgl-hub/gfastats/tree/main/instructions",
               "tool_dev_url": "https://github.com/vgl-hub/gfastats",
               "doi": "10.1093/bioinformatics/btac460",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -58941,7 +59170,9 @@
               "documentation": "https://pachterlab.github.io/gget/",
               "tool_dev_url": "https://github.com/pachterlab/gget",
               "doi": "10.1093/bioinformatics/btac836",
-              "licence": "['BSD-2-clause']"
+              "licence": [
+                "BSD-2-clause"
+              ]
             }
           }
         ],
@@ -58954,7 +59185,7 @@
           },
           {
             "files": {
-              "type": "files",
+              "type": "file",
               "description": "Optional input files which can be specified for certain tools. This is mostly used to supply a FASTA file for gget muscle.\n"
             }
           }
@@ -59131,7 +59362,9 @@
               "documentation": "https://odelaneau.github.io/GLIMPSE/commands.html",
               "tool_dev_url": "https://github.com/odelaneau/GLIMPSE",
               "doi": "10.1038/s41588-020-00756-0",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -60156,7 +60389,8 @@
         "description": "merge gVCF files and perform joint variant calling",
         "keywords": [
           "merge",
-          "gvcf"
+          "gvcf",
+          "joint-variant-calling"
         ],
         "tools": [
           {
@@ -61136,7 +61370,9 @@
               "documentation": "https://github.com/DecodeGenetics/graphtyper/wiki/User-guide",
               "tool_dev_url": "https://github.com/DecodeGenetics/graphtyper",
               "doi": "10.1038/ng.3964",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -61424,7 +61660,9 @@
               "documentation": "https://github.com/PapenfussLab/gridss/wiki/GRIDSS-Documentation",
               "tool_dev_url": "https://github.com/PapenfussLab/gridss",
               "doi": "10.1186/s13059-021-02423-x",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -61549,7 +61787,9 @@
               "documentation": "https://github.com/PapenfussLab/gridss/wiki/GRIDSS-Documentation",
               "tool_dev_url": "https://github.com/PapenfussLab/gridss",
               "doi": "10.1186/s13059-021-02423-x",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -65087,7 +65327,9 @@
               "documentation": "https://hicexplorer.readthedocs.io",
               "tool_dev_url": "https://github.com/deeptools/HiCExplorer",
               "doi": "10.1038/s41467-017-02525-w",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -65655,7 +65897,9 @@
               "documentation": "https://github.com/DiltheyLab/HLA-LA#running-hlala",
               "tool_dev_url": "https://github.com/DiltheyLab/HLA-LA",
               "doi": "10.1093/bioinformatics/btz235",
-              "licence": "['GPL']"
+              "licence": [
+                "GPL"
+              ]
             }
           }
         ],
@@ -65711,7 +65955,9 @@
               "documentation": "https://github.com/DiltheyLab/HLA-LA#running-hlala",
               "tool_dev_url": "https://github.com/DiltheyLab/HLA-LA",
               "doi": "10.1093/bioinformatics/btz235",
-              "licence": "['GPL']"
+              "licence": [
+                "GPL"
+              ]
             }
           }
         ],
@@ -66088,37 +66334,37 @@
           },
           {
             "fmask_rf": {
-              "type": "val",
+              "type": "boolean",
               "description": "Flag to output optional file with final mask of non-gap RF len"
             }
           },
           {
             "fmask_all": {
-              "type": "val",
+              "type": "boolean",
               "description": "Flag to output optional file with final mask of full aln len"
             }
           },
           {
             "gmask_rf": {
-              "type": "val",
+              "type": "boolean",
               "description": "Flag to output optional file gap-based 0/1 mask of non-gap RF len"
             }
           },
           {
             "gmask_all": {
-              "type": "val",
+              "type": "boolean",
               "description": "Flag to output optional file gap-based 0/1 mask of full aln len"
             }
           },
           {
             "pmask_rf": {
-              "type": "val",
+              "type": "boolean",
               "description": "Flag to output optional file with PP-based 0/1 mask of non-gap RF len"
             }
           },
           {
             "pmask_all": {
-              "type": "val",
+              "type": "boolean",
               "description": "Flag to output optional file with PP-based 0/1 mask of full aln len"
             }
           },
@@ -66220,7 +66466,9 @@
         "name": "hmmer_eslreformat",
         "description": "reformats sequence files, see HMMER documentation for details. The module requires that the format is specified in ext.args in a config file, and that this comes last. See the tools help for possible values.",
         "keywords": [
-          "sort"
+          "sort",
+          "hmmer",
+          "reformat"
         ],
         "tools": [
           {
@@ -66298,7 +66546,11 @@
         "name": "hmmer_hmmalign",
         "description": "hmmalign from the HMMER suite aligns a number of sequences to an HMM profile",
         "keywords": [
-          "alignment"
+          "alignment",
+          "HMMER",
+          "profile",
+          "amino acid",
+          "nucleotide"
         ],
         "tools": [
           {
@@ -68841,7 +69093,9 @@
               "homepage": "https://www.ilastik.org/",
               "documentation": "https://www.ilastik.org/documentation/",
               "tool_dev_url": "https://github.com/ilastik/ilastik",
-              "licence": "GPL3"
+              "license": [
+                "GPL3"
+              ]
             }
           }
         ],
@@ -68945,7 +69199,9 @@
               "homepage": "https://www.ilastik.org/",
               "documentation": "https://www.ilastik.org/documentation/",
               "tool_dev_url": "https://github.com/ilastik/ilastik",
-              "licence": "GPL3"
+              "licence": [
+                "GPL3"
+              ]
             }
           }
         ],
@@ -69400,7 +69656,9 @@
               "documentation": "https://bitbucket.org/srouxjgi/iphop/src/main/",
               "tool_dev_url": "https://bitbucket.org/srouxjgi/iphop/src/main/",
               "doi": "10.1371/journal.pbio.3002083",
-              "licence": "['Modified GPL v3']"
+              "licence": [
+                "Modified GPL v3"
+              ]
             }
           }
         ],
@@ -69458,7 +69716,9 @@
               "documentation": "https://bitbucket.org/srouxjgi/iphop/src/main/",
               "tool_dev_url": "https://bitbucket.org/srouxjgi/iphop/src/main/",
               "doi": "10.1371/journal.pbio.3002083",
-              "licence": "['Modified GPL v3']"
+              "licence": [
+                "Modified GPL v3"
+              ]
             }
           }
         ],
@@ -71529,7 +71789,9 @@
               "homepage": "https://github.com/mwouts/jupytext/",
               "documentation": "https://jupyter.org/documentation",
               "tool_dev_url": "https://github.com/mwouts/jupytext/",
-              "licence": "MIT"
+              "license": [
+                "MIT"
+              ]
             }
           },
           {
@@ -71538,7 +71800,9 @@
               "homepage": "https://github.com/nteract/papermill",
               "documentation": "http://papermill.readthedocs.io/en/latest/",
               "tool_dev_url": "https://github.com/nteract/papermill",
-              "licence": "BSD 3-clause"
+              "license": [
+                "BSD 3-clause"
+              ]
             }
           },
           {
@@ -71547,7 +71811,9 @@
               "homepage": "https://nbconvert.readthedocs.io/en/latest/",
               "documentation": "https://nbconvert.readthedocs.io/en/latest/",
               "tool_dev_url": "https://github.com/jupyter/nbconvert",
-              "licence": "BSD 3-clause"
+              "license": [
+                "BSD 3-clause"
+              ]
             }
           }
         ],
@@ -72715,7 +72981,9 @@
               "documentation": "https://kat.readthedocs.io/en/latest/index.html",
               "tool_dev_url": "https://github.com/TGAC/KAT",
               "doi": "10.1093/bioinformatics/btw663",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -72807,7 +73075,8 @@
         "description": "Module that calls normalize-by-median.py from khmer. The module can take a mix of paired end (interleaved) and single end reads. If both types are provided, only a single file with single ends is possible.",
         "keywords": [
           "digital normalization",
-          "khmer"
+          "khmer",
+          "k-mer counting"
         ],
         "tools": [
           {
@@ -72826,14 +73095,14 @@
         "input": [
           {
             "pe_reads": {
-              "type": "files",
+              "type": "file",
               "description": "Paired-end interleaved fastq files",
               "pattern": "*.{fq,fastq}.gz"
             }
           },
           {
             "se_reads": {
-              "type": "files",
+              "type": "file",
               "description": "Single-end fastq files",
               "pattern": "*.{fq,fastq}.gz"
             }
@@ -72905,9 +73174,8 @@
           },
           {
             "kmer_size": {
-              "type": "value",
-              "description": "k-mer size to use",
-              "pattern": "[0-9]+"
+              "type": "integer",
+              "description": "k-mer size to use"
             }
           }
         ],
@@ -73212,7 +73480,9 @@
               "documentation": "https://github.com/shenwei356/kmcp#documents",
               "tool_dev_url": "https://github.com/shenwei356/kmcp",
               "doi": "10.1093/bioinformatics/btac845",
-              "licence": "['MIT']"
+              "license": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -73455,7 +73725,9 @@
               "documentation": "https://github.com/takaram/kofam_scan",
               "tool_dev_url": "https://github.com/takaram/kofam_scan",
               "doi": "10.1093/bioinformatics/btz859",
-              "licence": "['MIT License']"
+              "licence": [
+                "MIT License"
+              ]
             }
           }
         ],
@@ -80714,7 +80986,9 @@
         "name": "maxquant_lfq",
         "description": "Run standard proteomics data analysis with MaxQuant, mostly dedicated to label-free. Paths to fasta and raw files needs to be marked by \"PLACEHOLDER\"",
         "keywords": [
-          "sort"
+          "sort",
+          "proteomics",
+          "mass-spectroscopy"
         ],
         "tools": [
           {
@@ -81390,7 +81664,9 @@
               "documentation": "https://software-ab.cs.uni-tuebingen.de/download/megan6/welcome.html",
               "tool_dev_url": "https://github.com/husonlab/megan-ce",
               "doi": "10.1371/journal.pcbi.1004957",
-              "licence": "['GPL >=3']"
+              "licence": [
+                "GPL >=3"
+              ]
             }
           }
         ],
@@ -82385,6 +82661,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -82698,7 +82978,9 @@
               "description": "FastK based version of Merqury",
               "homepage": "https://github.com/thegenemyers/MERQURY.FK",
               "tool_dev_url": "https://github.com/thegenemyers/MERQURY.FK",
-              "licence": "https://github.com/thegenemyers/MERQURY.FK/blob/main/LICENSE"
+              "license": [
+                "https://github.com/thegenemyers/MERQURY.FK/blob/main/LICENSE"
+              ]
             }
           }
         ],
@@ -82828,7 +83110,9 @@
               "description": "FastK based version of Merqury",
               "homepage": "https://github.com/thegenemyers/MERQURY.FK",
               "tool_dev_url": "https://github.com/thegenemyers/MERQURY.FK",
-              "licence": "https://github.com/thegenemyers/MERQURY.FK/blob/main/LICENSE"
+              "license": [
+                "https://github.com/thegenemyers/MERQURY.FK/blob/main/LICENSE"
+              ]
             }
           }
         ],
@@ -83729,7 +84013,9 @@
               "documentation": "https://github.com/soedinglab/metaeuk",
               "tool_dev_url": "https://github.com/soedinglab/metaeuk",
               "doi": "10.1186/s40168-020-00808-x",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -84680,7 +84966,9 @@
               "documentation": "https://github.com/snayfach/MIDAS",
               "tool_dev_url": "https://github.com/snayfach/MIDAS",
               "doi": "10.1101/gr.201863.115",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -85571,6 +85859,367 @@
           "version": "dev"
         }
       ]
+    },
+    {
+      "name": "mirtop_counts",
+      "path": "modules/nf-core/mirtop/counts/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "mirtop_counts",
+        "description": "mirtop counts generates a file with the minimal information about each sequence and the count data in columns for each samples.",
+        "keywords": [
+          "mirna",
+          "isomir",
+          "gff"
+        ],
+        "tools": [
+          {
+            "mirtop": {
+              "description": "Small RNA-seq annotation",
+              "homepage": "https://github.com/miRTop/mirtop",
+              "documentation": "https://mirtop.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/miRTop/mirtop",
+              "licence": [
+                "MIT License"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "mirtop_gff": {
+              "type": "file",
+              "description": "GFF file",
+              "pattern": "*.{gff}"
+            }
+          },
+          {
+            "hairpin": {
+              "type": "file",
+              "description": "Hairpin file",
+              "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "gtf": {
+              "type": "file",
+              "description": "GTF file",
+              "pattern": "*.{gtf}"
+            }
+          },
+          {
+            "species": {
+              "type": "string",
+              "description": "Species name of the GTF file"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "tsv": {
+              "type": "file",
+              "description": "TSV file",
+              "pattern": "*.{tsv}"
+            }
+          }
+        ],
+        "authors": [
+          "@atrigila"
+        ],
+        "maintainers": [
+          "@atrigila"
+        ]
+      }
+    },
+    {
+      "name": "mirtop_export",
+      "path": "modules/nf-core/mirtop/export/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "mirtop_export",
+        "description": "mirtop export generates files such as fasta, vcf or compatible with isomiRs bioconductor package",
+        "keywords": [
+          "mirna",
+          "isomir",
+          "gff"
+        ],
+        "tools": [
+          {
+            "mirtop": {
+              "description": "Small RNA-seq annotation",
+              "homepage": "https://github.com/miRTop/mirtop",
+              "documentation": "https://mirtop.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/miRTop/mirtop",
+              "licence": [
+                "MIT License"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "mirtop_gff": {
+              "type": "file",
+              "description": "GFF file",
+              "pattern": "*.{gff}"
+            }
+          },
+          {
+            "hairpin": {
+              "type": "file",
+              "description": "Hairpin file",
+              "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "gtf": {
+              "type": "file",
+              "description": "GTF file",
+              "pattern": "*.{gtf}"
+            }
+          },
+          {
+            "species": {
+              "type": "string",
+              "description": "Species name of the GTF file"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "tsv": {
+              "type": "file",
+              "description": "TSV file",
+              "pattern": "*.{tsv}"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "FASTA file",
+              "pattern": "*.{fasta,fa}"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "VCF file",
+              "pattern": "*.{vcf,vcf.gz}"
+            }
+          }
+        ],
+        "authors": [
+          "@atrigila"
+        ],
+        "maintainers": [
+          "@atrigila"
+        ]
+      }
+    },
+    {
+      "name": "mirtop_gff",
+      "path": "modules/nf-core/mirtop/gff/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "mirtop_gff",
+        "description": "mirtop gff generates the GFF3 adapter format to capture miRNA variations",
+        "keywords": [
+          "mirna",
+          "isomir",
+          "gff"
+        ],
+        "tools": [
+          {
+            "mirtop": {
+              "description": "Small RNA-seq annotation",
+              "homepage": "https://github.com/miRTop/mirtop",
+              "documentation": "https://mirtop.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/miRTop/mirtop",
+              "licence": [
+                "MIT License"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "Sorted BAM/CRAM/SAM file",
+              "pattern": "*.{bam,cram,sam}"
+            }
+          },
+          {
+            "hairpin": {
+              "type": "file",
+              "description": "Hairpin file",
+              "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "gtf": {
+              "type": "file",
+              "description": "GTF file",
+              "pattern": "*.{gtf}"
+            }
+          },
+          {
+            "species": {
+              "type": "string",
+              "description": "Species name of the GTF file"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "mirtop_gff": {
+              "type": "file",
+              "description": "GFF file",
+              "pattern": "*.{gff}"
+            }
+          },
+          {
+            "sample_gff": {
+              "type": "file",
+              "description": "GFF file",
+              "pattern": "*.{gff}"
+            }
+          }
+        ],
+        "authors": [
+          "@atrigila"
+        ],
+        "maintainers": [
+          "@atrigila"
+        ]
+      }
+    },
+    {
+      "name": "mirtop_stats",
+      "path": "modules/nf-core/mirtop/stats/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "mirtop_stats",
+        "description": "mirtop gff gets the number of isomiRs and miRNAs annotated in the GFF file by isomiR category.",
+        "keywords": [
+          "mirna",
+          "isomir",
+          "gff"
+        ],
+        "tools": [
+          {
+            "mirtop": {
+              "description": "Small RNA-seq annotation",
+              "homepage": "https://github.com/miRTop/mirtop",
+              "documentation": "https://mirtop.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/miRTop/mirtop",
+              "licence": [
+                "MIT License"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "mirtop_gff": {
+              "type": "file",
+              "description": "Mirtop GFF file obtained with mirtop_gff",
+              "pattern": "*.{gff}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "txt": {
+              "type": "file",
+              "description": "TXT file with stats",
+              "pattern": "*.{txt}"
+            }
+          }
+        ],
+        "authors": [
+          "@atrigila"
+        ],
+        "maintainers": [
+          "@atrigila"
+        ]
+      }
     },
     {
       "name": "mirtrace_qc",
@@ -87299,7 +87948,9 @@
               "documentation": "https://github.com/motu-tool/mOTUs/wiki",
               "tool_dev_url": "https://github.com/motu-tool/mOTUs",
               "doi": "10.1186/s40168-022-01410-z",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -87360,7 +88011,9 @@
               "documentation": "https://github.com/motu-tool/mOTUs/wiki",
               "tool_dev_url": "https://github.com/motu-tool/mOTUs",
               "doi": "10.1186/s40168-022-01410-z",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -87535,7 +88188,11 @@
         "name": "msisensor2_msi",
         "description": "msisensor2 detection of MSI regions.",
         "keywords": [
-          "msi"
+          "msi",
+          "microsatellite",
+          "microsatellite instability",
+          "tumor",
+          "cfDNA"
         ],
         "tools": [
           {
@@ -87544,7 +88201,9 @@
               "homepage": "https://github.com/niu-lab/msisensor2",
               "documentation": "https://github.com/niu-lab/msisensor2/blob/master/README.md",
               "tool_dev_url": "https://github.com/niu-lab/msisensor2",
-              "licence": "GPL-3.0"
+              "license": [
+                "GPL-3.0"
+              ]
             }
           }
         ],
@@ -87698,7 +88357,10 @@
         "name": "msisensor_msi",
         "description": "Evaluate microsattelite instability (MSI) using paired tumor-normal sequencing data",
         "keywords": [
-          "homoploymer,microsatellite"
+          "homoploymer",
+          "microsatellite",
+          "MSI",
+          "instability"
         ],
         "tools": [
           {
@@ -87814,7 +88476,9 @@
         "name": "msisensor_scan",
         "description": "Scan a reference genome to get microsatellite & homopolymer information",
         "keywords": [
-          "homoploymer,microsatellite"
+          "homoploymer",
+          "microsatellite",
+          "MSI"
         ],
         "tools": [
           {
@@ -89126,7 +89790,8 @@
         "description": "MUSCLE is a program for creating multiple alignments of amino acid or nucleotide sequences. A range of options are provided that give you the choice of optimizing accuracy, speed, or some compromise between the two",
         "keywords": [
           "msa",
-          "multiple sequence alignment"
+          "multiple sequence alignment",
+          "phylogeny"
         ],
         "tools": [
           {
@@ -89874,7 +90539,9 @@
               "documentation": "https://github.com/friend1ws/nanomonsv#commands",
               "tool_dev_url": "https://github.com/friend1ws/nanomonsv",
               "doi": "10.1101/2020.07.22.214262 ",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -90703,7 +91370,7 @@
           },
           {
             "dataset": {
-              "type": "path",
+              "type": "file",
               "description": "Path containing the dataset files obtained by running nextclade dataset get",
               "pattern": "*"
             }
@@ -91993,7 +92660,8 @@
         "description": "NUCmer is a pipeline for the alignment of multiple closely related nucleotide sequences.",
         "keywords": [
           "align",
-          "nucleotide"
+          "nucleotide",
+          "sequence"
         ],
         "tools": [
           {
@@ -93037,7 +93705,9 @@
               "documentation": "https://github.com/BoevaLab/ONCOCNV/blob/master/README.md",
               "tool_dev_url": "https://github.com/BoevaLab/ONCOCNV/",
               "doi": "10.1093/bioinformatics/btu436",
-              "licence": "GPL-3.0-or-later"
+              "license": [
+                "GPL-3.0-or-later"
+              ]
             }
           }
         ],
@@ -95053,7 +95723,9 @@
               "description": "NVIDIA Clara Parabricks GPU-accelerated genomics tools",
               "homepage": "https://www.nvidia.com/en-us/clara/genomics/",
               "documentation": "https://docs.nvidia.com/clara/parabricks/",
-              "licence": "custom"
+              "licence": [
+                "https://docs.nvidia.com/clara/parabricks/3.8.0/gettingstarted.html#licensing"
+              ]
             }
           }
         ],
@@ -95837,7 +96509,9 @@
         "name": "paraclu",
         "description": "Paraclu finds clusters in data attached to sequences.",
         "keywords": [
-          "sort"
+          "sort",
+          "cluster",
+          "bed"
         ],
         "tools": [
           {
@@ -95925,7 +96599,9 @@
               "documentation": "https://github.com/Illumina/paragraph",
               "tool_dev_url": "https://github.com/Illumina/paragraph",
               "doi": "10.1101/635011",
-              "licence": "['Apache License 2.0']"
+              "licence": [
+                "Apache License 2.0"
+              ]
             }
           }
         ],
@@ -96036,7 +96712,9 @@
               "documentation": "https://github.com/Illumina/paragraph",
               "tool_dev_url": "https://github.com/Illumina/paragraph",
               "doi": "10.1101/635011",
-              "licence": "['Apache License 2.0']"
+              "licence": [
+                "Apache License 2.0"
+              ]
             }
           }
         ],
@@ -101458,7 +102136,8 @@
         "description": "Exclude variant identifiers from plink bfiles",
         "keywords": [
           "exclude",
-          "plink"
+          "plink",
+          "variant identifiers"
         ],
         "tools": [
           {
@@ -101560,7 +102239,9 @@
         "description": "Subset plink bfiles with a text file of variant identifiers",
         "keywords": [
           "extract",
-          "plink"
+          "plink",
+          "subset",
+          "bfiles"
         ],
         "tools": [
           {
@@ -102100,23 +102781,20 @@
           },
           {
             "window_size": {
-              "type": "value",
-              "description": "Window size in variant count or kilobase (if the 'kb' modifier is present) units, a variant count to shift the window at the end of each step, and a variance inflation factor (VIF) threshold.",
-              "pattern": "*.{}"
+              "type": "string",
+              "description": "Window size in variant count or kilobase (if the 'kb' modifier is present) units, a variant count to shift the window at the end of each step, and a variance inflation factor (VIF) threshold."
             }
           },
           {
             "variant_count": {
-              "type": "value",
-              "description": "Variant count to shift the window at the end of each step.",
-              "pattern": "*.{}"
+              "type": "string",
+              "description": "Variant count to shift the window at the end of each step."
             }
           },
           {
             "variance_inflation_factor": {
-              "type": "value",
-              "description": "Variance inflation factor (VIF) threshold. At each step, all variants in the current window with VIF exceeding the threshold are removed.",
-              "pattern": "*.{}"
+              "type": "string",
+              "description": "Variance inflation factor (VIF) threshold. At each step, all variants in the current window with VIF exceeding the threshold are removed."
             }
           }
         ],
@@ -102214,23 +102892,20 @@
           },
           {
             "window_size": {
-              "type": "number",
-              "description": "Window size in variant count or kilobase (if the 'kb' modifier is present) units, a variant count to shift the window at the end of each step, and a variance inflation factor (VIF) threshold.",
-              "pattern": "*.{}"
+              "type": "string",
+              "description": "Window size in variant count or kilobase (if the 'kb' modifier is present) units, a variant count to shift the window at the end of each step, and a variance inflation factor (VIF) threshold."
             }
           },
           {
             "variant_count": {
-              "type": "number",
-              "description": "Variant count to shift the window at the end of each step.",
-              "pattern": "*.{}"
+              "type": "string",
+              "description": "Variant count to shift the window at the end of each step."
             }
           },
           {
             "r2_threshold": {
-              "type": "number",
-              "description": "Pairwise r2 threshold. At each step, pairs of variants in the current window with squared correlation greater than the threshold are noted, and variants are greedily pruned from the window until no such pairs remain",
-              "pattern": "*.{}"
+              "type": "string",
+              "description": "Pairwise r2 threshold. At each step, pairs of variants in the current window with squared correlation greater than the threshold are noted, and variants are greedily pruned from the window until no such pairs remain"
             }
           }
         ],
@@ -102413,7 +103088,10 @@
         "name": "plink_recode",
         "description": "Recodes plink bfiles into a new text fileset applying different modifiers",
         "keywords": [
-          "recode"
+          "recode",
+          "bfiles",
+          "plink",
+          "whole genome association"
         ],
         "tools": [
           {
@@ -102422,7 +103100,9 @@
               "homepage": "https://www.cog-genomics.org/plink",
               "documentation": "https://www.cog-genomics.org/plink/1.9/data#recode",
               "tool_dev_url": "https://www.cog-genomics.org/plink/1.9/dev",
-              "licence": "['GPL']"
+              "licence": [
+                "GPL"
+              ]
             }
           }
         ],
@@ -102844,7 +103524,9 @@
               "documentation": "https://github.com/ukhsa-collaboration/PneumoCaT",
               "tool_dev_url": "https://github.com/ukhsa-collaboration/PneumoCaT",
               "doi": "10.7717/peerj.2477",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -105214,7 +105896,9 @@
               "documentation": "https://bioconductor.org/packages/release/bioc/html/PureCN.html",
               "tool_dev_url": "https://github.com/lima1/PureCN",
               "doi": "10.1186/s13029-016-0060-z",
-              "licence": "Artistic-2.0",
+              "license": [
+                "Artistic-2.0"
+              ],
               "args_id": "$args"
             }
           }
@@ -105541,7 +106225,9 @@
               "documentation": "https://bioconductor.org/packages/release/bioc/html/PureCN.html",
               "tool_dev_url": "https://github.com/lima1/PureCN",
               "doi": "10.1186/s13029-016-0060-z",
-              "licence": "Artistic-2.0",
+              "license": [
+                "Artistic-2.0"
+              ],
               "args_id": "$args"
             }
           }
@@ -105776,7 +106462,9 @@
               "documentation": "https://github.com/dfguan/purge_dups",
               "tool_dev_url": "https://github.com/dfguan/purge_dups",
               "doi": "10.1093/bioinformatics/btaa025",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -105859,7 +106547,9 @@
               "documentation": "https://github.com/dfguan/purge_dups",
               "tool_dev_url": "https://github.com/dfguan/purge_dups",
               "doi": "10.1093/bioinformatics/btaa025",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -108273,7 +108963,9 @@
               "homepage": "https://github.com/dnil/rhocall",
               "documentation": "https://github.com/dnil/rhocall",
               "tool_dev_url": "https://github.com/dnil",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -109149,7 +109841,9 @@
               "homepage": "https://rmarkdown.rstudio.com/",
               "documentation": "https://rmarkdown.rstudio.com/lesson-1.html",
               "tool_dev_url": "https://github.com/rstudio/rmarkdown",
-              "licence": "GPL-3"
+              "licence": [
+                "GPL-3"
+              ]
             }
           }
         ],
@@ -110392,7 +111086,9 @@
               "homepage": "https://www.realtimegenomics.com/products/rtg-tools",
               "documentation": "https://github.com/RealTimeGenomics/rtg-tools",
               "tool_dev_url": "https://github.com/RealTimeGenomics/rtg-tools",
-              "licence": "['BSD']"
+              "licence": [
+                "BSD"
+              ]
             }
           }
         ],
@@ -110633,7 +111329,9 @@
               "homepage": "https://www.realtimegenomics.com/products/rtg-tools",
               "documentation": "https://github.com/RealTimeGenomics/rtg-tools",
               "tool_dev_url": "https://github.com/RealTimeGenomics/rtg-tools",
-              "licence": "['BSD']"
+              "licence": [
+                "BSD"
+              ]
             }
           }
         ],
@@ -115506,7 +116204,9 @@
         "description": "The Cluster Analysis tool of Scramble analyses and interprets the soft-clipped clusters found by `cluster_identifier`",
         "keywords": [
           "soft-clipped clusters",
-          "scramble"
+          "scramble",
+          "cluster analysis",
+          "clusteridentifier"
         ],
         "tools": [
           {
@@ -115515,7 +116215,9 @@
               "homepage": "https://github.com/GeneDx/scramble",
               "documentation": "https://github.com/GeneDx/scramble",
               "tool_dev_url": "https://github.com/GeneDx/scramble",
-              "licence": "['CC']"
+              "licence": [
+                "CC"
+              ]
             }
           }
         ],
@@ -115964,7 +116666,9 @@
               "documentation": "https://semibin.readthedocs.io/en/latest/",
               "tool_dev_url": "https://github.com/BigDataBiology/SemiBin",
               "doi": "10.1038/s41467-022-29843-y",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -120380,7 +121084,9 @@
               "homepage": "https://github.com/stschiff/sequenceTools",
               "documentation": "https://github.com/stschiff/sequenceTools#readme",
               "tool_dev_url": "https://github.com/stschiff/sequenceTools",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -120405,13 +121111,13 @@
           },
           {
             "calling_method": {
-              "type": "value",
+              "type": "string",
               "description": "The desired calling method for pileupcaller. One of 'randomHaploid', 'randomDiploid', or 'majorityCall'."
             }
           },
           {
             "output_format": {
-              "type": "value",
+              "type": "string",
               "description": "The desired output format. One of 'PLINK', 'EIGENSTRAT', or 'FREQSUM'."
             }
           }
@@ -121016,7 +121722,9 @@
               "documentation": "https://github.com/TCLamnidis/Sex.DetERRmine/README.md",
               "tool_dev_url": "https://github.com/TCLamnidis/Sex.DetERRmine",
               "doi": "10.1038/s41467-018-07483-5",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -121294,7 +122002,9 @@
               "documentation": "https://odelaneau.github.io/shapeit5/docs/documentation",
               "tool_dev_url": "https://github.com/odelaneau/shapeit5",
               "doi": "10.1101/2022.10.19.512867 ",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -121426,7 +122136,9 @@
               "documentation": "https://odelaneau.github.io/shapeit5/docs/documentation",
               "tool_dev_url": "https://github.com/odelaneau/shapeit5",
               "doi": "10.1101/2022.10.19.512867 ",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -121546,7 +122258,9 @@
               "documentation": "https://odelaneau.github.io/shapeit5/docs/documentation",
               "tool_dev_url": "https://github.com/odelaneau/shapeit5",
               "doi": "10.1101/2022.10.19.512867 ",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -121898,7 +122612,9 @@
               "documentation": "https://github.com/LanLab/ShigEiFinder",
               "tool_dev_url": "https://github.com/LanLab/ShigEiFinder",
               "doi": "10.1099/mgen.0.000704",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -123324,7 +124040,9 @@
               "documentation": "https://snakemake.readthedocs.io/en/stable/",
               "tool_dev_url": "https://github.com/snakemake/snakemake",
               "doi": "10.1093/bioinformatics/bty350",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -123412,7 +124130,9 @@
               "documentation": "https://1drv.ms/b/s!AhuEg_0yZD86hcpblUt-muHKYsG8fA?e=R8ogug",
               "tool_dev_url": "https://github.com/amplab/snap",
               "doi": "10.1101/2021.11.23.469039",
-              "licence": "['Apache v2']"
+              "licence": [
+                "Apache v2"
+              ]
             }
           }
         ],
@@ -123703,7 +124423,9 @@
               "homepage": "https://github.com/tseemann/snippy",
               "documentation": "https://github.com/tseemann/snippy",
               "tool_dev_url": "https://github.com/tseemann/snippy",
-              "licence": "['GPL v2']"
+              "licence": [
+                "GPL v2"
+              ]
             }
           }
         ],
@@ -124603,7 +125325,9 @@
               "documentation": "https://github.com/brentp/somalier",
               "tool_dev_url": "https://github.com/brentp/somalier",
               "doi": "10.1186/s13073-020-00761-2",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -125981,7 +126705,8 @@
         "description": "Computational method for finding spa types.",
         "keywords": [
           "fasta",
-          "spatype"
+          "spatype",
+          "spa"
         ],
         "tools": [
           {
@@ -126570,7 +127295,7 @@
         "input": [
           {
             "meta": {
-              "type": "map0.2.0-4",
+              "type": "map",
               "description": "Groovy Map containing sample information\nid: should be the identification number or sample name\nsingle_end: should be true for single end data and false for paired in data\ndb: should be either 'gene' to use the --gene_db option or \"mlst\" to use the --mlst_db option\ne.g. [ id:'sample', single_end:false , db:'gene']\n"
             }
           },
@@ -127577,7 +128302,9 @@
               "documentation": "https://github.com/LanLab/STECFinder",
               "tool_dev_url": "https://github.com/LanLab/STECFinder",
               "doi": "10.3389/fcimb.2021.772574",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -127650,7 +128377,9 @@
               "documentation": "https://github.com/rwdavies/stitch",
               "tool_dev_url": "https://github.com/rwdavies/stitch",
               "doi": "10.1038/ng.3594",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -128716,7 +129445,9 @@
               "documentation": "https://github.com/fritzsedlazeck/SURVIVOR/wiki",
               "tool_dev_url": "https://github.com/fritzsedlazeck/SURVIVOR",
               "doi": "10.1038/NCOMMS14061",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -128936,7 +129667,9 @@
               "documentation": "https://github.com/fritzsedlazeck/SURVIVOR/wiki",
               "tool_dev_url": "https://github.com/fritzsedlazeck/SURVIVOR",
               "doi": "10.1038/NCOMMS14061",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -129168,7 +129901,9 @@
               "documentation": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5880247/",
               "tool_dev_url": "https://github.com/walaj/svaba",
               "doi": "10.1101/gr.221028.117",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -129765,7 +130500,9 @@
               "homepage": "https://github.com/broadinstitute/gatk-sv/tree/master/src/svtk",
               "documentation": "https://github.com/broadinstitute/gatk-sv/tree/master/src/svtk",
               "tool_dev_url": "https://github.com/broadinstitute/gatk-sv/tree/master/src/svtk",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -129929,7 +130666,9 @@
               "documentation": "https://github.com/broadinstitute/gatk-sv/tree/master/src/svtk",
               "tool_dev_url": "https://github.com/broadinstitute/gatk-sv/tree/master/src/svtk",
               "doi": "10.1038/s41586-020-2287-8",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -130020,7 +130759,9 @@
               "homepage": "https://github.com/broadinstitute/gatk-sv/tree/master/src/svtk",
               "documentation": "https://github.com/broadinstitute/gatk-sv/tree/master/src/svtk",
               "tool_dev_url": "https://github.com/broadinstitute/gatk-sv/tree/master/src/svtk",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -130103,7 +130844,9 @@
               "homepage": "https://github.com/broadinstitute/gatk-sv/tree/master/src/svtk",
               "documentation": "https://github.com/broadinstitute/gatk-sv/tree/master/src/svtk",
               "tool_dev_url": "https://github.com/broadinstitute/gatk-sv/tree/master/src/svtk",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -132529,7 +133272,9 @@
               "documentation": "https://github.com/subwaystation/TOPAS/wiki/Overview-Modules",
               "tool_dev_url": "https://github.com/subwaystation/TOPAS",
               "doi": "10.1038/s41598-017-17723-1",
-              "licence": "['CC-BY']"
+              "licence": [
+                "CC-BY"
+              ]
             }
           }
         ],
@@ -132836,7 +133581,9 @@
         "description": "TransDecoder identifies candidate coding regions within transcript sequences. It is used to build gff file. You can use this module after transdecoder_longorf",
         "keywords": [
           "eukaryotes",
-          "gff"
+          "gff",
+          "cds",
+          "transcroder"
         ],
         "tools": [
           {
@@ -132889,28 +133636,28 @@
           },
           {
             "pep": {
-              "type": "amino acids fasta file",
+              "type": "file",
               "description": "All ORFs meeting the minimum length criteria, regardless of coding potential",
               "pattern": "*.{pep}"
             }
           },
           {
             "gff3": {
-              "type": "gff3 file",
+              "type": "file",
               "description": "Positions of all ORFs as found in the target transcripts",
               "pattern": "*.{gff3}"
             }
           },
           {
             "cds": {
-              "type": "nucleotide fasta file",
+              "type": "file",
               "description": "the nucleotide coding sequence for all detected ORFs",
               "pattern": "*{cds}"
             }
           },
           {
             "bed": {
-              "type": "bed file",
+              "type": "file",
               "description": "bed file",
               "pattern": "*{bed}"
             }
@@ -133429,7 +134176,9 @@
               "documentation": "https://github.com/acenglish/truvari/wiki",
               "tool_dev_url": "https://github.com/ACEnglish/truvari",
               "doi": "10.1186/s13059-022-02840-6",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -134797,7 +135546,9 @@
               "documentation": "https://github.com/ksahlin/uLTRA",
               "tool_dev_url": "https://github.com/ksahlin/uLTRA",
               "doi": "10.1093/bioinformatics/btab540",
-              "licence": "['GNU GPLV3']"
+              "licence": [
+                "GNU GPLV3"
+              ]
             }
           }
         ],
@@ -134896,7 +135647,9 @@
               "documentation": "https://github.com/ksahlin/uLTRA",
               "tool_dev_url": "https://github.com/ksahlin/uLTRA",
               "doi": "10.1093/bioinformatics/btab540",
-              "licence": "['GNU GPLV3']"
+              "licence": [
+                "GNU GPLV3"
+              ]
             }
           }
         ],
@@ -136580,7 +137333,9 @@
               "documentation": "https://varlociraptor.github.io/docs/calling/",
               "tool_dev_url": "https://github.com/varlociraptor/varlociraptor",
               "doi": "10.1186/s13059-020-01993-6",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -136788,7 +137543,9 @@
               "documentation": "https://varlociraptor.github.io/docs/calling/",
               "tool_dev_url": "https://github.com/varlociraptor/varlociraptor",
               "doi": "10.1186/s13059-020-01993-6",
-              "licence": "['GPL v3']"
+              "licence": [
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -137113,7 +137870,9 @@
               "documentation": "https://github.com/mskcc/vcf2maf",
               "tool_dev_url": "https://github.com/mskcc/vcf2maf",
               "doi": "10.5281/zenodo.593251",
-              "licence": "['Apache-2.0']"
+              "licence": [
+                "Apache-2.0"
+              ]
             }
           }
         ],
@@ -138356,7 +139115,9 @@
         "description": "Detecting and estimating inter-sample DNA contamination became a crucial quality assessment step to ensure high quality sequence reads and reliable downstream analysis.",
         "keywords": [
           "contamination",
-          "bam"
+          "bam",
+          "verifybamid",
+          "DNA contamination estimation"
         ],
         "tools": [
           {
@@ -138366,7 +139127,9 @@
               "documentation": "http://griffan.github.io/VerifyBamID",
               "tool_dev_url": "https://github.com/Griffan/VerifyBamID",
               "doi": "10.1101/gr.246934.118",
-              "licence": "['MIT']"
+              "licence": [
+                "MIT"
+              ]
             }
           }
         ],
@@ -139094,7 +139857,10 @@
               "documentation": "https://github.com/AnantharamanLab/vRhyme",
               "tool_dev_url": "https://github.com/AnantharamanLab/vRhyme",
               "doi": "10.1093/nar/gkac341",
-              "licence": "['GPL v3 license', 'GPL v3']"
+              "licence": [
+                "GPL v3 license",
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -139172,7 +139938,10 @@
               "documentation": "https://github.com/AnantharamanLab/vRhyme",
               "tool_dev_url": "https://github.com/AnantharamanLab/vRhyme",
               "doi": "10.1093/nar/gkac341",
-              "licence": "['GPL v3 license', 'GPL v3']"
+              "licence": [
+                "GPL v3 license",
+                "GPL v3"
+              ]
             }
           }
         ],
@@ -143179,6 +143948,86 @@
       }
     },
     {
+      "name": "bam_stats_mirna_mirtop",
+      "path": "subworkflows/nf-core/bam_stats_mirna_mirtop/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "bam_stats_mirna_mirtop",
+        "description": "mirtop is a command line tool to annotate miRNAs and isomiRs and compute general statistics using the mirGFF3 format.",
+        "keywords": [
+          "miRNA",
+          "isomirs",
+          "bam",
+          "stats"
+        ],
+        "components": [
+          "mirtop/gff",
+          "mirtop/counts",
+          "mirtop/export",
+          "mirtop/stats"
+        ],
+        "input": [
+          {
+            "ch_bam": {
+              "type": "file",
+              "description": "The input channel containing the BAM/CRAM/SAM files\nStructure: [ val(meta), path(bam) ]\n",
+              "pattern": "*.{bam/cram/sam}"
+            }
+          },
+          {
+            "ch_hairpin": {
+              "type": "file",
+              "description": "Input channel containing the hairpin fasta file\nStructure: [ val(meta), path(fasta) ]\n",
+              "pattern": "*.{fasta,fa}"
+            }
+          },
+          {
+            "ch_gtf_species": {
+              "type": "file",
+              "description": "Input channel containing the species gtf and the name of species in miRbase format\nStructure: [ val(meta), path(gtf), val(species)]\n",
+              "pattern": "*.{gtf}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "rawdata_tsv": {
+              "type": "file",
+              "description": "Channel containing isomiRs compatible files\nStructure: [ val(meta), path(tsv) ]\n",
+              "pattern": "*.tsv"
+            }
+          },
+          {
+            "stats_txt": {
+              "type": "file",
+              "description": "Channel containing TXT file with a table with different statistics for each type of isomiRs: total counts, average counts, total sequences.\nStructure: [ val(meta), path(txt) ]\n",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "stats_log": {
+              "type": "file",
+              "description": "Channel containing log files in JSON format with the same information as stats_txt\nStructure: [ val(meta), path(log) ]\n",
+              "pattern": "*.log"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@atrigila"
+        ],
+        "maintainers": [
+          "@atrigila"
+        ]
+      }
+    },
+    {
       "name": "bam_stats_samtools",
       "path": "subworkflows/nf-core/bam_stats_samtools/meta.yml",
       "type": "subworkflow",
@@ -143951,13 +144800,13 @@
           },
           {
             "val_repeats": {
-              "type": "value (int)",
+              "type": "integer",
               "description": "Number of bootstrap repeats to perform"
             }
           },
           {
             "val_db_name": {
-              "type": "value (string)",
+              "type": "string",
               "description": "Name of the dir where UShER's files will be stored"
             }
           },
@@ -147499,7 +148348,7 @@
         "output": [
           {
             "meta": {
-              "type": "value",
+              "type": "string",
               "description": "Groovy Map containing sample information e.g. [ id:'test', single_end:false ]"
             }
           },
@@ -147632,7 +148481,7 @@
         "output": [
           {
             "summary_params": {
-              "type": "value",
+              "type": "string",
               "description": "Structure: val(summary_params)\nA map of the parameters used in the pipeline.\n"
             }
           }
