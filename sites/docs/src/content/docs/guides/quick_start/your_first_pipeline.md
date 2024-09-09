@@ -17,15 +17,22 @@ Run Nextflow’s example [Hello world!](https://github.com/nextflow-io/hello) pi
 nextflow run hello
 ```
 
-If everything has been installed properly you should see the pipeline launch and run to completion.
+If everything has been installed properly you should see the pipeline launch and run to completion:
 
-Congratulations! You have just run your first Nextflow pipeline!
+```console
+ N E X T F L O W   ~  version 24.04.4
+Launching `https://github.com/nextflow-io/hello` [cheesy_sax] DSL2 - revision: afff16a9b4 [master]
+executor >  local (4)
+[2c/3092e1] sayHello (4) [100%] 4 of 4 ✔
+Hello world!
+Bonjour world!
+Hola world!
+Ciao world!
+```
 
 ### nf-core pipelines
 
-Each nf-core pipeline will have different run requirements.
-
-It is best to test it is working using a small dataset that is known to work before running a pipeline with your own data.
+Each nf-core pipeline will have different run requirements. It is best to test it is working using a small dataset that is known to work before running a pipeline with your own data.
 
 nf-core pipelines come packed with a `test` profile that uses small files from the [nf-core/test-datasets](https://github.com/nf-core/test-datasets) repository. The `test` profile is extensively tested and should run without extra configuration. nf-core pipelines come packed with directives for containers and environments that can be flexibly enabled using software dependency profiles (e.g., `docker`, `singularity`, and `conda`). By using a profile for software dependencies an nf-core pipeline should run with all required tools.
 
@@ -40,7 +47,5 @@ nextflow run nf-core/rnaseq -profile test,docker --outdir results
 ```
 
 If everything has been installed properly you should see the pipeline launch and run to completion.
-
-Congratulations! You have just run your first nf-core pipeline!
 
 What's next? Check out the [Configuration](/docs/usage/configuration/introduction) guide for more information about adding your own data and configuring a pipeline to better suit your needs.

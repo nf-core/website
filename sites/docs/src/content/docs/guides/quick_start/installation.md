@@ -202,14 +202,13 @@ The respective tooling for a profile must be installed prior to pipeline executi
 - [Apptainer](https://apptainer.org/)
 
   - Open source version of Singularity (split from Singularity in 2021)
-    :::warning
-    Currently, nf-core pipelines run with `-profile apptainer` will build using
-    docker containers instead of using pre-built singularity containers.
 
-    To use the singularity containers, use `-profile singularity` instead.
-    This works because `apptainer` simply defines `singularity` as an alias
-    to the `apptainer` command.
-    :::
+:::warning
+Currently, nf-core pipelines run with `-profile apptainer` will build using
+docker containers instead of the pre-built singularity containers. To use the singularity containers, use `-profile singularity` instead.
+This works because `apptainer` simply defines `singularity` as an alias
+to the `apptainer` command.
+:::
 
 - [Podman](https://podman.io/), [Charliecloud](https://hpc.github.io/charliecloud/), and [Shifter](https://www.nersc.gov/research-and-development/user-defined-images/)
   - All alternatives to Docker, often used on HPC systems
