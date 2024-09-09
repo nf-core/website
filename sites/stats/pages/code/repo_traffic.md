@@ -1,5 +1,6 @@
 ---
 title: Repository Traffic
+sidebar_position: 1
 ---
 
 Every time a nextflow user pulls an nf-core pipeline, the repository is cloned. Here we can track how much that happens across all nf-core repositories. Please note that these numbers come with some caveats [ see more ].

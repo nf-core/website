@@ -1,5 +1,6 @@
 ---
 title: Code stats
+sidebar_position: 2
 ---
 
 Whilst we always prefer quality over quantity, these numbers reflect the work output from the nf-core community.

@@ -1,5 +1,6 @@
 ---
 title: Pull Requests
+sidebar_position: 2
 ---
 
 When people contribute code to a nf-core repository, we conduct a "Pull request" - other members of the nf-core community review the proposed code and make suggestions, before merging into the main repository.
