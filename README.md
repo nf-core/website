@@ -155,7 +155,7 @@ The following steps are necessary to add a new sub-site to the mono-repo:
   - [ ] `netlify.toml` - Update the paths in the `command` and the `ignore` field to point to the new site's source directory, e.g.
 
   ```toml
-  command = "npm run build -w sites/newsite"
+  command = "pnpm --filter newsite run build"
   ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF sites/main-site/src/components sites/main-site/src/layouts sites/newsite"
   ```
 
