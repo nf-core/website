@@ -35,56 +35,6 @@ where timestamp between '${inputs.range_filtering_a_query.start}' and '${inputs.
     subtitle="nf-core repository web views per day from {inputs.range_filtering_a_query.start} to {inputs.range_filtering_a_query.end}"
 />
 
-## Pull Requests
-
-When people contribute code to a nf-core repository, we conduct a "Pull request" - other members of the nf-core community review the proposed code and make suggestions, before merging into the main repository.
-
-<!-- TODO GitHub Pull Requests over time -->
-
-## Pull Request response times
-
-Pull-requests are reviewed by the nf-core community - they can contain discussion on the code and can be merged and closed. We aim to be prompt with reviews and merging. Note that some PRs can be a simple type and so very fast to merge, others can be major pipeline updates.
-
-<!-- TODO GitHub Pull Request Response Time-->
-
-## Issues
-
-GitHub issues can be created to log feature requests, bug reports or questions.
-
-<!-- TODO GitHub Issues over time -->
-
-## Issue response times
-
-A sign of an active community is a quick response time to issues. Here we see a frequency histogram of how long it takes to respond to and close issues.
-
-<!-- TODO GitHub Issues Response Time -->
-
-## Contributor Leaderboard
-
-We value each and every contribution to nf-core, no matter how small. However, that doesn't mean that we can't get competitive!
-
-Here are the latest stats of who has contributed the greatest number of commits. The yellow bars show "core repositories" - repositories that are not pipelines (such as the code for this website!). A list of these repositories can be found below.
-Remember
-
-    There is more to contributing than commits! We're not counting issue comments, reviews or anything else here.
-    People merging pull-requests get bonus commit counts from those merge commits.
-    Some people commit often, others not so much. So it's not a perfect representation of amount of work - just a bit of fun!
-    master branch only, and all of the other caveats..
-
-## Pipeline numbers
-
-All nf-core pipelines are only considered stable when they have at least one release. Until then, they are classed as "in development".
-
-<!-- TODO nf-core pipeline numbers over time -->
-
-## Pipelines
-
-<!-- TODO Table with Name 	Age 	Releases 	Committers 	Commits 	Stargazers 	Watchers 	Network Forks 	Clones 	Unique cloners 	Repo views 	Unique repo visitors -->
-
-## Core Repos
-
-<!-- TODO Table with Name 	Age 	Releases 	Committers 	Commits 	Stargazers 	Watchers 	Network Forks 	Clones 	Unique cloners 	Repo views 	Unique repo visitors -->
-
 ## Views per day
 
 ```sql view_days
