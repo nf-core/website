@@ -46,17 +46,19 @@ Each released pipeline has a dedicated page that includes 6 documentation sectio
 
 Each section should be explored to understand what the pipeline does and how it can be configured.
 
-## Any questions? Wanna help out? Join the nf-core community!
+## Join the nf-core community!
+
+Any questions? Wanna help out? Join the nf-core community!
 
 The nf-core Slack is the place to get help, share expertise, and connect with other community members.
+
+We hope to see you there!
 
 <p>
     <a class="btn btn-success me-2" href="/join/slack"
         ><i class="fab fa-slack"></i> Join the nf-core Slack</a
     >
 </p>
-
-We hope to see you there!
 
 **Important to know**
 

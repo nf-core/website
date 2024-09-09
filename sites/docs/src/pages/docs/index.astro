@@ -10,7 +10,14 @@ let docs = await getCollection('docs');
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
 
 let sections: SidebarEntry[] = [
-    { type: 'group', id: 'usage', label: 'Usage', entries: [], collapsed: true, icon: 'octicon:play-16', weight: 1 },
+    {
+        type: 'group',
+        id: 'guides',
+        label: 'Guides',
+        entries: [],
+        collapsed: true,
+        icon: 'octicon:play-16',
+        weight: 1 },
     {
         type: 'group',
         id: 'contributing',

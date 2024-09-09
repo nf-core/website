@@ -7,18 +7,16 @@ weight: 3
 
 ## Configure your system
 
-nf-core pipelines are reproducible, portable, and scalable, and are designed to work "out of the box". However to maximise efficiency and benefit from all the advantages of Nextflow, it is likely you will need to configure each pipeline to suit your data and system requirements.
+nf-core pipelines are reproducible, portable, and scalable, and are designed to work "out of the box". However, to maximize efficiency and benefit from all of the advantages of Nextflow, it is likely you will need to configure each pipeline to suit your data and system requirements.
 
 The following sections are common considerations for nf-core pipeline users.
-
-All of the following options can be can be specified within a Nextflow config file.
 
 All of the following options can be can be specified within a Nextflow config file.
 
 ### Executors
 
 Nextflow pipelines will run locally by default.
-Most users will need to specify an "executor" to submit jobs to a scheduler (e.g. SGE, LSF, SLURM, PBS, and AWS Batch).
+Most users will need to specify an "executor" to submit jobs to a scheduler (e.g., [SGE](https://www.nextflow.io/docs/latest/executor.html#sge), [LSF](https://www.nextflow.io/docs/latest/executor.html#lsf), [SLURM](https://www.nextflow.io/docs/latest/executor.html#slurm), [AWS Batch](https://www.nextflow.io/docs/latest/executor.html#aws-batch), [Azure Batch](https://www.nextflow.io/docs/latest/executor.html#azure-batch), and [others](https://www.nextflow.io/docs/latest/executor.html#)).
 
 A simple example of a config file specifying this could be:
 
@@ -39,7 +37,7 @@ Pipeline runs occasionally fail when a process requests more resources than you 
 To avoid these failures, all nf-core pipelines [check](https://github.com/nf-core/tools/blob/99961bedab1518f592668727a4d692c4ddf3c336/nf_core/pipeline-template/nextflow.config#L206-L237) pipeline-step resource requests against parameters called `--max_cpus`, `--max_memory` and `--max_time`. These parameters can be set as the maximum possible resources of a machine or node and act as a cap that prevents Nextflow submitting a single job requesting resources more than what is possible.
 
 :::warning
-Increasing these values from the defaults will not increase the resources available to the pipeline tasks! See [Tuning resources](#tuning-resources) for this.
+Increasing these values from the defaults will not increase the resources available to the pipeline tasks! See [Tuning resources](#tuning-resources) for more information.
 :::
 
 Most pipelines will attempt to automatically restart jobs that fail due to lack of resources with double-requests. These `--max_<resource>` caps keep requests from getting out of hand and crashing the entire pipeline run. If a particular job exceeds the process-specific default resources and is retried, only resource requests (cpu, memory, or time) that have not yet reached the value set with `--max_<resource>` will be increased during the retry.
@@ -56,10 +54,6 @@ These values are deliberately generous due to the wide variety of workloads done
 As a result, you may find that the jobs are given more resources than they need and your system is not used efficiently.
 At the other end of the scale, you may want to increase the resources given to a specific task to make it run faster.
 You may wish to increase resources if you get a pipeline reporting a step failing with an `Command exit status`, such as `137`.
-
-:::warning
-You should not modify the `base.config` of the pipeline! But always modify resource requests in your own custom or institutioanl config file!
-:::
 
 :::warning
 You should not modify the `base.config` of the pipeline! But always modify resource requests in your own custom or institutioanl config file!
@@ -97,7 +91,9 @@ The `* task.attempt` means that these values are doubled and automatically retri
 If you want to use the `check_max()` function in a custom configuration file, you must copy the [check_max function](https://github.com/nf-core/tools/blob/99961bedab1518f592668727a4d692c4ddf3c336/nf_core/pipeline-template/nextflow.config#L206-L237) to the bottom of your custom config
 :::
 
-To modify the memory to all processes with the `process_high` label you can use the `withLabel` process selector in your config file. For example:
+Selectors can be used to fine file specific parts of an nf-core pipeline.
+
+To modify the memory to **all processes with a specific label** you can use the `withLabel` process selector. For example:
 
 ```groovy
 process {
@@ -107,8 +103,9 @@ process {
 }
 ```
 
-You can also modify the memory of a specific process by using the process' name.
-For example, for the step of the pipeline with the name `STAR_ALIGN`, you would use the `withName` process selector. For example:
+This example would modify the memory for all processes with the `process_high` label.
+
+To modify the memory to **specific processes** you can use the `withName` process selector. For example:
 
 ```groovy
 process {
@@ -118,7 +115,7 @@ process {
 }
 ```
 
-Using `withName` allows you to optimise the resource usage of the pipeline to a very fine grained level.
+This example would modify the memory of the `STAR_ALIGN` process.
 
 If a pipeline uses a tool multiple times you may need to specify the whole 'execution path' of the module. For example:
 

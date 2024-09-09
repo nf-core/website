@@ -8,7 +8,7 @@ parentWeight: 20
 
 ## Configure nf-core pipelines
 
-Each nf-core pipeline comes with a set of “sensible defaults” for a typical analysis of full size data.
+Each nf-core pipeline comes with a set of “sensible defaults” for a "typical" analysis of a full size dataset.
 While the defaults are a great place to start, you will certainly want to modify these to fit your own data and system requirements. For example, modifying a tool flag of compute resources allocated for a process.
 
 When a pipeline is launched, Nextflow will look for config files in several locations.
@@ -28,10 +28,8 @@ Configuration sources are reported below and listed in order of priority:
 
 While some of these files are already included in the nf-core pipeline repository (e.g., the `nextflow.config` file in the nf-core pipeline repository), some are automatically identified on your local system (e.g., the `nextflow.config` in the launch directory), and others are only included if they are specified using run options (e.g., `-params-file`, and `-c`).
 
+:::warning
 You should not clone and manually edit an nf-core pipeline. Manually edited nf-core pipelines cannot be updated to more recent versions of the pipeline without overwriting your changes. You also risk moving away from the canonical pipeline and losing reproducibility.
-
-:::tip
-Configuration locations can be used to your benefit. For example, use `-profile` for your cluster configuration, `~/.nextflow/config` for your personal configuration, and `-c specific_run.config` for run-specific configuration.
 :::
 
 ### Parameters
@@ -138,7 +136,7 @@ nextflow run nf-core/rnaseq  -profile docker --input <path/to/input> --outdir <r
 
 Custom configuration files are the same format as the configuration file included in the pipeline directory.
 
-Configuration properties are organized into scopes by dot prefixing the property names with a scope identifier or grouping the properties in the same scope using the curly brackets notation. For example:
+Configuration properties are organized into [scopes](https://www.nextflow.io/docs/latest/config.html#config-scopes) by dot prefixing the property names with a scope identifier or grouping the properties in the same scope using the curly brackets notation. For example:
 
 ```groovy
 alpha.x  = 1
@@ -154,7 +152,7 @@ alpha {
 }
 ```
 
-Scopes allow you to quickly configure settings required to deploy a pipeline on different infrastructure using different software management.
+[Scopes](https://www.nextflow.io/docs/latest/config.html#config-scopes) allow you to quickly configure settings required to deploy a pipeline on different infrastructure using different software management.
 
 A common scenario is for users to write a custom configuration file specific to running a pipeline on their infrastructure.
 
