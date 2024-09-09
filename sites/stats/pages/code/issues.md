@@ -1,5 +1,6 @@
 ---
 title: Issues
+sidebar_position: 3
 ---
 
 GitHub issues can be created to log feature requests, bug reports or questions.

@@ -1,5 +1,6 @@
 ---
 title: GitHub
+sidebar_position: 2
 ---
 
 ## GitHub organisation members
