@@ -486,8 +486,8 @@ importers:
         specifier: ^2.0.7
         version: 2.0.7
       '@evidence-dev/core-components':
-        specifier: ^4.7.5
-        version: 4.7.5(@algolia/client-search@4.24.0)(@codemirror/state@6.4.1)(@evidence-dev/universal-sql@2.1.4)(@lezer/common@1.2.1)(@sveltejs/kit@2.5.4)(search-insights@2.15.0)(storybook@8.2.9)(svelte@4.2.12)(tailwindcss@3.4.10)(typescript@5.4.2)(vitest@1.6.0)
+        specifier: ^4.7.8
+        version: 4.7.8(@algolia/client-search@4.24.0)(@codemirror/state@6.4.1)(@evidence-dev/universal-sql@2.1.5)(@lezer/common@1.2.1)(@sveltejs/kit@2.5.4)(search-insights@2.15.0)(storybook@8.2.9)(svelte@4.2.12)(tailwindcss@3.4.10)(typescript@5.4.2)(vitest@1.6.0)
       '@evidence-dev/csv':
         specifier: ^1.0.12
         version: 1.0.12
@@ -3926,10 +3926,10 @@ packages:
       - supports-color
     dev: false
 
-  /@evidence-dev/component-utilities@3.2.9(@evidence-dev/universal-sql@2.1.4)(@sveltejs/kit@2.5.4)(perfect-debounce@1.0.0)(typescript@5.4.2):
-    resolution: {integrity: sha512-0cUfSuutjoJ/8l1/rFRPJBc++4QOeGXGm98NPkxoZxiq8tYXUEKPZOq2p4gtCj6oujm96TDqrqhK4+axYoZIBQ==}
+  /@evidence-dev/component-utilities@3.2.10(@evidence-dev/universal-sql@2.1.5)(@sveltejs/kit@2.5.4)(perfect-debounce@1.0.0)(typescript@5.4.2):
+    resolution: {integrity: sha512-Bv3gMx/+6Zx9Jt7dFMW2jzIw2xRLoMinU1JGknRj593ucB6dKR1RKMVjB0vpsRkLth1i0ojt4W6/yXISE/Ifrw==}
     dependencies:
-      '@evidence-dev/sdk': 1.3.9(@evidence-dev/universal-sql@2.1.4)(@sveltejs/kit@2.5.4)(perfect-debounce@1.0.0)(svelte@4.2.12)(typescript@5.4.2)
+      '@evidence-dev/sdk': 1.3.10(@evidence-dev/universal-sql@2.1.5)(@sveltejs/kit@2.5.4)(perfect-debounce@1.0.0)(svelte@4.2.12)(typescript@5.4.2)
       '@steeze-ui/simple-icons': 1.9.0
       '@steeze-ui/svelte-icon': 1.5.0(svelte@4.2.12)
       '@steeze-ui/tabler-icons': 2.1.1
@@ -3963,8 +3963,8 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@evidence-dev/core-components@4.7.5(@algolia/client-search@4.24.0)(@codemirror/state@6.4.1)(@evidence-dev/universal-sql@2.1.4)(@lezer/common@1.2.1)(@sveltejs/kit@2.5.4)(search-insights@2.15.0)(storybook@8.2.9)(svelte@4.2.12)(tailwindcss@3.4.10)(typescript@5.4.2)(vitest@1.6.0):
-    resolution: {integrity: sha512-a0e2tFcooFybW41xOs0LrCImbNtjzi6xq6P4pgs+JjjPgIpFIIkvf9WJhZ3K0z26W2IWrE8DlauJCo0WOScmaA==}
+  /@evidence-dev/core-components@4.7.8(@algolia/client-search@4.24.0)(@codemirror/state@6.4.1)(@evidence-dev/universal-sql@2.1.5)(@lezer/common@1.2.1)(@sveltejs/kit@2.5.4)(search-insights@2.15.0)(storybook@8.2.9)(svelte@4.2.12)(tailwindcss@3.4.10)(typescript@5.4.2)(vitest@1.6.0):
+    resolution: {integrity: sha512-w9bjjRvI/sWXSSNlWAziLpWoEWGbhPZALFmg7bo7em8ws8Vz77Z9yYY966CefkgDf1QWnSpc2UTZjEZvcn63Ww==}
     peerDependencies:
       svelte: ^4.2.12
     dependencies:
@@ -3978,7 +3978,7 @@ packages:
       '@codemirror/view': 6.32.0
       '@docsearch/css': 3.6.1
       '@docsearch/js': 3.6.1(@algolia/client-search@4.24.0)(search-insights@2.15.0)
-      '@evidence-dev/component-utilities': 3.2.9(@evidence-dev/universal-sql@2.1.4)(@sveltejs/kit@2.5.4)(perfect-debounce@1.0.0)(typescript@5.4.2)
+      '@evidence-dev/component-utilities': 3.2.10(@evidence-dev/universal-sql@2.1.5)(@sveltejs/kit@2.5.4)(perfect-debounce@1.0.0)(typescript@5.4.2)
       '@evidence-dev/icons': 1.0.1
       '@evidence-dev/tailwind': 2.1.2
       '@internationalized/date': 3.5.5
@@ -4263,6 +4263,76 @@ packages:
       - typescript
     dev: false
 
+  /@evidence-dev/sdk@1.3.10(@evidence-dev/universal-sql@2.1.5)(@sveltejs/kit@2.5.4)(perfect-debounce@1.0.0)(svelte@4.2.12)(typescript@5.4.2):
+    resolution: {integrity: sha512-TFyTHrk60luzej8brmvDfIicmm2j1QZrurSt3/NCVM1cTukefSKV6kJU0/SKIJQXphy35MJ7NTJA1swaa5gGtw==}
+    hasBin: true
+    peerDependencies:
+      '@evidence-dev/universal-sql': 2.1.5
+      perfect-debounce: ^1.0.0
+    dependencies:
+      '@brianmd/citty': 0.0.1
+      '@clack/prompts': 0.7.0
+      '@evidence-dev/icons': 1.0.1
+      '@evidence-dev/telemetry': 2.1.2
+      '@evidence-dev/universal-sql': 2.1.5
+      '@steeze-ui/simple-icons': 1.9.0
+      '@steeze-ui/tabler-icons': 2.1.1
+      '@types/estree': 1.0.5
+      '@types/express': 4.17.21
+      '@types/jsdom': 21.1.7
+      '@types/lodash.chunk': 4.2.9
+      '@types/lodash.merge': 4.6.9
+      '@types/node': 20.14.11
+      '@typescript-eslint/typescript-estree': 6.21.0(typescript@5.4.2)
+      '@uwdata/mosaic-sql': 0.10.0
+      '@vitest/coverage-v8': 1.6.0(vitest@1.6.0)
+      chalk: 5.3.0
+      chokidar: 3.6.0
+      eslint: 8.57.0
+      eslint-config-prettier: 9.1.0(eslint@8.57.0)
+      eslint-plugin-svelte: 2.43.0(eslint@8.57.0)(svelte@4.2.12)
+      estree-walker: 3.0.3
+      express: 4.19.2
+      highlight.js: 11.10.0
+      jsdom: 23.2.0
+      lodash.chunk: 4.2.0
+      lodash.merge: 4.6.2
+      mdsvex: 0.11.2(svelte@4.2.12)
+      nanoid: 5.0.7
+      ora: 8.0.1
+      perfect-debounce: 1.0.0
+      pkg-types: 1.1.3
+      prettier: 3.3.3
+      prettier-plugin-svelte: 3.2.6(prettier@3.3.3)(svelte@4.2.12)
+      recast: 0.23.9
+      svelte-sequential-preprocessor: 2.0.1
+      sveltekit-autoimport: 1.8.1(@sveltejs/kit@2.5.4)
+      vite: 5.2.10(@types/node@20.14.11)
+      vitest: 1.6.0(@types/node@20.14.11)(jsdom@23.2.0)
+      yaml: 2.4.5
+      zod: 3.23.8
+    transitivePeerDependencies:
+      - '@edge-runtime/vm'
+      - '@sveltejs/kit'
+      - '@vitest/browser'
+      - '@vitest/ui'
+      - bufferutil
+      - canvas
+      - encoding
+      - happy-dom
+      - less
+      - lightningcss
+      - sass
+      - stylus
+      - sugarss
+      - supports-color
+      - svelte
+      - terser
+      - ts-node
+      - typescript
+      - utf-8-validate
+    dev: false
+
   /@evidence-dev/sdk@1.3.9(@evidence-dev/universal-sql@2.1.4)(@sveltejs/kit@2.5.4)(perfect-debounce@1.0.0)(svelte@4.2.12)(typescript@5.4.2):
     resolution: {integrity: sha512-RVuB8kjs/Y822AmLknGy25V5e9mtUgSXh1GHHBixPXzLFa4qyDz8JxB95xYCOEVLqfjGHqRN0tWtQsGHMw6lrw==}
     hasBin: true
@@ -4390,6 +4460,18 @@ packages:
 
   /@evidence-dev/universal-sql@2.1.4:
     resolution: {integrity: sha512-GIjBkmz21at85oQMd9YgsRe43A+6x7iAcmkGfnoAF2NW+2NCsN2E7dwQ4xXyaVxYHA08y31Y0NSIUJCZqaORlg==}
+    dependencies:
+      '@duckdb/duckdb-wasm': 1.28.0
+      apache-arrow: 13.0.0
+      chalk: 5.3.0
+      cli-progress: 3.12.0
+      lodash.chunk: 4.2.0
+      parquet-wasm: 0.5.0
+      web-worker: 1.3.0
+    dev: false
+
+  /@evidence-dev/universal-sql@2.1.5:
+    resolution: {integrity: sha512-YVd7y/6cLCeiIZCC+42f0kfZhwZN8GyeodsC3RVetz00G3zoyipUccqIn8734N3Mmd7yd8WpwIS5H9cEni5xxw==}
     dependencies:
       '@duckdb/duckdb-wasm': 1.28.0
       apache-arrow: 13.0.0
