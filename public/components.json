@@ -2578,6 +2578,12 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing information related to the hapmap_file.\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
             "hapmap_file": {
               "type": "file",
               "description": "A list of variable sites to look for heterozygosity."
@@ -5397,6 +5403,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         },
         {
           "name": "rnafusion",
@@ -18835,6 +18845,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -82218,6 +82236,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
