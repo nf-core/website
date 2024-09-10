@@ -106,6 +106,7 @@ const blog = defineCollection({
             shortTitle: z.string().optional(),
             headerImage: z.string().url().optional().or(z.string().startsWith('/assets/images/blog/')).optional(),
             headerImageAlt: z.string().optional(),
+            headerImageDim: z.array(z.number(), z.number()).optional(),
             label: z.array(z.string()),
             pubDate: z.date(),
             authors: z.array(z.string()),
@@ -123,6 +124,12 @@ const blog = defineCollection({
             // Check if headerImage is present but headerImageAlt is not
             if (data.headerImage && !data.headerImageAlt) {
                 throw new Error('Please provide alt text for your `headerImage` in `headerImageAlt`.');
+            }
+            // Check if headerImageDim is present but headerImage is not present or does not start with /assets/
+            if (data.headerImageDim && (!data.headerImage || !data.headerImage.startsWith('/assets/'))) {
+                throw new Error(
+                    'Please provide a `headerImage` that starts with `/assets/` if you are providing `headerImageDim`.',
+                );
             }
             // check that announcement.start is before announcement.end
             if (data.announcement?.start && data.announcement.end) {

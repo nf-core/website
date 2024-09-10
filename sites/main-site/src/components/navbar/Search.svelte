@@ -38,9 +38,9 @@
         --docsearch-footer-background: #{var(--bs-tertiary-bg)};
         --docsearch-muted-color: #{var(--bs-tertiary-emphasis)};
     }
-    // :global(.DocSearch-Modal) {
-    //     background: var(--bs-secondary-bg);
-    // }
+    :global(.DocSearch-Modal) {
+        padding-top: 3.5rem;
+    }
     :global(.DocSearch-Form) {
         border: 1pt solid var(--bs-border-color);
     }

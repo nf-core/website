@@ -32,9 +32,6 @@ export default defineConfig({
     output: 'static',
     adapter: netlify(),
     prefetch: false,
-    experimental: {
-        contentCollectionJsonSchema: true,
-    },
     integrations: [
         svelte(),
         icon({
