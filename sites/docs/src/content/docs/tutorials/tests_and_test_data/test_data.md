@@ -1,6 +1,7 @@
 ---
 title: Guidelines for Test Data
 subtitle: Guidelines for adding test data to nf-core repositories
+weight: 20
 ---
 
 ## Overview
