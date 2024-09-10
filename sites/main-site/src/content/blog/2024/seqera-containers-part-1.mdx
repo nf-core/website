@@ -14,6 +14,14 @@ label:
 embedHeaderImage: false
 ---
 
+import butwhy from '@assets/images/blog/seqera-containers-part-1/simone-secci-49uySSA678U-unsplash.jpg';
+import mulled from '@assets/images/blog/seqera-containers-part-1/hannah-pemberton-bXi4eg4jyuU-unsplash.jpg';
+import chillies from '@assets/images/blog/seqera-containers-part-1/anne-nygard-3tPkwnNRRkI-unsplash.jpg';
+import clock from '@assets/images/blog/seqera-containers-part-1/majid-rangraz-IPMaxeoHXi4-unsplash.jpg';
+import leaves from '@assets/images/blog/seqera-containers-part-1/providence-doucet-mE5MBZX5sko-unsplash.jpg';
+
+import { Image } from 'astro:assets';
+
 In spring 2024, Seqera and AWS launched a new free community resource: Seqera Containers (see [summit talk](https://summit.nextflow.io/2024/boston/agenda/05-23--whats-new-in-the-nextflow/), [blog post](https://seqera.io/blog/introducing-seqera-pipelines-containers/), [podcast](https://nextflow.io/podcast/2024/ep38_seqera_pipelines_containers.html)). Seqera Containers allows anyone to request a container image based on Conda or PyPI packages. The image is built on demand and then saved so that subsequent requests return the exact same container image files.
 
 We intend to adopt Seqera Containers for all nf-core modules and pipelines. In this blog post we'll cover the why, how and what this means for you.
@@ -40,6 +48,8 @@ To ensure maximum compatibility and reproducibility across compute environments,
 The Bioconda and BioContainer projects have been invaluable to the success of nf-core. We're hugely grateful to all contributors for the work that they put in, as well to the Galaxy project for hosting.
 
 ## Why change?
+
+<Image class="d-block ms-3 mb-3 float-end rounded w-25 shadow" src={butwhy} alt="Photo by Simone Secci on Unsplash." />
 
 Bioconda and BioContainers have worked very well for nf-core, so why change now? The motivation comes down to a few key reasons:
 
@@ -135,9 +145,9 @@ Whilst Seqera Containers are built using Wave, we're not suggesting that nf-core
         </tr>
         <tr>
             <td>Long storage duration</td>
-            <td>✅ &dagger;</td>
+            <td>✅ *</td>
             <td>❌ 72 hours cache</td>
-            <td>✅ &dagger;</td>
+            <td>✅ *</td>
         </tr>
         <tr>
             <td>Pull delay for conda packages</td>
@@ -172,11 +182,17 @@ Whilst Seqera Containers are built using Wave, we're not suggesting that nf-core
     </tbody>
 </table>
 
-> &dagger; Forever is a long time, and we're not fortune tellers. To help the community trust the program, Seqera is committing to keeping images for a minimum of 5 years after they're built. BioContainers has no public policy, images will presumably remain until quay.io / Galaxy remove support.
+> \* Forever is a long time, and we're not fortune tellers. To help the community trust the program, Seqera is committing to keeping images for a minimum of 5 years after they're built. BioContainers has no public policy, images will presumably remain until quay.io / Galaxy remove support.
 
 </div>
 
 ### Mulled (multi-package) images
+
+<Image
+    class="d-block ms-3 mb-3 float-end rounded w-25 shadow"
+    src={mulled}
+    alt="Photo by Hannah Pemberton on Unsplash."
+/>
 
 BioContainers is primarily set up to have a 1:1 relationship with Bioconda. This is great for bioinformatics tools: When a package is published, it gets an image. This works well until you need to use more than one tool in a single process, and particularly when the tools are from elsewhere in the conda ecosystem. For example, many bioinformatics tools leverage [samtools](https://www.htslib.org/) to convert file formats or sort reads on the fly. Others may pipe output to compression tools like [pigz](https://zlib.net/pigz/). To resolve this, BioContainers has the concept of “mulled” images (as in [mulled wine](https://en.wikipedia.org/wiki/Mulled_wine)).
 
@@ -199,6 +215,8 @@ BioContainer Docker images are hosted publicly on [quay.io](http://quay.io). Thi
 Seqera serves nf-core as its primary community: as such it should be in a position to respond immediately to any problems or needs. All Seqera Container images (Docker and Singularity) are hosted on custom infrastructure built by Seqera with hosting provided by AWS, so the whole stack is within reach.
 
 ## Potential concerns
+
+<Image class="d-block ms-3 mb-3 float-end rounded w-25 shadow" src={chillies} alt="Photo by Anne Nygård on Unsplash." />
 
 ### Will these be reproducible?
 
@@ -253,6 +271,8 @@ Yes - switching out the container registry base will still work in exactly the s
 
 ## When this will happen
 
+<Image class="d-block ms-3 mb-3 float-end rounded w-25 shadow" src={clock} alt="Photo by Majid Rangraz on Unsplash." />
+
 Seqera Containers can be used in nf-core/modules today, with the old syntax of using a `container` declaration. Before we can start migrating _all_ modules, we need to build:
 
 -   nf-core/tools automation for config file generation, with pipeline template update
@@ -275,3 +295,9 @@ In part-two of this blog post we dive into the details of how we intend to build
 ## In conclusion
 
 We hope that the nf-core community is excited about these proposals, if you have any questions or concerns then please do let us know in the nf-core Slack ❤️
+
+<Image
+    class="d-block ms-3 mb-3 float-end rounded w-100 shadow"
+    src={leaves}
+    alt="Photo by Providence Doucet on Unsplash."
+/>
