@@ -62,13 +62,14 @@ Seqera Containers is built on top of [Wave](https://seqera.io/wave/) - an open-s
 
 Whilst Seqera Containers are built using Wave, we're not suggesting that nf-core pipeline users should interact with Wave directly. We simply want to replace the mechanism for supplying pre-existing container images in pipelines.
 
-<table>
+<div class="small">
+<table class="table table-sm table-hover">
     <thead>
         <tr>
             <td></td>
-            <td>BioContainers</td>
-            <td>Wave</td>
-            <td>Seqera Containers</td>
+            <th>BioContainers</th>
+            <th>Wave</th>
+            <th>Seqera&nbsp;Containers</th>
         </tr>
     </thead>
     <tbody>
@@ -98,13 +99,13 @@ Whilst Seqera Containers are built using Wave, we're not suggesting that nf-core
         </tr>
         <tr>
             <td>Linux aarch64 and arm64</td>
-            <td>⏳In progress</td>
+            <td>⏳ In progress</td>
             <td>✅</td>
             <td>✅</td>
         </tr>
         <tr>
             <td>Multi-package containers</td>
-            <td>✅Mulled</td>
+            <td>✅ Mulled</td>
             <td>✅</td>
             <td>✅</td>
         </tr>
@@ -116,15 +117,15 @@ Whilst Seqera Containers are built using Wave, we're not suggesting that nf-core
         </tr>
         <tr>
             <td>Container build logs</td>
-            <td>❌CI logs short lived</td>
+            <td>❌ CI logs short lived</td>
             <td>✅</td>
             <td>✅</td>
         </tr>
         <tr>
             <td>Docker container security scans</td>
-            <td>✅quay.io</td>
-            <td>✅Trivy</td>
-            <td>✅Trivy</td>
+            <td>✅ quay.io</td>
+            <td>✅ Trivy</td>
+            <td>✅ Trivy</td>
         </tr>
         <tr>
             <td>SBOM manifests (software bill of materials)</td>
@@ -134,20 +135,20 @@ Whilst Seqera Containers are built using Wave, we're not suggesting that nf-core
         </tr>
         <tr>
             <td>Long storage duration</td>
-            <td>✅&Dagger;</td>
-            <td>❌72 hours cache</td>
-            <td>✅&Dagger;</td>
+            <td>✅ &dagger;</td>
+            <td>❌ 72 hours cache</td>
+            <td>✅ &dagger;</td>
         </tr>
         <tr>
             <td>Pull delay for conda packages</td>
-            <td>✅instant</td>
-            <td>❌~2-3 minutes for build on first request</td>
-            <td>✅instant</td>
+            <td>✅ instant</td>
+            <td>❌ ~2-3 minutes for build on first request</td>
+            <td>✅ instant</td>
         </tr>
         <tr>
             <td>Stable image URIs</td>
             <td>✅</td>
-            <td>❌Single-run</td>
+            <td>❌ Single-run</td>
             <td>✅</td>
         </tr>
         <tr>
@@ -171,7 +172,9 @@ Whilst Seqera Containers are built using Wave, we're not suggesting that nf-core
     </tbody>
 </table>
 
-&Dagger; Forever is a long time, and we're not fortune tellers. To help the community trust the program, Seqera is committing to keeping images for a minimum of 5 years after they're built. BioContainers has no public policy, images will presumably remain until quay.io / Galaxy remove support.
+> &dagger; Forever is a long time, and we're not fortune tellers. To help the community trust the program, Seqera is committing to keeping images for a minimum of 5 years after they're built. BioContainers has no public policy, images will presumably remain until quay.io / Galaxy remove support.
+
+</div>
 
 ### Mulled (multi-package) images
 
