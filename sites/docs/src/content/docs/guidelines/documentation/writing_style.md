@@ -61,7 +61,7 @@ You're reading an admonition right now!
 
 ### Code and commands
 
-Use inline code formatting for commands, file names. Use code blocks for longer code snippets, terminal output or commands that should easily be copy-pasted.
+Use inline code formatting for file names or partial commands. Use code blocks for longer code snippets, terminal output, or commands that should easily be copied.
 
 - ✅ _"Use `nextflow run nf-core/pipeline_name{:bash}` to execute the pipeline."_
 - ✅ _"The pipeline can be executed with the following command:"_
