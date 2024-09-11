@@ -12,7 +12,7 @@ Nextflow must be installed on the system where you launch an nf-core pipeline.
 Nextflow can be used on any POSIX-compatible system (Linux, macOS, etc), and on Windows through [WSL](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux). It requires Bash 3.2 (or later) and [Java 11 (or later, up to 22)](https://www.oracle.com/java/technologies/downloads/?er=221886).
 
 :::note
-A personal installation of Nextflow is recommended to simplify updates and version control.
+Use a personal installation of Nextflow where possible, instead of a system-wide installation.
 :::
 
 ### Install Java
@@ -84,7 +84,7 @@ This will create the `nextflow` executable in the current directory.
    nextflow info
    ```
 
-Alternatively, Nextflow can be installed using `conda` via [Bioconda](https://bioconda.github.io/):
+Alternatively, to install Nextflow with [Bioconda](https://bioconda.github.io/), first set up Bioconda according to the [Bioconda documentation](https://bioconda.github.io/#usage), notably setting up channels:
 
 1. Add conda channels:
 
@@ -106,7 +106,7 @@ Alternatively, Nextflow can be installed using `conda` via [Bioconda](https://bi
    ```
 
    :::note
-   To deactivate the `env_nf` conda environment you can use the `conda deactivate` command.
+   Use `conda deactivate env_nf` deactivate the `env_nf` environment.
    :::
 
 ### Update Nextflow
@@ -180,7 +180,7 @@ See [nf-core tools](/docs/nf-core-tools) for more information.
 Analysis pipelines often chain together the execution of multiple tools.
 Historically, all tools would need to be installed manually and was often a source of great frustration and irreproducibility.
 
-nf-core pipelines utilise the built-in support for software packaging that Nextflow offers.
+nf-core pipelines utilise Nextflow's built-in support for software packaging that Nextflow offers.
 Using profiles, software dependencies can be managed through various packaging (e.g., Docker, Singularity, and Conda).
 These ensure that you have the correct tool and version of the tool that each pipeline needs to correctly execute.
 
@@ -190,15 +190,14 @@ The respective tooling for a profile must be installed prior to pipeline executi
 - Needs system administrator for install
 - [Docker](https://docs.docker.com/install/)
   - Typically used locally, on single-user servers, and the cloud
-  - Analysis runs in a _container_, which behaves like an isolated operating system
+  - Analysis runs in a container, which behaves like an isolated operating system
   - Typically requires system root access, though a _"rootless mode"_ is available
-  - Needs system administrator for install
+  - Requires system administrator for install
 - [Singularity](https://www.sylabs.io/)
   - Often used as an alternative to Docker on HPC systems
   - Also runs _containers_, and can optionally create these from Docker images
-  - Does not need root access or any daemon processes
-  - Needs system administrator for install
-  - Needs system administrator for install
+  - Does not require root access or any daemon processes
+  - Requires system administrator for install
 - [Apptainer](https://apptainer.org/)
 
   - Open source version of Singularity (split from Singularity in 2021)
@@ -217,8 +216,8 @@ to the `apptainer` command.
   - Can be installed by any user
   - Can be installed by any user
   - Less reproducible than Docker / Singularity
-    - There can be changes in low-level package dependencies over time
-    - The software still runs in your native operating system environment and so core system functions can differ
+    - Low-level changes in package dependencies may occur over time
+    - Software still runs in your native operating system environment — core system functions may differ
 - [Mamba](https://mamba.readthedocs.io/)
   - A faster implementation of Conda
 
