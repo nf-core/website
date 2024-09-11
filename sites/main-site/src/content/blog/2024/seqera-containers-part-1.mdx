@@ -196,7 +196,7 @@ Whilst Seqera Containers are built using Wave, we're not suggesting that nf-core
     </tbody>
 </table>
 
-> \* Forever is a long time, and we're not fortune tellers. To help the community trust the program, Seqera is committing to keeping images for a minimum of 5 years after they're built. BioContainers has no public policy, images will presumably remain until quay.io / Galaxy remove support.
+> \* Forever is a long time, and we're not fortune tellers. To help the community trust the program, Seqera is committing to keeping images for a minimum of 5 years from the time of their creation. BioContainers has no public policy, images will presumably remain until quay.io / Galaxy remove support.
 
 </div>
 
@@ -236,9 +236,21 @@ Seqera serves nf-core as its primary community: as such it should be in a positi
 
 Because the images are hosted on long-term infrastructure and their URLs are hardcoded into pipeline configuration, they should be highly reproducible. Even if new builds of the same software are created in the future using Wave (for example due to an update in the base infrastructure used by Wave) then the old images are still pinned by the pipeline and will continue to be used, much like the BioContainer URIs used currently.
 
-Because the container URIs are stored in the module-level `meta.yml` file, any pipelines using the same shared nf-core/module will also be using the exact same container images.
+Because the container URIs will be stored in the module-level `meta.yml` file, any pipelines using the same shared nf-core/module will also be using the exact same container images.
 
 We will further improve reproducibility at the conda level by adopting the use of conda lock-files. These pin the exact dependency stack used by the build, not just the top level primary tool being requested. This effectively removes the need for conda to solve the build and also ships md5 hashes for every package. This will greatly improve the reproducibility of the software environments for conda users, as well as improving reliability of Conda CI tests.
+
+```yaml
+# This file may be used to create an environment using:
+# $ conda create --name <env> --file <this file>
+# platform: linux-64
+@EXPLICIT
+https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
+https://conda.anaconda.org/conda-forge/linux-64/libgomp-14.1.0-h77fa898_1.conda#23c255b008c4f2ae008f81edcabaca89
+https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_gnu.tar.bz2#73aaf86a425cc6e73fcf236a5a46396d
+https://conda.anaconda.org/conda-forge/linux-64/libgcc-14.1.0-h77fa898_1.conda#002ef4463dd1e2b44a94a4ace468f5d2
+# .. truncated ..
+```
 
 ### How can I trust the container image?
 
