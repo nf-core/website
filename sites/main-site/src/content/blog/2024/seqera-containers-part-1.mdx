@@ -43,7 +43,9 @@ The key takeaways of this article are:
 
 Software containers are a fundamental part of modern bioinformatics workflows. Nextflow supports multiple container platforms, but the two most commonly used are Docker and Singularity. The concept is simple: all of the software requirements for a specific Nextflow process are wrapped up into a container image and referenced within the pipeline code. The process tasks run in isolation of the host environment and the end user doesn't need to worry about installing software dependencies for the pipeline. Best of all, the software builds are locked in time making results highly reproducible over many years.
 
-To ensure maximum compatibility and reproducibility across compute environments, nf-core modules are typically set up with a conda `environment.yml`, listing software package dependencies from [Bioconda](https://bioconda.github.io/) for conda users. The nf-core module developer then finds the matching [BioContainer](https://biocontainers.pro/) image URLs, which are then hardcoded into the module's `main.nf` script. The BioContainers project automatically builds Docker and Singularity images whenever a new tool is released on Bioconda, hosting the images publicly on [quay.io](quay.io) and the Galaxy FTP servers, respectively.
+To ensure maximum compatibility and reproducibility across compute environments, nf-core modules are typically set up with a conda `environment.yml`, listing software package dependencies from [Bioconda](https://bioconda.github.io/) for conda users.
+The BioContainers project automatically builds Docker and Singularity images whenever a new tool is released on Bioconda, hosting the images publicly on [quay.io](quay.io) and the Galaxy FTP servers, respectively.
+The nf-core module developer finds the matching [BioContainer](https://biocontainers.pro/) image URLs, which they hardcode into the module's `main.nf` script.
 
 The Bioconda and BioContainer projects have been invaluable to the success of nf-core. We're hugely grateful to all contributors for the work that they put in, as well to the Galaxy project for hosting.
 
