@@ -261,7 +261,7 @@ By migrating to Seqera Containers we will have similar automation when linting m
 
 BioContainer Docker images are hosted publicly on [quay.io](http://quay.io). This service is provided free of charge, however in recent years we have had some reliability issues. This becomes more noticeable as the community grows and the number of users trying to pull images increases. Because quay.io is a huge service for whom we are only a tiny player, we have no recourse when this happens and have to just wait until it becomes available again.
 
-Seqera serves nf-core as its primary community: as such it should be in a position to respond immediately to any problems or needs. All Seqera Container images (Docker and Singularity) are hosted on custom infrastructure built by Seqera with hosting provided by AWS, so the whole stack is within reach.
+Seqera serves nf-core as its primary community: they will respond immediately to any problems or needs. All Seqera Container images (Docker and Singularity) are hosted on custom infrastructure built by Seqera with hosting provided by AWS, so the whole stack is within reach.
 
 ## Potential concerns
 
@@ -341,7 +341,7 @@ Yes - switching out the container registry base will still work in exactly the s
 
 ### Users
 
-If you're using nf-core pipelines but not developing them, then nothing should really change! All nf-core modules and pipelines should start supporting linux/arm64 CPU architectures, such as AWS Graviton / Raspberry Pis(!). Conda users should benefit from faster environment resolution and more stable software thanks to use of the lock files. You may see a slight improvement in stability as we phase out our usage of quay.io, but this is minor and mostly only affects people running at high scale.
+If you're using nf-core pipelines but not developing them, then nothing should really change! All nf-core modules and pipelines should start supporting linux/arm64 CPU architectures, such as AWS Graviton / Raspberry Pis(!). Conda users should benefit from faster environment resolution, with more reproducible and stable software thanks to use of the lock files. Finally, the failure rate of docker pulls will improve as we phase out our usage of quay.io.
 
 ### Developers
 
