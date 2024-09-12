@@ -28,7 +28,11 @@ import { Image } from 'astro:assets';
 
 Dear nf-core community, the core team would like to inform you about some upcoming changes in how we would like to handle software containers... :package:
 
-Software containers are a fundamental part of modern bioinformatics workflows. Nextflow supports multiple container platforms, but the two most commonly used are Docker and Singularity. When using containers, all software requirements for a specific Nextflow process are wrapped up into an image and referenced within the pipeline code. The process tasks run in isolation in the host environment, and the end user doesn't need to worry about installing software dependencies for the pipeline. The software builds are locked in time, making results highly reproducible over many years.
+Software containers are a fundamental part of modern bioinformatics workflows.
+Nextflow supports multiple container platforms, but the two most commonly used are Docker and Singularity.
+When using containers, all software requirements for a specific Nextflow process are wrapped up into an image and referenced within the pipeline code.
+The process tasks run in isolation in the host environment, and the end user doesn't need to worry about installing software dependencies for the pipeline.
+The software builds are locked in time, making results highly reproducible over many years.
 
 To ensure maximum compatibility across different environments, nf-core modules are typically set up with a conda `environment.yml`, listing software package dependencies from [Bioconda](https://bioconda.github.io/).
 The [BioContainers project](https://biocontainers.pro/) conveniently builds Docker and Singularity images for all tools on Bioconda automatically, hosting the images publicly on [quay.io](quay.io) and the Galaxy FTP servers, respectively.
@@ -41,7 +45,8 @@ We're hugely grateful to all contributors for their work and to the Galaxy proje
 
 <Image class="d-block ms-3 mb-3 float-end rounded w-25 shadow" src={butwhy} alt="Photo by Simone Secci on Unsplash." />
 
-Bioconda and BioContainers have worked very well for nf-core. However, we are now looking to migrate to a new system: Seqera Containers.
+Bioconda and BioContainers have worked very well for nf-core.
+However, we are now looking to migrate to a new system: Seqera Containers.
 
 The motivation comes down to a few key reasons:
 
@@ -67,7 +72,8 @@ core team and then maintainers team (see the [nf-core governance structure](/gov
 At each step, the discussion informed the planned infrastructure and setup for this change, as well as the development of Seqera Containers and Wave.
 
 :::tip{title="What's changing"}
-A detailed description of the proposed mechanism will come in part 2 of this blog post. Here are the key points:
+A detailed description of the proposed mechanism will come in part 2 of this blog post.
+Here are the key points:
 
 -   Developers will _only_ need to edit the conda `environment.yml` (no process `container`)
 -   Container images will be built by Wave and stored in Seqera Containers
@@ -89,7 +95,8 @@ Several steps are needed to complete this migration:
 If all goes to plan, we hope to have all modules updated by the end of 2024.
 This work will be tracked in GitHub issues as usual,
 starting with [nf-core/modules#5832](https://github.com/nf-core/modules/issues/5832).
-This issue has already had a substantial amount of discussion, much of which has informed this blog post. It's not too late to add your feedback! So if you have any questions or ideas, let us know on Github or Slack.
+This issue has already had a substantial amount of discussion, much of which has informed this blog post.
+It's not too late to add your feedback! So if you have any questions or ideas, let us know on Github or Slack.
 
 Note that images from Seqera Containers can already be used in nf-core/modules, with the old syntax of using a `container` declaration.
 
@@ -109,13 +116,20 @@ Note that images from Seqera Containers can already be used in nf-core/modules, 
 [AWS blog post + podcast](https://aws.amazon.com/blogs/hpc/announcing-seqera-containers-for-the-bioinformatics-community/),
 and the [Nextflow Channels podcast](https://nextflow.io/podcast/2024/ep38_seqera_pipelines_containers.html) for more information).
 
-Seqera Containers allows anyone to request a container image based on Conda or PyPI packages. The image is built on demand and then saved so that subsequent requests return the exact same container image files.
+Seqera Containers allows anyone to request a container image based on Conda or PyPI packages.
+The image is built on demand and then saved so that subsequent requests return the exact same container image files.
 
-The Seqera Containers service has a lot in common with BioContainers. Both generate Docker and Singularity images from Bioconda. The main difference is _when_ those builds happen.
+The Seqera Containers service has a lot in common with BioContainers.
+Both generate Docker and Singularity images from Bioconda.
+The main difference is _when_ those builds happen.
 
-Seqera Containers is built on top of [Wave](https://seqera.io/wave/) - an open-source tool developed by Seqera for **on-demand** generation of containers. When a new tool or version is requested, Wave builds a container using Conda and returns it. In contrast, BioContainers runs a build when a new package is created on Bioconda. Building on-demand gives greater flexibility and scalability, especially for multi-tool containers.
+Seqera Containers is built on top of [Wave](https://seqera.io/wave/) - an open-source tool developed by Seqera for **on-demand** generation of containers.
+When a new tool or version is requested, Wave builds a container using Conda and returns it.
+In contrast, BioContainers runs a build when a new package is created on Bioconda.
+Building on-demand gives greater flexibility and scalability, especially for multi-tool containers.
 
-nf-core pipeline users won't need to interact with Wave directly. We simply plan to replace the mechanism for supplying the default container images specified in pipelines.
+nf-core pipeline users won't need to interact with Wave directly.
+We simply plan to replace the mechanism for supplying the default container images specified in pipelines.
 
 :::info{title="Feature comparison"}
 
@@ -246,25 +260,54 @@ Here's a brief comparison of the features:
     alt="Photo by Hannah Pemberton on Unsplash."
 />
 
-BioContainers is primarily set up to have a 1:1 relationship with Bioconda. This is great for bioinformatics tools as an image is created every time a package is published. This works well until you need to use more than one tool in a single process, particularly when the tools are from elsewhere in the conda ecosystem. For example, many bioinformatics tools leverage [samtools](https://www.htslib.org/) to convert file formats or sort reads on the fly. Others may pipe output to compression tools like [pigz](https://zlib.net/pigz/). To resolve this, BioContainers has the concept of “mulled” images (as in [mulled wine](https://en.wikipedia.org/wiki/Mulled_wine)).
+BioContainers is primarily set up to have a 1:1 relationship with Bioconda.
+This is great for bioinformatics tools as an image is created every time a package is published.
+This works well until you need to use more than one tool in a single process, particularly when the tools are from elsewhere in the conda ecosystem.
+For example, many bioinformatics tools leverage [samtools](https://www.htslib.org/) to convert file formats or sort reads on the fly.
+Others may pipe output to compression tools like [pigz](https://zlib.net/pigz/).
+To resolve this, BioContainers has the concept of “mulled” images (as in [mulled wine](https://en.wikipedia.org/wiki/Mulled_wine)).
 
-Unfortunately, generating mulled containers is not trivial. Luke Pembleton, Nextflow Ambassador, has a great blog post summarising the dark art of [Finding the right mulled biocontainer](https://lpembleton.rbind.io/posts/mulled-biocontainers/). Galaxy also has [documentation on the topic](https://docs.galaxyproject.org/en/master/admin/container_resolvers.html). In short, to request an image, you need to scroll the way to the bottom of a large [CSV file full of hashes](https://github.com/BioContainers/multi-package-containers/blob/master/combinations/hash.tsv) and add a line with your requested conda packages. Once edited, the images are built on CI. It used to be that you had to hunt through the GitHub action log to find the URI for your new container. However, [Moriz E. Beber](https://github.com/Midnighter) from the nf-core community has created a webpage to [generate the name of the mulled container](https://midnighter.github.io/mulled) which gently guides you through the process of finding the name of your container and how to update a container if you want to bump the software versions. Once the image is built and you know its address, the final step is to go to nf-core/modules, create a pull-request with the updated containers, and bump the versions in the conda `environment.yml`.
+Unfortunately, generating mulled containers is not trivial.
+Luke Pembleton, Nextflow Ambassador, has a great blog post summarising the dark art of [Finding the right mulled biocontainer](https://lpembleton.rbind.io/posts/mulled-biocontainers/).
+Galaxy also has [documentation on the topic](https://docs.galaxyproject.org/en/master/admin/container_resolvers.html).
+In short, to request an image, you need to scroll the way to the bottom of a large [CSV file full of hashes](https://github.com/BioContainers/multi-package-containers/blob/master/combinations/hash.tsv) and add a line with your requested conda packages.
+Once edited, the images are built on CI.
+It used to be that you had to hunt through the GitHub action log to find the URI for your new container.
+However, [Moriz E.
+Beber](https://github.com/Midnighter) from the nf-core community has created a webpage to [generate the name of the mulled container](https://midnighter.github.io/mulled) which gently guides you through the process of finding the name of your container and how to update a container if you want to bump the software versions.
+Once the image is built and you know its address, the final step is to go to nf-core/modules, create a pull-request with the updated containers, and bump the versions in the conda `environment.yml`.
 
-This system works and, despite its complexity, is now a familiar process to many nf-core developers. However, it does present some problems. It's a highly manual process to update software versions and the container declarations – just fetching the software for a module often ends up taking longer than writing the entire module. There are also significant delays in waiting for the images to become available. All in all, it can be a frustrating experience and we see this in the volume of Slack messages asking for help. It seems likely that this puts some people off from contributing to nf-core.
+This system works and, despite its complexity, is now a familiar process to many nf-core developers.
+However, it does present some problems.
+It's a highly manual process to update software versions and the container declarations - just fetching the software for a module often ends up taking longer than writing the entire module.
+There are also significant delays in waiting for the images to become available.
+All in all, it can be a frustrating experience and we see this in the volume of Slack messages asking for help.
+It seems likely that this puts some people off from contributing to nf-core.
 
-Migrating nf-core to use Seqera Containers will make provisioning multi-package containers trivial. The module developer will only need to edit the module `environment.yml` file and everything else will be fully automated and made available almost immediately. Packages can be used minutes after their release on Bioconda and we will have automation in place to bump the Conda + Seqera Containers packages when a tool is updated.
+Migrating nf-core to use Seqera Containers will make provisioning multi-package containers trivial.
+The module developer will only need to edit the module `environment.yml` file and everything else will be fully automated and made available almost immediately.
+Packages can be used minutes after their release on Bioconda and we will have automation in place to bump the Conda + Seqera Containers packages when a tool is updated.
 
 ### BioContainers API
 
-To simplify adding single-package BioContainer images to nf-core modules, we have developed the nf-core/tools package to query the BioContainer API for a given tool version and fetch the image URIs. This process is repeated during linting of nf-core modules and pipelines, to ensure that there is not an accidental mismatch between Conda and Docker / Singularity software versions. Unfortunately, the BioContainer API has had a history of being slow and unreliable, with a lot of down time (204 error message anyone?). This has the knock-on effect of causing many CI tests to fail, which is frustrating and delays the process of pull-request merges.
+To simplify adding single-package BioContainer images to nf-core modules, we have developed the nf-core/tools package to query the BioContainer API for a given tool version and fetch the image URIs.
+This process is repeated during linting of nf-core modules and pipelines, to ensure that there is not an accidental mismatch between Conda and Docker / Singularity software versions.
+Unfortunately, the BioContainer API has had a history of being slow and unreliable, with a lot of down time (204 error message anyone?).
+This has the knock-on effect of causing many CI tests to fail, which is frustrating and delays the process of pull-request merges.
 
-By migrating to Seqera Containers we will have similar automation when linting modules, but it will use the Seqera Wave API instead. This has been built to scale to very high volumes and has an extensive and robust back-end with a high degree of monitoring. Note that the Wave API will _not_ be used when people run nf-core pipelines, this is only developers running linting and GitHub Actions automation during development.
+By migrating to Seqera Containers we will have similar automation when linting modules, but it will use the Seqera Wave API instead.
+This has been built to scale to very high volumes and has an extensive and robust back-end with a high degree of monitoring.
+Note that the Wave API will _not_ be used when people run nf-core pipelines, this is only developers running linting and GitHub Actions automation during development.
 
 ### Reliability of hosting
 
-BioContainer Docker images are hosted publicly on [quay.io](http://quay.io). This service is provided free of charge, however in recent years we have had some reliability issues. This becomes more noticeable as the community grows and the number of users trying to pull images increases. Because quay.io is a huge service for whom we are only a tiny player, we have no recourse when this happens and have to just wait until it becomes available again.
+BioContainer Docker images are hosted publicly on [quay.io](http://quay.io).
+This service is provided free of charge, however in recent years we have had some reliability issues.
+This becomes more noticeable as the community grows and the number of users trying to pull images increases.
+Because quay.io is a huge service for whom we are only a tiny player, we have no recourse when this happens and have to just wait until it becomes available again.
 
-Seqera serves nf-core as its primary community: they will respond immediately to any problems or needs. All Seqera Container images (Docker and Singularity) are hosted on custom infrastructure built by Seqera with hosting provided by AWS, so the whole stack is within reach.
+Seqera serves nf-core as its primary community: they will respond immediately to any problems or needs.
+All Seqera Container images (Docker and Singularity) are hosted on custom infrastructure built by Seqera with hosting provided by AWS, so the whole stack is within reach.
 
 ## Potential concerns
 
@@ -272,11 +315,15 @@ Seqera serves nf-core as its primary community: they will respond immediately to
 
 ### Will these be reproducible?
 
-Seqera container images are hosted on long-term infrastructure and because their URLs will be hardcoded into pipeline configuration, they should be highly reproducible. Even if new builds of the same software are created in the future using Wave (for example due to an update in the base infrastructure used by Wave) then the old images are still pinned by the pipeline and will continue to be used, much like the BioContainer URIs used currently.
+Seqera container images are hosted on long-term infrastructure and because their URLs will be hardcoded into pipeline configuration, they should be highly reproducible.
+Even if new builds of the same software are created in the future using Wave (for example due to an update in the base infrastructure used by Wave) then the old images are still pinned by the pipeline and will continue to be used, much like the BioContainer URIs used currently.
 
 As container URIs will be stored in the module-level `meta.yml` file, any pipelines using the same shared nf-core/module will also be using the exact same container images.
 
-We will further improve reproducibility at the conda level by adopting the use of conda lock-files. These pin the exact dependency stack used by the build, not just the top-level primary tool being requested. This effectively removes the need for conda to solve the build and also ships md5 hashes for every package. This will greatly improve the reproducibility of the software environments for conda users and the reliability of Conda CI tests.
+We will further improve reproducibility at the conda level by adopting the use of conda lock-files.
+These pin the exact dependency stack used by the build, not just the top-level primary tool being requested.
+This effectively removes the need for conda to solve the build and also ships md5 hashes for every package.
+This will greatly improve the reproducibility of the software environments for conda users and the reliability of Conda CI tests.
 
 ```yaml
 # This file may be used to create an environment using:
@@ -287,16 +334,21 @@ https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.ta
 https://conda.anaconda.org/conda-forge/linux-64/libgomp-14.1.0-h77fa898_1.conda#23c255b008c4f2ae008f81edcabaca89
 https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_gnu.tar.bz2#73aaf86a425cc6e73fcf236a5a46396d
 https://conda.anaconda.org/conda-forge/linux-64/libgcc-14.1.0-h77fa898_1.conda#002ef4463dd1e2b44a94a4ace468f5d2
-# .. truncated ..
+# ..
+truncated ..
 ```
 
 ### How can I trust the container image?
 
-Reproducibility is one thing, but it's also important that the images we use can be trusted and are secure. Users and developers must be able to verify that the contents of the container match the `environment.yml` for the module.
+Reproducibility is one thing, but it's also important that the images we use can be trusted and are secure.
+Users and developers must be able to verify that the contents of the container match the `environment.yml` for the module.
 
-The first point of trust is the `community.wave.seqera.io` base URI. This is only used for Seqera Containers and only `wave.seqera.io` is able to push images. It is also more locked-down than regular Wave, only allowing Conda builds and not custom Dockerfiles or augmented images.
+The first point of trust is the `community.wave.seqera.io` base URI.
+This is only used for Seqera Containers and only `wave.seqera.io` is able to push images.
+It is also more locked-down than regular Wave, only allowing Conda builds and not custom Dockerfiles or augmented images.
 
-Second, the image URI includes a tag that has a hash of the input files used to request the image. Consider the image for MultiQC v1.24.1:
+Second, the image URI includes a tag that has a hash of the input files used to request the image.
+Consider the image for MultiQC v1.24.1:
 
 The final `789bc3917c8666da` part is the hash - from this we can infer the Wave Build ID and retrieve the build details: [https://wave.seqera.io/view/builds/789bc3917c8666da_1](https://wave.seqera.io/view/builds/789bc3917c8666da_1)
 
@@ -317,38 +369,50 @@ This will allow us to embed a lot of audit data for quick reference:
 
 The conda lock files also allow enhanced reproducibility for Conda users and more stable CI tests - we'll come back to these in a future blog post / bytesize.
 
-Finally, the image creation will happen automatically on GitHub Actions when an `environment.yml` file is edited. This means that the entire flow from conda file through to final containers will be entirely transparent, as the request to Wave itself and its response will be available in the GitHub Actions logs.
+Finally, the image creation will happen automatically on GitHub Actions when an `environment.yml` file is edited.
+This means that the entire flow from conda file through to final containers will be entirely transparent, as the request to Wave itself and its response will be available in the GitHub Actions logs.
 
 ### What if we change our minds?
 
-Using Seqera Containers does not mean that nf-core will be locked into using Seqera tooling. The suggested implementation has two components:
+Using Seqera Containers does not mean that nf-core will be locked into using Seqera tooling.
+The suggested implementation has two components:
 
-1. Automated on-demand generation of container images using Wave
-2. Long term hosting images on Seqera Containers
+1.  Automated on-demand generation of container images using Wave
+2.  Long term hosting images on Seqera Containers
 
-The tooling for image generation is [open-source](https://github.com/seqeralabs/wave). Seqera is hosting this API and build service for us for free, but there's nothing to stop us from hosting the same API ourselves in the future. As such, there is no lock-in on this API or any tooling we will write around it.
+The tooling for image generation is [open-source](https://github.com/seqeralabs/wave).
+Seqera is hosting this API and build service for us for free, but there's nothing to stop us from hosting the same API ourselves in the future.
+As such, there is no lock-in on this API or any tooling we will write around it.
 
-Long-term hosting is more fixed, but again Wave is designed to work with _any_ container registry. So if we want to change in the future we simply flip a configuration value and the generated images will be stored (“frozen”) at an alternative registry of our choosing. Old pipelines would need to have their configuration overwritten to use a different base registry, but this is a relatively simple step.
+Long-term hosting is more fixed, but again Wave is designed to work with _any_ container registry.
+So if we want to change in the future we simply flip a configuration value and the generated images will be stored (“frozen”) at an alternative registry of our choosing.
+Old pipelines would need to have their configuration overwritten to use a different base registry, but this is a relatively simple step.
 
-In other words, this is the same situation that we have currently with BioContainers and quay.io / Galaxy hosting. The nf-core community will remain free to pick and choose hosting solutions as needed.
+In other words, this is the same situation that we have currently with BioContainers and quay.io / Galaxy hosting.
+The nf-core community will remain free to pick and choose hosting solutions as needed.
 
 ### Edge cases
 
-Not all tools can use Biocontainers, and we're aware of some special-case packages that have only bespoke Docker images. These will continue to work as they do today.
+Not all tools can use Biocontainers, and we're aware of some special-case packages that have only bespoke Docker images.
+These will continue to work as they do today.
 
 ### Can I still use my custom registry?
 
-Yes - switching out the container registry base will still work in exactly the same way as it does today. You'll also be able to use Wave with these images in Seqera Containers if you wish - for example to mirror to your custom container registry, or augment with additional tools such as Seqera Fusion.
+Yes - switching out the container registry base will still work in exactly the same way as it does today.
+You'll also be able to use Wave with these images in Seqera Containers if you wish - for example to mirror to your custom container registry, or augment with additional tools such as Seqera Fusion.
 
 ## What this means for you
 
 ### Users
 
-If you're using nf-core pipelines but not developing them, then nothing should really change! All nf-core modules and pipelines should start supporting linux/arm64 CPU architectures, such as AWS Graviton / Raspberry Pis(!). Conda users should benefit from faster environment resolution, with more reproducible and stable software thanks to use of the lock files. Finally, the failure rate of docker pulls will improve as we phase out our usage of quay.io.
+If you're using nf-core pipelines but not developing them, then nothing should really change! All nf-core modules and pipelines should start supporting linux/arm64 CPU architectures, such as AWS Graviton / Raspberry Pis(!).
+Conda users should benefit from faster environment resolution, with more reproducible and stable software thanks to use of the lock files.
+Finally, the failure rate of docker pulls will improve as we phase out our usage of quay.io.
 
 ### Developers
 
-If you're a maintainer of a pipeline that uses nf-core/modules, this means that your life is about to get easier! Never again will you need to try to figure out how to make a mulled image, or wonder when your Singularity image build will be available. New software releases can be used with modules within minutes of release and most updates should happen automatically - freeing up maintainers from having to deal with routine package updates and reviews.
+If you're a maintainer of a pipeline that uses nf-core/modules, this means that your life is about to get easier! Never again will you need to try to figure out how to make a mulled image, or wonder when your Singularity image build will be available.
+New software releases can be used with modules within minutes of release and most updates should happen automatically - freeing up maintainers from having to deal with routine package updates and reviews.
 
 In part-two of this blog post we dive into the details of how we intend to build this tooling infrastructure in nf-core, so please check that out if you're interested.
 
