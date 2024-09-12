@@ -25,7 +25,8 @@ import AnnouncementBanner from '@components/navbar/AnnouncementBanner.astro';
                 </div>
             </h1>
             <p class="lead font-weight-normal">
-                A community effort to collect a curated set of analysis pipelines built using Nextflow.
+                A community effort to collect a curated set of open&#8209;source analysis pipelines built using
+                Nextflow.
             </p>
             <div class="homepage-cta-flex mb-5">
                 <a class="homepage-cta text-decoration-none" href="/pipelines/">View Pipelines</a>
@@ -38,14 +39,14 @@ import AnnouncementBanner from '@components/navbar/AnnouncementBanner.astro';
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-4 col-xl-3 py-3 py-md-5 px-md-4">
-                    <Icon name="industry-alt" class="text-white" height="60pt" width="80pt" />
+                    <Icon name="industry-alt" class="text-white" height={80} width={110} />
                     <h3 class="text-white">For facilities</h3>
                     <p class="lead">
                         Highly optimised pipelines with excellent reporting. Validated releases ensure reproducibility.
                     </p>
                 </div>
                 <div class="col-md-4 col-xl-3 py-3 py-md-5 px-md-4">
-                    <Icon name="users" class="text-white" height="60pt" width="80pt" />
+                    <Icon name="users" class="text-white" height={80} width={110} />
 
                     <h3 class="text-white">For users</h3>
                     <p class="lead">
@@ -53,7 +54,7 @@ import AnnouncementBanner from '@components/navbar/AnnouncementBanner.astro';
                     </p>
                 </div>
                 <div class="col-md-4 col-xl-3 py-3 py-md-5 px-md-4">
-                    <Icon name="laptop-code" class="text-white" height="60pt" width="80pt" />
+                    <Icon name="laptop-code" class="text-white" height={80} width={110} />
                     <h3 class="text-white">For developers</h3>
                     <p class="lead">
                         Companion templates and tools help to validate your code and simplify common tasks.
@@ -62,7 +63,7 @@ import AnnouncementBanner from '@components/navbar/AnnouncementBanner.astro';
             </div>
             <div>
                 <p class="d-flex position-relative justify-content-center text-white m-0 pb-3">
-                    <Icon name="logos/nature_biotech" class="float-start me-3" height="60px" width="60px" />
+                    <Icon name="logos/nature_biotech" class="float-start me-3" height={60} width={60} />
                     <a
                         class="text-white stretched-link text-decoration-none d-flex flex-column justify-content-center"
                         href="https://doi.org/10.1038/s41587-020-0439-x"
@@ -71,7 +72,7 @@ import AnnouncementBanner from '@components/navbar/AnnouncementBanner.astro';
                         nf-core is published in Nature Biotechnology!
                         <span class="underline m-auto"
                             ><em>Nat Biotechnol</em>
-                            <strong> 38</strong>, 276–278 (2020).
+                            <strong> 38</strong>, 276-278 (2020).
                         </span>
                     </a>
                 </p>
@@ -100,9 +101,14 @@ import AnnouncementBanner from '@components/navbar/AnnouncementBanner.astro';
                 </HomepageCard>
             </div>
             <div class="col">
-                <HomepageCard title="Stable Releases" icon="line-md:check-list-3-twotone" icon_class="text-success">
-                    nf-core pipelines use GitHub releases to tag stable versions of the code and software, making
-                    pipeline runs totally reproducible.
+                <HomepageCard
+                    title="Open source"
+                    name="opensource"
+                    icon="cib:open-source-initiative"
+                    icon_class="text-success"
+                >
+                    All nf-core code is licensed under the MIT license and is available on GitHub. Pipelines can be used
+                    as they are or forked and modified as needed.
                 </HomepageCard>
             </div>
 
@@ -125,6 +131,11 @@ import AnnouncementBanner from '@components/navbar/AnnouncementBanner.astro';
                 </HomepageCard>
             </div>
         </div>
+    </div>
+
+    <div class="container pb-5 text-center lead" id="features">
+        <p>nf-core pipelines are <strong>community owned</strong>.</p>
+        <p>Everyone is welcome to contribute, and maintainers can change over time.</p>
     </div>
 
     <div class="bg-body-tertiary pt-4 pb-5">
