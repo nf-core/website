@@ -54,12 +54,12 @@ The motivation comes down to a few key reasons:
     -   Mulled (multi-package) images
     -   Reliability of hosting
     -   BioContainers API
+-   New features we'd like
+    -   Conda lock files
+    -   Simplified developer workflow
+    -   Better transparency
 
-With the new Seqera Containers setup we should be able to address these problems, as well as provide some additional features:
-
--   Conda lock files
--   Simplified developer workflow
--   Better transparency
+With the new Seqera Containers setup we should be able to address these problems, as well as provide the additional features.
 
 This move has been in the works for over a year now.
 It started with discussions between nf-core maintainers and Seqera developers about what the community needed.
@@ -83,7 +83,7 @@ Here are the key points:
 -   There should be almost no change in how end-users run nf-core pipelines
     :::
 
-:::info{.fa-clock title="Timeline"}
+:::info{.fa-calendar-lines-pen title="Timeline" collapse}
 
 Several steps are needed to complete this migration:
 
@@ -131,7 +131,7 @@ Building on-demand gives greater flexibility and scalability, especially for mul
 nf-core pipeline users won't need to interact with Wave directly.
 We simply plan to replace the mechanism for supplying the default container images specified in pipelines.
 
-:::info{title="Feature comparison"}
+:::info{.fa-list-check title="Feature comparison" collapse}
 
 It's important to distinguish the differences between Wave and Seqera Containers.
 Here's a brief comparison of the features:
@@ -266,16 +266,26 @@ This works well until you need to use more than one tool in a single process, pa
 For example, many bioinformatics tools leverage [samtools](https://www.htslib.org/) to convert file formats or sort reads on the fly.
 Others may pipe output to compression tools like [pigz](https://zlib.net/pigz/).
 To resolve this, BioContainers has the concept of “mulled” images (as in [mulled wine](https://en.wikipedia.org/wiki/Mulled_wine)).
-
 Unfortunately, generating mulled containers is not trivial.
-Luke Pembleton, Nextflow Ambassador, has a great blog post summarising the dark art of [Finding the right mulled biocontainer](https://lpembleton.rbind.io/posts/mulled-biocontainers/).
+
+:::tip{title="How to make a mulled BioContainer" collapse}
+Luke Pembleton, Nextflow Ambassador, has a great blog post summarising the dark art of
+[Finding the right mulled biocontainer](https://lpembleton.rbind.io/posts/mulled-biocontainers/).
 Galaxy also has [documentation on the topic](https://docs.galaxyproject.org/en/master/admin/container_resolvers.html).
-In short, to request an image, you need to scroll the way to the bottom of a large [CSV file full of hashes](https://github.com/BioContainers/multi-package-containers/blob/master/combinations/hash.tsv) and add a line with your requested conda packages.
+
+In short, to request an image, you need to scroll to the bottom of a large
+[CSV file full of hashes](https://github.com/BioContainers/multi-package-containers/blob/master/combinations/hash.tsv)
+and add a line with your requested conda packages.
 Once edited, the images are built on CI.
+
 It used to be that you had to hunt through the GitHub action log to find the URI for your new container.
-However, [Moriz E.
-Beber](https://github.com/Midnighter) from the nf-core community has created a webpage to [generate the name of the mulled container](https://midnighter.github.io/mulled) which gently guides you through the process of finding the name of your container and how to update a container if you want to bump the software versions.
-Once the image is built and you know its address, the final step is to go to nf-core/modules, create a pull-request with the updated containers, and bump the versions in the conda `environment.yml`.
+However, [Moriz E. Beber](https://github.com/Midnighter) from the nf-core community has created a webpage to
+[generate the name of the mulled container](https://midnighter.github.io/mulled) which gently guides you through
+the process of finding the name of your container and how to update a container if you want to bump the software versions.
+
+Once the image is built and you know its address, the final step is to go to nf-core/modules,
+create a pull-request with the updated containers, and bump the versions in the conda `environment.yml`.
+:::
 
 This system works and, despite its complexity, is now a familiar process to many nf-core developers.
 However, it does present some problems.
@@ -309,11 +319,11 @@ Because quay.io is a huge service for whom we are only a tiny player, we have no
 Seqera serves nf-core as its primary community: they will respond immediately to any problems or needs.
 All Seqera Container images (Docker and Singularity) are hosted on custom infrastructure built by Seqera with hosting provided by AWS, so the whole stack is within reach.
 
-## Potential concerns
+## Key features
 
 <Image class="d-block ms-3 mb-3 float-end rounded w-25 shadow" src={chillies} alt="Photo by Anne Nygård on Unsplash." />
 
-### Will these be reproducible?
+### Exceptionally reproducible
 
 Seqera container images are hosted on long-term infrastructure and because their URLs will be hardcoded into pipeline configuration, they should be highly reproducible.
 Even if new builds of the same software are created in the future using Wave (for example due to an update in the base infrastructure used by Wave) then the old images are still pinned by the pipeline and will continue to be used, much like the BioContainer URIs used currently.
@@ -334,11 +344,10 @@ https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.ta
 https://conda.anaconda.org/conda-forge/linux-64/libgomp-14.1.0-h77fa898_1.conda#23c255b008c4f2ae008f81edcabaca89
 https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_gnu.tar.bz2#73aaf86a425cc6e73fcf236a5a46396d
 https://conda.anaconda.org/conda-forge/linux-64/libgcc-14.1.0-h77fa898_1.conda#002ef4463dd1e2b44a94a4ace468f5d2
-# ..
-truncated ..
+# .. truncated ..
 ```
 
-### How can I trust the container image?
+### Trust and transparency
 
 Reproducibility is one thing, but it's also important that the images we use can be trusted and are secure.
 Users and developers must be able to verify that the contents of the container match the `environment.yml` for the module.
@@ -348,18 +357,7 @@ This is only used for Seqera Containers and only `wave.seqera.io` is able to pus
 It is also more locked-down than regular Wave, only allowing Conda builds and not custom Dockerfiles or augmented images.
 
 Second, the image URI includes a tag that has a hash of the input files used to request the image.
-Consider the image for MultiQC v1.24.1:
-
-The final `789bc3917c8666da` part is the hash - from this we can infer the Wave Build ID and retrieve the build details: [https://wave.seqera.io/view/builds/789bc3917c8666da_1](https://wave.seqera.io/view/builds/789bc3917c8666da_1)
-
-<Image
-    class="d-block ms-3 mb-3 float-end rounded shadow"
-    src={wave_logs}
-    alt="Screenshot of a Wave container build details page."
-/>
-
-We will update the nf-core website to query these build details for every container in every nf-core module.
-This will allow us to embed a lot of audit data for quick reference:
+We can use this to retrieve build details, which we will add to the nf-core website module page:
 
 -   Build time, architecture and platform (Docker / Singularity)
 -   `Dockerfile` / Singularity recipe and Conda `environment.yml`
@@ -367,12 +365,27 @@ This will allow us to embed a lot of audit data for quick reference:
 -   Conda lock files with full package URLs and md5sums for entire dependency resolution
 -   For Docker images: Trivy security scan and software bill of materials (SBOM)
 
-The conda lock files also allow enhanced reproducibility for Conda users and more stable CI tests - we'll come back to these in a future blog post / bytesize.
+:::info{title="Example Wave build details page" collapse}
+
+We haven't built this yet, but here's what the Wave build details page looks like, which has the same information:
+
+<Image
+    class="d-block ms-3 mb-3 float-end rounded shadow"
+    src={wave_logs}
+    alt="Screenshot of a Wave container build details page."
+/>
+
+Wave build details page for the MultiQC v1.24.1 image: `community.wave.seqera.io/library/multiqc:1.24.1--789bc3917c8666da`
+
+The final part is the hash - from this we can infer the Wave Build ID and retrieve the build details: [https://wave.seqera.io/view/builds/789bc3917c8666da_1](https://wave.seqera.io/view/builds/789bc3917c8666da_1)
+:::
+
+The new conda lock files also allow enhanced reproducibility for Conda users and more stable CI tests - we'll come back to these in a future blog post / bytesize.
 
 Finally, the image creation will happen automatically on GitHub Actions when an `environment.yml` file is edited.
 This means that the entire flow from conda file through to final containers will be entirely transparent, as the request to Wave itself and its response will be available in the GitHub Actions logs.
 
-### What if we change our minds?
+### No lock-in
 
 Using Seqera Containers does not mean that nf-core will be locked into using Seqera tooling.
 The suggested implementation has two components:
@@ -391,15 +404,13 @@ Old pipelines would need to have their configuration overwritten to use a differ
 In other words, this is the same situation that we have currently with BioContainers and quay.io / Galaxy hosting.
 The nf-core community will remain free to pick and choose hosting solutions as needed.
 
-### Edge cases
+### Special cases
 
 Not all tools can use Biocontainers, and we're aware of some special-case packages that have only bespoke Docker images.
 These will continue to work as they do today.
 
-### Can I still use my custom registry?
-
-Yes - switching out the container registry base will still work in exactly the same way as it does today.
-You'll also be able to use Wave with these images in Seqera Containers if you wish - for example to mirror to your custom container registry, or augment with additional tools such as Seqera Fusion.
+For people who need to mirror container images to their own custom registry, this will still be possible.
+Changing the registry base will still work in exactly the same way as it does today.
 
 ## What this means for you
 
