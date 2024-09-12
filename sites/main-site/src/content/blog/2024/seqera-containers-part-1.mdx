@@ -51,25 +51,16 @@ However, we are now looking to migrate to a new system: Seqera Containers.
 The motivation comes down to a few key reasons:
 
 -   Difficulties with BioContainers
-    -   Mulled (multi-package) images
-    -   Reliability of hosting
-    -   BioContainers API
+    -   [Mulled (multi-package) images](#mulled-multi-package-images)
+    -   [Slow Singularity image availability](#time-to-singularity-image)
+    -   [BioContainers API](#biocontainers-api)
+    -   [Reliability of hosting](#reliability-of-hosting)
 -   New features we'd like
-    -   Conda lock files
+    -   [Conda lock files](#exceptionally-reproducible)
     -   Simplified developer workflow
-    -   Better transparency
+    -   [Better transparency](#trust-and-transparency)
 
 With the new Seqera Containers setup we should be able to address these problems, as well as provide the additional features.
-
-This move has been in the works for over a year now.
-It started with discussions between nf-core maintainers and Seqera developers about what the community needed.
-Seqera's open source [Wave](https://seqera.io/wave/) container tool brings convenience, but long term storage of container images and stable container URIs were identified as hard requirements.
-In response, Seqera developed _Seqera Containers_, a free community resource with hosting infrastructure funded by AWS.
-This service which was launched in spring 2024.
-
-The proposed adoption of Seqera Containers in nf-core was initially raised in the nf-core steering group, followed by discussion in the
-core team and then maintainers team (see the [nf-core governance structure](/governance)).
-At each step, the discussion informed the planned infrastructure and setup for this change, as well as the development of Seqera Containers and Wave.
 
 :::tip{title="What's changing"}
 A detailed description of the proposed mechanism will come in part 2 of this blog post.
@@ -85,7 +76,17 @@ Here are the key points:
 
 :::info{.fa-calendar-lines-pen title="Timeline" collapse}
 
-Several steps are needed to complete this migration:
+This move has been in the works for over a year now.
+It started with discussions between nf-core maintainers and Seqera developers about what the community needed.
+Seqera's open source [Wave](https://seqera.io/wave/) container tool brings convenience, but long term storage of container images and stable container URIs were identified as hard requirements.
+In response, Seqera developed _Seqera Containers_, a free community resource with hosting infrastructure funded by AWS.
+This service which was launched in spring 2024.
+
+The adoption of Seqera Containers in nf-core was initially raised in the nf-core steering group, followed by discussion in the
+core team and then maintainers team (see the [nf-core governance structure](/governance)).
+At each step, the discussion informed the planned infrastructure and setup for this change, as well as the development of Seqera Containers and Wave.
+
+Several steps are still needed to complete this migration:
 
 -   nf-core/modules automation for fetching images and pinning conda-lock files and `meta.yml` references
 -   nf-core/tools tooling for pipeline config file generation, with pipeline template update
@@ -96,6 +97,7 @@ If all goes to plan, we hope to have all modules updated by the end of 2024.
 This work will be tracked in GitHub issues as usual,
 starting with [nf-core/modules#5832](https://github.com/nf-core/modules/issues/5832).
 This issue has already had a substantial amount of discussion, much of which has informed this blog post.
+
 It's not too late to add your feedback! So if you have any questions or ideas, let us know on Github or Slack.
 
 Note that images from Seqera Containers can already be used in nf-core/modules, with the old syntax of using a `container` declaration.
@@ -298,6 +300,19 @@ Migrating nf-core to use Seqera Containers will make provisioning multi-package 
 The module developer will only need to edit the module `environment.yml` file and everything else will be fully automated and made available almost immediately.
 Packages can be used minutes after their release on Bioconda and we will have automation in place to bump the Conda + Seqera Containers packages when a tool is updated.
 
+### Time to Singularity image
+
+BioContainers builds both Docker and Singularity images.
+Docker images are pushed to quay.io and are available almost immediately,
+whereas Singularity images are pushed to the Galaxy FTP server in a nightly build, taking up to 24 hours to become available.
+
+This delay is frustrating for developers, as it breaks the flow of working on an update.
+Once a new version of a tool is released, they have to wait for the Singularity image to become available before they can add it and test the module.
+In practice, this often means that module updates get stuck in limbo for days until the developer has time to come back and check if the image is available.
+
+Singularity images are generated on the fly with Seqera Containers.
+Developers will be able update the nf-core module minutes after the Bioconda package is released.
+
 ### BioContainers API
 
 To simplify adding single-package BioContainer images to nf-core modules, we have developed the nf-core/tools package to query the BioContainer API for a given tool version and fetch the image URIs.
@@ -399,9 +414,9 @@ As such, there is no lock-in on this API or any tooling we will write around it.
 
 Long-term hosting is more fixed, but again Wave is designed to work with _any_ container registry.
 So if we want to change in the future we simply flip a configuration value and the generated images will be stored (“frozen”) at an alternative registry of our choosing.
-Old pipelines would need to have their configuration overwritten to use a different base registry, but this is a relatively simple step.
+Old pipelines would have their configuration overwritten to use a different base registry.
 
-In other words, this is the same situation that we have currently with BioContainers and quay.io / Galaxy hosting.
+This is the same situation that we have currently with BioContainers and quay.io / Galaxy hosting.
 The nf-core community will remain free to pick and choose hosting solutions as needed.
 
 ### Special cases
@@ -425,7 +440,7 @@ Finally, the failure rate of docker pulls will improve as we phase out our usage
 If you're a maintainer of a pipeline that uses nf-core/modules, this means that your life is about to get easier! Never again will you need to try to figure out how to make a mulled image, or wonder when your Singularity image build will be available.
 New software releases can be used with modules within minutes of release and most updates should happen automatically - freeing up maintainers from having to deal with routine package updates and reviews.
 
-In part-two of this blog post we dive into the details of how we intend to build this tooling infrastructure in nf-core, so please check that out if you're interested.
+In part-two of this blog post we will dive into the details of how we intend to build this tooling infrastructure in nf-core, so please check that out if you're interested.
 
 ## In conclusion
 
