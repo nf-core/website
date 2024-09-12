@@ -6071,6 +6071,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -18865,6 +18869,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -33932,7 +33944,7 @@
       "type": "module",
       "meta": {
         "name": "deepvariant",
-        "description": "DeepVariant is an analysis pipeline that uses a deep neural network to call genetic variants from next-generation DNA sequencing data",
+        "description": "(DEPRECATED - see main.nf) DeepVariant is an analysis pipeline that uses a deep neural network to call genetic variants from next-generation DNA sequencing data",
         "keywords": [
           "variant calling",
           "machine learning",
@@ -34085,6 +34097,499 @@
           "version": "dev"
         }
       ]
+    },
+    {
+      "name": "deepvariant_callvariants",
+      "path": "modules/nf-core/deepvariant/callvariants/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "deepvariant_callvariants",
+        "description": "Call variants from the examples produced by make_examples",
+        "keywords": [
+          "variant calling",
+          "machine learning",
+          "neural network"
+        ],
+        "tools": [
+          {
+            "deepvariant": {
+              "description": "DeepVariant is an analysis pipeline that uses a deep neural network to call genetic variants from next-generation DNA sequencing data",
+              "homepage": "https://github.com/google/deepvariant",
+              "documentation": "https://github.com/google/deepvariant",
+              "tool_dev_url": "https://github.com/google/deepvariant",
+              "doi": "10.1038/nbt.4235",
+              "licence": [
+                "BSD-3-clause"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "make_examples_tfrecords": {
+              "type": "file",
+              "description": "The actual sharded input files, from DEEPVARIANT_MAKEEXAMPLES process",
+              "pattern": "*.gz"
+            }
+          }
+        ],
+        "output": [
+          {
+            "call_variants_tfrecords": {
+              "type": "list",
+              "description": "Each output contains: unique ID string from input channel, meta, tfrecord file with variant calls.\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software version",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@abhi18av",
+          "@ramprasadn",
+          "@fa2k"
+        ],
+        "maintainers": [
+          "@abhi18av",
+          "@ramprasadn"
+        ]
+      }
+    },
+    {
+      "name": "deepvariant_makeexamples",
+      "path": "modules/nf-core/deepvariant/makeexamples/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "deepvariant_makeexamples",
+        "description": "Transforms the input alignments to a format suitable for the deep neural network variant caller",
+        "keywords": [
+          "variant calling",
+          "machine learning",
+          "neural network"
+        ],
+        "tools": [
+          {
+            "deepvariant": {
+              "description": "DeepVariant is an analysis pipeline that uses a deep neural network to call genetic variants from next-generation DNA sequencing data",
+              "homepage": "https://github.com/google/deepvariant",
+              "documentation": "https://github.com/google/deepvariant",
+              "tool_dev_url": "https://github.com/google/deepvariant",
+              "doi": "10.1038/nbt.4235",
+              "licence": [
+                "BSD-3-clause"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "input": {
+              "type": "file",
+              "description": "BAM/CRAM file",
+              "pattern": "*.bam/cram"
+            }
+          },
+          {
+            "index": {
+              "type": "file",
+              "description": "Index of BAM/CRAM file",
+              "pattern": "*.bai/crai"
+            }
+          },
+          {
+            "intervals": {
+              "type": "file",
+              "description": "Interval file for targeted regions",
+              "pattern": "*.bed"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "The reference fasta file",
+              "pattern": "*.fasta"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "Index of reference fasta file",
+              "pattern": "*.fai"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+            }
+          },
+          {
+            "gzi": {
+              "type": "file",
+              "description": "GZI index of reference fasta file"
+            }
+          },
+          {
+            "meta5": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n",
+              "pattern": "*.gzi"
+            }
+          },
+          {
+            "par_bed": {
+              "type": "file",
+              "description": "BED file containing PAR regions",
+              "pattern": "*.bed"
+            }
+          }
+        ],
+        "output": [
+          {
+            "examples": {
+              "type": "list",
+              "description": "Tuple containing sample metadata and examples that can be used for calling\n"
+            }
+          },
+          {
+            "gvcf": {
+              "type": "list",
+              "description": "Tuple containing sample metadata and the GVCF data in tfrecord format\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing the DeepVariant software version",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@abhi18av",
+          "@ramprasadn",
+          "@fa2k"
+        ],
+        "maintainers": [
+          "@abhi18av",
+          "@ramprasadn"
+        ]
+      }
+    },
+    {
+      "name": "deepvariant_postprocessvariants",
+      "path": "modules/nf-core/deepvariant/postprocessvariants/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "deepvariant_postprocessvariants",
+        "description": "DeepVariant is an analysis pipeline that uses a deep neural network to call genetic variants from next-generation DNA sequencing data",
+        "keywords": [
+          "variant calling",
+          "machine learning",
+          "neural network"
+        ],
+        "tools": [
+          {
+            "deepvariant": {
+              "description": "DeepVariant is an analysis pipeline that uses a deep neural network to call genetic variants from next-generation DNA sequencing data",
+              "homepage": "https://github.com/google/deepvariant",
+              "documentation": "https://github.com/google/deepvariant",
+              "tool_dev_url": "https://github.com/google/deepvariant",
+              "doi": "10.1038/nbt.4235",
+              "licence": [
+                "BSD-3-clause"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "variant_calls_tfrecord_files": {
+              "type": "file",
+              "description": "One or more data files containing variant calls from DEEPVARIANT_CALLVARIANTS\n",
+              "pattern": "*.tfrecord.gz"
+            }
+          },
+          {
+            "gvcf_tfrecords": {
+              "type": "file",
+              "description": "Sharded tfrecord file from DEEPVARIANT_MAKEEXAMPLES with the coverage information used for GVCF output\n",
+              "pattern": "*.gz"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "The reference fasta file",
+              "pattern": "*.fasta"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "Index of reference fasta file",
+              "pattern": "*.fai"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+            }
+          },
+          {
+            "gzi": {
+              "type": "file",
+              "description": "GZI index of reference fasta file",
+              "pattern": "*.gzi"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "Compressed VCF file",
+              "pattern": "*.vcf.gz"
+            }
+          },
+          {
+            "vcf_tbi": {
+              "type": "file",
+              "description": "Index for VCF",
+              "pattern": "*.vcf.gz.tbi"
+            }
+          },
+          {
+            "gvcf": {
+              "type": "file",
+              "description": "Compressed GVCF file",
+              "pattern": "*.g.vcf.gz"
+            }
+          },
+          {
+            "gvcf_tbi": {
+              "type": "file",
+              "description": "Index for GVCF",
+              "pattern": "*.g.vcf.gz.tbi"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software version",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@abhi18av",
+          "@ramprasadn",
+          "@fa2k"
+        ],
+        "maintainers": [
+          "@abhi18av",
+          "@ramprasadn"
+        ]
+      }
+    },
+    {
+      "name": "deepvariant_rundeepvariant",
+      "path": "modules/nf-core/deepvariant/rundeepvariant/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "deepvariant_rundeepvariant",
+        "description": "DeepVariant is an analysis pipeline that uses a deep neural network to call genetic variants from next-generation DNA sequencing data",
+        "keywords": [
+          "variant calling",
+          "machine learning",
+          "neural network"
+        ],
+        "tools": [
+          {
+            "deepvariant": {
+              "description": "DeepVariant is an analysis pipeline that uses a deep neural network to call genetic variants from next-generation DNA sequencing data",
+              "homepage": "https://github.com/google/deepvariant",
+              "documentation": "https://github.com/google/deepvariant",
+              "tool_dev_url": "https://github.com/google/deepvariant",
+              "doi": "10.1038/nbt.4235",
+              "licence": [
+                "BSD-3-clause"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "input": {
+              "type": "file",
+              "description": "BAM/CRAM file",
+              "pattern": "*.bam/cram"
+            }
+          },
+          {
+            "index": {
+              "type": "file",
+              "description": "Index of BAM/CRAM file",
+              "pattern": "*.bai/crai"
+            }
+          },
+          {
+            "interval": {
+              "type": "file",
+              "description": "Interval file for targeted regions",
+              "pattern": "*.bed"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "The reference fasta file",
+              "pattern": "*.fasta"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "Index of reference fasta file",
+              "pattern": "*.fai"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+            }
+          },
+          {
+            "gzi": {
+              "type": "file",
+              "description": "GZI index of reference fasta file",
+              "pattern": "*.gzi"
+            }
+          },
+          {
+            "meta5": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+            }
+          },
+          {
+            "par_bed": {
+              "type": "file",
+              "description": "BED file containing PAR regions",
+              "pattern": "*.bed"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "Compressed VCF file",
+              "pattern": "*.vcf.gz"
+            }
+          },
+          {
+            "gvcf": {
+              "type": "file",
+              "description": "Compressed GVCF file",
+              "pattern": "*.g.vcf.gz"
+            }
+          },
+          {
+            "version": {
+              "type": "file",
+              "description": "File containing software version",
+              "pattern": "*.{version.txt}"
+            }
+          }
+        ],
+        "authors": [
+          "@abhi18av",
+          "@ramprasadn"
+        ],
+        "maintainers": [
+          "@abhi18av",
+          "@ramprasadn"
+        ]
+      }
     },
     {
       "name": "delly_call",
@@ -55690,6 +56195,138 @@
           "version": "3.4.4"
         }
       ]
+    },
+    {
+      "name": "gatk4_variantstotable",
+      "path": "modules/nf-core/gatk4/variantstotable/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gatk4_variantstotable",
+        "description": "Extract fields from a VCF file to a tab-delimited table",
+        "keywords": [
+          "filter",
+          "gatk4",
+          "table",
+          "vcf"
+        ],
+        "tools": [
+          {
+            "gatk4": {
+              "description": "Developed in the Data Sciences Platform at the Broad Institute, the toolkit offers a wide variety of tools\nwith a primary focus on variant discovery and genotyping. Its powerful processing engine\nand high-performance computing features make it capable of taking on projects of any size.\n",
+              "homepage": "https://gatk.broadinstitute.org/hc/en-us",
+              "documentation": "https://gatk.broadinstitute.org/hc/en-us/categories/360002369672s",
+              "doi": "10.1158/1538-7445.AM2017-3590",
+              "licence": [
+                "Apache-2.0"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing VCF information. Attribute `gatk_args` can be used to add arguments to gatk.\ne.g. [ id:'test', gatk_args:'-F CHROM -F POS -F TYPE -GF AD']\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "VCF file",
+              "pattern": "*.{vcf,vcf.gz}"
+            }
+          },
+          {
+            "tbi": {
+              "type": "file",
+              "description": "Index of VCF file.",
+              "pattern": "*.{idx,tbi}"
+            }
+          },
+          {
+            "arguments_file": {
+              "type": "file",
+              "description": "optional GATK arguments file",
+              "pattern": "*.{txt,list,args,arguments}"
+            }
+          },
+          {
+            "include_intervals": {
+              "type": "file",
+              "description": "optional GATK region file",
+              "pattern": "*.{bed,bed.gz,interval,interval_list}"
+            }
+          },
+          {
+            "exclude_intervals": {
+              "type": "file",
+              "description": "optional GATK exclude region file",
+              "pattern": "*.{bed,bed.gz,interval,interval_list}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Fasta file of reference genome",
+              "pattern": "*.fasta"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "Index of fasta file",
+              "pattern": "*.fasta.fai"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+            }
+          },
+          {
+            "dict": {
+              "type": "file",
+              "description": "Sequence dictionary of fastea file",
+              "pattern": "*.dict"
+            }
+          }
+        ],
+        "output": [
+          {
+            "table": {
+              "type": "file",
+              "description": "GATK output",
+              "pattern": "*.tsv"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@lindenb"
+        ],
+        "maintainers": [
+          "@lindenb"
+        ]
+      }
     },
     {
       "name": "gatk4spark_applybqsr",
@@ -82302,6 +82939,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -145397,6 +146038,104 @@
           "version": "1.0.4"
         }
       ]
+    },
+    {
+      "name": "deepvariant",
+      "path": "subworkflows/nf-core/deepvariant/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "deepvariant",
+        "description": "DeepVariant is an analysis pipeline that uses a deep neural network to call genetic variants from next-generation DNA sequencing data",
+        "keywords": [
+          "variant calling",
+          "machine learning",
+          "neural network"
+        ],
+        "components": [
+          "deepvariant/makeexamples",
+          "deepvariant/callvariants",
+          "deepvariant/postprocessvariants"
+        ],
+        "input": [
+          {
+            "ch_input": {
+              "type": "list",
+              "description": "Input aligned reads in bam or cram format, with index, and optional intervals BED file\nStructure: [ val(meta), path(bam_or_cram), path(bai_or_crai), path(intervals_bed) ]\n"
+            }
+          },
+          {
+            "ch_fasta": {
+              "type": "file",
+              "description": "Reference genome\nStructure: [ val(meta2), path(fasta) ]\n"
+            }
+          },
+          {
+            "ch_fai": {
+              "type": "string",
+              "description": "Reference genome index in fai format\nStructure: [ val(meta3), path(fai) ]\n"
+            }
+          },
+          {
+            "ch_gzi": {
+              "type": "string",
+              "description": "Reference genome index in gzi format (either gzi or fai should be used)\nStructure: [ val(meta4), val(gzi) ]\n"
+            }
+          },
+          {
+            "ch_par_bed": {
+              "type": "string",
+              "description": "bed file of pseudoautosomal regions (optional)\nStructure: [ val(meta5), val(par_bed) ]\n",
+              "pattern": "*.bed"
+            }
+          }
+        ],
+        "output": [
+          {
+            "vcf": {
+              "type": "file",
+              "description": "Variant calls\nStructure: [ val(meta), path(vcf) ]\n",
+              "pattern": "*.vcf.gz"
+            }
+          },
+          {
+            "vcf_tbi": {
+              "type": "file",
+              "description": "Index for variant call file\nStructure: [ val(meta), path(vcf_tbi) ]\n",
+              "pattern": "*.tbi"
+            }
+          },
+          {
+            "gvcf": {
+              "type": "file",
+              "description": "Variant call file with genomic coverage information\nStructure: [ val(meta), path(gvcf) ]\n",
+              "pattern": "*.g.vcf.gz"
+            }
+          },
+          {
+            "gvcf_tbi": {
+              "type": "file",
+              "description": "Index for the GVCF.\nStructure: [ val(meta), path(gvcf_tbi) ]\n",
+              "pattern": "*.tbi"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions\nStructure: path(versions.yml)\n",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@abhi18av",
+          "@ramprasadn",
+          "@fa2k"
+        ],
+        "maintainers": [
+          "@abhi18av",
+          "@ramprasadn"
+        ]
+      }
     },
     {
       "name": "fasta_binning_concoct",
