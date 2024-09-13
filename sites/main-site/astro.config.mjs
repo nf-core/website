@@ -74,7 +74,7 @@ export default defineConfig({
                     'tools-16',
                 ],
                 'simple-icons': ['bluesky'],
-                'cib': ['open-source-initiative'],
+                'ri': ['open-source-line'],
             },
         }),
         sitemap(),
