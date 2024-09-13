@@ -6079,6 +6079,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -11712,6 +11716,125 @@
           "version": "2.6.0"
         }
       ]
+    },
+    {
+      "name": "bcftools_pluginimputeinfo",
+      "path": "modules/nf-core/bcftools/pluginimputeinfo/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "bcftools_pluginimputeinfo",
+        "description": "Adds imputation information metrics to the INFO field based on selected FORMAT tags. Only the IMPUTE2 INFO metric from FORMAT/GP tags is currently available.",
+        "keywords": [
+          "impute-info",
+          "bcftools",
+          "imputation",
+          "metrics",
+          "tags",
+          "VCF"
+        ],
+        "tools": [
+          {
+            "bcftools": {
+              "description": "BCFtools is a set of utilities that manipulate variant calls in the Variant Call Format (VCF) and its binary counterpart BCF. All commands work transparently with both VCFs and BCFs, both uncompressed and BGZF-compressed.  Most commands accept VCF, bgzipped VCF and BCF with filetype detected automatically even when streaming from a pipe. Indexed VCF and BCF will work in all situations. Un-indexed VCF and BCF and streams will work in most, but not all situations.",
+              "homepage": "http://samtools.github.io/bcftools/bcftools.html",
+              "documentation": "https://samtools.github.io/bcftools/bcftools.html#plugin",
+              "tool_dev_url": "https://github.com/samtools/bcftools",
+              "doi": "10.1093/bioinformatics/btp352",
+              "licence": [
+                "MIT"
+              ],
+              "args_id": "$args"
+            }
+          },
+          {
+            "bcftools plugin impute-info": {
+              "description": "BCFtools is a set of utilities that manipulate variant calls in the Variant Call Format (VCF) and its binary counterpart BCF. All commands work transparently with both VCFs and BCFs, both uncompressed and BGZF-compressed.  Most commands accept VCF, bgzipped VCF and BCF with filetype detected automatically even when streaming from a pipe. Indexed VCF and BCF will work in all situations. Un-indexed VCF and BCF and streams will work in most, but not all situations.",
+              "homepage": "http://samtools.github.io/bcftools/bcftools.html",
+              "documentation": "https://samtools.github.io/bcftools/howtos/plugins.html",
+              "tool_dev_url": "https://github.com/samtools/bcftools",
+              "doi": "10.1093/bioinformatics/btp352",
+              "licence": [
+                "MIT"
+              ],
+              "args_id": "$args2"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "The vcf file to be inspected.\ne.g. 'file.vcf'\n"
+            }
+          },
+          {
+            "index": {
+              "type": "file",
+              "description": "The tab index for the VCF file to be inspected.\ne.g. 'file.tbi'\n"
+            }
+          },
+          {
+            "regions": {
+              "type": "file",
+              "description": "Optionally, restrict the operation to regions listed in this file.\ne.g. 'file.vcf'\n"
+            }
+          },
+          {
+            "targets": {
+              "type": "file",
+              "description": "Optionally, restrict the operation to regions listed in this file (doesn't rely upon index files)\ne.g. 'file.vcf'\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "VCF output file containing added INFO/INFO field",
+              "pattern": "*.{vcf,vcf.gz,bcf,bcf.gz}"
+            }
+          },
+          {
+            "csi": {
+              "type": "file",
+              "description": "Default VCF file index",
+              "pattern": "*.csi"
+            }
+          },
+          {
+            "tbi": {
+              "type": "file",
+              "description": "Alternative VCF file index",
+              "pattern": "*.tbi"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@eweizy"
+        ],
+        "maintainers": [
+          "@eweizy"
+        ]
+      }
     },
     {
       "name": "bcftools_pluginscatter",
@@ -18873,6 +18996,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -82347,7 +82478,16 @@
               "doi": "10.1093/bioinformatics/btv033",
               "licence": [
                 "GPL v3"
-              ]
+              ],
+              "args_id": "$args"
+            }
+          },
+          {
+            "pigz": {
+              "description": "Parallel implementation of the gzip algorithm.",
+              "homepage": "https://zlib.net/pigz/",
+              "documentation": "https://zlib.net/pigz/pigz.pdf",
+              "args_id": "$args2"
             }
           }
         ],
@@ -82359,9 +82499,15 @@
             }
           },
           {
-            "reads": {
+            "reads1": {
               "type": "file",
-              "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data,\nrespectively in gzipped or uncompressed FASTQ or FASTA format.\n"
+              "description": "A single or list of input FastQ files for single-end or R1 of paired-end library(s),\nrespectively in gzipped or uncompressed FASTQ or FASTA format.\n"
+            }
+          },
+          {
+            "reads2": {
+              "type": "file",
+              "description": "A single or list of input FastQ files for R2 of paired-end library(s),\nrespectively in gzipped or uncompressed FASTQ or FASTA format.\n"
             }
           }
         ],
@@ -82412,6 +82558,13 @@
               "type": "file",
               "description": "Stand-alone contigs for k=K; if local assembly is turned on, the file will be empty",
               "pattern": "k*.final.contigs.fa.gz"
+            }
+          },
+          {
+            "log": {
+              "type": "file",
+              "description": "Log file containing statistics of the assembly output",
+              "pattern": "*.log"
             }
           }
         ],
@@ -82951,6 +83104,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -86958,14 +87115,7 @@
             }
           },
           {
-            "mirtop_gff": {
-              "type": "file",
-              "description": "GFF file",
-              "pattern": "*.{gff}"
-            }
-          },
-          {
-            "sample_gff": {
+            "gff": {
               "type": "file",
               "description": "GFF file",
               "pattern": "*.{gff}"
@@ -87039,6 +87189,13 @@
               "type": "file",
               "description": "TXT file with stats",
               "pattern": "*.{txt}"
+            }
+          },
+          {
+            "log": {
+              "type": "file",
+              "description": "log file with stats",
+              "pattern": "*.{log}"
             }
           }
         ],
