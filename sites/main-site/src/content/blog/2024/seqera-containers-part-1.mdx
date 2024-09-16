@@ -1,7 +1,7 @@
 ---
 title: 'Migration from Biocontainers to Seqera Containers: Part 1'
 subtitle: What Seqera Containers is and why we want to move to it.
-pubDate: 2024-09-12T09:00:00+01:00
+pubDate: 2024-09-18T09:00:00+01:00
 headerImage: https://images.unsplash.com/photo-1517061391662-b09454c10462
 headerImageAlt: Photo by Barth Bailey on Unsplash
 authors:
@@ -34,9 +34,9 @@ When using containers, all software requirements for a specific Nextflow process
 The process tasks run in isolation in the host environment, and the end user doesn't need to worry about installing software dependencies for the pipeline.
 The software builds are locked in time, making results highly reproducible over many years.
 
-To ensure maximum compatibility across different environments, nf-core modules are typically set up with a conda `environment.yml`, listing software package dependencies from [Bioconda](https://bioconda.github.io/), see an example [here](https://github.com/nf-core/modules/blob/master/modules/nf-core/fastqc/environment.yml).
+To ensure maximum compatibility across different environments, nf-core modules are typically set up with a conda `environment.yml`, listing software package dependencies from [Bioconda](https://bioconda.github.io/) (eg. [FastQC](https://github.com/nf-core/modules/blob/f768b283dbd8fc79d0d92b0f68665d7bed94cabc/modules/nf-core/fastqc/environment.yml)).
 The [BioContainers project](https://biocontainers.pro/) conveniently builds Docker and Singularity images for all tools on Bioconda automatically, hosting the images publicly on [quay.io](quay.io) and the Galaxy FTP servers, respectively.
-This means that the nf-core module developer can find the matching [BioContainer](https://biocontainers.pro/) images for their Bioconda package, and then add the image URLs into the module's `main.nf` script, see [here](https://github.com/nf-core/modules/blob/b6b54f3929b0ba4a7c02a49191308ce1d8351f0d/modules/nf-core/fastqc/main.nf#L6-L8).
+This means that the nf-core module developer can find the matching [BioContainer](https://biocontainers.pro/) images for their Bioconda package, and then add the image URLs into the module's `main.nf` script (see [FastQC example](https://github.com/nf-core/modules/blob/f768b283dbd8fc79d0d92b0f68665d7bed94cabc/modules/nf-core/fastqc/main.nf#L6-L8)).
 
 The Bioconda and BioContainer projects have been invaluable to nf-core's success.
 We're hugely grateful to all contributors for their work and to the Galaxy project for hosting.
@@ -100,7 +100,7 @@ This issue has already had a substantial amount of discussion, much of which has
 
 It's not too late to add your feedback! So if you have any questions or ideas, let us know on Github or Slack.
 
-Note that images from Seqera Containers can already be used in nf-core/modules, with the old syntax of using a `container` declaration, see an example [here](https://github.com/nf-core/modules/blob/b6b54f3929b0ba4a7c02a49191308ce1d8351f0d/modules/nf-core/bedtools/genomecov/main.nf#L6-L8).
+Note that images from Seqera Containers can already be used in nf-core/modules, with the old syntax of using a `container` declaration (see [example](https://github.com/nf-core/modules/blob/b6b54f3929b0ba4a7c02a49191308ce1d8351f0d/modules/nf-core/bedtools/genomecov/main.nf#L6-L8)).
 
 :::
 
