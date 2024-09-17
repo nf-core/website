@@ -82,8 +82,7 @@ Seqera's open source [Wave](https://seqera.io/wave/) container tool brings conve
 In response, Seqera developed _Seqera Containers_, a free community resource with hosting infrastructure funded by AWS.
 This service was launched in spring 2024.
 
-The adoption of Seqera Containers in nf-core was initially raised in the nf-core steering group, followed by discussion in the
-core team and then maintainers team (see the [nf-core governance structure](/governance)).
+The adoption of Seqera Containers in nf-core was initially raised in the nf-core steering group, followed by discussion in the core team and then maintainers team (see the [nf-core governance structure](/governance)).
 At each step, the discussion informed the planned infrastructure and setup for this change, as well as the development of Seqera Containers and Wave.
 
 Several steps are still needed to complete this migration:
@@ -283,6 +282,7 @@ In short, to request an image, you need to scroll to the bottom of a large
 [CSV file full of hashes](https://github.com/BioContainers/multi-package-containers/blob/master/combinations/hash.tsv)
 and add a line with your requested conda packages.
 Once edited, the images are built on CI.
+The container then becomes available after a review and merge.
 
 It used to be that you had to hunt through the GitHub action log to find the URI for your new container.
 However, [Moriz E. Beber](https://github.com/Midnighter) from the nf-core community has created a webpage to
@@ -300,7 +300,7 @@ There are also significant delays in waiting for the images to become available.
 All in all, it can be a frustrating experience and we see this in the volume of Slack messages asking for help.
 It seems likely that this puts some people off from contributing to nf-core.
 
-Migrating nf-core to use Seqera Containers will make provisioning multi-package containers trivial.
+Migrating nf-core to use Seqera Containers will make provisioning multi-package containers easier.
 The module developer will only need to edit the module `environment.yml` file and everything else will be fully automated and made available almost immediately.
 Packages can be used minutes after their release on Bioconda and we will have automation in place to bump the Conda + Seqera Containers packages when a tool is updated.
 
@@ -319,9 +319,9 @@ Developers will be able update the nf-core module minutes after the Bioconda pac
 
 ### BioContainers API
 
-To simplify adding single-package BioContainer images to nf-core modules, we have developed the nf-core/tools package to query the BioContainer API for a given tool version and fetch the image URIs.
+To simplify adding single-package BioContainer images to nf-core modules, the nf-core/tools package queries the BioContainer API for a given tool version and fetches the image URIs.
 This process is repeated during linting of nf-core modules and pipelines, to ensure that there is not an accidental mismatch between Conda and Docker / Singularity software versions.
-Unfortunately, the BioContainer API has had a history of being slow and unreliable, with a lot of down time (204 error message anyone?).
+Unfortunately, the BioContainer API has had a history of being slow and unreliable, with a lot of down time.
 This has the knock-on effect of causing many CI tests to fail, which is frustrating and delays the process of pull-request merges.
 
 By migrating to Seqera Containers we will have similar automation when linting modules, but it will use the Seqera Wave API instead.
@@ -441,7 +441,8 @@ Finally, the failure rate of docker pulls will improve as we phase out our usage
 
 ### Developers
 
-If you're a maintainer of a pipeline that uses nf-core/modules, this means that your life is about to get easier! Never again will you need to try to figure out how to make a mulled image, or wonder when your Singularity image build will be available.
+If you're a maintainer of a pipeline that uses nf-core/modules, this means that your life is about to get easier!
+Never again will you need to try to figure out how to make a mulled image, or wonder when your Singularity image build will be available.
 New software releases can be used with modules within minutes of release and most updates should happen automatically - freeing up maintainers from having to deal with routine package updates and reviews.
 
 In part-two of this blog post we will dive into the details of how we intend to build this tooling infrastructure in nf-core, so please check that out if you're interested.
