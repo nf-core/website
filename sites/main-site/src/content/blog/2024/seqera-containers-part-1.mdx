@@ -256,8 +256,10 @@ Here's a brief comparison of the features:
 
 ### Mulled (multi-package) images
 
+<div class="clearfix">
+
 <Image
-    class="d-block ms-3 mb-3 float-end rounded w-25 shadow"
+    class="d-block ms-3 mb-3 float-end rounded w-25 shadow clearfix"
     src={mulled}
     alt="Photo by Hannah Pemberton on Unsplash."
 />
@@ -269,6 +271,8 @@ For example, many bioinformatics tools leverage [samtools](https://www.htslib.or
 Others may pipe output to compression tools like [pigz](https://zlib.net/pigz/).
 To resolve this, BioContainers has the concept of “mulled” images (as in [mulled wine](https://en.wikipedia.org/wiki/Mulled_wine)).
 Unfortunately, generating mulled containers is not trivial.
+
+</div>
 
 :::tip{title="How to make a mulled BioContainer" collapse}
 Luke Pembleton, Nextflow Ambassador, has a great blog post summarising the dark art of
