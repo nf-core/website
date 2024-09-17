@@ -6075,6 +6075,46 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -9905,7 +9945,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         }
       ]
     },
@@ -10418,7 +10458,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "sarek",
@@ -10646,7 +10686,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "sarek",
@@ -11124,7 +11164,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "variantbenchmarking",
@@ -11440,7 +11480,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "variantbenchmarking",
@@ -11693,7 +11733,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "variantbenchmarking",
@@ -11708,6 +11748,125 @@
           "version": "2.6.0"
         }
       ]
+    },
+    {
+      "name": "bcftools_pluginimputeinfo",
+      "path": "modules/nf-core/bcftools/pluginimputeinfo/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "bcftools_pluginimputeinfo",
+        "description": "Adds imputation information metrics to the INFO field based on selected FORMAT tags. Only the IMPUTE2 INFO metric from FORMAT/GP tags is currently available.",
+        "keywords": [
+          "impute-info",
+          "bcftools",
+          "imputation",
+          "metrics",
+          "tags",
+          "vcf"
+        ],
+        "tools": [
+          {
+            "bcftools": {
+              "description": "BCFtools is a set of utilities that manipulate variant calls in the Variant Call Format (VCF) and its binary counterpart BCF. All commands work transparently with both VCFs and BCFs, both uncompressed and BGZF-compressed.  Most commands accept VCF, bgzipped VCF and BCF with filetype detected automatically even when streaming from a pipe. Indexed VCF and BCF will work in all situations. Un-indexed VCF and BCF and streams will work in most, but not all situations.",
+              "homepage": "https://samtools.github.io/bcftools/howtos/index.html",
+              "documentation": "https://samtools.github.io/bcftools/bcftools.html",
+              "tool_dev_url": "https://github.com/samtools/bcftools",
+              "doi": "10.1093/bioinformatics/btp352",
+              "licence": [
+                "MIT"
+              ],
+              "args_id": "$args"
+            }
+          },
+          {
+            "bcftools plugin impute-info": {
+              "description": "Bcftools plugins are tools that can be used with bcftools to manipulate variant calls in Variant Call Format (VCF) and BCF. The impute-info plugin adds imputation information metrics to the INFO field based on selected FORMAT tags. Only the IMPUTE2 INFO metric from FORMAT/GP tags is currently available",
+              "homepage": "https://samtools.github.io/bcftools/howtos/plugins.html",
+              "documentation": "https://samtools.github.io/bcftools/bcftools.html#plugin",
+              "tool_dev_url": "https://github.com/samtools/bcftools",
+              "doi": "10.1093/bioinformatics/btp352",
+              "licence": [
+                "MIT"
+              ],
+              "args_id": "$args2"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "The vcf file to be inspected.\ne.g. 'file.vcf'\n"
+            }
+          },
+          {
+            "index": {
+              "type": "file",
+              "description": "The tab index for the VCF file to be inspected.\ne.g. 'file.tbi'\n"
+            }
+          },
+          {
+            "regions": {
+              "type": "file",
+              "description": "Optionally, restrict the operation to regions listed in this file.\ne.g. 'file.vcf'\n"
+            }
+          },
+          {
+            "targets": {
+              "type": "file",
+              "description": "Optionally, restrict the operation to regions listed in this file (doesn't rely upon index files)\ne.g. 'file.vcf'\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "VCF output file containing added INFO/INFO field",
+              "pattern": "*.{vcf,vcf.gz,bcf,bcf.gz}"
+            }
+          },
+          {
+            "csi": {
+              "type": "file",
+              "description": "Default VCF file index",
+              "pattern": "*.csi"
+            }
+          },
+          {
+            "tbi": {
+              "type": "file",
+              "description": "Alternative VCF file index",
+              "pattern": "*.tbi"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@eweizy"
+        ],
+        "maintainers": [
+          "@eweizy"
+        ]
+      }
     },
     {
       "name": "bcftools_pluginscatter",
@@ -12262,7 +12421,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "variantbenchmarking",
@@ -12379,7 +12538,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -12478,7 +12637,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "rnadnavar",
@@ -12835,7 +12994,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "variantbenchmarking",
@@ -13872,11 +14031,11 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         }
       ]
     },
@@ -19494,6 +19653,86 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -19953,7 +20192,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "rnadnavar",
@@ -20130,7 +20369,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "rnadnavar",
@@ -20453,7 +20692,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "rnadnavar",
@@ -20619,7 +20858,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "rnadnavar",
@@ -20703,7 +20942,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -20858,7 +21097,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -21098,7 +21337,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -21531,7 +21770,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "rnadnavar",
@@ -21698,7 +21937,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "rnasplice",
@@ -25449,7 +25688,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -27330,7 +27569,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -27406,7 +27645,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -30774,7 +31013,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         }
       ]
     },
@@ -31113,7 +31352,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "rnasplice",
@@ -31647,7 +31886,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         }
       ]
     },
@@ -34086,7 +34325,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "sarek",
@@ -36370,7 +36609,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         }
       ]
     },
@@ -37010,7 +37249,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -37890,7 +38129,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -38033,7 +38272,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "rnadnavar",
@@ -38830,7 +39069,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -40409,7 +40648,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "riboseq",
@@ -40425,7 +40664,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "sarek",
@@ -40681,7 +40920,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "readsimulator",
@@ -40701,7 +40940,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "rnasplice",
@@ -43015,7 +43254,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         }
       ]
     },
@@ -48704,7 +48943,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "rnadnavar",
@@ -49203,7 +49442,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -49779,7 +50018,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "rnadnavar",
@@ -50005,7 +50244,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -50126,7 +50365,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -50570,7 +50809,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "rnadnavar",
@@ -51296,7 +51535,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -51866,7 +52105,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "rnavar",
@@ -53864,7 +54103,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -54040,7 +54279,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "rnadnavar",
@@ -54237,7 +54476,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "rnadnavar",
@@ -54353,7 +54592,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -54487,10 +54726,6 @@
         {
           "name": "createpanelrefs",
           "version": "dev"
-        },
-        {
-          "name": "raredisease",
-          "version": "2.1.0"
         }
       ]
     },
@@ -54628,7 +54863,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "variantcatalogue",
@@ -54937,7 +55172,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -55007,7 +55242,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "variantcatalogue",
@@ -55111,7 +55346,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -55244,7 +55479,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -55554,7 +55789,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -56038,7 +56273,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "rnadnavar",
@@ -58145,7 +58380,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -58221,7 +58456,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -58311,7 +58546,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -58401,7 +58636,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -59901,7 +60136,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "rnasplice",
@@ -61215,7 +61450,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "variantcatalogue",
@@ -63670,6 +63905,12 @@
             }
           },
           {
+            "use_pplacer_scratch_dir": {
+              "type": "boolean",
+              "description": "Set to true to reduce pplacer memory usage by writing to disk (slower)"
+            }
+          },
+          {
             "mash_db": {
               "type": "file",
               "description": "The local copy of the Mash sketch database used by GTDB-tk if `ani_screen` mode is used (optional)",
@@ -64353,7 +64594,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "rnasplice",
@@ -65251,7 +65492,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "variantcatalogue",
@@ -65337,7 +65578,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -66442,7 +66683,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         }
       ]
     },
@@ -66554,7 +66795,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         }
       ]
     },
@@ -66641,7 +66882,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         }
       ]
     },
@@ -67867,7 +68108,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -72781,6 +73022,127 @@
       }
     },
     {
+      "name": "jvarkit_wgscoverageplotter",
+      "path": "modules/nf-core/jvarkit/wgscoverageplotter/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "jvarkit_wgscoverageplotter",
+        "description": "Plot whole genome coverage from BAM/CRAM file as SVG",
+        "keywords": [
+          "bam",
+          "cram",
+          "depth",
+          "coverage",
+          "xml",
+          "svg",
+          "visualization"
+        ],
+        "tools": [
+          {
+            "jvarkit": {
+              "description": "Java utilities for Bioinformatics.",
+              "homepage": "https://github.com/lindenb/jvarkit",
+              "documentation": "https://jvarkit.readthedocs.io/",
+              "tool_dev_url": "https://github.com/lindenb/jvarkit",
+              "doi": "10.6084/m9.figshare.1425030",
+              "licence": [
+                "MIT License"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "BAM/CRAM file from alignment",
+              "pattern": "*.{bam,cram}"
+            }
+          },
+          {
+            "bai": {
+              "type": "file",
+              "description": "BAI/CRAI file from alignment",
+              "pattern": "*.{bai,crai}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test_reference' ]\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "The reference fasta file",
+              "pattern": "*.fasta"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference fai information\ne.g. [ id:'test_reference' ]\n"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "Index of reference fasta file",
+              "pattern": "fasta.fai"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing reference dict information\ne.g. [ id:'test_reference' ]\n"
+            }
+          },
+          {
+            "dict": {
+              "type": "file",
+              "description": "GATK sequence dictionary",
+              "pattern": "*.dict"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing Sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "output": {
+              "type": "file",
+              "description": "Output SVG file",
+              "pattern": "*.svg"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@lindenb"
+        ],
+        "maintainers": [
+          "@lindenb"
+        ]
+      }
+    },
+    {
       "name": "kaiju_kaiju",
       "path": "modules/nf-core/kaiju/kaiju/meta.yml",
       "type": "module",
@@ -73355,7 +73717,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         }
       ]
     },
@@ -73490,7 +73852,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         }
       ]
     },
@@ -80394,7 +80756,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "sarek",
@@ -82335,7 +82697,16 @@
               "doi": "10.1093/bioinformatics/btv033",
               "licence": [
                 "GPL v3"
-              ]
+              ],
+              "args_id": "$args"
+            }
+          },
+          {
+            "pigz": {
+              "description": "Parallel implementation of the gzip algorithm.",
+              "homepage": "https://zlib.net/pigz/",
+              "documentation": "https://zlib.net/pigz/pigz.pdf",
+              "args_id": "$args2"
             }
           }
         ],
@@ -82347,9 +82718,15 @@
             }
           },
           {
-            "reads": {
+            "reads1": {
               "type": "file",
-              "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data,\nrespectively in gzipped or uncompressed FASTQ or FASTA format.\n"
+              "description": "A single or list of input FastQ files for single-end or R1 of paired-end library(s),\nrespectively in gzipped or uncompressed FASTQ or FASTA format.\n"
+            }
+          },
+          {
+            "reads2": {
+              "type": "file",
+              "description": "A single or list of input FastQ files for R2 of paired-end library(s),\nrespectively in gzipped or uncompressed FASTQ or FASTA format.\n"
             }
           }
         ],
@@ -82400,6 +82777,13 @@
               "type": "file",
               "description": "Stand-alone contigs for k=K; if local assembly is turned on, the file will be empty",
               "pattern": "k*.final.contigs.fa.gz"
+            }
+          },
+          {
+            "log": {
+              "type": "file",
+              "description": "Log file containing statistics of the assembly output",
+              "pattern": "*.log"
             }
           }
         ],
@@ -82939,6 +83323,46 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -86942,14 +87366,7 @@
             }
           },
           {
-            "mirtop_gff": {
-              "type": "file",
-              "description": "GFF file",
-              "pattern": "*.{gff}"
-            }
-          },
-          {
-            "sample_gff": {
+            "gff": {
               "type": "file",
               "description": "GFF file",
               "pattern": "*.{gff}"
@@ -87023,6 +87440,13 @@
               "type": "file",
               "description": "TXT file with stats",
               "pattern": "*.{txt}"
+            }
+          },
+          {
+            "log": {
+              "type": "file",
+              "description": "log file with stats",
+              "pattern": "*.{log}"
             }
           }
         ],
@@ -88725,7 +89149,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "rnadnavar",
@@ -90227,7 +90651,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "readsimulator",
@@ -90251,7 +90675,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "rnasplice",
@@ -92654,7 +93078,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -94826,6 +95250,88 @@
       ]
     },
     {
+      "name": "openms_idmassaccuracy",
+      "path": "modules/nf-core/openms/idmassaccuracy/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "openms_idmassaccuracy",
+        "description": "Calculates a distribution of the mass error from given mass spectra and IDs.",
+        "keywords": [
+          "mass_error",
+          "openms",
+          "proteomics"
+        ],
+        "tools": [
+          {
+            "openms": {
+              "description": "OpenMS is an open-source software C++ library for LC-MS data management and analyses",
+              "homepage": "https://openms.de",
+              "documentation": "https://openms.readthedocs.io/en/latest/index.html",
+              "tool_dev_url": "https://github.com/OpenMS/OpenMS",
+              "doi": "10.1038/s41592-024-02197-7",
+              "licence": [
+                "BSD"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "mzmls": {
+              "type": "file",
+              "description": "List containing one or more mzML files\ne.g. `[ 'file1.mzML', 'file2.mzML' ]`\n",
+              "pattern": "*.{mzML}"
+            }
+          },
+          {
+            "idxmls": {
+              "type": "file",
+              "description": "List containing one or more idXML files\ne.g. `[ 'file1.idXML', 'file2.idXML' ]`\n",
+              "pattern": "*.{idXML}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "frag_err": {
+              "type": "file",
+              "description": "TSV file containing the fragment mass errors",
+              "pattern": "*frag_mass_err.{tsv}"
+            }
+          },
+          {
+            "prec_err": {
+              "type": "file",
+              "description": "Optional TSV file containing the precursor mass errors",
+              "pattern": "*prec_mass_err.{tsv}"
+            }
+          }
+        ],
+        "authors": [
+          "@jonasscheid"
+        ]
+      }
+    },
+    {
       "name": "openms_idmerger",
       "path": "modules/nf-core/openms/idmerger/meta.yml",
       "type": "module",
@@ -95203,6 +95709,93 @@
               "type": "file",
               "description": "Refreshed idXML identification file",
               "pattern": "*.{idXML}"
+            }
+          }
+        ],
+        "authors": [
+          "@jonasscheid"
+        ],
+        "maintainers": [
+          "@jonasscheid"
+        ]
+      }
+    },
+    {
+      "name": "openmsthirdparty_cometadapter",
+      "path": "modules/nf-core/openmsthirdparty/cometadapter/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "openmsthirdparty_cometadapter",
+        "description": "Annotates MS/MS spectra using Comet.",
+        "keywords": [
+          "search engine",
+          "fasta",
+          "mzml",
+          "openms",
+          "proteomics"
+        ],
+        "tools": [
+          {
+            "openms": {
+              "description": "OpenMS is an open-source software C++ library for LC-MS data management and analyses",
+              "homepage": "https://openms.de",
+              "documentation": "https://openms.readthedocs.io/en/latest/index.html",
+              "tool_dev_url": "https://github.com/OpenMS/OpenMS",
+              "doi": "10.1038/nmeth.3959",
+              "licence": [
+                "BSD"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "mzml": {
+              "type": "file",
+              "description": "File containing mass spectra in mzML format",
+              "pattern": "*.{mzML}"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Protein sequence database containing targets and decoys",
+              "pattern": "*.{fasta}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "idxml": {
+              "type": "file",
+              "description": "File containing target and decoy hits in idXML format",
+              "pattern": "*.{idXML}"
+            }
+          },
+          {
+            "pin": {
+              "type": "file",
+              "description": "TSV file tailored as Percolator input (pin) file",
+              "pattern": "*.{tsv}"
             }
           }
         ],
@@ -98606,7 +99199,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -99353,7 +99946,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -99658,7 +100251,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "variantcatalogue",
@@ -99876,7 +100469,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "ssds",
@@ -100109,7 +100702,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "rnafusion",
@@ -100754,7 +101347,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "variantbenchmarking",
@@ -100911,11 +101504,11 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "sammyseq",
@@ -101169,7 +101762,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -101453,7 +102046,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -105234,7 +105827,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         }
       ]
     },
@@ -108237,7 +108830,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -108416,7 +109009,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         }
       ]
     },
@@ -109904,7 +110497,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -109994,7 +110587,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -111050,7 +111643,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         }
       ]
     },
@@ -111134,7 +111727,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "rnasplice",
@@ -111214,7 +111807,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         }
       ]
     },
@@ -111301,7 +111894,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         }
       ]
     },
@@ -111412,7 +112005,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         }
       ]
     },
@@ -111537,7 +112130,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         }
       ]
     },
@@ -111627,7 +112220,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         }
       ]
     },
@@ -111714,7 +112307,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "scnanoseq",
@@ -111827,7 +112420,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         }
       ]
     },
@@ -111922,7 +112515,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         }
       ]
     },
@@ -112014,7 +112607,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "variantbenchmarking",
@@ -112368,7 +112961,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "variantbenchmarking",
@@ -112657,7 +113250,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "rnasplice",
@@ -112778,7 +113371,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "rnasplice",
@@ -114462,7 +115055,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "rnadnavar",
@@ -114940,7 +115533,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "rnasplice",
@@ -115190,7 +115783,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "rnasplice",
@@ -115483,7 +116076,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "readsimulator",
@@ -115503,7 +116096,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "rnasplice",
@@ -115788,7 +116381,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "rnadnavar",
@@ -116328,7 +116921,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "riboseq",
@@ -116344,7 +116937,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "rnasplice",
@@ -116534,7 +117127,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "riboseq",
@@ -116546,7 +117139,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "rnasplice",
@@ -116769,7 +117362,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "rnadnavar",
@@ -117818,7 +118411,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -117933,7 +118526,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "sarek",
@@ -118376,7 +118969,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -118526,7 +119119,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "sarek",
@@ -118656,7 +119249,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "sarek",
@@ -118857,7 +119450,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "sarek",
@@ -119392,7 +119985,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -120162,7 +120755,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -124763,7 +125356,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -126688,7 +127281,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         }
       ]
     },
@@ -128755,7 +129348,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "rnasplice",
@@ -128881,7 +129474,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "rnasplice",
@@ -129560,7 +130153,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -130046,7 +130639,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         }
       ]
     },
@@ -130161,7 +130754,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "rnasplice",
@@ -130281,7 +130874,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         }
       ]
     },
@@ -131292,7 +131885,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "sarek",
@@ -131406,7 +131999,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -132245,7 +132838,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "rnadnavar",
@@ -132359,7 +132952,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "rnadnavar",
@@ -132478,7 +133071,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "rnadnavar",
@@ -133293,7 +133886,13 @@
         "maintainers": [
           "@luisas"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "multiplesequencealign",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "tcoffee_irmsd",
@@ -133826,7 +134425,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -133942,7 +134541,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "sarek",
@@ -134748,7 +135347,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "rnasplice",
@@ -135843,7 +136442,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         }
       ]
     },
@@ -135925,7 +136524,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "rnasplice",
@@ -136029,7 +136628,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "rnasplice",
@@ -136451,7 +137050,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -137054,7 +137653,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "scnanoseq",
@@ -137151,7 +137750,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "rnasplice",
@@ -137350,7 +137949,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         }
       ]
     },
@@ -137694,7 +138293,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "riboseq",
@@ -137706,7 +138305,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "rnasplice",
@@ -138054,7 +138653,104 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
+        }
+      ]
+    },
+    {
+      "name": "upp_align",
+      "path": "modules/nf-core/upp/align/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "upp_align",
+        "description": "Aligns protein structures using UPP",
+        "keywords": [
+          "alignment",
+          "MSA",
+          "genomics",
+          "structure"
+        ],
+        "tools": [
+          {
+            "upp": {
+              "description": "SATe-enabled phylogenetic placement",
+              "homepage": "https://github.com/smirarab/sepp/tree/master",
+              "documentation": "https://github.com/smirarab/sepp/blob/master/README.UPP.md",
+              "tool_dev_url": "https://github.com/smirarab/sepp/tree/master",
+              "doi": "10.1093/bioinformatics/btad007",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test']`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Input sequences in FASTA format",
+              "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing tree information\ne.g. `[ id:'test_tree']`\n"
+            }
+          },
+          {
+            "tree": {
+              "type": "file",
+              "description": "Input guide tree in Newick format",
+              "pattern": "*.{dnd}"
+            }
+          },
+          {
+            "compress": {
+              "type": "boolean",
+              "description": "Flag representing whether the output MSA should be compressed. Set to true to enable/false to disable compression."
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test']`\n"
+            }
+          },
+          {
+            "alignment": {
+              "type": "file",
+              "description": "Alignment file, in FASTA format. May be gzipped or uncompressed, depending on if compress is set to true or false",
+              "pattern": "*.aln{.gz,}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@luisas"
+        ],
+        "maintainers": [
+          "@luisas"
+        ]
+      },
+      "pipelines": [
+        {
+          "name": "multiplesequencealign",
+          "version": "dev"
         }
       ]
     },
@@ -138701,7 +139397,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -138968,7 +139664,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -143874,7 +144570,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         }
       ]
     },
@@ -144058,7 +144754,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "sammyseq",
@@ -144662,7 +145358,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         }
       ]
     },
@@ -144814,7 +145510,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "rnasplice",
@@ -145066,7 +145762,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "rnasplice",
@@ -146031,7 +146727,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "rnasplice",
@@ -147764,7 +148460,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         }
       ]
     },
@@ -148644,7 +149340,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "smrnaseq",
@@ -148813,7 +149509,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "rnasplice",
@@ -149124,7 +149820,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         }
       ]
     },
@@ -149246,7 +149942,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         }
       ]
     },
@@ -153182,7 +153878,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         }
       ]
     },
@@ -153388,7 +154084,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "readsimulator",
@@ -153412,7 +154108,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "sarek",
@@ -153645,7 +154341,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "readsimulator",
@@ -153669,7 +154365,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "sarek",
@@ -153983,7 +154679,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "readsimulator",
@@ -154007,7 +154703,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.15.0"
+          "version": "3.15.1"
         },
         {
           "name": "sarek",
