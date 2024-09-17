@@ -34,12 +34,10 @@ When using containers, all software requirements for a specific Nextflow process
 The process tasks run in isolation in the host environment, and the end user doesn't need to worry about installing software dependencies for the pipeline.
 The software builds are locked in time, making results highly reproducible over many years.
 
-To ensure maximum compatibility across different environments, nf-core modules are typically set up with a conda `environment.yml`, listing software package dependencies from [Bioconda](https://bioconda.github.io/) (eg. [FastQC](https://github.com/nf-core/modules/blob/f768b283dbd8fc79d0d92b0f68665d7bed94cabc/modules/nf-core/fastqc/environment.yml)).
-The [BioContainers project](https://biocontainers.pro/) conveniently builds Docker and Singularity images for all tools on Bioconda automatically, hosting the images publicly on [quay.io](quay.io) and the Galaxy FTP servers, respectively.
-This means that the nf-core module developer can find the matching [BioContainer](https://biocontainers.pro/) images for their Bioconda package, and then add the image URLs into the module's `main.nf` script (see [FastQC example](https://github.com/nf-core/modules/blob/f768b283dbd8fc79d0d92b0f68665d7bed94cabc/modules/nf-core/fastqc/main.nf#L6-L8)).
-
+To ensure maximum compatibility across different environments, nf-core pipelines ship with the full range of options: conda environments as well as Docker and Singularity images.
+These are typically built using [Bioconda](https://bioconda.github.io/) and [BioContainers](https://biocontainers.pro/).
 The Bioconda and BioContainer projects have been invaluable to nf-core's success.
-We're hugely grateful to all contributors for their work and to the Galaxy project for hosting.
+We're hugely grateful to all contributors for their work, as well as to Anaconda, Quay.io and the Galaxy project for hosting these resources.
 
 ## Change is on the breeze
 
@@ -104,6 +102,11 @@ Note that images from Seqera Containers can already be used in nf-core/modules, 
 :::
 
 ## Comparing BioContainers and Seqera Containers
+
+Nearly all nf-core modules are bundled with a conda `environment.yml`, listing software package dependencies from [Bioconda](https://bioconda.github.io/) (eg. [FastQC](https://github.com/nf-core/modules/blob/f768b283dbd8fc79d0d92b0f68665d7bed94cabc/modules/nf-core/fastqc/environment.yml)).
+The [BioContainers project](https://biocontainers.pro/) conveniently builds Docker and Singularity images for all tools on Bioconda automatically, hosting the images publicly on [quay.io](quay.io) and the Galaxy FTP servers, respectively.
+This means that the nf-core module developer can find the matching [BioContainer](https://biocontainers.pro/) images for their Bioconda package, and then add the image URLs into the module's `main.nf` script (see [FastQC example](https://github.com/nf-core/modules/blob/f768b283dbd8fc79d0d92b0f68665d7bed94cabc/modules/nf-core/fastqc/main.nf#L6-L8)).
+The nf-core pipeline user then pulls the container images from quay.io or the Galaxy FTP server when they run the pipeline.
 
 <YouTube
     id="https://www.youtube.com/watch?v=SE6ZCvh1ThQ"
