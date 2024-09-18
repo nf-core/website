@@ -7,20 +7,18 @@ startTime: '09:00+02:00'
 endDate: '2024-09-27'
 endTime: '18:00+02:00'
 locations:
-    - name: Quantitative Biology Center (QBiC), University of Tübingen, Germany
-      geoCoordinates: [48.532, 9.0457]
-    - name: Online via Gather Town
+  - name: Quantitative Biology Center (QBiC), University of Tübingen, Germany
+    geoCoordinates: [48.532, 9.0457]
+  - name: Online via Gather Town
 ---
 
 # nf-4bioimage workshop
-
 
 Join us for an exciting **Bioimage Analysis Workshop** in **Tübingen** on **September 26th and 27th, 2024**! This event will bring together experts from both the **Nextflow/nf-core** and **OME/Bioimage** communities, featuring presentations, hands-on training, and collaborative sessions.
 
 The workshop will be held **in-person** at the Quantitative Biology Center (QBiC) and will also be accessible **online via Gather Town**.
 
 [Register for the event here](https://forms.gle/kQRK7Ycvrpsyyew7A)
-
 
 ## Topics
 
@@ -35,6 +33,7 @@ The goal is to foster collaboration and exchange knowledge across the bioimage a
 ## Schedule
 
 The event will be spread across two days, with a mix of presentations and practical sessions:
+
 <table>
     <tr>
         <th>Time</th>
@@ -95,23 +94,20 @@ The event will be spread across two days, with a mix of presentations and practi
     </tr>
 </table>
 
-**Hands-on Sessions**:  
+**Hands-on Sessions**:
 
-- Nextflow and nf-core  
-- OME tools and standards (Bio-formats, OMERO, OME-Zarr)  
-- Advanced tools for bioimage processing  
+- Nextflow and nf-core
+- OME tools and standards (Bio-formats, OMERO, OME-Zarr)
+- Advanced tools for bioimage processing
 
 ## Venue and virtual platform
 
-**Location**:   
+**Location**:  
 Quantitative Biology Center (QBiC), University of Tübingen  
  M3 Building, Otfried-Müller-Straße 37, 72076 Tübingen, Germany  
-**Online Location**:  [Gather Town](https://www.gather.town)
-
+**Online Location**: [Gather Town](https://www.gather.town)
 
 ## Contact
 
 For any inquiries, feel free to reach out:  
 [luis.kuhn-cuellar@qbic.uni-tuebingen.de](mailto:luis.kuhn-cuellar@qbic.uni-tuebingen.de)
-
-
