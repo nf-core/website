@@ -140,7 +140,15 @@ import AnnouncementBanner from '@components/navbar/AnnouncementBanner.astro';
 
     <div class="bg-body-tertiary pt-4 pb-5">
         <div id="developers" class="container homepage-feature-boxes">
-            <h3 class="mb-4 text-center">Developers: Not just another registry</h3>
+            <h3 class="mb-2 text-center">How to get involved</h3>
+            <div class="container pb-2 text-center lead" id="features">
+                <p class="mb-0"><strong>Everyone is welcome</strong> to contribute, in any way!</p>
+                <p>
+                    Contribute ideas and code directly via <a href="https://github.com/nf-core/" target="_blank"
+                        >GitHub</a
+                    >, or come <a href="/join/">talk to us in Slack</a>.
+                </p>
+            </div>
             <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-4">
                 <div class="col">
                     <HomepageCard
@@ -149,8 +157,8 @@ import AnnouncementBanner from '@components/navbar/AnnouncementBanner.astro';
                         btn_txt="Join Slack"
                         btn_href="join/"
                     >
-                        Come and talk to us <em>before</em> you start writing a pipeline to find collaborators and check
-                        that your pipeline is suitable for nf-core.
+                        Join forces with the community! The first step is to propose your pipeline on Slack (before you
+                        start coding if possible).
                     </HomepageCard>
                 </div>
                 <div class="col">
@@ -160,9 +168,9 @@ import AnnouncementBanner from '@components/navbar/AnnouncementBanner.astro';
                         btn_txt="Read the docs"
                         btn_href="/docs/tutorials/adding_a_pipeline/overview"
                     >
-                        All pipelines, modules and subworkflows must be based on our template and be created using
-                        <code>nf-core</code>
-                        <a href="/tools/">tools</a>. An automated sync keeps pipelines up to date.
+                        Pipelines, modules and subworkflows are based on a template, created using
+                        <a href="/docs/nf-core-tools"><code>nf-core</code> tools</a>. An automated sync keeps pipelines
+                        up to date.
                     </HomepageCard>
                 </div>
                 <div class="col">
@@ -172,8 +180,8 @@ import AnnouncementBanner from '@components/navbar/AnnouncementBanner.astro';
                         btn_txt="See the guidelines"
                         btn_href="/docs/guidelines/pipelines/overview"
                     >
-                        We only allow one pipeline per data type / analysis type. If a similar pipeline exists we'll ask
-                        you to add to that instead of making a new workflow.
+                        We have one pipeline per data type / analysis type to focus collaboration. You can add missing
+                        functionality to any pipeline!
                     </HomepageCard>
                 </div>
             </div>
