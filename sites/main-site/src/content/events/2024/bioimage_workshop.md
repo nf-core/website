@@ -34,7 +34,7 @@ The goal is to foster collaboration and exchange knowledge across the bioimage a
 
 The event will be spread across two days, with a mix of presentations and practical sessions:
 
-<table>
+<table class="table">
     <tr>
         <th>Time</th>
         <th>Thursday, September 26th</th>
