@@ -6115,6 +6115,18 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -19028,6 +19040,30 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -72895,8 +72931,10 @@
         "keywords": [
           "vcf",
           "bcf",
+          "variant",
           "annotation",
-          "repeats"
+          "repeats",
+          "polyx"
         ],
         "tools": [
           {
@@ -72908,7 +72946,8 @@
               "doi": "10.6084/m9.figshare.1425030",
               "licence": [
                 "MIT License"
-              ]
+              ],
+              "args_id": "$args2"
             }
           },
           {
@@ -72919,6 +72958,10 @@
               "doi": "10.1093/bioinformatics/btp352",
               "licence": [
                 "MIT"
+              ],
+              "args_id": [
+                "$args1",
+                "$args3"
               ]
             }
           }
@@ -72927,25 +72970,25 @@
           {
             "meta": {
               "type": "map",
-              "description": "Groovy Map containing VCF information\n"
+              "description": "Groovy Map containing VCF information\ne.g. [ id:'test_reference' ]\n"
             }
           },
           {
             "meta2": {
               "type": "map",
-              "description": "Groovy Map containing fasta information\n"
+              "description": "Groovy Map containing fasta information\ne.g. [ id:'test_reference' ]\n"
             }
           },
           {
             "meta3": {
               "type": "map",
-              "description": "Groovy Map containing fasta.fai information\n"
+              "description": "Groovy Map containing fasta.fai information\ne.g. [ id:'test_reference' ]\n"
             }
           },
           {
             "meta4": {
               "type": "map",
-              "description": "Groovy Map containing fasta.dict information\n"
+              "description": "Groovy Map containing fasta.dict information\ne.g. [ id:'test_reference' ]\n"
             }
           },
           {
@@ -72953,6 +72996,20 @@
               "type": "file",
               "description": "Groovy Map containing reference genome information for vcf",
               "pattern": "*.{vcf,bcf,vcf.gz,bcf.gz}"
+            }
+          },
+          {
+            "tbi": {
+              "type": "file",
+              "description": "Optional VCF/BCF index file",
+              "pattern": "*.{tbi,csi}"
+            }
+          },
+          {
+            "regions_file": {
+              "type": "file",
+              "description": "Optional. Restrict to regions listed in a file",
+              "pattern": "*.{bed,bed.gz,txt,tsv}"
             }
           },
           {
@@ -83323,6 +83380,18 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -131807,6 +131876,71 @@
           "version": "dev"
         }
       ]
+    },
+    {
+      "name": "svdb_build",
+      "path": "modules/nf-core/svdb/build/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "svdb_build",
+        "description": "Build a structural variant database",
+        "keywords": [
+          "structural variants",
+          "build",
+          "svdb"
+        ],
+        "tools": [
+          {
+            "svdb": {
+              "description": "structural variant database software",
+              "homepage": "https://github.com/J35P312/SVDB",
+              "documentation": "https://github.com/J35P312/SVDB/blob/master/README.md",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "input": {
+              "type": "file",
+              "description": "Input VCF file(s) or folder",
+              "pattern": "*"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "db": {
+              "type": "file",
+              "description": "SVDB database"
+            }
+          }
+        ],
+        "authors": [
+          "@fellen31"
+        ]
+      }
     },
     {
       "name": "svdb_merge",
