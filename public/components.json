@@ -6115,6 +6115,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -19028,6 +19032,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -72895,8 +72907,10 @@
         "keywords": [
           "vcf",
           "bcf",
+          "variant",
           "annotation",
-          "repeats"
+          "repeats",
+          "polyx"
         ],
         "tools": [
           {
@@ -72908,7 +72922,8 @@
               "doi": "10.6084/m9.figshare.1425030",
               "licence": [
                 "MIT License"
-              ]
+              ],
+              "args_id": "$args2"
             }
           },
           {
@@ -72919,6 +72934,10 @@
               "doi": "10.1093/bioinformatics/btp352",
               "licence": [
                 "MIT"
+              ],
+              "args_id": [
+                "$args1",
+                "$args3"
               ]
             }
           }
@@ -72927,25 +72946,25 @@
           {
             "meta": {
               "type": "map",
-              "description": "Groovy Map containing VCF information\n"
+              "description": "Groovy Map containing VCF information\ne.g. [ id:'test_reference' ]\n"
             }
           },
           {
             "meta2": {
               "type": "map",
-              "description": "Groovy Map containing fasta information\n"
+              "description": "Groovy Map containing fasta information\ne.g. [ id:'test_reference' ]\n"
             }
           },
           {
             "meta3": {
               "type": "map",
-              "description": "Groovy Map containing fasta.fai information\n"
+              "description": "Groovy Map containing fasta.fai information\ne.g. [ id:'test_reference' ]\n"
             }
           },
           {
             "meta4": {
               "type": "map",
-              "description": "Groovy Map containing fasta.dict information\n"
+              "description": "Groovy Map containing fasta.dict information\ne.g. [ id:'test_reference' ]\n"
             }
           },
           {
@@ -72953,6 +72972,20 @@
               "type": "file",
               "description": "Groovy Map containing reference genome information for vcf",
               "pattern": "*.{vcf,bcf,vcf.gz,bcf.gz}"
+            }
+          },
+          {
+            "tbi": {
+              "type": "file",
+              "description": "Optional VCF/BCF index file",
+              "pattern": "*.{tbi,csi}"
+            }
+          },
+          {
+            "regions_file": {
+              "type": "file",
+              "description": "Optional. Restrict to regions listed in a file",
+              "pattern": "*.{bed,bed.gz,txt,tsv}"
             }
           },
           {
@@ -83323,6 +83356,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
