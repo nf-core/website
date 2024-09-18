@@ -6119,6 +6119,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -19032,6 +19036,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -83939,6 +83951,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -131844,6 +131860,71 @@
           "version": "dev"
         }
       ]
+    },
+    {
+      "name": "svdb_build",
+      "path": "modules/nf-core/svdb/build/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "svdb_build",
+        "description": "Build a structural variant database",
+        "keywords": [
+          "structural variants",
+          "build",
+          "svdb"
+        ],
+        "tools": [
+          {
+            "svdb": {
+              "description": "structural variant database software",
+              "homepage": "https://github.com/J35P312/SVDB",
+              "documentation": "https://github.com/J35P312/SVDB/blob/master/README.md",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "input": {
+              "type": "file",
+              "description": "Input VCF file(s) or folder",
+              "pattern": "*"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "db": {
+              "type": "file",
+              "description": "SVDB database"
+            }
+          }
+        ],
+        "authors": [
+          "@fellen31"
+        ]
+      }
     },
     {
       "name": "svdb_merge",
