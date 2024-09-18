@@ -59,7 +59,7 @@ export default defineConfig({
                 ],
                 fa: ['github'],
                 'fa-brands': ['github'],
-                'line-md': ['check-list-3-twotone'],
+                'line-md': ['check-list-3-twotone', 'cloud-alt-twotone'],
                 mdi: ['aws', 'slack', 'youtube'],
                 octicon: [
                     'chevron-right-16',
