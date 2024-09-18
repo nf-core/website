@@ -679,7 +679,7 @@ It is also possible for a new multi-tool container to be built and added to BioC
 
   The packages should reflect those added to the multi-package-containers repo `hash.tsv` file
 
-- If the multi-tool container already exists and you want to obtain the `mulled-*` path, you can use (this)[https://midnighter.github.io/mulled] helper tool.
+- If the multi-tool container already exists and you want to obtain the `mulled-*` path, you can use [this](https://midnighter.github.io/mulled) helper tool.
 
 ### Software not on Bioconda
 
