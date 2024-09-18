@@ -1,7 +1,7 @@
 ---
 title: Bioimage Analysis Workshop - September 2024 (Tübingen)
 subtitle: An in-person and online bioimage analysis workshop in Tübingen
-type: workshop
+type: hackathon
 startDate: '2024-09-26'
 startTime: '09:00+02:00'
 endDate: '2024-09-27'
