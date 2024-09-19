@@ -59,8 +59,16 @@ export default defineConfig({
                 ],
                 fa: ['github'],
                 'fa-brands': ['github'],
-                'line-md': ['check-list-3-twotone', 'cloud-alt-twotone'],
-                mdi: ['aws', 'slack', 'youtube'],
+                mdi: [
+                    'aws',
+                    'slack',
+                    'youtube',
+                    'cloud-outline',
+                    'timeline-check-outline',
+                    'book-information-variant',
+                    'package-variant',
+                    'progress-check',
+                ],
                 octicon: [
                     'chevron-right-16',
                     'git-pull-request-16',
