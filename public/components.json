@@ -6127,6 +6127,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -19040,6 +19044,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -83971,6 +83983,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -134076,6 +134092,12 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing information about the structures\ne.g. [ id:'test', ... ]\n"
+            }
+          },
+          {
             "template": {
               "type": "file",
               "description": "Template file matching the structures to the sequences in the alignment.",
@@ -134157,7 +134179,7 @@
             }
           },
           {
-            "fasta": {
+            "infile": {
               "type": "file",
               "description": "Input file to be reformatted",
               "pattern": "*"
@@ -134243,6 +134265,12 @@
               "type": "file",
               "description": "fasta file containing the alignment to be evaluated. May be gzipped or uncompressed.",
               "pattern": "*.{aln,fa,fasta,fas}{.gz,}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing library information\ne.g. [ id:'test', ... ]\n"
             }
           },
           {
