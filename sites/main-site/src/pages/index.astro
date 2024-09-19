@@ -152,13 +152,25 @@ import AnnouncementBanner from '@components/navbar/AnnouncementBanner.astro';
             <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-4">
                 <div class="col">
                     <HomepageCard
+                        title="Start small or go big"
+                        icon="octicon:git-pull-request-16"
+                        icon_class="text-secondary"
+                        btn_txt="Get started"
+                        btn_href="/docs/usage/getting_started/introduction"
+                    >
+                        You start wherever you like: Typo fixes in docs? No module for your favourite tool? Missing a
+                        pipeline? We are looking for all types of contributions!
+                    </HomepageCard>
+                </div>
+                <div class="col">
+                    <HomepageCard
                         title="Develop with the community"
                         fontawesome="fa-duotone fa-people-carry text-secondary"
                         btn_txt="Join Slack"
                         btn_href="join/"
                     >
-                        Join forces with the community! The first step is to propose your pipeline on Slack (before you
-                        start coding if possible).
+                        Join forces with others! We promote collaboration over duplication: Before you start coding,
+                        please propose your idea in Slack..
                     </HomepageCard>
                 </div>
                 <div class="col">
@@ -171,17 +183,6 @@ import AnnouncementBanner from '@components/navbar/AnnouncementBanner.astro';
                         Pipelines, modules and subworkflows are based on a template, created using
                         <a href="/docs/nf-core-tools"><code>nf-core</code> tools</a>. An automated sync keeps pipelines
                         up to date.
-                    </HomepageCard>
-                </div>
-                <div class="col">
-                    <HomepageCard
-                        title="Collaborate, don't duplicate"
-                        fontawesome="fa-duotone fa-code-merge text-secondary"
-                        btn_txt="See the guidelines"
-                        btn_href="/docs/guidelines/pipelines/overview"
-                    >
-                        We have one pipeline per data type / analysis type to focus collaboration. You can add missing
-                        functionality to any pipeline!
                     </HomepageCard>
                 </div>
             </div>
