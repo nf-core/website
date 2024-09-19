@@ -12,12 +12,30 @@ import SidebarNav from '@components/sidebar/SidebarNav.astro';
 let sections: SidebarEntry[] = [
     {
         type: 'group',
-        id: 'guides',
-        label: 'Guides',
+        id: 'get-started',
+        label: 'Get started',
         entries: [],
         collapsed: true,
         icon: 'octicon:play-16',
         weight: 1,
+    },
+    {
+        type: 'group',
+        id: 'using',
+        label: 'Using',
+        entries: [],
+        collapsed: true,
+        icon: 'octicon:law-16',
+        weight: 2,
+    },
+    {
+        type: 'group',
+        id: 'developing',
+        label: 'Developing',
+        entries: [],
+        collapsed: true,
+        icon: 'octicon:law-16',
+        weight: 3,
     },
     {
         type: 'group',
@@ -26,7 +44,7 @@ let sections: SidebarEntry[] = [
         entries: [],
         collapsed: true,
         icon: 'octicon:git-pull-request-16',
-        weight: 2,
+        weight: 4,
     },
     {
         type: 'group',
@@ -35,24 +53,6 @@ let sections: SidebarEntry[] = [
         entries: [],
         collapsed: true,
         icon: 'octicon:mortar-board-16',
-        weight: 3,
-    },
-    {
-        type: 'group',
-        id: 'guidelines',
-        label: 'Guidelines',
-        entries: [],
-        collapsed: true,
-        icon: 'octicon:law-16',
-        weight: 4,
-    },
-    {
-        type: 'group',
-        id: 'checklists',
-        label: 'Checklists',
-        entries: [],
-        collapsed: true,
-        icon: 'octicon:tasklist-16',
         weight: 5,
     },
     {
@@ -117,7 +117,7 @@ const findEntriesWithLabel = (sections: SidebarEntry[], label: string, parentLab
 };
 
 let highlightSections = [];
-['Introduction', 'Adding modules to pipelines', 'Assertions', 'nf-core-tools/Installation'].forEach((label) => {
+['What is nf-core?', 'Adding modules to pipelines', 'Assertions', 'nf-core-tools/Installation'].forEach((label) => {
     let parentLabel = label.includes('/') ? label.split('/')[0] : undefined;
     label = parentLabel ? label.split('/')[1] : label;
     let entries = findEntriesWithLabel(sections, label, parentLabel?.replace('nf-core-tools', 'nf-core/tools'));
