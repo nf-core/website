@@ -7,7 +7,7 @@ import { sanitizeNfCoreLabels, addEntriesToSection } from '@utils/functions';
 import SidebarSubNav from '@components/sidebar/SidebarSubNav.astro';
 
 export async function getStaticPaths() {
-    return ['tutorials', 'usage', 'contributing', 'nf-core-tools', 'checklists', 'guidelines'].map((subsection) => ({
+    return ['get-started', 'using', 'developing', 'contributing', 'tutorials', 'nf-core-tools'].map((subsection) => ({
         params: {
             subsection: subsection,
         },
@@ -21,12 +21,12 @@ import SidebarNav from '@components/sidebar/SidebarNav.astro';
 let sections: SidebarEntry[] = [
     {
         type: 'group',
-        id: 'usage',
-        label: 'Usage',
-        href: '/docs/usage',
+        id: 'get-started',
+        label: 'Get started',
+        href: '/docs/get-started',
         entries: [],
-        isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/usage',
-        collapsed: Astro.url.pathname !== '/docs/usage/',
+        isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/get-started',
+        collapsed: Astro.url.pathname !== '/docs/get-started/',
         icon: 'octicon:play-16',
     },
     {
@@ -41,6 +41,26 @@ let sections: SidebarEntry[] = [
     },
     {
         type: 'group',
+        id: 'users',
+        label: 'Using',
+        href: '/docs/using',
+        entries: [],
+        isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/using',
+        collapsed: Astro.url.pathname !== '/docs/using/',
+        icon: 'octicon:law-16',
+    },
+    {
+        type: 'group',
+        id: 'developing',
+        label: 'Developing',
+        href: '/docs/developing',
+        entries: [],
+        isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/developing',
+        collapsed: Astro.url.pathname !== '/docs/developing/',
+        icon: 'octicon:law-16',
+    },
+    {
+        type: 'group',
         id: 'tutorials',
         label: 'Tutorials',
         href: '/docs/tutorials',
@@ -48,26 +68,6 @@ let sections: SidebarEntry[] = [
         isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/tutorials',
         collapsed: Astro.url.pathname !== '/docs/tutorials/',
         icon: 'octicon:mortar-board-16',
-    },
-    {
-        type: 'group',
-        id: 'guidelines',
-        label: 'Guidelines',
-        href: '/docs/guidelines',
-        entries: [],
-        isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/guidelines',
-        collapsed: Astro.url.pathname !== '/docs/guidelines/',
-        icon: 'octicon:law-16',
-    },
-    {
-        type: 'group',
-        id: 'checklists',
-        label: 'Checklists',
-        href: '/docs/checklists',
-        entries: [],
-        isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/checklists',
-        collapsed: Astro.url.pathname !== '/docs/checklists/',
-        icon: 'octicon:tasklist-16',
     },
     {
         type: 'group',
