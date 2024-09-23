@@ -4,7 +4,7 @@ subtitle: Recommended recognition for nf-core pipeline publications
 weight: 123
 ---
 
-Pipeline publications should acknowledge the nf-core community (e.g. in an academic journal). Please cite the following publication, which describes the community and framework in detail:
+Pipeline publications (or papers within which pipelines are described for the first time) should acknowledge the nf-core community (e.g. in an academic journal). Please cite the following publication, which describes the community and framework in detail:
 
 > Ewels, P.A., Peltzer, A., Fillinger, S. et al. The nf-core framework for community-curated bioinformatics pipelines. Nat Biotechnol 38, 276–278 (2020). https://doi.org/10.1038/s41587-020-0439-x
 
