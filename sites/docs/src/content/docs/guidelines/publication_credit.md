@@ -4,9 +4,9 @@ subtitle: Recognition for nf-core pipeline publications
 weight: 123
 ---
 
-Pipeline publications and presentations (or those that describe pipelines for the first time) should give attribution to the nf-core community.
+All pipeline publications and presentations, or those that describe pipelines for the first time, should give attribution to the nf-core community.
 
-All pipeline publications and presentations should cite [The nf-core framework for community-curated bioinformatics pipelines](https://www.nature.com/articles/s41587-020-0439-x):
+All nf-core pipeline publications and presentations should cite [The nf-core framework for community-curated bioinformatics pipelines](https://www.nature.com/articles/s41587-020-0439-x):
 
 > Ewels, P.A., Peltzer, A., Fillinger, S. et al. The nf-core framework for community-curated bioinformatics pipelines. Nat Biotechnol 38, 276–278 (2020). https://doi.org/10.1038/s41587-020-0439-x
 
@@ -16,10 +16,12 @@ All pipeline publications and presentations should cite [The nf-core framework f
 
 **Optionally**, the nf-core community can be included as a consortium co-author. This option is preferred when a pipeline has made extensive use of existing nf-core pipeline components (e.g., modules and subworkflows) written by other community members who were not directly involved in the pipeline itself. For example, see hgtseq: [A Standard Pipeline to Study Horizontal Gene Transfer](https://doi.org/10.3390/ijms232314512).
 
-If any members of the nf-core community have provided significant input to the creation of the pipeline, please consider adding them as coauthors on the paper directly.
+If members of the nf-core community have provided significant input to the creation or maintenance of a pipeline, please consider adding them as coauthors on the pipeline publication or presentation.
+
+If your pipeline publication or presentation is an extension of a community pipeline, please consider adding the main developers as coauthors.
 
 See [Publications](https://nf-co.re/publications) for more examples of nf-core and nf-core pipeline publications.
 
 :::note
-If you’re unsure how to acknowledge **nf-core** in your publication, feel free to ping the `@core-team` on slack for advice.
+If you’re unsure how to acknowledge **nf-core** in your publication or presentation, feel free to ping the `@core-team` on Slack for advice.
 :::
