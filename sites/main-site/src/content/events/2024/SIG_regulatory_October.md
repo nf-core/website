@@ -11,4 +11,4 @@ locations:
     links: https://seqera-io.zoom.us/j/86361641018
 ---
 
-Second regular meeting of the regulatory special interest group after the kickoff. The main intent is now to catch up on the latest topics discussed and share / discuss content created and summarized by members of the regulatory special interest group. [Jonathon Keeney ](https://apps.smhs.gwu.edu/smhs/facultydirectory/profile.cfm?empName=Jonathon%20Keeney&FacID=2056964816) will present us work around [Biocompute Objects](https://biocomputeobject.org/) in this meeting so tune in for some updates on that! 
+Second regular meeting of the regulatory special interest group after the kickoff. The main intent is now to catch up on the latest topics discussed and share / discuss content created and summarized by members of the regulatory special interest group. [Jonathon Keeney ](https://apps.smhs.gwu.edu/smhs/facultydirectory/profile.cfm?empName=Jonathon%20Keeney&FacID=2056964816) will present us work around [Biocompute Objects](https://biocomputeobject.org/) in this meeting so tune in for some updates on that!
