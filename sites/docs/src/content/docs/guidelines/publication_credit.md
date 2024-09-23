@@ -1,5 +1,5 @@
 ---
-title: Publication Credit
+title: Publication credit
 subtitle: Recognition for nf-core pipeline publications
 weight: 123
 ---
