@@ -4,7 +4,7 @@ subtitle: Recognition for nf-core pipeline publications
 weight: 123
 ---
 
-All pipeline publications and presentations, or those that describe pipelines for the first time, should give attribution to the nf-core community.
+All pipeline publications and presentations, or those that describe pipelines, should give attribution to the nf-core community.
 
 All nf-core pipeline publications and presentations should cite [The nf-core framework for community-curated bioinformatics pipelines](https://www.nature.com/articles/s41587-020-0439-x):
 
