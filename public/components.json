@@ -7587,6 +7587,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -23818,6 +23822,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -106042,6 +106054,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -185127,13 +185143,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*_aberrations.bed"
                 }
               },
               {
                 "*_aberrations.bed": {
-                  "type": "file",
-                  "description": "OPTIONAL - Output abberations in BED format. This gets created with the `--bed` option",
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*_aberrations.bed"
                 }
               }
@@ -185144,13 +185161,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*_bins.bed"
                 }
               },
               {
                 "*_bins.bed": {
-                  "type": "file",
-                  "description": "OPTIONAL - Output bins in BED format. This gets created with the `--bed` option",
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*_bins.bed"
                 }
               }
@@ -185161,13 +185179,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*_segments.bed"
                 }
               },
               {
                 "*_segments.bed": {
-                  "type": "file",
-                  "description": "OPTIONAL - Output segments in BED format. This gets created with the `--bed` option",
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*_segments.bed"
                 }
               }
@@ -185178,13 +185197,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*_chr_statistics.txt"
                 }
               },
               {
-                "*_chr_statistics.txt": {
-                  "type": "file",
-                  "description": "OPTIONAL - Statistics per chromosome in TXT format. This gets created with the `--bed` option",
+                "*_statistics.txt": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*_chr_statistics.txt"
                 }
               }
@@ -185195,13 +185215,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "[!genome_wide]*.png"
                 }
               },
               {
                 "[!genome_wide]*.png": {
-                  "type": "list",
-                  "description": "OPTIONAL - A list containing the CNV plots of each chromosome. This gets created with the `--plot` option",
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "[!genome_wide]*.png"
                 }
               }
@@ -185212,13 +185233,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "genome_wide.png"
                 }
               },
               {
                 "genome_wide.png": {
-                  "type": "file",
-                  "description": "OPTIONAL - A plot containing the CNV information of the whole genome",
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "genome_wide.png"
                 }
               }
