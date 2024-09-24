@@ -18,7 +18,7 @@ All nf-core pipeline publications and presentations should cite [The nf-core fra
 
 If members of the nf-core community have provided significant input to the creation or maintenance of a pipeline, please consider adding them as coauthors on the pipeline publication or presentation.
 
-If your pipeline publication or presentation is an extension of a community pipeline, please consider adding the main developers as coauthors.
+If your pipeline publication or presentation is an extension of a community pipeline, please discuss authorship with the main developers.
 
 See [Publications](https://nf-co.re/publications) for more examples of nf-core and nf-core pipeline publications.
 
