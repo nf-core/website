@@ -213,12 +213,12 @@ class RepoHealth {
                 $gh_branch_url =
                     'https://api.github.com/repos/sanger-tol/' . basename($this->name) . '/branches/' . $branch . '/protection';
                 $gh_branch = json_decode(@file_get_contents($gh_branch_url, false, GH_API_OPTS));
-                if (strpos($http_response_header[0], 'HTTP/1.0 200') !== false && is_object($gh_branch)) {
+                if (preg_match('/HTTP\/\d\.*\d* 200/', $http_response_header[0]) !== false && is_object($gh_branch)) {
                     $this->{'gh_branch_' . $branch} = $gh_branch;
                     $this->_save_cache_data($gh_branch_cache, $this->{'gh_branch_' . $branch});
                 } else {
                     // Write an empty cache file
-                    if (strpos($http_response_header[0], 'HTTP/1.0 404') === false) {
+                    if (preg_match('/HTTP\/\d\.*\d* 404/', $http_response_header[0]) === false) {
                         // A 404 is fine, that just means that there is no branch protection. Warn if anything else.
                         $gh_branch = htmlspecialchars($gh_branch, ENT_QUOTES, 'UTF-8');
                         echo '<div class="alert alert-danger">Could not fetch branch protection data for <code>' .
@@ -555,9 +555,9 @@ class RepoHealth {
             ],
         ]);
         $result = json_decode(file_get_contents($url, false, $context));
-        if (strpos($http_response_header[0], 'HTTP/1.0 204') !== false) {
+        if (preg_match('/HTTP\/\d\.*\d* 204/', $http_response_header[0]) !== false) {
             return true;
-        } elseif (strpos($http_response_header[0], 'HTTP/1.0 200') !== false) {
+        } elseif (preg_match('/HTTP\/\d\.*\d* 200/', $http_response_header[0]) !== false) {
             return $result;
         } else {
             echo '<div class="alert alert-danger m-3">

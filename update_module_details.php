@@ -51,7 +51,7 @@ function github_query($gh_query_url) {
             $gh_query_url = $next_page;
         }
         $tmp_results = json_decode(file_get_contents($gh_query_url, false, $gh_api_opts), true);
-        if (strpos($http_response_header[0], 'HTTP/1.0 200') === false) {
+        if (preg_match('/HTTP\/\d\.*\d* 200/', $http_response_header[0]) === false) {
             var_dump($http_response_header);
             echo "\nCould not fetch $gh_query_url";
             continue;

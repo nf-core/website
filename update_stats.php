@@ -58,13 +58,13 @@ function github_query($gh_query_url) {
         // If the data hasn't been cached when you query a repository's statistics, you'll receive a 202 response;
         // a background job is also fired to start compiling these statistics.
         // Give the job a few moments to complete, and then submit the request again
-        if (strpos($http_response_header[0], 'HTTP/1.0 202') !== false) {
+        if (preg_match('/HTTP\/\d\.*\d* 202/', $http_response_header[0]) !== false) {
             echo "Waiting for GitHub API to return results for $gh_query_url \n";
             sleep(10);
             $first_page = true;
             continue;
         }
-        if (strpos($http_response_header[0], 'HTTP/1.0 200') === false) {
+        if (preg_match('/HTTP\/\d\.*\d* 200/', $http_response_header[0]) === false) {
             var_dump($http_response_header);
             echo "\nCould not fetch $gh_query_url";
             continue;
@@ -357,7 +357,7 @@ while ($first_page || $next_page) {
         $gh_members_url = $next_page;
     }
     $gh_members = json_decode(file_get_contents($gh_members_url, false, $gh_api_opts));
-    if (strpos($http_response_header[0], 'HTTP/1.0 200') === false) {
+    if (preg_match('/HTTP\/\d\.*\d* 200/', $http_response_header[0]) === false) {
         var_dump($http_response_header);
         echo "Could not fetch nf-core members! $gh_members_url";
         continue;
@@ -378,7 +378,7 @@ while ($first_page || $next_page) {
 echo "Get the list of repos from Github\n";
 $gh_repos_url = 'https://api.github.com/orgs/sanger-tol/repos?per_page=100';
 $gh_repos = json_decode(file_get_contents($gh_repos_url, false, $gh_api_opts));
-if (strpos($http_response_header[0], 'HTTP/1.0 200') === false) {
+if (preg_match('/HTTP\/\d\.*\d* 200/', $http_response_header[0]) === false) {
     var_dump($http_response_header);
     die("Could not fetch nf-core repositories! $gh_repos_url");
 }
@@ -410,7 +410,7 @@ foreach ($gh_repos as $repo) {
     // Annoyingly, two values are only available if we query for just this repo
     $gh_repo_url = 'https://api.github.com/repos/sanger-tol/' . basename($repo->name);
     $gh_repo = json_decode(file_get_contents($gh_repo_url, false, $gh_api_opts));
-    if (strpos($http_response_header[0], 'HTTP/1.0 200') === false) {
+    if (preg_match('/HTTP\/\d\.*\d* 200/', $http_response_header[0]) === false) {
         var_dump($http_response_header);
         echo "Could not fetch nf-core repo! $gh_repo_url";
         continue;
@@ -428,9 +428,9 @@ foreach (['pipelines'] as $repo_type) {
         // Views
         $gh_views_url = 'https://api.github.com/repos/sanger-tol/' . $repo_name . '/traffic/views';
         $gh_views = json_decode(file_get_contents($gh_views_url, false, $gh_api_opts));
-        if (strpos($http_response_header[0], 'HTTP/1.0 200') === false) {
+        if (preg_match('/HTTP\/\d\.*\d* 200/', $http_response_header[0]) === false) {
             // Pipelines are removed from the cache earlier as we know their names
-            if ($repo_type == 'core_repos' && strpos($http_response_header[0], 'HTTP/1.0 404') !== false) {
+            if ($repo_type == 'core_repos' && preg_match('/HTTP\/\d\.*\d* 404/', $http_response_header[0]) !== false) {
                 echo 'Removing ' . $repo_name . " from the cached results as it appears to have been deleted.\n";
                 unset($results['core_repos'][$repo_name]);
             } else {
@@ -447,7 +447,7 @@ foreach (['pipelines'] as $repo_type) {
         // Clones
         $gh_clones_url = 'https://api.github.com/repos/sanger-tol/' . $repo_name . '/traffic/clones';
         $gh_clones = json_decode(file_get_contents($gh_clones_url, false, $gh_api_opts));
-        if (strpos($http_response_header[0], 'HTTP/1.0 200') === false) {
+        if (preg_match('/HTTP\/\d\.*\d* 200/', $http_response_header[0]) === false) {
             var_dump($http_response_header);
             echo "Could not fetch nf-core repo clones! $gh_clones_url";
             continue;
@@ -464,12 +464,12 @@ foreach (['pipelines'] as $repo_type) {
         // If the data hasn't been cached when you query a repository's statistics, you'll receive a 202 response;
         // a background job is also fired to start compiling these statistics.
         // Give the job a few moments to complete, and then submit the request again
-        if (strpos($http_response_header[0], 'HTTP/1.0 202') !== false) {
+        if (preg_match('/HTTP\/\d\.*\d* 202/', $http_response_header[0]) !== false) {
             $contribs_try_again[$repo_name] = [
                 'repo_type' => $repo_type,
                 'gh_contributors_url' => $gh_contributors_url,
             ];
-        } elseif (strpos($http_response_header[0], 'HTTP/1.0 200') === false) {
+        } elseif (preg_match('/HTTP\/\d\.*\d* 200/', $http_response_header[0]) === false) {
             var_dump($http_response_header);
             echo "Could not fetch nf-core repo contributors! $gh_contributors_url";
             continue;
@@ -509,10 +509,10 @@ if (count($contribs_try_again) > 0) {
         $gh_contributors_raw = file_get_contents($gh_contributors_url, false, $gh_api_opts);
         file_put_contents($contribs_fn_root . $repo_name . '.json', $gh_contributors_raw);
         $gh_contributors = json_decode($gh_contributors_raw);
-        if (strpos($http_response_header[0], 'HTTP/1.0 202') !== false) {
+        if (preg_match('/HTTP\/\d\.*\d* 202/', $http_response_header[0]) !== false) {
             echo "Tried getting contributors after delay for $repo_name, but took too long.\n";
             continue;
-        } elseif (strpos($http_response_header[0], 'HTTP/1.0 200') === false) {
+        } elseif (preg_match('/HTTP\/\d\.*\d* 200/', $http_response_header[0]) === false) {
             var_dump($http_response_header);
             echo "Could not fetch nf-core repo contributors! $gh_contributors_url";
             continue;
@@ -579,7 +579,7 @@ $slack_api_opts = stream_context_create([
     ],
 ]);
 $slack_users = json_decode(file_get_contents($slack_api_url, false, $slack_api_opts));
-if (strpos($http_response_header[0], 'HTTP/1.0 200') === false || !isset($slack_users->ok) || !$slack_users->ok) {
+if (preg_match('/HTTP\/\d\.*\d* 200/', $http_response_header[0]) === false || !isset($slack_users->ok) || !$slack_users->ok) {
     var_dump($http_response_header);
     echo 'Could not fetch slack user list!';
 } else {
