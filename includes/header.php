@@ -47,7 +47,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
   <meta name="description" content="<?php echo $page_meta; ?>">
   <meta name="author" content="Priyanka Surana, Guoying Qi, Matthieu Muffato">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#1d9655">
+  <meta name="theme-color" content="#597FBA">
   <link rel="shortcut icon" href="/assets/img/logo/sanger-tol-logo-tree.png" type="image/png" />
   <link rel="alternate" type="application/rss+xml" title="Events" href="/events/rss" />
   <!-- FontAwesome -->
