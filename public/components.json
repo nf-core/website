@@ -7595,6 +7595,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -23826,6 +23830,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -61817,7 +61829,7 @@
             {
               "site_depth_vcf_tbi": {
                 "type": "file",
-                "description": "tbi index of the input VCF of SNPs marking loci for site depths",
+                "description": "Optional - input VCF TBI of SNPs marking loci for site depths, needed for the site depths output",
                 "pattern": "*.vcf.gz.tbi"
               }
             }
@@ -105423,6 +105435,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
