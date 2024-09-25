@@ -32,11 +32,7 @@ Part 1: [https://nf-co.re/blog/2024/seqera-containers-part-1](https://nf-co.re/b
 We remove the \`container\` declaration completely. With [the FastQC module](https://github.com/nf-core/modules/blob/f768b283dbd8fc79d0d92b0f68665d7bed94cabc/modules/nf-core/fastqc/main.nf#L6-L8) as an example:
 
 ```diff title="main.nf"
-diff --git a/modules/nf-core/fastqc/main.nf b/modules/nf-core/fastqc/main.nf
-index d8989f481..790c678b2 100644
---- a/modules/nf-core/fastqc/main.nf
-+++ b/modules/nf-core/fastqc/main.nf
-@@ -3,9 +3,6 @@ process FASTQC {
+process FASTQC {
      label 'process_medium'
 
      conda "${moduleDir}/environment.yml"
