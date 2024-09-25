@@ -1,0 +1,306 @@
+---
+title: 'Migration from Biocontainers to Seqera Containers: Part 2'
+subtitle: How this will work and how we'll automate it
+pubDate: 2024-09-24T09:20:00+01:00
+headerImage: https://images.unsplash.com/photo-1711109631679-c9e1094d3118
+headerImageAlt: Photo by Rafael Garcin on Unsplash
+authors:
+    - 'ewels'
+    - 'edmundmiller'
+label:
+    - 'modules'
+    - 'wave'
+    - 'seqera containers'
+embedHeaderImage: false
+---
+
+import creation_flow from '@assets/images/blog/seqera-containers-part-2/creation_flow.excalidraw.svg?raw';
+import renovate_flow from '@assets/images/blog/seqera-containers-part-2/renovate_flow.excalidraw.svg?raw';
+
+import { Image } from 'astro:assets';
+
+# Introduction
+
+Part 1: [https://nf-co.re/blog/2024/seqera-containers-part-1](https://nf-co.re/blog/2024/seqera-containers-part-1)
+
+# The end goal
+
+## Modules
+
+### `main.nf`
+
+We remove the \`container\` declaration completely. With [the FastQC module](https://github.com/nf-core/modules/blob/f768b283dbd8fc79d0d92b0f68665d7bed94cabc/modules/nf-core/fastqc/main.nf#L6-L8) as an example:
+
+```diff title="main.nf"
+diff --git a/modules/nf-core/fastqc/main.nf b/modules/nf-core/fastqc/main.nf
+index d8989f481..790c678b2 100644
+--- a/modules/nf-core/fastqc/main.nf
++++ b/modules/nf-core/fastqc/main.nf
+@@ -3,9 +3,6 @@ process FASTQC {
+     label 'process_medium'
+
+     conda "${moduleDir}/environment.yml"
+-    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+-        'https://depot.galaxyproject.org/singularity/fastqc:0.12.1--hdfd78af_0' :
+-        'biocontainers/fastqc:0.12.1--hdfd78af_0' }"
+
+     input:
+     tuple val(meta), path(reads)
+```
+
+### `meta.yml`
+
+Through the magic of automation, we will append and then validate the following fields within the module's meta.yml file (example for FastQC, as above):
+
+```yaml title="meta.yml"
+containers:
+    docker:
+        linux_amd64:
+            name: community.wave.seqera.io/library/fastqc:0.12.1--5cfd0f3cb6760c42
+            build_id: 5cfd0f3cb6760c42_1
+            scan_id: 6fc310277b74
+        linux_arm64:
+            name: community.wave.seqera.io/library/fastqc:0.12.1--d3caca66b4f3d3b0
+            build_id: d3caca66b4f3d3b0_1
+            scan_id: d9a1db848b9b
+    singularity:
+        linux_amd64:
+            name: oras://community.wave.seqera.io/library/fastqc:0.12.1--0827550dd72a3745
+            https: https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/b2/b280a35770a70ed67008c1d6b6db118409bc3adbb3a98edcd55991189e5116f6/data
+            build_id: 0827550dd72a3745_1
+        linux_arm64:
+            name: oras://community.wave.seqera.io/library/fastqc:0.12.1--b2ccdee5305e5859
+            https: https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/76/76e744b425a6b4c7eb8f12e03fa15daf7054de36557d2f0c4eb53ad952f9b0e3/data
+            build_id: b2ccdee5305e5859_1
+    conda:
+        linux_amd64:
+            lockfile: conda/linux_amd64.lock
+            build_id: 5cfd0f3cb6760c42_1
+        linux_arm64:
+            lockfile: conda/linux_arm64.lock
+            build_id: d3caca66b4f3d3b0_1
+```
+
+### Conda lockfiles
+
+The conda lockfiles will be updated to point to the new containers:
+
+```yaml title="conda/linux_amd64.lock"
+# micromamba env export --explicit
+# This file may be used to create an environment using:
+# $ conda create --name <env> --file <this file>
+# platform: linux-64
+@EXPLICIT
+https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
+https://conda.anaconda.org/conda-forge/linux-64/libgomp-13.2.0-h77fa898_7.conda#abf3fec87c2563697defa759dec3d639
+https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_gnu.tar.bz2#73aaf86a425cc6e73fcf236a5a46396d
+https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-13.2.0-h77fa898_7.conda#72ec1b1b04c4d15d4204ece1ecea5978
+https://conda.anaconda.org/conda-forge/linux-64/alsa-lib-1.2.11-hd590300_1.conda#0bb492cca54017ea314b809b1ee3a176
+https://conda.anaconda.org/conda-forge/linux-64/bzip2-1.0.8-hd590300_5.conda#69b8b6202a07720f448be700e300ccf4
+# .. and so on
+```
+
+## Pipelines
+
+The Nextflow config will import a auto-generated config file for each type of containers:
+
+Note: Duplicate boilerplate code explicitly disabling other container
+engines removed from this snippet for clarity.
+
+```groovy title="nextflow.config"
+// Set container for docker amd64 by default, in case not using profiles
+includeConfig 'config/containers_docker_amd64.config'
+
+profiles {
+    conda {
+        includeConfig       'config/conda_lockfiles_amd64.config'
+        conda.enabled       = true
+    }
+    conda_arm {
+        includeConfig       'config/conda_lockfiles_arm64.config'
+        conda.enabled       = true
+    }
+    conda_local {
+        conda.enabled       = true
+    }
+    docker {
+        docker.enabled      = true
+    }
+    docker_arm {
+        includeConfig       'config/containers_docker_linux_arm64.config'
+        docker.enabled      = true
+    }
+    singularity {
+        includeConfig       'config/containers_singularity_linux_amd64.config'
+        singularity.enabled = true
+    }
+    singularity_arm {
+        includeConfig       'config/containers_singularity_linux_arm64.config'
+        singularity.enabled = true
+    }
+}
+
+docker.registry      = 'community.wave.seqera.io/library'
+podman.registry      = 'community.wave.seqera.io/library'
+apptainer.registry   = 'oras://community.wave.seqera.io/library'
+singularity.registry = 'oras://community.wave.seqera.io/library'
+```
+
+Each of the included config file will then list the container name for each process.
+Note that the base registry is omitted, so that it can be easily overwritten.
+
+```groovy title="config/containers_docker_amd64.config"
+// AUTOGENERATED CONFIG FILE - DO NOT EDIT
+process { withName: 'NF_PIPELINE:FASTQC'         { container = 'fastqc:0.12.1--5cfd0f3cb6760c42' } }
+process { withName: 'NF_PIPELINE:MULTIQC'        { container = 'multiqc:1.25--9968ff4994a2e2d7' } }
+process { withName: 'NF_PIPELINE:ANALYSIS_PLOTS' { container = 'express_click_pandas_plotly_typing:58d94b8a8e79e144' } }
+//.. and so on, for each process in the pipeline
+```
+
+Likewise, the conda config files will point to the lockfiles for each process:
+
+```groovy title="config/conda_lockfiles_amd64.config"
+// AUTOGENERATED CONFIG FILE - DO NOT EDIT
+process { withName: 'NF_PIPELINE:FASTQC'         { conda = 'modules/nf-core/fastqc/conda/linux_amd64.lock' } }
+process { withName: 'NF_PIPELINE:MULTIQC'        { conda = 'modules/nf-core/multiqc/conda/linux_amd64.lock' } }
+process { withName: 'NF_PIPELINE:ANALYSIS_PLOTS' { conda = 'modules/local/custom_analysis/conda/linux_amd64.lock' } }
+//.. and so on, for each process in the pipeline
+```
+
+# Automation
+
+## Container image creation
+
+Currently, to update a software version in an nf-core/module with a mulled container, there's a pretty unintuitive process to go and update the versions update the image Allowing maintainers to focus on more important tasks such a fixing bugs and creating new features instead of keeping dependencies up to date.
+
+We've developed a new automated workflow for updating software dependencies in nf-core/modules. This process, primarily driven by GitHub Actions wave-cli and Seqera Containers, minimises manual intervention and streamlines updating packages.
+
+This workflow will be triggered by anything that updates the `environment.yml`. We'll cover some examples in a moment
+
+In short, this automation works as follows:
+
+1. GitHub Actions identifies changes in the environment.yml file.
+2. wave-cli is executed on the updated environment file.
+3. Seqera Containers builds new containers for various platforms and architectures.
+4. GitHub Actions runs tests to verify the updates and bumps the [version snapshot](https://github.com/nf-core/modules/blob/ff06c3314e33653dd948225af2b565cc48a3c18b/modules/nf-core/ale/tests/main.nf.test.snap#L26-L28).
+
+<div class="excalidraw">
+    <Fragment set:html={creation_flow} alt="Container creation flow" />
+</div>
+
+One of the primary reasons that we were so excited to adopt nf-test was the snapshot in functionality.
+Every test has a snapshot file with the expected outputs, and the hashes if the outputs are deterministic(not a binary file, and there's no dates). In that snapshot, we also have meticulously captured the versions off the dependencies for the modules.
+
+```groovy title="main.nf.test.snap" {13-15}
+"sarscov2 [fasta_gz] - paired-end sorted bam": {
+    "content": [
+        {
+            "ale": [
+                [
+                    {
+                        "id": "test",
+                        "single_end": false
+                    },
+                    "test_ALEoutput.txt:md5,4abcbd60ae1dbf78138c97e5fed97f3e"
+                ]
+            ],
+            "versions": {
+                "ale": "20180904"
+            }
+        }
+    ],
+    "meta": {
+        "nf-test": "0.8.4",
+        "nextflow": "23.10.1"
+    },
+    "timestamp": "2024-03-19T09:06:19.589167"
+},
+```
+
+When renovate bumps a dependency, the tests will fail because the version in the snapshot will not be up to date. So we'll first bump just the version snapshot and then run all of the tests.
+
+This is the summation of what's going on behind the curtain, now let's talk about these changes to the conda environment files will happen.
+
+## Adding new software
+
+So let's say a contributor wants to add a piece of software to a container.
+For instance, they decided that they need samtools installed.
+The contributor updates the `environment.yml` and adds a line with samtools:
+
+```yml title="environment.yml" {6}
+channels:
+    - conda-forge
+    - bioconda
+dependencies:
+    - bioconda::fastqc=0.12.1
+    - bioconda::samtools=1.16.1
+```
+
+That will kick off the container image generation factory.
+
+A commit will be pushed automatically with an updated `meta.yml` file pointing to the new containers,
+plus new nf-test snapshots for the software version checks.
+
+Only the interesting part needs to be edited by the developer (which tools to use) and all other
+steps are fully automated.
+
+## nf-core/modules - Renovate version bumps
+
+The nf-core community loves automation. It's baked into the core of our community from our shared interest in automating workflows. We have linting bots, template updates, slack workflows, pipeline announcements. You name it, we've automated it.
+We've recently adopted Renovate, a tool for automated dependency updates. It's multi-platform and multi-language. It's become pretty popular in the devops space. It's similar to [GitHub's dependabot](https://docs.github.com/en/code-security/getting-started/dependabot-quickstart-guide#about-dependabot), but supports more languages and frameworks, and more importantly for nf-core, enables us to write our own custom dependencies.
+It runs on a schedule and automatically updates versions for us based on the specifications we've laid out in a common config: [https://github.com/nf-core/ops/blob/main/.github/renovate/default.json5](https://github.com/nf-core/ops/blob/main/.github/renovate/default.json5)
+
+The magic starts with some nf-core automation to add renovate comments to the `environment.yml` file:
+
+```yml {5,7,9}
+channels:
+    - conda-forge
+    - bioconda
+dependencies:
+    # renovate: datasource=conda depName=bioconda/bwa
+    - bioconda::bwa=0.7.18
+    # renovate: datasource=conda depName=bioconda/samtools
+    - bioconda::samtools=1.20
+    # renovate: datasource=conda depName=bioconda/htslib
+    - bioconda::htslib=1.20.0
+```
+
+[These comments will be added](https://github.com/nf-core/modules/issues/6504) through
+[the batch module updates](https://github.com/nf-core/modules/issues/5828) happening this summer.
+
+The renovate comments allow some scary regex to find the conda dependencies and their versions
+in nf-core/modules and check if there's a new version available.
+
+If there is a new version available, the Renovate bot will create a PR bumping the version,
+which will kicks off the container creation GitHub Action..
+
+<div class="excalidraw">
+    <Fragment set:html={renovate_flow} alt="Container creation flow" />
+</div>
+
+If all tests pass, the pull request is automatically merged without human intervention.
+In case of test failures, Renovate automatically requests a review from the appropriate
+module maintainer using the Codeowners file.
+The maintainer then steps in to fix failing tests and request a final review before merging.
+
+This efficient process ensures that software dependencies stay current with minimal manual oversight,
+reducing noise and streamlining development workflows.
+
+This will hopefully be the end of the _"can I get a review on this version bump"_ requests in `#review-requests`!
+
+## Pipelines
+
+Installing, updating or removing a module will trigger automation via the `nf-core` CLI
+to regenerate all config files for the pipelines. Values will be taken from module `meta.yml` files where possible.
+
+### Edge cases
+
+We will still support custom `container` declarations in modules, for cases where it's
+not possible to use Seqera Containers.
+
+## Downloads
+
+We will rewrite the `nf-core` CLI download tool to gather relevant container names from the module `meta.yml` files.
+The code will then run `nextflow inspect . -concretize` on the pipeline to try to pick up any custom container declarations.
+
+# Roadmap
