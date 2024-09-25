@@ -554,16 +554,16 @@ At this stage don't get disheartened if you hit errors and problems along the wa
 To test your config, pick your pipeline of choice, and run the given pipeline's integrated mini-test profile but using your config. For example:
 
 ```bash
-nextflow run nf-core/eager \
--profile <your_cluster_name>,test_tsv \
+nextflow run nf-core/rnaseq \
+-profile <your_cluster_name>,test \
 --custom_config_base 'https://raw.githubusercontent.com/<your_github_user>/configs/<your_branch>'
 ```
 
 If you also wish to test a internal profile from your `profiles` scope, include that in the `-profile` flag. For example:
 
 ```bash
-nextflow run nf-core/eager \
--profile <your_cluster_name>,<you_profile_name>,test_tsv \
+nextflow run nf-core/rnaseq \
+-profile <your_cluster_name>,<you_profile_name>,test \
 --custom_config_base 'https://raw.githubusercontent.com/<your_github_user>/configs/<your_branch>'
 ```
 
