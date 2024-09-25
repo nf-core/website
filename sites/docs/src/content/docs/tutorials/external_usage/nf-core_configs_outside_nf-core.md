@@ -7,6 +7,10 @@ When you've been working with nf-core pipelines for a while, you often will get 
 
 One such thing is the centralised nf-core/configs repository of pre-configured configuration files that allow nf-core pipelines to run optimally on institutional clusters via the `-profile` parameter, e.g. `-profile uppmax`. A list of existing institutional profiles can be seen on the [nf-core website](https://nf-co.re/configs).
 
+:::tip
+If you want to write your own instituional profile, see the [guide on how to write a new institutional profile](/docs/tutorials/use_nf-core_pipelines/writing_institutional_profiles).
+:::
+
 One great thing about nf-core/configs is that they aren't just restricted to nf-core pipelines, they can also be used in [fully fledged 'unofficial' nf-core pipelines](/docs/guidelines/external_use) but also in your own custom mini-scripts and pipelines!
 
 Here we will describe the steps you will need to perform in your custom script or pipeline to use nf-core institutional configs.
