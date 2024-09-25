@@ -48,7 +48,7 @@ export async function getStaticPaths() {
         }
         //remove double and quotes
         Object.keys(config).forEach((key) => {
-            config[key] = config[key].replaceAll(/'|"/g, '');
+            config[key] = config[key]?.replaceAll(/'|"/g, '');
         });
         return config;
     }
