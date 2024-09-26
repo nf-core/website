@@ -1,23 +1,26 @@
 ---
 import yaml from 'js-yaml';
 
-const yamlURL = 'https://raw.githubusercontent.com/nf-core/tools/refs/heads/dev/nf_core/pipelines/create/template_features.yml';
+const yamlURL =
+    'https://raw.githubusercontent.com/nf-core/tools/refs/heads/dev/nf_core/pipelines/create/template_features.yml';
 const response = await fetch(yamlURL);
 const yamlText = await response.text();
 const data = yaml.load(yamlText);
 
 const filteredData = Object.entries(data).map(([key, value]) => {
-  return {
-    key,
-    helpText: value.help_text || 'No help text available'
-  };
+    return {
+        key,
+        helpText: value.help_text || 'No help text available',
+    };
 });
 ---
 
 <ul>
-  {filteredData.map(({ key, helpText }) => (
-    <li>
-      <strong>{key}:</strong> {helpText}
-    </li>
-  ))}
+    {
+        filteredData.map(({ key, helpText }) => (
+            <li>
+                <strong>{key}:</strong> {helpText}
+            </li>
+        ))
+    }
 </ul>
