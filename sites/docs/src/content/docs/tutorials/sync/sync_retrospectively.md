@@ -3,9 +3,9 @@ title: Setting up a pipeline for syncing retrospectively
 subtitle: How to set up a correct TEMPLATE branch in your nf-core pipeline repository
 ---
 
-This section describes how to set up a correct TEMPLATE branch in the case your pipeline was not created with a TEMPLATE branch from the beginning. If you created a pipeline with the `nf-core create` command, you should be all ready to go and can skip this step. Otherwise proceed with caution. It is probably a good idea to make sure you have all your local changes pushed to github and you could even make a local backup clone of your repository before proceeding.
+This section describes how to set up a correct TEMPLATE branch in the case your pipeline was not created with a TEMPLATE branch from the beginning. If you created a pipeline with the `nf-core pipelines create` command, you should be all ready to go and can skip this step. Otherwise proceed with caution. It is probably a good idea to make sure you have all your local changes pushed to github and you could even make a local backup clone of your repository before proceeding.
 
-You should also consider the option to restart your pipeline project by running the `nf-core create` command and simply copy in the modifications you need into the newly created pipeline.
+You should also consider the option to restart your pipeline project by running the `nf-core pipelines create` command and simply copy in the modifications you need into the newly created pipeline.
 
 ### Step-by-step procedure
 
