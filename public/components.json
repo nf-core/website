@@ -7599,6 +7599,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -24687,6 +24691,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -30770,6 +30782,16 @@
               "identifier": ""
             }
           }
+        ],
+        "input": [
+          [
+            {
+              "db_zenodo_id": {
+                "type": "integer",
+                "description": "Zenodo ID of the CheckM2 database to download"
+              }
+            }
+          ]
         ],
         "output": [
           {
@@ -105435,6 +105457,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
