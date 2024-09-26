@@ -136,14 +136,14 @@ if ((!file_exists($gh_pipeline_schema_fn) && !file_exists($gh_pipeline_no_schema
     $api_opts = stream_context_create(['http' => ['method' => 'GET', 'header' => ['User-Agent: PHP']]]);
     $gh_launch_schema_url = "https://api.github.com/repos/sanger-tol/{$pipeline->name}/contents/nextflow_schema.json?ref={$release}";
     $gh_launch_schema_json = file_get_contents($gh_launch_schema_url, false, $api_opts);
-    if (preg_match('/HTTP\/\d\.*\d* 200/', $http_response_header[0]) === false) {
+    if (!preg_match('/HTTP\/\d\.?\d? 200/', $http_response_header[0])) {
         echo '<script>console.log("Sent request to ' .
             $gh_launch_schema_url .
             '"," got http response header:",' .
             json_encode($http_response_header, JSON_HEX_TAG) .
             ')</script>';
         # Remember for next time
-        if (preg_match('/HTTP\/\d\.*\d* 404/', $http_response_header[0]) !== false) {
+        if (preg_match('/HTTP\/\d\.?\d? 404/', $http_response_header[0])) {
             file_put_contents($gh_pipeline_no_schema_fn, '');
         }
     } else {

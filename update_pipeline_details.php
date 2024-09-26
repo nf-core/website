@@ -55,7 +55,7 @@ function get_gh_api($gh_api_url) {
             $gh_api_url = $next_page;
         }
         $tmp_results = json_decode(file_get_contents($gh_api_url, false, $gh_api_opts));
-        if (preg_match('/HTTP\/\d\.*\d* 200/', $http_response_header[0]) === false) {
+        if (!preg_match('/HTTP\/\d\.?\d? 200/', $http_response_header[0])) {
             die("\n-------- START ERROR " . date('Y-m-d h:i:s') . " --------\nCould not fetch $gh_api_url \n");
             var_dump($http_response_header);
             echo "\n$tmp_results\n";
