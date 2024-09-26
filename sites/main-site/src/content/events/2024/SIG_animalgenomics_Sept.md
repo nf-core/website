@@ -7,7 +7,7 @@ startDate: '2024-09-18'
 startTime: '16:00+02:00'
 endDate: '2024-09-18'
 endTime: '17:00+02:00'
-youtubeEmbed: https://youtu.be/zXZsU3GsXb0 
+youtubeEmbed: https://youtu.be/zXZsU3GsXb0
 locations:
   - name: Online
     links:
