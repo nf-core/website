@@ -106,7 +106,7 @@ function launch_pipeline_web($pipeline, $release) {
         $gh_launch_schema_url = "https://api.github.com/repos/sanger-tol/{$pipeline}/contents/nextflow_schema.json?ref={$gh_launch_schema_url}";
         $gh_launch_schema_json = file_get_contents($gh_launch_schema_url, false, $api_opts);
         
-        if (strpos($http_response_header[0], 'HTTP/1.1 200') === false) {
+        if (!preg_match('/HTTP\/\d\.?\d? 200/', $http_response_header[0])) {
             # Remember for next time
             file_put_contents($gh_pipeline_no_schema_fn, '');
             echo '<script>console.log("Sent request to ' .

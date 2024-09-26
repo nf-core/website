@@ -142,7 +142,7 @@ foreach ($repos as $repo) {
         }
         $num_api_calls += 1;
         $gh_issues = json_decode(file_get_contents($gh_issues_url, false, $gh_api_opts), true);
-        if (strpos($http_response_header[0], 'HTTP/1.0 200') === false) {
+        if (!preg_match('/HTTP\/\d\.?\d? 200/', $http_response_header[0])) {
             var_dump($http_response_header);
             echo "\nCould not fetch nf-core/$repo issues! $gh_issues_url\n";
             continue;
@@ -269,7 +269,7 @@ foreach ($repos as $repo) {
                     $num_api_calls += 1;
                     $gh_new_comments = json_decode(file_get_contents($gh_comments_url, false, $gh_api_opts), true);
                     $gh_comments = array_merge($gh_comments, $gh_new_comments);
-                    if (strpos($http_response_header[0], 'HTTP/1.0 200') === false) {
+                    if (!preg_match('/HTTP\/\d\.?\d? 200/', $http_response_header[0])) {
                         var_dump($http_response_header);
                         echo "\nCould not fetch nf-core/$repo issue #$id! $gh_comments_url\n";
                         continue;
