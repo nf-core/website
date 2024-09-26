@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
-      - uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4
+      - uses: actions/setup-node@0a44ba7841725637a19e28fa30b79a866c81b0a6 # v4
         with:
           node-version: 18
           cache: 'npm'
@@ -41,7 +41,7 @@ jobs:
           # done
         env:
           PLAYWRIGHT_TEST_BASE_URL: 'https://deploy-preview-${{github.event.pull_request.number}}--nf-core-main-site.netlify.app'
-      - uses: actions/upload-artifact@89ef406dd8d7e03cfd12d9e0a4a378f454709029 # v4
+      - uses: actions/upload-artifact@50769540e7f4bd5e21e526ee35c689e35e0d6874 # v4
         if: always()
         with:
           name: playwright-report
