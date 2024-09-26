@@ -41,41 +41,41 @@ description: A cool pipeline
 author: me
 prefix: myorg
 skip:
-  - github
-  - ci
-  - github_badges
-  - igenomes
-  - nf_core_configs
+    - github
+    - ci
+    - github_badges
+    - igenomes
+    - nf_core_configs
 template:
-  author: me
-  description: A cool pipeline
-  force: false
-  is_nfcore: false
-  name: coolpipe
-  org: myorg
-  outdir: .
-  skip_features:
-  - github
-  - ci
-  - igenomes
-  - nf_core_configs
-  - code_linters
-  - citations
-  - gitpod
-  - codespaces
-  - multiqc
-  - fastqc
-  - modules
-  - changelog
-  - nf_schema
-  - license
-  - email
-  - adaptivecard
-  - slackreport
-  - documentation
-  - test_config
-  - seqera_platform
-  version: 1.0.0dev
+    author: me
+    description: A cool pipeline
+    force: false
+    is_nfcore: false
+    name: coolpipe
+    org: myorg
+    outdir: .
+    skip_features:
+        - github
+        - ci
+        - igenomes
+        - nf_core_configs
+        - code_linters
+        - citations
+        - gitpod
+        - codespaces
+        - multiqc
+        - fastqc
+        - modules
+        - changelog
+        - nf_schema
+        - license
+        - email
+        - adaptivecard
+        - slackreport
+        - documentation
+        - test_config
+        - seqera_platform
+    version: 1.0.0dev
 ```
 
 This will create a pipeline called `coolpipe` in the directory `myorg-coolpipe` (`<prefix>-<name>`) with `me` as the author. It will exclude all possible parts of the template.
