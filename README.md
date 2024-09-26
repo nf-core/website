@@ -42,13 +42,13 @@ cd pipelines-website/
 Ok, you're ready! To run the website locally, just start the apache-php server with:
 
 ```bash
-docker compose up
+docker-compose up
 ```
 
 > NB: If you are using a Mac with Apple silicon, you need to run:
 >
 > ```bash
-> docker compose -f m1-docker-compose.yml up
+> docker-compose -f m1-docker-compose.yml up
 > ```
 
 You should then be able to access the website in your browser at [http://localhost:8888/](http://localhost:8888/).
@@ -134,7 +134,7 @@ git status
 git pull
 
 # start the docker containers
-docker compose -f docker-compose-prod.yml up >> logs/docker-compose.log 2>&1 &
+docker-compose -f docker-compose-prod.yml up >> logs/docker-compose.log 2>&1 &
 ```
 
 ### Stats cronjob
