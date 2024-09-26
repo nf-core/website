@@ -3,6 +3,7 @@ title: Creating a new pipeline
 subtitle: Scaffolding a new pipeline using the nf-core template
 shortTitle: create
 weight: 60
+import features from '../../../../pages/docs/nf-core-tools/features.astro'
 ---
 
 The `create` subcommand makes a new pipeline using the nf-core base template.
@@ -23,17 +24,16 @@ You can then continue to edit, commit and push normally as you build your pipeli
 Please see the [nf-core documentation](/docs/tutorials/adding_a_pipeline/overview) for a full walkthrough of how to create a new nf-core workflow.
 
 > [!TIP]
-> As the log output says, remember to come and discuss your idea for a pipeline as early as possible!
+> As the command documentation says, remember to come and discuss your idea for a pipeline as early as possible!
 > See the [documentation](/docs/tutorials/adding_a_pipeline/move_to_nf-core_org) for instructions.
 
-Note that if the required arguments for `nf-core create` are not given, it will interactively prompt for them. If you prefer, you can supply them as command line arguments. See `nf-core create --help` for more information.
+If you prefer, you can supply them as command line arguments. See `nf-core pipelines create --help` for more information.
 
 ## Customization
 
-The `nf-core create` command comes with a number of options that allow you to customize the creation of a pipeline if you intend to not publish it as an
-nf-core pipeline. This can be done in two ways: by using interactive prompts, or by supplying a `template.yml` file using the `--template-yaml <file>` option.
+The `nf-core pipelines create` command comes with a number of options that allow you to customize the creation of a pipeline. This can be done in two ways: by using the graphical interface, or by supplying a `template.yml` file using the `--template-yaml <file>` option.
 Both options allow you to specify a custom pipeline prefix to use instead of the common `nf-core`, as well as selecting parts of the template to be excluded during pipeline creation.
-The interactive prompts will guide you through the pipeline creation process. An example of a `template.yml` file is shown below.
+The interface will guide you through the pipeline creation process. Both nf-core and non-nf-core pipelines can be customised, but non-nf-core pipelines have more options which can be skipped. An example of a `template.yml` file is shown below.
 
 ```yaml
 name: coolpipe
@@ -46,14 +46,44 @@ skip:
   - github_badges
   - igenomes
   - nf_core_configs
+template:
+  author: me
+  description: A cool pipeline
+  force: false
+  is_nfcore: false
+  name: coolpipe
+  org: myorg
+  outdir: .
+  skip_features:
+  - github
+  - ci
+  - igenomes
+  - nf_core_configs
+  - code_linters
+  - citations
+  - gitpod
+  - codespaces
+  - multiqc
+  - fastqc
+  - modules
+  - changelog
+  - nf_schema
+  - license
+  - email
+  - adaptivecard
+  - slackreport
+  - documentation
+  - test_config
+  - seqera_platform
+  version: 1.0.0dev
 ```
 
-This will create a pipeline called `coolpipe` in the directory `myorg-coolpipe` (`<prefix>-<name>`) with `me` as the author. It will exclude all possible parts of the template:
+This will create a pipeline called `coolpipe` in the directory `myorg-coolpipe` (`<prefix>-<name>`) with `me` as the author. It will exclude all possible parts of the template.
 
-- `github`: removed all files required for GitHub hosting of the pipeline. Specifically, the `.github` folder and `.gitignore` file.
-- `ci`: removes the GitHub continuous integration tests from the pipeline. Specifically, the `.github/workflows/` folder.
-- `github_badges`: removes GitHub badges from the `README.md` file.
-- `igenomes`: removes pipeline options related to iGenomes. Including the `conf/igenomes.config` file and all references to it.
-- `nf_core_configs`: excludes `nf_core/configs` repository options, which make multiple config profiles for various institutional clusters available.
+A full list of possible features to skip from the template is described here:
 
-To run the pipeline creation silently (i.e. without any prompts) with the nf-core template, you can use the `--plain` option.
+<features />
+
+To run the pipeline creation silently (i.e. without the graphical interface), you can provide all the arguments. The required ones are `--name`, `--description` and `--author`.
+
+If you have an existing pipeline and you wish to add/exclude one fo the features. Don't use a `template.yml` file but modify the `.nf-core.yml` file from your pipeline and run `nf-core pipelines sync` to update the template.
