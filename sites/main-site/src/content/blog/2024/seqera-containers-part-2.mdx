@@ -27,6 +27,11 @@ Part 1: [https://nf-co.re/blog/2024/seqera-containers-part-1](https://nf-co.re/b
 
 ## Modules
 
+:::tip{.fa-brands.fa-github title="GitHub issue"}
+For the latest discussion and progress on bulk-updating existing nf-core modules, please see GitHub issue
+[nf-core/modules#6698](https://github.com/nf-core/modules/issues/6698).
+:::
+
 ### `main.nf`
 
 We simplify the `container` declaration, listing only the default container image: Docker, for linux/arch64.
@@ -240,7 +245,12 @@ singularity.registry = 'oras://community.wave.seqera.io/library'
 
 :::
 
-# Automation
+# Automation - Modules
+
+:::tip{.fa-brands.fa-github title="GitHub issue"}
+For the latest discussion and updates on this work, please see GitHub issue
+[nf-core/modules#6694](https://github.com/nf-core/modules/issues/6694).
+:::
 
 ## Container image creation
 
@@ -361,19 +371,19 @@ reducing noise and streamlining development workflows.
 
 This will hopefully be the end of the _"can I get a review on this version bump"_ requests in `#review-requests`!
 
-## Pipelines
+# Automation - Pipelines
 
 Installing, updating or removing a module will trigger automation via the `nf-core` CLI
 to regenerate all config files for the pipelines. Values will be taken from module `meta.yml` files where possible.
-
-### Edge cases
-
-We will still support custom `container` declarations in modules, for cases where it's
-not possible to use Seqera Containers.
 
 ## Downloads
 
 We will rewrite the `nf-core` CLI download tool to gather relevant container names from the module `meta.yml` files.
 The code will then run `nextflow inspect . -concretize` on the pipeline to try to pick up any custom container declarations.
+
+# Edge cases
+
+We will still support custom `container` declarations in modules, for cases where it's
+not possible to use Seqera Containers.
 
 # Roadmap
