@@ -7583,6 +7583,26 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -24639,6 +24659,46 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -30722,6 +30782,16 @@
               "identifier": ""
             }
           }
+        ],
+        "input": [
+          [
+            {
+              "db_zenodo_id": {
+                "type": "integer",
+                "description": "Zenodo ID of the CheckM2 database to download"
+              }
+            }
+          ]
         ],
         "output": [
           {
@@ -61781,7 +61851,7 @@
             {
               "site_depth_vcf_tbi": {
                 "type": "file",
-                "description": "tbi index of the input VCF of SNPs marking loci for site depths",
+                "description": "Optional - input VCF TBI of SNPs marking loci for site depths, needed for the site depths output",
                 "pattern": "*.vcf.gz.tbi"
               }
             }
@@ -91638,6 +91708,93 @@
       }
     },
     {
+      "name": "jvarkit_dict2bed",
+      "path": "modules/nf-core/jvarkit/dict2bed/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "jvarkit_dict2xml",
+        "description": "Extract BED file from hts files containing a dictionary (VCF,BAM, CRAM, DICT, etc...)",
+        "keywords": [
+          "vcf",
+          "bcf",
+          "bed",
+          "dict",
+          "dictionary",
+          "fasta",
+          "fai"
+        ],
+        "tools": [
+          {
+            "jvarkit": {
+              "description": "Java utilities for Bioinformatics.",
+              "homepage": "https://github.com/lindenb/jvarkit",
+              "documentation": "https://jvarkit.readthedocs.io/",
+              "tool_dev_url": "https://github.com/lindenb/jvarkit",
+              "doi": "10.6084/m9.figshare.1425030",
+              "licence": [
+                "MIT License"
+              ],
+              "args_id": "$args",
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing dict file information\ne.g. [ id:'test_reference' ]\n"
+              }
+            },
+            {
+              "dict_files": {
+                "type": "file",
+                "description": "File(s) containing a dictionary VCF/BCF/BAM/DICT etc...",
+                "pattern": "*.{vcf,bcf,vcf.gz,bcf.gz,dict,fai,bam,cram,interval_list}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "bed": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing VCF information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.bed": {
+                  "type": "file",
+                  "description": "BED output file",
+                  "pattern": "*.{vcf,bcf,vcf.gz,bcf.gz}"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@lindenb"
+        ],
+        "maintainers": [
+          "@lindenb"
+        ]
+      }
+    },
+    {
       "name": "jvarkit_vcf2table",
       "path": "modules/nf-core/jvarkit/vcf2table/meta.yml",
       "type": "module",
@@ -105939,6 +106096,26 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -110282,6 +110459,232 @@
           "version": "dev"
         }
       ]
+    },
+    {
+      "name": "mirdeep2_mapper",
+      "path": "modules/nf-core/mirdeep2/mapper/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "mirdeep2_mapper",
+        "description": "miRDeep2 Mapper is a tool that prepares deep sequencing reads for downstream miRNA detection by collapsing reads, mapping them to a genome, and outputting the required files for miRNA discovery.\n",
+        "keywords": [
+          "mirdeep2",
+          "mapper",
+          "RNA sequencing"
+        ],
+        "tools": [
+          {
+            "mirdeep2": {
+              "description": "miRDeep2 Mapper (`mapper.pl`) is part of the miRDeep2 suite. It collapses identical reads, maps them to a reference genome, and outputs both collapsed FASTA and ARF files for downstream miRNA detection and analysis.\n",
+              "homepage": "https://www.mdc-berlin.de/content/mirdeep2-documentation",
+              "documentation": "https://www.mdc-berlin.de/content/mirdeep2-documentation",
+              "tool_dev_url": "https://github.com/rajewsky-lab/mirdeep2",
+              "doi": "10.1093/nar/gkn491",
+              "licence": [
+                "GPL V3"
+              ],
+              "identifier": "biotools:mirdeep2"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information, e.g. `[ id:'sample1', single_end:false ]`"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "File containing the raw sequencing reads that need to be collapsed and mapped to a reference genome.",
+                "pattern": "*.fa"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing information about the genome index."
+              }
+            },
+            {
+              "index": {
+                "type": "file",
+                "description": "Path to the genome index file used for mapping the reads to the genome.",
+                "pattern": "*"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "outputs": [
+              {
+                "meta": {}
+              },
+              {
+                "*.fa": {}
+              },
+              {
+                "*.arf": {}
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions for tracking.",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@atrigila"
+        ],
+        "maintainers": [
+          "@atrigila"
+        ]
+      }
+    },
+    {
+      "name": "mirdeep2_mirdeep2",
+      "path": "modules/nf-core/mirdeep2/mirdeep2/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "mirdeep2_mirdeep2",
+        "description": "miRDeep2 is a tool for identifying known and novel miRNAs in deep sequencing data by analyzing sequenced RNAs. It integrates the mapping of sequencing reads to the genome and predicts miRNA precursors and mature miRNAs.\n",
+        "keywords": [
+          "mirdeep2",
+          "miRNA",
+          "RNA sequencing"
+        ],
+        "tools": [
+          {
+            "mirdeep2": {
+              "description": "miRDeep2 is a tool that discovers microRNA genes by analyzing sequenced RNAs.\nIt includes three main scripts: `miRDeep2.pl`, `mapper.pl`, and `quantifier.pl` for comprehensive miRNA detection and quantification.\n",
+              "homepage": "https://www.mdc-berlin.de/content/mirdeep2-documentation",
+              "documentation": "https://www.mdc-berlin.de/content/mirdeep2-documentation",
+              "tool_dev_url": "https://github.com/rajewsky-lab/mirdeep2",
+              "doi": "10.1093/nar/gkn491",
+              "licence": [
+                "GPL V3"
+              ],
+              "identifier": "biotools:mirdeep2"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information, e.g. `[ id:'sample1', single_end:false ]`"
+              }
+            },
+            {
+              "processed_reads": {
+                "type": "file",
+                "description": "FASTA file containing the processed sequencing reads.",
+                "pattern": "*.fa"
+              }
+            },
+            {
+              "genome_mappings": {
+                "type": "file",
+                "description": "ARF format file with mapped reads to the genome.",
+                "pattern": "*.arf"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map for genome FASTA file metadata, e.g. `[ id:'genome']`"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "FASTA file of the corresponding genome.",
+                "pattern": "*.fa"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map for miRNA metadata, e.g. `[ id:'mirbase', single_end:false ]`"
+              }
+            },
+            {
+              "mature": {
+                "type": "file",
+                "description": "FASTA file containing known mature miRNAs of the species being analyzed.",
+                "pattern": "*.fa"
+              }
+            },
+            {
+              "hairpin": {
+                "type": "file",
+                "description": "FASTA file containing hairpin sequences (miRNA precursors).",
+                "pattern": "*.fa"
+              }
+            },
+            {
+              "mature_other_species": {
+                "type": "file",
+                "description": "FASTA file containing known mature miRNAs of other species.",
+                "pattern": "*.fa"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "outputs": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information e.g. `[ id:'sample1', single_end:false ]`"
+                }
+              },
+              {
+                "result*.{bed,csv,html}": {
+                  "type": "file",
+                  "description": "Output files, including BED, CSV, and HTML results files with an overview of detected miRNAs.",
+                  "pattern": "result*.{bed,csv,html}"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@atrigila"
+        ],
+        "maintainers": [
+          "@atrigila"
+        ]
+      }
     },
     {
       "name": "mirtop_counts",
@@ -184798,13 +185201,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*_aberrations.bed"
                 }
               },
               {
                 "*_aberrations.bed": {
-                  "type": "file",
-                  "description": "OPTIONAL - Output abberations in BED format. This gets created with the `--bed` option",
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*_aberrations.bed"
                 }
               }
@@ -184815,13 +185219,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*_bins.bed"
                 }
               },
               {
                 "*_bins.bed": {
-                  "type": "file",
-                  "description": "OPTIONAL - Output bins in BED format. This gets created with the `--bed` option",
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*_bins.bed"
                 }
               }
@@ -184832,13 +185237,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*_segments.bed"
                 }
               },
               {
                 "*_segments.bed": {
-                  "type": "file",
-                  "description": "OPTIONAL - Output segments in BED format. This gets created with the `--bed` option",
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*_segments.bed"
                 }
               }
@@ -184849,13 +185255,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*_chr_statistics.txt"
                 }
               },
               {
-                "*_chr_statistics.txt": {
-                  "type": "file",
-                  "description": "OPTIONAL - Statistics per chromosome in TXT format. This gets created with the `--bed` option",
+                "*_statistics.txt": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*_chr_statistics.txt"
                 }
               }
@@ -184866,13 +185273,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "[!genome_wide]*.png"
                 }
               },
               {
                 "[!genome_wide]*.png": {
-                  "type": "list",
-                  "description": "OPTIONAL - A list containing the CNV plots of each chromosome. This gets created with the `--plot` option",
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "[!genome_wide]*.png"
                 }
               }
@@ -184883,13 +185291,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "genome_wide.png"
                 }
               },
               {
                 "genome_wide.png": {
-                  "type": "file",
-                  "description": "OPTIONAL - A plot containing the CNV information of the whole genome",
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "genome_wide.png"
                 }
               }
@@ -191187,6 +191596,74 @@
           "version": "1.0.4"
         }
       ]
+    },
+    {
+      "name": "fastq_find_mirna_mirdeep2",
+      "path": "subworkflows/nf-core/fastq_find_mirna_mirdeep2/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "fastq_find_mirna_mirdeep2",
+        "description": "This subworkflow identifies miRNAs from FASTQ files using miRDeep2. The workflow converts FASTQ to FASTA, processes and replaces any whitespace in sequence IDs, builds a Bowtie index of the genome, and then maps reads using miRDeep2 mapper before identifying known and novel miRNAs.\n",
+        "keywords": [
+          "miRNA",
+          "FASTQ",
+          "FASTA",
+          "Bowtie",
+          "miRDeep2"
+        ],
+        "components": [
+          "seqkit/fq2fa",
+          "seqkit/replace",
+          "bowtie/build",
+          "mirdeep2/mapper",
+          "mirdeep2/mirdeep2"
+        ],
+        "input": [
+          {
+            "ch_reads": {
+              "type": "file",
+              "description": "The input channel containing the FASTQ files to process and identify miRNAs.\nStructure: [ val(meta), path(fastq) ]\n",
+              "pattern": "*.fastq.gz"
+            }
+          },
+          {
+            "ch_genome_fasta": {
+              "type": "file",
+              "description": "The input channel containing the genome FASTA files used to build the Bowtie index.\nStructure: [ val(meta), path(fasta) ]\n",
+              "pattern": "*.fa"
+            }
+          },
+          {
+            "ch_mirna_mature_hairpin": {
+              "type": "file",
+              "description": "The input channel containing the mature and hairpin miRNA sequences for miRNA identification.\nStructure: [ val(meta), path(mature_fasta), path(hairpin_fasta) ]\n",
+              "pattern": "*.fa"
+            }
+          }
+        ],
+        "output": [
+          {
+            "outputs": {
+              "type": "file",
+              "description": "The output channel containing the BED, CSV, and HTML files with the identified miRNAs.\nStructure: [ val(meta), path(bed), path(csv), path(html) ]\n",
+              "pattern": "*.{bed,csv,html}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@atrigila"
+        ],
+        "maintainers": [
+          "@atrigila"
+        ]
+      }
     },
     {
       "name": "fastq_ngscheckmate",
