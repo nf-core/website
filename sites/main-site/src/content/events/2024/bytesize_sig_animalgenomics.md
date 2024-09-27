@@ -12,4 +12,4 @@ locations:
       - https://kth-se.zoom.us/j/68390542812
 ---
 
-In this weeks bytesize, Björn ((@bjlang)[https://github.com/bjlang]) and Jose ((@JoseEspinosa)[https://github.com/JoseEspinosa]) are introducing the nf-core [special insterest group "Animal Genomics"](https://nf-co.re/special-interest-groups/animal-genomics).
+In this weeks bytesize, Björn ([@bjlang](https://github.com/bjlang)) and Jose ([@JoseEspinosa](https://github.com/JoseEspinosa)) are introducing the nf-core [special insterest group "Animal Genomics"](https://nf-co.re/special-interest-groups/animal-genomics).
