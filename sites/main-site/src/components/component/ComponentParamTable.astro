@@ -7,9 +7,6 @@ export interface Props {
     icon: string;
     params?: any[];
 }
-if (name == 'Output') {
-    console.log('output param', params);
-}
 if (name == 'Input') {
     params = params.map((param, i) => {
         param = Array.isArray(param) ? param : [param];
