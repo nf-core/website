@@ -28,7 +28,6 @@
             }
         }
         const graphs = document.getElementsByClassName('mermaid');
-        console.log('grpahs', graphs);
         if (document.getElementsByClassName('mermaid').length > 0) {
             renderDiagrams(graphs);
             window.addEventListener('theme-changed', (e) => {
