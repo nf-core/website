@@ -1,6 +1,6 @@
 ---
 import { Markdown } from '@astropub/md';
-import ComponentParamTable from '@components/component/ComponentParamTable.astro';
+import SubworkflowParamTable from '@components/component/SubworkflowParamTable.astro';
 import SidebarStats from '@components/sidebar/SidebarStats.astro';
 import ComponentPageLayout from '@layouts/ComponentPageLayout.astro';
 import components_json from '@public/components.json';
@@ -19,6 +19,8 @@ export function getStaticPaths() {
     });
 }
 const { subworkflow } = Astro.props;
+
+console.log('subworkflow', subworkflow.meta.input);
 ---
 
 <ComponentPageLayout
@@ -44,16 +46,16 @@ const { subworkflow } = Astro.props;
                 {
                     subworkflow.meta.input ? (
                         <div class="subworkflow input mb-5">
-                            <ComponentParamTable name={'Input'} icon={'fa-sign-in'} params={subworkflow.meta.input} />
+                            <SubworkflowParamTable name={'Input'} icon={'fa-sign-in'} params={subworkflow.meta.input} />
                         </div>
                     ) : (
                         <div class="subworkflow input mb-5">
-                            <ComponentParamTable name={'Input'} icon={'fa-sign-in'} />
+                            <SubworkflowParamTable name={'Input'} icon={'fa-sign-in'} />
                         </div>
                     )
                 }
                 <div class="subworkflow output mb-5">
-                    <ComponentParamTable name={'Output'} icon={'fa-sign-out'} params={subworkflow.meta.output} />
+                    <SubworkflowParamTable name={'Output'} icon={'fa-sign-out'} params={subworkflow.meta.output} />
                 </div>
             </div>
         </div>
