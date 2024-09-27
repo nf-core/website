@@ -1,5 +1,5 @@
 ---
-title: 'Bytesize: Content Addressable Data Storage'
+title: 'Bytesize: Special Interest Group - Animal Genomics'
 subtitle: Björn Langer (CRG, Barcelona), Jose Espinosa-Carrasco (CRG, Barcelona)
 type: talk
 startDate: '2024-11-12'
