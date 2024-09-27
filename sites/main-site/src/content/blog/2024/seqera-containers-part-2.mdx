@@ -452,6 +452,14 @@ This gives a second level of confirmation that the containers were correctly gen
 We can automatically commit the updated snapshot file in the PR, so that
 the developer doesn't need take an extra step.
 
+:::tip
+
+Note that in the above example, the versions are in the snapshot in plain text,
+not using an md5 hash. This is a change that we will roll out for all modules,
+as it makes verification in the PR much easier.
+
+:::
+
 ## nf-core/modules - Renovate version bumps
 
 The nf-core community loves automation. It's baked into the core of our community from our shared interest in automating workflows. We have linting bots, template updates, slack workflows, pipeline announcements. You name it, we've automated it.
