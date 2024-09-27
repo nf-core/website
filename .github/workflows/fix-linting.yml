@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Use the @nf-core-bot token to check out so we can push later
-      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
         with:
           token: ${{ secrets.nf_core_bot_auth_token }}
 
@@ -32,12 +32,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.nf_core_bot_auth_token }}
 
       # Install and run pre-commit
-      - uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d # v5
+      - uses: actions/setup-python@f677139bbe7f9c59b41e40162b753c062f5d49a3 # v5
         with:
           python-version: 3.11
 
       # install prettier plugins
-      - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4
+      - uses: actions/setup-node@0a44ba7841725637a19e28fa30b79a866c81b0a6 # v4
         with:
           node-version: 20
       - run: npm install --only=dev

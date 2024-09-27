@@ -35,7 +35,7 @@
             style="--size:{size};"
             class={' ' + imgClasses}
         />
-        <div class="profile-name text-nowrap overflow-x-scroll">
+        <div class="profile-name text-nowrap overflow-x-auto">
             <slot />
         </div>
     </a>
