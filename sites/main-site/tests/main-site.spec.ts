@@ -41,7 +41,7 @@ test('dark mode', async ({ page }) => {
     // get background-color value
     const bodyBackgroundColorLight = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
     //click dark mode dropdown
-    await page.getByRole('button', { name: 'Change theme' }).click();
+    await page.getByRole('button', { name: 'Change theme button' }).click();
     //click dark mode
     await page.getByRole('button', { name: 'dark' }).click();
     const bodyBackgroundColorDark = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
