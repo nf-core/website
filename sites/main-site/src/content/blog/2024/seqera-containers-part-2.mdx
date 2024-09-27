@@ -373,6 +373,30 @@ For the latest updates on modules container automation, see
 [nf-core/modules#6694](https://github.com/nf-core/modules/issues/6694).
 :::
 
+## Updating conda packages
+
+The automation begins when a contributor wants to add a piece of software to a container.
+For instance, they decided that they need samtools installed.
+The contributor updates the `environment.yml` and adds a line with samtools:
+
+```yml title="environment.yml" {6}
+channels:
+    - conda-forge
+    - bioconda
+dependencies:
+    - bioconda::fastqc=0.12.1
+    - bioconda::samtools=1.16.1
+```
+
+That will kick off the container image generation factory
+(it could equally be a change to remove a package, or change a pinned version).
+
+A commit will be pushed automatically with an updated `meta.yml` file pointing to the new containers,
+plus new nf-test snapshots for the software version checks.
+
+Only the interesting part needs to be edited by the developer (which tools to use) and all other
+steps are fully automated.
+
 ## Container image creation
 
 As with most automation in nf-core, container creation will happen in GitHub Actions.
@@ -389,8 +413,13 @@ Edits to a module's `environment.yml` file will trigger a workflow that uses the
     <Fragment set:html={creation_flow} alt="Container creation flow" />
 </div>
 
+## nf-test versions snapshot
+
 One of the primary reasons that we were so excited to adopt nf-test was the snapshot in functionality.
-Every test has a snapshot file with the expected outputs, and the hashes if the outputs are deterministic(not a binary file, and there's no dates). In that snapshot, we also have meticulously captured the versions off the dependencies for the modules.
+Every test has a snapshot file with the expected outputs, and the hashes if the outputs are deterministic
+(not a binary file, and there's no dates).
+
+In that snapshot, we also capture the versions of the dependencies for the module:
 
 ```groovy title="main.nf.test.snap" {13-15}
 "sarscov2 [fasta_gz] - paired-end sorted bam": {
@@ -418,32 +447,9 @@ Every test has a snapshot file with the expected outputs, and the hashes if the 
 },
 ```
 
-When renovate bumps a dependency, the tests will fail because the version in the snapshot will not be up to date. So we'll first bump just the version snapshot and then run all of the tests.
-
-This is the summation of what's going on behind the curtain, now let's talk about these changes to the conda environment files will happen.
-
-## Adding new software
-
-So let's say a contributor wants to add a piece of software to a container.
-For instance, they decided that they need samtools installed.
-The contributor updates the `environment.yml` and adds a line with samtools:
-
-```yml title="environment.yml" {6}
-channels:
-    - conda-forge
-    - bioconda
-dependencies:
-    - bioconda::fastqc=0.12.1
-    - bioconda::samtools=1.16.1
-```
-
-That will kick off the container image generation factory.
-
-A commit will be pushed automatically with an updated `meta.yml` file pointing to the new containers,
-plus new nf-test snapshots for the software version checks.
-
-Only the interesting part needs to be edited by the developer (which tools to use) and all other
-steps are fully automated.
+This gives a second level of confirmation that the containers were correctly generated.
+We can automatically commit the updated snapshot file in the PR, so that
+the developer doesn't need take an extra step.
 
 ## nf-core/modules - Renovate version bumps
 
@@ -474,6 +480,9 @@ in nf-core/modules and check if there's a new version available.
 
 If there is a new version available, the Renovate bot will create a PR bumping the version,
 which will kicks off the container creation GitHub Action..
+
+When renovate bumps a dependency, the tests will fail because the version in the snapshot will not be up to date.
+So we'll first bump just the version snapshot and then run all of the tests.
 
 <div class="excalidraw">
     <Fragment set:html={renovate_flow} alt="Container creation flow" />
