@@ -403,15 +403,25 @@ As with most automation in nf-core, container creation will happen in GitHub Act
 Edits to a module's `environment.yml` file will trigger a workflow that uses the
 [`wave-cli`](https://github.com/seqeralabs/wave-cli) to build the container images.
 
+{/* TODO: UPDATE PERMALINK WHEN NO LONGER AN MD5 */}
+
 1. GitHub Actions identifies changes in the `environment.yml` file.
 2. `wave-cli` is executed on the updated environment file.
 3. Seqera Containers builds new containers for various platforms and architectures.
-4. GitHub Actions runs tests to verify the updates and bumps the
-   [version snapshot](https://github.com/nf-core/modules/blob/ff06c3314e33653dd948225af2b565cc48a3c18b/modules/nf-core/ale/tests/main.nf.test.snap#L26-L28).
+4. GitHub Actions runs stub tests commits the updated the
+   [version snapshot](https://github.com/nf-core/modules/blob/5c2ab5de7e8de33ac7cab83a4cd28a4d29a84049/modules/nf-core/bowtie2/align/tests/main.nf.test.snap#L169-L186).
 
 <div class="excalidraw">
     <Fragment set:html={creation_flow} alt="Container creation flow" />
 </div>
+
+Note that we update the nf-test snapshot only for the stub tests, which
+should only vary in the software versions.
+
+Once this GitHub Actions run completes it will push the new commits back to the PR
+and the regular nf-test CI will run.
+
+If any output changes in the full nf-test CI, that test will fail and be obvious to maintainers.
 
 ## nf-test versions snapshot
 
@@ -419,7 +429,10 @@ One of the primary reasons that we were so excited to adopt nf-test was the snap
 Every test has a snapshot file with the expected outputs, and the hashes if the outputs are deterministic
 (not a binary file, and there's no dates).
 
-In that snapshot, we also capture the versions of the dependencies for the module:
+{/* TODO: UPDATE PERMALINK WHEN NO LONGER AN MD5 */}
+
+In that snapshot, we also capture the versions of the dependencies for the module
+([example shown for bowtie2](https://github.com/nf-core/modules/blob/5c2ab5de7e8de33ac7cab83a4cd28a4d29a84049/modules/nf-core/bowtie2/align/tests/main.nf.test.snap#L169-L186)):
 
 ```groovy title="main.nf.test.snap" {13-15}
 "sarscov2 [fasta_gz] - paired-end sorted bam": {
