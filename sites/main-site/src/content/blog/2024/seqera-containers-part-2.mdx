@@ -266,9 +266,14 @@ The main `nextflow.config` file will import these depending on the profile selec
 We're taking this opportunity to update the `apptainer` and `mamba` profiles too,
 they will import the exact same config files as the `singularity` and `conda` profiles.
 
-> Note: Boilerplate code removed from this code snippet for clarity.
+:::note
+Boilerplate code (eg. disabling other container engines) has been removed from this
+`nextflow.config` code snippet for clarity.
+We may move this code into it's own separate config file with `includeConfig`
+so that the main `nextflow.config` file is easier to read.
+:::
 
-:::note{.fa-code title="nextflow.config (collapsed as it's quite long)" collapse}
+:::info{.fa-code title="nextflow.config (collapsed as it's quite long)" collapse}
 
 ```groovy
 // Set container for docker amd64 by default
