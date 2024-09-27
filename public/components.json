@@ -7611,6 +7611,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -23845,6 +23849,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -42060,6 +42072,107 @@
         ],
         "maintainers": [
           "@vagkaratzas"
+        ]
+      }
+    },
+    {
+      "name": "deeptools_alignmentsieve",
+      "path": "modules/nf-core/deeptools/alignmentsieve/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "deeptools_alignmentSieve",
+        "description": "This tool filters alignments in a BAM/CRAM file according the the specified parameters.",
+        "keywords": [
+          "ATACseq",
+          "filter",
+          "shift",
+          "ATACshift"
+        ],
+        "tools": [
+          {
+            "deeptools": {
+              "description": "A set of user-friendly tools for normalization and visualzation of deep-sequencing data",
+              "homepage": "https://deeptools.readthedocs.io/en/develop/content/tools/alignmentSieve.html",
+              "documentation": "https://deeptools.readthedocs.io/en/develop/content/tools/alignmentSieve.html",
+              "tool_dev_url": "https://github.com/deeptools/deepTools/",
+              "doi": "10.1093/nar/gkw257",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:deeptools"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "input": {
+                "type": "file",
+                "description": "BAM file",
+                "pattern": "*.{bam}"
+              }
+            },
+            {
+              "input_index": {
+                "type": "file",
+                "description": "BAM index file",
+                "pattern": "*.{bai}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "bam": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*_as.bam": {
+                  "type": "file",
+                  "description": "BAM file",
+                  "pattern": "*.bam"
+                }
+              }
+            ]
+          },
+          {
+            "logs": [
+              {
+                "*_log.txt": {
+                  "type": "file",
+                  "description": "TXT file",
+                  "pattern": "*.txt"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@lpantano"
+        ],
+        "maintainers": [
+          "@lpantano"
         ]
       }
     },
@@ -105488,6 +105601,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -185918,7 +186035,8 @@
           "@ksenia-krasheninnikova"
         ],
         "maintainers": [
-          "@ksenia-krasheninnikova"
+          "@ksenia-krasheninnikova",
+          "@yy5"
         ]
       }
     },
