@@ -56,24 +56,24 @@ module `environment.yml` files to update or change software dependencies.
 
 Pipeline users will see almost no change in current behaviour, but have several new configuration profiles available:
 
-| `-profile`             | Status    | Use case                                                                           |
-| ---------------------- | --------- | ---------------------------------------------------------------------------------- |
-| `docker`               | Unchanged | Docker images for `linux/amd64`                                                    |
-| `singularity`          | Unchanged | Singularity images for `linux/amd64`                                               |
-| `docker_arm`           | New       | Docker images for `linux/arm64`                                                    |
-| `singularity_arm`      | New       | Singularity images for `linux/arm64`                                               |
-| `singularity_oras`     | New       | Singularity images for `linux/amd64` using the `oras://` protocol                  |
-| `singularity_oras_arm` | New       | Singularity images for `linux/arm64` using the `oras://` protocol                  |
-| `apptainer`            | Updated   | Singularity images for `linux/amd64` (not Docker, as previously)                   |
-| `apptainer_arm`        | New       | Singularity images for `linux/arm64`, using apptainer                              |
-| `apptainer_oras`       | New       | Singularity images for `linux/amd64` using the `oras://` protocol, using apptainer |
-| `apptainer_oras_arm`   | New       | Singularity images for `linux/arm64` using the `oras://` protocol, using apptainer |
-| `conda`                | Updated   | Conda lockfiles for `linux/amd64`                                                  |
-| `conda_arm`            | New       | Conda lockfiles for `linux/arm64`                                                  |
-| `conda_local`          | New       | Conda environments with local environment resolution                               |
-| `mamba`                | Updated   | Conda lockfiles for `linux/amd64`, using Mamba                                     |
-| `mamba_arm`            | New       | Conda lockfiles for `linux/arm64`, using Mamba                                     |
-| `mamba_local`          | New       | Conda environments with local environment resolution, using Mamba                  |
+| `-profile`             | Status                                                 | Use case                                                                           |
+| ---------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------------------- |
+| `docker`               | <span class="badge text-bg-secondary">Unchanged</span> | Docker images for `linux/amd64`                                                    |
+| `singularity`          | <span class="badge text-bg-secondary">Unchanged</span> | Singularity images for `linux/amd64`                                               |
+| `docker_arm`           | <span class="badge text-bg-success">New</span>         | Docker images for `linux/arm64`                                                    |
+| `singularity_arm`      | <span class="badge text-bg-success">New</span>         | Singularity images for `linux/arm64`                                               |
+| `singularity_oras`     | <span class="badge text-bg-success">New</span>         | Singularity images for `linux/amd64` using the `oras://` protocol                  |
+| `singularity_oras_arm` | <span class="badge text-bg-success">New</span>         | Singularity images for `linux/arm64` using the `oras://` protocol                  |
+| `apptainer`            | <span class="badge text-bg-warning">Updated</span>     | Singularity images for `linux/amd64` (not Docker, as previously)                   |
+| `apptainer_arm`        | <span class="badge text-bg-success">New</span>         | Singularity images for `linux/arm64`, using apptainer                              |
+| `apptainer_oras`       | <span class="badge text-bg-success">New</span>         | Singularity images for `linux/amd64` using the `oras://` protocol, using apptainer |
+| `apptainer_oras_arm`   | <span class="badge text-bg-success">New</span>         | Singularity images for `linux/arm64` using the `oras://` protocol, using apptainer |
+| `conda`                | <span class="badge text-bg-warning">Updated</span>     | Conda lockfiles for `linux/amd64`                                                  |
+| `conda_arm`            | <span class="badge text-bg-success">New</span>         | Conda lockfiles for `linux/arm64`                                                  |
+| `conda_local`          | <span class="badge text-bg-success">New</span>         | Conda environments with local environment resolution                               |
+| `mamba`                | <span class="badge text-bg-warning">Updated</span>     | Conda lockfiles for `linux/amd64`, using Mamba                                     |
+| `mamba_arm`            | <span class="badge text-bg-success">New</span>         | Conda lockfiles for `linux/arm64`, using Mamba                                     |
+| `mamba_local`          | <span class="badge text-bg-success">New</span>         | Conda environments with local environment resolution, using Mamba                  |
 
 Glossary:
 
