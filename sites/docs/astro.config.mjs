@@ -32,9 +32,6 @@ export default defineConfig({
     output: 'static',
     adapter: netlify(),
     prefetch: false,
-    experimental: {
-        contentCollectionJsonSchema: true,
-    },
     integrations: [
         svelte(),
         icon({
@@ -54,7 +51,6 @@ export default defineConfig({
                 ],
                 fa: ['github'],
                 'fa-brands': ['github'],
-                'line-md': ['check-list-3-twotone'],
                 mdi: ['aws', 'slack', 'youtube'],
                 octicon: [
                     'chevron-right-16',

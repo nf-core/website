@@ -464,7 +464,32 @@ tuple val(meta), path('*.tab'), emit: tab,  optional: true
 
 ### One output channel per output file type
 
-Each output file SHOULD be emitted in its own channel (and no more than one), along with the `meta` map if provided ( the exception is the versions.yml ).
+Each output file type SHOULD be emitted in its own channel (and no more than one), along with the `meta` map if provided ( the exception is the versions.yml ).
+
+In some cases the file format can be different between files of the same type or for the same function (e.g. indices: `.bai` and `.crai`). These different file formats SHOULD be part of the same output channel since they are they serve the same purpose and are mutually exclusive.
+
+```groovy
+tuple val(meta), path("*.{bai,crai}"), emit: index
+```
+
+:::info{title="Rationale" collapse}
+This approach simplifies the process of retrieving and processing specific types of output, as each type can be easily identified and accessed within its designated channel.
+
+So when the output definition of module called `SAMTOOLS_INDEX` looks like this:
+
+```groovy
+tuple val(meta), path("*.{bai,crai}"), emit: index
+```
+
+The output files can be accessed like this:
+
+```groovy
+SAMTOOLS_INDEX.out.index
+```
+
+Regardless whether they are a `bai` or `crai` as downstream SAMTOOLS modules should accept either without an issue.
+
+:::
 
 ## Documentation
 
@@ -654,7 +679,7 @@ It is also possible for a new multi-tool container to be built and added to BioC
 
   The packages should reflect those added to the multi-package-containers repo `hash.tsv` file
 
-- If the multi-tool container already exists and you want to obtain the `mulled-*` path, you can use (this)[https://midnighter.github.io/mulled] helper tool.
+- If the multi-tool container already exists and you want to obtain the `mulled-*` path, you can use [this](https://midnighter.github.io/mulled) helper tool.
 
 ### Software not on Bioconda
 

@@ -13,54 +13,191 @@ locations:
       geoCoordinates: [42.34347, -71.04489]
 ---
 
+import { Image } from 'astro:assets';
+import summitCard from '@assets/images/events/2024/hackathon-barcelona/summit-2024-barcelona.png';
+import Profile from '@components/GitHubProfilePictureExtended.svelte';
+import HackathonGroup from '@components/event/HackathonGroup.astro';
+
 # Welcome
 
 Join us in person for the October 2024 nf-core hackathon!
 
-This hackathon will be held in advance of the _**Nextflow Summit 2024**_ in Barcelona, Spain.
-You can find out more information about the summit at https://summit.nextflow.io/2024/barcelona/.
+This hackathon will be held in advance of the **Nextflow Summit 2024** in Barcelona, Spain and is organised jointly.
 
-The Barcelona nf-core hackathon will be in-person only, without the hybrid / online features that we have used in other events (e.g., Gather Town).
-Anyone is free to join remotely, as we will be using the same GitHub Project boards and Slack communication as usual.
-However, please be aware, we won't actively be trying to run this as a hybrid event.
+-   **Summit website**: https://summit.nextflow.io/2024/barcelona/
+-   **Dates**: 28th - 30th October 2024
+-   **Registration**: Visit the [summit registration page](https://summit.nextflow.io/2024/barcelona/register/)
+-   **Schedule**: Visit the [summit agenda page](https://summit.nextflow.io/2024/barcelona/agenda/)
+-   **Location**: [World Trade Center Barcelona](https://maps.app.goo.gl/Fyezb8CiS11wEGAU6)
+-   **Slack channel**: [`#hackathon-oct-2024`](https://nfcore.slack.com/archives/C07HZCK6YE4)
 
-# Registration
+<Image src={summitCard} alt="Nextflow Summit 2024 - Barcelona" />
 
-Registration for the nf-core hackathon is now open!
+# How the hackathon works
 
-You can register for the hackathon on the [Nextflow Summit website](https://summit.nextflow.io/2024/barcelona/register/).
-Please note that tickets are limited, so register early to avoid disappointment.
+## What to expect
 
-**Register early to benefit from the early-bird discount codes!**
+The nf-core hackathons are collaborative, community-driven events where participants work together on projects.
 
-<a class="btn btn-success btn-lg mb-3" href="https://summit.nextflow.io/2024/barcelona/register/">
-    <span>
-        <i class="fa-solid fa-pencil me-2"></i>
-        <span>Register now</span>
-    </span>
-</a>
+Everyone is welcome, no prior experience of nf-core contributions is needed. However, we do expect that you have some experience with writing Nextflow code.
+Note that there is a separate [training event](https://summit.nextflow.io/2024/barcelona/training/) for learning Nextflow and nf-core from scratch, running in parallel to the hackathon.
 
-# Socials activities
+nf-core hackathons are not just about coding! We also have a lot of fun. We typically run things like a quiz, a bingo and have several small prizes for the winners.
+In addition to small social games and contests during the event, we also have a social evening.
+
+## Prerequisites
+
+Before you arrive at the hackathon, please make sure that you have:
+
+-   [Registered](https://summit.nextflow.io/2024/barcelona/register/) to come!
+-   [Joined the nf-core Slack](https://nf-co.re/join#slack)
+-   [Joined the nf-core GitHub organisation](https://nf-co.re/join#github)
+-   Added yourself to the [`#hackathon-oct-2024` slack channel](https://nfcore.slack.com/archives/C07HZCK6YE4)
+
+## Where to find tasks
+
+We collect all tasks in the ["Hackathon October 2024" GitHub project board](https://github.com/orgs/nf-core/projects/76).
+
+If you are not too familiar yet with the code base, a great starting point is to filter for issues labelled as `good first issue`.
+
+Once you found something, get in touch with the project group (i.e. ping them on slack, find them in the room), assign yourself, and get started.
+
+## How to contribute code
+
+We use GitHub to collaborate on code:
+
+{/* TODO link to external docs on this? */}
+
+1. Find a hackathon project
+2. Discuss with the group and assign yourself to an issue. (Create one if it is not there)
+3. Fork the repository
+4. Work on a branch in your Fork
+5. Once ready, open a PR to the parent repository
+
+:::note
+Only assign yourself to an issue if you are ready to work on it, typically one issue at a time.
+:::
+
+See [Helpful resources](#helpful-resources) below for more information.
+
+# Schedule
+
+The hackathon will run from **Monday 28th October** to **Wednesday 30th October**.
+The registration opens on Monday at **9am**. We will start at **10am** everyday and close at **5pm** on Monday and Tuesday. On Wednesday we will wrap up at **1pm**.
+For a complete schedule visit the [summit agenda page](https://summit.nextflow.io/2024/barcelona/agenda/)
+
+# Projects
+
+This hackathon we will use projects, as opposed to the broader groups of previous events.
+At the end of each day, we will group the projects into categories and sum up their progress.
+Projects can be anything from:
+
+-   Adding new features to existing pipelines
+-   Adding and improving nf-core/modules
+-   Improving the website and nf-core tooling
+-   Creating entirely new pipelines
+-   Discussion and planning community initiatives
+-   Working on special interest group topics
+-   _...anything else_
+
+You can bring your own favourite topic or choose from a list of open issues in the community.
+Each project has a lead who can point you in the right direction.
+
+You don't need to commit to a single project and are free to move around groups and projects throughout the event.
+
+## Submit a new project
+
+New projects can be proposed in the [`#hackathon-oct-2024` slack channel](https://nfcore.slack.com/archives/C07HZCK6YE4).
+Use the [project proposal form](https://slack.com/shortcuts/Ft07HAJVNF8A/295721bac20c398d998d0fed127fe3b5) to submit an idea.
+After a some community discussion, you can add your project to the list below and others can find it.
+
+:::tip
+If you are planning to start a new pipeline, please propose it on the [`#new-pipelines` slack channel](https://nfcore.slack.com/archives/CE6SDEDAA)
+**ahead** of the hackathon start to avoid delays during the event.
+:::
+
+Once a project is approved, the project leaders should add it to this webpage and
+add issues issues to the [GitHub project board](https://github.com/orgs/nf-core/projects/76) ahead of the hackathon.
+If appropriate, label them as `good first issue`.
+
+## Join a project
+
+Joining a project is as simple as turning up and getting in touch with the group.
+If you don't know where to find them in the room, ping the project lead on slack.
+
+You can move freely between projects throughout the event.
+
+## Overview of all projects
+
+<HackathonGroup title="Regulatory" color="#238636" leaders={{'apeltzer': 'Alexander Peltzer'}}>
+    This group will work on tasks for the [#regulatory special interest group](/special-interest-groups/regulatory). Most likely we will try to come up with more detailed plans on how to tackle different needs of subgroups within regulatory and try to come up with a strategy on how to both align between those subgroups as well as to come up with plans / proposals for the wider community what we could add to enable e.g. auditors or authorities to understand better what nf-core already provides.
+
+    **Goal**: Clearing out the scope of the regulatory special interest group and discussing who would tackle different subfields of the entire regulatory space for future improvements on nf-core guidelines and pipelines.
+
+</HackathonGroup>
+
+<HackathonGroup title="References" color="#238636" leaders={{'maxulysse': 'Maxime Garcia', 'pinin4fjords': 'Jonathan Manning'}}>
+    Continuing the discussion from last year's hackathon, this group will work on tasks related to references' genomes handling / management.
+    Some work has started with [nf-core/references](https://github.com/nf-core/references) but it is at a very early stage. This hackathon group will work towards agreeing on a fundamental structure and plan.
+
+    **Goal**: Replacing iGenomes, then world domination.
+
+</HackathonGroup>
+
+<HackathonGroup title="Tube map polishing" color="#238636" leaders={{'mashehu': 'Matthias Hörtenhuber'}}>
+    _Details coming soon_
+
+    **Goal**: _coming soon_
+
+</HackathonGroup>
+
+<HackathonGroup title="nf-test plugins" color="#238636" leaders={{'nvnieuwk': 'Nicolas Vannieuwkerke'}}>
+    nf-test is a very important piece of our modules, used for continuous integration testing of all our modules.
+    However, writing tests for some file types / more advanced tests can be difficult.
+    In this group we will try and kickstart the creation of nf-test plugins to make our testing a lot easier.
+    This will mainly involve the development of [`nft-utils`](https://github.com/nf-core/nft-utils), the improvement of [`nft-bam`](https://nvnieuwk.github.io/nft-bam/latest/) and hopefully the creation of completely new nf-test plugins.
+
+    **Goal**: Fully develop [nft-utils](https://github.com/nf-core/nft-utils) and start new nf-test plugins
+
+</HackathonGroup>
+
+<HackathonGroup title="nf-core/seqinspector" color="#238636" leaders={{'FranBonath': 'Franziska Bonath'}}>
+    nf-core/seqinspector aims to be a pipeline for initial quality control of sequencing data. Input is either FASTQ files or a run folder, and output is planned to be a global MultiQC report and, if wished, MultiQC files of groups that are defined in the sample sheet.
+    By joining this group you can
+        1) add existing modules to a pipeline (beginner friendly)
+        2) write a new module of your preferred QC tool if it doesn’t exist yet (intermediate level).
+        3) start with implementation of long read methods (advanced level, we have only limited experience in the group, so help would be more than appreciated!).
+        4) work on display of the data in the MultiQC reports (beginner - intermediate level)
+        5) write documentation
+
+    **Goal**: work towards a first release
+
+</HackathonGroup>
+
+<HackathonGroup title="Single cell analysis: nf-core/scrnaseq and nf-core/scdownstream" color="#238636" leaders={{'nictru': 'Nico Trummer'}}>
+    [nf-core/scrnaseq](https://nf-co.re/scrnaseq) transforms FASTQ files into expression matrices, while [nf-core/scdownstream](https://nf-co.re/scdownstream) receives expression matrices as input and performs quality control, integration, clustering and more.
+    This project has two main parts:
+        1) Move some local modules from scdownstream to nf-core/modules so that they can be re-used in scrnaseq.
+        2) Add new features to scdownstream. See the open [enhancement issues](https://github.com/nf-core/scdownstream/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement) for details.
+
+    By joining this group you can:
+        1) Create new modules and move existing local modules to nf-core/modules (beginner friendly)
+        2) Integrate the newly added modules into the pipelines (beginner - intermediate level)
+        3) Improve the scdownstream MultiQC report and documentation (beginner - intermediate level)
+        4) Look into a potential extension of scdownstream to multi-omics analyses (advanced level, has not yet been tackled but help would be great!)
+
+    Prior experience with single cell analysis is not required, but helpful.
+
+    **Goal**: Move shared functionality to nf-core/modules and make #scdownstream ready for 1.0 release
+
+</HackathonGroup>
+
+# Social activities
 
 During the hackathon, we will have light-hearted fun and games!
 Special prizes are up for grabs for the winners!
 
-_More details will be available soon._
-
-# Venue: World Trade Center Barcelona
-
-The hackathon will be taking place at the [World Trade Center Barcelona](https://maps.app.goo.gl/Fyezb8CiS11wEGAU6).
-
-The World Trade Center is a premier business complex on the Barcelona waterfront, offering offices, conference facilities, and a hotel, and known for hosting a variety of international business events and trade shows.
-
-More information about this venue can be found on the [Nextflow Summit website](https://summit.nextflow.io/2024/barcelona/travel/).
-
-<a class="btn btn-success btn-lg mb-3" href="https://maps.app.goo.gl/Fyezb8CiS11wEGAU6">
-    <span>
-        <i class="fa-solid fa-map-pin me-2"></i>
-        <span>Google Maps</span>
-    </span>
-</a>
+More details will be revelealed at the start of the event, but you can expect: a quiz, bingo and sock-related activities.
 
 # Helpful resources
 
