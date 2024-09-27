@@ -40,13 +40,7 @@
 </script>
 
 <div class="dropdown" title="Change theme" data-bs-toggle="tooltip" data-bs-placement="bottom">
-    <button
-        class="nav-link dropdown-toggle"
-        type="button"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-        title="Change theme"
-    >
+    <button class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="theme-icon-light" class:d-none={theme !== 'light'}>
             <slot name="light" />
         </i>
