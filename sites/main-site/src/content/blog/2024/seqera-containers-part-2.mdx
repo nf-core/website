@@ -403,13 +403,11 @@ As with most automation in nf-core, container creation will happen in GitHub Act
 Edits to a module's `environment.yml` file will trigger a workflow that uses the
 [`wave-cli`](https://github.com/seqeralabs/wave-cli) to build the container images.
 
-{/* TODO: UPDATE PERMALINK WHEN NO LONGER AN MD5 */}
-
 1. GitHub Actions identifies changes in the `environment.yml` file.
 2. `wave-cli` is executed on the updated environment file.
 3. Seqera Containers builds new containers for various platforms and architectures.
 4. GitHub Actions runs stub tests commits the updated the
-   [version snapshot](https://github.com/nf-core/modules/blob/5c2ab5de7e8de33ac7cab83a4cd28a4d29a84049/modules/nf-core/bowtie2/align/tests/main.nf.test.snap#L169-L186).
+   [version snapshot](https://github.com/nf-core/modules/blob/1fe2e6de89778971df83632f16f388cf845836a9/modules/nf-core/bowtie/align/tests/main.nf.test.snap#L32-L46).
 
 <div class="excalidraw">
     <Fragment set:html={creation_flow} alt="Container creation flow" />
@@ -428,8 +426,6 @@ If any output changes in the full nf-test CI, that test will fail and be obvious
 One of the primary reasons that we were so excited to adopt nf-test was the snapshot in functionality.
 Every test has a snapshot file with the expected outputs, and the hashes if the outputs are deterministic
 (not a binary file, and there's no dates).
-
-{/* TODO: UPDATE PERMALINK WHEN NO LONGER AN MD5 */}
 
 In that snapshot, we also capture the versions of the dependencies for the module
 ([example shown for bowtie2](https://github.com/nf-core/modules/blob/1fe2e6de89778971df83632f16f388cf845836a9/modules/nf-core/bowtie/align/tests/main.nf.test.snap#L32-L46)):
