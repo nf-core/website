@@ -6,10 +6,11 @@ startDate: '2024-09-17'
 startTime: '13:00+02:00'
 endDate: '2024-09-17'
 endTime: '13:30+02:00'
+youtubeEmbed: https://youtu.be/GGwGZOulD8A
 locations:
   - name: Online
     links:
-      - https://kth-se.zoom.us/j/68390542812
+      - https://youtu.be/GGwGZOulD8A
 ---
 
 In this nf-core bytesize session, Phil will talk all about [Excalidraw](https://excalidraw.com/) — a nifty tool that makes creating diagrams for your documentation a breeze.
