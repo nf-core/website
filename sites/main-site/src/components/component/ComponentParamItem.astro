@@ -11,7 +11,7 @@ const hasNestedParams = Array.isArray(value) || (typeof value === 'object' && !t
     name.slice(0, 6) !== 'input[' && (
         <div
             class:list={[
-                `row align-items-center ${depth > 0 ? 'ms-' + depth * 2 : ''}`,
+                `row align-items-center ${depth > 0 ? 'ms-md-' + depth * 2 : ''}`,
                 { 'border-bottom': !lastItem },
             ]}
         >
