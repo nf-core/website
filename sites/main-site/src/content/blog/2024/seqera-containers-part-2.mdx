@@ -52,7 +52,14 @@ Before we dig into how the details of how the automation will work, let's summar
 The main thing to know is that in the future, maintainers will now _only_ need to change
 module `environment.yml` files to update or change software dependencies.
 
-Pipeline users will see almost no change in current behaviour, but have several new configuration profiles available:
+Pipeline users will see almost no change in current behaviour, but have several new configuration profiles available.
+
+Glossary:
+
+-   [`linux/amd64`](https://en.wikipedia.org/wiki/X86-64): Regular intel CPUs (aka `x86_64`)
+-   [`linux/arm64`](https://en.wikipedia.org/wiki/AArch64): ARM CPUs (eg. AWS Graviton, aka `AArch64`). Not Apple Silicon.
+-   [Apptainer](https://apptainer.org/): Alternative to Singularity, uses same image format
+-   [Mamba](https://mamba.readthedocs.io): Alternative to Conda, uses same conda environment files
 
 | `-profile`             | Status                                                 | Use case                                                                           |
 | ---------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------------------- |
@@ -72,13 +79,6 @@ Pipeline users will see almost no change in current behaviour, but have several 
 | `mamba`                | <span class="badge text-bg-warning">Updated</span>     | Conda lockfiles for `linux/amd64`, using Mamba                                     |
 | `mamba_arm`            | <span class="badge text-bg-success">New</span>         | Conda lockfiles for `linux/arm64`, using Mamba                                     |
 | `mamba_local`          | <span class="badge text-bg-success">New</span>         | Conda environments with local environment resolution, using Mamba                  |
-
-Glossary:
-
--   [`linux/amd64`](https://en.wikipedia.org/wiki/X86-64): Regular intel CPUs (aka `x86_64`)
--   [`linux/arm64`](https://en.wikipedia.org/wiki/AArch64): ARM CPUs (eg. AWS Graviton, aka `AArch64`). Not Apple Silicon.
--   [Apptainer](https://apptainer.org/): Alternative to Singularity, uses same image format
--   [Mamba](https://mamba.readthedocs.io): Alternative to Conda, uses same conda environment files
 
 :::tip{.fa-comment-question title="Singularity: oras or https?" collapse}
 
