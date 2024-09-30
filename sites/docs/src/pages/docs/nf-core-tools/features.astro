@@ -1,26 +1,16 @@
 ---
-import yaml from 'js-yaml';
+import { Markdown } from '@astropub/md';
+import yaml from 'yaml';
 
-const yamlURL =
-    'https://raw.githubusercontent.com/nf-core/tools/refs/heads/dev/nf_core/pipelines/create/template_features.yml';
-const response = await fetch(yamlURL);
-const yamlText = await response.text();
-const data = yaml.load(yamlText);
+const data = await fetch(
+    'https://raw.githubusercontent.com/nf-core/tools/refs/heads/dev/nf_core/pipelines/create/template_features.yml',
+)
+    .then((res) => res.text())
+    .then((text) => yaml.parse(text));
 
-const filteredData = Object.entries(data).map(([key, value]) => {
-    return {
-        key,
-        helpText: value.help_text || 'No help text available',
-    };
-});
+const markdownContent = Object.entries(data)
+    .map(([key, value]) => `### \`${key}\`\n\n${value.help_text || 'No help text available'}`)
+    .join('\n\n');
 ---
 
-<ul>
-    {
-        filteredData.map(({ key, helpText }) => (
-            <li>
-                <strong>{key}:</strong> {helpText}
-            </li>
-        ))
-    }
-</ul>
+<Markdown of={markdownContent} />
