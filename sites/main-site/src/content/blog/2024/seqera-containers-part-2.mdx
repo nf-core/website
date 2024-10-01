@@ -22,24 +22,24 @@ import { YouTube } from '@astro-community/astro-embed-youtube';
 
 # Introduction
 
-[Wave](https://seqera.io/wave/) is a open-source software that Seqera released in the fall of 2022 in Barcelona.
+[Wave](https://seqera.io/wave/) is an open-source software that Seqera released at the [Nextflow Summit Barcelona](https://www.youtube.com/watch?v=PTbiCVq0-sE) in the fall of 2022.
 It enables users to create software containers on demand, to rapidly speed up the development cycle.
 Wave has a number of tricks up its sleeve, but in its simplest form, it can be passed a list of conda packages
 and build a container with those packages installed.
 
 [Seqera Containers](https://seqera.io/containers/) is a service for the bioinformatics community that's built on top of Wave,
 providing an easy user interface to quickly create a container with a set of conda packages
-and share that container image with others.
+and share it with others.
 
-In nf-core we've been excited to better adopt Wave in our workflows, but have been looking for the right way to do it.
+In nf-core, we've been excited to adopt Wave more fully in our workflows and have been looking for the right way to do it.
 With the announcement of Seqera Containers we felt it was the right time to put in the effort to migrate
 our containers to be built using Wave, using Seqera Containers to host the container images for our modules.
 
 You can read more about our motivation for this change in [Part 1 of this blog post](https://nf-co.re/blog/2024/seqera-containers-part-1).
-Here in Part 2 we will dig into the technical details: how it all works behind the curtain.
+Here, in Part 2, we will dig into the technical details: how it all works behind the curtain.
 You don't need to know or understand any of this as an end-user of nf-core pipelines,
 or even as a contributor to nf-core modules, but we thought it would be interesting to share the details.
-It's mostly to serve as an architectural plan for the nf-core maintainers and infrastrcuture teams.
+It's mostly to serve as an architectural plan for the nf-core maintainers and infrastructure teams.
 
 # The end goal
 
@@ -49,7 +49,7 @@ Before we dig into how the details of how the automation will work, let's summar
 
 ## Usage summary
 
-The main thing to know is that in the future, maintainers will now _only_ need to change
+The main thing to know is that, with the adoption of Seqera Containers, maintainers will _only_ need to change
 module `environment.yml` files to update or change software dependencies.
 
 Pipeline users will see almost no change in current behaviour, but have several new configuration profiles available.
@@ -92,13 +92,13 @@ Using `oras` has some advantages:
 -   Singularity handles pulls in the process task, rather than it happening in the Nextflow head job
     -   This means less resource usage on the head node, and more parallelisation
 -   Singularity can use authentication to pull from private registries
-    (see [Singularity docs](https://docs.sylabs.io/guides/main/user-guide/cli/singularity_registry.html)).
+    (see [Singularity docs](https://docs.sylabs.io/guides/main/user-guide/cli/singularity_registry.html) for more information).
 
 However, there are some downsides:
 
 -   Shared cache Nextflow options such as `$NXF_SINGULARITY_CACHEDIR` and `$NXF_SINGULARITY_LIBRARYDIR` do not work
 -   Singularity must be installed to download images for offline use
--   It's not supported by all versions of Singularity / Apptainer.
+-   `oras` is not supported by all versions of Singularity / Apptainer
 
 As such, we will continue to use `https` downloads for Singularity `SIF` images for now.
 However, we will start to provide new `-profile singularity_oras` profiles for anyone who
@@ -118,7 +118,7 @@ encapsulated within shared modules in the [nf-core/modules](https://github.com/n
 As such, we must start with containers at the module level.
 
 :::tip{.fa-brands.fa-github title="GitHub issue"}
-For the latest discussion and progress on _bulk-updating_ existing nf-core modules, please see GitHub issue
+For the latest discussion and progress on _bulk-updating_ existing nf-core modules, see GitHub issue
 [nf-core/modules#6698](https://github.com/nf-core/modules/issues/6698).
 :::
 
@@ -146,12 +146,12 @@ process FASTQC {
      tuple val(meta), path(reads)
 ```
 
-We considered removing both `conda` and `container` declarations from the module `main.nf` file entirely,
-however we see benefit for keeping these in this form because:
+We considered removing both `conda` and `container` declarations from the module `main.nf` file entirely.
+However, we see benefit in keeping these in this form because:
 
 -   It's clearer to those exploring the code about what the module requires.
 -   The container string is needed to tie the module to the pipeline config files
-    (see [Building config files](#building-config-files) below).
+    (see [Building config files](#building-config-files) below)
 
 Removing the container logic from the string should be a big win for readability.
 
@@ -190,7 +190,7 @@ containers:
             lockfile: https://wave.seqera.io/v1alpha1/builds/d3caca66b4f3d3b0_1/condalock
 ```
 
-The four different container images are all built at the same time so share the same snapshot of a given Conda resolution.
+The four different container images are all built at the same time, so they share the same snapshot of a given Conda resolution.
 The build and scan IDs allow us to trace back to the build logs and security scans for these images.
 
 The Conda lockfiles are a new addition to the nf-core ecosystem and will help reproducibility for Conda users.
@@ -230,12 +230,12 @@ https://conda.anaconda.org/conda-forge/linux-64/bzip2-1.0.8-hd590300_5.conda#69b
 
 Container information at shared module-level is great, but it's not enough.
 Nextflow doesn't know about module `meta.yml` files (they're an nf-core invention),
-so we need to somehow tie these into the pipeline code where they will run.
+so we need to tie these into the pipeline code where they will run.
 
 The heart of the solution is to auto-generate a config file for each software packaging type (Docker, Singularity, Conda)
 and platform (`linux/arch64` and `linux/arm64`).
 These will be created by the nf-core/tools CLI and never be edited by hand, so no manual merging will be required.
-They'll simply be regenerated and overwritten every time a module is changed.
+They'll simply be regenerated and overwritten every time a version of a module is updated.
 
 Each config file will specify the `container` or `conda` directive for every process in the pipeline:
 
@@ -263,7 +263,7 @@ by the person running the pipeline.
 Singularity will have separate config files and associated `-profile`s for both `oras` and `https` containers,
 so that users can choose which to use.
 
-We're taking this opportunity to update the `apptainer` and `mamba` profiles too,
+We're also taking this opportunity to update the `apptainer` and `mamba` profiles too,
 they will import the exact same config files as the `singularity` and `conda` profiles.
 
 Here's roughly how the `nextflow.config` file with the `-profile` config includes will look:
@@ -428,7 +428,7 @@ and the regular nf-test CI will run.
 
 ## nf-test versions snapshot
 
-One of the primary reasons that we were so excited to adopt nf-test was the snapshot in functionality.
+One of the primary reasons that we were so excited to adopt nf-test was the snapshot functionality.
 Every test has a snapshot file with the expected outputs, and the outputs are deterministic
 (not a binary file, and there's no dates).
 
@@ -473,7 +473,7 @@ as it makes verification in the PR much easier.
 
 ## Automatic version bumps with Renovate
 
-We've recently adopted Renovate, a tool for automated dependency updates.
+We've recently adopted [Renovate](https://renovatebot.com/), a tool for automated dependency updates.
 It's multi-platform and multi-language and has become pretty popular in the devops space.
 It's similar to [GitHub's dependabot](https://docs.github.com/en/code-security/getting-started/dependabot-quickstart-guide#about-dependabot),
 but supports more languages and frameworks, and more importantly for nf-core, enables us to write our own custom dependencies.
