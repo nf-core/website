@@ -1,0 +1,13 @@
+---
+import { getEntry, render } from 'astro:content';
+import PageLayout from '@layouts/PageLayout.astro';
+
+const entry = await getEntry('readmes', 'rnaseq-dev');
+console.log(await render(entry));
+const { Content, headings } = await render(entry);
+---
+
+<PageLayout title={entry.id} description={entry.rendered} headings={headings}>
+    {entry.id}
+    <Content />
+</PageLayout>
