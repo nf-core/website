@@ -7591,6 +7591,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -23825,6 +23829,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -106180,6 +106192,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -144976,14 +144992,14 @@
             {
               "truth_bed": {
                 "type": "file",
-                "description": "A BED file containining the strict regions where VCFeval should only evaluate the fully overlapping variants (optional)",
+                "description": "A BED file containining the strict regions where VCFeval should only evaluate the fully overlapping variants (optional) This input should be used to provide the golden truth BED files.",
                 "pattern": "*.bed"
               }
             },
             {
-              "evaluation_bed": {
+              "regions_bed": {
                 "type": "file",
-                "description": "A BED file containing the regions where VCFeval will evaluate every fully and partially overlapping variant (optional)",
+                "description": "A BED file containing the regions where VCFeval will evaluate every fully and partially overlapping variant (optional) This input should be used to provide the regions used by the analysis",
                 "pattern": "*.bed"
               }
             }
