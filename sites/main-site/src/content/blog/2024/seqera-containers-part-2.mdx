@@ -149,7 +149,7 @@ For the latest discussion and progress on _bulk-updating_ existing nf-core modul
 [nf-core/modules#6698](https://github.com/nf-core/modules/issues/6698).
 :::
 
-### `main.nf`
+### Changes to `main.nf`
 
 With this switch, we simplify the `container` declaration, listing only the default container image: Docker, for `linux/amd64`.
 There will no longer be any string interpolation or logic within the container string.
@@ -182,7 +182,7 @@ However, we see benefit in keeping these in this form because:
 
 Removing the container logic from the string should be a big win for readability.
 
-### `meta.yml`
+### Changes to `meta.yml`
 
 Through the magic of automation, we will append and then validate the following fields
 within the module's `meta.yml` file. Following the
