@@ -45,7 +45,7 @@
         type="button"
         data-bs-toggle="dropdown"
         aria-expanded="false"
-        title="Change theme"
+        title="Change theme button"
     >
         <i class="theme-icon-light" class:d-none={theme !== 'light'}>
             <slot name="light" />
