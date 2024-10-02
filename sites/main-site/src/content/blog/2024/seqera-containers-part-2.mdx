@@ -56,12 +56,14 @@ Before we dig into how the details of how the automation will work, let's summar
 -   [`linux/arm64`](https://en.wikipedia.org/wiki/AArch64): ARM CPUs (eg. AWS Graviton, aka `AArch64`). Not Apple Silicon.
 -   [Apptainer](https://apptainer.org/): Alternative to Singularity, uses same image format
 -   [Mamba](https://mamba.readthedocs.io): Alternative to Conda, uses same conda environment files
+-   [Conda lock files](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#identical-conda-envs):
+    Explicit lists of packages, used to recreate an environment exactly.
 
 ## Usage summary
 
 Pipeline users will see almost no change in current behaviour, but have several new configuration profiles available.
 
-| nf-core profile             | Status                                                 | Use case                                                                           |
+| nf-core profile        | Status                                                 | Use case                                                                           |
 | ---------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------------------- |
 | `docker`               | <span class="badge text-bg-secondary">Unchanged</span> | Docker images for `linux/amd64`                                                    |
 | `singularity`          | <span class="badge text-bg-secondary">Unchanged</span> | Singularity images for `linux/amd64`                                               |
@@ -79,6 +81,29 @@ Pipeline users will see almost no change in current behaviour, but have several 
 | `mamba`                | <span class="badge text-bg-warning">Updated</span>     | Conda lockfiles for `linux/amd64`, using Mamba                                     |
 | `mamba_arm`            | <span class="badge text-bg-success">New</span>         | Conda lockfiles for `linux/arm64`, using Mamba                                     |
 | `mamba_env`            | <span class="badge text-bg-success">New</span>         | Conda environments with local environment resolution, using Mamba                  |
+
+## Conda lock files
+
+Conda lock files were mentioned in [Part I of this blog post](/blog/2024/seqera-containers-part-1#exceptionally-reproducible).
+
+> These pin the exact dependency stack used by the build, not just the top-level primary tool being requested.
+> This effectively removes the need for conda to solve the build and also ships md5 hashes for every package.
+> This will greatly improve the reproducibility of the software environments for conda users and the reliability of Conda CI tests.
+
+They look something like this:
+
+```yaml title="FastQC Conda lockfile for linux/amd64"
+# micromamba env export --explicit
+# This file may be used to create an environment using:
+# $ conda create --name <env> --file <this file>
+# platform: linux-64
+@EXPLICIT
+https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
+https://conda.anaconda.org/conda-forge/linux-64/libgomp-13.2.0-h77fa898_7.conda#abf3fec87c2563697defa759dec3d639
+https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_gnu.tar.bz2#73aaf86a425cc6e73fcf236a5a46396d
+https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-13.2.0-h77fa898_7.conda#72ec1b1b04c4d15d4204ece1ecea5978
+# .. and so on
+```
 
 ## Singularity: oras or https?
 
@@ -192,37 +217,9 @@ All images are all built at the same time, avoiding Conda dependency drift.
 The build and scan IDs allow us to trace back to the build logs and security scans for these images.
 
 The Conda lockfiles are a new addition to the nf-core ecosystem and will help reproducibility for Conda users.
-
-:::info{.fa-lock title="Conda lockfiles recap" collapse}
-
-Conda lockfiles were mentioned in [Part I of this blog post](/blog/2024/seqera-containers-part-1#exceptionally-reproducible).
-
-> These pin the exact dependency stack used by the build, not just the top-level primary tool being requested.
-> This effectively removes the need for conda to solve the build and also ships md5 hashes for every package.
-> This will greatly improve the reproducibility of the software environments for conda users and the reliability of Conda CI tests.
-
-Conda lockfiles are generated during the Docker image build and are specific to architecture.
+These are generated during the Docker image build and are specific to architecture.
 The lockfiles can be accessed remotely via the Wave API, so we can treat them much in the same
 way that we treat remote container images.
-
-As a reminder, they look something like this:
-
-```yaml title="FastQC Conda lockfile for linux/amd64"
-# micromamba env export --explicit
-# This file may be used to create an environment using:
-# $ conda create --name <env> --file <this file>
-# platform: linux-64
-@EXPLICIT
-https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
-https://conda.anaconda.org/conda-forge/linux-64/libgomp-13.2.0-h77fa898_7.conda#abf3fec87c2563697defa759dec3d639
-https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_gnu.tar.bz2#73aaf86a425cc6e73fcf236a5a46396d
-https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-13.2.0-h77fa898_7.conda#72ec1b1b04c4d15d4204ece1ecea5978
-https://conda.anaconda.org/conda-forge/linux-64/alsa-lib-1.2.11-hd590300_1.conda#0bb492cca54017ea314b809b1ee3a176
-https://conda.anaconda.org/conda-forge/linux-64/bzip2-1.0.8-hd590300_5.conda#69b8b6202a07720f448be700e300ccf4
-# .. and so on
-```
-
-:::
 
 ## Pipelines
 
