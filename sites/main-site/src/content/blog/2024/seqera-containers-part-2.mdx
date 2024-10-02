@@ -75,10 +75,10 @@ Glossary:
 | `apptainer_oras_arm`   | <span class="badge text-bg-success">New</span>         | Singularity images for `linux/arm64` using the `oras://` protocol, using apptainer |
 | `conda`                | <span class="badge text-bg-warning">Updated</span>     | Conda lockfiles for `linux/amd64`                                                  |
 | `conda_arm`            | <span class="badge text-bg-success">New</span>         | Conda lockfiles for `linux/arm64`                                                  |
-| `conda_local`          | <span class="badge text-bg-success">New</span>         | Conda environments with local environment resolution                               |
+| `conda_env`            | <span class="badge text-bg-success">New</span>         | Conda environments with local environment resolution                               |
 | `mamba`                | <span class="badge text-bg-warning">Updated</span>     | Conda lockfiles for `linux/amd64`, using Mamba                                     |
 | `mamba_arm`            | <span class="badge text-bg-success">New</span>         | Conda lockfiles for `linux/arm64`, using Mamba                                     |
-| `mamba_local`          | <span class="badge text-bg-success">New</span>         | Conda environments with local environment resolution, using Mamba                  |
+| `mamba_env`            | <span class="badge text-bg-success">New</span>         | Conda environments with local environment resolution, using Mamba                  |
 
 :::tip{.fa-comment-question title="Singularity: oras or https?" collapse}
 
@@ -337,7 +337,7 @@ profiles {
         includeConfig       'config/conda_lockfiles_arm64.config'
         conda.enabled       = true
     }
-    conda_local {
+    conda_env {
         conda.enabled       = true // Use the environment.yml file in the module main.nf
     }
     mamba {
@@ -350,7 +350,7 @@ profiles {
         conda.enabled       = true
         conda.useMamba      = true
     }
-    mamba_local {
+    mamba_env {
         conda.enabled       = true // Use the environment.yml file in the module main.nf
         conda.useMamba      = true
     }
@@ -370,7 +370,7 @@ Note that there are a few changes here:
 -   New profiles for `_oras` suffixes for using the `oras://` protocol
 -   The `apptainer` profiles now uses the `singularity` config files
 -   The `conda` profiles now use Conda lockfiles instead of `environment.yml` files
--   New `conda_local` profiles for those wanting to keep the old behaviour
+-   New `conda_env` profiles for those wanting to keep the old behaviour
 -   New `mamba` profiles, using the `conda` config files
 -   Base registries set to Seqera Containers
 
