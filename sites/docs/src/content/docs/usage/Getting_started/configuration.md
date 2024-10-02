@@ -126,11 +126,11 @@ process {
 }
 ```
 
-And supply this in your pipeline run command with `-c <custom>.config`. Then, during a pipeline run, if for example a job exceeds the default memory request, it will be retried increasing the memory each time until either the job completes, or until it reaches a request of `256.GB`.
+And supply this in your pipeline run command with `-c <custom>.config`. Then, during a pipeline run, if, for example, a job exceeds the default memory request, it will be retried, increasing the memory each time until either the job completes or until it reaches a request of `256.GB`.
 
-Therefore, these parameters only act as a _cap_, to prevent Nextflow submitting a single job requesting resources more than what is possible on your system and requests getting out of hand.
+Therefore, these parameters only act as a _cap_ to prevent Nextflow from submitting a single job requesting resources more than what is possible on your system and requests getting out of hand.
 
-Note that specifying these will not _increase_ the resources available to the pipeline tasks! See [Tuning workflow resources](#tuning-workflow-resources) for this.
+Note that specifying these will not _increase_ the resources available to the pipeline tasks! See [Tuning workflow resources](#tuning-workflow-resources) for more infomation.
 
 :::note{collapse title="Note on older nf-core pipelines"}
 
@@ -189,7 +189,7 @@ process {
 }
 ```
 
-The `resourceLimits` list sets absolute maximums any pipeline job can request (typically corresponding to the maximum available resources on your machine). The label blocks indicate the initial 'default' resources a pipeline job will request. For most nf-core pipelines, if a job runs out of memory, it will re-try the job but increasing the amount resource requested up to the `resourceLimits` maximum.
+The `resourceLimits` list sets the absolute maximums any pipeline job can request (typically corresponding to the maximum available resources on your machine). The label blocks indicate the initial 'default' resources a pipeline job will request. For most nf-core pipelines, if a job runs out of memory, it will retry the job but increase the amount of resource requested up to the `resourceLimits` maximum.
 
 :::note{collapse title="Note on older nf-core pipelines"}
 
@@ -237,7 +237,7 @@ process {
 }
 ```
 
-You can also be more specific than this by targeting a given _process_ (job) name instead of it's label using `withName`. You can see the process names in your console log when the pipeline is running For example:
+You can also be more specific than this by targeting a given _process_ (job) name instead of its label using `withName`. You can see the process names in your console log when the pipeline is running For example:
 
 ```groovy
 process {
