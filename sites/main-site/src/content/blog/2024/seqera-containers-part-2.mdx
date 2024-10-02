@@ -61,24 +61,30 @@ Before we dig into how the details of how the automation will work, let's summar
 
 Pipeline users will see almost no change in current behaviour, but have several new configuration profiles available.
 
-| nf-core profile        | Status                                                 | Use case                                                                           |
-| ---------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------------------- |
-| `docker`               | <span class="badge text-bg-secondary">Unchanged</span> | Docker images for `linux/amd64`                                                    |
-| `singularity`          | <span class="badge text-bg-secondary">Unchanged</span> | Singularity images for `linux/amd64`                                               |
-| `docker_arm`           | <span class="badge text-bg-success">New</span>         | Docker images for `linux/arm64`                                                    |
-| `singularity_arm`      | <span class="badge text-bg-success">New</span>         | Singularity images for `linux/arm64`                                               |
-| `singularity_oras`     | <span class="badge text-bg-success">New</span>         | Singularity images for `linux/amd64` using the `oras://` protocol                  |
-| `singularity_oras_arm` | <span class="badge text-bg-success">New</span>         | Singularity images for `linux/arm64` using the `oras://` protocol                  |
-| `apptainer`            | <span class="badge text-bg-warning">Updated</span>     | Singularity images for `linux/amd64` (not Docker, as previously)                   |
-| `apptainer_arm`        | <span class="badge text-bg-success">New</span>         | Singularity images for `linux/arm64`, using apptainer                              |
-| `apptainer_oras`       | <span class="badge text-bg-success">New</span>         | Singularity images for `linux/amd64` using the `oras://` protocol, using apptainer |
-| `apptainer_oras_arm`   | <span class="badge text-bg-success">New</span>         | Singularity images for `linux/arm64` using the `oras://` protocol, using apptainer |
-| `conda`                | <span class="badge text-bg-warning">Updated</span>     | Conda lockfiles for `linux/amd64`                                                  |
-| `conda_arm`            | <span class="badge text-bg-success">New</span>         | Conda lockfiles for `linux/arm64`                                                  |
-| `conda_env`            | <span class="badge text-bg-success">New</span>         | Conda environments with local environment resolution                               |
-| `mamba`                | <span class="badge text-bg-warning">Updated</span>     | Conda lockfiles for `linux/amd64`, using Mamba                                     |
-| `mamba_arm`            | <span class="badge text-bg-success">New</span>         | Conda lockfiles for `linux/arm64`, using Mamba                                     |
-| `mamba_env`            | <span class="badge text-bg-success">New</span>         | Conda environments with local environment resolution, using Mamba                  |
+| nf-core profile        | Status                                                 | Use case                                                          |
+| ---------------------- | ------------------------------------------------------ | ----------------------------------------------------------------- |
+| `docker`               | <span class="badge text-bg-secondary">Unchanged</span> | Docker images for `linux/amd64`                                   |
+| `podman`               | <span class="badge text-bg-secondary">Unchanged</span> | Docker images for `linux/amd64`                                   |
+| `shifter`              | <span class="badge text-bg-secondary">Unchanged</span> | Docker images for `linux/amd64`                                   |
+| `charliecloud`         | <span class="badge text-bg-secondary">Unchanged</span> | Docker images for `linux/amd64`                                   |
+| `docker_arm`           | <span class="badge text-bg-success">New</span>         | Docker images for `linux/arm64`                                   |
+| `podman_arm`           | <span class="badge text-bg-success">New</span>         | Docker images for `linux/arm64`                                   |
+| `shifter_arm`          | <span class="badge text-bg-success">New</span>         | Docker images for `linux/arm64`                                   |
+| `charliecloud_arm`     | <span class="badge text-bg-success">New</span>         | Docker images for `linux/arm64`                                   |
+| `singularity`          | <span class="badge text-bg-secondary">Unchanged</span> | Singularity images for `linux/amd64`                              |
+| `apptainer`            | <span class="badge text-bg-warning">Updated</span>     | Singularity images for `linux/amd64` (not Docker, as previously)  |
+| `singularity_arm`      | <span class="badge text-bg-success">New</span>         | Singularity images for `linux/arm64`                              |
+| `apptainer_arm`        | <span class="badge text-bg-success">New</span>         | Singularity images for `linux/arm64`                              |
+| `singularity_oras`     | <span class="badge text-bg-success">New</span>         | Singularity images for `linux/amd64` using the `oras://` protocol |
+| `apptainer_oras`       | <span class="badge text-bg-success">New</span>         | Singularity images for `linux/amd64` using the `oras://` protocol |
+| `singularity_oras_arm` | <span class="badge text-bg-success">New</span>         | Singularity images for `linux/arm64` using the `oras://` protocol |
+| `apptainer_oras_arm`   | <span class="badge text-bg-success">New</span>         | Singularity images for `linux/arm64` using the `oras://` protocol |
+| `conda`                | <span class="badge text-bg-warning">Updated</span>     | Conda lock files for `linux/amd64`                                |
+| `mamba`                | <span class="badge text-bg-warning">Updated</span>     | Conda lock files for `linux/amd64`, using Mamba                   |
+| `conda_arm`            | <span class="badge text-bg-success">New</span>         | Conda lock files for `linux/arm64`                                |
+| `mamba_arm`            | <span class="badge text-bg-success">New</span>         | Conda lock files for `linux/arm64`, using Mamba                   |
+| `conda_env`            | <span class="badge text-bg-success">New</span>         | Conda with local `environment.yml` resolution                     |
+| `mamba_env`            | <span class="badge text-bg-success">New</span>         | Conda with local `environment.yml` resolution, using Mamba        |
 
 ## Conda lock files
 
@@ -90,7 +96,7 @@ Conda lock files were mentioned in [Part I of this blog post](/blog/2024/seqera-
 
 They look something like this:
 
-```yaml title="FastQC Conda lockfile for linux/amd64"
+```yaml title="FastQC Conda lock file for linux/amd64"
 # micromamba env export --explicit
 # This file may be used to create an environment using:
 # $ conda create --name <env> --file <this file>
@@ -206,17 +212,17 @@ containers:
             build_id: b2ccdee5305e5859_1
     conda:
         linux_amd64:
-            lockfile: https://wave.seqera.io/v1alpha1/builds/5cfd0f3cb6760c42_1/condalock
+            lock file: https://wave.seqera.io/v1alpha1/builds/5cfd0f3cb6760c42_1/condalock
         linux_arm64:
-            lockfile: https://wave.seqera.io/v1alpha1/builds/d3caca66b4f3d3b0_1/condalock
+            lock file: https://wave.seqera.io/v1alpha1/builds/d3caca66b4f3d3b0_1/condalock
 ```
 
 All images are all built at the same time, avoiding Conda dependency drift.
 The build and scan IDs allow us to trace back to the build logs and security scans for these images.
 
-The Conda lockfiles are a new addition to the nf-core ecosystem and will help reproducibility for Conda users.
+The Conda lock files are a new addition to the nf-core ecosystem and will help reproducibility for Conda users.
 These are generated during the Docker image build and are specific to architecture.
-The lockfiles can be accessed remotely via the Wave API, so we can treat them much in the same
+The lock files can be accessed remotely via the Wave API, so we can treat them much in the same
 way that we treat remote container images.
 
 ## Pipelines
@@ -240,9 +246,9 @@ process { withName: 'NF_PIPELINE:ANALYSIS_PLOTS' { container = 'express_click_pa
 //.. and so on, for each process in the pipeline
 ```
 
-Likewise, the conda config files will point to the lockfiles for each process:
+Likewise, the conda config files will point to the lock files for each process:
 
-```groovy title="config/conda_lockfiles_amd64.config"
+```groovy title="config/conda_lock files_amd64.config"
 // AUTOGENERATED CONFIG BELOW THIS POINT - DO NOT EDIT
 process { withName: 'NF_PIPELINE:FASTQC'         { conda = 'https://wave.seqera.io/v1alpha1/builds/5cfd0f3cb6760c42_1/condalock' } }
 process { withName: 'NF_PIPELINE:MULTIQC'        { conda = 'https://wave.seqera.io/v1alpha1/builds/9968ff4994a2e2d7_1/condalock' } }
@@ -257,7 +263,7 @@ Singularity will have separate config files and associated `-profile`s for both 
 so that users can choose which to use.
 
 Local modules and any edge-case shared modules that cannot use the Seqera Containers automation
-will need the pipeline developer to hardcode container names and conda lockfiles manually.
+will need the pipeline developer to hardcode container names and conda lock files manually.
 These can be added to the above config files as long as they remain above the comment line:
 
 ```groovy
@@ -290,6 +296,7 @@ profiles {
         includeConfig       'config/containers_docker_linux_arm64.config'
         docker.enabled      = true
     }
+    // podman, shifter, charliecloud the same as docker - also with _arm versions
     singularity {
         includeConfig       'config/containers_singularity_linux_amd64.config'
         singularity.enabled = true
@@ -323,23 +330,23 @@ profiles {
         apptainer.enabled = true
     }
     conda {
-        includeConfig       'config/conda_lockfiles_amd64.config'
+        includeConfig       'config/conda_lock files_amd64.config'
         conda.enabled       = true
     }
     conda_arm {
-        includeConfig       'config/conda_lockfiles_arm64.config'
+        includeConfig       'config/conda_lock files_arm64.config'
         conda.enabled       = true
     }
     conda_env {
         conda.enabled       = true // Use the environment.yml file in the module main.nf
     }
     mamba {
-        includeConfig       'config/conda_lockfiles_amd64.config'
+        includeConfig       'config/conda_lock files_amd64.config'
         conda.enabled       = true
         conda.useMamba      = true
     }
     mamba_arm {
-        includeConfig       'config/conda_lockfiles_arm64.config'
+        includeConfig       'config/conda_lock files_arm64.config'
         conda.enabled       = true
         conda.useMamba      = true
     }
@@ -362,7 +369,7 @@ Note that there are a few changes here:
 -   New profiles with `_arm` suffixes for `linux/arm64` architectures
 -   New profiles for `_oras` suffixes for using the `oras://` protocol
 -   The `apptainer` profiles now uses the `singularity` config files
--   The `conda` profiles now use Conda lockfiles instead of `environment.yml` files
+-   The `conda` profiles now use Conda lock files instead of `environment.yml` files
 -   New `conda_env` profiles for those wanting to keep the old behaviour
 -   New `mamba` profiles, using the `conda` config files
 -   Base registries set to Seqera Containers
