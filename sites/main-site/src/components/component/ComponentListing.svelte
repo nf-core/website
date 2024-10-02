@@ -105,6 +105,9 @@
                     <ListingTableHeader name="Name" />
                     <th scope="col">Description</th>
                     <th class="keywords" scope="col">Keywords</th>
+                    {#if components[0].type !== 'module'}
+                        <th class="components" scope="col"> Components</th>
+                    {/if}
                     <ListingTableHeader
                         name="# Pipeline integrations"
                         title={'Sort by number of pipelines with ' + components[0].type}
@@ -132,6 +135,13 @@
                             {/each}
                             <!-- {/if} -->
                         </td>
+                        {#if component.type !== 'module'}
+                            <td class="components">
+                                {#each component.meta.components as sub_component}
+                                    <span class={`badge me-2 ${component.type}-topic`}>{sub_component}</span>
+                                {/each}
+                            </td>
+                        {/if}
                         <td class="text-end">
                             {#if component.pipelines}
                                 {component.pipelines.length}

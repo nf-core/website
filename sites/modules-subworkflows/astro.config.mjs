@@ -2,7 +2,6 @@ import admonitionsPlugin from '../../bin/remark-admonitions';
 import mermaid from '../../bin/remark-mermaid';
 import { rehypeCheckboxParser } from '../../bin/rehype-checkbox-parser.ts';
 import { rehypeHeadingNumbers } from '../../bin/rehype-heading-numbers.ts';
-import pipelines_json from './public/pipelines.json';
 import mdx from '@astrojs/mdx';
 import netlify from '@astrojs/netlify';
 import partytown from '@astrojs/partytown';
@@ -27,19 +26,12 @@ import remarkDescription from 'astro-remark-description';
 import markdownIntegration from '@astropub/md';
 import icon from 'astro-icon';
 
-let latestPipelineReleases = {};
-pipelines_json.remote_workflows.map(
-    (pipeline) => (latestPipelineReleases[pipeline.name] = `/${pipeline.name}/${pipeline.releases[0].tag_name}/`),
-);
 // https://astro.build/config
 export default defineConfig({
     site: 'https://nf-co.re/',
     output: 'static',
     adapter: netlify(),
     prefetch: false,
-    redirects: {
-        ...latestPipelineReleases,
-    },
     integrations: [
         svelte(),
         icon({

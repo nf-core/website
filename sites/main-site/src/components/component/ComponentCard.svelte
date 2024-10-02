@@ -10,6 +10,7 @@
             name: string;
             keywords?: string[];
             modules?: string[];
+            components?: string[];
         };
         pipelines?: {
             name: string;
@@ -65,6 +66,17 @@
                         >
                     {/each}
                 {/if}
+            </div>
+        {/if}
+        {#if component.type !== 'module' && component.meta.components}
+            <div class="text-body-secondary align-self-bottom components">
+                <span class="text-small">Includes:</span>
+                {#each component.meta.components as sub_component}
+                    <span
+                        class={`badge fw-normal border border-info-subtle bg-info-subtle text-body me-2 ${component.type}-topic`}
+                        >{sub_component}</span
+                    >
+                {/each}
             </div>
         {/if}
         {#if component.subworkflows}

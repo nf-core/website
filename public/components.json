@@ -7595,6 +7595,14 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -13429,13 +13437,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.{vcf.gz}"
                 }
               },
               {
-                "*.gz": {
-                  "type": "file",
-                  "description": "VCF concatenated output file",
+                "${prefix}.vcf.gz": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*.{vcf.gz}"
                 }
               }
@@ -13446,13 +13455,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.tbi"
                 }
               },
               {
-                "*.tbi": {
-                  "type": "file",
-                  "description": "Alternative VCF file index",
+                "${prefix}.vcf.gz.tbi": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*.tbi"
                 }
               }
@@ -13463,13 +13473,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.csi"
                 }
               },
               {
-                "*.csi": {
-                  "type": "file",
-                  "description": "Default VCF file index",
+                "${prefix}.vcf.gz.csi": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*.csi"
                 }
               }
@@ -24675,6 +24686,22 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -30758,6 +30785,16 @@
               "identifier": ""
             }
           }
+        ],
+        "input": [
+          [
+            {
+              "db_zenodo_id": {
+                "type": "integer",
+                "description": "Zenodo ID of the CheckM2 database to download"
+              }
+            }
+          ]
         ],
         "output": [
           {
@@ -41999,6 +42036,107 @@
         ],
         "maintainers": [
           "@vagkaratzas"
+        ]
+      }
+    },
+    {
+      "name": "deeptools_alignmentsieve",
+      "path": "modules/nf-core/deeptools/alignmentsieve/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "deeptools_alignmentSieve",
+        "description": "This tool filters alignments in a BAM/CRAM file according the the specified parameters.",
+        "keywords": [
+          "ATACseq",
+          "filter",
+          "shift",
+          "ATACshift"
+        ],
+        "tools": [
+          {
+            "deeptools": {
+              "description": "A set of user-friendly tools for normalization and visualzation of deep-sequencing data",
+              "homepage": "https://deeptools.readthedocs.io/en/develop/content/tools/alignmentSieve.html",
+              "documentation": "https://deeptools.readthedocs.io/en/develop/content/tools/alignmentSieve.html",
+              "tool_dev_url": "https://github.com/deeptools/deepTools/",
+              "doi": "10.1093/nar/gkw257",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:deeptools"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "input": {
+                "type": "file",
+                "description": "BAM file",
+                "pattern": "*.{bam}"
+              }
+            },
+            {
+              "input_index": {
+                "type": "file",
+                "description": "BAM index file",
+                "pattern": "*.{bai}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "bam": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*_as.bam": {
+                  "type": "file",
+                  "description": "BAM file",
+                  "pattern": "*.bam"
+                }
+              }
+            ]
+          },
+          {
+            "logs": [
+              {
+                "*_log.txt": {
+                  "type": "file",
+                  "description": "TXT file",
+                  "pattern": "*.txt"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@lpantano"
+        ],
+        "maintainers": [
+          "@lpantano"
         ]
       }
     },
@@ -61817,7 +61955,7 @@
             {
               "site_depth_vcf_tbi": {
                 "type": "file",
-                "description": "tbi index of the input VCF of SNPs marking loci for site depths",
+                "description": "Optional - input VCF TBI of SNPs marking loci for site depths, needed for the site depths output",
                 "pattern": "*.vcf.gz.tbi"
               }
             }
@@ -74882,6 +75020,10 @@
         {
           "name": "chipseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "circrna",
+          "version": "dev"
         },
         {
           "name": "hicar",
@@ -103920,7 +104062,11 @@
                 }
               },
               {
-                "*_bin.tar.gz": null
+                "*_bin.tar.gz": {
+                  "type": "file",
+                  "description": "Marker bins",
+                  "pattern": "*_bin.tar.gz"
+                }
               }
             ]
           },
@@ -105423,6 +105569,14 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -110481,13 +110635,24 @@
           {
             "outputs": [
               {
-                "meta": {}
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information, e.g. `[ id:'sample1', single_end:false ]`"
+                }
               },
               {
-                "*.fa": {}
+                "*.fa": {
+                  "type": "file",
+                  "description": "Collapsed reads in FASTA format.",
+                  "pattern": "*.fa"
+                }
               },
               {
-                "*.arf": {}
+                "*.arf": {
+                  "type": "file",
+                  "description": "Alignment Read Format (ARF) file containing the mapping of reads to the genome.",
+                  "pattern": "*.arf"
+                }
               }
             ]
           },
@@ -144859,14 +145024,14 @@
             {
               "truth_bed": {
                 "type": "file",
-                "description": "A BED file containining the strict regions where VCFeval should only evaluate the fully overlapping variants (optional)",
+                "description": "A BED file containining the strict regions where VCFeval should only evaluate the fully overlapping variants (optional) This input should be used to provide the golden truth BED files.",
                 "pattern": "*.bed"
               }
             },
             {
-              "evaluation_bed": {
+              "regions_bed": {
                 "type": "file",
-                "description": "A BED file containing the regions where VCFeval will evaluate every fully and partially overlapping variant (optional)",
+                "description": "A BED file containing the regions where VCFeval will evaluate every fully and partially overlapping variant (optional) This input should be used to provide the regions used by the analysis",
                 "pattern": "*.bed"
               }
             }
@@ -185837,7 +186002,8 @@
           "@ksenia-krasheninnikova"
         ],
         "maintainers": [
-          "@ksenia-krasheninnikova"
+          "@ksenia-krasheninnikova",
+          "@yy5"
         ]
       }
     },
