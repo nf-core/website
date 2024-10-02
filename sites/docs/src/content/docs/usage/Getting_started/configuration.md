@@ -134,7 +134,7 @@ Note that specifying these will not _increase_ the resources available to the pi
 
 :::note{collapse title="Note on older nf-core pipelines"}
 
-If you wish to use pipelines generated with the pre-`v3.0.0` nf-core template, and/or when running with Nextflow versions earlier than 24.04.0 you may need use a different syntax to prevent the resources from exceeding a maximum limit.
+If you wish to use pipelines generated with the nf-core template before `v3.0.0`, and/or when running with Nextflow versions earlier than 24.04.0 you may need use a different syntax to prevent the resources from exceeding a maximum limit.
 
 In addition to the executor, you may find that pipeline runs occasionally fail due to a particular step of the pipeline requesting more resources than you have on your system.
 
@@ -193,7 +193,7 @@ The `resourceLimits` list sets absolute maximums any pipeline job can request (t
 
 :::note{collapse title="Note on older nf-core pipelines"}
 
-If you wish to use pipelines generated with the pre-`v3.0.0` nf-core template, and/or when running with Nextflow versions earlier than 24.04.0 you may need use a different syntax to prevent the resources from exceeding a maximum limit.
+If you wish to use pipelines generated with the nf-core template before `v3.0.0`, and/or when running with Nextflow versions earlier than 24.04.0 you may need use a different syntax to prevent the resources from exceeding a maximum limit.
 
 ```groovy
 process {
