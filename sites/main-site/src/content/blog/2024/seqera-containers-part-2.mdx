@@ -598,8 +598,15 @@ as long as they remain above the comment line:
 ```
 
 If at all possible then software should be packaged with Bioconda and Seqera Containers.
-Failing that, custom containers should be stored under the nf-core account on the quay.io Docker registry.
-Only if there are licensing issues should containers at 3rd party registry accounts be used.
+Failing that, custom containers should be stored under the [nf-core account on quay.io](https://quay.io/organization/nf-core).
+The only time other docker registries / accounts should be used are if there are licensing issues
+restricting software redistribution.
+
+Custom containers can be also be built using Wave in continuous integration,
+it's just that they can't be pushed to the Seqera Containers registry.
+However, they _can_ be pushed to [quay.io](https://quay.io/organization/nf-core) automatically.
+We can do this using a similar mechanism to the automation used for changing `environment.yml` files,
+simply replacing it with `Dockerfile`s (see [nf-core/modules#4940](https://github.com/nf-core/modules/pull/4940)).
 
 ## Downloads
 
