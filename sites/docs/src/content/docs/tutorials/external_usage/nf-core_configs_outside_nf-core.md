@@ -8,7 +8,7 @@ When you've been working with nf-core pipelines for a while, you often will get 
 One such thing is the centralised nf-core/configs repository of pre-configured configuration files that allow nf-core pipelines to run optimally on institutional clusters via the `-profile` parameter, e.g. `-profile uppmax`. A list of existing institutional profiles can be seen on the [nf-core website](https://nf-co.re/configs).
 
 :::tip
-If you want to write your own instituional profile, see the [guide on how to write a new institutional profile](/docs/tutorials/use_nf-core_pipelines/writing_institutional_profiles).
+If you want to write your own institutional profile, see the [guide on how to write a new institutional profile](/docs/tutorials/use_nf-core_pipelines/writing_institutional_profiles).
 :::
 
 One great thing about nf-core/configs is that they aren't just restricted to nf-core pipelines, they can also be used in [fully fledged 'unofficial' nf-core pipelines](/docs/guidelines/external_use) but also in your own custom mini-scripts and pipelines!
@@ -31,7 +31,7 @@ Here we will describe the steps you will need to perform in your custom script o
 
    :::note{collapse title="Note on older nf-core template/Nextflow versions"}
 
-   If you wish to use pipelines generated with the pre-`v3.0.0` nf-core template, and/or when running with Nextflow versions earlier than 24.04.0 you may need to use an older syntax for setting resources. The following prevents the resources from exceeding a maximum limit.
+   When running pipelines generated with the nf-core template pre-version v3.0.0 or with Nextflow pre-version 24.04.0 you may need to use an older syntax for setting resources. The following closures prevent resources from exceeding a maximum limit.
 
    Set in `conf/base.config` default values.
 
