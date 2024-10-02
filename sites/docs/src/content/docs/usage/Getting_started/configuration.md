@@ -126,7 +126,7 @@ process {
 }
 ```
 
-And supply this in your pipeline run command with `-c <custom>.conf`. Then, during a pipeline run, if for example a job exceeds the default memory request, it will be retried increasing the memory each time until either the job completes, or until it reaches a request of `256.GB`.
+And supply this in your pipeline run command with `-c <custom>.config`. Then, during a pipeline run, if for example a job exceeds the default memory request, it will be retried increasing the memory each time until either the job completes, or until it reaches a request of `256.GB`.
 
 Therefore, these parameters only act as a _cap_, to prevent Nextflow submitting a single job requesting resources more than what is possible on your system and requests getting out of hand.
 
