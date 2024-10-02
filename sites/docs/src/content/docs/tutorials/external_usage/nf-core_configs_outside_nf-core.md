@@ -86,11 +86,13 @@ Here we will describe the steps you will need to perform in your custom script o
 
    For a more sophisticated `base.config`, see the full [nf-core template](https://github.com/nf-core/tools/blob/master/nf_core/pipeline-template/conf/base.config)
 
-2. In a top level `nextflow.config`, specify two `param` to specify the URL where to look for nf-core/configs from.
+2. In a top level `nextflow.config`, specify two `params` to specify the URL where to look for nf-core/configs from.
 
    ```groovy
-   custom_config_version      = 'master'
-   custom_config_base         = "https://raw.githubusercontent.com/nf-core/configs/${params.custom_config_version}"
+   params {
+     custom_config_version      = 'master'
+     custom_config_base         = "https://raw.githubusercontent.com/nf-core/configs/${params.custom_config_version}"
+   }
    ```
 
    The two parameters together make it easy to test from forks and development profiles on specific branches.
