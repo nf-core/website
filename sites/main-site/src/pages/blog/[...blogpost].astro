@@ -1,6 +1,6 @@
 ---
 import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import SidebarStatsRow from '@components/sidebar/SidebarStatsRow.astro';
 import GitHubProfilePictureExtended from '@components/GitHubProfilePictureExtended.svelte';
 import { Image } from 'astro:assets';
@@ -10,6 +10,7 @@ const images = import.meta.glob('../../assets/**');
 
 export async function getStaticPaths() {
     const blogPosts = await getCollection('blog');
+    console.log(blogPosts);
     return blogPosts.map((post) => ({
         params: { blogpost: post.slug },
         props: { post, blogPosts },
@@ -50,7 +51,7 @@ const sections: SidebarEntry[] = years.map((year) => {
             }),
     };
 });
-const { headings, Content } = await post.render();
+const { headings, Content } = await render(post);
 const title = post.data.title;
 const subtitle = post.data.subtitle;
 const md_github_url = 'https://github.com/nf-core/website/blob/main/sites/main-site/src/content/blog/' + post.id;

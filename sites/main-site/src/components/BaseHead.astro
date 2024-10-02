@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 export interface Props {
     title: string;
     description: string;
@@ -52,7 +52,7 @@ const { title, description, image = '/social_img.png', docSearchTags = [], viewT
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
-{viewTransitions && <ViewTransitions fallback="none" />}
+{viewTransitions && <ClientRouter fallback="none" />}
 
 <!-- DocSearch -->
 {docSearchTags.map(({ name, content }) => <meta name={'docsearch:' + name} content={content} />)}

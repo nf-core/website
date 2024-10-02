@@ -35,7 +35,7 @@ pipelines_json.remote_workflows.map((pipeline) => {
 // https://astro.build/config
 export default defineConfig({
     site: 'https://nf-co.re/',
-    output: 'hybrid',
+    output: 'static',
     adapter: netlify(),
     prefetch: false,
     redirects: {
@@ -82,7 +82,7 @@ export default defineConfig({
                     'tools-16',
                 ],
                 'simple-icons': ['bluesky'],
-                'ri': ['open-source-line'],
+                ri: ['open-source-line'],
             },
         }),
         sitemap(),

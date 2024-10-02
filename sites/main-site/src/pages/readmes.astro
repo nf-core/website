@@ -1,0 +1,13 @@
+---
+import { getEntry, render, getCollection } from 'astro:content';
+import PageLayout from '@layouts/PageLayout.astro';
+console.log(await getCollection('readme'));
+const entry = await getEntry('readme', 'variantbenchmarking-dev2');
+console.log(await render(entry));
+const { Content, headings } = await render(entry);
+---
+
+<PageLayout title={entry.id} description={entry.rendered} headings={headings}>
+    {entry.id}
+    <Content />
+</PageLayout>
