@@ -80,7 +80,7 @@ Pipeline users will see almost no change in current behaviour, but have several 
 | `mamba_arm`            | <span class="badge text-bg-success">New</span>         | Conda lockfiles for `linux/arm64`, using Mamba                                     |
 | `mamba_env`            | <span class="badge text-bg-success">New</span>         | Conda environments with local environment resolution, using Mamba                  |
 
-:::tip{.fa-comment-question title="Singularity: oras or https?" collapse}
+## Singularity: oras or https?
 
 Unfamiliar with `oras://`? Don't worry, it's relatively new in the field.
 It's a new protocol to reference container images, similar to `docker://` or `shub://`.
@@ -89,16 +89,16 @@ compliant registry to pull images.
 
 Using `oras` has some advantages:
 
--   Singularity handles pulls in the process task, rather than it happening in the Nextflow head job
+-   Singularity handles pulls in the process task, rather than in the Nextflow head job
     -   This means less resource usage on the head node, and more parallelisation
 -   Singularity can use authentication to pull from private registries
     (see [Singularity docs](https://docs.sylabs.io/guides/main/user-guide/cli/singularity_registry.html) for more information).
 
 However, there are some downsides:
 
--   Shared cache Nextflow options such as `$NXF_SINGULARITY_CACHEDIR` and `$NXF_SINGULARITY_LIBRARYDIR` do not work
--   Singularity must be installed to download images for offline use
--   `oras` is not supported by all versions of Singularity / Apptainer
+-   Shared cache Nextflow options such as `$NXF_SINGULARITY_CACHEDIR` and `$NXF_SINGULARITY_LIBRARYDIR` are not used
+-   Singularity must be installed when downloading images for offline use
+-   `oras://` is only supported by recent versions of Singularity / Apptainer
 
 As such, we will continue to use `https` downloads for Singularity `SIF` images for now.
 However, we will start to provide new `-profile singularity_oras` profiles for anyone who
@@ -108,8 +108,6 @@ If you'd like to know more, check out the amazing [bytesize talk](https://nf-co.
 by Marco Claudio De La Pierre ([@marcodelapierre](https://github.com/marcodelapierre/)) from June 2024:
 
 <YouTube id="https://www.youtube.com/watch?v=zoCC_dkhjD0" poster="http://i3.ytimg.com/vi/zoCC_dkhjD0/hqdefault.jpg" />
-
-:::
 
 ## Modules
 
