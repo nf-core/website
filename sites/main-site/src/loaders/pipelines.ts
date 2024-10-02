@@ -4,17 +4,19 @@ import { render } from 'astro:content';
 
 export const pipelinesLoader: Loader = {
     name: 'pipelines',
-    load: async (context) => {
+    load: async ({ store, logger, parseData, meta, generateDigest }) => {
         pipelines_json.remote_workflows.map(async (pipeline) => {
             const readmeUrl = `https://raw.githubusercontent.com/${pipeline.full_name}/dev/README.md`;
             const response = await fetch(readmeUrl);
             const content = await response.text();
-
-            context.store.set({
-                id: pipeline.name + '-dev',
+            logger.info('===================================');
+            store.clear();
+            store.set({
+                id: pipeline.name + '-dev2',
+                digest: generateDigest(content),
+                body: content,
                 data: {
                     name: pipeline.name,
-                    content,
                 },
             });
         });

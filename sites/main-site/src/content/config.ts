@@ -1,4 +1,6 @@
 import { z, defineCollection } from 'astro:content';
+import { glob } from 'astro/loaders';
+
 import { pipelinesLoader } from '../loaders/pipelines.ts';
 const events = defineCollection({
     type: 'content',
@@ -98,7 +100,7 @@ const about = defineCollection({
 });
 
 const blog = defineCollection({
-    type: 'content',
+    loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blog' }),
     schema: z
         .object({
             title: z.string(),
@@ -175,7 +177,7 @@ const specialInterestGroups = defineCollection({
 });
 
 const pipelines = defineCollection({});
-const readmes = defineCollection({
+const readme = defineCollection({
     loader: pipelinesLoader,
 });
 
@@ -186,7 +188,7 @@ export const collections = {
     docs: docs,
     about: about,
     pipelines: pipelines,
-    readmes: readmes,
+    readme: readme,
     blog: blog,
     api_reference: api_reference,
     'special-interest-groups': specialInterestGroups,
