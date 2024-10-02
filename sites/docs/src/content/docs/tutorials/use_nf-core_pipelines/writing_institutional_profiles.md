@@ -200,7 +200,7 @@ params {
 
 If using older pipelines, you will also need to specify the `max_*` series of params (now not used in the pipeline template).
 
-These are used by nf-core pipelines to limit automatic resubmission of resource-related failed jobs to ensure submitted retries do not exceed the maximum available on your cluster.
+These are used by nf-core pipelines to limit the automatic resubmission of resource-related failed jobs to ensure submitted retries do not exceed the maximum available on your cluster.
 These values should be the ones you found for the largest node of your cluster (i.e., the largest node a user's job can be submitted to). For example:
 
 ```nextflow
@@ -218,12 +218,12 @@ params {
 
 #### process scope
 
-Next, we can use the `process` scope to define certain resource specifications, scheduler to use, and associated options. Any option specified in this scope means that all processes in a pipeline will use the settings defined here.
+Next, we can use the `process` scope to define certain resource specifications, schedulers to use, and associated options. Any option specified in this scope means that all processes in a pipeline will use the settings defined here.
 
-First, you should specify a `resourceLimits` list based on resource maximums of your machine or infrastructure.
+First, you should specify a `resourceLimits` list based on the maximum resources available on your machine or infrastructure.
 
-These values are used by nf-core pipelines to limit automatic resubmission of resource-related failed jobs to ensure submitted retries do not exceed the maximum available on your cluster.
-These values should be the ones you found for the largest node of your cluster (i.e., the largest node a user's job can be submitted to).
+These values are used by nf-core pipelines to limit the automatic resubmission of resource-related failed jobs to ensure submitted retries do not exceed the maximum available on your cluster.
+These values should be the ones you found for the largest node of your cluster (i.e., the largest node to which a user's job can be submitted).
 
 For example:
 
