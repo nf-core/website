@@ -7603,18 +7603,6 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
-        },
-        {
-          "name": "rnafusion",
-          "version": "3.0.2"
-        },
-        {
-          "name": "rnafusion",
-          "version": "3.0.2"
-        },
-        {
-          "name": "rnafusion",
-          "version": "3.0.2"
         }
       ]
     },
@@ -23849,30 +23837,6 @@
         },
         {
           "name": "genomeassembler",
-          "version": "dev"
-        },
-        {
-          "name": "genomeassembler",
-          "version": "dev"
-        },
-        {
-          "name": "pathogensurveillance",
-          "version": "dev"
-        },
-        {
-          "name": "genomeassembler",
-          "version": "dev"
-        },
-        {
-          "name": "pathogensurveillance",
-          "version": "dev"
-        },
-        {
-          "name": "genomeassembler",
-          "version": "dev"
-        },
-        {
-          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -104098,7 +104062,11 @@
                 }
               },
               {
-                "*_bin.tar.gz": null
+                "*_bin.tar.gz": {
+                  "type": "file",
+                  "description": "Marker bins",
+                  "pattern": "*_bin.tar.gz"
+                }
               }
             ]
           },
@@ -105601,18 +105569,6 @@
         ]
       },
       "pipelines": [
-        {
-          "name": "genomeassembler",
-          "version": "dev"
-        },
-        {
-          "name": "genomeassembler",
-          "version": "dev"
-        },
-        {
-          "name": "genomeassembler",
-          "version": "dev"
-        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -110679,13 +110635,24 @@
           {
             "outputs": [
               {
-                "meta": {}
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information, e.g. `[ id:'sample1', single_end:false ]`"
+                }
               },
               {
-                "*.fa": {}
+                "*.fa": {
+                  "type": "file",
+                  "description": "Collapsed reads in FASTA format.",
+                  "pattern": "*.fa"
+                }
               },
               {
-                "*.arf": {}
+                "*.arf": {
+                  "type": "file",
+                  "description": "Alignment Read Format (ARF) file containing the mapping of reads to the genome.",
+                  "pattern": "*.arf"
+                }
               }
             ]
           },
@@ -145057,14 +145024,14 @@
             {
               "truth_bed": {
                 "type": "file",
-                "description": "A BED file containining the strict regions where VCFeval should only evaluate the fully overlapping variants (optional)",
+                "description": "A BED file containining the strict regions where VCFeval should only evaluate the fully overlapping variants (optional) This input should be used to provide the golden truth BED files.",
                 "pattern": "*.bed"
               }
             },
             {
-              "evaluation_bed": {
+              "regions_bed": {
                 "type": "file",
-                "description": "A BED file containing the regions where VCFeval will evaluate every fully and partially overlapping variant (optional)",
+                "description": "A BED file containing the regions where VCFeval will evaluate every fully and partially overlapping variant (optional) This input should be used to provide the regions used by the analysis",
                 "pattern": "*.bed"
               }
             }
