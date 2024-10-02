@@ -22,44 +22,44 @@ import { YouTube } from '@astro-community/astro-embed-youtube';
 
 # Introduction
 
-[Wave](https://seqera.io/wave/) is an open-source software that Seqera released at the [Nextflow Summit Barcelona](https://www.youtube.com/watch?v=PTbiCVq0-sE) in the fall of 2022.
-It enables users to create software containers on demand, to rapidly speed up the development cycle.
-Wave has a number of tricks up its sleeve, but in its simplest form, it can be passed a list of conda packages
-and build a container with those packages installed.
-
-[Seqera Containers](https://seqera.io/containers/) is a service for the bioinformatics community that's built on top of Wave,
-providing an easy user interface to quickly create a container with a set of conda packages
-and share it with others.
-
-In nf-core, we've been excited to adopt Wave more fully in our workflows and have been looking for the right way to do it.
-With the announcement of Seqera Containers we felt it was the right time to put in the effort to migrate
-our containers to be built using Wave, using Seqera Containers to host the container images for our modules.
-
+In nf-core, we've been excited to adopt [Wave](https://seqera.io/wave/) to automte software container builds, and have been
+looking for the right way to do it.
+With the announcement of [Seqera Containers](https://seqera.io/containers/) we felt it was the right time to put in
+the effort to migrate our containers to be built using Wave, using Seqera Containers to host the container images for our modules.
 You can read more about our motivation for this change in [Part 1 of this blog post](https://nf-co.re/blog/2024/seqera-containers-part-1).
+
 Here, in Part 2, we will dig into the technical details: how it all works behind the curtain.
 You don't need to know or understand any of this as an end-user of nf-core pipelines,
 or even as a contributor to nf-core modules, but we thought it would be interesting to share the details.
 It's mostly to serve as an architectural plan for the nf-core maintainers and infrastructure teams.
 
+:::tip{.fa-hourglass-clock title="Too Long; Didn't Read"}
+
+In a hurry? Here are the main points:
+
+-   Module contributors edit `environment.yml` files to update software dependencies
+-   Containers are automatically build for Docker + Singularity, `linux/amd64` + `linux/arm64`
+-   Conda lock-files are saved for more reproducible and faster conda environments
+-   Details are stored in the module's `meta.yml`
+-   Pipelines auto-generate Nextflow config files when modules are updated
+-   Pipeline usage remains basically unchanged
+
+:::
+
 # The end goal
 
-Before we dig into how the details of how the automation will work, let's summarise the end goal of this migration:
+Before we dig into how the details of how the automation will work, let's summarise the end goal of this migration.
 
-> "What we call the beginning is often the end. And to make an end is to make a beginning. The end is where to start from."<br /><small>_T.S. Eliot_</small>
-
-## Usage summary
-
-The main thing to know is that, with the adoption of Seqera Containers, maintainers will _only_ need to change
-module `environment.yml` files to update or change software dependencies.
-
-Pipeline users will see almost no change in current behaviour, but have several new configuration profiles available.
-
-Glossary:
+## Glossary
 
 -   [`linux/amd64`](https://en.wikipedia.org/wiki/X86-64): Regular intel CPUs (aka `x86_64`)
 -   [`linux/arm64`](https://en.wikipedia.org/wiki/AArch64): ARM CPUs (eg. AWS Graviton, aka `AArch64`). Not Apple Silicon.
 -   [Apptainer](https://apptainer.org/): Alternative to Singularity, uses same image format
 -   [Mamba](https://mamba.readthedocs.io): Alternative to Conda, uses same conda environment files
+
+## Usage summary
+
+Pipeline users will see almost no change in current behaviour, but have several new configuration profiles available.
 
 | `-profile`             | Status                                                 | Use case                                                                           |
 | ---------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------------------- |
