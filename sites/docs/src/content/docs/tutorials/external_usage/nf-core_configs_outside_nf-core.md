@@ -31,7 +31,7 @@ Here we will describe the steps you will need to perform in your custom script o
 
    :::note{collapse title="Note on older nf-core template/Nextflow versions"}
 
-   When running pipelines generated with the nf-core template pre-version v3.0.0 or with Nextflow pre-version 24.04.0 you may need to use an older syntax for setting resources. The following closures prevent resources from exceeding a maximum limit.
+   When running pipelines generated with the nf-core template before version v3.0.0 or with Nextflow before version 24.04.0 you may need to use an older syntax for setting resources. The following closures prevent resources from exceeding a maximum limit.
 
    Set in `conf/base.config` default values.
 
@@ -118,7 +118,7 @@ Here we will describe the steps you will need to perform in your custom script o
    ```
 
    :::note{collapse title="Note on older nf-core template/Nextflow versions"}
-   If you wish to use pipelines generated with the pre-`v3.0.0` nf-core template, and/or when running with Nextflow versions earlier than 24.04.0 you may need to use an older syntax for loading the configs:
+   If you wish to use pipelines generated with the nf-core template before `v3.0.0` , and/or when running with Nextflow versions earlier than 24.04.0 you may need to use an older syntax for loading the configs:
 
    ```groovy
    // Load nf-core custom profiles from different Institutions
