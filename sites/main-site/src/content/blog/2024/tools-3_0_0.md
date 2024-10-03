@@ -28,3 +28,48 @@ label:
 ## 🫡 Deprecations
 
 - The `nf-core licences{:bash}` command is deprecated.
+
+# Common merge conflicts and how to resolve them
+
+## `README.md`
+
+In the `## Credits` section, you might encounter a merge conflict like this:
+
+```diff
+<<<<<<< HEAD
+- nf-core/mag was written by [Hadrien Gourlé](https://hadriengourle.com) at [SLU](https://slu.se), [Daniel Straub](https://github.com/d4straub) and - [Sabrina Krakau](https://github.com/skrakau) at the [Quantitative Biology Center (QBiC)](http://qbic.life). [James A. Fellows Yates](https://github.- com/jfy133) and [Maxime Borry](https://github.com/maxibor) at the [Max Planck Institute for Evolutionary Anthropology](https://www.eva.mpg.de) joined in version 2.2.0.
+-
+- Other code contributors include:
+-
+- - [Antonia Schuster](https://github.com/AntoniaSchuster)
+- - [Alexander Ramos](https://github.com/alxndrdiaz)
+- - [Carson Miller](https://github.com/CarsonJM)
+- - [Daniel Lundin](https://github.com/erikrikarddaniel)
+- - [Danielle Callan](https://github.com/d-callan)
+- - [Gregory Sprenger](https://github.com/gregorysprenger)
+- - [Jim Downie](https://github.com/prototaxites)
+- - [Phil Palmer](https://github.com/PhilPalmer)
+- - [@willros](https://github.com/willros)
+-
+- Long read processing was inspired by [caspargross/HybridAssembly](https://github.com/caspargross/HybridAssembly) written by Caspar Gross [@caspargross](https://github.com/caspargross)
+=======
++ nf-core/mag was originally written by Hadrien Gourlé, Daniel Straub, Sabrina Krakau, James A. Fellows Yates, Maxime Borry.
+>>>>>>> TEMPLATE
+```
+
+just ignore the incoming changes and keep the credits as they are.
+
+## `.nf-core.yml`
+
+There might be conflicts due to changed order, renamed and new fields, especially in the `template` section. In general, you can accept all incoming changes.
+The following fields were added to the file:
+
+```yaml
+template:
+  force: false
+  is_nfcore: true
+  org: nf-core
+  outdir: .
+  skip_features: []
+  version: 3.0.0
+```
