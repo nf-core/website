@@ -82,7 +82,7 @@ export default defineConfig({
                     'tools-16',
                 ],
                 'simple-icons': ['bluesky'],
-                'ri': ['open-source-line'],
+                ri: ['open-source-line'],
             },
         }),
         sitemap(),
@@ -98,7 +98,10 @@ export default defineConfig({
     build: {
         inlineStylesheets: 'auto',
         format: 'file',
-        assetsPrefix: 'https://nf-core-main-site.netlify.app/',
+        assetsPrefix:
+            process.env.CONTEXT === 'production'
+                ? 'https://nf-core-main-site.netlify.app/'
+                : process.env.DEPLOY_PRIME_URL,
     },
     vite: {
         plugins: [
