@@ -176,8 +176,7 @@ const specialInterestGroups = defineCollection({
         }),
 });
 
-const pipelines = defineCollection({});
-const readme = defineCollection({
+const pipelines = defineCollection({
     loader: pipelinesLoader,
 });
 
@@ -188,7 +187,6 @@ export const collections = {
     docs: docs,
     about: about,
     pipelines: pipelines,
-    readme: readme,
     blog: blog,
     api_reference: api_reference,
     'special-interest-groups': specialInterestGroups,

@@ -32,12 +32,12 @@ let latestPipelineReleases = {};
 pipelines_json.remote_workflows.map(
     (pipeline) => (latestPipelineReleases[pipeline.name] = `/${pipeline.name}/${pipeline.releases[0].tag_name}/`),
 );
-let pipelineResults = {};
-pipelines_json.remote_workflows.map(
-    (pipeline) =>
-        (pipelineResults[`/${pipeline.name}/:version/results/*`] =
-            `https://nf-core-pipeline-results.netlify.app/${pipeline.name}/:version/results/:splat 200!`),
-);
+// let pipelineResults = {};
+// pipelines_json.remote_workflows.map(
+//     (pipeline) =>
+//         (pipelineResults[`/${pipeline.name}/:version/results/*`] =
+//             `https://nf-core-pipeline-results.netlify.app/${pipeline.name}/:version/results/:splat 200!`),
+// );
 // https://astro.build/config
 export default defineConfig({
     site: 'https://nf-co.re/',
@@ -46,7 +46,7 @@ export default defineConfig({
     prefetch: false,
     redirects: {
         ...latestPipelineReleases,
-        ...pipelineResults,
+        // ...pipelineResults,
     },
     integrations: [
         svelte(),

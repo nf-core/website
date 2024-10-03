@@ -16,15 +16,6 @@ export async function getStaticPaths() {
         };
     }[] = [];
 
-    const prefixes = pipelines_json.remote_workflows
-        .map((pipeline) => {
-            return pipeline.releases
-                .filter((rel) => rel.tag_name !== 'dev')
-                .map((release) => {
-                    return `${pipeline.name}/results-${release.tag_sha}/`;
-                });
-        })
-        .flat();
     const awsResponse = await cache
         .get('aws.json')
         .catch((err) => {

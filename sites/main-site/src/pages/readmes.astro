@@ -1,13 +1,15 @@
 ---
 import { getEntry, render, getCollection } from 'astro:content';
-import PageLayout from '@layouts/PageLayout.astro';
-console.log(await getCollection('readme'));
-const entry = await getEntry('readme', 'variantbenchmarking-dev2');
-console.log(await render(entry));
+
+import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
+const collection = await getCollection('pipelines');
+// get all id values in collection
+console.log(collection.map((entry) => entry.id));
+
+const entry = await getEntry('pipelines', 'methylseq-2.0.0-README.md');
 const { Content, headings } = await render(entry);
 ---
 
-<PageLayout title={entry.id} description={entry.rendered} headings={headings}>
-    {entry.id}
+<MarkdownTocLayout title={entry.id} description={entry.rendered} headings={headings}>
     <Content />
-</PageLayout>
+</MarkdownTocLayout>

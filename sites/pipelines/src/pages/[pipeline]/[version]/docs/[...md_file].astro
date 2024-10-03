@@ -4,7 +4,7 @@ import SidebarToc from '@components/sidebar/SidebarToc.svelte';
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
 import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
 import pipelines_json from '@public/pipelines.json';
-import { getEntry } from 'astro:content';
+import { getEntry, render } from 'astro:content';
 import type { SidebarEntry } from '@utils/types';
 import { createLinkOrGroup } from '@utils/functions';
 
@@ -98,13 +98,9 @@ if (leftSidebar) {
     addEntriesToSection(sections, md_files);
 }
 const version_tag_name = version === 'latest' ? versions[0] : version;
-const cache_key = `${pipeline}/${version_tag_name?.replaceAll('.', '')}/docs/${md_file?.toLowerCase()}`;
 
-const entry = await getEntry('pipelines', cache_key);
-if (!entry) {
-    return Astro.redirect('/404');
-}
-let { Content, headings } = await entry.render();
+const entry = await getEntry('pipeline', `${pipeline}-${version_tag_name}-docs/${md_file}.md`);
+let { Content, headings } = await render(entry);
 const max_heading_depth = 2;
 
 // filter out headings that are higher than max_heading_depth
