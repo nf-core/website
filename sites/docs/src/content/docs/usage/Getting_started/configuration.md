@@ -172,7 +172,7 @@ If you want to use the `check_max()` function in your custom config, you must co
 You don't need to copy all of the labels into your own custom config file, only overwrite the things you wish to change
 :::
 
-If you want to give more memory to _all_ large tasks across most nf-core pipelines, would would specify in a custom config file:
+If you want to give more memory to _all_ large tasks across most nf-core pipelines, You would specify in a custom config file:
 
 ```groovy
 process {
