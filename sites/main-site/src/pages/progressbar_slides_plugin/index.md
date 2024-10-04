@@ -8,8 +8,8 @@ nf-core/progressbar does not collect any personal data. The progress bar is gene
 
 ## Documents
 
-[Terms of Service](tos.md)   # FIXME make it correct
+[Terms of Service](tos.md) # FIXME make it correct
 
 [Privacy Policy](privacy.md) # ditto
 
-[Support](support.md)        # ditto
+[Support](support.md) # ditto
