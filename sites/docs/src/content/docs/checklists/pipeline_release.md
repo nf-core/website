@@ -28,6 +28,7 @@ If this is your first release, make sure to follow the [first release tutorial](
    - [ ] Use the `nf-core pipelines bump-version` command to make the changes, eg: navigate to the pipeline directory and run `nf-core pipelines bump-version 1.0.0`
    - [ ] Please make sure to use strictly numeric release numbers
    - [ ] Use [Semantic Versioning](https://semver.org/)
+   - [ ] Make sure to update the version in any pipeline diagrams and other figures
 2. [ ] Run `nf-core pipelines lint --release` and check that there are no test failures for release.
 3. [ ] Check that `CHANGELOG.md` includes everything that has been added/fixed in this release, update the version number above the changes, and optionally add a human-readable release name (e.g. using a [code name generator](http://www.codenamegenerator.com/))
    - [ ] We recommend you also add the GitHub handle of the main contributors of each CHANGELOG entry (author, and significant reviewers etc.). This will mean each release on GitHub will display each contributors icons for extra visibility and recognition.
