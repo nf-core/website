@@ -22,6 +22,8 @@ jobs:
           script: |
             const changedFiles = `${{ steps.changed-files.outputs.all_changed_files }}`.split(' ').slice(0, 50);
             console.log('Changed files:', changedFiles)
+            # remove the sites/** prefix until src
+            changedFiles = changedFiles.map(file => file.replace(/^sites\/[^/]+\//, ''));
 
             // handle normal pages
             let netlifyLinks = changedFiles
