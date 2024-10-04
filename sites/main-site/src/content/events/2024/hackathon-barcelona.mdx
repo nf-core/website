@@ -205,6 +205,53 @@ You can move freely between projects throughout the event.
 
 </HackathonGroup>
 
+<HackathonGroup title="nf-core/deepmodeloptim" color="#238636" leaders={{'mathysgrapotte': 'Mathys Grapotte'}}>
+    We proposed a new pipeline to nf-core, initially called STIMULUS (available here: https://github.com/mathysgrapotte/stimulus).
+    This pipeline aims to explore ways that deep learning models can learn, relative to how the input data is processed
+    (check GitHub or the [`#deepmodeloptim` channel](https://nfcore.slack.com/archives/C07MD07ULR2) on the nf-core slack).
+
+    Working on deepmodeloptim on the hackathon will mostly involve nf-core-izing the pipeline and making it a place where it is easy to contribute.
+
+    **Goal**: Reach nf-core/deepmodeloptim v1.0.0 release!
+
+</HackathonGroup>
+
+<HackathonGroup title="Meta-omics" color="#238636" leaders={{'erikrikarddaniel': 'Daniel Lundin', 'jfy133': 'James Fellows Yates'}}>
+    We will work on meta-omics pipelines -- mag, ampliseq, metatdenovo, magmap, eager and taxprofiler --
+    how they can be made to better integrate with each other plus a number of downstream pipelines.
+
+    Working on deepmodeloptim on the hackathon will mostly involve nf-core-izing the pipeline and making it a place where it is easy to contribute.
+
+    **Goal**: Widened understanding of the implementation details of all pipelines in a larger group of developers.
+
+</HackathonGroup>
+
+<HackathonGroup title="Sarek (preprocessing) goes GPU" color="#238636" leaders={{'Furentsu': 'Eugenio Franzoso', 'famosab': 'Famke Bäuerle'}}>
+    Variant calling has multiple time consuming steps that could be faster if we use GPUs instead of CPUs.
+    First steps to achieve that could be the integration of Parabricks which is software developed by NVIDIA.
+    The modules are ready and need to be integrated into sarek.
+
+    This project can also expand onto other pipelines and include more tools that allow execution on GPU.
+
+    **Goal**: Integration of Parabricks in sarek
+
+</HackathonGroup>
+
+<HackathonGroup title="nf-core/genomeqc" color="#238636" leaders={{'chriswyatt1': 'Chris Wyatt', 'GallVp': 'Usman Rashid', 'mahesh-panchal': 'Mahesh Binzer-Panchal'}}>
+    A pipeline to compare and contrast genome assemblies and their annotations.
+
+    When you sequence a new genome, or wish to use a published genome, it is important to gauge the quality of the assembly.
+    There are basic tools, such as BUSCO (completeness), QUAST (contiguity), or general statistics of numbers of chromosomes,
+    genes, etc (AGAT), but no nf-core pipeline to perform all of these tasks,
+    including documenting their TE content, telomere locations, contamination level.
+
+    In addition, we would want to plot this on a phylogenetic tree, to help compare these stats.
+    See the [`#genomeqc`](https://nfcore.slack.com/archives/C07LY51P4S2) nf-core Slack channel to join!
+
+    **Goal**: Write a first draft of this pipeline
+
+</HackathonGroup>
+
 # Social activities
 
 During the hackathon, we will have light-hearted fun and games!
