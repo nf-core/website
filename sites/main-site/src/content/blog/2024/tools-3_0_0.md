@@ -67,16 +67,55 @@ If that is the case, ignore the incoming changes and keep the credits as they ar
 There might be conflicts due to changed order, renamed and new fields, especially in the `template` section.
 The following fields were added to the file:
 
-```yaml title=".nf-core.yml"
+```yaml
+bump_version: null
+lint: null
+nf_core_version: 3.0.0
+org_path: null
 template:
+  author: Author Name
+  description: The description of the pipeline
   force: false
   is_nfcore: true
+  name: pipelinename
   org: nf-core
   outdir: .
   skip_features: []
   version: 3.0.0
+update: null
 ```
 
-### How to resolve
+# Relevant template updates
 
-In general, the incoming changes should have the correct values and structure. Double check for duplicated entries and remove them if necessary.
+## The `check_max()` function has been removed
+
+The `check_map()` function has been replaced by the core Nextflow funcitonality `resourceLimits`.
+
+The `resourceLimits` are specified in the `nextflow.config` file, and you can remove all mentions to `check_max()` and the parameters that nf-core was using (`max_cpus`, `max_memory` and `max_time`).
+You can find more information in the [Nextflow documentation](https://www.nextflow.io/docs/latest/reference/process.html#resourcelimits).
+
+## The `nf-validation plugin` has been replaced by `nf-schema`
+
+The `nf-validation` plugin is deprecated and we are now using the new version, the `nf-schema` plugin.
+
+This plugin uses a new JSON schmea draft (2020-12), and thus there are some changes required in the `nextflow_schema.json` and `asses/schema_input.json` files. You can follow the [migration guide](https://nextflow-io.github.io/nf-schema/2.0/migration_guide/) to see the required changes.
+
+As part of these change, the validation parameters are also replaced, the following parameters have been removed from `nextflow.config` and `nextflow_schema.json`:
+
+- validationFailUnrecognisedParams
+- validationLenientMode
+- validationSchemaIgnoreParams
+- validationShowHiddenParams
+- validate_params
+
+Instead, the `validation` scope is used to provide `nf-schema` options.
+
+Note that the definition of plugins and the use of `validation` scope has been relocated after the `manifest` scome. This is to allow accessing `manifest` variables to customise the help message.
+
+The use of the new `nf-schema` plugin means that we are also replacing the old `UTILS_NFVALIDATION_PLUGIN` subworkflow by `UTILS_NFSCHEMA_PLUGIN`, and how the input samplesheet is read. Please check [the docs](https://nextflow-io.github.io/nf-schema/2.0/migration_guide/#__tabbed_2_2) to find a description of how to use the new `samplesheetToList()` function.
+
+# Removing for loops and try/catch blocs from `nextflow.config`
+
+To prepare for some soon to come Nextflow changes, code has been reduced from config files.
+
+- Including nf-core configs is not done with a try/catch bloc, and the location these include statements has been moved after defining the profiles. This change is important and it is to make sure that overriding of profiles happens correctly, you can find more information in [this](https://github.com/nextflow-io/nextflow/issues/1792) and [this](https://github.com/nextflow-io/nextflow/issues/5306) Nextflow issue.
