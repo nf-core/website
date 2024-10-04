@@ -29,6 +29,58 @@ label:
 
 - The `nf-core licences{:bash}` command is deprecated.
 
+# Avoiding merge conflicts with the new template customisation
+
+If you don't use don't use any of the following template features:
+
+- fastqc
+- multiqc
+- igenomes
+- nf_schema
+
+you can avoid some merge conflicts with a quick update and an intermediate sync:
+
+1. update the template to the latest version.
+
+```bash
+nf-core pipelines sync
+```
+
+1. Pull the updated `.nf-core.yml` file from the TEMPLATE branch.
+
+```bash
+git checkout TEMPLATE -- .nf-core.yml
+```
+
+1. add `fastqc`, `igenomes` or `nf_schema` to skip_features.
+
+```yaml title=".nf-core.yml"
+template:
+  skip_features:
+    - fastqc
+    - igenomes
+    - nf_schema
+```
+
+1. Commit the changes
+
+```bash
+git add .nf-core.yml
+git commit -m "Skip fastqc, igenomes and nf_schema"
+```
+
+1. Sync the pipeline again
+
+```bash
+run nf-core pipelines sync
+```
+
+1. Now you can merge the new template version with _less_ conflicts.
+
+```bash
+git merge TEMPLATE
+```
+
 # Common merge conflicts and how to resolve them
 
 ## `README.md`
