@@ -6,10 +6,11 @@ startDate: '2024-10-01'
 startTime: '13:00+02:00'
 endDate: '2024-10-01'
 endTime: '13:30+02:00'
+youtubeEmbed: https://youtu.be/fPHpU1Qgxuk
 locations:
   - name: Online
     links:
-      - https://kth-se.zoom.us/j/68390542812
+      - https://youtu.be/fPHpU1Qgxuk
 ---
 
 In this nf-core bytesize session, Maxime will show how to animated a subway map in pure SVG using the `animateMotion` tag.
