@@ -93,7 +93,7 @@ const border_col = this_color ? { 'border-left-color': this_color, 'border-left-
                 {leaders && <h4>Group Leaders</h4>}
                 {
                     leaders && (
-                        <div class="d-flex">
+                        <div class="d-flex flex-wrap">
                             {Object.entries(leaders).map(([github, name]) => {
                                 return (
                                     <Profile username={github} wrapperClasses="me-2">
