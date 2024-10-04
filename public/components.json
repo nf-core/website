@@ -7611,6 +7611,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -11052,10 +11056,10 @@
                 }
               },
               {
-                "*.fastq.gz": {
+                "**/*.fastq.gz": {
                   "type": "file",
                   "description": "fastq compressed file",
-                  "pattern": "*.fastq.gz"
+                  "pattern": "**/*.fastq.gz"
                 }
               }
             ]
@@ -15197,6 +15201,175 @@
         ],
         "maintainers": [
           "@nvnieuwk"
+        ]
+      }
+    },
+    {
+      "name": "bcftools_pluginsetgt",
+      "path": "modules/nf-core/bcftools/pluginsetgt/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "bcftools_pluginsetgt",
+        "description": "Sets genotypes according to the specified criteria and filtering expressions. For example, missing genotypes can be set to ref, but much more than that.",
+        "keywords": [
+          "setgt",
+          "bcftools",
+          "genotype",
+          "vcf"
+        ],
+        "tools": [
+          {
+            "bcftools": {
+              "description": "BCFtools is a set of utilities that manipulate variant calls in the Variant Call Format (VCF) and its binary counterpart BCF. All commands work transparently with both VCFs and BCFs, both uncompressed and BGZF-compressed.  Most commands accept VCF, bgzipped VCF and BCF with filetype detected automatically even when streaming from a pipe. Indexed VCF and BCF will work in all situations. Un-indexed VCF and BCF and streams will work in most, but not all situations.",
+              "homepage": "https://samtools.github.io/bcftools/howtos/index.html",
+              "documentation": "https://samtools.github.io/bcftools/bcftools.html",
+              "tool_dev_url": "https://github.com/samtools/bcftools",
+              "doi": "10.1093/bioinformatics/btp352",
+              "licence": [
+                "MIT"
+              ],
+              "args_id": "$args",
+              "identifier": "biotools:bcftools"
+            }
+          },
+          {
+            "bcftools plugin setGT": {
+              "description": "Bcftools plugins are tools that can be used with bcftools to manipulate variant calls in Variant Call Format (VCF) and BCF. The setGT plugin sets genotypes according to the specified criteria and filtering expressions. For example, missing genotypes can be set to ref, but much more than that.",
+              "homepage": "https://samtools.github.io/bcftools/howtos/plugins.html",
+              "documentation": "https://samtools.github.io/bcftools/howtos/plugin.setGT.html",
+              "tool_dev_url": "https://github.com/samtools/bcftools",
+              "doi": "10.1093/bioinformatics/btp352",
+              "licence": [
+                "MIT"
+              ],
+              "args_id": "$args2",
+              "identifier": "biotools:bcftools"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "The vcf file to be inspected.\ne.g. 'file.vcf'\n"
+              }
+            },
+            {
+              "index": {
+                "type": "file",
+                "description": "The tab index for the VCF file to be inspected.\ne.g. 'file.tbi'\n"
+              }
+            }
+          ],
+          [
+            {
+              "target_gt": {
+                "type": "string",
+                "description": "Genotypes to change\n"
+              }
+            }
+          ],
+          [
+            {
+              "new_gt": {
+                "type": "string",
+                "description": "Genotypes to set\n"
+              }
+            }
+          ],
+          [
+            {
+              "regions": {
+                "type": "file",
+                "description": "Optionally, restrict the operation to regions listed in this file.\ne.g. 'file.vcf'\n"
+              }
+            }
+          ],
+          [
+            {
+              "targets": {
+                "type": "file",
+                "description": "Optionally, restrict the operation to regions listed in this file (doesn't rely upon index files)\ne.g. 'file.vcf'\n"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "vcf": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.{vcf,vcf.gz,bcf,bcf.gz}": {
+                  "type": "file",
+                  "description": "VCF output file containing set genotypes",
+                  "pattern": "*.{vcf,vcf.gz,bcf,bcf.gz}"
+                }
+              }
+            ]
+          },
+          {
+            "tbi": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.tbi": {
+                  "type": "file",
+                  "description": "Alternative VCF file index",
+                  "pattern": "*.tbi"
+                }
+              }
+            ]
+          },
+          {
+            "csi": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.csi": {
+                  "type": "file",
+                  "description": "Default VCF file index",
+                  "pattern": "*.csi"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@eweizy"
+        ],
+        "maintainers": [
+          "@eweizy"
         ]
       }
     },
@@ -23849,6 +24022,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -105605,6 +105786,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
