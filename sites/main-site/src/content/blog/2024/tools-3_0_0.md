@@ -65,10 +65,9 @@ If that is the case, ignore the incoming changes and keep the credits as they ar
 ## `.nf-core.yml`
 
 There might be conflicts due to changed order, renamed and new fields, especially in the `template` section.
-In general, you can accept all incoming changes.
 The following fields were added to the file:
 
-```yaml
+```yaml title=".nf-core.yml"
 template:
   force: false
   is_nfcore: true
@@ -77,3 +76,7 @@ template:
   skip_features: []
   version: 3.0.0
 ```
+
+### How to resolve
+
+In general, the incoming changes should have the correct values and structure. Double check for duplicated entries and remove them if necessary.
