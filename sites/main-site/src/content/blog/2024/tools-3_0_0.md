@@ -57,11 +57,15 @@ In the `## Credits` section, you might encounter a merge conflict like this:
 >>>>>>> TEMPLATE
 ```
 
-just ignore the incoming changes and keep the credits as they are.
+### How to resolve
+
+Double check that all authors are included.
+If that is the case, ignore the incoming changes and keep the credits as they are.
 
 ## `.nf-core.yml`
 
-There might be conflicts due to changed order, renamed and new fields, especially in the `template` section. In general, you can accept all incoming changes.
+There might be conflicts due to changed order, renamed and new fields, especially in the `template` section.
+In general, you can accept all incoming changes.
 The following fields were added to the file:
 
 ```yaml
