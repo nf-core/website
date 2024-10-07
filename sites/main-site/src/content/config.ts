@@ -119,6 +119,7 @@ const blog = defineCollection({
                     end: z.date().optional(),
                 })
                 .optional(),
+            maxHeadingDepth: z.number().optional(),
         })
         .refine((data) => {
             // Check if headerImage is present but headerImageAlt is not
