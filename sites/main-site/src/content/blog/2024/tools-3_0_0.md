@@ -15,50 +15,59 @@ label:
 
 ## ⛓️‍💥 Breaking changes
 
-- All pipeline commands now need the `pipelines` prefix. For example, `nf-core lint{:bash}` is now `nf-core pipelines lint{:bash}`. This makes the commands more consistent with `nf-core modules{:bash}` and `nf-core subworkflows{:bash}` commands.
+- All pipeline commands now require the `pipelines` prefix.
+  For example, `nf-core lint{:bash}` is now `nf-core pipelines lint{:bash}`.
+  This change makes the commands more consistent with `nf-core modules{:bash}` and `nf-core subworkflows{:bash}` commands.
+- Some options have been changed for the `nf-core pipelines download{:bash}` command:
+  - The `-t` / `--tower` flag has been renamed to `-p` / `--platform`.
+  - We renamed the short flags for consistency, to always use the first letter of the second word in the long flag:
+    - The `-d` / `--download-configuration` flag has been renamed to `-c` / `--download-configuration`.
+    - The `-p` / `--parallel-downloads` flag has been renamed to `-d` / `--parallel-downloads`.
 
 ## ✨ New features
 
-- More customisation for pipeline templates. The template has been divided into features which can be skipped, e.g. you can create a new pipeline without any traces of FastQC in it. You can now strip down the pipeline to the bare minimum and add only the tools you need. For nf-core pipelines we still require some core features (e.g. documentation, CI tests, etc.) to be present, but you can still customise the pipeline to your needs.
-- A new Text User Interface app when running nf-core pipelines create to help us guide you through the process better (no worries, you can still use the CLI if you give all values as parameters).
-
-- nf-validation replaced nf-schema in the pipeline template.
-- CI tests now lint with the nf-core tools version matching the template version of the pipeline, to minimise errors in opened PRs with every new tools release.
+- Enhanced pipeline template customisation: The template has been divided into features that can be selectively included or excluded.
+  For example, you can now create a new pipeline without any traces of FastQC.
+  You can strip down the pipeline to the bare minimum and add only the tools you need.
+  For nf-core pipelines, certain core features (e.g., documentation, CI tests) remain mandatory, but you still have significant customisation flexibility.
+- New Text User Interface (TUI) for pipeline creation: A guided interface helps you through the process when running `nf-core pipelines create{:bash}` (don't worry - you can still use the CLI by providing all values as parameters).
+- nf-validation has replaced nf-schema in the pipeline template
+- CI tests now use the nf-core tools version matching the pipeline's template version, reducing errors in PRs with each new tools release
 
 ## 🫡 Deprecations
 
 - The `nf-core licences{:bash}` command is deprecated.
 
-# Avoiding merge conflicts with the new template customisation
+# Avoiding Merge Conflicts with Template Customisation
 
-If you don't use don't use any of the following template features:
+If you don't use any of these template features:
 
 - fastqc
 - multiqc
 - igenomes
 - nf_schema
 
-you can avoid some merge conflicts with a quick update and an intermediate sync:
+you can minimize merge conflicts with a quick update and intermediate sync:
 
-1. start by checking out the `dev` branch.
+1. Start by checking out the `dev` branch:
 
 ```bash
 git switch dev
 ```
 
-1. update the template to the latest version.
+1. Update the template to the latest version:
 
 ```bash
 nf-core pipelines sync
 ```
 
-1. Pull the updated `.nf-core.yml` file from the TEMPLATE branch.
+1. Pull the updated `.nf-core.yml` file from the TEMPLATE branch:
 
 ```bash
 git checkout TEMPLATE -- .nf-core.yml
 ```
 
-1. add `fastqc`, `igenomes` or `nf_schema` to skip_features.
+1. Add the features you want to skip to `skip_features`:
 
 ```yaml title=".nf-core.yml"
 template:
@@ -68,33 +77,32 @@ template:
     - nf_schema
 ```
 
-1. Commit the changes
+1. Commit the changes:
 
 ```bash
 git add .nf-core.yml
 git commit -m "Skip fastqc, igenomes and nf_schema"
 ```
 
-1. Retrigger the pipeline sync via the [GitHub Actions workflow](https://github.com/nf-core/tools/actions/workflows/sync.yml)
+1. Retrigger the pipeline sync via the [GitHub Actions workflow](https://github.com/nf-core/tools/actions/workflows/sync.yml) using the name of your pipeline as the input.
+1. Your template update merge should now have fewer conflicts! 🎉
 
-1. Your template update merge should now have fewer conflicts. :tada:
+# Important Template Updates
 
-# Relevant template updates
+## The `check_max()` Function Has Been Removed
 
-## The `check_max()` function has been removed
+The `check_max()` function has been replaced by core Nextflow functionality called [`resourceLimits`](<](https://www.nextflow.io/docs/latest/reference/process.html#resourcelimits)>).
 
-The `check_map()` function has been replaced by the core Nextflow funcitonality `resourceLimits`.
+The `resourceLimits` are specified in the `nextflow.config` file. You can remove all references to `check_max()` and its associated parameters (`max_cpus`, `max_memory`, and `max_time`).
+For more information, see the [Nextflow documentation](https://www.nextflow.io/docs/latest/reference/process.html#resourcelimits).
 
-The `resourceLimits` are specified in the `nextflow.config` file, and you can remove all mentions to `check_max()` and the parameters that nf-core was using (`max_cpus`, `max_memory` and `max_time`).
-You can find more information in the [Nextflow documentation](https://www.nextflow.io/docs/latest/reference/process.html#resourcelimits).
+## The nf-validation Plugin Has Been Replaced by nf-schema
 
-## The `nf-validation plugin` has been replaced by `nf-schema`
+The `nf-validation` plugin is deprecated in favor of the new `nf-schema` plugin.
 
-The `nf-validation` plugin is deprecated and we are now using the new version, the `nf-schema` plugin.
+This plugin uses a new JSON schema draft (2020-12), requiring changes to the `nextflow_schema.json` and `assets/schema_input.json` files. Follow the [migration guide](https://nextflow-io.github.io/nf-schema/2.0/migration_guide/) for required changes.
 
-This plugin uses a new JSON schmea draft (2020-12), and thus there are some changes required in the `nextflow_schema.json` and `asses/schema_input.json` files. You can follow the [migration guide](https://nextflow-io.github.io/nf-schema/2.0/migration_guide/) to see the required changes.
-
-As part of these change, the validation parameters are also replaced, the following parameters have been removed from `nextflow.config` and `nextflow_schema.json`:
+The following validation parameters have been removed from `nextflow.config` and `nextflow_schema.json`:
 
 - validationFailUnrecognisedParams
 - validationLenientMode
@@ -102,25 +110,29 @@ As part of these change, the validation parameters are also replaced, the follow
 - validationShowHiddenParams
 - validate_params
 
-Instead, the `validation` scope is used to provide `nf-schema` options.
+Instead, use the `validation` scope for `nf-schema` options.
 
-Note that the definition of plugins and the use of `validation` scope has been relocated after the `manifest` scome. This is to allow accessing `manifest` variables to customise the help message.
+:::note
+The plugins definition and `validation` scope have been moved after the `manifest` scope to allow access to `manifest` variables for help message customisation.
+:::
 
-The use of the new `nf-schema` plugin means that we are also replacing the old `UTILS_NFVALIDATION_PLUGIN` subworkflow by `UTILS_NFSCHEMA_PLUGIN`, and how the input samplesheet is read. Please check [the docs](https://nextflow-io.github.io/nf-schema/2.0/migration_guide/#__tabbed_2_2) to find a description of how to use the new `samplesheetToList()` function.
+The `UTILS_NFVALIDATION_PLUGIN` subworkflow has been replaced by `UTILS_NFSCHEMA_PLUGIN`, changing how the input samplesheet is read. See [the documentation](https://nextflow-io.github.io/nf-schema/2.0/migration_guide/#__tabbed_2_2) for details on using the new `samplesheetToList()` function.
 
-# Removing for loops and try/catch blocs from `nextflow.config`
+# Removing for-loops and try/catch Blocks from nextflow.config
 
-To prepare for some soon to come Nextflow changes, code has been reduced from config files.
+To prepare for upcoming Nextflow changes, code in config files has been simplified:
 
-- Including nf-core configs is not done with a try/catch bloc, and the location these include statements has been moved after defining the profiles. This change is important and it is to make sure that overriding of profiles happens correctly, you can find more information in [this](https://github.com/nextflow-io/nextflow/issues/1792) and [this](https://github.com/nextflow-io/nextflow/issues/5306) Nextflow issue.
+- nf-core configs are now included without try/catch blocks
+- Include statements have been moved after profile definitions to ensure correct profile overriding
+- For more information, see these Nextflow issues: [#1792](https://github.com/nextflow-io/nextflow/issues/1792) and [#5306](https://github.com/nextflow-io/nextflow/issues/5306)
 
-# Common merge conflicts and how to resolve them
+# Common Merge Conflicts and Solutions
 
-## `README.md`
+## README.md
 
-In the `## Credits` section, you might encounter a merge conflict like this:
+In the `## Credits` section, you might see conflicts like this:
 
-```diff
+```diff title="README.md"
 <<<<<<< HEAD
 - nf-core/mag was written by [Hadrien Gourlé](https://hadriengourle.com) at [SLU](https://slu.se), [Daniel Straub](https://github.com/d4straub) and - [Sabrina Krakau](https://github.com/skrakau) at the [Quantitative Biology Center (QBiC)](http://qbic.life). [James A. Fellows Yates](https://github.- com/jfy133) and [Maxime Borry](https://github.com/maxibor) at the [Max Planck Institute for Evolutionary Anthropology](https://www.eva.mpg.de) joined in version 2.2.0.
 -
@@ -137,22 +149,56 @@ In the `## Credits` section, you might encounter a merge conflict like this:
 - - [@willros](https://github.com/willros)
 -
 - Long read processing was inspired by [caspargross/HybridAssembly](https://github.com/caspargross/HybridAssembly) written by Caspar Gross [@caspargross](https://github.com/caspargross)
+- nf-core/mag was written by [Hadrien Gourlé](https://hadriengourle.com) at [SLU](https://slu.se), [Daniel Straub](https://github.com/d4straub) and [Sabrina Krakau](https://github.com/skrakau) at the [Quantitative Biology Center (QBiC)](http://qbic.life).
 =======
 + nf-core/mag was originally written by Hadrien Gourlé, Daniel Straub, Sabrina Krakau, James A. Fellows Yates, Maxime Borry.
 >>>>>>> TEMPLATE
 ```
 
-### How to resolve
+### Resolution
 
-Double check that all authors are included.
-If that is the case, ignore the incoming changes and keep the credits as they are.
+Verify that all authors are included. If confirmed, keep your existing credits section and ignore incoming changes.
+
+## `CITATIONS.md`
+
+Citations you added might have been removed in the template update.
+
+### Resolution
+
+Reject the incoming changes to keep your citations.
+
+## `conf/base.config`
+
+The above mentioned removal of `check_max()` might cause conflicts in the config files
+
+```diff title="conf/base.config"
+<<<<<<< HEAD
+-    cpus   = { check_max( 1    * task.attempt, 'cpus'   ) }
+-    memory = { check_max( 6.GB * task.attempt, 'memory' ) }
+-    time   = { check_max( 4.h  * task.attempt, 'time'   ) }
+=======
++    // TODO nf-core: Check the defaults for all processes
++    cpus   = { 1      * task.attempt }
++    memory = { 6.GB   * task.attempt }
++    time   = { 4.h    * task.attempt }
+>>>>>>> TEMPLATE
+```
+
+### Resolution
+
+Double-check the values and accept the incoming changes if correct.
 
 ## `.nf-core.yml`
 
 There might be conflicts due to changed order, renamed and new fields, especially in the `template` section.
-The following fields were added to the file:
 
-```yaml
+### Resolution
+
+Double-check the changes for duplicates and accept the incoming changes.
+
+The new file should follow this structure:
+
+```yaml title=".nf-core.yml"
 bump_version: null
 lint: null
 nf_core_version: 3.0.0
@@ -169,3 +215,5 @@ template:
   version: 3.0.0
 update: null
 ```
+
+See the [API docs](/docs/nf-core-tools/api_reference/dev/api/utils#pydantic-modelpythonnf_coreutilsnfcoretemplateconfigpython) for a more detailed description of each field and the allowed input values.
