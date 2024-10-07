@@ -220,11 +220,11 @@ See the [API docs](/docs/nf-core-tools/api_reference/dev/api/utils#pydantic-mode
 
 ## `nextflow.conifg`
 
-Several merge conflicts to do changes described in [Important Template Updates](http://localhost:4321/blog/2024/tools-3_0_0#important-template-updates)
+Several merge conflicts to do changes described in [Important Template Updates](http://localhost:4321/blog/2024/tools-3_0_0#important-template-updates).
 
 ### Resolution
 
-Double-check in the paramters section, that no pipeline-specific parameter would be removed by the incoming changes. In general, you can accept the incoming changes for this file.
+Double-check in the parameters section, that no pipeline-specific parameter would be removed by the incoming changes. In general, you can accept the incoming changes for this file.
 
 ## `subworkflows/local/utils_nfcore_$PIPELINE_NAME_pipeline/main.nf`
 
@@ -248,3 +248,5 @@ Be careful in accepting incoming changes. The main changes you should do are:
 -  UTILS_NFVALIDATION_PLUGIN (
 +  UTILS_NFSCHEMA_PLUGIN (
 ```
+
+See the [nf-schema migration guide](https://nextflow-io.github.io/nf-schema/2.0/migration_guide/) for more details in replacing the `fromSamplesheet` function.
