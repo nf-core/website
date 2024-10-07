@@ -7643,6 +7643,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -11294,7 +11298,7 @@
       "pipelines": [
         {
           "name": "scnanoseq",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -25003,6 +25007,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -27611,7 +27623,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "smrnaseq",
@@ -27793,7 +27805,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "smrnaseq",
@@ -39564,7 +39576,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "ssds",
@@ -52356,7 +52368,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "scrnaseq",
@@ -92200,6 +92212,130 @@
       }
     },
     {
+      "name": "jvarkit_sam2tsv",
+      "path": "modules/nf-core/jvarkit/sam2tsv/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "jvarkit_sam2tsv",
+        "description": "Convert sam files to tsv files",
+        "keywords": [
+          "sam",
+          "tsv",
+          "jvarkit"
+        ],
+        "tools": [
+          {
+            "jvarkit": {
+              "description": "Java utilities for Bioinformatics.",
+              "homepage": "https://github.com/lindenb/jvarkit",
+              "documentation": "https://jvarkit.readthedocs.io/",
+              "tool_dev_url": "https://github.com/lindenb/jvarkit",
+              "doi": "10.6084/m9.figshare.1425030",
+              "licence": [
+                "MIT License"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "BAM/CRAM file from alignment",
+                "pattern": "*.{bam,cram}"
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "BAI/CRAI file from alignment",
+                "pattern": "*.{bai,crai}"
+              }
+            },
+            {
+              "regions_file": {
+                "type": "file",
+                "description": "Optional. Restrict to regions listed in a file",
+                "pattern": "*.{vcf,bed,gtf,gff,vcf.gz,bed.gz,gtf.gz,gff.gz}"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [id: 'reference']\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome",
+                "pattern": "*.{fasta,fa}"
+              }
+            },
+            {
+              "fasta_index": {
+                "type": "file",
+                "description": "Reference genome information for fasta index",
+                "pattern": "*.{fasta.fai,fa.fai}"
+              }
+            },
+            {
+              "fasta_dict": {
+                "type": "file",
+                "description": "Reference genome information for fasta dict",
+                "pattern": "*.{.dict}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "tsv": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing TSV information e.g. [ id:'test' ]"
+                }
+              },
+              {
+                "*.tsv": {
+                  "type": "file",
+                  "description": "Output file"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@lmfaber"
+        ],
+        "maintainers": [
+          "@lmfaber"
+        ]
+      }
+    },
+    {
       "name": "jvarkit_vcf2table",
       "path": "modules/nf-core/jvarkit/vcf2table/meta.yml",
       "type": "module",
@@ -106573,6 +106709,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -110517,7 +110657,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "taxprofiler",
@@ -110616,7 +110756,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "taxprofiler",
@@ -115986,7 +116126,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "scrnaseq",
@@ -117378,7 +117518,7 @@
       "pipelines": [
         {
           "name": "scnanoseq",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -117960,7 +118100,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "viralrecon",
@@ -130888,7 +131028,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -130976,7 +131116,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -145001,7 +145141,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -148738,7 +148878,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "tfactivity",
@@ -149316,7 +149456,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "smrnaseq",
@@ -149582,7 +149722,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "smrnaseq",
@@ -149960,7 +150100,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "smrnaseq",
@@ -150333,7 +150473,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -151009,7 +151149,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "smrnaseq",
@@ -151232,7 +151372,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "smrnaseq",
@@ -151536,7 +151676,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "ssds",
@@ -174708,7 +174848,7 @@
       "pipelines": [
         {
           "name": "scnanoseq",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -178245,7 +178385,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -188344,7 +188484,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "smrnaseq",
@@ -188600,7 +188740,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "smrnaseq",
@@ -197014,7 +197154,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "scrnaseq",
@@ -197271,7 +197411,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "scrnaseq",
@@ -197609,7 +197749,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "scrnaseq",
