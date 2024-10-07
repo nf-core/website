@@ -11,7 +11,25 @@ label:
   - 'tools'
 ---
 
-# Highlights
+# Previously on nf-core/tools
+
+We released nf-core/tools v2.0 in March 2021, which moved the template and tooling to DSL2 and introduced nf-core/modules commands. In following releases we added subworkflows, switched to using nf-validation for schema validation and removed as much python code as possible from the template.
+While this happened the nf-core community grew to now 10,000 slack members including 2,000 active users, who are working on 113 pipelines, 1343 modules and 72 subworkflows. With this growth we also saw new scientific areas being covered by nf-core pipelines, for example imaging data both on a [micro scale](https://nf-co.re/molkart/) and on a [global scale](https://nf-co.re/rangeland/).
+This and the adoption of the nf-core template and tooling even outside the nf-core community, convinced us to make the nf-core template even more flexible and to improve the user experience of the nf-core/tools.
+
+# What's new in nf-core/tools v3.0.0
+
+No worries, this is not as big of a change as the v2.0 release. The main things are:
+
+## ✨ New features
+
+- Enhanced pipeline template customisation: The template has been divided into features that can be selectively included or excluded.
+  For example, you can now create a new pipeline without any traces of FastQC.
+  You can strip down the pipeline to the bare minimum and add only the tools you need.
+  For nf-core pipelines, certain core features (e.g., documentation, CI tests) remain mandatory, but you still have significant customisation flexibility.
+- New Text User Interface (TUI) for pipeline creation: A guided interface helps you through the process when running `nf-core pipelines create{:bash}` (don't worry - you can still use the CLI by providing all values as parameters).
+- [nf-schema](https://nextflow-io.github.io/nf-schema/latest/) has replaced nf-validation in the pipeline template
+- CI tests now use the nf-core tools version matching the pipeline's template version, reducing errors in PRs with each new tools release
 
 ## ⛓️‍💥 Breaking changes
 
@@ -24,23 +42,17 @@ label:
     - The `-d` / `--download-configuration` flag has been renamed to `-c` / `--download-configuration`.
     - The `-p` / `--parallel-downloads` flag has been renamed to `-d` / `--parallel-downloads`.
 
-## ✨ New features
-
-- Enhanced pipeline template customisation: The template has been divided into features that can be selectively included or excluded.
-  For example, you can now create a new pipeline without any traces of FastQC.
-  You can strip down the pipeline to the bare minimum and add only the tools you need.
-  For nf-core pipelines, certain core features (e.g., documentation, CI tests) remain mandatory, but you still have significant customisation flexibility.
-- New Text User Interface (TUI) for pipeline creation: A guided interface helps you through the process when running `nf-core pipelines create{:bash}` (don't worry - you can still use the CLI by providing all values as parameters).
-- [nf-schema](https://nextflow-io.github.io/nf-schema/latest/) has replaced nf-validation in the pipeline template
-- CI tests now use the nf-core tools version matching the pipeline's template version, reducing errors in PRs with each new tools release
-
 ## 🫡 Deprecations
 
 - The `nf-core licences{:bash}` command is deprecated.
 
-# Avoiding Merge Conflicts with Template Customisation
+# Tip: Avoiding Merge Conflicts
 
-If you don't use any of these template features:
+The v3 release of nf-core/tools includes the ability to have fine-grained control of which template features to include.
+You can use this new functionality to switch off chunks of the template.
+Doing so means less code will update in the template, and fewer merge conflicts in files that you don't care about.
+
+So - if you don't use any of these template features:
 
 - fastqc
 - multiqc
@@ -55,19 +67,19 @@ you can minimize merge conflicts with a quick update and intermediate sync:
 git switch dev
 ```
 
-1. Update the template to the latest version:
+2. Update the template to the latest version:
 
 ```bash
 nf-core pipelines sync
 ```
 
-1. Pull the updated `.nf-core.yml` file from the TEMPLATE branch:
+3. Pull the updated `.nf-core.yml` file from the TEMPLATE branch:
 
 ```bash
 git checkout TEMPLATE -- .nf-core.yml
 ```
 
-1. Add the features you want to skip to `skip_features`:
+4. Add the features you want to skip to `skip_features`:
 
 ```yaml title=".nf-core.yml"
 template:
@@ -77,15 +89,15 @@ template:
     - nf_schema
 ```
 
-1. Commit the changes:
+5. Commit the changes:
 
 ```bash
 git add .nf-core.yml
 git commit -m "Skip fastqc, igenomes and nf_schema"
 ```
 
-1. Retrigger the pipeline sync via the [GitHub Actions workflow](https://github.com/nf-core/tools/actions/workflows/sync.yml) using the name of your pipeline as the input.
-1. Your template update merge should now have fewer conflicts! 🎉
+6. Retrigger the pipeline sync via the [GitHub Actions workflow](https://github.com/nf-core/tools/actions/workflows/sync.yml) using the name of your pipeline as the input.
+7. Your template update merge should now have fewer conflicts! 🎉
 
 # Important Template Updates
 
