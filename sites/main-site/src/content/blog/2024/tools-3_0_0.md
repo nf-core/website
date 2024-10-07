@@ -10,6 +10,7 @@ authors:
   - 'ewels'
 label:
   - 'tools'
+maxHeadingDepth: 3
 ---
 
 # Previously on nf-core/tools
@@ -27,10 +28,10 @@ No worries, this is not as big of a change as the v2.0 release. The main things 
 ## ✨ New features
 
 - Enhanced pipeline template customisation
-    - The template has been divided into features that can be selectively included or excluded.
-  For example, you can now create a new pipeline without any traces of FastQC.
-  You can strip down the pipeline to the bare minimum and add only the tools you need.
-  For nf-core pipelines, certain core features (e.g., documentation, CI tests) remain mandatory, but you still have significant customisation flexibility.
+  - The template has been divided into features that can be selectively included or excluded.
+    For example, you can now create a new pipeline without any traces of FastQC.
+    You can strip down the pipeline to the bare minimum and add only the tools you need.
+    For nf-core pipelines, certain core features (e.g., documentation, CI tests) remain mandatory, but you still have significant customisation flexibility.
 - New Text User Interface (TUI) for pipeline creation: A guided interface helps you through the process when running `nf-core pipelines create{:bash}` (don't worry - you can still use the CLI by providing all values as parameters).
 - [nf-schema](https://nextflow-io.github.io/nf-schema/latest/) has replaced nf-validation in the pipeline template
 - CI tests now use the nf-core tools version matching the pipeline's template version, reducing errors in PRs with each new tools release
@@ -174,9 +175,9 @@ To prepare for upcoming Nextflow syntax depreciations, for loops and try/catch b
 
 # Common Merge Conflicts and Solutions
 
-## README.md
+## `README.md`
 
-In the `## Credits` section, you might see conflicts like this:
+In the `## Credits{:md}` section, you might see conflicts like this:
 
 ```diff title="README.md"
 <<<<<<< HEAD
@@ -201,7 +202,7 @@ In the `## Credits` section, you might see conflicts like this:
 >>>>>>> TEMPLATE
 ```
 
-### Resolution
+#### Resolution
 
 Verify that all authors are included. If confirmed, keep your existing credits section and ignore incoming changes.
 
@@ -209,7 +210,7 @@ Verify that all authors are included. If confirmed, keep your existing credits s
 
 Citations you added might have been removed in the template update.
 
-### Resolution
+#### Resolution
 
 Reject the incoming changes to keep your citations.
 
@@ -230,7 +231,7 @@ The above mentioned removal of `check_max()` might cause conflicts in the config
 >>>>>>> TEMPLATE
 ```
 
-### Resolution
+#### Resolution
 
 Double-check the values and accept the incoming changes if correct.
 
@@ -238,7 +239,7 @@ Double-check the values and accept the incoming changes if correct.
 
 There might be conflicts due to changed order, renamed and new fields, especially in the `template` section.
 
-### Resolution
+#### Resolution
 
 Double-check the changes for duplicates and accept the incoming changes.
 
@@ -268,7 +269,7 @@ See the [API docs](/docs/nf-core-tools/api_reference/dev/api/utils#pydantic-mode
 
 Several merge conflicts due to changes described in [Important Template Updates](http://localhost:4321/blog/2024/tools-3_0_0#important-template-updates).
 
-### Resolution
+#### Resolution
 
 Double-check in the parameters section, that no pipeline-specific parameter would be removed by the incoming changes. In general, you can accept the incoming changes for this file.
 
@@ -276,7 +277,7 @@ Double-check in the parameters section, that no pipeline-specific parameter woul
 
 The switch to `nf-schema` might cause conflicts in the logic of reading in a samplesheet.
 
-### Resolution
+#### Resolution
 
 Be careful in accepting incoming changes. The main changes you should do are:
 
