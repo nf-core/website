@@ -112,7 +112,7 @@ const shaking = version === 'dev' ? '3deg' : '1deg';
             !version && (
                 <a href={gh_url} class="text-body mt-2">
                     <i class="fab fa-github me-2" />
-                    {gh_url.replace('tree/master', '[...]')}
+                    <span class="d-none d-md-inline">{gh_url.replace('tree/master', '[...]')}</span>
                 </a>
             )
         }
