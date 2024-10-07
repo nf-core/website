@@ -69,6 +69,7 @@ No worries, this is not as big of a change as the v2.0 release. The main things 
 ## 🫡 Deprecations
 
 - The `nf-core licences{:bash}` command is deprecated.
+- Python 3.8 reaches end of life in October 2024, so this will probably be the last release supporting Python 3.8.
 
 # Tip: Avoiding Merge Conflicts
 
