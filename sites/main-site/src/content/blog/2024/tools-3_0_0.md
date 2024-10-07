@@ -13,17 +13,18 @@ label:
 maxHeadingDepth: 3
 ---
 
-# Previously on nf-core/tools
+# What and Why?
 
-We released nf-core/tools v2.0 in March 2021, which moved the template and tooling to DSL2 and introduced nf-core/modules commands.
-In following releases we added subworkflows, switched to using nf-validation for schema validation and removed as much python code as possible from the template.
-While this happened the nf-core community grew to now 10,000 slack members including 2,000 active users, who are working on 113 pipelines (compared to 49 when 2.0 was released), 1343 modules and 72 subworkflows.
-With this growth we also saw new scientific areas being covered by nf-core pipelines, for example imaging data both on a [micro scale](https://nf-co.re/molkart/) and on a [global scale](https://nf-co.re/rangeland/).
-This and the adoption of the nf-core template and tooling even outside the nf-core community, convinced us to make the nf-core template even more flexible and to improve the user experience of the nf-core/tools.
+The nf-core/tools CLI is the backbone of our community.
+It encapsulates the pipeline template that we use and packages and simplifies the tasks involved in keeping nf-core pipelines up to date.
+The same holds true for modules and subworkflows.
+In many ways, it is the linchpin of our collaborative coding.
 
-# What's new in nf-core/tools v3.0.0
+This week, we are thrilled to announce nf-core/tools version 3.0.0.
+With this release we bring much-requested template granularity, better findability for the many commands, and a suite of major updates to the nf-core pipeline template.
+This blog post explains what's new and guides you through the update process.
 
-No worries, this is not as big of a change as the v2.0 release. The main things are:
+We promise, it's worth it! :pray:
 
 ## ✨ New features
 
