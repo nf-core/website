@@ -2,11 +2,12 @@
 title: 'nf-core/tools - 3.0.0'
 subtitle: 'What flavour of the nf-core template do you prefer?'
 headerImage: 'https://images.unsplash.com/photo-1583258292688-d0213dc5a3a8'
-headerImageAlt: 'Yellow and red apples on black plastic crate'
-pubDate: 2024-10-03T12:00:00+01:00
+headerImageAlt: 'Shelves of yellow and red apples on display in a supermarket'
+pubDate: 2024-10-07T14:00:00+01:00
 authors:
   - 'mirpedrol'
   - 'mashehu'
+  - 'ewels'
 label:
   - 'tools'
 ---
@@ -148,11 +149,11 @@ This plugin uses a new JSON schema draft (2020-12), requiring changes to the `ne
 
 The following validation parameters have been removed from `nextflow.config` and `nextflow_schema.json`:
 
-- validationFailUnrecognisedParams
-- validationLenientMode
-- validationSchemaIgnoreParams
-- validationShowHiddenParams
-- validate_params
+- `validationFailUnrecognisedParams`
+- `validationLenientMode`
+- `validationSchemaIgnoreParams`
+- `validationShowHiddenParams`
+- `validate_params`
 
 Instead, use the `validation` scope for `nf-schema` options.
 
