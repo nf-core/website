@@ -257,7 +257,7 @@ update: null
 
 See the [API docs](/docs/nf-core-tools/api_reference/dev/api/utils#pydantic-modelpythonnf_coreutilsnfcoretemplateconfigpython) for a more detailed description of each field and the allowed input values.
 
-## `nextflow.conifg`
+## `nextflow.config`
 
 Several merge conflicts due to changes described in [Important Template Updates](http://localhost:4321/blog/2024/tools-3_0_0#important-template-updates).
 
@@ -265,9 +265,9 @@ Several merge conflicts due to changes described in [Important Template Updates]
 
 Double-check in the parameters section, that no pipeline-specific parameter would be removed by the incoming changes. In general, you can accept the incoming changes for this file.
 
-## `subworkflows/local/utils_nfcore_$PIPELINE_NAME_pipeline/main.nf`
+## Pipeline utils subworkflow
 
-The switch to `nf-schema` might cause conflicts in the logic of reading in a samplesheet.
+In `subworkflows/local/utils_nfcore_$PIPELINE_NAME_pipeline/main.nf` the switch to `nf-schema` might cause conflicts in the logic of reading in a samplesheet.
 
 #### Resolution
 
