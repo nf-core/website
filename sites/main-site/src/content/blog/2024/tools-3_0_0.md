@@ -26,7 +26,8 @@ No worries, this is not as big of a change as the v2.0 release. The main things 
 
 ## ✨ New features
 
-- Enhanced pipeline template customisation: The template has been divided into features that can be selectively included or excluded.
+- Enhanced pipeline template customisation
+    - The template has been divided into features that can be selectively included or excluded.
   For example, you can now create a new pipeline without any traces of FastQC.
   You can strip down the pipeline to the bare minimum and add only the tools you need.
   For nf-core pipelines, certain core features (e.g., documentation, CI tests) remain mandatory, but you still have significant customisation flexibility.
@@ -158,14 +159,14 @@ The following validation parameters have been removed from `nextflow.config` and
 Instead, use the `validation` scope for `nf-schema` options.
 
 :::note
-The plugins definition and `validation` scope have been moved after the `manifest` scope to allow access to `manifest` variables for help message customisation.
+The plugins definition and `validation` scope have been moved further down `nextflow.config` and are now found after the `manifest` scope. This allows access to `manifest` variables to help improve message customisation.
 :::
 
 The `UTILS_NFVALIDATION_PLUGIN` subworkflow has been replaced by `UTILS_NFSCHEMA_PLUGIN`, changing how the input samplesheet is read. See [the documentation](https://nextflow-io.github.io/nf-schema/2.0/migration_guide/#__tabbed_2_2) for details on using the new `samplesheetToList()` function.
 
-# Removing for-loops and try/catch Blocks from nextflow.config
+# Removing scripting from `nextflow.config`
 
-To prepare for upcoming Nextflow changes, code in config files has been simplified:
+To prepare for upcoming Nextflow syntax depreciations, for loops and try/catch blocks have been removed from the template config files:
 
 - nf-core configs are now included without try/catch blocks
 - Include statements have been moved after profile definitions to ensure correct profile overriding
@@ -265,7 +266,7 @@ See the [API docs](/docs/nf-core-tools/api_reference/dev/api/utils#pydantic-mode
 
 ## `nextflow.conifg`
 
-Several merge conflicts to do changes described in [Important Template Updates](http://localhost:4321/blog/2024/tools-3_0_0#important-template-updates).
+Several merge conflicts due to changes described in [Important Template Updates](http://localhost:4321/blog/2024/tools-3_0_0#important-template-updates).
 
 ### Resolution
 
