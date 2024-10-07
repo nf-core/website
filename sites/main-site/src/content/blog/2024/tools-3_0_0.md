@@ -40,6 +40,12 @@ If you don't use don't use any of the following template features:
 
 you can avoid some merge conflicts with a quick update and an intermediate sync:
 
+1. start by checking out the `dev` branch.
+
+```bash
+git switch dev
+```
+
 1. update the template to the latest version.
 
 ```bash
@@ -69,17 +75,9 @@ git add .nf-core.yml
 git commit -m "Skip fastqc, igenomes and nf_schema"
 ```
 
-1. Sync the pipeline again
+1. Retrigger the pipeline sync via the [GitHub Actions workflow](https://github.com/nf-core/tools/actions/workflows/sync.yml)
 
-```bash
-run nf-core pipelines sync
-```
-
-1. Now you can merge the new template version with _less_ conflicts.
-
-```bash
-git merge TEMPLATE
-```
+1. Your template update merge should now have fewer conflicts. :tada:
 
 # Common merge conflicts and how to resolve them
 
