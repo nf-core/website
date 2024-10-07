@@ -31,7 +31,7 @@ label:
   You can strip down the pipeline to the bare minimum and add only the tools you need.
   For nf-core pipelines, certain core features (e.g., documentation, CI tests) remain mandatory, but you still have significant customisation flexibility.
 - New Text User Interface (TUI) for pipeline creation: A guided interface helps you through the process when running `nf-core pipelines create{:bash}` (don't worry - you can still use the CLI by providing all values as parameters).
-- nf-validation has replaced nf-schema in the pipeline template
+- [nf-schema](https://nextflow-io.github.io/nf-schema/latest/) has replaced nf-validation in the pipeline template
 - CI tests now use the nf-core tools version matching the pipeline's template version, reducing errors in PRs with each new tools release
 
 ## 🫡 Deprecations
@@ -91,7 +91,7 @@ git commit -m "Skip fastqc, igenomes and nf_schema"
 
 ## The `check_max()` Function Has Been Removed
 
-The `check_max()` function has been replaced by core Nextflow functionality called [`resourceLimits`](<](https://www.nextflow.io/docs/latest/reference/process.html#resourcelimits)>).
+The `check_max()` function has been replaced by core Nextflow functionality called [`resourceLimits`](https://www.nextflow.io/docs/latest/reference/process.html#resourcelimits).
 
 The `resourceLimits` are specified in the `nextflow.config` file. You can remove all references to `check_max()` and its associated parameters (`max_cpus`, `max_memory`, and `max_time`).
 For more information, see the [Nextflow documentation](https://www.nextflow.io/docs/latest/reference/process.html#resourcelimits).
@@ -217,3 +217,11 @@ update: null
 ```
 
 See the [API docs](/docs/nf-core-tools/api_reference/dev/api/utils#pydantic-modelpythonnf_coreutilsnfcoretemplateconfigpython) for a more detailed description of each field and the allowed input values.
+
+## `nextflow.conifg`
+
+Several merge conflicts to do changes described in [Important Template Updates](http://localhost:4321/blog/2024/tools-3_0_0#important-template-updates)
+
+### Resolution
+
+Double-check in the paramters section, that no pipeline-specific parameter would be removed by the incoming changes. In general, you can accept the incoming changes for this file.
