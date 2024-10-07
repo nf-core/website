@@ -98,7 +98,7 @@ For more information, see the [Nextflow documentation](https://www.nextflow.io/d
 
 ## The nf-validation Plugin Has Been Replaced by nf-schema
 
-The `nf-validation` plugin is deprecated in favor of the new `nf-schema` plugin.
+The `nf-validation` plugin is deprecated in favour of the new `nf-schema` plugin.
 
 This plugin uses a new JSON schema draft (2020-12), requiring changes to the `nextflow_schema.json` and `assets/schema_input.json` files. Follow the [migration guide](https://nextflow-io.github.io/nf-schema/2.0/migration_guide/) for required changes.
 
@@ -225,3 +225,26 @@ Several merge conflicts to do changes described in [Important Template Updates](
 ### Resolution
 
 Double-check in the paramters section, that no pipeline-specific parameter would be removed by the incoming changes. In general, you can accept the incoming changes for this file.
+
+## `subworkflows/local/utils_nfcore_$PIPELINE_NAME_pipeline/main.nf`
+
+The switch to `nf-schema` might cause conflicts in the logic of reading in a samplesheet.
+
+### Resolution
+
+Be careful in accepting incoming changes. The main changes you should do are:
+
+```diff title="subworkflows/local/utils_nfcore_$PIPELINE_NAME_pipeline/main.nf"
+- include { fromSamplesheet } from 'plugin/nf-validation'
++ include { samplesheetToList } from 'plugin/nf-schema'
+```
+
+```diff title="subworkflows/local/utils_nfcore_$PIPELINE_NAME_pipeline/main.nf"
+- Channel.fromSamplesheet("input")
++ Channel.fromList(samplesheetToList(params.input, "path/to/samplesheet/schema"))
+```
+
+```diff title="subworkflows/local/utils_nfcore_$PIPELINE_NAME_pipeline/main.nf"
+-  UTILS_NFVALIDATION_PLUGIN (
++  UTILS_NFSCHEMA_PLUGIN (
+```
