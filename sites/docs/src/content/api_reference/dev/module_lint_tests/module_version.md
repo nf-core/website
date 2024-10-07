@@ -1,6 +1,6 @@
 # module_version
 
-#### `ModuleLint.module_version(module){:python}`
+#### `ModuleLint.module_version(module: NFCoreComponent){:python}`
 
 Verifies that the module has a version specified in the `modules.json` file
 

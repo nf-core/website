@@ -1,6 +1,6 @@
 # meta_yml
 
-#### `ModuleLint.meta_yml(module: NFCoreComponent){:python}`
+#### `ModuleLint.meta_yml(module: NFCoreComponent) → None{:python}`
 
 Lint a `meta.yml` file
 

@@ -1,6 +1,6 @@
 # actions_awsfulltest
 
-#### `PipelineLint.actions_awsfulltest(){:python}`
+#### `PipelineLint.actions_awsfulltest() → Dict[str, List[str]]{:python}`
 
 Checks the GitHub Actions awsfulltest is valid.
 
