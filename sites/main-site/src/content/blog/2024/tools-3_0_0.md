@@ -31,11 +31,41 @@ No worries, this is not as big of a change as the v2.0 release. The main things 
 - [nf-schema](https://nextflow-io.github.io/nf-schema/latest/) has replaced nf-validation in the pipeline template
 - CI tests now use the nf-core tools version matching the pipeline's template version, reducing errors in PRs with each new tools release
 
+## ✨ New features
+
+- Enhanced pipeline template customisation
+    The template has been divided into features that can be selectively included or excluded.
+    For example, you can now create a new pipeline without any traces of FastQC.
+    You can strip down the pipeline to the bare minimum and add only the tools you need.
+    For nf-core pipelines, certain core features (e.g., documentation, CI tests) remain mandatory, but you still have significant customisation flexibility.
+- New Text User Interface (TUI) for pipeline creation
+    A guided interface helps you through the process when running `nf-core pipelines create{:bash}` (don't worry - you can still use the CLI by providing all values as parameters).
+- [nf-schema](https://nextflow-io.github.io/nf-schema/latest/) has replaced nf-validation in the pipeline template
+- CI tests now use the nf-core tools version matching the pipeline's template version
+    This will reduce errors in opened PRs with each new tools release
+
 ## ⛓️‍💥 Breaking changes
 
 - All pipeline commands now require the `pipelines` prefix.
-  For example, `nf-core lint{:bash}` is now `nf-core pipelines lint{:bash}`.
   This change makes the commands more consistent with `nf-core modules{:bash}` and `nf-core subworkflows{:bash}` commands.
+  The commands which changed are:
+
+  ```bash
+  nf-core lint               -> nf-core pipelines lint
+  nf-core launch             -> nf-core pipelines launch
+  nf-core download           -> nf-core pipelines download
+  nf-core create-params-file -> nf-core pipelines create-params-file
+  nf-core create             -> nf-core pipelines create
+  nf-core lint               -> nf-core pipelines lint
+  nf-core bump-version       -> nf-core pipelines bump-version
+  nf-core sync               -> nf-core pipelines sync
+  nf-core schema build       -> nf-core pipelines schema build
+  nf-core schema docs        -> nf-core pipelines schema docs
+  nf-core schema lint        -> nf-core pipelines schema lint
+  nf-core schema validate    -> nf-core pipelines schema validate
+  nf-core create-logo        -> nf-core pipelines create-logo
+  ```
+
 - Some options have been changed for the `nf-core pipelines download{:bash}` command:
   - The `-t` / `--tower` flag has been renamed to `-p` / `--platform`.
   - We renamed the short flags for consistency, to always use the first letter of the second word in the long flag:
