@@ -28,17 +28,6 @@ No worries, this is not as big of a change as the v2.0 release. The main things 
 ## ✨ New features
 
 - Enhanced pipeline template customisation
-  - The template has been divided into features that can be selectively included or excluded.
-    For example, you can now create a new pipeline without any traces of FastQC.
-    You can strip down the pipeline to the bare minimum and add only the tools you need.
-    For nf-core pipelines, certain core features (e.g., documentation, CI tests) remain mandatory, but you still have significant customisation flexibility.
-- New Text User Interface (TUI) for pipeline creation: A guided interface helps you through the process when running `nf-core pipelines create{:bash}` (don't worry - you can still use the CLI by providing all values as parameters).
-- [nf-schema](https://nextflow-io.github.io/nf-schema/latest/) has replaced nf-validation in the pipeline template
-- CI tests now use the nf-core tools version matching the pipeline's template version, reducing errors in PRs with each new tools release
-
-## ✨ New features
-
-- Enhanced pipeline template customisation
   The template has been divided into features that can be selectively included or excluded.
   For example, you can now create a new pipeline without any traces of FastQC.
   You can strip down the pipeline to the bare minimum and add only the tools you need.
