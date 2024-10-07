@@ -7639,6 +7639,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -24046,6 +24050,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -106557,6 +106569,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -114235,11 +114251,11 @@
             "versions": [
               {
                 "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml"
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
                 }
-            }
+              }
             ]
           }
         ],
@@ -167037,11 +167053,21 @@
                 }
               },
               {
-                "*sortedByCoord.out.bam": {
+                "${prefix}.sortedByCoord.out.bam": {
                   "type": "file",
                   "description": "Sorted BAM file of read alignments (optional)",
                   "pattern": "*sortedByCoord.out.bam"
                 }
+              }
+            ]
+          },
+          {
+            "bam_sorted_aligned": [
+              {
+                "meta": {}
+              },
+              {
+                "${prefix}.Aligned.sortedByCoord.out.bam": {}
               }
             ]
           },
@@ -167122,13 +167148,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.SJ.out.tab"
                 }
               },
               {
                 "*.SJ.out.tab": {
-                  "type": "file",
-                  "description": "STAR output splice junction tab file",
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*.SJ.out.tab"
                 }
               }
@@ -167139,13 +167166,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.ReadsPerGene.out.tab"
                 }
               },
               {
                 "*.ReadsPerGene.out.tab": {
-                  "type": "file",
-                  "description": "STAR output read per gene tab file",
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*.ReadsPerGene.out.tab"
                 }
               }
@@ -167174,13 +167202,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.out.sam"
                 }
               },
               {
                 "*.out.sam": {
-                  "type": "file",
-                  "description": "STAR output SAM file",
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*.out.sam"
                 }
               }
