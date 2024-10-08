@@ -14,4 +14,4 @@ locations:
 ---
 
 November 2024 talk of the monthly meeting of the _#animal-genomics_ special interest group.
-In this meeting **Harris Lewin** (Arizona State University, USA) will speak about the [Earth BioGenome Project](https://www.earthbiogenome.org/).
+**Harris Lewin** (Arizona State University, USA) will discuss the [Earth BioGenome Project](https://www.earthbiogenome.org/) during this meeting.
