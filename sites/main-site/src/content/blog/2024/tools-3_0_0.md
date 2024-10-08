@@ -35,7 +35,7 @@ We promise, it's worth it! :pray:
   - For nf-core pipelines, certain core features (e.g., documentation, CI tests) remain mandatory, but you still have significant customisation flexibility.
 - New Text User Interface (TUI) for pipeline creation
   - A guided interface helps you through the process when running `nf-core pipelines create{:bash}` (don't worry - you can still use the CLI by providing all values as parameters).
-  <script src="https://asciinema.org/a/tctr1JPrhvjQGBHNxKeBDTPI8.js" id="asciicast-tctr1JPrhvjQGBHNxKeBDTPI8" async="true"></script>
+  <script src="https://asciinema.org/a/Qm4ulzsK9m6WaCcDPyh96khfh.js" id="asciicast-Qm4ulzsK9m6WaCcDPyh96khfh" async="true"></script>
 - Switch to [nf-schema](https://nextflow-io.github.io/nf-schema/latest/) for input validation
   - Replaces its predecessor nf-validation as a standard plugin in the template
 - CI tests now use the nf-core tools version matching the pipeline's template version
