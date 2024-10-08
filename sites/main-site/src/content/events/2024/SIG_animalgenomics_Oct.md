@@ -14,4 +14,4 @@ locations:
 ---
 
 October 2024 talk of the monthly meeting of the _#animal-genomics_ special interest group.
-In this meeting **Roderic Guigó** (CRG, Spain) will speak about the annotation of the human and mouse genomes.
+In this meeting, **Roderic Guigó** (CRG, Spain) will speak about the annotation of the human and mouse genomes.
