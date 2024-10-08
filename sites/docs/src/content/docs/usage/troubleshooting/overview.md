@@ -17,6 +17,7 @@ parentWeight: 20
 1. [Unable to acquire lock error](/docs/usage/troubleshooting/aquire_lock_error)
 1. [Docker permission errors](/docs/usage/troubleshooting/docker_permissions)
 1. [IPv6 network errors](/docs/usage/troubleshooting/ipv6)
+1. [Processes are retrying](/docs/usage/troubleshooting/retries.md)
 
 ## How to use these pages
 
