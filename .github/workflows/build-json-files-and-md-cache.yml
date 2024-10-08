@@ -22,7 +22,7 @@ jobs:
 
       # install npm dependencies
       - name: Set up node.js
-        uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4
+        uses: actions/setup-node@0a44ba7841725637a19e28fa30b79a866c81b0a6 # v4
         with:
           node-version: 20
           cache: 'npm'
@@ -87,7 +87,7 @@ jobs:
       # Create a PR if there are too many lines changed
       - name: Create PR with changes
         if: ${{ steps.check_lines.outputs.changes }}
-        uses: peter-evans/create-pull-request@c5a7806660adbe173f04e3e038b0ccdcd758773c # v6
+        uses: peter-evans/create-pull-request@5e914681df9dc83aa4e4905692ca88beb2f9e91f # v7
         with:
           token: ${{ secrets.CREATE_PR_TOKEN }}
           commit-message: 'chore: update pipeline.json and component.json'

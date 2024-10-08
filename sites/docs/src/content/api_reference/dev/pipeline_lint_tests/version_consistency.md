@@ -5,7 +5,7 @@
 Pipeline and container version number consistency.
 
 :::note
-This test only runs when the `--release` flag is set for `nf-core lint`,
+This test only runs when the `--release` flag is set for `nf-core pipelines lint`,
 or `$GITHUB_REF` is equal to `master`.
 :::
 

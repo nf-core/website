@@ -1,6 +1,6 @@
 # multiqc_config
 
-#### `PipelineLint.multiqc_config(){:python}`
+#### `PipelineLint.multiqc_config() → Dict[str, List[str]]{:python}`
 
 Make sure basic multiQC plugins are installed and plots are exported
 Basic template:

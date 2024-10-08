@@ -1,6 +1,6 @@
 # main_nf
 
-#### `SubworkflowLint.main_nf(subworkflow){:python}`
+#### `SubworkflowLint.main_nf(subworkflow: NFCoreComponent) → Tuple[List[str], List[str]]{:python}`
 
 Lint a `main.nf` subworkflow file
 

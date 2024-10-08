@@ -10,7 +10,7 @@ endDate: '2024-10-30'
 endTime: '14:00+02:00'
 locations:
     - name: World Trade Center Barcelona, Barcelona, Spain
-      geoCoordinates: [42.34347, -71.04489]
+      geoCoordinates: [41.371298, 2.181658]
 ---
 
 import { Image } from 'astro:assets';
@@ -93,7 +93,7 @@ At the end of each day, we will group the projects into categories and sum up th
 Projects can be anything from:
 
 -   Adding new features to existing pipelines
--   Adding and improving nf-core/modules
+-   Adding and improving components (modules / subworkflows)
 -   Improving the website and nf-core tooling
 -   Creating entirely new pipelines
 -   Discussion and planning community initiatives
@@ -127,41 +127,17 @@ If you don't know where to find them in the room, ping the project lead on slack
 
 You can move freely between projects throughout the event.
 
-## Overview of all projects
+# List of projects
 
-<HackathonGroup title="Regulatory" color="#238636" leaders={{'apeltzer': 'Alexander Peltzer'}}>
-    This group will work on tasks for the [#regulatory special interest group](/special-interest-groups/regulatory). Most likely we will try to come up with more detailed plans on how to tackle different needs of subgroups within regulatory and try to come up with a strategy on how to both align between those subgroups as well as to come up with plans / proposals for the wider community what we could add to enable e.g. auditors or authorities to understand better what nf-core already provides.
+## Pipelines
 
-    **Goal**: Clearing out the scope of the regulatory special interest group and discussing who would tackle different subfields of the entire regulatory space for future improvements on nf-core guidelines and pipelines.
-
-</HackathonGroup>
-
-<HackathonGroup title="References" color="#238636" leaders={{'maxulysse': 'Maxime Garcia', 'pinin4fjords': 'Jonathan Manning'}}>
-    Continuing the discussion from last year's hackathon, this group will work on tasks related to references' genomes handling / management.
-    Some work has started with [nf-core/references](https://github.com/nf-core/references) but it is at a very early stage. This hackathon group will work towards agreeing on a fundamental structure and plan.
-
-    **Goal**: Replacing iGenomes, then world domination.
-
-</HackathonGroup>
-
-<HackathonGroup title="Tube map polishing" color="#238636" leaders={{'mashehu': 'Matthias Hörtenhuber'}}>
-    _Details coming soon_
-
-    **Goal**: _coming soon_
-
-</HackathonGroup>
-
-<HackathonGroup title="nf-test plugins" color="#238636" leaders={{'nvnieuwk': 'Nicolas Vannieuwkerke'}}>
-    nf-test is a very important piece of our modules, used for continuous integration testing of all our modules.
-    However, writing tests for some file types / more advanced tests can be difficult.
-    In this group we will try and kickstart the creation of nf-test plugins to make our testing a lot easier.
-    This will mainly involve the development of [`nft-utils`](https://github.com/nf-core/nft-utils), the improvement of [`nft-bam`](https://nvnieuwk.github.io/nft-bam/latest/) and hopefully the creation of completely new nf-test plugins.
-
-    **Goal**: Fully develop [nft-utils](https://github.com/nf-core/nft-utils) and start new nf-test plugins
-
-</HackathonGroup>
-
-<HackathonGroup title="nf-core/seqinspector" color="#238636" leaders={{'FranBonath': 'Franziska Bonath'}}>
+<HackathonGroup
+    title="nf-core/seqinspector"
+    category="pipelines"
+    leaders={{'FranBonath': 'Franziska Bonath'}}
+    goal="Work towards a first release"
+    slack="seqinspector"
+>
     nf-core/seqinspector aims to be a pipeline for initial quality control of sequencing data. Input is either FASTQ files or a run folder, and output is planned to be a global MultiQC report and, if wished, MultiQC files of groups that are defined in the sample sheet.
     By joining this group you can
         1) add existing modules to a pipeline (beginner friendly)
@@ -170,11 +146,14 @@ You can move freely between projects throughout the event.
         4) work on display of the data in the MultiQC reports (beginner - intermediate level)
         5) write documentation
 
-    **Goal**: work towards a first release
-
 </HackathonGroup>
 
-<HackathonGroup title="Single cell analysis: nf-core/scrnaseq and nf-core/scdownstream" color="#238636" leaders={{'nictru': 'Nico Trummer'}}>
+<HackathonGroup
+    title="Single cell analysis: nf-core/scrnaseq and nf-core/scdownstream"
+    category="pipelines"
+    leaders={{'nictru': 'Nico Trummer'}}
+    goal="Move shared functionality to nf-core/modules and make #scdownstream ready for 1.0 release"
+>
     [nf-core/scrnaseq](https://nf-co.re/scrnaseq) transforms FASTQ files into expression matrices, while [nf-core/scdownstream](https://nf-co.re/scdownstream) receives expression matrices as input and performs quality control, integration, clustering and more.
     This project has two main parts:
         1) Move some local modules from scdownstream to nf-core/modules so that they can be re-used in scrnaseq.
@@ -188,7 +167,145 @@ You can move freely between projects throughout the event.
 
     Prior experience with single cell analysis is not required, but helpful.
 
-    **Goal**: Move shared functionality to nf-core/modules and make #scdownstream ready for 1.0 release
+</HackathonGroup>
+
+<HackathonGroup
+    title="nf-core/deepmodeloptim"
+    category="pipelines"
+    leaders={{'mathysgrapotte': 'Mathys Grapotte'}}
+    goal="Reach nf-core/deepmodeloptim v1.0.0 release!"
+    slack="deepmodeloptim"
+>
+    We proposed a new pipeline to nf-core, initially called STIMULUS (available here: https://github.com/mathysgrapotte/stimulus).
+    This pipeline aims to explore ways that deep learning models can learn, relative to how the input data is processed
+    (check GitHub or the [`#deepmodeloptim` channel](https://nfcore.slack.com/archives/C07MD07ULR2) on the nf-core slack).
+
+    Working on deepmodeloptim on the hackathon will mostly involve nf-core-izing the pipeline and making it a place where it is easy to contribute.
+
+</HackathonGroup>
+
+<HackathonGroup
+    title="Sarek (preprocessing) goes GPU"
+    category="pipelines"
+    leaders={{
+        'Furentsu': 'Eugenio Franzoso',
+        'famosab': 'Famke Bäuerle'
+    }}
+    goal="Integration of Parabricks in sarek"
+    slack="parabricks"
+>
+    Variant calling has multiple time consuming steps that could be faster if we use GPUs instead of CPUs.
+    First steps to achieve that could be the integration of Parabricks which is software developed by NVIDIA.
+    The modules are ready and need to be integrated into sarek.
+
+    This project can also expand onto other pipelines and include more tools that allow execution on GPU.
+
+</HackathonGroup>
+
+<HackathonGroup
+    title="nf-core/genomeqc"
+    category="pipelines"
+    leaders={{
+        'chriswyatt1': 'Chris Wyatt',
+        'GallVp': 'Usman Rashid',
+        'FernandoDuarteF': 'Fernando Duarte',
+        'mahesh-panchal': 'Mahesh Binzer-Panchal'
+    }}
+    goal="Write a first draft of this pipeline"
+    slack="genomeqc"
+>
+    A pipeline to compare and contrast genome assemblies and their annotations.
+
+    When you sequence a new genome, or wish to use a published genome, it is important to gauge the quality of the assembly.
+    There are basic tools, such as BUSCO (completeness), QUAST (contiguity), or general statistics of numbers of chromosomes,
+    genes, etc (AGAT), but no nf-core pipeline to perform all of these tasks,
+    including documenting their TE content, telomere locations, contamination level.
+
+    In addition, we would want to plot this on a phylogenetic tree, to help compare these stats.
+    See the [`#genomeqc`](https://nfcore.slack.com/archives/C07LY51P4S2) nf-core Slack channel to join!
+
+</HackathonGroup>
+
+## Components
+
+<HackathonGroup
+    title="Image processing pipelines"
+    category="components"
+    leaders={{'kbestak': 'Kresimir Bestak'}}
+    goal="Work towards next Molkart release and implement an additional MCMICRO segmentation option."
+>
+    This project focuses on creating modules and adding functionality to (highly multiplexed) imaging pipelines - [nf-core/mcmicro](https://nf-co.re/mcmicro) and [nf-core/molkart](https://nf-co.re/molkart).
+    By joining this group you can:
+        1) Create new segmentation modules for nf-core/modules (beginner friendly) ...
+        2) ... and integrate them into the pipelines (beginner - intermediate level)
+        3) Support the spot detection implementation for MCMICRO (intermediate level)
+        4) Work on improved QC metric reporting for both pipelines (beginner - intermediate level)
+        5) Help us address open [issues](https://github.com/nf-core/molkart/issues) (beginner - intermediate level)
+
+</HackathonGroup>
+
+## Tooling
+
+<HackathonGroup
+    title="References"
+    category="tooling"
+    leaders={{'maxulysse': 'Maxime Garcia', 'pinin4fjords': 'Jonathan Manning'}}
+    goal="Replacing iGenomes, then world domination."
+    slack="references"
+>
+    Continuing the discussion from last year's hackathon, this group will work on tasks related to references' genomes handling / management.
+    Some work has started with [nf-core/references](https://github.com/nf-core/references) but it is at a very early stage. This hackathon group will work towards agreeing on a fundamental structure and plan.
+
+</HackathonGroup>
+
+<HackathonGroup
+    title="Tube map polishing"
+    category="tooling"
+    leaders={{'mashehu': 'Matthias Hörtenhuber'}}
+    goal="Make the tube maps in pipelines even more fabulous."
+>
+    Everybody loves the nf-core tube maps, but they also need some special care to gleam in all their beauty. Come join us and refine your workflows representations to their full glory. Doesn't matter if you already have a finished version and want a thorough review (🦅👀) or brainstorm some ideas and concepts to start a new one, this group is for you. Disclaimer: This will not be an introduction to vector graphic tools. You bring the tools, we bring the eyes and brains.
+
+</HackathonGroup>
+
+<HackathonGroup
+    title="nf-test plugins"
+    category="tooling"
+    leaders={{'nvnieuwk': 'Nicolas Vannieuwkerke'}}
+    goal="Fully develop [nft-utils](https://github.com/nf-core/nft-utils) and start new nf-test plugins"
+    slack="nft-plugins"
+>
+    nf-test is a very important piece of our modules, used for continuous integration testing of all our modules.
+    However, writing tests for some file types / more advanced tests can be difficult.
+    In this group we will try and kickstart the creation of nf-test plugins to make our testing a lot easier.
+    This will mainly involve the development of [`nft-utils`](https://github.com/nf-core/nft-utils), the improvement of [`nft-bam`](https://nvnieuwk.github.io/nft-bam/latest/) and hopefully the creation of completely new nf-test plugins.
+
+</HackathonGroup>
+
+## Community
+
+<HackathonGroup
+    title="Regulatory"
+    category="community"
+    leaders={{'apeltzer': 'Alexander Peltzer'}}
+    goal="Clearing out the scope of the regulatory special interest group and discussing who would tackle different subfields of the entire regulatory space for future improvements on nf-core guidelines and pipelines."
+    slack="regulatory"
+>
+    This group will work on tasks for the [#regulatory special interest group](/special-interest-groups/regulatory). Most likely we will try to come up with more detailed plans on how to tackle different needs of subgroups within regulatory and try to come up with a strategy on how to both align between those subgroups as well as to come up with plans / proposals for the wider community what we could add to enable e.g. auditors or authorities to understand better what nf-core already provides.
+
+</HackathonGroup>
+
+<HackathonGroup
+    title="Meta-omics"
+    category="community"
+    leaders={{'erikrikarddaniel': 'Daniel Lundin', 'jfy133': 'James Fellows Yates'}}
+    goal="Widened understanding of the implementation details of all pipelines in a larger group of developers."
+    slack="meta-omics"
+>
+    We will work on meta-omics pipelines -- mag, ampliseq, metatdenovo, magmap, eager and taxprofiler --
+    how they can be made to better integrate with each other plus a number of downstream pipelines.
+
+    Working on deepmodeloptim on the hackathon will mostly involve nf-core-izing the pipeline and making it a place where it is easy to contribute.
 
 </HackathonGroup>
 

@@ -1,6 +1,6 @@
 # actions_schema_validation
 
-#### `PipelineLint.actions_schema_validation(){:python}`
+#### `PipelineLint.actions_schema_validation() → Dict[str, List[str]]{:python}`
 
 Checks that the GitHub Action workflow yml/yaml files adhere to the correct schema
 
