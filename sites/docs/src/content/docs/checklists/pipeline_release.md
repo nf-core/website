@@ -12,7 +12,7 @@ If this is your first release, make sure to follow the [first release tutorial](
 
 1. [ ] Check the pipeline follows [nf-core guidelines](/docs/guidelines/pipelines/overview).
 2. [ ] All continuous-integration tests on the `dev` branch should be passing
-   - [ ] Check the output of `nf-core lint` for warnings and address all that you can
+   - [ ] Check the output of `nf-core pipelines lint` for warnings and address all that you can
    - [ ] Update any software dependencies that are out of date.
          The linting will warn about available updates via automated API calls to (bio-)conda
 3. [ ] Check that there are no outstanding issues that need to be addressed, especially bug reports.
@@ -25,10 +25,11 @@ If this is your first release, make sure to follow the [first release tutorial](
 
 1. [ ] On your fork, bump the version number of the `dev` branch to a release version
    - [ ] For example, `1.0.0dev` becomes `1.0.0`
-   - [ ] Use the `nf-core bump-version` command to make the changes, eg: navigate to the pipeline directory and run `nf-core bump-version 1.0.0`
+   - [ ] Use the `nf-core pipelines bump-version` command to make the changes, eg: navigate to the pipeline directory and run `nf-core pipelines bump-version 1.0.0`
    - [ ] Please make sure to use strictly numeric release numbers
    - [ ] Use [Semantic Versioning](https://semver.org/)
-2. [ ] Run `nf-core lint --release` and check that there are no test failures for release.
+   - [ ] Make sure to update the version in any pipeline diagrams and other figures
+2. [ ] Run `nf-core pipelines lint --release` and check that there are no test failures for release.
 3. [ ] Check that `CHANGELOG.md` includes everything that has been added/fixed in this release, update the version number above the changes, and optionally add a human-readable release name (e.g. using a [code name generator](http://www.codenamegenerator.com/))
    - [ ] We recommend you also add the GitHub handle of the main contributors of each CHANGELOG entry (author, and significant reviewers etc.). This will mean each release on GitHub will display each contributors icons for extra visibility and recognition.
 4. [ ] [Open a Pull Request (PR)](https://help.github.com/en/articles/creating-a-pull-request) with these changes from your fork to the `dev` branch on the nf-core repository.
@@ -61,7 +62,7 @@ The last step is to bump up the pipeline version number in the development branc
 1. [ ] Make sure the dev branch on your fork is up to date
 2. [ ] On a new branch, bump to a new `dev` version
    - [ ] For example, `1.0.0` becomes `1.1.0dev`
-   - [ ] Use the `nf-core bump-version` command to make the changes, eg: navigate to the pipeline directory and run `nf-core bump-version 1.1.0dev`
+   - [ ] Use the `nf-core pipelines bump-version` command to make the changes, eg: navigate to the pipeline directory and run `nf-core pipelines bump-version 1.1.0dev`
 3. [ ] Update the `CHANGELOG.md` to include a new section for this new version
 4. [ ] [Open a Pull Request (PR)](https://help.github.com/en/articles/creating-a-pull-request) with these changes from your fork to the `dev` branch on the nf-core repository.
 5. [ ] (first release only) After the first release of the pipeline you will need to add the DOI manually into the main `README.md` for the pipeline:

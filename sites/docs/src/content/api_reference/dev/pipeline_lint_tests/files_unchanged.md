@@ -1,6 +1,6 @@
 # files_unchanged
 
-#### `PipelineLint.files_unchanged(){:python}`
+#### `PipelineLint.files_unchanged() → Dict[str, List[str] | bool]{:python}`
 
 Checks that certain pipeline files are not modified from template output.
 
@@ -41,7 +41,7 @@ Files that can have additional content but must include the template contents:
 ```
 
 :::note
-You can configure the `nf-core lint` tests to ignore any of these checks by setting
+You can configure the `nf-core pipelines lint` tests to ignore any of these checks by setting
 the `files_unchanged` key as follows in your `.nf-core.yml` config file. For example:
 
 ```yaml
