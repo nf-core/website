@@ -1,12 +1,11 @@
 ---
-title: nf-core Terminology
-subtitle: Specification of the terms used in the nf-core community
-shortTitle: nf-core terminology
+title: Terminology
+subtitle: nf-core terminology
 ---
 
-The features offered by Nextflow DSL2 can be used in various ways depending on the granularity with which you would like to write pipelines. Please see the listing below for the hierarchy and associated terminology we have decided to use when referring to DSL2 components.
+## Introduction
 
-## Terminology
+The features offered by Nextflow [DSL2](#domain-specific-language-dsl) can be used in various ways depending on the granularity with which you would like to write pipelines. Please see the listing below for the hierarchy and associated terminology nf-core uses when referring to DSL2 components.
 
 ### Domain-Specific Language (DSL)
 
