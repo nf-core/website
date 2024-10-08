@@ -7651,6 +7651,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -14118,6 +14122,13 @@
                 "type": "file",
                 "description": "VCF input file",
                 "pattern": "*.{vcf,bcf,vcf.gz,bcf.gz}"
+              }
+            },
+            {
+              "tbi": {
+                "type": "file",
+                "description": "VCF index file",
+                "pattern": "*.tbi"
               }
             }
           ]
@@ -24058,6 +24069,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -56464,6 +56483,15 @@
                 "type": "file",
                 "description": "List of input FASTA files, or a directory containing input FASTA files.\nNote you must supply --input-extension via ext.args if FASTA extensions do not end in the default `fna.gz`.\n",
                 "pattern": "*"
+              }
+            }
+          ],
+          [
+            {
+              "input_type": {
+                "type": "string",
+                "description": "Specify whether the file(s) given to the input channel are in FASTA format (and will be supplied as --input)\nor in TSV format (and will be supplied as --input-file). For TSV format, the 'file' column should be just the\nfile name so that it's local to the working directory of this process.\n",
+                "pattern": "fasta|tsv"
               }
             }
           ],
@@ -106016,6 +106044,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
