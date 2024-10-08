@@ -15,6 +15,12 @@ locations:
       - https://doi.org/10.6084/m9.figshare.14680260.v1
 ---
 
+:::warning
+The information presented in this bytesize may not reflect the latest way of configuring Nextflow!
+
+Please check the Nextflow and nf-core docs for the most up-to-date information.
+:::
+
 This week, Gisela Gabernet ([@ggabernet](http://github.com/ggabernet/)) will present: _**Tuning pipeline performance**_.
 
 This will cover:
