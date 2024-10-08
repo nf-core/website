@@ -1,6 +1,6 @@
 # nextflow_config
 
-#### `PipelineLint.nextflow_config(){:python}`
+#### `PipelineLint.nextflow_config() → Dict[str, List[str]]{:python}`
 
 Checks the pipeline configuration for required variables.
 
@@ -20,7 +20,7 @@ are not checked and will be assumed to be missing.
 - `manifest.description`: A description of the pipeline
 - `manifest.version`
   - The version of this pipeline. This should correspond to a [GitHub release](https://help.github.com/articles/creating-releases/).
-  - If `--release` is set when running `nf-core lint`, the version number must not contain the string `dev`
+  - If `--release` is set when running `nf-core pipelines lint`, the version number must not contain the string `dev`
   - If `--release` is \_not\_ set, the version should end in `dev` (warning triggered if not)
 - `manifest.nextflowVersion`
   - The minimum version of Nextflow required to run the pipeline.
@@ -46,11 +46,6 @@ are not checked and will be assumed to be missing.
 
   > `https://raw.githubusercontent.com/nf-core/configs/${params.custom_config_version}`
 
-- `params.validationShowHiddenParams`
-  > - Determines whether boilerplate params are showed by schema. Set to `false` by default
-- `params.validationSchemaIgnoreParams`
-  > - A comma separated string of inputs the schema validation should ignore.
-
 **The following variables throw warnings if missing:**
 
 - `manifest.mainScript`: The filename of the main pipeline script (should be `main.nf`)
@@ -64,6 +59,30 @@ are not checked and will be assumed to be missing.
 - `params.nf_required_version`: The old method for specifying the minimum Nextflow version. Replaced by `manifest.nextflowVersion`
 - `params.container`: The old method for specifying the dockerhub container address. Replaced by `process.container`
 - `igenomesIgnore`: Changed to `igenomes_ignore`
+- `params.max_cpus`: Old method of specifying the maximum number of CPUs a process can request. Replaced by native Nextflow
+
+  ```
+  `
+  ```
+
+  resourceLimits\`directive in config files.
+
+- `params.max_memory`: Old method of specifying the maximum number of memory can request. Replaced by native Nextflow
+
+  ```
+  `
+  ```
+
+  resourceLimits\`directive.
+
+- `params.max_time`: Old method of specifying the maximum number of CPUs can request. Replaced by native Nextflow
+
+  ```
+  `
+  ```
+
+  resourceLimits\`directive.
+
   > :::note
   > The `snake_case` convention should now be used when defining pipeline parameters
   > :::
