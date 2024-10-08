@@ -1,6 +1,6 @@
-# nextflow_config
+# modules_json
 
-#### `PipelineLint.modules_json(){:python}`
+#### `PipelineLint.modules_json() → Dict[str, List[str]]{:python}`
 
 Make sure all modules described in the `modules.json` file are actually installed
 

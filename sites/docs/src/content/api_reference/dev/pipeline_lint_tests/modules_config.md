@@ -1,6 +1,6 @@
 # modules_config
 
-#### `PipelineLint.modules_config(){:python}`
+#### `PipelineLint.modules_config() → Dict[str, List[str]]{:python}`
 
 Make sure the conf/modules.config file follows the nf-core template, especially removed sections.
 
