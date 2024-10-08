@@ -4,9 +4,9 @@ subtitle: Harris Lewin (Arizona State University, USA)
 
 type: talk
 startDate: '2024-11-20'
-startTime: '17:00+02:00'
+startTime: '17:00+01:00'
 endDate: '2024-11-20'
-endTime: '18:00+02:00'
+endTime: '18:00+01:00'
 locations:
   - name: Online
     links:
