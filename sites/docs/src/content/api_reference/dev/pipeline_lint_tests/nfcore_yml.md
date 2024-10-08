@@ -1,6 +1,6 @@
 # nfcore_yml
 
-#### `PipelineLint.nfcore_yml(){:python}`
+#### `PipelineLint.nfcore_yml() → Dict[str, List[str]]{:python}`
 
 Repository `.nf-core.yml` tests
 
