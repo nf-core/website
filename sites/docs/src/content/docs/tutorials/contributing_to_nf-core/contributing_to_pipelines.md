@@ -19,8 +19,9 @@ The main steps involved in adding a new nf-core pipeline covered below are:
 2. [Contribution overview](#contribution-overview)
 3. [Testing](#testing)
 4. [Patching bugs](#patching-bugs)
-5. [Getting help](#getting-help)
-6. [Pipeline contribution conventions](#pipeline-contribution-conventions)
+5. [PR review guidelines](##pr-review-guidelines)
+6. [Getting help](#getting-help)
+7. [Pipeline contribution conventions](#pipeline-contribution-conventions)
 
 ## Join the community
 
