@@ -42,7 +42,7 @@ If you'd like to write some code for an nf-core pipeline, the standard workflow 
 2. [Fork](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) the pipeline repository to your GitHub account
 3. Make the necessary changes / additions on `dev` branch by using [git checkout](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/committing-changes-to-a-pull-request-branch-created-from-a-fork) within your forked repository following [pipeline conventions](#pipeline-contribution-conventions)
 4. Use `nf-core pipelines schema build` and add any new parameters to the pipeline JSON schema (requires [nf-core tools](https://github.com/nf-core/tools) >= 1.10).
-5. Submit a Pull Request against the `dev` branch and wait for the code to be reviewed and merged
+5. Submit a Pull Request against the `dev` branch and wait for the code to be reviewed and merged. See below guidelines for this.
 
 If you're new to working with git, you can view the [GitHub pull requests documentation](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests) or other [excellent `git` resources](https://try.github.io/) to get started.
 
@@ -79,6 +79,20 @@ Only in the unlikely and regretful event of a release happening with a bug.
 - On your own fork, make a new branch `patch` based on `upstream/master`.
 - Fix the bug, and bump version (X.Y.Z+1).
 - A PR should be made on `master` from patch to directly resolve this particular bug.
+
+## PR review guidelines
+
+- Authors/Reviewers can request help for review at nf-core Slack `#request-review` channel.
+- Anyone can merge after one positive review and with no obvious open questions and, merge ASAP so as not to leave approved PRs hanging.
+- Exception in merges to master for releases (two reviews).
+- Exception in pseudo PR review for first release (needs review from core or maintainer team).
+- If it's a major change then it's ok to request a second review - either the author or reviewer can do this.
+- PRs that have approving reviews but open questions can be merged by the author after addressing the questions to a common-sense level of satisfaction.
+- If the reviewer feels uneasy about this then they shouldn't leave an approval, but rather a request-changes.
+- We prefer to use merge commits to merge. This is to avoid merge conflicts when multiple people are pulling with overlapping feature branches.
+- We prefer verbose commit histories but easy merges.
+- Feature branches should be immediately deleted after merge. Ideally by selecting the new feature on GitHub repo settings
+- Note: squash merging commits in a PR and merging after is fine, that is up to the individuals.
 
 ## Getting help
 
