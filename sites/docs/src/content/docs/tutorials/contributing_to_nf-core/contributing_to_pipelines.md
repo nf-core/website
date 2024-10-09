@@ -85,10 +85,10 @@ Only in the unlikely and regretful event of a release happening with a bug.
 
 - Authors/Reviewers can request help for review at nf-core Slack `#request-review` channel.
 - Authors/Reviewers should merge after one positive review and with no obvious open questions.
-  - Exception in merges to main for releases (two reviews).
-  - Exception in pseudo PR review for first release (needs review from core or maintainer team).
-  - If it's a major change then it's ok to request a second review - either the author or reviewer can do this.
-  - PRs that have approving reviews but open questions can be merged by the author after addressing the questions to a common-sense level of satisfaction.
+  - Exception: merges to master for releases requires **two** reviews.
+  - Exception: pseudo PR reviews for a first release needs **review from core or maintainer team**.
+  - If it's there is a major change in any type of PR (from modules to pipelines) then it's ok to request a second review - either the author or reviewer can do this.
+  - PRs that have approving reviews but remaining open questions can be merged by the author after addressing the questions to a common-sense level of satisfaction.
   - If the reviewer feels uneasy about this then they shouldn't leave an approval, but rather a request-changes.
   - "request changes" reviews can be dismissed by the PR author if considered out of date and resolved.
 - We prefer to use merge commits to merge. This is to avoid merge conflicts when multiple people are pulling with overlapping feature branches.
