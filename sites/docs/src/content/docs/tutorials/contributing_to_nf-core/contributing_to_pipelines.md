@@ -19,7 +19,7 @@ The main steps involved in adding a new nf-core pipeline covered below are:
 2. [Contribution overview](#contribution-overview)
 3. [Testing](#testing)
 4. [Patching bugs](#patching-bugs)
-5. [PR review guidelines](##pr-review-guidelines)
+5. [PR review guidelines](#pr-review-guidelines)
 6. [Getting help](#getting-help)
 7. [Pipeline contribution conventions](#pipeline-contribution-conventions)
 
@@ -90,7 +90,7 @@ Only in the unlikely and regretful event of a release happening with a bug.
   - If it's there is a major change in any type of PR (from modules to pipelines) then it's ok to request a second review - either the author or reviewer can do this.
   - PRs that have approving reviews but remaining open questions can be merged by the author after addressing the questions to a common-sense level of satisfaction.
   - If the reviewer feels uneasy about this then they shouldn't leave an approval, but rather a request-changes.
-  - "request changes" reviews can be dismissed by the PR author if considered out of date and resolved.
+  - **request changes** reviews can be [dismissed](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/dismissing-a-pull-request-review) by the PR author if considered out of date and resolved.
 - We prefer to use merge commits to merge. This is to avoid merge conflicts when multiple people are pulling with overlapping feature branches.
   - We prefer verbose commit histories but easy merges.
   - Feature branches should be immediately deleted after merge. Ideally by selecting the new feature on GitHub repo settings
