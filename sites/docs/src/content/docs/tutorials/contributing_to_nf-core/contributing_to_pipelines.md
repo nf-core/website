@@ -84,7 +84,7 @@ Only in the unlikely and regretful event of a release happening with a bug.
 ## PR review guidelines
 
 - Authors/Reviewers can request help for review at nf-core Slack `#request-review` channel.
-- It's fine / we encourage for other people to push to your PR. For example fixing linting (can mention bot commands) but also to build on or fix code if appropriate.
+- We encourage collaboration in PR, other contributors are welcome to fix linting errors (you can mention relevant bot commands) or make improvements to the code if necessary.
 - Authors/Reviewers should merge after one positive review and with no obvious open questions.
   - Exception: merges to master for releases requires **two** reviews.
   - Exception: pseudo PR reviews for a first release needs **review from core or maintainer team**.
