@@ -4,6 +4,8 @@
     import { currentHeading } from '@components/store';
 
     export let schema;
+
+    const schemaDefs = schema.definitions || schema.$defs;
     onMount(() => {
         const observer = new IntersectionObserver(
             (entries) => {
@@ -17,7 +19,7 @@
                 rootMargin: '0px 0px -92% 0px',
             },
         );
-        Object.entries(schema.definitions).forEach((heading) => {
+        Object.entries(schemaDefs).forEach((heading) => {
             const element = document.querySelector('#' + heading[0].replaceAll('_', '-'));
             observer.observe(element);
         });
@@ -25,9 +27,9 @@
 </script>
 
 <div class="schema-listing">
-    {#if Object.entries(schema.definitions).length > 0}
+    {#if Object.entries(schemaDefs).length > 0}
         <div class="d-flex flex-column">
-            {#each Object.entries(schema.definitions) as [id, definition] (id)}
+            {#each Object.entries(schemaDefs) as [id, definition] (id)}
                 <SchemaListingGroup {definition} {id} />
             {/each}
         </div>
