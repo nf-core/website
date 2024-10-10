@@ -5,7 +5,7 @@
 
     export let schema;
 
-    const schemaDefs = schema.definitions || schema.$defs;
+    const schemaDefs = schema.definitions || schema.properties || schema.$defs;
     onMount(() => {
         const observer = new IntersectionObserver(
             (entries) => {
@@ -19,6 +19,9 @@
                 rootMargin: '0px 0px -92% 0px',
             },
         );
+        if (!schemaDefs) {
+            return;
+        }
         Object.entries(schemaDefs).forEach((heading) => {
             const element = document.querySelector('#' + heading[0].replaceAll('_', '-'));
             observer.observe(element);
