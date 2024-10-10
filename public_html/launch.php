@@ -797,7 +797,10 @@ elseif ($cache['status'] == 'launch_params_complete') {
                     // Definition groups
                     if (isset($cache['schema']['allOf']) && count($cache['schema']['allOf']) > 0) {
                         foreach ($cache['schema']['allOf'] as $allof) {
-                            if (!isset($allof['$ref']) || (!isset($cache['schema']['definitions']) && !isset($cache['schema']['$defs']))) {
+                            if (
+                                !isset($allof['$ref']) ||
+                                (!isset($cache['schema']['definitions']) && !isset($cache['schema']['$defs']))
+                            ) {
                                 continue;
                             }
                             $group_id = substr($allof['$ref'], 14);
@@ -807,12 +810,18 @@ elseif ($cache['status'] == 'launch_params_complete') {
                                 preg_replace('/\s+/', '_', strtolower($group_id)),
                             );
                             if (
-                                (isset($cache['schema']['definitions']) && (!isset($cache['schema']['definitions'][$group_id]) || count($cache['schema']['definitions'][$group_id]) == 0)) &&
-                                (isset($cache['schema']['$defs']) && (!isset($cache['schema']['$defs'][$group_id]) || count($cache['schema']['$defs'][$group_id]) == 0))
+                                isset($cache['schema']['definitions']) &&
+                                (!isset($cache['schema']['definitions'][$group_id]) ||
+                                    count($cache['schema']['definitions'][$group_id]) == 0) &&
+                                (isset($cache['schema']['$defs']) &&
+                                    (!isset($cache['schema']['$defs'][$group_id]) ||
+                                        count($cache['schema']['$defs'][$group_id]) == 0))
                             ) {
                                 continue;
                             }
-                            $group = isset($cache['schema']['definitions'][$group_id]) ? $cache['schema']['definitions'][$group_id] : $cache['schema']['$defs'][$group_id];
+                            $group = isset($cache['schema']['definitions'][$group_id])
+                                ? $cache['schema']['definitions'][$group_id]
+                                : $cache['schema']['$defs'][$group_id];
                             $hidden_class = 'is_hidden';
                             $child_parameters = '';
                             foreach ($group['properties'] as $child_param_id => $child_param) {
@@ -904,17 +913,26 @@ elseif ($cache['status'] == 'launch_params_complete') {
                 $toc_list = '<nav class="nav flex-column flex-nowrap ms-3">';
                 // Definition groups
                 foreach ($cache['schema']['allOf'] as $allof) {
-                    if (!isset($allof['$ref']) || (!isset($cache['schema']['definitions']) && !isset($cache['schema']['$defs']))) {
+                    if (
+                        !isset($allof['$ref']) ||
+                        (!isset($cache['schema']['definitions']) && !isset($cache['schema']['$defs']))
+                    ) {
                         continue;
                     }
                     $group_id = substr($allof['$ref'], 14);
                     if (
-                        (isset($cache['schema']['definitions']) && (!isset($cache['schema']['definitions'][$group_id]) || count($cache['schema']['definitions'][$group_id]) == 0)) &&
-                        (isset($cache['schema']['$defs']) && (!isset($cache['schema']['$defs'][$group_id]) || count($cache['schema']['$defs'][$group_id]) == 0))
+                        isset($cache['schema']['definitions']) &&
+                        (!isset($cache['schema']['definitions'][$group_id]) ||
+                            count($cache['schema']['definitions'][$group_id]) == 0) &&
+                        (isset($cache['schema']['$defs']) &&
+                            (!isset($cache['schema']['$defs'][$group_id]) ||
+                                count($cache['schema']['$defs'][$group_id]) == 0))
                     ) {
                         continue;
                     }
-                    $group = isset($cache['schema']['definitions'][$group_id]) ? $cache['schema']['definitions'][$group_id] : $cache['schema']['$defs'][$group_id];
+                    $group = isset($cache['schema']['definitions'][$group_id])
+                        ? $cache['schema']['definitions'][$group_id]
+                        : $cache['schema']['$defs'][$group_id];
                     $html_id = preg_replace('/[^a-z0-9-_]/', '_', preg_replace('/\s+/', '_', strtolower($group_id)));
                     $hidden_class = 'is_hidden';
                     foreach ($group['properties'] as $param_id => $param) {
