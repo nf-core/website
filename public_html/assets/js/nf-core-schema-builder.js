@@ -220,10 +220,9 @@ $(function () {
   $('.add-group-btn').on('click', function (e) {
     var new_id = 'new_group_' + new_group_idx;
     var new_title = 'New Group ' + new_group_idx;
-    if (!schema.hasOwnProperty('definitions')) {
-      schema['definitions'] = {};
-    }
-    while (Object.keys(schema['definitions']).indexOf(new_id) != -1) {
+    var definitionsKey = schema.hasOwnProperty('definitions') ? 'definitions' : '$defs';
+    schema[definitionsKey] = schema[definitionsKey] || {};
+    while (Object.keys(schema[definitionsKey]).indexOf(new_id) != -1) {
       new_group_idx += 1;
       new_id = 'new_group_' + new_group_idx;
       new_title = 'New Group ' + new_group_idx;
@@ -235,7 +234,7 @@ $(function () {
       default: '',
       properties: {},
     };
-    schema['definitions'][new_id] = new_group;
+    schema[definitionsKey][new_id] = new_group;
     param_row = $(generate_group_row(new_id, new_group));
     param_row.prependTo('#schema-builder').find('.param_id').select();
     scroll_to(param_row, 140);
@@ -349,8 +348,9 @@ $(function () {
         } else {
           // Do it in a slightly odd way to preserve key order
           var new_schema = JSON.parse(JSON.stringify(schema));
+          var definitionsKey = schema.hasOwnProperty('definitions') ? 'definitions' : '$defs';
           new_schema['properties'] = {};
-          new_schema['definitions'] = {};
+          new_schema[definitionsKey] = {};
           new_schema['allOf'] = [];
           // Top-level params
           if (schema.hasOwnProperty('properties')) {
@@ -364,26 +364,26 @@ $(function () {
             }
           }
           // Groups
-          if (schema.hasOwnProperty('definitions')) {
-            for (d in schema['definitions']) {
+          if (schema.hasOwnProperty(definitionsKey)) {
+            for (d in schema[definitionsKey]) {
               // Has the definition ID changed?
               var new_d = d;
               if (d === id) {
                 new_d = new_id;
               }
-              new_schema['definitions'][new_d] = schema['definitions'][d];
-              new_schema['allOf'].push({ $ref: '#/definitions/' + new_d });
+              new_schema[definitionsKey][new_d] = schema[definitionsKey][d];
+              new_schema['allOf'].push({ $ref: '#/' + definitionsKey + '/' + new_d });
 
               // Grouped parameters
-              var new_subschema = JSON.parse(JSON.stringify(schema['definitions'][d]));
-              new_schema['definitions'][new_d]['properties'] = {};
+              var new_subschema = JSON.parse(JSON.stringify(schema[definitionsKey][d]));
+              new_schema[definitionsKey][new_d]['properties'] = {};
               if (new_subschema.hasOwnProperty('properties')) {
                 for (k in new_subschema['properties']) {
                   var new_k = k;
                   if (k === id) {
                     new_k = new_id;
                   }
-                  new_schema['definitions'][new_d]['properties'][new_k] = new_subschema['properties'][k];
+                  new_schema[definitionsKey][new_d]['properties'][new_k] = new_subschema['properties'][k];
                 }
               }
             }
@@ -589,8 +589,9 @@ $(function () {
   function schema_order_change() {
     // Don't actually need to know where it landed - just rebuild schema from the DOM
     var new_schema = JSON.parse(JSON.stringify(schema));
+    var definitionsKey = schema.hasOwnProperty('definitions') ? 'definitions' : '$defs';
     new_schema['properties'] = {};
-    new_schema['definitions'] = {};
+    new_schema[definitionsKey] = {};
     new_schema['allOf'] = [];
     new_schema['required'] = [];
 
@@ -604,17 +605,17 @@ $(function () {
 
       // Groups
       if ($(this).hasClass('schema_group_row')) {
-        new_schema['definitions'][id] = param;
-        new_schema['definitions'][id]['properties'] = {};
-        new_schema['definitions'][id]['required'] = [];
-        new_schema['allOf'].push({ $ref: '#/definitions/' + id });
+        new_schema[definitionsKey][id] = param;
+        new_schema[definitionsKey][id]['properties'] = {};
+        new_schema[definitionsKey][id]['required'] = [];
+        new_schema['allOf'].push({ $ref: '#/$defs/' + id });
       }
       // Check if we are inside a group
       else if ($(this).parent('.card-body').length) {
         var group_id = $(this).parent().data('id');
-        new_schema['definitions'][group_id]['properties'][id] = param;
+        new_schema[definitionsKey][group_id]['properties'][id] = param;
         if ($(this).find('.param_required').is(':checked')) {
-          new_schema['definitions'][group_id]['required'].push(id);
+          new_schema[definitionsKey][group_id]['required'].push(id);
         }
       }
       // Top-level parameters
@@ -625,17 +626,17 @@ $(function () {
         }
       }
     });
-    for (k in new_schema['definitions']) {
+    for (k in new_schema[definitionsKey]) {
       // Set group hidden flag, drag + drop helper text
-      if (new_schema['definitions'][k].hasOwnProperty('properties')) {
+      if (new_schema[definitionsKey][k].hasOwnProperty('properties')) {
         $('.schema_row[data-id="' + k + '"]')
           .closest('.schema_group')
           .find('.group-drag-drop-help')
           .addClass('d-none');
         var is_group_hidden = true;
         var num_children = 0;
-        for (child_param_id in new_schema['definitions'][k]['properties']) {
-          var child_param = new_schema['definitions'][k]['properties'][child_param_id];
+        for (child_param_id in new_schema[definitionsKey][k]['properties']) {
+          var child_param = new_schema[definitionsKey][k]['properties'][child_param_id];
           if (!child_param['hidden']) {
             is_group_hidden = false;
           }
@@ -1029,12 +1030,13 @@ $(function () {
       }
     }
     // Go through groups
-    for (k in schema['definitions']) {
-      if (schema['definitions'][k].hasOwnProperty('properties')) {
-        for (j in schema['definitions'][k]['properties']) {
+    var definitionsKey = schema.hasOwnProperty('definitions') ? 'definitions' : '$defs';
+    for (k in schema[definitionsKey]) {
+      if (schema[definitionsKey][k].hasOwnProperty('properties')) {
+        for (j in schema[definitionsKey][k]['properties']) {
           // Parameter to delete is in a group
           if (j === id) {
-            delete schema['definitions'][k]['properties'][j];
+            delete schema[definitionsKey][k]['properties'][j];
           }
           // Group itself is being deleted - move contents of the group
           if (k === id) {
@@ -1045,12 +1047,12 @@ $(function () {
             if (!schema.hasOwnProperty('properties')) {
               schema['properties'] = {};
             }
-            schema['properties'][j] = schema['definitions'][k]['properties'][j];
+            schema['properties'][j] = schema[definitionsKey][k]['properties'][j];
 
             // If it is required, set this on the top-level schema object
             if (
-              schema['definitions'][k].hasOwnProperty('required') &&
-              schema['definitions'][k]['required'].indexOf(j) != -1
+              schema[definitionsKey][k].hasOwnProperty('required') &&
+              schema[definitionsKey][k]['required'].indexOf(j) != -1
             ) {
               set_required(j, true);
             }
@@ -1059,11 +1061,11 @@ $(function () {
       }
       // Delete the group from the schema
       if (k === id) {
-        delete schema['definitions'][k];
+        delete schema[definitionsKey][k];
         // Loop backwards from allOf and remove matching definition
         var i = schema['allOf'].length;
         while (i--) {
-          if (schema['allOf'][i]['$ref'] == '#/definitions/' + k) {
+          if (schema['allOf'][i]['$ref'] == '#/' + definitionsKey + '/' + k) {
             schema['allOf'].splice(i, 1);
           }
         }
@@ -1252,16 +1254,17 @@ $(function () {
 function generate_obj() {
   var results = '';
   // Groups
-  for (var id in schema['definitions']) {
-    if (schema['definitions'][id].hasOwnProperty('properties')) {
+  var definitionsKey = schema.hasOwnProperty('definitions') ? 'definitions' : '$defs';
+  for (var id in schema[definitionsKey]) {
+    if (schema[definitionsKey][id].hasOwnProperty('properties')) {
       // Generate child rows
       var child_params = '';
-      for (var child_id in schema['definitions'][id]['properties']) {
-        if (schema['definitions'][id]['properties'].hasOwnProperty(child_id)) {
-          child_params += generate_param_row(child_id, schema['definitions'][id]['properties'][child_id]);
+      for (var child_id in schema[definitionsKey][id]['properties']) {
+        if (schema[definitionsKey][id]['properties'].hasOwnProperty(child_id)) {
+          child_params += generate_param_row(child_id, schema[definitionsKey][id]['properties'][child_id]);
         }
       }
-      results += generate_group_row(id, schema['definitions'][id], child_params);
+      results += generate_group_row(id, schema[definitionsKey][id], child_params);
     }
   }
   // Regular rows
@@ -1321,9 +1324,10 @@ function generate_param_row(id, param) {
     }
   }
   // Lazy, just checking if it's required in any group rather than specifically its own
-  for (k in schema['definitions']) {
-    if (schema['definitions'][k].hasOwnProperty('required')) {
-      if (schema['definitions'][k]['required'].indexOf(id) !== -1) {
+  var definitionsKey = schema.hasOwnProperty('definitions') ? 'definitions' : '$defs';
+  for (k in schema[definitionsKey]) {
+    if (schema[definitionsKey][k].hasOwnProperty('required')) {
+      if (schema[definitionsKey][k]['required'].indexOf(id) !== -1) {
         is_required = true;
       }
     }
@@ -1586,6 +1590,7 @@ function init_group_sortable() {
 function validate_id(id, old_id) {
   var param = false;
   var is_object = false;
+  var definitionsKey = schema.hasOwnProperty('definitions') ? 'definitions' : '$defs';
 
   // Get param if we have the old ID
   if (old_id !== undefined) {
@@ -1609,13 +1614,13 @@ function validate_id(id, old_id) {
     num_hits += 1;
   }
   // Iterate through groups, looking for ID
-  for (k in schema['definitions']) {
+  for (k in schema[definitionsKey]) {
     // Check that the id is not already a group id
     if (k === id) {
       num_hits += 1;
     }
-    if (schema['definitions'][k].hasOwnProperty('properties')) {
-      if (schema['definitions'][k]['properties'].hasOwnProperty(id)) {
+    if (schema[definitionsKey][k].hasOwnProperty('properties')) {
+      if (schema[definitionsKey][k]['properties'].hasOwnProperty(id)) {
         num_hits += 1;
       }
     }
@@ -1715,11 +1720,12 @@ function set_required(id, is_required) {
   }
   //   grouped properties
   else {
+    var definitionsKey = schema.hasOwnProperty('definitions') ? 'definitions' : '$defs';
     // Iterate through groups, looking for ID
-    for (k in schema['definitions']) {
-      if (schema['definitions'][k].hasOwnProperty('properties')) {
-        if (schema['definitions'][k]['properties'].hasOwnProperty(id)) {
-          schema_parent = schema['definitions'][k];
+    for (k in schema[definitionsKey]) {
+      if (schema[definitionsKey][k].hasOwnProperty('properties')) {
+        if (schema[definitionsKey][k]['properties'].hasOwnProperty(id)) {
+          schema_parent = schema[definitionsKey][k];
         }
       }
     }
@@ -1750,18 +1756,18 @@ function find_param_in_schema(id) {
   if (schema.hasOwnProperty('properties') && schema['properties'].hasOwnProperty(id)) {
     return schema['properties'][id];
   }
-
+  var definitionsKey = schema.hasOwnProperty('definitions') ? 'definitions' : '$defs';
   // This ID is itself a group
-  if (schema.hasOwnProperty('definitions') && schema['definitions'].hasOwnProperty(id)) {
-    return schema['definitions'][id];
+  if (schema.hasOwnProperty(definitionsKey) && schema[definitionsKey].hasOwnProperty(id)) {
+    return schema[definitionsKey][id];
   }
 
   // Iterate through groups, looking for ID in groups
-  for (k in schema['definitions']) {
+  for (k in schema[definitionsKey]) {
     // Check if group
-    if (schema['definitions'][k].hasOwnProperty('properties')) {
-      if (schema['definitions'][k]['properties'].hasOwnProperty(id)) {
-        return schema['definitions'][k]['properties'][id];
+    if (schema[definitionsKey][k].hasOwnProperty('properties')) {
+      if (schema[definitionsKey][k]['properties'].hasOwnProperty(id)) {
+        return schema[definitionsKey][k]['properties'][id];
       }
     }
   }
@@ -1779,11 +1785,13 @@ function find_param_group(id) {
   }
 
   // Iterate through groups, looking for ID
-  for (k in schema['definitions']) {
+
+  var definitionsKey = schema.hasOwnProperty('definitions') ? 'definitions' : '$defs';
+  for (k in schema[definitionsKey]) {
     // Check if group
-    if (schema['definitions'][k].hasOwnProperty('properties')) {
-      if (schema['definitions'][k]['properties'].hasOwnProperty(id)) {
-        return [k, schema['definitions'][k]];
+    if (schema[definitionsKey][k].hasOwnProperty('properties')) {
+      if (schema[definitionsKey][k]['properties'].hasOwnProperty(id)) {
+        return [k, schema[definitionsKey][k]];
       }
     }
   }
@@ -1795,6 +1803,7 @@ function update_param_in_schema(id, new_param) {
   // Given an ID, find the param schema even if it's in a group
   // Assumes max one level of nesting and unique IDs everywhere
 
+  var definitionsKey = schema.hasOwnProperty('definitions') ? 'definitions' : '$defs';
   // Simple case - not in a group
   if (schema.hasOwnProperty('properties') && schema['properties'].hasOwnProperty(id)) {
     schema['properties'][id] = new_param;
@@ -1802,18 +1811,18 @@ function update_param_in_schema(id, new_param) {
   }
 
   // This ID is itself a group
-  if (schema.hasOwnProperty('definitions') && schema['definitions'].hasOwnProperty(id)) {
-    schema['definitions'][id] = new_param;
+  if (schema.hasOwnProperty(definitionsKey) && schema[definitionsKey].hasOwnProperty(id)) {
+    schema[definitionsKey][id] = new_param;
     return true;
   }
 
   // Iterate through groups, looking for ID
-  if (schema.hasOwnProperty('definitions')) {
-    for (k in schema['definitions']) {
+  if (schema.hasOwnProperty(definitionsKey)) {
+    for (k in schema[definitionsKey]) {
       // Check if group
-      if (schema['definitions'][k].hasOwnProperty('properties')) {
-        if (schema['definitions'][k]['properties'].hasOwnProperty(id)) {
-          schema['definitions'][k]['properties'][id] = new_param;
+      if (schema[definitionsKey][k].hasOwnProperty('properties')) {
+        if (schema[definitionsKey][k]['properties'].hasOwnProperty(id)) {
+          schema[definitionsKey][k]['properties'][id] = new_param;
           return true;
         }
       }
@@ -1826,12 +1835,14 @@ function update_param_in_schema(id, new_param) {
 function update_schema_html(schema) {
   // Clean up empty keys in schema
   schema = clean_empty_schema_keys(schema);
-  if (schema.hasOwnProperty('definitions') && Object.keys(schema['definitions']).length === 0) {
-    delete schema['definitions'];
+
+  var definitionsKey = schema.hasOwnProperty('definitions') ? 'definitions' : '$defs';
+  if (schema.hasOwnProperty(definitionsKey) && Object.keys(schema[definitionsKey]).length === 0) {
+    delete schema[definitionsKey];
   }
-  if (schema.hasOwnProperty('definitions')) {
-    for (k in schema['definitions']) {
-      schema['definitions'][k] = clean_empty_schema_keys(schema['definitions'][k]);
+  if (schema.hasOwnProperty(definitionsKey)) {
+    for (k in schema[definitionsKey]) {
+      schema[definitionsKey][k] = clean_empty_schema_keys(schema[definitionsKey][k]);
     }
   }
   // Update in page
