@@ -44,9 +44,14 @@ let headings: {
 
 let { versions, md_files, description } = Astro.props;
 
-let schema: { definitions: { title: string; fa_icon: string; properties: [{ hidden: boolean }] }[]; properties: [] } = {
+let schema: {
+    definitions: { title: string; fa_icon: string; properties: [{ hidden: boolean }] }[];
+    properties: [];
+    $defs: { title: string; fa_icon: string; properties: [{ hidden: boolean }] }[];
+} = {
     definitions: [],
     properties: [],
+    $defs: [],
 };
 const version_tag_name = version === 'latest' ? versions[0] : version;
 
@@ -57,8 +62,16 @@ if (existsSync(cache_key)) {
     let schema_buffer = await promises.readFile(cache_key, 'utf-8');
     schema = JSON.parse(schema_buffer);
 }
-if (schema.definitions && Object.keys(schema.definitions).length > 0) {
-    headings = Object.entries(schema.definitions).map(([key, value]) => {
+console.log('pipeline: ', pipeline);
+let schemaDefs =
+    schema.definitions && Object.keys(schema.definitions).length > 0
+        ? schema.definitions
+        : schema.properties
+          ? schema.properties
+          : schema.$defs;
+console.log('schemaDefs: ', schemaDefs);
+if (schemaDefs && Object.keys(schemaDefs).length > 0) {
+    headings = Object.entries(schemaDefs).map(([key, value]) => {
         return {
             slug: key.replaceAll('_', '-'),
             text: value.title,
@@ -68,7 +81,7 @@ if (schema.definitions && Object.keys(schema.definitions).length > 0) {
         };
     });
 } else if (schema.properties && Object.keys(schema.properties).length > 0) {
-    schema.definitions = schema.properties; // catching the case where there is no definitions but only properties
+    schemaDefs = schema.properties; // catching the case where there is no definitions but only properties
 }
 ---
 
