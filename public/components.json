@@ -7683,6 +7683,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -25130,6 +25134,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -30858,14 +30870,15 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "${prefix}/"
                 }
               },
               {
-                "*.cf": {
-                  "type": "file",
-                  "description": "Index files for the centrifuge database",
-                  "pattern": "*.{cf}"
+                "${prefix}/": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "${prefix}/"
                 }
               }
             ]
@@ -106128,6 +106141,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -197793,6 +197810,10 @@
         {
           "name": "createtaxdb",
           "version": "dev"
+        },
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
         }
       ]
     },
@@ -198075,10 +198096,6 @@
         },
         {
           "name": "troughgraph",
-          "version": "dev"
-        },
-        {
-          "name": "variantbenchmarking",
           "version": "dev"
         }
       ]
