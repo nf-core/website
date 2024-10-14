@@ -7687,6 +7687,34 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -24101,6 +24129,62 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -106888,6 +106972,34 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -123151,7 +123263,7 @@
               "homepage": "https://openms.de",
               "documentation": "https://openms.readthedocs.io/en/latest/index.html",
               "tool_dev_url": "https://github.com/OpenMS/OpenMS",
-              "doi": "10.1038/nmeth.3959",
+              "doi": "10.1038/s41592-024-02197-7",
               "licence": [
                 "BSD"
               ],
@@ -167365,9 +167477,8 @@
             "log_final": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "STAR final log file",
-                  "pattern": "*Log.final.out"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
@@ -167383,9 +167494,8 @@
             "log_out": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "STAR lot out file",
-                  "pattern": "*Log.out"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
@@ -167401,9 +167511,8 @@
             "log_progress": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "STAR log progress file",
-                  "pattern": "*Log.progress.out"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
@@ -167430,9 +167539,8 @@
             "bam": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "Output BAM file containing read alignments",
-                  "pattern": "*.{bam}"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
@@ -167448,9 +167556,8 @@
             "bam_sorted": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "Sorted BAM file of read alignments (optional)",
-                  "pattern": "*sortedByCoord.out.bam"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
@@ -167465,10 +167572,17 @@
           {
             "bam_sorted_aligned": [
               {
-                "meta": {}
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
               },
               {
-                "${prefix}.Aligned.sortedByCoord.out.bam": {}
+                "${prefix}.Aligned.sortedByCoord.out.bam": {
+                  "type": "file",
+                  "description": "Sorted BAM file of read alignments (optional)",
+                  "pattern": "*.Aligned.sortedByCoord.out.bam"
+                }
               }
             ]
           },
@@ -167476,9 +167590,8 @@
             "bam_transcript": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "Output BAM file of transcriptome alignment (optional)",
-                  "pattern": "*toTranscriptome.out.bam"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
@@ -167494,9 +167607,8 @@
             "bam_unsorted": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "Unsorted BAM file of read alignments (optional)",
-                  "pattern": "*Aligned.unsort.out.bam"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
@@ -167512,9 +167624,8 @@
             "fastq": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "Unmapped FastQ files (optional)",
-                  "pattern": "*fastq.gz"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
@@ -167530,9 +167641,8 @@
             "tab": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "STAR output tab file(s) (optional)",
-                  "pattern": "*.tab"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
@@ -167549,14 +167659,13 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
-                  "pattern": "*.SJ.out.tab"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
                 "*.SJ.out.tab": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "type": "file",
+                  "description": "STAR output splice junction tab file",
                   "pattern": "*.SJ.out.tab"
                 }
               }
@@ -167567,14 +167676,13 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
-                  "pattern": "*.ReadsPerGene.out.tab"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
                 "*.ReadsPerGene.out.tab": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "type": "file",
+                  "description": "STAR output read per gene tab file",
                   "pattern": "*.ReadsPerGene.out.tab"
                 }
               }
@@ -167584,9 +167692,8 @@
             "junction": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "STAR chimeric junction output file (optional)",
-                  "pattern": "*.out.junction"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
@@ -167609,8 +167716,8 @@
               },
               {
                 "*.out.sam": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "type": "file",
+                  "description": "STAR output SAM file(s) (optional)",
                   "pattern": "*.out.sam"
                 }
               }
@@ -167620,9 +167727,8 @@
             "wig": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "STAR output wiggle format file(s) (optional)",
-                  "pattern": "*.wig"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
@@ -167638,9 +167744,8 @@
             "bedgraph": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "STAR output bedGraph format file(s) (optional)",
-                  "pattern": "*.bg"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
@@ -172682,6 +172787,127 @@
         ],
         "maintainers": [
           "@lucacozzuto"
+        ]
+      }
+    },
+    {
+      "name": "tar",
+      "path": "modules/nf-core/tar/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "tar",
+        "description": "Compress directories into tarballs with various compression options",
+        "keywords": [
+          "untar",
+          "tar",
+          "tarball",
+          "compression",
+          "archive",
+          "gzip",
+          "targz"
+        ],
+        "tools": [
+          {
+            "tar": {
+              "description": "GNU Tar provides the ability to create tar archives, as well as various other kinds of manipulation.",
+              "homepage": "https://www.gnu.org/software/tar/",
+              "documentation": "https://www.gnu.org/software/tar/manual/",
+              "licence": [
+                "GPLv3"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "input": {
+                "type": "directory",
+                "description": "A file or directory to be archived",
+                "pattern": "*/",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_1049"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "compress_type": {
+                "type": "string",
+                "description": "A string defining which type of (optional) compression to apply to the archive.\nProvide an empty string in quotes for no compression\n",
+                "pattern": ".bz2|.xz|.lz|.lzma|.lzo|.zst|.gz"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "archive": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n",
+                  "pattern": "*.tar{.bz2,.xz,.lz,.lzma,.lzo,.zst,.gz,}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_25722"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_2573"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3462"
+                    }
+                  ]
+                }
+              },
+              {
+                "*.tar${compress_type}": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n",
+                  "pattern": "*.tar{.bz2,.xz,.lz,.lzma,.lzo,.zst,.gz,}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_25722"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_2573"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3462"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@jfy133"
+        ],
+        "maintainers": [
+          "@jfy133"
         ]
       }
     },
@@ -197808,7 +198034,15 @@
       },
       "pipelines": [
         {
+          "name": "createpanelrefs",
+          "version": "dev"
+        },
+        {
           "name": "createtaxdb",
+          "version": "dev"
+        },
+        {
+          "name": "phaseimpute",
           "version": "dev"
         },
         {
@@ -197911,10 +198145,6 @@
           "version": "dev"
         },
         {
-          "name": "createpanelrefs",
-          "version": "dev"
-        },
-        {
           "name": "datasync",
           "version": "dev"
         },
@@ -198009,10 +198239,6 @@
         {
           "name": "pangenome",
           "version": "1.1.2"
-        },
-        {
-          "name": "phaseimpute",
-          "version": "dev"
         },
         {
           "name": "pixelator",
