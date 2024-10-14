@@ -7715,6 +7715,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -19741,6 +19745,10 @@
         {
           "name": "circrna",
           "version": "dev"
+        },
+        {
+          "name": "smrnaseq",
+          "version": "2.4.0"
         }
       ]
     },
@@ -22746,7 +22754,13 @@
         "maintainers": [
           "@d-jch"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "smrnaseq",
+          "version": "2.4.0"
+        }
+      ]
     },
     {
       "name": "bowtie2_align",
@@ -23034,6 +23048,10 @@
           "version": "1.0.1"
         },
         {
+          "name": "smrnaseq",
+          "version": "2.4.0"
+        },
+        {
           "name": "taxprofiler",
           "version": "1.2.0"
         },
@@ -23170,6 +23188,10 @@
         {
           "name": "readsimulator",
           "version": "1.0.1"
+        },
+        {
+          "name": "smrnaseq",
+          "version": "2.4.0"
         },
         {
           "name": "taxprofiler",
@@ -23331,6 +23353,10 @@
         {
           "name": "circrna",
           "version": "dev"
+        },
+        {
+          "name": "smrnaseq",
+          "version": "2.4.0"
         }
       ]
     },
@@ -23424,6 +23450,10 @@
         {
           "name": "circrna",
           "version": "dev"
+        },
+        {
+          "name": "smrnaseq",
+          "version": "2.4.0"
         }
       ]
     },
@@ -24129,6 +24159,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -27837,10 +27875,6 @@
           "version": "1.0.0"
         },
         {
-          "name": "smrnaseq",
-          "version": "2.3.1"
-        },
-        {
           "name": "tfactivity",
           "version": "dev"
         }
@@ -28020,7 +28054,7 @@
         },
         {
           "name": "smrnaseq",
-          "version": "2.3.1"
+          "version": "2.4.0"
         },
         {
           "name": "taxprofiler",
@@ -39325,6 +39359,10 @@
         {
           "name": "reportho",
           "version": "1.0.1"
+        },
+        {
+          "name": "smrnaseq",
+          "version": "2.4.0"
         }
       ]
     },
@@ -52263,7 +52301,7 @@
         },
         {
           "name": "smrnaseq",
-          "version": "2.3.1"
+          "version": "2.4.0"
         },
         {
           "name": "taxprofiler",
@@ -52588,7 +52626,7 @@
         },
         {
           "name": "smrnaseq",
-          "version": "2.3.1"
+          "version": "2.4.0"
         },
         {
           "name": "spatialvi",
@@ -72042,6 +72080,10 @@
         {
           "name": "sarek",
           "version": "3.4.4"
+        },
+        {
+          "name": "smrnaseq",
+          "version": "2.4.0"
         },
         {
           "name": "tfactivity",
@@ -104600,8 +104642,8 @@
             },
             {
               "abund": {
-                "type": "file",
-                "description": "Contig abundance files, i.e. reads against each contig. See MaxBin2 README for details. Do not supply at the same time as read files."
+                "type": "list",
+                "description": "One or more contig abundance files, i.e. average depth of reads against each contig. See MaxBin2 README for details. Do not supply at the same time as read files."
               }
             }
           ]
@@ -104637,6 +104679,23 @@
                   "type": "file",
                   "description": "Summary file describing which contigs are being classified into which bin",
                   "pattern": "*.summary"
+                }
+              }
+            ]
+          },
+          {
+            "abundance": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.abundance": {
+                  "type": "file",
+                  "description": "Abundance of each bin if multiple abundance files were supplied which bin",
+                  "pattern": "*.abundance"
                 }
               }
             ]
@@ -106225,6 +106284,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -111446,7 +111509,13 @@
         "maintainers": [
           "@atrigila"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "smrnaseq",
+          "version": "2.4.0"
+        }
+      ]
     },
     {
       "name": "mirdeep2_mirdeep2",
@@ -111579,7 +111648,13 @@
         "maintainers": [
           "@atrigila"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "smrnaseq",
+          "version": "2.4.0"
+        }
+      ]
     },
     {
       "name": "mirtop_counts",
@@ -111696,7 +111771,13 @@
         "maintainers": [
           "@atrigila"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "smrnaseq",
+          "version": "2.4.0"
+        }
+      ]
     },
     {
       "name": "mirtop_export",
@@ -111847,7 +111928,13 @@
         "maintainers": [
           "@atrigila"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "smrnaseq",
+          "version": "2.4.0"
+        }
+      ]
     },
     {
       "name": "mirtop_gff",
@@ -111964,7 +112051,13 @@
         "maintainers": [
           "@atrigila"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "smrnaseq",
+          "version": "2.4.0"
+        }
+      ]
     },
     {
       "name": "mirtop_stats",
@@ -112062,7 +112155,13 @@
         "maintainers": [
           "@atrigila"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "smrnaseq",
+          "version": "2.4.0"
+        }
+      ]
     },
     {
       "name": "mirtrace_qc",
@@ -112226,7 +112325,13 @@
         "maintainers": [
           "@atrigila"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "smrnaseq",
+          "version": "2.4.0"
+        }
+      ]
     },
     {
       "name": "mitohifi_findmitoreference",
@@ -116429,7 +116534,7 @@
         },
         {
           "name": "smrnaseq",
-          "version": "2.3.1"
+          "version": "2.4.0"
         },
         {
           "name": "spatialvi",
@@ -149751,7 +149856,7 @@
         },
         {
           "name": "smrnaseq",
-          "version": "2.3.1"
+          "version": "2.4.0"
         },
         {
           "name": "viralrecon",
@@ -150017,7 +150122,7 @@
         },
         {
           "name": "smrnaseq",
-          "version": "2.3.1"
+          "version": "2.4.0"
         },
         {
           "name": "ssds",
@@ -150395,7 +150500,7 @@
         },
         {
           "name": "smrnaseq",
-          "version": "2.3.1"
+          "version": "2.4.0"
         },
         {
           "name": "ssds",
@@ -151444,7 +151549,7 @@
         },
         {
           "name": "smrnaseq",
-          "version": "2.3.1"
+          "version": "2.4.0"
         },
         {
           "name": "viralintegration",
@@ -151667,7 +151772,7 @@
         },
         {
           "name": "smrnaseq",
-          "version": "2.3.1"
+          "version": "2.4.0"
         },
         {
           "name": "taxprofiler",
@@ -156630,7 +156735,13 @@
         "maintainers": [
           "@atrigila"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "smrnaseq",
+          "version": "2.4.0"
+        }
+      ]
     },
     {
       "name": "seqfu_derep",
@@ -156972,7 +157083,13 @@
         "authors": [
           "@d-jch"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "smrnaseq",
+          "version": "2.4.0"
+        }
+      ]
     },
     {
       "name": "seqkit_fx2tab",
@@ -157147,7 +157264,13 @@
         "maintainers": [
           "@Joon-Klaps"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "smrnaseq",
+          "version": "2.4.0"
+        }
+      ]
     },
     {
       "name": "seqkit_pair",
@@ -157330,7 +157453,13 @@
         "maintainers": [
           "@mjcipriano"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "smrnaseq",
+          "version": "2.4.0"
+        }
+      ]
     },
     {
       "name": "seqkit_rmdup",
@@ -178684,7 +178813,7 @@
       "pipelines": [
         {
           "name": "smrnaseq",
-          "version": "2.3.1"
+          "version": "2.4.0"
         }
       ]
     },
@@ -178998,7 +179127,7 @@
         },
         {
           "name": "smrnaseq",
-          "version": "2.3.1"
+          "version": "2.4.0"
         }
       ]
     },
@@ -179684,6 +179813,10 @@
           "version": "3.4.4"
         },
         {
+          "name": "smrnaseq",
+          "version": "2.4.0"
+        },
+        {
           "name": "spatialvi",
           "version": "dev"
         },
@@ -179787,10 +179920,6 @@
         {
           "name": "chipseq",
           "version": "2.1.0"
-        },
-        {
-          "name": "smrnaseq",
-          "version": "2.3.1"
         }
       ]
     },
@@ -188991,7 +189120,7 @@
         },
         {
           "name": "smrnaseq",
-          "version": "2.3.1"
+          "version": "2.4.0"
         },
         {
           "name": "viralrecon",
@@ -189122,7 +189251,13 @@
         "maintainers": [
           "@atrigila"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "smrnaseq",
+          "version": "2.4.0"
+        }
+      ]
     },
     {
       "name": "bam_stats_samtools",
@@ -189251,7 +189386,7 @@
         },
         {
           "name": "smrnaseq",
-          "version": "2.3.1"
+          "version": "2.4.0"
         },
         {
           "name": "viralrecon",
@@ -192829,7 +192964,7 @@
         },
         {
           "name": "smrnaseq",
-          "version": "2.3.1"
+          "version": "2.4.0"
         }
       ]
     },
@@ -193072,7 +193207,13 @@
         "maintainers": [
           "@atrigila"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "smrnaseq",
+          "version": "2.4.0"
+        }
+      ]
     },
     {
       "name": "fastq_ngscheckmate",
@@ -197693,7 +197834,7 @@
         },
         {
           "name": "smrnaseq",
-          "version": "2.3.1"
+          "version": "2.4.0"
         },
         {
           "name": "spatialvi",
@@ -197954,7 +198095,7 @@
         },
         {
           "name": "smrnaseq",
-          "version": "2.3.1"
+          "version": "2.4.0"
         },
         {
           "name": "spatialvi",
@@ -198044,6 +198185,10 @@
         {
           "name": "phaseimpute",
           "version": "dev"
+        },
+        {
+          "name": "smrnaseq",
+          "version": "2.4.0"
         },
         {
           "name": "variantbenchmarking",
@@ -198299,10 +198444,6 @@
         {
           "name": "seqinspector",
           "version": "dev"
-        },
-        {
-          "name": "smrnaseq",
-          "version": "2.3.1"
         },
         {
           "name": "spatialvi",
