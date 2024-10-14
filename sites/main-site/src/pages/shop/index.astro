@@ -1,6 +1,8 @@
 ---
 import PageLayout from '@layouts/PageLayout.astro';
 import { spreadshopLocales } from '../../config';
+import HomepageCard from '@components/homepage/HomepageCard.astro';
+import { Icon } from 'astro-icon/components';
 ---
 
 <PageLayout title="nf-core/shop" subtitle="Share your love for the nf-core community!">
@@ -9,6 +11,28 @@ import { spreadshopLocales } from '../../config';
         We are excited to announce the launch of the nf-core shop! We have a range of products available, including
         t-shirts, hoodies, mugs, and stickers. All products are printed and shipped by our partners at Spreadshirt.
     </p>
+    <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-4 mb-4">
+        <div class="col">
+            <HomepageCard title="Big range of products" icon="pepicons-print:t-shirt" icon_class="text-secondary">
+                From tote bags to t-shirts, magnets to mugs, there's something for everyone! See <em>All Products</em>.
+            </HomepageCard>
+        </div>
+        <div class="col">
+            <HomepageCard title="Pipeline specific swag" icon="bi:bag-heart-fill" icon_class="text-secondary">
+                Many pipelines have their logos added to the shop, so you can show your love for your favourite
+                pipeline!
+            </HomepageCard>
+        </div>
+        <div class="col">
+            <HomepageCard
+                title="Customise your colours"
+                icon="fluent:paint-brush-sparkle-24-filled"
+                icon_class="text-secondary"
+            >
+                Each product can be customised with your favoruite colours and even designs. Make it your own!
+            </HomepageCard>
+        </div>
+    </div>
     <div class="text-center mb-3">
         <div class="dropdown">
             <button
