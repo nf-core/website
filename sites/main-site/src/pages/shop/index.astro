@@ -8,7 +8,36 @@ import { spreadshopLocales } from '../../config';
     <p class="mt-3 mb-4">
         We are excited to announce the launch of the nf-core shop! We have a range of products available, including
         t-shirts, hoodies, mugs, and stickers. All products are printed and shipped by our partners at Spreadshirt.
-        Before you go in, make sure you're aware of some FAQ:
+    </p>
+    <div class="text-center my-5">
+        <div class="dropdown">
+            <button
+                class="btn btn-success btn-lg dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+            >
+                Choose your shop's region
+            </button>
+            <ul class="dropdown-menu">
+                {
+                    spreadshopLocales.map((data) => (
+                        <li>
+                            <a class="dropdown-item" href={'/shop/' + data[1].toLowerCase()}>
+                                {data[0]}
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
+        </div>
+    </div>
+    <p class="text-secondary text-center small">
+        Something funky going on? Here are the direct links to the shops without any clever website embeds:
+    </p>
+    <p class="text-center mb-5">
+        <a href="https://nf-core.myspreadshop.net" class="btn btn-outline-secondary me-2">🇪🇺 Direct link to EU shop</a>
+        <a href="https://nf-core.myspreadshop.com" class="btn btn-outline-secondary">🇺🇸 Direct link to USA shop</a>
     </p>
     <div class="grid mb-4">
         <div class="card g-col-4">
@@ -68,35 +97,4 @@ import { spreadshopLocales } from '../../config';
             </div>
         </div>
     </div>
-    <div class="text-center my-5">
-        <div class="dropdown">
-            <button
-                class="btn btn-success btn-lg dropdown-toggle"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-            >
-                Choose your shop's region
-            </button>
-            <ul class="dropdown-menu">
-                {
-                    spreadshopLocales.map((data) => (
-                        <li>
-                            <a class="dropdown-item" href={'/shop/' + data[1].toLowerCase()}>
-                                {data[0]}
-                            </a>
-                        </li>
-                    ))
-                }
-            </ul>
-        </div>
-        <p class="text-secondary mt-3 fst-italic small">(sorted by web visitor stats counts, in case you're curious)</p>
-    </div>
-    <p class="text-secondary text-center small">
-        Something funky going on? Here are the direct links to the shops without any clever website embeds:
-    </p>
-    <p class="text-center mb-5">
-        <a href="https://nf-core.myspreadshop.net" class="btn btn-outline-secondary me-2">🇪🇺 Direct link to EU shop</a>
-        <a href="https://nf-core.myspreadshop.com" class="btn btn-outline-secondary">🇺🇸 Direct link to USA shop</a>
-    </p>
 </PageLayout>
