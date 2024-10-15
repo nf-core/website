@@ -7727,6 +7727,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -21202,6 +21206,26 @@
           ],
           [
             {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome FASTA file\n"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
               "index": {
                 "type": "directory",
                 "description": "Bismark genome index directory",
@@ -21278,7 +21302,8 @@
           "@phue"
         ],
         "maintainers": [
-          "@phue"
+          "@phue",
+          "@sateeshperi"
         ]
       },
       "pipelines": [
@@ -21337,6 +21362,26 @@
             }
           ],
           [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome FASTA file\n"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
             {
               "index": {
                 "type": "directory",
@@ -21414,7 +21459,8 @@
           "@ewels"
         ],
         "maintainers": [
-          "@ewels"
+          "@ewels",
+          "@sateeshperi"
         ]
       },
       "pipelines": [
@@ -21524,7 +21570,8 @@
           "@phue"
         ],
         "maintainers": [
-          "@phue"
+          "@phue",
+          "@sateeshperi"
         ]
       },
       "pipelines": [
@@ -21569,6 +21616,12 @@
         "input": [
           [
             {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
               "fasta": {
                 "type": "file",
                 "description": "Input genome fasta file"
@@ -21579,6 +21632,12 @@
         "output": [
           {
             "index": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
               {
                 "BismarkIndex": {
                   "type": "directory",
@@ -21604,7 +21663,8 @@
           "@phue"
         ],
         "maintainers": [
-          "@phue"
+          "@phue",
+          "@sateeshperi"
         ]
       },
       "pipelines": [
@@ -21664,6 +21724,12 @@
             }
           ],
           [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
             {
               "index": {
                 "type": "directory",
@@ -21775,7 +21841,8 @@
           "@phue"
         ],
         "maintainers": [
-          "@phue"
+          "@phue",
+          "@sateeshperi"
         ]
       },
       "pipelines": [
@@ -21888,7 +21955,8 @@
           "@phue"
         ],
         "maintainers": [
-          "@phue"
+          "@phue",
+          "@sateeshperi"
         ]
       },
       "pipelines": [
@@ -21981,7 +22049,7 @@
           {
             "summary": [
               {
-                "*report.{html": {
+                "*report.{html,txt}": {
                   "type": "file",
                   "description": "Bismark summary",
                   "pattern": "*.{html,txt}"
@@ -22005,7 +22073,8 @@
           "@phue"
         ],
         "maintainers": [
-          "@phue"
+          "@phue",
+          "@sateeshperi"
         ]
       },
       "pipelines": [
@@ -24167,6 +24236,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -106308,6 +106385,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
