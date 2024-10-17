@@ -111,6 +111,7 @@
                                             size={25}
                                             strokeWidth={7}
                                             isCurrent={true}
+                                            confetti={hCheckboxes.every((check) => check.checked)}
                                         />
                                     </span>
                                 {/if}
