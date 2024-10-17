@@ -246,6 +246,27 @@ You can move freely between projects throughout the event.
 ## Components
 
 <HackathonGroup
+    title="update nf-core/differentialabundance related modules"
+    category="components/pipeline"
+    leaders={{
+        'suzannejin': 'Suzanne Jin', 
+        'bjlang': 'Björn Langer',
+        'pinin4fjords': 'Jonathan Manning',
+        'WackerO': 'Oskar Wacker'
+    }}
+    goal="finish the integration of the modules and works towards the restructuring of the pipeline"
+>
+    This is a pipeline for downstream gene expression analysis, with a main focus on differential expression analysis. Currently, we are working on a new branch ‘dev-ratio’ with two objectives: 1) add new methods and 2) convert the pipeline into a modular and unified framework that allocates different ways of performing differential analysis. By joining this group you will help with:
+        1) Implement and add nf-core modules that wrap other methods that can be used to perform differential analysis. Some modules (ie. propr) were already created but need to be updated (beginner friendly).
+        2) Add these new modules to the pipeline and update the pipeline parameters correspondingly (beginner friendly).
+        3) Add the existing modules to the new modular subworkflow in a way that will reproduce the original pipeline’s behaviour (beginner - intermediate level).
+        3) Update the code required to generate the plots and reports (beginner - intermediate level).
+        4) Help in the restructuring of the pipeline architecture (intermediate level).
+        4) Update documentation (beginner friendly).
+
+</HackathonGroup>
+
+<HackathonGroup
     title="Image processing pipelines"
     category="components"
     leaders={{'kbestak': 'Kresimir Bestak'}}
