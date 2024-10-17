@@ -7743,6 +7743,14 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -7822,12 +7830,6 @@
           ],
           [
             {
-              "meta4": {
-                "type": "map",
-                "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
-              }
-            },
-            {
               "blacklist": {
                 "type": "file",
                 "description": "Blacklist file",
@@ -7836,12 +7838,6 @@
             }
           ],
           [
-            {
-              "meta5": {
-                "type": "map",
-                "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
-              }
-            },
             {
               "known_fusions": {
                 "type": "file",
@@ -7852,41 +7848,14 @@
           ],
           [
             {
-              "meta6": {
-                "type": "map",
-                "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
-              }
-            },
-            {
-              "structural_variants": {
+              "cytobands": {
                 "type": "file",
-                "description": "Structural variants file",
+                "description": "Cytobands file",
                 "pattern": "*.{tsv}"
               }
             }
           ],
           [
-            {
-              "meta7": {
-                "type": "map",
-                "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
-              }
-            },
-            {
-              "tags": {
-                "type": "file",
-                "description": "Tags file",
-                "pattern": "*.{tsv}"
-              }
-            }
-          ],
-          [
-            {
-              "meta8": {
-                "type": "map",
-                "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
-              }
-            },
             {
               "protein_domains": {
                 "type": "file",
@@ -7980,14 +7949,57 @@
             }
           }
         ],
+        "input": [
+          [
+            {
+              "genome": {
+                "type": "string",
+                "description": "hg38, hg19, GRCh38, GRCh37 for humans are accepted"
+              }
+            }
+          ]
+        ],
         "output": [
           {
-            "reference": [
+            "blacklist": [
               {
-                "*": {
-                  "type": "directory",
-                  "description": "Folder with arriba references",
-                  "pattern": "*"
+                "blacklist*${genome}*.tsv.gz": {
+                  "type": "str",
+                  "description": "The blacklist removes recurrent alignment artifacts and transcripts which are present in healthy tissue",
+                  "pattern": ".tsv.gz"
+                }
+              }
+            ]
+          },
+          {
+            "cytobands": [
+              {
+                "cytobands*${genome}*.tsv": {
+                  "type": "file",
+                  "description": "Coordinates of the Giemsa staining bands. This information is used to draw ideograms",
+                  "pattern": ".tsv"
+                }
+              }
+            ]
+          },
+          {
+            "protein_domains": [
+              {
+                "protein_domains*${genome}*.gff3": {
+                  "type": "file",
+                  "description": "Protein domain annotations",
+                  "patter": "*.gff3"
+                }
+              }
+            ]
+          },
+          {
+            "known_fusions": [
+              {
+                "known_fusions*${genome}*.tsv.gz": {
+                  "type": "file",
+                  "description": "Arriba is more sensitive to those fusions to improve the detection rate of expected or highly relevant events, such as recurrent fusions",
+                  "patter": "*.tsv.gz"
                 }
               }
             ]
@@ -24248,6 +24260,22 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -106537,6 +106565,14 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -198645,6 +198681,10 @@
           "version": "3.16.1"
         },
         {
+          "name": "scdownstream",
+          "version": "dev"
+        },
+        {
           "name": "smrnaseq",
           "version": "2.4.0"
         },
@@ -198882,10 +198922,6 @@
         {
           "name": "sarek",
           "version": "3.4.4"
-        },
-        {
-          "name": "scdownstream",
-          "version": "dev"
         },
         {
           "name": "scnanoseq",
