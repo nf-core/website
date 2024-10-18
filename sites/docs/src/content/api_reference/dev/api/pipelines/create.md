@@ -8,7 +8,7 @@ Bases: `App`\[`CreateConfig`]
 
 A Textual app to manage stopwatches.
 
-#### `BINDINGS{:python}`_: ClassVar\[list\[BindingType]]_ _= \[('d', 'toggle_dark', 'Toggle dark mode'), ('q', 'quit', 'Quit')]_
+#### `BINDINGS{:python}`_: ClassVar\[list\[BindingType]]_ _= \[('d', 'toggle_dark', 'Toggle dark mode'), ('q', 'quit', 'Quit'), ('a', 'toggle_all', 'Toggle all')]_
 
 #### `CSS_PATH{:python}`_: ClassVar\[CSSPathType | None]_ _= 'create.tcss'_
 
@@ -33,7 +33,7 @@ See also \[the Screen.SUB_TITLE attribute]\[textual.screen.Screen.SUB_TITLE].
 
 #### `TEMPLATE_CONFIG{:python}`_= CreateConfig(org=None, name=None, description=None, author=None, version=None, force=True, outdir=None, skip_features=None, is_nfcore=None)_
 
-#### `TITLE{:python}`_: str | None_ _= 'nf-core create'_
+#### `TITLE{:python}`_: str | None_ _= 'nf-core pipelines create'_
 
 A class variable to set the _default_ title for the application.
 
@@ -54,9 +54,13 @@ See also \[the Screen.TITLE attribute]\[textual.screen.Screen.TITLE].
 
 #### `_inherit_css{:python}`_: ClassVar\[bool]_ _= True_
 
-#### `_merged_bindings{:python}`_: ClassVar\[\_Bindings | None]_ _= \_Bindings({'ctrl+c': Binding(key='ctrl+c', action='quit', description='Quit', show=False, key_display=None, priority=True), 'ctrl+backslash': Binding(key='ctrl+backslash', action='command_palette', description='', show=False, key_display=None, priority=True), 'd': Binding(key='d', action='toggle_dark', description='Toggle dark mode', show=True, key_display=None, priority=False), 'q': Binding(key='q', action='quit', description='Quit', show=True, key_display=None, priority=False)})_
+#### `_merged_bindings{:python}`_: ClassVar\[\_Bindings | None]_ _= \_Bindings({'ctrl+c': Binding(key='ctrl+c', action='quit', description='Quit', show=False, key_display=None, priority=True), 'ctrl+backslash': Binding(key='ctrl+backslash', action='command_palette', description='', show=False, key_display=None, priority=True), 'd': Binding(key='d', action='toggle_dark', description='Toggle dark mode', show=True, key_display=None, priority=False), 'q': Binding(key='q', action='quit', description='Quit', show=True, key_display=None, priority=False), 'a': Binding(key='a', action='toggle_all', description='Toggle all', show=True, key_display=None, priority=False)})_
 
 #### `_reactives{:python}`_: ClassVar\[dict\[str, Reactive]]_ _= {'ansi_theme_dark': Reactive(\<rich.terminal_theme.TerminalTheme object>, layout=False, repaint=True, init=False, always_update=False, compute=True, recompose=False), 'ansi_theme_light': Reactive(\<rich.terminal_theme.TerminalTheme object>, layout=False, repaint=True, init=False, always_update=False, compute=True, recompose=False), 'app_focus': Reactive(True, layout=False, repaint=True, init=False, always_update=False, compute=False, recompose=False), 'dark': Reactive(True, layout=False, repaint=True, init=False, always_update=False, compute=False, recompose=False), 'sub_title': Reactive('', layout=False, repaint=True, init=False, always_update=False, compute=False, recompose=False), 'title': Reactive('', layout=False, repaint=True, init=False, always_update=False, compute=False, recompose=False)}_
+
+#### `action_toggle_all() → None{:python}`
+
+An action to toggle all Switches.
 
 #### `action_toggle_dark() → None{:python}`
 
