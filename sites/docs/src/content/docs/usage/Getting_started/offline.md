@@ -38,7 +38,7 @@ We do this by installing it locally on a machine that _does_ have an internet co
 To run a pipeline offline, you need the pipeline code, the software dependencies, and the shared nf-core/configs configuration profiles.
 We have created a helper tool as part of the _nf-core_ package to automate this for you.
 
-On a computer with an internet connection, run `nf-core download <pipeline>` to download the pipeline and config profiles.
+On a computer with an internet connection, run `nf-core pipelines download <pipeline>` to download the pipeline and config profiles.
 Add the argument `--container singularity` to also fetch the singularity container(s).
 
 The pipeline and requirements will be downloaded, configured with their relative paths, and packaged into a `.tar.gz` file by default.
@@ -51,11 +51,11 @@ To run the pipeline, simply use `nextflow run <download_directory>/workflow [pip
 
 ### Shared storage
 
-If you are downloading _directly_ to the offline storage (eg. a head node with internet access whilst compute nodes are offline), you can use the `--singularity-cache-only` option for `nf-core download` and set the `$NXF_SINGULARITY_CACHEDIR` environment variable.
+If you are downloading _directly_ to the offline storage (eg. a head node with internet access whilst compute nodes are offline), you can use the `--singularity-cache-only` option for `nf-core pipelines download` and set the `$NXF_SINGULARITY_CACHEDIR` environment variable.
 This downloads the singularity images to the `$NXF_SINGULARITY_CACHEDIR` folder and does not copy them into the target downloaded pipeline folder.
 This reduces total disk space usage and is faster.
 
-For more information, see the [documentation for `nf-core download`](/docs/nf-core-tools/pipelines/download).
+For more information, see the [documentation for `nf-core pipelines download`](/docs/nf-core-tools/pipelines/download).
 
 ## Reference genomes
 

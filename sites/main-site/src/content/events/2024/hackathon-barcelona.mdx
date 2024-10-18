@@ -10,11 +10,13 @@ endDate: '2024-10-30'
 endTime: '14:00+02:00'
 locations:
     - name: World Trade Center Barcelona, Barcelona, Spain
-      geoCoordinates: [42.34347, -71.04489]
+      geoCoordinates: [41.371298, 2.181658]
 ---
 
 import { Image } from 'astro:assets';
 import summitCard from '@assets/images/events/2024/hackathon-barcelona/summit-2024-barcelona.png';
+import ontLogo from '@assets/images/events/2024/hackathon-barcelona/ont-logo.svg';
+import ontLogoDarkbg from '@assets/images/events/2024/hackathon-barcelona/ont-logo-darkbg.svg';
 import Profile from '@components/GitHubProfilePictureExtended.svelte';
 import HackathonGroup from '@components/event/HackathonGroup.astro';
 
@@ -31,7 +33,22 @@ This hackathon will be held in advance of the **Nextflow Summit 2024** in Barcel
 -   **Location**: [World Trade Center Barcelona](https://maps.app.goo.gl/Fyezb8CiS11wEGAU6)
 -   **Slack channel**: [`#hackathon-oct-2024`](https://nfcore.slack.com/archives/C07HZCK6YE4)
 
-<Image src={summitCard} alt="Nextflow Summit 2024 - Barcelona" />
+<Image class="mb-5" src={summitCard} alt="Nextflow Summit 2024 - Barcelona" />
+
+This nf-core hackathon is sponsored by [Seqera](https://seqera.io/) and
+[Oxford Nanopore Technologies](https://nanoporetech.com/).
+Many thanks to both companies for making this event possible!
+
+<div class="d-flex justify-content-evenly my-5">
+    <Image src={ontLogo} alt="Oxford Nanopore" class="hide-dark" style="height: 50px; width:auto;" />
+    <Image src={ontLogoDarkbg} alt="Oxford Nanopore" class="hide-light" style="height: 50px; width:auto;" />
+    <img
+        src="/images/contributors/colour/seqera.svg"
+        alt="Seqera"
+        class="darkmode-image"
+        style="height: 40px; width:auto;"
+    />
+</div>
 
 # How the hackathon works
 
@@ -261,6 +278,20 @@ You can move freely between projects throughout the event.
 
 </HackathonGroup>
 
+<HackathonGroup
+    title="Update subworkflows meta.yml"
+    category="components"
+    leaders={{'mirpedrol': 'Júlia Mir'}}
+    goal="Update the meta.yml file of all nf-core subworkflows"
+>
+    We will work on updating the `meta.yml` file of subworkflows to have the proper description for the structure of input and output channels.
+
+    Check [the issue](https://github.com/nf-core/modules/issues/6737) describing the tasks and tracking the progress.
+
+    Beginners and first-time contributors are welcome!
+
+</HackathonGroup>
+
 ## Tooling
 
 <HackathonGroup
@@ -323,6 +354,17 @@ You can move freely between projects throughout the event.
     how they can be made to better integrate with each other plus a number of downstream pipelines.
 
     Working on deepmodeloptim on the hackathon will mostly involve nf-core-izing the pipeline and making it a place where it is easy to contribute.
+
+</HackathonGroup>
+
+<HackathonGroup
+    title="Teaching"
+    category="community"
+    leaders={{'LorenzoS96': 'Lorenzo Sola', 'msantorsola': 'Mariangela Santorsola', 'DavideBag': 'pushordo'}}
+    goal="Develop tailored course materials and hands-on tutorials."
+    slack="training"
+>
+    nf-core pipelines are playing a crucial role in standardising bioinformatics workflows and their user base is growing every day. Engaging training materials are essential to complement the pipelines that are being released. To achieve this, a problem-based learning approach could be developed for several nf-core pipelines where tutorials follow a storyline based on carefully simulated data. A first attempt at this approach has been drafted for nfcore/sarek (https://lescai-teaching.github.io/sarek-tutorial) and nfcore/rnaseq (https://lescai-teaching.github.io/rnaseq-tutorial). This project intends to gather people who are willing to discuss and develop further similar materials for these and other nf-core pipelines.
 
 </HackathonGroup>
 
