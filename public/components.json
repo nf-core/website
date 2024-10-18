@@ -7755,6 +7755,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -19106,6 +19110,98 @@
       }
     },
     {
+      "name": "bedtools_nuc",
+      "path": "modules/nf-core/bedtools/nuc/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "bedtools_nuc",
+        "description": "Profiles the nucleotide content of intervals in a fasta file.",
+        "keywords": [
+          "bed",
+          "nucBed",
+          "bedtools",
+          "GC content",
+          "AT content",
+          "nucleotide content",
+          "intervals"
+        ],
+        "tools": [
+          {
+            "bedtools": {
+              "description": "A set of tools for genomic analysis tasks, specifically enabling genome arithmetic (merge, count, complement) on various file types.",
+              "homepage": "https://bedtools.readthedocs.io",
+              "documentation": "https://bedtools.readthedocs.io/en/latest/content/tools/nuc.html",
+              "doi": "10.1093/bioinformatics/btq033",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:bedtools"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Genome reference",
+                "pattern": "*.{fa,fasta}"
+              }
+            },
+            {
+              "intervals": {
+                "type": "file",
+                "description": "BED/GFF/VCF file of ranges to extract from -fi",
+                "pattern": "*.{bed,gff,vcf}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "bed": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.bed": {
+                  "type": "file",
+                  "description": "The following information will be reported after each BED entry: %AT content, %GC content, Number of As observed, Number of Cs observed, Number of Gs observed, Number of Ts observed, Number of Ns observed, Number of other bases observed, The length of the explored sequence/interval, The seq. extracted from the FASTA file. (opt., if -seq is used), The number of times a user's pattern was observed. (opt., if -pattern is used.)",
+                  "pattern": "*.bed"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@lmfaber"
+        ],
+        "maintainers": [
+          "@lmfaber"
+        ]
+      }
+    },
+    {
       "name": "bedtools_shift",
       "path": "modules/nf-core/bedtools/shift/meta.yml",
       "type": "module",
@@ -24264,6 +24360,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -48140,6 +48244,99 @@
       ]
     },
     {
+      "name": "elprep_fastatoelfasta",
+      "path": "modules/nf-core/elprep/fastatoelfasta/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "elprep_fastatoelfasta",
+        "description": "Convert a file in FASTA format to the ELFASTA format",
+        "keywords": [
+          "fasta",
+          "elfasta",
+          "elprep"
+        ],
+        "tools": [
+          {
+            "elprep": {
+              "description": "elPrep is a high-performance tool for preparing .sam/.bam files for variant calling in sequencing pipelines. It can be used as a drop-in replacement for SAMtools/Picard/GATK4.",
+              "homepage": "https://github.com/ExaScience/elprep",
+              "documentation": "https://github.com/ExaScience/elprep",
+              "tool_dev_url": "https://github.com/ExaScience/elprep",
+              "doi": "10.1371/journal.pone.0244471",
+              "licence": [
+                "AGPL v3"
+              ],
+              "identifier": "biotools:elprep"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "FASTA file",
+                "pattern": "*.{fasta,fa,fna}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "elfasta": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n",
+                  "pattern": "*.elfasta"
+                }
+              },
+              {
+                "*.elfasta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n",
+                  "pattern": "*.elfasta"
+                }
+              }
+            ]
+          },
+          {
+            "log": [
+              {
+                "meta": {}
+              },
+              {
+                "logs/elprep/elprep*": {}
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@nvnieuwk"
+        ],
+        "maintainers": [
+          "@nvnieuwk"
+        ]
+      }
+    },
+    {
       "name": "elprep_filter",
       "path": "modules/nf-core/elprep/filter/meta.yml",
       "type": "module",
@@ -52755,7 +52952,7 @@
         },
         {
           "name": "demo",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "demultiplex",
@@ -107392,6 +107589,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -116631,7 +116832,7 @@
         },
         {
           "name": "demo",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "demultiplex",
@@ -125332,7 +125533,7 @@
         ],
         "tools": [
           {
-            "star": {
+            "pangolin": {
               "description": "Phylogenetic Assignment of Named Global Outbreak LINeages\n",
               "homepage": "https://github.com/cov-lineages/pangolin#pangolearn-description",
               "manual": "https://github.com/cov-lineages/pangolin#pangolearn-description",
@@ -125364,9 +125565,8 @@
             "report": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "Pangolin lineage report",
-                  "pattern": "*.{csv}"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n"
                 }
               },
               {
@@ -137884,6 +138084,104 @@
           "version": "1.0.1"
         }
       ]
+    },
+    {
+      "name": "proovframe_fix",
+      "path": "modules/nf-core/proovframe/fix/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "proovframe_fix",
+        "description": "frame-shift correction for long read (meta)genomics - fix frameshifts in reads",
+        "keywords": [
+          "frame-shift correction",
+          "long-read sequencing",
+          "sequence analysis"
+        ],
+        "tools": [
+          {
+            "proovframe": {
+              "description": "frame-shift correction for long read (meta)genomics",
+              "homepage": "https://github.com/thackl/proovframe",
+              "documentation": "https://github.com/thackl/proovframe",
+              "tool_dev_url": "https://github.com/thackl/proovframe",
+              "doi": "10.1101/2021.08.23.457338",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:proovframe"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "fa": {
+                "type": "file",
+                "description": "A FASTA file containing a database of guide protein sequences",
+                "pattern": "*.{faa,fasta,fa}"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "tsv": {
+                "type": "file",
+                "description": "Output TSV file from proovframe/map with the frameshift-aware protein to read alignments from proovframe/map",
+                "pattern": "*.{tsv}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "out_fa": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.fa": {
+                  "type": "file",
+                  "description": "Result FASTA with fixed frameshift reads",
+                  "pattern": "*.{fa}"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@mcarbajo",
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      }
     },
     {
       "name": "proovframe_map",
@@ -159413,7 +159711,7 @@
       "pipelines": [
         {
           "name": "demo",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -171838,7 +172136,7 @@
             {
               "vcfs": {
                 "type": "list",
-                "description": "Two or more VCF files. Order of files should correspond to the order of tags used for priority.",
+                "description": "One or more VCF files. The order and number of files should correspond to\nthe order and number of tags in the `priority` input channel.\n",
                 "pattern": "*.{vcf,vcf.gz}"
               }
             }
@@ -171847,7 +172145,15 @@
             {
               "priority": {
                 "type": "list",
-                "description": "prioritise the input vcf files according to this list, e.g ['tiddit','cnvnator']"
+                "description": "Prioritize the input VCF files according to this list,\ne.g ['tiddit','cnvnator']. The order and number of tags should correspond to\nthe order and number of VCFs in the `vcfs` input channel.\n"
+              }
+            }
+          ],
+          [
+            {
+              "sort_inputs": {
+                "type": "boolean",
+                "description": "Should the input files be sorted by name. The priority tag will be sorted\ntogether with it's corresponding VCF file.\n"
               }
             }
           ]
@@ -198184,7 +198490,7 @@
         },
         {
           "name": "demo",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "demultiplex",
@@ -198445,7 +198751,7 @@
         },
         {
           "name": "demo",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "demultiplex",
@@ -198681,6 +198987,10 @@
       },
       "pipelines": [
         {
+          "name": "circrna",
+          "version": "dev"
+        },
+        {
           "name": "createpanelrefs",
           "version": "dev"
         },
@@ -198689,7 +198999,15 @@
           "version": "dev"
         },
         {
+          "name": "demo",
+          "version": "1.0.1"
+        },
+        {
           "name": "phaseimpute",
+          "version": "dev"
+        },
+        {
+          "name": "rangeland",
           "version": "dev"
         },
         {
@@ -198800,16 +199118,8 @@
           "version": "2.1.0"
         },
         {
-          "name": "circrna",
-          "version": "dev"
-        },
-        {
           "name": "datasync",
           "version": "dev"
-        },
-        {
-          "name": "demo",
-          "version": "1.0.0"
         },
         {
           "name": "demultiplex",
@@ -198906,10 +199216,6 @@
         {
           "name": "proteinfold",
           "version": "1.1.1"
-        },
-        {
-          "name": "rangeland",
-          "version": "dev"
         },
         {
           "name": "raredisease",
