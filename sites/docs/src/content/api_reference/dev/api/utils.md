@@ -823,7 +823,7 @@ Poll the nf-core website API
 
 Takes argument api_url for URL
 
-Expects API reponse to be valid JSON and contain a top-level ‘status’ key.
+Expects API response to be valid JSON and contain a top-level ‘status’ key.
 
 ### `nf_core.utils.prompt_pipeline_release_branch(wf_releases: List[Dict[str, Any]], wf_branches: Dict[str, Any], multiple: bool = False) → Tuple[Any, List[str]]{:python}`
 
@@ -916,4 +916,4 @@ Keep waiting until that function returns True
   - **poll_func** (_function_) – Function to call
   - **refresh_per_second** (_int_) – Refresh this many times per second. Default: 20.
 - **Returns:**
-  None. Just sits in an infite loop until the function returns True.
+  None. Just sits in an infinite loop until the function returns True.
