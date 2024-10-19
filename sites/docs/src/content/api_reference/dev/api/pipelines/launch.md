@@ -41,7 +41,7 @@ Take the Nextflow flag schema and merge it with the pipeline schema
 Prompt for edits to a group of parameters (subschema in ‘definitions’)
 
 - **Parameters:**
-  - **group_id** – Paramater ID (string)
+  - **group_id** – Parameter ID (string)
   - **group_obj** – JSON Schema keys (dict)
 - **Returns:**
   val answers
