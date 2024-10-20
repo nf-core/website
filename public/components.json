@@ -7771,6 +7771,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -24372,6 +24376,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -72538,7 +72550,7 @@
             {
               "input": {
                 "type": "file",
-                "description": "The input file - Specify the logic that needs to be executed on this file on the `ext.args2` or in the program file",
+                "description": "The input file - Specify the logic that needs to be executed on this file on the `ext.args2` or in the program file. If the files have a `.gz` extension, they will be unzipped using `zcat`.",
                 "pattern": "*"
               }
             }
@@ -106810,6 +106822,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -199205,6 +199221,10 @@
           "version": "1.0.1"
         },
         {
+          "name": "methylarray",
+          "version": "dev"
+        },
+        {
           "name": "phaseimpute",
           "version": "dev"
         },
@@ -199381,10 +199401,6 @@
         },
         {
           "name": "metapep",
-          "version": "dev"
-        },
-        {
-          "name": "methylarray",
           "version": "dev"
         },
         {
