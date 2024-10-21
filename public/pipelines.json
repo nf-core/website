@@ -518,12 +518,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/ampliseq",
             "created_at": "2018-09-26T15:24:54Z",
-            "updated_at": "2024-10-12T15:07:02Z",
+            "updated_at": "2024-10-21T08:03:38Z",
             "pushed_at": "2024-10-11T12:28:52Z",
             "homepage": "https://nf-co.re/ampliseq",
             "size": 16504,
-            "stargazers_count": 184,
-            "watchers_count": 184,
+            "stargazers_count": 185,
+            "watchers_count": 185,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": false,
@@ -558,7 +558,7 @@
             "visibility": "public",
             "forks": 115,
             "open_issues": 28,
-            "watchers": 184,
+            "watchers": 185,
             "default_branch": "master",
             "temp_clone_token": "",
             "allow_squash_merge": false,
@@ -622,21 +622,21 @@
                 "strict": false,
                 "contexts": [
                     "nf-core",
-                    "nf-test (latest-everything, test, docker)",
-                    "nf-test (latest-everything, test_doubleprimers, docker)",
-                    "nf-test (latest-everything, test_fasta, docker)",
-                    "nf-test (latest-everything, test_iontorrent, docker)",
-                    "nf-test (latest-everything, test_multi, docker)",
-                    "nf-test (latest-everything, test_novaseq, docker)",
-                    "nf-test (latest-everything, test_single, docker)",
-                    "nf-test (latest-everything, test_sintax, docker)",
-                    "nf-test (latest-everything, test_pacbio_its, docker)",
-                    "nf-test (latest-everything, test_pplace, docker)",
-                    "nf-test (latest-everything, test_reftaxcustom, docker)",
-                    "nf-test (latest-everything, test_failed, docker)",
                     "pre-commit",
-                    "nf-test (latest-everything, test_qiimecustom, docker)",
-                    "nf-test (latest-everything, test_multiregion, docker)"
+                    "nf-test (24.04.2, docker, test, false)",
+                    "nf-test (24.04.2, docker, test_multi, false)",
+                    "nf-test (24.04.2, docker, test_novaseq, false)",
+                    "nf-test (24.04.2, docker, test_doubleprimers, false)",
+                    "nf-test (24.04.2, docker, test_failed, false)",
+                    "nf-test (24.04.2, docker, test_fasta, false)",
+                    "nf-test (24.04.2, docker, test_iontorrent, false)",
+                    "nf-test (24.04.2, docker, test_pacbio_its, false)",
+                    "nf-test (24.04.2, docker, test_pplace, false)",
+                    "nf-test (24.04.2, docker, test_qiimecustom, false)",
+                    "nf-test (24.04.2, docker, test_reftaxcustom, false)",
+                    "nf-test (24.04.2, docker, test_single, false)",
+                    "nf-test (24.04.2, docker, test_sintax, false)",
+                    "nf-test (24.04.2, docker, test_multiregion, false)"
                 ],
                 "contexts_url": "https://api.github.com/repos/nf-core/ampliseq/branches/dev/protection/required_status_checks/contexts",
                 "checks": [
@@ -645,63 +645,63 @@
                         "app_id": null
                     },
                     {
-                        "context": "nf-test (latest-everything, test, docker)",
-                        "app_id": 15368
-                    },
-                    {
-                        "context": "nf-test (latest-everything, test_doubleprimers, docker)",
-                        "app_id": 15368
-                    },
-                    {
-                        "context": "nf-test (latest-everything, test_fasta, docker)",
-                        "app_id": 15368
-                    },
-                    {
-                        "context": "nf-test (latest-everything, test_iontorrent, docker)",
-                        "app_id": 15368
-                    },
-                    {
-                        "context": "nf-test (latest-everything, test_multi, docker)",
-                        "app_id": 15368
-                    },
-                    {
-                        "context": "nf-test (latest-everything, test_novaseq, docker)",
-                        "app_id": 15368
-                    },
-                    {
-                        "context": "nf-test (latest-everything, test_single, docker)",
-                        "app_id": 15368
-                    },
-                    {
-                        "context": "nf-test (latest-everything, test_sintax, docker)",
-                        "app_id": 15368
-                    },
-                    {
-                        "context": "nf-test (latest-everything, test_pacbio_its, docker)",
-                        "app_id": 15368
-                    },
-                    {
-                        "context": "nf-test (latest-everything, test_pplace, docker)",
-                        "app_id": 15368
-                    },
-                    {
-                        "context": "nf-test (latest-everything, test_reftaxcustom, docker)",
-                        "app_id": 15368
-                    },
-                    {
-                        "context": "nf-test (latest-everything, test_failed, docker)",
-                        "app_id": 15368
-                    },
-                    {
                         "context": "pre-commit",
                         "app_id": 15368
                     },
                     {
-                        "context": "nf-test (latest-everything, test_qiimecustom, docker)",
+                        "context": "nf-test (24.04.2, docker, test, false)",
                         "app_id": 15368
                     },
                     {
-                        "context": "nf-test (latest-everything, test_multiregion, docker)",
+                        "context": "nf-test (24.04.2, docker, test_multi, false)",
+                        "app_id": 15368
+                    },
+                    {
+                        "context": "nf-test (24.04.2, docker, test_novaseq, false)",
+                        "app_id": 15368
+                    },
+                    {
+                        "context": "nf-test (24.04.2, docker, test_doubleprimers, false)",
+                        "app_id": 15368
+                    },
+                    {
+                        "context": "nf-test (24.04.2, docker, test_failed, false)",
+                        "app_id": 15368
+                    },
+                    {
+                        "context": "nf-test (24.04.2, docker, test_fasta, false)",
+                        "app_id": 15368
+                    },
+                    {
+                        "context": "nf-test (24.04.2, docker, test_iontorrent, false)",
+                        "app_id": 15368
+                    },
+                    {
+                        "context": "nf-test (24.04.2, docker, test_pacbio_its, false)",
+                        "app_id": 15368
+                    },
+                    {
+                        "context": "nf-test (24.04.2, docker, test_pplace, false)",
+                        "app_id": 15368
+                    },
+                    {
+                        "context": "nf-test (24.04.2, docker, test_qiimecustom, false)",
+                        "app_id": 15368
+                    },
+                    {
+                        "context": "nf-test (24.04.2, docker, test_reftaxcustom, false)",
+                        "app_id": 15368
+                    },
+                    {
+                        "context": "nf-test (24.04.2, docker, test_single, false)",
+                        "app_id": 15368
+                    },
+                    {
+                        "context": "nf-test (24.04.2, docker, test_sintax, false)",
+                        "app_id": 15368
+                    },
+                    {
+                        "context": "nf-test (24.04.2, docker, test_multiregion, false)",
                         "app_id": 15368
                     }
                 ]
@@ -2783,7 +2783,7 @@
                 }
             },
             "network_count": 13,
-            "subscribers_count": 150,
+            "subscribers_count": 151,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
@@ -3612,12 +3612,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/chipseq",
             "created_at": "2018-04-24T15:42:59Z",
-            "updated_at": "2024-10-16T13:38:38Z",
+            "updated_at": "2024-10-21T11:03:29Z",
             "pushed_at": "2024-10-14T14:37:54Z",
             "homepage": "https://nf-co.re/chipseq",
             "size": 16603,
-            "stargazers_count": 190,
-            "watchers_count": 190,
+            "stargazers_count": 191,
+            "watchers_count": 191,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": false,
@@ -3625,7 +3625,7 @@
             "has_wiki": false,
             "has_pages": false,
             "has_discussions": false,
-            "forks_count": 145,
+            "forks_count": 146,
             "archived": false,
             "disabled": false,
             "open_issues_count": 14,
@@ -3640,9 +3640,9 @@
                 "peak-calling"
             ],
             "visibility": "public",
-            "forks": 145,
+            "forks": 146,
             "open_issues": 14,
-            "watchers": 190,
+            "watchers": 191,
             "default_branch": "master",
             "temp_clone_token": "",
             "allow_squash_merge": false,
@@ -3674,7 +3674,7 @@
                     "status": "disabled"
                 }
             },
-            "network_count": 145,
+            "network_count": 146,
             "subscribers_count": 142,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
@@ -4799,12 +4799,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/clipseq",
             "created_at": "2020-11-19T17:00:02Z",
-            "updated_at": "2024-09-12T07:27:22Z",
+            "updated_at": "2024-10-21T08:29:37Z",
             "pushed_at": "2024-05-10T17:08:37Z",
             "homepage": "https://nf-co.re/clipseq",
             "size": 41548,
-            "stargazers_count": 19,
-            "watchers_count": 19,
+            "stargazers_count": 20,
+            "watchers_count": 20,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": true,
@@ -4828,7 +4828,7 @@
             "visibility": "public",
             "forks": 27,
             "open_issues": 17,
-            "watchers": 19,
+            "watchers": 20,
             "default_branch": "master",
             "temp_clone_token": "",
             "allow_squash_merge": false,
@@ -5469,9 +5469,9 @@
             "url": "https://api.github.com/repos/nf-core/createtaxdb",
             "created_at": "2023-10-24T08:41:35Z",
             "updated_at": "2024-10-12T13:36:35Z",
-            "pushed_at": "2024-10-17T12:43:38Z",
+            "pushed_at": "2024-10-21T10:54:23Z",
             "homepage": "https://nf-co.re/createtaxdb",
-            "size": 3218,
+            "size": 3223,
             "stargazers_count": 7,
             "watchers_count": 7,
             "language": "Nextflow",
@@ -6182,7 +6182,7 @@
                 }
             },
             "network_count": 5,
-            "subscribers_count": 139,
+            "subscribers_count": 140,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
@@ -7972,7 +7972,7 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/demo",
             "created_at": "2024-05-05T12:11:15Z",
-            "updated_at": "2024-10-18T11:11:37Z",
+            "updated_at": "2024-10-21T11:41:32Z",
             "pushed_at": "2024-10-18T11:52:20Z",
             "homepage": "https://nf-co.re/demo",
             "size": 645,
@@ -7995,7 +7995,8 @@
             "topics": [
                 "demo",
                 "minimal-example",
-                "training"
+                "training",
+                "tutorial"
             ],
             "visibility": "public",
             "forks": 7,
@@ -8181,9 +8182,9 @@
             "url": "https://api.github.com/repos/nf-core/demultiplex",
             "created_at": "2020-03-05T15:48:10Z",
             "updated_at": "2024-10-07T14:39:02Z",
-            "pushed_at": "2024-10-18T14:51:39Z",
+            "pushed_at": "2024-10-21T12:35:10Z",
             "homepage": "https://nf-co.re/demultiplex",
-            "size": 13990,
+            "size": 13976,
             "stargazers_count": 43,
             "watchers_count": 43,
             "language": "Nextflow",
@@ -8196,7 +8197,7 @@
             "forks_count": 36,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 22,
+            "open_issues_count": 21,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -8209,7 +8210,7 @@
             ],
             "visibility": "public",
             "forks": 36,
-            "open_issues": 22,
+            "open_issues": 21,
             "watchers": 43,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -8243,7 +8244,7 @@
                 }
             },
             "network_count": 36,
-            "subscribers_count": 90,
+            "subscribers_count": 91,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
@@ -8290,7 +8291,7 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 2,
+            "open_pr_count": 1,
             "repository_url": "https://github.com/nf-core/demultiplex",
             "contributors": [
                 {
@@ -8747,8 +8748,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2024-10-17T09:09:28Z",
-                    "tag_sha": "61f48d60a9d4f168d1232937a46127e28983bab3",
+                    "published_at": "2024-10-21T12:35:09Z",
+                    "tag_sha": "b267f8771ea42baf0999516e36f5212ce74067aa",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -9429,11 +9430,11 @@
             "name": "detaxizer",
             "full_name": "nf-core/detaxizer",
             "private": false,
-            "description": "A pipeline to identify (and remove) certain sequences from raw genomic data. Default taxa to identify (and remove) are Homo and Homo sapiens. Removal is optional.",
+            "description": "A pipeline to identify (and remove) certain sequences from raw genomic data. Default taxon to identify (and remove) is Homo sapiens. Removal is optional.",
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/detaxizer",
             "created_at": "2023-10-30T14:11:55Z",
-            "updated_at": "2024-09-03T11:25:15Z",
+            "updated_at": "2024-10-21T12:46:07Z",
             "pushed_at": "2024-10-18T14:43:11Z",
             "homepage": "https://nf-co.re/detaxizer",
             "size": 5483,
@@ -9723,7 +9724,7 @@
                 }
             },
             "network_count": 12,
-            "subscribers_count": 69,
+            "subscribers_count": 70,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
@@ -9995,7 +9996,7 @@
             "forks_count": 33,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 43,
+            "open_issues_count": 44,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -10013,7 +10014,7 @@
             ],
             "visibility": "public",
             "forks": 33,
-            "open_issues": 43,
+            "open_issues": 44,
             "watchers": 60,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -10111,7 +10112,7 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 4,
+            "open_pr_count": 5,
             "repository_url": "https://github.com/nf-core/differentialabundance",
             "contributors": [
                 {
@@ -10747,7 +10748,7 @@
                 }
             },
             "network_count": 30,
-            "subscribers_count": 111,
+            "subscribers_count": 112,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
@@ -10911,12 +10912,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/eager",
             "created_at": "2018-06-03T15:52:24Z",
-            "updated_at": "2024-10-20T22:32:30Z",
+            "updated_at": "2024-10-21T10:22:02Z",
             "pushed_at": "2024-10-18T11:38:12Z",
             "homepage": "https://nf-co.re/eager",
             "size": 67366,
-            "stargazers_count": 145,
-            "watchers_count": 145,
+            "stargazers_count": 146,
+            "watchers_count": 146,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": false,
@@ -10943,7 +10944,7 @@
             "visibility": "public",
             "forks": 82,
             "open_issues": 46,
-            "watchers": 145,
+            "watchers": 146,
             "default_branch": "master",
             "temp_clone_token": "",
             "allow_squash_merge": false,
@@ -14407,7 +14408,7 @@
                 }
             },
             "network_count": 17,
-            "subscribers_count": 156,
+            "subscribers_count": 157,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
@@ -15945,7 +15946,7 @@
                 }
             },
             "network_count": 17,
-            "subscribers_count": 132,
+            "subscribers_count": 133,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
@@ -17585,9 +17586,9 @@
             "url": "https://api.github.com/repos/nf-core/mag",
             "created_at": "2018-05-22T06:06:58Z",
             "updated_at": "2024-10-19T09:26:27Z",
-            "pushed_at": "2024-10-18T10:46:53Z",
+            "pushed_at": "2024-10-21T12:02:41Z",
             "homepage": "https://nf-co.re/mag",
-            "size": 21303,
+            "size": 21373,
             "stargazers_count": 212,
             "watchers_count": 212,
             "language": "Nextflow",
@@ -17733,8 +17734,8 @@
                     "Run workflow profile (test_busco_auto)",
                     "Run workflow profile (test_adapterremoval)",
                     "Run workflow profile (test_binrefinement)",
-                    "Run pipeline with test data (latest-everything)",
-                    "Run pipeline with test data (23.04.0)"
+                    "Run pipeline with test data (24.04.2 | test | docker)",
+                    "Run pipeline with test data (latest-everything | test | docker)"
                 ],
                 "contexts_url": "https://api.github.com/repos/nf-core/mag/branches/dev/protection/required_status_checks/contexts",
                 "checks": [
@@ -17771,11 +17772,11 @@
                         "app_id": 15368
                     },
                     {
-                        "context": "Run pipeline with test data (latest-everything)",
+                        "context": "Run pipeline with test data (24.04.2 | test | docker)",
                         "app_id": 15368
                     },
                     {
-                        "context": "Run pipeline with test data (23.04.0)",
+                        "context": "Run pipeline with test data (latest-everything | test | docker)",
                         "app_id": 15368
                     }
                 ]
@@ -18947,8 +18948,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2024-10-18T10:46:53Z",
-                    "tag_sha": "17d87ffe8516c4b56091a6f0b31203a051467e59",
+                    "published_at": "2024-10-21T08:20:43Z",
+                    "tag_sha": "7d6615375cdf0119d6eef3dbdf90769041f7efa1",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -19043,14 +19044,14 @@
             "forks_count": 4,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 10,
+            "open_issues_count": 12,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
             "topics": [],
             "visibility": "public",
             "forks": 4,
-            "open_issues": 10,
+            "open_issues": 12,
             "watchers": 3,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -19124,7 +19125,7 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": false,
-            "open_pr_count": 2,
+            "open_pr_count": 3,
             "repository_url": "https://github.com/nf-core/magmap",
             "contributors": [],
             "released_after_tools": false,
@@ -19959,7 +19960,7 @@
                 }
             },
             "network_count": 14,
-            "subscribers_count": 34,
+            "subscribers_count": 35,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
@@ -20813,7 +20814,7 @@
                 }
             },
             "network_count": 0,
-            "subscribers_count": 210,
+            "subscribers_count": 208,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
@@ -21639,7 +21640,7 @@
                 }
             },
             "network_count": 25,
-            "subscribers_count": 81,
+            "subscribers_count": 82,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
@@ -22826,7 +22827,7 @@
             "has_wiki": false,
             "has_pages": false,
             "has_discussions": false,
-            "forks_count": 80,
+            "forks_count": 79,
             "archived": false,
             "disabled": false,
             "open_issues_count": 37,
@@ -22840,7 +22841,7 @@
                 "qc"
             ],
             "visibility": "public",
-            "forks": 80,
+            "forks": 79,
             "open_issues": 37,
             "watchers": 178,
             "default_branch": "master",
@@ -22874,8 +22875,8 @@
                     "status": "disabled"
                 }
             },
-            "network_count": 80,
-            "subscribers_count": 132,
+            "network_count": 79,
+            "subscribers_count": 133,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
@@ -23510,9 +23511,9 @@
             "url": "https://api.github.com/repos/nf-core/nascent",
             "created_at": "2018-11-15T15:46:09Z",
             "updated_at": "2024-09-06T05:39:17Z",
-            "pushed_at": "2024-10-20T22:29:01Z",
+            "pushed_at": "2024-10-21T12:36:32Z",
             "homepage": "https://nf-co.re/nascent",
-            "size": 8701,
+            "size": 8710,
             "stargazers_count": 18,
             "watchers_count": 18,
             "language": "Nextflow",
@@ -23525,7 +23526,7 @@
             "forks_count": 10,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 42,
+            "open_issues_count": 40,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -23539,7 +23540,7 @@
             ],
             "visibility": "public",
             "forks": 10,
-            "open_issues": 42,
+            "open_issues": 40,
             "watchers": 18,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -23637,7 +23638,7 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 6,
+            "open_pr_count": 4,
             "repository_url": "https://github.com/nf-core/nascent",
             "contributors": [
                 {
@@ -23946,8 +23947,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2024-10-15T18:22:05Z",
-                    "tag_sha": "f61aac0f7ec789fbe0ed8e6d923431934d219254",
+                    "published_at": "2024-10-21T12:36:29Z",
+                    "tag_sha": "af25b3fba42c9e91c99661d3694df145d2b11770",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -24947,7 +24948,7 @@
                 }
             },
             "network_count": 16,
-            "subscribers_count": 53,
+            "subscribers_count": 54,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
@@ -26601,9 +26602,9 @@
             "url": "https://api.github.com/repos/nf-core/pixelator",
             "created_at": "2022-09-17T18:27:29Z",
             "updated_at": "2024-09-03T10:12:04Z",
-            "pushed_at": "2024-10-11T12:38:17Z",
+            "pushed_at": "2024-10-21T13:40:03Z",
             "homepage": "https://nf-co.re/pixelator",
-            "size": 4666,
+            "size": 4731,
             "stargazers_count": 8,
             "watchers_count": 8,
             "language": "Nextflow",
@@ -26759,7 +26760,7 @@
                 "nf-validation@1.1.3"
             ],
             "dev_nextflow_config_plugins": [
-                "nf-validation@1.1.3"
+                "nf-schema@2.1.1"
             ],
             "releases": [
                 {
@@ -26909,8 +26910,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2024-07-31T14:39:53Z",
-                    "tag_sha": "511dd17fc4bf61e773584b879afde194f14fbdf2",
+                    "published_at": "2024-10-21T12:41:45Z",
+                    "tag_sha": "1d0d3023da7e311a2d81c1c5562ffde83d7a8488",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -26923,7 +26924,7 @@
                         "subworkflows": [
                             "utils_nextflow_pipeline",
                             "utils_nfcore_pipeline",
-                            "utils_nfvalidation_plugin"
+                            "utils_nfschema_plugin"
                         ]
                     }
                 }
@@ -26955,7 +26956,7 @@
             "forks_count": 36,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 11,
+            "open_issues_count": 12,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -26968,7 +26969,7 @@
             ],
             "visibility": "public",
             "forks": 36,
-            "open_issues": 11,
+            "open_issues": 12,
             "watchers": 53,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -27061,7 +27062,7 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 1,
+            "open_pr_count": 2,
             "repository_url": "https://github.com/nf-core/proteinfold",
             "contributors": [
                 {
@@ -28399,7 +28400,7 @@
             "url": "https://api.github.com/repos/nf-core/raredisease",
             "created_at": "2021-06-21T09:40:29Z",
             "updated_at": "2024-10-11T12:46:33Z",
-            "pushed_at": "2024-10-20T14:47:50Z",
+            "pushed_at": "2024-10-21T14:07:10Z",
             "homepage": "https://nf-co.re/raredisease",
             "size": 13634,
             "stargazers_count": 85,
@@ -28414,7 +28415,7 @@
             "forks_count": 34,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 36,
+            "open_issues_count": 37,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -28430,7 +28431,7 @@
             ],
             "visibility": "public",
             "forks": 34,
-            "open_issues": 36,
+            "open_issues": 37,
             "watchers": 85,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -28558,7 +28559,7 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 2,
+            "open_pr_count": 3,
             "repository_url": "https://github.com/nf-core/raredisease",
             "contributors": [
                 {
@@ -31413,12 +31414,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/rnaseq",
             "created_at": "2018-03-29T13:10:58Z",
-            "updated_at": "2024-10-17T14:55:46Z",
-            "pushed_at": "2024-10-16T13:52:25Z",
+            "updated_at": "2024-10-21T03:05:06Z",
+            "pushed_at": "2024-10-21T11:14:43Z",
             "homepage": "https://nf-co.re/rnaseq",
-            "size": 72181,
-            "stargazers_count": 885,
-            "watchers_count": 885,
+            "size": 72171,
+            "stargazers_count": 886,
+            "watchers_count": 886,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": false,
@@ -31440,7 +31441,7 @@
             "visibility": "public",
             "forks": 702,
             "open_issues": 61,
-            "watchers": 885,
+            "watchers": 886,
             "default_branch": "master",
             "temp_clone_token": "",
             "allow_squash_merge": false,
@@ -31544,7 +31545,7 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 11,
+            "open_pr_count": 12,
             "repository_url": "https://github.com/nf-core/rnaseq",
             "contributors": [
                 {
@@ -34644,7 +34645,7 @@
             "forks_count": 404,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 283,
+            "open_issues_count": 284,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -34663,7 +34664,7 @@
             ],
             "visibility": "public",
             "forks": 404,
-            "open_issues": 283,
+            "open_issues": 284,
             "watchers": 400,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -37156,12 +37157,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/scdownstream",
             "created_at": "2024-06-11T06:38:31Z",
-            "updated_at": "2024-10-18T06:02:42Z",
+            "updated_at": "2024-10-21T06:27:12Z",
             "pushed_at": "2024-10-18T06:02:39Z",
             "homepage": "https://nf-co.re/scdownstream",
             "size": 1910,
-            "stargazers_count": 33,
-            "watchers_count": 33,
+            "stargazers_count": 34,
+            "watchers_count": 34,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": false,
@@ -37187,7 +37188,7 @@
             "visibility": "public",
             "forks": 9,
             "open_issues": 19,
-            "watchers": 33,
+            "watchers": 34,
             "default_branch": "dev",
             "temp_clone_token": "",
             "allow_squash_merge": true,
@@ -38778,7 +38779,7 @@
             "forks_count": 14,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 13,
+            "open_issues_count": 14,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -38788,7 +38789,7 @@
             ],
             "visibility": "public",
             "forks": 14,
-            "open_issues": 13,
+            "open_issues": 14,
             "watchers": 4,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -42941,9 +42942,9 @@
             "url": "https://api.github.com/repos/nf-core/variantbenchmarking",
             "created_at": "2023-12-07T10:56:32Z",
             "updated_at": "2024-10-17T06:51:53Z",
-            "pushed_at": "2024-10-14T08:00:46Z",
+            "pushed_at": "2024-10-21T12:20:18Z",
             "homepage": "https://nf-co.re/variantbenchmarking",
-            "size": 3821,
+            "size": 3831,
             "stargazers_count": 11,
             "watchers_count": 11,
             "language": "Nextflow",
@@ -43913,7 +43914,7 @@
                 }
             },
             "network_count": 108,
-            "subscribers_count": 100,
+            "subscribers_count": 101,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,

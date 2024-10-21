@@ -7779,6 +7779,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -24380,6 +24384,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -107673,6 +107685,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -141064,6 +141080,114 @@
       ]
     },
     {
+      "name": "pypgx_computecontrolstatistics",
+      "path": "modules/nf-core/pypgx/computecontrolstatistics/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "pypgx_computecontrolstatistics",
+        "description": "Compute summary statistics for control gene from BAM files.",
+        "keywords": [
+          "pypgx",
+          "pharmacogenetics",
+          "controlstatistics"
+        ],
+        "tools": [
+          {
+            "pypgx": {
+              "description": "A Python package for pharmacogenomics research",
+              "homepage": "https://pypgx.readthedocs.io/en/latest/",
+              "documentation": "https://pypgx.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/sbslee/pypgx",
+              "doi": "10.1371/journal.pone.0272129",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Sorted BAM file",
+                "pattern": "*.{bam}"
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "BAM index file",
+                "pattern": "*.{bai}"
+              }
+            }
+          ],
+          [
+            {
+              "control_gene": {
+                "type": "string",
+                "description": "Gene to use as control gene",
+                "pattern": "{VDR,EGFR,RYR1}"
+              }
+            }
+          ],
+          [
+            {
+              "assembly_version": {
+                "type": "string",
+                "description": "Genome assembly version to use.",
+                "pattern": "{GRCh37,GRCh38}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "control_stats": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n",
+                  "pattern": "*.{zip}"
+                }
+              },
+              {
+                "*.zip": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n",
+                  "pattern": "*.{zip}"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@jorivansteenbrugge"
+        ],
+        "maintainers": [
+          "@jorivansteenbrugge"
+        ]
+      }
+    },
+    {
       "name": "pypgx_createinputvcf",
       "path": "modules/nf-core/pypgx/createinputvcf/meta.yml",
       "type": "module",
@@ -141198,6 +141322,113 @@
         ],
         "maintainers": [
           "@jorisvansteenbrugge"
+        ]
+      }
+    },
+    {
+      "name": "pypgx_preparedepthofcoverage",
+      "path": "modules/nf-core/pypgx/preparedepthofcoverage/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "pypgx_preparedepthofcoverage",
+        "description": "Prepare a depth of coverage file for all target genes with SV from BAM files.",
+        "keywords": [
+          "Pharmacogenetics",
+          "pypgx",
+          "SV"
+        ],
+        "tools": [
+          {
+            "pypgx": {
+              "description": "A Python package for pharmacogenomics research",
+              "homepage": "https://pypgx.readthedocs.io/en/latest/",
+              "documentation": "https://pypgx.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/sbslee/pypgx",
+              "doi": "10.1371/journal.pone.0272129",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Input BAM file",
+                "pattern": "*.{bam}"
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "Input BAM index file",
+                "pattern": "*.{bam.bai}"
+              }
+            }
+          ],
+          [
+            {
+              "pgx_genes": {
+                "type": "list",
+                "description": "List of PGx genes supported by PyPGx to include in variant calling."
+              }
+            }
+          ],
+          [
+            {
+              "assembly_version": {
+                "type": "string",
+                "description": "Genome assembly version to use.",
+                "pattern": "{GRCh37,GRCh38}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "coverage": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n",
+                  "pattern": "*.{zip}"
+                }
+              },
+              {
+                "*.zip": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n",
+                  "pattern": "*.{zip}"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@jorivansteenbrugge"
+        ],
+        "maintainers": [
+          "@jorivansteenbrugge"
         ]
       }
     },
@@ -199636,9 +199867,12 @@
           "snpeff"
         ],
         "components": [
+          "ensemblvep/download",
           "ensemblvep/vep",
+          "snpeff/download",
           "snpeff/snpeff",
           "tabix/tabix",
+          "tabix/bgzip",
           "bcftools/pluginscatter",
           "bcftools/concat",
           "bcftools/sort"
@@ -199685,7 +199919,7 @@
           {
             "val_snpeff_db": {
               "type": "string",
-              "description": "database to use for snpeff"
+              "description": "database to use for snpeff, usually consists of the genome and the database version\ne.g. WBcel235.105\n"
             }
           },
           {
@@ -199713,10 +199947,25 @@
             }
           },
           {
-            "reports": {
+            "vep_reports": {
               "type": "file",
-              "description": "html reports",
+              "description": "html reports generated by Ensembl VEP",
               "pattern": "*.html"
+            }
+          },
+          {
+            "snpeff_reports": {
+              "description": "csv reports generated by snpeff\nStructure: [ val(meta), path(csv) ]\n"
+            }
+          },
+          {
+            "snpeff_html": {
+              "description": "html reports generated by snpeff\nStructure: [ val(meta), path(html) ]\n"
+            }
+          },
+          {
+            "snpeff_genes": {
+              "description": "txt (tab separated) file having counts of the number of variants\naffecting each transcript and gene\nStructure: [ val(meta), path(txt) ]\n"
             }
           },
           {
