@@ -260,7 +260,71 @@ You can move freely between projects throughout the event.
 
 </HackathonGroup>
 
+<HackathonGroup
+    title="nf-core/variantbenchmarking"
+    category="pipelines"
+    leaders={{
+        'kubranarci': 'Kübra Narcı'
+    }}
+    goal="I would like to have the first version of this pipeline published"
+    slack="variantbenchmarking"
+>
+    This is a variant benchmarking pipeline, for now structural variant and small benchmarking 
+    parts for germlines are working, yet there are plans for addin g somatic benchmarking including 
+    creation of a truth file for structural variants and adding some benchmark tools. The pipeline 
+    needs to be tested extensively and a set of reviews is required.
+
+</HackathonGroup>
+
+<HackathonGroup
+    title="nf-core/proteinfold"
+    category="pipelines"
+    leaders={{
+        'JoseEspinosa': 'Jose Espinosa-Carrasco'
+    }}
+    goal="Towards release 1.2.0 and beyond"
+    slack="proteinfold"
+>
+    We have adding new reporting capabilities to the pipeline lately and we would like to finish
+    adding this features and testing them during the hackathon.
+
+    A part from this, we would like to explore which other tools could be added to the pipeline (e.g. RoseTTAFold or
+    OmegaFold) and discuss with the community what should be the future of the pipeline in terms of development.
+
+    Of course, as any other pipeline we would try to find other more "house-keeping" issues in which people joining the
+    group could get involved during the hackathon.
+
+    If you are interested please join the group!
+
+</HackathonGroup>
+
 ## Components
+
+<HackathonGroup
+    title="update nf-core/differentialabundance related modules"
+    category="components"
+    leaders={{
+        'suzannejin': 'Suzanne Jin', 
+        'bjlang': 'Björn Langer',
+        'pinin4fjords': 'Jonathan Manning',
+        'WackerO': 'Oskar Wacker'
+    }}
+    goal="finish the integration of new modules and work towards the restructuring of the pipeline"
+>
+    This is a pipeline for downstream gene expression analysis, with a main focus on differential expression analysis. Currently, we are working on a new branch `dev-ratio` with two objectives: 
+    
+    - add new methods 
+    - convert the pipeline into a modular and unified framework that allocates different ways of performing differential analysis. 
+    
+    By joining this group you will help with:
+        1) Implement and add nf-core modules that wrap other methods that can be used to perform differential analysis. Some modules (ie. propr) were already created but need to be updated (beginner friendly).
+        2) Add these new modules to the pipeline and update the pipeline parameters correspondingly (beginner friendly).
+        3) Add the existing modules to the new modular subworkflow in a way that will reproduce the original pipeline’s behaviour (beginner - intermediate level).
+        4) Update the code required to generate the plots and reports (beginner - intermediate level).
+        5) Help in the restructuring of the pipeline architecture (intermediate level).
+        6) Update documentation (beginner friendly).
+
+</HackathonGroup>
 
 <HackathonGroup
     title="Image processing pipelines"
@@ -289,6 +353,18 @@ You can move freely between projects throughout the event.
     Check [the issue](https://github.com/nf-core/modules/issues/6737) describing the tasks and tracking the progress.
 
     Beginners and first-time contributors are welcome!
+
+</HackathonGroup>
+
+<HackathonGroup
+    title="Software packaging: ARM"
+    category="components"
+    leaders={{'dslarm': 'David Lecomber'}}
+    goal="Optimise run time on at least one tool"
+>
+    Looking into making more packages build natively for `linux/arm64` and improving 
+    performance of the important ones for faster and cheaper runs on ARM machines 
+    such as AWS Graviton.
 
 </HackathonGroup>
 
