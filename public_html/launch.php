@@ -803,7 +803,8 @@ elseif ($cache['status'] == 'launch_params_complete') {
                             ) {
                                 continue;
                             }
-                            $group_id = substr($allof['$ref'], 14);
+                            $offset = isset($cache['schema']['definitions']) ? 14 : 8;
+                            $group_id = substr($allof['$ref'], $offset);
                             $html_id = preg_replace(
                                 '/[^a-z0-9-_]/',
                                 '_',
@@ -919,7 +920,8 @@ elseif ($cache['status'] == 'launch_params_complete') {
                     ) {
                         continue;
                     }
-                    $group_id = substr($allof['$ref'], 14);
+                    $offset = isset($cache['schema']['definitions']) ? 14 : 8;
+                    $group_id = substr($allof['$ref'], $offset);
                     if (
                         isset($cache['schema']['definitions']) &&
                         (!isset($cache['schema']['definitions'][$group_id]) ||
