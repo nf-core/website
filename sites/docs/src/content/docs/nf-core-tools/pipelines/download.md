@@ -35,16 +35,18 @@ You can run the pipeline by simply providing the directory path for the `workflo
 nextflow run /path/to/download/nf-core-rnaseq-dev/workflow/ --input mydata.csv --outdir results  # usual parameters here
 ```
 
-> [!NOTE]
-> If you downloaded Singularity container images, you will need to use `-profile singularity` or have it enabled in your config file.
+:::note
+If you downloaded Singularity container images, you will need to use `-profile singularity` or have it enabled in your config file.
+:::
 
 ## Downloaded nf-core configs
 
 The pipeline files are automatically updated (`params.custom_config_base` is set to `../configs`), so that the local copy of institutional configs are available when running the pipeline.
 So using `-profile <NAME>` should work if available within [nf-core/configs](https://github.com/nf-core/configs).
 
-> [!WARNING]
-> This option is not available when downloading a pipeline for use with [Seqera Platform](#adapting-downloads-to-seqera-platform) because the application manages all configurations separately.
+:::warning
+This option is not available when downloading a pipeline for use with [Seqera Platform](#adapting-downloads-to-seqera-platform) because the application manages all configurations separately.
+:::
 
 ## Downloading Apptainer containers
 
@@ -102,5 +104,7 @@ If the download speeds are much slower than your internet connection is capable 
 
 Subsequently, the `*.git` folder can be moved to it's final destination and linked with a pipeline in _Seqera Platform_ using the `file:/` prefix.
 
-> [!TIP]
-> Also without access to Seqera Platform, pipelines downloaded with the `--platform` flag can be run if the _absolute_ path is specified: `nextflow run -r 2.5 file:/path/to/pipelinedownload.git`. Downloads in this format allow you to include multiple revisions of a pipeline in a single file, but require that the revision (e.g. `-r 2.5`) is always explicitly specified.
+:::tip
+Also without access to Seqera Platform, pipelines downloaded with the `--platform` flag can be run if the _absolute_ path is specified: `nextflow run -r 2.5 file:/path/to/pipelinedownload.git`.
+Downloads in this format allow you to include multiple revisions of a pipeline in a single file, but require that the revision (e.g. `-r 2.5`) is always explicitly specified.
+:::
