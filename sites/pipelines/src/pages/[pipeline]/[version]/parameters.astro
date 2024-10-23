@@ -62,14 +62,12 @@ if (existsSync(cache_key)) {
     let schema_buffer = await promises.readFile(cache_key, 'utf-8');
     schema = JSON.parse(schema_buffer);
 }
-console.log('pipeline: ', pipeline);
 let schemaDefs =
     schema.definitions && Object.keys(schema.definitions).length > 0
         ? schema.definitions
-        : schema.properties
-          ? schema.properties
-          : schema.$defs;
-console.log('schemaDefs: ', schemaDefs);
+        : schema.$defs && Object.keys(schema.$defs).length > 0
+          ? schema.$defs
+          : schema.properties;
 if (schemaDefs && Object.keys(schemaDefs).length > 0) {
     headings = Object.entries(schemaDefs).map(([key, value]) => {
         return {

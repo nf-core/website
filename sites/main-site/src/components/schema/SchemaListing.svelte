@@ -5,7 +5,7 @@
 
     export let schema;
 
-    const schemaDefs = schema.definitions || schema.properties || schema.$defs;
+    const schemaDefs = schema.definitions || schema.$defs || schema.properties;
     onMount(() => {
         const observer = new IntersectionObserver(
             (entries) => {
