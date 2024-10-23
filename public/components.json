@@ -7787,6 +7787,18 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -24388,6 +24400,30 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -48463,6 +48499,86 @@
                 "description": "Input SAM/BAM file",
                 "pattern": "*.{bam,sam}"
               }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "Input BAM file index",
+                "pattern": "*.bai"
+              }
+            },
+            {
+              "target_regions_bed": {
+                "type": "file",
+                "description": "Optional BED file containing target regions for BQSR and variant calling.",
+                "pattern": "*.bed"
+              }
+            },
+            {
+              "filter_regions_bed": {
+                "type": "file",
+                "description": "Optional BED file containing regions to filter.",
+                "pattern": "*.bed"
+              }
+            },
+            {
+              "intermediate_bqsr_tables": {
+                "type": "file",
+                "description": "Optional list of BQSR tables, used when parsing files created by `elprep split`",
+                "pattern": "*.table"
+              }
+            },
+            {
+              "recall_file": {
+                "type": "file",
+                "description": "Recall file with intermediate results for bqsr",
+                "pattern": "*.recall"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "reference_sequences": {
+                "type": "file",
+                "description": "Optional SAM header to replace existing header.",
+                "pattern": "*.sam"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "reference_elfasta": {
+                "type": "file",
+                "description": "Elfasta file, required for BQSR and variant calling.",
+                "pattern": "*.elfasta"
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "known_sites_elsites": {
+                "type": "file",
+                "description": "Optional elsites file containing known SNPs for BQSR.",
+                "pattern": "*.elsites"
+              }
             }
           ],
           [
@@ -48478,60 +48594,6 @@
               "run_bqsr": {
                 "type": "boolean",
                 "description": "Run BQSR on the input files. Needed to generate recall metrics."
-              }
-            }
-          ],
-          [
-            {
-              "reference_sequences": {
-                "type": "file",
-                "description": "Optional SAM header to replace existing header.",
-                "pattern": "*.sam"
-              }
-            }
-          ],
-          [
-            {
-              "filter_regions_bed": {
-                "type": "file",
-                "description": "Optional BED file containing regions to filter.",
-                "pattern": "*.bed"
-              }
-            }
-          ],
-          [
-            {
-              "reference_elfasta": {
-                "type": "file",
-                "description": "Elfasta file, required for BQSR and variant calling.",
-                "pattern": "*.elfasta"
-              }
-            }
-          ],
-          [
-            {
-              "known_sites_elsites": {
-                "type": "file",
-                "description": "Optional elsites file containing known SNPs for BQSR.",
-                "pattern": "*.elsites"
-              }
-            }
-          ],
-          [
-            {
-              "target_regions_bed": {
-                "type": "file",
-                "description": "Optional BED file containing target regions for BQSR and variant calling.",
-                "pattern": "*.bed"
-              }
-            }
-          ],
-          [
-            {
-              "intermediate_bqsr_tables": {
-                "type": "file",
-                "description": "Optional list of BQSR tables, used when parsing files created by `elprep split`",
-                "pattern": "*.table"
               }
             }
           ],
@@ -48566,13 +48628,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.{bam,sam}"
                 }
               },
               {
-                "output/**.{bam,sam}": {
-                  "type": "file",
-                  "description": "Sorted, markdup, optionally BQSR BAM/SAM file",
+                "*.{bam,sam}": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*.{bam,sam}"
                 }
               }
@@ -48583,13 +48646,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "elprep-*.log"
                 }
               },
               {
-                "logs/elprep/elprep*": {
-                  "type": "list",
-                  "description": "Runtime log files",
+                "*.log": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "elprep-*.log"
                 }
               }
@@ -48600,13 +48664,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.{metrics.txt}"
                 }
               },
               {
                 "*.metrics.txt": {
-                  "type": "file",
-                  "description": "Optional duplicate metrics file generated by elprep",
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*.{metrics.txt}"
                 }
               }
@@ -48617,13 +48682,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.{recall}"
                 }
               },
               {
                 "*.recall": {
-                  "type": "file",
-                  "description": "Optional recall metrics file generated by elprep",
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*.{recall}"
                 }
               }
@@ -48634,13 +48700,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.{vcf.gz}"
                 }
               },
               {
                 "*.vcf.gz": {
-                  "type": "file",
-                  "description": "Optional GVCF output file",
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*.{vcf.gz}"
                 }
               }
@@ -48651,13 +48718,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.{table}"
                 }
               },
               {
                 "*.table": {
-                  "type": "file",
-                  "description": "Optional intermediate BQSR table output file",
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*.{table}"
                 }
               }
@@ -48668,13 +48736,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.{activity_profile.igv}"
                 }
               },
               {
                 "*.activity_profile.igv": {
-                  "type": "file",
-                  "description": "Optional activity profile output file",
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*.{activity_profile.igv}"
                 }
               }
@@ -48685,13 +48754,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.{assembly_regions.igv}"
                 }
               },
               {
                 "*.assembly_regions.igv": {
-                  "type": "file",
-                  "description": "Optional activity regions output file",
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*.{assembly_regions.igv}"
                 }
               }
@@ -107705,6 +107775,18 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -126231,6 +126313,177 @@
       }
     },
     {
+      "name": "parabricks_fq2bammeth",
+      "path": "modules/nf-core/parabricks/fq2bammeth/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "parabricks_fq2bammeth",
+        "description": "VIDIA Clara Parabricks GPU-accelerated fast, accurate algorithm for mapping methylated DNA sequence reads to a reference genome, performing local alignment, and producing alignment for different parts of the query sequence",
+        "keywords": [
+          "align",
+          "sort",
+          "bqsr",
+          "duplicates",
+          "bwameth"
+        ],
+        "tools": [
+          {
+            "parabricks": {
+              "description": "NVIDIA Clara Parabricks GPU-accelerated genomics tools",
+              "homepage": "https://www.nvidia.com/en-us/clara/genomics/",
+              "documentation": "https://docs.nvidia.com/clara/parabricks/latest/documentation/tooldocs/man_fq2bam_meth.html#fq2bam-meth-reference",
+              "licence": [
+                "custom"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "fastq.gz files",
+                "pattern": "*.fastq.gz"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing fasta information\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "reference fasta file - must be unzipped",
+                "pattern": "*.fasta"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing index information\n"
+              }
+            },
+            {
+              "index": {
+                "type": "file",
+                "description": "reference BWA index",
+                "pattern": "*.{amb,ann,bwt,pac,sa}"
+              }
+            }
+          ],
+          [
+            {
+              "known_sites": {
+                "type": "file",
+                "description": "(optional) known sites file(s) for calculating BQSR. markdups must be true to perform BQSR.",
+                "pattern": "*.vcf.gz"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "bam": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.bam": {
+                  "type": "file",
+                  "description": "Sorted BAM file",
+                  "pattern": "*.bam"
+                }
+              }
+            ]
+          },
+          {
+            "bai": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.bai": {
+                  "type": "file",
+                  "description": "index corresponding to sorted BAM file",
+                  "pattern": "*.bai"
+                }
+              }
+            ]
+          },
+          {
+            "qc_metrics": [
+              {
+                "qc_metrics": {
+                  "type": "directory",
+                  "description": "(optional) optional directory of qc metrics",
+                  "pattern": "qc_metrics"
+                }
+              }
+            ]
+          },
+          {
+            "bqsr_table": [
+              {
+                "*.table": {
+                  "type": "file",
+                  "description": "(optional) table from base quality score recalibration calculation, to be used with parabricks/applybqsr",
+                  "pattern": "*.table"
+                }
+              }
+            ]
+          },
+          {
+            "duplicate_metrics": [
+              {
+                "duplicate-metrics.txt": {
+                  "type": "file",
+                  "description": "(optional) metrics calculated from marking duplcates in the bam file",
+                  "pattern": "*-duplicate-metrics.txt"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@sateeshperi"
+        ],
+        "maintainers": [
+          "@sateeshperi"
+        ]
+      }
+    },
+    {
       "name": "parabricks_genotypegvcf",
       "path": "modules/nf-core/parabricks/genotypegvcf/meta.yml",
       "type": "module",
@@ -142456,6 +142709,13 @@
                 "type": "file",
                 "description": "(Mandatory) BAM/CRAM index files",
                 "pattern": "*.{bai}"
+              }
+            },
+            {
+              "bamlist": {
+                "type": "file",
+                "description": "(Optional) File with list of BAM/CRAM files to impute. One file per line.",
+                "pattern": "*.{txt}"
               }
             },
             {
@@ -198970,6 +199230,10 @@
           "version": "dev"
         },
         {
+          "name": "deepmodeloptim",
+          "version": "dev"
+        },
+        {
           "name": "demo",
           "version": "1.0.1"
         },
@@ -199231,6 +199495,10 @@
           "version": "dev"
         },
         {
+          "name": "deepmodeloptim",
+          "version": "dev"
+        },
+        {
           "name": "demo",
           "version": "1.0.1"
         },
@@ -199477,6 +199745,10 @@
         },
         {
           "name": "createtaxdb",
+          "version": "dev"
+        },
+        {
+          "name": "deepmodeloptim",
           "version": "dev"
         },
         {
