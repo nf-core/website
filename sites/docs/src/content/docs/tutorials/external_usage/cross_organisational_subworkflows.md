@@ -12,9 +12,8 @@ But, instead of using the fastp module from your own organisation, you want to u
 In order to have this subworkflow, with a FastQC module from your organisation and fastp from nf-core, you'd define the
 components section of this subworkflow's `meta.yml` file as such:
 
-
 ```yaml
-name: "fastq_trim_fastp_fastqc"
+name: 'fastq_trim_fastp_fastqc'
 description: Read QC, fastp trimming and read qc
 keywords:
   - qc
