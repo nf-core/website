@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { currentHeading } from '@components/store';
+    import { currentHeading, Checkboxes } from '@components/store';
     import * as icons from 'file-icons-js';
     import 'file-icons-js/css/style.css';
     import mermaid from 'mermaid';
@@ -97,6 +97,16 @@
                 icon.classList.add('fa-regular', 'fa-file-code', 'ms-1', 'me-2');
             }
             block.prepend(icon);
+        });
+
+        // Update Checkboxes store when checkboxes are clicked
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach((checkbox) => {
+            checkbox.addEventListener('change', () => {
+                const checked = Array.from(checkboxes).filter((checkbox) => (checkbox as HTMLInputElement).checked);
+
+                Checkboxes.set(checked);
+            });
         });
     });
 </script>

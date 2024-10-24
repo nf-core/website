@@ -126,8 +126,15 @@ git add .nf-core.yml
 git commit -m "Skip fastqc, igenomes and nf_schema"
 ```
 
-6. Retrigger the pipeline sync via the [GitHub Actions workflow](https://github.com/nf-core/tools/actions/workflows/sync.yml) using the name of your pipeline as the input.
-7. Your template update merge should now have fewer conflicts! 🎉
+6. Add the changes to the `dev` branch:
+
+```bash
+git push origin dev
+```
+
+7. Merge the changes into the `dev` branch of the nf-core repository:
+8. Retrigger the pipeline sync via the [GitHub Actions workflow](https://github.com/nf-core/tools/actions/workflows/sync.yml) using the name of your pipeline as the input.
+9. Your template update merge should now have fewer conflicts! 🎉
 
 # Important Template Updates
 
@@ -169,6 +176,10 @@ To prepare for upcoming Nextflow syntax depreciations, for loops and try/catch b
 -   For more information, see these Nextflow issues: [#1792](https://github.com/nextflow-io/nextflow/issues/1792) and [#5306](https://github.com/nextflow-io/nextflow/issues/5306)
 
 # Common Merge Conflicts and Solutions
+
+## Video walk-through
+
+<YouTube class="mx-auto my-3" id="cTwFyp7LkOw" poster={`https://img.youtube.com/vi/cTwFyp7LkOw/maxresdefault.jpg`} />
 
 ## `README.md`
 

@@ -202,6 +202,23 @@ You can move freely between projects throughout the event.
 </HackathonGroup>
 
 <HackathonGroup
+    title="nf-core/sarek"
+    category="pipelines"
+    leaders={{'FriederikeHanssen': 'Rike Hanssen'}}
+    goal="Improve input validation, usability, and docs"
+    slack="sarek"
+>
+    General work on sarek with a focus on maintenance:
+    
+        - Improve input validation
+        - Improve documentation
+        - Fix bugs
+
+    If you want to get started on a new addition, this is a great time to come by and chat.
+
+</HackathonGroup>
+
+<HackathonGroup
     title="Sarek (preprocessing) goes GPU"
     category="pipelines"
     leaders={{
@@ -243,6 +260,90 @@ You can move freely between projects throughout the event.
 
 </HackathonGroup>
 
+<HackathonGroup
+    title="nf-core/variantbenchmarking"
+    category="pipelines"
+    leaders={{
+        'kubranarci': 'Kübra Narcı'
+    }}
+    goal="I would like to have the first version of this pipeline published"
+    slack="variantbenchmarking"
+>
+    This is a variant benchmarking pipeline, for now structural variant and small benchmarking 
+    parts for germlines are working, yet there are plans for addin g somatic benchmarking including 
+    creation of a truth file for structural variants and adding some benchmark tools. The pipeline 
+    needs to be tested extensively and a set of reviews is required.
+
+</HackathonGroup>
+
+<HackathonGroup
+    title="nf-core/proteinfold"
+    category="pipelines"
+    leaders={{
+        'JoseEspinosa': 'Jose Espinosa-Carrasco'
+    }}
+    goal="Towards release 1.2.0 and beyond"
+    slack="proteinfold"
+>
+    We have adding new reporting capabilities to the pipeline lately and we would like to finish
+    adding this features and testing them during the hackathon.
+
+    A part from this, we would like to explore which other tools could be added to the pipeline (e.g. RoseTTAFold or
+    OmegaFold) and discuss with the community what should be the future of the pipeline in terms of development.
+
+    Of course, as any other pipeline we would try to find other more "house-keeping" issues in which people joining the
+    group could get involved during the hackathon.
+
+    If you are interested please join the group!
+
+</HackathonGroup>
+
+<HackathonGroup
+    title="nf-core/phaseimpute"
+    category="pipelines"
+    leaders={{
+        'LouisLeNezet': 'Louis Le Nézet',
+        'atrigila': 'Anabella Trigila'
+    }}
+    goal="Work towards a first release"
+    slack="phaseimpute"
+>
+    nf-core/phaseimpute is a multi-steps pipeline dedicated to genetic imputation from simulation to validation.
+    By joining this group you can
+        1) Contribute updated subworkflows and modules back to nf-core (beginner - intermediate level)
+        2) Improve documentation and enhance readability (beginner)
+        3) Assist with pre-release review (beginner to expert)
+        4) Add support for SNP chip array data (simulation and imputation) (expert)
+        5) Add support for sexual chromosome imputation (expert)
+
+</HackathonGroup>
+
+<HackathonGroup
+    title="nf-core/differentialabundance"
+    category="pipeline"
+    leaders={{
+        'suzannejin': 'Suzanne Jin', 
+        'bjlang': 'Björn Langer',
+        'pinin4fjords': 'Jonathan Manning',
+        'WackerO': 'Oskar Wacker'
+    }}
+    goal="move forward for the next release with the restructured pipeline and the new methods!"
+>
+    This is a pipeline for downstream gene expression analysis, with a main focus on differential expression analysis. Currently, we are working on a new branch `dev-ratio` with two objectives: 
+    
+    - add new methods 
+    - convert the pipeline into a modular and unified framework that allocates different ways of performing differential analysis. 
+    
+    By joining this group you will help with:
+        1) Implement and add nf-core modules that wrap other methods that can be used to perform differential analysis. Some modules (ie. propd) were already created but need to be updated (beginner friendly).
+        2) Add these new modules to the pipeline and update the pipeline parameters correspondingly (beginner friendly).
+        3) Add the existing modules to the new modular subworkflow in a way that will reproduce the original pipeline’s behaviour (beginner - intermediate level).
+        4) Update the code required to generate the plots and reports (beginner - intermediate level).
+        5) Restructure the pipeline architecture (intermediate level).
+        6) Update documentation (beginner friendly).
+
+</HackathonGroup>
+
 ## Components
 
 <HackathonGroup
@@ -272,6 +373,18 @@ You can move freely between projects throughout the event.
     Check [the issue](https://github.com/nf-core/modules/issues/6737) describing the tasks and tracking the progress.
 
     Beginners and first-time contributors are welcome!
+
+</HackathonGroup>
+
+<HackathonGroup
+    title="Software packaging: ARM"
+    category="components"
+    leaders={{'dslarm': 'David Lecomber'}}
+    goal="Optimise run time on at least one tool"
+>
+    Looking into making more packages build natively for `linux/arm64` and improving 
+    performance of the important ones for faster and cheaper runs on ARM machines 
+    such as AWS Graviton.
 
 </HackathonGroup>
 
@@ -313,7 +426,7 @@ You can move freely between projects throughout the event.
 
 </HackathonGroup>
 
-## Community
+## Special Interest Groups
 
 <HackathonGroup
     title="Regulatory"
@@ -333,10 +446,21 @@ You can move freely between projects throughout the event.
     goal="Widened understanding of the implementation details of all pipelines in a larger group of developers."
     slack="meta-omics"
 >
-    We will work on meta-omics pipelines -- mag, ampliseq, metatdenovo, magmap, eager and taxprofiler --
-    how they can be made to better integrate with each other plus a number of downstream pipelines.
+    We will work together on any or all of the [meta-omics](https://nf-co.re/special-interest-groups/meta-omics) pipelines -- [mag](https://nf-co.re/mag), [ampliseq](https://nf-co.re/ampliseq), [metatdenovo](https://nf-co.re/metatdenovo), [magmap](https://nf-co.re/magmap), [eager](https://nf-co.re/eager), [funcscan](https://nf-co.re/funcscan), [createtaxdb](https://nf-co.re/createtaxdb) and [taxprofiler](https://nf-co.re/taxprofiler) etc. --
+    extending functionality, but also discussing how they can be made to better integrate with each other plus a number of downstream pipelines, both within and outside nf-core.
 
-    Working on deepmodeloptim on the hackathon will mostly involve nf-core-izing the pipeline and making it a place where it is easy to contribute.
+    We will have a number of documentation and/or new-module requests for newcomers to get their hands dirty, and larger implementation tasks for more advanced developers.
+
+</HackathonGroup>
+
+<HackathonGroup
+    title="Teaching"
+    category="community"
+    leaders={{'LorenzoS96': 'Lorenzo Sola', 'msantorsola': 'Mariangela Santorsola', 'DavideBag': 'pushordo'}}
+    goal="Develop tailored course materials and hands-on tutorials."
+    slack="training"
+>
+    nf-core pipelines are playing a crucial role in standardising bioinformatics workflows and their user base is growing every day. Engaging training materials are essential to complement the pipelines that are being released. To achieve this, a problem-based learning approach could be developed for several nf-core pipelines where tutorials follow a storyline based on carefully simulated data. A first attempt at this approach has been drafted for nfcore/sarek (https://lescai-teaching.github.io/sarek-tutorial) and nfcore/rnaseq (https://lescai-teaching.github.io/rnaseq-tutorial). This project intends to gather people who are willing to discuss and develop further similar materials for these and other nf-core pipelines.
 
 </HackathonGroup>
 
