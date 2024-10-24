@@ -7807,6 +7807,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -8020,7 +8024,7 @@
             "blacklist": [
               {
                 "blacklist*${genome}*.tsv.gz": {
-                  "type": "str",
+                  "type": "string",
                   "description": "The blacklist removes recurrent alignment artifacts and transcripts which are present in healthy tissue",
                   "pattern": ".tsv.gz"
                 }
@@ -24408,6 +24412,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -48453,10 +48465,17 @@
           {
             "log": [
               {
-                "meta": {}
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
               },
               {
-                "logs/elprep/elprep*": {}
+                "logs/elprep/elprep*": {
+                  "type": "file",
+                  "description": "ELFasta log file",
+                  "pattern": "*.log"
+                }
               }
             ]
           },
@@ -84611,13 +84630,17 @@
           ],
           [
             {
+              "meta1": {
+                "type": "map",
+                "description": "Groovy Map containing information about parental kmers.\n"
+              }
+            },
+            {
               "paternal_kmer_dump": {
                 "type": "file",
                 "description": "Yak kmer dump file for paternal reads (can be used for haplotype resolution). It can have an arbitrary extension."
               }
-            }
-          ],
-          [
+            },
             {
               "maternal_kmer_dump": {
                 "type": "file",
@@ -84627,13 +84650,17 @@
           ],
           [
             {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing information about Hi-C reads\n"
+              }
+            },
+            {
               "hic_read1": {
                 "type": "file",
                 "description": "Hi-C data Forward reads."
               }
-            }
-          ],
-          [
+            },
             {
               "hic_read2": {
                 "type": "file",
@@ -84845,7 +84872,8 @@
         "authors": [
           "@sidorov-si",
           "@scorreard",
-          "@mbeavitt"
+          "@mbeavitt",
+          "@schmytzi"
         ],
         "maintainers": [
           "@sidorov-si",
@@ -106952,6 +106980,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -149001,24 +149033,27 @@
           {
             "samplesheet": [
               {
-                "meta": null,
-                "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', lane:1 ]\n"
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', lane:1 ]\n"
+                }
               },
               {
-                "*_formatted.csv": null,
-                "type": "file",
-                "description": "illumina v2 samplesheet"
+                "*_formatted.csv": {
+                  "type": "file",
+                  "description": "illumina v2 samplesheet"
+                }
               }
             ]
           },
           {
             "versions": [
               {
-                "versions.yml": null,
-                "type": "file",
-                "description": "File containing software version",
-                "pattern": "versions.yml"
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software version",
+                  "pattern": "versions.yml"
+                }
               }
             ]
           }
@@ -172762,7 +172797,7 @@
           ],
           [
             {
-              "priority": {
+              "input_priority": {
                 "type": "list",
                 "description": "Prioritize the input VCF files according to this list,\ne.g ['tiddit','cnvnator']. The order and number of tags should correspond to\nthe order and number of VCFs in the `vcfs` input channel.\n"
               }
@@ -172783,14 +172818,48 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
-                "*.vcf.gz": {
+                "*.{vcf,vcf.gz,bcf,bcf.gz}": {
                   "type": "file",
-                  "description": "merged VCF file",
-                  "pattern": "*.vcf.gz"
+                  "description": "VCF output file",
+                  "pattern": "*.{vcf,vcf.gz,bcf,bcf.gz}"
+                }
+              }
+            ]
+          },
+          {
+            "tbi": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.tbi": {
+                  "type": "file",
+                  "description": "Alternative VCF file index",
+                  "pattern": "*.tbi"
+                }
+              }
+            ]
+          },
+          {
+            "csi": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.csi": {
+                  "type": "file",
+                  "description": "Default VCF file index",
+                  "pattern": "*.csi"
                 }
               }
             ]
@@ -172811,7 +172880,8 @@
           "@ramprasadn"
         ],
         "maintainers": [
-          "@ramprasadn"
+          "@ramprasadn",
+          "@fellen31"
         ]
       },
       "pipelines": [
