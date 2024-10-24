@@ -209,7 +209,7 @@ You can move freely between projects throughout the event.
     slack="sarek"
 >
     General work on sarek with a focus on maintenance:
-    
+
         - Improve input validation
         - Improve documentation
         - Fix bugs
@@ -269,9 +269,9 @@ You can move freely between projects throughout the event.
     goal="I would like to have the first version of this pipeline published"
     slack="variantbenchmarking"
 >
-    This is a variant benchmarking pipeline, for now structural variant and small benchmarking 
-    parts for germlines are working, yet there are plans for addin g somatic benchmarking including 
-    creation of a truth file for structural variants and adding some benchmark tools. The pipeline 
+    This is a variant benchmarking pipeline, for now structural variant and small benchmarking
+    parts for germlines are working, yet there are plans for addin g somatic benchmarking including
+    creation of a truth file for structural variants and adding some benchmark tools. The pipeline
     needs to be tested extensively and a set of reviews is required.
 
 </HackathonGroup>
@@ -322,18 +322,18 @@ You can move freely between projects throughout the event.
     title="nf-core/differentialabundance"
     category="pipeline"
     leaders={{
-        'suzannejin': 'Suzanne Jin', 
+        'suzannejin': 'Suzanne Jin',
         'bjlang': 'Björn Langer',
         'pinin4fjords': 'Jonathan Manning',
         'WackerO': 'Oskar Wacker'
     }}
     goal="move forward for the next release with the restructured pipeline and the new methods!"
 >
-    This is a pipeline for downstream gene expression analysis, with a main focus on differential expression analysis. Currently, we are working on a new branch `dev-ratio` with two objectives: 
-    
-    - add new methods 
-    - convert the pipeline into a modular and unified framework that allocates different ways of performing differential analysis. 
-    
+    This is a pipeline for downstream gene expression analysis, with a main focus on differential expression analysis. Currently, we are working on a new branch `dev-ratio` with two objectives:
+
+    - add new methods
+    - convert the pipeline into a modular and unified framework that allocates different ways of performing differential analysis.
+
     By joining this group you will help with:
         1) Implement and add nf-core modules that wrap other methods that can be used to perform differential analysis. Some modules (ie. propd) were already created but need to be updated (beginner friendly).
         2) Add these new modules to the pipeline and update the pipeline parameters correspondingly (beginner friendly).
@@ -382,8 +382,8 @@ You can move freely between projects throughout the event.
     leaders={{'dslarm': 'David Lecomber'}}
     goal="Optimise run time on at least one tool"
 >
-    Looking into making more packages build natively for `linux/arm64` and improving 
-    performance of the important ones for faster and cheaper runs on ARM machines 
+    Looking into making more packages build natively for `linux/arm64` and improving
+    performance of the important ones for faster and cheaper runs on ARM machines
     such as AWS Graviton.
 
 </HackathonGroup>
@@ -461,6 +461,23 @@ You can move freely between projects throughout the event.
     slack="training"
 >
     nf-core pipelines are playing a crucial role in standardising bioinformatics workflows and their user base is growing every day. Engaging training materials are essential to complement the pipelines that are being released. To achieve this, a problem-based learning approach could be developed for several nf-core pipelines where tutorials follow a storyline based on carefully simulated data. A first attempt at this approach has been drafted for nfcore/sarek (https://lescai-teaching.github.io/sarek-tutorial) and nfcore/rnaseq (https://lescai-teaching.github.io/rnaseq-tutorial). This project intends to gather people who are willing to discuss and develop further similar materials for these and other nf-core pipelines.
+
+</HackathonGroup>
+
+<HackathonGroup
+    title="Infrastructure around nf-core/modules"
+    category="tooling"
+    leaders={{'mirpedrol': 'Júlia Mir Pedrol'}}
+    goal="Develop infrastructure for nf-core/modules"
+    slack="tools"
+>
+    For Pythonistas :tada:
+    Working on nf-core/tools by developing infrastructure related to nf-core/modules.
+
+    Issues:
+    - Make `nf-core modules create` use the same structure for local modules than for remote modules (beginner friendly)
+    - Fix bug: `nf-core modules update` deletes templates files when there is a patch file (intermediate level)
+    - Fix the structure of modules meta.yml files (intermediate level)
 
 </HackathonGroup>
 
