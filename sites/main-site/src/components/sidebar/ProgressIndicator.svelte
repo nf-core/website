@@ -15,7 +15,6 @@
 
     // Calculate the circumference of the circle
     const circumference = 2 * Math.PI * (size - strokeWidth);
-
     if (onScroll) {
         onMount(() => {
             isCurrent = true;
@@ -31,9 +30,6 @@
 
 <a class="text-decoration-none" {href} data-bs-title={`${progress}% of items are checked`} data-bs-toggle="tooltip">
     <span>
-        {#if confetti && progress === 100}
-            <Confetti rounded={true} />
-        {/if}
         <svg width={size} height={size} viewBox={`0 0 ${size * 2} ${size * 2}`}>
             <!-- rotate the circle to start from the top -->
             <g transform={`rotate(-90 ${size} ${size})`}>
@@ -81,8 +77,12 @@
             >
         </svg>
     </span>
+
     {title}
 </a>
+{#if confetti && progress === 100}
+    <Confetti rounded={true} />
+{/if}
 
 <style>
     /* Define a CSS class for the circle */

@@ -42,7 +42,7 @@ To run a pipeline:
      nextflow run hello
      ```
 
-2. Choose a pipeline to run. See the available [nf-core pipelines](https://nf-co.re/pipelines). If you have [nf-core tools](https://nf-co.re/tools) installed, run `nf-core list`.
+2. Choose a pipeline to run. See the available [nf-core pipelines](https://nf-co.re/pipelines). If you have [nf-core tools](https://nf-co.re/tools) installed, run `nf-core pipelines list`.
 
 3. Configure Nextflow to run on your system:
 

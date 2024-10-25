@@ -18,9 +18,9 @@ before_command: >
 fake_command: nf-core lint
 -->
 
-![`nf-core lint`](/images/tools/nf-core-lint.svg)
+![`nf-core pipelines lint`](/images/tools/nf-core-lint.svg)
 
-You can use the `-k` / `--key` flag to run only named tests for faster debugging, eg: `nf-core lint -k files_exist -k files_unchanged`. The `nf-core lint` command lints the current working directory by default, to specify another directory you can use `--dir <directory>`.
+You can use the `-k` / `--key` flag to run only named tests for faster debugging, eg: `nf-core pipelines lint -k files_exist -k files_unchanged`. The `nf-core pipelines lint` command lints the current working directory by default, to specify another directory you can use `--dir <directory>`.
 
 ## Linting documentation
 
@@ -56,7 +56,7 @@ lint:
     - CODE_OF_CONDUCT.md
 ```
 
-Note that you have to list all configurations for the `nf-core lint` command under the `lint:` field in the `.nf-core.yml` file, as this file is also used for configuration of other commands.
+Note that you have to list all configurations for the `nf-core pipelines lint` command under the `lint:` field in the `.nf-core.yml` file, as this file is also used for configuration of other commands.
 
 ## Automatically fix errors
 
@@ -66,5 +66,5 @@ This is so that any automated changes can then be reviewed and undone (`git chec
 
 ## Lint results output
 
-The output from `nf-core lint` is designed to be viewed on the command line and is deliberately succinct.
+The output from `nf-core pipelines lint` is designed to be viewed on the command line and is deliberately succinct.
 You can view all passed tests with `--show-passed` or generate JSON / markdown results with the `--json` and `--markdown` flags.

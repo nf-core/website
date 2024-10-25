@@ -3,12 +3,12 @@ outputs:
   - command: nf-core --help
     img_paths:
       - public/images/contributing/creating_with_nf_core/nfcore_help.svg
-  - command: nf-core list
+  - command: nf-core pipelines list
     head: 19
     img_paths:
       - public/images/contributing/creating_with_nf_core/nfcore_list.svg
-  - command: nf-core create --name demo --description "Pipeline for training" --author "Phil" --plain
-    fake_command: nf-core create
+  - command: nf-core pipelines create --name demo --description "Pipeline for training" --author "Phil" --plain
+    fake_command: nf-core pipelines create
     img_paths:
       - public/images/contributing/creating_with_nf_core/nfcore_create.svg
   - command: cd nf-core-demo && git status
@@ -27,16 +27,16 @@ outputs:
     title: nextflow run
     img_paths:
       - public/images/contributing/creating_with_nf_core/nextflow_run_1.svg
-  - command: cd nf-core-demo && nf-core lint && grep -rl TODO .
-    fake_command: nf-core lint
+  - command: cd nf-core-demo && nf-core pipelines lint && grep -rl TODO .
+    fake_command: nf-core pipelines lint
     img_paths:
       - public/images/contributing/creating_with_nf_core/nfcore_lint_warnings.svg
   - command: |
       cd nf-core-demo && \
       grep -rl TODO . | xargs sed -i 's/TODO//g' && \
       echo "ADDED" >> CODE_OF_CONDUCT.md && \
-      nf-core lint
-    fake_command: nf-core lint
+      nf-core pipelines lint
+    fake_command: nf-core pipelines lint
     img_paths:
       - public/images/contributing/creating_with_nf_core/nfcore_lint_failure.svg
   - command: nextflow run nf-core-demo/ --help
@@ -50,48 +50,44 @@ outputs:
     fake_command: nf-core modules create fastqc --author @janedoe --label process_low --meta
     img_paths:
       - public/images/contributing/modules/nf-core-modules-create.svg
-  - command: nf-core list
+  - command: nf-core pipelines list
     head: 19
     img_paths:
       - public/images/tools/nf-core-list.svg
-  - command: nf-core list rna rna-seq
+  - command: nf-core pipelines list rna rna-seq
     img_paths:
       - public/images/tools/nf-core-list-rna.svg
-  - command: nf-core list -s stars
+  - command: nf-core pipelines list -s stars
     head: 18
     img_paths:
       - public/images/tools/nf-core-list-stars.svg
-  - command: nf-core launch rnaseq -r 3.8.1
+  - command: nf-core pipelines launch rnaseq -r 3.8.1
     trim_after: 'Command line'
     img_paths:
       - public/images/tools/nf-core-launch-rnaseq.svg
-  - command: mkdir tmp && cd tmp && nf-core download rnaseq -r 3.8 --outdir nf-core-rnaseq -x none -s none -d
+  - command: mkdir tmp && cd tmp && nf-core pipelines download rnaseq -r 3.8 --outdir nf-core-rnaseq -x none -s none -d
     img_paths:
       - public/images/tools/nf-core-download.svg
   - command: cd tmp && tree -L 2 nf-core-rnaseq/
     img_paths:
       - public/images/tools/nf-core-download-tree.svg
-  - command: nf-core licences deepvariant
-    timeout: 10
-    img_paths:
-      - public/images/tools/nf-core-licences.svg
-  - command: cd tmp && nf-core create -n nextbigthing -d "This pipeline analyses data from the next big omics technique" -a "Big Steve" --plain
-    fake_command: nf-core create -n nextbigthing -d "This pipeline analyses data from the next big omics technique" -a "Big Steve" --plain
+  - command: cd tmp && nf-core pipelines create -n nextbigthing -d "This pipeline analyses data from the next big omics technique" -a "Big Steve" --plain
+    fake_command: nf-core pipelines create -n nextbigthing -d "This pipeline analyses data from the next big omics technique" -a "Big Steve" --plain
     img_paths:
       - public/images/tools/nf-core-create.svg
   - command: |
       cd tmp/nf-core-nextbigthing && \
       echo "lint: { pipeline_todos: false }" >> .nf-core.yml && \
-      nf-core lint
-    fake_command: nf-core lint
+      nf-core pipelines lint
+    fake_command: nf-core pipelines lint
     img_paths:
       - public/images/tools/nf-core-lint.svg
   - command: |
       cd tmp && \
       echo "{input: myfiles.csv, outdir: results}" > nf-params.json
-      nf-core schema validate nf-core-rnaseq/3_8 nf-params.json
+      nf-core pipelines schema validate nf-core-rnaseq/3_8 nf-params.json
     timeout: 10
-    fake_command: nf-core schema validate nf-core-rnaseq/3_8 nf-params.json
+    fake_command: nf-core pipelines schema validate nf-core-rnaseq/3_8 nf-params.json
     after_command: rm nf-params.json
     img_paths:
       - public/images/tools/nf-core-schema-validate.svg
@@ -99,13 +95,13 @@ outputs:
       cd tmp/nf-core-nextbigthing && \
       sed '25,30d' nextflow_schema.json > nextflow_schema.json.tmp && \
       mv nextflow_schema.json.tmp nextflow_schema.json && \
-      nf-core schema build --no-prompts
+      nf-core pipelines schema build --no-prompts
     timeout: 10
-    fake_command: nf-core schema build --no-prompts
+    fake_command: nf-core pipelines schema build --no-prompts
     img_paths:
       - public/images/tools/nf-core-schema-build.svg
-  - command: cd tmp/nf-core-nextbigthing && nf-core schema lint
-    fake_command: nf-core schema lint
+  - command: cd tmp/nf-core-nextbigthing && nf-core pipelines schema lint
+    fake_command: nf-core pipelines schema lint
     img_paths:
       - public/images/tools/nf-core-schema-lint.svg
   - command: |
@@ -113,16 +109,16 @@ outputs:
       git config --global user.email "nf-core_bot@example.com" && \
       git config --global user.name "nf-core_bot" && \
       git commit -am "Bump version" && \
-      nf-core sync
-    fake_command: nf-core sync
+      nf-core pipelines sync
+    fake_command: nf-core pipelines sync
     img_paths:
       - public/images/tools/nf-core-sync.svg
-  - command: cd tmp/nf-core-nextbigthing && nf-core bump-version 1.1
-    fake_command: nf-core bump-version 1.1
+  - command: cd tmp/nf-core-nextbigthing && nf-core pipelines bump-version 1.1
+    fake_command: nf-core pipelines bump-version 1.1
     img_paths:
       - public/images/tools/nf-core-bump-version.svg
-  - command: cd tmp && nf-core create-logo nextbigthing
-    fake_command: nf-core create-logo nextbigthing
+  - command: cd tmp && nf-core pipelines create-logo nextbigthing
+    fake_command: nf-core pipelines create-logo nextbigthing
     img_paths:
       - public/images/tools/nf-core-create-logo.svg
   - command: cd tmp/nf-core-nextbigthing && nf-core modules list remote

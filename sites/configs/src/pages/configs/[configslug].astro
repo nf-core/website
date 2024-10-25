@@ -113,7 +113,9 @@ content = content?.replace(/nf-core\/configs(:)?\s*/g, '');
 
 //wrap raw_config as markdown code-block
 raw_config = '```groovy title="' + path.split('/').pop() + '"\n' + raw_config + '\n```';
-const contact = config.config_profile_contact.match(/@(\w+)/) ? config.config_profile_contact.match(/@(\w+)/)[1] : '';
+const contact = config.config_profile_contact.match(/@([A-Za-z0-9-]+)/)
+    ? config.config_profile_contact.match(/@([A-Za-z0-9-]+)/)[1]
+    : '';
 
 const gh_url = 'https://github.com/nf-core/configs/blob/master/docs/' + configslug + '.md';
 ---
