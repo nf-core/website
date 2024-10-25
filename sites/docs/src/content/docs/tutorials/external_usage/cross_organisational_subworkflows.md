@@ -12,7 +12,7 @@ But, instead of using the fastp module from your own organisation, you want to u
 In order to have this subworkflow, with a FastQC module from your organisation and fastp from nf-core, you'd define the
 components section of this subworkflow's `meta.yml` file as such:
 
-```yaml
+```yaml title="meta.yml" {11-12}
 name: 'fastq_trim_fastp_fastqc'
 description: Read QC, fastp trimming and read qc
 keywords:
@@ -32,7 +32,7 @@ in, but fastp should come from the `nf-core/modules` remote.
 
 :::note
 Be aware that to install subworkflows from organisations other than nf-core you must
-specify `--git-remote` in the `nf-core subworkflows` command.
+specify `--git-remote` in the `nf-core subworkflows` command, e.g. `nf-core subworkflows install fastq_trim_fastp_fastqc --git-remote $ORG_NAME{:bash}`
 :::
 
 If you're using cross-organisational subworkflows in your repository, be aware that you must also specify a different JSON schema
