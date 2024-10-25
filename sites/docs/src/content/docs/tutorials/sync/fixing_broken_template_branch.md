@@ -17,7 +17,7 @@ If so, the easiest solution is to start your `TEMPLATE` branch from scratch.
   cd <pipeline>
   ```
 
-- Next, retrieve the commit hash when the original nf-core template was used to generate pipeline i.e. with `nf-core create`.
+- Next, retrieve the commit hash when the original nf-core template was used to generate pipeline i.e. with `nf-core pipelines create`.
 
   - Assuming you originally started with the nf-core template, you can simply look at your git log from within your repository:
 
@@ -47,7 +47,7 @@ If so, the easiest solution is to start your `TEMPLATE` branch from scratch.
   You are irreversibly overwriting git history here - make sure that you get the branch names right!
   :::
 
-- We can switch back to `dev`, and run `nf-core sync` to do it's magic and get the latest version of the template.
+- We can switch back to `dev`, and run `nf-core pipelines sync` to do it's magic and get the latest version of the template.
 
   ```bash
   git checkout dev
