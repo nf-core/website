@@ -7811,6 +7811,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -12795,7 +12799,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -18219,7 +18223,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -23823,7 +23827,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "taxprofiler",
@@ -24412,6 +24416,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -28501,7 +28513,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -40074,7 +40086,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -40459,7 +40471,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -41056,7 +41068,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -47573,7 +47585,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -52980,7 +52992,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "sarek",
@@ -53281,7 +53293,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -56183,7 +56195,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -76302,7 +76314,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -82284,7 +82296,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -85038,7 +85050,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -85165,7 +85177,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -85263,7 +85275,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -94629,7 +94641,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -94803,7 +94815,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -96628,7 +96640,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "taxprofiler",
@@ -99767,6 +99779,24 @@
                   "type": "file",
                   "description": "dump of R SessionInfo",
                   "pattern": "*.log"
+                }
+              }
+            ]
+          },
+          {
+            "normalised_counts": [
+              {
+                "meta": {
+                  "type": "file",
+                  "description": "normalised TSV format expression matrix with probes by row and samples by column",
+                  "pattern": "*.normalised_counts.tsv"
+                }
+              },
+              {
+                "*.normalised_counts.tsv": {
+                  "type": "file",
+                  "description": "normalised TSV format expression matrix with probes by row and samples by column",
+                  "pattern": "*.normalised_counts.tsv"
                 }
               }
             ]
@@ -106980,6 +107010,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -117286,7 +117320,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -131646,7 +131680,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "sammyseq",
@@ -137444,7 +137478,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -142326,7 +142360,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -145982,7 +146016,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -146083,7 +146117,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -146181,7 +146215,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -146288,7 +146322,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -146463,7 +146497,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -146674,7 +146708,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -146795,7 +146829,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -146902,7 +146936,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "scnanoseq",
@@ -147059,7 +147093,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -147185,7 +147219,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -148227,7 +148261,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -148404,7 +148438,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -151294,7 +151328,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -151560,7 +151594,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -151934,7 +151968,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -152991,7 +153025,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -153206,7 +153240,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -166664,7 +166698,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -169379,7 +169413,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -169518,7 +169552,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -171090,7 +171124,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -171226,7 +171260,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -171371,7 +171405,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -177610,7 +177644,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -179141,7 +179175,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -179242,7 +179276,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -179359,7 +179393,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -180652,7 +180686,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "scnanoseq",
@@ -180774,7 +180808,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -181036,7 +181070,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -181449,7 +181483,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -189815,7 +189849,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -190003,7 +190037,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "sammyseq",
@@ -190607,7 +190641,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -190763,7 +190797,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -191025,7 +191059,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -191990,7 +192024,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -193735,7 +193769,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -194615,7 +194649,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "smrnaseq",
@@ -194788,7 +194822,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -195173,7 +195207,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -195295,7 +195329,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -199231,7 +199265,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -199469,7 +199503,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "sarek",
@@ -199734,7 +199768,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "sarek",
@@ -199871,7 +199905,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "scdownstream",
