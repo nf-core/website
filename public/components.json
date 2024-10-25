@@ -1652,7 +1652,13 @@
           "@toniher",
           "@gallvp"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "genomeqc",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "agat_sqstatbasic",
@@ -6807,6 +6813,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         },
         {
           "name": "rnafusion",
@@ -21489,7 +21499,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.0"
         }
       ]
     },
@@ -21646,7 +21656,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.0"
         }
       ]
     },
@@ -21757,7 +21767,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.0"
         }
       ]
     },
@@ -21850,7 +21860,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.0"
         }
       ]
     },
@@ -22028,7 +22038,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.0"
         }
       ]
     },
@@ -22142,7 +22152,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.0"
         }
       ]
     },
@@ -22260,7 +22270,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.0"
         }
       ]
     },
@@ -25713,6 +25723,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -25981,6 +25999,10 @@
         {
           "name": "denovotranscript",
           "version": "1.0.0"
+        },
+        {
+          "name": "genomeqc",
+          "version": "dev"
         }
       ]
     },
@@ -27562,7 +27584,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.0"
         }
       ]
     },
@@ -27654,7 +27676,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.0"
         }
       ]
     },
@@ -28489,7 +28511,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.0"
         },
         {
           "name": "nascent",
@@ -40246,10 +40268,6 @@
         {
           "name": "metatdenovo",
           "version": "1.0.1"
-        },
-        {
-          "name": "methylseq",
-          "version": "2.6.0"
         },
         {
           "name": "molkart",
@@ -53180,6 +53198,10 @@
           "version": "dev"
         },
         {
+          "name": "fastqrepair",
+          "version": "dev"
+        },
+        {
           "name": "fastquorum",
           "version": "1.0.1"
         },
@@ -53189,6 +53211,10 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeqc",
           "version": "dev"
         },
         {
@@ -53245,7 +53271,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.0"
         },
         {
           "name": "nanoseq",
@@ -76297,6 +76323,10 @@
           "version": "dev"
         },
         {
+          "name": "genomeqc",
+          "version": "dev"
+        },
+        {
           "name": "hicar",
           "version": "1.0.0"
         },
@@ -82265,6 +82295,10 @@
         {
           "name": "marsseq",
           "version": "1.0.3"
+        },
+        {
+          "name": "methylseq",
+          "version": "2.7.0"
         },
         {
           "name": "mhcquant",
@@ -107885,6 +107919,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -111005,7 +111043,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.0"
         }
       ]
     },
@@ -111123,7 +111161,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.0"
         }
       ]
     },
@@ -117163,6 +117201,10 @@
           "version": "dev"
         },
         {
+          "name": "genomeqc",
+          "version": "dev"
+        },
+        {
           "name": "genomeskim",
           "version": "dev"
         },
@@ -117224,7 +117266,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.0"
         },
         {
           "name": "mhcquant",
@@ -119963,6 +120005,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeqc",
+          "version": "dev"
+        },
         {
           "name": "readsimulator",
           "version": "1.0.1"
@@ -124502,7 +124548,13 @@
         "maintainers": [
           "@GallVp"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "genomeqc",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "paftools_sam2paf",
@@ -131668,7 +131720,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.0"
         },
         {
           "name": "pathogensurveillance",
@@ -132497,6 +132549,10 @@
         {
           "name": "ampliseq",
           "version": "2.11.0"
+        },
+        {
+          "name": "genomeqc",
+          "version": "dev"
         },
         {
           "name": "multiplesequencealign",
@@ -137470,7 +137526,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.0"
         },
         {
           "name": "nascent",
@@ -142133,7 +142189,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.0"
         },
         {
           "name": "raredisease",
@@ -142258,7 +142314,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.0"
         }
       ]
     },
@@ -142746,6 +142802,10 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeqc",
           "version": "dev"
         },
         {
@@ -150714,7 +150774,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.0"
         },
         {
           "name": "nanoseq",
@@ -151296,7 +151356,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.0"
         },
         {
           "name": "nanoseq",
@@ -151920,7 +151980,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.0"
         },
         {
           "name": "nanoseq",
@@ -152989,7 +153049,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.0"
         },
         {
           "name": "nanoseq",
@@ -153208,7 +153268,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.0"
         },
         {
           "name": "nanoseq",
@@ -159143,6 +159203,10 @@
         {
           "name": "funcscan",
           "version": "2.0.0"
+        },
+        {
+          "name": "genomeqc",
+          "version": "dev"
         }
       ]
     },
@@ -159312,7 +159376,13 @@
         "maintainers": [
           "@GallVp"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "genomeqc",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "seqkit_split2",
@@ -176641,7 +176711,13 @@
         "maintainers": [
           "@GallVp"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "genomeqc",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "tidk_plot",
@@ -176724,7 +176800,13 @@
         "maintainers": [
           "@GallVp"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "genomeqc",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "tidk_search",
@@ -176831,7 +176913,13 @@
         "maintainers": [
           "@GallVp"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "genomeqc",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "topas_gencons",
@@ -177636,7 +177724,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.0"
         },
         {
           "name": "riboseq",
@@ -177808,6 +177896,10 @@
         {
           "name": "callingcards",
           "version": "1.0.0"
+        },
+        {
+          "name": "fastqrepair",
+          "version": "dev"
         },
         {
           "name": "sammyseq",
@@ -181439,7 +181531,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.0"
         },
         {
           "name": "multiplesequencealign",
@@ -192598,7 +192690,13 @@
         "maintainers": [
           "@GallVp"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "genomeqc",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "fasta_hmmsearch_rank_fastas",
@@ -199394,6 +199492,10 @@
           "version": "2.3.1"
         },
         {
+          "name": "fastqrepair",
+          "version": "dev"
+        },
+        {
           "name": "fastquorum",
           "version": "1.0.1"
         },
@@ -199404,6 +199506,10 @@
         {
           "name": "funcscan",
           "version": "2.0.0"
+        },
+        {
+          "name": "genomeqc",
+          "version": "dev"
         },
         {
           "name": "isoseq",
@@ -199436,6 +199542,10 @@
         {
           "name": "methylarray",
           "version": "dev"
+        },
+        {
+          "name": "methylseq",
+          "version": "2.7.0"
         },
         {
           "name": "mhcquant",
@@ -199659,6 +199769,10 @@
           "version": "2.3.1"
         },
         {
+          "name": "fastqrepair",
+          "version": "dev"
+        },
+        {
           "name": "fastquorum",
           "version": "1.0.1"
         },
@@ -199669,6 +199783,10 @@
         {
           "name": "funcscan",
           "version": "2.0.0"
+        },
+        {
+          "name": "genomeqc",
+          "version": "dev"
         },
         {
           "name": "isoseq",
@@ -199701,6 +199819,10 @@
         {
           "name": "methylarray",
           "version": "dev"
+        },
+        {
+          "name": "methylseq",
+          "version": "2.7.0"
         },
         {
           "name": "mhcquant",
@@ -199892,8 +200014,16 @@
           "version": "1.0.1"
         },
         {
+          "name": "fastqrepair",
+          "version": "dev"
+        },
+        {
           "name": "methylarray",
           "version": "dev"
+        },
+        {
+          "name": "methylseq",
+          "version": "2.7.0"
         },
         {
           "name": "phaseimpute",
@@ -200045,6 +200175,10 @@
         {
           "name": "funcscan",
           "version": "2.0.0"
+        },
+        {
+          "name": "genomeqc",
+          "version": "dev"
         },
         {
           "name": "isoseq",
