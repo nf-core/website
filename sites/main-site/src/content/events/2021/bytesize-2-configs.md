@@ -15,6 +15,12 @@ locations:
       - https://www.bilibili.com/video/BV1M54y1a7Uy
 ---
 
+:::warning
+The information presented in this bytesize may not reflect the latest way of configuring Nextflow!
+
+Please check the Nextflow and nf-core docs for the most up-to-date information.
+:::
+
 This week, Maxime Garcia ([@MaxUlysse](http://github.com/MaxUlysse/)) will present: _**How nf-core configs work.**_ This talk will cover:
 
 - Making your own Nextflow config file

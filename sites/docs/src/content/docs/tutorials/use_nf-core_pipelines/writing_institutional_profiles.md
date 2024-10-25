@@ -10,6 +10,8 @@ parentWeight: 5
 
 👨‍👩‍👧‍ What this means is that you can specify common Nextflow pipeline configurations and options that can be shared across all users of your particular institutional cluster.
 
+💪 These configuration profiles can be used [outside of nf-core](/docs/tutorials/external_usage/nf-core_configs_outside_nf-core) in any Nextflow pipeline!
+
 nf-core offers two level of profile sharing: global institutional and pipeline institutional profiles via [nf-core/configs](https://github.com/nf-core/configs)
 
 - **Global** institutional profiles represent configuration options that apply to users of _all_ nf-core pipelines. These typically define settings regarding the cluster itself, such as the type of scheduler being used, maximum resource limits and so on.
@@ -183,21 +185,6 @@ params {
 
 Note that for the `config_profile_contact`, it is best to indicate a specific person. This will typically be someone who wrote the config (via their name & github handle) or whoever will maintain it at the institution (e.g. email of IT Department, Institution X), i.e. someone who can be contacted if there are questions or problems and how to contact them.
 
-Next, in the same scope, we can also specify the `max_*` series of params.
-
-These are used by nf-core pipelines to limit automatic resubmission of resource-related failed jobs to ensure submitted retries do not exceed the maximum available on your cluster. These values should be the ones you found for the largest node of your cluster (i.e., the largest node a user's job can be submitted to). For example:
-
-```nextflow
-params {
-  config_profile_description = '<your_cluster_name> cluster profile provided by nf-core/configs.'
-  config_profile_contact = '<your_name> (<your_github_handle>)'
-  config_profile_url = 'https://<institutional_url>.com'
-  max_memory = 2.TB
-  max_cpus = 128
-  max_time = 720.h
-}
-```
-
 Finally, if you have a common resource directory for the AWS `iGenomes` collection of reference genomes, this can can also go in the `params` scope.
 
 ```nextflow
@@ -205,16 +192,50 @@ params {
   config_profile_description = '<your_cluster_name> cluster profile provided by nf-core/configs.'
   config_profile_contact = '<your_name> (<your_github_handle>)'
   config_profile_url = 'https://<institutional_url>.com'
-  max_memory = 2.TB
-  max_cpus = 128
-  max_time = 720.h
   igenomes_base = '/<path>/<to>/igenomes/'
 }
 ```
 
+:::note{collapse title="Note on older nf-core pipelines"}
+
+If using older pipelines, you will also need to specify the `max_*` series of params (now not used in the pipeline template).
+
+These are used by nf-core pipelines to limit the automatic resubmission of resource-related failed jobs to ensure submitted retries do not exceed the maximum available on your cluster.
+These values should be the ones you found for the largest node of your cluster (i.e., the largest node a user's job can be submitted to). For example:
+
+```nextflow
+params {
+  config_profile_description = '<your_cluster_name> cluster profile provided by nf-core/configs.'
+  config_profile_contact = '<your_name> (<your_github_handle>)'
+  config_profile_url = 'https://<institutional_url>.com'
+  max_memory = 2.TB
+  max_cpus = 128
+  max_time = 720.h
+}
+```
+
+:::
+
 #### process scope
 
-Next, we can use the `process` scope to define which scheduler to use and associated options. Any option specified in this scope means that all processes in a pipeline will use the settings defined here.
+Next, we can use the `process` scope to define certain resource specifications, schedulers to use, and associated options. Any option specified in this scope means that all processes in a pipeline will use the settings defined here.
+
+First, you should specify a `resourceLimits` list based on the maximum resources available on your machine or infrastructure.
+
+These values are used by nf-core pipelines to limit the automatic resubmission of resource-related failed jobs to ensure submitted retries do not exceed the maximum available on your cluster.
+These values should be the ones you found for the largest node of your cluster (i.e., the largest node to which a user's job can be submitted).
+
+For example:
+
+```nextflow
+process {
+  resourceLimits = [
+    cpus: 128,
+    memory: 2.TB,
+    time: 720.h
+  ]
+}
+```
 
 Normally, you only need to specify which scheduler you use. For example, if using SLURM 🐛:
 
@@ -223,16 +244,17 @@ params {
   config_profile_description = '<your_cluster_name> cluster profile provided by nf-core/configs.'
   config_profile_contact = '<your_name> (<your_github_handle>)'
   config_profile_url = 'https://<institutional_url>.com'
-  max_memory = 2.TB
-  max_cpus = 128
-  max_time = 720.h
   igenomes_base = '/<path>/<to>/igenomes/'
 }
 
 process {
+  resourceLimits = [
+    cpus: 128,
+    memory: 2.TB,
+    time: 720.h
+  ]
   executor = 'slurm'
 }
-
 ```
 
 If you need to specify more cluster-specific information regarding your cluster, this can also go here.
@@ -244,13 +266,15 @@ params {
   config_profile_description = '<your_cluster_name> cluster profile provided by nf-core/configs.'
   config_profile_contact = '<your_name> (<your_github_handle>)'
   config_profile_url = 'https://<institutional_url>.com'
-  max_memory = 2.TB
-  max_cpus = 128
-  max_time = 720.h
   igenomes_base = '/<path>/<to>/igenomes/'
 }
 
 process {
+  resourceLimits = [
+    cpus: 128,
+    memory: 2.TB,
+    time: 720.h
+  ]
   executor = 'slurm'
   queue = 'all'
 }
@@ -265,13 +289,15 @@ params {
   config_profile_description = '<your_cluster_name> cluster profile provided by nf-core/configs.'
   config_profile_contact = '<your_name> (<your_github_handle>)'
   config_profile_url = 'https://<institutional_url>.com'
-  max_memory = 2.TB
-  max_cpus = 128
-  max_time = 720.h
   igenomes_base = '/<path>/<to>/igenomes/'
 }
 
 process {
+  resourceLimits = [
+    cpus: 128,
+    memory: 2.TB,
+    time: 720.h
+  ]
   executor = 'slurm'
   queue = { task.time <= 2.h ? 'short' : task.time <= 24.h ? 'medium': 'long' }
 }
@@ -285,13 +311,15 @@ params {
   config_profile_description = '<your_cluster_name> cluster profile provided by nf-core/configs.'
   config_profile_contact = '<your_name> (<your_github_handle>)'
   config_profile_url = 'https://<institutional_url>.com'
-  max_memory = 2.TB
-  max_cpus = 128
-  max_time = 720.h
   igenomes_base = '/<path>/<to>/igenomes/'
 }
 
 process {
+  resourceLimits = [
+    cpus: 128,
+    memory: 2.TB,
+    time: 720.h
+  ]
   executor = 'slurm'
   queue = { task.cpus > 24 ? 'big' : 'small' }
 }
@@ -307,13 +335,15 @@ params {
   config_profile_description = '<your_cluster_name> cluster profile provided by nf-core/configs.'
   config_profile_contact = '<your_name> (<your_github_handle>)'
   config_profile_url = 'https://<institutional_url>.com'
-  max_memory = 2.TB
-  max_cpus = 128
-  max_time = 720.h
   igenomes_base = '/<path>/<to>/igenomes/'
 }
 
 process {
+  resourceLimits = [
+    cpus: 128,
+    memory: 2.TB,
+    time: 720.h
+  ]
   executor = 'slurm'
   queue = { task.cpus > 24 ? 'big' : 'small' }
   maxRetries = 2
@@ -332,13 +362,15 @@ If you normally need to specify additional 'non-standard' options in the headers
 >  config_profile_description = '<your_cluster_name> cluster profile provided by nf-core/configs.'
 >   config_profile_contact = '<your_name> (<your_github_handle>)'
 >   config_profile_url = 'https://<institutional_url>.com'
->   max_memory = 2.TB
->   max_cpus = 128
->   max_time = 720.h
 >   igenomes_base = '/<path>/<to>/igenomes/'
 > }
 >
 > process {
+>  resourceLimits = [
+>    cpus: 128,
+>    memory: 2.TB,
+>    time: 720.h
+>  ]
 >   executor = 'sge'
 >   queue = { task.cpus > 24 ? 'big' : 'small' }
 >   maxRetries = 2
@@ -357,13 +389,15 @@ params {
   config_profile_description = '<your_cluster_name> cluster profile provided by nf-core/configs.'
   config_profile_contact = '<your_name> (<your_github_handle>)'
   config_profile_url = 'https://<institutional_url>.com'
-  max_memory = 2.TB
-  max_cpus = 128
-  max_time = 720.h
   igenomes_base = '/<path>/<to>/igenomes/'
 }
 
 process {
+  resourceLimits = [
+    cpus: 128,
+    memory: 2.TB,
+    time: 720.h
+  ]
   executor = 'sge'
   queue = { task.cpus > 24 ? 'big' : 'small' }
   maxRetries = 2
@@ -385,13 +419,15 @@ params {
   config_profile_description = '<your_cluster_name> cluster profile provided by nf-core/configs.'
   config_profile_contact = '<your_name> (<your_github_handle>)'
   config_profile_url = 'https://<institutional_url>.com'
-  max_memory = 2.TB
-  max_cpus = 128
-  max_time = 720.h
   igenomes_base = '/<path>/<to>/igenomes/'
 }
 
 process {
+  resourceLimits = [
+    cpus: 128,
+    memory: 2.TB,
+    time: 720.h
+  ]
   executor = 'sge'
   queue = { task.cpus > 24 ? 'big' : 'small' }
   maxRetries = 2
@@ -413,13 +449,15 @@ params {
   config_profile_description = '<your_cluster_name> cluster profile provided by nf-core/configs.'
   config_profile_contact = '<your_name> (<your_github_handle>)'
   config_profile_url = 'https://<institutional_url>.com'
-  max_memory = 2.TB
-  max_cpus = 128
-  max_time = 720.h
   igenomes_base = '/<path>/<to>/igenomes/'
 }
 
 process {
+  resourceLimits = [
+    cpus: 128,
+    memory: 2.TB,
+    time: 720.h
+  ]
   executor = 'sge'
   queue = { task.cpus > 24 ? 'big' : 'small' }
   maxRetries = 2
@@ -446,13 +484,15 @@ params {
   config_profile_description = '<your_cluster_name> cluster profile provided by nf-core/configs.'
   config_profile_contact = '<your_name> (<your_github_handle>)'
   config_profile_url = 'https://<institutional_url>.com'
-  max_memory = 2.TB
-  max_cpus = 128
-  max_time = 720.h
   igenomes_base = '/<path>/<to>/igenomes/'
 }
 
 process {
+  resourceLimits = [
+    cpus: 128,
+    memory: 2.TB,
+    time: 720.h
+  ]
   executor = 'sge'
   queue = { task.cpus > 24 ? 'big' : 'small' }
   maxRetries = 2
@@ -486,6 +526,11 @@ Using our example above, maybe our institution has two clusters named red and bl
 
 ```nextflow
 process {
+  resourceLimits = [
+    cpus: 128,
+    memory: 2.TB,
+    time: 720.h
+  ]
   executor = 'sge'
   queue = { task.cpus > 24 ? 'big' : 'small' }
   maxRetries = 2
@@ -506,6 +551,14 @@ singularity {
 
 profiles {
   red {
+    process {
+      resourceLimits = [
+        cpus: 128,
+        memory: 2.TB,
+        time: 720.h
+      ]
+    }
+
     params {
       config_profile_description = '<your_institution_name> 'red' cluster cluster profile provided by nf-core/configs.'
       config_profile_contact = '<your_name> (<your_github_handle>)'
@@ -518,20 +571,25 @@ profiles {
   }
 
   blue {
+    process {
+      resourceLimits = [
+        cpus: 64,
+        memory: 256.TB,
+        time: 24.h
+      ]
+    }
+
     params {
       config_profile_description = '<your_institution_name> 'blue' cluster profile provided by nf-core/configs.'
       config_profile_contact = '<your_name> (<your_github_handle>)'
       config_profile_url = 'https://<institutional_url>.com`'
-      max_memory = 256.GB
-      max_cpus = 64
-      max_time = 24.h
       igenomes_base = '/<path>/<to>/igenomes/'
     }
   }
 }
 ```
 
-You can see here we have moved the `params` block into each of the _internal profiles_, and updated the `config_profile_description` and `max_*` parameters accordingly.
+You can see here we have moved the `process` and `params` blocks into each of the _internal profiles_, and updated the `resourceLimits` and `config_profile_description` parameters accordingly.
 
 :::warning
 Important: you should **not** define scopes both in the global profile AND in the internal profile. Internal profiles do _not_ inherit directives/settings defined in scopes in the base config, so anything defined in the base global profile file will be _ignored_ in the internal profile. See the [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html#config-profiles) for more information.
