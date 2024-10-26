@@ -7825,6 +7825,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -24426,6 +24430,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -90999,6 +91011,166 @@
       ]
     },
     {
+      "name": "irescue",
+      "path": "modules/nf-core/irescue/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "irescue",
+        "description": "Quantification of transposable elements expression in scRNA-seq",
+        "keywords": [
+          "scRNA-seq",
+          "transposons",
+          "repeats"
+        ],
+        "tools": [
+          {
+            "irescue": {
+              "description": "IRescue is a tool for uncertainty-aware quantification of transposable elements expression in scRNA-seq",
+              "homepage": "https://pypi.org/project/IRescue",
+              "documentation": "https://pypi.org/project/IRescue",
+              "tool_dev_url": "https://github.com/bodegalab/irescue",
+              "doi": "10.1093/nar/gkae793",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:irescue"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Sorted BAM file",
+                "pattern": "*.bam",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "genome": {
+                "type": "string",
+                "description": "Genome assembly symbol. Not used when bed file is provided.\nIn this case, it can be any value or an empty string.\n"
+              }
+            }
+          ],
+          [
+            {
+              "bed": {
+                "type": "file",
+                "description": "Bed file of repeats genomic coordinates (optional).",
+                "pattern": "*.bed",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          },
+          {
+            "results": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}": {
+                  "type": "directory",
+                  "description": "Folder containing count matrices and logs",
+                  "pattern": "${prefix}"
+                }
+              }
+            ]
+          },
+          {
+            "counts": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}/counts": {
+                  "type": "directory",
+                  "description": "Folder containing count matrices",
+                  "pattern": "${prefix}/counts"
+                }
+              }
+            ]
+          },
+          {
+            "log": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}/irescue.log": {
+                  "type": "file",
+                  "description": "Text file contianing run informations",
+                  "pattern": "${prefix}/irescue.log"
+                }
+              }
+            ]
+          },
+          {
+            "tmp": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}/tmp": {
+                  "type": "directory",
+                  "description": "Folder containing temporary files,\nif kept using the \"--keeptmp\" argument (optional).\n",
+                  "pattern": "${prefix}/tmp"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@bepoli"
+        ],
+        "maintainers": [
+          "@bepoli"
+        ]
+      }
+    },
+    {
       "name": "islandpath",
       "path": "modules/nf-core/islandpath/meta.yml",
       "type": "module",
@@ -107044,6 +107216,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -170247,6 +170423,35 @@
             {
               "meta": {
                 "type": "map",
+                "description": "Groovy Map containing information about the set of samples\ne.g. `[ id:'test' ]`\n"
+              }
+            },
+            {
+              "collected_crams": {
+                "type": "file",
+                "description": "List of sorted BAM/CRAM/SAM file",
+                "pattern": "*.{bam,cram,sam}"
+              }
+            },
+            {
+              "collected_crais": {
+                "type": "file",
+                "description": "List of BAM/CRAM/SAM index files",
+                "pattern": "*.{bai,crai,sai}"
+              }
+            },
+            {
+              "cramlist": {
+                "type": "file",
+                "description": "Text file with the path to the cram files to use in imputation, one per line. Since the cram files are staged to the working directory for the process, this file should just contain the file names without any pre-pending path.\n",
+                "pattern": "*.txt"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
                 "description": "Groovy Map containing information about the set of positions to run the imputation over\ne.g. `[ id:'test' ]`\n"
               }
             },
@@ -170287,35 +170492,6 @@
               "nGen": {
                 "type": "integer",
                 "description": "Number of generations since founding of the population to use for imputation. Refer to the documentation for the `--nGen` argument of STITCH for more information."
-              }
-            }
-          ],
-          [
-            {
-              "meta2": {
-                "type": "map",
-                "description": "Groovy Map containing information about the set of samples\ne.g. `[ id:'test' ]`\n"
-              }
-            },
-            {
-              "collected_crams": {
-                "type": "file",
-                "description": "List of sorted BAM/CRAM/SAM file",
-                "pattern": "*.{bam,cram,sam}"
-              }
-            },
-            {
-              "collected_crais": {
-                "type": "file",
-                "description": "List of BAM/CRAM/SAM index files",
-                "pattern": "*.{bai,crai,sai}"
-              }
-            },
-            {
-              "cramlist": {
-                "type": "file",
-                "description": "Text file with the path to the cram files to use in imputation, one per line. Since the cram files are staged to the working directory for the process, this file should just contain the file names without any pre-pending path.\n",
-                "pattern": "*.txt"
               }
             }
           ],
@@ -200046,6 +200222,10 @@
           "version": "2.4.0"
         },
         {
+          "name": "spatialvi",
+          "version": "dev"
+        },
+        {
           "name": "variantbenchmarking",
           "version": "dev"
         }
@@ -200278,10 +200458,6 @@
         },
         {
           "name": "seqinspector",
-          "version": "dev"
-        },
-        {
-          "name": "spatialvi",
           "version": "dev"
         },
         {
