@@ -3613,12 +3613,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/chipseq",
             "created_at": "2018-04-24T15:42:59Z",
-            "updated_at": "2024-10-25T15:11:36Z",
+            "updated_at": "2024-10-27T11:46:58Z",
             "pushed_at": "2024-10-14T14:37:54Z",
             "homepage": "https://nf-co.re/chipseq",
             "size": 16603,
-            "stargazers_count": 192,
-            "watchers_count": 192,
+            "stargazers_count": 193,
+            "watchers_count": 193,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": false,
@@ -3643,7 +3643,7 @@
             "visibility": "public",
             "forks": 148,
             "open_issues": 15,
-            "watchers": 192,
+            "watchers": 193,
             "default_branch": "master",
             "temp_clone_token": "",
             "allow_squash_merge": false,
@@ -8172,7 +8172,7 @@
             "has_wiki": false,
             "has_pages": false,
             "has_discussions": false,
-            "forks_count": 7,
+            "forks_count": 8,
             "archived": false,
             "disabled": false,
             "open_issues_count": 2,
@@ -8186,7 +8186,7 @@
                 "tutorial"
             ],
             "visibility": "public",
-            "forks": 7,
+            "forks": 8,
             "open_issues": 2,
             "watchers": 3,
             "default_branch": "master",
@@ -8220,7 +8220,7 @@
                     "status": "disabled"
                 }
             },
-            "network_count": 7,
+            "network_count": 8,
             "subscribers_count": 182,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
@@ -10169,9 +10169,9 @@
             "url": "https://api.github.com/repos/nf-core/differentialabundance",
             "created_at": "2022-10-12T08:49:25Z",
             "updated_at": "2024-10-25T15:12:21Z",
-            "pushed_at": "2024-10-26T00:18:00Z",
+            "pushed_at": "2024-10-27T11:08:51Z",
             "homepage": "https://nf-co.re/differentialabundance",
-            "size": 8993,
+            "size": 8995,
             "stargazers_count": 61,
             "watchers_count": 61,
             "language": "Nextflow",
@@ -10181,7 +10181,7 @@
             "has_wiki": false,
             "has_pages": false,
             "has_discussions": false,
-            "forks_count": 33,
+            "forks_count": 34,
             "archived": false,
             "disabled": false,
             "open_issues_count": 59,
@@ -10201,7 +10201,7 @@
                 "shiny"
             ],
             "visibility": "public",
-            "forks": 33,
+            "forks": 34,
             "open_issues": 59,
             "watchers": 61,
             "default_branch": "master",
@@ -10235,7 +10235,7 @@
                     "status": "disabled"
                 }
             },
-            "network_count": 33,
+            "network_count": 34,
             "subscribers_count": 142,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
@@ -12372,7 +12372,7 @@
                 }
             },
             "network_count": 1,
-            "subscribers_count": 233,
+            "subscribers_count": 226,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
@@ -18095,9 +18095,9 @@
             "url": "https://api.github.com/repos/nf-core/mag",
             "created_at": "2018-05-22T06:06:58Z",
             "updated_at": "2024-10-22T08:42:20Z",
-            "pushed_at": "2024-10-26T13:23:31Z",
+            "pushed_at": "2024-10-27T05:33:15Z",
             "homepage": "https://nf-co.re/mag",
-            "size": 23153,
+            "size": 23165,
             "stargazers_count": 213,
             "watchers_count": 213,
             "language": "Nextflow",
@@ -18107,7 +18107,7 @@
             "has_wiki": false,
             "has_pages": false,
             "has_discussions": false,
-            "forks_count": 109,
+            "forks_count": 110,
             "archived": false,
             "disabled": false,
             "open_issues_count": 65,
@@ -18125,7 +18125,7 @@
                 "nanopore-sequencing"
             ],
             "visibility": "public",
-            "forks": 109,
+            "forks": 110,
             "open_issues": 65,
             "watchers": 213,
             "default_branch": "master",
@@ -18159,7 +18159,7 @@
                     "status": "disabled"
                 }
             },
-            "network_count": 109,
+            "network_count": 110,
             "subscribers_count": 154,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
@@ -19477,8 +19477,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2024-10-26T13:23:30Z",
-                    "tag_sha": "2963ba0050da439ebb667769116f98ffa22b9a45",
+                    "published_at": "2024-10-27T05:33:14Z",
+                    "tag_sha": "4ec184db8b0620ccdb0e0853d74132da1976d0f1",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -20132,12 +20132,17 @@
                 "url": "https://api.github.com/repos/nf-core/mcmicro/branches/master/protection/required_status_checks",
                 "strict": false,
                 "contexts": [
-                    "nf-core"
+                    "nf-core",
+                    "pre-commit"
                 ],
                 "contexts_url": "https://api.github.com/repos/nf-core/mcmicro/branches/master/protection/required_status_checks/contexts",
                 "checks": [
                     {
                         "context": "nf-core",
+                        "app_id": 15368
+                    },
+                    {
+                        "context": "pre-commit",
                         "app_id": 15368
                     }
                 ]
@@ -20153,17 +20158,12 @@
                 "strict": false,
                 "contexts": [
                     "nf-core",
-                    "Run pipeline with test data (23.04.0)",
                     "pre-commit"
                 ],
                 "contexts_url": "https://api.github.com/repos/nf-core/mcmicro/branches/dev/protection/required_status_checks/contexts",
                 "checks": [
                     {
                         "context": "nf-core",
-                        "app_id": 15368
-                    },
-                    {
-                        "context": "Run pipeline with test data (23.04.0)",
                         "app_id": 15368
                     },
                     {
@@ -21437,10 +21437,10 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/methylseq",
             "created_at": "2018-03-12T15:46:42Z",
-            "updated_at": "2024-10-25T15:13:47Z",
-            "pushed_at": "2024-10-26T07:39:13Z",
+            "updated_at": "2024-10-27T07:44:12Z",
+            "pushed_at": "2024-10-27T10:47:20Z",
             "homepage": "https://nf-co.re/methylseq",
-            "size": 22509,
+            "size": 22470,
             "stargazers_count": 140,
             "watchers_count": 140,
             "language": "Nextflow",
@@ -21453,7 +21453,7 @@
             "forks_count": 144,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 35,
+            "open_issues_count": 31,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -21469,7 +21469,7 @@
             ],
             "visibility": "public",
             "forks": 144,
-            "open_issues": 35,
+            "open_issues": 31,
             "watchers": 140,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -21550,7 +21550,7 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 4,
+            "open_pr_count": 3,
             "repository_url": "https://github.com/nf-core/methylseq",
             "contributors": [
                 {
@@ -21560,7 +21560,7 @@
                 },
                 {
                     "name": "sateeshperi",
-                    "count": 201,
+                    "count": 218,
                     "avatar_url": "https://avatars.githubusercontent.com/u/33637490?v=4"
                 },
                 {
@@ -21705,9 +21705,9 @@
                 }
             ],
             "released_after_tools": true,
-            "head_sha": "aac172df2c1c6558683885d3d52157bed3b6bbab",
+            "head_sha": "d16f8f81e812d86f4d297e69de3f001628dfd5b4",
             "last_release_is_head": true,
-            "last_release_vs_default_compare_url": "https://github.com/nf-core/methylseq/compare/aac172df2c1c6558683885d3d52157bed3b6bbab...aac172df2c1c6558683885d3d52157bed3b6bbab",
+            "last_release_vs_default_compare_url": "https://github.com/nf-core/methylseq/compare/d16f8f81e812d86f4d297e69de3f001628dfd5b4...d16f8f81e812d86f4d297e69de3f001628dfd5b4",
             "commits_to_dev": 30,
             "is_DSL2": true,
             "has_nf_test": true,
@@ -21719,6 +21719,51 @@
                 "nf-schema@2.1.1"
             ],
             "releases": [
+                {
+                    "tag_name": "2.7.1",
+                    "published_at": "2024-10-27T07:45:50Z",
+                    "tag_sha": "d16f8f81e812d86f4d297e69de3f001628dfd5b4",
+                    "has_schema": true,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/usage.md"
+                    ],
+                    "components": {
+                        "modules": [
+                            "bismark_align",
+                            "bismark_coverage2cytosine",
+                            "bismark_deduplicate",
+                            "bismark_genomepreparation",
+                            "bismark_methylationextractor",
+                            "bismark_report",
+                            "bismark_summary",
+                            "bwameth_align",
+                            "bwameth_index",
+                            "cat_fastq",
+                            "fastqc",
+                            "gunzip",
+                            "methyldackel_extract",
+                            "methyldackel_mbias",
+                            "multiqc",
+                            "picard_markduplicates",
+                            "preseq_lcextrap",
+                            "qualimap_bamqc",
+                            "qualimap_bamqccram",
+                            "samtools_faidx",
+                            "samtools_flagstat",
+                            "samtools_index",
+                            "samtools_sort",
+                            "samtools_stats",
+                            "trimgalore",
+                            "untar"
+                        ],
+                        "subworkflows": [
+                            "utils_nextflow_pipeline",
+                            "utils_nfcore_pipeline",
+                            "utils_nfschema_plugin"
+                        ]
+                    }
+                },
                 {
                     "tag_name": "2.7.0",
                     "published_at": "2024-10-25T05:04:00Z",
@@ -22117,8 +22162,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2024-10-26T07:39:13Z",
-                    "tag_sha": "345f43b8c1d9281335ab9e6ca240884f9d21bbab",
+                    "published_at": "2024-10-27T10:33:10Z",
+                    "tag_sha": "d1eb8b1dedad96818645046aa8ff76d7ab3c99c2",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -32011,12 +32056,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/rnaseq",
             "created_at": "2018-03-29T13:10:58Z",
-            "updated_at": "2024-10-26T23:04:37Z",
+            "updated_at": "2024-10-27T13:03:25Z",
             "pushed_at": "2024-10-24T11:32:08Z",
             "homepage": "https://nf-co.re/rnaseq",
             "size": 72419,
-            "stargazers_count": 892,
-            "watchers_count": 892,
+            "stargazers_count": 893,
+            "watchers_count": 893,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": false,
@@ -32038,7 +32083,7 @@
             "visibility": "public",
             "forks": 704,
             "open_issues": 66,
-            "watchers": 892,
+            "watchers": 893,
             "default_branch": "master",
             "temp_clone_token": "",
             "allow_squash_merge": false,
@@ -37844,7 +37889,7 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/scdownstream",
             "created_at": "2024-06-11T06:38:31Z",
-            "updated_at": "2024-10-23T17:06:58Z",
+            "updated_at": "2024-10-27T13:26:07Z",
             "pushed_at": "2024-10-18T06:02:39Z",
             "homepage": "https://nf-co.re/scdownstream",
             "size": 1910,
@@ -37860,7 +37905,7 @@
             "forks_count": 9,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 19,
+            "open_issues_count": 33,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -37874,7 +37919,7 @@
             ],
             "visibility": "public",
             "forks": 9,
-            "open_issues": 19,
+            "open_issues": 33,
             "watchers": 36,
             "default_branch": "dev",
             "temp_clone_token": "",
