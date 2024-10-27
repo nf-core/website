@@ -1,0 +1,58 @@
+---
+title: 'Maintainers Minutes: September/October 2024'
+subtitle: 'Keeping you informed of the latest maintainers discussions'
+pubDate: 2024-10-27T12:00:00+02:00
+headerImage: '/assets/images/blog/maintainers-minutes-2024-07-26/maintainers_duck.png'
+headerImageAlt: "Cartoon yellow rubber duck with nf-core logo badge on it's body with the nf-core logo."
+headerImageDim: [250, 250]
+embedHeaderImage: true
+authors:
+    - 'jfy133'
+    - 'MaxUlysse
+label:
+    - 'maintainers'
+---
+
+The 'Maintainers Minutes' aims to further give insight into the workings of the [nf-core maintainers team](/governance#maintainers)
+by providing brief summaries of the monthly team meetings.
+
+## Overview
+
+In this double post, we discussed the following topics in September and October:
+
+- XXX SEPT POINT
+- XXX SEPT PONINT
+- [New way of passing parameters to modules within nf-test scripts](new-way-of-passing-parameters-to-modules-within-nf-test-scripts)
+- [Stalled PRs due to waiting for review](stalled-prs-due-to-waiting-for-review)
+- [Replacing monolithic `conf/modules.conf` into per module-configs](replacing-monolithic-confmodulesconf-into-per-module-configs)
+- [Modification of modules specifications regarding channels](modifications-of-modules-specifications-regarding-channels)
+
+## New way of passing parameters to modules within nf-test scripts
+
+Our nf-core/modules have greatly benefited from the new nf-test implementation.
+However one pet peeve for many is the greatly increased number of files that now comes with each module when installing on a pipeline (>100 file pipeline PRs anyone 😱).
+
+Fortunately <Profile username="mahesh-panchal">Mahesh Binzer-Panchal</Profile> has made a [proof of concept](https://github.com/nf-core/modules/pull/5706) to help reduce this number.
+By moving parameters into `when` blocks within the main nf-test script file, we can drop the test-only `nextflow.config` file that many modules have 🎉.
+
+The proposal received unanimous approval.
+Mahesh will now begin to formalise this by updating the [nf-core/modules specifications](https://nf-co.re/docs/guidelines/components/modules), and we can start to begin adding additional linting tests to help transfer to this system.
+
+:::info
+This system only applies to modules nf-test, and should not be used at pipeline level!
+:::
+
+## Stalled PRs due to waiting for review
+
+It was raised that regularly get almost-complete module PRs, but sometimes they stall because a reviewer leaves comments but does not come back to re-review.
+Even if the module author receives a second approving review, but the author often (because we are nice here at nf-core) doesn't feel comfortable merging without getting the approval from the original reviewer.
+
+After a short discussion we felt that we can add a new reviewing guideline that if all (reasonable) comments have been addressed, and an approval has been given by another reviewer, a PR should be merged after 3 months if the original reviewer did not re-review.
+
+If the original reviewer was temporarily unable to review during this period (Which can happen!), the module can still be corrected in a follow up review.
+
+## Replacing monolithic `conf/modules.conf` into per module-configs
+
+## Modification of modules specifications regarding channels
+
+\- :heart: from your #maintainers team!
