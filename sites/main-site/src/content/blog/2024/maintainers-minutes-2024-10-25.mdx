@@ -42,8 +42,9 @@ However one pet peeve for many is the greatly increased number of files that now
 Fortunately <Profile username="mahesh-panchal">Mahesh Binzer-Panchal</Profile> has made a [proof of concept](https://github.com/nf-core/modules/pull/5706) aimed at reducing the number of config files needed for testing different parameters. This approach consolidates configs that previously required separate files to test different parameters into a single `nextflow.config`, helping streamline testing processes.
 
 Another implementation example can be seen in the `bismark/align` module used in methylseq pipeline:
-* [param declaration in `when` block](https://github.com/nf-core/methylseq/blob/master/modules/nf-core/bismark/align/tests/main.nf.test#L28-L33)
-* [test `nextflow.config`](https://github.com/nf-core/methylseq/blob/master/modules/nf-core/bismark/align/tests/nextflow.config)
+
+-   [param declaration in `when` block](https://github.com/nf-core/methylseq/blob/master/modules/nf-core/bismark/align/tests/main.nf.test#L28-L33)
+-   [test `nextflow.config`](https://github.com/nf-core/methylseq/blob/master/modules/nf-core/bismark/align/tests/nextflow.config)
 
 By moving parameters into `when` blocks within the main nf-test script file, we can have a single `nextflow.config` file with the `ext.args` for the process set to the parameter set in the `when` block.
 
