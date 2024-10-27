@@ -9,6 +9,7 @@ embedHeaderImage: true
 authors:
     - 'jfy133'
     - 'MaxUlysse'
+    - 'sateeshperi'
 label:
     - 'maintainers'
 ---
@@ -36,8 +37,7 @@ In this double post, we discussed the following topics in September and October:
 
 ## New way of passing parameters to modules within nf-test scripts
 
-Our nf-core/modules have greatly benefited from the new nf-test implementation.
-However one pet peeve for many is the greatly increased number of files that now comes with each module when installing on a pipeline (>100 file pipeline PRs anyone 😱).
+Our nf-core/modules have greatly benefited from the new nf-test implementation. However one pet peeve for many is the greatly increased number of files that now comes with each module when installing on a pipeline (>100 file pipeline PRs anyone 😱).
 
 Fortunately <Profile username="mahesh-panchal">Mahesh Binzer-Panchal</Profile> has made a [proof of concept](https://github.com/nf-core/modules/pull/5706) aimed at reducing the number of config files needed for testing different parameters. This approach consolidates configs that previously required separate files to test different parameters into a single `nextflow.config`, helping streamline testing processes.
 
@@ -48,8 +48,7 @@ Another implementation example can be seen in the `bismark/align` module used in
 
 By moving parameters into `when` blocks within the main nf-test script file, we can have a single `nextflow.config` file with the `ext.args` for the process set to the parameter set in the `when` block.
 
-The proposal received unanimous approval.
-Mahesh will now begin to formalise this by updating the [nf-core/modules specifications](https://nf-co.re/docs/guidelines/components/modules), and we can start to begin adding additional linting tests to help transfer to this system.
+The proposal received unanimous approval. Mahesh will now begin to formalise this by updating the [nf-core/modules specifications](https://nf-co.re/docs/guidelines/components/modules), and we can start to begin adding additional linting tests to help transfer to this system.
 
 :::info
 This system only applies to modules nf-test, and should not be used at pipeline level!
@@ -76,16 +75,16 @@ The two pipelines, however, have opted to split this single monolithic file into
 The main goal of this approach is to make CI testing more efficient by allowing changes to a specific config to trigger only the related tests rather than the entire test suite (since all modules are currently dependent on a single config file).
 Another reason is to increase the modularity and portability of modules and their configurations.
 
-This proposal initially brought up a lot of consternation with most of the other maintainers present.
-The primary issue was the potential impact on usability, specifically regarding the ease with which users can locate customized parameters within each module.
+This proposal initially brought up a lot of consternation with most of the other maintainers present. The primary issue was the potential impact on usability, specifically regarding the ease with which users can locate customized parameters within each module.
 Currently, we can direct users to a single file within a single directory, simplifying their search.
-Splitting configurations into potentially hundreds of files could make it significantly harder for users to find what they need.
-Additionally, this approach isn’t currently supported by Nextflow’s native capabilities, which would allow modules to automatically detect and load nextflow.config files alongside main.nf. As a result, a substantial amount of manual work would be needed to manually include each module’s config.
 
-A lengthy discussion ensued, weighing user readability against developer efficiency and which should take priority.
-For instance, efficiency improvements could be made at the level of nf-core/tools or GitHub CI configurations, where optimizations might achieve similar goals.
+Splitting configurations into potentially hundreds of files could make it significantly harder for users to find what they need. Additionally, this approach isn’t currently supported by Nextflow’s native capabilities, which would allow modules to automatically detect and load nextflow.config files alongside main.nf. As a result, a substantial amount of manual work would be needed to manually include each module’s config.
+
+A lengthy discussion ensued, weighing user readability against developer efficiency and which should take priority. For instance, efficiency improvements could be made at the level of nf-core/tools or GitHub CI configurations, where optimizations might achieve similar goals.
 Alternatively, waiting for native Nextflow support could eventually reduce the workload on developers.
+
 The sarek developers proposed a middle ground that has worked well in sarek: triggering tests on smaller chunks while maintaining findability. Their approach involves naming config files after each process and storing all configs within a `conf/modules/` folder. This setup makes configurations easy to locate and include while still achieving modularity. see sarek's module configs organization [here](https://github.com/nf-core/sarek/tree/master/conf/modules)
+
 A general agreement was that this new system is not yet palatable to enough maintainers to propose push to the template, however that nf-core/rnaseq and nf-core/methylseq can continue to refine the approach.
 
 ## Modification of modules specifications regarding channels
@@ -131,10 +130,10 @@ path(fai)
 path(dict)
 ```
 
-Some maintainers expressed a preference for a stricter approach, advocating for each input file to be provided in its own input channel.
-Their concern was that shared channels could introduce risks, such as misconfiguration, where the wrong type of index file could inadvertently be supplied, causing the pipeline to fail if a downstream process receives an incompatible file type.
+Some maintainers expressed a preference for a stricter approach, advocating for each input file to be provided in its own input channel. Their concern was that shared channels could introduce risks, such as misconfiguration, where the wrong type of index file could inadvertently be supplied, causing the pipeline to fail if a downstream process receives an incompatible file type.
 
 We discussed the potential benefits of ‘typed’ inputs—possibly a future feature in Nextflow—versus the importance of code clarity, which is challenged by the need to repeatedly use .join and .combine after each module call.
+
 Differing philosophies emerged: some felt it essential to design pipelines that prevent all possible user errors, while others suggested pipelines should support only specific configurations and parameters, with any deviations (e.g., via ext.args) being at the user’s own risk.
 
 This discussion remains unresolved, and will likely rear it's head again in the future.
