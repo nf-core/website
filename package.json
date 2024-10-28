@@ -17,5 +17,9 @@
         "update": "for dir in sites/*; do (cd $dir && npx ncu --interactive --format group); done",
         "test-all": "for dir in sites/*; do (cd $dir && npm run test); done"
     },
-    "devDependencies": {}
+    "devDependencies": {
+    },
+    "workspaces": [
+        "sites/*"
+    ]
 }
