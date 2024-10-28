@@ -59,7 +59,7 @@ This system only applies to modules nf-test, and should not be used at pipeline 
 It has been noted that we occasionally receive almost-complete module PRs that stall because a reviewer leaves comments but does not return for a re-review.
 Even if the module author receives a second approving review, they often (since we’re considerate here at nf-core) feel uncomfortable merging without the original reviewer’s approval.
 
-After a brief discussion, we agreed to introduce a new reviewing guideline: if all reasonable comments have been addressed and another reviewer has approved, the PR should be merged after 3 months if the original reviewer has not returned for a re-review.
+After a brief discussion, we agreed to introduce a new reviewing guideline: if all reasonable comments have been addressed and another reviewer has approved, the PR should be merged after 1 month if the original reviewer has not returned for a re-review.
 
 If the original reviewer was temporarily unavailable during this period (which can happen!), the module can still be updated in a follow-up review.
 
@@ -85,7 +85,9 @@ Alternatively, waiting for native Nextflow support could eventually reduce the w
 
 The sarek developers proposed a middle ground that has worked well in sarek: triggering tests on smaller chunks while maintaining findability. Their approach involves naming config files after each process and storing all configs within a `conf/modules/` folder. This setup makes configurations easy to locate and include while still achieving modularity. see sarek's module configs organization [here](https://github.com/nf-core/sarek/tree/master/conf/modules)
 
-A general agreement was that this new system is not yet palatable to enough maintainers to propose push to the template, however that nf-core/rnaseq and nf-core/methylseq can continue to refine the approach.
+A general agreement was that this new system is not yet palatable to enough maintainers to propose push to the template, however that `nf-core/rnaseq` and `nf-core/methylseq` can continue to refine this approach based on what `nf-core/sarek` developers have proposed.
+
+Developers agreed to revisit and review this approach again in a couple of months.
 
 ## Modification of modules specifications regarding channels
 
