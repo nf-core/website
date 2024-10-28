@@ -11,11 +11,9 @@ nf-core aims to produce high-quality Nextflow pipelines that should make it easy
 # Scope
 
 * Risk of the software application in the business process: What is the risk?
-* License
-*
+* (needs more work to be done)
 
-## Developer & User guidelines
-
+## General Checklist
 
 ### Community
 
@@ -23,11 +21,14 @@ nf-core aims to produce high-quality Nextflow pipelines that should make it easy
 * Size
 * Governance model
 * Users & Maintainers (number + experience of people)
-* Issue tracking (number resopnse time, closing time and ratio, classification / labeling) --> ask stats team
+* Issue tracking (number of issues and response time, closing time and ratio, classification / labeling) --> ask stats team
 * Feature requests
 
+### Versioning
 
-###  Versioning
+* We enforce semantic versioning of pipeline releases in general
+* Need a release - cannot work on a `dev` branch --> follow guidlines for release (link)
+* Software tools inside a pipeline are fixed with respective docker/singularity containers that encapsulate (freeze) the tool used --> version is documented with pipeline release
 
 ###  Code and software development process quality
 
@@ -35,7 +36,7 @@ nf-core aims to produce high-quality Nextflow pipelines that should make it easy
 * How trustworthy is the pipeline?
 * PR/code review and approval (change management)
 * CI/CD (test automation, code coverage, versioning and releases)
-* Patching and udpates (including frequency, monitoring of vulnerabilities and third party libraries), requirements management and technical documentation (traceability, reusability, granulatirty, updates)
+* Patching and udpates (including frequency, monitoring of vulnerabilities and third party libraries), requirements management and technical documentation (traceability, reusability, granularity, updates)
 
 * Reviews
 * Implementation of changes
@@ -60,8 +61,3 @@ nf-core aims to produce high-quality Nextflow pipelines that should make it easy
 * Collection of bug reports, suggestions for new functionality
 * User communication / communication guidelines
 
-## Validation & integrative testing
-
-* Integration testing: an analysis of the test in the production environment with real data
-* Scope of this - what would this usually encompass?
-* How is potential risk derived from aspects listed above and what mitigation measures are implemented?
