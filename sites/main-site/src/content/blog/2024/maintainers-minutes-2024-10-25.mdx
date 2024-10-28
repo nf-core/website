@@ -17,7 +17,7 @@ label:
 import Profile from '@components/GitHubProfilePictureExtended.svelte';
 import { Image } from 'astro:assets';
 
-The 'Maintainers Minutes' aims to further give insight into the workings of the [nf-core maintainers team](/governance#maintainers)
+The 'Maintainers Minutes' aims to give further insight into the workings of the [nf-core maintainers team](/governance#maintainers)
 by providing brief summaries of the monthly team meetings.
 
 ## Overview
@@ -105,7 +105,7 @@ Alternatively, waiting for native Nextflow support could eventually reduce the w
 
 The sarek developers proposed a middle ground that has worked well in sarek: triggering tests on smaller chunks while maintaining findability. Their approach involves naming config files after each process and storing all configs within a `conf/modules/` folder. This setup makes configurations easy to locate and include while still achieving modularity. see sarek's module configs organization [here](https://github.com/nf-core/sarek/tree/master/conf/modules)
 
-A general agreement was that this new system is not yet palatable to enough maintainers to propose push to the template, however that `nf-core/rnaseq` and `nf-core/methylseq` can continue to refine this approach based on what `nf-core/sarek` developers have proposed.
+A general agreement was that this new system is not yet palatable to enough for maintainers to propose pushing split configs to the template. However, `nf-core/rnaseq` and `nf-core/methylseq` can continue to refine this approach based on what `nf-core/sarek` developers have proposed.
 
 Developers agreed to revisit and review this approach again in a couple of months.
 
@@ -134,6 +134,29 @@ tuple value(meta), path(dict)
 ```
 
 Where ensuring each file was associated with it's companion could be facilitated with (relatively) standardised `multiMap()` calls.
+
+```nextflow
+combined_channel.multiMap { meta, bam, bai, fasta, fai, dict ->
+    bam: tuple( meta, bam )
+    bai: tuple( meta, bai )
+    fasta: tuple ( meta, fasta )
+    fai: tuple ( meta, fai )
+    dict: tuple ( meta, dict )
+}
+.set { process_in }
+
+PROCESS (
+    process_in.bam,
+    process_in.bai,
+    process_in.fasta,
+    process_in.fai,
+    process_in.dict,
+)
+```
+
+:::info
+`multiMap` should only be used in this way when directly providing process inputs. It's not a general method of synchronising channel inputs.
+:::
 
 By forcing a particular structure of a singular input tuple (former example), it restricted pipeline developers in how they can do their own file shuttling between processes, potentially requiring many custom `map` functions to restructure channels.
 
