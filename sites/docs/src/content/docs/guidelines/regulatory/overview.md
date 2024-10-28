@@ -60,4 +60,5 @@ nf-core aims to produce high-quality Nextflow pipelines that should make it easy
 * Continous development
 * Collection of bug reports, suggestions for new functionality
 * User communication / communication guidelines
+* Nf-core template updates create a new minor release at minimum --> not just a patch release
 
