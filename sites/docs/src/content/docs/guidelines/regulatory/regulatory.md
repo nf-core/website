@@ -44,3 +44,11 @@ nf-core aims to produce high-quality Nextflow pipelines that should make it easy
 
 * Integration testing: an analysis of the test in the production environment with real data
 * Scope of this - what would this usually encompass?
+* What is included in verification of performance specification of my test
+system? You must compare the performance of the test system in your laboratory with those
+  specifications established by the manufacturer. Define the following performance
+  characteristics, on available test data:
+  • Accuracy
+  • Precision
+  • Reportable range
+  • Reference intervals/range
