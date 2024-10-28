@@ -632,7 +632,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "taxprofiler",
@@ -5193,7 +5193,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "proteinfold",
@@ -6813,6 +6813,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         },
         {
           "name": "rnafusion",
@@ -12626,7 +12630,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "metatdenovo",
@@ -13874,7 +13878,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "viralrecon",
@@ -14515,7 +14519,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "phaseimpute",
@@ -16890,7 +16894,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "phaseimpute",
@@ -25779,6 +25783,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -28547,7 +28559,7 @@
         },
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "magmap",
@@ -31757,7 +31769,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "taxprofiler",
@@ -31861,7 +31873,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "taxprofiler",
@@ -32197,7 +32209,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -32333,7 +32345,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -37073,7 +37085,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -37180,7 +37192,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -37297,7 +37309,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -37398,7 +37410,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -37491,7 +37503,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -41782,7 +41794,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -41885,7 +41897,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -53026,7 +53038,7 @@
         },
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "nascent",
@@ -53295,7 +53307,7 @@
         },
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "magmap",
@@ -55274,6 +55286,10 @@
       },
       "pipelines": [
         {
+          "name": "mag",
+          "version": "3.2.0"
+        },
+        {
           "name": "taxprofiler",
           "version": "1.2.0"
         }
@@ -56596,7 +56612,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "radseq",
@@ -74405,7 +74421,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "phageannotator",
@@ -74714,7 +74730,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "phageannotator",
@@ -76565,14 +76581,6 @@
                 "type": "string",
                 "description": "Target region, usually a full chromosome (e.g. chr20:1000000-2000000 or chr20).\nFor chrX, please treat PAR and non-PAR regions as different choromosome in order to avoid mixing ploidy.\n"
               }
-            }
-          ],
-          [
-            {
-              "meta2": {
-                "type": "map",
-                "description": "Groovy Map containing genomic map information\ne.g. [ map:'GRCh38' ]\n"
-              }
             },
             {
               "map": {
@@ -77051,6 +77059,13 @@
                 "type": "file",
                 "description": "Index file of the input BAM/CRAM/VCF/BCF file.",
                 "pattern": "*.{bam.bai,cram.crai,vcf.gz.csi,bcf.gz.csi}"
+              }
+            },
+            {
+              "bamlist": {
+                "type": "file",
+                "description": "File containing the list of BAM/CRAM files to be phased.\nOne file per line and a second column can be added to indicate the sample name.\n",
+                "pattern": "*.{txt,tsv}"
               }
             },
             {
@@ -81675,7 +81690,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -81979,7 +81994,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -82079,7 +82094,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -82195,7 +82210,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -82334,7 +82349,7 @@
         },
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "magmap",
@@ -97184,7 +97199,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "taxprofiler",
@@ -97613,7 +97628,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -97714,7 +97729,7 @@
         },
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "taxprofiler",
@@ -105792,7 +105807,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -106642,7 +106657,13 @@
         "maintainers": [
           "@jfy133"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "mag",
+          "version": "3.2.0"
+        }
+      ]
     },
     {
       "name": "megan_daa2info",
@@ -107252,6 +107273,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -109968,7 +109993,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -110136,7 +110161,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -110283,7 +110308,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -114446,7 +114471,7 @@
         },
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -117458,7 +117483,7 @@
         },
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "magmap",
@@ -119209,7 +119234,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "nanoseq",
@@ -119572,7 +119597,7 @@
         },
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "nanoseq",
@@ -137393,6 +137418,10 @@
       },
       "pipelines": [
         {
+          "name": "mag",
+          "version": "3.2.0"
+        },
+        {
           "name": "taxprofiler",
           "version": "1.2.0"
         }
@@ -137519,7 +137548,7 @@
         },
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "taxprofiler",
@@ -138513,7 +138542,7 @@
         },
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "metapep",
@@ -138817,7 +138846,7 @@
         },
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "magmap",
@@ -141627,7 +141656,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -141723,7 +141752,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -150995,7 +151024,7 @@
         },
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "methylseq",
@@ -160230,7 +160259,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "metatdenovo",
@@ -168174,6 +168203,10 @@
         {
           "name": "denovotranscript",
           "version": "1.0.0"
+        },
+        {
+          "name": "mag",
+          "version": "3.2.0"
         },
         {
           "name": "metatdenovo",
@@ -176568,7 +176601,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -181752,7 +181785,7 @@
         },
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "methylseq",
@@ -192548,7 +192581,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     },
@@ -199742,7 +199775,7 @@
         },
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "magmap",
@@ -200019,7 +200052,7 @@
         },
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "magmap",
@@ -200243,6 +200276,10 @@
           "version": "dev"
         },
         {
+          "name": "mag",
+          "version": "3.2.0"
+        },
+        {
           "name": "methylarray",
           "version": "dev"
         },
@@ -200416,10 +200453,6 @@
         {
           "name": "isoseq",
           "version": "2.0.0"
-        },
-        {
-          "name": "mag",
-          "version": "3.1.0"
         },
         {
           "name": "magmap",
