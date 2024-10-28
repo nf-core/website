@@ -10,13 +10,33 @@ nf-core aims to produce high-quality Nextflow pipelines that should make it easy
 
 # Scope
 
+* Risk of the software application in the business process: What is the risk?
+* License
+*
+
 ## Developer & User guidelines
+
+
+### Community
+
+* History
+* Size
+* Governance model
+* Users & Maintainers (number + experience of people)
+* Issue tracking (number resopnse time, closing time and ratio, classification / labeling) --> ask stats team
+* Feature requests
+
 
 ###  Versioning
 
-### Code Contributions
+###  Code and software development process quality
 
 * Protection of pipelines, everyone can contribute but releases are fixed / permanent
+* How trustworthy is the pipeline?
+* PR/code review and approval (change management)
+* CI/CD (test automation, code coverage, versioning and releases)
+* Patching and udpates (including frequency, monitoring of vulnerabilities and third party libraries), requirements management and technical documentation (traceability, reusability, granulatirty, updates)
+
 * Reviews
 * Implementation of changes
   * Documentation (link to bug reports, suggestions, security updates)
@@ -44,3 +64,4 @@ nf-core aims to produce high-quality Nextflow pipelines that should make it easy
 
 * Integration testing: an analysis of the test in the production environment with real data
 * Scope of this - what would this usually encompass?
+* How is potential risk derived from aspects listed above and what mitigation measures are implemented?
