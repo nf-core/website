@@ -37,16 +37,16 @@ In this double post, we discussed the following topics in September and October:
 
 ## New way of passing parameters to modules within nf-test scripts
 
-Our nf-core/modules have greatly benefited from the new nf-test implementation. However one pet peeve for many is the greatly increased number of files that now comes with each module when installing on a pipeline (>100 file pipeline PRs anyone 😱).
+Our nf-core/modules have greatly benefited from the new nf-test implementation. However one pet peeve for many is the greatly increased number of config files that now comes with each module when installing on a pipeline (>100 file pipeline PRs anyone 😱).
 
 Fortunately <Profile username="mahesh-panchal">Mahesh Binzer-Panchal</Profile> has made a [proof of concept](https://github.com/nf-core/modules/pull/5706) aimed at reducing the number of config files needed for testing different parameters. This approach consolidates configs that previously required separate files to test different parameters into a single `nextflow.config`, helping streamline testing processes.
 
-Another implementation example can be seen in the `bismark/align` module used in methylseq pipeline:
+An implementation can be seen in the `bismark/align` module used in methylseq pipeline:
 
 -   [param declaration in `when` block](https://github.com/nf-core/methylseq/blob/master/modules/nf-core/bismark/align/tests/main.nf.test#L28-L33)
 -   [test `nextflow.config`](https://github.com/nf-core/methylseq/blob/master/modules/nf-core/bismark/align/tests/nextflow.config)
 
-By moving parameters into `when` blocks within the main nf-test script file, we can have a single `nextflow.config` file with the `ext.args` for the process set to the parameter set in the `when` block.
+By moving parameters into `when` blocks within the main nf-test script file, we can have a single `nextflow.config` file with the `ext.args` for the process set to the parameter defined in the `when` block.
 
 The proposal received unanimous approval. Mahesh will now begin to formalise this by updating the [nf-core/modules specifications](https://nf-co.re/docs/guidelines/components/modules), and we can start to begin adding additional linting tests to help transfer to this system.
 
@@ -57,11 +57,11 @@ This system only applies to modules nf-test, and should not be used at pipeline 
 ## Stalled PRs Due to Pending Reviews
 
 It has been noted that we occasionally receive almost-complete module PRs that stall because a reviewer leaves comments but does not return for a re-review.
-Even if the module author receives a second approving review, they often (since we’re considerate here at nf-core) feel uncomfortable merging without the original reviewer’s approval.
+Even if the module author receives a second approving review, they may feel uncomfortable merging without the original contributor’s approval. 
 
 After a brief discussion, we agreed to introduce a new reviewing guideline: if all reasonable comments have been addressed and another reviewer has approved, the PR should be merged after 1 month if the original reviewer has not returned for a re-review.
 
-If the original reviewer was temporarily unavailable during this period (which can happen!), the module can still be updated in a follow-up review.
+If the original reviewer was temporarily unavailable during this period (which can happen!), the module can still be updated in a follow-up PR. 
 
 ## Replacing monolithic `conf/modules.conf` with per-module configs
 
@@ -78,7 +78,7 @@ Another reason is to increase the modularity and portability of modules and thei
 This proposal initially brought up a lot of consternation with most of the other maintainers present. The primary issue was the potential impact on usability, specifically regarding the ease with which users can locate customized parameters within each module.
 Currently, we can direct users to a single file within a single directory, simplifying their search.
 
-Splitting configurations into potentially hundreds of files could make it significantly harder for users to find what they need. Additionally, this approach isn’t currently supported by Nextflow’s native capabilities, which would allow modules to automatically detect and load nextflow.config files alongside main.nf. As a result, a substantial amount of manual work would be needed to manually include each module’s config.
+Splitting configurations into potentially hundreds of files could make it significantly harder for users to find what they need. It's also unclear if another file has an overriding setting for a module, for example that's defined in the subworkflow folder rather than the module folder. Additionally, this approach isn’t currently supported by Nextflow’s native capabilities, which would allow modules to automatically detect and load nextflow.config files alongside main.nf. As a result, a substantial amount of manual work would be needed to manually include each module’s config.
 
 A lengthy discussion ensued, weighing user readability against developer efficiency and which should take priority. For instance, efficiency improvements could be made at the level of nf-core/tools or GitHub CI configurations, where optimizations might achieve similar goals.
 Alternatively, waiting for native Nextflow support could eventually reduce the workload on developers.
