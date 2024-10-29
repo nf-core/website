@@ -30,10 +30,7 @@ An example would be that a pipeline per se has the risk of failing execution, wh
 
 > We are working on a proof of concept validation for one nf-core pipeline (rnaseq) to showcase what needs to be done and where are potential gaps within the nf-core guidelines, processes or tooling that we can then hopefully address.
 
-If you want yor software to be used in the real world, (for example as a diagnostic test, available to clinicians commercially or in the clinics), your software system must meet the regulatory requirements .
 "Unless specifically exempted in a classification regulation, any medical device software product developed after June 1, 1997, regardless of its device class, is subject to applicable design control provisions." [FDA and IEEE definitions](https://www.complianceonline.com/resources/software-verification-and-validation-requirements-for-medical-device-and-implementation-strategies.html)
-
-Computer system validation (CSV) is the broad term that encompasses that your software is _fit for purpose_ and it is a regulatory requirement by authorities.
 
 ### What types of validation "exist"
 
