@@ -7849,6 +7849,14 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -14785,6 +14793,10 @@
           "version": "2.2.0"
         },
         {
+          "name": "tbanalyzer",
+          "version": "dev"
+        },
+        {
           "name": "variantbenchmarking",
           "version": "dev"
         }
@@ -16907,6 +16919,10 @@
         {
           "name": "raredisease",
           "version": "2.2.0"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         },
         {
           "name": "variantbenchmarking",
@@ -25803,6 +25819,22 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -27009,6 +27041,10 @@
         {
           "name": "sarek",
           "version": "3.4.4"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         }
       ]
     },
@@ -27232,6 +27268,10 @@
         {
           "name": "sarek",
           "version": "3.4.4"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         }
       ]
     },
@@ -40362,10 +40402,6 @@
           "version": "dev"
         },
         {
-          "name": "phaseimpute",
-          "version": "dev"
-        },
-        {
           "name": "phyloplace",
           "version": "1.0.0"
         },
@@ -45364,7 +45400,13 @@
           "@projectoriented",
           "@nvnieuwk"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "demuxem",
@@ -58936,6 +58978,10 @@
         {
           "name": "sarek",
           "version": "3.4.4"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         }
       ]
     },
@@ -60668,6 +60714,10 @@
         {
           "name": "sarek",
           "version": "3.4.4"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         }
       ]
     },
@@ -66363,6 +66413,10 @@
         {
           "name": "rnavar",
           "version": "1.0.0"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         }
       ]
     },
@@ -66989,6 +67043,10 @@
         {
           "name": "sarek",
           "version": "3.4.4"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         },
         {
           "name": "variantcatalogue",
@@ -70231,6 +70289,10 @@
         {
           "name": "raredisease",
           "version": "2.2.0"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         }
       ]
     },
@@ -71632,6 +71694,10 @@
         {
           "name": "sarek",
           "version": "3.4.4"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         }
       ]
     },
@@ -71789,7 +71855,13 @@
         "maintainers": [
           "@lindenb"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "gatk4spark_applybqsr",
@@ -91070,6 +91142,10 @@
         {
           "name": "reportho",
           "version": "1.0.1"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         }
       ]
     },
@@ -91420,7 +91496,13 @@
         "maintainers": [
           "@rpetit3"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "isoseq3_cluster",
@@ -100363,7 +100445,13 @@
         "maintainers": [
           "@bjohnnyd"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "lofreq_callparallel",
@@ -100593,7 +100681,13 @@
         "maintainers": [
           "@bjohnnyd"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "lofreq_indelqual",
@@ -100691,7 +100785,13 @@
           "@kaurravneet4123",
           "@krannich479"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "lofreq_somatic",
@@ -107285,6 +107385,14 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -152333,6 +152441,10 @@
           "version": "1.2.0"
         },
         {
+          "name": "tbanalyzer",
+          "version": "dev"
+        },
+        {
           "name": "variantcatalogue",
           "version": "dev"
         },
@@ -152692,6 +152804,10 @@
         {
           "name": "scnanoseq",
           "version": "1.0.0"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         }
       ]
     },
@@ -153599,6 +153715,10 @@
         {
           "name": "taxprofiler",
           "version": "1.2.0"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         },
         {
           "name": "viralrecon",
@@ -165810,7 +165930,13 @@
         "maintainers": [
           "@abhi18av"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "snpeff_download",
@@ -165902,6 +166028,10 @@
         {
           "name": "sarek",
           "version": "3.4.4"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         }
       ]
     },
@@ -166066,6 +166196,10 @@
         {
           "name": "sarek",
           "version": "3.4.4"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         }
       ]
     },
@@ -166466,7 +166600,13 @@
         "maintainers": [
           "@avantonder"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "somalier_ancestry",
@@ -167041,6 +167181,124 @@
           "version": "3.17.0"
         }
       ]
+    },
+    {
+      "name": "sourcepredict",
+      "path": "modules/nf-core/sourcepredict/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "sourcepredict",
+        "description": "Classifies and predicts the origin of metagenomic samples",
+        "keywords": [
+          "source tracking",
+          "metagenomics",
+          "machine learning"
+        ],
+        "tools": [
+          {
+            "sourcepredict": {
+              "description": "Classification and prediction of the origin of metagenomic samples.",
+              "homepage": "https://github.com/maxibor/sourcepredict",
+              "documentation": "https://sourcepredict.readthedocs.io/en/latest/index.html",
+              "tool_dev_url": "https://github.com/maxibor/sourcepredict",
+              "doi": "10.21105/joss.01540",
+              "licence": [
+                "GPL v3-or-later"
+              ],
+              "identifier": "biotools:sourcepredict"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "kraken_parse": {
+                "type": "file",
+                "description": "Sink TAXID count table in csv format",
+                "pattern": "*.csv"
+              }
+            }
+          ],
+          [
+            {
+              "sources": {
+                "type": "file",
+                "description": "Sources TAXID count table in csv format. Default can be downloaded from https://raw.githubusercontent.com/maxibor/sourcepredict/master/data/modern_gut_microbiomes_sources.csv",
+                "pattern": "*.csv"
+              }
+            }
+          ],
+          [
+            {
+              "labels": {
+                "type": "file",
+                "description": "Labels for the sources table in csv format. Default can be downloaded from https://raw.githubusercontent.com/maxibor/sourcepredict/master/data/modern_gut_microbiomes_labels.csv",
+                "pattern": "*.csv"
+              }
+            }
+          ],
+          [
+            {
+              "taxa_sqlite": {
+                "type": "file",
+                "description": "taxa.sqlite file downloaded with ete3 toolkit",
+                "pattern": "taxa.sqlite"
+              }
+            }
+          ],
+          [
+            {
+              "taxa_sqlite_traverse_pkl": {
+                "type": "file",
+                "description": "taxa.sqlite.traverse.pkl file downloaded with ete3 toolkit",
+                "pattern": "taxa.sqlite.traverse.pkl"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "report": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.sourcepredict.csv": {
+                  "type": "file",
+                  "description": "Table containing the predicted proportion of each source in each sample",
+                  "pattern": "*.sourcepredict.csv"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@MeriamOs"
+        ],
+        "maintainers": [
+          "@MeriamOs"
+        ]
+      }
     },
     {
       "name": "sourmash_compare",
@@ -174414,6 +174672,10 @@
           "version": "dev"
         },
         {
+          "name": "tbanalyzer",
+          "version": "dev"
+        },
+        {
           "name": "variantbenchmarking",
           "version": "dev"
         },
@@ -175410,7 +175672,13 @@
         "maintainers": [
           "@rpetit3"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "tcoffee_align",
@@ -200320,6 +200588,10 @@
           "version": "dev"
         },
         {
+          "name": "seqinspector",
+          "version": "dev"
+        },
+        {
           "name": "smrnaseq",
           "version": "2.4.0"
         },
@@ -200557,10 +200829,6 @@
         {
           "name": "scrnaseq",
           "version": "2.7.1"
-        },
-        {
-          "name": "seqinspector",
-          "version": "dev"
         },
         {
           "name": "taxprofiler",
