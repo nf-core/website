@@ -41,15 +41,16 @@ Regulatory authorities play a pivotal role in the pharmaceutical industry, parti
 These entities, such as the U.S. Food and Drug Administration (FDA) consensus standards, the European Medicines Agency (EMA)/ European Commission, and others, are responsible for ensuring the safety, efficacy, and quality of drugs/tests before they reach the market.
 Each of them has its own set of standards that need to be followed, depending on the intended use of the test.
 
-Some examples include:  
- - [CSV validation](https://en.wikipedia.org/wiki/Computerized_system_validation)  
- - [SaMD general](https://www.greenlight.guru/blog/samd-software-as-a-medical-device)  
- - [FDA SaMD](https://www.fda.gov/medical-devices/digital-health-center-excellence/software-medical-device-samd)  
- - [CE mark registration](https://europa.eu/youreurope/business/product-requirements/labels-markings/ce-marking/index_en.htm)  
- - [FDA LDT](https://www.fda.gov/medical-devices/in-vitro-diagnostics/laboratory-developed-tests)  
- - [CLIA validation](https://www.cms.gov/regulations-and-guidance/legislation/clia/downloads/6064bk.pdf)  
- - [medical device registration](https://health.ec.europa.eu/system/files/2021-10/mdcg_2021-24_en_0.pdf)  
- - [?? ISO certification]()
+Some examples include:
+
+- [CSV validation](https://en.wikipedia.org/wiki/Computerized_system_validation)
+- [SaMD general](https://www.greenlight.guru/blog/samd-software-as-a-medical-device)
+- [FDA SaMD](https://www.fda.gov/medical-devices/digital-health-center-excellence/software-medical-device-samd)
+- [CE mark registration](https://europa.eu/youreurope/business/product-requirements/labels-markings/ce-marking/index_en.htm)
+- [FDA LDT](https://www.fda.gov/medical-devices/in-vitro-diagnostics/laboratory-developed-tests)
+- [CLIA validation](https://www.cms.gov/regulations-and-guidance/legislation/clia/downloads/6064bk.pdf)
+- [medical device registration](https://health.ec.europa.eu/system/files/2021-10/mdcg_2021-24_en_0.pdf)
+- [?? ISO certification]()
 
 Because of the overload of current standards, there are initiatives to harmonize them ; see [Food and Drug Administration (FDA) consensus standards](https://www.fda.gov/regulatory-information/search-fda-guidance-documents/appropriate-use-voluntary-consensus-standards-premarket-submissions-medical-devices) and [European Commission (EC) Harmonized Standards](https://single-market-economy.ec.europa.eu/single-market/european-standards/harmonised-standards_en)
 
