@@ -34,7 +34,7 @@ An example would be that a pipeline per se has the risk of failing execution, wh
 
 ### What types of validation "exist"
 
-Regulatory authorities play a pivotal role in the pharmaceutical industry, particularly in the context of drug approval. 
+Regulatory authorities play a pivotal role in the pharmaceutical industry, particularly in the context of drug approval.
 These entities, such as the U.S. Food and Drug Administration (FDA) consensus standards, the European Medicines Agency (EMA)/ European Commission, and others, are responsible for ensuring the safety, efficacy, and quality of drugs and medical tests before they reach the market.
 Each of them has its own set of standards that need to be followed, depending on the intended use of the test. We differentiate between standards that apply on a software level versus on a more infrastructure & computer systems validation level.
 The latter (CSV) is out of scope for this guidance and should be dealt with depending on your infrastructure or IT provider.
@@ -52,7 +52,7 @@ Computerized systems validation (out of scope):
 
 - [CSV validation](https://en.wikipedia.org/wiki/Computerized_system_validation)
 
-Because of the number of current standards, there are initiatives to harmonize them, see [Food and Drug Administration (FDA) consensus standards](https://www.fda.gov/regulatory-information/search-fda-guidance-documents/appropriate-use-voluntary-consensus-standards-premarket-submissions-medical-devices) and [European Commission (EC) Harmonized Standards](https://single-market-economy.ec.europa.eu/single-market/european-standards/harmonised-standards_en) for references on this. 
+Because of the number of current standards, there are initiatives to harmonize them, see [Food and Drug Administration (FDA) consensus standards](https://www.fda.gov/regulatory-information/search-fda-guidance-documents/appropriate-use-voluntary-consensus-standards-premarket-submissions-medical-devices) and [European Commission (EC) Harmonized Standards](https://single-market-economy.ec.europa.eu/single-market/european-standards/harmonised-standards_en) for references on this.
 
 ## Guidelines for validating nf-core pipelines
 
@@ -186,8 +186,6 @@ Pipeline level:
 - Automate risk management based on results stored in the stats file
 
 ## Maintenance
-
-
 
 - Continous development
 - Collect bug reports and if possible write a test that covers the affected code.

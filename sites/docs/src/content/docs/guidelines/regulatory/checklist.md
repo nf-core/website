@@ -4,8 +4,7 @@ subtitle: A simple pipeline validation checklist that should aid in validating a
 weight: 1
 ---
 
-
-This has not been filled out yet, just filed as a skeleton to get working on it. 
+This has not been filled out yet, just filed as a skeleton to get working on it.
 
 # General criteria
 
@@ -34,4 +33,5 @@ This has not been filled out yet, just filed as a skeleton to get working on it.
 ## Functional testing
 
 ## Integrative testing
-##  Analytical performance testing
+
+## Analytical performance testing
