@@ -53,7 +53,7 @@ Stay tuned, it's coming pretty soon.
 
 Our nf-core/modules have greatly benefited from the new nf-test implementation. However one pet peeve for many is the greatly increased number of config files that now comes with each module when installing on a pipeline (>100 file pipeline PRs anyone 😱).
 
-Fortunately <Profile username="mahesh-panchal">Mahesh Binzer-Panchal</Profile> has made a [proof of concept](https://github.com/nf-core/modules/pull/5706) aimed at reducing the number of config files needed for testing different parameters. This approach consolidates configs that previously required separate files to test different parameters into a single `nextflow.config`, helping streamline testing processes.
+Fortunately <Profile username="mahesh-panchal">Mahesh Binzer-Panchal</Profile> has made a [proof of concept](https://github.com/nf-core/modules/pull/6788/) aimed at reducing the number of config files needed for testing different parameters. This approach consolidates configs that previously required separate files to test different parameters into a single `nextflow.config`, helping streamline testing processes.
 
 An implementation can be seen in the `bismark/align` module used in methylseq pipeline:
 
