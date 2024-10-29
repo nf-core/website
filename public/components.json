@@ -7853,6 +7853,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -14789,6 +14793,10 @@
           "version": "2.2.0"
         },
         {
+          "name": "tbanalyzer",
+          "version": "dev"
+        },
+        {
           "name": "variantbenchmarking",
           "version": "dev"
         }
@@ -16911,6 +16919,10 @@
         {
           "name": "raredisease",
           "version": "2.2.0"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         },
         {
           "name": "variantbenchmarking",
@@ -25815,6 +25827,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -27021,6 +27041,10 @@
         {
           "name": "sarek",
           "version": "3.4.4"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         }
       ]
     },
@@ -27244,6 +27268,10 @@
         {
           "name": "sarek",
           "version": "3.4.4"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         }
       ]
     },
@@ -40374,10 +40402,6 @@
           "version": "dev"
         },
         {
-          "name": "phaseimpute",
-          "version": "dev"
-        },
-        {
           "name": "phyloplace",
           "version": "1.0.0"
         },
@@ -45376,7 +45400,13 @@
           "@projectoriented",
           "@nvnieuwk"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "demuxem",
@@ -58948,6 +58978,10 @@
         {
           "name": "sarek",
           "version": "3.4.4"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         }
       ]
     },
@@ -60680,6 +60714,10 @@
         {
           "name": "sarek",
           "version": "3.4.4"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         }
       ]
     },
@@ -66375,6 +66413,10 @@
         {
           "name": "rnavar",
           "version": "1.0.0"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         }
       ]
     },
@@ -67001,6 +67043,10 @@
         {
           "name": "sarek",
           "version": "3.4.4"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         },
         {
           "name": "variantcatalogue",
@@ -70243,6 +70289,10 @@
         {
           "name": "raredisease",
           "version": "2.2.0"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         }
       ]
     },
@@ -71644,6 +71694,10 @@
         {
           "name": "sarek",
           "version": "3.4.4"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         }
       ]
     },
@@ -71801,7 +71855,13 @@
         "maintainers": [
           "@lindenb"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "gatk4spark_applybqsr",
@@ -91082,6 +91142,10 @@
         {
           "name": "reportho",
           "version": "1.0.1"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         }
       ]
     },
@@ -91432,7 +91496,13 @@
         "maintainers": [
           "@rpetit3"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "isoseq3_cluster",
@@ -100375,7 +100445,13 @@
         "maintainers": [
           "@bjohnnyd"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "lofreq_callparallel",
@@ -100605,7 +100681,13 @@
         "maintainers": [
           "@bjohnnyd"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "lofreq_indelqual",
@@ -100703,7 +100785,13 @@
           "@kaurravneet4123",
           "@krannich479"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "lofreq_somatic",
@@ -107297,6 +107385,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -152349,6 +152441,10 @@
           "version": "1.2.0"
         },
         {
+          "name": "tbanalyzer",
+          "version": "dev"
+        },
+        {
           "name": "variantcatalogue",
           "version": "dev"
         },
@@ -152708,6 +152804,10 @@
         {
           "name": "scnanoseq",
           "version": "1.0.0"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         }
       ]
     },
@@ -153615,6 +153715,10 @@
         {
           "name": "taxprofiler",
           "version": "1.2.0"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         },
         {
           "name": "viralrecon",
@@ -165826,7 +165930,13 @@
         "maintainers": [
           "@abhi18av"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "snpeff_download",
@@ -165918,6 +166028,10 @@
         {
           "name": "sarek",
           "version": "3.4.4"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         }
       ]
     },
@@ -166082,6 +166196,10 @@
         {
           "name": "sarek",
           "version": "3.4.4"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         }
       ]
     },
@@ -166482,7 +166600,13 @@
         "maintainers": [
           "@avantonder"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "somalier_ancestry",
@@ -174548,6 +174672,10 @@
           "version": "dev"
         },
         {
+          "name": "tbanalyzer",
+          "version": "dev"
+        },
+        {
           "name": "variantbenchmarking",
           "version": "dev"
         },
@@ -175544,7 +175672,13 @@
         "maintainers": [
           "@rpetit3"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "tcoffee_align",
