@@ -36,7 +36,8 @@ An example would be that a pipeline per se has the risk of failing execution, wh
 
 Regulatory authorities play a pivotal role in the pharmaceutical industry, particularly in the context of drug approval. 
 These entities, such as the U.S. Food and Drug Administration (FDA) consensus standards, the European Medicines Agency (EMA)/ European Commission, and others, are responsible for ensuring the safety, efficacy, and quality of drugs and medical tests before they reach the market.
-Each of them has its own set of standards that need to be followed, depending on the intended use of the test. We differentiate between standards that apply on a software level versus on a more infrastructure & computer systems validation level. The latter (CSV) is out of scope for this guidance and should be dealt with depending on your infrastructure or IT provider.
+Each of them has its own set of standards that need to be followed, depending on the intended use of the test. We differentiate between standards that apply on a software level versus on a more infrastructure & computer systems validation level.
+The latter (CSV) is out of scope for this guidance and should be dealt with depending on your infrastructure or IT provider.
 
 Potentially applicable guidelines for bioinformatics pipelines:
 
