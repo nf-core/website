@@ -1,7 +1,7 @@
 ---
 title: Pipeline validation checklist
 subtitle: A simple pipeline validation checklist that should aid in validating a pipeline
-weight: 1
+weight: 10
 ---
 
 This has not been filled out yet, just filed as a skeleton to get working on it.
