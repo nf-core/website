@@ -47,11 +47,11 @@ Potentially applicable guidelines for bioinformatics pipelines:
 - [CLIA validation](https://www.cms.gov/regulations-and-guidance/legislation/clia/downloads/6064bk.pdf)
 - [medical device registration](https://health.ec.europa.eu/system/files/2021-10/mdcg_2021-24_en_0.pdf)
 
-Computerized systems validation:
+Computerized systems validation (out of scope):
 
 - [CSV validation](https://en.wikipedia.org/wiki/Computerized_system_validation)
 
-Because of the overload of current standards, there are initiatives to harmonize them ; see [Food and Drug Administration (FDA) consensus standards](https://www.fda.gov/regulatory-information/search-fda-guidance-documents/appropriate-use-voluntary-consensus-standards-premarket-submissions-medical-devices) and [European Commission (EC) Harmonized Standards](https://single-market-economy.ec.europa.eu/single-market/european-standards/harmonised-standards_en)
+Because of the number of current standards, there are initiatives to harmonize them, see [Food and Drug Administration (FDA) consensus standards](https://www.fda.gov/regulatory-information/search-fda-guidance-documents/appropriate-use-voluntary-consensus-standards-premarket-submissions-medical-devices) and [European Commission (EC) Harmonized Standards](https://single-market-economy.ec.europa.eu/single-market/european-standards/harmonised-standards_en) for references on this. 
 
 ## Guidelines for validating nf-core pipelines
 
