@@ -6,12 +6,22 @@ weight: 1
 
 # Introduction
 
-nf-core aims to produce high-quality Nextflow pipelines that should make it easy to perform validation and adhere to regulatory requirements. The community as such is organized and discusses these requirements and sets these standards within the [regulatory special interest group](https://nf-co.re/special-interest-groups/regulatory). Everyone is welcome to join in and bring in different points to it.
+nf-core aims to produce high-quality Nextflow pipelines that should make it easy to perform validation and adhere to regulatory requirements. The community as such is organized and discusses these requirements within the [regulatory special interest group](https://nf-co.re/special-interest-groups/regulatory). Everyone is welcome to join in and bring in different points to it.
+
+# Version
+
+1.0.0draft
 
 # Scope
 
-- Risk of the software application in the business process: What is the risk?
-- (needs more work to be done)
+Pipeline validation is widely seen as something critical for use cases where outputs and interpretation of results matter more strictly, e.g. where regulatory authorities impose certain quality requirements to be met. To assess this, the usual approach is to perform a risk based validation.
+
+Risk based validation is considering everything around the development, implementation and integration of analysis pipelines as a potential risk or threat in terms of a misuse or malfunction of a pipeline. This then has to be mitigated using appropriate measures. An example would be that a pipeline per se has the risk of failing execution, which is a risk of it not producing desired outcome and which can be mitigated using appropriate functional tests using nf-test for example.
+
+While nf-core can provide users with guidelines, information and help to validate pipelines, we will not be able to provide you with a full validation report that you can simply take "off the shelf" and use for your regulatory needs. The report that nf-core will be able to create for you [soon](https://github.com/nf-core/tools/issues/3258) will however contain a lot of the basic information required for running a full validation.
+
+> We are working on a proof of concept validation for one nf-core pipeline (rnaseq) to showcase what needs to be done and where are potential gaps within the nf-core guidelines, processes or tooling that we can then hopefully address.
+
 
 ## General Checklist
 
