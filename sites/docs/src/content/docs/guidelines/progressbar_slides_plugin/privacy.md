@@ -1,4 +1,7 @@
-# Privacy Policy
+---
+title: nf-core/progressbar: Privacy Policy
+subtitle: Privacy Policy for the nf-core/progressbar Google Slides add-on
+---
 
 Last Updated: May 31, 2024
 

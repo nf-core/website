@@ -1,4 +1,8 @@
-# Terms of Service
+---
+title: Terms of Service
+shortTitle: Terms of Service
+subtitle: Terms of Service for the nf-core/progressbar Google Slides add-on
+---
 
 Last Updated: May 31, 2024
 
