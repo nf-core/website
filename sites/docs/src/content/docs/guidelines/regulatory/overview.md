@@ -23,7 +23,7 @@ Risk based validation is considering everything around the development, implemen
 This then has to be mitigated using appropriate measures.
 An example would be that a pipeline per se has the risk of failing execution, which is a risk of it not producing desired outcome and which can be mitigated using appropriate functional tests using [nf-test](https://www.nf-test.com/) for example.
 
-!!! warning
+[!WARNING]
 
     While nf-core can provide users with guidelines, information and help to validate pipelines, we will not be able to provide you with a full validation report that you can simply take "off the shelf" and use for your regulatory needs.
     The report that nf-core will be able to create for you [soon](https://github.com/nf-core/tools/issues/3258) will however contain a lot of the basic information required for running a full validation.
@@ -37,20 +37,22 @@ Computer system validation (CSV) is the broad term that encompasses that your so
 
 ### What types of validation "exist"
 
-Regulatory authorities play a pivotal role in the pharmaceutical industry, particularly in the context of drug approval and bioinformatics.
-These entities, such as the U.S. Food and Drug Administration (FDA) consensus standards, the European Medicines Agency (EMA)/ European Commission, and others, are responsible for ensuring the safety, efficacy, and quality of drugs/tests before they reach the market.
-Each of them has its own set of standards that need to be followed, depending on the intended use of the test.
+Regulatory authorities play a pivotal role in the pharmaceutical industry, particularly in the context of drug approval. 
+These entities, such as the U.S. Food and Drug Administration (FDA) consensus standards, the European Medicines Agency (EMA)/ European Commission, and others, are responsible for ensuring the safety, efficacy, and quality of drugs and medical tests before they reach the market.
+Each of them has its own set of standards that need to be followed, depending on the intended use of the test. We differentiate between standards that apply on a software level versus on a more infrastructure & computer systems validation level. The latter (CSV) is out of scope for this guidance and should be dealt with depending on your infrastructure or IT provider.
 
-Some examples include:
+Potentially applicable guidelines for bioinformatics pipelines:
 
-- [CSV validation](https://en.wikipedia.org/wiki/Computerized_system_validation)
 - [SaMD general](https://www.greenlight.guru/blog/samd-software-as-a-medical-device)
 - [FDA SaMD](https://www.fda.gov/medical-devices/digital-health-center-excellence/software-medical-device-samd)
 - [CE mark registration](https://europa.eu/youreurope/business/product-requirements/labels-markings/ce-marking/index_en.htm)
 - [FDA LDT](https://www.fda.gov/medical-devices/in-vitro-diagnostics/laboratory-developed-tests)
 - [CLIA validation](https://www.cms.gov/regulations-and-guidance/legislation/clia/downloads/6064bk.pdf)
 - [medical device registration](https://health.ec.europa.eu/system/files/2021-10/mdcg_2021-24_en_0.pdf)
-- [?? ISO certification]()
+
+Computerized systems validation:
+
+- [CSV validation](https://en.wikipedia.org/wiki/Computerized_system_validation)
 
 Because of the overload of current standards, there are initiatives to harmonize them ; see [Food and Drug Administration (FDA) consensus standards](https://www.fda.gov/regulatory-information/search-fda-guidance-documents/appropriate-use-voluntary-consensus-standards-premarket-submissions-medical-devices) and [European Commission (EC) Harmonized Standards](https://single-market-economy.ec.europa.eu/single-market/european-standards/harmonised-standards_en)
 
@@ -186,6 +188,8 @@ Pipeline level:
 - Automate risk management based on results stored in the stats file
 
 ## Maintenance
+
+
 
 - Continous development
 - Collect bug reports and if possible write a test that covers the affected code.
