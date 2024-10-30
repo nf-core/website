@@ -23,9 +23,9 @@ Risk based validation is considering everything around the development, implemen
 This then has to be mitigated using appropriate measures.
 An example would be that a pipeline per se has the risk of failing execution, which is a risk of it not producing desired outcome and which can be mitigated using appropriate functional tests using [nf-test](https://www.nf-test.com/) for example.
 
-[!WARNING]
+> [!WARNING]
+> While nf-core can provide users with guidelines, information and help to validate pipelines, we will not be able to provide you with a full validation report that you can simply take "off the shelf" and use for your regulatory needs.
 
-    While nf-core can provide users with guidelines, information and help to validate pipelines, we will not be able to provide you with a full validation report that you can simply take "off the shelf" and use for your regulatory needs.
     The report that nf-core will be able to create for you [soon](https://github.com/nf-core/tools/issues/3258) will however contain a lot of the basic information required for running a full validation.
 
 > We are working on a proof of concept validation for one nf-core pipeline (rnaseq) to showcase what needs to be done and where are potential gaps within the nf-core guidelines, processes or tooling that we can then hopefully address.
@@ -113,7 +113,19 @@ Make sure you rerun the appropriate levels of testing depending on the potential
 
 #### Change Management
 
-- PR/code review and approval (change management)
+In software development, change management refers to the process of tracking and controlling modifications to code and documentation throughout the _software development lifecycle_, ensuring transparency, accountability, and risk mitigation. In regulated bioinformatics environments, change management practices are essential for maintaining compliance, and reproducibility. Within nf-core pipelines, change management is structured as follows:
+
+- Requests for changes, bug reports, and enhancement suggestions can be submitted by any user or community member, ensuring transparent and open community-driven improvement.
+- Each pipeline and module follows a Pull Request (PR) template checklist, which helps contributors meet minimum submission requirements.
+- Proposed changes must include system and unit tests, which are automatically validated through the continuous integration/continuous deployment (CI/CD) framework, reducing manual testing overhead.
+- Changes to development branches require peer review, with each PR needing at least one review before merging into dev branches and at least two reviews before merging into the _main_ branch.
+- Automated tests are triggered on each PR to confirm that existing functionality remains unaffected.
+- Automated linting checks are performed on each PR, enforcing coding standards and preventing stylistic issues.
+- Direct changes to the main branch are not permitted, protecting the integrity of the production-ready code.
+- During pipeline release, reviewers must verify that the pipeline adheres to nf-core’s central principles (such as reproducibility, thorough documentation, and compliance with the nf-core template). Any new pipeline submission requires approval from the nf-core core team before integration into the nf-core repository.
+
+**Do I need to re-validate my pipeline every time a change is made?**
+In a validated environment, the Risk Assessment process will determine the level of testing required for each change. Minor or non-impactful changes may require testing related to the specific component but major changes may require broader re-validation. Significant changes to the entire pipeline would need a complete re-validation to ensure compliance and integrity.
 
 #### Security
 
@@ -168,14 +180,14 @@ Pipeline level:
   - Compare the performance of the test system in your dataset with those
     specifications defined by the user. This includes the following performance
     characteristics:
-    • Accuracy  
-     • Precision  
-     • Reportable range [if applicable]  
-     • Reference intervals/range (normal values) for the laboratory’s patient population [if applicable]
-- Controls to be included to unit tests: [if applicable]  
-   • Positive control  
-   • Negative control  
-   • Additional controls (for example PCR reagent controls, amplification control gene, calibration curve,... )
+    • Accuracy
+    • Precision
+    • Reportable range [if applicable]
+    • Reference intervals/range (normal values) for the laboratory’s patient population [if applicable]
+- Controls to be included to unit tests: [if applicable]
+  • Positive control
+  • Negative control
+  • Additional controls (for example PCR reagent controls, amplification control gene, calibration curve,... )
 - Set of expected results for all controls.
 - Set assay acceptance criteria
 - Set rejection criteria.
