@@ -128,7 +128,7 @@ Find specified revision / branch hash
 
 Loop through container names and download Singularity images
 
-#### `prioritize_direct_download(container_list){:python}`
+#### `prioritize_direct_download(container_list: List[str]) → List[str]{:python}`
 
 Helper function that takes a list of container images (URLs and Docker URIs),
 eliminates all Docker URIs for which also a URL is contained and returns the
@@ -150,6 +150,12 @@ any string that does not start with http. Because if our current dict value alre
 we want to keep it and not replace with with whatever we have now (which might be the Docker URI).
 
 A regex that matches http, r”^$|^http” could thus be used to prioritize the Docker URIs over http Downloads
+
+We also need to handle a special case: The <https://> Singularity downloads from Seqera Containers all end in ‘data’, although
+they are not equivalent, e.g.:
+
+‘<https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/63/6397750e9730a3fbcc5b4c43f14bd141c64c723fd7dad80e47921a68a7c3cd21/data>’
+‘<https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c2/c262fc09eca59edb5a724080eeceb00fb06396f510aefb229c2d2c6897e63975/data>’
 
 #### `prompt_compression_type(){:python}`
 
