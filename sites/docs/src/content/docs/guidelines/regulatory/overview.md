@@ -124,8 +124,7 @@ In software development, change management refers to the process of tracking and
 - Direct changes to the main branch are not permitted, protecting the integrity of the production-ready code.
 - During pipeline release, reviewers must verify that the pipeline adheres to nf-core’s central principles (such as reproducibility, thorough documentation, and compliance with the nf-core template). Any new pipeline submission requires approval from the nf-core core team before integration into the nf-core repository.
 
-> [!NOTE]
-> *Do I need to re-validate my pipeline every time a change is made?* In a validated environment, the Risk Assessment process will determine the level of testing required for each change. Minor or non-impactful changes may require testing related to the specific component but major changes may require broader re-validation. Significant changes to the entire pipeline would need a complete re-validation to ensure compliance and integrity.
+> [!NOTE] > _Do I need to re-validate my pipeline every time a change is made?_ In a validated environment, the Risk Assessment process will determine the level of testing required for each change. Minor or non-impactful changes may require testing related to the specific component but major changes may require broader re-validation. Significant changes to the entire pipeline would need a complete re-validation to ensure compliance and integrity.
 
 #### Security
 
