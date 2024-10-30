@@ -120,7 +120,7 @@ In software development, change management refers to the process of tracking and
 - Changes to development branches require peer review, with each PR needing at least one review before merging into dev branches and at least two reviews before merging into main/master.
 - Automated tests are triggered on each PR to confirm that existing functionality remains unaffected.
 - Automated linting checks are performed on each PR, enforcing coding standards and preventing stylistic issues.
-- Direct changes to the master branch are not permitted, protecting the integrity of the production-ready code.
+- Direct changes to the main branch are not permitted, protecting the integrity of the production-ready code.
 - During pipeline release, reviewers must verify that the pipeline adheres to nf-core’s central principles (such as reproducibility, thorough documentation, and compliance with the nf-core template). Any new pipeline submission requires approval from the nf-core core team before integration into the nf-core repository.
 
 #### Security
