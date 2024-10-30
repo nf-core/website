@@ -112,7 +112,16 @@ Make sure you rerun the appropriate levels of testing depending on the potential
 
 #### Change Management
 
-- PR/code review and approval (change management)
+In software development, change management refers to the process of tracking and controlling modifications to code and documentation throughout the _software development lifecycle_, ensuring transparency, accountability, and risk mitigation. In regulated bioinformatics environments, change management practices are essential for maintaining compliance, and reproducibility. Within nf-core pipelines, change management is structured as follows:
+
+- Requests for changes, bug reports, and enhancement suggestions can be submitted by any user or community member, ensuring transparent and open community-driven improvement.
+- Each pipeline and module follows a Pull Request (PR) template checklist, which helps contributors meet minimum submission requirements.
+- Proposed changes must include system and unit tests, which are automatically validated through the continuous integration/continuous deployment (CI/CD) framework, reducing manual testing overhead.
+- Changes to development branches require peer review, with each PR needing at least one review before merging into dev branches and at least two reviews before merging into main/master.
+- Automated tests are triggered on each PR to confirm that existing functionality remains unaffected.
+- Automated linting checks are performed on each PR, enforcing coding standards and preventing stylistic issues.
+- Direct changes to the master branch are not permitted, protecting the integrity of the production-ready code.
+- During pipeline release, reviewers must verify that the pipeline adheres to nf-core’s central principles (such as reproducibility, thorough documentation, and compliance with the nf-core template). Any new pipeline submission requires approval from the nf-core core team before integration into the nf-core repository.
 
 #### Security
 
