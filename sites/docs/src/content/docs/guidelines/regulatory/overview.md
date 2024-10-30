@@ -95,11 +95,14 @@ Consider the following metrics and criteria to judge the quality and risks assoc
 
 nf-core pipelines enforce semantic versioning for [pipeline releases](https://nf-co.re/docs/guidelines/pipelines/requirements/semantic_versioning).
 
-Semantic versioning provides [a simple set of rules and requirements that dictate how version numbers are assigned and incremented](https://semver.org/). Version numbers have a meaning about how the underlying code has been modified from one version to another. As a summary:
+Semantic versioning provides [a simple set of rules and requirements that dictate how version numbers are assigned and incremented](https://semver.org/). Version numbers have a meaning about how the underlying code has been modified from one version to another. To ensure quality and compliance, it is advised to conduct automated testing at appropriate levels aligned with the type of release. As a summary:
 
 - Patches (x.y.Z | x > 0) introduce backward compatible bug fixes.
+  Testing for these changes should focus on ensuring that existing functionality remains unaffected.
 - Minor versions (x.Y.z | x > 0) introduce new backward compatible functionality.
+  In addition to verifying new features, it's essential to also run integrative tests to confirm that existing functionality is preserved, verifying functional and analytical performance. 
 - Major versions (X.y.z | X > 0) introduce backward incompatible changes.
+  Testing for these releases should thorough, encompassing all levels of testing.
 
 There is specific functionality of nf-core tools that allows developers to easily [update a version of a pipeline when necessary](https://nf-co.re/docs/nf-core-tools/pipelines/bump-version).
 Pipelines must be released with stable release tags. Releases must use GitHub releases and keep a detailed changelog file.
@@ -107,8 +110,6 @@ Pipelines must be released with stable release tags. Releases must use GitHub re
 Modules used in an nf-core pipeline use fixed software tools inside the container engine (such as docker, singularity, conda). The container packages up the software and all its dependencies so the application runs reliably in any computing environment. In a nf-core module, each of the versions used in a package [must be emitted as per the nf-core guidelines](https://nf-co.re/docs/guidelines/components/modules#emission-of-versions). These versions are documented within a pipeline release.
 
 The [nf-core pipeline releases include checklists to evaluate these aspects](https://nf-co.re/docs/checklists/pipeline_release).
-
-Make sure you rerun the appropriate levels of testing depending on the potential impact of the changes made. Preferably this is performed in an automated way depending on the type of release (patch, minor or major). TODO make clear what this means
 
 ### Code and software development process quality
 
