@@ -46,7 +46,7 @@ Potentially applicable guidelines for bioinformatics pipelines:
 - [CE mark registration](https://europa.eu/youreurope/business/product-requirements/labels-markings/ce-marking/index_en.htm)
 - [FDA LDT](https://www.fda.gov/medical-devices/in-vitro-diagnostics/laboratory-developed-tests)
 - [CLIA validation](https://www.cms.gov/regulations-and-guidance/legislation/clia/downloads/6064bk.pdf)
-- [medical device registration](https://health.ec.europa.eu/system/files/2021-10/mdcg_2021-24_en_0.pdf)
+- [Medical device registration](https://health.ec.europa.eu/system/files/2021-10/mdcg_2021-24_en_0.pdf)
 
 Computerized systems validation (out of scope):
 
@@ -60,7 +60,8 @@ These points are individual points you should consider when validating an nf-cor
 
 ### Community metrics
 
-From a risk based perspective, an open source community both has benefits and imposes certain risks for validating an analysis pipeline. To compensate for these, we need to provide a list of metrics and criteria which are considered relevant to judge the quality and risk of a certain analysis pipeline within a planned validation. This includes:
+From a risk-based perspective, open-source communities present both benefits and risks in validating analysis pipelines.
+Consider the following metrics and criteria to judge the quality and risks associated with a pipeline:
 
 - History of the pipeline
   - When was this started?
@@ -86,9 +87,9 @@ From a risk based perspective, an open source community both has benefits and im
 
 ### General requirements
 
-- You should define upfront the functional requirements of your pipeline.
-- Maintain a comprehensive list of any outside dependencies (tools, references, utilized public information)
-- Verify the infrastructure requirements needed to run your pipeline consistently. Make sure you have the necessary resources to meet the minimal established computational performance. --> consider this out of scope, this is computer systems validation (CSV) - different topic maybe? TODO rephrase --> maybe also make a disclaimer in the intro that infraustrcutre validation is not part
+- Define the functional requirements of your pipeline upfront
+- Maintain a comprehensive list of any outside dependencies (tools, references, utilized public information, ...)
+- Verify infrastructure requirements for consistent and timely pipeline execution. Note: Infrastructure validation itself falls under Computerized Systems Validation (CSV) and is out of scope for this document.
 
 ### Versioning
 
@@ -168,13 +169,13 @@ Pipeline level:
   - Compare the performance of the test system in your dataset with those
     specifications defined by the user. This includes the following performance
     characteristics:
-    • Accuracy  
-     • Precision  
-     • Reportable range [if applicable]  
+    • Accuracy
+     • Precision
+     • Reportable range [if applicable]
      • Reference intervals/range (normal values) for the laboratory’s patient population [if applicable]
-- Controls to be included to unit tests: [if applicable]  
-   • Positive control  
-   • Negative control  
+- Controls to be included to unit tests: [if applicable]
+   • Positive control
+   • Negative control
    • Additional controls (for example PCR reagent controls, amplification control gene, calibration curve,... )
 - Set of expected results for all controls.
 - Set assay acceptance criteria
