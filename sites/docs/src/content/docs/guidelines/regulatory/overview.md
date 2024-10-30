@@ -46,7 +46,7 @@ Potentially applicable guidelines for bioinformatics pipelines:
 - [CE mark registration](https://europa.eu/youreurope/business/product-requirements/labels-markings/ce-marking/index_en.htm)
 - [FDA LDT](https://www.fda.gov/medical-devices/in-vitro-diagnostics/laboratory-developed-tests)
 - [CLIA validation](https://www.cms.gov/regulations-and-guidance/legislation/clia/downloads/6064bk.pdf)
-- [medical device registration](https://health.ec.europa.eu/system/files/2021-10/mdcg_2021-24_en_0.pdf)
+- [Medical device registration](https://health.ec.europa.eu/system/files/2021-10/mdcg_2021-24_en_0.pdf)
 
 Computerized systems validation (out of scope):
 
@@ -60,7 +60,8 @@ These points are individual points you should consider when validating an nf-cor
 
 ### Community metrics
 
-From a risk based perspective, an open source community both has benefits and imposes certain risks for validating an analysis pipeline. To compensate for these, we need to provide a list of metrics and criteria which are considered relevant to judge the quality and risk of a certain analysis pipeline within a planned validation. This includes:
+From a risk-based perspective, open-source communities present both benefits and risks in validating analysis pipelines.
+Consider the following metrics and criteria to judge the quality and risks associated with a pipeline:
 
 - History of the pipeline
   - When was this started?
@@ -86,19 +87,22 @@ From a risk based perspective, an open source community both has benefits and im
 
 ### General requirements
 
-- You should define upfront the functional requirements of your pipeline.
-- Maintain a comprehensive list of any outside dependencies (tools, references, utilized public information)
-- Verify the infrastructure requirements needed to run your pipeline consistently. Make sure you have the necessary resources to meet the minimal established computational performance. --> consider this out of scope, this is computer systems validation (CSV) - different topic maybe? TODO rephrase --> maybe also make a disclaimer in the intro that infraustrcutre validation is not part
+- Define the functional requirements of your pipeline upfront
+- Maintain a comprehensive list of any outside dependencies (tools, references, utilized public information, ...)
+- Verify infrastructure requirements for consistent and timely pipeline execution. Note: Infrastructure validation itself falls under Computerized Systems Validation (CSV) and is out of scope for this document.
 
 ### Versioning
 
 nf-core pipelines enforce semantic versioning for [pipeline releases](https://nf-co.re/docs/guidelines/pipelines/requirements/semantic_versioning).
 
-Semantic versioning provides [a simple set of rules and requirements that dictate how version numbers are assigned and incremented](https://semver.org/). Version numbers have a meaning about how the underlying code has been modified from one version to another. As a summary:
+Semantic versioning provides [a simple set of rules and requirements that dictate how version numbers are assigned and incremented](https://semver.org/). Version numbers have a meaning about how the underlying code has been modified from one version to another. To ensure quality and compliance, it is advised to conduct automated testing at appropriate levels aligned with the type of release. As a summary:
 
 - Patches (x.y.Z | x > 0) introduce backward compatible bug fixes.
+  Testing for these changes should focus on ensuring that existing functionality remains unaffected.
 - Minor versions (x.Y.z | x > 0) introduce new backward compatible functionality.
+  In addition to verifying new features, it's essential to also run integrative tests to confirm that existing functionality is preserved, verifying functional and analytical performance.
 - Major versions (X.y.z | X > 0) introduce backward incompatible changes.
+  Testing for these releases should thorough, encompassing all levels of testing.
 
 There is specific functionality of nf-core tools that allows developers to easily [update a version of a pipeline when necessary](https://nf-co.re/docs/nf-core-tools/pipelines/bump-version).
 Pipelines must be released with stable release tags. Releases must use GitHub releases and keep a detailed changelog file.
@@ -106,8 +110,6 @@ Pipelines must be released with stable release tags. Releases must use GitHub re
 Modules used in an nf-core pipeline use fixed software tools inside the container engine (such as docker, singularity, conda). The container packages up the software and all its dependencies so the application runs reliably in any computing environment. In a nf-core module, each of the versions used in a package [must be emitted as per the nf-core guidelines](https://nf-co.re/docs/guidelines/components/modules#emission-of-versions). These versions are documented within a pipeline release.
 
 The [nf-core pipeline releases include checklists to evaluate these aspects](https://nf-co.re/docs/checklists/pipeline_release).
-
-Make sure you rerun the appropriate levels of testing depending on the potential impact of the changes made. Preferably this is performed in an automated way depending on the type of release (patch, minor or major). TODO make clear what this means
 
 ### Code and software development process quality
 
