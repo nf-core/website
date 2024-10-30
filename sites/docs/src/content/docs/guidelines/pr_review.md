@@ -14,8 +14,8 @@ Authors/Reviewers should merge after one positive review and with no obvious ope
 
 ### Exceptions
 
-  - Exception: merges to master for releases requires **two** reviews.
-  - Exception: pseudo PR reviews for a first release needs **at least one review from core or maintainer team**.
+- Exception: merges to master for releases requires **two** reviews.
+- Exception: pseudo PR reviews for a first release needs **at least one review from core or maintainer team**.
 
 ### Major changes
 
@@ -24,15 +24,14 @@ Authors/Reviewers should merge after one positive review and with no obvious ope
 
 ### Scope of the review process
 
-  - **request changes** reviews can be [dismissed](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/dismissing-a-pull-request-review) by the PR author if considered out of date and resolved.
-  - PRs that have approving reviews but remaining open questions can be merged by the author after addressing the questions to a common-sense level of satisfaction.
-  - If a PR has comments from one reviewer with open questions, and requests to re-review but does not perform the re-review, the PR may be merged if the first reviewer does not finish the review after 3 months if the PR gets an independent approval from someone else.
+- **request changes** reviews can be [dismissed](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/dismissing-a-pull-request-review) by the PR author if considered out of date and resolved.
+- PRs that have approving reviews but remaining open questions can be merged by the author after addressing the questions to a common-sense level of satisfaction.
+- If a PR has comments from one reviewer with open questions, and requests to re-review but does not perform the re-review, the PR may be merged if the first reviewer does not finish the review after 3 months if the PR gets an independent approval from someone else.
 
 ## Commit strategy
 
 We prefer to use merge commits to merge. This is to avoid merge conflicts when multiple people are pulling with overlapping feature branches.
 
-  - We prefer verbose commit histories but easy merges.
-  - Feature branches should be immediately deleted after merge. Ideally by selecting the new feature on GitHub repo settings
-  - Note: squashing commits in a PR and merging after is fine, that is up to the individuals.
-
+- We prefer verbose commit histories but easy merges.
+- Feature branches should be immediately deleted after merge. Ideally by selecting the new feature on GitHub repo settings
+- Note: squashing commits in a PR and merging after is fine, that is up to the individuals.
