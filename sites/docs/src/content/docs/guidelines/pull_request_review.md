@@ -22,7 +22,7 @@ Authors/Reviewers should merge after one positive review and with no obvious ope
 - If there is a major change in any type of PR (from modules to pipelines) then it's ok to request a second review - either the author or reviewer can do this.
 - If the reviewer feels uneasy about a remaining open question then they shouldn't leave only a comment or approval, but rather a request-changes.
 
-### Scope of the review process
+## Scope of the review process
 
 - **request changes** reviews can be [dismissed](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/dismissing-a-pull-request-review) by the PR author if considered out of date and resolved.
 - PRs that have approving reviews but remaining open questions can be merged by the author after addressing the questions to a common-sense level of satisfaction.
