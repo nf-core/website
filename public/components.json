@@ -632,7 +632,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         },
         {
           "name": "taxprofiler",
@@ -1282,7 +1282,13 @@
         "maintainers": [
           "@toniher"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "genomeqc",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "agat_spaddintrons",
@@ -1652,7 +1658,13 @@
           "@toniher",
           "@gallvp"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "genomeqc",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "agat_sqstatbasic",
@@ -5187,7 +5199,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         },
         {
           "name": "proteinfold",
@@ -7807,6 +7819,58 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -8020,7 +8084,7 @@
             "blacklist": [
               {
                 "blacklist*${genome}*.tsv.gz": {
-                  "type": "str",
+                  "type": "string",
                   "description": "The blacklist removes recurrent alignment artifacts and transcripts which are present in healthy tissue",
                   "pattern": ".tsv.gz"
                 }
@@ -12592,7 +12656,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         },
         {
           "name": "metatdenovo",
@@ -12791,7 +12855,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -13840,7 +13904,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         },
         {
           "name": "viralrecon",
@@ -14481,7 +14545,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         },
         {
           "name": "phaseimpute",
@@ -14741,6 +14805,10 @@
         {
           "name": "raredisease",
           "version": "2.2.0"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         },
         {
           "name": "variantbenchmarking",
@@ -16856,7 +16924,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         },
         {
           "name": "phaseimpute",
@@ -16865,6 +16933,10 @@
         {
           "name": "raredisease",
           "version": "2.2.0"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         },
         {
           "name": "variantbenchmarking",
@@ -18215,7 +18287,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -21481,7 +21553,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.1"
         }
       ]
     },
@@ -21638,7 +21710,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.1"
         }
       ]
     },
@@ -21749,7 +21821,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.1"
         }
       ]
     },
@@ -21842,7 +21914,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.1"
         }
       ]
     },
@@ -22020,7 +22092,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.1"
         }
       ]
     },
@@ -22134,7 +22206,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.1"
         }
       ]
     },
@@ -22252,7 +22324,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.1"
         }
       ]
     },
@@ -23819,7 +23891,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "taxprofiler",
@@ -25689,6 +25761,110 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -25957,6 +26133,10 @@
         {
           "name": "denovotranscript",
           "version": "1.0.0"
+        },
+        {
+          "name": "genomeqc",
+          "version": "dev"
         }
       ]
     },
@@ -26891,6 +27071,10 @@
         {
           "name": "sarek",
           "version": "3.4.4"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         }
       ]
     },
@@ -27114,6 +27298,10 @@
         {
           "name": "sarek",
           "version": "3.4.4"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         }
       ]
     },
@@ -27538,7 +27726,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.1"
         }
       ]
     },
@@ -27630,7 +27818,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.1"
         }
       ]
     },
@@ -28453,7 +28641,7 @@
         },
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         },
         {
           "name": "magmap",
@@ -28465,7 +28653,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.1"
         },
         {
           "name": "nascent",
@@ -28489,7 +28677,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -31663,7 +31851,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         },
         {
           "name": "taxprofiler",
@@ -31767,7 +31955,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         },
         {
           "name": "taxprofiler",
@@ -32103,7 +32291,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         }
       ]
     },
@@ -32239,7 +32427,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         }
       ]
     },
@@ -36979,7 +37167,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         }
       ]
     },
@@ -37086,7 +37274,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         }
       ]
     },
@@ -37203,7 +37391,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         }
       ]
     },
@@ -37304,7 +37492,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         }
       ]
     },
@@ -37397,7 +37585,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         }
       ]
     },
@@ -40062,7 +40250,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -40224,10 +40412,6 @@
           "version": "1.0.1"
         },
         {
-          "name": "methylseq",
-          "version": "2.6.0"
-        },
-        {
           "name": "molkart",
           "version": "1.0.0"
         },
@@ -40245,10 +40429,6 @@
         },
         {
           "name": "pathogensurveillance",
-          "version": "dev"
-        },
-        {
-          "name": "phaseimpute",
           "version": "dev"
         },
         {
@@ -40447,7 +40627,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -41044,7 +41224,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -41692,7 +41872,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         }
       ]
     },
@@ -41795,7 +41975,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         }
       ]
     },
@@ -41968,7 +42148,13 @@
         "maintainers": [
           "@famosab"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "decoupler_decoupler",
@@ -45250,7 +45436,13 @@
           "@projectoriented",
           "@nvnieuwk"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "demuxem",
@@ -47561,7 +47753,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -48453,10 +48645,17 @@
           {
             "log": [
               {
-                "meta": {}
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
               },
               {
-                "logs/elprep/elprep*": {}
+                "logs/elprep/elprep*": {
+                  "type": "file",
+                  "description": "ELFasta log file",
+                  "pattern": "*.log"
+                }
               }
             ]
           },
@@ -52929,7 +53128,7 @@
         },
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         },
         {
           "name": "nascent",
@@ -52961,7 +53160,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "sarek",
@@ -53149,6 +53348,10 @@
           "version": "dev"
         },
         {
+          "name": "fastqrepair",
+          "version": "dev"
+        },
+        {
           "name": "fastquorum",
           "version": "1.0.1"
         },
@@ -53158,6 +53361,10 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeqc",
           "version": "dev"
         },
         {
@@ -53190,7 +53397,7 @@
         },
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         },
         {
           "name": "magmap",
@@ -53214,7 +53421,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.1"
         },
         {
           "name": "nanoseq",
@@ -53262,7 +53469,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -55169,6 +55376,10 @@
       },
       "pipelines": [
         {
+          "name": "mag",
+          "version": "3.2.1"
+        },
+        {
           "name": "taxprofiler",
           "version": "1.2.0"
         }
@@ -56164,7 +56375,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -56491,7 +56702,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         },
         {
           "name": "radseq",
@@ -58803,6 +59014,10 @@
         {
           "name": "sarek",
           "version": "3.4.4"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         }
       ]
     },
@@ -60535,6 +60750,10 @@
         {
           "name": "sarek",
           "version": "3.4.4"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         }
       ]
     },
@@ -66230,6 +66449,10 @@
         {
           "name": "rnavar",
           "version": "1.0.0"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         }
       ]
     },
@@ -66856,6 +67079,10 @@
         {
           "name": "sarek",
           "version": "3.4.4"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         },
         {
           "name": "variantcatalogue",
@@ -70098,6 +70325,10 @@
         {
           "name": "raredisease",
           "version": "2.2.0"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         }
       ]
     },
@@ -71499,6 +71730,10 @@
         {
           "name": "sarek",
           "version": "3.4.4"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         }
       ]
     },
@@ -71656,7 +71891,13 @@
         "maintainers": [
           "@lindenb"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "gatk4spark_applybqsr",
@@ -74300,7 +74541,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         },
         {
           "name": "phageannotator",
@@ -74609,7 +74850,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         },
         {
           "name": "phageannotator",
@@ -76266,6 +76507,10 @@
           "version": "dev"
         },
         {
+          "name": "genomeqc",
+          "version": "dev"
+        },
+        {
           "name": "hicar",
           "version": "1.0.0"
         },
@@ -76283,7 +76528,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -76455,14 +76700,6 @@
               "region": {
                 "type": "string",
                 "description": "Target region, usually a full chromosome (e.g. chr20:1000000-2000000 or chr20).\nFor chrX, please treat PAR and non-PAR regions as different choromosome in order to avoid mixing ploidy.\n"
-              }
-            }
-          ],
-          [
-            {
-              "meta2": {
-                "type": "map",
-                "description": "Groovy Map containing genomic map information\ne.g. [ map:'GRCh38' ]\n"
               }
             },
             {
@@ -76942,6 +77179,13 @@
                 "type": "file",
                 "description": "Index file of the input BAM/CRAM/VCF/BCF file.",
                 "pattern": "*.{bam.bai,cram.crai,vcf.gz.csi,bcf.gz.csi}"
+              }
+            },
+            {
+              "bamlist": {
+                "type": "file",
+                "description": "File containing the list of BAM/CRAM files to be phased.\nOne file per line and a second column can be added to indicate the sample name.\n",
+                "pattern": "*.{txt,tsv}"
               }
             },
             {
@@ -81566,7 +81810,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         }
       ]
     },
@@ -81870,7 +82114,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         }
       ]
     },
@@ -81970,7 +82214,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         }
       ]
     },
@@ -82086,7 +82330,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         }
       ]
     },
@@ -82225,7 +82469,7 @@
         },
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         },
         {
           "name": "magmap",
@@ -82234,6 +82478,10 @@
         {
           "name": "marsseq",
           "version": "1.0.3"
+        },
+        {
+          "name": "methylseq",
+          "version": "2.7.1"
         },
         {
           "name": "mhcquant",
@@ -82265,7 +82513,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -84611,13 +84859,17 @@
           ],
           [
             {
+              "meta1": {
+                "type": "map",
+                "description": "Groovy Map containing information about parental kmers.\n"
+              }
+            },
+            {
               "paternal_kmer_dump": {
                 "type": "file",
                 "description": "Yak kmer dump file for paternal reads (can be used for haplotype resolution). It can have an arbitrary extension."
               }
-            }
-          ],
-          [
+            },
             {
               "maternal_kmer_dump": {
                 "type": "file",
@@ -84627,13 +84879,17 @@
           ],
           [
             {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing information about Hi-C reads\n"
+              }
+            },
+            {
               "hic_read1": {
                 "type": "file",
                 "description": "Hi-C data Forward reads."
               }
-            }
-          ],
-          [
+            },
             {
               "hic_read2": {
                 "type": "file",
@@ -84845,7 +85101,8 @@
         "authors": [
           "@sidorov-si",
           "@scorreard",
-          "@mbeavitt"
+          "@mbeavitt",
+          "@schmytzi"
         ],
         "maintainers": [
           "@sidorov-si",
@@ -85010,7 +85267,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -85137,7 +85394,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -85235,7 +85492,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -90921,8 +91178,172 @@
         {
           "name": "reportho",
           "version": "1.0.1"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         }
       ]
+    },
+    {
+      "name": "irescue",
+      "path": "modules/nf-core/irescue/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "irescue",
+        "description": "Quantification of transposable elements expression in scRNA-seq",
+        "keywords": [
+          "scRNA-seq",
+          "transposons",
+          "repeats"
+        ],
+        "tools": [
+          {
+            "irescue": {
+              "description": "IRescue is a tool for uncertainty-aware quantification of transposable elements expression in scRNA-seq",
+              "homepage": "https://pypi.org/project/IRescue",
+              "documentation": "https://pypi.org/project/IRescue",
+              "tool_dev_url": "https://github.com/bodegalab/irescue",
+              "doi": "10.1093/nar/gkae793",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:irescue"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Sorted BAM file",
+                "pattern": "*.bam",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "genome": {
+                "type": "string",
+                "description": "Genome assembly symbol. Not used when bed file is provided.\nIn this case, it can be any value or an empty string.\n"
+              }
+            }
+          ],
+          [
+            {
+              "bed": {
+                "type": "file",
+                "description": "Bed file of repeats genomic coordinates (optional).",
+                "pattern": "*.bed",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          },
+          {
+            "results": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}": {
+                  "type": "directory",
+                  "description": "Folder containing count matrices and logs",
+                  "pattern": "${prefix}"
+                }
+              }
+            ]
+          },
+          {
+            "counts": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}/counts": {
+                  "type": "directory",
+                  "description": "Folder containing count matrices",
+                  "pattern": "${prefix}/counts"
+                }
+              }
+            ]
+          },
+          {
+            "log": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}/irescue.log": {
+                  "type": "file",
+                  "description": "Text file contianing run informations",
+                  "pattern": "${prefix}/irescue.log"
+                }
+              }
+            ]
+          },
+          {
+            "tmp": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}/tmp": {
+                  "type": "directory",
+                  "description": "Folder containing temporary files,\nif kept using the \"--keeptmp\" argument (optional).\n",
+                  "pattern": "${prefix}/tmp"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@bepoli"
+        ],
+        "maintainers": [
+          "@bepoli"
+        ]
+      }
     },
     {
       "name": "islandpath",
@@ -91111,7 +91532,13 @@
         "maintainers": [
           "@rpetit3"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "isoseq3_cluster",
@@ -94601,7 +95028,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -94775,7 +95202,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -96600,7 +97027,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "taxprofiler",
@@ -96902,7 +97329,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         },
         {
           "name": "taxprofiler",
@@ -97331,7 +97758,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         }
       ]
     },
@@ -97432,7 +97859,7 @@
         },
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         },
         {
           "name": "taxprofiler",
@@ -99744,6 +100171,24 @@
             ]
           },
           {
+            "normalised_counts": [
+              {
+                "meta": {
+                  "type": "file",
+                  "description": "normalised TSV format expression matrix with probes by row and samples by column",
+                  "pattern": "*.normalised_counts.tsv"
+                }
+              },
+              {
+                "*.normalised_counts.tsv": {
+                  "type": "file",
+                  "description": "normalised TSV format expression matrix with probes by row and samples by column",
+                  "pattern": "*.normalised_counts.tsv"
+                }
+              }
+            ]
+          },
+          {
             "versions": [
               {
                 "versions.yml": {
@@ -100036,7 +100481,13 @@
         "maintainers": [
           "@bjohnnyd"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "lofreq_callparallel",
@@ -100266,7 +100717,13 @@
         "maintainers": [
           "@bjohnnyd"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "lofreq_indelqual",
@@ -100364,7 +100821,13 @@
           "@kaurravneet4123",
           "@krannich479"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "lofreq_somatic",
@@ -105492,7 +105955,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         }
       ]
     },
@@ -106342,7 +106805,13 @@
         "maintainers": [
           "@jfy133"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "mag",
+          "version": "3.2.1"
+        }
+      ]
     },
     {
       "name": "megan_daa2info",
@@ -107819,6 +108288,58 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -108328,7 +108849,13 @@
           "@mahesh-panchal",
           "@gallvp"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "genomeqc",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "merquryfk_katcomp",
@@ -109353,6 +109880,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeqc",
+          "version": "dev"
         }
       ]
     },
@@ -109543,6 +110074,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeqc",
+          "version": "dev"
         }
       ]
     },
@@ -109640,7 +110175,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         }
       ]
     },
@@ -109808,7 +110343,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         }
       ]
     },
@@ -109955,7 +110490,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         }
       ]
     },
@@ -110939,7 +111474,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.1"
         }
       ]
     },
@@ -111057,7 +111592,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.1"
         }
       ]
     },
@@ -114118,7 +114653,7 @@
         },
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         }
       ]
     },
@@ -117097,6 +117632,10 @@
           "version": "dev"
         },
         {
+          "name": "genomeqc",
+          "version": "dev"
+        },
+        {
           "name": "genomeskim",
           "version": "dev"
         },
@@ -117126,7 +117665,7 @@
         },
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         },
         {
           "name": "magmap",
@@ -117158,7 +117697,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.1"
         },
         {
           "name": "mhcquant",
@@ -117254,7 +117793,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -118877,7 +119416,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         },
         {
           "name": "nanoseq",
@@ -119240,7 +119779,7 @@
         },
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         },
         {
           "name": "nanoseq",
@@ -119897,6 +120436,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeqc",
+          "version": "dev"
+        },
         {
           "name": "readsimulator",
           "version": "1.0.1"
@@ -124436,7 +124979,13 @@
         "maintainers": [
           "@GallVp"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "genomeqc",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "paftools_sam2paf",
@@ -126205,13 +126754,6 @@
                 "description": "fastq.gz files",
                 "pattern": "*.fastq.gz"
               }
-            },
-            {
-              "interval_file": {
-                "type": "file",
-                "description": "(optional) file(s) containing genomic intervals for use in base quality score recalibration (BQSR)",
-                "pattern": "*.{bed,interval_list,picard,list,intervals}"
-              }
             }
           ],
           [
@@ -126241,6 +126783,21 @@
                 "type": "file",
                 "description": "reference BWA index",
                 "pattern": "*.{amb,ann,bwt,pac,sa}"
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing index information\n"
+              }
+            },
+            {
+              "interval_file": {
+                "type": "file",
+                "description": "(optional) file(s) containing genomic intervals for use in base quality score recalibration (BQSR)",
+                "pattern": "*.{bed,interval_list,picard,list,intervals}"
               }
             }
           ],
@@ -126290,6 +126847,23 @@
             ]
           },
           {
+            "bqsr_table": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test']\n"
+                }
+              },
+              {
+                "*.table": {
+                  "type": "file",
+                  "description": "(optional) table from base quality score recalibration calculation, to be used with parabricks/applybqsr",
+                  "pattern": "*.table"
+                }
+              }
+            ]
+          },
+          {
             "versions": [
               {
                 "versions.yml": {
@@ -126312,17 +126886,6 @@
             ]
           },
           {
-            "bqsr_table": [
-              {
-                "*.table": {
-                  "type": "file",
-                  "description": "(optional) table from base quality score recalibration calculation, to be used with parabricks/applybqsr",
-                  "pattern": "*.table"
-                }
-              }
-            ]
-          },
-          {
             "duplicate_metrics": [
               {
                 "duplicate-metrics.txt": {
@@ -126340,7 +126903,8 @@
         ],
         "maintainers": [
           "@bsiranosian",
-          "@adamrtalbot"
+          "@adamrtalbot",
+          "@gallvp"
         ]
       }
     },
@@ -126511,7 +127075,8 @@
           "@sateeshperi"
         ],
         "maintainers": [
-          "@sateeshperi"
+          "@sateeshperi",
+          "@gallvp"
         ]
       }
     },
@@ -131602,7 +132167,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.1"
         },
         {
           "name": "pathogensurveillance",
@@ -131614,7 +132179,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "sammyseq",
@@ -132431,6 +132996,10 @@
         {
           "name": "ampliseq",
           "version": "2.11.0"
+        },
+        {
+          "name": "genomeqc",
+          "version": "dev"
         },
         {
           "name": "multiplesequencealign",
@@ -137046,6 +137615,10 @@
       },
       "pipelines": [
         {
+          "name": "mag",
+          "version": "3.2.1"
+        },
+        {
           "name": "taxprofiler",
           "version": "1.2.0"
         }
@@ -137172,7 +137745,7 @@
         },
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         },
         {
           "name": "taxprofiler",
@@ -137404,7 +137977,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.1"
         },
         {
           "name": "nascent",
@@ -137412,7 +137985,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -138166,7 +138739,7 @@
         },
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         },
         {
           "name": "metapep",
@@ -138470,7 +139043,7 @@
         },
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         },
         {
           "name": "magmap",
@@ -141280,7 +141853,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         }
       ]
     },
@@ -141376,7 +141949,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         }
       ]
     },
@@ -142067,7 +142640,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.1"
         },
         {
           "name": "raredisease",
@@ -142192,7 +142765,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.1"
         }
       ]
     },
@@ -142294,7 +142867,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -142680,6 +143253,10 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeqc",
           "version": "dev"
         },
         {
@@ -145950,7 +146527,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -146051,7 +146628,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -146149,7 +146726,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -146256,7 +146833,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -146431,7 +147008,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -146642,7 +147219,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -146763,7 +147340,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -146870,7 +147447,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "scnanoseq",
@@ -147027,7 +147604,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -147153,7 +147730,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -148195,7 +148772,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -148372,7 +148949,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -149001,24 +149578,27 @@
           {
             "samplesheet": [
               {
-                "meta": null,
-                "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', lane:1 ]\n"
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', lane:1 ]\n"
+                }
               },
               {
-                "*_formatted.csv": null,
-                "type": "file",
-                "description": "illumina v2 samplesheet"
+                "*_formatted.csv": {
+                  "type": "file",
+                  "description": "illumina v2 samplesheet"
+                }
               }
             ]
           },
           {
             "versions": [
               {
-                "versions.yml": null,
-                "type": "file",
-                "description": "File containing software version",
-                "pattern": "versions.yml"
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software version",
+                  "pattern": "versions.yml"
+                }
               }
             ]
           }
@@ -150641,11 +151221,11 @@
         },
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         },
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.1"
         },
         {
           "name": "nanoseq",
@@ -151227,7 +151807,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.1"
         },
         {
           "name": "nanoseq",
@@ -151259,7 +151839,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -151525,7 +152105,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -151851,7 +152431,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.1"
         },
         {
           "name": "nanoseq",
@@ -151899,7 +152479,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -151932,6 +152512,10 @@
         {
           "name": "taxprofiler",
           "version": "1.2.0"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         },
         {
           "name": "variantcatalogue",
@@ -152293,6 +152877,10 @@
         {
           "name": "scnanoseq",
           "version": "1.0.0"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         }
       ]
     },
@@ -152920,7 +153508,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.1"
         },
         {
           "name": "nanoseq",
@@ -152956,7 +153544,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -153139,7 +153727,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.1"
         },
         {
           "name": "nanoseq",
@@ -153171,7 +153759,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -153200,6 +153788,10 @@
         {
           "name": "taxprofiler",
           "version": "1.2.0"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         },
         {
           "name": "viralrecon",
@@ -159074,6 +159666,10 @@
         {
           "name": "funcscan",
           "version": "2.0.0"
+        },
+        {
+          "name": "genomeqc",
+          "version": "dev"
         }
       ]
     },
@@ -159243,7 +159839,13 @@
         "maintainers": [
           "@GallVp"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "genomeqc",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "seqkit_split2",
@@ -159866,7 +160468,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         },
         {
           "name": "metatdenovo",
@@ -160056,6 +160658,10 @@
         },
         {
           "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "seqinspector",
           "version": "dev"
         }
       ]
@@ -165401,7 +166007,13 @@
         "maintainers": [
           "@abhi18av"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "snpeff_download",
@@ -165493,6 +166105,10 @@
         {
           "name": "sarek",
           "version": "3.4.4"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         }
       ]
     },
@@ -165657,6 +166273,10 @@
         {
           "name": "sarek",
           "version": "3.4.4"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         }
       ]
     },
@@ -166057,7 +166677,13 @@
         "maintainers": [
           "@avantonder"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "somalier_ancestry",
@@ -166629,9 +167255,127 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
+    },
+    {
+      "name": "sourcepredict",
+      "path": "modules/nf-core/sourcepredict/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "sourcepredict",
+        "description": "Classifies and predicts the origin of metagenomic samples",
+        "keywords": [
+          "source tracking",
+          "metagenomics",
+          "machine learning"
+        ],
+        "tools": [
+          {
+            "sourcepredict": {
+              "description": "Classification and prediction of the origin of metagenomic samples.",
+              "homepage": "https://github.com/maxibor/sourcepredict",
+              "documentation": "https://sourcepredict.readthedocs.io/en/latest/index.html",
+              "tool_dev_url": "https://github.com/maxibor/sourcepredict",
+              "doi": "10.21105/joss.01540",
+              "licence": [
+                "GPL v3-or-later"
+              ],
+              "identifier": "biotools:sourcepredict"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "kraken_parse": {
+                "type": "file",
+                "description": "Sink TAXID count table in csv format",
+                "pattern": "*.csv"
+              }
+            }
+          ],
+          [
+            {
+              "sources": {
+                "type": "file",
+                "description": "Sources TAXID count table in csv format. Default can be downloaded from https://raw.githubusercontent.com/maxibor/sourcepredict/master/data/modern_gut_microbiomes_sources.csv",
+                "pattern": "*.csv"
+              }
+            }
+          ],
+          [
+            {
+              "labels": {
+                "type": "file",
+                "description": "Labels for the sources table in csv format. Default can be downloaded from https://raw.githubusercontent.com/maxibor/sourcepredict/master/data/modern_gut_microbiomes_labels.csv",
+                "pattern": "*.csv"
+              }
+            }
+          ],
+          [
+            {
+              "taxa_sqlite": {
+                "type": "file",
+                "description": "taxa.sqlite file downloaded with ete3 toolkit",
+                "pattern": "taxa.sqlite"
+              }
+            }
+          ],
+          [
+            {
+              "taxa_sqlite_traverse_pkl": {
+                "type": "file",
+                "description": "taxa.sqlite.traverse.pkl file downloaded with ete3 toolkit",
+                "pattern": "taxa.sqlite.traverse.pkl"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "report": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.sourcepredict.csv": {
+                  "type": "file",
+                  "description": "Table containing the predicted proportion of each source in each sample",
+                  "pattern": "*.sourcepredict.csv"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@MeriamOs"
+        ],
+        "maintainers": [
+          "@MeriamOs"
+        ]
+      }
     },
     {
       "name": "sourmash_compare",
@@ -167810,6 +168554,10 @@
         {
           "name": "denovotranscript",
           "version": "1.0.0"
+        },
+        {
+          "name": "mag",
+          "version": "3.2.1"
         },
         {
           "name": "metatdenovo",
@@ -169344,7 +170092,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -169483,7 +170231,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -170108,6 +170856,35 @@
             {
               "meta": {
                 "type": "map",
+                "description": "Groovy Map containing information about the set of samples\ne.g. `[ id:'test' ]`\n"
+              }
+            },
+            {
+              "collected_crams": {
+                "type": "file",
+                "description": "List of sorted BAM/CRAM/SAM file",
+                "pattern": "*.{bam,cram,sam}"
+              }
+            },
+            {
+              "collected_crais": {
+                "type": "file",
+                "description": "List of BAM/CRAM/SAM index files",
+                "pattern": "*.{bai,crai,sai}"
+              }
+            },
+            {
+              "cramlist": {
+                "type": "file",
+                "description": "Text file with the path to the cram files to use in imputation, one per line. Since the cram files are staged to the working directory for the process, this file should just contain the file names without any pre-pending path.\n",
+                "pattern": "*.txt"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
                 "description": "Groovy Map containing information about the set of positions to run the imputation over\ne.g. `[ id:'test' ]`\n"
               }
             },
@@ -170148,35 +170925,6 @@
               "nGen": {
                 "type": "integer",
                 "description": "Number of generations since founding of the population to use for imputation. Refer to the documentation for the `--nGen` argument of STITCH for more information."
-              }
-            }
-          ],
-          [
-            {
-              "meta2": {
-                "type": "map",
-                "description": "Groovy Map containing information about the set of samples\ne.g. `[ id:'test' ]`\n"
-              }
-            },
-            {
-              "collected_crams": {
-                "type": "file",
-                "description": "List of sorted BAM/CRAM/SAM file",
-                "pattern": "*.{bam,cram,sam}"
-              }
-            },
-            {
-              "collected_crais": {
-                "type": "file",
-                "description": "List of BAM/CRAM/SAM index files",
-                "pattern": "*.{bai,crai,sai}"
-              }
-            },
-            {
-              "cramlist": {
-                "type": "file",
-                "description": "Text file with the path to the cram files to use in imputation, one per line. Since the cram files are staged to the working directory for the process, this file should just contain the file names without any pre-pending path.\n",
-                "pattern": "*.txt"
               }
             }
           ],
@@ -171055,7 +171803,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -171191,7 +171939,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -171336,7 +172084,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -172762,7 +173510,7 @@
           ],
           [
             {
-              "priority": {
+              "input_priority": {
                 "type": "list",
                 "description": "Prioritize the input VCF files according to this list,\ne.g ['tiddit','cnvnator']. The order and number of tags should correspond to\nthe order and number of VCFs in the `vcfs` input channel.\n"
               }
@@ -172783,14 +173531,48 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
-                "*.vcf.gz": {
+                "*.{vcf,vcf.gz,bcf,bcf.gz}": {
                   "type": "file",
-                  "description": "merged VCF file",
-                  "pattern": "*.vcf.gz"
+                  "description": "VCF output file",
+                  "pattern": "*.{vcf,vcf.gz,bcf,bcf.gz}"
+                }
+              }
+            ]
+          },
+          {
+            "tbi": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.tbi": {
+                  "type": "file",
+                  "description": "Alternative VCF file index",
+                  "pattern": "*.tbi"
+                }
+              }
+            ]
+          },
+          {
+            "csi": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.csi": {
+                  "type": "file",
+                  "description": "Default VCF file index",
+                  "pattern": "*.csi"
                 }
               }
             ]
@@ -172811,7 +173593,8 @@
           "@ramprasadn"
         ],
         "maintainers": [
-          "@ramprasadn"
+          "@ramprasadn",
+          "@fellen31"
         ]
       },
       "pipelines": [
@@ -173966,6 +174749,10 @@
           "version": "dev"
         },
         {
+          "name": "tbanalyzer",
+          "version": "dev"
+        },
+        {
           "name": "variantbenchmarking",
           "version": "dev"
         },
@@ -174962,7 +175749,13 @@
         "maintainers": [
           "@rpetit3"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "tcoffee_align",
@@ -176169,7 +176962,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         }
       ]
     },
@@ -176537,7 +177330,13 @@
         "maintainers": [
           "@GallVp"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "genomeqc",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "tidk_plot",
@@ -176620,7 +177419,13 @@
         "maintainers": [
           "@GallVp"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "genomeqc",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "tidk_search",
@@ -176727,7 +177532,13 @@
         "maintainers": [
           "@GallVp"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "genomeqc",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "topas_gencons",
@@ -177532,7 +178343,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.1"
         },
         {
           "name": "riboseq",
@@ -177540,7 +178351,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -177704,6 +178515,10 @@
         {
           "name": "callingcards",
           "version": "1.0.0"
+        },
+        {
+          "name": "fastqrepair",
+          "version": "dev"
         },
         {
           "name": "sammyseq",
@@ -179071,7 +179886,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -179172,7 +179987,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -179289,7 +180104,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -180582,7 +181397,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "scnanoseq",
@@ -180704,7 +181519,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -180966,7 +181781,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -181331,11 +182146,11 @@
         },
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         },
         {
           "name": "methylseq",
-          "version": "2.6.0"
+          "version": "2.7.1"
         },
         {
           "name": "multiplesequencealign",
@@ -181379,7 +182194,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -189745,7 +190560,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -189933,7 +190748,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "sammyseq",
@@ -190537,7 +191352,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -190693,7 +191508,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -190955,7 +191770,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -191920,7 +192735,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -192127,7 +192942,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         }
       ]
     },
@@ -192494,7 +193309,13 @@
         "maintainers": [
           "@GallVp"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "genomeqc",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "fasta_hmmsearch_rank_fastas",
@@ -193665,7 +194486,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -194545,7 +195366,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "smrnaseq",
@@ -194718,7 +195539,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "rnasplice",
@@ -195103,7 +195924,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -195225,7 +196046,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -199161,7 +199982,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         }
       ]
     },
@@ -199290,6 +200111,10 @@
           "version": "2.3.1"
         },
         {
+          "name": "fastqrepair",
+          "version": "dev"
+        },
+        {
           "name": "fastquorum",
           "version": "1.0.1"
         },
@@ -199302,12 +200127,16 @@
           "version": "2.0.0"
         },
         {
+          "name": "genomeqc",
+          "version": "dev"
+        },
+        {
           "name": "isoseq",
           "version": "2.0.0"
         },
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         },
         {
           "name": "magmap",
@@ -199332,6 +200161,10 @@
         {
           "name": "methylarray",
           "version": "dev"
+        },
+        {
+          "name": "methylseq",
+          "version": "2.7.1"
         },
         {
           "name": "mhcquant",
@@ -199399,7 +200232,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "sarek",
@@ -199555,6 +200388,10 @@
           "version": "2.3.1"
         },
         {
+          "name": "fastqrepair",
+          "version": "dev"
+        },
+        {
           "name": "fastquorum",
           "version": "1.0.1"
         },
@@ -199567,12 +200404,16 @@
           "version": "2.0.0"
         },
         {
+          "name": "genomeqc",
+          "version": "dev"
+        },
+        {
           "name": "isoseq",
           "version": "2.0.0"
         },
         {
           "name": "mag",
-          "version": "3.1.0"
+          "version": "3.2.1"
         },
         {
           "name": "magmap",
@@ -199597,6 +200438,10 @@
         {
           "name": "methylarray",
           "version": "dev"
+        },
+        {
+          "name": "methylseq",
+          "version": "2.7.1"
         },
         {
           "name": "mhcquant",
@@ -199664,7 +200509,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "sarek",
@@ -199788,8 +200633,20 @@
           "version": "1.0.1"
         },
         {
+          "name": "fastqrepair",
+          "version": "dev"
+        },
+        {
+          "name": "mag",
+          "version": "3.2.1"
+        },
+        {
           "name": "methylarray",
           "version": "dev"
+        },
+        {
+          "name": "methylseq",
+          "version": "2.7.1"
         },
         {
           "name": "phaseimpute",
@@ -199801,15 +200658,27 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.16.1"
+          "version": "3.17.0"
         },
         {
           "name": "scdownstream",
           "version": "dev"
         },
         {
+          "name": "seqinspector",
+          "version": "dev"
+        },
+        {
           "name": "smrnaseq",
           "version": "2.4.0"
+        },
+        {
+          "name": "spatialvi",
+          "version": "dev"
+        },
+        {
+          "name": "tbanalyzer",
+          "version": "dev"
         },
         {
           "name": "variantbenchmarking",
@@ -199943,12 +200812,12 @@
           "version": "2.0.0"
         },
         {
-          "name": "isoseq",
-          "version": "2.0.0"
+          "name": "genomeqc",
+          "version": "dev"
         },
         {
-          "name": "mag",
-          "version": "3.1.0"
+          "name": "isoseq",
+          "version": "2.0.0"
         },
         {
           "name": "magmap",
@@ -200039,20 +200908,8 @@
           "version": "2.7.1"
         },
         {
-          "name": "seqinspector",
-          "version": "dev"
-        },
-        {
-          "name": "spatialvi",
-          "version": "dev"
-        },
-        {
           "name": "taxprofiler",
           "version": "1.2.0"
-        },
-        {
-          "name": "tbanalyzer",
-          "version": "dev"
         },
         {
           "name": "tfactivity",
