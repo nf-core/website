@@ -100,7 +100,7 @@ Semantic versioning provides [a simple set of rules and requirements that dictat
 - Patches (x.y.Z | x > 0) introduce backward compatible bug fixes.
   Testing for these changes should focus on ensuring that existing functionality remains unaffected.
 - Minor versions (x.Y.z | x > 0) introduce new backward compatible functionality.
-  In addition to verifying new features, it's essential to also run integrative tests to confirm that existing functionality is preserved, verifying functional and analytical performance. 
+  In addition to verifying new features, it's essential to also run integrative tests to confirm that existing functionality is preserved, verifying functional and analytical performance.
 - Major versions (X.y.z | X > 0) introduce backward incompatible changes.
   Testing for these releases should thorough, encompassing all levels of testing.
 
@@ -171,13 +171,13 @@ Pipeline level:
     specifications defined by the user. This includes the following performance
     characteristics:
     • Accuracy
-     • Precision
-     • Reportable range [if applicable]
-     • Reference intervals/range (normal values) for the laboratory’s patient population [if applicable]
+    • Precision
+    • Reportable range [if applicable]
+    • Reference intervals/range (normal values) for the laboratory’s patient population [if applicable]
 - Controls to be included to unit tests: [if applicable]
-   • Positive control
-   • Negative control
-   • Additional controls (for example PCR reagent controls, amplification control gene, calibration curve,... )
+  • Positive control
+  • Negative control
+  • Additional controls (for example PCR reagent controls, amplification control gene, calibration curve,... )
 - Set of expected results for all controls.
 - Set assay acceptance criteria
 - Set rejection criteria.
