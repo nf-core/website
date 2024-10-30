@@ -1282,7 +1282,13 @@
         "maintainers": [
           "@toniher"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "genomeqc",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "agat_spaddintrons",
@@ -6813,6 +6819,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         },
         {
           "name": "rnafusion",
@@ -25835,6 +25845,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -42118,7 +42136,13 @@
         "maintainers": [
           "@famosab"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "variantbenchmarking",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "decoupler_decoupler",
@@ -108296,6 +108320,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -108805,7 +108833,13 @@
           "@mahesh-panchal",
           "@gallvp"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "genomeqc",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "merquryfk_katcomp",
@@ -109830,6 +109864,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeqc",
+          "version": "dev"
         }
       ]
     },
@@ -110019,6 +110057,10 @@
       "pipelines": [
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeqc",
           "version": "dev"
         }
       ]
