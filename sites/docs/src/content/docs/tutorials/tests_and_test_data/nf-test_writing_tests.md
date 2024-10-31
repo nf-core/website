@@ -28,6 +28,8 @@ process {
 }
 ```
 
+You do not need to modify the contents of this file any further.
+
 Then add the config to the `main.nf.test` file.
 
 ```groovy title="main.nf.test"
