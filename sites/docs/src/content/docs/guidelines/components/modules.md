@@ -750,6 +750,37 @@ Input data SHOULD be referenced with the `modules_testdata_base_path` parameter:
 file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
 ```
 
+### Configuration of ext.args in tests
+
+Module nf-tests SHOULD use a single `nextflow.config` to supply `ext.args` to a module, by taking the settings from the
+params block defined in the `when` block of a test.
+
+```groovy title="main.nf.test"
+config './nextflow.config'
+
+when {
+  params {
+    module_args = '--extra_opt1 --extra_opt2'
+  }
+  process {
+    """
+    input[0] = [
+      [ id:'test1', single_end:false ], // meta map
+      file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/genome/genome.fna.gz', checkIfExists: true)
+    ]
+    """
+  }
+}
+```
+
+```groovy title="nextflow.config"
+process {
+  withName: 'MODULE' {
+    ext.args = params.module_args
+  }
+}
+```
+
 ## Misc
 
 ### General module code formatting
