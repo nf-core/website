@@ -752,8 +752,7 @@ file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.pa
 
 ### Configuration of ext.args in tests
 
-Module nf-tests SHOULD use a single `nextflow.config` to supply `ext.args` to a module, by taking the settings from the
-params block defined in the `when` block of a test.
+Module nf-tests SHOULD use a single `nextflow.config` to supply `ext.args` to a module. They can be defined in the `when` block of a test under the `params` scope.
 
 ```groovy title="main.nf.test"
 config './nextflow.config'
