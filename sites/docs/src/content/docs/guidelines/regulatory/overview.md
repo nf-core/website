@@ -23,9 +23,9 @@ Risk based validation is considering everything around the development, implemen
 This then has to be mitigated using appropriate measures.
 An example would be that a pipeline per se has the risk of failing execution, which is a risk of it not producing desired outcome and which can be mitigated using appropriate functional tests using [nf-test](https://www.nf-test.com/) for example.
 
-[!WARNING]
+> [!WARNING]
+> While nf-core can provide users with guidelines, information and help to validate pipelines, we will not be able to provide you with a full validation report that you can simply take "off the shelf" and use for your regulatory needs.
 
-    While nf-core can provide users with guidelines, information and help to validate pipelines, we will not be able to provide you with a full validation report that you can simply take "off the shelf" and use for your regulatory needs.
     The report that nf-core will be able to create for you [soon](https://github.com/nf-core/tools/issues/3258) will however contain a lot of the basic information required for running a full validation.
 
 > We are working on a proof of concept validation for one nf-core pipeline (rnaseq) to showcase what needs to be done and where are potential gaps within the nf-core guidelines, processes or tooling that we can then hopefully address.
@@ -46,7 +46,7 @@ Potentially applicable guidelines for bioinformatics pipelines:
 - [CE mark registration](https://europa.eu/youreurope/business/product-requirements/labels-markings/ce-marking/index_en.htm)
 - [FDA LDT](https://www.fda.gov/medical-devices/in-vitro-diagnostics/laboratory-developed-tests)
 - [CLIA validation](https://www.cms.gov/regulations-and-guidance/legislation/clia/downloads/6064bk.pdf)
-- [medical device registration](https://health.ec.europa.eu/system/files/2021-10/mdcg_2021-24_en_0.pdf)
+- [Medical device registration](https://health.ec.europa.eu/system/files/2021-10/mdcg_2021-24_en_0.pdf)
 
 Computerized systems validation (out of scope):
 
@@ -60,7 +60,8 @@ These points are individual points you should consider when validating an nf-cor
 
 ### Community metrics
 
-From a risk based perspective, an open source community both has benefits and imposes certain risks for validating an analysis pipeline. To compensate for these, we need to provide a list of metrics and criteria which are considered relevant to judge the quality and risk of a certain analysis pipeline within a planned validation. This includes:
+From a risk-based perspective, open-source communities present both benefits and risks in validating analysis pipelines.
+Consider the following metrics and criteria to judge the quality and risks associated with a pipeline:
 
 - History of the pipeline
   - When was this started?
@@ -86,19 +87,22 @@ From a risk based perspective, an open source community both has benefits and im
 
 ### General requirements
 
-- You should define upfront the functional requirements of your pipeline.
-- Maintain a comprehensive list of any outside dependencies (tools, references, utilized public information)
-- Verify the infrastructure requirements needed to run your pipeline consistently. Make sure you have the necessary resources to meet the minimal established computational performance. --> consider this out of scope, this is computer systems validation (CSV) - different topic maybe? TODO rephrase --> maybe also make a disclaimer in the intro that infraustrcutre validation is not part
+- Define the functional requirements of your pipeline upfront
+- Maintain a comprehensive list of any outside dependencies (tools, references, utilized public information, ...)
+- Verify infrastructure requirements for consistent and timely pipeline execution. Note: Infrastructure validation itself falls under Computerized Systems Validation (CSV) and is out of scope for this document.
 
 ### Versioning
 
 nf-core pipelines enforce semantic versioning for [pipeline releases](https://nf-co.re/docs/guidelines/pipelines/requirements/semantic_versioning).
 
-Semantic versioning provides [a simple set of rules and requirements that dictate how version numbers are assigned and incremented](https://semver.org/). Version numbers have a meaning about how the underlying code has been modified from one version to another. As a summary:
+Semantic versioning provides [a simple set of rules and requirements that dictate how version numbers are assigned and incremented](https://semver.org/). Version numbers have a meaning about how the underlying code has been modified from one version to another. To ensure quality and compliance, it is advised to conduct automated testing at appropriate levels aligned with the type of release. As a summary:
 
 - Patches (x.y.Z | x > 0) introduce backward compatible bug fixes.
+  Testing for these changes should focus on ensuring that existing functionality remains unaffected.
 - Minor versions (x.Y.z | x > 0) introduce new backward compatible functionality.
+  In addition to verifying new features, it's essential to also run integrative tests to confirm that existing functionality is preserved, verifying functional and analytical performance.
 - Major versions (X.y.z | X > 0) introduce backward incompatible changes.
+  Testing for these releases should thorough, encompassing all levels of testing.
 
 There is specific functionality of nf-core tools that allows developers to easily [update a version of a pipeline when necessary](https://nf-co.re/docs/nf-core-tools/pipelines/bump-version).
 Pipelines must be released with stable release tags. Releases must use GitHub releases and keep a detailed changelog file.
@@ -107,13 +111,23 @@ Modules used in an nf-core pipeline use fixed software tools inside the containe
 
 The [nf-core pipeline releases include checklists to evaluate these aspects](https://nf-co.re/docs/checklists/pipeline_release).
 
-Make sure you rerun the appropriate levels of testing depending on the potential impact of the changes made. Preferably this is performed in an automated way depending on the type of release (patch, minor or major). TODO make clear what this means
-
 ### Code and software development process quality
 
 #### Change Management
 
-- PR/code review and approval (change management)
+In software development, change management refers to the process of tracking and controlling modifications to code and documentation throughout the _software development lifecycle_, ensuring transparency, accountability, and risk mitigation. In regulated bioinformatics environments, change management practices are essential for maintaining compliance, and reproducibility. Within nf-core pipelines, change management is structured as follows:
+
+- Requests for changes, bug reports, and enhancement suggestions can be submitted by any user or community member, ensuring transparent and open community-driven improvement.
+- Each pipeline and module follows a Pull Request (PR) template checklist, which helps contributors meet minimum submission requirements.
+- Proposed changes must include system and unit tests, which are automatically validated through the continuous integration/continuous deployment (CI/CD) framework, reducing manual testing overhead.
+- Changes to development branches require peer review, with each PR needing at least one review before merging into dev branches and at least two reviews before merging into the _main_ branch.
+- Automated tests are triggered on each PR to confirm that existing functionality remains unaffected.
+- Automated linting checks are performed on each PR, enforcing coding standards and preventing stylistic issues.
+- Direct changes to the main branch are not permitted, protecting the integrity of the production-ready code.
+- During pipeline release, reviewers must verify that the pipeline adheres to nf-core’s central principles (such as reproducibility, thorough documentation, and compliance with the nf-core template). Any new pipeline submission requires approval from the nf-core core team before integration into the nf-core repository.
+
+**Do I need to re-validate my pipeline every time a change is made?**
+In a validated environment, the Risk Assessment process will determine the level of testing required for each change. Minor or non-impactful changes may require testing related to the specific component but major changes may require broader re-validation. Significant changes to the entire pipeline would need a complete re-validation to ensure compliance and integrity.
 
 #### Security
 
@@ -168,14 +182,14 @@ Pipeline level:
   - Compare the performance of the test system in your dataset with those
     specifications defined by the user. This includes the following performance
     characteristics:
-    • Accuracy  
-     • Precision  
-     • Reportable range [if applicable]  
-     • Reference intervals/range (normal values) for the laboratory’s patient population [if applicable]
-- Controls to be included to unit tests: [if applicable]  
-   • Positive control  
-   • Negative control  
-   • Additional controls (for example PCR reagent controls, amplification control gene, calibration curve,... )
+    • Accuracy
+    • Precision
+    • Reportable range [if applicable]
+    • Reference intervals/range (normal values) for the laboratory’s patient population [if applicable]
+- Controls to be included to unit tests: [if applicable]
+  • Positive control
+  • Negative control
+  • Additional controls (for example PCR reagent controls, amplification control gene, calibration curve,... )
 - Set of expected results for all controls.
 - Set assay acceptance criteria
 - Set rejection criteria.
