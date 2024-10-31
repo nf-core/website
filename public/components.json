@@ -7875,6 +7875,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -24484,6 +24488,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -53550,6 +53562,88 @@
       ]
     },
     {
+      "name": "fastqe",
+      "path": "modules/nf-core/fastqe/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "fastqe",
+        "description": "fastqe is a bioinformatics command line tool that uses emojis to represent and analyze genomic data.",
+        "keywords": [
+          "quality control",
+          "fastq",
+          "emoji",
+          "visualization"
+        ],
+        "tools": [
+          {
+            "fastqe": {
+              "description": "A tool for visualizing FASTQ file quality using emoji",
+              "homepage": "https://github.com/fastqe/fastqe",
+              "documentation": "https://github.com/fastqe/fastqe#readme",
+              "tool_dev_url": "https://github.com/fastqe/fastqe",
+              "doi": "10.21105/joss.02400",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:fastqe"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "fastq": {
+                "type": "file",
+                "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data,\nrespectively.\n"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "tsv": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.tsv": {
+                  "type": "file",
+                  "description": "Text file containing emoji",
+                  "pattern": "*.tsv"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@adamrtalbot"
+        ],
+        "maintainers": [
+          "@adamrtalbot"
+        ]
+      }
+    },
+    {
       "name": "fastqscan",
       "path": "modules/nf-core/fastqscan/meta.yml",
       "type": "module",
@@ -78124,6 +78218,21 @@
                 "type": "list",
                 "description": "Input genomic vcf files",
                 "pattern": "*.{gvcf,gvcf.gz,g.vcf,g.vcf.gz}"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing regions information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "bed": {
+                "type": "list",
+                "description": "Input BED file",
+                "pattern": "*.bed"
               }
             }
           ]
@@ -108356,6 +108465,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -128597,6 +128710,113 @@
           "version": "2.0.0"
         }
       ]
+    },
+    {
+      "name": "pbmm2_align",
+      "path": "modules/nf-core/pbmm2/align/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "pbmm2_align",
+        "description": "Alignment with PacBio's minimap2 frontend",
+        "keywords": [
+          "align",
+          "pacbio",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "pbmm2": {
+              "description": "A minimap2 frontend for PacBio native data formats",
+              "homepage": "https://github.com/PacificBiosciences/pbmm2",
+              "documentation": "https://github.com/PacificBiosciences/pbmm2",
+              "tool_dev_url": "https://github.com/PacificBiosciences/pbmm2",
+              "licence": [
+                "BSD-3-clause-Clear"
+              ],
+              "identifier": "biotools:pbmm2"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Sorted BAM/CRAM/SAM file",
+                "pattern": "*.{bam,cram,sam}"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "fasta file to align bam to",
+                "pattern": "*.{fasta}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "bam": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.bam": {
+                  "type": "file",
+                  "description": "Sorted BAM/CRAM/SAM file",
+                  "pattern": "*.{bam,cram,sam}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_2573"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3462"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@tanyasarkjain"
+        ],
+        "maintainers": [
+          "@tanyasarkjain"
+        ]
+      }
     },
     {
       "name": "pbptyper",
