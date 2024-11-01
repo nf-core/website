@@ -7883,6 +7883,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -25901,6 +25905,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -33100,6 +33112,15 @@
                 "type": "file",
                 "description": "FastQ with reads from long read sequencing e.g. PacBio or ONT",
                 "pattern": "*.{fastq.gz}"
+              }
+            }
+          ],
+          [
+            {
+              "fasta": {
+                "type": "file",
+                "description": "An optional reference fasta file against which to remove reads that align to it.",
+                "pattern": "*.fasta"
               }
             }
           ]
@@ -108485,6 +108506,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -128939,6 +128964,98 @@
         ],
         "maintainers": [
           "@rpetit3"
+        ]
+      }
+    },
+    {
+      "name": "pbsv_call",
+      "path": "modules/nf-core/pbsv/call/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "pbsv_call",
+        "description": "pbsv/call - PacBio structural variant (SV) calling and analysis tools",
+        "keywords": [
+          "variant",
+          "pacbio",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "pbsv": {
+              "description": "pbsv - PacBio structural variant (SV) calling and analysis tools",
+              "homepage": "https://github.com/PacificBiosciences/",
+              "documentation": "https://github.com/PacificBiosciences/",
+              "tool_dev_url": "https://github.com/PacificBiosciences/",
+              "licence": [
+                "BSD-3-clause-Clear"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "svsig": {
+                "type": "file",
+                "description": "structural variant file"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'reference']`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "fasta file used as reference"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "vcf": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.vcf": {
+                  "type": "file",
+                  "description": "structural variant file"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@tanyasarkjain"
+        ],
+        "maintainers": [
+          "@tanyasarkjain"
         ]
       }
     },
