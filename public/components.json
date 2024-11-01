@@ -7879,6 +7879,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -24488,6 +24492,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -108469,6 +108481,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -128923,6 +128939,102 @@
         ],
         "maintainers": [
           "@rpetit3"
+        ]
+      }
+    },
+    {
+      "name": "pbsv_discover",
+      "path": "modules/nf-core/pbsv/discover/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "pbsv_discover",
+        "description": "pbsv - PacBio structural variant (SV) signature discovery tool",
+        "keywords": [
+          "variant",
+          "pacbio",
+          "structural"
+        ],
+        "tools": [
+          {
+            "pbsv": {
+              "description": "pbsv - PacBio structural variant (SV) calling and analysis tools",
+              "homepage": "https://github.com/PacificBiosciences/pbsv",
+              "documentation": "https://github.com/PacificBiosciences/pbsv",
+              "tool_dev_url": "https://github.com/PacificBiosciences/pbsv",
+              "licence": [
+                "BSD-3-clause-Clear"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Sorted BAM/CRAM/SAM file",
+                "pattern": "*.{bam,cram,sam}"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. `[ id:'reference' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "fasta file",
+                "pattern": "*.fasta"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "svsig": [
+              {
+                "meta": {
+                  "type": "file",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.svsig.gz": {
+                  "type": "file",
+                  "description": "structural variant signatures files",
+                  "pattern": "*.svsig.gz"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@tanyasarkjain"
+        ],
+        "maintainers": [
+          "@tanyasarkjain"
         ]
       }
     },
@@ -161175,6 +161287,106 @@
           "version": "1.0.1"
         }
       ]
+    },
+    {
+      "name": "sequali",
+      "path": "modules/nf-core/sequali/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "sequali",
+        "description": "Sequence quality metrics for FASTQ and uBAM files.",
+        "keywords": [
+          "quality_control",
+          "qc",
+          "preprocessing"
+        ],
+        "tools": [
+          {
+            "sequali": {
+              "description": "Fast sequencing quality metrics",
+              "homepage": "https://github.com/rhpvorderman/sequali",
+              "documentation": "https://sequali.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/rhpvorderman/sequali",
+              "doi": "10.5281/zenodo.10854010",
+              "licence": [
+                "AGPL v3-or-later"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "Input FASTQ(s) or uBAM file. The format is autodetected and compressed formats are supported.",
+                "pattern": "*.{fastq,fq,fastq.gz,fq.gz,bam}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "json": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.json": {
+                  "type": "file",
+                  "description": "JSON output file.",
+                  "pattern": "*.{json}"
+                }
+              }
+            ]
+          },
+          {
+            "html": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.html": {
+                  "type": "file",
+                  "description": "HTML output file.",
+                  "pattern": "*.{html}"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions.",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@irliampa",
+          "@DarkoCucin"
+        ],
+        "maintainers": [
+          "@irliampa",
+          "@DarkoCucin"
+        ]
+      }
     },
     {
       "name": "sequencetools_pileupcaller",
