@@ -7907,6 +7907,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -25973,6 +25977,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -39351,6 +39363,98 @@
           "version": "2.1.0"
         }
       ]
+    },
+    {
+      "name": "coptr_index",
+      "path": "modules/nf-core/coptr/index/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "coptr_index",
+        "description": "Indexes a directory of fasta files for use with CoPTR",
+        "keywords": [
+          "coptr",
+          "index",
+          "ptr"
+        ],
+        "tools": [
+          {
+            "coptr": {
+              "description": "Accurate and robust inference of microbial growth dynamics from metagenomic sequencing reads.",
+              "homepage": "https://github.com/tyjo/coptr",
+              "documentation": "https://coptr.readthedocs.io/",
+              "tool_dev_url": "https://github.com/tyjo/coptr",
+              "doi": "10.1101/gr.275533.121",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:coptr"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing genome information\n"
+              }
+            },
+            {
+              "indexfasta": {
+                "type": "file",
+                "description": "Fasta file(s) ending in [.fasta, .fna, .fa] to be used to create the index.",
+                "pattern": "*.{.fasta,.fna,.fa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "index_dir": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing genome information\n"
+                }
+              },
+              {
+                "bowtie2": {
+                  "type": "map",
+                  "description": "index genome directory",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_3210"
+                    }
+                  ],
+                  "pattern": "*.{genome}"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@ramirobarrantes"
+        ],
+        "maintainers": [
+          "@ramirobarrantes"
+        ]
+      }
     },
     {
       "name": "coreograph",
@@ -108590,6 +108694,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -155196,6 +155304,102 @@
         ],
         "maintainers": [
           "@nvnieuwk"
+        ]
+      }
+    },
+    {
+      "name": "scvitools_scar",
+      "path": "modules/nf-core/scvitools/scar/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "scvitools_scar",
+        "description": "Module to use scAR to remove ambient RNA from single-cell RNA-seq data",
+        "keywords": [
+          "single-cell",
+          "scRNA-seq",
+          "ambient RNA removal"
+        ],
+        "tools": [
+          {
+            "scvitools": {
+              "description": "scvi-tools (single-cell variational inference tools) is a package for end-to-end analysis of single-cell omics data",
+              "documentation": "https://docs.scvi-tools.org/en/stable/",
+              "tool_dev_url": "https://github.com/scverse/scvi-tools",
+              "licence": [
+                "BSD-3-clause"
+              ]
+            }
+          },
+          {
+            "scar": {
+              "description": "scAR (single-cell Ambient Remover) is a deep learning model for removal of the ambient signals in droplet-based single cell omics.",
+              "documentation": "https://docs.scvi-tools.org/en/stable/user_guide/models/scar.html",
+              "tool_dev_url": "https://github.com/Novartis/scar",
+              "licence": [
+                "Novartis Terms of License"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "filtered": {
+                "type": "file",
+                "description": "AnnData file containing filtered data (without empty droplets)",
+                "pattern": "*.h5ad"
+              }
+            },
+            {
+              "unfiltered": {
+                "type": "file",
+                "description": "AnnData file containing unfiltered data (with empty droplets)",
+                "pattern": "*.h5ad"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "h5ad": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.h5ad": {
+                  "type": "file",
+                  "description": "AnnData file containing decontaminated counts as `adata.X`",
+                  "pattern": "*.h5ad"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software version",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@nictru"
+        ],
+        "maintainers": [
+          "@nictru"
         ]
       }
     },
