@@ -754,7 +754,7 @@ file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.pa
 
 Module nf-tests SHOULD use a single `nextflow.config` to supply `ext.args` to a module. They can be defined in the `when` block of a test under the `params` scope.
 
-```groovy title="main.nf.test"
+```groovy {4-6} title="main.nf.test"
 config './nextflow.config'
 
 when {
@@ -772,13 +772,15 @@ when {
 }
 ```
 
-```groovy title="nextflow.config"
+```groovy {3} title="nextflow.config"
 process {
   withName: 'MODULE' {
     ext.args = params.module_args
   }
 }
 ```
+
+No other settings should go into this file.
 
 ## Misc
 
