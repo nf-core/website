@@ -16,7 +16,7 @@ All nf-core pipeline publications and presentations should cite [The nf-core fra
 
 **Optionally**, the nf-core community can be included as a consortium co-author. This option is preferred when a pipeline has made extensive use of existing nf-core pipeline components (e.g., modules and subworkflows) written by other community members who were not directly involved in the pipeline itself. For example, see hgtseq: [A Standard Pipeline to Study Horizontal Gene Transfer](https://doi.org/10.3390/ijms232314512).
 
-If members of the nf-core community have provided significant input to the creation or maintenance of a pipeline, please consider adding them as coauthors on the pipeline publication or presentation.
+If members of the nf-core community have provided significant input to the creation or maintenance of a pipeline, please consider adding them as coauthors on the pipeline publication or presentation. We also recommend transparency on working on a piece where the pipeline is a major part of it. If you plan to write a paper about a pipeline, please share this with the community on the pipeline channel on the nf-core Slack workspace so that other contributors can join your effort.
 
 If your pipeline publication or presentation is an extension of a community pipeline, please discuss authorship with the main developers.
 
