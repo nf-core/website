@@ -19,9 +19,8 @@ The main steps involved in adding a new nf-core pipeline covered below are:
 2. [Contribution overview](#contribution-overview)
 3. [Testing](#testing)
 4. [Patching bugs](#patching-bugs)
-5. [PR review guidelines](#pr-review-guidelines)
-6. [Getting help](#getting-help)
-7. [Pipeline contribution conventions](#pipeline-contribution-conventions)
+5. [Getting help](#getting-help)
+6. [Pipeline contribution conventions](#pipeline-contribution-conventions)
 
 ## Join the community
 
@@ -43,7 +42,7 @@ If you'd like to write some code for an nf-core pipeline, the standard workflow 
 2. [Fork](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) the pipeline repository to your GitHub account
 3. Make the necessary changes / additions on `dev` branch by using [git checkout](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/committing-changes-to-a-pull-request-branch-created-from-a-fork) within your forked repository following [pipeline conventions](#pipeline-contribution-conventions)
 4. Use `nf-core pipelines schema build` and add any new parameters to the pipeline JSON schema (requires [nf-core tools](https://github.com/nf-core/tools) >= 1.10).
-5. Submit a Pull Request against the `dev` branch and wait for the code to be reviewed and merged. See [guidelines](/docs/guidelines/pipelines/pull_request_review) for this.
+5. Submit a Pull Request against the `dev` branch and wait for the code to be reviewed and merged. See [guidelines](/docs/guidelines/pull_request_review) for this.
 
 If you're new to working with git, you can view the [GitHub pull requests documentation](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests) or other [excellent `git` resources](https://try.github.io/) to get started.
 
