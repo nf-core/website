@@ -17,11 +17,11 @@ Authors/Reviewers SHOULD merge after one positive review and with no obvious ope
 ### Exceptions
 
 - Pull requests to master for releases MUST receive **two** positive reviews before merging.
-- (Pseudo) pull requests to master for *first* releases MUST receive **at least one review from core or maintainer team**.
+- (Pseudo) pull requests to master for _first_ releases MUST receive **at least one review from core or maintainer team**.
 
 ### Addressing Major Change Reviews
 
-- If there is a major change in any type of PR during review (from modules to pipelines) then developers SHOULD  request a second review - either the author or reviewer can do this.
+- If there is a major change in any type of PR during review (from modules to pipelines) then developers SHOULD request a second review - either the author or reviewer can do this.
 - If the reviewer has strong reservations about proposed changes, a reviewer SHOULD NOT leave only a comment or approval, but SHOULD leave a request-changes review.
 
 ## Review Process Scope
