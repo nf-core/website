@@ -7911,6 +7911,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -24520,6 +24524,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -46770,6 +46782,102 @@
           "version": "dev"
         }
       ]
+    },
+    {
+      "name": "doubletdetection",
+      "path": "modules/nf-core/doubletdetection/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "doubletdetection",
+        "description": "Doublet detection in single-cell RNA-seq data",
+        "keywords": [
+          "single-cell",
+          "doublets",
+          "doublet_detection"
+        ],
+        "tools": [
+          {
+            "doubletdetection": {
+              "description": "Doublet detection in single-cell RNA-seq data",
+              "tool_dev_url": "https://github.com/JonathanShor/DoubletDetection",
+              "doi": "10.5281/zenodo.6349517",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "h5ad": {
+                "type": "file",
+                "description": "H5AD anndata object",
+                "pattern": "*.h5ad"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "h5ad": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.h5ad": {
+                  "type": "file",
+                  "description": "H5AD anndata object",
+                  "pattern": "*.h5ad"
+                }
+              }
+            ]
+          },
+          {
+            "predictions": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.pkl": {
+                  "type": "file",
+                  "description": "pandas dataframe containing the doublet classification",
+                  "pattern": "*.pkl"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@LeonHafner"
+        ],
+        "maintainers": [
+          "@LeonHafner"
+        ]
+      }
     },
     {
       "name": "dragmap_align",
@@ -107739,6 +107847,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -201498,6 +201610,10 @@
           "version": "3.2.1"
         },
         {
+          "name": "mcmicro",
+          "version": "dev"
+        },
+        {
           "name": "methylarray",
           "version": "dev"
         },
@@ -201682,10 +201798,6 @@
         },
         {
           "name": "magmap",
-          "version": "dev"
-        },
-        {
-          "name": "mcmicro",
           "version": "dev"
         },
         {
