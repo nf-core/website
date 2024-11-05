@@ -185,7 +185,7 @@ cat <<-END_VERSIONS > versions.yml
 "${task.process}":
     fastqc: \$( fastqc --version | sed -e "s/FastQC v//g" )
     samtools: \$( samtools --version |& sed '1!d ; s/samtools //' )
-END_VERSION
+END_VERSIONS
 ```
 
 resulting in, for instance,
