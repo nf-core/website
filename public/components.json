@@ -7915,6 +7915,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -24524,6 +24528,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -108810,6 +108822,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -181950,14 +181966,6 @@
                 "description": "FASTQ file containing barcode sequences"
               }
             }
-          ],
-          [
-            {
-              "adapter_seq": {
-                "type": "string",
-                "description": "adapter sequence"
-              }
-            }
           ]
         ],
         "output": [
@@ -181966,13 +181974,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*[!no_match].fastq.gz"
                 }
               },
               {
-                "*[!no_match].fastq.gz": {
-                  "type": "file",
-                  "description": "Demultiplexed sample FASTQ files",
+                "*_matched.fastq.gz": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*[!no_match].fastq.gz"
                 }
               }
@@ -181983,13 +181992,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*no_match.fastq.gz"
                 }
               },
               {
-                "*no_match.fastq.gz": {
-                  "type": "file",
-                  "description": "FASTQ file containing reads that could not be demultiplexed",
+                "*_no_match_*.fastq.gz": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*no_match.fastq.gz"
                 }
               }
