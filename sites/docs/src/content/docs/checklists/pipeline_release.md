@@ -26,7 +26,7 @@ If this is your first release, make sure to follow the [first release tutorial](
   - [ ] For example, `1.0.0dev` becomes `1.0.0`
   - [ ] Use the `nf-core pipelines bump-version` command to make the changes, eg: navigate to the pipeline directory and run `nf-core pipelines bump-version 1.0.0`
   - [ ] Please make sure to use strictly numeric release numbers
-  - [ ] Use [Semantic Versioning](https://semver.org/) - see the [nf-core semantic versioning guidelines](docs/guidelines/pipelines/requirements/semantic_versioning.md) to decide if you need a patch, minor, or major release. 
+  - [ ] Use [Semantic Versioning](https://semver.org/) - see the [nf-core semantic versioning guidelines](docs/guidelines/pipelines/requirements/semantic_versioning.md) to decide if you need a patch, minor, or major release.
   - [ ] Make sure to update the version in any pipeline diagrams and other figures
 - [ ] Run `nf-core pipelines lint --release` and check that there are no test failures for release.
 - [ ] Check that `CHANGELOG.md` includes everything that has been added/fixed in this release, update the version number above the changes, and optionally add a human-readable release name (e.g. using a [code name generator](http://www.codenamegenerator.com/))
