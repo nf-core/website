@@ -3769,6 +3769,101 @@
       }
     },
     {
+      "name": "anndata_barcodes",
+      "path": "modules/nf-core/anndata/barcodes/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "anndata_barcodes",
+        "description": "Module to subset AnnData object to cells with matching barcodes from the csv file",
+        "keywords": [
+          "single-cell",
+          "barcodes",
+          "anndata",
+          "subsetting",
+          "transcriptomics"
+        ],
+        "tools": [
+          {
+            "anndata": {
+              "description": "An annotated data matrix.",
+              "homepage": "https://anndata.readthedocs.io",
+              "documentation": "https://anndata.readthedocs.io",
+              "tool_dev_url": "https://github.com/theislab/anndata",
+              "doi": "10.21105/joss.04371",
+              "licence": [
+                "BSD-3-clause"
+              ],
+              "identifier": "biotools:anndata"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "h5ad": {
+                "type": "file",
+                "description": "Anndata object as H5AD file",
+                "pattern": "*.h5ad"
+              }
+            },
+            {
+              "barcodes": {
+                "type": "file",
+                "description": "CSV file containing barcodes. Barcodes are written in plain text. One column, no header\n",
+                "pattern": "*.csv"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "h5ad": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n",
+                  "pattern": "*.h5ad"
+                }
+              },
+              {
+                "*.h5ad": {
+                  "type": "file",
+                  "description": "AnnData file containing all cells with barcodes that match those in the input barcodes csv file\n",
+                  "pattern": "*.h5ad"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@nictru",
+          "@chaochaowong",
+          "@LeonHafner"
+        ],
+        "maintainers": [
+          "@nictru",
+          "@LeonHafner"
+        ]
+      }
+    },
+    {
       "name": "annotsv_annotsv",
       "path": "modules/nf-core/annotsv/annotsv/meta.yml",
       "type": "module",
@@ -6819,6 +6914,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         },
         {
           "name": "rnafusion",
@@ -26009,6 +26108,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -40725,6 +40832,126 @@
           "version": "2.6.0"
         }
       ]
+    },
+    {
+      "name": "custom_filterdifferentialtable",
+      "path": "modules/nf-core/custom/filterdifferentialtable/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "custom_filterdifferentialtable",
+        "description": "Filters a differential expression table based on logFC and adjusted p-value thresholds",
+        "keywords": [
+          "filter",
+          "differential expression",
+          "logFC",
+          "p-value"
+        ],
+        "tools": [
+          {
+            "pandas": {
+              "description": "Python library for data manipulation and analysis",
+              "homepage": "https://pandas.pydata.org/",
+              "documentation": "https://pandas.pydata.org/docs/",
+              "tool_dev_url": "https://github.com/pandas-dev/pandas",
+              "doi": "10.5281/zenodo.3509134",
+              "licence": [
+                "BSD-3-Clause"
+              ],
+              "identifiers": [
+                "biotools:pandas",
+                "conda:pandas"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "input_file": {
+                "type": "file",
+                "description": "Input differential expression table (CSV, TSV, or TXT format)",
+                "pattern": "*.{csv,tsv,txt}"
+              }
+            }
+          ],
+          [
+            {
+              "logFC_column": {
+                "type": "string",
+                "description": "Name of the column containing log fold change values"
+              }
+            }
+          ],
+          [
+            {
+              "FC_threshold": {
+                "type": "float",
+                "description": "Fold change threshold for filtering"
+              }
+            }
+          ],
+          [
+            {
+              "padj_column": {
+                "type": "string",
+                "description": "Name of the column containing adjusted p-values"
+              }
+            }
+          ],
+          [
+            {
+              "padj_threshold": {
+                "type": "float",
+                "description": "Adjusted p-value threshold for filtering"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "filtered": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*_filtered.tsv": {
+                  "type": "file",
+                  "description": "Filtered differential expression table",
+                  "pattern": "*_filtered.tsv"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@pinin4fjords",
+          "@WackerO"
+        ],
+        "maintainers": [
+          "@pinin4fjords",
+          "@WackerO"
+        ]
+      }
     },
     {
       "name": "custom_getchromsizes",
@@ -74731,13 +74958,11 @@
                 "description": "vcf file",
                 "pattern": "*.{vcf}"
               }
-            }
-          ],
-          [
+            },
             {
               "fam": {
                 "type": "file",
-                "description": "file with family information"
+                "description": "PED file with family information"
               }
             }
           ],
@@ -74835,13 +75060,11 @@
                 "description": "vcf file",
                 "pattern": "*.{vcf}"
               }
-            }
-          ],
-          [
+            },
             {
               "fam": {
                 "type": "file",
-                "description": "file with family information"
+                "description": "PED file with family information"
               }
             }
           ],
@@ -97989,6 +98212,12 @@
                 "type": "file",
                 "description": "List of input files containing sequences. All of them must be either in FASTA or FASTQ format."
               }
+            },
+            {
+              "prefixes": {
+                "type": "string",
+                "description": "List of sample identifiers or filename prefixes. Must correspond in order and length to the 'sequences', or to the number of sequencing pairs.\n"
+              }
             }
           ],
           [
@@ -107859,6 +108088,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -155532,6 +155765,103 @@
       }
     },
     {
+      "name": "scvitools_solo",
+      "path": "modules/nf-core/scvitools/solo/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "scvitools_solo",
+        "description": "Detect doublets in single-cell RNA-Seq data",
+        "keywords": [
+          "scvi",
+          "solo",
+          "doublets"
+        ],
+        "tools": [
+          {
+            "scvitools": {
+              "description": "A scalable toolkit for probabilistic modeling applied to single-cell omics data",
+              "homepage": "https://scvi-tools.org",
+              "documentation": "https://docs.scvi-tools.org/en/stable/",
+              "tool_dev_url": "https://github.com/scverse/scvi-tools",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "h5ad": {
+                "type": "file",
+                "description": "H5AD anndata object",
+                "pattern": "*.h5ad"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "h5ad": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.h5ad": {
+                  "type": "file",
+                  "description": "H5AD anndata object without doublets",
+                  "pattern": "*.h5ad"
+                }
+              }
+            ]
+          },
+          {
+            "predictions": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.pkl": {
+                  "type": "file",
+                  "description": "pandas dataframe containing the doublet classification",
+                  "pattern": "*.pkl"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@LeonHafner"
+        ],
+        "maintainers": [
+          "@LeonHafner"
+        ]
+      }
+    },
+    {
       "name": "seacr_callpeak",
       "path": "modules/nf-core/seacr/callpeak/meta.yml",
       "type": "module",
@@ -182064,7 +182394,7 @@
               "description": "UMICollapse contains tools for dealing with Unique Molecular Identifiers (UMIs)/Random Molecular Tags (RMTs).",
               "homepage": "https://github.com/Daniel-Liu-c0deb0t/UMICollapse",
               "documentation": "https://github.com/Daniel-Liu-c0deb0t/UMICollapse",
-              "tool_dev_url": "https://github.com/Daniel-Liu-c0deb0t/UMICollapse",
+              "tool_dev_url": "https://github.com/siddharthab/UMICollapse",
               "doi": "10.7717/peerj.8275",
               "licence": [
                 "MIT"
@@ -182178,6 +182508,7 @@
           "@CharlotteAnne",
           "@chris-cheshire",
           "@apeltzer",
+          "@siddharthab",
           "@MatthiasZepper"
         ]
       },
@@ -201624,6 +201955,10 @@
           "version": "dev"
         },
         {
+          "name": "metapep",
+          "version": "dev"
+        },
+        {
           "name": "methylarray",
           "version": "dev"
         },
@@ -201817,10 +202152,6 @@
         {
           "name": "metaboigniter",
           "version": "2.0.1"
-        },
-        {
-          "name": "metapep",
-          "version": "dev"
         },
         {
           "name": "mhcquant",
