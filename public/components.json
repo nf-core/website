@@ -3769,6 +3769,101 @@
       }
     },
     {
+      "name": "anndata_barcodes",
+      "path": "modules/nf-core/anndata/barcodes/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "anndata_barcodes",
+        "description": "Module to subset AnnData object to cells with matching barcodes from the csv file",
+        "keywords": [
+          "single-cell",
+          "barcodes",
+          "anndata",
+          "subsetting",
+          "transcriptomics"
+        ],
+        "tools": [
+          {
+            "anndata": {
+              "description": "An annotated data matrix.",
+              "homepage": "https://anndata.readthedocs.io",
+              "documentation": "https://anndata.readthedocs.io",
+              "tool_dev_url": "https://github.com/theislab/anndata",
+              "doi": "10.21105/joss.04371",
+              "licence": [
+                "BSD-3-clause"
+              ],
+              "identifier": "biotools:anndata"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "h5ad": {
+                "type": "file",
+                "description": "Anndata object as H5AD file",
+                "pattern": "*.h5ad"
+              }
+            },
+            {
+              "barcodes": {
+                "type": "file",
+                "description": "CSV file containing barcodes. Barcodes are written in plain text. One column, no header\n",
+                "pattern": "*.csv"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "h5ad": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n",
+                  "pattern": "*.h5ad"
+                }
+              },
+              {
+                "*.h5ad": {
+                  "type": "file",
+                  "description": "AnnData file containing all cells with barcodes that match those in the input barcodes csv file\n",
+                  "pattern": "*.h5ad"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@nictru",
+          "@chaochaowong",
+          "@LeonHafner"
+        ],
+        "maintainers": [
+          "@nictru",
+          "@LeonHafner"
+        ]
+      }
+    },
+    {
       "name": "annotsv_annotsv",
       "path": "modules/nf-core/annotsv/annotsv/meta.yml",
       "type": "module",
@@ -6819,6 +6914,14 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         },
         {
           "name": "rnafusion",
@@ -12142,7 +12245,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         }
       ]
     },
@@ -17189,7 +17292,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         }
       ]
     },
@@ -17391,7 +17494,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         }
       ]
     },
@@ -26009,6 +26112,22 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -29905,7 +30024,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         }
       ]
     },
@@ -32664,7 +32783,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         }
       ]
     },
@@ -40725,6 +40844,126 @@
           "version": "2.6.0"
         }
       ]
+    },
+    {
+      "name": "custom_filterdifferentialtable",
+      "path": "modules/nf-core/custom/filterdifferentialtable/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "custom_filterdifferentialtable",
+        "description": "Filters a differential expression table based on logFC and adjusted p-value thresholds",
+        "keywords": [
+          "filter",
+          "differential expression",
+          "logFC",
+          "p-value"
+        ],
+        "tools": [
+          {
+            "pandas": {
+              "description": "Python library for data manipulation and analysis",
+              "homepage": "https://pandas.pydata.org/",
+              "documentation": "https://pandas.pydata.org/docs/",
+              "tool_dev_url": "https://github.com/pandas-dev/pandas",
+              "doi": "10.5281/zenodo.3509134",
+              "licence": [
+                "BSD-3-Clause"
+              ],
+              "identifiers": [
+                "biotools:pandas",
+                "conda:pandas"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "input_file": {
+                "type": "file",
+                "description": "Input differential expression table (CSV, TSV, or TXT format)",
+                "pattern": "*.{csv,tsv,txt}"
+              }
+            }
+          ],
+          [
+            {
+              "logFC_column": {
+                "type": "string",
+                "description": "Name of the column containing log fold change values"
+              }
+            }
+          ],
+          [
+            {
+              "FC_threshold": {
+                "type": "float",
+                "description": "Fold change threshold for filtering"
+              }
+            }
+          ],
+          [
+            {
+              "padj_column": {
+                "type": "string",
+                "description": "Name of the column containing adjusted p-values"
+              }
+            }
+          ],
+          [
+            {
+              "padj_threshold": {
+                "type": "float",
+                "description": "Adjusted p-value threshold for filtering"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "filtered": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*_filtered.tsv": {
+                  "type": "file",
+                  "description": "Filtered differential expression table",
+                  "pattern": "*_filtered.tsv"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@pinin4fjords",
+          "@WackerO"
+        ],
+        "maintainers": [
+          "@pinin4fjords",
+          "@WackerO"
+        ]
+      }
     },
     {
       "name": "custom_getchromsizes",
@@ -51687,7 +51926,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         },
         {
           "name": "taxprofiler",
@@ -53457,7 +53696,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         },
         {
           "name": "denovotranscript",
@@ -53674,7 +53913,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         },
         {
           "name": "denovotranscript",
@@ -56926,7 +57165,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         }
       ]
     },
@@ -74731,13 +74970,11 @@
                 "description": "vcf file",
                 "pattern": "*.{vcf}"
               }
-            }
-          ],
-          [
+            },
             {
               "fam": {
                 "type": "file",
-                "description": "file with family information"
+                "description": "PED file with family information"
               }
             }
           ],
@@ -74835,13 +75072,11 @@
                 "description": "vcf file",
                 "pattern": "*.{vcf}"
               }
-            }
-          ],
-          [
+            },
             {
               "fam": {
                 "type": "file",
-                "description": "file with family information"
+                "description": "PED file with family information"
               }
             }
           ],
@@ -97453,7 +97688,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         },
         {
           "name": "detaxizer",
@@ -97988,6 +98223,12 @@
               "sequences": {
                 "type": "file",
                 "description": "List of input files containing sequences. All of them must be either in FASTA or FASTQ format."
+              }
+            },
+            {
+              "prefixes": {
+                "type": "string",
+                "description": "List of sample identifiers or filename prefixes. Must correspond in order and length to the 'sequences', or to the number of sequencing pairs.\n"
               }
             }
           ],
@@ -106963,7 +107204,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         }
       ]
     },
@@ -107859,6 +108100,14 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -118083,7 +118332,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         },
         {
           "name": "denovotranscript",
@@ -150390,7 +150639,13 @@
         "maintainers": [
           "@nschcolnicov"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "demultiplex",
+          "version": "1.5.3"
+        }
+      ]
     },
     {
       "name": "samtools_ampliconclip",
@@ -155528,6 +155783,103 @@
         ],
         "maintainers": [
           "@nictru"
+        ]
+      }
+    },
+    {
+      "name": "scvitools_solo",
+      "path": "modules/nf-core/scvitools/solo/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "scvitools_solo",
+        "description": "Detect doublets in single-cell RNA-Seq data",
+        "keywords": [
+          "scvi",
+          "solo",
+          "doublets"
+        ],
+        "tools": [
+          {
+            "scvitools": {
+              "description": "A scalable toolkit for probabilistic modeling applied to single-cell omics data",
+              "homepage": "https://scvi-tools.org",
+              "documentation": "https://docs.scvi-tools.org/en/stable/",
+              "tool_dev_url": "https://github.com/scverse/scvi-tools",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "h5ad": {
+                "type": "file",
+                "description": "H5AD anndata object",
+                "pattern": "*.h5ad"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "h5ad": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.h5ad": {
+                  "type": "file",
+                  "description": "H5AD anndata object without doublets",
+                  "pattern": "*.h5ad"
+                }
+              }
+            ]
+          },
+          {
+            "predictions": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.pkl": {
+                  "type": "file",
+                  "description": "pandas dataframe containing the doublet classification",
+                  "pattern": "*.pkl"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@LeonHafner"
+        ],
+        "maintainers": [
+          "@LeonHafner"
         ]
       }
     },
@@ -161531,7 +161883,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         },
         {
           "name": "pathogensurveillance",
@@ -163110,7 +163462,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         }
       ]
     },
@@ -182064,7 +182416,7 @@
               "description": "UMICollapse contains tools for dealing with Unique Molecular Identifiers (UMIs)/Random Molecular Tags (RMTs).",
               "homepage": "https://github.com/Daniel-Liu-c0deb0t/UMICollapse",
               "documentation": "https://github.com/Daniel-Liu-c0deb0t/UMICollapse",
-              "tool_dev_url": "https://github.com/Daniel-Liu-c0deb0t/UMICollapse",
+              "tool_dev_url": "https://github.com/siddharthab/UMICollapse",
               "doi": "10.7717/peerj.8275",
               "licence": [
                 "MIT"
@@ -182178,6 +182530,7 @@
           "@CharlotteAnne",
           "@chris-cheshire",
           "@apeltzer",
+          "@siddharthab",
           "@MatthiasZepper"
         ]
       },
@@ -183097,7 +183450,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         },
         {
           "name": "differentialabundance",
@@ -190463,6 +190816,444 @@
       }
     },
     {
+      "name": "xeniumranger_import-segmentation",
+      "path": "modules/nf-core/xeniumranger/import-segmentation/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "xeniumranger_import_segmentation",
+        "description": "The xeniumranger import-segmentation module allows you to specify 2D nuclei and/or cell segmentation results for assigning transcripts to cells and recalculate all Xenium Onboard Analysis (XOA) outputs that depend on segmentation. Segmentation results can be generated by community-developed tools or prior Xenium segmentation result.",
+        "keywords": [
+          "spatial",
+          "segmentation",
+          "import segmentation",
+          "nuclear segmentation",
+          "cell segmentation",
+          "xeniumranger",
+          "imaging"
+        ],
+        "tools": [
+          {
+            "xeniumranger": {
+              "description": "Xenium Ranger is a set of analysis pipelines that process Xenium In Situ Gene Expression data to relabel, resegment, or import new segmentation results from community-developed tools. Xenium Ranger provides flexible off-instrument reanalysis of Xenium In Situ data. Relabel transcripts, resegment cells with the latest 10x segmentation algorithms, or import your own segmentation data to assign transcripts to cells.\n",
+              "homepage": "https://www.10xgenomics.com/support/software/xenium-ranger/latest",
+              "documentation": "https://www.10xgenomics.com/support/software/xenium-ranger/latest/getting-started",
+              "tool_dev_url": "https://www.10xgenomics.com/support/software/xenium-ranger/latest/analysis",
+              "licence": [
+                "10x Genomics EULA"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing run information\ne.g. [id:'xenium_bundle_path']\n"
+              }
+            },
+            {
+              "xenium_bundle": {
+                "type": "directory",
+                "description": "Path to the xenium output bundle generated by the Xenium Onboard Analysis pipeline"
+              }
+            }
+          ],
+          [
+            {
+              "expansion_distance": {
+                "type": "integer",
+                "description": "Nuclei boundary expansion distance in µm. Only for use when nucleus segmentation provided as input. Default-5 (accepted range 0 - 100)"
+              }
+            }
+          ],
+          [
+            {
+              "coordinate_transform": {
+                "type": "file",
+                "description": "Image alignment file containing similarity transform matrix e.g., the _imagealignment.csv file exported from Xenium Explorer"
+              }
+            }
+          ],
+          [
+            {
+              "nuclei": {
+                "type": "file",
+                "description": "Label mask (TIFF or NPY), polygons of nucleus segmentations (GeoJSON FeatureCollection), or Xenium Onboard Analysis cells.zarr.zip (the nucleus masks as input).\n--nuclei will use nucleusGeometry polygon if it exists in the GeoJSON (i.e., for QuPath-like GeoJSON files),\nor geometry if it does not. Error if --transcript-assignment argument is used.\n"
+              }
+            }
+          ],
+          [
+            {
+              "cells": {
+                "type": "file",
+                "description": "Label mask (TIFF or NPY), polygons of cell segmentations (GeoJSON FeatureCollection), or Xenium Onboard Analysis cells.zarr.zip (the cell masks as input).\nFeatures with a non-cell objectType will be ignored. Error if --transcript-assignment argument is used.\nIn Xenium Ranger v2.0, --nuclei no longer needs to be used with --cells.\n"
+              }
+            }
+          ],
+          [
+            {
+              "transcript_assignment": {
+                "type": "file",
+                "description": "Transcript CSV with cell assignment from Baysor v0.6. Error if --cells or --nuclei arguments are used.\n"
+              }
+            }
+          ],
+          [
+            {
+              "viz_polygons": {
+                "type": "file",
+                "description": "Cell boundary polygons (GeoJSON) for visualization from Baysor v0.6. Required if --transcript-assignment argument used. Error if --cells or --nuclei arguments used.\n"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "outs": [
+              {
+                "meta": {
+                  "type": "file",
+                  "description": "Files containing the outputs of Cell Ranger, see official 10X Genomics documentation for a complete list",
+                  "pattern": "${meta.id}/outs/*"
+                }
+              },
+              {
+                "**/outs/**": {
+                  "type": "file",
+                  "description": "Files containing the outputs of xenium ranger, see official 10X Genomics documentation for a complete list of outputs",
+                  "pattern": "${meta.id}/outs/*"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@khersameesh24"
+        ],
+        "maintainers": [
+          "@khersameesh24"
+        ]
+      }
+    },
+    {
+      "name": "xeniumranger_relabel",
+      "path": "modules/nf-core/xeniumranger/relabel/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "xeniumranger_relabel",
+        "description": "The xeniumranger relabel module allows you to change the gene labels applied to decoded transcripts.",
+        "keywords": [
+          "spatial",
+          "relabel",
+          "gene labels",
+          "transcripts",
+          "xeniumranger"
+        ],
+        "tools": [
+          {
+            "xeniumranger": {
+              "description": "Xenium Ranger is a set of analysis pipelines that process Xenium In Situ Gene Expression data to relabel, resegment, or import new segmentation results from community-developed tools. Xenium Ranger provides flexible off-instrument reanalysis of Xenium In Situ data. Relabel transcripts, resegment cells with the latest 10x segmentation algorithms, or import your own segmentation data to assign transcripts to cells.\n",
+              "homepage": "https://www.10xgenomics.com/support/software/xenium-ranger/latest",
+              "documentation": "https://www.10xgenomics.com/support/software/xenium-ranger/latest/getting-started",
+              "tool_dev_url": "https://www.10xgenomics.com/support/software/xenium-ranger/latest/analysis",
+              "licence": [
+                "10x Genomics EULA"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing run information\ne.g. [id:'xenium_bundle_path']\n"
+              }
+            },
+            {
+              "xenium_bundle": {
+                "type": "directory",
+                "description": "Path to the xenium output bundle generated by the Xenium Onboard Analysis pipeline"
+              }
+            }
+          ],
+          [
+            {
+              "gene_panel": {
+                "type": "file",
+                "description": "Gene panel JSON file to use for relabeling decoded transcripts"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "outs": [
+              {
+                "meta": {
+                  "type": "file",
+                  "description": "Files containing the outputs of Cell Ranger, see official 10X Genomics documentation for a complete list",
+                  "pattern": "${meta.id}/outs/*"
+                }
+              },
+              {
+                "**/outs/**": {
+                  "type": "file",
+                  "description": "Files containing the outputs of xenium ranger, see official 10X Genomics documentation for a complete list of outputs",
+                  "pattern": "${meta.id}/outs/*"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@khersameesh24"
+        ],
+        "maintainers": [
+          "@khersameesh24"
+        ]
+      }
+    },
+    {
+      "name": "xeniumranger_rename",
+      "path": "modules/nf-core/xeniumranger/rename/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "xeniumranger_rename",
+        "description": "The xeniumranger rename module allows you to change the sample region_name and cassette_name throughout all the Xenium Onboard Analysis output files that contain this information.",
+        "keywords": [
+          "spatial",
+          "rename",
+          "gene labels",
+          "transcripts",
+          "xeniumranger"
+        ],
+        "tools": [
+          {
+            "xeniumranger": {
+              "description": "Xenium Ranger is a set of analysis pipelines that process Xenium In Situ Gene Expression data to relabel, resegment, or import new segmentation results from community-developed tools. Xenium Ranger provides flexible off-instrument reanalysis of Xenium In Situ data. Relabel transcripts, resegment cells with the latest 10x segmentation algorithms, or import your own segmentation data to assign transcripts to cells.\n",
+              "homepage": "https://www.10xgenomics.com/support/software/xenium-ranger/latest",
+              "documentation": "https://www.10xgenomics.com/support/software/xenium-ranger/latest/getting-started",
+              "tool_dev_url": "https://www.10xgenomics.com/support/software/xenium-ranger/latest/analysis",
+              "licence": [
+                "10x Genomics EULA"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information e.g. [ id:'test' ]"
+              }
+            },
+            {
+              "xenium_bundle": {
+                "type": "directory",
+                "description": "Path to the xenium output bundle generated by the Xenium Onboard Analysis pipeline"
+              }
+            }
+          ],
+          [
+            {
+              "region_name": {
+                "type": "string",
+                "description": "New region name"
+              }
+            }
+          ],
+          [
+            {
+              "cassette_name": {
+                "type": "string",
+                "description": "New cassette name"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "outs": [
+              {
+                "meta": {
+                  "type": "file",
+                  "description": "Files containing the outputs of Cell Ranger, see official 10X Genomics documentation for a complete list",
+                  "pattern": "${meta.id}/outs/*"
+                }
+              },
+              {
+                "**/outs/**": {
+                  "type": "file",
+                  "description": "Files containing the outputs of xenium ranger, see official 10X Genomics documentation for a complete list of outputs",
+                  "pattern": "${meta.id}/outs/*"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@khersameesh24"
+        ],
+        "maintainers": [
+          "@khersameesh24"
+        ]
+      }
+    },
+    {
+      "name": "xeniumranger_resegment",
+      "path": "modules/nf-core/xeniumranger/resegment/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "xeniumranger_resegment",
+        "description": "The xeniumranger resegment module allows you to generate a new segmentation of the morphology image space by rerunning the Xenium Onboard Analysis (XOA) segmentation algorithms with modified parameters.",
+        "keywords": [
+          "spatial",
+          "resegment",
+          "morphology",
+          "segmentation",
+          "xeniumranger"
+        ],
+        "tools": [
+          {
+            "xeniumranger": {
+              "description": "Xenium Ranger is a set of analysis pipelines that process Xenium In Situ Gene Expression data to relabel, resegment, or import new segmentation results from community-developed tools. Xenium Ranger provides flexible off-instrument reanalysis of Xenium In Situ data. Relabel transcripts, resegment cells with the latest 10x segmentation algorithms, or import your own segmentation data to assign transcripts to cells.\n",
+              "homepage": "https://www.10xgenomics.com/support/software/xenium-ranger/latest",
+              "documentation": "https://www.10xgenomics.com/support/software/xenium-ranger/latest/getting-started",
+              "tool_dev_url": "https://www.10xgenomics.com/support/software/xenium-ranger/latest/analysis",
+              "licence": [
+                "10x Genomics EULA"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing run information\ne.g. [ id:'xenium_experiment' ]\n"
+              }
+            },
+            {
+              "xenium_bundle": {
+                "type": "directory",
+                "description": "Path to the xenium output bundle generated by the Xenium Onboard Analysis pipeline"
+              }
+            }
+          ],
+          [
+            {
+              "expansion_distance": {
+                "type": "integer",
+                "description": "Nuclei boundary expansion distance in µm. Only for use when nucleus segmentation provided as input. Default-5 (accepted range 0 - 100)"
+              }
+            }
+          ],
+          [
+            {
+              "dapi_filter": {
+                "type": "integer",
+                "description": "Minimum intensity in photoelectrons to filter nuclei default-100 range of values is 0 to 99th percentile of image stack or 1000, whichever is larger"
+              }
+            }
+          ],
+          [
+            {
+              "boundary_stain": {
+                "type": "string",
+                "description": "Specify the name of the boundary stain to use or disable possible options are default-ATP1A1/CD45/E-Cadherin or disable"
+              }
+            }
+          ],
+          [
+            {
+              "interior_stain": {
+                "type": "string",
+                "description": "Specify the name of the interior stain to use or disable possible options are default-18S or disable"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "outs": [
+              {
+                "meta": {
+                  "type": "file",
+                  "description": "Files containing the outputs of Cell Ranger, see official 10X Genomics documentation for a complete list",
+                  "pattern": "${meta.id}/outs/*"
+                }
+              },
+              {
+                "**/outs/**": {
+                  "type": "file",
+                  "description": "Files containing the outputs of xenium ranger, see official 10X Genomics documentation for a complete list of outputs",
+                  "pattern": "${meta.id}/outs/*"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@khersameesh24"
+        ],
+        "maintainers": [
+          "@khersameesh24"
+        ]
+      }
+    },
+    {
       "name": "xz_compress",
       "path": "modules/nf-core/xz/compress/meta.yml",
       "type": "module",
@@ -193592,7 +194383,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         }
       ]
     },
@@ -195854,7 +196645,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         }
       ]
     },
@@ -201063,7 +201854,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         },
         {
           "name": "denovotranscript",
@@ -201344,7 +202135,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         },
         {
           "name": "denovotranscript",
@@ -201612,6 +202403,10 @@
           "version": "1.0.1"
         },
         {
+          "name": "demultiplex",
+          "version": "1.5.3"
+        },
+        {
           "name": "fastqrepair",
           "version": "dev"
         },
@@ -201621,6 +202416,10 @@
         },
         {
           "name": "mcmicro",
+          "version": "dev"
+        },
+        {
+          "name": "metapep",
           "version": "dev"
         },
         {
@@ -201767,10 +202566,6 @@
           "version": "dev"
         },
         {
-          "name": "demultiplex",
-          "version": "1.5.2"
-        },
-        {
           "name": "denovotranscript",
           "version": "1.0.0"
         },
@@ -201817,10 +202612,6 @@
         {
           "name": "metaboigniter",
           "version": "2.0.1"
-        },
-        {
-          "name": "metapep",
-          "version": "dev"
         },
         {
           "name": "mhcquant",
