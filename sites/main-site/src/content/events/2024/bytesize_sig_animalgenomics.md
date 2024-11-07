@@ -3,9 +3,9 @@ title: 'Bytesize: Special Interest Group - Animal Genomics'
 subtitle: Björn Langer (CRG, Barcelona), Jose Espinosa-Carrasco (CRG, Barcelona)
 type: talk
 startDate: '2024-11-12'
-startTime: '13:00+02:00'
+startTime: '13:00+01:00'
 endDate: '2024-11-12'
-endTime: '13:30+02:00'
+endTime: '13:30+01:00'
 locations:
   - name: Online
     links:
