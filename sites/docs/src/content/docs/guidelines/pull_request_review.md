@@ -17,7 +17,7 @@ Authors/Reviewers SHOULD merge after one positive review and with no obvious ope
 ### Exceptions
 
 - Pull requests to master for releases MUST receive **two** positive reviews before merging.
-- (Pseudo) pull requests to master for _first_ releases MUST receive **at least one review from core or maintainer team**.
+- (Pseudo) pull requests to master for [_first_ releases](/docs/tutorials/adding_a_pipeline/first_release) MUST receive **at least one review from core or maintainer team**.
 
 ### Addressing Major Change Reviews
 
