@@ -8040,6 +8040,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -24649,6 +24653,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -54140,10 +54152,6 @@
           "version": "dev"
         },
         {
-          "name": "spatialxe",
-          "version": "dev"
-        },
-        {
           "name": "ssds",
           "version": "dev"
         },
@@ -54959,6 +54967,76 @@
         ],
         "maintainers": [
           "@tillenglert"
+        ]
+      }
+    },
+    {
+      "name": "fcsgx_fetchdb",
+      "path": "modules/nf-core/fcsgx/fetchdb/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "fcsgx_fetchdb",
+        "description": "Fetches the NCBI FCS-GX database using a provided manifest URL",
+        "keywords": [
+          "fcs-gx",
+          "database",
+          "fetch",
+          "ncbi"
+        ],
+        "tools": [
+          {
+            "fcsgx": {
+              "description": "The NCBI Foreign Contamination Screen. Genomic cross-species aligner, for contamination detection.",
+              "homepage": "https://github.com/ncbi/fcs-gx",
+              "documentation": "https://github.com/ncbi/fcs/wiki/",
+              "tool_dev_url": "https://github.com/ncbi/fcs-gx",
+              "doi": "10.1186/s13059-024-03198-7",
+              "licence": [
+                "NCBI-PD"
+              ],
+              "identifier": "biotools:ncbi_fcs"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "manifest": {
+                "type": "file",
+                "description": "URL to a FCXGX database",
+                "pattern": "https://ftp*.manifest"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "database": [
+              {
+                "$prefix": {
+                  "type": "directory",
+                  "description": "A directory containing an FCSGX database"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@mahesh-panchal"
+        ],
+        "maintainers": [
+          "@mahesh-panchal"
         ]
       }
     },
@@ -88531,6 +88609,71 @@
       ]
     },
     {
+      "name": "hostile_fetch",
+      "path": "modules/nf-core/hostile/fetch/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "hostile_fetch",
+        "description": "Downloads required reference genomes for Hostile",
+        "keywords": [
+          "hostile",
+          "decontamination",
+          "human removal",
+          "download"
+        ],
+        "tools": [
+          {
+            "hostile": {
+              "description": "Hostile: accurate host decontamination",
+              "homepage": "https://github.com/bede/hostile",
+              "documentation": "https://github.com/bede/hostile",
+              "tool_dev_url": "https://github.com/bede/hostile",
+              "doi": "10.1093/bioinformatics/btad728",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:hostile"
+            }
+          }
+        ],
+        "output": [
+          {
+            "reference": [
+              {
+                "reference/": {
+                  "type": "directory",
+                  "description": "Directory containing required reference genome files for hostile clean",
+                  "pattern": "reference/",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_1049"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@jfy133"
+        ],
+        "maintainers": [
+          "@jfy133"
+        ]
+      }
+    },
+    {
       "name": "hpsuissero",
       "path": "modules/nf-core/hpsuissero/meta.yml",
       "type": "module",
@@ -108298,6 +108441,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -191278,7 +191425,13 @@
         "maintainers": [
           "@khersameesh24"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "spatialxe",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "xeniumranger_relabel",
@@ -191369,7 +191522,13 @@
         "maintainers": [
           "@khersameesh24"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "spatialxe",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "xeniumranger_rename",
