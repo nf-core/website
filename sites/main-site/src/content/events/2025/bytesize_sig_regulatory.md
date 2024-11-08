@@ -3,9 +3,9 @@ title: 'Bytesize: Special Interest Group - regulatory'
 subtitle: Alex Peltzer, Boehringer Ingelheim
 type: talk
 startDate: '2025-01-28'
-startTime: '13:00+02:00'
+startTime: '13:00+01:00'
 endDate: '2025-01-28'
-endTime: '13:30+02:00'
+endTime: '13:30+01:00'
 locations:
   - name: Online
     links:
