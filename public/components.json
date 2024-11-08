@@ -3769,6 +3769,107 @@
       }
     },
     {
+      "name": "anndata_barcodes",
+      "path": "modules/nf-core/anndata/barcodes/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "anndata_barcodes",
+        "description": "Module to subset AnnData object to cells with matching barcodes from the csv file",
+        "keywords": [
+          "single-cell",
+          "barcodes",
+          "anndata",
+          "subsetting",
+          "transcriptomics"
+        ],
+        "tools": [
+          {
+            "anndata": {
+              "description": "An annotated data matrix.",
+              "homepage": "https://anndata.readthedocs.io",
+              "documentation": "https://anndata.readthedocs.io",
+              "tool_dev_url": "https://github.com/theislab/anndata",
+              "doi": "10.21105/joss.04371",
+              "licence": [
+                "BSD-3-clause"
+              ],
+              "identifier": "biotools:anndata"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "h5ad": {
+                "type": "file",
+                "description": "Anndata object as H5AD file",
+                "pattern": "*.h5ad"
+              }
+            },
+            {
+              "barcodes": {
+                "type": "file",
+                "description": "CSV file containing barcodes. Barcodes are written in plain text. One column, no header\n",
+                "pattern": "*.csv"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "h5ad": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n",
+                  "pattern": "*.h5ad"
+                }
+              },
+              {
+                "*.h5ad": {
+                  "type": "file",
+                  "description": "AnnData file containing all cells with barcodes that match those in the input barcodes csv file\n",
+                  "pattern": "*.h5ad"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@nictru",
+          "@chaochaowong",
+          "@LeonHafner"
+        ],
+        "maintainers": [
+          "@nictru",
+          "@LeonHafner"
+        ]
+      },
+      "pipelines": [
+        {
+          "name": "scdownstream",
+          "version": "dev"
+        }
+      ]
+    },
+    {
       "name": "annotsv_annotsv",
       "path": "modules/nf-core/annotsv/annotsv/meta.yml",
       "type": "module",
@@ -6819,6 +6920,74 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         },
         {
           "name": "rnafusion",
@@ -12094,7 +12263,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         }
       ]
     },
@@ -17141,7 +17310,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         }
       ]
     },
@@ -17343,7 +17512,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         }
       ]
     },
@@ -25865,6 +26034,142 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -29761,7 +30066,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         }
       ]
     },
@@ -32520,7 +32825,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         }
       ]
     },
@@ -33064,6 +33369,15 @@
                 "type": "file",
                 "description": "FastQ with reads from long read sequencing e.g. PacBio or ONT",
                 "pattern": "*.{fastq.gz}"
+              }
+            }
+          ],
+          [
+            {
+              "fasta": {
+                "type": "file",
+                "description": "An optional reference fasta file against which to remove reads that align to it.",
+                "pattern": "*.fasta"
               }
             }
           ]
@@ -39236,6 +39550,98 @@
       ]
     },
     {
+      "name": "coptr_index",
+      "path": "modules/nf-core/coptr/index/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "coptr_index",
+        "description": "Indexes a directory of fasta files for use with CoPTR",
+        "keywords": [
+          "coptr",
+          "index",
+          "ptr"
+        ],
+        "tools": [
+          {
+            "coptr": {
+              "description": "Accurate and robust inference of microbial growth dynamics from metagenomic sequencing reads.",
+              "homepage": "https://github.com/tyjo/coptr",
+              "documentation": "https://coptr.readthedocs.io/",
+              "tool_dev_url": "https://github.com/tyjo/coptr",
+              "doi": "10.1101/gr.275533.121",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:coptr"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing genome information\n"
+              }
+            },
+            {
+              "indexfasta": {
+                "type": "file",
+                "description": "Fasta file(s) ending in [.fasta, .fna, .fa] to be used to create the index.",
+                "pattern": "*.{.fasta,.fna,.fa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "index_dir": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing genome information\n"
+                }
+              },
+              {
+                "bowtie2": {
+                  "type": "map",
+                  "description": "index genome directory",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_3210"
+                    }
+                  ],
+                  "pattern": "*.{genome}"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@ramirobarrantes"
+        ],
+        "maintainers": [
+          "@ramirobarrantes"
+        ]
+      }
+    },
+    {
       "name": "coreograph",
       "path": "modules/nf-core/coreograph/meta.yml",
       "type": "module",
@@ -40464,6 +40870,10 @@
           "version": "1.0.0"
         },
         {
+          "name": "spatialxe",
+          "version": "dev"
+        },
+        {
           "name": "ssds",
           "version": "dev"
         },
@@ -40480,6 +40890,126 @@
           "version": "2.6.0"
         }
       ]
+    },
+    {
+      "name": "custom_filterdifferentialtable",
+      "path": "modules/nf-core/custom/filterdifferentialtable/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "custom_filterdifferentialtable",
+        "description": "Filters a differential expression table based on logFC and adjusted p-value thresholds",
+        "keywords": [
+          "filter",
+          "differential expression",
+          "logFC",
+          "p-value"
+        ],
+        "tools": [
+          {
+            "pandas": {
+              "description": "Python library for data manipulation and analysis",
+              "homepage": "https://pandas.pydata.org/",
+              "documentation": "https://pandas.pydata.org/docs/",
+              "tool_dev_url": "https://github.com/pandas-dev/pandas",
+              "doi": "10.5281/zenodo.3509134",
+              "licence": [
+                "BSD-3-Clause"
+              ],
+              "identifiers": [
+                "biotools:pandas",
+                "conda:pandas"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "input_file": {
+                "type": "file",
+                "description": "Input differential expression table (CSV, TSV, or TXT format)",
+                "pattern": "*.{csv,tsv,txt}"
+              }
+            }
+          ],
+          [
+            {
+              "logFC_column": {
+                "type": "string",
+                "description": "Name of the column containing log fold change values"
+              }
+            }
+          ],
+          [
+            {
+              "FC_threshold": {
+                "type": "float",
+                "description": "Fold change threshold for filtering"
+              }
+            }
+          ],
+          [
+            {
+              "padj_column": {
+                "type": "string",
+                "description": "Name of the column containing adjusted p-values"
+              }
+            }
+          ],
+          [
+            {
+              "padj_threshold": {
+                "type": "float",
+                "description": "Adjusted p-value threshold for filtering"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "filtered": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*_filtered.tsv": {
+                  "type": "file",
+                  "description": "Filtered differential expression table",
+                  "pattern": "*_filtered.tsv"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@pinin4fjords",
+          "@WackerO"
+        ],
+        "maintainers": [
+          "@pinin4fjords",
+          "@WackerO"
+        ]
+      }
     },
     {
       "name": "custom_getchromsizes",
@@ -46551,6 +47081,108 @@
       ]
     },
     {
+      "name": "doubletdetection",
+      "path": "modules/nf-core/doubletdetection/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "doubletdetection",
+        "description": "Doublet detection in single-cell RNA-seq data",
+        "keywords": [
+          "single-cell",
+          "doublets",
+          "doublet_detection"
+        ],
+        "tools": [
+          {
+            "doubletdetection": {
+              "description": "Doublet detection in single-cell RNA-seq data",
+              "tool_dev_url": "https://github.com/JonathanShor/DoubletDetection",
+              "doi": "10.5281/zenodo.6349517",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "h5ad": {
+                "type": "file",
+                "description": "H5AD anndata object",
+                "pattern": "*.h5ad"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "h5ad": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.h5ad": {
+                  "type": "file",
+                  "description": "H5AD anndata object",
+                  "pattern": "*.h5ad"
+                }
+              }
+            ]
+          },
+          {
+            "predictions": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.pkl": {
+                  "type": "file",
+                  "description": "pandas dataframe containing the doublet classification",
+                  "pattern": "*.pkl"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@LeonHafner"
+        ],
+        "maintainers": [
+          "@LeonHafner"
+        ]
+      },
+      "pipelines": [
+        {
+          "name": "scdownstream",
+          "version": "dev"
+        }
+      ]
+    },
+    {
       "name": "dragmap_align",
       "path": "modules/nf-core/dragmap/align/meta.yml",
       "type": "module",
@@ -51346,7 +51978,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         },
         {
           "name": "taxprofiler",
@@ -53116,7 +53748,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         },
         {
           "name": "denovotranscript",
@@ -53333,7 +53965,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         },
         {
           "name": "denovotranscript",
@@ -53508,6 +54140,10 @@
           "version": "dev"
         },
         {
+          "name": "spatialxe",
+          "version": "dev"
+        },
+        {
           "name": "ssds",
           "version": "dev"
         },
@@ -53536,6 +54172,88 @@
           "version": "2.6.0"
         }
       ]
+    },
+    {
+      "name": "fastqe",
+      "path": "modules/nf-core/fastqe/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "fastqe",
+        "description": "fastqe is a bioinformatics command line tool that uses emojis to represent and analyze genomic data.",
+        "keywords": [
+          "quality control",
+          "fastq",
+          "emoji",
+          "visualization"
+        ],
+        "tools": [
+          {
+            "fastqe": {
+              "description": "A tool for visualizing FASTQ file quality using emoji",
+              "homepage": "https://github.com/fastqe/fastqe",
+              "documentation": "https://github.com/fastqe/fastqe#readme",
+              "tool_dev_url": "https://github.com/fastqe/fastqe",
+              "doi": "10.21105/joss.02400",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:fastqe"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "fastq": {
+                "type": "file",
+                "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data,\nrespectively.\n"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "tsv": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.tsv": {
+                  "type": "file",
+                  "description": "Text file containing emoji",
+                  "pattern": "*.tsv"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@adamrtalbot"
+        ],
+        "maintainers": [
+          "@adamrtalbot"
+        ]
+      }
     },
     {
       "name": "fastqscan",
@@ -56503,7 +57221,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         }
       ]
     },
@@ -74308,13 +75026,11 @@
                 "description": "vcf file",
                 "pattern": "*.{vcf}"
               }
-            }
-          ],
-          [
+            },
             {
               "fam": {
                 "type": "file",
-                "description": "file with family information"
+                "description": "PED file with family information"
               }
             }
           ],
@@ -74412,13 +75128,11 @@
                 "description": "vcf file",
                 "pattern": "*.{vcf}"
               }
-            }
-          ],
-          [
+            },
             {
               "fam": {
                 "type": "file",
-                "description": "file with family information"
+                "description": "PED file with family information"
               }
             }
           ],
@@ -78112,6 +78826,21 @@
                 "type": "list",
                 "description": "Input genomic vcf files",
                 "pattern": "*.{gvcf,gvcf.gz,g.vcf,g.vcf.gz}"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing regions information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "bed": {
+                "type": "list",
+                "description": "Input BED file",
+                "pattern": "*.bed"
               }
             }
           ]
@@ -85107,6 +85836,148 @@
         "maintainers": [
           "@sidorov-si",
           "@scorreard"
+        ]
+      }
+    },
+    {
+      "name": "hiphase",
+      "path": "modules/nf-core/hiphase/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "hiphase",
+        "description": "pacbio structural variant calling tool",
+        "keywords": [
+          "sort",
+          "example",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "hiphase": {
+              "description": "Small and structural variant phasing tool for PacBio HiFi reads",
+              "homepage": "https://github.com/PacificBiosciences/HiPhase",
+              "documentation": "https://github.com/PacificBiosciences/HiPhase",
+              "tool_dev_url": "https://github.com/PacificBiosciences/HiPhase",
+              "licence": [
+                "Pacific Biosciences Software License Agreement"
+              ],
+              "identifier": "biotools:hiphase"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "VCF File",
+                "pattern": "*.{vcf}"
+              }
+            },
+            {
+              "csi": {
+                "type": "file",
+                "description": "CSI File associated with VCF",
+                "pattern": "*.{csi}"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Sorted BAM/CRAM/SAM file",
+                "pattern": "*.{bam}"
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "Index File BAI associated with BAM file",
+                "pattern": "*.{bai}"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "FASTA File (used for the alignment of the BAM file)",
+                "pattern": "*.{fasta}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "vcf": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.vcf": {
+                  "type": "file",
+                  "description": "Phased VCF file",
+                  "pattern": "*.vcf"
+                }
+              }
+            ]
+          },
+          {
+            "csv": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.csv": {
+                  "type": "file",
+                  "description": "stats associated with the phasing",
+                  "pattern": "*.csv"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@tanyasarkjain"
+        ],
+        "maintainers": [
+          "@tanyasarkjain"
         ]
       }
     },
@@ -97015,7 +97886,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         },
         {
           "name": "detaxizer",
@@ -97550,6 +98421,12 @@
               "sequences": {
                 "type": "file",
                 "description": "List of input files containing sequences. All of them must be either in FASTA or FASTQ format."
+              }
+            },
+            {
+              "prefixes": {
+                "type": "string",
+                "description": "List of sample identifiers or filename prefixes. Must correspond in order and length to the 'sequences', or to the number of sequencing pairs.\n"
               }
             }
           ],
@@ -106525,7 +107402,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         }
       ]
     },
@@ -107421,6 +108298,74 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -110848,6 +111793,112 @@
         ],
         "maintainers": [
           "@sofstam"
+        ]
+      }
+    },
+    {
+      "name": "metamdbg_asm",
+      "path": "modules/nf-core/metamdbg/asm/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "METAMDBG_ASM",
+        "description": "Metagenome assembler for long-read sequences (HiFi and ONT).",
+        "keywords": [
+          "assembly",
+          "long reads",
+          "metagenome",
+          "metagenome assembler"
+        ],
+        "tools": [
+          {
+            "metamdbg": {
+              "description": "MetaMDBG: a lightweight assembler for long and accurate metagenomics reads.",
+              "homepage": "https://github.com/GaetanBenoitDev/metaMDBG",
+              "documentation": "https://github.com/GaetanBenoitDev/metaMDBG",
+              "tool_dev_url": "https://github.com/GaetanBenoitDev/metaMDBG",
+              "doi": "10.1038/s41587-023-01983-6",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "Long read sequence data from ONT or HiFi in fasta format (can be gzipped)",
+                "pattern": "*.{fa,fasta,fa.gz,fasta.gz}"
+              }
+            }
+          ],
+          [
+            {
+              "input_type": {
+                "type": "string",
+                "description": "Sequencing technology for reads - either \"hifi\" for PacBio HiFi reads or \"ont\" for Oxford Nanopore reads."
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "contigs": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.contigs.fasta.gz": {
+                  "type": "file",
+                  "description": "Gzipped fasta file containing the assembled contigs from the input\nreads.\n"
+                }
+              }
+            ]
+          },
+          {
+            "log": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.metaMDBG.log": {
+                  "type": "file",
+                  "description": "Log file describing the metaMDBG run."
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@prototaxites"
+        ],
+        "maintainers": [
+          "@prototaxites"
         ]
       }
     },
@@ -117597,7 +118648,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         },
         {
           "name": "denovotranscript",
@@ -117833,6 +118884,10 @@
         },
         {
           "name": "spatialvi",
+          "version": "dev"
+        },
+        {
+          "name": "spatialxe",
           "version": "dev"
         },
         {
@@ -128583,6 +129638,113 @@
       ]
     },
     {
+      "name": "pbmm2_align",
+      "path": "modules/nf-core/pbmm2/align/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "pbmm2_align",
+        "description": "Alignment with PacBio's minimap2 frontend",
+        "keywords": [
+          "align",
+          "pacbio",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "pbmm2": {
+              "description": "A minimap2 frontend for PacBio native data formats",
+              "homepage": "https://github.com/PacificBiosciences/pbmm2",
+              "documentation": "https://github.com/PacificBiosciences/pbmm2",
+              "tool_dev_url": "https://github.com/PacificBiosciences/pbmm2",
+              "licence": [
+                "BSD-3-clause-Clear"
+              ],
+              "identifier": "biotools:pbmm2"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Sorted BAM/CRAM/SAM file",
+                "pattern": "*.{bam,cram,sam}"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "fasta file to align bam to",
+                "pattern": "*.{fasta}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "bam": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.bam": {
+                  "type": "file",
+                  "description": "Sorted BAM/CRAM/SAM file",
+                  "pattern": "*.{bam,cram,sam}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_2573"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3462"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@tanyasarkjain"
+        ],
+        "maintainers": [
+          "@tanyasarkjain"
+        ]
+      }
+    },
+    {
       "name": "pbptyper",
       "path": "modules/nf-core/pbptyper/meta.yml",
       "type": "module",
@@ -128687,6 +129849,194 @@
         ],
         "maintainers": [
           "@rpetit3"
+        ]
+      }
+    },
+    {
+      "name": "pbsv_call",
+      "path": "modules/nf-core/pbsv/call/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "pbsv_call",
+        "description": "pbsv/call - PacBio structural variant (SV) calling and analysis tools",
+        "keywords": [
+          "variant",
+          "pacbio",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "pbsv": {
+              "description": "pbsv - PacBio structural variant (SV) calling and analysis tools",
+              "homepage": "https://github.com/PacificBiosciences/",
+              "documentation": "https://github.com/PacificBiosciences/",
+              "tool_dev_url": "https://github.com/PacificBiosciences/",
+              "licence": [
+                "BSD-3-clause-Clear"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "svsig": {
+                "type": "file",
+                "description": "structural variant file"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'reference']`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "fasta file used as reference"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "vcf": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.vcf": {
+                  "type": "file",
+                  "description": "structural variant file"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@tanyasarkjain"
+        ],
+        "maintainers": [
+          "@tanyasarkjain"
+        ]
+      }
+    },
+    {
+      "name": "pbsv_discover",
+      "path": "modules/nf-core/pbsv/discover/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "pbsv_discover",
+        "description": "pbsv - PacBio structural variant (SV) signature discovery tool",
+        "keywords": [
+          "variant",
+          "pacbio",
+          "structural"
+        ],
+        "tools": [
+          {
+            "pbsv": {
+              "description": "pbsv - PacBio structural variant (SV) calling and analysis tools",
+              "homepage": "https://github.com/PacificBiosciences/pbsv",
+              "documentation": "https://github.com/PacificBiosciences/pbsv",
+              "tool_dev_url": "https://github.com/PacificBiosciences/pbsv",
+              "licence": [
+                "BSD-3-clause-Clear"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Sorted BAM/CRAM/SAM file",
+                "pattern": "*.{bam,cram,sam}"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. `[ id:'reference' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "fasta file",
+                "pattern": "*.fasta"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "svsig": [
+              {
+                "meta": {
+                  "type": "file",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.svsig.gz": {
+                  "type": "file",
+                  "description": "structural variant signatures files",
+                  "pattern": "*.svsig.gz"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@tanyasarkjain"
+        ],
+        "maintainers": [
+          "@tanyasarkjain"
         ]
       }
     },
@@ -149609,7 +150959,13 @@
         "maintainers": [
           "@nschcolnicov"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "demultiplex",
+          "version": "1.5.3"
+        }
+      ]
     },
     {
       "name": "samtools_ampliconclip",
@@ -154653,6 +156009,211 @@
           "@nvnieuwk"
         ]
       }
+    },
+    {
+      "name": "scvitools_scar",
+      "path": "modules/nf-core/scvitools/scar/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "scvitools_scar",
+        "description": "Module to use scAR to remove ambient RNA from single-cell RNA-seq data",
+        "keywords": [
+          "single-cell",
+          "scRNA-seq",
+          "ambient RNA removal"
+        ],
+        "tools": [
+          {
+            "scvitools": {
+              "description": "scvi-tools (single-cell variational inference tools) is a package for end-to-end analysis of single-cell omics data",
+              "documentation": "https://docs.scvi-tools.org/en/stable/",
+              "tool_dev_url": "https://github.com/scverse/scvi-tools",
+              "licence": [
+                "BSD-3-clause"
+              ]
+            }
+          },
+          {
+            "scar": {
+              "description": "scAR (single-cell Ambient Remover) is a deep learning model for removal of the ambient signals in droplet-based single cell omics.",
+              "documentation": "https://docs.scvi-tools.org/en/stable/user_guide/models/scar.html",
+              "tool_dev_url": "https://github.com/Novartis/scar",
+              "licence": [
+                "Novartis Terms of License"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "filtered": {
+                "type": "file",
+                "description": "AnnData file containing filtered data (without empty droplets)",
+                "pattern": "*.h5ad"
+              }
+            },
+            {
+              "unfiltered": {
+                "type": "file",
+                "description": "AnnData file containing unfiltered data (with empty droplets)",
+                "pattern": "*.h5ad"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "h5ad": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.h5ad": {
+                  "type": "file",
+                  "description": "AnnData file containing decontaminated counts as `adata.X`",
+                  "pattern": "*.h5ad"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software version",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@nictru"
+        ],
+        "maintainers": [
+          "@nictru"
+        ]
+      },
+      "pipelines": [
+        {
+          "name": "scdownstream",
+          "version": "dev"
+        }
+      ]
+    },
+    {
+      "name": "scvitools_solo",
+      "path": "modules/nf-core/scvitools/solo/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "scvitools_solo",
+        "description": "Detect doublets in single-cell RNA-Seq data",
+        "keywords": [
+          "scvi",
+          "solo",
+          "doublets"
+        ],
+        "tools": [
+          {
+            "scvitools": {
+              "description": "A scalable toolkit for probabilistic modeling applied to single-cell omics data",
+              "homepage": "https://scvi-tools.org",
+              "documentation": "https://docs.scvi-tools.org/en/stable/",
+              "tool_dev_url": "https://github.com/scverse/scvi-tools",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "h5ad": {
+                "type": "file",
+                "description": "H5AD anndata object",
+                "pattern": "*.h5ad"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "h5ad": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.h5ad": {
+                  "type": "file",
+                  "description": "H5AD anndata object without doublets",
+                  "pattern": "*.h5ad"
+                }
+              }
+            ]
+          },
+          {
+            "predictions": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.pkl": {
+                  "type": "file",
+                  "description": "pandas dataframe containing the doublet classification",
+                  "pattern": "*.pkl"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@LeonHafner"
+        ],
+        "maintainers": [
+          "@LeonHafner"
+        ]
+      },
+      "pipelines": [
+        {
+          "name": "scdownstream",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "seacr_callpeak",
@@ -160654,7 +162215,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         },
         {
           "name": "pathogensurveillance",
@@ -160939,6 +162500,106 @@
           "version": "1.0.1"
         }
       ]
+    },
+    {
+      "name": "sequali",
+      "path": "modules/nf-core/sequali/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "sequali",
+        "description": "Sequence quality metrics for FASTQ and uBAM files.",
+        "keywords": [
+          "quality_control",
+          "qc",
+          "preprocessing"
+        ],
+        "tools": [
+          {
+            "sequali": {
+              "description": "Fast sequencing quality metrics",
+              "homepage": "https://github.com/rhpvorderman/sequali",
+              "documentation": "https://sequali.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/rhpvorderman/sequali",
+              "doi": "10.5281/zenodo.10854010",
+              "licence": [
+                "AGPL v3-or-later"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "Input FASTQ(s) or uBAM file. The format is autodetected and compressed formats are supported.",
+                "pattern": "*.{fastq,fq,fastq.gz,fq.gz,bam}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "json": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.json": {
+                  "type": "file",
+                  "description": "JSON output file.",
+                  "pattern": "*.{json}"
+                }
+              }
+            ]
+          },
+          {
+            "html": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.html": {
+                  "type": "file",
+                  "description": "HTML output file.",
+                  "pattern": "*.{html}"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions.",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@irliampa",
+          "@DarkoCucin"
+        ],
+        "maintainers": [
+          "@irliampa",
+          "@DarkoCucin"
+        ]
+      }
     },
     {
       "name": "sequencetools_pileupcaller",
@@ -162133,7 +163794,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         }
       ]
     },
@@ -180989,14 +182650,6 @@
                 "description": "FASTQ file containing barcode sequences"
               }
             }
-          ],
-          [
-            {
-              "adapter_seq": {
-                "type": "string",
-                "description": "adapter sequence"
-              }
-            }
           ]
         ],
         "output": [
@@ -181005,13 +182658,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*[!no_match].fastq.gz"
                 }
               },
               {
-                "*[!no_match].fastq.gz": {
-                  "type": "file",
-                  "description": "Demultiplexed sample FASTQ files",
+                "*_matched.fastq.gz": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*[!no_match].fastq.gz"
                 }
               }
@@ -181022,13 +182676,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*no_match.fastq.gz"
                 }
               },
               {
-                "*no_match.fastq.gz": {
-                  "type": "file",
-                  "description": "FASTQ file containing reads that could not be demultiplexed",
+                "*_no_match_*.fastq.gz": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*no_match.fastq.gz"
                 }
               }
@@ -181093,7 +182748,7 @@
               "description": "UMICollapse contains tools for dealing with Unique Molecular Identifiers (UMIs)/Random Molecular Tags (RMTs).",
               "homepage": "https://github.com/Daniel-Liu-c0deb0t/UMICollapse",
               "documentation": "https://github.com/Daniel-Liu-c0deb0t/UMICollapse",
-              "tool_dev_url": "https://github.com/Daniel-Liu-c0deb0t/UMICollapse",
+              "tool_dev_url": "https://github.com/siddharthab/UMICollapse",
               "doi": "10.7717/peerj.8275",
               "licence": [
                 "MIT"
@@ -181207,6 +182862,7 @@
           "@CharlotteAnne",
           "@chris-cheshire",
           "@apeltzer",
+          "@siddharthab",
           "@MatthiasZepper"
         ]
       },
@@ -182126,7 +183782,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         },
         {
           "name": "differentialabundance",
@@ -189492,6 +191148,444 @@
       }
     },
     {
+      "name": "xeniumranger_import-segmentation",
+      "path": "modules/nf-core/xeniumranger/import-segmentation/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "xeniumranger_import_segmentation",
+        "description": "The xeniumranger import-segmentation module allows you to specify 2D nuclei and/or cell segmentation results for assigning transcripts to cells and recalculate all Xenium Onboard Analysis (XOA) outputs that depend on segmentation. Segmentation results can be generated by community-developed tools or prior Xenium segmentation result.",
+        "keywords": [
+          "spatial",
+          "segmentation",
+          "import segmentation",
+          "nuclear segmentation",
+          "cell segmentation",
+          "xeniumranger",
+          "imaging"
+        ],
+        "tools": [
+          {
+            "xeniumranger": {
+              "description": "Xenium Ranger is a set of analysis pipelines that process Xenium In Situ Gene Expression data to relabel, resegment, or import new segmentation results from community-developed tools. Xenium Ranger provides flexible off-instrument reanalysis of Xenium In Situ data. Relabel transcripts, resegment cells with the latest 10x segmentation algorithms, or import your own segmentation data to assign transcripts to cells.\n",
+              "homepage": "https://www.10xgenomics.com/support/software/xenium-ranger/latest",
+              "documentation": "https://www.10xgenomics.com/support/software/xenium-ranger/latest/getting-started",
+              "tool_dev_url": "https://www.10xgenomics.com/support/software/xenium-ranger/latest/analysis",
+              "licence": [
+                "10x Genomics EULA"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing run information\ne.g. [id:'xenium_bundle_path']\n"
+              }
+            },
+            {
+              "xenium_bundle": {
+                "type": "directory",
+                "description": "Path to the xenium output bundle generated by the Xenium Onboard Analysis pipeline"
+              }
+            }
+          ],
+          [
+            {
+              "expansion_distance": {
+                "type": "integer",
+                "description": "Nuclei boundary expansion distance in µm. Only for use when nucleus segmentation provided as input. Default-5 (accepted range 0 - 100)"
+              }
+            }
+          ],
+          [
+            {
+              "coordinate_transform": {
+                "type": "file",
+                "description": "Image alignment file containing similarity transform matrix e.g., the _imagealignment.csv file exported from Xenium Explorer"
+              }
+            }
+          ],
+          [
+            {
+              "nuclei": {
+                "type": "file",
+                "description": "Label mask (TIFF or NPY), polygons of nucleus segmentations (GeoJSON FeatureCollection), or Xenium Onboard Analysis cells.zarr.zip (the nucleus masks as input).\n--nuclei will use nucleusGeometry polygon if it exists in the GeoJSON (i.e., for QuPath-like GeoJSON files),\nor geometry if it does not. Error if --transcript-assignment argument is used.\n"
+              }
+            }
+          ],
+          [
+            {
+              "cells": {
+                "type": "file",
+                "description": "Label mask (TIFF or NPY), polygons of cell segmentations (GeoJSON FeatureCollection), or Xenium Onboard Analysis cells.zarr.zip (the cell masks as input).\nFeatures with a non-cell objectType will be ignored. Error if --transcript-assignment argument is used.\nIn Xenium Ranger v2.0, --nuclei no longer needs to be used with --cells.\n"
+              }
+            }
+          ],
+          [
+            {
+              "transcript_assignment": {
+                "type": "file",
+                "description": "Transcript CSV with cell assignment from Baysor v0.6. Error if --cells or --nuclei arguments are used.\n"
+              }
+            }
+          ],
+          [
+            {
+              "viz_polygons": {
+                "type": "file",
+                "description": "Cell boundary polygons (GeoJSON) for visualization from Baysor v0.6. Required if --transcript-assignment argument used. Error if --cells or --nuclei arguments used.\n"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "outs": [
+              {
+                "meta": {
+                  "type": "file",
+                  "description": "Files containing the outputs of Cell Ranger, see official 10X Genomics documentation for a complete list",
+                  "pattern": "${meta.id}/outs/*"
+                }
+              },
+              {
+                "**/outs/**": {
+                  "type": "file",
+                  "description": "Files containing the outputs of xenium ranger, see official 10X Genomics documentation for a complete list of outputs",
+                  "pattern": "${meta.id}/outs/*"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@khersameesh24"
+        ],
+        "maintainers": [
+          "@khersameesh24"
+        ]
+      }
+    },
+    {
+      "name": "xeniumranger_relabel",
+      "path": "modules/nf-core/xeniumranger/relabel/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "xeniumranger_relabel",
+        "description": "The xeniumranger relabel module allows you to change the gene labels applied to decoded transcripts.",
+        "keywords": [
+          "spatial",
+          "relabel",
+          "gene labels",
+          "transcripts",
+          "xeniumranger"
+        ],
+        "tools": [
+          {
+            "xeniumranger": {
+              "description": "Xenium Ranger is a set of analysis pipelines that process Xenium In Situ Gene Expression data to relabel, resegment, or import new segmentation results from community-developed tools. Xenium Ranger provides flexible off-instrument reanalysis of Xenium In Situ data. Relabel transcripts, resegment cells with the latest 10x segmentation algorithms, or import your own segmentation data to assign transcripts to cells.\n",
+              "homepage": "https://www.10xgenomics.com/support/software/xenium-ranger/latest",
+              "documentation": "https://www.10xgenomics.com/support/software/xenium-ranger/latest/getting-started",
+              "tool_dev_url": "https://www.10xgenomics.com/support/software/xenium-ranger/latest/analysis",
+              "licence": [
+                "10x Genomics EULA"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing run information\ne.g. [id:'xenium_bundle_path']\n"
+              }
+            },
+            {
+              "xenium_bundle": {
+                "type": "directory",
+                "description": "Path to the xenium output bundle generated by the Xenium Onboard Analysis pipeline"
+              }
+            }
+          ],
+          [
+            {
+              "gene_panel": {
+                "type": "file",
+                "description": "Gene panel JSON file to use for relabeling decoded transcripts"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "outs": [
+              {
+                "meta": {
+                  "type": "file",
+                  "description": "Files containing the outputs of Cell Ranger, see official 10X Genomics documentation for a complete list",
+                  "pattern": "${meta.id}/outs/*"
+                }
+              },
+              {
+                "**/outs/**": {
+                  "type": "file",
+                  "description": "Files containing the outputs of xenium ranger, see official 10X Genomics documentation for a complete list of outputs",
+                  "pattern": "${meta.id}/outs/*"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@khersameesh24"
+        ],
+        "maintainers": [
+          "@khersameesh24"
+        ]
+      }
+    },
+    {
+      "name": "xeniumranger_rename",
+      "path": "modules/nf-core/xeniumranger/rename/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "xeniumranger_rename",
+        "description": "The xeniumranger rename module allows you to change the sample region_name and cassette_name throughout all the Xenium Onboard Analysis output files that contain this information.",
+        "keywords": [
+          "spatial",
+          "rename",
+          "gene labels",
+          "transcripts",
+          "xeniumranger"
+        ],
+        "tools": [
+          {
+            "xeniumranger": {
+              "description": "Xenium Ranger is a set of analysis pipelines that process Xenium In Situ Gene Expression data to relabel, resegment, or import new segmentation results from community-developed tools. Xenium Ranger provides flexible off-instrument reanalysis of Xenium In Situ data. Relabel transcripts, resegment cells with the latest 10x segmentation algorithms, or import your own segmentation data to assign transcripts to cells.\n",
+              "homepage": "https://www.10xgenomics.com/support/software/xenium-ranger/latest",
+              "documentation": "https://www.10xgenomics.com/support/software/xenium-ranger/latest/getting-started",
+              "tool_dev_url": "https://www.10xgenomics.com/support/software/xenium-ranger/latest/analysis",
+              "licence": [
+                "10x Genomics EULA"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information e.g. [ id:'test' ]"
+              }
+            },
+            {
+              "xenium_bundle": {
+                "type": "directory",
+                "description": "Path to the xenium output bundle generated by the Xenium Onboard Analysis pipeline"
+              }
+            }
+          ],
+          [
+            {
+              "region_name": {
+                "type": "string",
+                "description": "New region name"
+              }
+            }
+          ],
+          [
+            {
+              "cassette_name": {
+                "type": "string",
+                "description": "New cassette name"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "outs": [
+              {
+                "meta": {
+                  "type": "file",
+                  "description": "Files containing the outputs of Cell Ranger, see official 10X Genomics documentation for a complete list",
+                  "pattern": "${meta.id}/outs/*"
+                }
+              },
+              {
+                "**/outs/**": {
+                  "type": "file",
+                  "description": "Files containing the outputs of xenium ranger, see official 10X Genomics documentation for a complete list of outputs",
+                  "pattern": "${meta.id}/outs/*"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@khersameesh24"
+        ],
+        "maintainers": [
+          "@khersameesh24"
+        ]
+      }
+    },
+    {
+      "name": "xeniumranger_resegment",
+      "path": "modules/nf-core/xeniumranger/resegment/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "xeniumranger_resegment",
+        "description": "The xeniumranger resegment module allows you to generate a new segmentation of the morphology image space by rerunning the Xenium Onboard Analysis (XOA) segmentation algorithms with modified parameters.",
+        "keywords": [
+          "spatial",
+          "resegment",
+          "morphology",
+          "segmentation",
+          "xeniumranger"
+        ],
+        "tools": [
+          {
+            "xeniumranger": {
+              "description": "Xenium Ranger is a set of analysis pipelines that process Xenium In Situ Gene Expression data to relabel, resegment, or import new segmentation results from community-developed tools. Xenium Ranger provides flexible off-instrument reanalysis of Xenium In Situ data. Relabel transcripts, resegment cells with the latest 10x segmentation algorithms, or import your own segmentation data to assign transcripts to cells.\n",
+              "homepage": "https://www.10xgenomics.com/support/software/xenium-ranger/latest",
+              "documentation": "https://www.10xgenomics.com/support/software/xenium-ranger/latest/getting-started",
+              "tool_dev_url": "https://www.10xgenomics.com/support/software/xenium-ranger/latest/analysis",
+              "licence": [
+                "10x Genomics EULA"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing run information\ne.g. [ id:'xenium_experiment' ]\n"
+              }
+            },
+            {
+              "xenium_bundle": {
+                "type": "directory",
+                "description": "Path to the xenium output bundle generated by the Xenium Onboard Analysis pipeline"
+              }
+            }
+          ],
+          [
+            {
+              "expansion_distance": {
+                "type": "integer",
+                "description": "Nuclei boundary expansion distance in µm. Only for use when nucleus segmentation provided as input. Default-5 (accepted range 0 - 100)"
+              }
+            }
+          ],
+          [
+            {
+              "dapi_filter": {
+                "type": "integer",
+                "description": "Minimum intensity in photoelectrons to filter nuclei default-100 range of values is 0 to 99th percentile of image stack or 1000, whichever is larger"
+              }
+            }
+          ],
+          [
+            {
+              "boundary_stain": {
+                "type": "string",
+                "description": "Specify the name of the boundary stain to use or disable possible options are default-ATP1A1/CD45/E-Cadherin or disable"
+              }
+            }
+          ],
+          [
+            {
+              "interior_stain": {
+                "type": "string",
+                "description": "Specify the name of the interior stain to use or disable possible options are default-18S or disable"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "outs": [
+              {
+                "meta": {
+                  "type": "file",
+                  "description": "Files containing the outputs of Cell Ranger, see official 10X Genomics documentation for a complete list",
+                  "pattern": "${meta.id}/outs/*"
+                }
+              },
+              {
+                "**/outs/**": {
+                  "type": "file",
+                  "description": "Files containing the outputs of xenium ranger, see official 10X Genomics documentation for a complete list of outputs",
+                  "pattern": "${meta.id}/outs/*"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@khersameesh24"
+        ],
+        "maintainers": [
+          "@khersameesh24"
+        ]
+      }
+    },
+    {
       "name": "xz_compress",
       "path": "modules/nf-core/xz/compress/meta.yml",
       "type": "module",
@@ -192621,7 +194715,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         }
       ]
     },
@@ -194883,7 +196977,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         }
       ]
     },
@@ -200092,7 +202186,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         },
         {
           "name": "denovotranscript",
@@ -200189,6 +202283,10 @@
         {
           "name": "pangenome",
           "version": "1.1.2"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         },
         {
           "name": "phaseimpute",
@@ -200369,7 +202467,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.5.2"
+          "version": "1.5.3"
         },
         {
           "name": "denovotranscript",
@@ -200466,6 +202564,10 @@
         {
           "name": "pangenome",
           "version": "1.1.2"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         },
         {
           "name": "phaseimpute",
@@ -200633,6 +202735,10 @@
           "version": "1.0.1"
         },
         {
+          "name": "demultiplex",
+          "version": "1.5.3"
+        },
+        {
           "name": "fastqrepair",
           "version": "dev"
         },
@@ -200641,12 +202747,24 @@
           "version": "3.2.1"
         },
         {
+          "name": "mcmicro",
+          "version": "dev"
+        },
+        {
+          "name": "metapep",
+          "version": "dev"
+        },
+        {
           "name": "methylarray",
           "version": "dev"
         },
         {
           "name": "methylseq",
           "version": "2.7.1"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         },
         {
           "name": "phaseimpute",
@@ -200780,10 +202898,6 @@
           "version": "dev"
         },
         {
-          "name": "demultiplex",
-          "version": "1.5.2"
-        },
-        {
           "name": "denovotranscript",
           "version": "1.0.0"
         },
@@ -200824,20 +202938,12 @@
           "version": "dev"
         },
         {
-          "name": "mcmicro",
-          "version": "dev"
-        },
-        {
           "name": "meerpipe",
           "version": "dev"
         },
         {
           "name": "metaboigniter",
           "version": "2.0.1"
-        },
-        {
-          "name": "metapep",
-          "version": "dev"
         },
         {
           "name": "mhcquant",
