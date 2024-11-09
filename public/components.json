@@ -8048,6 +8048,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -12586,6 +12590,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "detaxizer",
+          "version": "1.1.0"
+        },
         {
           "name": "magmap",
           "version": "dev"
@@ -22727,7 +22735,7 @@
       "pipelines": [
         {
           "name": "detaxizer",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "phageannotator",
@@ -22965,7 +22973,7 @@
       "pipelines": [
         {
           "name": "detaxizer",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "phageannotator",
@@ -23519,7 +23527,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.2.1"
+          "version": "2.3.0"
         },
         {
           "name": "cutandrun",
@@ -23661,7 +23669,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.2.1"
+          "version": "2.3.0"
         },
         {
           "name": "cutandrun",
@@ -26194,6 +26202,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -26759,7 +26775,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.2.1"
+          "version": "2.3.0"
         },
         {
           "name": "fastquorum",
@@ -27007,7 +27023,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.2.1"
+          "version": "2.3.0"
         },
         {
           "name": "hgtseq",
@@ -28954,7 +28970,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.2.1"
+          "version": "2.3.0"
         },
         {
           "name": "cutandrun",
@@ -40081,7 +40097,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.2.1"
+          "version": "2.3.0"
         }
       ]
     },
@@ -41887,7 +41903,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.2.1"
+          "version": "2.3.0"
         },
         {
           "name": "hicar",
@@ -53780,7 +53796,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "mag",
@@ -53977,7 +53993,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.2.1"
+          "version": "2.3.0"
         },
         {
           "name": "cutandrun",
@@ -53997,7 +54013,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "drugresponseeval",
@@ -55048,6 +55064,165 @@
           "@mahesh-panchal"
         ],
         "maintainers": [
+          "@mahesh-panchal"
+        ]
+      }
+    },
+    {
+      "name": "fcsgx_rungx",
+      "path": "modules/nf-core/fcsgx/rungx/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "fcsgx_rungx",
+        "description": "Runs FCS-GX (Foreign Contamination Screen - Genome eXtractor) to screen and remove foreign contamination from genome assemblies",
+        "keywords": [
+          "genome",
+          "assembly",
+          "contamination",
+          "screening",
+          "cleaning",
+          "fcs-gx"
+        ],
+        "tools": [
+          {
+            "fcsgx": {
+              "description": "The NCBI Foreign Contamination Screen. Genomic cross-species aligner, for contamination detection.",
+              "homepage": "https://github.com/ncbi/fcs-gx",
+              "documentation": "https://github.com/ncbi/fcs/wiki/",
+              "tool_dev_url": "https://github.com/ncbi/fcs-gx",
+              "doi": "10.1186/s13059-024-03198-7",
+              "licence": [
+                "NCBI-PD"
+              ],
+              "identifier": "biotools:ncbi_fcs"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "taxid": {
+                "type": "string",
+                "description": "Taxonomy ID of the expected organism"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Input genome assembly file in FASTA format",
+                "pattern": "*.{fa,fasta,fna}"
+              }
+            }
+          ],
+          [
+            {
+              "gxdb": {
+                "type": "directory",
+                "description": "Directory containing the FCS-GX database"
+              }
+            }
+          ],
+          [
+            {
+              "ramdisk_path": {
+                "type": "string",
+                "description": "Path to RAM disk for improved performance (optional)"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "fcsgx_report": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.fcs_gx_report.txt": {
+                  "type": "file",
+                  "description": "Final contamination report with contaminant cleaning actions. Interpreted by gx clean genome to separate cleaned sequences from contaminants."
+                }
+              }
+            ]
+          },
+          {
+            "taxonomy_report": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.taxonomy.rpt": {
+                  "type": "file",
+                  "description": "Intermediate report with assigned taxonomies to individual sequences.",
+                  "pattern": "*.taxonomy.rpt"
+                }
+              }
+            ]
+          },
+          {
+            "log": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.summary.txt": {
+                  "type": "file",
+                  "description": "FCSGX log file",
+                  "pattern": "*.summary.txt"
+                }
+              }
+            ]
+          },
+          {
+            "hits": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.hits.tsv.gz": {
+                  "type": "file",
+                  "description": "Save intermediate alignments",
+                  "pattern": "*.hits.tsv.gz"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@tillenglert",
+          "@mahesh-panchal"
+        ],
+        "maintainers": [
+          "@tillenglert",
           "@mahesh-panchal"
         ]
       }
@@ -98045,7 +98220,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "hgtseq",
@@ -103915,7 +104090,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.2.1"
+          "version": "2.3.0"
         }
       ]
     },
@@ -104029,7 +104204,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.2.1"
+          "version": "2.3.0"
         }
       ]
     },
@@ -104151,7 +104326,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.2.1"
+          "version": "2.3.0"
         }
       ]
     },
@@ -107651,7 +107826,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.2.1"
+          "version": "2.3.0"
         }
       ]
     },
@@ -108453,6 +108628,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -113500,7 +113679,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.2.1"
+          "version": "2.3.0"
         },
         {
           "name": "isoseq",
@@ -113603,7 +113782,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.2.1"
+          "version": "2.3.0"
         },
         {
           "name": "radseq",
@@ -118799,7 +118978,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.2.1"
+          "version": "2.3.0"
         },
         {
           "name": "datasync",
@@ -118819,7 +118998,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "drugresponseeval",
@@ -130499,7 +130678,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.2.1"
+          "version": "2.3.0"
         }
       ]
     },
@@ -145126,7 +145305,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.2.1"
+          "version": "2.3.0"
         }
       ]
     },
@@ -153926,7 +154105,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.2.1"
+          "version": "2.3.0"
         },
         {
           "name": "cutandrun",
@@ -162477,7 +162656,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.2.1"
+          "version": "2.3.0"
         },
         {
           "name": "metatdenovo",
@@ -189039,7 +189218,7 @@
         },
         {
           "name": "crisprseq",
-          "version": "2.2.1"
+          "version": "2.3.0"
         }
       ]
     },
@@ -189450,7 +189629,7 @@
       "pipelines": [
         {
           "name": "crisprseq",
-          "version": "2.2.1"
+          "version": "2.3.0"
         }
       ]
     },
@@ -202348,6 +202527,10 @@
           "version": "dev"
         },
         {
+          "name": "crisprseq",
+          "version": "2.3.0"
+        },
+        {
           "name": "datasync",
           "version": "dev"
         },
@@ -202369,7 +202552,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "differentialabundance",
@@ -202629,6 +202812,10 @@
           "version": "dev"
         },
         {
+          "name": "crisprseq",
+          "version": "2.3.0"
+        },
+        {
           "name": "datasync",
           "version": "dev"
         },
@@ -202650,7 +202837,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "differentialabundance",
@@ -202902,6 +203089,10 @@
           "version": "dev"
         },
         {
+          "name": "crisprseq",
+          "version": "2.3.0"
+        },
+        {
           "name": "deepmodeloptim",
           "version": "dev"
         },
@@ -202912,6 +203103,10 @@
         {
           "name": "demultiplex",
           "version": "1.5.3"
+        },
+        {
+          "name": "detaxizer",
+          "version": "1.1.0"
         },
         {
           "name": "fastqrepair",
@@ -203074,10 +203269,6 @@
         },
         {
           "name": "denovotranscript",
-          "version": "1.0.0"
-        },
-        {
-          "name": "detaxizer",
           "version": "1.0.0"
         },
         {
