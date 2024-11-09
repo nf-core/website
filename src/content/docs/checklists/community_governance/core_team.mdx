@@ -6,69 +6,68 @@ markdownPlugin: checklist
 
 ## New pipeline onboarding
 
-This documents the steps that need to be performed when a new pipeline is accepted via #new-pipelines
+This document outlines the steps to be performed when a new pipeline is accepted via the #new-pipelines channel
 
-1. [ ] Core: Check proposal has received approval on #new-pipelines from either:
-    - at least 2 members of core team
-    - at least 1 member of core team and 1 member of maintainers team
-2. [ ] Core: Check name follows [pipeline naming guidelines](/docs/guidelines/pipelines/workflow_name)
-3. [ ] Core: Make slack channel with approved name
-4. [ ] Core: Ask developer to join #pipeline-maintainers
-5. [ ] Core/Dev: Make git repository with nf-core create and push to GitHub
-6. [ ] Core/Dev: Transfer repository to nf-core GitHub organisation and delete repository on local machine
-7. [ ] Core/Dev: Sync the nf-co.re pipelines page by manually triggering the GitHub action (website repo > actions > build json files and md-cache > Run workflow > from main)
+1. [ ] Core: Check proposal has received approval in #new-pipelines from either:
+    - at least two members of the core team
+    - at least one member of the core team and one member of the maintainers team.
+2. [ ] Core: Verify that the pipeline name follows the [pipeline naming guidelines](/docs/guidelines/pipelines/workflow_name).
+3. [ ] Core: Create a slack channel with approved pipeline name.
+4. [ ] Core: Ask the developers to join #pipeline-maintainers channel.
+5. [ ] Core/Dev: Create the git repository using `nf-core create` and push it to GitHub.
+6. [ ] Core/Dev: Transfer the repository to nf-core GitHub organisation and delete the repository on local the machine/user account.
+7. [ ] Core/Dev: Sync the nf-co.re pipelines page by manually triggering the GitHub action (website repo -> actions -> build json files and md-cache -> Run workflow -> from main).
 
 ## Uploading test data to s3 bucket
 
-Uploading full-test AWS files for a pipeline to S3 bucket information:
+Instructions for uploading full-test AWS files for a pipeline to a S3 bucket:
 
 -   [ ] Check Valid test data that can be uploaded:
-    - [ ] Small input data that maybe flaky when downloaded from other repositories
-            e.g. Max of 10GB for the total across all files
-    - [ ] Very large files that cannot be reduced or subset
--   [ ] When creating the pipeline directory in the bucket, use the 'Amazon S3-managed keys (SSE-S3) option
+    - [ ] Small input data that maybe unreliable when downloaded from other repositories
+            (e.g., limit total file size to a maximum of 10GB across all files)
+    - [ ] Very large files that cannot be reduced or subsetted.
+-   [ ] When creating the pipeline directory in the S3 bucket, select the 'Amazon S3-managed keys (SSE-S3)` option.
 
 ## Activating Zenodo archiving of a new pipeline
 
-Instructions for setting up Zenodo DOIs.
-Anyone who is in the nf-core organization can do this!
+Instructions for setting up Zenodo DOIs. 
+It's recommended that a core team member does these steps as it makes it easier for us to transfer to the nf-core Zenodo community.
 
 Before release:
 
-1. [ ] Sign up with Zenodo and log in
-2. [ ] Make sure you have connected your github (Settings -> GitHub -> Connect Account)
+1. [ ] Sign up on Zenodo and log in.
+2. [ ] Connect your Github account (Go to Settings -> GitHub -> Connect Account).
 3. [ ] Once connected, go back to Settings -> GitHub
-4. [ ] Flip switch against all nf-core _pipeline_ repositories in the list of repositories to 'On' (including the one that you want to assign)
-    - Might as well do this for all (active) pipelines you see, as DOIs won't be assigned until release anyway
-    - Some will not activate (e.g. nf-core/exoseq) as they are archived!
-5. [ ] Tell pipeline developer to make a release
+4. [ ] Enable Zenodo archiving for all nf-core pipeline repositories by toggling the switch to `On` (including the one you want to assign).
+    - It’s a good idea to enable this for all active pipelines, as DOIs will only be assigned upon release.
+    - Note: Some repositories (e.g. nf-core/exoseq) may not activate as they are archived.
+5. [ ] Inform the pipeline developers to make a release.
 
 Post release:
 
-1. [ ] Go to Zenodo and find the repository of interest on the list repositories under Settings -> Github
-2. [ ] Click through to the release's Zenodo 'record' page
-3. [ ] Scroll down and look on the right-hand side of the page for the 'Communities' box, submit the record to the nf-core community
-4. [ ] Scroll down and again look on the right-hand side of the page for the 'Versions' box
-5. [ ] Copy the 'cite all versions by using the DOI ' DOI (_not_ the specific release!)
-6. [ ] On the master branch of the pipeline's repository, edit the following files:
-    - **README.md**: Zenodo Badge at the top, and 'If you use this pipeline cite:' at the bottom (make sure to uncomment this section too)
-    - **Nextflow.config**: manifest's DOI entry
-    - Commit with something like 'Add Zenodo ID after first release'
+1. [ ] Go to Zenodo and find the relevant repository in Settings -> Github.
+2. [ ] Click through to the Zenodo 'record' page for the release.
+3. [ ] On the record page, scroll down and look on the right-hand side and find the `Communities` box. Submit the record to the nf-core community.
+4. [ ] Scroll down and again on the right-hand side of the page for the `Versions` box, copy the DOI for 'cite all versions by using the DOI ' (_not_ the specific release DOI).
+5. [ ] Update the following files on the master branch of the pipeline repository:
+    - **README.md**: Add the Zenodo Badge at the top and update the 'If you use this pipeline cite:' section at the bottom (make sure to uncomment this section too).
+    - **Nextflow.config**: Update the manifest block to include the DOI.
+    - Commit these changes with a message like 'Add Zenodo ID after first release'.
 
 ## Adding new community member to the GitHub organisation
 
-Anyone can request to join the nf-core GitHub organisation via #github-invitations.
+Anyone can request to join the nf-core GitHub organisation via the #github-invitations channel.
 
-1.  [ ] Check they have a reasonable to join (clearly not spam)
-2.  [ ] Invite via https://github.com/orgs/nf-core/teams
-3.  [ ] Make sure to do team 'contributors' https://github.com/orgs/nf-core/teams/contributors
-4.  [ ] Press ✅ on their message in #github-invitations
+1.  [ ] Verify the request is reasonable (i.e., clearly not spam).
+2.  [ ] Send an invitation via [nf-core github teams](https://github.com/orgs/nf-core/teams)
+3.  [ ] Add them to the [nf-core contributors team](https://github.com/orgs/nf-core/teams/contributors)
+4.  [ ] Respond to the request on slack by reacting with ✅ on their message in #github-invitations channel (so they get their acceptance instructions).
 
 ## Updating online bingo cards
 
-We need to update the [bingo cards](https://nfcore-bingo.web.app/) before each hackathon to ensure they remain up-to-date.
+Before each hackathon, we need to update the [bingo cards](https://nfcore-bingo.web.app/) to ensure they remain current.
 
-1. [ ] Get the outreach google account credentials
+1. [ ] Get the outreach google account credentials from `@core-team`
 2. [ ] Log into the Firebase Dashboard: https://console.firebase.google.com/
 3. [ ] Click “Realtime Database” on the left
 4. [ ] In the middle click “games” and navigate down the tree until you reach “lexicon”
