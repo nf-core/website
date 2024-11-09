@@ -1,5 +1,5 @@
 #! /usr/bin/env node
-import { getGitHubFile, getCurrentRateLimitRemaining } from '../src/components/octokit.js';
+import { getGitHubFile, getCurrentRateLimitRemaining } from '../sites/main-site/src/components/octokit.js';
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 import path from 'path';
 import ProgressBar from 'progress';
@@ -16,6 +16,10 @@ async function getKeysWithPrefixes(prefixes) {
   let client = new S3Client({
     region: 'eu-west-1',
     signer: { sign: async (request) => request },
+    credentials: {
+      accessKeyId: '',
+      secretAccessKey: '',
+    },
   });
   const keys = [];
   const commonPrefixes = [];
