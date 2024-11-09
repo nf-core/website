@@ -1,5 +1,5 @@
 #! /usr/bin/env node
-import octokit, { getDocFiles, getGitHubFile, githubFolderExists } from '../src/components/octokit.js';
+import { octokit, getDocFiles, getGitHubFile, githubFolderExists } from '../sites/main-site/src/components/octokit.js';
 
 import { promises as fs, writeFileSync, existsSync } from 'fs';
 import yaml from 'js-yaml';
@@ -20,7 +20,7 @@ if (!existsSync(join(__dirname, 'public/pipelines.json'))) {
 // write the pipelines.json file
 export const writePipelinesJson = async () => {
   const pipelinesJsonPromise = fs.readFile(join(__dirname, 'public/pipelines.json'), 'utf8');
-  const ignoredTopicsPromise = fs.readFile(join(__dirname, 'src/config/ignored_repos.yaml'), 'utf8');
+  const ignoredTopicsPromise = fs.readFile(join(__dirname, 'sites/main-site/src/config/ignored_repos.yaml'), 'utf8');
   const [pipelinesJson, ignoredTopicsYaml] = await Promise.all([pipelinesJsonPromise, ignoredTopicsPromise]);
 
   const pipelines = JSON.parse(pipelinesJson);
@@ -222,7 +222,7 @@ export const writePipelinesJson = async () => {
     });
 
     // remove empty values from releases (usually from draft releases)
-    releases = releases.filter((release) => release.tag_name !== '');
+    releases = releases.filter((release) => release.tag_name !== '' && release.draft === false);
 
     // remove releases that are already in the pipelines.json file
     const index = pipelines.remote_workflows.findIndex((workflow) => workflow.name === name);

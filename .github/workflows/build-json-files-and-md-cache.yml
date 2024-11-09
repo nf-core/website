@@ -14,18 +14,15 @@ jobs:
     if: (github.event_name == 'schedule' && github.repository == 'nf-core/website') || (github.event_name != 'schedule')
 
     steps:
-      - name: Get current date
-        id: date
-        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
       # Set up the main website repo
-      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
           fetch-depth: 0 # Don't do a shallow clone
           token: ${{secrets.NF_CORE_BOT_AUTH_TOKEN}} # Needed for pushing back to the repo
 
       # install npm dependencies
       - name: Set up node.js
-        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4
+        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4
         with:
           node-version: 20
           cache: 'npm'
@@ -39,12 +36,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.PIPLINE_JSON_BUILD_TOKEN }}
 
       - name: create component.json
-        run: npm run build-component-json
+        run: npm run  build-component-json
         env:
           GITHUB_TOKEN: ${{ secrets.PIPLINE_JSON_BUILD_TOKEN }}
 
       - name: make md cache
-        run: node bin/build-cache.js && tar -cvJf .cache.tar.xz .cache
+        run: npm run  build-md-cache
         env:
           GITHUB_TOKEN: ${{ secrets.CREATE_CACHE_MD_TOKEN }}
 
@@ -90,7 +87,7 @@ jobs:
       # Create a PR if there are too many lines changed
       - name: Create PR with changes
         if: ${{ steps.check_lines.outputs.changes }}
-        uses: peter-evans/create-pull-request@6d6857d36972b65feb161a90e484f2984215f83e # v6
+        uses: peter-evans/create-pull-request@5e914681df9dc83aa4e4905692ca88beb2f9e91f # v7
         with:
           token: ${{ secrets.CREATE_PR_TOKEN }}
           commit-message: 'chore: update pipeline.json and component.json'
