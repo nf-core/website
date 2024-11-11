@@ -62,7 +62,7 @@ Here are the steps to follow:
     ```groovy title="main.nf.test"
     input[0] = [
                 [id:"ref"],
-                file(params.test_data['homo_sapiens']['genome']['genome_fasta_fai'], checkIfExists: true)
+                file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta.fai', checkIfExists: true)
             ]
     ```
 
