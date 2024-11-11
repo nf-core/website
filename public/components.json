@@ -3870,6 +3870,96 @@
       ]
     },
     {
+      "name": "anndata_getsize",
+      "path": "modules/nf-core/anndata/getsize/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "anndata_getsize",
+        "description": "Get the size (n_cells or n_genes) of an anndata object stored as a h5ad file",
+        "keywords": [
+          "anndata",
+          "single-cell",
+          "scanpy"
+        ],
+        "tools": [
+          {
+            "anndata": {
+              "description": "An annotated data matrix.",
+              "homepage": "http://anndata.rtfd.io",
+              "documentation": "http://anndata.rtfd.io",
+              "tool_dev_url": "https://github.com/theislab/anndata",
+              "doi": "10.21105/joss.04371",
+              "licence": [
+                "BSD-3-clause"
+              ],
+              "identifier": "biotools:anndata"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "h5ad": {
+                "type": "file",
+                "description": "H5AD file of anndata object",
+                "pattern": "*.h5ad"
+              }
+            }
+          ],
+          [
+            {
+              "size_type": {
+                "type": "string",
+                "description": "either 'cells', 'genes', 'obs', or 'var'"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "size": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.txt": {
+                  "type": "file",
+                  "description": "text file containing the requested size",
+                  "pattern": "*.txt"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@LeonHafner"
+        ],
+        "maintainers": [
+          "@LeonHafner"
+        ]
+      }
+    },
+    {
       "name": "annotsv_annotsv",
       "path": "modules/nf-core/annotsv/annotsv/meta.yml",
       "type": "module",
@@ -6920,6 +7010,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         },
         {
           "name": "rnafusion",
@@ -26258,6 +26352,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -39874,6 +39976,121 @@
           "version": "dev"
         }
       ]
+    },
+    {
+      "name": "coverm_contig",
+      "path": "modules/nf-core/coverm/contig/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "coverm_contig",
+        "description": "Map reads to contigs and estimate coverage",
+        "keywords": [
+          "mapping",
+          "genomics",
+          "metagenomics",
+          "coverage"
+        ],
+        "tools": [
+          {
+            "coverm": {
+              "description": "CoverM aims to be a configurable, easy to use and fast DNA read coverage and relative abundance calculator focused on metagenomics applications",
+              "homepage": "https://github.com/wwood/CoverM",
+              "documentation": "https://wwood.github.io/CoverM/coverm-contig.html",
+              "tool_dev_url": "https://github.com/wwood/CoverM",
+              "doi": "10.5281/zenodo.10531253",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:coverm"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "input": {
+                "type": "file",
+                "description": "FASTA/FASTQ containing reads (can be gzipped), or sorted BAM files of reads mapped to a reference.\nIf supplying PE fasta for multiple samples, should be in the order \"sample1_1, sample1_2, sample2_1, sample2_2...\".\n",
+                "pattern": "*.{fa,fq,fa.gz,fq.gz,bam}"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "reference": {
+                "type": "file",
+                "description": "Reference FASTA file to map reads to, or minimap2/strobealign index. Not required if using BAM input.",
+                "pattern": "*.{fasta,fasta.gz,mmi,sti}"
+              }
+            }
+          ],
+          [
+            {
+              "bam_input": {
+                "type": "boolean",
+                "description": "True if input is bam files"
+              }
+            }
+          ],
+          [
+            {
+              "interleaved": {
+                "type": "boolean",
+                "description": "True if input is interleaved fastq file"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "coverage": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n",
+                  "pattern": "*.depths.{txt}"
+                }
+              },
+              {
+                "*.depth.txt": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n",
+                  "pattern": "*.depths.{txt}"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@prototaxites"
+        ],
+        "maintainers": [
+          "@prototaxites"
+        ]
+      }
     },
     {
       "name": "crabz_compress",
@@ -109691,6 +109908,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -160904,7 +161125,13 @@
         "maintainers": [
           "@telatin"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "seqinspector",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "seqkit_concat",
@@ -203233,6 +203460,10 @@
           "version": "dev"
         },
         {
+          "name": "tfactivity",
+          "version": "dev"
+        },
+        {
           "name": "variantbenchmarking",
           "version": "dev"
         }
@@ -203446,10 +203677,6 @@
         {
           "name": "taxprofiler",
           "version": "1.2.0"
-        },
-        {
-          "name": "tfactivity",
-          "version": "dev"
         },
         {
           "name": "troughgraph",
