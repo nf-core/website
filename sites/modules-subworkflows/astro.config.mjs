@@ -83,6 +83,14 @@ export default defineConfig({
         assetsPrefix: 'https://nf-core-modules-subworkflows.netlify.app/',
     },
     vite: {
+        css: {
+            preprocessorOptions: {
+                scss: {
+                    api: 'modern-compiler',
+                    silenceDeprecations: ['legacy-js-api','mixed-decls','color-functions'],
+                },
+            },
+        },
         plugins: [
             yaml(),
             FontaineTransform.vite({
