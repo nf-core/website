@@ -8162,6 +8162,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -24775,6 +24779,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -43924,6 +43936,219 @@
           "version": "1.0.0"
         }
       ]
+    },
+    {
+      "name": "deepsomatic",
+      "path": "modules/nf-core/deepsomatic/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "deepsomatic",
+        "description": "DeepSomatic is an extension of deep learning-based variant caller DeepVariant that takes aligned reads (in BAM or CRAM format) from tumor and normal data, produces pileup image tensors from them, classifies each tensor using a convolutional neural network, and finally reports somatic variants in a standard VCF or gVCF file.",
+        "keywords": [
+          "variant calling",
+          "machine learning",
+          "neural network"
+        ],
+        "tools": [
+          {
+            "deepsomatic": {
+              "description": "",
+              "homepage": "https://github.com/google/deepsomatic",
+              "documentation": "https://github.com/google/deepsomatic",
+              "tool_dev_url": "https://github.com/google/deepsomatic",
+              "doi": "10.1101/2024.08.16.608331",
+              "licence": [
+                "BSD-3-clause"
+              ],
+              "identifier": "biotools:deepsomatic"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "input_normal": {
+                "type": "file",
+                "description": "BAM/CRAM file",
+                "pattern": "*.bam/cram"
+              }
+            },
+            {
+              "index_normal": {
+                "type": "file",
+                "description": "Index of BAM/CRAM file",
+                "pattern": "*.bai/crai"
+              }
+            },
+            {
+              "input_tumor": {
+                "type": "file",
+                "description": "BAM/CRAM file",
+                "pattern": "*.bam/cram"
+              }
+            },
+            {
+              "index_tumor": {
+                "type": "file",
+                "description": "Index of BAM/CRAM file",
+                "pattern": "*.bai/crai"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "intervals": {
+                "type": "file",
+                "description": "file containing intervals"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "The reference fasta file",
+                "pattern": "*.fasta"
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "Index of reference fasta file",
+                "pattern": "*.fai"
+              }
+            }
+          ],
+          [
+            {
+              "meta5": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "gzi": {
+                "type": "file",
+                "description": "GZI index of reference fasta file",
+                "pattern": "*.gzi"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "vcf": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}.vcf.gz": {
+                  "type": "file",
+                  "description": "Compressed VCF file",
+                  "pattern": "*.vcf.gz"
+                }
+              }
+            ]
+          },
+          {
+            "vcf_tbi": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}.vcf.gz.tbi": {
+                  "type": "file",
+                  "description": "Index of compressed VCF file",
+                  "pattern": "*.vcf.gz.tbi"
+                }
+              }
+            ]
+          },
+          {
+            "gvcf": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}.g.vcf.gz": {
+                  "type": "file",
+                  "description": "Compressed GVCF file",
+                  "pattern": "*.g.vcf.gz"
+                }
+              }
+            ]
+          },
+          {
+            "gvcf_tbi": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}.g.vcf.gz.tbi": {
+                  "type": "file",
+                  "description": "Index of compressed Genotyped VCF file",
+                  "pattern": "*.g.vcf.gz.tbi"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@vaxyzek"
+        ],
+        "maintainers": [
+          "@vaxyzek"
+        ]
+      }
     },
     {
       "name": "deeptmhmm",
@@ -108893,6 +109118,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
