@@ -8174,6 +8174,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -24787,6 +24791,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -110177,6 +110189,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -193174,6 +193190,127 @@
     }
   ],
   "subworkflows": [
+    {
+      "name": "abundance_differential_filter",
+      "path": "subworkflows/nf-core/abundance_differential_filter/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "abundance_differential_filter",
+        "description": "Perform differential analysis and filtering on abundance data",
+        "keywords": [
+          "differential expression",
+          "RNA-seq",
+          "DESeq2",
+          "limma",
+          "filtering"
+        ],
+        "components": [
+          "deseq2/differential",
+          "limma/differential",
+          "custom/filterdifferentialtable"
+        ],
+        "input": [
+          {
+            "ch_abundance": {
+              "type": "file",
+              "description": "Channel with abundance data and metadata\nStructure: [ val(meta_exp), path(counts) ]\nmeta keys: method, args_diff\n"
+            }
+          },
+          {
+            "ch_transcript_lengths": {
+              "type": "file",
+              "description": "Channel with transcript length information\nStructure: [ val(meta_exp), path(transcript_lengths) ]\n"
+            }
+          },
+          {
+            "ch_control_features": {
+              "type": "file",
+              "description": "Channel with control features information\nStructure: [ val(meta_exp), path(control_features) ]\n"
+            }
+          },
+          {
+            "ch_samplesheet": {
+              "type": "file",
+              "description": "Channel with sample information\nStructure: [ val(meta_exp), path(samplesheet) ]\n"
+            }
+          },
+          {
+            "ch_contrasts": {
+              "type": "value",
+              "description": "Channel with contrast information\nStructure: [ val(meta_contrast), val(contrast_variable), val(reference), val(target) ]\n"
+            }
+          },
+          {
+            "differential_method": {
+              "type": "string",
+              "description": "Method to use for differential analysis. Options: 'limma', 'deseq2'\n"
+            }
+          },
+          {
+            "FC_threshold": {
+              "type": "float",
+              "description": "Fold change threshold for filtering differential results\n"
+            }
+          },
+          {
+            "padj_threshold": {
+              "type": "float",
+              "description": "Adjusted p-value threshold for filtering differential results\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "results_genewise": {
+              "type": "file",
+              "description": "Unfiltered differential analysis results",
+              "pattern": "*.{csv,tsv}"
+            }
+          },
+          {
+            "results_genewise_filtered": {
+              "type": "file",
+              "description": "Filtered differential analysis results",
+              "pattern": "*.{csv,tsv}"
+            }
+          },
+          {
+            "normalised_matrix": {
+              "type": "file",
+              "description": "Normalised count matrix",
+              "pattern": "*.{csv,tsv}"
+            }
+          },
+          {
+            "variance_stabilised_matrix": {
+              "type": "file",
+              "description": "Variance stabilised count matrix (optional, DESeq2 only)",
+              "pattern": "*.{csv,tsv}"
+            }
+          },
+          {
+            "model": {
+              "type": "file",
+              "description": "Statistical model object from differential analysis",
+              "pattern": "*.rds"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
+        ]
+      }
+    },
     {
       "name": "bam_cnv_wisecondorx",
       "path": "subworkflows/nf-core/bam_cnv_wisecondorx/meta.yml",
