@@ -6,6 +6,7 @@ leads:
   - bjlang: Björn Langer
   - joseespinosa: Jose Espinosa-Carrasco
   - cnotred: Cedric Notredame
+  - FrancescaB19: Francesca Bernini
 pipelines:
   - rnaseq
   - smrnaseq
