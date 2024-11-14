@@ -57,9 +57,9 @@ Post release:
 1. [ ] Select **Settings -> Github** in Zenodo and find the relevant repository.
 2. [ ] Click  the Zenodo **Record** page for the release.
 3. [ ] Find the **Communities** box on the record page and submit the record to the nf-core community.
-4. [ ] Scroll down and again on the right-hand side of the page for the `Versions` box, copy the DOI for 'cite all versions by using the DOI ' (_not_ the specific release DOI).
+4. [ ] Copy the DOI for **Cite all versions by using the DOI**.
 5. [ ] Update files on the pipeline master branch:
-    - **README.md**: Add the Zenodo Badge at the top and update the 'If you use this pipeline cite:' section at the bottom (make sure to uncomment this section too).
+    - **README.md**: Add the Zenodo Badge and update the **If you use this pipeline cite:** section.
     - **Nextflow.config**: Update the manifest block to include the DOI.
     - Commit these changes with the message 'Add Zenodo ID after first release'.
 
@@ -69,21 +69,23 @@ Anyone can request to join the nf-core GitHub organisation via the #github-invit
 
 1.  [ ] Verify the request is reasonable (i.e., clearly not spam).
 2.  [ ] Send an invitation via [nf-core github teams](https://github.com/orgs/nf-core/teams)
-3.  [ ] Add them to the [nf-core contributors team](https://github.com/orgs/nf-core/teams/contributors)
-4.  [ ] Respond to the request on slack by reacting with ✅ on their message in #github-invitations channel (so they get their acceptance instructions).
+3.  [ ] Add new member to the [nf-core contributors team](https://github.com/orgs/nf-core/teams/contributors)
+4.  [ ] Respond to the #github-invitations channel request by reacting with the ✅ emoji.
 
 ## Updating online bingo cards
 
 Before each hackathon, we need to update the [bingo cards](https://nfcore-bingo.web.app/) to ensure they remain current.
 
-1. [ ] Get the outreach google account credentials from `@core-team`
+To update the bingo cards:
+
+1. [ ] Ask for the outreach google account credentials from `@core-team`
 2. [ ] Log into the Firebase Dashboard: https://console.firebase.google.com/
-3. [ ] Click “Realtime Database” on the left
-4. [ ] Click “games” and navigate down the tree until you reach “lexicon”
-5. [ ] Hover over “lexicon”, click on “+” to add entries.
+3. [ ] Select **Realtime Database**.
+4. [ ] Select **games** and navigate down the tree until you reach **lexicon**.
+5. [ ] Hover over **lexicon** and select **+** to add entries:
     - key: Number
     - value: New board entry
-6. To delete entries: Click on the trash bin next to the given entry.
+6. Select the trash bin next to the given entry to remove it.
 
 ## Backups
 
@@ -95,7 +97,7 @@ The following items should be regularly backed up by a member of core team with 
 
 This documents the steps that need to be performed when adding a new core team member:
 
-1. [ ] Add to core team slack channel
+1. [ ] Add to core team Slack channel
 2. [ ] Add to GitHub core team
 3. [ ] Add as owners on the GitHub org
 4. [ ] Add to @core-team @outreach-team slack teams
