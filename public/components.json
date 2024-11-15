@@ -8182,6 +8182,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -20848,16 +20852,35 @@
             {
               "reads": {
                 "type": "file",
-                "description": "List of input fastq files of size 1 and 2 for single-end and paired-end data,\nrespectively.\n"
+                "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data,\nrespectively.\n"
               }
             }
           ],
           [
             {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Input genome fasta file"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
               "index": {
                 "type": "directory",
-                "description": "Biscuit genome index directory (generated with 'biscuit index')",
-                "pattern": "BiscuitIndex"
+                "description": "Directory containing biscuit genome index"
               }
             }
           ]
@@ -20913,7 +20936,8 @@
           "@njspix"
         ],
         "maintainers": [
-          "@njspix"
+          "@njspix",
+          "@sateeshperi"
         ]
       }
     },
@@ -20982,16 +21006,35 @@
             {
               "reads": {
                 "type": "file",
-                "description": "List of input fastq files of size 1 and 2 for single-end and paired-end data,\nrespectively.\n"
+                "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data,\nrespectively.\n"
               }
             }
           ],
           [
             {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Input genome fasta file"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
               "index": {
                 "type": "directory",
-                "description": "Biscuit genome index directory (generated with 'biscuit index')",
-                "pattern": "BiscuitIndex"
+                "description": "Directory containing biscuit genome index"
               }
             }
           ]
@@ -21047,7 +21090,8 @@
           "@njspix"
         ],
         "maintainers": [
-          "@njspix"
+          "@njspix",
+          "@sateeshperi"
         ]
       }
     },
@@ -21095,6 +21139,14 @@
                 "type": "file",
                 "description": "BAM file contained mapped reads"
               }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
             },
             {
               "bai": {
@@ -21105,17 +21157,36 @@
           ],
           [
             {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Input genome fasta file"
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
               "index": {
                 "type": "directory",
-                "description": "Biscuit genome index directory (generated with 'biscuit index')",
-                "pattern": "BiscuitIndex"
+                "description": "Directory containing biscuit genome index"
               }
             }
           ]
         ],
         "output": [
           {
-            "bsconv_bam": [
+            "bam": [
               {
                 "meta": {
                   "type": "map",
@@ -21147,7 +21218,8 @@
           "@njspix"
         ],
         "maintainers": [
-          "@njspix"
+          "@njspix",
+          "@sateeshperi"
         ]
       }
     },
@@ -21192,13 +21264,29 @@
             {
               "bam": {
                 "type": "file",
-                "description": "Biscuit BAM file"
+                "description": "BAM file contained mapped reads"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
               }
             },
             {
               "bai": {
                 "type": "file",
-                "description": "BAM index"
+                "description": "BAM file index"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
               }
             },
             {
@@ -21210,17 +21298,36 @@
           ],
           [
             {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Input genome fasta file"
+              }
+            }
+          ],
+          [
+            {
+              "meta5": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
               "index": {
                 "type": "directory",
-                "description": "Biscuit genome index directory (generated with 'biscuit index')",
-                "pattern": "BiscuitIndex"
+                "description": "Directory containing biscuit genome index"
               }
             }
           ]
         ],
         "output": [
           {
-            "epiread_bed": [
+            "bed": [
               {
                 "meta": {
                   "type": "map",
@@ -21252,7 +21359,8 @@
           "@njspix"
         ],
         "maintainers": [
-          "@njspix"
+          "@njspix",
+          "@sateeshperi"
         ]
       }
     },
@@ -21290,6 +21398,12 @@
         "input": [
           [
             {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
               "fasta": {
                 "type": "file",
                 "description": "Input genome fasta file"
@@ -21301,10 +21415,17 @@
           {
             "index": [
               {
-                "BiscuitIndex/*.fa*": {
+                "meta": {
                   "type": "directory",
-                  "description": "Biscuit genome index directory",
-                  "pattern": "BiscuitIndex"
+                  "description": "Directory containing biscuit genome index",
+                  "pattern": "index"
+                }
+              },
+              {
+                "BiscuitIndex": {
+                  "type": "directory",
+                  "description": "Directory containing biscuit genome index",
+                  "pattern": "index"
                 }
               }
             ]
@@ -21325,7 +21446,8 @@
           "@njspix"
         ],
         "maintainers": [
-          "@njspix"
+          "@njspix",
+          "@sateeshperi"
         ]
       }
     },
@@ -21376,17 +21498,36 @@
           ],
           [
             {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Input genome fasta file"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
               "index": {
                 "type": "directory",
-                "description": "Biscuit genome index directory (generated with 'biscuit index')",
-                "pattern": "BiscuitIndex"
+                "description": "Directory containing biscuit genome index"
               }
             }
           ]
         ],
         "output": [
           {
-            "mergecg_bed": [
+            "bed": [
               {
                 "meta": {
                   "type": "map",
@@ -21418,7 +21559,8 @@
           "@njspix"
         ],
         "maintainers": [
-          "@njspix"
+          "@njspix",
+          "@sateeshperi"
         ]
       }
     },
@@ -21492,10 +21634,29 @@
           ],
           [
             {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Input genome fasta file"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
               "index": {
                 "type": "directory",
-                "description": "Biscuit genome index directory (generated with 'biscuit index')",
-                "pattern": "BiscuitIndex"
+                "description": "Directory containing biscuit genome index"
               }
             }
           ]
@@ -21534,7 +21695,8 @@
           "@njspix"
         ],
         "maintainers": [
-          "@njspix"
+          "@njspix",
+          "@sateeshperi"
         ]
       }
     },
@@ -21586,16 +21748,36 @@
           ],
           [
             {
-              "index": {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "fasta": {
                 "type": "file",
-                "description": "index file"
+                "description": "Input genome fasta file"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "index": {
+                "type": "directory",
+                "description": "Directory containing biscuit genome index"
               }
             }
           ]
         ],
         "output": [
           {
-            "biscuit_qc_reports": [
+            "reports": [
               {
                 "meta": {
                   "type": "file",
@@ -21628,7 +21810,8 @@
           "@njspix"
         ],
         "maintainers": [
-          "@njspix"
+          "@njspix",
+          "@sateeshperi"
         ]
       }
     },
@@ -21712,7 +21895,8 @@
           "@njspix"
         ],
         "maintainers": [
-          "@njspix"
+          "@njspix",
+          "@sateeshperi"
         ]
       }
     },
@@ -24795,6 +24979,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -34754,6 +34946,88 @@
         ],
         "authors": [
           "@alxndrdiaz"
+        ]
+      }
+    },
+    {
+      "name": "clipkit",
+      "path": "modules/nf-core/clipkit/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "clipkit",
+        "description": "ClipKIT is a fast and flexible alignment trimming tool that keeps phylogenetically informative sites and removes those that display characteristics poor phylogenetic signal.",
+        "keywords": [
+          "sort",
+          "example",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "clipkit": {
+              "description": "Alignment trimming software for phylogenetics.",
+              "homepage": "https://jlsteenwyk.com/ClipKIT/",
+              "documentation": "https://jlsteenwyk.com/ClipKIT/",
+              "tool_dev_url": "https://github.com/JLSteenwyk/ClipKIT",
+              "doi": "10.1371/journal.pbio.3001007",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "aln": {
+                "type": "file",
+                "description": "Multiple sequence alignment file in various supported formats.",
+                "pattern": "*.{fa,fasta,fa,fna,faa,alnfaa,aln,sto,stk,mauve,alignment,clustal}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "clipkit": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.clipkit": {
+                  "type": "file",
+                  "description": "Trimmed multiple sequence alignment file",
+                  "pattern": "*.clipkit"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
         ]
       }
     },
@@ -55537,6 +55811,113 @@
       }
     },
     {
+      "name": "fcsgx_cleangenome",
+      "path": "modules/nf-core/fcsgx/cleangenome/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "fcsgx_cleangenome",
+        "description": "Runs FCS-GX (Foreign Contamination Screen - Genome eXtractor) to remove foreign contamination from genome assemblies",
+        "keywords": [
+          "genome",
+          "assembly",
+          "contamination",
+          "screening",
+          "cleaning",
+          "fcs-gx"
+        ],
+        "tools": [
+          {
+            "fcsgx": {
+              "description": "The NCBI Foreign Contamination Screen. Genomic cross-species aligner, for contamination detection.",
+              "homepage": "https://github.com/ncbi/fcs-gx",
+              "documentation": "https://github.com/ncbi/fcs/wiki/",
+              "tool_dev_url": "https://github.com/ncbi/fcs-gx",
+              "doi": "10.1186/s13059-024-03198-7",
+              "licence": [
+                "NCBI-PD"
+              ],
+              "identifier": "biotools:ncbi_fcs"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Input genome assembly file in FASTA format",
+                "pattern": "*.{fa,fasta,fna}"
+              }
+            },
+            {
+              "fcsgx_report": {
+                "type": "file",
+                "description": "Final contamination report with contaminant cleaning actions. Generated using FCSGX_RUNGX"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "cleaned": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.cleaned.fasta": {
+                  "type": "file",
+                  "description": "The fasta file after cleaning, where sequences annotated as ACTION_EXCLUDE or ACTION_TRIM are excluded"
+                }
+              }
+            ]
+          },
+          {
+            "contaminants": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.contaminants.fasta": {
+                  "type": "file",
+                  "description": "Sequences annotated as ACTION_EXCLUDE which are marked as contaminants."
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@mahesh-panchal",
+          "@LaurenHuet"
+        ],
+        "maintainers": [
+          "@mahesh-panchal"
+        ]
+      }
+    },
+    {
       "name": "fcsgx_fetchdb",
       "path": "modules/nf-core/fcsgx/fetchdb/meta.yml",
       "type": "module",
@@ -59101,16 +59482,16 @@
               "input": {
                 "type": "file",
                 "description": "List of input FASTA files, or a directory containing input FASTA files.\nNote you must supply --input-extension via ext.args if FASTA extensions do not end in the default `fna.gz`.\n",
-                "pattern": "*"
+                "pattern": "*.{fasta,fna,fa,fa,fasta.gz,fna.gz,fa.gz,fa.gz}"
               }
             }
           ],
           [
             {
-              "input_type": {
+              "input_tsv": {
                 "type": "string",
-                "description": "Specify whether the file(s) given to the input channel are in FASTA format (and will be supplied as --input)\nor in TSV format (and will be supplied as --input-file). For TSV format, the 'file' column should be just the\nfile name so that it's local to the working directory of this process.\n",
-                "pattern": "fasta|tsv"
+                "description": "(Optional) Specify an TSV file containing the paths, and relevant metadata to the input FASTA files to use the `--input-file` option.\nThe 'file' column should be just the file name of each FASTA file (so that it's local to the working directory of the process).\nSee ganon documentation for more more information on the other columns.\n",
+                "pattern": "*tsv"
               }
             }
           ],
@@ -88150,7 +88531,7 @@
         ],
         "output": [
           {
-            "sthlm": [
+            "sto": [
               {
                 "meta": {
                   "type": "map",
@@ -88158,10 +88539,10 @@
                 }
               },
               {
-                "*.sthlm.gz": {
+                "*.sto.gz": {
                   "type": "file",
                   "description": "Multiple alignment in gzipped Stockholm format",
-                  "pattern": "*.sthlm.gz"
+                  "pattern": "*.sto.gz"
                 }
               }
             ]
@@ -88184,7 +88565,8 @@
         ],
         "maintainers": [
           "@erikrikarddaniel",
-          "@jfy133"
+          "@jfy133",
+          "@vagkaratzas"
         ]
       },
       "pipelines": [
@@ -109170,6 +109552,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
