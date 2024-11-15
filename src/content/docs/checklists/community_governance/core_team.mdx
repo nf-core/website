@@ -22,12 +22,12 @@ Instructions for nf-core pipeline approval:
 
 Instructions for uploading full-test AWS files for a pipeline to a S3 bucket:
 
-1.   [ ] Check Valid test data that can be uploaded:
-    :::note
-    Small input data that may be unreliable when downloaded from other repositories (e.g., limit total file size to a maximum of 10 GB across all files).
-    :::
-2. Check that large files that cannot be reduced or subsetted.
-3.   [ ] Create the pipeline directory in the S3 bucket and select the **Amazon S3-managed keys (SSE-S3)**.
+1.  [ ] Check Valid test data that can be uploaded:
+        :::note
+        Small input data that may be unreliable when downloaded from other repositories (e.g., limit total file size to a maximum of 10 GB across all files).
+        :::
+2.  Check that large files that cannot be reduced or subsetted.
+3.  [ ] Create the pipeline directory in the S3 bucket and select the **Amazon S3-managed keys (SSE-S3)**.
 
 ## Activating Zenodo archiving of a new pipeline
 
@@ -43,19 +43,20 @@ Before release:
 2. [ ] Select **Settings -> GitHub -> Connect Account** and connect your GitHub account.
 3. [ ] Once connected, select **Settings -> GitHub**.
 4. [ ] Enable Zenodo archiving for all nf-core pipeline repositories by toggling the switch to **On** (including the one you want to assign).
-    :::note
-    It’s a good idea to enable this for all active pipelines, as DOIs will only be assigned upon release.
-    :::
-    
+       :::note
+       It's a good idea to enable this for all active pipelines, as DOIs will only be assigned upon release.
+       :::
+
     :::note
     Some repositories (e.g., nf-core/exoseq) may not activate as they are archived.
     :::
+
 5. [ ] Inform the pipeline developers to make a release.
 
 Post release:
 
 1. [ ] Select **Settings -> Github** in Zenodo and find the relevant repository.
-2. [ ] Click  the Zenodo **Record** page for the release.
+2. [ ] Click the Zenodo **Record** page for the release.
 3. [ ] Find the **Communities** box on the record page and submit the record to the nf-core community.
 4. [ ] Copy the DOI for **Cite all versions by using the DOI**.
 5. [ ] Update files on the pipeline master branch:
