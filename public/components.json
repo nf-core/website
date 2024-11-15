@@ -8186,6 +8186,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -26612,6 +26616,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -41401,10 +41413,6 @@
           "version": "dev"
         },
         {
-          "name": "drugresponseeval",
-          "version": "dev"
-        },
-        {
           "name": "genomeannotator",
           "version": "dev"
         },
@@ -42498,7 +42506,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.11.0"
+          "version": "2.12.0"
         },
         {
           "name": "crisprseq",
@@ -51940,7 +51948,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.11.0"
+          "version": "2.12.0"
         },
         {
           "name": "phyloplace",
@@ -52054,7 +52062,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.11.0"
+          "version": "2.12.0"
         },
         {
           "name": "phyloplace",
@@ -54773,7 +54781,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.11.0"
+          "version": "2.12.0"
         },
         {
           "name": "atacseq",
@@ -60123,7 +60131,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.11.0"
+          "version": "2.12.0"
         },
         {
           "name": "phyloplace",
@@ -60215,7 +60223,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.11.0"
+          "version": "2.12.0"
         },
         {
           "name": "phyloplace",
@@ -60393,7 +60401,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.11.0"
+          "version": "2.12.0"
         },
         {
           "name": "phyloplace",
@@ -88376,7 +88384,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.11.0"
+          "version": "2.12.0"
         },
         {
           "name": "phyloplace",
@@ -88467,7 +88475,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.11.0"
+          "version": "2.12.0"
         },
         {
           "name": "phyloplace",
@@ -88572,7 +88580,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.11.0"
+          "version": "2.12.0"
         },
         {
           "name": "phyloplace",
@@ -88686,7 +88694,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.11.0"
+          "version": "2.12.0"
         },
         {
           "name": "phyloplace",
@@ -99132,7 +99140,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.11.0"
+          "version": "2.12.0"
         },
         {
           "name": "bacass",
@@ -104888,7 +104896,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.11.0"
+          "version": "2.12.0"
         },
         {
           "name": "multiplesequencealign",
@@ -109552,6 +109560,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -119918,7 +119930,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.11.0"
+          "version": "2.12.0"
         },
         {
           "name": "bamtofastq",
@@ -128786,6 +128798,14 @@
                 "description": "BAM file",
                 "pattern": "*.bam"
               }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information.\ne.g. [ id:'test' ]\n"
+              }
             },
             {
               "bam_index": {
@@ -128793,12 +128813,28 @@
                 "description": "BAM index file",
                 "pattern": "*.bai"
               }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information.\ne.g. [ id:'test' ]\n"
+              }
             },
             {
               "bqsr_table": {
                 "type": "file",
                 "description": "Table from calculating BQSR. Output from parabricks/fq2bam or gatk4/baserecalibrator.",
                 "pattern": "*.table"
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing sample information.\ne.g. [ id:'test' ]\n"
               }
             },
             {
@@ -128810,7 +128846,7 @@
           ],
           [
             {
-              "meta2": {
+              "meta5": {
                 "type": "map",
                 "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
               }
@@ -135651,7 +135687,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.11.0"
+          "version": "2.12.0"
         },
         {
           "name": "genomeqc",
@@ -185074,7 +185110,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.11.0"
+          "version": "2.12.0"
         },
         {
           "name": "atacseq",
@@ -190184,7 +190220,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.11.0"
+          "version": "2.12.0"
         },
         {
           "name": "crisprseq",
@@ -190495,7 +190531,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.11.0"
+          "version": "2.12.0"
         }
       ]
     },
@@ -190866,7 +190902,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.11.0"
+          "version": "2.12.0"
         }
       ]
     },
@@ -197160,7 +197196,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.11.0"
+          "version": "2.12.0"
         },
         {
           "name": "phyloplace",
@@ -203591,7 +203627,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.11.0"
+          "version": "2.12.0"
         },
         {
           "name": "bacass",
@@ -203648,6 +203684,10 @@
         {
           "name": "differentialabundance",
           "version": "1.5.0"
+        },
+        {
+          "name": "drugresponseeval",
+          "version": "dev"
         },
         {
           "name": "epitopeprediction",
@@ -203876,7 +203916,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.11.0"
+          "version": "2.12.0"
         },
         {
           "name": "bacass",
@@ -203933,6 +203973,10 @@
         {
           "name": "differentialabundance",
           "version": "1.5.0"
+        },
+        {
+          "name": "drugresponseeval",
+          "version": "dev"
         },
         {
           "name": "epitopeprediction",
@@ -204168,6 +204212,10 @@
       },
       "pipelines": [
         {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
           "name": "circrna",
           "version": "dev"
         },
@@ -204198,6 +204246,10 @@
         {
           "name": "detaxizer",
           "version": "1.1.0"
+        },
+        {
+          "name": "drugresponseeval",
+          "version": "dev"
         },
         {
           "name": "fastqrepair",
@@ -204341,10 +204393,6 @@
         {
           "name": "airrflow",
           "version": "4.1.0"
-        },
-        {
-          "name": "ampliseq",
-          "version": "2.11.0"
         },
         {
           "name": "bacass",
