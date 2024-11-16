@@ -8198,6 +8198,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -24999,6 +25003,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -54748,7 +54760,7 @@
         "tools": [
           {
             "fastqc": {
-              "description": "FastQC gives general quality metrics about your reads.\nIt provides information about the quality score distribution\nacross your reads, the per base sequence content (%A/C/G/T).\nYou get information about adapter contamination and other\noverrepresented sequences.\n",
+              "description": "FastQC gives general quality metrics about your reads.\nIt provides information about the quality score distribution\nacross your reads, the per base sequence content (%A/C/G/T).\n\nYou get information about adapter contamination and other\noverrepresented sequences.\n",
               "homepage": "https://www.bioinformatics.babraham.ac.uk/projects/fastqc/",
               "documentation": "https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/",
               "licence": [
@@ -109642,6 +109654,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -181295,6 +181311,167 @@
       ]
     },
     {
+      "name": "trgt_genotype",
+      "path": "modules/nf-core/trgt/genotype/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "trgt_genotype",
+        "description": "Tandem repeat genotyping from PacBio HiFi data",
+        "keywords": [
+          "repeat expansion",
+          "pacbio",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "trgt": {
+              "description": "Tandem repeat genotyping and visualization from PacBio HiFi data",
+              "homepage": "https://github.com/PacificBiosciences/trgt",
+              "documentation": "https://github.com/PacificBiosciences/trgt/blob/main/docs/tutorial.md",
+              "tool_dev_url": "https://github.com/PacificBiosciences/trgt",
+              "doi": "10.1038/s41587-023-02057-3",
+              "licence": [
+                "Pacific Biosciences Software License (https://github.com/PacificBiosciences/trgt/blob/main/LICENSE.md)"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Sorted BAM file",
+                "pattern": "*.bam"
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "Index of the BAM file",
+                "pattern": "*.bam"
+              }
+            },
+            {
+              "karyotype": {
+                "type": "string",
+                "description": "Karyotype of the sample. Either XX or XY. Defaults to XX if not given",
+                "enum": [
+                  "XX",
+                  "XY"
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy map containing reference information\ne.g. `[ id: 'genome' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "FASTA reference file",
+                "pattern": "*.{fasta,fa,fna}"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy map containing reference information\ne.g. `[ id: 'genome' ]`\n"
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "Index for FASTA file",
+                "pattern": "*.fai"
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy map containing repeat information\ne.g. `[ id: 'repeats' ]`\n"
+              }
+            },
+            {
+              "repeats": {
+                "type": "file",
+                "description": "BED file with repeat coordinates",
+                "pattern": "*.bed"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "vcf": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.vcf.gz": {
+                  "type": "file",
+                  "description": "VCF file with repeat genotypes",
+                  "pattern": "*.vcf.gz"
+                }
+              }
+            ]
+          },
+          {
+            "bam": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.spanning.bam": {
+                  "type": "file",
+                  "description": "BAM file with pieces of reads aligning to repeats",
+                  "pattern": "*.spanning.bam"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@Schmytzi",
+          "@fellen31"
+        ],
+        "maintainers": [
+          "@Schmytzi"
+        ]
+      }
+    },
+    {
       "name": "trimgalore",
       "path": "modules/nf-core/trimgalore/meta.yml",
       "type": "module",
@@ -197907,6 +198084,175 @@
           "version": "2.1.0"
         }
       ]
+    },
+    {
+      "name": "fastq_align_dedup_bismark",
+      "path": "subworkflows/nf-core/fastq_align_dedup_bismark/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "fastq_align_dedup_bismark",
+        "description": "Align BS-Seq reads to a reference genome using bismark, deduplicate and sort",
+        "keywords": [
+          "bismark",
+          "3-letter genome",
+          "map",
+          "methylation",
+          "5mC",
+          "methylseq",
+          "bisulphite",
+          "bisulfite",
+          "bam"
+        ],
+        "components": [
+          "bismark/align",
+          "samtools/sort",
+          "samtools/index",
+          "bismark/deduplicate",
+          "bismark/methylationextractor",
+          "bismark/coverage2cytosine",
+          "bismark/report",
+          "bismark/summary"
+        ],
+        "input": [
+          {
+            "ch_reads": {
+              "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data,\nrespectively.\nStructure: [ val(meta), [ path(reads) ] ]\n",
+              "pattern": "*.{fastq,fastq.gz}"
+            }
+          },
+          {
+            "ch_fasta": {
+              "type": "file",
+              "description": "Structure: [ val(meta), path(fasta) ]\n",
+              "pattern": "*.{fa,fa.gz}"
+            }
+          },
+          {
+            "ch_index": {
+              "description": "Bismark genome index files\nStructure: [ val(meta), path(index) ]\n",
+              "pattern": "BismarkIndex"
+            }
+          },
+          {
+            "skip_deduplication": {
+              "type": "boolean",
+              "description": "Skip deduplication of aligned reads\n"
+            }
+          },
+          {
+            "cytosine_report": {
+              "type": "boolean",
+              "description": "Produce coverage2cytosine reports that relates methylation calls back to genomic cytosine contexts\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "dedup_bam": {
+              "type": "file",
+              "description": "Channel containing deduplicated BAM files.\nStructure: [ val(meta), path(bam) ]\n",
+              "pattern": "*.bam"
+            }
+          },
+          {
+            "dedup_bam_index": {
+              "type": "file",
+              "description": "Channel containing deduplicated BAM index files.\nStructure: [ val(meta), path(bam.bai) ]\n",
+              "pattern": "*.bai"
+            }
+          },
+          {
+            "coverage2cytosine_coverage": {
+              "type": "file",
+              "description": "Channel containing coverage information from coverage2cytosine.\nStructure: [ val(meta), path(coverage.txt) ]\n",
+              "pattern": "*.cov.gz"
+            }
+          },
+          {
+            "coverage2cytosine_report": {
+              "type": "file",
+              "description": "Channel containing report from coverage2cytosine summarizing cytosine methylation coverage.\nStructure: [ val(meta), path(report.txt) ]\n",
+              "pattern": "*report.txt.gz"
+            }
+          },
+          {
+            "coverage2cytosine_summary": {
+              "type": "file",
+              "description": "Channel containing summary information from coverage2cytosine.\nStructure: [ val(meta), path(summary.txt) ]\n",
+              "pattern": "*cytosine_context_summary.txt"
+            }
+          },
+          {
+            "methylation_bedgraph": {
+              "type": "file",
+              "description": "Channel containing methylation data in bedGraph format.\nStructure: [ val(meta), path(methylation.bedgraph) ]\n",
+              "pattern": "*.bedGraph.gz"
+            }
+          },
+          {
+            "methylation_calls": {
+              "type": "file",
+              "description": "Channel containing methylation call data.\nStructure: [ val(meta), path(calls.txt) ]\n",
+              "pattern": "*.txt.gz"
+            }
+          },
+          {
+            "methylation_coverage": {
+              "type": "file",
+              "description": "Channel containing methylation coverage data.\nStructure: [ val(meta), path(coverage.txt) ]\n",
+              "pattern": "*.cov.gz"
+            }
+          },
+          {
+            "methylation_report": {
+              "type": "file",
+              "description": "Channel containing methylation report detailing methylation patterns.\nStructure: [ val(meta), path(report.txt) ]\n",
+              "pattern": "*_splitting_report.txt"
+            }
+          },
+          {
+            "methylation_mbias": {
+              "type": "file",
+              "description": "Channel containing M-bias report showing methylation bias across read positions.\nStructure: [ val(meta), path(mbias.txt) ]\n",
+              "pattern": "*.M-bias.txt"
+            }
+          },
+          {
+            "bismark_report": {
+              "type": "file",
+              "description": "Channel containing Bismark report with mapping and methylation statistics.\nStructure: [ val(meta), path(bismark_report.txt) ]\n",
+              "pattern": "*report.{html,txt}"
+            }
+          },
+          {
+            "bismark_summary": {
+              "type": "file",
+              "description": "Channel containing Bismark summary report.\nStructure: [ val(meta), path(bismark_summary.txt) ]\n",
+              "pattern": "*report.{html,txt}"
+            }
+          },
+          {
+            "multiqc": {
+              "type": "file",
+              "description": "Channel containing MultiQC report aggregating results across samples.\nStructure: [ val(meta), path(multiqc_report.html) ]\n",
+              "pattern": "*.html"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions.\nStructure: [ path(versions.yml) ]\n",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@sateeshperi"
+        ],
+        "maintainers": [
+          "@sateeshperi"
+        ]
+      }
     },
     {
       "name": "fastq_align_dna",
