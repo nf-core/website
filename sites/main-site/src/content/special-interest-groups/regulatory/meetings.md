@@ -16,4 +16,4 @@ After the kick off, we will have regular monthly meetups with a to-be-defined sc
 |  Sep 9 | Regulatory SIG                                  | [Where to?](/events/2024/SIG_regulatory_September.md)                                |
 | Oct 15 | Regulatory SIG                                  | [Monthly Regulatory Meeting: October 2024](/events/2024/SIG_regulatory_October.md)   |
 | Nov 12 | Regulatory SIG                                  | [Monthly Regulatory Meeting: November 2024](/events/2024/SIG_regulatory_November.md) |
-| Dec 17 | Regulatory SIG                                  | [Monthly Regulatory Meeting: December 2024](/events/2024/SIG_regulatory_December.md) |
+| Jan 17 | Regulatory SIG                                  | [Monthly Regulatory Meeting: January 2025](/events/2025/SIG_regulatory_January.md) |
