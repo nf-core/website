@@ -7,7 +7,7 @@ groupName: Animal Genomics
 # Meeting schedule
 
 The [Animal Genomics special interest group](/special-interest-groups/animal-genomics) meets on the third Wednesday
-of every month at 4 PM CET / 10 AM ET / 7 AM PT for 1h.
+of every monthm, usually at 4 PM CET / 10 AM ET / 7 AM PT for 1h.
 
 |   Date | Speaker                                                                                                                      | Event                                                        |
 | -----: | :--------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
@@ -17,7 +17,9 @@ of every month at 4 PM CET / 10 AM ET / 7 AM PT for 1h.
 | Jul 17 | Cristina Casto Rebollo (Institute for Animal Science and Technology (ICTA), Universitat Politècnica de València, Spain)      | [July Meeting](/events/2024/SIG_animalgenomics_July)         |
 | Sep 18 | Guillaume Devailly (INRAE, France) with Cervin Guyomar (INRAE, France) and Sandrine Lagarrigue (Institut Agro-INRAE, France) | [September Meeting](/events/2024/SIG_animalgenomics_Sept)    |
 | Oct 16 | Roderic Guigó Serra (CRG, Spain)                                                                                             | [October Meeting](/events/2024/SIG_animalgenomics_Oct)       |
-| Nov 20 | Harris Lewin (Arizona State University, USA)                                                                                 | [November Meeting](/events/2024/SIG_animalgenomics_Nov)      |
+| Nov 20 (5pm&nbsp;CET) | Harris Lewin (Arizona State University, USA)                                                                                 | [November Meeting](/events/2024/SIG_animalgenomics_Nov)      |
+| Dec 18 | Emily Clark (The Roslin Institute, University of Edinburgh, UK)                                                              | TBA      |
+
 
 # How to join
 
