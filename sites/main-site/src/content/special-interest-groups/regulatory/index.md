@@ -29,8 +29,8 @@ Regulatory is intended to work and align on topics around pipeline validation an
 Roughly, the plan is to do the following:
 
 1. Generate guidance documentation on the nf-core community webpage that helps people in lifting their pipelines within nf-core to higher standards to allow for easier compliance with regulatory requirements. This includes but is not limied to
-  a. Addition of missing tests for modules, subworkflows, workflows where necessary
-  b. Checking of guidelines for releasing pipelines, ensuring these are in line with expectations of regulatory authorities
+   a. Addition of missing tests for modules, subworkflows, workflows where necessary
+   b. Checking of guidelines for releasing pipelines, ensuring these are in line with expectations of regulatory authorities
 2. Validation of pipelines with standard / benchmark datasets where applicable, additional testing with (in-house) test data to verify status of pipeline
 3. Alignment between different stakeholders with interests in validation & qualification (e.g. Clinical providers, Pharmaceutical Industry, ...) to improve standards, fill gaps with respect to requirements with authorities
 4. Establishment of novel approaches to tackle the above, e.g. by additions to nf-core tooling to allow for better generation (automation) of requirements for the above
