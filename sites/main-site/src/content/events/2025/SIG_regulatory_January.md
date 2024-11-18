@@ -2,9 +2,9 @@
 title: '#regulatory - monthly meeting'
 subtitle: Round table in regulatory led by Alex Peltzer (Boehringer Ingelheim Pharma GmbH)
 type: talk
-startDate: '2024-12-17'
+startDate: '2025-01-21'
 startTime: '16:00+02:00'
-endDate: '2024-12-17'
+endDate: '2025-01-21'
 endTime: '17:30+02:00'
 locations:
   - name: Online (Zoom)
