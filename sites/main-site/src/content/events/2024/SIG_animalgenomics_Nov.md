@@ -13,5 +13,6 @@ locations:
       - https://rediris.zoom.us/j/96065549412?pwd=L2txanpQMEFTOWVLNmtIZyt6M3NnUT09
 ---
 
-November 2024 talk of the monthly meeting of the _#animal-genomics_ special interest group.
-**Harris Lewin** (Arizona State University, USA) will discuss the [Earth BioGenome Project](https://www.earthbiogenome.org/) during this meeting.
+November 2024 talk of the monthly meeting of the [_#animal-genomics_ special interest group](/special-interest-groups/animal-genomics).
+
+It is a pleasure to announce the forthcoming talk by **Harris Lewin** (Arizona State University, USA), an affirmed leader in the field of genomics and the chairman of the [Earth BioGenome Project](https://www.earthbiogenome.org/) (EBP), which he will present. Harris has made groundbreaking contributions to livestock genomics, evolutionary biology and biodiversity conservation. His work has been fundamental in advancing our understanding of genome evolution and the genetic basis of traits in farmed and wild animals. 
