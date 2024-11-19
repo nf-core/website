@@ -1,5 +1,5 @@
 ---
-title: 'CANCELLED ~~#animal-genomics: November Meeting~~'
+title: 'CANCELLED: #animal-genomics: November Meeting'
 subtitle: ~~Harris Lewin (Arizona State University, USA)~~
 
 type: talk
