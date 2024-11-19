@@ -40,4 +40,4 @@ The discussion will often be a follow-up on the talk.
 
 # How to join
 
-Join the [nf-core Slack](/join#slack) and find us in the #animal-genomics channel
+Join the [nf-core Slack](/join#slack) and find us in the _#animal-genomics_ channel
