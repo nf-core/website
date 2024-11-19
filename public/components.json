@@ -8222,6 +8222,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -26728,6 +26732,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -41615,10 +41627,6 @@
         {
           "name": "rnavar",
           "version": "1.0.0"
-        },
-        {
-          "name": "sammyseq",
-          "version": "dev"
         },
         {
           "name": "scnanoseq",
@@ -72935,13 +72943,21 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n",
+                  "pattern": "*.interval_list"
                 }
               },
               {
                 "**.interval_list": {
-                  "type": "file",
-                  "description": "interval files",
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n",
+                  "pattern": "*.interval_list"
+                }
+              },
+              {
+                "s": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n",
                   "pattern": "*.interval_list"
                 }
               }
@@ -109718,6 +109734,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -182028,6 +182048,10 @@
           "version": "1.0.4"
         },
         {
+          "name": "sammyseq",
+          "version": "dev"
+        },
+        {
           "name": "ssds",
           "version": "dev"
         }
@@ -204660,6 +204684,10 @@
           "version": "3.17.0"
         },
         {
+          "name": "sammyseq",
+          "version": "dev"
+        },
+        {
           "name": "sarek",
           "version": "3.4.4"
         },
@@ -204953,6 +204981,10 @@
           "version": "3.17.0"
         },
         {
+          "name": "sammyseq",
+          "version": "dev"
+        },
+        {
           "name": "sarek",
           "version": "3.4.4"
         },
@@ -205140,6 +205172,10 @@
         {
           "name": "rnaseq",
           "version": "3.17.0"
+        },
+        {
+          "name": "sammyseq",
+          "version": "dev"
         },
         {
           "name": "scdownstream",
