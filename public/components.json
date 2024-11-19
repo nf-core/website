@@ -8218,6 +8218,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -11045,7 +11049,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.3.1"
+          "version": "2.4.0"
         },
         {
           "name": "funcscan",
@@ -11123,7 +11127,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.3.1"
+          "version": "2.4.0"
         },
         {
           "name": "funcscan",
@@ -26716,6 +26720,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -29234,7 +29246,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.3.1"
+          "version": "2.4.0"
         }
       ]
     },
@@ -29461,6 +29473,10 @@
         {
           "name": "airrflow",
           "version": "4.1.0"
+        },
+        {
+          "name": "bacass",
+          "version": "2.4.0"
         },
         {
           "name": "bamtofastq",
@@ -48634,7 +48650,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.3.1"
+          "version": "2.4.0"
         }
       ]
     },
@@ -54724,7 +54740,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.3.1"
+          "version": "2.4.0"
         },
         {
           "name": "demultiplex",
@@ -54909,7 +54925,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.3.1"
+          "version": "2.4.0"
         },
         {
           "name": "bamtofastq",
@@ -84478,7 +84494,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.3.1"
+          "version": "2.4.0"
         },
         {
           "name": "chipseq",
@@ -99282,7 +99298,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.3.1"
+          "version": "2.4.0"
         },
         {
           "name": "demultiplex",
@@ -110777,6 +110793,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -114645,7 +114665,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.3.1"
+          "version": "2.4.0"
         }
       ]
     },
@@ -114821,7 +114841,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.3.1"
+          "version": "2.4.0"
         },
         {
           "name": "circdna",
@@ -120103,6 +120123,10 @@
           "version": "2.12.0"
         },
         {
+          "name": "bacass",
+          "version": "2.4.0"
+        },
+        {
           "name": "bamtofastq",
           "version": "2.1.1"
         },
@@ -122322,7 +122346,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.3.1"
+          "version": "2.4.0"
         },
         {
           "name": "genomeassembler",
@@ -140625,7 +140649,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.3.1"
+          "version": "2.4.0"
         },
         {
           "name": "mag",
@@ -141919,7 +141943,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.3.1"
+          "version": "2.4.0"
         },
         {
           "name": "funcscan",
@@ -146133,7 +146157,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.3.1"
+          "version": "2.4.0"
         },
         {
           "name": "genomeassembler",
@@ -146493,7 +146517,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.3.1"
+          "version": "2.4.0"
         },
         {
           "name": "crisprseq",
@@ -155269,7 +155293,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.3.1"
+          "version": "2.4.0"
         },
         {
           "name": "bamtofastq",
@@ -156362,7 +156386,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.3.1"
+          "version": "2.4.0"
         },
         {
           "name": "callingcards",
@@ -185553,6 +185577,10 @@
       },
       "pipelines": [
         {
+          "name": "bacass",
+          "version": "2.4.0"
+        },
+        {
           "name": "viralrecon",
           "version": "2.6.0"
         }
@@ -185755,7 +185783,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.3.1"
+          "version": "2.4.0"
         },
         {
           "name": "chipseq",
@@ -198464,7 +198492,7 @@
             }
           },
           {
-            "ch_index": {
+            "ch_bismark_index": {
               "description": "Bismark genome index files\nStructure: [ val(meta), path(index) ]\n",
               "pattern": "BismarkIndex"
             }
@@ -198484,16 +198512,16 @@
         ],
         "output": [
           {
-            "dedup_bam": {
+            "bam": {
               "type": "file",
-              "description": "Channel containing deduplicated BAM files.\nStructure: [ val(meta), path(bam) ]\n",
+              "description": "Channel containing aligned or deduplicated BAM files.\nStructure: [ val(meta), path(bam) ]\n",
               "pattern": "*.bam"
             }
           },
           {
-            "dedup_bam_index": {
+            "bai": {
               "type": "file",
-              "description": "Channel containing deduplicated BAM index files.\nStructure: [ val(meta), path(bam.bai) ]\n",
+              "description": "Channel containing aligned or deduplicated BAM index files.\nStructure: [ val(meta), path(bam.bai) ]\n",
               "pattern": "*.bai"
             }
           },
@@ -200641,7 +200669,7 @@
       "pipelines": [
         {
           "name": "bacass",
-          "version": "2.3.1"
+          "version": "2.4.0"
         },
         {
           "name": "denovotranscript",
@@ -204437,7 +204465,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.3.1"
+          "version": "2.4.0"
         },
         {
           "name": "bamtofastq",
@@ -204730,7 +204758,7 @@
         },
         {
           "name": "bacass",
-          "version": "2.3.1"
+          "version": "2.4.0"
         },
         {
           "name": "bamtofastq",
@@ -205030,6 +205058,10 @@
           "version": "2.12.0"
         },
         {
+          "name": "bacass",
+          "version": "2.4.0"
+        },
+        {
           "name": "circrna",
           "version": "dev"
         },
@@ -205211,10 +205243,6 @@
         {
           "name": "airrflow",
           "version": "4.1.0"
-        },
-        {
-          "name": "bacass",
-          "version": "2.3.1"
         },
         {
           "name": "bamtofastq",
