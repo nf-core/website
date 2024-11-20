@@ -8234,6 +8234,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -26772,6 +26776,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -40305,6 +40317,113 @@
                     }
                   ],
                   "pattern": "*.{genome}"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@ramirobarrantes"
+        ],
+        "maintainers": [
+          "@ramirobarrantes"
+        ]
+      }
+    },
+    {
+      "name": "coptr_map",
+      "path": "modules/nf-core/coptr/map/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "coptr_map",
+        "description": "Maps the reads to the reference database",
+        "keywords": [
+          "coptr",
+          "mapping",
+          "ptr"
+        ],
+        "tools": [
+          {
+            "coptr": {
+              "description": "Accurate and robust inference of microbial growth dynamics from metagenomic sequencing reads.",
+              "homepage": "https://github.com/tyjo/coptr",
+              "documentation": "https://coptr.readthedocs.io/",
+              "tool_dev_url": "https://github.com/tyjo/coptr",
+              "doi": "10.1101/gr.275533.121",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:coptr"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "fastq file with reads",
+                "pattern": "*.{.fastq,.fq,.fastq.gz,fq.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing index genome id and path\ne.g. [ id:'test', 'bowtie2' ]\n"
+              }
+            },
+            {
+              "index": {
+                "type": "file",
+                "description": "Directory with Bowtie2 genome index files",
+                "pattern": "*.ebwt"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "bam": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.bam": {
+                  "type": "file",
+                  "description": "Alignment (BAM) file of reads mapped to the reference database",
+                  "pattern": "*.{bam}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
                 }
               }
             ]
@@ -53936,7 +54055,13 @@
         "maintainers": [
           "@gallvp"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "genomeqc",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "fastawindows",
@@ -109804,6 +109929,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
