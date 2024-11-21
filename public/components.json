@@ -8242,6 +8242,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -26796,6 +26800,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -27304,13 +27316,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.{amb,ann,bwt,pac,sa}"
                 }
               },
               {
                 "bwa": {
-                  "type": "file",
-                  "description": "BWA genome index files",
+                  "type": "map",
+                  "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*.{amb,ann,bwt,pac,sa}"
                 }
               }
@@ -109941,6 +109954,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
