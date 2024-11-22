@@ -119,6 +119,34 @@ assertAll(
 `process.out` will capture all output channels, both named and index based ones.
 :::
 
+4. **Configuration of ext.args in tests**: Module nf-tests SHOULD use a single nextflow.config to supply ext.args to a module. They can be defined in the when block of a test under the params scope.
+
+```groovy {title="main.nf.test"}
+config './nextflow.config'
+
+when {
+  params {
+    module_args = '--extra_opt1 --extra_opt2'
+  }
+  process {
+    """
+    input[0] = [
+      [ id:'test1', single_end:false ], // meta map
+      file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/genome/genome.fna.gz', checkIfExists: true)
+    ]
+    """
+  }
+}
+```
+
+```groovy {title="nextflow.config"}
+process {
+  withName: 'MODULE' {
+    ext.args = params.module_args
+  }
+}
+```
+
 ## Additional cases:
 
 4. **Handling Inconsistent md5sum**: Use specific content checks for elements with inconsistent md5sums.
@@ -298,8 +326,8 @@ _Motivation:_ I want to include in the snapshot:
 assert snapshot(
     process.out.npa.collect { meta, npa -> file(npa).name },
     process.out.npc.collect { meta, npc -> file(npc).name },
-    process.out.npo.collect { meta, npo -> file(npo).name },
-    process.out.npl.collect { meta, npl -> file(npl).name }
+    process.out.npo.collect { meta, npo -> file(npo).readLines()[0] },
+    process.out.npl.collect { meta, npl -> file(npl) }
 ).match()
 ```
 
