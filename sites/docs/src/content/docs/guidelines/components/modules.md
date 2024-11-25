@@ -782,6 +782,10 @@ process {
 
 No other settings should go into this file.
 
+:::tip
+Supply the config only to the tests that use `params`, otherwise define `params` for every test including the stub test.
+:::
+
 ## Misc
 
 ### General module code formatting
