@@ -23,7 +23,7 @@
             "has_wiki": false,
             "has_pages": false,
             "has_discussions": false,
-            "forks_count": 34,
+            "forks_count": 35,
             "archived": false,
             "disabled": false,
             "open_issues_count": 24,
@@ -38,7 +38,7 @@
                 "repseq"
             ],
             "visibility": "public",
-            "forks": 34,
+            "forks": 35,
             "open_issues": 24,
             "watchers": 54,
             "default_branch": "master",
@@ -72,7 +72,7 @@
                     "status": "disabled"
                 }
             },
-            "network_count": 34,
+            "network_count": 35,
             "subscribers_count": 150,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
@@ -232,9 +232,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/airrflow",
+                "author": "",
+                "homePage": "https://github.com/nf-core/airrflow",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "4.1.0",
+                "doi": "10.5281/zenodo.2642009"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/airrflow",
+                "author": "",
+                "homePage": "https://github.com/nf-core/airrflow",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "4.1.0",
+                "doi": "https://doi.org/10.1371/journal.pcbi.1012265"
+            },
             "releases": [
                 {
                     "tag_name": "4.1.0",
@@ -531,10 +551,10 @@
             "has_wiki": false,
             "has_pages": false,
             "has_discussions": false,
-            "forks_count": 118,
+            "forks_count": 119,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 27,
+            "open_issues_count": 28,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -556,8 +576,8 @@
                 "taxonomic-profiling"
             ],
             "visibility": "public",
-            "forks": 118,
-            "open_issues": 27,
+            "forks": 119,
+            "open_issues": 28,
             "watchers": 188,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -590,7 +610,7 @@
                     "status": "disabled"
                 }
             },
-            "network_count": 118,
+            "network_count": 119,
             "subscribers_count": 152,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
@@ -865,9 +885,29 @@
             "master_nextflow_config_plugins": [
                 "nf-schema@2.1.2"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/ampliseq",
+                "author": "",
+                "homePage": "https://github.com/nf-core/ampliseq",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "2.12.0",
+                "doi": "10.5281/zenodo.1493841,10.3389/fmicb.2020.550420"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.2"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/ampliseq",
+                "author": "",
+                "homePage": "https://github.com/nf-core/ampliseq",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "2.13.0dev",
+                "doi": "10.5281/zenodo.1493841,10.3389/fmicb.2020.550420"
+            },
             "releases": [
                 {
                     "tag_name": "2.12.0",
@@ -1484,12 +1524,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/atacseq",
             "created_at": "2018-11-05T17:49:32Z",
-            "updated_at": "2024-11-24T14:07:56Z",
+            "updated_at": "2024-11-25T11:24:15Z",
             "pushed_at": "2024-11-20T13:53:11Z",
             "homepage": "https://nf-co.re/atacseq",
             "size": 10138,
-            "stargazers_count": 189,
-            "watchers_count": 189,
+            "stargazers_count": 190,
+            "watchers_count": 190,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": false,
@@ -1511,7 +1551,7 @@
             "visibility": "public",
             "forks": 119,
             "open_issues": 34,
-            "watchers": 189,
+            "watchers": 190,
             "default_branch": "master",
             "temp_clone_token": "",
             "allow_squash_merge": false,
@@ -1698,9 +1738,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/atacseq",
+                "author": "",
+                "homePage": "https://github.com/nf-core/atacseq",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "2.1.2",
+                "doi": "https://doi.org/10.5281/zenodo.2634132"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/atacseq",
+                "author": "",
+                "homePage": "https://github.com/nf-core/atacseq",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "2.2.0dev",
+                "doi": "https://doi.org/10.5281/zenodo.2634132"
+            },
             "releases": [
                 {
                     "tag_name": "2.1.2",
@@ -2267,9 +2327,29 @@
             "master_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/bacass",
+                "author": "",
+                "homePage": "https://github.com/nf-core/bacass",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "2.4.0",
+                "doi": "10.5281/zenodo.2669428"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/bacass",
+                "author": "",
+                "homePage": "https://github.com/nf-core/bacass",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "2.5.0dev",
+                "doi": "10.5281/zenodo.2669428"
+            },
             "releases": [
                 {
                     "tag_name": "2.4.0",
@@ -2769,7 +2849,25 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/bactmap",
+                "author": "Anthony Underwood",
+                "homePage": "https://github.com/nf-core/bactmap",
+                "description": "A mapping-based pipeline for creating a phylogeny from bacterial whole genome sequences",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=21.04.0",
+                "version": "1.0.0"
+            },
             "dev_nextflow_config_plugins": null,
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/bactmap",
+                "author": "Anthony Underwood",
+                "homePage": "https://github.com/nf-core/bactmap",
+                "description": "A mapping-based pipeline for creating a phylogeny from bacterial whole genome sequences",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=21.04.0",
+                "version": "1.1.0dev"
+            },
             "releases": [
                 {
                     "tag_name": "1.0.0",
@@ -3013,9 +3111,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/bamtofastq",
+                "author": "",
+                "homePage": "https://github.com/nf-core/bamtofastq",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "2.1.1",
+                "doi": "https://doi.org/10.5281/zenodo.4710628"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/bamtofastq",
+                "author": "",
+                "homePage": "https://github.com/nf-core/bamtofastq",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "2.1.2dev",
+                "doi": "10.5281/zenodo.4710628"
+            },
             "releases": [
                 {
                     "tag_name": "2.1.1",
@@ -3366,7 +3484,25 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/cageseq",
+                "author": "Kevin Menden, Tristan Kast, Matthias Hörtenhuber",
+                "homePage": "https://github.com/nf-core/cageseq",
+                "description": "CAGE-seq pipeline",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=20.04.0",
+                "version": "1.0.2"
+            },
             "dev_nextflow_config_plugins": null,
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/cageseq",
+                "author": "Kevin Menden, Tristan Kast, Matthias Hörtenhuber",
+                "homePage": "https://github.com/nf-core/cageseq",
+                "description": "CAGE-seq pipeline",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=21.10.3",
+                "version": "2.0.0"
+            },
             "releases": [
                 {
                     "tag_name": "1.0.2",
@@ -3589,9 +3725,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/callingcards",
+                "author": "",
+                "homePage": "https://github.com/nf-core/callingcards",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0.0",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/callingcards",
+                "author": "",
+                "homePage": "https://github.com/nf-core/callingcards",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0.0",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "1.0.0",
@@ -3945,9 +4101,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/chipseq",
+                "author": "",
+                "homePage": "https://github.com/nf-core/chipseq",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "2.1.0",
+                "doi": "https://doi.org/10.5281/zenodo.3240506"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/chipseq",
+                "author": "",
+                "homePage": "https://github.com/nf-core/chipseq",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "2.2.0dev",
+                "doi": "https://doi.org/10.5281/zenodo.3240506"
+            },
             "releases": [
                 {
                     "tag_name": "2.1.0",
@@ -4328,9 +4504,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/circdna",
+                "author": "",
+                "homePage": "https://github.com/nf-core/circdna",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.1",
+                "doi": "10.5281/zenodo.7712010"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/circdna",
+                "author": "",
+                "homePage": "https://github.com/nf-core/circdna",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.1",
+                "doi": "10.5281/zenodo.7712010"
+            },
             "releases": [
                 {
                     "tag_name": "1.1.0",
@@ -4821,9 +5017,29 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/circrna",
+                "author": "",
+                "homePage": "https://github.com/nf-core/circrna",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=22.10.1",
+                "version": "dev",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/circrna",
+                "author": "",
+                "homePage": "https://github.com/nf-core/circrna",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "0.0.1dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -5089,7 +5305,25 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/clipseq",
+                "author": "Charlotte West, Anob Chakrabarti",
+                "homePage": "https://github.com/nf-core/clipseq",
+                "description": "CLIP analysis pipeline",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=20.04.0",
+                "version": "1.0.0"
+            },
             "dev_nextflow_config_plugins": null,
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/clipseq",
+                "author": "Charlotte West, Anob Chakrabarti",
+                "homePage": "https://github.com/nf-core/clipseq",
+                "description": "CLIP analysis pipeline",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=20.04.0",
+                "version": "1.1.0dev"
+            },
             "releases": [
                 {
                     "tag_name": "1.0.0",
@@ -5312,7 +5546,25 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/coproid",
+                "author": "Maxime Borry",
+                "homePage": "https://github.com/nf-core/coproid",
+                "description": "Coprolite Identification",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=19.10.0",
+                "version": "1.1.1"
+            },
             "dev_nextflow_config_plugins": null,
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/coproid",
+                "author": "Maxime Borry",
+                "homePage": "https://github.com/nf-core/coproid",
+                "description": "Coprolite Identification",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=19.10.0",
+                "version": "1.1.1"
+            },
             "releases": [
                 {
                     "tag_name": "1.1.1",
@@ -5515,9 +5767,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/createpanelrefs",
+                "author": "",
+                "homePage": "https://github.com/nf-core/createpanelrefs",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/createpanelrefs",
+                "author": "",
+                "homePage": "https://github.com/nf-core/createpanelrefs",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -5737,9 +6009,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/createtaxdb",
+                "author": "",
+                "homePage": "https://github.com/nf-core/createtaxdb",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/createtaxdb",
+                "author": "",
+                "homePage": "https://github.com/nf-core/createtaxdb",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -5949,9 +6241,29 @@
             "master_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/crisprseq",
+                "author": "",
+                "homePage": "https://github.com/nf-core/crisprseq",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "2.3.0",
+                "doi": "https://doi.org/10.5281/zenodo.7598496"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/crisprseq",
+                "author": "",
+                "homePage": "https://github.com/nf-core/crisprseq",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "2.4.0dev",
+                "doi": "https://doi.org/10.5281/zenodo.7598496"
+            },
             "releases": [
                 {
                     "tag_name": "2.3.0",
@@ -6454,7 +6766,25 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/crisprvar",
+                "author": "Project author name (use a comma to separate multiple names).",
+                "homePage": "https://github.com/nf-core/crisprvar",
+                "description": "Run CRISPResso on genome editing experiments",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=0.32.0",
+                "version": "1.0dev"
+            },
             "dev_nextflow_config_plugins": null,
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/crisprvar",
+                "author": "Project author name (use a comma to separate multiple names).",
+                "homePage": "https://github.com/nf-core/crisprvar",
+                "description": "Run CRISPResso on genome editing experiments",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=0.32.0",
+                "version": "1.0dev"
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -6478,12 +6808,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/cutandrun",
             "created_at": "2021-01-14T11:47:23Z",
-            "updated_at": "2024-11-15T15:30:55Z",
+            "updated_at": "2024-11-25T11:44:14Z",
             "pushed_at": "2024-10-11T12:33:02Z",
             "homepage": "https://nf-co.re/cutandrun",
             "size": 9067,
-            "stargazers_count": 81,
-            "watchers_count": 81,
+            "stargazers_count": 82,
+            "watchers_count": 82,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": true,
@@ -6507,7 +6837,7 @@
             "visibility": "public",
             "forks": 48,
             "open_issues": 30,
-            "watchers": 81,
+            "watchers": 82,
             "default_branch": "master",
             "temp_clone_token": "",
             "allow_squash_merge": false,
@@ -6669,9 +6999,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/cutandrun",
+                "author": "",
+                "homePage": "https://github.com/nf-core/cutandrun",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "3.2.2",
+                "doi": "https://doi.org/10.5281/zenodo.5653535"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/cutandrun",
+                "author": "",
+                "homePage": "https://github.com/nf-core/cutandrun",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "3.2.2",
+                "doi": "https://doi.org/10.5281/zenodo.5653535"
+            },
             "releases": [
                 {
                     "tag_name": "3.2.2",
@@ -7229,9 +7579,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/datasync",
+                "author": "",
+                "homePage": "https://github.com/nf-core/datasync",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/datasync",
+                "author": "",
+                "homePage": "https://github.com/nf-core/datasync",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -7656,7 +8026,25 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/ddamsproteomics",
+                "author": "Project author name (use a comma to separate multiple names).",
+                "homePage": "https://github.com/nf-core/ddamsproteomics",
+                "description": "Quantitative shotgun MS proteomics as done in Lehtio lab",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=0.32.0",
+                "version": "1.0.0"
+            },
             "dev_nextflow_config_plugins": null,
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/ddamsproteomics",
+                "author": "Project author name (use a comma to separate multiple names).",
+                "homePage": "https://github.com/nf-core/ddamsproteomics",
+                "description": "Quantitative shotgun MS proteomics as done in Lehtio lab",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=0.32.0",
+                "version": "1.0.0"
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -7842,9 +8230,29 @@
             "master_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/deepmodeloptim",
+                "author": "",
+                "homePage": "https://github.com/nf-core/deepmodeloptim",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.0.0dev",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/deepmodeloptim",
+                "author": "",
+                "homePage": "https://github.com/nf-core/deepmodeloptim",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.0.0dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -8294,7 +8702,25 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/deepvariant",
+                "author": "Phil Palmer",
+                "homePage": "https://github.com/nf-core/deepvariant",
+                "description": "Google DeepVariant variant caller as a Nextflow pipeline",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=18.10.1",
+                "version": "1.0"
+            },
             "dev_nextflow_config_plugins": null,
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/deepvariant",
+                "author": "Phil Palmer",
+                "homePage": "https://github.com/nf-core/deepvariant",
+                "description": "Google DeepVariant variant caller as a Nextflow pipeline",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=18.10.1",
+                "version": "1.0"
+            },
             "releases": [
                 {
                     "tag_name": "1.0",
@@ -8455,9 +8881,29 @@
             "master_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/demo",
+                "author": "",
+                "homePage": "https://github.com/nf-core/demo",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.0.1",
+                "doi": "10.5281/zenodo.12192442"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/demo",
+                "author": "",
+                "homePage": "https://github.com/nf-core/demo",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.1.0dev",
+                "doi": "10.5281/zenodo.12192442"
+            },
             "releases": [
                 {
                     "tag_name": "1.0.1",
@@ -8794,9 +9240,29 @@
             "master_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/demultiplex",
+                "author": "",
+                "homePage": "https://github.com/nf-core/demultiplex",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.5.3",
+                "doi": "10.5281/zenodo.7153103"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/demultiplex",
+                "author": "",
+                "homePage": "https://github.com/nf-core/demultiplex",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.5.3dev",
+                "doi": "10.5281/zenodo.7153103"
+            },
             "releases": [
                 {
                     "tag_name": "1.5.3",
@@ -9592,7 +10058,25 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/denovohybrid",
+                "author": "Caspar Gross",
+                "homePage": "https://github.com/nf-core/denovohybrid",
+                "description": "De novo hybrid assembly pipeline.",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=0.32.0",
+                "version": "1.0dev"
+            },
             "dev_nextflow_config_plugins": null,
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/denovohybrid",
+                "author": "Caspar Gross",
+                "homePage": "https://github.com/nf-core/denovohybrid",
+                "description": "De novo hybrid assembly pipeline.",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=0.32.0",
+                "version": "1.0dev"
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -9766,9 +10250,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/denovotranscript",
+                "author": "",
+                "homePage": "https://github.com/nf-core/denovotranscript",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0.0",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/denovotranscript",
+                "author": "",
+                "homePage": "https://github.com/nf-core/denovotranscript",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.1.0",
+                "doi": "10.5281/zenodo.13324371"
+            },
             "releases": [
                 {
                     "tag_name": "1.0.0",
@@ -10026,9 +10530,29 @@
             "master_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/detaxizer",
+                "author": "",
+                "homePage": "https://github.com/nf-core/detaxizer",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.1.0",
+                "doi": "10.5281/zenodo.10877147"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/detaxizer",
+                "author": "",
+                "homePage": "https://github.com/nf-core/detaxizer",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.2.0dev",
+                "doi": "10.5281/zenodo.10877147"
+            },
             "releases": [
                 {
                     "tag_name": "1.1.0",
@@ -10343,7 +10867,25 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/diaproteomics",
+                "author": "Leon Bichmann",
+                "homePage": "https://github.com/nf-core/diaproteomics",
+                "description": "Automated quantitative analysis of DIA proteomics mass spectrometry measurements.",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=20.04.0",
+                "version": "1.2.4"
+            },
             "dev_nextflow_config_plugins": null,
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/diaproteomics",
+                "author": "Leon Bichmann",
+                "homePage": "https://github.com/nf-core/diaproteomics",
+                "description": "Automated quantitative analysis of DIA proteomics mass spectrometry measurements.",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=20.04.0",
+                "version": "1.2.5dev"
+            },
             "releases": [
                 {
                     "tag_name": "1.2.4",
@@ -10634,9 +11176,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/differentialabundance",
+                "author": "Oskar Wacker, Jonathan Manning",
+                "homePage": "https://github.com/nf-core/differentialabundance",
+                "description": "Differential abundance analysis",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.10.0",
+                "version": "1.5.0",
+                "doi": "10.5281/zenodo.7568000"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/differentialabundance",
+                "author": "Oskar Wacker, Jonathan Manning",
+                "homePage": "https://github.com/nf-core/differentialabundance",
+                "description": "Differential abundance analysis",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.6.0dev",
+                "doi": "10.5281/zenodo.7568000"
+            },
             "releases": [
                 {
                     "tag_name": "1.5.0",
@@ -10973,12 +11535,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/drugresponseeval",
             "created_at": "2023-08-24T10:02:01Z",
-            "updated_at": "2024-11-15T12:03:41Z",
-            "pushed_at": "2024-11-22T17:18:26Z",
-            "homepage": "",
-            "size": 5304,
-            "stargazers_count": 4,
-            "watchers_count": 4,
+            "updated_at": "2024-11-25T11:19:57Z",
+            "pushed_at": "2024-11-25T11:19:53Z",
+            "homepage": "https://nf-co.re/drugresponseeval",
+            "size": 5331,
+            "stargazers_count": 5,
+            "watchers_count": 5,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": false,
@@ -10989,7 +11551,7 @@
             "forks_count": 1,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 5,
+            "open_issues_count": 3,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -11010,8 +11572,8 @@
             ],
             "visibility": "public",
             "forks": 1,
-            "open_issues": 5,
-            "watchers": 4,
+            "open_issues": 3,
+            "watchers": 5,
             "default_branch": "dev",
             "temp_clone_token": "",
             "allow_squash_merge": true,
@@ -11044,7 +11606,7 @@
                 }
             },
             "network_count": 1,
-            "subscribers_count": 200,
+            "subscribers_count": 197,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
@@ -11066,9 +11628,21 @@
             "dev_branch_protection_status_checks": {
                 "url": "https://api.github.com/repos/nf-core/drugresponseeval/branches/dev/protection/required_status_checks",
                 "strict": false,
-                "contexts": [],
+                "contexts": [
+                    "nf-core",
+                    "pre-commit"
+                ],
                 "contexts_url": "https://api.github.com/repos/nf-core/drugresponseeval/branches/dev/protection/required_status_checks/contexts",
-                "checks": []
+                "checks": [
+                    {
+                        "context": "nf-core",
+                        "app_id": 15368
+                    },
+                    {
+                        "context": "pre-commit",
+                        "app_id": 15368
+                    }
+                ]
             },
             "dev_branch_protection_required_reviews": 1,
             "dev_branch_protection_require_codeowner_review": false,
@@ -11084,12 +11658,12 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 1,
+            "open_pr_count": 0,
             "repository_url": "https://github.com/nf-core/drugresponseeval",
             "contributors": [
                 {
                     "name": "JudithBernett",
-                    "count": 92,
+                    "count": 126,
                     "avatar_url": "https://avatars.githubusercontent.com/u/38618495?v=4"
                 },
                 {
@@ -11099,9 +11673,9 @@
                 }
             ],
             "released_after_tools": false,
-            "head_sha": "d3a88647f164fafe87ced1c1403eb119a160d709",
+            "head_sha": "3d00d0709d7e4b951b99ba7b119522a6f6165a75",
             "last_release_is_head": false,
-            "last_release_vs_default_compare_url": "https://github.com/nf-core/drugresponseeval/compare/d3a88647f164fafe87ced1c1403eb119a160d709...undefined",
+            "last_release_vs_default_compare_url": "https://github.com/nf-core/drugresponseeval/compare/3d00d0709d7e4b951b99ba7b119522a6f6165a75...undefined",
             "commits_to_dev": 30,
             "is_DSL2": true,
             "has_nf_test": false,
@@ -11109,24 +11683,41 @@
             "master_nextflow_config_plugins": [
                 "nf-validation"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/drugresponseeval",
+                "author": "",
+                "homePage": "https://github.com/nf-core/drugresponseeval",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/drugresponseeval",
+                "author": "",
+                "homePage": "https://github.com/nf-core/drugresponseeval",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "dev",
-                    "published_at": "2024-11-15T12:03:35Z",
-                    "tag_sha": "d3a88647f164fafe87ced1c1403eb119a160d709",
+                    "published_at": "2024-11-25T11:19:48Z",
+                    "tag_sha": "3d00d0709d7e4b951b99ba7b119522a6f6165a75",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
                         "docs/usage.md"
                     ],
                     "components": {
-                        "modules": [
-                            "fastqc",
-                            "multiqc"
-                        ],
+                        "modules": [],
                         "subworkflows": [
                             "utils_nextflow_pipeline",
                             "utils_nfcore_pipeline",
@@ -11147,9 +11738,9 @@
             "url": "https://api.github.com/repos/nf-core/dualrnaseq",
             "created_at": "2020-11-04T11:26:18Z",
             "updated_at": "2024-09-03T10:14:53Z",
-            "pushed_at": "2024-11-22T15:58:32Z",
+            "pushed_at": "2024-11-25T08:35:56Z",
             "homepage": "https://nf-co.re/dualrnaseq",
-            "size": 40721,
+            "size": 40695,
             "stargazers_count": 18,
             "watchers_count": 18,
             "language": "Nextflow",
@@ -11326,7 +11917,26 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/dualrnaseq",
+                "author": "Bozena Mika-Gospodorz and Regan Hayward",
+                "homePage": "https://github.com/nf-core/dualrnaseq",
+                "description": "Dual RNA-seq pipeline",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=20.10.0",
+                "version": "1.0.0"
+            },
             "dev_nextflow_config_plugins": null,
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/dualrnaseq",
+                "author": "",
+                "homePage": "https://github.com/nf-core/dualrnaseq",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=22.10.1",
+                "version": "2.0dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "1.0.0",
@@ -11340,8 +11950,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2024-11-22T15:57:40Z",
-                    "tag_sha": "9f0e3b09b8b8166d82891978af2cf50abc8e2d82",
+                    "published_at": "2024-11-25T08:27:53Z",
+                    "tag_sha": "c80cbf520c5fbefedb242e29e741b04bd4d838da",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -11675,9 +12285,28 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/eager",
+                "author": "The nf-core/eager community",
+                "homePage": "https://github.com/nf-core/eager",
+                "description": "A fully reproducible and state-of-the-art ancient DNA analysis pipeline",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=20.07.1",
+                "version": "2.5.2"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/eager",
+                "author": "",
+                "homePage": "https://github.com/nf-core/eager",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "3.0.0dev",
+                "doi": "10.7717/peerj.10947"
+            },
             "releases": [
                 {
                     "tag_name": "2.5.2",
@@ -12251,9 +12880,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/epitopeprediction",
+                "author": "",
+                "homePage": "https://github.com/nf-core/epitopeprediction",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "2.3.1",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/epitopeprediction",
+                "author": "",
+                "homePage": "https://github.com/nf-core/epitopeprediction",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "2.4.0dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "2.3.1",
@@ -12553,7 +13202,17 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "homePage": "https://github.com/SciLifeLab/NGI-ExoSeq",
+                "description": "Nextflow Exome Sequencing Best Practice analysis pipeline.",
+                "mainScript": "PairedSingleSampleWF.nf"
+            },
             "dev_nextflow_config_plugins": null,
+            "dev_nextflow_config_manifest": {
+                "homePage": "https://github.com/SciLifeLab/NGI-ExoSeq",
+                "description": "Nextflow Exome Sequencing Best Practice analysis pipeline.",
+                "mainScript": "PairedSingleSampleWF.nf"
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -12645,7 +13304,7 @@
                 }
             },
             "network_count": 1,
-            "subscribers_count": 200,
+            "subscribers_count": 199,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
@@ -12716,9 +13375,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/fastqrepair",
+                "author": "",
+                "homePage": "https://github.com/nf-core/fastqrepair",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/fastqrepair",
+                "author": "",
+                "homePage": "https://github.com/nf-core/fastqrepair",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.0.0",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -12904,9 +13583,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/fastquorum",
+                "author": "",
+                "homePage": "https://github.com/nf-core/fastquorum",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0.1",
+                "doi": "10.5281/zenodo.10456900,10.5281/zenodo.11267672"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/fastquorum",
+                "author": "",
+                "homePage": "https://github.com/nf-core/fastquorum",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.0.2",
+                "doi": "10.5281/zenodo.10456900,10.5281/zenodo.11267672"
+            },
             "releases": [
                 {
                     "tag_name": "1.0.1",
@@ -13246,9 +13945,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/fetchngs",
+                "author": "",
+                "homePage": "https://github.com/nf-core/fetchngs",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.12.0",
+                "doi": "https://doi.org/10.5281/zenodo.5070524"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/fetchngs",
+                "author": "",
+                "homePage": "https://github.com/nf-core/fetchngs",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.13.0dev",
+                "doi": "10.5281/zenodo.5070524"
+            },
             "releases": [
                 {
                     "tag_name": "1.12.0",
@@ -13851,9 +14570,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/funcscan",
+                "author": "",
+                "homePage": "https://github.com/nf-core/funcscan",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "2.0.0",
+                "doi": "10.5281/zenodo.7643099"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/funcscan",
+                "author": "",
+                "homePage": "https://github.com/nf-core/funcscan",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "2.1.0dev",
+                "doi": "10.5281/zenodo.7643099"
+            },
             "releases": [
                 {
                     "tag_name": "2.0.0",
@@ -14587,7 +15326,25 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/esga",
+                "author": "Marc P. Hoeppner",
+                "homePage": "https://github.com/nf-core/esga",
+                "description": "Annotation of metazoan genomes",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=21.10.3",
+                "version": "1.0dev"
+            },
             "dev_nextflow_config_plugins": null,
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/genomeannotator",
+                "author": "Marc P. Hoeppner",
+                "homePage": "https://github.com/nf-core/genomeannotator",
+                "description": "Annotation of metazoan genomes",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=21.10.3",
+                "version": "1.0dev"
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -14774,7 +15531,26 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/genomeassembler",
+                "author": "@d4straub",
+                "homePage": "https://github.com/nf-core/genomeassembler",
+                "description": "Genome assembly and annotation pipeline for prokaryotes and eukaryotes",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=21.10.3",
+                "version": "1.0dev"
+            },
             "dev_nextflow_config_plugins": null,
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/genomeassembler",
+                "author": "",
+                "homePage": "https://github.com/nf-core/genomeassembler",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=22.10.1",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -14951,9 +15727,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "ecoflow/genomeqc",
+                "author": "",
+                "homePage": "https://github.com/ecoflow/genomeqc",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "ecoflow/genomeqc",
+                "author": "",
+                "homePage": "https://github.com/ecoflow/genomeqc",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -15127,7 +15923,25 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/genomeskim",
+                "author": "Thomas J. Creedy",
+                "homePage": "https://github.com/nf-core/genomeskim",
+                "description": "QC and filtering of genome skims, followed by organelle assembly and/or genome analysis",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=21.10.3",
+                "version": "1.0dev"
+            },
             "dev_nextflow_config_plugins": null,
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/genomeskim",
+                "author": "Thomas J. Creedy",
+                "homePage": "https://github.com/nf-core/genomeskim",
+                "description": "QC and filtering of genome skims, followed by organelle assembly and/or genome analysis",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=21.10.3",
+                "version": "1.0dev"
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -15349,7 +16163,26 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/gwas",
+                "author": "Davi Josué Marcon (@Mxrcon), Abhinav Sharma (@abhi18av), Jean-Tristan Brandenburg (@jeantristanb), Lindsay Clark (@lvclark) and Scott Hazelhurst (@shaze).",
+                "homePage": "https://github.com/nf-core/gwas",
+                "description": "A pipeline for genome wide association studies.",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=21.10.3",
+                "version": "1.0dev"
+            },
             "dev_nextflow_config_plugins": null,
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/gwas",
+                "author": "",
+                "homePage": "https://github.com/nf-core/gwas",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=22.10.1",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -15558,7 +16391,27 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/hgtseq",
+                "author": "",
+                "homePage": "https://github.com/nf-core/hgtseq",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=22.10.1",
+                "version": "1.1.0",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": null,
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/hgtseq",
+                "author": "",
+                "homePage": "https://github.com/nf-core/hgtseq",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=22.10.1",
+                "version": "1.1.0",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "1.1.0",
@@ -15864,9 +16717,29 @@
             "has_nf_test": false,
             "has_nf_test_dev": true,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/hic",
+                "author": "",
+                "homePage": "https://github.com/nf-core/hic",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=22.10.1",
+                "version": "2.1.0",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/hic",
+                "author": "",
+                "homePage": "https://github.com/nf-core/hic",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "2.2.0dev",
+                "doi": "10.5281/zenodo.2669512"
+            },
             "releases": [
                 {
                     "tag_name": "2.1.0",
@@ -16229,9 +17102,28 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/hicar",
+                "author": "Jianhong Ou, Yu Xiang, Yarui Diao",
+                "homePage": "https://github.com/nf-core/hicar",
+                "description": "This pipeline analyses data for HiCAR data, a robust and sensitive multi-omic co-assay for simultaneous measurement of transcriptome, chromatin accessibility and cis-regulatory chromatin contacts.",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=21.10.3",
+                "version": "1.0.0"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-validation"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/hicar",
+                "author": "",
+                "homePage": "https://github.com/nf-core/hicar",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "2.0.0",
+                "doi": "10.1016/j.molcel.2022.01.023"
+            },
             "releases": [
                 {
                     "tag_name": "1.0.0",
@@ -16537,9 +17429,29 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/hlatyping",
+                "author": "Christopher Mohr, Alexander Peltzer, Sven Fillinger",
+                "homePage": "https://github.com/nf-core/hlatyping",
+                "description": "Precision HLA typing from next-generation sequencing data.",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=21.10.3",
+                "version": "2.0.0",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/hlatyping",
+                "author": "",
+                "homePage": "https://github.com/nf-core/hlatyping",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "2.1.0dev",
+                "doi": "https://doi.org/10.5281/zenodo.1401039"
+            },
             "releases": [
                 {
                     "tag_name": "2.0.0",
@@ -16862,7 +17774,25 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/imcyto",
+                "author": "Harshil Patel",
+                "homePage": "https://github.com/nf-core/imcyto",
+                "description": "Image Mass Cytometry analysis pipeline.",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=19.10.0",
+                "version": "1.0.0"
+            },
             "dev_nextflow_config_plugins": null,
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/imcyto",
+                "author": "Harshil Patel",
+                "homePage": "https://github.com/nf-core/imcyto",
+                "description": "Image Mass Cytometry analysis pipeline.",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=21.10.3",
+                "version": "1.1.0dev"
+            },
             "releases": [
                 {
                     "tag_name": "1.0.0",
@@ -17048,9 +17978,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/isoseq",
+                "author": "",
+                "homePage": "https://github.com/nf-core/isoseq",
+                "description": "",
+                "mainScript": "main.nf",
+                "doi": "10.1093/bioinformatics/btad150",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "2.0.0"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/isoseq",
+                "author": "",
+                "homePage": "https://github.com/nf-core/isoseq",
+                "description": "",
+                "mainScript": "main.nf",
+                "doi": "10.1093/bioinformatics/btad150",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "2.0.1dev"
+            },
             "releases": [
                 {
                     "tag_name": "2.0.0",
@@ -17509,9 +18459,28 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/kmermaid",
+                "author": "Olga Botvinnik",
+                "homePage": "https://github.com/nf-core/kmermaid",
+                "description": "Compare DNA/RNA/protein sequences on k-mer content",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=0.32.0",
+                "version": "1.0dev"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/kmermaid",
+                "author": "",
+                "homePage": "https://github.com/nf-core/kmermaid",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.0.0dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "0.1.0-alpha",
@@ -17929,7 +18898,25 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/liverctanalysis",
+                "author": "Luis Kuhn Cuellar",
+                "homePage": "https://github.com/nf-core/liverctanalysis",
+                "description": "quantitative analysis of abdominal CT scans from hepatocellular carcinoma patients",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=21.04.0",
+                "version": "1.0dev"
+            },
             "dev_nextflow_config_plugins": null,
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/liverctanalysis",
+                "author": "Luis Kuhn Cuellar",
+                "homePage": "https://github.com/nf-core/liverctanalysis",
+                "description": "quantitative analysis of abdominal CT scans from hepatocellular carcinoma patients",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=21.04.0",
+                "version": "1.0dev"
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -18383,7 +19370,24 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/lncpipe",
+                "author": "Project author name (use a comma to separate multiple names).",
+                "homePage": "https://github.com/nf-core/lncpipe",
+                "description": "LncPipe:a Nextflow-based Long non-coding RNA analysis PIPELINE",
+                "mainScript": "LncRNAanalysisPipe.nf",
+                "nextflowVersion": ">=0.32.0",
+                "version": "1.0dev"
+            },
             "dev_nextflow_config_plugins": null,
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/lncpipe",
+                "author": "Qi Zhao, Yu Sun, Zhixiang Zuo",
+                "homePage": "https://github.com/nf-core/lncpipe",
+                "description": "LncPipe:a Nextflow-based Long non-coding RNA analysis PIPELINE",
+                "nextflowVersion": ">=0.32.0",
+                "version": "1.0dev"
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -18420,7 +19424,7 @@
             "has_wiki": false,
             "has_pages": false,
             "has_discussions": false,
-            "forks_count": 110,
+            "forks_count": 111,
             "archived": false,
             "disabled": false,
             "open_issues_count": 67,
@@ -18438,7 +19442,7 @@
                 "nanopore-sequencing"
             ],
             "visibility": "public",
-            "forks": 110,
+            "forks": 111,
             "open_issues": 67,
             "watchers": 217,
             "default_branch": "master",
@@ -18472,7 +19476,7 @@
                     "status": "disabled"
                 }
             },
-            "network_count": 110,
+            "network_count": 111,
             "subscribers_count": 161,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
@@ -18812,9 +19816,29 @@
             "master_nextflow_config_plugins": [
                 "nf-schema@2.1.2"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/mag",
+                "author": "",
+                "homePage": "https://github.com/nf-core/mag",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "3.2.1",
+                "doi": "10.1093/nargab/lqac007"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.2"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/mag",
+                "author": "",
+                "homePage": "https://github.com/nf-core/mag",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "3.3.0dev",
+                "doi": "10.1093/nargab/lqac007"
+            },
             "releases": [
                 {
                     "tag_name": "3.2.1",
@@ -20132,9 +21156,28 @@
             "has_nf_test": false,
             "has_nf_test_dev": true,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/magmap",
+                "author": "Danilo Di Leo, Emelie Nilsson and Daniel Lundin",
+                "homePage": "https://github.com/nf-core/magmap",
+                "description": "nf-core/magmap is a bioinformatics best-practice analysis pipeline for mapping reads to a (large) collections of genomes.",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=21.10.3",
+                "version": "1.0dev"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/magmap",
+                "author": "",
+                "homePage": "https://github.com/nf-core/magmap",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0.0",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -20189,12 +21232,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/marsseq",
             "created_at": "2021-07-20T20:57:04Z",
-            "updated_at": "2024-08-06T07:24:57Z",
+            "updated_at": "2024-11-25T11:25:04Z",
             "pushed_at": "2024-10-11T12:34:42Z",
             "homepage": "https://nf-co.re/marsseq",
             "size": 3164,
-            "stargazers_count": 5,
-            "watchers_count": 5,
+            "stargazers_count": 6,
+            "watchers_count": 6,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": false,
@@ -20220,7 +21263,7 @@
             "visibility": "public",
             "forks": 3,
             "open_issues": 4,
-            "watchers": 5,
+            "watchers": 6,
             "default_branch": "master",
             "temp_clone_token": "",
             "allow_squash_merge": false,
@@ -20362,9 +21405,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/marsseq",
+                "author": "",
+                "homePage": "https://github.com/nf-core/marsseq",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0.3",
+                "doi": "10.1101/2023.06.28.546862, 10.5281/zenodo.8081210"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-validation"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/marsseq",
+                "author": "",
+                "homePage": "https://github.com/nf-core/marsseq",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0.3",
+                "doi": "10.1101/2023.06.28.546862, 10.5281/zenodo.8081210"
+            },
             "releases": [
                 {
                     "tag_name": "1.0.3",
@@ -20693,9 +21756,29 @@
             "has_nf_test": true,
             "has_nf_test_dev": true,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/mcmicro",
+                "author": "",
+                "homePage": "https://github.com/nf-core/mcmicro",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=22.10.1",
+                "version": "2.0.0",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/mcmicro",
+                "author": "",
+                "homePage": "https://github.com/nf-core/mcmicro",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "2.0.0",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -20860,9 +21943,29 @@
             "has_nf_test": true,
             "has_nf_test_dev": true,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/meerpipe",
+                "author": "",
+                "homePage": "https://github.com/nf-core/meerpipe",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=22.10.1",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "MeerPipe",
+                "homePage": "https://github.com/OZGrav/meerpipe",
+                "description": "Pulsar timing data processing pipeline for MeerTime data.",
+                "mainScript": "meerpipe.nf",
+                "version": "3.0.6",
+                "author": "Nick Swainston, Andrew Cameron, Aditya Parthasarathy, Stefan Oslowski, Andrew Jameson, Renée Spiewak, Daniel Reardon, Matthew Bailes",
+                "defaultBranch": "main",
+                "doi": "10.5281/zenodo.7918680"
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -21069,9 +22172,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/metaboigniter",
+                "author": "",
+                "homePage": "https://github.com/nf-core/metaboigniter",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "2.0.1",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/metaboigniter",
+                "author": "",
+                "homePage": "https://github.com/nf-core/metaboigniter",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "2.1.0dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "2.0.1",
@@ -21323,9 +22446,29 @@
             "master_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/metapep",
+                "author": "",
+                "homePage": "https://github.com/nf-core/metapep",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.0.0",
+                "doi": "10.5281/zenodo.14202996"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/metapep",
+                "author": "",
+                "homePage": "https://github.com/nf-core/metapep",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.0.0",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "1.0.0",
@@ -21543,9 +22686,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/metatdenovo",
+                "author": "",
+                "homePage": "https://github.com/nf-core/metatdenovo",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0.1",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/metatdenovo",
+                "author": "",
+                "homePage": "https://github.com/nf-core/metatdenovo",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.1",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "1.0.1",
@@ -21797,9 +22960,29 @@
             "master_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/methylarray",
+                "author": "",
+                "homePage": "https://github.com/nf-core/methylarray",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/methylarray",
+                "author": "",
+                "homePage": "https://github.com/nf-core/methylarray",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -22112,9 +23295,29 @@
             "master_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/methylseq",
+                "author": "",
+                "homePage": "https://github.com/nf-core/methylseq",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "2.7.1",
+                "doi": "10.5281/zenodo.1343417"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/methylseq",
+                "author": "",
+                "homePage": "https://github.com/nf-core/methylseq",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "2.8.0dev",
+                "doi": "10.5281/zenodo.1343417"
+            },
             "releases": [
                 {
                     "tag_name": "2.7.1",
@@ -22630,7 +23833,7 @@
             "forks_count": 25,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 9,
+            "open_issues_count": 10,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -22644,7 +23847,7 @@
             ],
             "visibility": "public",
             "forks": 25,
-            "open_issues": 9,
+            "open_issues": 10,
             "watchers": 33,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -22732,7 +23935,7 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 0,
+            "open_pr_count": 1,
             "repository_url": "https://github.com/nf-core/mhcquant",
             "contributors": [
                 {
@@ -22822,9 +24025,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/mhcquant",
+                "author": "",
+                "homePage": "https://github.com/nf-core/mhcquant",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "2.6.0",
+                "doi": "10.1021/acs.jproteome.9b00313"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/mhcquant",
+                "author": "",
+                "homePage": "https://github.com/nf-core/mhcquant",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "2.6.1dev",
+                "doi": "10.1021/acs.jproteome.9b00313"
+            },
             "releases": [
                 {
                     "tag_name": "2.6.0",
@@ -23326,7 +24549,25 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/mnaseseq",
+                "author": "Harshil Patel",
+                "homePage": "https://github.com/nf-core/mnaseseq",
+                "description": "MNase-seq analysis pipeline using BWA and DANPOS2.",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=19.10.0",
+                "version": "1.0.0"
+            },
             "dev_nextflow_config_plugins": null,
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/mnaseseq",
+                "author": "Harshil Patel",
+                "homePage": "https://github.com/nf-core/mnaseseq",
+                "description": "MNase-seq analysis pipeline using BWA and DANPOS2.",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=19.10.0",
+                "version": "1.0.0"
+            },
             "releases": [
                 {
                     "tag_name": "1.0.0",
@@ -23503,9 +24744,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/molkart",
+                "author": "",
+                "homePage": "https://github.com/nf-core/molkart",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0.0",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/molkart",
+                "author": "",
+                "homePage": "https://github.com/nf-core/molkart",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.1.0dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "1.0.0",
@@ -23583,14 +24844,14 @@
             "forks_count": 11,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 5,
+            "open_issues_count": 6,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
             "topics": [],
             "visibility": "public",
             "forks": 11,
-            "open_issues": 5,
+            "open_issues": 6,
             "watchers": 22,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -23748,9 +25009,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.4"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/multiplesequencealign",
+                "author": "",
+                "homePage": "https://github.com/nf-core/multiplesequencealign",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.1",
+                "version": "1.0.0",
+                "doi": "https://doi.org/10.5281/zenodo.13889386"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-validation@1.1.4"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/multiplesequencealign",
+                "author": "",
+                "homePage": "https://github.com/nf-core/multiplesequencealign",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.1.0dev",
+                "doi": "https://doi.org/10.5281/zenodo.13889386"
+            },
             "releases": [
                 {
                     "tag_name": "1.0.0",
@@ -24062,7 +25343,27 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/nanoseq",
+                "author": "",
+                "homePage": "https://github.com/nf-core/nanoseq",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=22.10.1",
+                "version": "3.1.0",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": null,
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/nanoseq",
+                "author": "",
+                "homePage": "https://github.com/nf-core/nanoseq",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=22.10.1",
+                "version": "3.1.0",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "3.1.0",
@@ -24411,9 +25712,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/nanostring",
+                "author": "",
+                "homePage": "https://github.com/nf-core/nanostring",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.3.0",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/nanostring",
+                "author": "",
+                "homePage": "https://github.com/nf-core/nanostring",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.3.1dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "1.3.0",
@@ -24727,9 +26048,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/nascent",
+                "author": "",
+                "homePage": "https://github.com/nf-core/nascent",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "2.2.0",
+                "doi": "10.5281/zenodo.7245273"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/nascent",
+                "author": "",
+                "homePage": "https://github.com/nf-core/nascent",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "2.3.0dev",
+                "doi": "10.5281/zenodo.7245273"
+            },
             "releases": [
                 {
                     "tag_name": "2.2.0",
@@ -25255,7 +26596,25 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/neutronstar",
+                "author": "Remi-Andre Olsen (@remiolsen)",
+                "homePage": "https://github.com/nf-core/neutronstar",
+                "description": "De novo assembly pipeline for 10X linked-reads, used at the SciLifeLab National Genomics Infrastructure.",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=19.04.0",
+                "version": "1.0.0"
+            },
             "dev_nextflow_config_plugins": null,
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/neutronstar",
+                "author": "Remi-Andre Olsen (@remiolsen)",
+                "homePage": "https://github.com/nf-core/neutronstar",
+                "description": "De novo assembly pipeline for 10X linked-reads, used at the SciLifeLab National Genomics Infrastructure.",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=19.10.0",
+                "version": "1.0.0"
+            },
             "releases": [
                 {
                     "tag_name": "1.0.0",
@@ -25418,9 +26777,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/omicsgenetraitassociation",
+                "author": "",
+                "homePage": "https://github.com/nf-core/omicsgenetraitassociation",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/omicsgenetraitassociation",
+                "author": "",
+                "homePage": "https://github.com/nf-core/omicsgenetraitassociation",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -25602,9 +26981,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/oncoanalyser",
+                "author": "",
+                "homePage": "https://github.com/nf-core/oncoanalyser",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=22.10.5",
+                "version": "1.0.0",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/oncoanalyser",
+                "author": "",
+                "homePage": "https://github.com/nf-core/oncoanalyser",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.1.0dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "1.0.0",
@@ -25786,9 +27185,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/pacvar",
+                "author": "",
+                "homePage": "https://github.com/nf-core/pacvar",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/pacvar",
+                "author": "",
+                "homePage": "https://github.com/nf-core/pacvar",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.0.0",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -25994,9 +27413,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/pairgenomealign",
+                "author": "",
+                "homePage": "https://github.com/nf-core/pairgenomealign",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.1.0",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/pairgenomealign",
+                "author": "",
+                "homePage": "https://github.com/nf-core/pairgenomealign",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.1.0",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "1.1.0",
@@ -26290,9 +27729,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/pangenome",
+                "author": "",
+                "homePage": "https://github.com/nf-core/pangenome",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.1.2",
+                "doi": "https://doi.org/10.5281/zenodo.8202636"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/pangenome",
+                "author": "",
+                "homePage": "https://github.com/nf-core/pangenome",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.2.0dev",
+                "doi": "https://doi.org/10.5281/zenodo.8202636"
+            },
             "releases": [
                 {
                     "tag_name": "1.1.2",
@@ -26653,9 +28112,29 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/plantpathsurveil",
+                "author": "Zachary S.L. Foster, Martha Sudermann, Nicholas C. Cauldron, Fernanda I. Bocardo, Hung Phan, Jeﬀ H. Chang, Niklaus J. Grünwald",
+                "homePage": "https://github.com/nf-core/plantpathsurveil",
+                "description": "Surveillance of plant pathogens using high-throughput sequencing",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=21.10.3",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/pathogensurveillance",
+                "author": "",
+                "homePage": "https://github.com/nf-core/pathogensurveillance",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -27136,7 +28615,25 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/pgdb",
+                "author": "Husen M. Umer & Yasset Perez-Riverol",
+                "homePage": "https://github.com/nf-core/pgdb",
+                "description": "Proteogenomics database creation workflow using pypgatk framework.",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=20.04.0",
+                "version": "1.0.0"
+            },
             "dev_nextflow_config_plugins": null,
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/pgdb",
+                "author": "Husen M. Umer & Yasset Perez-Riverol",
+                "homePage": "https://github.com/nf-core/pgdb",
+                "description": "Proteogenomics database creation workflow using pypgatk framework.",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=20.04.0",
+                "version": "1.1dev"
+            },
             "releases": [
                 {
                     "tag_name": "1.0.0",
@@ -27324,9 +28821,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/phageannotator",
+                "author": "",
+                "homePage": "https://github.com/nf-core/phageannotator",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/phageannotator",
+                "author": "",
+                "homePage": "https://github.com/nf-core/phageannotator",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -27388,10 +28905,10 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/phaseimpute",
             "created_at": "2023-07-12T14:41:51Z",
-            "updated_at": "2024-11-24T19:25:49Z",
-            "pushed_at": "2024-11-24T19:25:41Z",
+            "updated_at": "2024-11-25T10:40:32Z",
+            "pushed_at": "2024-11-25T10:40:28Z",
             "homepage": "https://nf-co.re/phaseimpute",
-            "size": 14625,
+            "size": 14627,
             "stargazers_count": 17,
             "watchers_count": 17,
             "language": "Nextflow",
@@ -27520,7 +29037,7 @@
             "contributors": [
                 {
                     "name": "LouisLeNezet",
-                    "count": 480,
+                    "count": 483,
                     "avatar_url": "https://avatars.githubusercontent.com/u/58640615?v=4"
                 },
                 {
@@ -27560,22 +29077,41 @@
                 }
             ],
             "released_after_tools": false,
-            "head_sha": "69badc3ac98617bf62c0dbc02b4439c9504b45c1",
+            "head_sha": "d09247947ce0279bce9b0a987380d341d6553cdf",
             "last_release_is_head": false,
-            "last_release_vs_default_compare_url": "https://github.com/nf-core/phaseimpute/compare/69badc3ac98617bf62c0dbc02b4439c9504b45c1...undefined",
+            "last_release_vs_default_compare_url": "https://github.com/nf-core/phaseimpute/compare/d09247947ce0279bce9b0a987380d341d6553cdf...undefined",
             "commits_to_dev": 30,
             "is_DSL2": true,
             "has_nf_test": true,
             "has_nf_test_dev": true,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/phaseimpute",
+                "author": "@louislenezet",
+                "homePage": "https://github.com/nf-core/phaseimpute",
+                "description": "Nf-core pipeline for phasing and imputing genomic data.",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=19.10.0",
+                "version": "1.0dev"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/phaseimpute",
+                "author": "",
+                "homePage": "https://github.com/nf-core/phaseimpute",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.0.0",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "dev",
-                    "published_at": "2024-11-24T19:25:41Z",
-                    "tag_sha": "69badc3ac98617bf62c0dbc02b4439c9504b45c1",
+                    "published_at": "2024-11-25T10:40:28Z",
+                    "tag_sha": "d09247947ce0279bce9b0a987380d341d6553cdf",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -27791,9 +29327,29 @@
             "has_nf_test": false,
             "has_nf_test_dev": true,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/phyloplace",
+                "author": "",
+                "homePage": "https://github.com/nf-core/phyloplace",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=22.10.1",
+                "version": "1.0.0",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/phyloplace",
+                "author": "",
+                "homePage": "https://github.com/nf-core/phyloplace",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.1.0dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "1.0.0",
@@ -28025,9 +29581,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/pixelator",
+                "author": "",
+                "homePage": "https://github.com/nf-core/pixelator",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.3.1",
+                "doi": "10.1101/2023.06.05.543770"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/pixelator",
+                "author": "",
+                "homePage": "https://github.com/nf-core/pixelator",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.4.0dev",
+                "doi": "10.1101/2023.06.05.543770"
+            },
             "releases": [
                 {
                     "tag_name": "1.3.1",
@@ -28206,12 +29782,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/proteinfold",
             "created_at": "2022-03-03T10:41:35Z",
-            "updated_at": "2024-11-15T13:36:41Z",
+            "updated_at": "2024-11-25T10:00:33Z",
             "pushed_at": "2024-11-15T10:10:06Z",
             "homepage": "https://nf-co.re/proteinfold",
             "size": 6463,
-            "stargazers_count": 58,
-            "watchers_count": 58,
+            "stargazers_count": 59,
+            "watchers_count": 59,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": false,
@@ -28236,7 +29812,7 @@
             "visibility": "public",
             "forks": 39,
             "open_issues": 30,
-            "watchers": 58,
+            "watchers": 59,
             "default_branch": "master",
             "temp_clone_token": "",
             "allow_squash_merge": false,
@@ -28413,9 +29989,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/proteinfold",
+                "author": "",
+                "homePage": "https://github.com/nf-core/proteinfold",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.1.1",
+                "doi": "10.5281/zenodo.7629996"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/proteinfold",
+                "author": "",
+                "homePage": "https://github.com/nf-core/proteinfold",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.2.0dev",
+                "doi": "10.5281/zenodo.7629996"
+            },
             "releases": [
                 {
                     "tag_name": "1.1.1",
@@ -28739,7 +30335,25 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/proteomicslfq",
+                "author": "Julianus Pfeuffer, Lukas Heumos, Leon Bichmann, Timo Sachsenberg, Yasset Perez-Riverol",
+                "homePage": "https://github.com/nf-core/proteomicslfq",
+                "description": "Proteomics label-free quantification (LFQ) analysis pipeline using OpenMS and MSstats, with feature quantification, feature summarization, quality control and group-based statistical analysis.",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=20.01.0",
+                "version": "1.0.0"
+            },
             "dev_nextflow_config_plugins": null,
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/proteomicslfq",
+                "author": "Julianus Pfeuffer, Lukas Heumos, Leon Bichmann, Timo Sachsenberg, Yasset Perez-Riverol",
+                "homePage": "https://github.com/nf-core/proteomicslfq",
+                "description": "Proteomics label-free quantification (LFQ) analysis pipeline using OpenMS and MSstats, with feature quantification, feature summarization, quality control and group-based statistical analysis.",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=20.04.0",
+                "version": "1.1.0dev"
+            },
             "releases": [
                 {
                     "tag_name": "1.0.0",
@@ -28890,13 +30504,13 @@
                 "deployments_url": "https://api.github.com/repos/bigbio/quantms/deployments",
                 "created_at": "2021-10-27T18:13:00Z",
                 "updated_at": "2024-10-29T08:15:49Z",
-                "pushed_at": "2024-11-24T20:11:20Z",
+                "pushed_at": "2024-11-25T11:00:31Z",
                 "git_url": "git://github.com/bigbio/quantms.git",
                 "ssh_url": "git@github.com:bigbio/quantms.git",
                 "clone_url": "https://github.com/bigbio/quantms.git",
                 "svn_url": "https://github.com/bigbio/quantms",
                 "homepage": "https://quantms.org",
-                "size": 51954,
+                "size": 51961,
                 "stargazers_count": 34,
                 "watchers_count": 34,
                 "language": "Nextflow",
@@ -28910,7 +30524,7 @@
                 "mirror_url": null,
                 "archived": false,
                 "disabled": false,
-                "open_issues_count": 58,
+                "open_issues_count": 57,
                 "license": {
                     "key": "mit",
                     "name": "MIT License",
@@ -28930,7 +30544,7 @@
                 ],
                 "visibility": "public",
                 "forks": 35,
-                "open_issues": 58,
+                "open_issues": 57,
                 "watchers": 34,
                 "default_branch": "master"
             },
@@ -29003,13 +30617,13 @@
                 "deployments_url": "https://api.github.com/repos/bigbio/quantms/deployments",
                 "created_at": "2021-10-27T18:13:00Z",
                 "updated_at": "2024-10-29T08:15:49Z",
-                "pushed_at": "2024-11-24T20:11:20Z",
+                "pushed_at": "2024-11-25T11:00:31Z",
                 "git_url": "git://github.com/bigbio/quantms.git",
                 "ssh_url": "git@github.com:bigbio/quantms.git",
                 "clone_url": "https://github.com/bigbio/quantms.git",
                 "svn_url": "https://github.com/bigbio/quantms",
                 "homepage": "https://quantms.org",
-                "size": 51954,
+                "size": 51961,
                 "stargazers_count": 34,
                 "watchers_count": 34,
                 "language": "Nextflow",
@@ -29023,7 +30637,7 @@
                 "mirror_url": null,
                 "archived": false,
                 "disabled": false,
-                "open_issues_count": 58,
+                "open_issues_count": 57,
                 "license": {
                     "key": "mit",
                     "name": "MIT License",
@@ -29043,7 +30657,7 @@
                 ],
                 "visibility": "public",
                 "forks": 35,
-                "open_issues": 58,
+                "open_issues": 57,
                 "watchers": 34,
                 "default_branch": "master"
             },
@@ -29199,9 +30813,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/quantms",
+                "author": "",
+                "homePage": "https://github.com/nf-core/quantms",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.2.0",
+                "doi": "10.5281/zenodo.7754148"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/quantms",
+                "author": "",
+                "homePage": "https://github.com/nf-core/quantms",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.3.0",
+                "doi": "10.5281/zenodo.7754148"
+            },
             "releases": [
                 {
                     "tag_name": "1.2.0",
@@ -29437,7 +31071,25 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/radseq",
+                "author": "Gabriel Barrett",
+                "homePage": "https://github.com/nf-core/radseq",
+                "description": "variant calling pipeline for radseq",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=21.10.3",
+                "version": "1.0dev"
+            },
             "dev_nextflow_config_plugins": null,
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/radseq",
+                "author": "Gabriel Barrett",
+                "homePage": "https://github.com/nf-core/radseq",
+                "description": "variant calling pipeline for radseq",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=21.10.3",
+                "version": "1.0dev"
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -29646,9 +31298,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/rangeland",
+                "author": "",
+                "homePage": "https://github.com/nf-core/rangeland",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/rangeland",
+                "author": "",
+                "homePage": "https://github.com/nf-core/rangeland",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.0.0",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -29684,9 +31356,9 @@
             "url": "https://api.github.com/repos/nf-core/raredisease",
             "created_at": "2021-06-21T09:40:29Z",
             "updated_at": "2024-11-19T18:27:00Z",
-            "pushed_at": "2024-11-22T08:47:11Z",
+            "pushed_at": "2024-11-25T14:19:51Z",
             "homepage": "https://nf-co.re/raredisease",
-            "size": 13822,
+            "size": 13825,
             "stargazers_count": 90,
             "watchers_count": 90,
             "language": "Nextflow",
@@ -29978,9 +31650,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/raredisease",
+                "author": "",
+                "homePage": "https://github.com/nf-core/raredisease",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "2.2.0",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/raredisease",
+                "author": "",
+                "homePage": "https://github.com/nf-core/raredisease",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "2.3.0dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "2.2.0",
@@ -30727,8 +32419,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2024-11-22T08:47:11Z",
-                    "tag_sha": "e615a7e5c075f24df28fc0e9aca2562f3fa4d63a",
+                    "published_at": "2024-11-25T14:19:51Z",
+                    "tag_sha": "1cf0539acbd2e443ffb46bbba42cb1a0391999d0",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -31003,9 +32695,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/readsimulator",
+                "author": "",
+                "homePage": "https://github.com/nf-core/readsimulator",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0.1",
+                "doi": "10.5281/zenodo.10622410"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/readsimulator",
+                "author": "",
+                "homePage": "https://github.com/nf-core/readsimulator",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0.1",
+                "doi": "10.5281/zenodo.10622410"
+            },
             "releases": [
                 {
                     "tag_name": "1.0.1",
@@ -31225,9 +32937,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/reportho",
+                "author": "",
+                "homePage": "https://github.com/nf-core/reportho",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0.1",
+                "doi": "10.5281/zenodo.11574565"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/reportho",
+                "author": "",
+                "homePage": "https://github.com/nf-core/reportho",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.1.0dev",
+                "doi": "10.5281/zenodo.11574565"
+            },
             "releases": [
                 {
                     "tag_name": "1.0.1",
@@ -31480,9 +33212,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/riboseq",
+                "author": "",
+                "homePage": "https://github.com/nf-core/riboseq",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0.1",
+                "doi": "https://doi.org/10.5281/zenodo.10966364"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/riboseq",
+                "author": "",
+                "homePage": "https://github.com/nf-core/riboseq",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.1.0dev",
+                "doi": "https://doi.org/10.5281/zenodo.10966364"
+            },
             "releases": [
                 {
                     "tag_name": "1.0.1",
@@ -31850,9 +33602,28 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/rnadnavar",
+                "author": "Raquel Manzano-Garcia, Praveen Raj, Maxime U Garcia",
+                "homePage": "https://github.com/nf-core/rnadnavar",
+                "description": "Pipeline for RNA and DNA integrated analysis for somatic mutation detection",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=21.10.3",
+                "version": "1.0dev"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/rnadnavar",
+                "author": "",
+                "homePage": "https://github.com/nf-core/rnadnavar",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -31967,7 +33738,7 @@
             "has_wiki": false,
             "has_pages": false,
             "has_discussions": false,
-            "forks_count": 94,
+            "forks_count": 95,
             "archived": false,
             "disabled": false,
             "open_issues_count": 49,
@@ -31982,7 +33753,7 @@
                 "rna-seq"
             ],
             "visibility": "public",
-            "forks": 94,
+            "forks": 95,
             "open_issues": 49,
             "watchers": 144,
             "default_branch": "master",
@@ -32016,7 +33787,7 @@
                     "status": "disabled"
                 }
             },
-            "network_count": 94,
+            "network_count": 95,
             "subscribers_count": 151,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
@@ -32176,9 +33947,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/rnafusion",
+                "author": "",
+                "homePage": "https://github.com/nf-core/rnafusion",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "3.0.2",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/rnafusion",
+                "author": "",
+                "homePage": "https://github.com/nf-core/rnafusion",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "4.0.0dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "3.0.2",
@@ -32701,12 +34492,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/rnaseq",
             "created_at": "2018-03-29T13:10:58Z",
-            "updated_at": "2024-11-22T12:07:26Z",
-            "pushed_at": "2024-11-08T13:41:55Z",
+            "updated_at": "2024-11-25T13:30:27Z",
+            "pushed_at": "2024-11-25T13:51:44Z",
             "homepage": "https://nf-co.re/rnaseq",
             "size": 74554,
-            "stargazers_count": 923,
-            "watchers_count": 923,
+            "stargazers_count": 924,
+            "watchers_count": 924,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": false,
@@ -32714,7 +34505,7 @@
             "has_wiki": false,
             "has_pages": false,
             "has_discussions": false,
-            "forks_count": 708,
+            "forks_count": 709,
             "archived": false,
             "disabled": false,
             "open_issues_count": 77,
@@ -32726,9 +34517,9 @@
                 "rna-seq"
             ],
             "visibility": "public",
-            "forks": 708,
+            "forks": 709,
             "open_issues": 77,
-            "watchers": 923,
+            "watchers": 924,
             "default_branch": "master",
             "temp_clone_token": "",
             "allow_squash_merge": false,
@@ -32762,7 +34553,7 @@
                     "status": "disabled"
                 }
             },
-            "network_count": 708,
+            "network_count": 709,
             "subscribers_count": 157,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
@@ -33267,9 +35058,29 @@
             "master_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/rnaseq",
+                "author": "",
+                "homePage": "https://github.com/nf-core/rnaseq",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "3.17.0",
+                "doi": "https://doi.org/10.5281/zenodo.1400710"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/rnaseq",
+                "author": "",
+                "homePage": "https://github.com/nf-core/rnaseq",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "3.17.0",
+                "doi": "https://doi.org/10.5281/zenodo.1400710"
+            },
             "releases": [
                 {
                     "tag_name": "3.17.0",
@@ -35202,9 +37013,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/rnasplice",
+                "author": "",
+                "homePage": "https://github.com/nf-core/rnasplice",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0.4",
+                "doi": "10.5281/zenodo.8424632"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/rnasplice",
+                "author": "",
+                "homePage": "https://github.com/nf-core/rnasplice",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0.4",
+                "doi": "10.5281/zenodo.8424632"
+            },
             "releases": [
                 {
                     "tag_name": "1.0.4",
@@ -35661,9 +37492,28 @@
             "has_nf_test": false,
             "has_nf_test_dev": true,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/rnavar",
+                "author": "@praveenraj2018",
+                "homePage": "https://github.com/nf-core/rnavar",
+                "description": "GATK4 RNA variant calling pipeline",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=21.10.3",
+                "version": "1.0.0"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/rnavar",
+                "author": "",
+                "homePage": "https://github.com/nf-core/rnavar",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "2.0.0dev",
+                "doi": "10.5281/zenodo.6669636"
+            },
             "releases": [
                 {
                     "tag_name": "1.0.0",
@@ -35949,9 +37799,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/sammyseq",
+                "author": "",
+                "homePage": "https://github.com/nf-core/sammyseq",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "0.01",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/sammyseq",
+                "author": "",
+                "homePage": "https://github.com/nf-core/sammyseq",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "0.01dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -36021,7 +37891,7 @@
             "forks_count": 417,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 296,
+            "open_issues_count": 297,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -36040,7 +37910,7 @@
             ],
             "visibility": "public",
             "forks": 417,
-            "open_issues": 296,
+            "open_issues": 297,
             "watchers": 410,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -36431,10 +38301,30 @@
                 "nf-validation@1.1.3",
                 "nf-prov@1.2.2"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/sarek",
+                "author": "",
+                "homePage": "https://github.com/nf-core/sarek",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "3.4.4",
+                "doi": "10.12688/f1000research.16665.2, 10.1093/nargab/lqae031, 10.5281/zenodo.3476425"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1",
                 "nf-prov@1.2.2"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/sarek",
+                "author": "",
+                "homePage": "https://github.com/nf-core/sarek",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "3.5.0dev",
+                "doi": "10.12688/f1000research.16665.2, 10.1093/nargab/lqae031, 10.5281/zenodo.3476425"
+            },
             "releases": [
                 {
                     "tag_name": "3.4.4",
@@ -38725,9 +40615,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/scdownstream",
+                "author": "",
+                "homePage": "https://github.com/nf-core/scdownstream",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/scdownstream",
+                "author": "",
+                "homePage": "https://github.com/nf-core/scdownstream",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "0.0.1dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -39165,7 +41075,25 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/scflow",
+                "author": "Dr Combiz Khozoie",
+                "homePage": "https://github.com/nf-core/scflow",
+                "description": "Complete analysis workflow for single-cell/nuclei RNA-sequencing data.",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=20.01.0",
+                "version": "0.6.0dev"
+            },
             "dev_nextflow_config_plugins": null,
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/scflow",
+                "author": "Dr Combiz Khozoie",
+                "homePage": "https://github.com/nf-core/scflow",
+                "description": "Complete analysis workflow for single-cell/nuclei RNA-sequencing data.",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=21.04.2",
+                "version": "0.7.0dev"
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -39349,9 +41277,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/scnanoseq",
+                "author": "",
+                "homePage": "https://github.com/nf-core/scnanoseq",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0.0",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/scnanoseq",
+                "author": "",
+                "homePage": "https://github.com/nf-core/scnanoseq",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0.0",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "1.0.0",
@@ -39454,9 +41402,9 @@
             "url": "https://api.github.com/repos/nf-core/scrnaseq",
             "created_at": "2019-04-08T13:12:00Z",
             "updated_at": "2024-11-11T15:07:15Z",
-            "pushed_at": "2024-11-22T07:03:55Z",
+            "pushed_at": "2024-11-25T14:42:29Z",
             "homepage": "https://nf-co.re/scrnaseq",
-            "size": 44219,
+            "size": 44228,
             "stargazers_count": 214,
             "watchers_count": 214,
             "language": "Nextflow",
@@ -39754,9 +41702,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.4"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/scrnaseq",
+                "author": "",
+                "homePage": "https://github.com/nf-core/scrnaseq",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "2.7.1",
+                "doi": "10.5281/zenodo.3568187"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/scrnaseq",
+                "author": "",
+                "homePage": "https://github.com/nf-core/scrnaseq",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "2.8.0dev",
+                "doi": "10.5281/zenodo.3568187"
+            },
             "releases": [
                 {
                     "tag_name": "2.7.1",
@@ -40355,9 +42323,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/seqinspector",
+                "author": "",
+                "homePage": "https://github.com/nf-core/seqinspector",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/seqinspector",
+                "author": "",
+                "homePage": "https://github.com/nf-core/seqinspector",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -40782,7 +42770,25 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/slamseq",
+                "author": "Tobias Neumann",
+                "homePage": "https://github.com/nf-core/slamseq",
+                "description": "SLAMseq analysis using Slamdunk with various T>C conversion quantifications and QC",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=19.10.0",
+                "version": "1.0.0"
+            },
             "dev_nextflow_config_plugins": null,
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/slamseq",
+                "author": "Tobias Neumann",
+                "homePage": "https://github.com/nf-core/slamseq",
+                "description": "SLAMseq analysis using Slamdunk with various T>C conversion quantifications and QC",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=19.10.0",
+                "version": "1.1.0dev"
+            },
             "releases": [
                 {
                     "tag_name": "1.0.0",
@@ -41234,7 +43240,25 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/smartseq",
+                "author": "sandrocarollo,abyssum,grst",
+                "homePage": "https://github.com/nf-core/smartseq",
+                "description": "Preprocess scRNA-seq data generated with the SmartSeq2 protocol.",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=0.32.0",
+                "version": "1.0dev"
+            },
             "dev_nextflow_config_plugins": null,
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/smartseq2",
+                "author": "Sandro Carollo, Georgios Fotakis and Gregor Sturm",
+                "homePage": "https://github.com/nf-core/smartseq2",
+                "description": "Preprocess scRNA-seq data generated with the SmartSeq2 protocol",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=19.10.0",
+                "version": "1.0dev"
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -41562,9 +43586,29 @@
             "master_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/smrnaseq",
+                "author": "",
+                "homePage": "https://github.com/nf-core/smrnaseq",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "2.4.0",
+                "doi": "10.5281/zenodo.3456879"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/smrnaseq",
+                "author": "",
+                "homePage": "https://github.com/nf-core/smrnaseq",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "2.4.0",
+                "doi": "10.5281/zenodo.3456879"
+            },
             "releases": [
                 {
                     "tag_name": "2.4.0",
@@ -42134,9 +44178,28 @@
             "has_nf_test": true,
             "has_nf_test_dev": true,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/spatialtranscriptomics",
+                "author": "Sergii Domanskyi, Jeffrey Chuang, Anuj Srivastava",
+                "homePage": "https://github.com/nf-core/spatialtranscriptomics",
+                "description": "Spatial Transcriptomics",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=21.10.3",
+                "version": "1.0dev"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/spatialvi",
+                "author": "",
+                "homePage": "https://github.com/nf-core/spatialvi",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -42175,9 +44238,9 @@
             "url": "https://api.github.com/repos/nf-core/spatialxe",
             "created_at": "2024-03-14T10:57:36Z",
             "updated_at": "2024-11-13T14:20:15Z",
-            "pushed_at": "2024-11-23T21:20:42Z",
+            "pushed_at": "2024-11-25T12:27:06Z",
             "homepage": "https://nf-co.re/spatialxe",
-            "size": 2280,
+            "size": 2986,
             "stargazers_count": 5,
             "watchers_count": 5,
             "language": "Nextflow",
@@ -42190,14 +44253,14 @@
             "forks_count": 2,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 29,
+            "open_issues_count": 31,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
             "topics": [],
             "visibility": "public",
             "forks": 2,
-            "open_issues": 29,
+            "open_issues": 31,
             "watchers": 5,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -42231,7 +44294,7 @@
                 }
             },
             "network_count": 2,
-            "subscribers_count": 209,
+            "subscribers_count": 207,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
@@ -42259,7 +44322,7 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": false,
-            "open_pr_count": 1,
+            "open_pr_count": 2,
             "repository_url": "https://github.com/nf-core/spatialxe",
             "contributors": [
                 {
@@ -42282,7 +44345,27 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/spatialxe",
+                "author": "",
+                "homePage": "https://github.com/nf-core/spatialxe",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=22.10.1",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": null,
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/spatialxe",
+                "author": "",
+                "homePage": "https://github.com/nf-core/spatialxe",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=22.10.1",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -42468,9 +44551,29 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/spinningjenny",
+                "author": "",
+                "homePage": "https://github.com/nf-core/spinningjenny",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=22.10.1",
+                "version": "0.1",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/spinningjenny",
+                "author": "",
+                "homePage": "https://github.com/nf-core/spinningjenny",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "0.2dev",
+                "doi": "http://dx.doi.org/10.2139/ssrn.4418148"
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -42662,7 +44765,25 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/ssds",
+                "author": "Kevin Brick",
+                "homePage": "https://github.com/nf-core/ssds",
+                "description": "Single-Stranded DNA Sequencing (SSDS) pipeline",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=21.10.3",
+                "version": "1.0dev"
+            },
             "dev_nextflow_config_plugins": null,
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/ssds",
+                "author": "Kevin Brick",
+                "homePage": "https://github.com/nf-core/ssds",
+                "description": "Single-Stranded DNA Sequencing (SSDS) pipeline",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=21.10.3",
+                "version": "1.0dev"
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -42708,9 +44829,9 @@
             "url": "https://api.github.com/repos/nf-core/taxprofiler",
             "created_at": "2022-02-18T06:56:10Z",
             "updated_at": "2024-10-24T17:07:19Z",
-            "pushed_at": "2024-11-22T12:37:57Z",
+            "pushed_at": "2024-11-25T13:19:42Z",
             "homepage": "https://nf-co.re/taxprofiler",
-            "size": 16383,
+            "size": 16391,
             "stargazers_count": 128,
             "watchers_count": 128,
             "language": "Nextflow",
@@ -42723,7 +44844,7 @@
             "forks_count": 36,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 46,
+            "open_issues_count": 47,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -42742,7 +44863,7 @@
             ],
             "visibility": "public",
             "forks": 36,
-            "open_issues": 46,
+            "open_issues": 47,
             "watchers": 128,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -43010,7 +45131,7 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 4,
+            "open_pr_count": 5,
             "repository_url": "https://github.com/nf-core/taxprofiler",
             "contributors": [
                 {
@@ -43120,9 +45241,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/taxprofiler",
+                "author": "",
+                "homePage": "https://github.com/nf-core/taxprofiler",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.2",
+                "doi": "10.1101/2023.10.20.563221"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.2"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/taxprofiler",
+                "author": "",
+                "homePage": "https://github.com/nf-core/taxprofiler",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.2.1",
+                "doi": "10.1101/2023.10.20.563221"
+            },
             "releases": [
                 {
                     "tag_name": "1.2.0",
@@ -43900,8 +46041,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2024-11-22T12:37:55Z",
-                    "tag_sha": "7d261e800c20a865149b72cd600d7bfb96c20343",
+                    "published_at": "2024-11-25T13:19:40Z",
+                    "tag_sha": "1a27aaa910d3b0d1dd474c758735e5e96ab91edf",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -44102,9 +46243,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/tbanalyzer",
+                "author": "",
+                "homePage": "https://github.com/nf-core/tbanalyzer",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/tbanalyzer",
+                "author": "",
+                "homePage": "https://github.com/nf-core/tbanalyzer",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -44325,9 +46486,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/tfactivity",
+                "author": "",
+                "homePage": "https://github.com/nf-core/tfactivity",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/tfactivity",
+                "author": "",
+                "homePage": "https://github.com/nf-core/tfactivity",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "0.0.1dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -44432,7 +46613,7 @@
                 }
             },
             "network_count": 0,
-            "subscribers_count": 229,
+            "subscribers_count": 228,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
@@ -44492,9 +46673,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/troughgraph",
+                "author": "",
+                "homePage": "https://github.com/nf-core/troughgraph",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/troughgraph",
+                "author": "",
+                "homePage": "https://github.com/nf-core/troughgraph",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -44530,9 +46731,9 @@
             "url": "https://api.github.com/repos/nf-core/variantbenchmarking",
             "created_at": "2023-12-07T10:56:32Z",
             "updated_at": "2024-11-20T12:16:48Z",
-            "pushed_at": "2024-11-22T13:45:32Z",
+            "pushed_at": "2024-11-25T10:58:09Z",
             "homepage": "https://nf-co.re/variantbenchmarking",
-            "size": 3867,
+            "size": 3883,
             "stargazers_count": 12,
             "watchers_count": 12,
             "language": "Nextflow",
@@ -44545,7 +46746,7 @@
             "forks_count": 7,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 18,
+            "open_issues_count": 20,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -44557,7 +46758,7 @@
             ],
             "visibility": "public",
             "forks": 7,
-            "open_issues": 18,
+            "open_issues": 20,
             "watchers": 12,
             "default_branch": "dev",
             "temp_clone_token": "",
@@ -44655,7 +46856,7 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 2,
+            "open_pr_count": 3,
             "repository_url": "https://github.com/nf-core/variantbenchmarking",
             "contributors": [
                 {
@@ -44685,10 +46886,30 @@
             "master_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/variantbenchmarking",
+                "author": "",
+                "homePage": "https://github.com/nf-core/variantbenchmarking",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1",
                 "nf-prov@1.2.2"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/variantbenchmarking",
+                "author": "",
+                "homePage": "https://github.com/nf-core/variantbenchmarking",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -44901,7 +47122,27 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/variantcatalogue",
+                "author": "",
+                "homePage": "https://github.com/nf-core/variantcatalogue",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=22.10.1",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "dev_nextflow_config_plugins": null,
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/variantcatalogue",
+                "author": "",
+                "homePage": "https://github.com/nf-core/variantcatalogue",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=22.10.1",
+                "version": "1.0dev",
+                "doi": ""
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -45149,7 +47390,17 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "homePage": "https://github.com/nf-core/vipr",
+                "description": "Nextflow , Viral amplicon/enrichment analysis and intrahost variant calling pipeline, part of the nf-core community.",
+                "mainScript": "main.nf"
+            },
             "dev_nextflow_config_plugins": null,
+            "dev_nextflow_config_manifest": {
+                "homePage": "https://github.com/nf-core/vipr",
+                "description": "Nextflow , Viral amplicon/enrichment analysis and intrahost variant calling pipeline, part of the nf-core community.",
+                "mainScript": "main.nf"
+            },
             "releases": [
                 {
                     "tag_name": "dev",
@@ -45345,9 +47596,29 @@
             "master_nextflow_config_plugins": [
                 "nf-validation"
             ],
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/viralintegration",
+                "author": "",
+                "homePage": "https://github.com/nf-core/viralintegration",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "0.1.1",
+                "doi": "10.5281/zenodo.7783480"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-validation@1.1.3"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/viralintegration",
+                "author": "",
+                "homePage": "https://github.com/nf-core/viralintegration",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=23.04.0",
+                "version": "0.1.1dev",
+                "doi": "10.5281/zenodo.7783480"
+            },
             "releases": [
                 {
                     "tag_name": "0.1.1",
@@ -45671,9 +47942,29 @@
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/viralrecon",
+                "author": "",
+                "homePage": "https://github.com/nf-core/viralrecon",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=22.10.1",
+                "version": "2.6.0",
+                "doi": "https://doi.org/10.5281/zenodo.3901628"
+            },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
             ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/viralrecon",
+                "author": "",
+                "homePage": "https://github.com/nf-core/viralrecon",
+                "description": "",
+                "mainScript": "main.nf",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "2.7.0dev",
+                "doi": "https://doi.org/10.5281/zenodo.3901628"
+            },
             "releases": [
                 {
                     "tag_name": "2.6.0",
