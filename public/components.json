@@ -8278,6 +8278,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -26908,6 +26912,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -40543,6 +40555,99 @@
                 "*.bam": {
                   "type": "file",
                   "description": "Alignment (BAM) file of reads mapped to the reference database",
+                  "pattern": "*.{bam}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@ramirobarrantes"
+        ],
+        "maintainers": [
+          "@ramirobarrantes"
+        ]
+      }
+    },
+    {
+      "name": "coptr_merge",
+      "path": "modules/nf-core/coptr/merge/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "coptr_merge",
+        "description": "Merge reads that were mapped to multiple indices",
+        "keywords": [
+          "coptr",
+          "mapping",
+          "merging",
+          "ptr"
+        ],
+        "tools": [
+          {
+            "coptr": {
+              "description": "Accurate and robust inference of microbial growth dynamics from metagenomic sequencing reads.",
+              "homepage": "https://github.com/tyjo/coptr",
+              "documentation": "https://coptr.readthedocs.io/",
+              "tool_dev_url": "https://github.com/tyjo/coptr",
+              "doi": "10.1101/gr.275533.121",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:coptr"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "bams": {
+                "type": "file",
+                "description": "bam files to merge. Assumes that the reads were mapped to different indices.",
+                "pattern": "*.bam",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "bam": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.bam": {
+                  "type": "file",
+                  "description": "Merged BAM file",
                   "pattern": "*.{bam}",
                   "ontologies": [
                     {
@@ -89843,6 +89948,15 @@
                 "pattern": "tagDir"
               }
             }
+          ],
+          [
+            {
+              "uniqmap": {
+                "type": "directory",
+                "description": "(directory of binary files specifying uniquely mappable locations) Download from http://biowhat.ucsd.edu/homer/groseq/",
+                "pattern": "uniqmap/"
+              }
+            }
           ]
         ],
         "output": [
@@ -110050,6 +110164,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -179942,14 +180060,14 @@
                 "meta": {
                   "type": "map",
                   "description": "Groovy Map containing sample information\ne.g. `[ id:'test']`\n",
-                  "pattern": "*.{html, score_ascii}"
+                  "pattern": "*.{score_html, score_ascii}"
                 }
               },
               {
-                "*.{html,sp_ascii}": {
+                "*.{score_html,sp_ascii}": {
                   "type": "file",
                   "description": "Consensus evaluation file.",
-                  "pattern": "*.{html, score_ascii}"
+                  "pattern": "*.{score_html, score_ascii}"
                 }
               }
             ]
@@ -200629,7 +200747,7 @@
         ],
         "components": [
           "ngscheckmate/fastq",
-          "ngscheckmate/vaffastq"
+          "ngscheckmate/vafncm"
         ],
         "input": [
           {
@@ -201262,6 +201380,92 @@
       ]
     },
     {
+      "name": "homer_groseq",
+      "path": "subworkflows/nf-core/homer_groseq/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "homer_groseq",
+        "description": "Basic process of trying to analyze GRO-Seq data with HOMER. From the [GRO-Seq Analysis Tutorial](http://homer.ucsd.edu/homer/ngs/groseq/groseq.html).",
+        "keywords": [
+          "homer",
+          "groseq",
+          "nascent"
+        ],
+        "components": [
+          "unzip",
+          "homer/maketagdirectory",
+          "homer/makeucscfile",
+          "homer/findpeaks",
+          "homer/pos2bed"
+        ],
+        "input": [
+          {
+            "bam": {
+              "description": "list of BAM files, also able to take SAM and BED as input",
+              "pattern": "[ *.{bam/sam/bed} ]"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "The reference fasta file",
+              "pattern": "*.fasta"
+            }
+          },
+          {
+            "uniqmap": {
+              "type": "file",
+              "description": "Optional HOMER uniqmap",
+              "pattern": "*.zip"
+            }
+          }
+        ],
+        "output": [
+          {
+            "tagdir": {
+              "type": "directory",
+              "description": "The \"Tag Directory\"",
+              "pattern": "*_tagdir"
+            }
+          },
+          {
+            "bed_graph": {
+              "type": "file",
+              "description": "The UCSC bed graph",
+              "pattern": "*.bedGraph.gz"
+            }
+          },
+          {
+            "peaks": {
+              "type": "file",
+              "description": "The found peaks",
+              "pattern": "*.peaks.txt"
+            }
+          },
+          {
+            "bed": {
+              "type": "file",
+              "description": "A BED file of the found peaks",
+              "pattern": "*.bed"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@edmundmiller"
+        ],
+        "maintainers": [
+          "@edmundmiller"
+        ]
+      }
+    },
+    {
       "name": "initialise",
       "path": "subworkflows/nf-core/initialise/meta.yml",
       "type": "subworkflow",
@@ -201317,6 +201521,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        },
         {
           "name": "phageannotator",
           "version": "dev"
@@ -204747,6 +204955,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
+        },
         {
           "name": "riboseq",
           "version": "1.0.1"
