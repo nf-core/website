@@ -16,6 +16,31 @@ Everyone is welcome to join in and bring in different points to it.
 
 ## Scope
 
+Depending on the use-case nf-core pipelines might have to comply to different regulatory requirements.
+Regulatory requirements are legally binding rules established by government authorities or delegated bodies to control an industry, process, or sector [[1](https://www.metricstream.com/learn/comprehensive-guide-to-regulatory-compliance.htm)].
+Thus the regulation depends on the jurisdiction under which the industry, process, or sector falls that uses a nf-core pipeline.
+
+This document provides information about how nf-core pipelines can be used under different regulations.
+
+## Use Cases
+
+At the moment, nf-core creates and maintains pipelines for the analysis of data derived from biological samples, mostly sequencing data.
+These analysis are used in different industries, processes, and sectors, such as:
+
+- pharmaceutical industry
+- diagnostics manufacturer
+- medical device manufacturer
+- clinics
+- ...
+
+Regulations for these use cases depend on the country/market in which the nf-core pipelines are going to be used.
+This document focuses mainly on:
+
+- United States of America
+- European Union
+
+, because these are the ones we are most knowledgable and experienced with.
+
 Pipeline validation is widely seen as something critical for use cases where outputs and interpretation of results matter more strictly, e.g. where regulatory authorities impose certain quality requirements to be met.
 To assess this, the usual approach is to perform a risk based validation.
 
