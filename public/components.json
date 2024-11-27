@@ -8290,6 +8290,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -25137,6 +25141,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -106252,10 +106264,12 @@
           }
         ],
         "authors": [
-          "@jfy133"
+          "@jfy133",
+          "@LilyAnderssonLee"
         ],
         "maintainers": [
-          "@jfy133"
+          "@jfy133",
+          "@LilyAnderssonLee"
         ]
       },
       "pipelines": [
@@ -110258,6 +110272,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -198596,6 +198614,97 @@
       }
     },
     {
+      "name": "fasta_index_bismark_bwameth",
+      "path": "subworkflows/nf-core/fasta_index_bismark_bwameth/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "fasta_index_bismark_bwameth",
+        "description": "Generate index files from reference fasta for bismark and bwameth",
+        "keywords": [
+          "bismark",
+          "bwameth",
+          "prepare genome",
+          "index"
+        ],
+        "components": [
+          "untar",
+          "gunzip",
+          "bismark/genomepreparation",
+          "bwameth/index",
+          "samtools/faidx"
+        ],
+        "input": [
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Reference genome\nStructure: [ val(meta), path(fasta) ]\n",
+              "pattern": "*.{fa/fa.gz}"
+            }
+          },
+          {
+            "fasta_index": {
+              "type": "file",
+              "description": "Reference genome index file\nStructure: [ val(meta), path(fasta) ]\n",
+              "pattern": "*.fai"
+            }
+          },
+          {
+            "bismark_index": {
+              "type": "file",
+              "description": "Bismark genome index files\nStructure: [ val(meta), path(bismark_index) ]\n"
+            }
+          },
+          {
+            "bwameth_index": {
+              "type": "file",
+              "description": "Bwameth genome index files\nStructure: [ val(meta), path(bwameth_index) ]\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Reference genome\nStructure: [ val(meta), path(fasta) ]\n",
+              "pattern": "*.fa"
+            }
+          },
+          {
+            "fasta_index": {
+              "type": "file",
+              "description": "Reference genome index file\nStructure: [ val(meta), path(fasta) ]\n",
+              "pattern": "*.fai"
+            }
+          },
+          {
+            "bismark_index": {
+              "type": "file",
+              "description": "Bismark genome index files\nStructure: [ val(meta), path(bismark_index) ]\npattern: \"BismarkIndex\"\n"
+            }
+          },
+          {
+            "bwameth_index": {
+              "type": "file",
+              "description": "Bwameth genome index files\nStructure: [ val(meta), path(bwameth_index) ]\npattern: \"index\"\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@sateeshperi"
+        ],
+        "maintainers": [
+          "@sateeshperi"
+        ]
+      }
+    },
+    {
       "name": "fasta_index_dna",
       "path": "subworkflows/nf-core/fasta_index_dna/meta.yml",
       "type": "subworkflow",
@@ -201793,6 +201902,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        },
         {
           "name": "phageannotator",
           "version": "dev"
@@ -205235,6 +205348,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
+        },
         {
           "name": "riboseq",
           "version": "1.0.1"
