@@ -8286,6 +8286,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -14523,6 +14527,40 @@
                   "type": "file",
                   "description": "samples format used by IMPUTE2 and SHAPEIT",
                   "pattern": "*.samples"
+                }
+              }
+            ]
+          },
+          {
+            "tbi": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.tbi": {
+                  "type": "file",
+                  "description": "Alternative VCF file index",
+                  "pattern": "*.tbi"
+                }
+              }
+            ]
+          },
+          {
+            "csi": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.csi": {
+                  "type": "file",
+                  "description": "Default VCF file index",
+                  "pattern": "*.csi"
                 }
               }
             ]
@@ -26932,6 +26970,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -35715,7 +35761,7 @@
               "fasta": {
                 "type": "file",
                 "description": "Input sequences in FASTA format",
-                "pattern": "*.{fa,fasta}"
+                "pattern": "*.{fa,fasta,faa,fna}"
               }
             }
           ],
@@ -35731,6 +35777,42 @@
                 "type": "file",
                 "description": "Input guide tree in Newick format",
                 "pattern": "*.{dnd}"
+              }
+            }
+          ],
+          [
+            {
+              "hmm_in": {
+                "type": "file",
+                "description": "HMM file for profile alignment",
+                "pattern": "*.hmm"
+              }
+            }
+          ],
+          [
+            {
+              "hmm_batch": {
+                "type": "file",
+                "description": "specify HMMs for individual sequences",
+                "pattern": "*"
+              }
+            }
+          ],
+          [
+            {
+              "profile1": {
+                "type": "file",
+                "description": "Pre-aligned multiple sequence file 1",
+                "pattern": "*.{alnfaa,faa,fa,fasta}"
+              }
+            }
+          ],
+          [
+            {
+              "profile2": {
+                "type": "file",
+                "description": "Pre-aligned multiple sequence file 2",
+                "pattern": "*.{alnfaa,faa,fa,fasta}"
               }
             }
           ],
@@ -84770,9 +84852,9 @@
               }
             },
             {
-              "fasta": {
+              "fasta_files": {
                 "type": "file",
-                "description": "FASTA file containing contig (bins)",
+                "description": "A list of FASTA files containing contig (bins)",
                 "pattern": "*.fa"
               }
             }
@@ -110176,6 +110258,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -145249,7 +145335,7 @@
                 }
               },
               {
-                "pydamage_results/pydamage_results.csv": {
+                "pydamage_results/*_pydamage_results.csv": {
                   "type": "file",
                   "description": "PyDamage results as csv files",
                   "pattern": "*.csv"
@@ -182271,7 +182357,13 @@
         "maintainers": [
           "@Schmytzi"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pacvar",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "trgt_merge",
@@ -182543,7 +182635,13 @@
         "maintainers": [
           "@Schmytzi"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pacvar",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "trimgalore",
@@ -198276,6 +198374,164 @@
       ]
     },
     {
+      "name": "fasta_gxf_busco_plot",
+      "path": "subworkflows/nf-core/fasta_gxf_busco_plot/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "fasta_gxf_busco_plot",
+        "description": "Runs BUSCO for input assemblies and their annotations in GFF/GFF3/GTF format, and creates summary plots using `BUSCO/generate_plot.py` script\n",
+        "keywords": [
+          "genome",
+          "annotation",
+          "busco",
+          "plot"
+        ],
+        "components": [
+          "busco/busco",
+          "busco/generateplot",
+          "gffread"
+        ],
+        "input": [
+          {
+            "ch_fasta": {
+              "type": "file",
+              "description": "Channel containing FASTA files\nStructure:[ val(meta), fasta ]\n",
+              "pattern": "*.{fa,faa,fsa,fas,fasta}(.gz)?"
+            }
+          },
+          {
+            "ch_gxf": {
+              "type": "file",
+              "description": "Channel containing GFF/GFF3/GTF files\nStructure:[ val(meta2), gxf ]\n",
+              "pattern": "*.{gff,gff3,gtf}"
+            }
+          },
+          {
+            "val_mode": {
+              "type": "string",
+              "description": "String containing BUSCO mode to apply to ch_fasta files\nStructure:val(mode)\n"
+            }
+          },
+          {
+            "val_lineages": {
+              "type": "array",
+              "description": "Array of strings representing BUSCO lineage datasets\nStructure:[ val(lineage) ]\n"
+            }
+          },
+          {
+            "val_busco_lineages_path": {
+              "type": "path",
+              "description": "Path where BUSCO lineages are located or downloaded if not already there. If this input is `[]`,\nBUSCO will download the datasets in the task work directory\nStructure:val(busco_lineages_path)\n"
+            }
+          },
+          {
+            "val_busco_config": {
+              "type": "path",
+              "description": "Path to BUSCO config. It is optional and can be set to `[]`\nStructure:val(busco_config)\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "assembly_batch_summary": {
+              "type": "file",
+              "description": "Channel containing BUSCO batch summaries corresponding to fasta files\nStructure: [ val(meta), txt ]\n",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "assembly_short_summaries_txt": {
+              "type": "file",
+              "description": "Channel containing BUSCO short summaries corresponding to fasta files\nStructure: [ val(meta), txt ]\n",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "assembly_short_summaries_json": {
+              "type": "file",
+              "description": "Channel containing BUSCO short summaries corresponding to fasta files\nStructure: [ val(meta), json ]\n",
+              "pattern": "*.json"
+            }
+          },
+          {
+            "assembly_full_table": {
+              "description": "Channel containing complete results in a tabular format with scores and lengths of BUSCO matches,\nand coordinates (for genome mode) or gene/protein IDs (for transcriptome or protein modes)\nStructure: [ val(meta), tsv ]\n",
+              "pattern": "*.tsv"
+            }
+          },
+          {
+            "assembly_plot_summary_txt": {
+              "type": "file",
+              "description": "Channel containing BUSCO short summaries corresponding to fasta files renamed to include lineage in sample id\nStructure: [ txt ]\n",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "assembly_png": {
+              "type": "file",
+              "description": "Channel containing summary plot for assemblies\nStructure: png\n",
+              "pattern": "*.png"
+            }
+          },
+          {
+            "annotation_batch_summary": {
+              "type": "file",
+              "description": "Channel containing BUSCO batch summaries corresponding to annotation files\nStructure: [ val(meta), txt ]\n",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "annotation_short_summaries_txt": {
+              "type": "file",
+              "description": "Channel containing BUSCO short summaries corresponding to annotation files\nStructure: [ val(meta), txt ]\n",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "annotation_short_summaries_json": {
+              "type": "file",
+              "description": "Channel containing BUSCO short summaries corresponding to annotation files\nStructure: [ val(meta), json ]\n",
+              "pattern": "*.json"
+            }
+          },
+          {
+            "annotation_full_table": {
+              "description": "Channel containing complete results in a tabular format with scores and lengths of BUSCO matches,\nprotein IDs in protein mode\nStructure: [ val(meta), tsv ]\n",
+              "pattern": "*.tsv"
+            }
+          },
+          {
+            "annotation_plot_summary_txt": {
+              "type": "file",
+              "description": "Channel containing BUSCO short summaries corresponding to annotation files renamed to include lineage in sample id\nStructure: [ txt ]\n",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "annotation_png": {
+              "type": "file",
+              "description": "Channel containing summary plot for annotations\nStructure: png\n",
+              "pattern": "*.png"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@GallVp"
+        ],
+        "maintainers": [
+          "@GallVp",
+          "@FernandoDuarteF"
+        ]
+      }
+    },
+    {
       "name": "fasta_hmmsearch_rank_fastas",
       "path": "subworkflows/nf-core/fasta_hmmsearch_rank_fastas/meta.yml",
       "type": "subworkflow",
@@ -201537,6 +201793,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        },
         {
           "name": "phageannotator",
           "version": "dev"
@@ -204975,6 +205235,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
+        },
         {
           "name": "riboseq",
           "version": "1.0.1"
