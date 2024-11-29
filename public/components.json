@@ -8306,6 +8306,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -25157,6 +25161,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -105810,6 +105822,22 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -110719,6 +110747,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -122511,6 +122543,126 @@
       ]
     },
     {
+      "name": "muse_call",
+      "path": "modules/nf-core/muse/call/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "muse_call",
+        "description": "pre-filtering and calculating position-specific summary statistics using the Markov substitution model",
+        "keywords": [
+          "variant calling",
+          "somatic",
+          "wgs",
+          "wxs",
+          "vcf"
+        ],
+        "tools": [
+          {
+            "MuSE": {
+              "description": "Somatic point mutation caller based on Markov substitution model for molecular evolution",
+              "homepage": "https://bioinformatics.mdanderson.org/public-software/muse/",
+              "documentation": "https://github.com/wwylab/MuSE",
+              "tool_dev_url": "https://github.com/wwylab/MuSE",
+              "doi": "10.1101/gr.278456.123",
+              "licence": [
+                "https://github.com/danielfan/MuSE/blob/master/LICENSE"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "tumor_bam": {
+                "type": "file",
+                "description": "Sorted tumor BAM file",
+                "pattern": "*.bam"
+              }
+            },
+            {
+              "tumor_bai": {
+                "type": "file",
+                "description": "Index file for the tumor BAM file",
+                "pattern": "*.bai"
+              }
+            },
+            {
+              "normal_bam": {
+                "type": "file",
+                "description": "Sorted matched normal BAM file",
+                "pattern": "*.bam"
+              }
+            },
+            {
+              "normal_bai": {
+                "type": "file",
+                "description": "Index file for the normal BAM file",
+                "pattern": "*.bai"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information.\ne.g. `[ id:'test' ]`\n"
+              }
+            },
+            {
+              "reference": {
+                "type": "file",
+                "description": "reference genome file",
+                "pattern": ".fasta"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "txt": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.MuSE.txt": {
+                  "type": "file",
+                  "description": "position-specific summary statistics",
+                  "pattern": "*.MuSE.txt"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@famosab"
+        ],
+        "maintainers": [
+          "@famosab"
+        ]
+      }
+    },
+    {
       "name": "mygene",
       "path": "modules/nf-core/mygene/meta.yml",
       "type": "module",
@@ -122714,6 +122866,254 @@
         ],
         "maintainers": [
           "@rpetit3"
+        ]
+      }
+    },
+    {
+      "name": "nacho_normalize",
+      "path": "modules/nf-core/nacho/normalize/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "nacho_normalize",
+        "description": "NACHO (NAnostring quality Control dasHbOard) is developed for NanoString nCounter data.\nNanoString nCounter data is a messenger-RNA/micro-RNA (mRNA/miRNA) expression assay and works with fluorescent barcodes.\nEach barcode is assigned a mRNA/miRNA, which can be counted after bonding with its target.\nAs a result each count of a specific barcode represents the presence of its target mRNA/miRNA.\n",
+        "keywords": [
+          "nacho",
+          "nanostring",
+          "mRNA",
+          "miRNA",
+          "qc"
+        ],
+        "tools": [
+          {
+            "NACHO": {
+              "description": "R package that uses two main functions to summarize and visualize NanoString RCC files,\nnamely: `load_rcc()` and `visualise()`. It also includes a function `normalise()`, which (re)calculates\nsample specific size factors and normalises the data.\nFor more information `vignette(\"NACHO\")` and `vignette(\"NACHO-analysis\")`\n",
+              "homepage": "https://github.com/mcanouil/NACHO",
+              "documentation": "https://cran.r-project.org/web/packages/NACHO/vignettes/NACHO.html",
+              "doi": "10.1093/bioinformatics/btz647",
+              "licence": [
+                "GPL-3.0"
+              ],
+              "identifier": "",
+              "args_id": "$args"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "rcc_files": {
+                "type": "file",
+                "description": "List of RCC files for all samples, which are direct outputs from NanoString runs\n",
+                "pattern": "*.RCC"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing file information\ne.g. [ id:'test_samplesheet' ]\n"
+              }
+            },
+            {
+              "sample_sheet": {
+                "type": "file",
+                "pattern": "*.csv",
+                "description": "Comma-separated file with 3 columns: RCC_FILE, RCC_FILE_NAME, and SAMPLE_ID\n"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "normalized_counts": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "normalized_counts.tsv": {
+                  "type": "file",
+                  "description": "Tab-separated file with gene normalized counts for the samples\n",
+                  "pattern": "normalized_counts.tsv"
+                }
+              }
+            ]
+          },
+          {
+            "normalized_counts_wo_HK": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "normalized_counts_wo_HKnorm.tsv": {
+                  "type": "file",
+                  "description": "Tab-separated file with gene normalized counts for the samples, without housekeeping genes.\n",
+                  "pattern": "normalized_counts_wo_HKnorm.tsv"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions\n",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@alanmmobbs93"
+        ],
+        "maintainers": [
+          "@alanmmobbs93"
+        ]
+      }
+    },
+    {
+      "name": "nacho_qc",
+      "path": "modules/nf-core/nacho/qc/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "nacho_qc",
+        "description": "NACHO (NAnostring quality Control dasHbOard) is developed for NanoString nCounter data.\nNanoString nCounter data is a messenger-RNA/micro-RNA (mRNA/miRNA) expression assay and works with fluorescent barcodes.\nEach barcode is assigned a mRNA/miRNA, which can be counted after bonding with its target.\nAs a result each count of a specific barcode represents the presence of its target mRNA/miRNA.\n",
+        "keywords": [
+          "nacho",
+          "nanostring",
+          "mRNA",
+          "miRNA",
+          "qc"
+        ],
+        "tools": [
+          {
+            "NACHO": {
+              "description": "R package that uses two main functions to summarize and visualize NanoString RCC files,\nnamely: `load_rcc()` and `visualise()`. It also includes a function `normalise()`, which (re)calculates\nsample specific size factors and normalises the data.\nFor more information `vignette(\"NACHO\")` and `vignette(\"NACHO-analysis\")`\n",
+              "homepage": "https://github.com/mcanouil/NACHO",
+              "documentation": "https://cran.r-project.org/web/packages/NACHO/vignettes/NACHO.html",
+              "doi": "10.1093/bioinformatics/btz647",
+              "licence": [
+                "GPL-3.0"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "rcc_files": {
+                "type": "file",
+                "description": "List of RCC files for all samples, which are direct outputs from NanoString runs\n",
+                "pattern": "*.RCC"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing file information\ne.g. [ id:'test_samplesheet' ]\n"
+              }
+            },
+            {
+              "sample_sheet": {
+                "type": "file",
+                "pattern": "*.csv",
+                "description": "Comma-separated file with 3 columns: RCC_FILE, RCC_FILE_NAME, and SAMPLE_ID\n"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "nacho_qc_reports": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.html": {
+                  "type": "file",
+                  "description": "HTML report\n",
+                  "pattern": "*.html"
+                }
+              }
+            ]
+          },
+          {
+            "nacho_qc_png": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*_mqc.png": {
+                  "type": "file",
+                  "description": "Output PNG files\n",
+                  "pattern": "*_mqc.png"
+                }
+              }
+            ]
+          },
+          {
+            "nacho_qc_txt": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*_mqc.txt": {
+                  "type": "file",
+                  "description": "Plain text reports\n",
+                  "pattern": "*_mqc.txt"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions\n",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@alanmmobbs93"
+        ],
+        "maintainers": [
+          "@alanmmobbs93"
         ]
       }
     },
@@ -202793,6 +203193,10 @@
         {
           "name": "phageannotator",
           "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
         }
       ]
     },
@@ -206220,6 +206624,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
+        },
         {
           "name": "riboseq",
           "version": "1.0.1"
