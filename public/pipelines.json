@@ -554,7 +554,7 @@
             "forks_count": 119,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 29,
+            "open_issues_count": 28,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -577,7 +577,7 @@
             ],
             "visibility": "public",
             "forks": 119,
-            "open_issues": 29,
+            "open_issues": 28,
             "watchers": 188,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -8990,9 +8990,9 @@
             "url": "https://api.github.com/repos/nf-core/demultiplex",
             "created_at": "2020-03-05T15:48:10Z",
             "updated_at": "2024-11-06T09:13:52Z",
-            "pushed_at": "2024-11-22T16:10:38Z",
+            "pushed_at": "2024-11-28T14:07:49Z",
             "homepage": "https://nf-co.re/demultiplex",
-            "size": 14063,
+            "size": 14065,
             "stargazers_count": 44,
             "watchers_count": 44,
             "language": "Nextflow",
@@ -9005,7 +9005,7 @@
             "forks_count": 38,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 17,
+            "open_issues_count": 19,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -9018,7 +9018,7 @@
             ],
             "visibility": "public",
             "forks": 38,
-            "open_issues": 17,
+            "open_issues": 19,
             "watchers": 44,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -9111,7 +9111,7 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 0,
+            "open_pr_count": 2,
             "repository_url": "https://github.com/nf-core/demultiplex",
             "contributors": [
                 {
@@ -10106,10 +10106,10 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/denovotranscript",
             "created_at": "2024-06-27T04:30:51Z",
-            "updated_at": "2024-11-21T16:16:58Z",
-            "pushed_at": "2024-11-05T20:51:12Z",
+            "updated_at": "2024-11-29T00:11:28Z",
+            "pushed_at": "2024-11-29T00:30:38Z",
             "homepage": "https://nf-co.re/denovotranscript/",
-            "size": 1381,
+            "size": 1389,
             "stargazers_count": 7,
             "watchers_count": 7,
             "language": "Nextflow",
@@ -10122,7 +10122,7 @@
             "forks_count": 3,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 6,
+            "open_issues_count": 5,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -10133,7 +10133,7 @@
             ],
             "visibility": "public",
             "forks": 3,
-            "open_issues": 6,
+            "open_issues": 5,
             "watchers": 7,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -10167,7 +10167,7 @@
                 }
             },
             "network_count": 3,
-            "subscribers_count": 185,
+            "subscribers_count": 183,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
@@ -10231,12 +10231,12 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": false,
-            "open_pr_count": 2,
+            "open_pr_count": 1,
             "repository_url": "https://github.com/nf-core/denovotranscript",
             "contributors": [
                 {
                     "name": "avani-bhojwani",
-                    "count": 91,
+                    "count": 120,
                     "avatar_url": "https://avatars.githubusercontent.com/u/68935109?v=4"
                 },
                 {
@@ -10245,16 +10245,16 @@
                     "avatar_url": "https://avatars.githubusercontent.com/u/76944764?v=4"
                 }
             ],
-            "released_after_tools": false,
-            "head_sha": "27bb1e7924f01fa1e9cd624aeddc7d11b7a8c5fe",
-            "last_release_is_head": false,
-            "last_release_vs_default_compare_url": "https://github.com/nf-core/denovotranscript/compare/27bb1e7924f01fa1e9cd624aeddc7d11b7a8c5fe...558ff4b639039ac8ec9bece3490841aa17eec971",
+            "released_after_tools": true,
+            "head_sha": "cb8abd344196e27ec10044505509229830d7c2fc",
+            "last_release_is_head": true,
+            "last_release_vs_default_compare_url": "https://github.com/nf-core/denovotranscript/compare/cb8abd344196e27ec10044505509229830d7c2fc...cb8abd344196e27ec10044505509229830d7c2fc",
             "commits_to_dev": 30,
             "is_DSL2": true,
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": [
-                "nf-validation@1.1.3"
+                "nf-schema@2.1.1"
             ],
             "master_nextflow_config_manifest": {
                 "name": "nf-core/denovotranscript",
@@ -10262,9 +10262,9 @@
                 "homePage": "https://github.com/nf-core/denovotranscript",
                 "description": "",
                 "mainScript": "main.nf",
-                "nextflowVersion": "!>=23.04.0",
-                "version": "1.0.0",
-                "doi": ""
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.1.0",
+                "doi": "10.5281/zenodo.13324371"
             },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.1.1"
@@ -10280,6 +10280,40 @@
                 "doi": "10.5281/zenodo.13324371"
             },
             "releases": [
+                {
+                    "tag_name": "1.1.0",
+                    "published_at": "2024-11-29T00:26:00Z",
+                    "tag_sha": "cb8abd344196e27ec10044505509229830d7c2fc",
+                    "has_schema": true,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/usage.md",
+                        "docs/usage/example_workflow.md"
+                    ],
+                    "components": {
+                        "modules": [
+                            "busco_busco",
+                            "cat_cat",
+                            "cat_fastq",
+                            "evigene_tr2aacds",
+                            "fastp",
+                            "fastqc",
+                            "gawk",
+                            "multiqc",
+                            "salmon_index",
+                            "salmon_quant",
+                            "sortmerna",
+                            "spades",
+                            "trinity"
+                        ],
+                        "subworkflows": [
+                            "fastq_trim_fastp_fastqc",
+                            "utils_nextflow_pipeline",
+                            "utils_nfcore_pipeline",
+                            "utils_nfschema_plugin"
+                        ]
+                    }
+                },
                 {
                     "tag_name": "1.0.0",
                     "published_at": "2024-08-15T01:25:07Z",
@@ -10316,8 +10350,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2024-11-05T20:51:12Z",
-                    "tag_sha": "73ca2003a645faa8b48200bd533c6270ef6dd6d1",
+                    "published_at": "2024-11-29T00:11:22Z",
+                    "tag_sha": "cb8abd344196e27ec10044505509229830d7c2fc",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -10986,9 +11020,9 @@
             "url": "https://api.github.com/repos/nf-core/differentialabundance",
             "created_at": "2022-10-12T08:49:25Z",
             "updated_at": "2024-11-17T21:10:47Z",
-            "pushed_at": "2024-11-26T09:21:07Z",
+            "pushed_at": "2024-11-28T14:43:09Z",
             "homepage": "https://nf-co.re/differentialabundance",
-            "size": 9092,
+            "size": 9096,
             "stargazers_count": 64,
             "watchers_count": 64,
             "language": "Nextflow",
@@ -19420,7 +19454,7 @@
             "updated_at": "2024-11-27T06:13:57Z",
             "pushed_at": "2024-11-28T13:53:24Z",
             "homepage": "https://nf-co.re/mag",
-            "size": 23182,
+            "size": 23184,
             "stargazers_count": 218,
             "watchers_count": 218,
             "language": "Nextflow",
@@ -21239,9 +21273,9 @@
             "url": "https://api.github.com/repos/nf-core/marsseq",
             "created_at": "2021-07-20T20:57:04Z",
             "updated_at": "2024-11-25T11:25:04Z",
-            "pushed_at": "2024-11-27T12:21:58Z",
+            "pushed_at": "2024-11-28T23:03:44Z",
             "homepage": "https://nf-co.re/marsseq",
-            "size": 3176,
+            "size": 3216,
             "stargazers_count": 6,
             "watchers_count": 6,
             "language": "Nextflow",
@@ -23024,9 +23058,9 @@
             "url": "https://api.github.com/repos/nf-core/methylseq",
             "created_at": "2018-03-12T15:46:42Z",
             "updated_at": "2024-11-27T13:15:29Z",
-            "pushed_at": "2024-11-28T11:13:11Z",
+            "pushed_at": "2024-11-28T14:14:14Z",
             "homepage": "https://nf-co.re/methylseq",
-            "size": 22709,
+            "size": 22710,
             "stargazers_count": 142,
             "watchers_count": 142,
             "language": "Nextflow",
@@ -23039,7 +23073,7 @@
             "forks_count": 146,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 34,
+            "open_issues_count": 33,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -23055,7 +23089,7 @@
             ],
             "visibility": "public",
             "forks": 146,
-            "open_issues": 34,
+            "open_issues": 33,
             "watchers": 142,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -23136,7 +23170,7 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 4,
+            "open_pr_count": 3,
             "repository_url": "https://github.com/nf-core/methylseq",
             "contributors": [
                 {
@@ -23768,8 +23802,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2024-11-28T07:46:09Z",
-                    "tag_sha": "d10699ee8eb207165ec9a16a7030aa4d7d219269",
+                    "published_at": "2024-11-28T14:14:09Z",
+                    "tag_sha": "c9ba51aef175a24e4a27b9b07ca0ce611739e7af",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -25569,9 +25603,9 @@
             "url": "https://api.github.com/repos/nf-core/nanostring",
             "created_at": "2022-01-10T14:24:34Z",
             "updated_at": "2024-09-03T10:11:30Z",
-            "pushed_at": "2024-11-27T17:48:06Z",
+            "pushed_at": "2024-11-29T00:12:30Z",
             "homepage": "https://nf-co.re/nanostring",
-            "size": 4663,
+            "size": 4613,
             "stargazers_count": 13,
             "watchers_count": 13,
             "language": "Nextflow",
@@ -25682,7 +25716,7 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 2,
+            "open_pr_count": 1,
             "repository_url": "https://github.com/nf-core/nanostring",
             "contributors": [
                 {
@@ -25850,8 +25884,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2024-11-26T20:57:26Z",
-                    "tag_sha": "742dfefe319d82633d5cf6844d1922b10e0be5fb",
+                    "published_at": "2024-11-29T00:12:30Z",
+                    "tag_sha": "154a99e180f0e5609d6357358a884346c6932b81",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -27083,9 +27117,9 @@
             "url": "https://api.github.com/repos/nf-core/pacvar",
             "created_at": "2024-09-17T21:39:08Z",
             "updated_at": "2024-11-15T18:03:59Z",
-            "pushed_at": "2024-11-27T21:41:26Z",
+            "pushed_at": "2024-11-28T18:25:58Z",
             "homepage": "https://nf-co.re/pacvar",
-            "size": 356217,
+            "size": 356235,
             "stargazers_count": 1,
             "watchers_count": 1,
             "language": "Nextflow",
@@ -27222,8 +27256,8 @@
             "releases": [
                 {
                     "tag_name": "dev",
-                    "published_at": "2024-11-27T21:41:26Z",
-                    "tag_sha": "8b12a13e01f9152d220e5d85e2644d4e01845c62",
+                    "published_at": "2024-11-28T18:25:57Z",
+                    "tag_sha": "c98da99e6f628d14c6829b585afafe8261d841e4",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -28934,7 +28968,7 @@
             "forks_count": 14,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 15,
+            "open_issues_count": 16,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -28947,7 +28981,7 @@
             ],
             "visibility": "public",
             "forks": 14,
-            "open_issues": 15,
+            "open_issues": 16,
             "watchers": 17,
             "default_branch": "dev",
             "temp_clone_token": "",
@@ -29045,7 +29079,7 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": false,
-            "open_pr_count": 3,
+            "open_pr_count": 4,
             "repository_url": "https://github.com/nf-core/phaseimpute",
             "contributors": [
                 {
@@ -33739,9 +33773,9 @@
             "url": "https://api.github.com/repos/nf-core/rnafusion",
             "created_at": "2018-10-05T13:05:57Z",
             "updated_at": "2024-11-20T12:11:21Z",
-            "pushed_at": "2024-11-28T13:07:34Z",
+            "pushed_at": "2024-11-28T21:28:38Z",
             "homepage": "https://nf-co.re/rnafusion",
-            "size": 19788,
+            "size": 19696,
             "stargazers_count": 144,
             "watchers_count": 144,
             "language": "Nextflow",
@@ -33754,7 +33788,7 @@
             "forks_count": 96,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 47,
+            "open_issues_count": 52,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -33767,7 +33801,7 @@
             ],
             "visibility": "public",
             "forks": 96,
-            "open_issues": 47,
+            "open_issues": 52,
             "watchers": 144,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -33801,7 +33835,7 @@
                 }
             },
             "network_count": 96,
-            "subscribers_count": 152,
+            "subscribers_count": 151,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
@@ -33855,7 +33889,7 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 5,
+            "open_pr_count": 7,
             "repository_url": "https://github.com/nf-core/rnafusion",
             "contributors": [
                 {
@@ -34448,8 +34482,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2024-11-28T13:07:33Z",
-                    "tag_sha": "1aca4755c98eda6f8473aba04f571d038205bf8d",
+                    "published_at": "2024-11-28T18:00:24Z",
+                    "tag_sha": "3029fdf36e87fbb4c56efbb8c5c6e05ecf9117ef",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -34505,12 +34539,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/rnaseq",
             "created_at": "2018-03-29T13:10:58Z",
-            "updated_at": "2024-11-27T11:14:35Z",
+            "updated_at": "2024-11-28T19:46:05Z",
             "pushed_at": "2024-11-25T13:51:44Z",
             "homepage": "https://nf-co.re/rnaseq",
             "size": 74509,
-            "stargazers_count": 927,
-            "watchers_count": 927,
+            "stargazers_count": 928,
+            "watchers_count": 928,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": false,
@@ -34532,7 +34566,7 @@
             "visibility": "public",
             "forks": 709,
             "open_issues": 78,
-            "watchers": 927,
+            "watchers": 928,
             "default_branch": "master",
             "temp_clone_token": "",
             "allow_squash_merge": false,
@@ -44252,9 +44286,9 @@
             "url": "https://api.github.com/repos/nf-core/spatialxe",
             "created_at": "2024-03-14T10:57:36Z",
             "updated_at": "2024-11-13T14:20:15Z",
-            "pushed_at": "2024-11-25T12:27:06Z",
+            "pushed_at": "2024-11-28T21:44:52Z",
             "homepage": "https://nf-co.re/spatialxe",
-            "size": 2986,
+            "size": 4877,
             "stargazers_count": 5,
             "watchers_count": 5,
             "language": "Nextflow",
@@ -44308,7 +44342,7 @@
                 }
             },
             "network_count": 2,
-            "subscribers_count": 203,
+            "subscribers_count": 201,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
@@ -44842,10 +44876,10 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/taxprofiler",
             "created_at": "2022-02-18T06:56:10Z",
-            "updated_at": "2024-10-24T17:07:19Z",
-            "pushed_at": "2024-11-28T09:53:30Z",
+            "updated_at": "2024-11-28T15:07:35Z",
+            "pushed_at": "2024-11-28T17:11:29Z",
             "homepage": "https://nf-co.re/taxprofiler",
-            "size": 16402,
+            "size": 16414,
             "stargazers_count": 128,
             "watchers_count": 128,
             "language": "Nextflow",
@@ -44858,7 +44892,7 @@
             "forks_count": 36,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 46,
+            "open_issues_count": 45,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -44877,7 +44911,7 @@
             ],
             "visibility": "public",
             "forks": 36,
-            "open_issues": 46,
+            "open_issues": 45,
             "watchers": 128,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -44922,28 +44956,31 @@
                 "strict": false,
                 "contexts": [
                     "nf-core",
-                    "Run pipeline with test data (23.04.0, test)",
-                    "Run pipeline with test data (23.04.0, test_falco)",
-                    "Run pipeline with test data (23.04.0, test_bbduk)",
-                    "Run pipeline with test data (23.04.0, test_fastp)",
-                    "Run pipeline with test data (23.04.0, test_krakenuniq)",
-                    "Run pipeline with test data (23.04.0, test_malt)",
-                    "Run pipeline with test data (23.04.0, test_motus)",
-                    "Run pipeline with test data (23.04.0, test_prinseqplusplus)",
-                    "Run pipeline with test data (latest-everything, test)",
-                    "Run pipeline with test data (latest-everything, test_bbduk)",
-                    "Run pipeline with test data (latest-everything, test_falco)",
-                    "Run pipeline with test data (latest-everything, test_fastp)",
-                    "Run pipeline with test data (latest-everything, test_krakenuniq)",
-                    "Run pipeline with test data (latest-everything, test_malt)",
-                    "Run pipeline with test data (latest-everything, test_motus)",
-                    "Run pipeline with test data (latest-everything, test_prinseqplusplus)",
-                    "Run pipeline with test data (23.04.0, test_alternativepreprocessing)",
-                    "Run pipeline with test data (latest-everything, test_alternativepreprocessing)",
-                    "Run pipeline with test data (23.04.0, test_nopreprocessing)",
-                    "Run pipeline with test data (latest-everything, test_nopreprocessing)",
-                    "Run pipeline with test data (23.04.0, test_noprofiling)",
-                    "Run pipeline with test data (latest-everything, test_noprofiling)"
+                    "Run pipeline with test data (24.04.2 | test | conda)",
+                    "Run pipeline with test data (24.04.2 | test | docker)",
+                    "Run pipeline with test data (24.04.2 | test | singularity)",
+                    "Run pipeline with test data (24.04.2 | test_alternativepreprocessing | docker)",
+                    "Run pipeline with test data (24.04.2 | test_bbduk | docker)",
+                    "Run pipeline with test data (24.04.2 | test_falco | docker)",
+                    "Run pipeline with test data (24.04.2 | test_krakenuniq | docker)",
+                    "Run pipeline with test data (24.04.2 | test_malt | docker)",
+                    "Run pipeline with test data (24.04.2 | test_motus | docker)",
+                    "Run pipeline with test data (24.04.2 | test_nopreprocessing | docker)",
+                    "Run pipeline with test data (24.04.2 | test_noprofiling | docker)",
+                    "Run pipeline with test data (24.04.2 | test_prinseqplusplus | docker)",
+                    "Run pipeline with test data (latest-everything | test | conda)",
+                    "Run pipeline with test data (latest-everything | test | docker)",
+                    "Run pipeline with test data (latest-everything | test | singularity)",
+                    "Run pipeline with test data (latest-everything | test_alternativepreprocessing | docker)",
+                    "Run pipeline with test data (latest-everything | test_bbduk | docker)",
+                    "Run pipeline with test data (latest-everything | test_falco | docker)",
+                    "Run pipeline with test data (latest-everything | test_fastp | docker)",
+                    "Run pipeline with test data (latest-everything | test_krakenuniq | docker)",
+                    "Run pipeline with test data (latest-everything | test_motus | docker)",
+                    "Run pipeline with test data (latest-everything | test_malt | docker)",
+                    "Run pipeline with test data (latest-everything | test_noprofiling | docker)",
+                    "Run pipeline with test data (latest-everything | test_nopreprocessing | docker)",
+                    "Run pipeline with test data (latest-everything | test_prinseqplusplus | docker)"
                 ],
                 "contexts_url": "https://api.github.com/repos/nf-core/taxprofiler/branches/master/protection/required_status_checks/contexts",
                 "checks": [
@@ -44952,91 +44989,103 @@
                         "app_id": 15368
                     },
                     {
-                        "context": "Run pipeline with test data (23.04.0, test)",
+                        "context": "Run pipeline with test data (24.04.2 | test | conda)",
                         "app_id": 15368
                     },
                     {
-                        "context": "Run pipeline with test data (23.04.0, test_falco)",
+                        "context": "Run pipeline with test data (24.04.2 | test | docker)",
                         "app_id": 15368
                     },
                     {
-                        "context": "Run pipeline with test data (23.04.0, test_bbduk)",
+                        "context": "Run pipeline with test data (24.04.2 | test | singularity)",
                         "app_id": 15368
                     },
                     {
-                        "context": "Run pipeline with test data (23.04.0, test_fastp)",
+                        "context": "Run pipeline with test data (24.04.2 | test_alternativepreprocessing | docker)",
                         "app_id": 15368
                     },
                     {
-                        "context": "Run pipeline with test data (23.04.0, test_krakenuniq)",
+                        "context": "Run pipeline with test data (24.04.2 | test_bbduk | docker)",
                         "app_id": 15368
                     },
                     {
-                        "context": "Run pipeline with test data (23.04.0, test_malt)",
+                        "context": "Run pipeline with test data (24.04.2 | test_falco | docker)",
                         "app_id": 15368
                     },
                     {
-                        "context": "Run pipeline with test data (23.04.0, test_motus)",
+                        "context": "Run pipeline with test data (24.04.2 | test_krakenuniq | docker)",
                         "app_id": 15368
                     },
                     {
-                        "context": "Run pipeline with test data (23.04.0, test_prinseqplusplus)",
+                        "context": "Run pipeline with test data (24.04.2 | test_malt | docker)",
                         "app_id": 15368
                     },
                     {
-                        "context": "Run pipeline with test data (latest-everything, test)",
+                        "context": "Run pipeline with test data (24.04.2 | test_motus | docker)",
                         "app_id": 15368
                     },
                     {
-                        "context": "Run pipeline with test data (latest-everything, test_bbduk)",
+                        "context": "Run pipeline with test data (24.04.2 | test_nopreprocessing | docker)",
                         "app_id": 15368
                     },
                     {
-                        "context": "Run pipeline with test data (latest-everything, test_falco)",
+                        "context": "Run pipeline with test data (24.04.2 | test_noprofiling | docker)",
                         "app_id": 15368
                     },
                     {
-                        "context": "Run pipeline with test data (latest-everything, test_fastp)",
+                        "context": "Run pipeline with test data (24.04.2 | test_prinseqplusplus | docker)",
                         "app_id": 15368
                     },
                     {
-                        "context": "Run pipeline with test data (latest-everything, test_krakenuniq)",
+                        "context": "Run pipeline with test data (latest-everything | test | conda)",
                         "app_id": 15368
                     },
                     {
-                        "context": "Run pipeline with test data (latest-everything, test_malt)",
+                        "context": "Run pipeline with test data (latest-everything | test | docker)",
                         "app_id": 15368
                     },
                     {
-                        "context": "Run pipeline with test data (latest-everything, test_motus)",
+                        "context": "Run pipeline with test data (latest-everything | test | singularity)",
                         "app_id": 15368
                     },
                     {
-                        "context": "Run pipeline with test data (latest-everything, test_prinseqplusplus)",
+                        "context": "Run pipeline with test data (latest-everything | test_alternativepreprocessing | docker)",
                         "app_id": 15368
                     },
                     {
-                        "context": "Run pipeline with test data (23.04.0, test_alternativepreprocessing)",
+                        "context": "Run pipeline with test data (latest-everything | test_bbduk | docker)",
                         "app_id": 15368
                     },
                     {
-                        "context": "Run pipeline with test data (latest-everything, test_alternativepreprocessing)",
+                        "context": "Run pipeline with test data (latest-everything | test_falco | docker)",
                         "app_id": 15368
                     },
                     {
-                        "context": "Run pipeline with test data (23.04.0, test_nopreprocessing)",
+                        "context": "Run pipeline with test data (latest-everything | test_fastp | docker)",
                         "app_id": 15368
                     },
                     {
-                        "context": "Run pipeline with test data (latest-everything, test_nopreprocessing)",
+                        "context": "Run pipeline with test data (latest-everything | test_krakenuniq | docker)",
                         "app_id": 15368
                     },
                     {
-                        "context": "Run pipeline with test data (23.04.0, test_noprofiling)",
+                        "context": "Run pipeline with test data (latest-everything | test_motus | docker)",
                         "app_id": 15368
                     },
                     {
-                        "context": "Run pipeline with test data (latest-everything, test_noprofiling)",
+                        "context": "Run pipeline with test data (latest-everything | test_malt | docker)",
+                        "app_id": 15368
+                    },
+                    {
+                        "context": "Run pipeline with test data (latest-everything | test_noprofiling | docker)",
+                        "app_id": 15368
+                    },
+                    {
+                        "context": "Run pipeline with test data (latest-everything | test_nopreprocessing | docker)",
+                        "app_id": 15368
+                    },
+                    {
+                        "context": "Run pipeline with test data (latest-everything | test_prinseqplusplus | docker)",
                         "app_id": 15368
                     }
                 ]
@@ -45145,27 +45194,27 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 5,
+            "open_pr_count": 4,
             "repository_url": "https://github.com/nf-core/taxprofiler",
             "contributors": [
                 {
                     "name": "jfy133",
-                    "count": 987,
+                    "count": 997,
                     "avatar_url": "https://avatars.githubusercontent.com/u/17950287?v=4"
                 },
                 {
                     "name": "sofstam",
-                    "count": 392,
+                    "count": 395,
                     "avatar_url": "https://avatars.githubusercontent.com/u/91951607?v=4"
                 },
                 {
                     "name": "LilyAnderssonLee",
-                    "count": 341,
+                    "count": 366,
                     "avatar_url": "https://avatars.githubusercontent.com/u/64467552?v=4"
                 },
                 {
                     "name": "Midnighter",
-                    "count": 102,
+                    "count": 106,
                     "avatar_url": "https://avatars.githubusercontent.com/u/135653?v=4"
                 },
                 {
@@ -45244,16 +45293,16 @@
                     "avatar_url": "https://avatars.githubusercontent.com/u/47026226?v=4"
                 }
             ],
-            "released_after_tools": false,
-            "head_sha": "68938940f3c95f53f6c71c9742ab0d947ccba821",
+            "released_after_tools": true,
+            "head_sha": "0af416a24b4bcf41b9e2b5288c31c05280ca7994",
             "last_release_is_head": true,
-            "last_release_vs_default_compare_url": "https://github.com/nf-core/taxprofiler/compare/68938940f3c95f53f6c71c9742ab0d947ccba821...68938940f3c95f53f6c71c9742ab0d947ccba821",
+            "last_release_vs_default_compare_url": "https://github.com/nf-core/taxprofiler/compare/0af416a24b4bcf41b9e2b5288c31c05280ca7994...0af416a24b4bcf41b9e2b5288c31c05280ca7994",
             "commits_to_dev": 30,
             "is_DSL2": true,
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": [
-                "nf-validation@1.1.3"
+                "nf-schema@2.1.2"
             ],
             "master_nextflow_config_manifest": {
                 "name": "nf-core/taxprofiler",
@@ -45261,8 +45310,8 @@
                 "homePage": "https://github.com/nf-core/taxprofiler",
                 "description": "",
                 "mainScript": "main.nf",
-                "nextflowVersion": "!>=23.04.0",
-                "version": "1.2",
+                "nextflowVersion": "!>=24.04.2",
+                "version": "1.2.1",
                 "doi": "10.1101/2023.10.20.563221"
             },
             "dev_nextflow_config_plugins": [
@@ -45275,10 +45324,84 @@
                 "description": "",
                 "mainScript": "main.nf",
                 "nextflowVersion": "!>=24.04.2",
-                "version": "1.2.1",
+                "version": "1.3.0.dev",
                 "doi": "10.1101/2023.10.20.563221"
             },
             "releases": [
+                {
+                    "tag_name": "1.2.1",
+                    "published_at": "2024-11-28T15:09:47Z",
+                    "tag_sha": "0af416a24b4bcf41b9e2b5288c31c05280ca7994",
+                    "has_schema": true,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/usage.md",
+                        "docs/usage/faq-troubleshooting.md",
+                        "docs/usage/tutorials.md"
+                    ],
+                    "components": {
+                        "modules": [
+                            "adapterremoval",
+                            "bbmap_bbduk",
+                            "bowtie2_align",
+                            "bowtie2_build",
+                            "bracken_bracken",
+                            "bracken_combinebrackenoutputs",
+                            "cat_fastq",
+                            "centrifuge_centrifuge",
+                            "centrifuge_kreport",
+                            "diamond_blastx",
+                            "falco",
+                            "fastp",
+                            "fastqc",
+                            "filtlong",
+                            "ganon_classify",
+                            "ganon_report",
+                            "ganon_table",
+                            "gunzip",
+                            "kaiju_kaiju",
+                            "kaiju_kaiju2krona",
+                            "kaiju_kaiju2table",
+                            "kmcp_profile",
+                            "kmcp_search",
+                            "kraken2_kraken2",
+                            "krakentools_combinekreports",
+                            "krakentools_kreport2krona",
+                            "krakenuniq_preloadedkrakenuniq",
+                            "krona_ktimporttaxonomy",
+                            "krona_ktimporttext",
+                            "malt_run",
+                            "megan_rma2info",
+                            "metaphlan_mergemetaphlantables",
+                            "metaphlan_metaphlan",
+                            "minimap2_align",
+                            "minimap2_index",
+                            "motus_merge",
+                            "motus_profile",
+                            "multiqc",
+                            "nanoq",
+                            "nonpareil_curve",
+                            "nonpareil_nonpareil",
+                            "nonpareil_nonpareilcurvesr",
+                            "nonpareil_set",
+                            "porechop_abi",
+                            "porechop_porechop",
+                            "prinseqplusplus",
+                            "samtools_fastq",
+                            "samtools_index",
+                            "samtools_stats",
+                            "samtools_view",
+                            "taxpasta_merge",
+                            "taxpasta_standardise",
+                            "untar"
+                        ],
+                        "subworkflows": [
+                            "utils_nextflow_pipeline",
+                            "utils_nfcore_pipeline",
+                            "utils_nfschema_plugin"
+                        ]
+                    }
+                },
                 {
                     "tag_name": "1.2.0",
                     "published_at": "2024-10-03T11:43:00Z",
@@ -46055,8 +46178,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2024-11-28T09:53:28Z",
-                    "tag_sha": "acd85cc1ef69e3ea7ac9e84f26f5dae8bd407b53",
+                    "published_at": "2024-11-28T17:11:29Z",
+                    "tag_sha": "79055cd84bc418a53e7c60f4302fdba7503d0d58",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -46735,6 +46858,175 @@
             ]
         },
         {
+            "id": 751947879,
+            "node_id": "R_kgDOLNHQZw",
+            "name": "tumourevo",
+            "full_name": "nf-core/tumourevo",
+            "private": false,
+            "description": "Analysis pipleine to model tumour clonal evolution from WGS data (driver annotation, quality control of copy number calls, subclonal and mutational signature deconvolution)",
+            "fork": false,
+            "url": "https://api.github.com/repos/nf-core/tumourevo",
+            "created_at": "2024-02-02T17:16:47Z",
+            "updated_at": "2024-11-28T16:55:03Z",
+            "pushed_at": "2024-11-26T14:48:36Z",
+            "homepage": "",
+            "size": 5143,
+            "stargazers_count": 2,
+            "watchers_count": 2,
+            "language": null,
+            "has_issues": true,
+            "has_projects": true,
+            "has_downloads": true,
+            "has_wiki": true,
+            "has_pages": true,
+            "has_discussions": false,
+            "forks_count": 2,
+            "archived": false,
+            "disabled": false,
+            "open_issues_count": 9,
+            "allow_forking": true,
+            "is_template": false,
+            "web_commit_signoff_required": false,
+            "topics": [
+                "cancer-evolution",
+                "cancer-genomics",
+                "copy-number-variation",
+                "mutational-signatures",
+                "population-genetics",
+                "quality-control",
+                "subclonal-deconvolution",
+                "variant-annotation"
+            ],
+            "visibility": "public",
+            "forks": 2,
+            "open_issues": 9,
+            "watchers": 2,
+            "default_branch": "main",
+            "temp_clone_token": "",
+            "allow_squash_merge": true,
+            "allow_merge_commit": true,
+            "allow_rebase_merge": true,
+            "allow_auto_merge": false,
+            "delete_branch_on_merge": false,
+            "allow_update_branch": false,
+            "use_squash_pr_title_as_default": false,
+            "squash_merge_commit_message": "COMMIT_MESSAGES",
+            "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
+            "merge_commit_message": "PR_TITLE",
+            "merge_commit_title": "MERGE_MESSAGE",
+            "custom_properties": {},
+            "security_and_analysis": {
+                "secret_scanning": {
+                    "status": "disabled"
+                },
+                "secret_scanning_push_protection": {
+                    "status": "disabled"
+                },
+                "dependabot_security_updates": {
+                    "status": "disabled"
+                },
+                "secret_scanning_non_provider_patterns": {
+                    "status": "disabled"
+                },
+                "secret_scanning_validity_checks": {
+                    "status": "disabled"
+                }
+            },
+            "network_count": 2,
+            "subscribers_count": 10,
+            "team_contributors_permission_push": false,
+            "team_contributors_permission_admin": false,
+            "team_core_permission_push": true,
+            "team_core_permission_admin": true,
+            "master_branch_exists": true,
+            "master_branch_protection_up_to_date": -1,
+            "master_branch_protection_status_checks": -1,
+            "master_branch_protection_required_reviews": -1,
+            "master_branch_protection_require_codeowner_review": -1,
+            "master_branch_protection_require_non_stale_review": -1,
+            "master_branch_protection_enforce_admins": -1,
+            "master_restrict_push": -1,
+            "dev_branch_exists": true,
+            "dev_branch_protection_up_to_date": -1,
+            "dev_branch_protection_status_checks": -1,
+            "dev_branch_protection_required_reviews": -1,
+            "dev_branch_protection_require_codeowner_review": -1,
+            "dev_branch_protection_require_non_stale_review": -1,
+            "dev_branch_protection_enforce_admins": -1,
+            "dev_restrict_push": -1,
+            "TEMPLATE_branch_exists": true,
+            "TEMPLATE_branch_protection_up_to_date": -1,
+            "TEMPLATE_branch_protection_status_checks": -1,
+            "TEMPLATE_branch_protection_required_reviews": -1,
+            "TEMPLATE_branch_protection_require_codeowner_review": -1,
+            "TEMPLATE_branch_protection_require_non_stale_review": -1,
+            "TEMPLATE_branch_protection_enforce_admins": -1,
+            "TEMPLATE_restrict_push": -1,
+            "has_required_topics": false,
+            "open_pr_count": 0,
+            "repository_url": "https://github.com/nf-core/tumourevo",
+            "contributors": [
+                {
+                    "name": "nicola-calonaci",
+                    "count": 3,
+                    "avatar_url": "https://avatars.githubusercontent.com/u/29734709?v=4"
+                }
+            ],
+            "released_after_tools": false,
+            "head_sha": "5399a0bb66c7cb5db41803efcd1ad47a6e6717bc",
+            "last_release_is_head": false,
+            "last_release_vs_default_compare_url": "https://github.com/nf-core/tumourevo/compare/5399a0bb66c7cb5db41803efcd1ad47a6e6717bc...undefined",
+            "commits_to_dev": 30,
+            "is_DSL2": false,
+            "has_nf_test": false,
+            "has_nf_test_dev": true,
+            "master_nextflow_config_plugins": null,
+            "master_nextflow_config_manifest": {
+                "name": "nf-core/evoverse",
+                "author": "Nicola Calonaci, Elena Buscaroli, Katsiaryna Davydzenka, Giorgia Gandolfi, Virginia Gazziero, Asad Sadr, Lucrezia Valeriani and Giulio Caravagna",
+                "homePage": "https://github.com/nf-core/evoverse",
+                "description": "Analysis pipleine to model tumour clonal evolution from WGS data (driver annotation, quality control of copy number calls, subclonal and mutational signature deconvolution)",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=19.10.0",
+                "version": "1.0dev"
+            },
+            "dev_nextflow_config_plugins": [
+                "nf-schema@2.0.0"
+            ],
+            "dev_nextflow_config_manifest": {
+                "name": "nf-core/evoverse",
+                "author": "Nicola Calonaci, Elena Buscaroli, Katsiaryna Davydzenka, Giorgia Gandolfi, Virginia Gazziero, Asad Sadr, Lucrezia Valeriani and Giulio Caravagna",
+                "homePage": "https://github.com/nf-core/evoverse",
+                "description": "Analysis pipleine to model tumour clonal evolution from WGS data (driver annotation, quality control of copy number calls, subclonal and mutational signature deconvolution)",
+                "mainScript": "main.nf",
+                "nextflowVersion": ">=19.10.0",
+                "version": "1.0dev"
+            },
+            "releases": [
+                {
+                    "tag_name": "dev",
+                    "published_at": "2024-11-26T14:48:32Z",
+                    "tag_sha": "57431cfbc4eada89deca83a3a8a21f9458488668",
+                    "has_schema": false,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/usage.md"
+                    ],
+                    "components": {
+                        "modules": [
+                            "bcftools_mpileup",
+                            "ensemblvep_vep",
+                            "tabix_tabix",
+                            "vcf2maf"
+                        ],
+                        "subworkflows": [
+                            "vcf_annotate_ensemblvep"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
             "id": 728629268,
             "node_id": "R_kgDOK24AFA",
             "name": "variantbenchmarking",
@@ -46745,9 +47037,9 @@
             "url": "https://api.github.com/repos/nf-core/variantbenchmarking",
             "created_at": "2023-12-07T10:56:32Z",
             "updated_at": "2024-11-28T07:57:11Z",
-            "pushed_at": "2024-11-28T07:58:52Z",
+            "pushed_at": "2024-11-28T16:07:39Z",
             "homepage": "https://nf-co.re/variantbenchmarking",
-            "size": 3888,
+            "size": 3894,
             "stargazers_count": 12,
             "watchers_count": 12,
             "language": "Nextflow",
@@ -46806,7 +47098,7 @@
                 }
             },
             "network_count": 7,
-            "subscribers_count": 164,
+            "subscribers_count": 163,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
