@@ -8314,6 +8314,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -25165,6 +25169,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -105866,6 +105878,22 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -110775,6 +110803,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -200994,6 +201026,151 @@
       }
     },
     {
+      "name": "fastq_align_dedup_bwameth",
+      "path": "subworkflows/nf-core/fastq_align_dedup_bwameth/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "fastq_align_dedup_bwameth",
+        "description": "Performs alignment of BS-Seq reads using bwameth or parabricks/fq2bammeth, sort and deduplicate",
+        "keywords": [
+          "bwameth",
+          "alignment",
+          "3-letter genome",
+          "map",
+          "methylation",
+          "5mC",
+          "methylseq",
+          "bisulphite",
+          "bisulfite",
+          "fastq",
+          "bam"
+        ],
+        "components": [
+          "bwameth/align",
+          "parabricks/fq2bammeth",
+          "samtools/sort",
+          "samtools/index",
+          "samtools/flagstat",
+          "samtools/stats",
+          "picard/markduplicates",
+          "samtools/index",
+          "methyldackel/extract",
+          "methyldackel/mbias"
+        ],
+        "input": [
+          {
+            "ch_reads": {
+              "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data,\nrespectively.\nStructure: [ val(meta), [ path(reads) ] ]\n",
+              "pattern": "*.{fastq,fastq.gz}"
+            }
+          },
+          {
+            "ch_fasta": {
+              "type": "file",
+              "description": "Structure: [ val(meta), path(fasta) ]\n",
+              "pattern": "*.{fa,fa.gz}"
+            }
+          },
+          {
+            "ch_fasta_index": {
+              "type": "file",
+              "description": "Structure: [ val(meta), path(fasta index) ]\n"
+            }
+          },
+          {
+            "ch_bwameth_index": {
+              "description": "Bismark genome index files\nStructure: [ val(meta), path(index) ]\n",
+              "pattern": "BismarkIndex"
+            }
+          },
+          {
+            "skip_deduplication": {
+              "type": "boolean",
+              "description": "Skip deduplication of aligned reads\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "bam": {
+              "type": "file",
+              "description": "Channel containing BAM files\nStructure: [ val(meta), path(bam) ]\n",
+              "pattern": "*.bam"
+            }
+          },
+          {
+            "bai": {
+              "type": "file",
+              "description": "Channel containing indexed BAM (BAI) files\nStructure: [ val(meta), path(bai) ]\n",
+              "pattern": "*.bai"
+            }
+          },
+          {
+            "samtools_flagstat": {
+              "type": "file",
+              "description": "File containing samtools flagstat output\nStructure: [ val(meta), path(flagstat) ]\n",
+              "pattern": "*.flagstat"
+            }
+          },
+          {
+            "samtools_stats": {
+              "type": "file",
+              "description": "File containing samtools stats output\nStructure: [ val(meta), path(stats) ]\n",
+              "pattern": "*.{stats}"
+            }
+          },
+          {
+            "methydackel_extract_bedgraph": {
+              "type": "file",
+              "description": "bedGraph file, containing per-base methylation metrics\nStructure: [ val(meta), path(bedgraph) ]\n",
+              "pattern": "*.bedGraph"
+            }
+          },
+          {
+            "methydackel_extract_methylkit": {
+              "type": "file",
+              "description": "methylKit file, containing per-base methylation metrics\nStructure: [ val(meta), path(methylKit) ]\n",
+              "pattern": "*.methylKit"
+            }
+          },
+          {
+            "methydackel_mbias": {
+              "type": "file",
+              "description": "Text file containing methylation bias\nStructure: [ val(meta), path(mbias) ]\n",
+              "pattern": "*.{txt}"
+            }
+          },
+          {
+            "picard_metrics": {
+              "type": "file",
+              "description": "Duplicate metrics file generated by picard\nStructure: [ val(meta), path(metrics) ]\n",
+              "pattern": "*.{metrics.txt}"
+            }
+          },
+          {
+            "multiqc": {
+              "type": "file",
+              "description": "Channel containing MultiQC report aggregating results across samples.\nStructure: [ val(meta), path(multiqc_report.html) ]\n",
+              "pattern": "*.html"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@sateeshperi"
+        ],
+        "maintainers": [
+          "@sateeshperi"
+        ]
+      }
+    },
+    {
       "name": "fastq_align_dna",
       "path": "subworkflows/nf-core/fastq_align_dna/meta.yml",
       "type": "subworkflow",
@@ -203194,6 +203371,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        },
         {
           "name": "phageannotator",
           "version": "dev"
@@ -206660,6 +206841,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
+        },
         {
           "name": "riboseq",
           "version": "1.0.1"
