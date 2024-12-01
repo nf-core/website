@@ -39,7 +39,7 @@ If you're using cross-organisational subworkflows in your repository, be aware t
 to lint the `meta.yml` files for your subworkflows.
 To do this, just change the `components` section type to allow both objects and strings.
 
-```json
+```json title="yaml-schema.json" {5}
 "components": {
   "type": "array",
   "description": "Modules and subworkflows used in the subworkflow",
