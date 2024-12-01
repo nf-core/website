@@ -107,6 +107,14 @@ export default defineConfig({
                 : process.env.DEPLOY_PRIME_URL,
     },
     vite: {
+        css: {
+            preprocessorOptions: {
+                scss: {
+                    api: 'modern-compiler',
+                    silenceDeprecations: ['legacy-js-api','mixed-decls','color-functions'],
+                },
+            },
+        },
         plugins: [
             yaml(),
             FontaineTransform.vite({
