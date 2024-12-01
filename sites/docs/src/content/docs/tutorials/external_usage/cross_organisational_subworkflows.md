@@ -7,7 +7,7 @@ In order to use cross-organisational subworkflows, you can specify individual re
 file in that subworkflow.
 
 For example, let's say you have a subworkflow in your own organisation's `modules` repository that uses FastQC and fastp.
-But, instead of using the fastp module from your own organisation, you want to use nf-core's fastp module. This is the case for the `fastq_trim_fastp_fastqc` subworkflow in the [nf-core-test](https://github.com/nf-core-test/modules/) organization.
+But, instead of using the fastp module from your own organisation, you want to use nf-core's fastp module. This is the case for the `fastq_trim_fastp_fastqc` subworkflow in the [nf-core-test](https://github.com/nf-core-test/modules/tree/main/subworkflows/nf-core-test/fastq_trim_fastp_fastqc) organization.
 
 In order to have this subworkflow, with a FastQC module from your organisation and fastp from nf-core, you'd define the
 components section of this subworkflow's `meta.yml` file as such:
