@@ -52,5 +52,5 @@ To do this, just change the `components` section type to allow both objects and 
 
 :::tip
 To get the full content for the schema, see the corresponding
-file in the [nf-core-test](https://github.com/nf-core-test/modules/) modules repository.
+file in the [nf-core-test](https://github.com/nf-core-test/modules/blob/main/subworkflows/yaml-schema.json) modules repository.
 :::
