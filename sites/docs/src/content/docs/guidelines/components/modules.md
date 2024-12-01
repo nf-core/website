@@ -185,7 +185,7 @@ cat <<-END_VERSIONS > versions.yml
 "${task.process}":
     fastqc: \$( fastqc --version | sed -e "s/FastQC v//g" )
     samtools: \$( samtools --version |& sed '1!d ; s/samtools //' )
-END_VERSION
+END_VERSIONS
 ```
 
 resulting in, for instance,
@@ -749,6 +749,42 @@ Input data SHOULD be referenced with the `modules_testdata_base_path` parameter:
 ```groovy
 file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
 ```
+
+### Configuration of ext.args in tests
+
+Module nf-tests SHOULD use a single `nextflow.config` to supply `ext.args` to a module. They can be defined in the `when` block of a test under the `params` scope.
+
+```groovy {4-6} title="main.nf.test"
+config './nextflow.config'
+
+when {
+  params {
+    module_args = '--extra_opt1 --extra_opt2'
+  }
+  process {
+    """
+    input[0] = [
+      [ id:'test1', single_end:false ], // meta map
+      file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/genome/genome.fna.gz', checkIfExists: true)
+    ]
+    """
+  }
+}
+```
+
+```groovy {3} title="nextflow.config"
+process {
+  withName: 'MODULE' {
+    ext.args = params.module_args
+  }
+}
+```
+
+No other settings should go into this file.
+
+:::tip
+Supply the config only to the tests that use `params`, otherwise define `params` for every test including the stub test.
+:::
 
 ## Misc
 

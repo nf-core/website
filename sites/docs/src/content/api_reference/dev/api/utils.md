@@ -244,8 +244,20 @@ Bases: `BaseModel`
    "type": "object",
    "properties": {
       "repository_type": {
-         "title": "Repository Type",
-         "type": "string"
+         "anyOf": [
+            {
+               "enum": [
+                  "pipeline",
+                  "modules"
+               ],
+               "type": "string"
+            },
+            {
+               "type": "null"
+            }
+         ],
+         "default": null,
+         "title": "Repository Type"
       },
       "nf_core_version": {
          "anyOf": [
@@ -501,10 +513,7 @@ Bases: `BaseModel`
          "title": "NFCoreTemplateConfig",
          "type": "object"
       }
-   },
-   "required": [
-      "repository_type"
-   ]
+   }
 }
 ```
 
@@ -514,7 +523,7 @@ Bases: `BaseModel`
   - [`lint (Dict[str, List[str] | List[Dict[str, List[str]]] | bool] | None)`](#nf_core.utils.NFCoreYamlConfig.lint)
   - [`nf_core_version (str | None)`](#nf_core.utils.NFCoreYamlConfig.nf_core_version)
   - [`org_path (str | None)`](#nf_core.utils.NFCoreYamlConfig.org_path)
-  - [`repository_type (str)`](#nf_core.utils.NFCoreYamlConfig.repository_type)
+  - [`repository_type (Literal['pipeline', 'modules'] | None)`](#nf_core.utils.NFCoreYamlConfig.repository_type)
   - [`template (nf_core.utils.NFCoreTemplateConfig | None)`](#nf_core.utils.NFCoreYamlConfig.template)
   - [`update (Dict[str, str | bool | Dict[str, str | Dict[str, str | bool]]] | None)`](#nf_core.utils.NFCoreYamlConfig.update)
 
@@ -534,9 +543,9 @@ Version of nf-core/tools used to create/update the pipeline
 
 Path to the organisation’s modules repository (used for modules repo_type only)
 
-#### _`field{:python}`_`repository_type{:python}`_: str_`{:python}`_\[Required]_
+#### _`field{:python}`_`repository_type{:python}`_: Literal\['pipeline', 'modules'] | None_`{:python}`_= None_
 
-Type of repository: pipeline or modules
+Type of repository
 
 #### _`field{:python}`_`template{:python}`_: [NFCoreTemplateConfig](#nf_core.utils.NFCoreTemplateConfig) | None_`{:python}`_= None_
 
@@ -547,6 +556,30 @@ Pipeline template configuration
 Disable updating specific modules/subworkflows (when repository_type is pipeline). See <https://nf-co.re/docs/nf-core-tools/modules/update> for more information.
 
 #### `get(item: str, default: Any = None) → Any{:python}`
+
+#### `model_dump(**kwargs) → Dict[str, Any]{:python}`
+
+Usage docs: <https://docs.pydantic.dev/2.10/concepts/serialization/#modelmodel_dump>
+
+Generate a dictionary representation of the model, optionally specifying which fields to include or exclude.
+
+- **Parameters:**
+  - **mode** – The mode in which to_python should run.
+    If mode is ‘json’, the output will only contain JSON serializable types.
+    If mode is ‘python’, the output may contain non-JSON-serializable Python objects.
+  - **include** – A set of fields to include in the output.
+  - **exclude** – A set of fields to exclude from the output.
+  - **context** – Additional context to pass to the serializer.
+  - **by_alias** – Whether to use the field’s alias in the dictionary key if defined.
+  - **exclude_unset** – Whether to exclude fields that have not been explicitly set.
+  - **exclude_defaults** – Whether to exclude fields that are set to their default value.
+  - **exclude_none** – Whether to exclude fields that have a value of None.
+  - **round_trip** – If True, dumped values should be valid as input for non-idempotent types such as Json\[T].
+  - **warnings** – How to handle serialization errors. False/”none” ignores them, True/”warn” logs errors,
+    “error” raises a \[PydanticSerializationError]\[pydantic_core.PydanticSerializationError].
+  - **serialize_as_any** – Whether to serialize fields with duck-typing serialization behavior.
+- **Returns:**
+  A dictionary representation of the model.
 
 #### `_abc_impl{:python}`_= <\_abc.\_abc_data object>_
 

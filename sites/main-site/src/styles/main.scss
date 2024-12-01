@@ -285,11 +285,6 @@ code:not(pre code),
   color: inherit;
 }
 
-.mainpage-heading code:not(pre code) {
-  background-color: rgba($white, 0.1) !important;
-  color: $white !important;
-}
-
 .main-content pre {
   font-size: 14px;
   code {
@@ -559,17 +554,6 @@ h4:focus .header-link,
   background-color: $gray-100;
   color: $success;
   font-weight: 400;
-}
-
-.mainpage-heading {
-  .topic,
-  .pipeline-topic,
-  .module-topic,
-  .subworkflow-topic {
-    background-color: rgba($white, 0.1);
-    color: rgba($white, 0.9);
-    font-weight: 400;
-  }
 }
 
 .pipelines-container-list .col:first-child .pipeline.card {
@@ -1498,12 +1482,6 @@ div.mermaid {
       border-color: tint-color($black, 25%);
       color: $white;
     }
-  }
-
-  .mainpage-heading,
-  .mainpage-heading h1 {
-    color: $gray-100 !important;
-    text-wrap: balance;
   }
 
   .lead {
