@@ -22,7 +22,6 @@ of every month, usually at 4 PM CET / 10 AM ET / 7 AM PT for 1h.
 |             Jan 15 | TBA                                                                                                                          | TBA                                                          |
 |             Feb 19 | Harris Lewin (Arizona State University, USA)                                                                                 | TBA                                                          |
 
-
 # How to join
 
 Meetings are held on Zoom:
