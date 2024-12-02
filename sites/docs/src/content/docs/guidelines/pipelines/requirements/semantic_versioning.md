@@ -11,10 +11,6 @@ menu:
 - The first release of a pipline should be version `1.0.0` (we strongly discourage pre-releases).
 - Release version tags must be numerical only (no `v` prefix) and should follow [semantic versioning](https://semver.org/) rules: `[major].[minor].[patch]`
 
-**Versioning Examples**
-
-Starting from release version `1.4.3`, bumping the version to:
-
 ## Semantic Versioning Criteria
 
 When deciding on the release type, consider the impact on users and whether they need to make changes to their existing workflows or configurations. If in doubt, opt for a higher version increment to clearly communicate the extent of changes to users.
