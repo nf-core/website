@@ -8,6 +8,7 @@ menu:
 
 - Pipelines must be released with stable release tags.
 - Releases must use GitHub releases and include a [detailed changelog](https://keepachangelog.com/en/1.0.0/) file.
+- The first release of a pipline should be version `1.0.0` (we strongly discourage pre-releases).
 - Release version tags must be numerical only (no `v` prefix) and should follow [semantic versioning](https://semver.org/) rules: `[major].[minor].[patch]`
 
 **Versioning Examples**
