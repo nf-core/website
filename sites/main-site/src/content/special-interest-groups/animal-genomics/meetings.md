@@ -27,6 +27,5 @@ of every month, usually at 4 PM CET / 10 AM ET / 7 AM PT for 1h.
 
 Meetings are held on Zoom:
 
-- [Zoom Link](https://rediris.zoom.us/j/96065549412?pwd=L2txanpQMEFTOWVLNmtIZyt6M3NnUT09)
-- Meeting ID: `960 6554 9412`
-- Passcode: `066237`
+- [Zoom Link](https://rediris.zoom.us/j/99370728121)
+- Meeting ID: `993 7072 8121`
