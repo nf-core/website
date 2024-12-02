@@ -15,49 +15,53 @@ menu:
 
 Starting from release version `1.4.3`, bumping the version to:
 
-## Release type checklist
+## Semantic Versioning Criteria
 
-If your release matches any point in the checklists below, classify it according to the highest applicable category in this order: major, minor, then patch. A single match in a higher category overrides all lower categories.
+When deciding on the release type, consider the impact on users and whether they need to make changes to their existing workflows or configurations. If in doubt, opt for a higher version increment to clearly communicate the extent of changes to users.
+
+Classify your release according to the highest applicable category in this order: **Major**, **Minor**, then **Patch**. A single match in a higher category overrides all lower categories.
 
 ### Major Release (e.g., 1.0.0 to 2.0.0)
 
-- Changes that are not backwards compatible in terms of pipeline user interaction
-- Renaming or deprecation of existing parameter(s)
-- Changes to input sample sheet specification (adding, dropping, renaming of mandatory columns)
-- Significant changes to the pipeline's core functionality or workflow
-- Major changes to output formats or directory structures
-- Removal of previously supported features or tools
-- Changes that require users to modify their existing configuration files or scripts
-- Upgrades to dependencies that introduce breaking changes
+Changes that are **not backwards compatible** and may require users to adjust their existing workflows or configurations.
 
-## Minor Release (e.g., 1.4.0 to 1.5.0)
+- **Breaking Changes**:
+  - Modifications to pipeline user interaction that are not backwards compatible.
+  - Renaming or deprecation of existing parameter(s).
+  - Changes to input sample sheet specifications (adding, dropping, or renaming mandatory columns).
+  - Major alterations to output formats or directory structures.
+  - Removal of previously supported features or tools.
+  - Upgrades to dependencies that introduce breaking changes.
+- **Significant Functional Changes**:
+  - Overhauls to the pipeline's core functionality or workflow.
 
-- Addition of new features without changing existing functionality
-- Adding a new parameter that introduces new functionality/options to an existing module
-- Adding a new optional or default process that doesn't change user interaction with previous steps
-- Introducing new output files or metrics without altering existing ones
-- Adding support for new input formats or data types
-- Implementing performance improvements that don't affect the pipeline's interface
-- Expanding documentation or adding new examples without changing core functionality
-- Adding new optional dependencies or tools
+**Note:** A major release does not necessarily require new functionality; it can result solely from breaking changes.
 
-## Patch Release (e.g., 1.4.3 to 1.4.4)
+### Minor Release (e.g., 1.4.0 to 1.5.0)
 
-- Minor fixes such as bug corrections that do not modify how the user interacts with the pipeline
-- Inserting a missing argument to a process command line
-- Updating a container build version of a tool that is otherwise the same version of the tool itself
-- Fixing the logic of pipeline operators to ensure correct inputs for a process
-- Correcting typos in documentation or code comments
-- Updating metadata or non-functional elements (e.g., README, CONTRIBUTING files)
-- Making minor adjustments to log messages or error handling
-- Applying small optimizations that don't affect functionality or user interaction
+Introduction of new features that are **backwards compatible** and do not alter existing functionality.
 
-When deciding on the release type, it should. be considered the impact on users and whether they need to make changes to their existing workflows or configurations. If in doubt, it's generally safer to opt for a higher version increment to clearly communicate the extent of changes to users.
-  - Fixing the logic of the pipeline operators to ensure correct inputs for a process
-- **`1.5.0`**: A minor release that adds new features without changing existing functionality. Examples:
-  - Adding a new parameter that adds new functionality/options to an existing module
-  - Add a new optional or default process that does not change the way the user interacts with previous steps of a pipeline
-- **`2.0.0`**: A major release where execution interaction, inputs or result structures are no longer backwards compatible in terms of pipeline user interaction. Examples:
-  - Renaming or deprecations of existing parameter(s)
-  - Change to input sample sheet specification (adding, dropping, renaming of mandatory columns) or change the input samplesheet specification
-  - Note that a major release DOES NOT necessarily require new functionality
+- **Feature Additions**:
+  - Adding new parameters that introduce additional functionality or options to existing modules.
+  - Incorporating new optional or default processes without changing user interaction with previous steps.
+  - Introducing new output files or metrics without modifying existing ones.
+  - Supporting new input formats or data types.
+- **Improvements**:
+  - Implementing performance enhancements that don't affect the pipeline's interface.
+  - Expanding documentation or adding new examples without altering core functionality.
+  - Adding new optional dependencies or tools.
+
+### Patch Release (e.g., 1.4.3 to 1.4.4)
+
+Minor changes that do not affect user interaction or existing functionality.
+
+- **Bug Fixes**:
+  - Correcting minor bugs that do not change how the user interacts with the pipeline.
+  - Fixing the logic of pipeline operators to ensure correct inputs for a process.
+  - Inserting missing arguments into process command lines.
+- **Updates and Corrections**:
+  - Updating a container build version of a tool without changing the tool's version itself.
+  - Correcting typos in documentation or code comments.
+  - Updating metadata or non-functional elements (e.g., README, CONTRIBUTING files).
+  - Making minor adjustments to log messages or error handling.
+  - Applying small optimizations that don't affect functionality or user interaction.
