@@ -18,12 +18,13 @@ of every month, usually at 4 PM CET / 10 AM ET / 7 AM PT for 1h.
 |             Sep 18 | Guillaume Devailly (INRAE, France) with Cervin Guyomar (INRAE, France) and Sandrine Lagarrigue (Institut Agro-INRAE, France) | [September Meeting](/events/2024/SIG_animalgenomics_Sept)    |
 |             Oct 16 | Roderic Guigó Serra (CRG, Spain)                                                                                             | [October Meeting](/events/2024/SIG_animalgenomics_Oct)       |
 | Nov 20 (cancelled) | ~~Harris Lewin (Arizona State University, USA)~~                                                                             | [November Meeting](/events/2024/SIG_animalgenomics_Nov)      |
-|             Dec 18 | Emily Clark (The Roslin Institute, University of Edinburgh, UK)                                                              | TBA                                                          |
+|             Dec 18 | Emily Clark (The Roslin Institute, University of Edinburgh, UK)                                                              | [December Meeting](/events/2024/SIG_animalgenomics_Dec)      |
+|             Jan 15 | TBA                                                                                                                          | TBA                                                          |
+|             Feb 19 | Harris Lewin (Arizona State University, USA)                                                                                 | TBA                                                          |
 
 # How to join
 
 Meetings are held on Zoom:
 
-- [Zoom Link](https://rediris.zoom.us/j/96065549412?pwd=L2txanpQMEFTOWVLNmtIZyt6M3NnUT09)
-- Meeting ID: `960 6554 9412`
-- Passcode: `066237`
+- [Zoom Link](https://rediris.zoom.us/j/99370728121)
+- Meeting ID: `993 7072 8121`
