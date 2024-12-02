@@ -17,7 +17,7 @@ When deciding on the release type, consider the impact on users and whether they
 
 Classify your release according to the highest applicable category in this order: **Major**, **Minor**, then **Patch**. A single match in a higher category overrides all lower categories.
 
-### Major Release (e.g., 1.0.0 to 2.0.0)
+### Major Release (e.g., 1.4.3 to 2.0.0)
 
 Changes that are **not backwards compatible** and may require users to adjust their existing workflows or configurations.
 
@@ -33,7 +33,7 @@ Changes that are **not backwards compatible** and may require users to adjust th
 
 **Note:** A major release does not necessarily require new functionality; it can result solely from breaking changes.
 
-### Minor Release (e.g., 1.4.0 to 1.5.0)
+### Minor Release (e.g., 1.4.3 to 1.5.0)
 
 Introduction of new features that are **backwards compatible** and do not alter existing functionality.
 
