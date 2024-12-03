@@ -27,7 +27,7 @@ Changes that are **not backwards compatible** and may require users to adjust th
   - Changes to input sample sheet specifications (adding, dropping, or renaming mandatory columns).
   - Major alterations to existing output formats (e.g., BAM to CRAM, or changed TSV headers names) or directory structures.
   - Removal of previously supported features or tools.
-  - Upgrades to dependencies that introduce breaking changes. For example if the new version of the tool requires additional parameters, removes parameters passed by the pipeline, or changes its outputs in a way that necessitates changes to module output definitions. 
+  - Upgrades to dependencies that introduce breaking changes. For example if the new version of the tool requires additional parameters, removes parameters passed by the pipeline, or changes its outputs in a way that necessitates changes to module output definitions.
 
 :::note
 A major release does not necessarily require new functionality; it can result solely from breaking changes.
