@@ -47,7 +47,6 @@ Introduction of new features that are **backwards compatible** and do not alter 
 - **Improvements**:
   - Implementing performance enhancements that don't affect the pipeline's interface (e.g. refined default memory or CPU requirements).
   - Expanding documentation or adding new examples without altering core functionality.
-  - Adding new optional dependencies or tools.
 
 ### Patch Release (e.g., 1.4.3 to 1.4.4)
 
