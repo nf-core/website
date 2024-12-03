@@ -559,7 +559,7 @@ Disable updating specific modules/subworkflows (when repository_type is pipeline
 
 #### `model_dump(**kwargs) → Dict[str, Any]{:python}`
 
-Usage docs: <https://docs.pydantic.dev/2.9/concepts/serialization/#modelmodel_dump>
+Usage docs: <https://docs.pydantic.dev/2.10/concepts/serialization/#modelmodel_dump>
 
 Generate a dictionary representation of the model, optionally specifying which fields to include or exclude.
 
