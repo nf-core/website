@@ -124,7 +124,7 @@ description: |
 
 ### Scope of testing
 
-Tests for subworkflows SHOULD be be designed to be able to execute within the nf-core/modules GitHub repository CI with example test data.
+Tests for subworkflows SHOULD be designed to be able to execute within the nf-core/modules GitHub repository CI with example test data.
 
 Tests for subworkflows MUST at a minimum run on the GitHub repository CI with a stub test that replicates the generation of (empty) output files.
 

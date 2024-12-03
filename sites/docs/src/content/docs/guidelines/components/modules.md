@@ -689,9 +689,9 @@ If the software is not available on Bioconda a `Dockerfile` MUST be provided wit
 
 ### Scope of testing
 
-Tests for modules SHOULD be be designed to be able to execute within the nf-core/modules GitHub repository CI with example test data.
+Tests for modules SHOULD be designed to be able to execute within the nf-core/modules GitHub repository CI with example test data.
 
-Tests for modules MUST at a minimum run on the GitHub repository CI with a stub test that replicates the generation of (empty) output files.
+Tests for modules MUST at a minimum run on the GitHub repository CI with a stub test that replicates the generation of (empty) output files and a `versions` file.
 
 Tests for modules do not necessarily need to be able to execute 'standalone', i.e., do not necessarily need to be able to be run outside the nf-core/modules repository (for example, they don't need to be executable within a pipeline repository)
 
