@@ -26,21 +26,21 @@ You can manually re-generate different versions of the logo with `nf-core pipeli
 nf-core pipelines create-logo --theme dark --format svg isawesome
 ```
 
-You can also quickly generate a PNG logo this yourself by visiting [https://nf-co.re/logo/pipelinename](https://nf-co.re/logo/pipelinename), where `pipelinename` can be anything.
+You can also quickly generate a PNG logo yourself by visiting [https://nf-co.re/logo/pipelinename](https://nf-co.re/logo/pipelinename), where `pipelinename` can be anything.
 
 ### Custom pipeline logos
 
 Some developers may want to further add branding to their own pipelines by extending the default nf-core logo to include their own mark.
 
-If any any point you want advice, feel free to ask on the nf-core slack under #graphics.
+If any any point you want advice, feel free to ask on the nf-core slack under [#graphics](https://nfcore.slack.com/archives/C021QHJRJE8).
 
 If you wish to do so, please use the following guidelines when creating your mark:
 
-1. Complexity: Keep the mark simple, so easy to visualise
-   - A good guidance of this is can the mark still be recognisable when in the form of an emoji (128x128)
+1. Simplicity: Keep the mark simple, so easy to visualise
+   - A guiding principle in this regard is whether the mark remains recognizable even when presented as an emoji. (128x128px)
 2. Colouring: the number of colours should be kept to a minimum, typically following those in the nf-core logo colour scheme
-3. Themes: you should generate both light (black font) and dark (white font) mode versions of the logo with mark
-4. Positioning: the mark can either go in the following places
+3. Themes: you should generate both light (black text) and dark (white text) mode versions of the logo with mark
+4. Positioning: the mark can go in on of the following places
    - to the left of the bottom line of text (pipeline name), with height approximately the same heigh as that line
    - to the left of the entire logo with the height the same of the distance between the top of the top line of text and bottom line of the bottom text (i.e. spanning both the 'nf-core' and pipeline name lines)
 5. Other modifications: Do not modify the nf-core apple core in the default logo

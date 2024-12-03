@@ -22,7 +22,7 @@ subtitle: Description which colours nf-core uses
 
 ## Other non-logo colours
 
-Outside of the core colours, we recommend the use of the [Bootstrap colour palettes](https://getbootstrap.com/docs/5.0/customize/color/).
+Outside of the core colours, we recommend the use of the [Bootstrap colour palettes](https://getbootstrap.com/docs/5.3/customize/color/).
 
 For example, the dark backgrounds of the nf-core website uses the `$grey-50` colour palette:
 
@@ -37,13 +37,5 @@ For example, the dark backgrounds of the nf-core website uses the `$grey-50` col
 - gray-800: `#343a40`
 - gray-900: `#212529` (main nf-core website background colour)
 
-Other main colours:
-
-- Blue (primary): `#0d6efd`
-- Grey (secondary): `#6c757d`
-- Green (success): `#22ae63`
-- Light blue (info): `#17a2b8`
-- Red (warning): `#ffc107`
-- Yellow (danger): `#dc3545`
 
 However see the full bootstrap colour description for all colours.
