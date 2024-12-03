@@ -25,25 +25,27 @@ Changes that are **not backwards compatible** and may require users to adjust th
   - Modifications to pipeline user interaction that are not backwards compatible.
   - Renaming or deprecation of existing parameter(s).
   - Changes to input sample sheet specifications (adding, dropping, or renaming mandatory columns).
-  - Major alterations to output formats or directory structures.
+  - Major alterations to existing output formats (e.g., BAM to CRAM, or changed TSV headers names) or directory structures.
   - Removal of previously supported features or tools.
   - Upgrades to dependencies that introduce breaking changes.
 - **Significant Functional Changes**:
   - Overhauls to the pipeline's core functionality or workflow.
 
-**Note:** A major release does not necessarily require new functionality; it can result solely from breaking changes.
+:::note
+A major release does not necessarily require new functionality; it can result solely from breaking changes.
+:::
 
 ### Minor Release (e.g., 1.4.3 to 1.5.0)
 
 Introduction of new features that are **backwards compatible** and do not alter existing functionality.
 
 - **Feature Additions**:
-  - Adding new parameters that introduce additional functionality or options to existing modules.
+  - Adding new parameters that introduce additional functionality or options to existing modules (without fundamentally changing output file types or structure).
   - Incorporating new optional or default processes without changing user interaction with previous steps.
   - Introducing new output files or metrics without modifying existing ones.
-  - Supporting new input formats or data types.
+  - Supporting new input formats or data types without removing support for old ones.
 - **Improvements**:
-  - Implementing performance enhancements that don't affect the pipeline's interface.
+  - Implementing performance enhancements that don't affect the pipeline's interface (e.g. refined default memory or CPU requirements).
   - Expanding documentation or adding new examples without altering core functionality.
   - Adding new optional dependencies or tools.
 
@@ -54,9 +56,9 @@ Minor changes that do not affect user interaction or existing functionality.
 - **Bug Fixes**:
   - Correcting minor bugs that do not change how the user interacts with the pipeline.
   - Fixing the logic of pipeline operators to ensure correct inputs for a process.
-  - Inserting missing arguments into process command lines.
+  - Inserting missing arguments into process command lines that should have existed before (but without modifying output file types/output file content structure).
 - **Updates and Corrections**:
-  - Updating a container build version of a tool without changing the tool's version itself.
+  - Updating a container build version of a tool without changing the tool's version itself (e.g. so it can execute correctly).
   - Correcting typos in documentation or code comments.
   - Updating metadata or non-functional elements (e.g., README, CONTRIBUTING files).
   - Making minor adjustments to log messages or error handling.
