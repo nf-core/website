@@ -8338,6 +8338,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -27126,6 +27130,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -40627,6 +40639,98 @@
           "version": "2.1.0"
         }
       ]
+    },
+    {
+      "name": "coptr_extract",
+      "path": "modules/nf-core/coptr/extract/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "coptr_extract",
+        "description": "Computes the coverage map along the reference genome",
+        "keywords": [
+          "coptr",
+          "mapping",
+          "ptr"
+        ],
+        "tools": [
+          {
+            "coptr": {
+              "description": "Accurate and robust inference of microbial growth dynamics from metagenomic sequencing reads.",
+              "homepage": "https://github.com/tyjo/coptr",
+              "documentation": "https://coptr.readthedocs.io/",
+              "tool_dev_url": "https://github.com/tyjo/coptr",
+              "doi": "10.1101/gr.275533.121",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:coptr"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "bam file with the mapping of the reads on the reference genome",
+                "pattern": "*.{.bam}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "coverage": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.pkl": {
+                  "type": "file",
+                  "description": "Python pickle (pkl) file containing coverage along the reference genome",
+                  "pattern": "*.{pkl}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_4002"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@ramirobarrantes"
+        ],
+        "maintainers": [
+          "@ramirobarrantes"
+        ]
+      }
     },
     {
       "name": "coptr_index",
@@ -106028,6 +106132,22 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -110937,6 +111057,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -200497,6 +200621,7 @@
           "hmmer/hmmalign",
           "hmmer/eslalimask",
           "hmmer/eslreformat",
+          "clustalo/align",
           "mafft/align",
           "epang/place",
           "epang/split",
@@ -200554,7 +200679,7 @@
           {
             "alignmethod": {
               "type": "string",
-              "description": "Method used for alignment, 'hmmer' or 'mafft'"
+              "description": "Method used for alignment, 'hmmer', 'clustalo' or 'mafft'"
             }
           }
         ],
@@ -203904,6 +204029,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        },
         {
           "name": "phageannotator",
           "version": "dev"
@@ -207394,6 +207523,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
+        },
         {
           "name": "riboseq",
           "version": "1.0.1"
