@@ -37,5 +37,4 @@ For example, the dark backgrounds of the nf-core website uses the `$grey-50` col
 - gray-800: `#343a40`
 - gray-900: `#212529` (main nf-core website background colour)
 
-
 However see the full bootstrap colour description for all colours.
