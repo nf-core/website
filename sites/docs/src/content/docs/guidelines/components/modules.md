@@ -687,6 +687,22 @@ If the software is not available on Bioconda a `Dockerfile` MUST be provided wit
 
 ## Testing
 
+### Scope of testing
+
+Tests for modules SHOULD be be designed to be able to execute within the nf-core/modules GitHub repository CI with example test data.
+
+Tests for modules MUST at a minimum run on the GitHub repository CI with a stub test that replicates the generation of (empty) output files.
+
+Tests for modules do not necessarily need to be able to execute 'standalone', i.e., do not necessarily need to be able to be run outside the nf-core/modules repository (for example, they don't need to be executable within a pipeline repository)
+
+:::info{title="Rationale" collapse}
+Some modules may require upstream modules to generate input files to the new module under construction, in cases where it is not possible or reasonable to upload those test data files to nf-core/test-datasets.
+
+If the test was to work 'standalone', the pipeline would need to include all these upstream modules just to execute the module test - even if those modules are not used within the pipeline itself, leading to a lot of file 'pollution' within the pipeline repository.
+
+Modules installed in the pipeline should already be tested to work correctly within the context of the pipeline with workflow- or pipeline-level tests, thus it is considered unnecessary to duplicate module tests again.
+:::
+
 ### Snapshots
 
 Only one snapshot is allowed per module test, which SHOULD contain all assertions present in this test. Having multiple snapshots per test will make the snapshot file less readable.
