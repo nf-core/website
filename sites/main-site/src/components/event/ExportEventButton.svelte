@@ -36,7 +36,7 @@
     }
 </script>
 
-<div class="dropwdown btn-group" role="group">
+<div class="dropdown btn-group position-relative" role="group">
     <button
         type="button"
         class={'btn dropdown-toggle ' + add_class}

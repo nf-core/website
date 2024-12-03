@@ -330,6 +330,28 @@ export const writePipelinesJson = async () => {
           return [];
         },
       );
+      // get manifest from nextflow.config
+      data[`${branch}_nextflow_config_manifest`] = await getGitHubFile(name, 'nextflow.config', branch).then(
+        (response) => {
+          if (response) {
+            // use regex to find all plugins in nextflow.config
+            let manifest = response.match(/manifest\s*{([^}]*)}/s)[0];
+            // convert to object
+            manifest = manifest
+              .split('\n')
+              .filter((line) => line.includes('='))
+              .map((line) => line.match(/([^=]*)\s*=\s*['"]([^'"]*)['"]/))
+              .reduce((acc, [_, key, value]) => {
+                acc[key.trim()] = value.trim();
+                return acc;
+              }, {});
+            return manifest;
+          }
+          return {};
+        },
+      );
+      console.log('branch=', branch);
+      console.log(data[`${branch}_nextflow_config_manifest`]);
     }
 
     new_releases = await Promise.all(
