@@ -38,17 +38,24 @@ However in many nf-core pipelines, developers have used the major version bump t
 
 There was a discussion on pros and cons of this with other versioning systems.
 
-<Profile username="jfy133">James Fellows Yates</Profile> and <Profile username="JoseEspinosa">Jose Espinosa</Profile> felt that the 'misuse' of SemVar within nf-core was partly due to the SemVar specification being very technical, and hard to easily 'convert' to how this applies to pipelines, and thus misinterpreting what it means - particularly when comparing to the definition of 'major' releases in existing pipelines.
+<Profile username="jfy133">James Fellows Yates</Profile> and <Profile username="JoseEspinosa">Jose Espinosa</Profile> felt
+that the 'misuse' of SemVar within nf-core was partly due to the SemVar specification being very technical, and hard to easily
+'convert' to how this applies to pipelines, and thus misinterpreting what it means - particularly when comparing to the definition
+of 'major' releases in existing pipelines.
 
-<Profile username="FloWuenne">Florian Wuennemann</Profile> continued to display his love of AI ([Nextflow advent calendar](https://flowuenne.github.io/nextflow_advent_calender/) anyone?) by proposing having an LLM scan a code base on `dev` branches and work out the versioning for you.
-This was so not well received by the AI skeptics in the group, but it did bring up the question: could we provide tooling and automation to help developers evaluate what is the best version bump type for a particular release.
+<Profile username="FloWuenne">Florian Wuennemann</Profile> continued to display his love of AI ([Nextflow advent calendar](https://flowuenne.github.io/nextflow_advent_calender/)
+anyone?) by proposing having an LLM scan a code base on `dev` branches and work out the versioning for you. This was so not
+well received by the AI skeptics in the group, but it did bring up the question: could we provide tooling and automation
+to help developers evaluate what is the best version bump type for a particular release.
 
 We agreed that Jon would prepare a [PR](https://github.com/nf-core/website/pull/2842) where the rest of the community can propose what they consider to be the 'rules' about what defines different types of release, following SemVar as far as possible (note the PR has since been merged, but it's still open for updating by the rest of the community).
 Then with these specifications <Profile username="mirpedrol">Júlia Mir Pedrol</Profile> and the infrastructure team would explore tooling to propose during linting the 'best fitting' version bump prior to a new release.
 
 ## Push for BAM to CRAM?
 
-<Profile username="maxulysse">Maxime Garcia</Profile> spoke on behalf of <Profile username="FriederikeHanssen">Friederike Hanssen (Rike)</Profile> who asked whether we should have a wholesale push to replace BAMs with CRAMs across all modules in nf-core.
+<Profile username="maxulysse">Maxime Garcia</Profile> spoke on behalf of <Profile username="FriederikeHanssen">
+    Friederike Hanssen (Rike)
+</Profile> who asked whether we should have a wholesale push to replace BAMs with CRAMs across all modules in nf-core.
 
 [CRAMs](<https://en.wikipedia.org/wiki/CRAM_(file_format)>) are a highly compressed variant of SAM and BAM files, that can in many places greatly reduce hard-drive usage of reference genome-aligned DNA/RNA sequencing data files.
 
@@ -60,9 +67,8 @@ We concluded on asking Rike to propose ways of making more awareness during revi
 
 ## Removal of `workflowCitation()`
 
-<Profile username="mirpedrol">Júlia Mir Pedrol</Profile> showed her
-[proposal](https://github.com/nf-core/modules/pull/7094) for removing the `workflowCitation()` function from the nf-core
-pipeline template.
+<Profile username="mirpedrol">Júlia Mir Pedrol</Profile> showed her [proposal](https://github.com/nf-core/modules/pull/7094)
+for removing the `workflowCitation()` function from the nf-core pipeline template.
 
 This function was previously used for printing citation information at the beginning of a pipeline run, to encourage users to cite the pipeline's publication, the nf-core project and other dependencies.
 However it had not been used elsewhere in the pipeline template for a while.
@@ -73,8 +79,10 @@ So in case you have being using the function for your own purposes - be aware it
 
 ## Recent CI approach changes
 
-<Profile username="sateeshperi">Sateesh Peri</Profile> gave an overview of the major changes in way the nf-core/modules
-CI tests execute that were implemented over a couple of weeks in November by a small team including himself, <Profile username="edmundmiller">Edmund Miller</Profile>
+<Profile username="sateeshperi">Sateesh Peri</Profile> gave an overview of the major changes in way the nf-core/modules CI
+tests execute that were implemented over a couple of weeks in November by a small team including himself, <Profile username="edmundmiller">
+    Edmund Miller
+</Profile>
 , and a recent maintainer team member addition <Profile username="GallVP">Usman Rashid</Profile>, among others.
 
 The two main changes were the use of nf-test 'shards', allowing different tests defined in the nf-test script file to run in parallel rather than sequentially.
