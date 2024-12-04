@@ -1,0 +1,98 @@
+---
+title: 'Maintainers Minutes: November 2024'
+subtitle: 'Keeping you informed of the latest maintainers discussions'
+pubDate: 2024-11-29T12:00:00+01:00
+headerImage: '/assets/images/blog/maintainers-minutes-2024-07-26/maintainers_duck.png'
+headerImageAlt: 'Cartoon yellow rubber duck with nf-core logo badge on its body with the nf-core logo.'
+headerImageDim: [250, 250]
+embedHeaderImage: true
+authors:
+    - 'jfy133'
+label:
+    - 'maintainers'
+---
+
+import Profile from '@components/GitHubProfilePictureExtended.svelte';
+import { Image } from 'astro:assets';
+
+The 'Maintainers Minutes' aims to give further insight into the workings of the [nf-core maintainers team](/governance#maintainers)
+by providing brief summaries of the monthly team meetings.
+
+## Overview
+
+In the November meeting we discussed (amongst others) the following topics:
+
+-   [Stricter SemVar versioning](stricter-semvar-versioning)
+-   [Push for BAM to CRAM?](push-for-bam-to-cram)
+-   [Removal of `workflowCitation()`](removal-of-workflowcitation)
+-   [Recent CI approach changes](recent-ci-approach-changes)
+-   [Modules piling up](modules-piling-up)
+
+## Stricter SemVar versioning
+
+We dived immediately into what was expected to be a prickly topic: <Profile username="pinin4fjords">Jon Manning</Profile> raised the 'loose' use of [Semantic Versioning (SemVar)](https://semver.org/) within nf-core pipeline release version numbers.
+
+Jon brought up that different pipelines take different approaches, and few follow 'true' SemVar rules.
+The main issue was 'major releases': in SemVar, going from 1.0.0 to 2.0.0 indicates a _breaking change_, where the way a user (or computer) interacts with the software has changed in a way that the way they are used to using the software will not work any more.
+However in many nf-core pipelines, developers have used the major version bump to indicate major new functionalities or large back-end refactoring of the code base, even if it doesn't effect the way a user interacts with the pipeline.
+
+There was a discussion on pros and cons of this with other versioning systems.
+
+<Profile username="jfy133">James Fellows Yates</Profile> and <Profile username="JoseEspinosa">Jose Espinosa</Profile> felt that the 'misuse' of SemVar within nf-core was partly due to the SemVar specification being very technical, and hard to easily 'convert' to how this applies to pipelines, and thus misinterpreting what it means - particularly when comparing to the definition of 'major' releases in existing pipelines.
+
+<Profile username="FloWuenne">Florian Wuennemann</Profile> continued to display his love of AI ([Nextflow advent calendar](https://flowuenne.github.io/nextflow_advent_calender/) anyone?) by proposing having an LLM scan a code base on `dev` branches and work out the versioning for you.
+This was so not well received by the AI skeptics in the group, but it did bring up the question: could we provide tooling and automation to help developers evaluate what is the best version bump type for a particular release.
+
+We agreed that Jon would prepare a [PR](https://github.com/nf-core/website/pull/2842) where the rest of the community can propose what they consider to be the 'rules' about what defines different types of release, following SemVar as far as possible (note the PR has since been merged, but it's still open for updating by the rest of the community).
+Then with these specifications <Profile username="mirpedrol">Júlia Mir Pedrol</Profile> and the infrastructure team would explore tooling to propose during linting the 'best fitting' version bump prior to a new release.
+
+## Push for BAM to CRAM?
+
+<Profile username="maxulysse">Maxime Garcia</Profile> spoke on behalf of <Profile username="FriederikeHanssen">Friederike Hanssen (Rike)</Profile> who asked whether we should have a wholesale push to replace BAMs with CRAMs across all modules in nf-core.
+
+[CRAMs](<https://en.wikipedia.org/wiki/CRAM_(file_format)>) are a highly compressed variant of SAM and BAM files, that can in many places greatly reduce hard-drive usage of reference genome-aligned DNA/RNA sequencing data files.
+
+While CRAMs are natively supported by modern versions the `htslib` `SAMTools` suite of bioinformatics tools and libraries, there was a lot of hesitation from many of the maintainers to start requiring or pushing harder on this (despite the potential benefits).
+Many of the weary bioinformaticians in the group were concerned that this would require a lot more work than it may seem (<Profile username="adamrtalbot">Adam Talbot</Profile> and <Profile username="jfy133">James Fellows Yates</Profile> simultaneously bitterly laughed in 'C' and 'Ancient DNA' tools), as knowing bioinformaticians, many tools commonly used in nf-core pipelines may not support more recent versions of `HTSlib` or may have hardcoded BAM as a required input format.
+Getting this to work everywhere would likely require not just updating the nf-core module but in many cases patching the code-base of the tools themselves - something that would be a whole other project to execute due to variety of languages the tools are in and the number of 'abandoned' tools.
+
+We concluded on asking Rike to propose ways of making more awareness during reviewing and maybe stronger emphasis in the module specifications to encourage the adoption of the format where possible.
+
+## Removal of `workflowCitation()`
+
+<Profile username="mirpedrol">Júlia Mir Pedrol</Profile> showed her
+[proposal](https://github.com/nf-core/modules/pull/7094) for removing the `workflowCitation()` function from the nf-core
+pipeline template.
+
+This function was previously used for printing citation information at the beginning of a pipeline run, to encourage users to cite the pipeline's publication, the nf-core project and other dependencies.
+However it had not been used elsewhere in the pipeline template for a while.
+
+While she had previously asked on Slack, she wanted to check with the maintainers team if anyone was using it before dropping it - to which she she received a unanimous '[PURGE](https://github.com/nf-core/modules/pull/7094#pullrequestreview-2470115528) IT'.
+
+So in case you have being using the function for your own purposes - be aware it'll no longer be in the nf-core template from the next nf-core/tools release!
+
+## Recent CI approach changes
+
+<Profile username="sateeshperi">Sateesh Peri</Profile> gave an overview of the major changes in way the nf-core/modules
+CI tests execute that were implemented over a couple of weeks in November by a small team including himself, <Profile username="edmundmiller">Edmund Miller</Profile>
+, and a recent maintainer team member addition <Profile username="GallVP">Usman Rashid</Profile>, among others.
+
+The two main changes were the use of nf-test 'shards', allowing different tests defined in the nf-test script file to run in parallel rather than sequentially.
+This means a faster development cycle of modules by having faster successes, or more importantly, fails.
+A second major change is the ability to properly test modules that use tools that require GPUs, with a specific tag now triggering the test to run on 'self-hosted' runners outside of GitHub using nf-core credits kindly donated by AWS.
+
+Some of the other maintainers brought up a couple of issues such as the now 'uninformative' test names making it harder to know which test failed without clicking through main layers of the GitHub Actions interface, however there are more improvements in the works for this from various areas.
+
+The team is not finished yet however,
+
+## Modules piling up
+
+To wrap up, our favourite module maestro <Profile username="SPPearce">Simon Pearce</Profile> brought up that the number of open pull-requests on the module repository is starting to pile up.
+
+It would be great to have more community members help get as many as possible in before the new year, so if you have a spare 10 minutes help us get them reviewed and merged in!
+
+## The end
+
+As always, if you want to get involved and give your input, join the discussion on relevant PRs and slack threads!
+
+\- :heart: from your #maintainers team!
