@@ -8346,6 +8346,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -25197,6 +25201,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -79834,17 +79846,13 @@
                 "type": "string",
                 "description": "Default allele count bins used for rsquared computations.\nAN field must be defined in the frequency file.\n"
               }
-            }
-          ],
-          [
+            },
             {
               "min_val_gl": {
                 "type": "float",
                 "description": "Minimum genotype likelihood probability P(G|R) in validation data.\nSet to zero to have no filter of if using –gt-validation\n"
               }
-            }
-          ],
-          [
+            },
             {
               "min_val_dp": {
                 "type": "integer",
@@ -106268,6 +106276,22 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -111177,6 +111201,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -168213,14 +168241,14 @@
               }
             },
             {
-              "input_plain": {
+              "input": {
                 "type": "file",
                 "description": "Genotypes to be phased in plain VCF/BCF format.\n",
                 "pattern": "*.{vcf,bcf,vcf.gz,bcf.gz}"
               }
             },
             {
-              "input_plain_index": {
+              "input_index": {
                 "type": "file",
                 "description": "Index file of the input_plain VCF/BCF file containing genotype likelihoods.",
                 "pattern": "*.{vcf.gz.csi,bcf.gz.csi}"
@@ -194425,6 +194453,124 @@
       }
     },
     {
+      "name": "vt_decomposeblocksub",
+      "path": "modules/nf-core/vt/decomposeblocksub/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "vt_decomposeblocksub",
+        "description": "Decomposes biallelic block substitutions into its constituent SNPs.",
+        "keywords": [
+          "decomposeblocksub",
+          "multiallelic",
+          "small variants",
+          "snps",
+          "indels",
+          "block substitutions"
+        ],
+        "tools": [
+          {
+            "vt": {
+              "description": "A tool set for short variant discovery in genetic sequence data",
+              "homepage": "https://genome.sph.umich.edu/wiki/Vt",
+              "documentation": "https://genome.sph.umich.edu/wiki/Vt",
+              "tool_dev_url": "https://github.com/atks/vt",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+              }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "The VCF file to decompose",
+                "pattern": "*.vcf(.gz)?",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            },
+            {
+              "index": {
+                "type": "file",
+                "description": "The VCF file to decompose",
+                "pattern": "*.tbi",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3616"
+                  }
+                ]
+              }
+            },
+            {
+              "intervals": {
+                "type": "file",
+                "description": "The intervals of the variants of decompose",
+                "pattern": "*.bed",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "vcf": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.vcf.gz": {
+                  "type": "file",
+                  "description": "The decomposed VCF file",
+                  "pattern": "*.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@kubranarci"
+        ],
+        "maintainers": [
+          "@kubranarci"
+        ]
+      }
+    },
+    {
       "name": "vt_normalize",
       "path": "modules/nf-core/vt/normalize/meta.yml",
       "type": "module",
@@ -204273,6 +204419,10 @@
         {
           "name": "phageannotator",
           "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
         }
       ]
     },
@@ -207700,6 +207850,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
+        },
         {
           "name": "riboseq",
           "version": "1.0.1"
