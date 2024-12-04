@@ -8342,6 +8342,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -27138,6 +27142,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -40639,6 +40651,98 @@
           "version": "2.1.0"
         }
       ]
+    },
+    {
+      "name": "coptr_estimate",
+      "path": "modules/nf-core/coptr/estimate/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "coptr_estimate",
+        "description": "Calculates peak-to-through ratio (PTR) from metagenomic sequence data",
+        "keywords": [
+          "coptr",
+          "mapping",
+          "ptr"
+        ],
+        "tools": [
+          {
+            "coptr": {
+              "description": "Accurate and robust inference of microbial growth dynamics from metagenomic sequencing reads.",
+              "homepage": "https://github.com/tyjo/coptr",
+              "documentation": "https://coptr.readthedocs.io/",
+              "tool_dev_url": "https://github.com/tyjo/coptr",
+              "doi": "10.1101/gr.275533.121",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:coptr"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "pkl": {
+                "type": "file",
+                "description": "Python pickle file containing coverage maps",
+                "pattern": "*.pkl",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_4002"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "ptr": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.csv": {
+                  "type": "file",
+                  "description": "CSV table with rows as reference genomes, columns samples and entries as log2 PTR",
+                  "pattern": "*.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@ramirobarrantes"
+        ],
+        "maintainers": [
+          "@ramirobarrantes"
+        ]
+      }
     },
     {
       "name": "coptr_extract",
@@ -106148,6 +106252,22 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -111057,6 +111177,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -203888,6 +204012,55 @@
       ]
     },
     {
+      "name": "h5ad_removebackground_barcodes_cellbender_anndata",
+      "path": "subworkflows/nf-core/h5ad_removebackground_barcodes_cellbender_anndata/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "h5ad_removebackground_barcodes_cellbender_anndata",
+        "description": "Use features of Cellbender to remove background noise and empty droplet",
+        "keywords": [
+          "scdownstream",
+          "cellbender",
+          "anndata"
+        ],
+        "components": [
+          "cellbender/removebackground",
+          "anndata/barcodes"
+        ],
+        "input": [
+          {
+            "ch_unfiltered": {
+              "type": "file",
+              "description": "The input channel containing the unfiltered AnnData file to process\nand remove background noise and empty droplets\nStructure: [ val(meta), path(h5ad) ]\n",
+              "pattern": "*.h5ad"
+            }
+          }
+        ],
+        "output": [
+          {
+            "h5ad": {
+              "description": "Background and empty droplet removed AnnData file containing cells with\nbarcodes exceeding 0.5 posterior cell probability determined by the\ncellbender's remove-background\nStructure: [ val(meta), path(h5ad) ]\n",
+              "pattern": "*.h5ad"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions\n",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@nictru",
+          "@chaochaowong"
+        ],
+        "maintainers": [
+          "@nictru"
+        ]
+      }
+    },
+    {
       "name": "homer_groseq",
       "path": "subworkflows/nf-core/homer_groseq/meta.yml",
       "type": "subworkflow",
@@ -204029,6 +204202,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        },
         {
           "name": "phageannotator",
           "version": "dev"
@@ -207523,6 +207700,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
+        },
         {
           "name": "riboseq",
           "version": "1.0.1"
