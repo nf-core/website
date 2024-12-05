@@ -95,6 +95,7 @@ const sections: SidebarEntry[] = section_names
     .map((entry) => {
         return {
             type: 'group',
+            id: entry,
             label: entry === 'api' ? 'API' : entry.replace(/_/g, ' ').replace(/^\w/, (c) => c.toUpperCase()),
             href:
                 '/docs/nf-core-tools/api_reference/' +
@@ -103,13 +104,15 @@ const sections: SidebarEntry[] = section_names
                     ?.id.replace(/index\.md$/, '')
                     .replace('docs/', ''),
             collapsed: true,
+            isCurrent: false,
             entries: versioned_tools
                 .filter((child) => child.id.split('/')[1] === entry && child.id.split('/')[2])
                 .filter((child) => child.id.split('/')[2] !== 'index.md')
                 .map((tool_entry) => {
                     return {
                         type: 'link',
-                        label: `<code>${tool_entry.id.split('/')[2].replace(/\.md$/, '')}</code>`,
+                        label: `<code>${tool_entry.id?.replace('/pipelines/', '/').split('/')[2].replace(/\.md$/, '')}</code>`,
+                        id: tool_entry.id.split('/')[2].replace(/\.md$/, ''),
                         href:
                             '/docs/nf-core-tools/api_reference/' +
                             tool_entry.id.replace('docs/', '').replace(/\.md$/, ''),
