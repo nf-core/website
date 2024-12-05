@@ -12,6 +12,6 @@ locations:
       - https://kth-se.zoom.us/j/68390542812
 ---
 
-In this nf-core bytesize session, Gregor ([@grst](https://github.com/grst)) will talk about [DSO](https://github.com/Boehringer-Ingelheim/dso), a command line helper for building reproducible data anlaysis projects with ease. It leverages [DVC](https://dvc.org/) 
-for data versioning and adds convenience features such as templating, hierarchical config files, linting and integration with quarto reports. DSO can track nf-core pipeline executions and is very well suited to keep track of custom analyses that 
-come downstream of nf-core processing pipelines. 
+In this nf-core bytesize session, Gregor ([@grst](https://github.com/grst)) will talk about [DSO](https://github.com/Boehringer-Ingelheim/dso), a command line helper for building reproducible data anlaysis projects with ease. It leverages [DVC](https://dvc.org/)
+for data versioning and adds convenience features such as templating, hierarchical config files, linting and integration with quarto reports. DSO can track nf-core pipeline executions and is very well suited to keep track of custom analyses that
+come downstream of nf-core processing pipelines.
