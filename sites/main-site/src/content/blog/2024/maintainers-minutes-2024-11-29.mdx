@@ -30,16 +30,16 @@ In the November meeting we discussed (amongst others) the following topics:
 
 ## Stricter SemVer versioning
 
-We dived immediately into what was expected to be a prickly topic: <Profile username="pinin4fjords">Jon Manning</Profile> raised the 'loose' use of [Semantic Versioning (SemVar)](https://semver.org/) within nf-core pipeline release version numbers.
+We dived immediately into what was expected to be a prickly topic: <Profile username="pinin4fjords">Jon Manning</Profile> raised the 'loose' use of [Semantic Versioning (SemVer)](https://semver.org/) within nf-core pipeline release version numbers.
 
-Jon brought up that different pipelines take different approaches, and few follow 'true' SemVar rules.
-The main issue was 'major releases': in SemVar, going from 1.0.0 to 2.0.0 indicates a _breaking change_, where the way a user (or computer) interacts with the software has changed in a way that the way they are used to using the software will not work any more.
+Jon brought up that different pipelines take different approaches, and few follow 'true' SemVer rules.
+The main issue was 'major releases': in SemVer, going from 1.0.0 to 2.0.0 indicates a _breaking change_, where the way a user (or computer) interacts with the software has changed in a way that the way they are used to using the software will not work any more.
 However in many nf-core pipelines, developers have used the major version bump to indicate major new functionalities or large back-end refactoring of the code base, even if it doesn't effect the way a user interacts with the pipeline.
 
 There was a discussion on pros and cons of this with other versioning systems.
 
 <Profile username="jfy133">James Fellows Yates</Profile> and <Profile username="JoseEspinosa">Jose Espinosa</Profile> felt
-that the 'misuse' of SemVar within nf-core was partly due to the SemVar specification being very technical, and hard to easily
+that the 'misuse' of SemVer within nf-core was partly due to the SemVer specification being very technical, and hard to easily
 'convert' to how this applies to pipelines, and thus misinterpreting what it means - particularly when comparing to the definition
 of 'major' releases in existing pipelines.
 
@@ -48,7 +48,7 @@ anyone?) by proposing having an LLM scan a code base on `dev` branches and work 
 well received by the AI skeptics in the group, but it did bring up the question: could we provide tooling and automation
 to help developers evaluate what is the best version bump type for a particular release.
 
-We agreed that Jon would prepare a [PR](https://github.com/nf-core/website/pull/2842) where the rest of the community can propose what they consider to be the 'rules' about what defines different types of release, following SemVar as far as possible (note the PR has since been merged, but it's still open for updating by the rest of the community).
+We agreed that Jon would prepare a [PR](https://github.com/nf-core/website/pull/2842) where the rest of the community can propose what they consider to be the 'rules' about what defines different types of release, following SemVer as far as possible (note the PR has since been merged, but it's still open for updating by the rest of the community).
 Then with these specifications <Profile username="mirpedrol">Júlia Mir Pedrol</Profile> and the infrastructure team would explore tooling to propose during linting the 'best fitting' version bump prior to a new release.
 
 ## Push for BAM to CRAM?
