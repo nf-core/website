@@ -8364,6 +8364,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -25215,6 +25219,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -106369,6 +106381,22 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -111071,7 +111099,7 @@
               {
                 "*.hist": {
                   "type": "file",
-                  "description": "The generated 0-centered k* histogram for sequences in <fasta_assembly.fasta>. Positive k* values are expected collapsed copies. Negative k* values are expected expanded  copies. Closer to 0 means the expected and found k-mers are well balenced, 1:1.",
+                  "description": "The generated 0-centered k* histogram for sequences in <fasta_assembly.fasta>.\nPositive k* values are expected collapsed copies. Negative k* values are expected\nexpanded  copies. Closer to 0 means the expected and found k-mers are well\nbalenced, 1:1.\n",
                   "pattern": "*.{hist}"
                 }
               }
@@ -111079,6 +111107,12 @@
           },
           {
             "log_stderr": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
               {
                 "*.hist.stderr.log": {
                   "type": "file",
@@ -111278,6 +111312,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -204516,6 +204554,10 @@
         {
           "name": "phageannotator",
           "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
         }
       ]
     },
@@ -207943,6 +207985,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
+        },
         {
           "name": "riboseq",
           "version": "1.0.1"
