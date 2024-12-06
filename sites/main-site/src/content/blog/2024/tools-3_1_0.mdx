@@ -1,0 +1,30 @@
+---
+title: 'nf-core/tools - 3.1.0'
+subtitle: 'Everything is going crate'
+headerImage: 'https://images.unsplash.com/photo-1655874835023-02d7371fbe90'
+headerImageAlt: 'A wall of red, blue and green plastic crates'
+pubDate: 2024-12-10T14:00:00+01:00
+authors:
+    - 'mashehu'
+    - 'mirpedrol'
+label:
+    - 'tools'
+maxHeadingDepth: 3
+---
+
+# Highlights
+
+-   Pipelines generated with nf-core/tools now come with their own Research Object (RO) Crate.
+    RO Crate is an open-source standard which we use to describe our pipelines and their components in a structured way.
+    More information can be found [here](https://www.researchobject.org/ro-crate/).
+
+    :::note
+    This RO Crate describes the pipeline as a whole, not pipeline runs.
+    For that kind of provenance, use the new [nf-prov plugin](https://github.com/nextflow-io/nf-prov), which is currently in development.
+    :::
+
+-   `nf-core pipelines download` supports now ORAS container URIs.
+    Previously, you needed to use a `https://` prefix, but thanks to the work by [@MatthiasZepper](https://github.com/MatthiasZepper") we can now use the `oras://` prefix.
+-   `main` as default release branch for pipelines. With this release we extended the template and tooling to support either `main` or `master` as the default branch for pipelines.
+    You can follow the progress of this transition on the [pipeline health page](/pipeline_health).
+-   The newly added `nf-core subworkflows patch` command allows you to patch subworkflows in the same way as you would patch modules.
