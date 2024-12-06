@@ -324,6 +324,14 @@ See the [Bash manual on file operators](https://tldp.org/LDP/abs/html/fto.html) 
 
 Alternate suggestions include using `grep -c` to search for a valid string match, or other tool which will appropriately error when the expected output is not successfully created.
 
+### Script inclusion
+
+Where the content of the `script:` block is not a simple call to a command, but rather a script (e.g. in R, Python), you have a set of options available to you:
+
+ * Inline process code: code can still be included in the script block using a shebang like `#!/usr/bin/env python`, and code used inline as with regular shell content. This can, however, be obstructive to understanding of module code when content gets extensive.
+ * [Module templates](https://www.nextflow.io/docs/latest/module.html#module-templates): templates work exactly the same as inline code (so beware of the need to escape dollar signs etc), however can be stored external to the process definition in the module, in a `templates` subfolder. This is done for the [DESeq2 module](https://github.com/nf-core/modules/tree/master/modules/nf-core/deseq2/differential), for example.
+ * Externalise the scripts entirely, and access them via a Conda definition. This is probably the cleanest solution, but requires a little more effort and management.
+
 ### Stubs
 
 #### Stub block must exist
