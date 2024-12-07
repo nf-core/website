@@ -47,7 +47,7 @@ For even more convenience you can use the following asset library [nf-core xml i
 To import it to draw.io use "File / Open library from / URL..." and paste:
 
 ```plaintext
-https://github.com/nf-core/website/blob/main/public/images/graphic_design_assets/workflow_schematics_components/generic/nf-core_components.xml
+https://github.com/nf-core/website/raw/main/public/images/graphic_design_assets/workflow_schematics_components/generic/nf-core_components.xml
 ```
 
 Additionally, the components can be used via [bioicons](https://bioicons.com).
