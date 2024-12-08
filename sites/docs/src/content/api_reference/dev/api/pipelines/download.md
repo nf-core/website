@@ -26,6 +26,12 @@ Bases: `AttributeError`
 
 Image and registry are valid, but the (version) tag is not
 
+#### _`exception{:python}`_`NoSingularityContainerError(error_log){:python}`
+
+Bases: `RuntimeError`
+
+The container image is no native Singularity Image Format.
+
 #### _`exception{:python}`_`OtherError(error_log){:python}`
 
 Bases: `RuntimeError`
@@ -157,6 +163,8 @@ they are not equivalent, e.g.:
 ‘<https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/63/6397750e9730a3fbcc5b4c43f14bd141c64c723fd7dad80e47921a68a7c3cd21/data>’
 ‘<https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c2/c262fc09eca59edb5a724080eeceb00fb06396f510aefb229c2d2c6897e63975/data>’
 
+Lastly, we want to remove at least a few Docker URIs for those modules, that have an oras:// download link.
+
 #### `prompt_compression_type(){:python}`
 
 Ask user if we should compress the downloaded files
@@ -196,6 +204,23 @@ Ask if we should _only_ use $NXF_SINGULARITY_CACHEDIR without copying into targe
 #### `read_remote_containers(){:python}`
 
 Reads the file specified as index for the remote Singularity cache dir
+
+#### _`static{:python}`_`reconcile_seqera_container_uris(prioritized_container_list: List[str], other_list: List[str]) → List[str]{:python}`
+
+Helper function that takes a list of Seqera container URIs,
+extracts the software string and builds a regex from them to filter out
+similar containers from the second container list.
+
+prioritzed_container_list = \[
+… “oras://community.wave.seqera.io/library/multiqc:1.25.1–f0e743d16869c0bf”,
+… “oras://community.wave.seqera.io/library/multiqc_pip_multiqc-plugins:e1f4877f1515d03c”
+… ]
+
+will be cleaned to
+
+\[‘library/multiqc:1.25.1’, ‘library/multiqc_pip_multiqc-plugins’]
+
+Subsequently, build a regex from those and filter out matching duplicates in other_list:
 
 #### `rectify_raw_container_matches(raw_findings){:python}`
 
