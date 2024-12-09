@@ -326,11 +326,61 @@ Alternate suggestions include using `grep -c` to search for a valid string match
 
 ### Script inclusion
 
-Where the content of the `script:` block is not a simple call to a command, but rather a script (e.g. in R, Python), you have a set of options available to you:
+:::note
+You SHOULD NOT use [Nextflow module binaries](https://www.nextflow.io/docs/latest/module.html#module-binaries) where possible, as these are not fully portable across all execution contexts.
+:::
 
-- Inline process code: code can still be included in the script block using a shebang like `#!/usr/bin/env python`, and code used inline as with regular shell content. This can, however, be obstructive to understanding of module code when content gets extensive.
-- [Module templates](https://www.nextflow.io/docs/latest/module.html#module-templates): templates work exactly the same as inline code (so beware of the need to escape dollar signs etc), however can be stored external to the process definition in the module, in a `templates` subfolder. This is done for the [DESeq2 module](https://github.com/nf-core/modules/tree/master/modules/nf-core/deseq2/differential), for example.
-- Externalise the scripts entirely, and access them via a Conda definition. This is probably the cleanest solution, but requires a little more effort and management.
+If a module's `script:` block contains not command invocations, but script content, whatever the language (e.g. Bash, R, Python), and if that content is non-trivial in length (>> 10 lines), that MUST be supplied via a [Nextflow module template](https://www.nextflow.io/docs/latest/module.html#module-templates). This makes it clearer when changes have been made to the scientific logic in the script, or to the workflow-relevant logic in the module.
+
+#### Template location
+
+ The template MUST go in a directory called `templates/` that sits alongside the `main.nf` of the module. 
+
+The template file MUST be named after module itself with a language appropriate file suffix. e.g. the `deseq2/differential` nf-core module will use the `deseq2_differential.R`
+
+The template file can be referred to within the module itself using the following notation:
+
+    ```nextflow
+    script:
+    template 'deseq2_differential/R'
+    ```
+
+An example can be seen with `deseq2/differential` [here](https://github.com/nf-core/modules/blob/master/modules/nf-core/deseq2/differential/main.nf#L47).
+
+The resulting structure would look like this.
+
+    ```tree
+    deseq2
+    └── differential
+        ├── environment.yml
+        ├── main.nf
+        ├── meta.yml
+        ├── templates
+        │   └── deqseq2_differential.R
+        └── tests
+            ├── main.nf.test
+            ├── main.nf.test.snap
+            └── tags.yml
+    ```
+
+#### Template contents
+
+:::warning
+Be aware that in any script template that Nextflow needs to be escaped in the same way you would in a standard bash `script:` block!
+:::
+
+The script template file MUST generate a `versions.yml` file in the language-appropriate way that contains versions of the base language and all relevant libraries and packages. 
+
+The generated `versions.yml` MUST have the same structure as a  standard nf-core module `versions.yml`.
+
+For example, for R you can refer to the `deseq2/differential` module [here](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/templates/deseq_de.R#L509-L534).
+
+#### Script template stub
+
+A script template module MUST also include a stub block following a standard nf-core module structure (i.e., using e.g. `touch` to generate empty files, and versions. You can see  the `deseq2/differential` module example [here](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/main.nf#L34-L49).
+
+An inline command to call the version for libraries for the `versions.yml` MAY be used in this case. For an R example see [deseq2/differential](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/main.nf#L47).
+
 
 ### Stubs
 
