@@ -327,14 +327,14 @@ Alternate suggestions include using `grep -c` to search for a valid string match
 ### Script inclusion
 
 :::note
-You SHOULD NOT use [Nextflow module binaries](https://www.nextflow.io/docs/latest/module.html#module-binaries) where possible, as these are not fully portable across all execution contexts.
+You SHOULD NOT use [Nextflow module binaries](https://www.nextflow.io/docs/latest/module.html#module-binaries), as these are not fully portable across all execution contexts.
 :::
 
 If a module's `script:` block contains not command invocations, but script content, whatever the language (e.g. Bash, R, Python), and if that content is non-trivial in length (>> 10 lines), that MUST be supplied via a [Nextflow module template](https://www.nextflow.io/docs/latest/module.html#module-templates). This makes it clearer when changes have been made to the scientific logic in the script, or to the workflow-relevant logic in the module.
 
-#### Template location
+#### Module template location
 
- The template MUST go in a directory called `templates/` that sits alongside the `main.nf` of the module. 
+The template MUST go in a directory called `templates/` that sits alongside the `main.nf` of the module. 
 
 The template file MUST be named after module itself with a language appropriate file suffix. e.g. the `deseq2/differential` nf-core module will use the `deseq2_differential.R`
 
@@ -363,7 +363,7 @@ The resulting structure would look like this.
             └── tags.yml
     ```
 
-#### Template contents
+#### Template or inline script-code contents
 
 :::warning
 Be aware that in any script template that Nextflow needs to be escaped in the same way you would in a standard bash `script:` block!
@@ -375,9 +375,9 @@ The generated `versions.yml` MUST have the same structure as a  standard nf-core
 
 For example, for R you can refer to the `deseq2/differential` module [here](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/templates/deseq_de.R#L509-L534).
 
-#### Script template stub
+#### Stubs in templated modules
 
-A script template module MUST also include a stub block following a standard nf-core module structure (i.e., using e.g. `touch` to generate empty files, and versions. You can see  the `deseq2/differential` module example [here](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/main.nf#L34-L49).
+A templated module MUST have a stub block in the same way as any other module (i.e., using e.g. `touch` to generate empty files, and versions). You can see  the `deseq2/differential` module example [here](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/main.nf#L34-L49).
 
 An inline command to call the version for libraries for the `versions.yml` MAY be used in this case. For an R example see [deseq2/differential](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/main.nf#L47).
 
