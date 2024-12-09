@@ -343,7 +343,7 @@ If the script content is less than 20 lines, the code MAY be embedded directly i
 
 #### Module template location
 
-The template MUST go in a directory called `templates/` that sits alongside the `main.nf` of the module. 
+The template MUST go in a directory called `templates/` that sits alongside the `main.nf` of the module.
 
 The template file MUST be named after module itself with a language appropriate file suffix. e.g. the `deseq2/differential` nf-core module will use the `deseq2_differential.R`
 
@@ -378,18 +378,17 @@ The resulting structure would look like this.
 Be aware that in any script template that Nextflow needs to be escaped in the same way you would in a standard bash `script:` block!
 :::
 
-The script template file or inline script code (<20 lines) MUST generate a `versions.yml` file in the language-appropriate way that contains versions of the base language and all relevant libraries and packages. 
+The script template file or inline script code (<20 lines) MUST generate a `versions.yml` file in the language-appropriate way that contains versions of the base language and all relevant libraries and packages.
 
-The generated `versions.yml` MUST have the same structure as a  standard nf-core module `versions.yml`.
+The generated `versions.yml` MUST have the same structure as a standard nf-core module `versions.yml`.
 
 For example, for R you can refer to the `deseq2/differential` module [here](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/templates/deseq_de.R#L509-L534).
 
 #### Stubs in templated modules
 
-A templated module MUST have a stub block in the same way as any other module (i.e., using e.g. `touch` to generate empty files, and versions). You can see  the `deseq2/differential` module example [here](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/main.nf#L34-L49).
+A templated module MUST have a stub block in the same way as any other module (i.e., using e.g. `touch` to generate empty files, and versions). You can see the `deseq2/differential` module example [here](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/main.nf#L34-L49).
 
 An inline command to call the version for libraries for the `versions.yml` MAY be used in this case. For an R example see [deseq2/differential](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/main.nf#L47).
-
 
 ### Stubs
 
