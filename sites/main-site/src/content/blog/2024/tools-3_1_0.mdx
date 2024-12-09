@@ -15,19 +15,27 @@ maxHeadingDepth: 3
 This release comes with some new features and smaller pipeline template, which shouldn't cause too much of a head-ache.
 As always, if you have any problems or run into any bugs, reach out on the [#tools slack channel](https://nfcore.slack.com/archives/CE5LG7WMB).
 
-# New Features
+# Highlights
 
 -   Pipelines generated with nf-core/tools now come with their own Research Object (RO) Crate.
     RO Crate is an open-source standard which we use to describe our pipelines and their components in a structured way and helps with automated provenance tracking.
     More information can be found [here](https://www.researchobject.org/ro-crate/).
+    Thanks to [Phil Ewels](https://github.com/ewels), [Stian Soiland-Reyes](https://github.com/stain) and [Simone Leo ](https://github.com/simleo) for kicking off this effort and providing useful feedback!
 
     :::note
     This RO Crate describes the pipeline as a whole, not pipeline runs.
     For that kind of provenance, use the new [nf-prov plugin](https://github.com/nextflow-io/nf-prov), which is currently in development.
     :::
 
+    If you want to update the RO Crate for your pipeline, run `nf-core pipelines rocrate` (automatically run with `nf-core pipelines sync`).
+
 -   `nf-core pipelines download` supports now ORAS container URIs.
     Previously, you needed to use a `https://` prefix, but thanks to the work by [@MatthiasZepper](https://github.com/MatthiasZepper") we can now use the `oras://` prefix.
 -   `main` as default release branch for pipelines. With this release we extended the template and tooling to support either `main` or `master` as the default branch for pipelines.
     You can follow the progress of this transition on the [pipeline health page](/pipeline_health).
 -   The newly added `nf-core subworkflows patch` command allows you to patch subworkflows in the same way as you would patch modules.
+
+# Miscellaneous
+
+-   When running `nf-core pipelines create` you can now toggle all pipelines features on and off with one switch.
+-   The template now comes with the expanded contributors section in the manifest (see [manifest docs](https://www.nextflow.io/docs/latest/reference/config.html#manifest) for details)
