@@ -19,7 +19,7 @@ As always, if you have any problems or run into any bugs, reach out on the [#too
 
 -   Pipelines generated with nf-core/tools now come with their own Research Object (RO) Crate.
     RO Crate is an open-source standard which we use to describe our pipelines and their components in a structured way and helps with automated provenance tracking.
-    More information can be found [here](https://www.researchobject.org/ro-crate/).
+    More information about RO Crates can be found [here](https://www.researchobject.org/ro-crate/).
     Thanks to [Phil Ewels](https://github.com/ewels), [Stian Soiland-Reyes](https://github.com/stain) and [Simone Leo ](https://github.com/simleo) for kicking off this effort and providing useful feedback!
 
     :::note
@@ -28,6 +28,8 @@ As always, if you have any problems or run into any bugs, reach out on the [#too
     :::
 
     If you want to update the RO Crate for your pipeline, run `nf-core pipelines rocrate` (automatically run with `nf-core pipelines sync`).
+
+    For more information about the command and how it generates the RO Crate, see [the docs](https://nf-co.re/docs/nf-core-tools/pipelines/rocrate).
 
 -   `nf-core pipelines download` supports now ORAS container URIs.
     Previously, you needed to use a `https://` prefix, but thanks to the work by [@MatthiasZepper](https://github.com/MatthiasZepper") we can now use the `oras://` prefix.
