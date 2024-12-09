@@ -70,3 +70,20 @@ As always, if you have any problems or run into any bugs, reach out on the [#too
         ]
     }
     ```
+
+# Possible merge conflicts and how to resolve them
+
+## `.nf-core.yml`
+
+We started to clean null values from the `.nf-core.yml` file, so if you get something like
+
+```diff
+<<<<<<< nf-core-template-merge-3.1.0
++ nf_core_version: 3.1.0
+=======
+- nf_core_version: 3.0.1
+- org_path: null
+>>>>>>> dev
+```
+
+You can just accept the changes that don't include null values, i.e. the ones coming from `nf-core-template-merge-3.1.0`.
