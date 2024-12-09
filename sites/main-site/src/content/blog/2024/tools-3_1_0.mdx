@@ -34,7 +34,7 @@ As always, if you have any problems or run into any bugs, reach out on the [#too
 
     For more information about the command and how it generates the RO Crate, see [the docs](https://nf-co.re/docs/nf-core-tools/pipelines/rocrate).
 
-## ORAS container URI support in`nf-core pipelines download`
+## ORAS container URI support in `nf-core pipelines download`
 
     Previously, you needed to use a `https://` prefix, but thanks to the work by [@MatthiasZepper](https://github.com/MatthiasZepper") we can now use the `oras://` prefix.
     This requires singularity to be installed on your system.
@@ -42,6 +42,8 @@ As always, if you have any problems or run into any bugs, reach out on the [#too
 ## `main` as optional default branch
 
     With this release we extended the template and tooling to support either `main` or `master` as the default release branch for pipelines.
+
+If you want to use the `main` branch in your pipeline, make sure to set `defaultBranch = main` on the `manifest` section from the `nextflow.config` file. Afterwards, you can change the GitHub repository default branch to `main`.
 
 ## `nf-core subworkflows patch`
 
@@ -78,7 +80,7 @@ As always, if you have any problems or run into any bugs, reach out on the [#too
 
 ## `.nf-core.yml`
 
-We started to clean null values from the `.nf-core.yml` file, so if you get something like
+We started to clean null values from the `.nf-core.yml` file, so if you get something like the following, you can accept this change.
 
 ```diff
 <<<<<<< nf-core-template-merge-3.1.0
