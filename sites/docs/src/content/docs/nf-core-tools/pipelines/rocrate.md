@@ -5,7 +5,7 @@ shortTitle: rocrate
 ---
 
 The `nf-core pipelines rocrate` command generates a Research Object (RO) Crate for your pipeline.
-RO Crates are an open-source standard which in this case describe a pipeline and its components in a structured way and helps with automated provenance tracking.
+RO Crates are an open-source standard which in this case describe a pipeline and its components in a structured way and help with automated provenance tracking.
 
 You can generate and update a RO Crate using the `nf-core pipelines rocrate` command (which is automatically run with `nf-core pipelines create` and `nf-core pipelines sync`).
 
