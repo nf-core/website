@@ -324,6 +324,73 @@ See the [Bash manual on file operators](https://tldp.org/LDP/abs/html/fto.html) 
 
 Alternate suggestions include using `grep -c` to search for a valid string match, or other tool which will appropriately error when the expected output is not successfully created.
 
+### Script inclusion
+
+:::warning
+You SHOULD NOT use [Nextflow module binaries](https://www.nextflow.io/docs/latest/module.html#module-binaries), as these are not fully portable across all execution contexts.
+:::
+
+:::note
+Where script content in a module becomes particularly extensive, we strongly encourage packaging and hosting the code externally and provisioning via Conda/ Docker as a standalone tool(kit).
+:::
+
+If a module's `script:` block contains not command invocations, but script content, whatever the language (e.g. Bash, R, Python), and if that content is non-trivial in length (> 20 lines), that MUST be supplied via a [Nextflow module template](https://www.nextflow.io/docs/latest/module.html#module-templates).
+This makes it clearer when changes have been made to the scientific logic in the script, or to the workflow-relevant logic in the module.
+
+#### Inline script code
+
+If the script content is less than 20 lines, the code MAY be embedded directly in the module without a dedicated template file, however should still follow the guidance content as with a template.
+
+#### Module template location
+
+The template MUST go in a directory called `templates/` that sits alongside the `main.nf` of the module.
+
+The template file MUST be named after module itself with a language appropriate file suffix. e.g. the `deseq2/differential` nf-core module will use the `deseq2_differential.R`
+
+The template file can be referred to within the module itself using the following notation:
+
+    ```nextflow
+    script:
+    template 'deseq2_differential/R'
+    ```
+
+An example can be seen with `deseq2/differential` [here](https://github.com/nf-core/modules/blob/master/modules/nf-core/deseq2/differential/main.nf#L47).
+
+The resulting structure would look like this.
+
+    ```tree
+    deseq2
+    └── differential
+        ├── environment.yml
+        ├── main.nf
+        ├── meta.yml
+        ├── templates
+        │   └── deqseq2_differential.R
+        └── tests
+            ├── main.nf.test
+            ├── main.nf.test.snap
+            └── tags.yml
+    ```
+
+#### Template or inline script-code contents
+
+:::warning
+Be aware that in any script template that Nextflow needs to be escaped in the same way you would in a standard bash `script:` block!
+:::
+
+The script template file or inline script code (<20 lines) MUST generate a `versions.yml` file in the language-appropriate way that contains versions of the base language and all relevant libraries and packages.
+
+The generated `versions.yml` MUST have the same structure as a standard nf-core module `versions.yml`.
+
+For example, for R you can refer to the `deseq2/differential` module [here](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/templates/deseq_de.R#L509-L534).
+
+#### Stubs in templated modules
+
+A templated module MUST have a stub block in the same way as any other module (i.e., using e.g. `touch` to generate empty files, and versions). You can see the `deseq2/differential` module example [here](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/main.nf#L34-L49).
+
+An inline command to call the version for libraries for the `versions.yml` MAY be used in this case.
+For an R example see [deseq2/differential](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/main.nf#L47).
+
 ### Stubs
 
 #### Stub block must exist
