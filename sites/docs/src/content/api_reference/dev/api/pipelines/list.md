@@ -1,4 +1,4 @@
-# nf_core.list
+# nf_core.pipelines.list
 
 Lists available nf-core pipelines and versions.
 
