@@ -48,7 +48,7 @@ This complexity often leads to misinterpretation, particularly when comparing th
 Florian Wuennemann, showcasing his enthusiasm for AI ([Nextflow advent calendar](https://flowuenne.github.io/nextflow_advent_calender/) anyone?), proposed using a large language model (LLM) to scan the codebase on dev branches and determine the appropriate versioning automatically.
 While this idea was met with skepticism from some AI critics in the group, it sparked a productive conversation about whether tooling and automation could assist developers in evaluating the appropriate version bump for a release.
 
-The group agreed that Jon would prepare a [PR](https://github.com/nf-core/website/pull/2842) where the community could collectively define ‘rules’ for different release types, adhering to SemVer principles as much as possible. 
+The group agreed that Jon would prepare a [PR](https://github.com/nf-core/website/pull/2842) where the community could collectively define ‘rules’ for different release types, adhering to SemVer principles as much as possible.
 (Note: The PR has since been merged, but it remains open for updates from the community.)
 
 Following this, Júlia Mir Pedrol and the infrastructure team committed to exploring tooling that could suggest the most appropriate version bump during the linting process before a new release.
@@ -59,7 +59,7 @@ Maxime Garcia spoke on behalf of Friederike Hanssen (Rike) who raised the questi
 
 [CRAM](<https://en.wikipedia.org/wiki/CRAM_(file_format)>) files are a highly compressed version of SAM and BAM files, offering significant reductions in hard drive usage for reference genome-aligned DNA/RNA sequencing data.
 
-Although CRAM files are natively supported by modern versions of the HTSlib SAMTools suite, many maintainers hesitated to enforce or advocate for their adoption despite the potential benefits. 
+Although CRAM files are natively supported by modern versions of the HTSlib SAMTools suite, many maintainers hesitated to enforce or advocate for their adoption despite the potential benefits.
 Concerns centered around the substantial effort that such a shift would entail.
 Adam Talbot and James exchanged knowing, bitter laughs over their experiences with ‘C’ programming and ancient DNA tools.
 
@@ -89,15 +89,15 @@ Sateesh Peri provided an overview of significant changes to the nf-core/modules 
 ### Key updates to CI testing
 
 1. Introduction of nf-test ‘Shards’
-   - The use of nf-test shards enables tests defined in the nf-test script to run in parallel instead of sequentially.
-   - This significantly speeds up module development cycles by providing faster feedback, especially for failures, enabling quicker iteration and resolution.
+    - The use of nf-test shards enables tests defined in the nf-test script to run in parallel instead of sequentially.
+    - This significantly speeds up module development cycles by providing faster feedback, especially for failures, enabling quicker iteration and resolution.
 2. `--changed-since` Feature for Smarter Testing
-   - The `--changed-since` flag allows tests to focus on code changes made since a specified commit hash or branch name.
-   - By default, this parameter uses HEAD, but developers can specify other targets for more targeted validation.
-   - This feature improves CI efficiency by avoiding redundant tests and reduces the environmental impact of running tests.
+    - The `--changed-since` flag allows tests to focus on code changes made since a specified commit hash or branch name.
+    - By default, this parameter uses HEAD, but developers can specify other targets for more targeted validation.
+    - This feature improves CI efficiency by avoiding redundant tests and reduces the environmental impact of running tests.
 3. Support for GPU-Dependent Module Testing
-   - Modules requiring GPU-enabled tools can now be tested effectively.
-   - A new gpu tag triggers these tests to run on ‘self-hosted’ runners outside GitHub Actions, utilizing nf-core credits generously donated by AWS.
+    - Modules requiring GPU-enabled tools can now be tested effectively.
+    - A new gpu tag triggers these tests to run on ‘self-hosted’ runners outside GitHub Actions, utilizing nf-core credits generously donated by AWS.
 
 > The nf-core/modules CI can be seen in the modules repo `.github` folder [here](https://github.com/nf-core/modules/tree/master/.github/workflows)
 
@@ -108,19 +108,19 @@ Currently, nf-core/methylseq serves as a test case for these CI updates.
 
 The updated CI workflow involves two main github actions:
 
-- nf-test-shard: 
-  - Performs a dry run of nf-test with the `--changed-since` flag, filtering by tags.
-  - It outputs the test shard and total number of shards.
-- nf-test: 
-  - Accepts inputs such as the profile, shard, and total shard count.
-  - It filters by tags and runs the tests accordingly.
+-   nf-test-shard:
+    -   Performs a dry run of nf-test with the `--changed-since` flag, filtering by tags.
+    -   It outputs the test shard and total number of shards.
+-   nf-test:
+    -   Accepts inputs such as the profile, shard, and total shard count.
+    -   It filters by tags and runs the tests accordingly.
 
 There are now two YAML workflows in the repository:
 
-- `nf-test.yml`: 
-  - For non-GPU pipelines, running the nf-test-shard and nf-test actions.
-- `nf-test-gpu.yml`:
-  - For GPU-dependent pipelines, combining the same shard and test actions but tailored for GPU testing.
+-   `nf-test.yml`:
+    -   For non-GPU pipelines, running the nf-test-shard and nf-test actions.
+-   `nf-test-gpu.yml`:
+    -   For GPU-dependent pipelines, combining the same shard and test actions but tailored for GPU testing.
 
 > The nf-core/methylseq CI updates are under review and will be included in the upcoming `v2.8.0` release.
 > In the meantime, the implementation PR can be viewed [here](https://github.com/nf-core/methylseq/pull/478)
