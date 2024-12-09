@@ -8392,6 +8392,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -14012,7 +14016,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "raredisease",
@@ -14307,7 +14311,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "radseq",
@@ -14693,7 +14697,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -15112,7 +15116,7 @@
         },
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -15363,7 +15367,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "raredisease",
@@ -15544,7 +15548,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sarek",
@@ -15702,7 +15706,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "radseq",
@@ -16375,7 +16379,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -16631,7 +16635,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "variantbenchmarking",
@@ -17332,7 +17336,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "radseq",
@@ -17507,7 +17511,7 @@
         },
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "radseq",
@@ -19397,7 +19401,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "radseq",
@@ -25243,6 +25247,14 @@
         },
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -56519,7 +56531,13 @@
           "@snesic",
           "@JPejovicApis"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "seqinspector",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "fasttree",
@@ -76076,7 +76094,7 @@
         },
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sarek",
@@ -79848,7 +79866,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -80115,7 +80133,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -80211,7 +80229,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -80395,7 +80413,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -80617,7 +80635,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -80927,7 +80945,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -81065,7 +81083,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -85594,7 +85612,7 @@
         },
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "proteinfold",
@@ -106565,6 +106583,22 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -111480,6 +111514,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -122463,7 +122501,7 @@
         },
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "phyloplace",
@@ -149198,7 +149236,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -156565,7 +156603,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -156749,7 +156787,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -157032,7 +157070,7 @@
         },
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "radseq",
@@ -158246,7 +158284,7 @@
         },
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "radseq",
@@ -158647,7 +158685,7 @@
         },
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "radseq",
@@ -158873,7 +158911,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "tfactivity",
@@ -159870,7 +159908,7 @@
         },
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "radseq",
@@ -168346,7 +168384,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -168514,7 +168552,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -177280,7 +177318,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -181055,7 +181093,7 @@
         },
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "raredisease",
@@ -181336,7 +181374,7 @@
         },
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "radseq",
@@ -182483,6 +182521,84 @@
           "version": "1.0.0"
         }
       ]
+    },
+    {
+      "name": "tcoffee_extractfrompdb",
+      "path": "modules/nf-core/tcoffee/extractfrompdb/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "tcoffee_extractfrompdb",
+        "description": "Reformats the header of PDB files with t-coffee",
+        "keywords": [
+          "reformatting",
+          "pdb",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "tcoffee": {
+              "description": "A collection of tools for Computing, Evaluating and Manipulating Multiple Alignments of DNA, RNA, Protein Sequences and Structures.",
+              "homepage": "http://www.tcoffee.org/Projects/tcoffee/",
+              "documentation": "https://tcoffee.readthedocs.io/en/latest/tcoffee_main_documentation.html",
+              "tool_dev_url": "https://github.com/cbcrg/tcoffee",
+              "doi": "10.1006/jmbi.2000.4042",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+              }
+            },
+            {
+              "pdb": {
+                "type": "file",
+                "description": "Input pdb to be reformatted"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "formatted_pdb": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "${prefix}.pdb": {
+                  "type": "file",
+                  "description": "Formatted pdb file",
+                  "pattern": "*"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@luisas"
+        ]
+      }
     },
     {
       "name": "tcoffee_irmsd",
@@ -190875,7 +190991,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -204774,6 +204890,10 @@
         {
           "name": "phageannotator",
           "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
         }
       ]
     },
@@ -208312,6 +208432,10 @@
         {
           "name": "riboseq",
           "version": "1.0.1"
+        },
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
         }
       ]
     },
@@ -208763,7 +208887,7 @@
         },
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "pixelator",
@@ -209060,7 +209184,7 @@
         },
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "pixelator",
@@ -209293,7 +209417,7 @@
         },
         {
           "name": "phaseimpute",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rangeland",
