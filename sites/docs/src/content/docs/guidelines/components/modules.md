@@ -326,12 +326,12 @@ Alternate suggestions include using `grep -c` to search for a valid string match
 
 ### Script inclusion
 
-:::note
+:::warning
 You SHOULD NOT use [Nextflow module binaries](https://www.nextflow.io/docs/latest/module.html#module-binaries), as these are not fully portable across all execution contexts.
 :::
 
 :::note
-Where script content in a module becomes particularly extensive, you should consider hosting the code externally and provisioning via Conda/ Docker.
+Where script content in a module becomes particularly extensive, we strongly encourage packaging and hosting the code externally and provisioning via Conda/ Docker as a standalone tool(kit).
 :::
 
 If a module's `script:` block contains not command invocations, but script content, whatever the language (e.g. Bash, R, Python), and if that content is non-trivial in length (> 20 lines), that MUST be supplied via a [Nextflow module template](https://www.nextflow.io/docs/latest/module.html#module-templates).
@@ -388,7 +388,8 @@ For example, for R you can refer to the `deseq2/differential` module [here](http
 
 A templated module MUST have a stub block in the same way as any other module (i.e., using e.g. `touch` to generate empty files, and versions). You can see the `deseq2/differential` module example [here](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/main.nf#L34-L49).
 
-An inline command to call the version for libraries for the `versions.yml` MAY be used in this case. For an R example see [deseq2/differential](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/main.nf#L47).
+An inline command to call the version for libraries for the `versions.yml` MAY be used in this case.
+For an R example see [deseq2/differential](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/main.nf#L47).
 
 ### Stubs
 
