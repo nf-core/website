@@ -369,7 +369,7 @@ The resulting structure would look like this.
 Be aware that in any script template that Nextflow needs to be escaped in the same way you would in a standard bash `script:` block!
 :::
 
-The script template file MUST generate a `versions.yml` file in the language-appropriate way that contains versions of the base language and all relevant libraries and packages. 
+The script template file or inline script code (<20 lines) MUST generate a `versions.yml` file in the language-appropriate way that contains versions of the base language and all relevant libraries and packages. 
 
 The generated `versions.yml` MUST have the same structure as a  standard nf-core module `versions.yml`.
 
