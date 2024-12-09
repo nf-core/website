@@ -1,4 +1,4 @@
-# nf_core.lint
+# nf_core.pipelines.lint
 
 :::tip
 See the [Lint Tests]() docs for information about specific linting functions.
