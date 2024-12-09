@@ -330,7 +330,12 @@ Alternate suggestions include using `grep -c` to search for a valid string match
 You SHOULD NOT use [Nextflow module binaries](https://www.nextflow.io/docs/latest/module.html#module-binaries), as these are not fully portable across all execution contexts.
 :::
 
-If a module's `script:` block contains not command invocations, but script content, whatever the language (e.g. Bash, R, Python), and if that content is non-trivial in length (>> 10 lines), that MUST be supplied via a [Nextflow module template](https://www.nextflow.io/docs/latest/module.html#module-templates). This makes it clearer when changes have been made to the scientific logic in the script, or to the workflow-relevant logic in the module.
+If a module's `script:` block contains not command invocations, but script content, whatever the language (e.g. Bash, R, Python), and if that content is non-trivial in length (> 20 lines), that MUST be supplied via a [Nextflow module template](https://www.nextflow.io/docs/latest/module.html#module-templates).
+This makes it clearer when changes have been made to the scientific logic in the script, or to the workflow-relevant logic in the module.
+
+#### Inline script code
+
+If the script content is less than 20 lines, the code MAY be embedded directly in the module without a dedicated template file, however should still follow the guidance content as with a template.
 
 #### Module template location
 
