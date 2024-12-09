@@ -7,6 +7,7 @@ pubDate: 2024-12-10T14:00:00+01:00
 authors:
     - 'mashehu'
     - 'mirpedrol'
+    - 'ewels'
 label:
     - 'tools'
 maxHeadingDepth: 3
@@ -17,8 +18,10 @@ As always, if you have any problems or run into any bugs, reach out on the [#too
 
 # Highlights
 
--   Pipelines generated with nf-core/tools now come with their own Research Object (RO) Crate.
+## Research Object (RO) Crates in nf-core pipelines
+
     RO Crate is an open-source standard which we use to describe our pipelines and their components in a structured way and helps with automated provenance tracking.
+    In our case, it describes all files that are in the pipeline template, as well as the pipeline authors, besides some general metadata.
     More information about RO Crates can be found [here](https://www.researchobject.org/ro-crate/).
     Thanks to [Phil Ewels](https://github.com/ewels), [Stian Soiland-Reyes](https://github.com/stain) and [Simone Leo ](https://github.com/simleo) for kicking off this effort and providing useful feedback!
 
@@ -31,13 +34,39 @@ As always, if you have any problems or run into any bugs, reach out on the [#too
 
     For more information about the command and how it generates the RO Crate, see [the docs](https://nf-co.re/docs/nf-core-tools/pipelines/rocrate).
 
--   `nf-core pipelines download` supports now ORAS container URIs.
+## ORAS container URI support in`nf-core pipelines download`
+
     Previously, you needed to use a `https://` prefix, but thanks to the work by [@MatthiasZepper](https://github.com/MatthiasZepper") we can now use the `oras://` prefix.
--   `main` as default release branch for pipelines. With this release we extended the template and tooling to support either `main` or `master` as the default branch for pipelines.
-    You can follow the progress of this transition on the [pipeline health page](/pipeline_health).
--   The newly added `nf-core subworkflows patch` command allows you to patch subworkflows in the same way as you would patch modules.
+    This requires singularity to be installed on your system.
+
+## `main` as optional default branch
+
+    With this release we extended the template and tooling to support either `main` or `master` as the default release branch for pipelines.
+
+## `nf-core subworkflows patch`
+
+    This new commandallows you to patch subworkflows in the same way as you would patch modules.
 
 # Miscellaneous
 
 -   When running `nf-core pipelines create` you can now toggle all pipelines features on and off with one switch.
--   The template now comes with the expanded contributors section in the manifest (see [manifest docs](https://www.nextflow.io/docs/latest/reference/config.html#manifest) for details)
+-   The template now includes an expanded contributors section in the manifest, as introduced in [Nextflow 24.10.0](https://www.nextflow.io/docs/latest/reference/config.html#manifest) for details.
+    We added a new `TODO nf-core` comment, so please add the missing information to these fields.
+    Completing these fields will allow us for example to improve the data in the RO crate, especially the ORCID.
+
+    The newly added fields are:
+
+    ```groovy title="nextflow.config" {2-11}
+    manifest {
+        contributors = [
+            [
+                name: '',
+                affiliation: '',
+                email: '',
+                github: '',
+                contribution: [], // List of contribution types ('author', 'maintainer' or 'contributor')
+                orcid: ''
+            ],
+        ]
+    }
+    ```
