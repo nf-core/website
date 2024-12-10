@@ -8400,6 +8400,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -12623,7 +12627,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.3"
+          "version": "1.5.4"
         }
       ]
     },
@@ -17732,7 +17736,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.3"
+          "version": "1.5.4"
         }
       ]
     },
@@ -17934,7 +17938,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.3"
+          "version": "1.5.4"
         }
       ]
     },
@@ -27300,6 +27304,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -30815,6 +30827,10 @@
         {
           "name": "scdownstream",
           "version": "dev"
+        },
+        {
+          "name": "scrnaseq",
+          "version": "3.0.0"
         }
       ]
     },
@@ -31032,7 +31048,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         }
       ]
     },
@@ -31201,7 +31217,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.3"
+          "version": "1.5.4"
         }
       ]
     },
@@ -31278,7 +31294,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         }
       ]
     },
@@ -31370,7 +31386,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         }
       ]
     },
@@ -31480,7 +31496,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         }
       ]
     },
@@ -31791,7 +31807,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         }
       ]
     },
@@ -32012,7 +32028,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         }
       ]
     },
@@ -32173,7 +32189,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         }
       ]
     },
@@ -32291,7 +32307,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         }
       ]
     },
@@ -33960,7 +33976,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.3"
+          "version": "1.5.4"
         }
       ]
     },
@@ -53967,7 +53983,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.3"
+          "version": "1.5.4"
         },
         {
           "name": "taxprofiler",
@@ -55743,7 +55759,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.5.3"
+          "version": "1.5.4"
         },
         {
           "name": "denovotranscript",
@@ -55960,7 +55976,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.5.3"
+          "version": "1.5.4"
         },
         {
           "name": "denovotranscript",
@@ -56120,7 +56136,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         },
         {
           "name": "seqinspector",
@@ -58926,6 +58942,89 @@
       }
     },
     {
+      "name": "foldmason_createdb",
+      "path": "modules/nf-core/foldmason/createdb/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "foldmason_createdb",
+        "description": "Creates a database for Foldmason.",
+        "keywords": [
+          "alignment",
+          "MSA",
+          "genomics",
+          "structure"
+        ],
+        "tools": [
+          {
+            "foldmason": {
+              "description": "Multiple Protein Structure Alignment at Scale with FoldMason",
+              "homepage": "https://github.com/steineggerlab/foldmason",
+              "documentation": "https://github.com/steineggerlab/foldmason",
+              "tool_dev_url": "https://github.com/steineggerlab/foldmason",
+              "doi": "10.1101/2024.08.01.606130",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:foldmason"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "structures": {
+                "type": "file",
+                "description": "Input protein structures in `PDB` or `mmCIF` format.",
+                "pattern": "*.{pdb,mmcif}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "db": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}*": {
+                  "type": "file",
+                  "description": "All database files created by Foldmason",
+                  "pattern": "*"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@luisas"
+        ],
+        "maintainers": [
+          "@luisas"
+        ]
+      }
+    },
+    {
       "name": "foldmason_easymsa",
       "path": "modules/nf-core/foldmason/easymsa/meta.yml",
       "type": "module",
@@ -59053,6 +59152,134 @@
           "version": "1.0.0"
         }
       ]
+    },
+    {
+      "name": "foldmason_msa2lddtreport",
+      "path": "modules/nf-core/foldmason/msa2lddtreport/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "foldmason_msa2lddtreport",
+        "description": "Renders a visualization report using foldmason",
+        "keywords": [
+          "alignment",
+          "MSA",
+          "genomics",
+          "structure"
+        ],
+        "tools": [
+          {
+            "foldmason": {
+              "description": "Multiple Protein Structure Alignment at Scale with FoldMason",
+              "homepage": "https://github.com/steineggerlab/foldmason",
+              "documentation": "https://github.com/steineggerlab/foldmason",
+              "tool_dev_url": "https://github.com/steineggerlab/foldmason",
+              "doi": "10.1101/2024.08.01.606130",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:foldmason"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "msa": {
+                "type": "file",
+                "description": "Input alignment file.",
+                "pattern": "*.{fa,fasta,aln}"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "db": {
+                "type": "file",
+                "description": "Input foldmason database.",
+                "pattern": "*"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "pdbs": {
+                "type": "file",
+                "description": "Protein structures used for the visualization.",
+                "pattern": "*.{pdb}"
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "tree": {
+                "type": "file",
+                "description": "Guide tree used for the visualization .",
+                "pattern": "*.{nwk,dnd}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "html": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}.html": {
+                  "type": "file",
+                  "description": "HTML file with the foldmason visualization",
+                  "pattern": "*.{html}"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@luisas"
+        ],
+        "maintainers": [
+          "@luisas"
+        ]
+      }
     },
     {
       "name": "foldseek_createdb",
@@ -59599,7 +59826,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.3"
+          "version": "1.5.4"
         }
       ]
     },
@@ -79658,7 +79885,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         }
       ]
     },
@@ -85660,7 +85887,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         },
         {
           "name": "taxprofiler",
@@ -98802,7 +99029,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         }
       ]
     },
@@ -98954,7 +99181,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         }
       ]
     },
@@ -100462,7 +100689,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.5.3"
+          "version": "1.5.4"
         },
         {
           "name": "detaxizer",
@@ -106627,6 +106854,22 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -110640,7 +110883,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.3"
+          "version": "1.5.4"
         }
       ]
     },
@@ -111542,6 +111785,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -122385,7 +122632,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.5.3"
+          "version": "1.5.4"
         },
         {
           "name": "denovotranscript",
@@ -122609,7 +122856,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         },
         {
           "name": "seqinspector",
@@ -126510,7 +126757,7 @@
           ],
           [
             {
-              "meta2": {
+              "meta3": {
                 "type": "map",
                 "description": "Groovy Map containing reference fasta information\ne.g. [ id:'test' ]\n"
               }
@@ -155464,7 +155711,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.3"
+          "version": "1.5.4"
         }
       ]
     },
@@ -166742,7 +166989,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.3"
+          "version": "1.5.4"
         },
         {
           "name": "pathogensurveillance",
@@ -168321,7 +168568,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.3"
+          "version": "1.5.4"
         }
       ]
     },
@@ -176526,7 +176773,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         },
         {
           "name": "viralintegration",
@@ -188928,13 +189175,7 @@
           "@kbattenb",
           "@tomkellygenetics"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "scrnaseq",
-          "version": "2.7.1"
-        }
-      ]
+      }
     },
     {
       "name": "untar",
@@ -189043,7 +189284,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.5.3"
+          "version": "1.5.4"
         },
         {
           "name": "differentialabundance",
@@ -189336,7 +189577,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         }
       ]
     },
@@ -200233,7 +200474,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.3"
+          "version": "1.5.4"
         }
       ]
     },
@@ -203059,7 +203300,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.5.3"
+          "version": "1.5.4"
         }
       ]
     },
@@ -204811,6 +205052,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        },
         {
           "name": "phageannotator",
           "version": "dev"
@@ -208476,6 +208721,10 @@
         {
           "name": "riboseq",
           "version": "1.0.1"
+        },
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
         }
       ]
     },
@@ -208815,7 +209064,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.5.3"
+          "version": "1.5.4"
         },
         {
           "name": "denovotranscript",
@@ -208987,7 +209236,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         },
         {
           "name": "seqinspector",
@@ -209112,7 +209361,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.5.3"
+          "version": "1.5.4"
         },
         {
           "name": "denovotranscript",
@@ -209284,7 +209533,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         },
         {
           "name": "seqinspector",
@@ -209405,7 +209654,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.5.3"
+          "version": "1.5.4"
         },
         {
           "name": "denovotranscript",
@@ -209474,6 +209723,10 @@
         {
           "name": "scdownstream",
           "version": "dev"
+        },
+        {
+          "name": "scrnaseq",
+          "version": "3.0.0"
         },
         {
           "name": "seqinspector",
@@ -209689,10 +209942,6 @@
         {
           "name": "scnanoseq",
           "version": "1.0.0"
-        },
-        {
-          "name": "scrnaseq",
-          "version": "2.7.1"
         },
         {
           "name": "troughgraph",
