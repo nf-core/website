@@ -326,16 +326,16 @@ Alternate suggestions include using `grep -c` to search for a valid string match
 
 ### Script inclusion
 
-:::warning
-You SHOULD NOT use [Nextflow module binaries](https://www.nextflow.io/docs/latest/module.html#module-binaries), as these are not fully portable across all execution contexts.
+If a module's `script:` block contains a script rather than command invocations, regardless of the language (e.g., Bash, R, Python), and the content is more than approximately 20 lines, it MUST be provided through a [Nextflow module template](https://www.nextflow.io/docs/latest/module.html#module-templates).
+Using module templates helps distinguish between changes made to the scientific logic within the script and those affecting the workflow-specific logic in the module. This separation improves the code's clarity and maintainability.
+
+:::note
+We recommend use of Nextflow templates as they are the most portable method of the separate custom script execution across all execution contexts
 :::
 
 :::note
 Where script content in a module becomes particularly extensive, we strongly encourage packaging and hosting the code externally and provisioning via Conda/Docker as a standalone tool(kit).
 :::
-
-If a module's `script:` block contains a script rather than command invocations, regardless of the language (e.g., Bash, R, Python), and the content is more than 20 lines, it MUST be provided through a [Nextflow module template](https://www.nextflow.io/docs/latest/module.html#module-templates).
-Using module templates helps distinguish between changes made to the scientific logic within the script and those affecting the workflow-specific logic in the module. This separation improves the code's clarity and maintainability.
 
 #### Inline script code
 
