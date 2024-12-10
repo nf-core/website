@@ -45,6 +45,8 @@ As always, if you have any problems or run into any bugs, reach out on the [#too
 
 If you want to use the `main` branch in your pipeline, make sure to set `defaultBranch = main` on the `manifest` section from the `nextflow.config` file. Afterwards, you can change the GitHub repository default branch to `main`.
 
+Then, you can run `nf-core pipelines sync` again. This will automatically change all the required links from `master` to `main`.
+
 ## `nf-core subworkflows patch`
 
     This new commandallows you to patch subworkflows in the same way as you would patch modules.
