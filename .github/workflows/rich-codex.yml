@@ -16,7 +16,7 @@ jobs:
           python-version: 3.x
 
       - name: Install Nextflow
-        uses: nf-core/setup-nextflow@561fcfc7146dcb12e3871909b635ab092a781f34 # v2
+        uses: nf-core/setup-nextflow@6c2e22b4d901f0c42ca66c5069f8026df026d165 # v2
 
       - name: Install nf-test
         uses: nf-core/setup-nf-test@v1
