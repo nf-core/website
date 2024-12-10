@@ -331,30 +331,30 @@ You SHOULD NOT use [Nextflow module binaries](https://www.nextflow.io/docs/lates
 :::
 
 :::note
-Where script content in a module becomes particularly extensive, we strongly encourage packaging and hosting the code externally and provisioning via Conda/ Docker as a standalone tool(kit).
+Where script content in a module becomes particularly extensive, we strongly encourage packaging and hosting the code externally and provisioning via Conda/Docker as a standalone tool(kit).
 :::
 
-If a module's `script:` block contains not command invocations, but script content, whatever the language (e.g. Bash, R, Python), and if that content is non-trivial in length (> 20 lines), that MUST be supplied via a [Nextflow module template](https://www.nextflow.io/docs/latest/module.html#module-templates).
-This makes it clearer when changes have been made to the scientific logic in the script, or to the workflow-relevant logic in the module.
+If a module's `script:` block contains a script rather than command invocations, regardless of the language (e.g., Bash, R, Python), and the content is more than 20 lines, it MUST be provided through a [Nextflow module template](https://www.nextflow.io/docs/latest/module.html#module-templates).
+Using module templates helps distinguish between changes made to the scientific logic within the script and those affecting the workflow-specific logic in the module. This separation improves the code's clarity and maintainability.
 
 #### Inline script code
 
-If the script content is less than 20 lines, the code MAY be embedded directly in the module without a dedicated template file, however should still follow the guidance content as with a template.
+If the script content is less than 20 lines, the code MAY be embedded directly in the module without a dedicated template file. However, they should still follow the guidance content as with a template.
 
 #### Module template location
 
-The template MUST go in a directory called `templates/` that sits alongside the `main.nf` of the module.
+The template MUST go into a directory called `templates/` in the same directory as the module `main.nf`.
 
-The template file MUST be named after module itself with a language appropriate file suffix. e.g. the `deseq2/differential` nf-core module will use the `deseq2_differential.R`
+The template file MUST be named after the module itself with a language-appropriate file suffix. For example, the `deseq2/differential` nf-core module will use the `deseq2_differential.R`.
 
-The template file can be referred to within the module itself using the following notation:
+The template file can then be referred to within the module using the template function:
 
     ```nextflow
     script:
-    template 'deseq2_differential/R'
+    template 'deseq2_differential.R'
     ```
 
-An example can be seen with `deseq2/differential` [here](https://github.com/nf-core/modules/blob/master/modules/nf-core/deseq2/differential/main.nf#L47).
+See [`deseq2/differential`](https://github.com/nf-core/modules/blob/master/modules/nf-core/deseq2/differential/main.nf#L47) for an example of a template in an nf-core pipeline.
 
 The resulting structure would look like this.
 
@@ -382,11 +382,11 @@ The script template file or inline script code (<20 lines) MUST generate a `vers
 
 The generated `versions.yml` MUST have the same structure as a standard nf-core module `versions.yml`.
 
-For example, for R you can refer to the `deseq2/differential` module [here](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/templates/deseq_de.R#L509-L534).
+See the [`deseq2/differential` module](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/templates/deseq_de.R#L509-L534) for an example using R.
 
 #### Stubs in templated modules
 
-A templated module MUST have a stub block in the same way as any other module (i.e., using e.g. `touch` to generate empty files, and versions). You can see the `deseq2/differential` module example [here](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/main.nf#L34-L49).
+A templated module MUST have a stub block in the same way as any other module. For example, using `touch` to generate empty files and versions. See [`deseq2/differential` module](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/main.nf#L34-L49) for an example in an nf-core module.
 
 An inline command to call the version for libraries for the `versions.yml` MAY be used in this case.
 For an R example see [deseq2/differential](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/main.nf#L47).
