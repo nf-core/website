@@ -327,7 +327,7 @@ Alternate suggestions include using `grep -c` to search for a valid string match
 ### Script inclusion
 
 Using module templates helps distinguish between changes made to the scientific logic within the script and those affecting the workflow-specific logic in the module. This separation improves the code's clarity and maintainability.
-If a module's `script:` block contains a script rather than command invocations, regardless of the language (e.g., Bash, R, Python), and the content is more than approximately 20 lines, it MUST be provided through a [Nextflow module template](https://www.nextflow.io/docs/latest/module.html#module-templates).
+If a module's `script:` block contains a script rather than command invocations, regardless of the language (e.g., Bash, R, Python), and the content is more than a readable length (as a rule of thumb, approximately 20 lines), it MUST be provided through a [Nextflow module template](https://www.nextflow.io/docs/latest/module.html#module-templates).
 
 :::note
 We recommend use of Nextflow templates as they are the most portable method of the separate custom script execution across all execution contexts
@@ -339,7 +339,7 @@ Where script content in a module becomes particularly extensive, we strongly enc
 
 #### Inline script code
 
-If the script content is less than approximately 20 lines, the code MAY be embedded directly in the module without a dedicated template file. However, they should still follow the guidance content as with a template.
+If the script content remains at a readable length, the code MAY be embedded directly in the module without a dedicated template file. However, they should still follow the guidance content as with a template.
 
 #### Module template location
 
@@ -378,7 +378,7 @@ The resulting structure would look like this.
 Be aware that in any script template that Nextflow needs to be escaped in the same way you would in a standard bash `script:` block!
 :::
 
-The script template file or inline script code (less than approximately 20 lines) MUST generate a `versions.yml` file in the language-appropriate way that contains versions of the base language and all relevant libraries and packages.
+The script template file or inline script code (used when at a readable length) MUST generate a `versions.yml` file in the language-appropriate way that contains versions of the base language and all relevant libraries and packages.
 
 The generated `versions.yml` MUST have the same structure as a standard nf-core module `versions.yml`.
 
