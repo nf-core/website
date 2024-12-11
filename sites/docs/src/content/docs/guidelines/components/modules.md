@@ -330,7 +330,7 @@ Using module templates helps distinguish between changes made to the scientific 
 If a module's `script:` block contains a script rather than command invocations, regardless of the language (e.g., Bash, R, Python), and the content is more than a readable length (as a rule of thumb, approximately 20 lines), it MUST be provided through a [Nextflow module template](https://www.nextflow.io/docs/latest/module.html#module-templates).
 
 :::note
-We recommend use of Nextflow templates as they are the most portable method of the separate custom script execution across all execution contexts
+We recommend use of Nextflow templates as they are the most portable method of separating custom script content and execution across all execution contexts
 :::
 
 :::note
