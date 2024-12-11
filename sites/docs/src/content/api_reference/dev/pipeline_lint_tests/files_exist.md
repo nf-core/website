@@ -62,6 +62,7 @@ conf/base.config
 conf/igenomes.config
 .github/workflows/awstest.yml
 .github/workflows/awsfulltest.yml
+ro-crate-metadata.json
 ```
 
 Files that _must not_ be present, due to being renamed or removed in the template:

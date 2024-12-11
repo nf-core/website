@@ -1,4 +1,4 @@
-# nf_core.launch
+# nf_core.pipelines.launch
 
 Launch a pipeline, interactively collecting params
 
