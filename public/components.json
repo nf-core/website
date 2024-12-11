@@ -8404,6 +8404,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -27312,6 +27316,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -30057,7 +30069,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "4.1.0"
+          "version": "4.2.0"
         },
         {
           "name": "bacass",
@@ -31492,7 +31504,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "4.1.0"
+          "version": "4.2.0"
         },
         {
           "name": "scrnaseq",
@@ -31910,7 +31922,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "4.1.0"
+          "version": "4.2.0"
         }
       ]
     },
@@ -55751,7 +55763,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "4.1.0"
+          "version": "4.2.0"
         },
         {
           "name": "bacass",
@@ -55928,7 +55940,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "4.1.0"
+          "version": "4.2.0"
         },
         {
           "name": "ampliseq",
@@ -86077,7 +86089,13 @@
           "@mazzalab",
           "@tm4zza"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "fastqrepair",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "hamronization_abricate",
@@ -106870,6 +106888,22 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -111785,6 +111819,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -122584,7 +122622,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "4.1.0"
+          "version": "4.2.0"
         },
         {
           "name": "ampliseq",
@@ -131892,8 +131930,170 @@
         {
           "name": "viralrecon",
           "version": "2.6.0"
+        },
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
         }
       ]
+    },
+    {
+      "name": "pangolin_run",
+      "path": "modules/nf-core/pangolin/run/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "pangolin_run",
+        "description": "Phylogenetic Assignment of Named Global Outbreak LINeages",
+        "keywords": [
+          "covid",
+          "pangolin",
+          "lineage",
+          "run"
+        ],
+        "tools": [
+          {
+            "pangolin": {
+              "description": "Phylogenetic Assignment of Named Global Outbreak LINeages\n",
+              "homepage": "https://github.com/cov-lineages/pangolin#pangolearn-description",
+              "manual": "https://github.com/cov-lineages/pangolin#pangolearn-description",
+              "licence": [
+                "GPL-3.0-or-later"
+              ],
+              "identifier": "biotools:pangolin_cov-lineages"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "The genome assembly to be evaluated\n"
+              }
+            }
+          ],
+          [
+            {
+              "db": {
+                "type": "directory",
+                "description": "Directory containing the Pangolin database\n"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "report": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n"
+                }
+              },
+              {
+                "*.csv": {
+                  "type": "file",
+                  "description": "Pangolin lineage report",
+                  "pattern": "*.{csv}"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@kevinmenden",
+          "@drpatelh"
+        ],
+        "maintainers": [
+          "@kevinmenden",
+          "@drpatelh"
+        ]
+      }
+    },
+    {
+      "name": "pangolin_updatedata",
+      "path": "modules/nf-core/pangolin/updatedata/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "pangolin_updatedata",
+        "description": "Phylogenetic Assignment of Named Global Outbreak LINeages",
+        "keywords": [
+          "covid",
+          "pangolin",
+          "database",
+          "lineage",
+          "updatedata"
+        ],
+        "tools": [
+          {
+            "pangolin": {
+              "description": "Phylogenetic Assignment of Named Global Outbreak LINeages\n",
+              "homepage": "https://github.com/cov-lineages/pangolin#pangolearn-description",
+              "manual": "https://github.com/cov-lineages/pangolin#pangolearn-description",
+              "licence": [
+                "GPL-3.0-or-later"
+              ],
+              "identifier": "biotools:pangolin_cov-lineages"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "dbname": {
+                "type": "string",
+                "description": "Name of directory to store the most recent pangolin dataset."
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "db": [
+              {
+                "${prefix}": {
+                  "type": "file",
+                  "description": "Directory containing downloaded data with directory naming being the user provided dbname or prefix."
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@Joon-Klaps"
+        ],
+        "maintainers": [
+          "@Joon-Klaps"
+        ]
+      }
     },
     {
       "name": "parabricks_applybqsr",
@@ -186066,7 +186266,13 @@
         "maintainers": [
           "@mapo9"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "airrflow",
+          "version": "4.2.0"
+        }
+      ]
     },
     {
       "name": "truvari_bench",
@@ -205175,6 +205381,10 @@
         {
           "name": "phageannotator",
           "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
         }
       ]
     },
@@ -208725,6 +208935,10 @@
         {
           "name": "riboseq",
           "version": "1.0.1"
+        },
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
         }
       ]
     },
@@ -209016,7 +209230,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "4.1.0"
+          "version": "4.2.0"
         },
         {
           "name": "ampliseq",
@@ -209313,7 +209527,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "4.1.0"
+          "version": "4.2.0"
         },
         {
           "name": "ampliseq",
@@ -209621,6 +209835,10 @@
       },
       "pipelines": [
         {
+          "name": "airrflow",
+          "version": "4.2.0"
+        },
+        {
           "name": "ampliseq",
           "version": "2.12.0"
         },
@@ -209827,10 +210045,6 @@
         ]
       },
       "pipelines": [
-        {
-          "name": "airrflow",
-          "version": "4.1.0"
-        },
         {
           "name": "bamtofastq",
           "version": "2.1.1"
