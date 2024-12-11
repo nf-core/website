@@ -8408,6 +8408,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -27324,6 +27328,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -43925,9 +43937,7 @@
                 "description": "FastaToContig2Bin tabular file generated with dastool/fastatocontig2bin",
                 "pattern": "*.tsv"
               }
-            }
-          ],
-          [
+            },
             {
               "proteins": {
                 "type": "file",
@@ -44057,10 +44067,10 @@
                 }
               },
               {
-                "*.candidates.faa": {
+                "*_proteins.faa": {
                   "type": "file",
                   "description": "Output from prodigal if not already supplied",
-                  "pattern": "*.proteins.faa"
+                  "pattern": "*_proteins.faa"
                 }
               }
             ]
@@ -44074,10 +44084,10 @@
                 }
               },
               {
-                "*.faa": {
+                "*.candidates.faa": {
                   "type": "file",
                   "description": "FAA file",
-                  "pattern": "*.faa"
+                  "pattern": "*.candidates.faa"
                 }
               }
             ]
@@ -106904,6 +106914,22 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -111819,6 +111845,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -131934,6 +131964,10 @@
         {
           "name": "viralrecon",
           "version": "2.6.0"
+        },
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
         }
       ]
     },
@@ -133071,13 +133105,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing output information\n"
+                  "description": "Groovy Map containing output information\n",
+                  "pattern": "*.g.vcf"
                 }
               },
               {
-                "*.g.vcf*": {
-                  "type": "file",
-                  "description": "Indexed gvcf file",
+                "*.{idx,tbi}": {
+                  "type": "map",
+                  "description": "Groovy Map containing output information\n",
                   "pattern": "*.g.vcf"
                 }
               }
@@ -205385,6 +205420,10 @@
         {
           "name": "phageannotator",
           "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
         }
       ]
     },
@@ -208939,6 +208978,10 @@
         {
           "name": "riboseq",
           "version": "1.0.1"
+        },
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
         }
       ]
     },
@@ -209863,6 +209906,10 @@
           "version": "2.3.0"
         },
         {
+          "name": "datasync",
+          "version": "dev"
+        },
+        {
           "name": "deepmodeloptim",
           "version": "dev"
         },
@@ -210052,10 +210099,6 @@
         {
           "name": "chipseq",
           "version": "2.1.0"
-        },
-        {
-          "name": "datasync",
-          "version": "dev"
         },
         {
           "name": "differentialabundance",
