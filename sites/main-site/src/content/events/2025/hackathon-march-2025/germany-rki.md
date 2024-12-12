@@ -26,9 +26,18 @@ Contact:
 
 TBA
 
-# Organisational Information
+## Organisational Information
+
+### Registration
+
+Please use the **main registration form** to sign up.
+This will be available soon on the [main hackathon event page](https://nf-co.re/events/2025/hackathon-march-2025).
+
+### Food
 
 We have an in-house cafeteria for lunch that accepts cards and cash.
+
+### Social
 
 We will also arrange a social dinner in one of the evenings if there is interest among the attendees.
 
