@@ -2540,14 +2540,16 @@
           "ampir",
           "ampgram",
           "amptransformer",
-          "DRAMP"
+          "DRAMP",
+          "MMseqs2",
+          "InterProScan"
         ],
         "tools": [
           {
             "ampcombi2/parsetables": {
               "description": "A parsing tool to convert and summarise the outputs from multiple AMP detection tools in a standardized format.",
               "homepage": "https://github.com/Darcy220606/AMPcombi",
-              "documentation": "https://github.com/Darcy220606/AMPcombi",
+              "documentation": "https://ampcombi.readthedocs.io/en/main/",
               "tool_dev_url": "https://github.com/Darcy220606/AMPcombi/tree/dev",
               "licence": [
                 "MIT"
@@ -2593,9 +2595,27 @@
           [
             {
               "opt_amp_db": {
+                "type": "string",
+                "description": "The name of the database to download and set up. This can either be 'DRAMP', 'APD' or 'UniRef100'.",
+                "pattern": "DRAMP|APD|UniRef100"
+              }
+            }
+          ],
+          [
+            {
+              "opt_amp_db_dir": {
                 "type": "directory",
                 "description": "The path to the folder containing the fasta and tsv database files.",
-                "pattern": "*/"
+                "pattern": "path/to/amp_*_database"
+              }
+            }
+          ],
+          [
+            {
+              "opt_interproscan": {
+                "type": "directory",
+                "description": "A path to a file corresponding to the respective tsv files containing protein classifications of the annotated CDSs. The file must be the raw output from InterProScan.",
+                "pattern": "*.tsv"
               }
             }
           ]
@@ -2636,7 +2656,7 @@
             ]
           },
           {
-            "txt": [
+            "db_tsv": [
               {
                 "meta": {
                   "type": "map",
@@ -2644,10 +2664,10 @@
                 }
               },
               {
-                "${meta.id}/${meta.id}_diamond_matches.txt": {
+                "${meta.id}/${meta.id}_mmseqs_matches.tsv": {
                   "type": "file",
-                  "description": "An alignment file containing the results from the DIAMOND alignment step done on all AMP hits.",
-                  "pattern": "/*/*_diamond_matches.txt"
+                  "description": "An alignment file containing the results from the MMseqs2 alignment step done on all AMP hits.",
+                  "pattern": "/*/*_mmseqs_matches.tsv"
                 }
               }
             ]
@@ -2721,7 +2741,7 @@
             ]
           },
           {
-            "results_db": [
+            "db": [
               {
                 "meta": {
                   "type": "map",
@@ -2729,16 +2749,16 @@
                 }
               },
               {
-                "amp_ref_database/": {
+                "amp_${opt_amp_db}_database/": {
                   "type": "directory",
-                  "description": "If the AMP reference database is not provided by the user using the flag `--amp_database', by default the DRAMP database will be downloaded, filtered and stored in this folder.",
-                  "pattern": "/amp_ref_database"
+                  "description": "If the AMP reference database ID is not provided by the user using the flag `--amp_database', by default the DRAMP database will be downloaded, filtered and stored in this folder.",
+                  "pattern": "/amp_*_database"
                 }
               }
             ]
           },
           {
-            "results_db_dmnd": [
+            "db_txt": [
               {
                 "meta": {
                   "type": "map",
@@ -2746,44 +2766,44 @@
                 }
               },
               {
-                "amp_ref_database/*.dmnd": {
-                  "type": "file",
-                  "description": "AMP reference database converted to DIAMOND database format.",
-                  "pattern": "/amp_ref_database/*.dmnd"
-                }
-              }
-            ]
-          },
-          {
-            "results_db_fasta": [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
-                }
-              },
-              {
-                "amp_ref_database/*.clean.fasta": {
-                  "type": "file",
-                  "description": "AMP reference database fasta file, cleaned of diamond-uncompatible characters.",
-                  "pattern": "/amp_ref_database/*.clean.fasta"
-                }
-              }
-            ]
-          },
-          {
-            "results_db_tsv": [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
-                }
-              },
-              {
-                "amp_ref_database/*.tsv": {
+                "amp_${opt_amp_db}_database/*.txt": {
                   "type": "file",
                   "description": "AMP reference database in tsv-format with two columns containing header and sequence.",
-                  "pattern": "/amp_ref_database/*.tsv"
+                  "pattern": "/amp_*_database/*.txt"
+                }
+              }
+            ]
+          },
+          {
+            "db_fasta": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "amp_${opt_amp_db}_database/*.fasta": {
+                  "type": "file",
+                  "description": "AMP reference database fasta file in clean format. characters.",
+                  "pattern": "/amp_*_database/*.fasta"
+                }
+              }
+            ]
+          },
+          {
+            "db_mmseqs": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "amp_${opt_amp_db}_database/mmseqs2/": {
+                  "type": "directory",
+                  "description": "As alignment to the reference database is carried out by MMseqs2, this directory contains all the files generated by MMseqs2 on the fasta file of the database.",
+                  "pattern": "/amp_*_database/mmseqs2"
                 }
               }
             ]
@@ -7016,6 +7036,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         },
         {
           "name": "rnafusion",
@@ -27336,6 +27360,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -27396,7 +27428,7 @@
             {
               "lineage": {
                 "type": "string",
-                "description": "The BUSCO lineage to use, or \"auto\" to automatically select lineage"
+                "description": "The BUSCO lineage to use, or \"auto\", \"auto_prok\" or \"auto_euk\" to automatically select lineage"
               }
             }
           ],
@@ -106930,6 +106962,22 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -111845,6 +111893,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -131968,6 +132020,10 @@
         {
           "name": "viralrecon",
           "version": "2.6.0"
+        },
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
         }
       ]
     },
@@ -145430,12 +145486,12 @@
         "name": "propr_grea",
         "description": "Perform Gene Ratio Enrichment Analysis",
         "keywords": [
-          "logratio",
-          "differential",
           "propr",
           "grea",
-          "enrichment",
-          "expression"
+          "logratio",
+          "differential expression",
+          "functional enrichment",
+          "functional analysis"
         ],
         "tools": [
           {
@@ -145457,13 +145513,13 @@
             {
               "meta": {
                 "type": "map",
-                "description": "Groovy Map containing sample information.\nThis can be used at the workflow level to pass optional parameters to the module.\n[id: 'test', ...]\n"
+                "description": "Groovy Map containing data information.\nThis can be used at the workflow level to pass optional parameters to the module.\n[id: 'test', ...]\n"
               }
             },
             {
-              "adj": {
+              "adjacency": {
                 "type": "file",
-                "description": "adjacency matrix for gene ratio proportionality/differential proportionality",
+                "description": "Adjacency matrix representing the graph connections (ie. 1 for edges, 0 otherwise).\nThis can be the adjacency matrix output from gene ratio approaches like propr/propd.\n",
                 "pattern": "*.{csv,tsv}"
               }
             }
@@ -145472,13 +145528,13 @@
             {
               "meta2": {
                 "type": "map",
-                "description": "Groovy map containing study-wide metadata related to the knowledge database\n"
+                "description": "Groovy Map containing data information.\nThis can be used at the workflow level to pass optional parameters to the module.\n[id: 'test', ...]\n"
               }
             },
             {
               "gmt": {
                 "type": "file",
-                "description": "relational database containing genes and GO terms (generated by mygene module)",
+                "description": "A tab delimited file format that describes gene sets. The first column is the\nconcept id (eg. GO term, pathway, etc), the second column is the concept description, and the\nrest are nodes (eg. genes) that is associated to the given concept.\n",
                 "pattern": "*.{gmt}"
               }
             }
@@ -145486,18 +145542,18 @@
         ],
         "output": [
           {
-            "enrichedGO": [
+            "results": [
               {
                 "meta": {
-                  "type": "map",
+                  "type": "file",
                   "description": "Groovy Map containing sample information.\nThis can be used at the workflow level to pass optional parameters to the module.\n[id: 'test', ...]\n"
                 }
               },
               {
-                "*.go.tsv": {
+                "*.grea.tsv": {
                   "type": "file",
-                  "description": "File containing GO terms and their enrichment values",
-                  "pattern": "*.{csv}"
+                  "description": "Output file containing the information about the tested concepts (ie. gene sets)\nand enrichment statistics.\n",
+                  "pattern": "*.grea.tsv"
                 }
               }
             ]
@@ -145518,7 +145574,7 @@
               {
                 "*.R_sessionInfo.log": {
                   "type": "file",
-                  "description": "R session log",
+                  "description": "dump of R SessionInfo",
                   "pattern": "*.R_sessionInfo.log"
                 }
               }
@@ -145526,10 +145582,12 @@
           }
         ],
         "authors": [
-          "@caraiz2001"
+          "@caraiz2001",
+          "@suzannejin"
         ],
         "maintainers": [
-          "@caraiz2001"
+          "@caraiz2001",
+          "@suzannejin"
         ]
       }
     },
@@ -198152,116 +198210,253 @@
       "path": "subworkflows/nf-core/abundance_differential_filter/meta.yml",
       "type": "subworkflow",
       "meta": {
-        "name": "abundance_differential_filter",
-        "description": "Perform differential analysis and filtering on abundance data",
-        "keywords": [
-          "differential expression",
-          "RNA-seq",
-          "DESeq2",
-          "limma",
-          "filtering"
-        ],
-        "components": [
-          "deseq2/differential",
-          "limma/differential",
-          "custom/filterdifferentialtable"
-        ],
         "input": [
           {
-            "ch_abundance": {
-              "type": "file",
-              "description": "Channel with abundance data and metadata\nStructure: [ val(meta_exp), path(counts) ]\nmeta keys: method, args_diff\n"
-            }
-          },
-          {
-            "ch_transcript_lengths": {
-              "type": "file",
-              "description": "Channel with transcript length information\nStructure: [ val(meta_exp), path(transcript_lengths) ]\n"
-            }
-          },
-          {
-            "ch_control_features": {
-              "type": "file",
-              "description": "Channel with control features information\nStructure: [ val(meta_exp), path(control_features) ]\n"
+            "ch_input": {
+              "description": "Channel with input data for differential analysis",
+              "structure": [
+                {
+                  "meta_input": {
+                    "type": "map",
+                    "description": "Metadata map"
+                  }
+                },
+                {
+                  "counts": {
+                    "type": "file",
+                    "description": "Count matrix file"
+                  }
+                },
+                {
+                  "analysis_method": {
+                    "type": "value",
+                    "description": "Analysis method (deseq2 or limma)"
+                  }
+                },
+                {
+                  "fc_threshold": {
+                    "type": "value",
+                    "description": "Fold change threshold for filtering"
+                  }
+                },
+                {
+                  "padj_threshold": {
+                    "type": "value",
+                    "description": "Adjusted p-value threshold for filtering"
+                  }
+                }
+              ]
             }
           },
           {
             "ch_samplesheet": {
-              "type": "file",
-              "description": "Channel with sample information\nStructure: [ val(meta_exp), path(samplesheet) ]\n"
+              "description": "Channel with sample information",
+              "structure": [
+                {
+                  "meta_exp": {
+                    "type": "map",
+                    "description": "Experiment metadata map"
+                  }
+                },
+                {
+                  "samplesheet": {
+                    "type": "file",
+                    "description": "Sample information file"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "ch_transcript_lengths": {
+              "description": "Channel with transcript length information",
+              "structure": [
+                {
+                  "meta_exp": {
+                    "type": "map",
+                    "description": "Experiment metadata map"
+                  }
+                },
+                {
+                  "transcript_lengths": {
+                    "type": "file",
+                    "description": "Transcript length information file"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "ch_control_features": {
+              "description": "Channel with control features information",
+              "structure": [
+                {
+                  "meta_exp": {
+                    "type": "map",
+                    "description": "Experiment metadata map"
+                  }
+                },
+                {
+                  "control_features": {
+                    "type": "file",
+                    "description": "Control features information file"
+                  }
+                }
+              ]
             }
           },
           {
             "ch_contrasts": {
-              "type": "value",
-              "description": "Channel with contrast information\nStructure: [ val(meta_contrast), val(contrast_variable), val(reference), val(target) ]\n"
-            }
-          },
-          {
-            "differential_method": {
-              "type": "string",
-              "description": "Method to use for differential analysis. Options: 'limma', 'deseq2'\n"
-            }
-          },
-          {
-            "FC_threshold": {
-              "type": "float",
-              "description": "Fold change threshold for filtering differential results\n"
-            }
-          },
-          {
-            "padj_threshold": {
-              "type": "float",
-              "description": "Adjusted p-value threshold for filtering differential results\n"
+              "description": "Channel with contrast information",
+              "structure": [
+                {
+                  "meta_contrast": {
+                    "type": "map",
+                    "description": "Contrast metadata map"
+                  }
+                },
+                {
+                  "contrast_variable": {
+                    "type": "value",
+                    "description": "Contrast variable"
+                  }
+                },
+                {
+                  "reference": {
+                    "type": "value",
+                    "description": "Reference level"
+                  }
+                },
+                {
+                  "target": {
+                    "type": "value",
+                    "description": "Target level"
+                  }
+                }
+              ]
             }
           }
         ],
         "output": [
           {
+            "versions": {
+              "description": "Channel containing software versions file",
+              "structure": [
+                {
+                  "versions.yml": {
+                    "type": "file",
+                    "description": "File containing versions of the software used"
+                  }
+                }
+              ]
+            }
+          },
+          {
             "results_genewise": {
-              "type": "file",
-              "description": "Unfiltered differential analysis results",
-              "pattern": "*.{csv,tsv}"
+              "description": "Channel containing unfiltered differential analysis results",
+              "structure": [
+                {
+                  "meta": {
+                    "type": "map",
+                    "description": "Metadata map"
+                  }
+                },
+                {
+                  "results": {
+                    "type": "file",
+                    "description": "Unfiltered differential analysis results file",
+                    "pattern": "*.{csv,tsv}"
+                  }
+                }
+              ]
             }
           },
           {
             "results_genewise_filtered": {
-              "type": "file",
-              "description": "Filtered differential analysis results",
-              "pattern": "*.{csv,tsv}"
+              "description": "Channel containing filtered differential analysis results",
+              "structure": [
+                {
+                  "meta": {
+                    "type": "map",
+                    "description": "Metadata map"
+                  }
+                },
+                {
+                  "filtered_results": {
+                    "type": "file",
+                    "description": "Filtered differential analysis results file",
+                    "pattern": "*.{csv,tsv}"
+                  }
+                }
+              ]
             }
           },
           {
             "normalised_matrix": {
-              "type": "file",
-              "description": "Normalised count matrix",
-              "pattern": "*.{csv,tsv}"
+              "description": "Channel containing normalised count matrix",
+              "structure": [
+                {
+                  "meta": {
+                    "type": "map",
+                    "description": "Metadata map"
+                  }
+                },
+                {
+                  "matrix": {
+                    "type": "file",
+                    "description": "Normalised count matrix file",
+                    "pattern": "*.{csv,tsv}"
+                  }
+                }
+              ]
             }
           },
           {
             "variance_stabilised_matrix": {
-              "type": "file",
-              "description": "Variance stabilised count matrix (optional, DESeq2 only)",
-              "pattern": "*.{csv,tsv}"
+              "description": "Channel containing variance stabilised count matrix (DESeq2 only)",
+              "structure": [
+                {
+                  "meta": {
+                    "type": "map",
+                    "description": "Metadata map"
+                  }
+                },
+                {
+                  "matrix": {
+                    "type": "file",
+                    "description": "Variance stabilised count matrix file",
+                    "pattern": "*.{csv,tsv}"
+                  }
+                }
+              ]
             }
           },
           {
             "model": {
-              "type": "file",
-              "description": "Statistical model object from differential analysis",
-              "pattern": "*.rds"
-            }
-          },
-          {
-            "versions": {
-              "type": "file",
-              "description": "File containing software versions",
-              "pattern": "versions.yml"
+              "description": "Channel containing statistical model object from differential analysis",
+              "structure": [
+                {
+                  "meta": {
+                    "type": "map",
+                    "description": "Metadata map"
+                  }
+                },
+                {
+                  "model": {
+                    "type": "file",
+                    "description": "Statistical model object file",
+                    "pattern": "*.rds"
+                  }
+                }
+              ]
             }
           }
         ],
         "authors": [
-          "@pinin4fjords"
+          "@pinin4fjords",
+          "@bjlang",
+          "@araiz2001",
+          "@suzannejin"
         ],
         "maintainers": [
           "@pinin4fjords"
@@ -205424,6 +205619,10 @@
         {
           "name": "phageannotator",
           "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
         }
       ]
     },
@@ -208982,6 +209181,10 @@
         {
           "name": "riboseq",
           "version": "1.0.1"
+        },
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
         }
       ]
     },
@@ -210018,6 +210221,10 @@
           "version": "dev"
         },
         {
+          "name": "troughgraph",
+          "version": "dev"
+        },
+        {
           "name": "variantbenchmarking",
           "version": "dev"
         }
@@ -210199,10 +210406,6 @@
         {
           "name": "scnanoseq",
           "version": "1.0.0"
-        },
-        {
-          "name": "troughgraph",
-          "version": "dev"
         }
       ]
     },
