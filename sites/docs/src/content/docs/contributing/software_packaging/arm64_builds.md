@@ -4,140 +4,224 @@ subtitle: Getting packages to build for ARM CPUs
 parentWeight: 10
 ---
 
-# Notes on bioconda recipe porting
+## Bioconda and Conda-forge
 
-## About bioconda?
+Bioconda is a channel of software packages (recipes) that are installed via the conda system.
+Its recipes are conda recipes that are specific to bio-community, and conda-forge is the general purpose base recipes.
+Bioconda and conda-forge have different CI systems and different structures to recipe files, but they also have a lot in common.
 
-bioconda is a channel of packages (recipes) that are installed via the conda system. Its recipes are conda recipes that are specific to bio-community, and conda-forge is the general purpose base recipes. bioconda and conda have different CI systems and different structures to recipe files, but also enough similarity.
+This page has documentation about taking an existing package that's already on bioconda / conda-forge and making it work not just on `linux/amd64` (intel chips) but also `linux/arm64` chips (ARM chips, like AWS Graviton).
 
 ## What we need to do
 
-A successful result is being able to type "conda install {package}" and get the package to install.
+A successful result is being able to type `conda install {package}` and get the package to install.
 
 ## Getting set up
 
-- To use bioconda (required)
+### To use Bioconda (required)
 
-  - Install Conda: NB: say yes at the end to get it set things up when you login next time.
+1. Install Conda: (say yes at the end to get it set things up when you login next time)
 
-    ```
-    wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh
-    sh ./Miniforge3-Linux-aarch64.sh
-    ```
+   ```bash
+   wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh
+   sh ./Miniforge3-Linux-aarch64.sh
+   ```
 
-  - Install bioconda
-    ```
-    conda config --add channels defaults
-    conda config --add channels bioconda
-    conda config --add channels conda-forge
-    ```
+2. Install Bioconda
 
-- To develop locally (optional)
+   ```bash
+   conda config --add channels bioconda
+   conda config --add channels conda-forge
+   conda config --set channel_priority strict
+   ```
 
-  - Add a conda dev environment to do local build / testing of bioconda. Local testing isn't always reliable (often works when the CI doesn't).
+To develop locally _(if running on an arm64 machine - optional)_, add a conda dev environment to do local build / testing of Bioconda.
 
-    ```
-    conda create -n bioconda -c conda-forge -c bioconda bioconda-utils
-    conda activate bioconda
-    ```
+Note that local testing isn't always reliable (it often works when the CI doesn't).
+
+```bash
+conda create -n bioconda-builds -c conda-forge -c bioconda bioconda-utils
+conda activate bioconda-builds
+```
 
 ## Enabling packages
 
-First check why your package doesn't install:
+### Testing locally
 
-```
+If you are running on an ARM machine, you can first check why your package doesn't install:
+
+```bash
 conda install {name}
 ```
 
-Either it says not found - so you need to fix that package - or it lists dependencies that are not found and you now have a list to go after.
+### Testing using Wave
 
-Most packages we need to fix are in bioconda, but some are in conda-forge. If there is a recipes/{package-name} subdirectory in bioconda-recipes, then this is a bioconda recipe. All bioconda recipes are in the one [github repository](https://github.com/bioconda/bioconda-recipes/)
+If not, you can try to build using [Wave](https://seqera.io/wave/) - either by requesting a container via [Seqera Containers](https://seqera.io/containers/) (remember to select `linux/arm64` in the settings) or by using the [Wave CLI](https://github.com/seqeralabs/wave-cli):
 
-If the package is not a bioconda recipe, it will be a conda-forge recipe. These are in individual github repositories (feedstocks) of the conda-forge user. They are of the form {package-name}-feedstock.
+```bash
+wave --conda {name} --platform linux/arm64 --freeze --await
+```
 
-### Bioconda Recipes
+The `--freeze` flag tells the CLI to store the generated images for everyone to use on Seqera Containers.
+The `--await` flag tells the CLI to keep running until the build is complete.
+If the build fails when using `--await`, you'll get an error that looks something like this:
+
+```
+Container provisioning did not complete successfully
+- Reason: Container build did not complete successfully
+- Find out more here: https://wave.seqera.io/view/builds/bd-xxxxxxx
+```
+
+If so, follow that link to go to a _build details_ web page, which includes the full conda output, as if you'd run locally.
+
+### Interpreting output
+
+If the package doesn't build, there are usually two types of error:
+
+1. it says not found - so you need to fix that package
+2. it lists dependencies that are not found and you now have a list to go after.
+
+Most packages we need to fix are in Bioconda, but some are in conda-forge.
+If there is a `recipes/{package-name}` subdirectory in the [bioconda-recipes](https://github.com/bioconda/bioconda-recipes/) GitHub repo, then this is a Bioconda recipe.
+
+If the package is not a Bioconda recipe, it will be a conda-forge recipe.
+These are in individual GitHub repositories (feedstocks) under the [conda-forge GitHub organisation](https://github.com/conda-forge/).
+Each repository is named in the form `{package-name}-feedstock`.
+
+## Bioconda Recipes
+
+### Generic recipes
 
 Packages are either generic or not generic. A generic package can have missing non-generic (architecture specific, binary) dependencies and hence not work until the dependencies are made.
 
-If a package is generic, the file recipes/{name}/meta.yaml will have this in the top level build section:
+If a package is generic, the file `recipes/{name}/meta.yaml` will have this in the top level build section:
 
-```
+```yaml
 build:
 ..
   noarch: generic
 ..
 ```
 
-If a generic package doesn't work - it's a dependency at fault - go fix that. I've recently tried bumping the build number and doing a PR as I think generic packages are locked to versions they were built with - and if those were built before the linux-aarch64 support was added to a dependency, it might not be able to find it - so a rebuild can't harm. I'll update this with the outcome.
+If a generic package doesn't work - it's a dependency at fault - go fix that.
 
-If a package is not generic - at some point it compiles native code, or uses binaries that it downloads (and usually for x86 only). Examine the meta.yaml and the adjacent build.sh files.
+This can be as simple as bumping the build number and doing a PR, as generic packages are locked to versions they were built with.
+If those were built before the bioconda `linux-aarch64` support was added to a dependency, it might not be able to find it - so a rebuild can't harm.
 
-Normally, to enable it to try to build - add this section to the bottom of the meta.yaml:
+### Not-generic
 
-```
+If a package is not generic - at some point it compiles native code, or uses binaries that it downloads (and usually for `x86` only).
+Examine the `meta.yaml` and the adjacent `build.sh` files.
+
+Normally, to enable it to try to build - add this section to the bottom of the `meta.yaml`:
+
+```yaml
 extra:
- additional-platforms:
-   - linux-aarch64
-   - osx-arm64
+  additional-platforms:
+    - linux-aarch64
+    - osx-arm64
 ```
 
-you must also bump the build number (eg. add 1 to the existing number), and if the build section is missing a package versioning ('pin') line, you must add one to pass the linter.
+**You must also bump the build number** (eg. add `1` to the existing number).
+If the build section is missing a package versioning (`pin`) line, you must add one to pass the linter.
 
-```
+```yaml
 build:
   number: 2
   noarch: generic
   run_exports:
-    - {{ pin_subpackage(name, max_pin='x.x') }}
+    - { { pin_subpackage(name, max_pin='x.x') } }
 ```
 
-The Pull Request instructions (shown during opening a pull request) will explain when to use "x.x" and when to use "x". In general, I've used 'x' if the major version is > 0.
+The Pull Request instructions (shown during opening a pull request) will explain when to use `'x.x'` and when to use `'x'`.
+In general, I've used `'x'` if the major version is > 0.
+
+### Testing in the CI
 
 You are now ready to try it in the CI. Open a Pull Request. Watch the CI and resolve any errors!
 
-- If you need to patch a source file - meta.yaml can handle patches.
-- Most recipes have a build.sh - which builds things and can do bash logic to choose different paths for different platforms. CFLAGS and CC etc are set before it runs this script - use those, not the system's gcc. ${PREFIX} is the directory base things are built from - with a bin, lib and include containing all the dependencies specified in meta.yaml
-- In the CI output, you'll likely notice that conda packages basically build and run in their own world of lib and bin subdirectories containing everything that they need. You'll see mad looking directories "placehold\_....." - which are just it creating an environment to isolate itself in for build, and another for test.
+- If you need to patch a source file - `meta.yaml` can handle patches.
+- Most recipes have a `build.sh` which builds things and can do bash logic to choose different paths for different platforms.
+  `CFLAGS` and `CC` etc are set before it runs this script - use those, not the system's `gcc`.
+  `${PREFIX}` is the directory base things are built from - with a `bin`, `lib` and `include` containing all the dependencies specified in `meta.yaml`
+- In the CI output, you'll likely notice that conda packages basically build and run in their own world of `lib` and `bin` subdirectories containing everything that they need.
+  You'll see mad looking directories `"placehold_....."` - which are just it creating an environment to isolate itself in for build, and another for test.
 
-You can also build and test packages locally to be a bit quicker - it's not 100% reliable to track errors, although the container approach probably is. See [bioconda dev instructions](https://bioconda.github.io/contributor/building-locally.html).
+### Testing builds locally
 
-If you want to build outside of the docker container (the containers often have UID and permission errors for me, YMMV)
+You can also build and test packages locally to be a bit quicker.
+It's not 100% reliable to track errors, although the container approach probably is.
+See [Bioconda dev instructions](https://bioconda.github.io/contributor/building-locally.html).
 
-```
+If you want to build outside of the docker container (the containers often have UID and permission errors for me, YMMV), the command is as follows:
+
+```bash
 bioconda-utils build --packages {package}
 ```
 
-### Conda Forge
+## Conda Forge
 
-To fix a conda-forge package - say 'perl-nonsense'
+### Quick fixes
 
-- Head to https://github.com/conda-forge/perl-nonsense-feedstock.
-- Check for any open pull requests, one might be an erroring migration to support Arm.
-  - If there is one, and if it ran ages ago, the CI logs are probably deleted - so add the comment:
-    ```
-    @conda-forge-admin please rerender
-    ```
-    this will trigger a new build so that you can see why it's failing now, if it fails.
-- If there isn't an outstanding pull request, you get the system to try migrating for you: edit the [migrations list](https://github.com/conda-forge/conda-forge-pinning-feedstock/blob/main/recipe/migrations/arch_rebuild.txt) to just add the package name - in the right place alphabetically - and get github to make a pull request for you. The bots will open a pull request in the perl-nonsense feedstock and try building the recipe in the next couple of hours or so.
-- If successful, the maintainer needs to merge it. After a merge, you still need to wait a couple of days for the binary to be built and made available, and you should be able to do "conda install perl-nonsense".
-  - If the maintainer is unresponsive after a few days, try "@conda-forge-admin, please ping team" and if there is no response in a week then I do "@conda-forge/core please help review and merge this PR"
-- If the build was unsuccessful, you need to fix it:
+To fix a conda-forge package, for example one called `perl-nonsense`:
 
-```
-git clone git@github.com:{gitid}/perl-nonsense-feedstock.git
-cd perl-scalar-list-utils-feedstock
-git remote add bot  https://github.com/regro-cf-autotick-bot/perl-nonsense-feedstock
+1. Head to https://github.com/conda-forge/perl-nonsense-feedstock
+2. Check for any open pull requests, one might be an erroring migration to support Arm.
+
+- If there is one, and if it ran ages ago, the CI logs are probably deleted - so add the comment:
+  ```
+  @conda-forge-admin please rerender
+  ```
+  This will trigger a new build so that you can see why it's failing now, if it fails.
+
+3. If there isn't an outstanding pull request, you get the system to try migrating for you:
+
+- Edit the [migrations list](https://github.com/conda-forge/conda-forge-pinning-feedstock/blob/main/recipe/migrations/arch_rebuild.txt) to just add the package name - in the right place alphabetically - and get github to make a pull request for you.
+- The bots will open a pull request in the `perl-nonsense` feedstock and try building the recipe in the next couple of hours or so.
+
+4. If successful, the maintainer needs to merge it.
+
+- After a merge, you still need to wait a couple of days for the binary to be built and made available, and you should be able to do:
+  ```
+  conda install perl-nonsense
+  ```
+- If the maintainer is unresponsive after a few days, try adding a comment with the phrase:
+  ```
+  @conda-forge-admin, please ping team
+  ```
+- If there is still no response in a week then do:
+  ```
+  @conda-forge/core please help review and merge this PR
+  ```
+
+5. If the build was unsuccessful, you need to fix it
+
+### Manual fixes
+
+To fix a recipe, you need to fork the repo and clone it locally:
+
+```bash
+git clone git@github.com:{your-github-username}/perl-nonsense-feedstock.git
+cd perl-nonsense-feedstock
+git remote add bot https://github.com/regro-cf-autotick-bot/perl-nonsense-feedstock
 git fetch bot
 git checkout -b aarch64-fixes bot/bot-pr_arch_[TAB][TAB]
 ```
 
-- Fix the problem in : edit meta.yaml or conda-forge.yml
+Then fix the problem: edit `meta.yaml` or `conda-forge.yml` and commit / push:
 
-```
+```bash
 git commit --all
 git push --set-upstream origin ...
 ```
 
-- Create a new PR from your branch.
-- You need to ask the conda-forge bot to do some 'rerendering' which builds a ton of config files / scripts from that recipe - add a comment to your PR of `@conda-forge-admin please rerender`. If you have edited anything, it doesn't harm.
-- Note things are very slow at the moment - it tries to build on linux-ppc64le and linux-aarch64 using emulation (!) or Travis's arm fleet which have been erroring. The platforms that are tried is set in the feedstock's conda-forge.yml file - if ppc64le is failing, you can remove the entry and just fix the linux-aarch64 one.
+Next, create a new PR from your branch.
+
+You need to ask the conda-forge bot to do some 'rerendering' which builds a ton of config files / scripts from that recipe:
+
+- add a comment to your PR of `@conda-forge-admin please rerender`. If you have edited anything, it doesn't harm.
+- Note things are very slow at the moment
+  - It tries to build on `linux-ppc64le` and `linux-aarch64` using emulation (!) or Travis's arm fleet which have been erroring.
+  - The platforms that are tried is set in the feedstock's `conda-forge.yml` file - if `ppc64le` is failing, you can remove the entry and just fix the `linux-aarch64` one.
+
+Done!
