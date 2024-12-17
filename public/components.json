@@ -8444,6 +8444,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -22368,7 +22372,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         }
       ]
     },
@@ -22525,7 +22529,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         }
       ]
     },
@@ -22636,7 +22640,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         }
       ]
     },
@@ -22729,7 +22733,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         }
       ]
     },
@@ -22907,7 +22911,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         }
       ]
     },
@@ -23021,7 +23025,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         }
       ]
     },
@@ -23139,7 +23143,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         }
       ]
     },
@@ -27392,6 +27396,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -27479,7 +27491,7 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -27496,7 +27508,7 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -27513,7 +27525,7 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -27530,7 +27542,7 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -27547,7 +27559,7 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -27564,7 +27576,7 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -27581,7 +27593,7 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -27598,7 +27610,7 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -27615,7 +27627,7 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -27623,6 +27635,23 @@
                   "type": "directory",
                   "description": "BUSCO lineage specific output",
                   "pattern": "*-busco"
+                }
+              }
+            ]
+          },
+          {
+            "downloaded_lineages": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "busco_downloads/lineages/*": {
+                  "type": "directory",
+                  "description": "Lineages downloaded by BUSCO when running the analysis, for example bacteria_odb12",
+                  "pattern": "busco_downloads/lineages/*"
                 }
               }
             ]
@@ -29254,7 +29283,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         }
       ]
     },
@@ -29346,7 +29375,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         }
       ]
     },
@@ -30185,7 +30214,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         },
         {
           "name": "nascent",
@@ -56138,7 +56167,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         },
         {
           "name": "nanoseq",
@@ -85915,7 +85944,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         },
         {
           "name": "mhcquant",
@@ -107046,6 +107075,22 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -113236,6 +113281,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -116476,7 +116525,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         }
       ]
     },
@@ -116594,7 +116643,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         }
       ]
     },
@@ -122843,6 +122892,10 @@
           "version": "2.3.1"
         },
         {
+          "name": "fastqrepair",
+          "version": "dev"
+        },
+        {
           "name": "fastquorum",
           "version": "1.1.0"
         },
@@ -122924,7 +122977,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         },
         {
           "name": "mhcquant",
@@ -132108,6 +132161,10 @@
         {
           "name": "viralrecon",
           "version": "2.6.0"
+        },
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
         }
       ]
     },
@@ -132990,7 +133047,13 @@
           "@sateeshperi",
           "@gallvp"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "methylseq",
+          "version": "3.0.0"
+        }
+      ]
     },
     {
       "name": "parabricks_genotypegvcf",
@@ -138389,7 +138452,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         },
         {
           "name": "pathogensurveillance",
@@ -144295,7 +144358,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         },
         {
           "name": "nascent",
@@ -149026,7 +149089,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         },
         {
           "name": "raredisease",
@@ -149151,7 +149214,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         }
       ]
     },
@@ -157706,7 +157769,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         },
         {
           "name": "nanoseq",
@@ -158292,7 +158355,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         },
         {
           "name": "nanoseq",
@@ -158916,7 +158979,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         },
         {
           "name": "nanoseq",
@@ -159997,7 +160060,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         },
         {
           "name": "nanoseq",
@@ -160224,7 +160287,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         },
         {
           "name": "nanoseq",
@@ -185881,7 +185944,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         },
         {
           "name": "riboseq",
@@ -189691,7 +189754,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         },
         {
           "name": "multiplesequencealign",
@@ -202349,7 +202412,13 @@
         "maintainers": [
           "@sateeshperi"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "methylseq",
+          "version": "3.0.0"
+        }
+      ]
     },
     {
       "name": "fasta_index_dna",
@@ -203347,7 +203416,13 @@
         "maintainers": [
           "@sateeshperi"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "methylseq",
+          "version": "3.0.0"
+        }
+      ]
     },
     {
       "name": "fastq_align_dedup_bwameth",
@@ -203492,7 +203567,13 @@
         "maintainers": [
           "@sateeshperi"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "methylseq",
+          "version": "3.0.0"
+        }
+      ]
     },
     {
       "name": "fastq_align_dna",
@@ -205920,6 +206001,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        },
         {
           "name": "phageannotator",
           "version": "dev"
@@ -209633,6 +209718,10 @@
         {
           "name": "riboseq",
           "version": "1.0.1"
+        },
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
         }
       ]
     },
@@ -210048,7 +210137,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         },
         {
           "name": "mhcquant",
@@ -210345,7 +210434,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         },
         {
           "name": "mhcquant",
@@ -210610,7 +210699,7 @@
         },
         {
           "name": "methylseq",
-          "version": "2.7.1"
+          "version": "3.0.0"
         },
         {
           "name": "pacvar",
