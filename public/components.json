@@ -8452,6 +8452,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -27416,6 +27420,10 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -27704,6 +27712,10 @@
         },
         {
           "name": "genomeqc",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         }
       ]
@@ -43342,6 +43354,98 @@
           "version": "1.12.0"
         }
       ]
+    },
+    {
+      "name": "custom_tabulartogseachip",
+      "path": "modules/nf-core/custom/tabulartogseachip/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "custom_tabulartogseachip",
+        "description": "Make a GSEA class file (.chip) from tabular inputs",
+        "keywords": [
+          "gsea",
+          "chip",
+          "convert",
+          "tabular"
+        ],
+        "tools": [
+          {
+            "custom": {
+              "description": "Make a GSEA annotation file (.chip) from tabular inputs",
+              "tool_dev_url": "https://github.com/nf-core/modules/blob/master/modules/nf-core/custom/tabulartogseachip/main.nf",
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing data information.\nThis can be used at the workflow level to pass optional parameters to the module.\n[id: 'test', ...]\n"
+              }
+            },
+            {
+              "tabular": {
+                "type": "file",
+                "description": "Tabular (NOTE that for the moment it only works for TSV file) containing a column with the\nfeatures ids, and another column with the features symbols.\n",
+                "pattern": "*.{tsv}"
+              }
+            }
+          ],
+          [
+            {
+              "id": {
+                "type": "string",
+                "description": "The name of the column containing feature ids"
+              }
+            },
+            {
+              "symbol": {
+                "type": "string",
+                "description": "The name of the column containing feature symbols"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "chip": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing metadata e.g. [ id:'test', ... ]"
+                }
+              },
+              {
+                "*.chip": {
+                  "type": "file",
+                  "description": "A categorical class format file (.chip) as defined by the Broad\ndocumentation at\nhttps://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats\n",
+                  "pattern": "*.chip"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@pinin4fjords",
+          "@suzannejin"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
+        ]
+      }
     },
     {
       "name": "custom_tabulartogseacls",
@@ -85861,7 +85965,7 @@
                 }
               },
               {
-                "$gunzip": {
+                "${gunzip}": {
                   "type": "file",
                   "description": "Compressed/uncompressed file",
                   "pattern": "*.*"
@@ -107119,6 +107223,22 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -112034,6 +112154,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -132201,6 +132325,10 @@
         {
           "name": "viralrecon",
           "version": "2.6.0"
+        },
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
         }
       ]
     },
@@ -132909,7 +133037,8 @@
         "maintainers": [
           "@bsiranosian",
           "@adamrtalbot",
-          "@gallvp"
+          "@gallvp",
+          "@famosab"
         ]
       }
     },
@@ -183397,6 +183526,12 @@
                 "type": "map",
                 "description": "Groovy Map containing sample information\ne.g. [ id:'test', ... ]\n"
               }
+            },
+            {
+              "msa": {
+                "type": "file",
+                "description": "Multiple Sequence Alignment File\n"
+              }
             }
           ],
           [
@@ -183404,6 +183539,18 @@
               "meta2": {
                 "type": "map",
                 "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "template": {
+                "type": "file",
+                "description": "Template file\n"
+              }
+            },
+            {
+              "structures": {
+                "type": "file",
+                "description": "Structure file\n"
               }
             }
           ]
@@ -189706,13 +189853,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*/"
                 }
               },
               {
-                "$prefix": {
-                  "type": "directory",
-                  "description": "Directory containing contents of archive",
+                "${prefix}": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*/"
                 }
               }
@@ -198575,6 +198723,26 @@
             }
           },
           {
+            "adjacency": {
+              "description": "Channel containing the adjacency matrix suited for downstream graph-based functional analysis",
+              "structure": [
+                {
+                  "meta": {
+                    "type": "map",
+                    "description": "Metadata map"
+                  }
+                },
+                {
+                  "adjacency_matrix": {
+                    "type": "file",
+                    "description": "Adjacency matrix file",
+                    "pattern": "*.{csv,tsv}"
+                  }
+                }
+              ]
+            }
+          },
+          {
             "normalised_matrix": {
               "description": "Channel containing normalised count matrix",
               "structure": [
@@ -198642,7 +198810,8 @@
           "@suzannejin"
         ],
         "maintainers": [
-          "@pinin4fjords"
+          "@pinin4fjords",
+          "@suzannejin"
         ]
       }
     },
@@ -205395,6 +205564,12 @@
               "type": "boolean",
               "description": "Whether to skip linting of FastQ files"
             }
+          },
+          {
+            "fastp_merge": {
+              "type": "boolean",
+              "description": "For FASTP, save merged fastqs stitching together read1 and read2 for paired end reads\n"
+            }
           }
         ],
         "output": [
@@ -206037,6 +206212,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        },
         {
           "name": "phageannotator",
           "version": "dev"
@@ -209615,6 +209794,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
+        },
         {
           "name": "riboseq",
           "version": "1.0.1"
