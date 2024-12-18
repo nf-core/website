@@ -22,6 +22,13 @@ We also strongly recommend transparency when working on a project where the pipe
 
 If your pipeline publication or presentation is an extension of a community pipeline, please discuss authorship with the main developers.
 
+Based on [ICMJE's recommendations](https://www.icmje.org/recommendations/) for authorship, we suggest you could evaluate inclusion of contributors as a co-author based on the following 4 criteria:
+
+    - Substantial contributions to the conception or design of the pipeline; or the acquisition, analysis, or interpretation of data used to test/demo the pipeline; AND
+    - Drafting the work or reviewing it critically for important intellectual content; AND
+    - Final approval of the version to be published; AND
+    - Agreement to be accountable for all aspects of the work in ensuring that questions related to the accuracy or integrity of any part of the work are appropriately investigated and resolved.
+
 See [Publications](https://nf-co.re/publications) for more examples of nf-core and nf-core pipeline publications.
 
 :::note
