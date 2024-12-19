@@ -7,14 +7,15 @@ startDate: '2024-12-18'
 startTime: '16:00+01:00'
 endDate: '2024-12-18'
 endTime: '17:00+01:00'
+youtubeEmbed: https://youtu.be/rpHk948ObZg
 locations:
   - name: Online
     links:
-      - https://rediris.zoom.us/j/99370728121
+      - https://youtu.be/rpHk948ObZg
 ---
 
 December 2024 talk of the monthly meeting of the [_#animal-genomics_ special interest group](/special-interest-groups/animal-genomics).
-For this meeting we are happy to have **Emily Clark** (The Roslin Institute, University of Edinburgh, UK) presenting
+During this meeting **Emily Clark** (The Roslin Institute, University of Edinburgh, UK) presented:
 
 [_The Elixir Domestic Animals Genome and Phenome Focus Group_](elixir-europe.org/focus-groups/domestic-animals-genome-phenome)
 
