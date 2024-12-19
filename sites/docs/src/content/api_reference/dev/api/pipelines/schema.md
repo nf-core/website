@@ -1,4 +1,4 @@
-# nf_core.schema
+# nf_core.pipelines.schema
 
 Code to deal with pipeline JSON Schema
 

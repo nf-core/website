@@ -1,4 +1,4 @@
-# nf_core.params_file
+# nf_core.pipelines.params_file
 
 Create a YAML parameter file
 
@@ -12,7 +12,7 @@ Class to hold config option to launch a pipeline.
   - **pipeline** (_str_ _,_ _optional_) – Path to a local pipeline path or a remote pipeline.
   - **revision** (_str_ _,_ _optional_) – Revision of the pipeline to use.
 
-#### `format_group(definition, show_hidden=False){:python}`
+#### `format_group(definition, show_hidden=False) → str{:python}`
 
 Format a group of parameters of the schema as commented YAML.
 
@@ -24,7 +24,7 @@ Format a group of parameters of the schema as commented YAML.
 - **Return type:**
   str
 
-#### `format_param(name, properties, required_properties=(), show_hidden=False){:python}`
+#### `format_param(name: str, properties: Dict, required_properties: List[str] = [], show_hidden: bool = False) → str | None{:python}`
 
 Format a single parameter of the schema as commented YAML
 
@@ -39,7 +39,7 @@ Format a single parameter of the schema as commented YAML
 - **Return type:**
   str
 
-#### `generate_params_file(show_hidden=False){:python}`
+#### `generate_params_file(show_hidden: bool = False) → str{:python}`
 
 Generate the contents of a parameter template file.
 
@@ -52,11 +52,11 @@ Assumes the pipeline has been fetched (if remote) and the schema loaded.
 - **Return type:**
   str
 
-#### `get_pipeline(){:python}`
+#### `get_pipeline() → bool | None{:python}`
 
 Prompt the user for a pipeline name and get the schema
 
-#### `write_params_file(output_fn='nf-params.yaml', show_hidden=False, force=False){:python}`
+#### `write_params_file(output_fn: Path = PosixPath('nf-params.yaml'), show_hidden=False, force=False) → bool{:python}`
 
 Build a template file for the pipeline schema.
 
@@ -69,7 +69,7 @@ Build a template file for the pipeline schema.
 - **Return type:**
   bool
 
-### `nf_core.pipelines.params_file._print_wrapped(text, fill_char='-', mode='both', width=80, indent=0, drop_whitespace=True){:python}`
+### `nf_core.pipelines.params_file._print_wrapped(text, fill_char='-', mode='both', width=80, indent=0, drop_whitespace=True) → str{:python}`
 
 Helper function to format text for the params-file template.
 

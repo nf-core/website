@@ -44,10 +44,10 @@ const ids = video?.map(
 // Check if maxres thumbnail is available
 let posters = await Promise.all(
     Array.from(ids || []).map(async (id) => {
-        const maxresPoster = `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+        const maxresPoster = `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
         const response = await fetch(maxresPoster);
         if (response.status === 404) {
-            return `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+            return `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
         }
         return maxresPoster;
     }),
