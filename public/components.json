@@ -8456,6 +8456,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -9759,7 +9763,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -27419,6 +27423,10 @@
         },
         {
           "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
           "version": "dev"
         },
         {
@@ -79539,7 +79547,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -102068,7 +102076,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -102189,7 +102197,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -102277,7 +102285,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -102592,7 +102600,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -102782,7 +102790,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -102898,7 +102906,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -106680,6 +106688,22 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
+        },
         {
           "name": "ampliseq",
           "version": "2.12.0"
@@ -112154,6 +112178,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -123169,7 +123197,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "pangenome",
@@ -132294,6 +132322,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
+        },
         {
           "name": "viralrecon",
           "version": "2.6.0"
@@ -167321,7 +167353,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -196651,6 +196683,443 @@
       }
     },
     {
+      "name": "wipertools_fastqgather",
+      "path": "modules/nf-core/wipertools/fastqgather/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "wipertools_fastqgather",
+        "description": "A tool of the wipertools suite that merges FASTQ chunks produced by wipertools_fastqscatter",
+        "keywords": [
+          "fastq",
+          "merge",
+          "union"
+        ],
+        "tools": [
+          {
+            "fastqgather": {
+              "description": "A tool of the wipertools suite that merges FASTQ chunks produced by wipertools_fastqscatter.",
+              "homepage": "https://github.com/mazzalab/fastqwiper",
+              "documentation": "https://github.com/mazzalab/fastqwiper",
+              "tool_dev_url": "https://github.com/mazzalab/fastqwiper",
+              "doi": "no DOI available",
+              "licence": [
+                "GPL v2-or-later"
+              ],
+              "identifier": "",
+              "args_id": "$args"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "fastq_in": {
+                "type": "file",
+                "description": "List of FASTQ chunk files to be merged",
+                "pattern": "*.{fastq,fastq.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "fastq_out": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}.fastq.gz": {
+                  "type": "file",
+                  "description": "The resulting FASTQ file",
+                  "pattern": "*.fastq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1930"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@tm4zza"
+        ],
+        "maintainers": [
+          "@mazzalab",
+          "@tm4zza"
+        ]
+      }
+    },
+    {
+      "name": "wipertools_fastqscatter",
+      "path": "modules/nf-core/wipertools/fastqscatter/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "wipertools_fastqscatter",
+        "description": "A tool of the wipertools suite that splits FASTQ files into chunks",
+        "keywords": [
+          "fastq",
+          "split",
+          "partitioning"
+        ],
+        "tools": [
+          {
+            "fastqscatter": {
+              "description": "A tool of the wipertools suite that splits FASTQ files into chunks.",
+              "homepage": "https://github.com/mazzalab/fastqwiper",
+              "documentation": "https://github.com/mazzalab/fastqwiper",
+              "tool_dev_url": "https://github.com/mazzalab/fastqwiper",
+              "doi": "no DOI available",
+              "licence": [
+                "GPL v2-or-later"
+              ],
+              "identifier": "",
+              "args_id": "$args"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "fastq": {
+                "type": "file",
+                "description": "FASTQ file",
+                "pattern": "*.{fastq,fastq.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "num_splits": {
+                "type": "integer",
+                "description": "Number of desired chunks",
+                "pattern": "[1-9][0-9]*"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "chunks": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${out_folder}/*": {
+                  "type": "file",
+                  "description": "Chunk FASTQ files",
+                  "pattern": "*.{fastq,fastq.gz}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1930"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@tm4zza"
+        ],
+        "maintainers": [
+          "@mazzalab",
+          "@tm4zza"
+        ]
+      }
+    },
+    {
+      "name": "wipertools_fastqwiper",
+      "path": "modules/nf-core/wipertools/fastqwiper/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "wipertools_fastqwiper",
+        "description": "A tool of the wipertools suite that fixes or wipes out uncompliant reads from FASTQ files",
+        "keywords": [
+          "fastq",
+          "malformed",
+          "corrupted",
+          "fix"
+        ],
+        "tools": [
+          {
+            "fastqwiper": {
+              "description": "A tool of the wipertools suite that that fixes or wipes out uncompliant reads from FASTQ files.",
+              "homepage": "https://github.com/mazzalab/fastqwiper",
+              "documentation": "https://github.com/mazzalab/fastqwiper",
+              "tool_dev_url": "https://github.com/mazzalab/fastqwiper",
+              "doi": "no DOI available",
+              "licence": [
+                "GPL v2-or-later"
+              ],
+              "identifier": "",
+              "args_id": "$args"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "fastq_in": {
+                "type": "file",
+                "description": "FASTQ file to be cleaned",
+                "pattern": "*.{fastq,fastq.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "fastq_out": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}.fastq.gz": {
+                  "type": "file",
+                  "description": "Cleaned FASTQ file",
+                  "pattern": "*.{fastq,fastq.gz}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1930"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "report": [
+              {
+                "*.report": {
+                  "type": "file",
+                  "description": "Summary of the cleaning task",
+                  "pattern": "*.report",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@tm4zza"
+        ],
+        "maintainers": [
+          "@mazzalab",
+          "@tm4zza"
+        ]
+      }
+    },
+    {
+      "name": "wipertools_reportgather",
+      "path": "modules/nf-core/wipertools/reportgather/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "wipertools_reportgather",
+        "description": "A tool of the wipertools suite that merges wiping reports generated by wipertools_fastqwiper",
+        "keywords": [
+          "report",
+          "merge",
+          "union"
+        ],
+        "tools": [
+          {
+            "reportgather": {
+              "description": "A tool of the wipertools suite that merges wiping reports generated by wipertools_fastqwiper.",
+              "homepage": "https://github.com/mazzalab/fastqwiper",
+              "documentation": "https://github.com/mazzalab/fastqwiper",
+              "tool_dev_url": "https://github.com/mazzalab/fastqwiper",
+              "doi": "no DOI available",
+              "licence": [
+                "GPL v2-or-later"
+              ],
+              "identifier": "",
+              "args_id": "$args"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "reports": {
+                "type": "file",
+                "description": "List of wiping reports to be merged",
+                "pattern": "*.report",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2330"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "report_out": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}.report": {
+                  "type": "file",
+                  "description": "The resulting report file",
+                  "pattern": "*.report",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@tm4zza"
+        ],
+        "maintainers": [
+          "@mazzalab",
+          "@tm4zza"
+        ]
+      }
+    },
+    {
       "name": "wisecondorx_convert",
       "path": "modules/nf-core/wisecondorx/convert/meta.yml",
       "type": "module",
@@ -206367,6 +206836,10 @@
         {
           "name": "phageannotator",
           "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
         }
       ]
     },
@@ -209949,6 +210422,10 @@
         {
           "name": "riboseq",
           "version": "1.0.1"
+        },
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
         }
       ]
     },
@@ -210388,7 +210865,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "pangenome",
@@ -210685,7 +211162,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "pangenome",
@@ -210933,6 +211410,10 @@
           "version": "dev"
         },
         {
+          "name": "pairgenomealign",
+          "version": "1.1.1"
+        },
+        {
           "name": "pathogensurveillance",
           "version": "dev"
         },
@@ -211126,10 +211607,6 @@
         {
           "name": "oncoanalyser",
           "version": "1.0.0"
-        },
-        {
-          "name": "pairgenomealign",
-          "version": "1.1.0"
         },
         {
           "name": "pangenome",
