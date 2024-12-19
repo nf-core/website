@@ -1,4 +1,4 @@
-# nf_core.sync
+# nf_core.pipelines.sync
 
 Synchronise a pipeline TEMPLATE branch with the template.
 
@@ -73,6 +73,15 @@ GitHub repository name
 - **Type:**
   str
 
+#### _`static{:python}`_`_parse_json_response(response) → Tuple[Any, str]{:python}`
+
+Helper method to parse JSON response and create pretty-printed string.
+
+- **Parameters:**
+  **response** – requests.Response object
+- **Returns:**
+  Tuple of (parsed_json, pretty_printed_str)
+
 #### `checkout_template_branch(){:python}`
 
 Try to check out the origin/TEMPLATE in a new TEMPLATE branch.
@@ -136,7 +145,7 @@ for the PR and print this to the console.
 
 Reset the target pipeline directory. Check out the original branch.
 
-#### `sync(){:python}`
+#### `sync() → None{:python}`
 
 Find workflow attributes, create a new template pipeline on TEMPLATE
 
