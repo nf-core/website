@@ -29,7 +29,9 @@ Determining fair guidelines for authorship in community-driven projects, especia
     - Final approval of the version to be published; AND
     - Agreement to be accountable for all aspects of the work in ensuring that questions related to the accuracy or integrity of any part of the work are appropriately investigated and resolved.
 
-However, there are many different types of contributions in nf-core and these criteria may not fit every situation. If in doubt, we encourage authorship decisions to favor inclusivity and equity.
+:::tip
+There are many different types of contributions in nf-core and these criteria may not fit every situation. If in doubt, we encourage authorship decisions to favor inclusivity and equity.
+:::
 
 See [Publications](https://nf-co.re/publications) for more examples of nf-core and nf-core pipeline publications.
 
