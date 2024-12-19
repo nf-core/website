@@ -18,7 +18,16 @@ All nf-core pipeline publications and presentations should cite [The nf-core fra
 
 If members of the nf-core community have provided significant input to the creation or maintenance of a pipeline, please consider adding them as coauthors on the pipeline publication or presentation.
 
+We also strongly recommend transparency when working on a project where the pipeline plays a significant role. If you plan to write a paper about a pipeline, please share this information prior and during writing of the manuscript with the community in the pipeline specific channel on the nf-core Slack workspace, so that other major contributors can join and support your effort.
+
 If your pipeline publication or presentation is an extension of a community pipeline, please discuss authorship with the main developers.
+
+Based on [ICMJE's recommendations](https://www.icmje.org/recommendations/) for authorship, we suggest you could evaluate inclusion of contributors as a co-author based on the following 4 criteria:
+
+    - Substantial contributions to the conception or design of the pipeline; or the acquisition, analysis, or interpretation of data used to test/demo the pipeline; AND
+    - Drafting the work or reviewing it critically for important intellectual content; AND
+    - Final approval of the version to be published; AND
+    - Agreement to be accountable for all aspects of the work in ensuring that questions related to the accuracy or integrity of any part of the work are appropriately investigated and resolved.
 
 See [Publications](https://nf-co.re/publications) for more examples of nf-core and nf-core pipeline publications.
 
