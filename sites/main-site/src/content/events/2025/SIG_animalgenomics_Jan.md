@@ -1,6 +1,6 @@
 ---
 title: '#animal-genomics: January Meeting'
-subtitle: Emily Clark (The Roslin Institute, University of Edinburgh, UK)
+subtitle: ELIXIR Domestic Animals Genome & Phenome Focus Group white paper section round table
 
 type: talk
 startDate: '2025-01-22'
@@ -14,6 +14,6 @@ locations:
 ---
 
 January 2025 meeting of the [_#animal-genomics_ special interest group](/special-interest-groups/animal-genomics).
-For this meeting we will like to discuss with the community the section **"Tools and pipelines for livestock analysis"** of the [_The Elixir Domestic Animals Genome and Phenome Focus Group_](elixir-europe.org/focus-groups/domestic-animals-genome-phenome) white paper.
-For more background about the Elixir Focus Group please watch the recording of our [December Meeting](https://youtu.be/rpHk948ObZg) of read
+For this meeting we would like to discuss with the community the section **"Tools and pipelines for livestock analysis"** of the [_The Elixir Domestic Animals Genome and Phenome Focus Group_](elixir-europe.org/focus-groups/domestic-animals-genome-phenome) white paper.
+For more background about the Elixir Focus Group please watch the recording of our [December Meeting](https://youtu.be/rpHk948ObZg) or read
 its abstract [here](/events/2024/SIG_animalgenomics_Dec).
