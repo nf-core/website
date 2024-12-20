@@ -8464,6 +8464,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -27431,6 +27435,10 @@
         },
         {
           "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
           "version": "dev"
         },
         {
@@ -99902,6 +99910,89 @@
       }
     },
     {
+      "name": "kma_index",
+      "path": "modules/nf-core/kma/index/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "kma_index",
+        "description": "This module wraps the index module of the KMA alignment tool.",
+        "keywords": [
+          "alignment",
+          "kma",
+          "index",
+          "database",
+          "reads"
+        ],
+        "tools": [
+          {
+            "kma": {
+              "description": "Rapid and precise alignment of raw reads against redundant databases with KMA",
+              "homepage": "https://bitbucket.org/genomicepidemiology/kma/src/master/",
+              "documentation": "https://bitbucket.org/genomicepidemiology/kma/src/master/",
+              "tool_dev_url": "https://bitbucket.org/genomicepidemiology/kma/src/master/",
+              "doi": "10.1186/s12859-018-2336-6",
+              "licence": [
+                "http://www.apache.org/licenses/LICENSE-2.0"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. `[ id:'reference' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "(Multi-)FASTA file of your database sequences.",
+                "pattern": "*.{fa,fasta}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "index": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'reference' ]`\n"
+                }
+              },
+              {
+                "kmaindex": {
+                  "type": "directory",
+                  "description": "Directory of KMA index files",
+                  "pattern": "*.{comp.b,length.b,name,seq.b}"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@krannich479"
+        ],
+        "maintainers": [
+          "@krannich479"
+        ]
+      }
+    },
+    {
       "name": "kmcp_compute",
       "path": "modules/nf-core/kmcp/compute/meta.yml",
       "type": "module",
@@ -107315,6 +107406,22 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -112230,6 +112337,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -132382,6 +132493,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
+        },
         {
           "name": "viralrecon",
           "version": "2.6.0"
@@ -206908,6 +207023,10 @@
         {
           "name": "phageannotator",
           "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
         }
       ]
     },
@@ -210335,6 +210454,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
+        },
         {
           "name": "riboseq",
           "version": "1.0.1"
