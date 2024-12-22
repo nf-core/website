@@ -10724,9 +10724,9 @@
             "url": "https://api.github.com/repos/nf-core/differentialabundance",
             "created_at": "2022-10-12T08:49:25Z",
             "updated_at": "2024-12-05T19:05:56Z",
-            "pushed_at": "2024-12-20T17:59:50Z",
+            "pushed_at": "2024-12-21T16:21:50Z",
             "homepage": "https://nf-co.re/differentialabundance",
-            "size": 9193,
+            "size": 9240,
             "stargazers_count": 66,
             "watchers_count": 66,
             "language": "Nextflow",
@@ -10739,7 +10739,7 @@
             "forks_count": 39,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 84,
+            "open_issues_count": 83,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -10757,7 +10757,7 @@
             ],
             "visibility": "public",
             "forks": 39,
-            "open_issues": 84,
+            "open_issues": 83,
             "watchers": 66,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -10855,7 +10855,7 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 7,
+            "open_pr_count": 6,
             "repository_url": "https://github.com/nf-core/differentialabundance",
             "contributors": [
                 {
@@ -25261,9 +25261,9 @@
             "url": "https://api.github.com/repos/nf-core/nascent",
             "created_at": "2018-11-15T15:46:09Z",
             "updated_at": "2024-09-06T05:39:17Z",
-            "pushed_at": "2024-12-21T13:34:40Z",
+            "pushed_at": "2024-12-21T23:13:32Z",
             "homepage": "https://nf-co.re/nascent",
-            "size": 8924,
+            "size": 8991,
             "stargazers_count": 18,
             "watchers_count": 18,
             "language": "Nextflow",
@@ -25276,7 +25276,7 @@
             "forks_count": 10,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 44,
+            "open_issues_count": 41,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -25290,7 +25290,7 @@
             ],
             "visibility": "public",
             "forks": 10,
-            "open_issues": 44,
+            "open_issues": 41,
             "watchers": 18,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -25388,7 +25388,7 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 7,
+            "open_pr_count": 4,
             "repository_url": "https://github.com/nf-core/nascent",
             "contributors": [
                 {
@@ -25445,7 +25445,10 @@
                 "nf-schema@2.1.1"
             ],
             "dev_nextflow_config_manifest": {
-                "defaultBranch": null
+                "defaultBranch": [
+                    "defaultBranch   = 'master'",
+                    "master"
+                ]
             },
             "releases": [
                 {
@@ -25703,8 +25706,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2024-12-21T13:27:53Z",
-                    "tag_sha": "bb5a3a80658ca128632d4eee03f9c0c7a860a09b",
+                    "published_at": "2024-12-20T13:12:11Z",
+                    "tag_sha": "7a4e3560d691ce65d507ca9745843d77a16a6027",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
