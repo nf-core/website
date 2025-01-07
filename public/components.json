@@ -8544,6 +8544,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -14084,6 +14088,14 @@
               "header_lines": {
                 "type": "file",
                 "description": "Contains lines to append to the output VCF header"
+              }
+            }
+          ],
+          [
+            {
+              "rename_chrs": {
+                "type": "file",
+                "description": "Rename annotations according to this file containing \"old_name new_name\\n\" pairs separated by whitespaces, each on a separate line."
               }
             }
           ]
@@ -27604,6 +27616,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -33899,7 +33915,7 @@
                 }
               },
               {
-                "${prefix}/quality_report.tsv": {
+                "${prefix}_checkm2_report.tsv": {
                   "type": "file",
                   "description": "CheckM2 summary completeness statistics table",
                   "pattern": "*.tsv"
@@ -107888,6 +107904,22 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -112803,6 +112835,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -133035,6 +133071,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
+        },
         {
           "name": "viralrecon",
           "version": "2.6.0"
@@ -186826,10 +186866,10 @@
                 }
               },
               {
-                "*{3prime,5prime,trimmed,val}*.fq.gz": {
-                  "type": "file",
-                  "description": "List of input adapter trimmed FastQ files of size 1 and 2 for\nsingle-end and paired-end data, respectively.\n",
-                  "pattern": "*{3prime,5prime,trimmed,val}*.fq.gz"
+                "*{3prime,5prime,trimmed,val}{,_1,_2}.fq.gz": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*{3prime,5prime,trimmed,val}{,_1,_2}.fq.gz"
                 }
               }
             ]
@@ -186839,13 +186879,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*_{report.txt}"
                 }
               },
               {
                 "*report.txt": {
-                  "type": "file",
-                  "description": "Trim Galore! trimming report",
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*_{report.txt}"
                 }
               }
@@ -186860,9 +186901,9 @@
                 }
               },
               {
-                "*unpaired*.fq.gz": {
-                  "type": "file",
-                  "description": "FastQ files containing unpaired reads from read 1 or read 2\n",
+                "*unpaired{,_1,_2}.fq.gz": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*unpaired*.fq.gz"
                 }
               }
@@ -186873,13 +186914,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*_{fastqc.html}"
                 }
               },
               {
                 "*.html": {
-                  "type": "file",
-                  "description": "FastQC report (optional)",
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*_{fastqc.html}"
                 }
               }
@@ -186890,13 +186932,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*_{fastqc.zip}"
                 }
               },
               {
                 "*.zip": {
-                  "type": "file",
-                  "description": "FastQC report archive (optional)",
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*_{fastqc.zip}"
                 }
               }
@@ -207741,6 +207784,10 @@
         {
           "name": "phageannotator",
           "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
         }
       ]
     },
@@ -211168,6 +211215,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
+        },
         {
           "name": "riboseq",
           "version": "1.0.1"
