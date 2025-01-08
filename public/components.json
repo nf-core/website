@@ -8556,6 +8556,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -13946,6 +13950,123 @@
           "version": "2.2.0"
         }
       ]
+    },
+    {
+      "name": "bbmap_repair",
+      "path": "modules/nf-core/bbmap/repair/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "bbmap_repair",
+        "description": "Re-pairs reads that became disordered or had some mates eliminated.",
+        "keywords": [
+          "paired reads re-pairing",
+          "fastq",
+          "preprocessing"
+        ],
+        "tools": [
+          {
+            "repair": {
+              "description": "Repair.sh is a tool that re-pairs reads that became disordered or had some mates eliminated tools.",
+              "homepage": "https://jgi.doe.gov/data-and-tools/software-tools/bbtools/",
+              "documentation": "https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-tools-user-guide/",
+              "licence": [
+                "UC-LBL license (see package)"
+              ],
+              "identifier": "biotools:bbmap"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "List of input paired end fastq files\n",
+                "pattern": "*.{fastq,fq}.gz"
+              }
+            }
+          ],
+          [
+            {
+              "interleave": {
+                "type": "boolean",
+                "description": "Indicates whether the input paired reads are interleaved or not\n"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "repaired": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*_repaired.fastq.gz": {
+                  "type": "file",
+                  "description": "re-paired reads",
+                  "pattern": "*_repaired.fastq.gz"
+                }
+              }
+            ]
+          },
+          {
+            "singleton": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}_singleton.fastq.gz": {
+                  "type": "file",
+                  "description": "singleton reads",
+                  "pattern": "*singleton.fastq.gz"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          },
+          {
+            "log": [
+              {
+                "*.log": {
+                  "type": "file",
+                  "description": "log file containing stdout and stderr from repair.sh",
+                  "pattern": "*.log"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@mazzalab"
+        ],
+        "maintainers": [
+          "@mazzalab",
+          "@tm4zza"
+        ]
+      }
     },
     {
       "name": "bbmap_sendsketch",
@@ -27531,6 +27652,10 @@
         },
         {
           "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
           "version": "dev"
         },
         {
@@ -86499,7 +86624,7 @@
             {
               "fastqgz": {
                 "type": "file",
-                "description": "FASTQ.gz file",
+                "description": "FASTQ.gz files",
                 "pattern": "*.{gz}",
                 "ontologies": [
                   {
@@ -86512,7 +86637,7 @@
         ],
         "output": [
           {
-            "fastqrecovered": [
+            "recovered": [
               {
                 "meta": {
                   "type": "map",
@@ -86520,9 +86645,9 @@
                 }
               },
               {
-                "*_recovered.fastq.gz": {
+                "${prefix}*.fastq.gz": {
                   "type": "file",
-                  "description": "Recovered FASTQ.gz file",
+                  "description": "Recovered FASTQ.gz files",
                   "pattern": "*.{gz}",
                   "ontologies": [
                     {
@@ -107968,6 +108093,22 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -112883,6 +113024,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -133127,6 +133272,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
+        },
         {
           "name": "viralrecon",
           "version": "2.6.0"
@@ -207860,6 +208009,10 @@
         {
           "name": "phageannotator",
           "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
         }
       ]
     },
@@ -211287,6 +211440,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
+        },
         {
           "name": "riboseq",
           "version": "1.0.1"
