@@ -211,6 +211,13 @@ No other settings should go into this file.
 Supply the config only to the tests that use `params`, otherwise define `params` for every test including the stub test.
 :::
 
+## Skipping CI test profiles
+
+If a subworkflow does not support a particular test profile, it can be skipped by adding the path to the corresponding section in `.github/skip_nf_test.json`.
+:::Note
+Please keep the file sorted alphabetically.
+:::
+
 ## Misc
 
 ### General module code formatting
