@@ -85,7 +85,7 @@ Can also download its Singularity container image if required.
   - **container_cache_index** (_str_) – An index for the remote container cache. Defaults to None.
   - **parallel_downloads** (_int_) – The number of parallel downloads to use. Defaults to 4.
 
-#### `compress_download() → None{:python}`
+#### `compress_download(){:python}`
 
 Take the downloaded files and make a compressed .tar.gz archive.
 
