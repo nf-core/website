@@ -1445,7 +1445,7 @@
             {
               "config": {
                 "type": "file",
-                "description": "Input agat config file. By default AGAT takes as input agat_config.yaml file from the working directory if any, otherwise it takes the orignal agat_config.yaml shipped with AGAT. To get the agat_config.yaml locally type: \"agat config --expose\". The --config option gives you the possibility to use your own AGAT config file (located elsewhere or named differently).\n",
+                "description": "Input agat config file. By default AGAT takes as input agat_config.yaml file from the working directory if any, otherwise it takes the original agat_config.yaml shipped with AGAT. To get the agat_config.yaml locally type: \"agat config --expose\". The --config option gives you the possibility to use your own AGAT config file (located elsewhere or named differently).\n",
                 "pattern": "*.yaml"
               }
             }
@@ -1537,7 +1537,7 @@
             {
               "config": {
                 "type": "file",
-                "description": "Input agat config file. By default AGAT takes as input agat_config.yaml file from the working directory if any,\notherwise it takes the orignal agat_config.yaml shipped with AGAT. To get the agat_config.yaml\nlocally type: \"agat config --expose\". The --config option gives you the possibility to use your\nown AGAT config file (located elsewhere or named differently).\n",
+                "description": "Input agat config file. By default AGAT takes as input agat_config.yaml file from the working directory if any,\notherwise it takes the original agat_config.yaml shipped with AGAT. To get the agat_config.yaml\nlocally type: \"agat config --expose\". The --config option gives you the possibility to use your\nown AGAT config file (located elsewhere or named differently).\n",
                 "pattern": "*.yaml"
               }
             }
@@ -1812,7 +1812,7 @@
               {
                 "${fasta.baseName}-results/${fasta.baseName}-summary.tab": {
                   "type": "file",
-                  "description": "A summary of the agrvate assessement",
+                  "description": "A summary of the agrvate assessment",
                   "pattern": "*-summary.tab"
                 }
               }
@@ -1823,7 +1823,7 @@
               {
                 "${fasta.baseName}-results": {
                   "type": "directory",
-                  "description": "Results of the agrvate assessement",
+                  "description": "Results of the agrvate assessment",
                   "pattern": "*-results"
                 }
               }
@@ -2278,7 +2278,7 @@
               {
                 "amp_ref_database/*.clean.fasta": {
                   "type": "file",
-                  "description": "AMP reference database fasta file, cleaned of diamond-uncompatible characters.",
+                  "description": "AMP reference database fasta file, cleaned of diamond-incompatible characters.",
                   "pattern": "/amp_ref_database/*.clean.fasta"
                 }
               }
@@ -2785,7 +2785,7 @@
               {
                 "amp_${opt_amp_db}_database/*.fasta": {
                   "type": "file",
-                  "description": "AMP reference database fasta file in clean format. characters.",
+                  "description": "AMP reference database fasta file in clean format.",
                   "pattern": "/amp_*_database/*.fasta"
                 }
               }
@@ -8564,6 +8564,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -8801,7 +8805,7 @@
                 "protein_domains*${genome}*.gff3": {
                   "type": "file",
                   "description": "Protein domain annotations",
-                  "patter": "*.gff3"
+                  "pattern": "*.gff3"
                 }
               }
             ]
@@ -8812,7 +8816,7 @@
                 "known_fusions*${genome}*.tsv.gz": {
                   "type": "file",
                   "description": "Arriba is more sensitive to those fusions to improve the detection rate of expected or highly relevant events, such as recurrent fusions",
-                  "patter": "*.tsv.gz"
+                  "pattern": "*.tsv.gz"
                 }
               }
             ]
@@ -11308,7 +11312,7 @@
               {
                 "${prefix}.hypotheticals.tsv": {
                   "type": "file",
-                  "description": "additional information on hypothetical protein CDS as simple human readble tab separated values",
+                  "description": "additional information on hypothetical protein CDS as simple human readable tab separated values",
                   "pattern": "*.hypotheticals.tsv"
                 }
               }
@@ -11342,7 +11346,7 @@
               {
                 "${prefix}.tsv": {
                   "type": "file",
-                  "description": "annotations as simple human readble tab separated values",
+                  "description": "annotations as simple human readable tab separated values",
                   "pattern": "*.tsv"
                 }
               }
@@ -12927,7 +12931,7 @@
             {
               "ref": {
                 "type": "file",
-                "description": "Either \"ref\" a directory containing an index, the name of another directory\nwith a \"ref\" subdirectory containing an index or the name of a fasta formatted\nnucleotide file containg the reference to map to.\n"
+                "description": "Either \"ref\" a directory containing an index, the name of another directory\nwith a \"ref\" subdirectory containing an index or the name of a fasta formatted\nnucleotide file containing the reference to map to.\n"
               }
             }
           ]
@@ -13547,6 +13551,10 @@
       },
       "pipelines": [
         {
+          "name": "references",
+          "version": "0.1"
+        },
+        {
           "name": "riboseq",
           "version": "1.0.1"
         },
@@ -14070,7 +14078,13 @@
           "@mazzalab",
           "@tm4zza"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "fastqrepair",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "bbmap_sendsketch",
@@ -14773,7 +14787,7 @@
             {
               "input": {
                 "type": "file",
-                "description": "The input format. Each format needs a seperate parameter to be specified in the `args`:\n- GEN/SAMPLE file: `--gensample2vcf`\n- gVCF file: `--gvcf2vcf`\n- HAP/SAMPLE file: `--hapsample2vcf`\n- HAP/LEGEND/SAMPLE file: `--haplegendsample2vcf`\n- TSV file: `--tsv2vcf`\n",
+                "description": "The input format. Each format needs a separate parameter to be specified in the `args`:\n- GEN/SAMPLE file: `--gensample2vcf`\n- gVCF file: `--gvcf2vcf`\n- HAP/SAMPLE file: `--hapsample2vcf`\n- HAP/LEGEND/SAMPLE file: `--haplegendsample2vcf`\n- TSV file: `--tsv2vcf`\n",
                 "pattern": "*.{gen,sample,g.vcf,hap,legend}{.gz,}"
               }
             },
@@ -16850,7 +16864,7 @@
             {
               "vcf": {
                 "type": "file",
-                "description": "The vcf file to be qeuried.\n",
+                "description": "The vcf file to be queried.\n",
                 "pattern": "*.{vcf.gz, vcf}"
               }
             },
@@ -24331,14 +24345,14 @@
               {
                 "meta": {
                   "type": "file",
-                  "description": "Aligment log",
+                  "description": "Alignment log",
                   "pattern": "*.log"
                 }
               },
               {
                 "*.log": {
                   "type": "file",
-                  "description": "Aligment log",
+                  "description": "Alignment log",
                   "pattern": "*.log"
                 }
               }
@@ -24571,6 +24585,10 @@
           "version": "1.0.1"
         },
         {
+          "name": "references",
+          "version": "0.1"
+        },
+        {
           "name": "seqinspector",
           "version": "dev"
         },
@@ -24794,7 +24812,7 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing nformation about the genome fasta\ne.g. [ id:'test' ]\n"
+                  "description": "Groovy Map containing information about the genome fasta\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -24835,6 +24853,10 @@
         {
           "name": "circrna",
           "version": "dev"
+        },
+        {
+          "name": "references",
+          "version": "0.1"
         },
         {
           "name": "smrnaseq",
@@ -27769,6 +27791,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         }
       ]
     },
@@ -28391,6 +28417,10 @@
           "version": "2.2.0"
         },
         {
+          "name": "references",
+          "version": "0.1"
+        },
+        {
           "name": "rnadnavar",
           "version": "dev"
         },
@@ -28989,6 +29019,10 @@
         {
           "name": "raredisease",
           "version": "2.2.0"
+        },
+        {
+          "name": "references",
+          "version": "0.1"
         },
         {
           "name": "rnadnavar",
@@ -33375,7 +33409,7 @@
               {
                 "*.base.vcf.gz": {
                   "type": "file",
-                  "description": "A VCF file listing genotyped SNPs and aggregated AD & DP infomation (without GT).",
+                  "description": "A VCF file listing genotyped SNPs and aggregated AD & DP information (without GT).",
                   "pattern": "*.base.vcf.gz"
                 }
               }
@@ -33392,7 +33426,7 @@
               {
                 "*.cells.vcf.gz": {
                   "type": "file",
-                  "description": "A VCF file listing genotyped SNPs and aggregated AD & DP infomation & genotype (GT) information for each cell or sample.",
+                  "description": "A VCF file listing genotyped SNPs and aggregated AD & DP information & genotype (GT) information for each cell or sample.",
                   "pattern": "*.cells.vcf.gz"
                 }
               }
@@ -36422,14 +36456,14 @@
             {
               "newick": {
                 "type": "file",
-                "description": "A Newick formated tree based on multiple sequence alignment",
+                "description": "A Newick formatted tree based on multiple sequence alignment",
                 "pattern": "*.{newick,treefile,dnd}"
               }
             },
             {
               "msa": {
                 "type": "file",
-                "description": "A multiple seqeunce alignmnet in FASTA format",
+                "description": "A multiple sequence alignment in FASTA format",
                 "pattern": "*.{fasta,fasta.gz,fa,fa.gz,fna,fna.gz}"
               }
             }
@@ -39228,7 +39262,7 @@
               {
                 "*_PCA_transformed_data_gt1000.csv": {
                   "type": "file",
-                  "description": "Transformed PCA compontent values",
+                  "description": "Transformed PCA component values",
                   "pattern": "*_PCA_transformed_data_gt1000.csv"
                 }
               }
@@ -39646,7 +39680,7 @@
               {
                 "*.csv": {
                   "type": "file",
-                  "description": "Cluster assignments per contig part with concensus cluster",
+                  "description": "Cluster assignments per contig part with consensus cluster",
                   "pattern": "*.csv"
                 }
               }
@@ -40714,7 +40748,7 @@
               {
                 "${prefix}.${extension}": {
                   "type": "file",
-                  "description": "Output COOL file balancing weigths",
+                  "description": "Output COOL file balancing weights",
                   "pattern": "*.cool"
                 }
               }
@@ -41816,7 +41850,7 @@
         "tools": [
           {
             "coreograph": {
-              "description": "A TMA dearray porgram that uses UNet, a deep learning model, to identify complete/incomplete tissue cores on a tissue microarray.",
+              "description": "A TMA dearray program that uses UNet, a deep learning model, to identify complete/incomplete tissue cores on a tissue microarray.",
               "homepage": "https://mcmicro.org/parameters/core.html#coreograph",
               "documentation": "https://mcmicro.org/troubleshooting/tuning/coreograph.html",
               "tool_dev_url": "https://github.com/HMS-IDAC/UNetCoreograph",
@@ -42391,7 +42425,7 @@
             {
               "bedout": {
                 "type": "boolean",
-                "description": "set to true to ouput suspicious regions to a BED file"
+                "description": "set to true to output suspicious regions to a BED file"
               }
             }
           ]
@@ -42924,6 +42958,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "references",
+          "version": "0.1"
+        },
         {
           "name": "riboseq",
           "version": "1.0.1"
@@ -46354,7 +46392,7 @@
         "tools": [
           {
             "deeptools": {
-              "description": "A set of user-friendly tools for normalization and visualzation of deep-sequencing data",
+              "description": "A set of user-friendly tools for normalization and visualization of deep-sequencing data",
               "homepage": "https://deeptools.readthedocs.io/en/develop/content/tools/alignmentSieve.html",
               "documentation": "https://deeptools.readthedocs.io/en/develop/content/tools/alignmentSieve.html",
               "tool_dev_url": "https://github.com/deeptools/deepTools/",
@@ -46454,7 +46492,7 @@
         "tools": [
           {
             "deeptools": {
-              "description": "A set of user-friendly tools for normalization and visualzation of deep-sequencing data",
+              "description": "A set of user-friendly tools for normalization and visualization of deep-sequencing data",
               "homepage": "https://deeptools.readthedocs.io/en/develop/content/tools/bamCoverage.html",
               "documentation": "https://deeptools.readthedocs.io/en/develop/content/tools/bamCoverage.html",
               "tool_dev_url": "https://github.com/deeptools/deepTools/",
@@ -50085,6 +50123,10 @@
           "version": "2.2.0"
         },
         {
+          "name": "references",
+          "version": "0.1"
+        },
+        {
           "name": "rnadnavar",
           "version": "dev"
         },
@@ -50698,7 +50740,7 @@
               }
             },
             {
-              "alignement_index": {
+              "alignment_index": {
                 "type": "file",
                 "description": "index of alignment file"
               }
@@ -52069,7 +52111,7 @@
             {
               "get_assembly_regions": {
                 "type": "boolean",
-                "description": "Get the assembly regions calculated by haplotypecaller to the speficied file in IGV format."
+                "description": "Get the assembly regions calculated by haplotypecaller to the specified file in IGV format."
               }
             }
           ]
@@ -58683,7 +58725,7 @@
                   "Adjacency",
                   "Paired"
                 ],
-                "description": "Reguired argument: defines the UMI assignment strategy.\nMust be chosen among: Identity, Edit, Adjacency, Paired.\n"
+                "description": "Required argument: defines the UMI assignment strategy.\nMust be chosen among: Identity, Edit, Adjacency, Paired.\n"
               }
             }
           ]
@@ -64708,7 +64750,7 @@
       "type": "module",
       "meta": {
         "name": "gatk4_asereadcounter",
-        "description": "Calculates the allele-specific read counts for alle-specific expression analysis of RNAseq data",
+        "description": "Calculates the allele-specific read counts for allele-specific expression analysis of RNAseq data",
         "keywords": [
           "allele-specific",
           "asereadcounter",
@@ -68041,6 +68083,10 @@
           "version": "2.2.0"
         },
         {
+          "name": "references",
+          "version": "0.1"
+        },
+        {
           "name": "rnadnavar",
           "version": "dev"
         },
@@ -68064,7 +68110,7 @@
       "type": "module",
       "meta": {
         "name": "gatk4_createsomaticpanelofnormals",
-        "description": "Create a panel of normals contraining germline and artifactual sites for use with mutect2.",
+        "description": "Create a panel of normals constraining germline and artifactual sites for use with mutect2.",
         "keywords": [
           "createsomaticpanelofnormals",
           "gatk4",
@@ -69437,7 +69483,7 @@
             {
               "interval_value": {
                 "type": "string",
-                "description": "if an intervals file has not been spcified, the value enetered here will be used as an interval via the \"-L\" argument",
+                "description": "if an intervals file has not been specified, the value entered here will be used as an interval via the \"-L\" argument",
                 "pattern": "example: chr1:1000-10000"
               }
             },
@@ -76618,14 +76664,14 @@
               {
                 "*.intervals": {
                   "type": "file",
-                  "description": "File containg intervals that represent sites of extant and potential indels.",
+                  "description": "File containing intervals that represent sites of extant and potential indels.",
                   "pattern": "*.intervals"
                 }
               },
               {
                 "s": {
                   "type": "file",
-                  "description": "File containg intervals that represent sites of extant and potential indels.",
+                  "description": "File containing intervals that represent sites of extant and potential indels.",
                   "pattern": "*.intervals"
                 }
               }
@@ -76950,6 +76996,10 @@
         {
           "name": "phaseimpute",
           "version": "1.0.0"
+        },
+        {
+          "name": "references",
+          "version": "0.1"
         },
         {
           "name": "sarek",
@@ -80480,6 +80530,10 @@
           "version": "2.2.0"
         },
         {
+          "name": "references",
+          "version": "0.1"
+        },
+        {
           "name": "riboseq",
           "version": "1.0.1"
         },
@@ -83395,7 +83449,7 @@
         "tools": [
           {
             "graphtyper": {
-              "description": "A graph-based variant caller capable of genotyping population-scale short read data sets while incoperating previously discovered variants.",
+              "description": "A graph-based variant caller capable of genotyping population-scale short read data sets while incorporating previously discovered variants.",
               "homepage": "https://github.com/DecodeGenetics/graphtyper",
               "documentation": "https://github.com/DecodeGenetics/graphtyper/wiki/User-guide",
               "tool_dev_url": "https://github.com/DecodeGenetics/graphtyper",
@@ -83455,7 +83509,7 @@
             {
               "ref_fai": {
                 "type": "file",
-                "description": "Reference index file. This is automatically found based on referece input file name.",
+                "description": "Reference index file. This is automatically found based on reference input file name.",
                 "pattern": "*.{.fai}"
               }
             }
@@ -83547,7 +83601,7 @@
         "tools": [
           {
             "graphtyper": {
-              "description": "A graph-based variant caller capable of genotyping population-scale short read data sets while incoperating previously discovered variants.",
+              "description": "A graph-based variant caller capable of genotyping population-scale short read data sets while incorporating previously discovered variants.",
               "homepage": "https://github.com/DecodeGenetics/graphtyper",
               "documentation": "https://github.com/DecodeGenetics/graphtyper/wiki/User-guide",
               "tool_dev_url": "https://github.com/DecodeGenetics/graphtyper",
@@ -84950,7 +85004,7 @@
               {
                 "*_tama.fa.gz": {
                   "type": "file",
-                  "description": "The Full Length Non Chimeric reads clened from remaining polyA tails. The sequences are in FASTA format compressed with gzip.",
+                  "description": "The Full Length Non Chimeric reads cleaned from remaining polyA tails. The sequences are in FASTA format compressed with gzip.",
                   "pattern": "*_tama.fa.gz"
                 }
               }
@@ -86482,6 +86536,10 @@
         {
           "name": "radseq",
           "version": "dev"
+        },
+        {
+          "name": "references",
+          "version": "0.1"
         },
         {
           "name": "riboseq",
@@ -89439,7 +89497,7 @@
               {
                 "*.log": {
                   "type": "file",
-                  "description": "Aligment log",
+                  "description": "Alignment log",
                   "pattern": "*.log"
                 }
               }
@@ -89616,6 +89674,10 @@
           "version": "dev"
         },
         {
+          "name": "references",
+          "version": "0.1"
+        },
+        {
           "name": "rnadnavar",
           "version": "dev"
         },
@@ -89712,6 +89774,10 @@
         {
           "name": "circrna",
           "version": "dev"
+        },
+        {
+          "name": "references",
+          "version": "0.1"
         },
         {
           "name": "rnadnavar",
@@ -90607,7 +90673,7 @@
               {
                 "*.*.gz": {
                   "type": "file",
-                  "description": "Reformated sequence file",
+                  "description": "Reformatted sequence file",
                   "pattern": "*.*.gz"
                 }
               }
@@ -91823,7 +91889,7 @@
       "type": "module",
       "meta": {
         "name": "homer_pos2bed",
-        "description": "Coverting from HOMER peak to BED file formats",
+        "description": "Converting from HOMER peak to BED file formats",
         "keywords": [
           "peaks",
           "bed",
@@ -92386,7 +92452,7 @@
               {
                 "${prefix}": {
                   "type": "directory",
-                  "description": "Directory containg statistics file, use for multiqc.",
+                  "description": "Directory containing statistics file, use for multiqc.",
                   "pattern": "${prefix}/"
                 }
               }
@@ -93709,7 +93775,7 @@
         "tools": [
           {
             "igv": {
-              "description": "Create an embeddable interactive genome browser component.\nOutput files are expected to be present in the same directory as teh genome browser html file.\nTo visualise it, files have to be served. Check the documentation at:\n  https://github.com/igvteam/igv-webapp for an example and\n  https://github.com/igvteam/igv.js/wiki/Data-Server-Requirements for server requirements\n",
+              "description": "Create an embeddable interactive genome browser component.\nOutput files are expected to be present in the same directory as the genome browser html file.\nTo visualise it, files have to be served. Check the documentation at:\n  https://github.com/igvteam/igv-webapp for an example and\n  https://github.com/igvteam/igv.js/wiki/Data-Server-Requirements for server requirements\n",
               "homepage": "https://github.com/igvteam/igv.js",
               "documentation": "https://github.com/igvteam/igv.js/wiki",
               "tool_dev_url": "https://github.com/igvteam/igv.js",
@@ -93865,7 +93931,7 @@
               }
             },
             {
-              "tracks_indicies": {
+              "tracks_indices": {
                 "type": "file",
                 "description": "List of indices for the tracks\n"
               }
@@ -94911,7 +94977,7 @@
       "type": "module",
       "meta": {
         "name": "iqtree",
-        "description": "Produces a Newick format phylogeny from a multiple sequence alignment using the maxium likelihood algorithm. Capable of bacterial genome size alignments.",
+        "description": "Produces a Newick format phylogeny from a multiple sequence alignment using the maximum likelihood algorithm. Capable of bacterial genome size alignments.",
         "keywords": [
           "phylogeny",
           "newick",
@@ -95410,14 +95476,14 @@
               {
                 "meta": {
                   "type": "file",
-                  "description": "File containing site-specific subtitution\nrates determined by maximum likelihood (--mlrate)\n",
+                  "description": "File containing site-specific substitution\nrates determined by maximum likelihood (--mlrate)\n",
                   "pattern": "*.{mlrate}"
                 }
               },
               {
                 "*.mlrate": {
                   "type": "file",
-                  "description": "File containing site-specific subtitution\nrates determined by maximum likelihood (--mlrate)\n",
+                  "description": "File containing site-specific substitution\nrates determined by maximum likelihood (--mlrate)\n",
                   "pattern": "*.{mlrate}"
                 }
               }
@@ -95623,7 +95689,7 @@
               {
                 "${prefix}/irescue.log": {
                   "type": "file",
-                  "description": "Text file contianing run informations",
+                  "description": "Text file containing run information",
                   "pattern": "${prefix}/irescue.log"
                 }
               }
@@ -97163,7 +97229,7 @@
               "save_mpileup": {
                 "type": "boolean",
                 "description": "Save mpileup file generated by ivar consensus",
-                "patter": "*.mpileup"
+                "pattern": "*.mpileup"
               }
             }
           ]
@@ -97433,7 +97499,7 @@
               "gff": {
                 "type": "file",
                 "description": "A GFF file in the GFF3 format can be supplied to specify coordinates of open reading frames (ORFs). In absence of GFF file, amino acid translation will not be done.",
-                "patter": "*.gff"
+                "pattern": "*.gff"
               }
             }
           ],
@@ -97442,7 +97508,7 @@
               "save_mpileup": {
                 "type": "boolean",
                 "description": "Save mpileup file generated by ivar variants",
-                "patter": "*.mpileup"
+                "pattern": "*.mpileup"
               }
             }
           ]
@@ -99332,6 +99398,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "references",
+          "version": "0.1"
+        },
         {
           "name": "riboseq",
           "version": "1.0.1"
@@ -101370,7 +101440,7 @@
               {
                 "*report.txt": {
                   "type": "file",
-                  "description": "Kraken2 report containing stats about classified\nand not classifed reads.\n",
+                  "description": "Kraken2 report containing stats about classified\nand not classified reads.\n",
                   "pattern": "*.{report.txt}"
                 }
               }
@@ -101596,7 +101666,7 @@
             {
               "report": {
                 "type": "file",
-                "description": "Optional Kraken2 report containing stats about classified and not classifed reads.",
+                "description": "Optional Kraken2 report containing stats about classified and not classified reads.",
                 "pattern": "*.{report.txt}"
               }
             }
@@ -102459,7 +102529,7 @@
             {
               "maf": {
                 "type": "file",
-                "description": "Multiple Aligment Format (MAF) file, compressed with gzip",
+                "description": "Multiple Alignment Format (MAF) file, compressed with gzip",
                 "pattern": "*.{maf.gz}"
               }
             },
@@ -102803,7 +102873,7 @@
             {
               "maf": {
                 "type": "file",
-                "description": "Multiple Aligment Format (MAF) file, optionally compressed with gzip",
+                "description": "Multiple Alignment Format (MAF) file, optionally compressed with gzip",
                 "pattern": "*.{maf.gz,maf}"
               }
             }
@@ -103030,7 +103100,7 @@
             {
               "maf": {
                 "type": "file",
-                "description": "Multiple Aligment Format (MAF) file, optionally compressed with gzip",
+                "description": "Multiple Alignment Format (MAF) file, optionally compressed with gzip",
                 "pattern": "*.{maf.gz,maf}"
               }
             }
@@ -103048,7 +103118,7 @@
               {
                 "*.maf.gz": {
                   "type": "file",
-                  "description": "Multiple Aligment Format (MAF) file, compressed with gzip",
+                  "description": "Multiple Alignment Format (MAF) file, compressed with gzip",
                   "pattern": "*.{maf.gz}"
                 }
               }
@@ -103119,7 +103189,7 @@
             {
               "maf": {
                 "type": "file",
-                "description": "Multiple Aligment Format (MAF) file, optionally compressed with gzip",
+                "description": "Multiple Alignment Format (MAF) file, optionally compressed with gzip",
                 "pattern": "*.{maf.gz,maf}"
               }
             }
@@ -103137,7 +103207,7 @@
               {
                 "*.maf.gz": {
                   "type": "file",
-                  "description": "Multiple Aligment Format (MAF) file, compressed with gzip",
+                  "description": "Multiple Alignment Format (MAF) file, compressed with gzip",
                   "pattern": "*.{maf.gz}"
                 }
               }
@@ -103202,7 +103272,7 @@
             {
               "maf": {
                 "type": "file",
-                "description": "Multiple Aligment Format (MAF) file, compressed with gzip",
+                "description": "Multiple Alignment Format (MAF) file, compressed with gzip",
                 "pattern": "*.{maf.gz}"
               }
             }
@@ -103220,7 +103290,7 @@
               {
                 "*.maf.gz": {
                   "type": "file",
-                  "description": "Multiple Aligment Format (MAF) file, compressed with gzip",
+                  "description": "Multiple Alignment Format (MAF) file, compressed with gzip",
                   "pattern": "*.{maf.gz}"
                 }
               }
@@ -108155,6 +108225,22 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -110814,7 +110900,7 @@
               {
                 "results_*/*.fasta": {
                   "type": "file",
-                  "description": "Allignments in a FASTA file, only if flagged by -d.",
+                  "description": "Alignments in a FASTA file, only if flagged by -d.",
                   "pattern": "*.{fasta}"
                 }
               }
@@ -110863,7 +110949,7 @@
       "type": "module",
       "meta": {
         "name": "mash_dist",
-        "description": "Calculate Mash distances between reference and query seqeunces",
+        "description": "Calculate Mash distances between reference and query sequences",
         "keywords": [
           "distance",
           "estimate",
@@ -112863,7 +112949,7 @@
               {
                 "*.hist": {
                   "type": "file",
-                  "description": "The generated 0-centered k* histogram for sequences in <fasta_assembly.fasta>.\nPositive k* values are expected collapsed copies. Negative k* values are expected\nexpanded  copies. Closer to 0 means the expected and found k-mers are well\nbalenced, 1:1.\n",
+                  "description": "The generated 0-centered k* histogram for sequences in <fasta_assembly.fasta>.\nPositive k* values are expected collapsed copies. Negative k* values are expected\nexpanded  copies. Closer to 0 means the expected and found k-mers are well\nbalanced, 1:1.\n",
                   "pattern": "*.{hist}"
                 }
               }
@@ -113076,6 +113162,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -115622,7 +115712,7 @@
               {
                 "${prefix}.phased_block.bed": {
                   "type": "file",
-                  "description": "Assembly kmer positions seperated by block in bed format",
+                  "description": "Assembly kmer positions separated by block in bed format",
                   "pattern": "*.phased.block.bed"
                 }
               }
@@ -116746,7 +116836,7 @@
               {
                 "*classification_res.EM.reads2Taxon": {
                   "type": "file",
-                  "description": "Taxon ID assignement of reads",
+                  "description": "Taxon ID assignment of reads",
                   "pattern": "*.{classification_res.EM.reads2Taxon}"
                 }
               }
@@ -116814,7 +116904,7 @@
               {
                 "*classification_res.EM.reads2Taxon.krona": {
                   "type": "file",
-                  "description": "Taxon ID assignement of reads in Krona format",
+                  "description": "Taxon ID assignment of reads in Krona format",
                   "pattern": "*.{classification_res.EM.reads2Taxon.krona}"
                 }
               }
@@ -121139,7 +121229,7 @@
       "type": "module",
       "meta": {
         "name": "mmseqs_easysearch",
-        "description": "Searches for the sequences of a fasta file in a databse using MMseqs2",
+        "description": "Searches for the sequences of a fasta file in a database using MMseqs2",
         "keywords": [
           "protein sequence",
           "databases",
@@ -123463,6 +123553,10 @@
       },
       "pipelines": [
         {
+          "name": "references",
+          "version": "0.1"
+        },
+        {
           "name": "sarek",
           "version": "3.5.0"
         }
@@ -124268,6 +124362,10 @@
         {
           "name": "readsimulator",
           "version": "1.0.1"
+        },
+        {
+          "name": "references",
+          "version": "0.1"
         },
         {
           "name": "reportho",
@@ -126625,7 +126723,7 @@
         "tools": [
           {
             "nanoplot": {
-              "description": "NanoPlot is a tool for ploting long-read sequencing data and\nalignment.\n",
+              "description": "NanoPlot is a tool for plotting long-read sequencing data and\nalignment.\n",
               "homepage": "http://nanoplot.bioinf.be",
               "documentation": "https://github.com/wdecoster/NanoPlot",
               "licence": [
@@ -128237,7 +128335,7 @@
             {
               "method": {
                 "type": "string",
-                "description": "The method to use to define the gender (posibilities are 'xy', 'hetx' and 'sry')",
+                "description": "The method to use to define the gender (possibilities are 'xy', 'hetx' and 'sry')",
                 "pattern": "(xy|hetx|sry)"
               }
             }
@@ -133495,6 +133593,10 @@
         {
           "name": "viralrecon",
           "version": "2.6.0"
+        },
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
         }
       ]
     },
@@ -134189,7 +134291,7 @@
               {
                 "duplicate-metrics.txt": {
                   "type": "file",
-                  "description": "(optional) metrics calculated from marking duplcates in the bam file",
+                  "description": "(optional) metrics calculated from marking duplicates in the bam file",
                   "pattern": "*-duplicate-metrics.txt"
                 }
               }
@@ -134353,7 +134455,7 @@
               {
                 "duplicate-metrics.txt": {
                   "type": "file",
-                  "description": "(optional) metrics calculated from marking duplcates in the bam file",
+                  "description": "(optional) metrics calculated from marking duplicates in the bam file",
                   "pattern": "*-duplicate-metrics.txt"
                 }
               }
@@ -134760,7 +134862,7 @@
             {
               "panel_of_normals": {
                 "type": "file",
-                "description": "(Optional) pannel of normals file.",
+                "description": "(Optional) panel of normals file.",
                 "pattern": "*.vcf.gz"
               }
             }
@@ -134769,7 +134871,7 @@
             {
               "panel_of_normals_index": {
                 "type": "file",
-                "description": "(Optional) tbi index corresponding to pannel of normals file.",
+                "description": "(Optional) tbi index corresponding to panel of normals file.",
                 "pattern": "*.tbi"
               }
             }
@@ -134787,7 +134889,7 @@
               {
                 "*.vcf.gz": {
                   "type": "file",
-                  "description": "Compressed variants file. Will include an annoted vcf file if pannel of normals is used.",
+                  "description": "Compressed variants file. Will include an annotated vcf file if panel of normals is used.",
                   "pattern": "*.vcf.gz"
                 }
               }
@@ -135716,7 +135818,7 @@
       "type": "module",
       "meta": {
         "name": "pbccs",
-        "description": "Pacbio ccs - Generate Higly Accurate Single-Molecule Consensus Reads",
+        "description": "Pacbio ccs - Generate Highly Accurate Single-Molecule Consensus Reads",
         "keywords": [
           "ccs",
           "pacbio",
@@ -144835,7 +144937,7 @@
         "tools": [
           {
             "popscle": {
-              "description": "A suite of population scale analysis tools for single-cell genomics data including implementation of Demuxlet / Freemuxlet methods and auxilary tools",
+              "description": "A suite of population scale analysis tools for single-cell genomics data including implementation of Demuxlet / Freemuxlet methods and auxiliary tools",
               "homepage": "https://github.com/statgen/popscle",
               "documentation": "https://github.com/statgen/popscle",
               "tool_dev_url": "https://github.com/statgen/popscle",
@@ -144938,7 +145040,7 @@
         "tools": [
           {
             "popscle": {
-              "description": "A suite of population scale analysis tools for single-cell genomics data including implementation of Demuxlet / Freemuxlet methods and auxilary tools",
+              "description": "A suite of population scale analysis tools for single-cell genomics data including implementation of Demuxlet / Freemuxlet methods and auxiliary tools",
               "homepage": "https://github.com/statgen/popscle",
               "documentation": "https://github.com/statgen/popscle",
               "tool_dev_url": "https://github.com/statgen/popscle",
@@ -145085,7 +145187,7 @@
         "tools": [
           {
             "popscle": {
-              "description": "A suite of population scale analysis tools for single-cell genomics data including implementation of Demuxlet / Freemuxlet methods and auxilary tools",
+              "description": "A suite of population scale analysis tools for single-cell genomics data including implementation of Demuxlet / Freemuxlet methods and auxiliary tools",
               "homepage": "https://github.com/statgen/popscle",
               "documentation": "https://github.com/statgen/popscle",
               "tool_dev_url": "https://github.com/statgen/popscle",
@@ -147110,7 +147212,7 @@
             {
               "count": {
                 "type": "file",
-                "description": "Count matrix, where rows = variables or genes, columns = samples or cells.\nThis matrix should not contain zeros. Otherwise, they will be first replaced by the minimun value.\nYou may want to handle the zeros with a different method beforehand.\n",
+                "description": "Count matrix, where rows = variables or genes, columns = samples or cells.\nThis matrix should not contain zeros. Otherwise, they will be first replaced by the minimum value.\nYou may want to handle the zeros with a different method beforehand.\n",
                 "pattern": "*.{csv,tsv}"
               }
             }
@@ -147457,7 +147559,7 @@
             {
               "count": {
                 "type": "file",
-                "description": "Count matrix, where rows = variables or genes, columns = samples or cells.\nThis matrix should not contain zeros. Otherwise, they will be replaced by the minimun number.\nIt is recommended to handle the zeros beforehand with the method of preference.\n",
+                "description": "Count matrix, where rows = variables or genes, columns = samples or cells.\nThis matrix should not contain zeros. Otherwise, they will be replaced by the minimum number.\nIt is recommended to handle the zeros beforehand with the method of preference.\n",
                 "pattern": "*.{csv,tsv}"
               }
             }
@@ -151169,14 +151271,14 @@
             {
               "posfile": {
                 "type": "file",
-                "description": "(Optional) File with positions of where to impute, lining up one-to-one with genfile. File is tab seperated with no header, one row per SNP, with col 1 = chromosome, col 2 = physical position (sorted from smallest to largest), col 3 = reference base, col 4 = alternate base. Bases are capitalized.",
+                "description": "(Optional) File with positions of where to impute, lining up one-to-one with genfile. File is tab separated with no header, one row per SNP, with col 1 = chromosome, col 2 = physical position (sorted from smallest to largest), col 3 = reference base, col 4 = alternate base. Bases are capitalized.",
                 "pattern": "*.{txt}"
               }
             },
             {
               "phasefile": {
                 "type": "file",
-                "description": "(Optional) File with truth phasing results. Supersedes genfile if both options given. File has a header row with a name for each sample, matching what is found in the bam file. Each subject is then a tab seperated column, with 0 = ref and 1 = alt, separated by a vertical bar |, e.g. 0|0 or 0|1. Note therefore this file has one more row than posfile which has no header.",
+                "description": "(Optional) File with truth phasing results. Supersedes genfile if both options given. File has a header row with a name for each sample, matching what is found in the bam file. Each subject is then a tab separated column, with 0 = ref and 1 = alt, separated by a vertical bar |, e.g. 0|0 or 0|1. Note therefore this file has one more row than posfile which has no header.",
                 "pattern": "*.{txt}"
               }
             }
@@ -153004,7 +153106,7 @@
             {
               "meta5": {
                 "type": "map",
-                "description": "Groovy Map containing information on riboseq P-site offfset parameter\nfiles\n"
+                "description": "Groovy Map containing information on riboseq P-site offset parameter\nfiles\n"
               }
             },
             {
@@ -153019,7 +153121,7 @@
             {
               "meta6": {
                 "type": "map",
-                "description": "Groovy Map containing information on TI-seq P-site offfset parameter\nfiles\n"
+                "description": "Groovy Map containing information on TI-seq P-site offset parameter\nfiles\n"
               }
             },
             {
@@ -153731,7 +153833,7 @@
               {
                 "offset_plot/*": {
                   "type": "file",
-                  "description": "P-site offset plots for each read length (otional)",
+                  "description": "P-site offset plots for each read length (optional)",
                   "pattern": "offset_plot/*"
                 }
               }
@@ -154597,6 +154699,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "references",
+          "version": "0.1"
+        },
         {
           "name": "riboseq",
           "version": "1.0.1"
@@ -155589,7 +155695,7 @@
       "type": "module",
       "meta": {
         "name": "rseqc_tin",
-        "description": "Calculte TIN (transcript integrity number) from RNA-seq reads",
+        "description": "Calculate TIN (transcript integrity number) from RNA-seq reads",
         "keywords": [
           "rnaseq",
           "transcript",
@@ -156062,7 +156168,7 @@
             {
               "truth_bed": {
                 "type": "file",
-                "description": "A BED file containining the strict regions where VCFeval should only evaluate the fully overlapping variants (optional) This input should be used to provide the golden truth BED files.",
+                "description": "A BED file containing the strict regions where VCFeval should only evaluate the fully overlapping variants (optional) This input should be used to provide the golden truth BED files.",
                 "pattern": "*.bed"
               }
             },
@@ -156742,6 +156848,10 @@
           "version": "1.1.0"
         },
         {
+          "name": "references",
+          "version": "0.1"
+        },
+        {
           "name": "riboseq",
           "version": "1.0.1"
         },
@@ -157200,7 +157310,7 @@
               {
                 "*.bam": {
                   "type": "file",
-                  "description": "Optional sorted BAM/CRAM/SAM file annotated with LCA taxonomic informations",
+                  "description": "Optional sorted BAM/CRAM/SAM file annotated with LCA taxonomic information",
                   "pattern": "*.bam"
                 }
               }
@@ -159235,6 +159345,10 @@
         {
           "name": "raredisease",
           "version": "2.2.0"
+        },
+        {
+          "name": "references",
+          "version": "0.1"
         },
         {
           "name": "rnadnavar",
@@ -162380,7 +162494,7 @@
             {
               "tree": {
                 "type": "file",
-                "description": "A Newick formtted tree for phylogenetic analyses",
+                "description": "A Newick formatted tree for phylogenetic analyses",
                 "pattern": "*.{dnd,nwk,treefile}"
               }
             }
@@ -164351,7 +164465,7 @@
               {
                 "*mq_metrics.pdf": {
                   "type": "file",
-                  "description": "PDF containting plot of mean base quality scores",
+                  "description": "PDF containing plot of mean base quality scores",
                   "pattern": "*.pdf"
                 }
               }
@@ -164368,7 +164482,7 @@
               {
                 "*qd_metrics.pdf": {
                   "type": "file",
-                  "description": "PDF containting plot of specific base quality score",
+                  "description": "PDF containing plot of specific base quality score",
                   "pattern": "*.pdf"
                 }
               }
@@ -164385,7 +164499,7 @@
               {
                 "*is_metrics.pdf": {
                   "type": "file",
-                  "description": "PDF containting plot of insert sizes",
+                  "description": "PDF containing plot of insert sizes",
                   "pattern": "*.pdf"
                 }
               }
@@ -164402,7 +164516,7 @@
               {
                 "*gc_metrics.pdf": {
                   "type": "file",
-                  "description": "PDF containting plot of GC bias",
+                  "description": "PDF containing plot of GC bias",
                   "pattern": "*.pdf"
                 }
               }
@@ -167449,7 +167563,7 @@
             {
               "pattern": {
                 "type": "file",
-                "description": "pattern file (one record per line). If no pattern is given, a string can be specificied within the args using '-p pattern_string'\n",
+                "description": "pattern file (one record per line). If no pattern is given, a string can be specified within the args using '-p pattern_string'\n",
                 "pattern": "*.{txt,tsv}"
               }
             }
@@ -168436,7 +168550,7 @@
             {
               "seqs": {
                 "type": "file",
-                "description": "FASTQ or FASTA formated sequences",
+                "description": "FASTQ or FASTA formatted sequences",
                 "pattern": "*.{fq.gz,fastq.gz,fna.gz,fna,fasta.gz,fasta,fa.gz,fa}"
               }
             }
@@ -170310,7 +170424,7 @@
             {
               "sample_sheet": {
                 "type": "file",
-                "description": "sample_sheet file (either a Singular Genomics sample sheet, or a two column csv wih Sample_Barcode and Sample_ID)",
+                "description": "sample_sheet file (either a Singular Genomics sample sheet, or a two column csv with Sample_Barcode and Sample_ID)",
                 "pattern": "*.{csv}"
               }
             },
@@ -173189,7 +173303,7 @@
       "type": "module",
       "meta": {
         "name": "smoove_call",
-        "description": "smoove simplifies and speeds calling and genotyping SVs for short reads. It also improves specificity by removing many spurious alignment signals that are indicative of low-level noise and often contribute to spurious calls. Developped by Brent Pedersen.",
+        "description": "smoove simplifies and speeds calling and genotyping SVs for short reads. It also improves specificity by removing many spurious alignment signals that are indicative of low-level noise and often contribute to spurious calls. Developed by Brent Pedersen.",
         "keywords": [
           "structural variants",
           "SV",
@@ -175659,6 +175773,10 @@
         {
           "name": "denovotranscript",
           "version": "1.1.0"
+        },
+        {
+          "name": "references",
+          "version": "0.1"
         },
         {
           "name": "riboseq",
@@ -178629,6 +178747,10 @@
           "version": "1.0.0"
         },
         {
+          "name": "references",
+          "version": "0.1"
+        },
+        {
           "name": "riboseq",
           "version": "1.0.1"
         },
@@ -180505,7 +180627,7 @@
       "type": "module",
       "meta": {
         "name": "survivor_bedpetovcf",
-        "description": "Converts a bedpe file ot a VCF file (beta version)",
+        "description": "Converts a bedpe file to a VCF file (beta version)",
         "keywords": [
           "bedpe",
           "conversion",
@@ -181047,7 +181169,7 @@
       "type": "module",
       "meta": {
         "name": "survivor_stats",
-        "description": "Report multipe stats over a VCF file",
+        "description": "Report multiple stats over a VCF file",
         "keywords": [
           "survivor",
           "statistics",
@@ -183545,6 +183667,10 @@
           "version": "2.2.0"
         },
         {
+          "name": "references",
+          "version": "0.1"
+        },
+        {
           "name": "rnadnavar",
           "version": "dev"
         },
@@ -184193,7 +184319,7 @@
               {
                 "results/*.csv": {
                   "type": "file",
-                  "description": "Optional CSV formated result file of resistance and strain type",
+                  "description": "Optional CSV formatted result file of resistance and strain type",
                   "pattern": "*.csv"
                 }
               }
@@ -184210,7 +184336,7 @@
               {
                 "results/*.json": {
                   "type": "file",
-                  "description": "JSON formated result file of resistance and strain type",
+                  "description": "JSON formatted result file of resistance and strain type",
                   "pattern": "*.json"
                 }
               }
@@ -184244,7 +184370,7 @@
               {
                 "vcf/*.vcf.gz": {
                   "type": "file",
-                  "description": "VCF with variant info again refernce genomes",
+                  "description": "VCF with variant info again reference genomes",
                   "pattern": "*.vcf"
                 }
               }
@@ -184357,7 +184483,7 @@
               }
             },
             {
-              "accessory_informations": {
+              "accessory_information": {
                 "type": "file",
                 "description": "Accessory files to be used in the alignment. For example, it could be protein structures or secondary structures.",
                 "pattern": "*"
@@ -184953,7 +185079,7 @@
               }
             },
             {
-              "accessory_informations": {
+              "accessory_information": {
                 "type": "file",
                 "description": "Accessory files to be used in the alignment. For example, it could be protein structures or secondary structures.",
                 "pattern": "*"
@@ -188601,7 +188727,7 @@
       "type": "module",
       "meta": {
         "name": "tsebra",
-        "description": "Transcript Selector for BRAKER TSEBRA combines gene predictions by selecing transcripts based on their extrisic evidence support",
+        "description": "Transcript Selector for BRAKER TSEBRA combines gene predictions by selecting transcripts based on their extrisic evidence support",
         "keywords": [
           "genomics",
           "transcript",
@@ -194032,7 +194158,7 @@
               {
                 "*.FORMAT": {
                   "type": "file",
-                  "description": "Extracted information from the genotype fields in the VCF file relating to a specfied FORMAT identifier (optional)",
+                  "description": "Extracted information from the genotype fields in the VCF file relating to a specified FORMAT identifier (optional)",
                   "pattern": "*.FORMAT"
                 }
               }
@@ -194431,7 +194557,7 @@
       "type": "module",
       "meta": {
         "name": "velocyto",
-        "description": "Velocyto is a library for the analysis of RNA velocity. velocyto.py CLI use\n`Path(resolve_path=True)` and breaks the nextflow logic of symbolic links.\nIf in the work dir velocyto find a file named EXACTLY `cellsorted_[ORIGINAL_BAM_NAME]`\nit will skip the samtools sort step.\nCellsorted bam file should be cell sorted with:\n```bash\n    samtools sort -t CB -O BAM -o cellsorted_input.bam input.bam\n```\nSee module test for an example with the SAMTOOLS_SORT nf-core module.\nConfig example to cellsort input bam using SAMTOOLS_SORT:\n```groovy\n    withName: SAMTOOLS_SORT {\n        ext.prefix = { \"cellsorted_${bam.baseName}\" }\n        ext.args = '-t CB -O BAM'\n    }\n```\nOptional mask must be passed with `ext.args` and option `--mask`\nThis is why I need to stage in the work dir 2 bam files (cellsorted and original).\nSee also [velocyto turorial](https://velocyto.org/velocyto.py/tutorial/cli.html#notes-on-first-runtime-and-parallelization)\n",
+        "description": "Velocyto is a library for the analysis of RNA velocity. velocyto.py CLI use\n`Path(resolve_path=True)` and breaks the nextflow logic of symbolic links.\nIf in the work dir velocyto find a file named EXACTLY `cellsorted_[ORIGINAL_BAM_NAME]`\nit will skip the samtools sort step.\nCellsorted bam file should be cell sorted with:\n```bash\n    samtools sort -t CB -O BAM -o cellsorted_input.bam input.bam\n```\nSee module test for an example with the SAMTOOLS_SORT nf-core module.\nConfig example to cellsort input bam using SAMTOOLS_SORT:\n```groovy\n    withName: SAMTOOLS_SORT {\n        ext.prefix = { \"cellsorted_${bam.baseName}\" }\n        ext.args = '-t CB -O BAM'\n    }\n```\nOptional mask must be passed with `ext.args` and option `--mask`\nThis is why I need to stage in the work dir 2 bam files (cellsorted and original).\nSee also [velocyto tutorial](https://velocyto.org/velocyto.py/tutorial/cli.html#notes-on-first-runtime-and-parallelization)\n",
         "keywords": [
           "count",
           "rnaseq",
@@ -195237,7 +195363,7 @@
               {
                 "*.xg": {
                   "type": "file",
-                  "description": "File containing a succint, queryable version of the input graph(s) or read for GCSA or distance indexing",
+                  "description": "File containing a succinct, queryable version of the input graph(s) or read for GCSA or distance indexing",
                   "pattern": "*.xg"
                 }
               }
@@ -198044,7 +198170,13 @@
           "@mazzalab",
           "@tm4zza"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "fastqrepair",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "wipertools_fastqscatter",
@@ -198155,7 +198287,13 @@
           "@mazzalab",
           "@tm4zza"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "fastqrepair",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "wipertools_fastqwiper",
@@ -198277,7 +198415,13 @@
           "@mazzalab",
           "@tm4zza"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "fastqrepair",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "wipertools_reportgather",
@@ -200585,7 +200729,7 @@
           },
           {
             "ch_blacklist": {
-              "description": "An optional channel containing a BED file with regions to mask from the analyis\nStructure: [ val(meta5), path(blacklist) ]\n"
+              "description": "An optional channel containing a BED file with regions to mask from the analysis\nStructure: [ val(meta5), path(blacklist) ]\n"
             }
           }
         ],
@@ -205722,7 +205866,7 @@
           {
             "summary": {
               "type": "file",
-              "description": "Aligment log",
+              "description": "Alignment log",
               "pattern": "*.log"
             }
           },
@@ -206261,7 +206405,7 @@
             "groupreadsbyumi_strategy": {
               "type": "string",
               "description": "",
-              "Reguired argument": "defines the UMI assignment strategy.",
+              "Required argument": "defines the UMI assignment strategy.",
               "enum": [
                 "Identity",
                 "Edit",
@@ -208215,6 +208359,10 @@
         {
           "name": "phageannotator",
           "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
         }
       ]
     },
@@ -208264,7 +208412,7 @@
           {
             "taxonomy": {
               "type": "file",
-              "description": "Channel containing the tab seperated file with all assigned taxonomy.\nStructure: [ val(meta), path(tsv) ]\n",
+              "description": "Channel containing the tab separated file with all assigned taxonomy.\nStructure: [ val(meta), path(tsv) ]\n",
               "pattern": "*.tsv"
             }
           },
@@ -211905,6 +212053,10 @@
         {
           "name": "riboseq",
           "version": "1.0.1"
+        },
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
         }
       ]
     },
@@ -212383,6 +212535,10 @@
           "version": "1.0.1"
         },
         {
+          "name": "references",
+          "version": "0.1"
+        },
+        {
           "name": "reportho",
           "version": "1.0.1"
         },
@@ -212684,6 +212840,10 @@
           "version": "1.0.1"
         },
         {
+          "name": "references",
+          "version": "0.1"
+        },
+        {
           "name": "reportho",
           "version": "1.0.1"
         },
@@ -212915,6 +213075,10 @@
         {
           "name": "rangeland",
           "version": "dev"
+        },
+        {
+          "name": "references",
+          "version": "0.1"
         },
         {
           "name": "rnaseq",
@@ -213160,7 +213324,7 @@
         "input": [
           {
             "ch_vcf": {
-              "description": "vcf file to annotate\nStructure: [ val(meta), path(vcf), [path(custom_file1), path(custom_file2)... (optionnal)] ]\n"
+              "description": "vcf file to annotate\nStructure: [ val(meta), path(vcf), [path(custom_file1), path(custom_file2)... (optional)] ]\n"
             }
           },
           {
