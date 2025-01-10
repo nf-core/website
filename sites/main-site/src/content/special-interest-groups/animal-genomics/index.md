@@ -43,4 +43,4 @@ Join the [nf-core Slack](/join#slack) and find us in the _#animal-genomics_ chan
 
 # Alumni:
 
-  - bjlang: Björn Langer
+- bjlang: Björn Langer
