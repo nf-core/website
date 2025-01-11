@@ -9,8 +9,6 @@ endDate: '2025-03-19'
 endTime: '17:00+01:00'
 locations:
   - name: Seqera
-    address: |
-      Not sure yet.
     links:
       - https://seqera.io/
     geoCoordinates: [0, 0]

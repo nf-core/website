@@ -10,10 +10,10 @@ endTime: '17:00+02:00'
 locations:
   - name: BSRC Alexander Fleming
     address: |
-      Will probably be just a room in the research center
+      Flemingk 34, Vari 166 72, Greece
     links:
       - https://www.fleming.gr/
-    geoCoordinates: [0, 0]
+    geoCoordinates: [37.82465383894673, 23.793974641188694]
 ---
 
 Attendees from outside BSRC Alexander Fleming **can** attend.

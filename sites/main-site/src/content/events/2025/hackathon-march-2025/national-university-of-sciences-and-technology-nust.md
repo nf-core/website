@@ -8,12 +8,12 @@ startTime: '09:00+00:00'
 endDate: '2025-03-19'
 endTime: '17:00+00:00'
 locations:
-  - name: National University of Sciences and Technology (NUST)
+  - name: School of Interdisciplinary Engineering and Sciences, National University of Sciences and Technology (NUST)
     address: |
-      I am planning to book a conference room in my institute (School of Interdisciplinary Engineering and Sciences) which is located in the premises of NUST University, Islamabad.
+      Khyber Rd, H-12, Islamabad, Islamabad Capital Territory 44000, Pakistan
     links:
       - https://nust.edu.pk/
-    geoCoordinates: [33.64481875, 72.99177825278744]
+    geoCoordinates: [33.64628330291216, 72.9974552257028]
 ---
 
 Attendees from outside National University of Sciences and Technology (NUST) **can** attend.
