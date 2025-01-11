@@ -9,8 +9,15 @@ endDate: '2025-03-19'
 endTime: '17:00+01:00'
 locations:
   - name: Hartwig Medical Foundation
-    address: I've contacted the e-science center in Amsterdam and asked for availabilities (and potential "collaboration" as well?).
+    address: |
+      I've contacted the e-science center in Amsterdam and asked for availabilities (and potential "collaboration" as well?).
     links:
       - https://www.hartwigmedicalfoundation.nl/
     geoCoordinates: [0, 0]
 ---
+
+Attendees from outside Hartwig Medical Foundation **can** attend.
+
+Main contact: Rayan Hassaïne ([r.hassaine@hartwigmedicalfoundation.nl](mailto:r.hassaine@hartwigmedicalfoundation.nl))
+
+Venue not yet booked, please check back later for more information.

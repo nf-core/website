@@ -9,8 +9,15 @@ endDate: '2025-03-19'
 endTime: '17:00+01:00'
 locations:
   - name: Uppsala University
-    address: SciLifeLab Uppsala, Entrance C11, BMC, Husargatan 3
+    address: |
+      SciLifeLab Uppsala, Entrance C11, BMC, Husargatan 3
     links:
       - https://www.uu.se/
-    geoCoordinates: [0, 0]
+    geoCoordinates: [59.8559511, 17.663355]
 ---
+
+Attendees from outside Uppsala University **cannot** attend.
+
+Main contact: Matilda Åslin ([matilda.aslin@medsci.uu.se](mailto:matilda.aslin@medsci.uu.se))
+
+Venue not yet booked, please check back later for more information.

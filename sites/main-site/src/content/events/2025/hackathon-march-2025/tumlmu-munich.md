@@ -9,8 +9,15 @@ endDate: '2025-03-19'
 endTime: '17:00+01:00'
 locations:
   - name: TUM/LMU Munich
-    address: Not sure yet
+    address: |
+      Not sure yet
     links:
       - https://www.tum.de/
     geoCoordinates: [48.2685638, 11.6779773]
 ---
+
+Attendees from outside TUM/LMU Munich **can** attend.
+
+Main contact: Nico Trummer ([nico.trummer@tum.de](mailto:nico.trummer@tum.de))
+
+Venue not yet booked, please check back later for more information.

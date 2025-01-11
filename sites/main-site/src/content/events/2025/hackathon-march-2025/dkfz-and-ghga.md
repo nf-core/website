@@ -9,8 +9,15 @@ endDate: '2025-03-19'
 endTime: '17:00+01:00'
 locations:
   - name: The German Cancer Research Center and GHGA
-    address: Mathematikon, Berliner Straße 41, 69120 Heidelberg, 4th floor
+    address: |
+      Mathematikon, Berliner Straße 41, 69120 Heidelberg, 4th floor
     links:
       - https://www.dkfz.de/en/index.html
     geoCoordinates: [0, 0]
 ---
+
+Attendees from outside The German Cancer Research Center and GHGA **can** attend.
+
+Main contact: Florian Heyl ([florian.heyl@dkfz-heidelberg.de](mailto:florian.heyl@dkfz-heidelberg.de))
+
+Venue not yet booked, please check back later for more information.

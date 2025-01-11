@@ -9,8 +9,15 @@ endDate: '2025-03-19'
 endTime: '17:00+01:00'
 locations:
   - name: Seqera
-    address: Not sure yet.
+    address: |
+      Not sure yet.
     links:
       - https://seqera.io/
     geoCoordinates: [0, 0]
 ---
+
+Attendees from outside Seqera **cannot** attend.
+
+Main contact: Phil Ewels ([phil.ewels@seqera.io](mailto:phil.ewels@seqera.io))
+
+Venue not yet booked, please check back later for more information.

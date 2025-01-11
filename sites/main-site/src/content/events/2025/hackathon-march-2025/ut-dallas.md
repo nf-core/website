@@ -15,3 +15,9 @@ locations:
       - https://www.utdallas.edu/
     geoCoordinates: [32.996456499999994, -96.75002103838341]
 ---
+
+Attendees from outside UT Dallas **can** attend.
+
+Main contact: Edmund Miller ([edmund.miller@utdallas.edu](mailto:edmund.miller@utdallas.edu))
+
+Venue not yet booked, please check back later for more information.

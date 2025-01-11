@@ -17,3 +17,9 @@ locations:
       - https://igdr.univ-rennes.fr/en
     geoCoordinates: [0, 0]
 ---
+
+Attendees from outside Institut of Genetics & Development of Rennes **can** attend.
+
+Main contact: Louis Le Nézet ([louis.lenezet@univ-rennes.fr](mailto:louis.lenezet@univ-rennes.fr))
+
+Venue not yet booked, please check back later for more information.

@@ -10,10 +10,16 @@ endTime: '17:00+01:00'
 locations:
   - name: CEITEC MU
     address: |
-      Kamenice 753/5, Bohunice, Brno
+      Address: Kamenice 753/5, Bohunice, Brno
       Building: E35
       https://www.muni.cz/en/map/complex-3
     links:
       - https://www.ceitec.eu/ceitec-mu
     geoCoordinates: [0, 0]
 ---
+
+Attendees from outside CEITEC MU **cannot** attend.
+
+Main contact: Patricie Skaláková ([Patricie.Skalakova@ceitec.muni.cz](mailto:Patricie.Skalakova@ceitec.muni.cz))
+
+Venue not yet booked, please check back later for more information.
