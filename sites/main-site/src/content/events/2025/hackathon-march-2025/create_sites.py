@@ -9,11 +9,11 @@ Script to generate location markdown files from CSV responses for the nf-core ha
 
 import csv
 import re
-from datetime import datetime
 import os
 from geopy.geocoders import Nominatim
 from geopy.exc import GeocoderTimedOut, GeocoderUnavailable
 import time
+
 
 def get_coordinates(address, org_name):
     geolocator = Nominatim(user_agent="nf-core-hackathon-sites")
@@ -38,6 +38,7 @@ def get_coordinates(address, org_name):
         # Be nice to the geocoding service
         time.sleep(1)
 
+
 def slugify(text):
     # Convert to lowercase and replace spaces with hyphens
     text = text.lower().strip()
@@ -45,6 +46,7 @@ def slugify(text):
     text = re.sub(r'[^\w\s-]', '', text)
     text = re.sub(r'[-\s]+', '-', text)
     return text
+
 
 def parse_timezone(tz_string):
     # Extract GMT offset from timezone string
@@ -56,6 +58,7 @@ def parse_timezone(tz_string):
             offset = f"{offset}:00"
         return offset
     return "+00:00"  # Default to UTC if no match
+
 
 def create_markdown_file(row, output_dir):
     # Extract organization name and create slug
@@ -85,7 +88,7 @@ def create_markdown_file(row, output_dir):
         "locations": [{
             "name": org_name,
             "address": venue,
-            "links": [row[f"What's {'{field:82459451-2436-4a71-8c6b-d2e64e3f2f6c}'}'s website?"]],
+            "links": [row["What's {{field:82459451-2436-4a71-8c6b-d2e64e3f2f6c}}'s website?"]],
             "geoCoordinates": coordinates
         }]
     }
@@ -114,6 +117,7 @@ def create_markdown_file(row, output_dir):
 
     return filename
 
+
 def main():
     # Get the directory of the CSV file
     current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -125,6 +129,7 @@ def main():
         for row in reader:
             filename = create_markdown_file(row, current_dir)
             print(f"Created {filename}")
+
 
 if __name__ == "__main__":
     main()
