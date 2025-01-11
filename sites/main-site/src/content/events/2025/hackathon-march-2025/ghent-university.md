@@ -4,9 +4,9 @@ subtitle: 'Local node of the nf-core hackathon at Ghent University'
 shortTitle: 'Ghent University'
 type: 'hackathon'
 startDate: '2025-03-17'
-startTime: '09:00+1:00'
+startTime: '09:00+01:00'
 endDate: '2025-03-19'
-endTime: '17:00+1:00'
+endTime: '17:00+01:00'
 locations:
   - name: Ghent University
     address: Probably a room on the University Hospital Campus

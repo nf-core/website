@@ -4,9 +4,9 @@ subtitle: 'Local node of the nf-core hackathon at Robert Koch Institute'
 shortTitle: 'Robert Koch Institute'
 type: 'hackathon'
 startDate: '2025-03-17'
-startTime: '09:00+1:00'
+startTime: '09:00+01:00'
 endDate: '2025-03-19'
-endTime: '17:00+1:00'
+endTime: '17:00+01:00'
 locations:
   - name: Robert Koch Institute
     address: S05.A.EG.017, Seestraße 10, 13353 Berlin, Germany
