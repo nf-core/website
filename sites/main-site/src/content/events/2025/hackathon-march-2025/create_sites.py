@@ -55,7 +55,7 @@ def parse_timezone(tz_string):
         offset = match.group(1)
         # Convert to format needed for ISO time
         if ':' not in offset:
-            offset = f"{offset}:00"
+            offset = f"{offset:0>2}:00"
         return offset
     return "+00:00"  # Default to UTC if no match
 
