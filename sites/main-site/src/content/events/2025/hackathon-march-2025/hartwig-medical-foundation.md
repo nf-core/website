@@ -11,7 +11,7 @@ locations:
   - name: Hartwig Medical Foundation
     links:
       - https://www.hartwigmedicalfoundation.nl/
-    geoCoordinates: [0, 0]
+    geoCoordinates: [52.356466924175145, 4.958426884133607]
 ---
 
 Attendees from outside Hartwig Medical Foundation **can** attend.

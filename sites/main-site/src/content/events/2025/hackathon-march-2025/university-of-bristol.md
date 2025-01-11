@@ -13,7 +13,7 @@ locations:
       Maybe a meeting space or a Library team meeting pod
     links:
       - https://www.bristol.ac.uk/
-    geoCoordinates: [51.4905582, -2.6304824978595356]
+    geoCoordinates: [51.457378744282, -2.5999533680427254]
 ---
 
 Attendees from outside University of Bristol **can** attend.

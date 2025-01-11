@@ -13,7 +13,7 @@ locations:
       Aula 50/51, edificio F, stecca 7, III piano
     links:
       - https://www.dcb.unisa.it/
-    geoCoordinates: [0, 0]
+    geoCoordinates: [40.775173140983995, 14.789198866446759]
 ---
 
 Attendees from outside Dept. Chemistry and Biology "A. Zambelli" - University of Salerno **can** attend.

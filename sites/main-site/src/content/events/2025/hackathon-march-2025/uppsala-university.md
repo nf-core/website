@@ -13,7 +13,7 @@ locations:
       SciLifeLab Uppsala, Entrance C11, BMC, Husargatan 3
     links:
       - https://www.uu.se/
-    geoCoordinates: [59.8559511, 17.663355]
+    geoCoordinates: [59.84198876540755, 17.63702031149601]
 ---
 
 Attendees from outside Uppsala University **cannot** attend.

@@ -11,7 +11,7 @@ locations:
   - name: TUM/LMU Munich
     links:
       - https://www.tum.de/
-    geoCoordinates: [48.2685638, 11.6779773]
+    geoCoordinates: [48.14889341976376, 11.568187126270088]
 ---
 
 Attendees from outside TUM/LMU Munich **can** attend.
