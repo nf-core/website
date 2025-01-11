@@ -9,8 +9,15 @@ endDate: '2025-03-19'
 endTime: '17:00+01:00'
 locations:
   - name: Dept. Biology and Biotechnology, University of Pavia
-    address: Laboratory of Computational Genomics, Building "Golgi-Spallanzani", 4th floor, room 2138
+    address: |
+      Laboratory of Computational Genomics, Building "Golgi-Spallanzani", 4th floor, room 2138
     links:
       - https://dbb.dip.unipv.it/en
     geoCoordinates: [0, 0]
 ---
+
+Attendees from outside Dept. Biology and Biotechnology, University of Pavia **can** attend.
+
+Main contact: Francesco Lescai ([francesco.lescai@unipv.it](mailto:francesco.lescai@unipv.it))
+
+Venue not yet booked, please check back later for more information.

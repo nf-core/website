@@ -9,8 +9,15 @@ endDate: '2025-03-19'
 endTime: '17:00+00:00'
 locations:
   - name: Bogota, Colombia
-    address: It will be in Colombia in Bogota, at University of the Andes
+    address: |
+      It will be in Colombia in Bogota, at University of the Andes
     links:
       - https://www.loka.com/
-    geoCoordinates: [0, 0]
+    geoCoordinates: [4.6533816, -74.0836333]
 ---
+
+Attendees from outside Bogota, Colombia **can** attend.
+
+Main contact: Jelena Pejovic Simeunovic ([jelena@loka.com](mailto:jelena@loka.com))
+
+Venue not yet booked, please check back later for more information.

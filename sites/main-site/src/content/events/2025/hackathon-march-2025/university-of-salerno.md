@@ -9,8 +9,13 @@ endDate: '2025-03-19'
 endTime: '17:00+01:00'
 locations:
   - name: Dept. Chemistry and Biology "A. Zambelli" - University of Salerno
-    address: Aula 50/51, edificio F, stecca 7, III piano
+    address: |
+      Aula 50/51, edificio F, stecca 7, III piano
     links:
       - https://www.dcb.unisa.it/
     geoCoordinates: [0, 0]
 ---
+
+Attendees from outside Dept. Chemistry and Biology "A. Zambelli" - University of Salerno **can** attend.
+
+Main contact: Margherita Mutarelli ([margherita.mutarelli@cnr.it](mailto:margherita.mutarelli@cnr.it))
