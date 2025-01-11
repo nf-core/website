@@ -40,24 +40,32 @@ def get_coordinates(address, org_name):
 
 
 def slugify(text):
-    # Convert to lowercase and replace spaces with hyphens
+    # Custom mappings for specific organizations
+    mappings = {
+        "brain-institute-federal-university-of-rio-grande-do-norte": "university-of-rio-grande-do-norte",
+        "dept-biology-and-biotechnology-university-of-pavia": "university-of-pavia",
+        "dept-chemistry-and-biology-a-zambelli-university-of-salerno": "university-of-salerno",
+        "the-german-cancer-research-center-and-ghga": "dkfz-and-ghga"
+    }
+
+    # First do the normal slugification
     text = text.lower().strip()
     # Remove special characters and replace spaces/underscores with hyphens
     text = re.sub(r'[^\w\s-]', '', text)
     text = re.sub(r'[-\s]+', '-', text)
     text = text.replace('ü', 'u').replace('ä', 'a').replace('ö', 'o')
-    return text
+
+    # Then check if we need to override with a custom mapping
+    return mappings.get(text, text)
 
 
 def parse_timezone(tz_string):
     # Extract GMT offset from timezone string
-    match = re.search(r'GMT([+-]\d+(?::\d+)?)', tz_string)
+    match = re.search(r'GMT([+-])(\d+)', tz_string)
     if match:
-        offset = match.group(1)
-        # Convert to format needed for ISO time
-        if ':' not in offset:
-            offset = f"{offset:0>2}:00"
-        return offset
+        sign = match.group(1)
+        hours = int(match.group(2))
+        return f"{sign}{hours:02d}:00"
     return "+00:00"  # Default to UTC if no match
 
 
