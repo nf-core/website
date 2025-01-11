@@ -11,7 +11,7 @@ locations:
   - name: Seqera
     links:
       - https://seqera.io/
-    geoCoordinates: [0, 0]
+    geoCoordinates: [41.40327760881944, 2.2001243552458476]
 ---
 
 Attendees from outside Seqera **cannot** attend.

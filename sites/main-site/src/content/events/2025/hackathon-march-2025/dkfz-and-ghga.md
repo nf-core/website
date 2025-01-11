@@ -13,7 +13,7 @@ locations:
       Mathematikon, Berliner Straße 41, 69120 Heidelberg, 4th floor
     links:
       - https://www.dkfz.de/en/index.html
-    geoCoordinates: [0, 0]
+    geoCoordinates: [49.41926099905141, 8.675902326327275]
 ---
 
 Attendees from outside The German Cancer Research Center and GHGA **can** attend.

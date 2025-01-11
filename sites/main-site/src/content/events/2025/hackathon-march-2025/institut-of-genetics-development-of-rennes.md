@@ -15,7 +15,7 @@ locations:
       CS 34317 / 35043 Rennes Cedex, France
     links:
       - https://igdr.univ-rennes.fr/en
-    geoCoordinates: [0, 0]
+    geoCoordinates: [48.11770399359654, -1.697578778661792]
 ---
 
 Attendees from outside Institut of Genetics & Development of Rennes **can** attend.

@@ -13,7 +13,7 @@ locations:
       R. do Horto - Lagoa Nova, Natal - RN, 59076-550, Room 0.16
     links:
       - https://neuro.ufrn.br/
-    geoCoordinates: [0, 0]
+    geoCoordinates: [-5.833417964857247, -35.204760341800046]
 ---
 
 Attendees from outside Brain Institute, Federal University of Rio Grande do Norte **can** attend.

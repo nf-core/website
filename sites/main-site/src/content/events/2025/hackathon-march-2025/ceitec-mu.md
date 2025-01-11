@@ -15,7 +15,7 @@ locations:
     links:
       - https://www.ceitec.eu/ceitec-mu
       - https://www.muni.cz/en/map/complex-3
-    geoCoordinates: [0, 0]
+    geoCoordinates: [49.17763845732099, 16.57071755515133]
 ---
 
 Attendees from outside CEITEC MU **cannot** attend.

@@ -13,7 +13,7 @@ locations:
       Laboratory of Computational Genomics, Building "Golgi-Spallanzani", 4th floor, room 2138
     links:
       - https://dbb.dip.unipv.it/en
-    geoCoordinates: [0, 0]
+    geoCoordinates: [45.202491481815194, 9.138288526141721]
 ---
 
 Attendees from outside Dept. Biology and Biotechnology, University of Pavia **can** attend.
