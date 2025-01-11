@@ -45,6 +45,7 @@ def slugify(text):
     # Remove special characters and replace spaces/underscores with hyphens
     text = re.sub(r'[^\w\s-]', '', text)
     text = re.sub(r'[-\s]+', '-', text)
+    text = text.replace('ü', 'u').replace('ä', 'a').replace('ö', 'o')
     return text
 
 
@@ -100,14 +101,34 @@ def create_markdown_file(row, output_dir):
             content += "locations:\n"
             for location in value:
                 content += "  - name: " + str(location["name"]) + "\n"
-                content += "    address: " + str(location["address"]) + "\n"
+                content += "    address: |\n      " + str(location["address"]).replace("\n", "\n      ") + "\n"
                 content += "    links:\n"
                 for link in location["links"]:
                     content += f"      - {link}\n"
                 content += "    geoCoordinates: " + str(location["geoCoordinates"]) + "\n"
         else:
             content += f"{key}: '{str(value)}'\n"
-    content += "---\n"
+    content += "---\n\n"  # Add extra newline after frontmatter
+
+    # Add body content
+    org_name = row["What's the name of the organization where the hackathon will take place?"]
+    contact_name = f"{row['First name']} {row['Last name']}"
+    contact_email = row['Email']
+    external_allowed = row["Will your site be open to attendees from outside of {{field:82459451-2436-4a71-8c6b-d2e64e3f2f6c}}?"]
+    venue_booked = row["Have you already booked a space for hackathon?"]
+
+    # Add attendance scope text
+    if external_allowed == "1":
+        content += f"Attendees from outside {org_name} **can** attend.\n\n"
+    else:
+        content += f"Attendees from outside {org_name} **cannot** attend.\n\n"
+
+    # Add contact information
+    content += f"Main contact: {contact_name} ([{contact_email}](mailto:{contact_email}))\n\n"
+
+    # Add venue booking status
+    if venue_booked != "Yes":
+        content += "Venue not yet booked, please check back later for more information.\n\n"
 
     # Write to file
     filename = f"{location_slug}.md"
