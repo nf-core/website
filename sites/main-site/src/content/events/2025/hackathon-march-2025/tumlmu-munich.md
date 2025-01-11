@@ -1,0 +1,16 @@
+---
+title: 'Hackathon - March 2025 (TUM/LMU Munich)'
+subtitle: 'Local node of the nf-core hackathon at TUM/LMU Munich'
+shortTitle: 'TUM/LMU Munich'
+type: 'hackathon'
+startDate: '2025-03-17'
+startTime: '09:00+1:00'
+endDate: '2025-03-19'
+endTime: '17:00+1:00'
+locations:
+  - name: TUM/LMU Munich
+    address: Not sure yet
+    links:
+      - https://www.tum.de/
+    geoCoordinates: [48.2685638, 11.6779773]
+---
