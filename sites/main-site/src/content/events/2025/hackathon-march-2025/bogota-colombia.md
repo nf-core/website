@@ -1,6 +1,6 @@
 ---
 title: 'Hackathon - March 2025 (Bogota, Colombia)'
-subtitle: 'Local node of the nf-core hackathon at Bogota, Colombia'
+subtitle: 'Local node of the nf-core hackathon at University of the Andes, Colombia'
 shortTitle: 'Bogota, Colombia'
 type: 'hackathon'
 startDate: '2025-03-17'
@@ -10,7 +10,7 @@ endTime: '17:00+00:00'
 locations:
   - name: Bogota, Colombia
     address: |
-      It will be in Colombia in Bogota, at University of the Andes
+      University of the Andes
     links:
       - https://www.loka.com/
     geoCoordinates: [4.6533816, -74.0836333]

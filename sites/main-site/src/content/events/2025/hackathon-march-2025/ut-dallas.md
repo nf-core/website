@@ -10,10 +10,10 @@ endTime: '17:00+00:00'
 locations:
   - name: UT Dallas
     address: |
-      Location will probably be: https://research.utdallas.edu/facilities/bsb
+      860 N Loop Rd, Richardson, TX 75080, United States
     links:
-      - https://www.utdallas.edu/
-    geoCoordinates: [32.996456499999994, -96.75002103838341]
+      - https://research.utdallas.edu/facilities/bsb
+    geoCoordinates: [32.99167064162149, -96.74956973198854]
 ---
 
 Attendees from outside UT Dallas **can** attend.

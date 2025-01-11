@@ -10,10 +10,10 @@ endTime: '17:00+00:00'
 locations:
   - name: Harvard Chan School
     address: |
-      I am trying to get something around Kendall since it is nicer but if not it would be Landmark building in Boston
+      Maybe something around Kendall, if not then it'll be the Landmark building in Boston
     links:
       - https://bioinformatics.sph.harvard.edu
-    geoCoordinates: [0, 0]
+    geoCoordinates: [42.34502162481195, -71.10233070281164]
 ---
 
 Attendees from outside Harvard Chan School **can** attend.

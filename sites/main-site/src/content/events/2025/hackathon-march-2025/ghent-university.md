@@ -10,10 +10,10 @@ endTime: '17:00+01:00'
 locations:
   - name: Ghent University
     address: |
-      Probably a room on the University Hospital Campus
+      Corneel Heymanslaan 10, 9000 Gent, Belgium
     links:
       - https://www.ugent.be/
-    geoCoordinates: [51.00784845, 3.710883068491984]
+    geoCoordinates: [51.02456280575994, 3.7261081350377676]
 ---
 
 Attendees from outside Ghent University **can** attend.

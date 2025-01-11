@@ -9,8 +9,6 @@ endDate: '2025-03-19'
 endTime: '17:00+01:00'
 locations:
   - name: TUM/LMU Munich
-    address: |
-      Not sure yet
     links:
       - https://www.tum.de/
     geoCoordinates: [48.2685638, 11.6779773]

@@ -10,7 +10,7 @@ endTime: '17:00+01:00'
 locations:
   - name: CRG
     address: |
-      PRBB building, C/Doctor Aiguader, 88 (Room TBC)
+      PRBB building, C/Doctor Aiguader, 88
     links:
       - https://www.crg.eu/
     geoCoordinates: [30.336332499999997, -81.51521803329344]
