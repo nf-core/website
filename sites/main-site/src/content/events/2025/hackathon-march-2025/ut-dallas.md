@@ -1,6 +1,6 @@
 ---
 title: 'Hackathon - March 2025 (UT Dallas)'
-subtitle: 'Local node of the nf-core hackathon at UT Dallas'
+subtitle: 'Local node of the nf-core hackathon at UT Dallas, USA'
 shortTitle: 'UT Dallas'
 type: 'hackathon'
 startDate: '2025-03-17'

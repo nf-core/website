@@ -1,6 +1,6 @@
 ---
 title: 'Hackathon - March 2025 (CRG)'
-subtitle: 'Local node of the nf-core hackathon at CRG'
+subtitle: 'Local node of the nf-core hackathon at CRG, Spain'
 shortTitle: 'CRG'
 type: 'hackathon'
 startDate: '2025-03-17'
@@ -13,7 +13,7 @@ locations:
       PRBB building, C/Doctor Aiguader, 88
     links:
       - https://www.crg.eu/
-    geoCoordinates: [30.336332499999997, -81.51521803329344]
+    geoCoordinates: [41.385532, 2.193823]
 ---
 
 Attendees from outside CRG **can** attend.

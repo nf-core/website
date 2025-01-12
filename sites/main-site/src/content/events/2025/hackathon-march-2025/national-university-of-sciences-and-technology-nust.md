@@ -1,6 +1,6 @@
 ---
 title: 'Hackathon - March 2025 (National University of Sciences and Technology (NUST))'
-subtitle: 'Local node of the nf-core hackathon at National University of Sciences and Technology (NUST)'
+subtitle: 'Local node of the nf-core hackathon at National University of Sciences and Technology (NUST), Pakistan'
 shortTitle: 'National University of Sciences and Technology (NUST)'
 type: 'hackathon'
 startDate: '2025-03-17'

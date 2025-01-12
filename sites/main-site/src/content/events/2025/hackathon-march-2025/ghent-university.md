@@ -1,6 +1,6 @@
 ---
 title: 'Hackathon - March 2025 (Ghent University)'
-subtitle: 'Local node of the nf-core hackathon at Ghent University'
+subtitle: 'Local node of the nf-core hackathon at Ghent University, Belgium'
 shortTitle: 'Ghent University'
 type: 'hackathon'
 startDate: '2025-03-17'
@@ -13,7 +13,7 @@ locations:
       Corneel Heymanslaan 10, 9000 Gent, Belgium
     links:
       - https://www.ugent.be/
-    geoCoordinates: [51.02456280575994, 3.7261081350377676]
+    geoCoordinates: [51.025974, 3.728623]
 ---
 
 Attendees from outside Ghent University **can** attend.

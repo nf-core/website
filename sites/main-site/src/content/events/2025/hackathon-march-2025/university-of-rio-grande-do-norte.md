@@ -1,6 +1,6 @@
 ---
 title: 'Hackathon - March 2025 (Brain Institute, Federal University of Rio Grande do Norte)'
-subtitle: 'Local node of the nf-core hackathon at Brain Institute, Federal University of Rio Grande do Norte'
+subtitle: 'Local node of the nf-core hackathon at Brain Institute, Federal University of Rio Grande do Norte, Brazil'
 shortTitle: 'Brain Institute, Federal University of Rio Grande do Norte'
 type: 'hackathon'
 startDate: '2025-03-17'

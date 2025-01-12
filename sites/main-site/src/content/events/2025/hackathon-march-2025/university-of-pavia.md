@@ -1,6 +1,6 @@
 ---
 title: 'Hackathon - March 2025 (Dept. Biology and Biotechnology, University of Pavia)'
-subtitle: 'Local node of the nf-core hackathon at Dept. Biology and Biotechnology, University of Pavia'
+subtitle: 'Local node of the nf-core hackathon at Dept. Biology and Biotechnology, University of Pavia, Italy'
 shortTitle: 'Dept. Biology and Biotechnology, University of Pavia'
 type: 'hackathon'
 startDate: '2025-03-17'

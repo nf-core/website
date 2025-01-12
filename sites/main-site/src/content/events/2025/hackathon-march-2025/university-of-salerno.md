@@ -1,6 +1,6 @@
 ---
 title: 'Hackathon - March 2025 (Dept. Chemistry and Biology "A. Zambelli" - University of Salerno)'
-subtitle: 'Local node of the nf-core hackathon at Dept. Chemistry and Biology "A. Zambelli" - University of Salerno'
+subtitle: 'Local node of the nf-core hackathon at Dept. Chemistry and Biology "A. Zambelli" - University of Salerno, Italy'
 shortTitle: 'Dept. Chemistry and Biology "A. Zambelli" - University of Salerno'
 type: 'hackathon'
 startDate: '2025-03-17'

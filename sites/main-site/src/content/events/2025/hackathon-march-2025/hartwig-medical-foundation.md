@@ -1,6 +1,6 @@
 ---
 title: 'Hackathon - March 2025 (Hartwig Medical Foundation)'
-subtitle: 'Local node of the nf-core hackathon at Hartwig Medical Foundation'
+subtitle: 'Local node of the nf-core hackathon at Hartwig Medical Foundation, Netherlands'
 shortTitle: 'Hartwig Medical Foundation'
 type: 'hackathon'
 startDate: '2025-03-17'
