@@ -1,6 +1,6 @@
 ---
 title: 'Hackathon - March 2025 (Uppsala University)'
-subtitle: 'Local node of the nf-core hackathon at Uppsala University'
+subtitle: 'Local node of the nf-core hackathon at Uppsala University, Sweden'
 shortTitle: 'Uppsala University'
 type: 'hackathon'
 startDate: '2025-03-17'

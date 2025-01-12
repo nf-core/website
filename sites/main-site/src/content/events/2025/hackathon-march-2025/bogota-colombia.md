@@ -13,7 +13,7 @@ locations:
       University of the Andes
     links:
       - https://www.loka.com/
-    geoCoordinates: [4.6533816, -74.0836333]
+    geoCoordinates: [4.601261, -74.066064]
 ---
 
 Attendees from outside Bogota, Colombia **can** attend.

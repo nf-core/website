@@ -1,6 +1,6 @@
 ---
 title: 'Hackathon - March 2025 (PERIMATRIX IT)'
-subtitle: 'Local node of the nf-core hackathon at PERIMATRIX IT'
+subtitle: 'Local node of the nf-core hackathon at PERIMATRIX IT, India'
 shortTitle: 'PERIMATRIX IT'
 type: 'hackathon'
 startDate: '2025-03-17'

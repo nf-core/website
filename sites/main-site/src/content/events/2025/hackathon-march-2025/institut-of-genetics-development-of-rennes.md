@@ -1,6 +1,6 @@
 ---
 title: 'Hackathon - March 2025 (Institut of Genetics & Development of Rennes)'
-subtitle: 'Local node of the nf-core hackathon at Institut of Genetics & Development of Rennes'
+subtitle: 'Local node of the nf-core hackathon at Institut of Genetics & Development of Rennes, France'
 shortTitle: 'Institut of Genetics & Development of Rennes'
 type: 'hackathon'
 startDate: '2025-03-17'

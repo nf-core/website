@@ -1,6 +1,6 @@
 ---
 title: 'Hackathon - March 2025 (Robert Koch Institute)'
-subtitle: 'Local node of the nf-core hackathon at Robert Koch Institute'
+subtitle: 'Local node of the nf-core hackathon at Robert Koch Institute, Germany'
 shortTitle: 'Robert Koch Institute'
 type: 'hackathon'
 startDate: '2025-03-17'
@@ -13,7 +13,7 @@ locations:
       S05.A.EG.017, Seestraße 10, 13353 Berlin, Germany
     links:
       - https://www.rki.de/EN/Home/homepage_node.html
-    geoCoordinates: [52.51868415, 13.381474582931727]
+    geoCoordinates: [52.543391, 13.340389]
 ---
 
 Attendees from outside Robert Koch Institute **can** attend.

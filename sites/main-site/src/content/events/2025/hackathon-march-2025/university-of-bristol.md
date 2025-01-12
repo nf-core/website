@@ -1,6 +1,6 @@
 ---
 title: 'Hackathon - March 2025 (University of Bristol)'
-subtitle: 'Local node of the nf-core hackathon at University of Bristol'
+subtitle: 'Local node of the nf-core hackathon at University of Bristol, UK'
 shortTitle: 'University of Bristol'
 type: 'hackathon'
 startDate: '2025-03-17'
@@ -9,8 +9,6 @@ endDate: '2025-03-19'
 endTime: '17:00+00:00'
 locations:
   - name: University of Bristol
-    address: |
-      Maybe a meeting space or a Library team meeting pod
     links:
       - https://www.bristol.ac.uk/
     geoCoordinates: [51.457378744282, -2.5999533680427254]

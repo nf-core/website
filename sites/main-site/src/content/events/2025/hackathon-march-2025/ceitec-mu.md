@@ -1,6 +1,6 @@
 ---
 title: 'Hackathon - March 2025 (CEITEC MU)'
-subtitle: 'Local node of the nf-core hackathon at CEITEC MU'
+subtitle: 'Local node of the nf-core hackathon at CEITEC MU, Czechia'
 shortTitle: 'CEITEC MU'
 type: 'hackathon'
 startDate: '2025-03-17'

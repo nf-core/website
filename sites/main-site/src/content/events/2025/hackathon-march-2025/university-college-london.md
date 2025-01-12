@@ -1,6 +1,6 @@
 ---
 title: 'Hackathon - March 2025 (University College London)'
-subtitle: 'Local node of the nf-core hackathon at University College London'
+subtitle: 'Local node of the nf-core hackathon at University College London, UK'
 shortTitle: 'University College London'
 type: 'hackathon'
 startDate: '2025-03-17'

@@ -1,6 +1,6 @@
 ---
 title: 'Hackathon - March 2025 (TUM/LMU Munich)'
-subtitle: 'Local node of the nf-core hackathon at TUM/LMU Munich'
+subtitle: 'Local node of the nf-core hackathon at TUM/LMU Munich, Germany'
 shortTitle: 'TUM/LMU Munich'
 type: 'hackathon'
 startDate: '2025-03-17'

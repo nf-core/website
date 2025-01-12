@@ -1,6 +1,6 @@
 ---
 title: 'Hackathon - March 2025 (BSRC Alexander Fleming)'
-subtitle: 'Local node of the nf-core hackathon at BSRC Alexander Fleming'
+subtitle: 'Local node of the nf-core hackathon at BSRC Alexander Fleming, Greece'
 shortTitle: 'BSRC Alexander Fleming'
 type: 'hackathon'
 startDate: '2025-03-17'

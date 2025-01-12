@@ -9,8 +9,6 @@ endDate: '2025-03-19'
 endTime: '17:00+00:00'
 locations:
   - name: Harvard Chan School
-    address: |
-      Maybe something around Kendall, if not then it'll be the Landmark building in Boston
     links:
       - https://bioinformatics.sph.harvard.edu
     geoCoordinates: [42.34502162481195, -71.10233070281164]

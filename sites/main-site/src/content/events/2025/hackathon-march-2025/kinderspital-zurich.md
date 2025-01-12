@@ -1,6 +1,6 @@
 ---
 title: 'Hackathon - March 2025 (Kinderspital Zürich)'
-subtitle: 'Local node of the nf-core hackathon at Kinderspital Zürich'
+subtitle: 'Local node of the nf-core hackathon at Kinderspital Zürich, Switzerland'
 shortTitle: 'Kinderspital Zürich'
 type: 'hackathon'
 startDate: '2025-03-17'

@@ -1,6 +1,6 @@
 ---
 title: 'Hackathon - March 2025 (Seqera)'
-subtitle: 'Local node of the nf-core hackathon at Seqera'
+subtitle: 'Local node of the nf-core hackathon at Seqera, Spain'
 shortTitle: 'Seqera'
 type: 'hackathon'
 startDate: '2025-03-17'
@@ -11,7 +11,7 @@ locations:
   - name: Seqera
     links:
       - https://seqera.io/
-    geoCoordinates: [41.40327760881944, 2.2001243552458476]
+    geoCoordinates: [41.403236, 2.200127]
 ---
 
 Attendees from outside Seqera **cannot** attend.

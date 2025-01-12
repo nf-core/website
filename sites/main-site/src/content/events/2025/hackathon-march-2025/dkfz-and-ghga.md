@@ -1,6 +1,6 @@
 ---
 title: 'Hackathon - March 2025 (The German Cancer Research Center and GHGA)'
-subtitle: 'Local node of the nf-core hackathon at The German Cancer Research Center and GHGA'
+subtitle: 'Local node of the nf-core hackathon at DKFZ and GHGA, Germany'
 shortTitle: 'The German Cancer Research Center and GHGA'
 type: 'hackathon'
 startDate: '2025-03-17'
