@@ -29,7 +29,7 @@ const map_location = [
     <h5 class="mt-0">{frontmatter.locations[0].name}</h5>
     <p>{frontmatter.locations[0].address}</p>
     <p><a href={frontmatter.locations[0].links[0]}>{frontmatter.locations[0].links[0]}</a></p>
-    <Leaflet locations={map_location} client:only="svelte" />
+    {/* <Leaflet locations={map_location} client:only="svelte" /> */}
 </Admonition>
 
 <slot />
