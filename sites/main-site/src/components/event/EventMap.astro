@@ -8,13 +8,13 @@ let events = await getCollection('events', ({ slug }) => {
     return slug.startsWith(event);
 });
 
-const local_sites_map: {
+let local_sites_map: {
     location: [number, number];
     name: string;
     url: string;
 }[] = events.map((site) => {
     const location = site.data.locations?.[0];
-    if (location) {
+    if (location && location.geoCoordinates) {
         return {
             location: location.geoCoordinates,
             name: site.data.title,
@@ -23,6 +23,8 @@ const local_sites_map: {
     }
     return null;
 });
+// remove null values
+local_sites_map = local_sites_map.filter((site) => site !== null);
 ---
 
 <div>
