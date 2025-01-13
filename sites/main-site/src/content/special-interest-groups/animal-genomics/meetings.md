@@ -19,7 +19,7 @@ of every month, usually at 4 PM CET / 10 AM ET / 7 AM PT for 1h.
 |             Oct 16 | Roderic Guigó Serra (CRG, Spain)                                                                                             | [October Meeting](/events/2024/SIG_animalgenomics_Oct)       |
 | Nov 20 (cancelled) | ~~Harris Lewin (Arizona State University, USA)~~                                                                             | [November Meeting](/events/2024/SIG_animalgenomics_Nov)      |
 |             Dec 18 | Emily Clark (The Roslin Institute, University of Edinburgh, UK)                                                              | [December Meeting](/events/2024/SIG_animalgenomics_Dec)      |
-|             Jan 15 | TBA                                                                                                                          | TBA                                                          |
+|             Jan 22 | Round table for discussing the section of the ELIXIR Domestic Animals Genome & Phenome Focus Group                           | [January Meeting](/events/2025/SIG_animalgenomics_Jan)       |
 |             Feb 19 | Harris Lewin (Arizona State University, USA)                                                                                 | TBA                                                          |
 
 # How to join

@@ -1,4 +1,4 @@
-# nf_core.params_file
+# nf_core.pipelines.params_file
 
 Create a YAML parameter file
 

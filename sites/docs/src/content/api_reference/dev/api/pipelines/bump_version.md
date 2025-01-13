@@ -1,4 +1,4 @@
-# nf_core.bump_version
+# nf_core.pipelines.bump_version
 
 Bumps the version number in all appropriate files for
 a nf-core pipeline.

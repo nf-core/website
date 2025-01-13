@@ -1,1 +1,1 @@
-# nf_core.utils
+# nf_core.pipelines.utils
