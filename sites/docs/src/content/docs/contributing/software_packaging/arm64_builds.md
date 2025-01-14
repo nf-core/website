@@ -18,16 +18,18 @@ A successful result is being able to type `conda install {package}` and get the 
 
 ## Getting set up
 
-### To use Bioconda (required)
+To use Bioconda _(required)_
 
-1. Install Conda: (say yes at the end to get it set things up when you login next time)
+1. Install Conda:
 
    ```bash
    wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh
    sh ./Miniforge3-Linux-aarch64.sh
    ```
 
-2. Install Bioconda
+   Input **Yes** at the end of the install for conda to load when you open a new terminal.
+
+2. Install Bioconda:
 
    ```bash
    conda config --add channels bioconda
@@ -35,16 +37,23 @@ A successful result is being able to type `conda install {package}` and get the 
    conda config --set channel_priority strict
    ```
 
-To develop locally _(if running on an arm64 machine - optional)_, add a conda dev environment to do local build / testing of Bioconda.
+To develop locally _(if running on an arm64 machine - optional)_
 
-Note that local testing isn't always reliable (it often works when the CI doesn't).
+1. Add a conda dev environment to do local build / testing of Bioconda:
 
-```bash
-conda create -n bioconda-builds -c conda-forge -c bioconda bioconda-utils
-conda activate bioconda-builds
-```
+   ```bash
+   conda create -n bioconda-builds -c conda-forge -c bioconda bioconda-utils
+   conda activate bioconda-builds
+   ```
+
+:::note
+Local testing isn't always reliable. It often works when the CI doesn't.
+:::
+
 
 ## Enabling packages
+
+Packages can be tested locally or by using Wave.
 
 ### Testing locally
 
@@ -72,16 +81,16 @@ Container provisioning did not complete successfully
 - Find out more here: https://wave.seqera.io/view/builds/bd-xxxxxxx
 ```
 
-If so, follow that link to go to a _build details_ web page, which includes the full conda output, as if you'd run locally.
+If you see this error, follow the link to go to the _build details_ web page. It includes the full conda output, as if you'd run it locally.
 
 ### Interpreting output
 
 If the package doesn't build, there are usually two types of error:
 
-1. it says not found - so you need to fix that package
-2. it lists dependencies that are not found and you now have a list to go after.
+1. It says "not found" - you need to fix that package
+2. It lists dependencies that are not found - you now have a list of dependencies to investigate. 
 
-Most packages we need to fix are in Bioconda, but some are in conda-forge.
+Most packages that need to be fixed are in Bioconda. However, some are in conda-forge.
 If there is a `recipes/{package-name}` subdirectory in the [bioconda-recipes](https://github.com/bioconda/bioconda-recipes/) GitHub repo, then this is a Bioconda recipe.
 
 If the package is not a Bioconda recipe, it will be a conda-forge recipe.
@@ -90,9 +99,11 @@ Each repository is named in the form `{package-name}-feedstock`.
 
 ## Bioconda Recipes
 
+Bioconda recipes can be generic or non-generic. 
+
 ### Generic recipes
 
-Packages are either generic or not generic. A generic package can have missing non-generic (architecture specific, binary) dependencies and hence not work until the dependencies are made.
+A generic package can have missing non-generic (architecture-specific, binary) dependencies and, hence, not work until the dependencies are made.
 
 If a package is generic, the file `recipes/{name}/meta.yaml` will have this in the top level build section:
 
@@ -103,17 +114,17 @@ build:
 ..
 ```
 
-If a generic package doesn't work - it's a dependency at fault - go fix that.
+If a generic package doesn't work - a dependency is at fault and will require fixing.
 
 This can be as simple as bumping the build number and doing a PR, as generic packages are locked to versions they were built with.
-If those were built before the bioconda `linux-aarch64` support was added to a dependency, it might not be able to find it - so a rebuild can't harm.
+If those were built before the bioconda `linux-aarch64` support was added to a dependency, it might not be findable - so a rebuild won't harm it.
 
 ### Not-generic
 
-If a package is not generic - at some point it compiles native code, or uses binaries that it downloads (and usually for `x86` only).
+If a package is not generic, at some point, it compiles native code or uses binaries that it downloads (and usually for `x86` only).
 Examine the `meta.yaml` and the adjacent `build.sh` files.
 
-Normally, to enable it to try to build - add this section to the bottom of the `meta.yaml`:
+Normally, to enable it to try to build, add this section to the bottom of the `meta.yaml`:
 
 ```yaml
 extra:
@@ -122,7 +133,7 @@ extra:
     - osx-arm64
 ```
 
-**You must also bump the build number** (eg. add `1` to the existing number).
+**You must also bump the build number** (For example, add `1` to the existing number).
 If the build section is missing a package versioning (`pin`) line, you must add one to pass the linter.
 
 ```yaml
@@ -153,7 +164,7 @@ You can also build and test packages locally to be a bit quicker.
 It's not 100% reliable to track errors, although the container approach probably is.
 See [Bioconda dev instructions](https://bioconda.github.io/contributor/building-locally.html).
 
-If you want to build outside of the docker container (the containers often have UID and permission errors for me, YMMV), the command is as follows:
+If you want to build outside of the docker container (the containers often have UID and permission errors for me, YMMV), the command is:
 
 ```bash
 bioconda-utils build --packages {package}
@@ -165,7 +176,7 @@ bioconda-utils build --packages {package}
 
 To fix a conda-forge package, for example one called `perl-nonsense`:
 
-1. Head to https://github.com/conda-forge/perl-nonsense-feedstock
+1. Go to https://github.com/conda-forge/perl-nonsense-feedstock
 2. Check for any open pull requests, one might be an erroring migration to support Arm.
 
 - If there is one, and if it ran ages ago, the CI logs are probably deleted - so add the comment:
@@ -189,7 +200,7 @@ To fix a conda-forge package, for example one called `perl-nonsense`:
   ```
   @conda-forge-admin, please ping team
   ```
-- If there is still no response in a week then do:
+- If there is still no response, try adding a comment with the phrase:
   ```
   @conda-forge/core please help review and merge this PR
   ```
@@ -219,7 +230,7 @@ Next, create a new PR from your branch.
 
 You need to ask the conda-forge bot to do some 'rerendering' which builds a ton of config files / scripts from that recipe:
 
-- add a comment to your PR of `@conda-forge-admin please rerender`. If you have edited anything, it doesn't harm.
+- Add a comment to your PR of `@conda-forge-admin please rerender`. If you have edited anything, it doesn't harm.
 - Note things are very slow at the moment
   - It tries to build on `linux-ppc64le` and `linux-aarch64` using emulation (!) or Travis's arm fleet which have been erroring.
   - The platforms that are tried is set in the feedstock's `conda-forge.yml` file - if `ppc64le` is failing, you can remove the entry and just fix the `linux-aarch64` one.
