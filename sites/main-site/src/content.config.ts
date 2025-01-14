@@ -1,7 +1,8 @@
 import { z, defineCollection } from 'astro:content';
+import { glob } from 'astro/loaders';
 
 const events = defineCollection({
-    type: 'content',
+    loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/events' }),
     schema: z
         .object({
             title: z.string(),
@@ -74,7 +75,7 @@ const events = defineCollection({
         }),
 });
 const docs = defineCollection({
-    type: 'content',
+    loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/docs' }),
     schema: z.object({
         title: z.string(),
         subtitle: z.string().optional(),
@@ -87,7 +88,7 @@ const docs = defineCollection({
     }),
 });
 const about = defineCollection({
-    type: 'content',
+    loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/about' }),
     schema: z.object({
         title: z.string(),
         description: z.string(),
@@ -98,7 +99,7 @@ const about = defineCollection({
 });
 
 const blog = defineCollection({
-    type: 'content',
+    loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/blog' }),
     schema: z
         .object({
             title: z.string(),
@@ -148,7 +149,7 @@ const blog = defineCollection({
 });
 
 const specialInterestGroups = defineCollection({
-    type: 'content',
+    loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/special-interest-groups' }),
     schema: z
         .object({
             title: z.string(),
@@ -175,9 +176,13 @@ const specialInterestGroups = defineCollection({
         }),
 });
 
-const pipelines = defineCollection({});
+const pipelines = defineCollection({
+    loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/pipelines' }),
+});
 
-const api_reference = defineCollection({});
+const api_reference = defineCollection({
+    loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/api_reference' }),
+});
 
 export const collections = {
     events: events,

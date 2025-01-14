@@ -85,10 +85,10 @@ const sortEntries = (entries: SidebarEntry[]) => {
 };
 
 export const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[], url: string) => {
-    docs.sort((a, b) => a.slug.localeCompare(b.slug));
+    docs.sort((a, b) => a.id.localeCompare(b.id));
 
     docs.forEach((doc) => {
-        const parts = doc.slug.split('/');
+        const parts = doc.id.replace(/\.[^/.]+$/, '').split('/');
         let currentLevel = sections;
 
         parts.forEach((part, i) => {
@@ -116,7 +116,7 @@ export const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[], u
                 const newEntry = createLinkOrGroup(
                     parts.slice(0, i + 1).join('_'),
                     lastPart ? doc.data.shortTitle || label : label,
-                    lastPart ? '/docs/' + doc.slug : '', // add href to group if they have an index file
+                    lastPart ? '/docs/' + doc.id.replace(/\.[^/.]+$/, '') : '', // add href to group if they have an index file
                     lastPart,
                     url,
                     secondToLastPart && doc.data.parentWeight ? doc.data.parentWeight : doc.data.weight,
