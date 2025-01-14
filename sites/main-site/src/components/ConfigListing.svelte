@@ -1,12 +1,18 @@
 <script lang="ts">
+    import { run } from 'svelte/legacy';
+
     import ListingTableHeader from '@components/ListingTableHeader.svelte';
     import { SearchQuery, SortBy } from '@components/store';
 
-    export let configs: {
-        name: string;
-        content: string;
-        config: {};
-    }[] = [];
+    interface Props {
+        configs?: {
+            name: string;
+            content: string;
+            config: {};
+        }[];
+    }
+
+    let { configs = [] }: Props = $props();
 
     SortBy.set('Name');
 
@@ -54,7 +60,10 @@
         filteredConfigs = searchFilterSortConfigs(configs);
     });
 
-    $: filteredConfigs = searchFilterSortConfigs(configs);
+    let filteredConfigs;
+    run(() => {
+        filteredConfigs = searchFilterSortConfigs(configs);
+    });
     configs.map((config) => {
         config.name = config.name.replace('.md', '');
     });

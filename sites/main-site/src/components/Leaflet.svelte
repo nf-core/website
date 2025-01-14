@@ -2,12 +2,16 @@
     import { tileLayer, marker, map, Icon } from 'leaflet';
     import 'leaflet/dist/leaflet.css';
 
-    export let locations: {
-        location: [number, number];
-        name: string;
-        url: string;
-        image?: string;
-    }[] = [];
+    interface Props {
+        locations?: {
+            location: [number, number];
+            name: string;
+            url: string;
+            image?: string;
+        }[];
+    }
+
+    let { locations = [] }: Props = $props();
 
     let m;
     function createMap(container) {
@@ -61,9 +65,9 @@
     }
 </script>
 
-<svelte:window on:resize={resizeMap} />
+<svelte:window onresize={resizeMap} />
 
-<div class="map m-auto" use:mapAction />
+<div class="map m-auto" use:mapAction></div>
 
 <style lang="scss">
     .map {

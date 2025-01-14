@@ -1,26 +1,32 @@
 <script lang="ts">
+    import { run } from 'svelte/legacy';
+
     import ListingTableHeader from '@components/ListingTableHeader.svelte';
     import PaginationNav from '@components/PaginationNav.svelte';
     import ComponentCard from '@components/component/ComponentCard.svelte';
     import { SortBy, DisplayStyle, SearchQuery, currentPage } from '@components/store';
 
-    export let components: {
-        name: string;
-        path: string;
-        type: string;
-        meta: {
+    interface Props {
+        components?: {
             name: string;
-            description: string;
-            keywords: string[];
-            components?: string[];
-            input: {}[];
-            output: {}[];
-        };
-        pipelines?: {
-            name: string;
-            version: string;
+            path: string;
+            type: string;
+            meta: {
+                name: string;
+                description: string;
+                keywords: string[];
+                components?: string[];
+                input: {}[];
+                output: {}[];
+            };
+            pipelines?: {
+                name: string;
+                version: string;
+            }[];
         }[];
-    }[] = [];
+    }
+
+    let { components = [] }: Props = $props();
 
     const searchComponents = (component) => {
         if ($SearchQuery === '') {
@@ -64,10 +70,13 @@
         return components.sort(sortComponents).filter(searchComponents);
     }
 
-    $: filteredComponents = searchFilterSortComponents(components) || components;
+    let filteredComponents;
+    run(() => {
+        filteredComponents = searchFilterSortComponents(components) || components;
+    });
 
-    let pageSize: number = 12;
-    let lastPage = Math.ceil(components.length / pageSize);
+    let pageSize: number = $state(12);
+    let lastPage = $state(Math.ceil(components.length / pageSize));
     const updatePageSize = () => {
         pageSize = $DisplayStyle === 'grid' ? 12 : 25;
         let currentComponents = filteredComponents || components;
@@ -75,7 +84,7 @@
     };
     updatePageSize();
 
-    $: paginatedItems = filteredComponents.slice(($currentPage - 1) * pageSize, $currentPage * pageSize);
+    let paginatedItems = $derived(filteredComponents.slice(($currentPage - 1) * pageSize, $currentPage * pageSize));
 
     SortBy.subscribe(() => {
         filteredComponents = searchFilterSortComponents(components);

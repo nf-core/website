@@ -1,22 +1,27 @@
 <script lang="ts">
+    import { run } from 'svelte/legacy';
+
     import ListingTableHeader from '@components/ListingTableHeader.svelte';
     import PipelineCard from '@components/pipeline/PipelineCard.svelte';
     import { CurrentFilter, Filters, SortBy, DisplayStyle, SearchQuery } from '@components/store';
     import { onMount } from 'svelte';
 
-    export let pipelines: {
-        name: string;
-        description: string;
-        stargazers_count: number;
-        topics: string[];
-        releases: {
-            published_at: string;
-            tag_name: string;
+    interface Props {
+        pipelines?: {
+            name: string;
+            description: string;
+            stargazers_count: number;
+            topics: string[];
+            releases: {
+                published_at: string;
+                tag_name: string;
+            }[];
+            archived: boolean;
         }[];
-        archived: boolean;
-    }[] = [];
+        filters?: { name: string }[];
+    }
 
-    export let filters: { name: string }[] = [{ name: '' }];
+    let { pipelines = [], filters = [{ name: '' }] }: Props = $props();
 
     let sortInverse = false;
 
@@ -114,7 +119,10 @@
         );
         return pipelines;
     }
-    $: filteredPipelines = searchFilterSortPipelines(pipelines);
+    let filteredPipelines;
+    run(() => {
+        filteredPipelines = searchFilterSortPipelines(pipelines);
+    });
 
     onMount(() => {
         CurrentFilter.set(filters);
@@ -175,15 +183,15 @@
                         </td>
                         <td class="text-center">
                             {#if pipeline.archived}
-                                <i class="fa-solid fa-archive text-info" title="archived" data-bs-toggle="tooltip" />
+                                <i class="fa-solid fa-archive text-info" title="archived" data-bs-toggle="tooltip"></i>
                             {:else if pipeline.releases.length === 1}
                                 <i
                                     class="fa-solid fa-xs fa-wrench text-warning"
                                     title="under development"
                                     data-bs-toggle="tooltip"
-                                />
+                                ></i>
                             {:else if pipeline.releases.length > 1}
-                                <i class="fa-solid fa-check text-success" title="released" data-bs-toggle="tooltip" />
+                                <i class="fa-solid fa-check text-success" title="released" data-bs-toggle="tooltip"></i>
                             {/if}
                         </td>
                         <td class="text-end">

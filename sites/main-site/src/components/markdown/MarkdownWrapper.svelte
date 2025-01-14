@@ -3,10 +3,15 @@
     import * as icons from 'file-icons-js';
     import 'file-icons-js/css/style.css';
     import mermaid from 'mermaid';
-    import { onMount } from 'svelte';
+    import { onMount, mount } from 'svelte';
     import CopyButton from '@components/CopyButton.svelte';
 
-    export let headings: { text: string; slug: string; depth: number; fa_icon?: string }[] = [];
+    interface Props {
+        headings?: { text: string; slug: string; depth: number; fa_icon?: string }[];
+        children?: import('svelte').Snippet;
+    }
+
+    let { headings = [], children }: Props = $props();
     onMount(() => {
         async function renderDiagrams(graphs) {
             mermaid.initialize({
@@ -68,20 +73,20 @@
                 if (copyText) {
                     // check if block has only one child, i.e. is a single line code block, so we need less top and bottom margin for button
                     const SingleLine = block.childElementCount === 1 ? 'single-line' : '';
-                    new CopyButton({
-                        target: block, // Specify the target element for the Svelte component
-                        props: {
-                            text: copyText,
-                            label: copyButtonLabel,
-                            copiedLabel: copiedButtonLabel,
-                            classes:
-                                SingleLine +
-                                ' copy-code-button btn btn-sm btn-outline-secondary position-absolute top-0 end-0 opacity-50',
-                            copiedClasses:
-                                SingleLine +
-                                ' copy-code-button btn btn-sm btn-outline-success position-absolute top-0 end-0',
-                        },
-                    });
+                    mount(CopyButton, {
+                                            target: block, // Specify the target element for the Svelte component
+                                            props: {
+                                                text: copyText,
+                                                label: copyButtonLabel,
+                                                copiedLabel: copiedButtonLabel,
+                                                classes:
+                                                    SingleLine +
+                                                    ' copy-code-button btn btn-sm btn-outline-secondary position-absolute top-0 end-0 opacity-50',
+                                                copiedClasses:
+                                                    SingleLine +
+                                                    ' copy-code-button btn btn-sm btn-outline-success position-absolute top-0 end-0',
+                                            },
+                                        });
                 }
             });
         // Add file icon to code block titles
@@ -112,5 +117,5 @@
 </script>
 
 <div>
-    <slot />
+    {@render children?.()}
 </div>

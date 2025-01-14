@@ -34,7 +34,7 @@ pipelines_json.remote_workflows.map(
 // https://astro.build/config
 export default defineConfig({
     site: 'https://nf-co.re/',
-    output: 'hybrid',
+    output: 'static',
     adapter: netlify(),
     prefetch: false,
     redirects: {
@@ -95,7 +95,7 @@ export default defineConfig({
             preprocessorOptions: {
                 scss: {
                     api: 'modern-compiler',
-                    silenceDeprecations: ['legacy-js-api','mixed-decls','color-functions'],
+                    silenceDeprecations: ['legacy-js-api', 'mixed-decls', 'color-functions'],
                 },
             },
         },

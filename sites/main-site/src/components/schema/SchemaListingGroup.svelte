@@ -1,12 +1,11 @@
-<script>
+<script lang="ts">
     import SchemaListingElement from '@components/schema/SchemaListingElement.svelte';
     import { showHidden } from '@components/store';
 
-    export let definition;
-    export let id;
+    let { definition = $bindable(), id } = $props();
 
     //go through definition.properities and check if all hidden are set to true
-    let hidden = true;
+    let hidden = $state(true);
     for (const [title, property] of Object.entries(definition.properties)) {
         if (!property.hidden) {
             hidden = false;
@@ -32,8 +31,8 @@
                 aria-hidden="true"
                 tabindex="-1"
                 href={'#' + id.replaceAll('_', '-')}
-                ><i class="ms-1 fas fa-xs invisible" aria-hidden="true" />{#if definition.fa_icon}
-                    <i class="fa fa-fw me-2 {definition.fa_icon}" />
+                ><i class="ms-1 fas fa-xs invisible" aria-hidden="true"></i>{#if definition.fa_icon}
+                    <i class="fa fa-fw me-2 {definition.fa_icon}"></i>
                 {/if}
                 {definition.title}
             </a>

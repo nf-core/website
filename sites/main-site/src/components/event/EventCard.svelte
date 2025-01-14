@@ -3,21 +3,32 @@
     import ExportEventButton from '@components/event/ExportEventButton.svelte';
     import { onMount } from 'svelte';
 
-    export let frontmatter = {
-        title: '',
-        subtitle: '',
-        start: new Date(),
-        startDate: new Date(),
-        end: new Date(),
-        endDate: new Date(),
-        type: '',
-        locationURL: [''],
-    };
-    export let slug: string = '';
-    export let type: string = '';
-    export let time_category: string = '';
-    export let showDescription: boolean = true;
-    export let narrow: boolean = false;
+    interface Props {
+        frontmatter?: any;
+        slug?: string;
+        type?: string;
+        time_category?: string;
+        showDescription?: boolean;
+        narrow?: boolean;
+    }
+
+    let {
+        frontmatter = {
+            title: '',
+            subtitle: '',
+            start: new Date(),
+            startDate: new Date(),
+            end: new Date(),
+            endDate: new Date(),
+            type: '',
+            locationURL: [''],
+        },
+        slug = '',
+        type = '',
+        time_category = '',
+        showDescription = true,
+        narrow = false,
+    }: Props = $props();
 
     const event_duration = (event: { start: Date; end: Date; startDate: Date; endDate: Date }) => {
         let duration: string;
@@ -66,7 +77,7 @@
         training: 'warning',
     };
 
-    let event_date: string = '';
+    let event_date: string = $state('');
 
     const type_class = event_type_classes[type];
     onMount(() => {
@@ -97,7 +108,7 @@
                 class:justify-content-md-end={!narrow}
             >
                 <p class="text-nowrap text-center text-md-start pe-3 mt-2 ms-1" class:d-md-none={!narrow}>
-                    <i class="fa-regular fa-calendar me-2" />{@html event_date}
+                    <i class="fa-regular fa-calendar me-2"></i>{@html event_date}
                 </p>
             </div>
         </div>

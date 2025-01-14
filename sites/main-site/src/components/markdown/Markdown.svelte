@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import Markdown from 'svelte-exmarkdown';
     import emoji from 'remark-emoji';
     import remarkGfm from 'remark-gfm';
@@ -14,7 +14,7 @@
     import remarkMath from 'remark-math';
     import rehypeKatex from 'rehype-katex';
 
-    export let md;
+    let { md = $bindable() } = $props();
 
     if (md) {
         // replace newline with <br>
