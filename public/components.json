@@ -8604,6 +8604,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -27714,6 +27718,10 @@
         },
         {
           "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
           "version": "dev"
         },
         {
@@ -61253,7 +61261,7 @@
             {
               "qc_table": {
                 "type": "file",
-                "description": "(optional) Either a (CheckM)[https://nf-co.re/modules/checkm_lineagewf] summary TSV containing\ninformation on the completeness and contamination of the input genomes (13 columns),\nor a 3-column csv with the header `genome,completeness,contamination`.\nIn both cases the first column should contain the names of the input genome files,\nminus the last file extension\n(i.e. if the genome is gzipped, the genome name should retain the .fasta extension).\n",
+                "description": "(optional) A summary TSV from either CheckM [https://nf-co.re/modules/checkm_lineagewf],\nCheckM2 [https://nf-co.re/modules/checkm2_predict/], or a CSV \nin drep-style format [https://github.com/MrOlm/drep] with three columnns,\n`genome,completeness,contamination`. In both cases the first column should contain the \nnames of the input genome files, minus the last file extension \n(i.e. if the genome is gzipped, the genome name should \nretain the .fasta extension).\n",
                 "pattern": "*.{csv,tsv}"
               }
             },
@@ -61261,7 +61269,7 @@
               "qc_format": {
                 "type": "string",
                 "description": "Defines the type if input table in `qc_table`, if specified.",
-                "pattern": "checkm|genome_info"
+                "pattern": "checkm|checkm2|genome_info"
               }
             }
           ]
@@ -61293,7 +61301,7 @@
                 }
               },
               {
-                "${prefix}-dereplicated/*": {
+                "${prefix}/*": {
                   "type": "file",
                   "description": "The representative genomes following dereplication by galah.",
                   "pattern": "*"
@@ -84500,10 +84508,10 @@
                 }
               },
               {
-                "*[!gene_set_size|gsea_report|ranked_gene_list]*.tsv": {
+                "gene_sets_*.tsv": {
                   "type": "list",
                   "description": "Where -make_sets is not set to false, TSV files, one file for each gene set, with detail on enrichment for each gene",
-                  "pattern": "[!gene_set_size|gsea_report|ranked_gene_list]*.tsv"
+                  "pattern": "gene_sets_*.tsv"
                 }
               }
             ]
@@ -84517,10 +84525,10 @@
                 }
               },
               {
-                "*[!gsea_report|heat_map_corr_plot|index|pos_snapshot|neg_snapshot]*.html": {
+                "gene_sets_*.html": {
                   "type": "list",
                   "description": "Where -make_sets is not set to false, HTML files, one file for each gene set, with detail on enrichment for each gene",
-                  "pattern": "[!gsea_report|heat_map_corr_plot|index|pos_snapshot|neg_snapshot]*.html"
+                  "pattern": "gene_sets_*.html"
                 }
               }
             ]
@@ -84534,10 +84542,10 @@
                 }
               },
               {
-                "*[!butterfly|enplot|global_es_histogram|gset_rnd_es_dist|heat_map|pvalues_vs_nes_plot|ranked_list_corr]*.png": {
+                "gene_sets_*.png": {
                   "type": "list",
                   "description": "Where -make_sets is not set to false, PNG-format heatmaps, one file for each gene set, showing expression for each gene",
-                  "pattern": "[!butterfly|enplot|global_es_histogram|gset_rnd_es_dist|heat_map|pvalues_vs_nes_plot|ranked_list_corr]*.png"
+                  "pattern": "gene_sets_*.png"
                 }
               }
             ]
@@ -84626,7 +84634,8 @@
           "@pinin4fjords"
         ],
         "maintainers": [
-          "@pinin4fjords"
+          "@pinin4fjords",
+          "@nschcolnicov"
         ]
       },
       "pipelines": [
@@ -108470,6 +108479,22 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -113391,6 +113416,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -133715,6 +133744,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
+        },
         {
           "name": "viralrecon",
           "version": "2.6.0"
@@ -208956,6 +208989,10 @@
         {
           "name": "phageannotator",
           "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
         }
       ]
     },
@@ -212383,6 +212420,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
+        },
         {
           "name": "riboseq",
           "version": "1.0.1"
