@@ -8600,6 +8600,14 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -27710,6 +27718,14 @@
         },
         {
           "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
           "version": "dev"
         },
         {
@@ -61245,7 +61261,7 @@
             {
               "qc_table": {
                 "type": "file",
-                "description": "(optional) Either a (CheckM)[https://nf-co.re/modules/checkm_lineagewf] summary TSV containing\ninformation on the completeness and contamination of the input genomes (13 columns),\nor a 3-column csv with the header `genome,completeness,contamination`.\nIn both cases the first column should contain the names of the input genome files,\nminus the last file extension\n(i.e. if the genome is gzipped, the genome name should retain the .fasta extension).\n",
+                "description": "(optional) A summary TSV from either CheckM [https://nf-co.re/modules/checkm_lineagewf],\nCheckM2 [https://nf-co.re/modules/checkm2_predict/], or a CSV \nin drep-style format [https://github.com/MrOlm/drep] with three columnns,\n`genome,completeness,contamination`. In both cases the first column should contain the \nnames of the input genome files, minus the last file extension \n(i.e. if the genome is gzipped, the genome name should \nretain the .fasta extension).\n",
                 "pattern": "*.{csv,tsv}"
               }
             },
@@ -61253,7 +61269,7 @@
               "qc_format": {
                 "type": "string",
                 "description": "Defines the type if input table in `qc_table`, if specified.",
-                "pattern": "checkm|genome_info"
+                "pattern": "checkm|checkm2|genome_info"
               }
             }
           ]
@@ -61285,7 +61301,7 @@
                 }
               },
               {
-                "${prefix}-dereplicated/*": {
+                "${prefix}/*": {
                   "type": "file",
                   "description": "The representative genomes following dereplication by galah.",
                   "pattern": "*"
@@ -84492,10 +84508,10 @@
                 }
               },
               {
-                "*[!gene_set_size|gsea_report|ranked_gene_list]*.tsv": {
+                "gene_sets_*.tsv": {
                   "type": "list",
                   "description": "Where -make_sets is not set to false, TSV files, one file for each gene set, with detail on enrichment for each gene",
-                  "pattern": "[!gene_set_size|gsea_report|ranked_gene_list]*.tsv"
+                  "pattern": "gene_sets_*.tsv"
                 }
               }
             ]
@@ -84509,10 +84525,10 @@
                 }
               },
               {
-                "*[!gsea_report|heat_map_corr_plot|index|pos_snapshot|neg_snapshot]*.html": {
+                "gene_sets_*.html": {
                   "type": "list",
                   "description": "Where -make_sets is not set to false, HTML files, one file for each gene set, with detail on enrichment for each gene",
-                  "pattern": "[!gsea_report|heat_map_corr_plot|index|pos_snapshot|neg_snapshot]*.html"
+                  "pattern": "gene_sets_*.html"
                 }
               }
             ]
@@ -84526,10 +84542,10 @@
                 }
               },
               {
-                "*[!butterfly|enplot|global_es_histogram|gset_rnd_es_dist|heat_map|pvalues_vs_nes_plot|ranked_list_corr]*.png": {
+                "gene_sets_*.png": {
                   "type": "list",
                   "description": "Where -make_sets is not set to false, PNG-format heatmaps, one file for each gene set, showing expression for each gene",
-                  "pattern": "[!butterfly|enplot|global_es_histogram|gset_rnd_es_dist|heat_map|pvalues_vs_nes_plot|ranked_list_corr]*.png"
+                  "pattern": "gene_sets_*.png"
                 }
               }
             ]
@@ -84618,7 +84634,8 @@
           "@pinin4fjords"
         ],
         "maintainers": [
-          "@pinin4fjords"
+          "@pinin4fjords",
+          "@nschcolnicov"
         ]
       },
       "pipelines": [
@@ -108446,6 +108463,38 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -113367,6 +113416,14 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -133866,6 +133923,14 @@
         {
           "name": "viralrecon",
           "version": "2.6.0"
+        },
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
+        },
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
         }
       ]
     },
@@ -150433,6 +150498,167 @@
                   "type": "map",
                   "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n",
                   "pattern": "*.{zip}"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@jorivansteenbrugge"
+        ],
+        "maintainers": [
+          "@jorivansteenbrugge"
+        ]
+      }
+    },
+    {
+      "name": "pypgx_runngspipeline",
+      "path": "modules/nf-core/pypgx/runngspipeline/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "pypgx_runngspipeline",
+        "description": "PyPGx pharmacogenomics genotyping pipeline for NGS data.",
+        "keywords": [
+          "pypgx",
+          "pharmacogenetics",
+          "genotyping"
+        ],
+        "tools": [
+          {
+            "pypgx": {
+              "description": "A Python package for pharmacogenomics research",
+              "homepage": "https://pypgx.readthedocs.io/en/latest/",
+              "documentation": "https://pypgx.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/sbslee/pypgx",
+              "doi": "10.1371/journal.pone.0272129",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`.\n"
+              }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "BGZIP compressed VCF file with SNVs/indels. Output of pypgx/createinputvcf.",
+                "pattern": "*.{vcf.gz}"
+              }
+            },
+            {
+              "tbi": {
+                "type": "file",
+                "description": "VCF tabix index.",
+                "pattern": "*.{vcf.gz.tbi}"
+              }
+            },
+            {
+              "coverage": {
+                "type": "file",
+                "description": "ZIP compressed file with depth of coverage information. Output of pypgx/preparedepthofcoverage. Coverage information is only required when running the module on a pharmacogene with known structural variants.",
+                "pattern": "*.{zip}"
+              }
+            },
+            {
+              "control_stats": {
+                "type": "file",
+                "description": "ZIP compressed file with control statistics. Output of pypgx/computecontrolstatistics. Control statistics are only required when running the module on a pharmacogene with known structural variants."
+              }
+            },
+            {
+              "pgx_gene": {
+                "type": "string",
+                "description": "Pharmacogene to genotype/phenotype. A list of supported genes is available in the pypgx documentation \"https://pypgx.readthedocs.io/en/latest/genes.html\""
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`.\n"
+              }
+            },
+            {
+              "resource_bundle": {
+                "type": "directory",
+                "description": "Path to the pypgx resource bundle (https://github.com/sbslee/pypgx-bundle)."
+              }
+            }
+          ],
+          [
+            {
+              "assembly_version": {
+                "type": "string",
+                "description": "Genome assembly version to use."
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "results": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*pypgx_output/results.zip": {
+                  "type": "file",
+                  "description": "Main output file of the pipeline in ZIP format, containing a table with star-alleles per sample and CNV calls where applicable."
+                }
+              }
+            ]
+          },
+          {
+            "cnv_calls": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*pypgx_output/cnv-calls.zip": {
+                  "type": "file",
+                  "description": "Optional output file in ZIP format, containing CNV calls per sample."
+                }
+              }
+            ]
+          },
+          {
+            "consolidated_variants": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*pypgx_output/consolidated-variants.zip": {
+                  "type": "file",
+                  "description": "Output file in ZIP format, containing a consolidated (and phased) VCF file."
                 }
               }
             ]
@@ -208759,6 +208985,14 @@
         {
           "name": "phageannotator",
           "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
         }
       ]
     },
@@ -212186,6 +212420,14 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
+        },
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
+        },
         {
           "name": "riboseq",
           "version": "1.0.1"
