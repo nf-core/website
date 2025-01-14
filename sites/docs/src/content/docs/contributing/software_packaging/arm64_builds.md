@@ -222,7 +222,7 @@ Then fix the problem: edit `meta.yaml` or `conda-forge.yml` and commit / push:
 
 ```bash
 git commit --all
-git push --set-upstream origin ...
+git push --set-upstream origin aarch64-fixes
 ```
 
 Next, create a new PR from your branch.
