@@ -12,4 +12,4 @@ locations:
       - https://kth-se.zoom.us/j/68390542812
 ---
 
-In this weeks bytesize, Rob Syme ((@robsyme)[https://github.com/robsyme]) is going to tackle content addressable data storage issues.
+In this week's bytesize, Rob Syme ([@robsyme](https://github.com/robsyme)) is going to tackle content addressable data storage issues.

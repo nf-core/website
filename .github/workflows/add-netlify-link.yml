@@ -12,11 +12,11 @@ jobs:
     steps:
       - name: Check for changed files
         id: changed-files
-        uses: tj-actions/changed-files@c3a1bb2c992d77180ae65be6ae6c166cf40f857c # v45
+        uses: tj-actions/changed-files@d6e91a2266cdb9d62096cebf1e8546899c6aa18f # v45
 
       - name: Add Netlify link to PR
         if: steps.changed-files.outputs.all_changed_files != ''
-        uses: actions/github-script@v7
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7
         with:
           github-token: ${{ secrets.NF_CORE_BOT_AUTH_TOKEN }}
           script: |
