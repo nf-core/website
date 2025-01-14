@@ -74,19 +74,7 @@ const events = defineCollection({
             return true;
         }),
 });
-const docs = defineCollection({
-    loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/docs' }),
-    schema: z.object({
-        title: z.string(),
-        subtitle: z.string().optional(),
-        shortTitle: z.string().optional(),
-        weight: z.number().optional(),
-        parent: z.string().optional(),
-        parentWeight: z.number().optional(),
-        type: z.enum(['tutorial']).optional(),
-        markdownPlugin: z.enum(['checklist', 'addNumbersToHeadings']).optional(),
-    }),
-});
+
 const about = defineCollection({
     loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/about' }),
     schema: z.object({
@@ -180,16 +168,10 @@ const pipelines = defineCollection({
     loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/pipelines' }),
 });
 
-const api_reference = defineCollection({
-    loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/api_reference' }),
-});
-
 export const collections = {
-    events: events,
-    docs: docs,
-    about: about,
-    pipelines: pipelines,
-    blog: blog,
-    api_reference: api_reference,
+    events,
+    about,
+    pipelines,
+    blog,
     'special-interest-groups': specialInterestGroups,
 };
