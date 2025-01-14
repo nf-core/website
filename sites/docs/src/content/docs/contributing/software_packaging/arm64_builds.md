@@ -50,7 +50,6 @@ To develop locally _(if running on an arm64 machine - optional)_
 Local testing isn't always reliable. It often works when the CI doesn't.
 :::
 
-
 ## Enabling packages
 
 Packages can be tested locally or by using Wave.
@@ -88,7 +87,7 @@ If you see this error, follow the link to go to the _build details_ web page. It
 If the package doesn't build, there are usually two types of error:
 
 1. It says "not found" - you need to fix that package
-2. It lists dependencies that are not found - you now have a list of dependencies to investigate. 
+2. It lists dependencies that are not found - you now have a list of dependencies to investigate.
 
 Most packages that need to be fixed are in Bioconda. However, some are in conda-forge.
 If there is a `recipes/{package-name}` subdirectory in the [bioconda-recipes](https://github.com/bioconda/bioconda-recipes/) GitHub repo, then this is a Bioconda recipe.
@@ -99,7 +98,7 @@ Each repository is named in the form `{package-name}-feedstock`.
 
 ## Bioconda Recipes
 
-Bioconda recipes can be generic or non-generic. 
+Bioconda recipes can be generic or non-generic.
 
 ### Generic recipes
 
