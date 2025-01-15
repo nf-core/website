@@ -636,7 +636,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -8616,6 +8616,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -13168,7 +13172,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -24496,7 +24500,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         },
         {
           "name": "viralrecon",
@@ -24646,7 +24650,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         },
         {
           "name": "viralrecon",
@@ -25029,7 +25033,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -25223,7 +25227,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -27726,6 +27730,10 @@
         },
         {
           "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
           "version": "dev"
         },
         {
@@ -30769,13 +30777,100 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         },
         {
           "name": "viralrecon",
           "version": "2.6.0"
         }
       ]
+    },
+    {
+      "name": "catpack_download",
+      "path": "modules/nf-core/catpack/download/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "catpack_download",
+        "description": "Downloads the required files for either Nr or GTDB for building into a CAT database",
+        "keywords": [
+          "taxonomic classification",
+          "classification",
+          "database",
+          "download"
+        ],
+        "tools": [
+          {
+            "catpack": {
+              "description": "CAT/BAT: tool for taxonomic classification of contigs and metagenome-assembled genomes (MAGs)",
+              "homepage": "https://github.com/MGXlab/CAT_pack",
+              "documentation": "https://github.com/MGXlab/CAT_pack",
+              "tool_dev_url": "https://github.com/MGXlab/CAT_pack",
+              "doi": "10.1186/s13059-019-1817-x",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "db": {
+                "type": "string",
+                "description": "Which database to download",
+                "pattern": "nr|gtdb"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "rawdb": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}/": {
+                  "type": "directory",
+                  "description": "Directory containing all the required NCBI Nr or GTDB database files required for building into a CAT database",
+                  "pattern": "${db}/",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_1049"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@jfy133"
+        ],
+        "maintainers": [
+          "@jfy133"
+        ]
+      }
     },
     {
       "name": "cdhit_cdhit",
@@ -33923,7 +34018,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -34027,7 +34122,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -49615,7 +49710,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -54734,7 +54829,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -56566,7 +56661,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         },
         {
           "name": "viralrecon",
@@ -56907,7 +57002,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         },
         {
           "name": "tbanalyzer",
@@ -59235,7 +59330,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -61940,7 +62035,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -62041,7 +62136,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -62134,7 +62229,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -86677,7 +86772,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         },
         {
           "name": "tfactivity",
@@ -98936,7 +99031,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -99033,7 +99128,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -99140,7 +99235,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -100907,7 +101002,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -101007,7 +101102,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -101604,7 +101699,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         },
         {
           "name": "viralrecon",
@@ -101696,7 +101791,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -101906,7 +102001,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -102276,7 +102371,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -102442,7 +102537,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -102534,7 +102629,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -108543,6 +108638,22 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -109599,7 +109710,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -113069,7 +113180,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -113464,6 +113575,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -117883,7 +117998,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -118017,7 +118132,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -119204,7 +119319,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -119303,7 +119418,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -121829,7 +121944,7 @@
                 }
               },
               {
-                "${prefix}": {
+                "${prefix}/": {
                   "type": "directory",
                   "description": "an MMseqs2 database with search results"
                 }
@@ -122918,7 +123033,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -123156,7 +123271,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -124787,7 +124902,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         },
         {
           "name": "tbanalyzer",
@@ -127334,7 +127449,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -129463,7 +129578,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -129623,7 +129738,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -129766,7 +129881,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -129858,7 +129973,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -133800,6 +133915,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
+        },
         {
           "name": "viralrecon",
           "version": "2.6.0"
@@ -145832,7 +145951,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -145961,7 +146080,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -146801,7 +146920,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -160238,7 +160357,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -161173,7 +161292,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         },
         {
           "name": "tbanalyzer",
@@ -162457,7 +162576,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         },
         {
           "name": "tbanalyzer",
@@ -162769,7 +162888,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         },
         {
           "name": "viralrecon",
@@ -184562,6 +184681,102 @@
       }
     },
     {
+      "name": "taxonkit_lineage",
+      "path": "modules/nf-core/taxonkit/lineage/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "taxonkit_lineage",
+        "description": "Convert taxonids to taxon lineages",
+        "keywords": [
+          "taxonomy",
+          "taxids",
+          "taxon name",
+          "conversion"
+        ],
+        "tools": [
+          {
+            "taxonkit": {
+              "description": "A Cross-platform and Efficient NCBI Taxonomy Toolkit",
+              "homepage": "https://bioinf.shenwei.me/taxonkit/",
+              "documentation": "https://bioinf.shenwei.me/taxonkit/usage/#name2taxid",
+              "tool_dev_url": "https://github.com/shenwei356/taxonkit",
+              "doi": "10.1016/j.jgg.2021.03.006",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:taxonkit"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "taxid": {
+                "type": "string",
+                "description": "Taxon id to look up (provide either this or taxidfile, not both)"
+              }
+            },
+            {
+              "taxidfile": {
+                "type": "file",
+                "description": "File with taxon ids to look up, each on their own line (provide either this or name, not both; the file can contain other information, see the tool's docs)"
+              }
+            }
+          ],
+          [
+            {
+              "taxdb": {
+                "type": "file",
+                "description": "Taxonomy database unpacked from ftp://ftp.ncbi.nih.gov/pub/taxonomy/taxdump.tar.gz"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "tsv": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.tsv": {
+                  "type": "file",
+                  "description": "TSV file with added taxon lineages",
+                  "pattern": "*.tsv"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@erikrikarddaniel"
+        ],
+        "maintainers": [
+          "@erikrikarddaniel"
+        ]
+      }
+    },
+    {
       "name": "taxonkit_name2taxid",
       "path": "modules/nf-core/taxonkit/name2taxid/meta.yml",
       "type": "module",
@@ -184782,7 +184997,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -184900,7 +185115,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         }
       ]
     },
@@ -192077,7 +192292,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         },
         {
           "name": "tumourevo",
@@ -209077,6 +209292,10 @@
         {
           "name": "phageannotator",
           "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
         }
       ]
     },
@@ -212819,6 +213038,10 @@
         {
           "name": "riboseq",
           "version": "1.0.1"
+        },
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
         }
       ]
     },
@@ -213354,7 +213577,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         },
         {
           "name": "tbanalyzer",
@@ -213659,7 +213882,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         },
         {
           "name": "tbanalyzer",
@@ -213876,7 +214099,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.1"
+          "version": "1.2.2"
         },
         {
           "name": "tbanalyzer",
