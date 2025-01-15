@@ -1637,6 +1637,18 @@ Returns the most recent container versions by default.
 
 ### `nf_core.utils.get_first_available_path(directory: Path | str, paths: List[str]) → Path | None{:python}`
 
+### `nf_core.utils.get_repo_commit(pipeline, commit_id){:python}`
+
+Check if the repo contains the requested commit_id, and expand it to long form if necessary.
+
+- **Parameters:**
+  - **pipeline** (_str_) – GitHub repo username/repo
+  - **commit_id** – The requested commit ID (SHA). It can be in standard long/short form, or any length.
+- **Returns:**
+  String or None
+- **Return type:**
+  commit_id
+
 ### `nf_core.utils.get_repo_releases_branches(pipeline, wfs){:python}`
 
 Fetches details of a nf-core workflow to download.
