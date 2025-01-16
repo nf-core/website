@@ -8707,6 +8707,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -27817,6 +27821,10 @@
         },
         {
           "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "genomeassembler",
           "version": "dev"
         },
         {
@@ -108880,6 +108888,22 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -113801,6 +113825,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "genomeassembler",
           "version": "dev"
@@ -122330,9 +122358,9 @@
         "input": [
           [
             {
-              "db": {
+              "database": {
                 "type": "directory",
-                "description": "Directory containing the DB to be indexed\n",
+                "description": "Directory containing the database to be indexed\n",
                 "pattern": "*"
               }
             }
@@ -122342,9 +122370,9 @@
           {
             "db_exprofile": [
               {
-                "db": {
+                "database": {
                   "type": "directory",
-                  "description": "Directory containing the expandable profile DB\n",
+                  "description": "Directory containing the expandable profile database\n",
                   "pattern": "*"
                 }
               }
@@ -122366,7 +122394,8 @@
           "@JoseEspinosa"
         ],
         "maintainers": [
-          "@JoseEspinosa"
+          "@JoseEspinosa",
+          "@sateeshperi"
         ]
       },
       "pipelines": [
@@ -134145,6 +134174,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
+        },
         {
           "name": "viralrecon",
           "version": "2.6.0"
@@ -201793,7 +201826,7 @@
         "authors": [
           "@pinin4fjords",
           "@bjlang",
-          "@araiz2001",
+          "@caraiz2001",
           "@suzannejin"
         ],
         "maintainers": [
@@ -209534,6 +209567,10 @@
         {
           "name": "phageannotator",
           "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
         }
       ]
     },
@@ -212961,6 +212998,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
+        },
         {
           "name": "riboseq",
           "version": "1.0.1"
