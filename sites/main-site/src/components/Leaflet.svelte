@@ -11,9 +11,9 @@
 
     let m;
     function createMap(container) {
-    m = map(container, {
-        minZoom: 1.4,
-    }).setView([20, 25.09], 1.4);  // Adjusted center point and zoom
+        m = map(container, {
+            minZoom: 1.4,
+        }).setView([20, 25.09], 1.4); // Adjusted center point and zoom
 
         let greenIcon = new Icon({
             iconUrl: '/images/marker-icon-2x-green.png',
