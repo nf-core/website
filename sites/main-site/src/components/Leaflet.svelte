@@ -67,7 +67,7 @@
 
 <style lang="scss">
     .map {
-        height: 480px;
+        height: 500px;
     }
     @media (max-width: 767.98px) {
         // md-breakpoint
