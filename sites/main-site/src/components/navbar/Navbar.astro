@@ -13,10 +13,7 @@ import Search from '@components/navbar/Search.svelte';
 import { findCurrentGroup } from '@utils/functions';
 import BlogPostLabel from '@components/navbar/BlogPostLabel.svelte';
 import type { SidebarEntry } from '@utils/types';
-import { getCollection, type CollectionEntry } from 'astro:content';
-import type { SidebarEntry } from '@utils/types';
-
-import { findCurrentGroup } from '@utils/functions';
+import { getCollection } from 'astro:content';
 
 export interface Props {
     navTocHeadings?: object[];

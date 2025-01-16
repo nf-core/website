@@ -164,14 +164,9 @@ const specialInterestGroups = defineCollection({
         }),
 });
 
-const pipelines = defineCollection({
-    loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/pipelines' }),
-});
-
 export const collections = {
     events,
     about,
-    pipelines,
     blog,
     'special-interest-groups': specialInterestGroups,
 };

@@ -4,7 +4,7 @@ import SidebarToc from '@components/sidebar/SidebarToc.svelte';
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
 import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
 import pipelines_json from '@public/pipelines.json';
-import { getEntry } from 'astro:content';
+import { getEntry, render } from 'astro:content';
 import type { SidebarEntry } from '@utils/types';
 import { createLinkOrGroup } from '@utils/functions';
 
@@ -104,7 +104,7 @@ const entry = await getEntry('pipelines', cache_key);
 if (!entry) {
     return Astro.redirect('/404');
 }
-let { Content, headings } = await entry.render();
+let { Content, headings } = await render(entry);
 const max_heading_depth = 2;
 
 // filter out headings that are higher than max_heading_depth

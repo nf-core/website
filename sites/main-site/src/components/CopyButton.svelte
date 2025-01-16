@@ -14,11 +14,11 @@
         copiedLabel = '<i class="fa-regular px-1 fa-clipboard-check" />',
         classes = '',
         copiedClasses = '',
-        children
+        children,
     }: Props = $props();
 
     let copied = $state(false);
-    
+
     let currentClasses = $derived(copied ? copiedClasses : classes);
     const copyToClipboard = (text: string) => {
         navigator.clipboard.writeText(text);

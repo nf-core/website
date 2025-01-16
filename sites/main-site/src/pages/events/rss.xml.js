@@ -11,7 +11,7 @@ export async function GET(context) {
     items: events.map((event) => ({
       title: event.data.title,
       description: event.data.subtitle,
-      link: '/events/' + event.slug,
+      link: '/events/' + event.id.replace(/\.[^/.]+$/, ''),
       pubDate: event.data.start,
     })),
   });
