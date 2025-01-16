@@ -27,6 +27,6 @@ let local_sites_map: {
 local_sites_map = local_sites_map.filter((site) => site !== null);
 ---
 
-<div>
+<div class="mb-5">
     <Leaflet locations={local_sites_map} client:only="svelte" />
 </div>
