@@ -128,7 +128,7 @@ This is needed to symlink downloaded container images so Nextflow will find them
 
 #### `get_revision_hash(){:python}`
 
-Find specified revision / branch hash
+Find specified revision / branch / commit hash
 
 #### `get_singularity_images(current_revision: str = '') → None{:python}`
 
