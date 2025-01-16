@@ -1,6 +1,5 @@
 #! /usr/bin/env node
-import octokit from '../src/components/octokit.js';
-import { getCurrentRateLimitRemaining } from '../src/components/octokit.js';
+import { octokit, getCurrentRateLimitRemaining } from '../sites/main-site/src/components/octokit.js';
 import { readFileSync, writeFileSync, existsSync } from 'fs';
 import path, { join } from 'path';
 import ProgressBar from 'progress';
