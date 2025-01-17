@@ -41,6 +41,6 @@ The discussion will often be a follow-up on the talk.
 
 Join the [nf-core Slack](/join#slack) and find us in the _#animal-genomics_ channel
 
-# Alumni:
+# Alumni
 
-- bjlang: Björn Langer
+- Björn Langer
