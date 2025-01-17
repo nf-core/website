@@ -8711,6 +8711,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -28285,6 +28289,10 @@
           "version": "1.1.0"
         },
         {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
           "name": "genomeqc",
           "version": "dev"
         },
@@ -43368,10 +43376,6 @@
           "version": "dev"
         },
         {
-          "name": "genomeassembler",
-          "version": "dev"
-        },
-        {
           "name": "genomeskim",
           "version": "dev"
         },
@@ -56118,13 +56122,7 @@
           "@mahesh-panchal",
           "@gallvp"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "genomeassembler",
-          "version": "dev"
-        }
-      ]
+      }
     },
     {
       "name": "fastk_histex",
@@ -56204,13 +56202,7 @@
         "maintainers": [
           "@mahesh-panchal"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "genomeassembler",
-          "version": "dev"
-        }
-      ]
+      }
     },
     {
       "name": "fastk_merge",
@@ -56336,13 +56328,7 @@
         "maintainers": [
           "@mahesh-panchal"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "genomeassembler",
-          "version": "dev"
-        }
-      ]
+      }
     },
     {
       "name": "fastme",
@@ -59725,6 +59711,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "pathogensurveillance",
           "version": "dev"
@@ -78159,13 +78149,7 @@
         "maintainers": [
           "@mahesh-panchal"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "genomeassembler",
-          "version": "dev"
-        }
-      ]
+      }
     },
     {
       "name": "genmap_index",
@@ -79367,13 +79351,7 @@
         "maintainers": [
           "@mahesh-panchal"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "genomeassembler",
-          "version": "dev"
-        }
-      ]
+      }
     },
     {
       "name": "genotyphi_parse",
@@ -104591,7 +104569,13 @@
         "maintainers": [
           "@GallVp"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "lima",
@@ -104889,6 +104873,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
         {
           "name": "isoseq",
           "version": "2.0.0"
@@ -107657,6 +107645,22 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
+        },
         {
           "name": "ampliseq",
           "version": "2.12.0"
@@ -111796,10 +111800,6 @@
       },
       "pipelines": [
         {
-          "name": "genomeassembler",
-          "version": "dev"
-        },
-        {
           "name": "phageannotator",
           "version": "dev"
         }
@@ -111907,10 +111907,6 @@
         ]
       },
       "pipelines": [
-        {
-          "name": "genomeassembler",
-          "version": "dev"
-        },
         {
           "name": "phageannotator",
           "version": "dev"
@@ -115796,6 +115792,10 @@
       },
       "pipelines": [
         {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
           "name": "genomeqc",
           "version": "dev"
         }
@@ -115985,13 +115985,7 @@
         "maintainers": [
           "@mahesh-panchal"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "genomeassembler",
-          "version": "dev"
-        }
-      ]
+      }
     },
     {
       "name": "merquryfk_katgc",
@@ -116164,13 +116158,7 @@
         "maintainers": [
           "@mahesh-panchal"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "genomeassembler",
-          "version": "dev"
-        }
-      ]
+      }
     },
     {
       "name": "merquryfk_merquryfk",
@@ -116546,13 +116534,7 @@
           "@mahesh-panchal",
           "@yumisims"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "genomeassembler",
-          "version": "dev"
-        }
-      ]
+      }
     },
     {
       "name": "merquryfk_ploidyplot",
@@ -116724,13 +116706,7 @@
         "maintainers": [
           "@mahesh-panchal"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "genomeassembler",
-          "version": "dev"
-        }
-      ]
+      }
     },
     {
       "name": "meryl_count",
@@ -116918,13 +116894,7 @@
           "@mahesh-panchal",
           "@gallvp"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "genomeassembler",
-          "version": "dev"
-        }
-      ]
+      }
     },
     {
       "name": "meryl_unionsum",
@@ -124932,10 +124902,6 @@
           "version": "dev"
         },
         {
-          "name": "genomeassembler",
-          "version": "dev"
-        },
-        {
           "name": "genomeqc",
           "version": "dev"
         },
@@ -127567,10 +127533,6 @@
         {
           "name": "bacass",
           "version": "2.4.0"
-        },
-        {
-          "name": "genomeassembler",
-          "version": "dev"
         },
         {
           "name": "mag",
@@ -134174,6 +134136,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
+        },
         {
           "name": "viralrecon",
           "version": "2.6.0"
@@ -141697,7 +141663,13 @@
         "maintainers": [
           "@scorreard"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "genomeassembler",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "pindel_pindel",
@@ -146340,6 +146312,10 @@
         {
           "name": "bacass",
           "version": "2.4.0"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         },
         {
           "name": "mag",
@@ -152077,10 +152053,6 @@
         {
           "name": "bacass",
           "version": "2.4.0"
-        },
-        {
-          "name": "genomeassembler",
-          "version": "dev"
         },
         {
           "name": "genomeqc",
@@ -160834,6 +160806,10 @@
           "version": "3.2.2"
         },
         {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
           "name": "hgtseq",
           "version": "1.1.0"
         },
@@ -161106,6 +161082,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         },
         {
           "name": "hgtseq",
@@ -161456,6 +161436,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         },
         {
           "name": "hgtseq",
@@ -162539,6 +162523,10 @@
           "version": "3.2.2"
         },
         {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
           "name": "hgtseq",
           "version": "1.1.0"
         },
@@ -162764,6 +162752,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         },
         {
           "name": "hgtseq",
@@ -188659,6 +188651,10 @@
           "version": "dev"
         },
         {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
           "name": "hgtseq",
           "version": "1.1.0"
         },
@@ -203504,6 +203500,10 @@
           "version": "3.2.2"
         },
         {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
           "name": "magmap",
           "version": "dev"
         },
@@ -203764,6 +203764,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         },
         {
           "name": "magmap",
@@ -209571,6 +209575,10 @@
         {
           "name": "phageannotator",
           "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
         }
       ]
     },
@@ -213325,6 +213333,10 @@
         {
           "name": "riboseq",
           "version": "1.0.1"
+        },
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
         }
       ]
     },
@@ -213703,6 +213715,10 @@
           "version": "2.0.0"
         },
         {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
           "name": "genomeqc",
           "version": "dev"
         },
@@ -214008,6 +214024,10 @@
           "version": "2.0.0"
         },
         {
+          "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
           "name": "genomeqc",
           "version": "dev"
         },
@@ -214299,6 +214319,10 @@
         {
           "name": "fastquorum",
           "version": "1.1.0"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         },
         {
           "name": "mag",
