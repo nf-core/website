@@ -90,7 +90,7 @@ log[0][1]
 
 The first `get(0)` or `[0]` corresponds to the emitted channel object itself.
 
-The `get(1)` or `[1]` corresponds to the second object of the channel object. 
+The `get(1)` or `[1]` corresponds to the second object of the channel object.
 Most nf-core modules and pipelines typically emit two sub-components of an object: a meta map and the file(s)/directories etc.
 Specifying `get(q)` or `[1]` thus corresponds to the file(s)/directories for recording in a snapshot.
 
@@ -350,7 +350,7 @@ _Explanation_: We create two lists of files paths within the emitted directory, 
 
 In more detail, we generate an empty list (`stablefiles`). We then retrieve the directory from the channel `db` using `get(1)` (rather than the meta), and retrieve all files and directories that are inside that directory using `endFileRecurse` and, however we only append to the list (`.add(file)`) those files that are not a directory and not paths that end in (`endsWith`) the file names identified as unstable (`"database.log", "database.fastaid2LCAtaxid", "database.taxids_with_multiple_offspring"`).
 
-We then do the reverse (`unstablefiles`), where we loop again through the directory, but this time append only files that _do_ match the identified unstable file names. 
+We then do the reverse (`unstablefiles`), where we loop again through the directory, but this time append only files that _do_ match the identified unstable file names.
 However do not append the path itself, but just the filename by converting to a string (`getName().toString()`) when adding to the list.
 
 These two lists of stable paths and unstable names can be captured in the snapshot in an `assert snapshot().match()`.
