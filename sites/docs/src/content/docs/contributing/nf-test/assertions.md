@@ -348,7 +348,7 @@ In more detail, we generate an empty list (`stablefiles`). We then retrieve the 
 
 We then do the reverse (`unstablefiles`), where we loop again through the directory, but this time append only files that _do_ match the identified unstable file names. However do not append the path itself, but just the filename by converting to a string (`getName().toString()`) when adding to the list.
 
-We finally pass the two lists of paths to the `assertAll`, but for the unstable files
+These two lists of stable paths and unstable names can be captured in the snapshot in an `assert snapshot().match()`.
 
 :::note
 We have to explicitly exclude directories in the first case, because `eachFileRecurse` includes directories when listing all files.
