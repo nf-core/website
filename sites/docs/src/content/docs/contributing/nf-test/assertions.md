@@ -322,7 +322,8 @@ _Explanation:_ check if a specific string (`"MT192765.1\t10214\t.\tATTTAC\tATTAC
 
 ### Snapshotting variable files in a channel emitting a directory
 
-_Motivation_: If a channel emits just a directory, by default nf-test will recursively list all files in that and all sub directories, and generate md5sums of all the files. However, in some cases, _some_ of the files in the directory may have unstable md5sums. I want to snapshot all stable files with md5sums, but only snapshot names of unstable files.
+_Context_: If a channel emits just a directory, by default nf-test will recursively list all files in that and all sub directories, and generate md5sums of all the files. However, in some cases, _some_ of the files in the directory may have unstable/empty md5sums. I want to snapshot all stable files with md5sums, but only snapshot names of unstable files.
+_Motivation_: I want to snapshot all files with stable md5sums, but only snapshot names of unstable files.
 
 ```bash
 then {
