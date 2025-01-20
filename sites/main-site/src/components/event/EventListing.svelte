@@ -105,6 +105,7 @@
 
     onMount(() => {
         CurrentFilter.set(currentFilters);
+
         CurrentFilter.subscribe(() => {
             filteredEvents = events.filter(filterByType).filter(searchEvents);
         });
