@@ -8739,6 +8739,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -30979,6 +30983,175 @@
                       "edam": "http://edamontology.org/data_1049"
                     }
                   ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@jfy133"
+        ],
+        "maintainers": [
+          "@jfy133"
+        ]
+      }
+    },
+    {
+      "name": "catpack_prepare",
+      "path": "modules/nf-core/catpack/prepare/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "catpack_prepare",
+        "description": "Creates a CAT_pack database based on input FASTAs",
+        "keywords": [
+          "catpack",
+          "cat",
+          "prepare",
+          "database",
+          "profiling",
+          "build"
+        ],
+        "tools": [
+          {
+            "catpack": {
+              "description": "CAT/BAT: tool for taxonomic classification of contigs and metagenome-assembled genomes (MAGs)",
+              "homepage": "https://github.com/MGXlab/CAT_pack",
+              "documentation": "https://github.com/MGXlab/CAT_pack",
+              "tool_dev_url": "https://github.com/MGXlab/CAT_pack",
+              "doi": "10.1186/s13059-019-1817-x",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "db_fasta": {
+                "type": "file",
+                "description": "A FASTA file containing all sequences to be included in the database",
+                "pattern": "*.{fasta,fa,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "names": {
+                "type": "file",
+                "description": "An NCBI taxonomy-style names text file",
+                "pattern": "*",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1964"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "nodes": {
+                "type": "file",
+                "description": "An NCBI taxonomy-style nodes text file",
+                "pattern": "*",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1964"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "acc2tax": {
+                "type": "file",
+                "description": "An NCBI taxonomy names accession to taxonomy file",
+                "pattern": "*",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1964"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "db": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}/db/": {
+                  "type": "directory",
+                  "description": "Directory containing CAT database files",
+                  "pattern": "${db}/",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_1049"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "taxonomy": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}/tax/": {
+                  "type": "directory",
+                  "description": "Directory containing CAT prepared taxonomy database files",
+                  "pattern": "${db}/",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_1049"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
                 }
               }
             ]
@@ -109352,6 +109525,22 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -134815,6 +135004,10 @@
         {
           "name": "viralrecon",
           "version": "2.6.0"
+        },
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
         }
       ]
     },
@@ -135129,7 +135322,8 @@
           "@bsiranosian"
         ],
         "maintainers": [
-          "@bsiranosian"
+          "@bsiranosian",
+          "@famosab"
         ]
       }
     },
@@ -135222,6 +135416,9 @@
         ],
         "authors": [
           "@Furentsu"
+        ],
+        "maintainers": [
+          "@famosab"
         ]
       }
     },
@@ -135310,8 +135507,25 @@
               {
                 "*.vcf": {
                   "type": "file",
-                  "description": "Variant file.",
+                  "description": "vcf file created with deepvariant (does not support .gz for normal vcf), optional",
                   "pattern": "*.vcf"
+                }
+              }
+            ]
+          },
+          {
+            "gvcf": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information.\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.g.vcf.gz": {
+                  "type": "file",
+                  "description": "bgzipped gvcf created with deepvariant, optional",
+                  "pattern": "*.g.vcf.gz"
                 }
               }
             ]
@@ -135330,6 +135544,9 @@
         ],
         "authors": [
           "@bsiranosian"
+        ],
+        "maintainers": [
+          "@famosab"
         ]
       }
     },
@@ -135798,6 +136015,9 @@
         "authors": [
           "@Furentsu",
           "@bsiranosian"
+        ],
+        "maintainers": [
+          "@famosab"
         ]
       }
     },
@@ -135987,6 +136207,9 @@
         "authors": [
           "@Furentsu",
           "@bsiranosian"
+        ],
+        "maintainers": [
+          "@famosab"
         ]
       }
     },
@@ -136144,6 +136367,9 @@
         ],
         "authors": [
           "@bsiranosian"
+        ],
+        "maintainers": [
+          "@famosab"
         ]
       }
     },
@@ -210081,6 +210307,10 @@
         {
           "name": "phageannotator",
           "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
         }
       ]
     },
@@ -213508,6 +213738,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
+        },
         {
           "name": "riboseq",
           "version": "1.0.1"
