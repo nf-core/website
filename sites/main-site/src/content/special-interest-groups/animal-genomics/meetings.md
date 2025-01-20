@@ -9,8 +9,8 @@ groupName: Animal Genomics
 The [Animal Genomics special interest group](/special-interest-groups/animal-genomics) meets on the third Wednesday
 of every month, usually at 4 PM CET / 10 AM ET / 7 AM PT for 1h.
 
-|               Date | Speaker                                                                                                                      | Event                                                        |
-| -----------------: | :--------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+|                     Date | Speaker                                                                                                                      | Event                                                        |
+| -----------------------: | :--------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
 |             Feb 19, 2025 | Harris Lewin (Arizona State University, USA)                                                                                 | TBA                                                          |
 |             Jan 22, 2025 | Round table for discussing the section of the ELIXIR Domestic Animals Genome & Phenome Focus Group                           | [January Meeting](/events/2025/SIG_animalgenomics_Jan)       |
 |             Dec 18, 2024 | Emily Clark (The Roslin Institute, University of Edinburgh, UK)                                                              | [December Meeting](/events/2024/SIG_animalgenomics_Dec)      |
