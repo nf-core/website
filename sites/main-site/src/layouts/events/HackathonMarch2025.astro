@@ -4,13 +4,15 @@ import Leaflet from '@components/Leaflet.svelte';
 
 const { frontmatter } = Astro.props;
 
-const map_location = [
-    {
-        location: frontmatter.locations[0].geoCoordinates,
-        name: frontmatter.location,
-        url: frontmatter.url,
-    },
-];
+const map_location = frontmatter.locations?.[0]
+    ? [
+          {
+              location: frontmatter.locations[0].geoCoordinates,
+              name: frontmatter.locations[0].name,
+              url: frontmatter.url,
+          },
+      ]
+    : [];
 ---
 
 <h1>{frontmatter.shortTitle}</h1>
@@ -25,11 +27,17 @@ const map_location = [
     </p>
 </Admonition>
 
-<Admonition title="info" titleText="Location">
-    <h5 class="mt-0">{frontmatter.locations[0].name}</h5>
-    <p>{frontmatter.locations[0].address}</p>
-    <p><a href={frontmatter.locations[0].links[0]}>{frontmatter.locations[0].links[0]}</a></p>
-    {/* <Leaflet locations={map_location} client:only="svelte" /> */}
-</Admonition>
+{
+    frontmatter.locations?.[0] && (
+        <Admonition title="info" titleText="Location">
+            <h5 class="mt-0">{frontmatter.locations[0].name}</h5>
+            <p>{frontmatter.locations[0].address}</p>
+            <p>
+                <a href={frontmatter.locations[0].links[0]}>{frontmatter.locations[0].links[0]}</a>
+            </p>
+            {/* <Leaflet locations={map_location} client:only="svelte" /> */}
+        </Admonition>
+    )
+}
 
 <slot />
