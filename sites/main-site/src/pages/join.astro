@@ -18,12 +18,6 @@ const headings = [
         fa_icon: 'fa-brands fa-github',
     },
     {
-        text: 'Twitter',
-        slug: 'twitter',
-        depth: 1,
-        fa_icon: 'fa-brands fa-twitter',
-    },
-    {
         text: 'Mastodon',
         slug: 'mastodon',
         depth: 1,
@@ -61,14 +55,6 @@ const headings = [
     <p class="text-center">
         <a href="https://github.com/nf-core" class="mb-2 me-3 btn btn-lg btn-dark border-white">
             <i class="fab fa-github"></i> GitHub
-        </a>
-        <a
-            href="https://twitter.com/nf_core"
-            class="mb-2 me-3 btn btn-lg btn-dark border-0 bg-twitter"
-            bs-toggle="tooltip"
-            title="Nope, not calling it X"
-        >
-            <i class="fab fa-twitter"></i> twitter
         </a>
         <a
             href="https://mstdn.science/@nf_core"
@@ -177,19 +163,6 @@ const headings = [
         </a>
     </p>
 
-    <h1 id="twitter" class="mt-5">
-        <span class="join-pull-img bg-body"><Icon name="logos:twitter" size="120px" /></span>
-        Twitter
-        <a href="#twitter" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
-    </h1>
-    <p>
-        The <a href="https://twitter.com/nf_core">@nf_core</a> twitter account sends automated tweets whenever a new pipeline
-        release is tagged. Relevant news and events are also tweeted.
-    </p>
-    <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw" class="btn btn-dark bg-twitter border-0">
-        <i class="fab fa-twitter me-1"></i>Follow @nf_core</a
-    >
-
     <h1 id="mastodon" class="mt-5">
         <span class="join-pull-img bg-body"><Icon name="logos:mastodon-icon" size="120px" /></span>
         Mastodon
@@ -264,8 +237,5 @@ const headings = [
     .join-pull-img {
         float: right;
         padding-left: 1.5rem;
-    }
-    .bg-twitter {
-        background-color: #4aa1eb !important;
     }
 </style>
