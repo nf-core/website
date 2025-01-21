@@ -6,6 +6,7 @@ import Leaflet from '@components/Leaflet.svelte';
 import GitHubProfilePicture from '@components/GitHubProfilePicture.svelte';
 import Admonition from '@components/Admonition.astro';
 import Heading from '@components/Heading.astro';
+import { Icon } from 'astro-icon/components';
 
 const contributors_flat = pipelines_json.remote_workflows.map((pipeline) => pipeline.contributors).flat();
 
@@ -170,6 +171,12 @@ const headings = [
                                 {institution.mastodon && (
                                     <a href={institution.mastodon} class="">
                                         <i class="fab fa-mastodon" /> {institution.mastodon}
+                                    </a>
+                                )}
+                                {institution.bluesky && (
+                                    <a href={institution.bluesky} class="">
+                                        <Icon name="simple-icons:bluesky" color="#1185fe" size="30px" />{' '}
+                                        {institution.bluesky}
                                     </a>
                                 )}
                             </div>
