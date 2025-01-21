@@ -11,7 +11,10 @@
 
     let m;
     function createMap(container) {
-        m = map(container, { minZoom: 2 }).setView([15.505, 10.09], 2);
+        m = map(container, {
+            minZoom: 1.4,
+        }).setView([20, 25.09], 1.4); // Adjusted center point and zoom
+
         let greenIcon = new Icon({
             iconUrl: '/images/marker-icon-2x-green.png',
             shadowUrl: '/images/marker-shadow.png',
@@ -67,7 +70,7 @@
 
 <style lang="scss">
     .map {
-        height: 480px;
+        height: 400px;
         width: 90%;
     }
     @media (max-width: 767.98px) {
