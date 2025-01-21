@@ -13,10 +13,10 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b # v5
         with:
-          python-version: 3.x
+          python-version: 3.9
 
       - name: Install Nextflow
-        uses: nf-core/setup-nextflow@6c2e22b4d901f0c42ca66c5069f8026df026d165 # v2
+        uses: nf-core/setup-nextflow@v2
 
       - name: Install nf-test
         uses: nf-core/setup-nf-test@v1
