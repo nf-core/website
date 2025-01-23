@@ -8763,6 +8763,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -30941,6 +30945,401 @@
       ]
     },
     {
+      "name": "catpack_addnames",
+      "path": "modules/nf-core/catpack/addnames/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "catpack_addnames",
+        "description": "Taxonomic classification of long DNA sequences and metagenome assembled genomes (e.g. MAGs / bins).",
+        "keywords": [
+          "taxonomic classification",
+          "classification",
+          "long reads",
+          "mags",
+          "assembly"
+        ],
+        "tools": [
+          {
+            "catpack": {
+              "description": "CAT/BAT: tool for taxonomic classification of contigs and metagenome-assembled genomes (MAGs)",
+              "homepage": "https://github.com/MGXlab/CAT_pack",
+              "documentation": "https://github.com/MGXlab/CAT_pack",
+              "tool_dev_url": "https://github.com/MGXlab/CAT_pack",
+              "doi": "10.1186/s13059-019-1817-x",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "input": {
+                "type": "file",
+                "description": "Classification or ORF2LCA output file from CAT/BAT/RAT",
+                "pattern": "*.txt",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "taxonomy": {
+                "type": "directory",
+                "description": "Directory containing taxonomy files: names.dmp, nodes.dmp, acc2taxid.txt",
+                "pattern": "*/",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_1049"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "txt": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n",
+                  "pattern": "*.{bam,cram,sam}"
+                }
+              },
+              {
+                "${prefix}.txt": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n",
+                  "pattern": "*.{bam,cram,sam}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@jfy133"
+        ],
+        "maintainers": [
+          "@jfy133"
+        ]
+      }
+    },
+    {
+      "name": "catpack_bins",
+      "path": "modules/nf-core/catpack/bins/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "catpack_bins",
+        "description": "Taxonomic classification of long DNA sequences and metagenome assembled genomes (e.g. MAGs / bins).",
+        "keywords": [
+          "taxonomic classification",
+          "classification",
+          "long reads",
+          "mags",
+          "assembly"
+        ],
+        "tools": [
+          {
+            "catpack": {
+              "description": "CAT/BAT: tool for taxonomic classification of contigs and metagenome-assembled genomes (MAGs)",
+              "homepage": "https://github.com/MGXlab/CAT_pack",
+              "documentation": "https://github.com/MGXlab/CAT_pack",
+              "tool_dev_url": "https://github.com/MGXlab/CAT_pack",
+              "doi": "10.1186/s13059-019-1817-x",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "bins": {
+                "type": "file",
+                "description": "One or more nucleotide FASTA file containing binned long DNA sequences.",
+                "pattern": "*.{fasta,fna,fa,fas}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "database": {
+                "type": "directory",
+                "description": "Directory containing CAT_pack database files (e.g. output from CAT_pack prepare)",
+                "pattern": "*/",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_1049"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "taxonomy": {
+                "type": "directory",
+                "description": "Directory containing CAT_pack taxonomy files (e.g. output from CAT_pack prepare)",
+                "pattern": "*/",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_1049"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "proteins": {
+                "type": "directory",
+                "description": "Optional pre predicted-made proteins FASTA",
+                "pattern": "*.{fasta,faa,fa,fas}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta5": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "diamond_table": {
+                "type": "directory",
+                "description": "Optional pre-made DIAMOND alignment table",
+                "pattern": "*",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3751"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "orf2lca": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.ORF2LCA.txt": {
+                  "type": "file",
+                  "description": "A TSV file with per-ORF hit stats and identified lineage",
+                  "pattern": "*.ORF2LCA.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "bin2classification": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.bin2classification.txt": {
+                  "type": "file",
+                  "description": "A TSV file with per-bin hit stats and assignment justification information",
+                  "pattern": "*.bin2classification.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "log": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.log": {
+                  "type": "file",
+                  "description": "Log file with run messages and basic statistics",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "diamond": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.diamond": {
+                  "type": "file",
+                  "description": "Intermediate DIAMOND TSV summary output file with alignment results",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "faa": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.predicted_proteins.faa": {
+                  "type": "file",
+                  "description": "FAA file of DIAMOND predicted proteins hits",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "gff": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.gff": {
+                  "type": "file",
+                  "description": "GFF file of DIAMOND predicted proteins hits",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2305"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@jfy133"
+        ],
+        "maintainers": [
+          "@jfy133"
+        ]
+      }
+    },
+    {
       "name": "catpack_contigs",
       "path": "modules/nf-core/catpack/contigs/meta.yml",
       "type": "module",
@@ -31001,7 +31400,7 @@
               "database": {
                 "type": "directory",
                 "description": "Directory containing CAT_pack database files (e.g. output from CAT_pack prepare)",
-                "pattern": "*./",
+                "pattern": "*/",
                 "ontologies": [
                   {
                     "edam": "http://edamontology.org/data_1049"
@@ -31021,10 +31420,50 @@
               "taxonomy": {
                 "type": "directory",
                 "description": "Directory containing CAT_pack taxonomy files (e.g. output from CAT_pack prepare)",
-                "pattern": "*./",
+                "pattern": "*/",
                 "ontologies": [
                   {
                     "edam": "http://edamontology.org/data_1049"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "proteins": {
+                "type": "directory",
+                "description": "Optional pre predicted-made proteins FASTA",
+                "pattern": "*.{fasta,faa,fa,fas}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta5": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "diamond_table": {
+                "type": "directory",
+                "description": "Optional pre-made DIAMOND alignment table",
+                "pattern": "*",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3751"
                   }
                 ]
               }
@@ -109892,6 +110331,22 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -135237,6 +135692,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
+        },
         {
           "name": "viralrecon",
           "version": "2.6.0"
@@ -195320,14 +195779,33 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.vcf.gz"
                 }
               },
               {
-                "*.vcf": {
-                  "type": "file",
-                  "description": "Annotated VCF file",
-                  "pattern": "*.vcf"
+                "*.vcf.gz": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.vcf.gz"
+                }
+              }
+            ]
+          },
+          {
+            "tbi": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.vcf.gz.tbi"
+                }
+              },
+              {
+                "*.vcf.gz.tbi": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.vcf.gz.tbi"
                 }
               }
             ]
@@ -195346,11 +195824,13 @@
         ],
         "authors": [
           "@projectoriented",
-          "@matthdsm"
+          "@matthdsm",
+          "@nvnieuwk"
         ],
         "maintainers": [
           "@projectoriented",
-          "@matthdsm"
+          "@matthdsm",
+          "@nvnieuwk"
         ]
       },
       "pipelines": [
@@ -210819,6 +211299,10 @@
         {
           "name": "phageannotator",
           "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
         }
       ]
     },
@@ -214246,6 +214730,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
+        },
         {
           "name": "riboseq",
           "version": "1.0.1"
