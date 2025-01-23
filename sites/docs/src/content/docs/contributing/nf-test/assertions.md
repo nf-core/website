@@ -79,13 +79,19 @@ assert testData.contains('Hello')
 You can access elements in output channels using index notation, for example:
 
 ```groovy
-log.get(0).get(1)
+process.out.log.get(0).get(1)
 ```
 
 which is equivalent to
 
 ```groovy
-log[0][1]
+process.out.log[0][1]
+```
+
+or even better to be more descriptive using the collect operator as
+
+```groovy
+process.out.log.collect { meta, log -> log }
 ```
 
 The first `get(0)` or `[0]` corresponds to the emitted channel object itself.
@@ -103,12 +109,13 @@ Specifying `get(q)` or `[1]` thus corresponds to the file(s)/directories for rec
 # nf-core guidelines for assertions
 
 1. **Encapsulate Assertions in `assertAll()`**: Group all assertions within `assertAll()` for comprehensive testing.
+
 2. **Minimum Requirement - Process Success + version.yml file**: Always check if the process completes successfully and make at least a snapshot of the version.yml.
 
 ```groovy
 assertAll(
     { assert process.success },
-    { assert snapshot(process.out.versions).match("versions") }
+    { assert snapshot(process.out.versions).match() }
 )
 ```
 
@@ -124,6 +131,34 @@ assertAll(
 :::note
 `process.out` will capture all output channels, both named and index based ones.
 :::
+
+4. **Configuration of `ext.args` in tests**: Module nf-tests SHOULD use a single nextflow.config to supply ext.args to a module. They can be defined in the when block of a test under the params scope.
+
+```groovy {title="main.nf.test"}
+config './nextflow.config'
+
+when {
+  params {
+    module_args = '--extra_opt1 --extra_opt2'
+  }
+  process {
+    """
+    input[0] = [
+      [ id:'test1', single_end:false ], // meta map
+      file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/genome/genome.fna.gz', checkIfExists: true)
+    ]
+    """
+  }
+}
+```
+
+```groovy {title="nextflow.config"}
+process {
+  withName: 'MODULE' {
+    ext.args = params.module_args
+  }
+}
+```
 
 ## Additional cases:
 
@@ -158,16 +193,17 @@ _Motivation:_ Create the snapshot for one specific output.
 assert snapshot(process.out.versions).match("versions")
 ```
 
-_Explanation:_ Checks a specific element, in this case `versions`, in the output channel of a process against a predefined snapshot named "versions".
+_Explanation:_ Checks a specific element, in this case `versions`, in the output channel of a process against a predefined snapshot element named "versions".
 
-### File Exists Check
+### File Exists and Matches Name Check
 
 _Motivation:_ Snapshots of an output are unstable, i.e. they change between test runs, for example because they include a timestamp/file-path in the content.
 
 - [BCLCONVERT](https://github.com/nf-core/modules/blob/master/modules/nf-core/bclconvert/tests/main.nf.test)
 
-```groovy!
-assert file(process.out.interop[0][1].find { file(it).name == "IndexMetricsOut.bin" }).exists()
+```groovy
+{ assert process.out.interop.collect { meta, interop ->
+                                        interop.find { interopfile -> file(interopfile).name == "IndexMetricsOut.bin" } } }
 ```
 
 _Explanation:_ Verifies the existence of a specific file, `IndexMetricsOut.bin`, in the output of a process.
@@ -178,43 +214,50 @@ _Motivation:_ I want to create a snapshot of different outputs, including severa
 
 - [BCLCONVERT](https://github.com/nf-core/modules/blob/master/modules/nf-core/bclconvert/tests/main.nf.test)
 
-```groovy!
+```groovy
 assertAll(
-                { assert process.success },
-                { assert snapshot(
-                    process.out.reports,
-                    process.out.versions,
-                    process.out.fastq,
-                    process.out.undetermined,
-                    file(process.out.logs.get(0).get(1)).list().sort(),
-                    process.out.interop.get(0).get(1).findAll { file(it).name != "IndexMetricsOut.bin" },
-                    ).match()
-                },
-                { assert file(process.out.interop.get(0).get(1).find { file(it).name == "IndexMetricsOut.bin" }).exists() }
-            )
+    { assert process.success },
+    { assert snapshot(
+        process.out.fastq,
+        process.out.fastq_idx,
+        process.out.undetermined.collect { meta, fastq -> file(fastq).name },
+        process.out.undetermined_idx,
+        process.out.reports,
+        process.out.logs.collect { meta, logs -> file(logs).list().sort() },
+        process.out.interop.collect { meta, interop ->
+                                    interop.findAll { interopfile ->
+                                    file(interopfile).name != "IndexMetricsOut.bin" } },
+        process.out.versions
+    ).match() },
+    { assert process.out.interop.collect { meta, interop ->
+                                                        interop.find { interopfile -> file(interopfile).name == "IndexMetricsOut.bin" } } }
+)
 ```
 
-_Explanation:_ This creates a snapshot for all output files and of a sorted list from a log directory while excluding a specific file, `IndexMetricsOut.bin`, in the comparison. The existence of this excluded file is checked in the end.
+_Explanation:_ This creates a snapshot for all output files and of a sorted list from a log directory while excluding a specific file, `IndexMetricsOut.bin`, in the comparison. The name of this excluded file is instead included in the snapshot.
 
 ### File Contains Check
 
-```groovy {4} {title="bismark/align/tests/main.nf.test"}
-with(process.out.report) {
-    with(get(0)) {
-        assert get(1).endsWith("hisat2_SE_report.txt")
-        assert path(get(1)).readLines().last().contains("Bismark completed in")
-    }
-}
+- [BISMARK/ALIGN](https://github.com/nf-core/modules/blob/master/modules/nf-core/bismark/align/tests/main.nf.test)
+
+```groovy
+process.out.report.collect { meta, report ->
+                             file(report).readLines().contains("Number of alignments with a unique best hit from the different alignments:\t5009")
+                           },
 ```
 
-_Explanation:_ This checks if the last line of a report file contains a specific string and if the file name ends with "hisat2_SE_report.txt".
+_Explanation:_ This checks if the last line of a report file contains a specific string.
 
 ### Snapshot Selective Portion of a File
 
 _Motivation:_ We can't make a snapshot of the whole file, because they are not stable, but we know a portion of the content should be stable, e.g. the timestamp is added in the 6th line, so we want to only snapshot the content of the first 5 lines.
 
 ```groovy
-assert snapshot(file(process.out.aligned[0][1]).readLines()[0..4]).match()
+assert snapshot(
+          process.out.aligned.collect { meta, aligned ->
+                                        file(aligned).readLines()[0..4]
+                                      }
+).match()
 ```
 
 _Explanation:_ Creates a snapshot of a specific portion (first five lines) of a file for comparison.
@@ -224,7 +267,7 @@ _Explanation:_ Creates a snapshot of a specific portion (first five lines) of a 
 _Motivation:_ We can't make a snapshot of the whole file, because they are not stable, but we know a portion of the content should be stable and the number of lines in it as well.
 
 ```groovy
-def lines = path(process.out.file_out[0][1]).linesGzip
+def lines = process.out.file_out.collect { meta, outfile -> path(outfile).linesGzip }
 assertAll(
     { assert process.success },
     { assert snapshot(lines[0..5]).match("test_cat_zipped_zipped_lines") },
@@ -254,7 +297,7 @@ _Explanation:_ Checks if specific strings, `/LIBS/GUID` and `/libs/cloud/report_
 _Motivation:_ We can't snapshot the whole tuple, but on element of the tuple has stable snapshots.
 
 ```groovy
-assert snapshot(file(process.out.deletions[0][1])).match("deletions")
+assert snapshot(process.out.deletions.collect { meta, deletions -> deletions }).match("deletions")
 ```
 
 _Explanation:_ Validates an element within a tuple output against a snapshot.
@@ -295,10 +338,10 @@ _Motivation:_ I want to include in the snapshot:
 
 ```groovy
 assert snapshot(
-    file(process.out.npa[0][1]).name,
-    file(process.out.npc[0][1]).name,
-    path(process.out.npo[0][1]).readLines()[0],
-    path(process.out.npl[0][1])
+    process.out.npa.collect { meta, npa -> file(npa).name },
+    process.out.npc.collect { meta, npc -> file(npc).name },
+    process.out.npo.collect { meta, npo -> file(npo).readLines()[0] },
+    process.out.npl.collect { meta, npl -> file(npl) }
 ).match()
 ```
 
@@ -307,7 +350,9 @@ _Explanation:_ Compares specific filenames and content of multiple files in a pr
 ### Snapshot the Last 4 Lines of a Gzipped File in the gzip output channel
 
 ```groovy
-path(process.out.gzip[0][1]).linesGzip[-4..-1]
+assert snapshot(
+    process.out.gzip.collect { meta, gzip -> gzip.linesGzip[-4..-1] }
+)
 ```
 
 _Explanation:_ Retrieves and allows the inspection of the last four lines of a gzipped file from the output channel.
@@ -316,8 +361,10 @@ _Explanation:_ Retrieves and allows the inspection of the last four lines of a g
 
 _Motivation:_ I want to check the presence of a specific string or data pattern within a gzipped file
 
-```groovy!
-{ assert path(process.out.vcf[0][1]).linesGzip.toString().contains("MT192765.1\t10214\t.\tATTTAC\tATTAC\t29.8242") }
+```groovy
+assert process.out.vcf.collect { meta, vcf ->
+                                  path(vcf).linesGzip.toString().contains("MT192765.1\t10214\t.\tATTTAC\tATTAC\t29.8242")
+}
 ```
 
 _Explanation:_ check if a specific string (`"MT192765.1\t10214\t.\tATTTAC\tATTAC\t29.8242"`) is present in the content of a gzipped file, specified by `path(process.out.vcf[0][1]).linesGzip.toString()`.
@@ -372,34 +419,6 @@ The operator `==~` can be used to check if a string matches a regular expression
 
 ```groovy
 assert "/my/full/path/to/process/dir/example.vcf.pgen" ==~ ".*/example.vcf.pgen"
-```
-
-### Using `with()`
-
-Instead of writing:
-
-```groovy
-assert process.out.imputed_plink2.size() == 1
-        assert process.out.imputed_plink2[0][0] == "example.vcf"
-        assert process.out.imputed_plink2[0][1] ==~ ".*/example.vcf.pgen"
-        assert process.out.imputed_plink2[0][2] ==~ ".*/example.vcf.psam"
-        assert process.out.imputed_plink2[0][3] ==~ ".*/example.vcf.pvar"
-}
-```
-
-You can reduce redundancy using the `with()` command:
-
-```groovy
-assert process.out.imputed_plink2
-with(process.out.imputed_plink2) {
-    assert size() == 1
-    with(get(0)) {
-        assert get(0) == "example.vcf"
-        assert get(1) ==~ ".*/example.vcf.pgen"
-        assert get(2) ==~ ".*/example.vcf.psam"
-        assert get(3) ==~ ".*/example.vcf.pvar"
-    }
-}
 ```
 
 ## Known Issues
