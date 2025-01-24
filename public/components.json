@@ -8775,6 +8775,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -31029,14 +31033,13 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n",
-                  "pattern": "*.{bam,cram,sam}"
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
                 }
               },
               {
                 "${prefix}.txt": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n",
+                  "description": "CAT/BAT/RAT classification file with added taxonomic names\n",
                   "pattern": "*.{bam,cram,sam}",
                   "ontologies": [
                     {
@@ -31859,6 +31862,120 @@
                   "type": "file",
                   "description": "File containing software versions",
                   "pattern": "versions.yml"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@jfy133"
+        ],
+        "maintainers": [
+          "@jfy133"
+        ]
+      }
+    },
+    {
+      "name": "catpack_summarise",
+      "path": "modules/nf-core/catpack/summarise/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "catpack_summarise",
+        "description": "Summarises results from CAT/BAT/RAT classification steps",
+        "keywords": [
+          "taxonomic classification",
+          "classification",
+          "long reads",
+          "mags",
+          "assembly"
+        ],
+        "tools": [
+          {
+            "catpack": {
+              "description": "CAT/BAT: tool for taxonomic classification of contigs and metagenome-assembled genomes (MAGs)",
+              "homepage": "https://github.com/MGXlab/CAT_pack",
+              "documentation": "https://github.com/MGXlab/CAT_pack",
+              "tool_dev_url": "https://github.com/MGXlab/CAT_pack",
+              "doi": "10.1186/s13059-019-1817-x",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "classification": {
+                "type": "file",
+                "description": "CAT/BAT/RAT classification table annotated with official names (from CAT_pack addnames)",
+                "pattern": "*.txt",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "contigs": {
+                "type": "file",
+                "description": "Optional nucleotide FASTA file containing long DNA sequences such as contigs that were classified (only if classification table is from CAT_pack contigs)",
+                "pattern": "*.{fasta,fna,fa,fas}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "txt": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.txt": {
+                  "type": "file",
+                  "description": "Summary statistics table of CAT/BAT/RAT results\n",
+                  "pattern": "*.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
                 }
               }
             ]
@@ -54396,16 +54513,32 @@
             "vcf": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "annotated vcf (optional)\n",
-                  "pattern": "*.ann.vcf.gz"
+                  "type": "map",
+                  "description": "Map with sample information\n"
                 }
               },
               {
                 "*.vcf.gz": {
                   "type": "file",
                   "description": "annotated vcf (optional)\n",
-                  "pattern": "*.ann.vcf.gz"
+                  "pattern": "*.vcf.gz"
+                }
+              }
+            ]
+          },
+          {
+            "tbi": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Map with sample information\n"
+                }
+              },
+              {
+                "*.vcf.gz.tbi": {
+                  "type": "file",
+                  "description": "annotated vcf index (optional)\n",
+                  "pattern": "*.vcf.gz.tbi"
                 }
               }
             ]
@@ -110417,6 +110550,22 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -135762,6 +135911,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
+        },
         {
           "name": "viralrecon",
           "version": "2.6.0"
@@ -211389,6 +211542,10 @@
         {
           "name": "phageannotator",
           "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
         }
       ]
     },
@@ -214816,6 +214973,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
+        },
         {
           "name": "riboseq",
           "version": "1.0.1"
