@@ -8767,6 +8767,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -66137,6 +66141,12 @@
           ],
           [
             {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'genome']\n"
+              }
+            },
+            {
               "fasta": {
                 "type": "file",
                 "description": "The reference fasta file",
@@ -66145,6 +66155,12 @@
             }
           ],
           [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'genome']\n"
+              }
+            },
             {
               "fai": {
                 "type": "file",
@@ -66155,6 +66171,12 @@
           ],
           [
             {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'genome']\n"
+              }
+            },
+            {
               "dict": {
                 "type": "file",
                 "description": "GATK sequence dictionary",
@@ -66164,6 +66186,12 @@
           ],
           [
             {
+              "meta5": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'genome']\n"
+              }
+            },
+            {
               "known_sites": {
                 "type": "file",
                 "description": "VCF files with known sites for indels / snps (optional)",
@@ -66172,6 +66200,12 @@
             }
           ],
           [
+            {
+              "meta6": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'genome']\n"
+              }
+            },
             {
               "known_sites_tbi": {
                 "type": "file",
@@ -110347,6 +110381,22 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -135692,6 +135742,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
+        },
         {
           "name": "viralrecon",
           "version": "2.6.0"
@@ -211303,6 +211357,10 @@
         {
           "name": "phageannotator",
           "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
         }
       ]
     },
@@ -214730,6 +214788,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
+        },
         {
           "name": "riboseq",
           "version": "1.0.1"
