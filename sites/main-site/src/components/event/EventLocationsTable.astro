@@ -1,0 +1,105 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+
+interface Props {
+    eventPath: string;
+}
+
+// Map of country codes to flags and names
+const COUNTRIES: { flag: string; name: string }[] = [
+    { flag: '🇦🇺', name: 'Australia' },
+    { flag: '🇧🇪', name: 'Belgium' },
+    { flag: '🇧🇷', name: 'Brazil' },
+    { flag: '🇨🇦', name: 'Canada' },
+    { flag: '🇨🇿', name: 'Czech Republic' },
+    { flag: '🇨🇴', name: 'Colombia' },
+    { flag: '🇩🇰', name: 'Denmark' },
+    { flag: '🇪🇹', name: 'Ethiopia' },
+    { flag: '🇫🇷', name: 'France' },
+    { flag: '🇩🇪', name: 'Germany' },
+    { flag: '🇬🇭', name: 'Ghana' },
+    { flag: '🇬🇷', name: 'Greece' },
+    { flag: '🇮🇳', name: 'India' },
+    { flag: '🇮🇹', name: 'Italy' },
+    { flag: '🇳🇱', name: 'Netherlands' },
+    { flag: '🇳🇿', name: 'New Zealand' },
+    { flag: '🇵🇰', name: 'Pakistan' },
+    { flag: '🇵🇱', name: 'Poland' },
+    { flag: '🇿🇦', name: 'South Africa' },
+    { flag: '🇪🇸', name: 'Spain' },
+    { flag: '🇸🇪', name: 'Sweden' },
+    { flag: '🇨🇭', name: 'Switzerland' },
+    { flag: '🇹🇷', name: 'Turkey' },
+    { flag: '🇬🇧', name: 'United Kingdom' },
+    { flag: '🇺🇸', name: 'USA' },
+];
+
+const { eventPath } = Astro.props;
+
+// Get all event pages
+const allEvents = await getCollection('events');
+
+// Filter for only the pages in the same directory as the current event
+const locationPages = allEvents.filter((page) => {
+    const pagePath = page.id.split('/');
+    const eventPathParts = eventPath.split('/');
+
+    // Remove the index.mdx from comparison
+    if (pagePath[pagePath.length - 1] === 'index.mdx') {
+        return false;
+    }
+
+    // Check if page is in the same directory
+    return pagePath.slice(0, -1).join('/') === eventPathParts.join('/');
+});
+
+// Add country info from frontmatter
+const locationsWithCountry = locationPages.map((page) => {
+    const countryName = page.data.locations?.[0]?.country;
+    // Find country code by matching country name
+    const countryEntry = Object.entries(COUNTRIES).find(
+        ([_, info]) => info.name.toLowerCase() === countryName?.toLowerCase(),
+    );
+    const country = countryEntry ? COUNTRIES[countryEntry[0]] : undefined;
+    return {
+        ...page,
+        countryInfo: country,
+    };
+});
+// Sort locations by country name
+const sortedLocations = locationsWithCountry.sort((a, b) => {
+    return a.countryInfo?.name?.localeCompare(b.countryInfo?.name);
+});
+---
+
+<div class="table-responsive">
+    <table class="table table-hover table-sm small">
+        <thead>
+            <tr>
+                <th>Country</th>
+                <th>City</th>
+                <th>Location</th>
+                <th>Event page</th>
+            </tr>
+        </thead>
+        <tbody>
+            {
+                sortedLocations.map((page) => (
+                    <tr class="position-relative">
+                        <td class="text-nowrap">
+                            {page.countryInfo?.flag} {page.countryInfo?.name}
+                        </td>
+                        <td class="text-nowrap">{page.data.locations?.[0]?.city}</td>
+                        <td class="">{page.data.locations?.[0]?.name}</td>
+                        <td class="text-nowrap">
+                            <a class="stretched-link" href={`/events/${page.id.replace('.mdx', '')}`}>
+                                Read more
+                            </a>
+                        </td>
+                    </tr>
+                ))
+            }
+        </tbody>
+    </table>
+</div>
