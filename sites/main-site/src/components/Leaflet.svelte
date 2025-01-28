@@ -1,6 +1,8 @@
 <script lang="ts">
     import { tileLayer, marker, map, Icon } from 'leaflet';
+    import 'leaflet-fullscreen';
     import 'leaflet/dist/leaflet.css';
+    import 'leaflet-fullscreen/dist/leaflet.fullscreen.css';
 
     export let locations: {
         location: [number, number];
@@ -13,6 +15,7 @@
     function createMap(container) {
         m = map(container, {
             minZoom: 1.4,
+            fullscreenControl: true,
         }).setView([20, 25.09], 1.4); // Adjusted center point and zoom
 
         let greenIcon = new Icon({
