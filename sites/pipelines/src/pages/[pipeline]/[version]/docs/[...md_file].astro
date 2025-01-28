@@ -6,39 +6,72 @@ import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
 import pipelines_json from '@public/pipelines.json';
 import { getEntry } from 'astro:content';
 import type { SidebarEntry } from '@utils/types';
-import { createLinkOrGroup } from '@utils/functions';
+import { createLinkOrGroup, addEntriesToSection as addEntriesToSectionBase } from '@utils/functions';
 
 import ExpandDetailsButton from '@components/sidebar/ExpandDetailsButton.svelte';
 
-export function getStaticPaths() {
+export async function getStaticPaths() {
     let paths: {
         params: { pipeline: string; version: string; md_file: string };
-        props: { versions: string[]; md_files: { slug: string }[]; description: string | null };
+        props: { versions: string[]; md_files: { slug: string; data?: any }[]; description: string | null };
     }[] = [];
-    pipelines_json.remote_workflows.forEach((pipeline) => {
-        const releases = pipeline.releases;
-        const extended_releases = [...releases, { tag_name: 'latest', doc_files: releases[0].doc_files }];
-        extended_releases.forEach((release) => {
-            const md_files = release.doc_files.map((file) => {
-                return { slug: file.replace('docs/', '').replace('.mdx', '').replace('.md', '') };
-            });
 
-            md_files.forEach((md_file) => {
-                paths.push({
-                    params: {
-                        pipeline: pipeline.name,
-                        version: release.tag_name,
-                        md_file: md_file.slug,
-                    },
-                    props: {
-                        versions: releases.map((release) => release.tag_name),
-                        md_files: md_files,
-                        description: pipeline.description,
-                    },
-                });
-            });
-        });
-    });
+    await Promise.all(
+        pipelines_json.remote_workflows.map(async (pipeline) => {
+            const releases = pipeline.releases;
+            const extended_releases = [...releases, { tag_name: 'latest', doc_files: releases[0].doc_files }];
+
+            await Promise.all(
+                extended_releases.map(async (release) => {
+                    // Get collection entries for all files
+                    const entries = await Promise.all(
+                        release.doc_files.map((file) =>
+                            getEntry(
+                                'pipelines',
+                                `${pipeline.name}/${release.tag_name}/${file.replace('.md', '').toLowerCase()}`,
+                            ),
+                        ),
+                    );
+
+                    console.log('name', `${pipeline.name}/${release.tag_name}`);
+                    if (entries.some((entry) => !entry)) {
+                        console.log(
+                            'entries',
+                            entries.map((entry) => entry),
+                        );
+                    }
+                    const md_files = entries.some((entry) => !entry)
+                        ? release.doc_files.map((file) => ({
+                              slug: file.replace('docs/', '').replace('.mdx', '').replace('.md', ''),
+                              data: {},
+                          }))
+                        : entries.map((entry) => {
+                              return {
+                                  slug: entry.slug
+                                      .replace(`${pipeline.name}/${release.tag_name}/`, '')
+                                      .replace('docs/', '')
+                                      .replace('.mdx', '')
+                                      .replace('.md', ''),
+                                  data: entry.data,
+                              };
+                          });
+
+                    md_files.forEach((md_file) => {
+                        console.log('md_file', md_file.slug);
+                        paths.push({
+                            params: { pipeline: pipeline.name, version: release.tag_name, md_file: md_file.slug },
+                            props: {
+                                versions: releases.map((r) => r.tag_name),
+                                md_files,
+                                description: pipeline.description,
+                            },
+                        });
+                    });
+                }),
+            );
+        }),
+    );
+
     return paths;
 }
 let { pipeline, version, md_file } = Astro.params;
@@ -54,48 +87,47 @@ let sections: SidebarEntry[] = [];
 let url = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : Astro.url.pathname + '/';
 url = url.replace(/\.html\/$/, '/');
 // drop everything after docs/
-const baseURL = url.split('/').slice(0, 4).join('/') + '/';
 if (leftSidebar) {
-    const addEntriesToSection = (sections, md_files) => {
-        const docSlugs = md_files.filter((f) => f.slug.startsWith(section)).map((doc) => doc.slug);
-        docSlugs.forEach((slug) => {
-            const parts = slug.split('/');
-            let currentLevel = sections;
-
-            parts.forEach((part, i) => {
-                const label = part.replaceAll('_', ' ').replace(/(^)\S/g, (match) => match.toUpperCase());
-                const existingEntry = currentLevel.find((entry) => entry.label === label);
-
-                if (existingEntry) {
-                    if (existingEntry.type === 'group') {
-                        currentLevel = existingEntry.entries;
-                    } else {
-                        existingEntry.type = 'group';
-                        existingEntry.collapsed = Astro.url.pathname !== existingEntry.href;
-                        existingEntry.entries = [];
-                        existingEntry.icon = 'fa-regular fa-book';
-                        currentLevel = existingEntry.entries;
-                    }
-                } else {
-                    let newEntry: SidebarEntry;
-                    newEntry = createLinkOrGroup(
-                        parts.slice(0, i + 1).join('_'),
-                        label,
-                        baseURL + slug,
-                        i === parts.length - 1,
-                        Astro.url.pathname,
-                    );
-                    currentLevel.push(newEntry);
-
-                    if (newEntry.type === 'group' && newEntry.entries) {
-                        currentLevel = newEntry.entries;
-                    }
+    // Convert md_files to match the expected CollectionEntry<'docs'> structure
+    console.log('md_files', md_files);
+    const docsEntries = md_files
+        .filter((f) => f.slug.startsWith(section))
+        .map((file) => {
+            return {
+                slug: `${file.slug}`,
+                data: {
+                    weight: file.data?.order,
+                    shortTitle: file.data?.shortTitle,
+                },
+            };
+        });
+    console.log('docsEntries', docsEntries);
+    addEntriesToSectionBase(sections, docsEntries, `${Astro.url.pathname}`, `/${pipeline}/${version}/docs/`);
+    // if there is only one section, expand it, same for the children
+    if (sections.length === 1 && sections[0].type === 'group') {
+        sections[0].collapsed = false;
+        if (sections[0].entries.length === 1 && sections[0].entries[0].type === 'group') {
+            sections[0].entries.forEach((entry) => {
+                if (entry.type === 'group') {
+                    entry.collapsed = false;
                 }
             });
+        }
+    }
+    console.log('sections', sections[0].entries[0]);
+    // Add book icons to all group entries
+    const addBookIcons = (entries: SidebarEntry[]) => {
+        entries.forEach((entry) => {
+            if (entry.type === 'group') {
+                entry.icon = 'fa-regular fa-book';
+                if (entry.entries) {
+                    addBookIcons(entry.entries);
+                }
+            }
         });
     };
 
-    addEntriesToSection(sections, md_files);
+    addBookIcons(sections);
 }
 const version_tag_name = version === 'latest' ? versions[0] : version;
 const cache_key = `${pipeline}/${version_tag_name?.replaceAll('.', '')}/docs/${md_file?.toLowerCase()}`;
@@ -105,6 +137,7 @@ if (!entry) {
     return Astro.redirect('/404');
 }
 let { Content, headings } = await entry.render();
+console.log('entry', entry.data);
 const max_heading_depth = 2;
 
 // filter out headings that are higher than max_heading_depth
@@ -146,3 +179,10 @@ headings = headings.filter((h) => h.depth <= max_heading_depth);
         </div>
     </div>
 </PipelinePageLayout>
+<style>
+    /* center all images */
+    :global(p img) {
+        display: block;
+        margin: 0 auto;
+    }
+</style>
