@@ -39,12 +39,11 @@
                 })
                     .addTo(m)
                     .bindPopup(
-                        '<h6><a href="#' +
-                            locationMarker.name.replaceAll('/[^a-z]+/', '-') +
-                            '">' +
-                            locationMarker.name +
-                            '</a></h6>' +
-                            image,
+                        `<h6><a href="${
+                            locationMarker.url.startsWith('/events/')
+                                ? locationMarker.url
+                                : locationMarker.name.replaceAll('/[^a-z]+/', '-')
+                        }">${locationMarker.name}</a></h6>${image}`,
                     );
             }
         });
