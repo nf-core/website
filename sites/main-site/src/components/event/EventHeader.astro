@@ -47,7 +47,11 @@ function getLinkIcon(link) {
                 <dd><LocalDateTime date={end} client:visible /></dd>
             </dl>
 
-            <ExportEventButton frontmatter={frontmatter} add_class="btn-outline-light col" client:idle />
+            {
+                !frontmatter.hideExportButton && (
+                    <ExportEventButton frontmatter={frontmatter} add_class="btn-outline-light col" client:idle />
+                )
+            }
         </div>
         <div class="col">
             <dl>
