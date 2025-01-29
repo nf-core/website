@@ -8807,6 +8807,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -14784,15 +14788,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
-                  "pattern": "*.{vcf.gz}"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
-                "${prefix}.vcf.gz": {
+                "${prefix}.${extension}": {
                   "type": "map",
                   "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
-                  "pattern": "*.{vcf.gz}"
+                  "pattern": "*.{vcf,vcf.gz,bcf,bcf.gz}"
                 }
               }
             ]
@@ -14802,12 +14805,11 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
-                  "pattern": "*.tbi"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
-                "${prefix}.vcf.gz.tbi": {
+                "${prefix}.${extension}.tbi": {
                   "type": "map",
                   "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*.tbi"
@@ -14820,12 +14822,11 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
-                  "pattern": "*.csi"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
-                "${prefix}.vcf.gz.csi": {
+                "${prefix}.${extension}.csi": {
                   "type": "map",
                   "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*.csi"
@@ -88849,6 +88850,10 @@
           "version": "1.0.3"
         },
         {
+          "name": "methylong",
+          "version": "dev"
+        },
+        {
           "name": "methylseq",
           "version": "3.0.0"
         },
@@ -90216,6 +90221,88 @@
           "version": "2.2.0"
         }
       ]
+    },
+    {
+      "name": "haplogrep3_classify",
+      "path": "modules/nf-core/haplogrep3/classify/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "haplogrep3_classify",
+        "description": "classification into haplogroups",
+        "keywords": [
+          "haplogroups",
+          "classify",
+          "mtDNA"
+        ],
+        "tools": [
+          {
+            "haplogrep3": {
+              "description": "A tool for mtDNA haplogroup classification.",
+              "homepage": "https://github.com/genepi/haplogrep3",
+              "documentation": "https://github.com/genepi/haplogrep3",
+              "tool_dev_url": "https://github.com/genepi/haplogrep3",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "inputfile": {
+                "type": "file",
+                "description": "valid options are hsd, vcf, or fasta files",
+                "pattern": "*.{vcf,vcf.gz,fasta,hsd}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "txt": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.txt": {
+                  "type": "file",
+                  "description": "text file with classification information",
+                  "pattern": "*.{txt}"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@lucpen"
+        ],
+        "maintainers": [
+          "@lucpen",
+          "@ramprasadn"
+        ]
+      }
     },
     {
       "name": "happy_ftxpy",
@@ -109774,6 +109861,22 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
+        },
         {
           "name": "ampliseq",
           "version": "2.12.0"
@@ -137069,6 +137172,10 @@
         {
           "name": "viralrecon",
           "version": "2.6.0"
+        },
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
         }
       ]
     },
@@ -139603,6 +139710,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "methylong",
+          "version": "dev"
+        },
         {
           "name": "pacvar",
           "version": "dev"
@@ -149075,6 +149186,10 @@
         {
           "name": "mag",
           "version": "3.3.0"
+        },
+        {
+          "name": "methylong",
+          "version": "dev"
         },
         {
           "name": "taxprofiler",
@@ -162987,6 +163102,10 @@
           "version": "3.3.0"
         },
         {
+          "name": "methylong",
+          "version": "dev"
+        },
+        {
           "name": "methylseq",
           "version": "3.0.0"
         },
@@ -163346,6 +163465,10 @@
           "version": "1.1.0"
         },
         {
+          "name": "methylong",
+          "version": "dev"
+        },
+        {
           "name": "radseq",
           "version": "dev"
         },
@@ -163579,6 +163702,10 @@
         {
           "name": "metatdenovo",
           "version": "1.0.1"
+        },
+        {
+          "name": "methylong",
+          "version": "dev"
         },
         {
           "name": "methylseq",
@@ -164031,7 +164158,13 @@
         "maintainers": [
           "@matthdsm"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "methylong",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "samtools_index",
@@ -164211,6 +164344,10 @@
         {
           "name": "metatdenovo",
           "version": "1.0.1"
+        },
+        {
+          "name": "methylong",
+          "version": "dev"
         },
         {
           "name": "methylseq",
@@ -165296,6 +165433,10 @@
         {
           "name": "metatdenovo",
           "version": "1.0.1"
+        },
+        {
+          "name": "methylong",
+          "version": "dev"
         },
         {
           "name": "methylseq",
@@ -212759,6 +212900,10 @@
         {
           "name": "phageannotator",
           "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
         }
       ]
     },
@@ -216609,6 +216754,10 @@
         {
           "name": "riboseq",
           "version": "1.0.1"
+        },
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
         }
       ]
     },
@@ -217027,6 +217176,10 @@
           "version": "dev"
         },
         {
+          "name": "methylong",
+          "version": "dev"
+        },
+        {
           "name": "methylseq",
           "version": "3.0.0"
         },
@@ -217336,6 +217489,10 @@
           "version": "dev"
         },
         {
+          "name": "methylong",
+          "version": "dev"
+        },
+        {
           "name": "methylseq",
           "version": "3.0.0"
         },
@@ -217614,6 +217771,10 @@
         },
         {
           "name": "methylarray",
+          "version": "dev"
+        },
+        {
+          "name": "methylong",
           "version": "dev"
         },
         {
