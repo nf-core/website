@@ -7,7 +7,11 @@
     import CopyButton from '@components/CopyButton.svelte';
 
     export let headings: { text: string; slug: string; depth: number; fa_icon?: string }[] = [];
+
     onMount(() => {
+        if (typeof window !== 'undefined' && window.location.pathname.includes('/events/') && !window.location.hash) {
+            window.scrollTo(0, 0);
+        }
         async function renderDiagrams(graphs) {
             mermaid.initialize({
                 startOnLoad: false,
