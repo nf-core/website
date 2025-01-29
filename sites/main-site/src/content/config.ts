@@ -35,6 +35,8 @@ const events = defineCollection({
                         links: z.string().url().or(z.string().startsWith('#')).or(z.array(z.string().url())).optional(),
                         geoCoordinates: z.array(z.number(), z.number()).optional(),
                         address: z.string().optional(),
+                        country: z.string().optional(),
+                        city: z.string().optional(),
                     }),
                 )
                 .optional(),
@@ -68,6 +70,10 @@ const events = defineCollection({
             // check that announcement.start is set if announcement.text is
             if (data.announcement?.text && !data.announcement.start && !data.announcement.end) {
                 throw new Error('announcement.start and announcement.end must be set if announcement.text is');
+            }
+            // check that locations country is set if locations city is set
+            if (data.locations?.[0]?.city && !data.locations?.[0]?.country) {
+                throw new Error('locations.country must be set if locations.city is');
             }
             // Return true if the validation should pass
             return true;

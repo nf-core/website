@@ -17,7 +17,7 @@ let local_sites_map: {
     if (location && location.geoCoordinates) {
         return {
             location: location.geoCoordinates,
-            name: site.data.title,
+            name: site.data.locations?.[0]?.name ?? site.data.title,
             url: '/events/' + site.slug,
         };
     }

@@ -16,6 +16,7 @@ announcement:
 ---
 
 import EventMap from '@components/event/EventMap.astro';
+import EventLocationsTable from '@components/event/EventLocationsTable.astro';
 
 # Welcome
 
@@ -61,46 +62,7 @@ For the most recent information about your site as well as the contact details o
 
 <EventMap event={'2025/hackathon-march-2025'} />
 
-<div class="table-responsive" markdown="1">
-
-| Country           | City          | Location                                       | Event page                                                                                         |
-| ----------------- | ------------- | ---------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| 🇦🇺 Australia      | Sydney        | University of Sydney                           | [Read more](/events/2025/hackathon-march-2025/biocommons_sydney)                                   |
-| 🇧🇪 Belgium        | Ghent         | Ghent University                               | [Read more](/events/2025/hackathon-march-2025/ghent-university)                                    |
-| 🇧🇷 Brazil         | Natal         | Federal University of Rio Grande do Norte      | [Read more](/events/2025/hackathon-march-2025/university-of-rio-grande-do-norte)                   |
-| 🇧🇷 Brazil         | Guarapuava    | Federal Technological University of Paraná     | [Read more](/events/2025/hackathon-march-2025/utfpr_brazil)                                        |
-| 🇨🇦 Canada         | Montreal      | McGill University offices                      | [Read more](/events/2025/hackathon-march-2025/montreal-mcgill)                                     |
-| 🇨🇿 Czech Republic | Brno          | CEITEC MU                                      | [Read more](/events/2025/hackathon-march-2025/ceitec-mu)                                           |
-| 🇨🇴 Colombia       | Bogota        | University of the Andes                        | [Read more](/events/2025/hackathon-march-2025/bogota-colombia)                                     |
-| 🇩🇰 Denmark        | Copenhagen    | ZS Associates.                                 | [Read more](/events/2025/hackathon-march-2025/zs_cph)                                              |
-| 🇪🇹 Ethiopia       | Addis Ababa   | Nexsis Analytics                               | [Read more](/events/2025/hackathon-march-2025/nexsis-addis-ethiopia)                               |
-| 🇫🇷 France         | Rennes        | Institut of Genetics & Development of Rennes   | [Read more](/events/2025/hackathon-march-2025/institut-of-genetics-development-of-rennes)          |
-| 🇩🇪 Germany        | Berlin        | Robert Koch Institute                          | [Read more](/events/2025/hackathon-march-2025/robert-koch-institute)                               |
-| 🇩🇪 Germany        | Heidelberg    | DKFZ and GHGA                                  | [Read more](/events/2025/hackathon-march-2025/dkfz-and-ghga)                                       |
-| 🇩🇪 Germany        | Munich        | TUM/LMU Munich                                 | [Read more](/events/2025/hackathon-march-2025/tumlmu-munich)                                       |
-| 🇩🇪 Germany        | Tuebingen     | University of Tuebingen                        | [Read more](/events/2025/hackathon-march-2025/qbic-uni-of-tuebingen.mdx)                           |
-| 🇬🇭 Ghana          | Accra         | Noguchi Memorial Institute of Medical Research | [Read more](/events/2025/hackathon-march-2025/nmimr-ghana)                                         |
-| 🇬🇷 Greece         | Athens        | BSRC Alexander Fleming                         | [Read more](/events/2025/hackathon-march-2025/bsrc-alexander-fleming)                              |
-| 🇮🇳 India          | Hyderabad     | Corteva AgriScience & Perimatrix IT            | [Read more](/events/2025/hackathon-march-2025/corteva-perimatrix-hyderabad)                        |
-| 🇮🇹 Italy          | Pavia         | University of Pavia                            | [Read more](/events/2025/hackathon-march-2025/university-of-pavia)                                 |
-| 🇮🇹 Italy          | Salerno       | University of Salerno                          | [Read more](/events/2025/hackathon-march-2025/university-of-salerno)                               |
-| 🇳🇱 Netherlands    | Amsterdam     | Hartwig Medical Foundation                     | [Read more](/events/2025/hackathon-march-2025/hartwig-medical-foundation)                          |
-| 🇳🇿 New Zealand    | Hamilton      | NetValue Ltd                                   | [Read more](/events/2025/hackathon-march-2025/netvalue)                                            |
-| 🇵🇰 Pakistan       | Islamabad     | National University of Sciences and Technology | [Read more](/events/2025/hackathon-march-2025/national-university-of-sciences-and-technology-nust) |
-| 🇵🇱 Poland         | Kraków        | Ardigen                                        | [Read more](/events/2025/hackathon-march-2025/ardigen)                                             |
-| 🇿🇦 South Africa   | Cape Town     | Stellenbosch University                        | [Read more](/events/2025/hackathon-march-2025/stellenbosch-university-cape-town)                   |
-| 🇪🇸 Spain          | Barcelona     | CRG                                            | [Read more](/events/2025/hackathon-march-2025/crg)                                                 |
-| 🇪🇸 Spain          | Barcelona     | Seqera                                         | [Read more](/events/2025/hackathon-march-2025/seqera)                                              |
-| 🇸🇪 Sweden         | Uppsala       | Uppsala University                             | [Read more](/events/2025/hackathon-march-2025/uppsala-university)                                  |
-| 🇨🇭 Switzerland    | Zürich        | Kinderspital Zürich                            | [Read more](/events/2025/hackathon-march-2025/kinderspital-zurich)                                 |
-| 🇬🇧 United Kingdom | Dundee        | James Hutton Institute                         | [Read more](/events/2025/hackathon-march-2025/james-hutton-institute)                              |
-| 🇬🇧 United Kingdom | London        | University College London                      | [Read more](/events/2025/hackathon-march-2025/university-college-london)                           |
-| 🇺🇸 United States  | Boston        | Harvard Chan School and Broad Institute        | [Read more](/events/2025/hackathon-march-2025/harvard-chan-school)                                 |
-| 🇺🇸 United States  | Dallas        | UT Dallas                                      | [Read more](/events/2025/hackathon-march-2025/ut-dallas)                                           |
-| 🇺🇸 United States  | Miami         | Sylvester Comprehensive Cancer Center          | [Read more](/events/2025/hackathon-march-2025/university-of-miami)                                 |
-| 🇺🇸 United States  | San Francisco | Bay Area                                       | [Read more](/events/2025/hackathon-march-2025/san-francisco-bay-area)                              |
-
-</div>
+<EventLocationsTable eventPath="2025/hackathon-march-2025" />
 
 ## Host a local site
 
