@@ -83,14 +83,14 @@ const countryCount = new Set(locationPages.map((page) => page.countryInfo?.name)
         <tbody>
             {
                 locationPages.map((page) => (
-                    <tr class="position-relative">
+                    <tr class="">
                         <td class="text-nowrap">
                             {page.countryInfo?.flag} {page.countryInfo?.name}
                         </td>
                         <td class="text-nowrap">{page.data.locations?.[0]?.city}</td>
                         <td>{page.data.locations?.[0]?.name}</td>
                         <td class="text-nowrap">
-                            <a class="stretched-link" href={`/events/${page.id.replace('.mdx', '')}`}>
+                            <a class="" href={`/events/${page.id.replace('.mdx', '')}`}>
                                 Read more
                             </a>
                         </td>
