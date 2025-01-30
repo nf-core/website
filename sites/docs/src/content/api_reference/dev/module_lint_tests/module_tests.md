@@ -1,6 +1,6 @@
 # module_tests
 
-#### `ModuleLint.module_tests(module: NFCoreComponent){:python}`
+#### `ModuleLint.module_tests(module: NFCoreComponent, allow_missing: bool = False){:python}`
 
 Lint the tests of a module in `nf-core/modules`
 
