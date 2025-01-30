@@ -3,13 +3,6 @@ import ExportEventButton from '@components/event/ExportEventButton.svelte';
 import LocalDateTime from '@components/event/LocalDateTime.svelte';
 
 const { frontmatter } = Astro.props;
-
-if (frontmatter.start === undefined) {
-    frontmatter.start = new Date(frontmatter.startDate + 'T' + frontmatter.startTime);
-}
-if (frontmatter.end === undefined) {
-    frontmatter.end = new Date(frontmatter.endDate + 'T' + frontmatter.endTime);
-}
 const start = frontmatter.start;
 const end = frontmatter.end;
 const locations = frontmatter.locations || [];
