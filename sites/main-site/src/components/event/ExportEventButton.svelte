@@ -20,13 +20,6 @@
         location: event_location,
     };
 
-    if (calendar_event.start === undefined) {
-        calendar_event.start = new Date(calendar_event.startDate + 'T' + calendar_event.startTime);
-    }
-    if (calendar_event.end === undefined) {
-        calendar_event.end = new Date(calendar_event.endDate + 'T' + calendar_event.endTime);
-    }
-
     const googleCalendar = new GoogleCalendar(calendar_event).render();
     const outlookCalendar = new OutlookCalendar(calendar_event).render();
     let ical = new ICalendar(calendar_event).render();
