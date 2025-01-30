@@ -5,15 +5,10 @@ import type { CollectionEntry } from 'astro:content';
 
 let events: CollectionEntry<'events'>[] = await getCollection('events');
 let now = new Date().getTime();
-events = events
-    .map((event) => {
-        event.data.start = new Date(event.data.startDate + 'T' + event.data.startTime);
-        event.data.end = new Date(event.data.endDate + 'T' + event.data.endTime);
-        return event;
-    })
-    .sort((a, b) => {
-        return a.data.start - b.data.start;
-    });
+events = events.sort((a, b) => {
+    if (!a.data.start || !b.data.start) return 0;
+    return a.data.start.getTime() - b.data.start.getTime();
+});
 
 events = events.filter((event) => {
     return event.slug.split('/').length === 2;

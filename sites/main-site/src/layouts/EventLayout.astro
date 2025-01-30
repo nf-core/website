@@ -18,12 +18,11 @@ events
         if (event.data.title.toLowerCase().match('bytesize')) {
             event.data.type = 'bytesize';
         }
-        event.data.start = new Date(event.data.startDate + 'T' + event.data.startTime);
-        event.data.end = new Date(event.data.endDate + 'T' + event.data.endTime);
         return event;
     })
     .sort((a, b) => {
-        return new Date(a.data.start) - new Date(b.data.start);
+        if (!a.data.start || !b.data.start) return 0;
+        return a.data.start.getTime() - b.data.start.getTime();
     });
 
 const searchEvents = (search) => {
@@ -40,6 +39,7 @@ const filterEvents = (type) => {
 
 let currentEvents = events.filter((event) => {
     const today = new Date();
+    if (!event.data.start || !event.data.end) return false;
     return event.data.start < today && event.data.end > today;
 });
 
