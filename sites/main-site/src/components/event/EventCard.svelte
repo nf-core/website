@@ -1,6 +1,7 @@
 <script lang="ts">
     import VideoButton from '@components/VideoButton.svelte';
     import ExportEventButton from '@components/event/ExportEventButton.svelte';
+    import LocalDateTime from '@components/event/LocalDateTime.svelte';
     import { onMount } from 'svelte';
 
     export let frontmatter = {
@@ -19,46 +20,6 @@
     export let showDescription: boolean = true;
     export let narrow: boolean = false;
 
-    const event_duration = (event: { start: Date; end: Date; startDate: Date; endDate: Date }) => {
-        let duration: string;
-        if (event.startDate === event.endDate) {
-            duration =
-                new Date(event.start).toLocaleString('en-US', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                    hour: 'numeric',
-                    minute: 'numeric',
-                    hour12: false,
-                }) +
-                '-' +
-                new Date(event.end).toLocaleString('en-US', {
-                    hour: 'numeric',
-                    minute: 'numeric',
-                    hour12: false,
-                });
-        } else {
-            duration =
-                new Date(event.start).toLocaleString('en-US', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                    hour: 'numeric',
-                    minute: 'numeric',
-                    hour12: false,
-                }) +
-                '<wbr> - <wbr>' +
-                new Date(event.end).toLocaleString('en-US', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                    hour: 'numeric',
-                    minute: 'numeric',
-                    hour12: false,
-                });
-        }
-        return duration;
-    };
     const event_type_classes = {
         bytesize: 'success',
         hackathon: 'primary',
@@ -69,9 +30,7 @@
     let event_date: string = '';
 
     const type_class = event_type_classes[type];
-    onMount(() => {
-        event_date = event_duration(frontmatter);
-    });
+    const isSameDay = frontmatter.startDate === frontmatter.endDate;
 </script>
 
 <div class={'card mb-3 rounded-0 rounded-end ' + type} style="border-left-color:var(--bs-{type_class});">
@@ -97,7 +56,20 @@
                 class:justify-content-md-end={!narrow}
             >
                 <p class="text-nowrap text-center text-md-start pe-3 mt-2 ms-1" class:d-md-none={!narrow}>
-                    <i class="fa-regular fa-calendar me-2" />{@html event_date}
+                    <i class="fa-regular fa-calendar me-2" />
+                    <LocalDateTime date={frontmatter.start} />
+                    <span>&nbsp;-&nbsp;</span>
+                    {#if isSameDay}
+                        <span
+                            >{new Date(frontmatter.end).toLocaleString('en-US', {
+                                hour: 'numeric',
+                                minute: 'numeric',
+                                hour12: false,
+                            })}</span
+                        >
+                    {:else}
+                        <LocalDateTime date={frontmatter.end} />
+                    {/if}
                 </p>
             </div>
         </div>
@@ -105,7 +77,19 @@
     <div class="card-footer p-0" class:p-md-2={!narrow} class:d-none={narrow}>
         <div class="d-flex align-items-center justify-content-between">
             <p class="d-none text-wrap mb-0 ms-2 align-middle" class:d-md-inline-block={!narrow}>
-                {@html event_date}
+                <LocalDateTime date={frontmatter.start} />
+                <span>&nbsp;-&nbsp;</span>
+                {#if isSameDay}
+                    <span
+                        >{new Date(frontmatter.end).toLocaleString('en-US', {
+                            hour: 'numeric',
+                            minute: 'numeric',
+                            hour12: false,
+                        })}</span
+                    >
+                {:else}
+                    <LocalDateTime date={frontmatter.end} />
+                {/if}
             </p>
             <div
                 class="btn-group float-end"
