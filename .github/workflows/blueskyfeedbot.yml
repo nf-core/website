@@ -1,4 +1,4 @@
-name: FeedBot
+name: Bluesky FeedBot
 on:
   schedule:
     # This will run every hour
@@ -20,7 +20,7 @@ jobs:
           key: feed-cache-${{ steps.generate-key.outputs.cache-key }}
           restore-keys: feed-cache-
       - name: GitHub
-        uses: 'joschi/blueskyfeedbot@v1'
+        uses: 'joschi/blueskyfeedbot@v0.0.2'
         with:
           # This is the RSS feed you want to publish
           rss-feed: https://nf-co.re/blog/rss.xml
