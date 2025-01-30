@@ -58,13 +58,11 @@ events
         if (event.data.title.toLowerCase().match('bytesize')) {
             event.data.type = 'bytesize';
         }
-        event.data.start = new Date(event.data.startDate + 'T' + event.data.startTime);
-        event.data.end = new Date(event.data.endDate + 'T' + event.data.endTime);
         return event;
     })
     .filter((event) => event.data.type === frontmatter.type)
     .sort((a, b) => {
-        return new Date(b.data.startDate) - new Date(a.data.startDate);
+        return new Date(b.data.startDate).getTime() - new Date(a.data.startDate).getTime();
     });
 
 const addEntriesToSection = (sections, events: CollectionEntry<'events'>[]) => {
