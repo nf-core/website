@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 
 interface Props {
     eventPath: string;
+    showCount: boolean;
 }
 
 // Map of country names to their flag emoji for easier lookup
@@ -35,7 +36,7 @@ const COUNTRIES = {
     USA: '🇺🇸',
 } as const;
 
-const { eventPath } = Astro.props;
+const { eventPath, showCount = false } = Astro.props;
 
 // Get location pages for the current event
 const locationPages = (await getCollection('events'))
@@ -56,7 +57,18 @@ const locationPages = (await getCollection('events'))
         };
     })
     .sort((a, b) => (a.countryInfo?.name ?? '').localeCompare(b.countryInfo?.name ?? ''));
+
+const locationCount = locationPages.length;
+const countryCount = new Set(locationPages.map((page) => page.countryInfo?.name).filter(Boolean)).size;
 ---
+
+{
+    showCount && (
+        <p>
+            There are currently {locationCount} local sites in {countryCount} countries!
+        </p>
+    )
+}
 
 <div class="table-responsive">
     <table class="table table-hover table-sm small">
