@@ -1,0 +1,19 @@
+---
+import HackathonGroup from '@components/event/HackathonGroup.astro';
+import { getEntry } from 'astro:content';
+import { Markdown } from '@astropub/md';
+const { eventPath } = Astro.props;
+
+const { data: projects } = await getEntry('hackathon-projects', eventPath);
+console.log(projects);
+---
+
+<div>
+    {
+        projects.map((project) => (
+            <HackathonGroup {...project}>
+                <Markdown of={project.description} />
+            </HackathonGroup>
+        ))
+    }
+</div>
