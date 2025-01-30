@@ -25,7 +25,7 @@ jobs:
           # This is the RSS feed you want to publish
           rss-feed: https://nf-co.re/blog/rss.xml
           # Template of status posted to Bluesky (Handlebars)
-          template: '{{item.title}} {{item.link}} #nfcore #nextflow'
+          template: '{{item.title}} {{item.link}} @nf-co.re #nextflow'
           # This is your service URL (optional)
           service-url: https://bsky.social
           # This is the Bluesky username (example: username.bsky.social)
