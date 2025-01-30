@@ -1,6 +1,6 @@
 # environment_yml
 
-#### `ModuleLint.environment_yml(module: NFCoreComponent) → None{:python}`
+#### `ModuleLint.environment_yml(module: NFCoreComponent, allow_missing: bool = False) → None{:python}`
 
 Lint an `environment.yml` file.
 
