@@ -8811,6 +8811,14 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -17183,10 +17191,6 @@
         {
           "name": "phaseimpute",
           "version": "1.0.0"
-        },
-        {
-          "name": "variantbenchmarking",
-          "version": "dev"
         },
         {
           "name": "viralrecon",
@@ -46200,6 +46204,10 @@
           "version": "2.3.0"
         },
         {
+          "name": "evexplorer",
+          "version": "dev"
+        },
+        {
           "name": "hicar",
           "version": "1.0.0"
         },
@@ -58569,6 +58577,10 @@
           "version": "1.1.0"
         },
         {
+          "name": "evexplorer",
+          "version": "dev"
+        },
+        {
           "name": "fastqrepair",
           "version": "dev"
         },
@@ -61163,6 +61175,93 @@
         ],
         "maintainers": [
           "@BioWilko"
+        ]
+      }
+    },
+    {
+      "name": "find_unpigz",
+      "path": "modules/nf-core/find/unpigz/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "find_unpigz",
+        "description": "A module for decompressing a large number of gzipped files, getting around the UNIX terminal argument limit",
+        "keywords": [
+          "gzip",
+          "find",
+          "pigz"
+        ],
+        "tools": [
+          {
+            "find": {
+              "description": "GNU find searches the directory tree rooted at each given starting-point by evaluating the given expression",
+              "documentation": "https://man7.org/linux/man-pages/man1/find.1.html",
+              "licence": [
+                "GPL-3.0-or-later"
+              ]
+            }
+          },
+          {
+            "pigz": {
+              "description": "pigz, which stands for Parallel Implementation of GZip, is a fully functional replacement for gzip that exploits multiple processors and multiple cores to the hilt when compressing data.",
+              "documentation": "https://zlib.net/pigz/pigz.pdf",
+              "licence": [
+                "other"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "files_in": {
+                "type": "file",
+                "description": "List of gzipped files to decompress",
+                "pattern": "*.gz"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "file_out": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}.*": {
+                  "type": "file",
+                  "description": "Decompressed files",
+                  "pattern": "${prefix}.*"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@Biowilko"
+        ],
+        "maintainers": [
+          "@Biowilko"
         ]
       }
     },
@@ -88818,6 +88917,10 @@
           "version": "2.3.1"
         },
         {
+          "name": "evexplorer",
+          "version": "dev"
+        },
+        {
           "name": "funcscan",
           "version": "2.0.0"
         },
@@ -111508,6 +111611,38 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -127486,6 +127621,10 @@
           "version": "2.3.1"
         },
         {
+          "name": "evexplorer",
+          "version": "dev"
+        },
+        {
           "name": "fastqrepair",
           "version": "dev"
         },
@@ -136869,6 +137008,14 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
+        },
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
+        },
         {
           "name": "viralrecon",
           "version": "2.6.0"
@@ -164326,6 +164473,10 @@
           "version": "3.2.2"
         },
         {
+          "name": "evexplorer",
+          "version": "dev"
+        },
+        {
           "name": "genomeassembler",
           "version": "dev"
         },
@@ -165413,6 +165564,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "evexplorer",
+          "version": "dev"
         },
         {
           "name": "genomeassembler",
@@ -182575,6 +182730,10 @@
           "version": "dev"
         },
         {
+          "name": "evexplorer",
+          "version": "dev"
+        },
+        {
           "name": "marsseq",
           "version": "1.0.3"
         },
@@ -182707,6 +182866,10 @@
       "pipelines": [
         {
           "name": "circrna",
+          "version": "dev"
+        },
+        {
+          "name": "evexplorer",
           "version": "dev"
         },
         {
@@ -212904,6 +213067,14 @@
         {
           "name": "phageannotator",
           "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
         }
       ]
     },
@@ -216758,6 +216929,14 @@
         {
           "name": "riboseq",
           "version": "1.0.1"
+        },
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
+        },
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
         }
       ]
     },
@@ -217120,6 +217299,10 @@
           "version": "2.3.1"
         },
         {
+          "name": "evexplorer",
+          "version": "dev"
+        },
+        {
           "name": "fastqrepair",
           "version": "dev"
         },
@@ -217431,6 +217614,10 @@
         {
           "name": "epitopeprediction",
           "version": "2.3.1"
+        },
+        {
+          "name": "evexplorer",
+          "version": "dev"
         },
         {
           "name": "fastqrepair",
@@ -217955,6 +218142,10 @@
         {
           "name": "epitopeprediction",
           "version": "2.3.1"
+        },
+        {
+          "name": "evexplorer",
+          "version": "dev"
         },
         {
           "name": "fetchngs",
