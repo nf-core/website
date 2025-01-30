@@ -1,8 +1,8 @@
 name: FeedBot
 on:
   schedule:
-    # This will run every 10 minutes
-    - cron: '*/10 * * * *'
+    # This will run every hour
+    - cron: '0 * * * *'
 jobs:
   rss-to-bluesky:
     runs-on: ubuntu-latest
