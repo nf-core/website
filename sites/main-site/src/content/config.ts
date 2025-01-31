@@ -187,16 +187,15 @@ const pipelines = defineCollection({});
 const api_reference = defineCollection({});
 
 const hackathonProjects = defineCollection({
-    type: 'data',
-    schema: z.array(
-        z.object({
+    type: 'content',
+    schema: z
+        .object({
             title: z.string(),
             category: z.enum(['pipelines', 'components', 'tooling', 'community']),
             leaders: z.record(z.object({
                 name: z.string(),
                 slack: z.string().url().optional()
             })),
-            description: z.string(),
             color: z
                 .string()
                 .refine((data) => {
@@ -209,8 +208,15 @@ const hackathonProjects = defineCollection({
             intro_video: z.string().optional(),
             image: z.string().optional(),
             image_alt: z.string().optional(),
+        })
+        .refine((data) => {
+            // Check if headerImage is present but headerImageAlt is not
+            if (data.image && !data.image_alt) {
+                throw new Error('Please provide alt text for your `image` in `image_alt`.');
+            }
+            // Return true if the validation should pass
+            return true;
         }),
-    ),
 });
 
 export const collections = {
