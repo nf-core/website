@@ -6,10 +6,11 @@ import Profile from '@components/GitHubProfilePicture.svelte';
 import { YouTube } from '@astro-community/astro-embed-youtube';
 
 import { Image } from 'astro:assets';
-const { title, color, category, proj_url, leaders, goal, slack, intro_video, image, image_alt } = Astro.props;
+const { slug, title, color, category, proj_url, leaders, goal, slack, intro_video, image, image_alt } = Astro.props;
 
 const images = import.meta.glob('../../assets/**');
 export interface Props {
+    slug: string;
     title: string;
     color?: string;
     category?: string;
@@ -32,43 +33,62 @@ if (!color && category) {
 const border_col = this_color ? { 'border-left-color': this_color, 'border-left-width': '5px' } : {};
 ---
 
-<div class="card mb-5" style={border_col}>
-    <div class="card-body">
-        <div class="row">
-            <div class={intro_video || image ? 'col-md-6' : 'col'}>
-                <div class="d-flex justify-content-between">
-                    <h3>
-                        {title}
-                        {
-                            proj_url && (
-                                <a href={proj_url} target="_blank" class="btn btn-small btn-secondary ms-3">
-                                    <Icon
-                                        name="octicon:table-16"
-                                        width="12pt"
-                                        class="me-1"
-                                        style={{ 'margin-top': '-3px' }}
-                                    />
-                                    Project Board
-                                    <Icon
-                                        name="octicon:link-external-16"
-                                        width="12pt"
-                                        class="ms-1"
-                                        style={{ 'margin-top': '-3px' }}
-                                    />
-                                </a>
-                            )
-                        }
-                    </h3>
-                    <div>
-                        {
-                            category && (
-                                <span class="small badge rounded-pill ms-2" style={`background-color: ${this_color}`}>
-                                    {category}
-                                </span>
-                            )
-                        }
-                    </div>
+<div class="card mb-1" style={border_col}>
+    <div class="card-body d-grid p-0">
+        <button type="button" class="btn btn-link text-start p-3" data-bs-toggle="modal" data-bs-target={'#' + slug}>
+            {title}
+        </button>
+    </div>
+</div>
+
+<!-- Modal -->
+<!-- TODO: Fix hack where disabling backdrop is needed with data-bs-backdrop="false" - move modal to bottom of page HTML? -->
+<div
+    class="modal fade z-3"
+    id={slug}
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+    data-bs-backdrop="false"
+>
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">{title}</h1>
+                <div>
+                    {
+                        category && (
+                            <span class="small badge rounded-pill ms-2" style={`background-color: ${this_color}`}>
+                                {category}
+                            </span>
+                        )
+                    }
                 </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h3>
+                    {
+                        proj_url && (
+                            <a href={proj_url} target="_blank" class="btn btn-small btn-secondary ms-3">
+                                <Icon
+                                    name="octicon:table-16"
+                                    width="12pt"
+                                    class="me-1"
+                                    style={{ 'margin-top': '-3px' }}
+                                />
+                                Project Board
+                                <Icon
+                                    name="octicon:link-external-16"
+                                    width="12pt"
+                                    class="ms-1"
+                                    style={{ 'margin-top': '-3px' }}
+                                />
+                            </a>
+                        )
+                    }
+                </h3>
+
                 {
                     slack && (
                         <a
@@ -129,6 +149,10 @@ const border_col = this_color ? { 'border-left-color': this_color, 'border-left-
                     </div>
                 )
             }
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
         </div>
     </div>
 </div>

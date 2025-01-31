@@ -9,7 +9,7 @@ let projects = await getCollection('hackathon-projects');
 <div>
     {
         projects.map((project) => (
-            <HackathonGroup {...project.data}>
+            <HackathonGroup slug={project.slug} {...project.data}>
                 <Markdown of={project.body} />
             </HackathonGroup>
         ))
