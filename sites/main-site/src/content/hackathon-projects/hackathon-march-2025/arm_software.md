@@ -1,6 +1,7 @@
 ---
 title: 'Software packaging: ARM'
 category: components
+slack: https://nfcore.slack.com/archives/C07S9BW2STT
 intro_video: ''
 image: '/assets/images/events/2025/hackathon-march/arm_software.jpg'
 image_alt: Photo by Fidel Fernando on Unsplash
