@@ -46,6 +46,7 @@ const events = defineCollection({
             duration: z.string().optional(),
             embedAt: z.string().optional(),
             importTypeform: z.boolean().optional(),
+            hackathonProjectListModals: z.string().optional(),
             youtubeEmbed: z.array(z.string().url()).optional().or(z.string().url()).optional(),
             hideExportButton: z.boolean().optional(),
         })
