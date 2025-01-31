@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 import { YouTube } from '@astro-community/astro-embed-youtube';
 import VideoTranscript from '@components/VideoTranscript.svelte';
 import Admonition from '@components/Admonition.astro';
+import HackathonProjectListModals from '@components/event/HackathonProjectListModals.astro';
 import type { CollectionEntry } from 'astro:content';
 import type { SidebarEntry } from '@utils/types';
 import { createLinkOrGroup } from '@utils/functions';
@@ -167,5 +168,10 @@ sections.forEach((year) => {
                     <YouTube id={id} poster={posters[i]} />
                 </VideoTranscript>
             ))
+    }
+    {
+        frontmatter.hackathonProjectListModals && (
+            <HackathonProjectListModals slot="post-footer" eventPath={frontmatter.hackathonProjectListModals} />
+        )
     }
 </MarkdownTocLayout>

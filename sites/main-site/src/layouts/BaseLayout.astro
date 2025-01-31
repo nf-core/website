@@ -76,6 +76,7 @@ image += category;
         </div>
         {subfooter && <SubFooter md_github_url={md_github_url} />}
         <Footer />
+        <slot name="post-footer" />
         <style lang="scss" is:global>
             @import '@styles/main.scss';
         </style>
