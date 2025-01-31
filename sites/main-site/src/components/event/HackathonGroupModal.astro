@@ -34,16 +34,14 @@ if (!color && category) {
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">{title}</h1>
-                <div>
-                    {
-                        category && (
-                            <span class="small badge rounded-pill ms-2" style={`background-color: ${this_color}`}>
-                                {category}
-                            </span>
-                        )
-                    }
-                </div>
+                <h1 class="modal-title" id="exampleModalLabel">{title}</h1>
+                {
+                    category && (
+                        <span class="fs-6 badge rounded-pill ms-4" style={`background-color: ${this_color}`}>
+                            {category}
+                        </span>
+                    )
+                }
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -71,20 +69,6 @@ if (!color && category) {
                             )
                         }
 
-                        {
-                            slack && (
-                                <div>
-                                    <a
-                                        href={`https://nfcore.slack.com/channels/${slack_clean}`}
-                                        class="badge rounded-pill text-bg-success text-decoration-none d-inline-flex align-items-center"
-                                    >
-                                        <Icon name="mdi:slack" width="12pt" height="10pt" /> Slack:
-                                        <code class="text-bg-success pb-0">#{slack_clean}</code>
-                                    </a>
-                                </div>
-                            )
-                        }
-
                         <slot />
 
                         {
@@ -98,7 +82,12 @@ if (!color && category) {
                                                 {slack && (
                                                     <a href={slack} target="_blank" class="me-2 text-decoration-none">
                                                         {name}
-                                                        <Icon name="mdi:slack" width="14pt" class="mb-1" />
+                                                        <Icon
+                                                            name="mdi:slack"
+                                                            width="14pt"
+                                                            height="14pt"
+                                                            class="mb-1"
+                                                        />
                                                     </a>
                                                 )}
                                                 {!slack && <span class="mx-2">{name}</span>}
@@ -135,7 +124,13 @@ if (!color && category) {
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                {
+                    slack && (
+                        <a href={slack} target="_blank" class="btn btn-primary">
+                            <Icon name="mdi:slack" width="14pt" height="14pt" class="mb-1" /> Go to Slack channel
+                        </a>
+                    )
+                }
             </div>
         </div>
     </div>
