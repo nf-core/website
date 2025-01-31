@@ -1,0 +1,54 @@
+---
+interface Props {
+  imageUrl: string;
+  alt: string;
+}
+
+const { imageUrl, alt } = Astro.props;
+---
+
+<a
+  href={imageUrl}
+  class="sticker-container"
+  data-pswp-src={imageUrl}
+  data-pswp-width="600"
+  data-pswp-height="600"
+>
+  <div class="sticker">
+    <img src={imageUrl} alt={alt} />
+  </div>
+</a>
+
+<style>
+  .sticker-container {
+    perspective: 1000px;
+    margin: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    transform-origin: center center;
+  }
+
+  .sticker {
+    width: 300px;
+    height: 300px;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: transparent;
+    transform-origin: center center;
+    will-change: transform;
+  }
+
+  .sticker img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: transparent;
+    transform-origin: center center;
+    will-change: transform;
+  }
+
+  .sticker-container:hover .sticker {
+    transform: translateY(-5px);
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+  }
+</style>

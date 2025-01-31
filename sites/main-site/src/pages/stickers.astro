@@ -1,0 +1,78 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import HexSticker from '../components/HexSticker.astro';
+
+// Get all SVG files from the images directory
+const images = await import.meta.glob('/public/images/hex_stickers/*.svg', { eager: true });
+
+// Convert object of modules to array of URLs
+const imageUrls = Object.keys(images).map(path => path.replace('/public', ''));
+---
+
+<PageLayout title="nf-core Stickers">
+	<main class="py-5">
+		<div class="container">
+			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center" id="gallery">
+				{imageUrls.map((imageUrl) => (
+					<div class="col d-flex justify-content-center">
+						<HexSticker
+							imageUrl={imageUrl}
+							alt={imageUrl.split('/').pop()?.replace('.svg', '') || 'nf-core pipeline'}
+						/>
+					</div>
+				))}
+			</div>
+		</div>
+	</main>
+</PageLayout>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5.3.8/dist/photoswipe.css">
+
+<style>
+	:global(.pswp) {
+		--pswp-bg: rgba(0, 0, 0, 0.9);
+	}
+
+	:global(.pswp__img) {
+		object-fit: contain !important;
+		opacity: 1 !important;
+		transition: transform 0.3s ease;
+	}
+</style>
+
+<script>
+	import PhotoSwipeLightbox from 'photoswipe/lightbox';
+
+	const lightbox = new PhotoSwipeLightbox({
+		gallery: '#gallery',
+		children: 'a',
+		pswpModule: () => import('photoswipe'),
+		padding: { top: 30, bottom: 30, left: 70, right: 70 },
+		bgOpacity: 0.9,
+		showHideAnimationType: 'fade',
+		showAnimationDuration: 300,
+		hideAnimationDuration: 300,
+		zoom: {
+			initialZoomLevel: 0.9,
+			secondaryZoomLevel: 1.5,
+			maxZoomLevel: 4
+		},
+		getClickedPswpElement: (clickedElement) => {
+			return clickedElement.querySelector('img');
+		},
+		preloadFirstSlide: true,
+		preload: [1, 2]
+	});
+
+	// Handle opening animation
+	lightbox.on('beforeOpen', () => {
+		document.documentElement.style.overflow = 'hidden';
+	});
+
+	// Handle closing
+	lightbox.on('close', () => {
+		document.documentElement.style.overflow = '';
+	});
+
+	lightbox.init();
+</script>
