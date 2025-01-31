@@ -1,5 +1,5 @@
 ---
-title: nf-core/seqinspector
+title: 'Software packaging: ARM'
 category: components
 intro_video: ''
 image: '/assets/images/events/2025/hackathon-march/arm_software.jpg'
