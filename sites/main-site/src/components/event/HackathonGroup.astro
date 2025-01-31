@@ -6,7 +6,7 @@ import Profile from '@components/GitHubProfilePicture.svelte';
 import { YouTube } from '@astro-community/astro-embed-youtube';
 
 import { Image } from 'astro:assets';
-const { slug, title, color, category, proj_url, leaders, goal, slack, intro_video, image, image_alt } = Astro.props;
+const { slug, title, color, category, proj_url, leaders, slack, intro_video, image, image_alt } = Astro.props;
 
 const images = import.meta.glob('../../assets/**');
 export interface Props {
@@ -16,7 +16,6 @@ export interface Props {
     category?: string;
     proj_url?: URL;
     leaders: Object;
-    goal?: string;
     slack?: string;
     intro_video?: string;
     image?: string;
@@ -42,15 +41,7 @@ const border_col = this_color ? { 'border-left-color': this_color, 'border-left-
 </div>
 
 <!-- Modal -->
-<!-- TODO: Fix hack where disabling backdrop is needed with data-bs-backdrop="false" - move modal to bottom of page HTML? -->
-<div
-    class="modal fade z-3"
-    id={slug}
-    tabindex="-1"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
-    data-bs-backdrop="false"
->
+<div class="modal fade z-3" id={slug} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
@@ -67,92 +58,91 @@ const border_col = this_color ? { 'border-left-color': this_color, 'border-left-
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <h3>
+                <div class="row">
+                    <div class="col">
+                        {
+                            proj_url && (
+                                <h3>
+                                    <a href={proj_url} target="_blank" class="btn btn-small btn-secondary ms-3">
+                                        <Icon
+                                            name="octicon:table-16"
+                                            width="12pt"
+                                            class="me-1"
+                                            style={{ 'margin-top': '-3px' }}
+                                        />
+                                        Project Board
+                                        <Icon
+                                            name="octicon:link-external-16"
+                                            width="12pt"
+                                            class="ms-1"
+                                            style={{ 'margin-top': '-3px' }}
+                                        />
+                                    </a>
+                                </h3>
+                            )
+                        }
+
+                        {
+                            slack && (
+                                <div>
+                                    <a
+                                        href={`https://nfcore.slack.com/channels/${slack_clean}`}
+                                        class="badge rounded-pill text-bg-success text-decoration-none d-inline-flex align-items-center"
+                                    >
+                                        <Icon name="mdi:slack" width="12pt" height="10pt" /> Slack:
+                                        <code class="text-bg-success pb-0">#{slack_clean}</code>
+                                    </a>
+                                </div>
+                            )
+                        }
+
+                        <slot />
+
+                        {
+                            leaders && (
+                                <div>
+                                    <h4>Group Leaders</h4>
+                                    <div class="d-flex flex-wrap">
+                                        {Object.entries(leaders).map(([github, { name, slack }]) => (
+                                            <div class="d-flex align-items-center border rounded rounded-start-0 mb-2">
+                                                <Profile name={github} size={50} />
+                                                {slack && (
+                                                    <a href={slack} target="_blank" class="me-2 text-decoration-none">
+                                                        {name}
+                                                        <Icon name="mdi:slack" width="14pt" class="mb-1" />
+                                                    </a>
+                                                )}
+                                                {!slack && <span class="mx-2">{name}</span>}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )
+                        }
+                    </div>
                     {
-                        proj_url && (
-                            <a href={proj_url} target="_blank" class="btn btn-small btn-secondary ms-3">
-                                <Icon
-                                    name="octicon:table-16"
-                                    width="12pt"
-                                    class="me-1"
-                                    style={{ 'margin-top': '-3px' }}
+                        intro_video && (
+                            <div class="col-lg-4">
+                                <YouTube
+                                    id={intro_video}
+                                    poster={`https://i.ytimg.com/vi/${intro_video}/hqdefault.jpg`}
                                 />
-                                Project Board
-                                <Icon
-                                    name="octicon:link-external-16"
-                                    width="12pt"
-                                    class="ms-1"
-                                    style={{ 'margin-top': '-3px' }}
-                                />
-                            </a>
+                            </div>
                         )
                     }
-                </h3>
-
-                {
-                    slack && (
-                        <a
-                            href={`https://nfcore.slack.com/channels/${slack_clean}`}
-                            class="badge rounded-pill text-bg-success text-decoration-none d-inline-flex align-items-center"
-                        >
-                            <Icon name="mdi:slack" width="12pt" height="10pt" /> Slack:
-                            <code class="text-bg-success pb-0">#{slack_clean}</code>
-                        </a>
-                    )
-                }
-
-                <slot />
-
-                {
-                    goal && (
-                        <>
-                            <h4>Goal</h4>
-                            <p>
-                                <Markdown of={goal} />
-                            </p>
-                        </>
-                    )
-                }
-
-                {leaders && <h4>Group Leaders</h4>}
-                {
-                    leaders && (
-                        <div class="d-flex flex-wrap">
-                            {Object.entries(leaders).map(([github, { name, slack }]) => (
-                                <div class="d-flex align-items-center border rounded rounded-start-0 mb-2">
-                                    <Profile name={github} size={50} />
-                                    {slack && (
-                                        <a href={slack} target="_blank" class="me-2 text-decoration-none">
-                                            {name}
-                                            <Icon name="mdi:slack" width="14pt" class="mb-1" />
-                                        </a>
-                                    )}
-                                    {!slack && <span class="mx-2">{name}</span>}
-                                </div>
-                            ))}
-                        </div>
-                    )
-                }
+                    {
+                        image && (
+                            <div class="col-lg-4">
+                                <Image src={images['../..' + image]()} alt={image_alt} />
+                            </div>
+                        )
+                    }
+                </div>
             </div>
-
-            {
-                intro_video && (
-                    <div class="col-md-6">
-                        <YouTube id={intro_video} poster={`https://i.ytimg.com/vi/${intro_video}/hqdefault.jpg`} />
-                    </div>
-                )
-            }
-            {
-                image && (
-                    <div class="col-md-6">
-                        <Image src={images['../..' + image]()} alt={image_alt} />
-                    </div>
-                )
-            }
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
         </div>
     </div>
 </div>
