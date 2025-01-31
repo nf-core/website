@@ -122,7 +122,12 @@ if (!color && category) {
                     {
                         image && (
                             <div class="col-lg-4">
-                                <Image src={images['../..' + image]()} alt={image_alt} />
+                                <Image
+                                    src={images['../..' + image]()}
+                                    width="600"
+                                    alt={image_alt}
+                                    style="object-fit: contain;"
+                                />
                             </div>
                         )
                     }
