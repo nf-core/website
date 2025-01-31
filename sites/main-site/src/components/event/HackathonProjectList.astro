@@ -1,17 +1,10 @@
 ---
 import HackathonGroup from '@components/event/HackathonGroup.astro';
 import { getCollection } from 'astro:content';
-import { Markdown } from '@astropub/md';
 
 let projects = await getCollection('hackathon-projects');
 ---
 
 <div>
-    {
-        projects.map((project) => (
-            <HackathonGroup slug={project.slug} {...project.data}>
-                <Markdown of={project.body} />
-            </HackathonGroup>
-        ))
-    }
+    {projects.map((project) => <HackathonGroup slug={project.slug} {...project.data} />)}
 </div>
