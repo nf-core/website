@@ -8823,6 +8823,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -61371,7 +61375,8 @@
               "documentation": "https://man7.org/linux/man-pages/man1/find.1.html",
               "licence": [
                 "GPL-3.0-or-later"
-              ]
+              ],
+              "identifier": ""
             }
           },
           {
@@ -61380,7 +61385,8 @@
               "documentation": "https://zlib.net/pigz/pigz.pdf",
               "licence": [
                 "other"
-              ]
+              ],
+              "identifier": ""
             }
           }
         ],
@@ -61407,14 +61413,15 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n",
+                  "pattern": "*"
                 }
               },
               {
-                "${prefix}.*": {
-                  "type": "file",
-                  "description": "Decompressed files",
-                  "pattern": "${prefix}.*"
+                "*": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n",
+                  "pattern": "*"
                 }
               }
             ]
@@ -106960,8 +106967,8 @@
             {
               "target_fa": {
                 "type": "file",
-                "description": "Target assembly in fasta format",
-                "pattern": "*.{fsa,fa,fasta}"
+                "description": "Target assembly in fasta format (can be gzipped)",
+                "pattern": "*.{fa,fa.gz,fasta,fasta.gz,fas,fas.gz,fsa,fsa.gz}"
               }
             }
           ],
@@ -106969,8 +106976,8 @@
             {
               "ref_fa": {
                 "type": "file",
-                "description": "Reference assembly in fasta format",
-                "pattern": "*.{fsa,fa,fasta}"
+                "description": "Reference assembly in fasta format (can be gzipped)",
+                "pattern": "*.{fa,fa.gz,fasta,fasta.gz,fas,fas.gz,fsa,fsa.gz}"
               }
             }
           ],
@@ -110138,6 +110145,22 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
+        },
         {
           "name": "ampliseq",
           "version": "2.12.0"
@@ -137194,6 +137217,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
+        },
         {
           "name": "viralrecon",
           "version": "2.6.0"
@@ -208292,7 +208319,10 @@
         "components": [
           "gprofiler2/gost",
           "gsea/gsea",
-          "propr/grea"
+          "propr/grea",
+          "custom/tabulartogseagct",
+          "custom/tabulartogseacls",
+          "custom/tabulartogseachip"
         ],
         "input": [
           {
@@ -212023,6 +212053,7 @@
           "samtools/index",
           "cat",
           "cat/fastq",
+          "fq/lint",
           "sortmerna",
           "fastq_subsample_fq_salmon",
           "fastq_fastqc_umitools_trimgalore",
@@ -212925,6 +212956,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        },
         {
           "name": "phageannotator",
           "version": "dev"
@@ -217230,6 +217265,10 @@
         {
           "name": "riboseq",
           "version": "1.0.1"
+        },
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
         }
       ]
     },
@@ -217585,7 +217624,7 @@
         },
         {
           "name": "drugresponseeval",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "epitopeprediction",
@@ -217902,7 +217941,7 @@
         },
         {
           "name": "drugresponseeval",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "epitopeprediction",
@@ -218219,7 +218258,7 @@
         },
         {
           "name": "drugresponseeval",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "fastqrepair",
