@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize: nf-core/pre-commit'
+title: "Bytesize: nf-core/pre-commit"
 subtitle: Matthias Hörtenhuber, Scilifelab Data Centre, Sweden
 type: talk
-startDate: '2023-02-07'
-startTime: '13:00+01:00'
-endDate: '2023-02-07'
-endTime: '13:30+01:00'
+startDate: "2023-02-07"
+startTime: "13:00+01:00"
+endDate: "2023-02-07"
+endTime: "13:30+01:00"
 youtubeEmbed: https://www.youtube.com/watch?v=08d6zv6zvdM
 locations:
   - name: Online

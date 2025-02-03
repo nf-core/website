@@ -1,14 +1,14 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
+    import { onMount } from "svelte";
 
-    import { Confetti } from 'svelte-confetti';
+    import { Confetti } from "svelte-confetti";
 
     export let progress: number = 0;
-    export let label: string | number = '';
+    export let label: string | number = "";
     export let size: number = 40;
     export let strokeWidth: number = 10;
-    export let href: string = '#';
-    export let title: string = '';
+    export let href: string = "#";
+    export let title: string = "";
     export let isCurrent: boolean = false;
     export let onScroll: boolean = false;
     export let confetti: boolean = false;
@@ -39,7 +39,7 @@
                     r={size - strokeWidth}
                     fill="none"
                     stroke-width={strokeWidth}
-                    stroke={isCurrent ? 'var(--bs-primary-border-subtle)' : 'var(--bs-secondary)'}
+                    stroke={isCurrent ? "var(--bs-primary-border-subtle)" : "var(--bs-secondary)"}
                 />
                 <circle
                     class="circle-progress"
@@ -91,7 +91,7 @@
     }
 
     /* Update the stroke-dashoffset based on the progress */
-    .circle-progress[data-progress='100'] {
+    .circle-progress[data-progress="100"] {
         stroke-dashoffset: 0;
         stroke: var(--bs-success);
     }

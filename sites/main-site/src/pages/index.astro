@@ -1,14 +1,14 @@
 ---
-import { Icon } from 'astro-icon/components';
-import NfCoreLogoDarkbg from '/images/logo/nf-core-logo-darkbg.svg?raw';
-import NfCoreLogo from '/images/logo/nf-core-logo.svg?raw';
-import ContributorCarousel from '@components/ContributorCarousel.svelte';
-import EventBanner from '@components/event/EventBanner.astro';
-import HomepageCard from '@components/homepage/HomepageCard.astro';
-import HomepageVideosEvents from '@components/homepage/HomepageVideosEvents.astro';
-import BaseLayout from '@layouts/BaseLayout.astro';
-import { Code } from 'astro/components';
-import AnnouncementBanner from '@components/navbar/AnnouncementBanner.astro';
+import { Icon } from "astro-icon/components";
+import NfCoreLogoDarkbg from "/images/logo/nf-core-logo-darkbg.svg?raw";
+import NfCoreLogo from "/images/logo/nf-core-logo.svg?raw";
+import ContributorCarousel from "@components/ContributorCarousel.svelte";
+import EventBanner from "@components/event/EventBanner.astro";
+import HomepageCard from "@components/homepage/HomepageCard.astro";
+import HomepageVideosEvents from "@components/homepage/HomepageVideosEvents.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { Code } from "astro/components";
+import AnnouncementBanner from "@components/navbar/AnnouncementBanner.astro";
 ---
 
 <BaseLayout>
@@ -281,7 +281,7 @@ nf-core pipelines list`}
         <ContributorCarousel client:idle />
 
         <style lang="scss">
-            @import '@styles/_variables.scss';
+            @import "@styles/_variables.scss";
             .homepage-header .homepage-header-contents {
                 margin: 4rem auto 0;
                 padding: 0;
@@ -320,7 +320,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 
                 &:after {
                     transition: 0.3s all ease;
-                    content: '';
+                    content: "";
                     position: absolute;
                     left: 0;
                     top: 0;
@@ -330,7 +330,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
                     border: 2px solid $nf-core-color;
                 }
                 &:before {
-                    content: '';
+                    content: "";
                     position: absolute;
                     border-radius: 3px;
                     left: 0;
@@ -396,13 +396,13 @@ Based on https://codepen.io/wintr/pen/beBJBb */
                     opacity: 0.4;
                 }
             }
-            svg[data-icon='users'] {
+            svg[data-icon="users"] {
                 margin-bottom: 0.25rem;
             }
-            svg[data-icon='industry-alt'] {
+            svg[data-icon="industry-alt"] {
                 margin-bottom: 0.35rem;
             }
-            svg[data-icon='laptop-code'] {
+            svg[data-icon="laptop-code"] {
                 margin-bottom: 0.55rem;
             }
         </style>
