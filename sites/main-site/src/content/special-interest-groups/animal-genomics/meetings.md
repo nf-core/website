@@ -1,6 +1,6 @@
 ---
-title: 'Meetings'
-subtitle: 'When and where the Animal Genomics group meets'
+title: "Meetings"
+subtitle: "When and where the Animal Genomics group meets"
 groupName: Animal Genomics
 ---
 

@@ -124,7 +124,7 @@ You can show a short announcement banner on the website by adding additional inf
 
 ```yaml
 announcement:
-  text: 'Your announcement text'
+  text: "Your announcement text"
   start: YYYY-MM-DDTHH:MM:SS+HH:MM # Start date and time of the announcement (without quotes!)
   end: YYYY-MM-DDTHH:MM:SS+HH:MM # End date and time of the announcement. (without quotes!) This is an optional field for events, where the start date of the event is the end date of the announcement by default.
 ```

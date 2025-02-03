@@ -1,8 +1,8 @@
 <script lang="ts">
-    import ListingTableHeader from '@components/ListingTableHeader.svelte';
-    import PaginationNav from '@components/PaginationNav.svelte';
-    import ComponentCard from '@components/component/ComponentCard.svelte';
-    import { SortBy, DisplayStyle, SearchQuery, currentPage } from '@components/store';
+    import ListingTableHeader from "@components/ListingTableHeader.svelte";
+    import PaginationNav from "@components/PaginationNav.svelte";
+    import ComponentCard from "@components/component/ComponentCard.svelte";
+    import { SortBy, DisplayStyle, SearchQuery, currentPage } from "@components/store";
 
     export let components: {
         name: string;
@@ -23,7 +23,7 @@
     }[] = [];
 
     const searchComponents = (component) => {
-        if ($SearchQuery === '') {
+        if ($SearchQuery === "") {
             return true;
         }
         if (component.meta.name.toLowerCase().includes($SearchQuery.toLowerCase())) {
@@ -45,10 +45,10 @@
     };
     let invertSort = false;
     const sortComponents = (a, b) => {
-        invertSort = $SortBy.endsWith(';inverse');
-        if ($SortBy.startsWith('Name')) {
+        invertSort = $SortBy.endsWith(";inverse");
+        if ($SortBy.startsWith("Name")) {
             return a.name.localeCompare(b.name) * (invertSort ? -1 : 1);
-        } else if ($SortBy.startsWith('# Pipeline integrations')) {
+        } else if ($SortBy.startsWith("# Pipeline integrations")) {
             if (a.pipelines && b.pipelines) {
                 return (b.pipelines.length - a.pipelines.length) * (invertSort ? -1 : 1);
             } else if (a.pipelines) {
@@ -69,7 +69,7 @@
     let pageSize: number = 12;
     let lastPage = Math.ceil(components.length / pageSize);
     const updatePageSize = () => {
-        pageSize = $DisplayStyle === 'grid' ? 12 : 25;
+        pageSize = $DisplayStyle === "grid" ? 12 : 25;
         let currentComponents = filteredComponents || components;
         lastPage = Math.ceil(currentComponents.length / pageSize);
     };
@@ -90,7 +90,7 @@
 </script>
 
 <div class={`listing px-0 px-lg-2 py-4 ${components[0].type}`}>
-    {#if $DisplayStyle === 'grid'}
+    {#if $DisplayStyle === "grid"}
         <div class="grid">
             {#each paginatedItems as component (component.name)}
                 <div class="g-col-12 g-col-md-6 g-col-xl-6 g-col-xxl-4 g-col-xxxl-3 g-col-xxxxl-2">
@@ -105,12 +105,12 @@
                     <ListingTableHeader name="Name" />
                     <th scope="col">Description</th>
                     <th class="keywords" scope="col">Keywords</th>
-                    {#if components[0].type !== 'module'}
+                    {#if components[0].type !== "module"}
                         <th class="components" scope="col"> Components</th>
                     {/if}
                     <ListingTableHeader
                         name="# Pipeline integrations"
-                        title={'Sort by number of pipelines with ' + components[0].type}
+                        title={"Sort by number of pipelines with " + components[0].type}
                         textEnd={true}
                     />
                 </tr>
@@ -120,8 +120,8 @@
                     <tr>
                         <td class=" name p-0">
                             <div class="position-relative p-3">
-                                <a class="stretched-link" href={'/' + component.type + 's/' + component.name + '/'}
-                                    >{@html component.name.replace('_', '_<wbr>')}</a
+                                <a class="stretched-link" href={"/" + component.type + "s/" + component.name + "/"}
+                                    >{@html component.name.replace("_", "_<wbr>")}</a
                                 >
                             </div>
                         </td>
@@ -135,7 +135,7 @@
                             {/each}
                             <!-- {/if} -->
                         </td>
-                        {#if component.type !== 'module'}
+                        {#if component.type !== "module"}
                             <td class="components">
                                 {#each component.meta.components as sub_component}
                                     <span class={`badge me-2 ${component.type}-topic`}>{sub_component}</span>
