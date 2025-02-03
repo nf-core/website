@@ -191,7 +191,7 @@ END_VERSIONS
 resulting in, for instance,
 
 ```yaml
-'FASTQC':
+"FASTQC":
   fastqc: 0.11.9
   samtools: 1.12
 ```

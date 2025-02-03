@@ -1,11 +1,11 @@
 ---
-title: '#animal-genomics: May Meeting'
+title: "#animal-genomics: May Meeting"
 subtitle: Alessandro Bagnato, Department of Veterinary Medicine, University of Milan, Italy
 type: talk
-startDate: '2024-05-15'
-startTime: '16:00+02:00'
-endDate: '2024-05-15'
-endTime: '17:00+02:00'
+startDate: "2024-05-15"
+startTime: "16:00+02:00"
+endDate: "2024-05-15"
+endTime: "17:00+02:00"
 youtubeEmbed: https://youtu.be/BM6DxxuD5Ek
 locations:
   - name: Online

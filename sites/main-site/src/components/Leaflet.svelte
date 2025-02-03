@@ -1,8 +1,8 @@
 <script lang="ts">
-    import { tileLayer, marker, map, Icon } from 'leaflet';
-    import 'leaflet-fullscreen';
-    import 'leaflet/dist/leaflet.css';
-    import 'leaflet-fullscreen/dist/leaflet.fullscreen.css';
+    import { tileLayer, marker, map, Icon } from "leaflet";
+    import "leaflet-fullscreen";
+    import "leaflet/dist/leaflet.css";
+    import "leaflet-fullscreen/dist/leaflet.fullscreen.css";
 
     export let locations: {
         location: [number, number];
@@ -19,20 +19,20 @@
         }).setView([20, 25.09], 1.4); // Adjusted center point and zoom
 
         let greenIcon = new Icon({
-            iconUrl: '/images/marker-icon-2x-green.png',
-            shadowUrl: '/images/marker-shadow.png',
+            iconUrl: "/images/marker-icon-2x-green.png",
+            shadowUrl: "/images/marker-shadow.png",
             iconSize: [25, 41],
             iconAnchor: [12, 41],
             popupAnchor: [1, -34],
             shadowSize: [41, 41],
         });
-        tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         }).addTo(m);
         locations.map(function (locationMarker) {
             const image = locationMarker.image
                 ? `<img src="/images/contributors/colour/${locationMarker.image}" title="${locationMarker.name}" class="contributor_map_logo"></img>`
-                : '';
+                : "";
             if (locationMarker != null) {
                 marker(locationMarker.location, {
                     icon: greenIcon,
@@ -40,9 +40,9 @@
                     .addTo(m)
                     .bindPopup(
                         `<h6><a href="${
-                            locationMarker.url.startsWith('/events/')
+                            locationMarker.url.startsWith("/events/")
                                 ? locationMarker.url
-                                : locationMarker.name.replaceAll('/[^a-z]+/', '-')
+                                : locationMarker.name.replaceAll("/[^a-z]+/", "-")
                         }">${locationMarker.name}</a></h6>${image}`,
                     );
             }
