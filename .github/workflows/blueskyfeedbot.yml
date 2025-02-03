@@ -3,6 +3,7 @@ on:
   schedule:
     # This will run every hour
     - cron: '0 * * * *'
+  workflow_dispatch:
 jobs:
   rss-to-bluesky:
     runs-on: ubuntu-latest
@@ -20,7 +21,7 @@ jobs:
           key: feed-cache-${{ steps.generate-key.outputs.cache-key }}
           restore-keys: feed-cache-
       - name: GitHub
-        uses: 'joschi/blueskyfeedbot@v0.0.2'
+        uses: 'joschi/blueskyfeedbot@v0.0.3'
         with:
           # This is the RSS feed you want to publish
           rss-feed: https://nf-co.re/blog/rss.xml
@@ -36,3 +37,4 @@ jobs:
           password: ${{ secrets.FEED_TO_BLUESKY }}
           # This is a path to the cache file, using the above cache path
           cache-file: ${{ github.workspace }}/blueskyfeedbot/cache.json
+          initial-post-limit: 0
