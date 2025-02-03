@@ -16,7 +16,7 @@ If this is your first release, make sure to follow the [first release tutorial](
   - [ ] Update any software dependencies that are out of date.
         The linting will warn about available updates via automated API calls to (bio-)conda
 - [ ] Check that there are no outstanding issues that need to be addressed, especially bug reports.
-- [ ] Finalize the description of the pipeline in the GitHub repository and ensure that you remove any "under development" labels in the description. This wording will be used when a new pipeline gets announced on Twitter.
+- [ ] Finalize the description of the pipeline in the GitHub repository and ensure that you remove any "under development" labels in the description. This wording will be used when a new pipeline gets announced on our socials ([Bluesky](https://bsky.app/profile/nf-co.re) and [Mastodon](https://mstdn.science/@nf_core)).
 - [ ] If there is a [release milestone](https://help.github.com/en/github/managing-your-work-on-github/about-milestones), have a look and see if all issues are closed, or can be resolved
   - [ ] It's fine to decide that some things should be postponed until the next release - just move them on to the next milestone
 
@@ -26,7 +26,7 @@ If this is your first release, make sure to follow the [first release tutorial](
   - [ ] For example, `1.0.0dev` becomes `1.0.0`
   - [ ] Use the `nf-core pipelines bump-version` command to make the changes, eg: navigate to the pipeline directory and run `nf-core pipelines bump-version 1.0.0`
   - [ ] Please make sure to use strictly numeric release numbers
-  - [ ] Use [Semantic Versioning](https://semver.org/)
+  - [ ] Use [Semantic Versioning](https://semver.org/) - see the [nf-core semantic versioning guidelines](/docs/guidelines/pipelines/requirements/semantic_versioning.md) to decide if you need a patch, minor, or major release.
   - [ ] Make sure to update the version in any pipeline diagrams and other figures
 - [ ] Run `nf-core pipelines lint --release` and check that there are no test failures for release.
 - [ ] Check that `CHANGELOG.md` includes everything that has been added/fixed in this release, update the version number above the changes, and optionally add a human-readable release name (e.g. using a [code name generator](http://www.codenamegenerator.com/))
@@ -51,7 +51,7 @@ If this is your first release, make sure to follow the [first release tutorial](
 A number of events are automatically triggered after the pipeline is released:
 
 - [ ] The [nf-core website](https://nf-co.re/pipelines) will be updated automatically with the release information.
-- [ ] The [`@nf_core` twitter account](https://twitter.com/nf_core) will send out an automated tweet about the pipeline release within minutes.
+- [ ] Our social media accounts ([Bluesky](https://bsky.app/profile/nf-co.re) and [Mastodon](https://mstdn.science/@nf_core)) will send out an automated post about the pipeline release within minutes.
 - [ ] A [Zenodo DOI](https://zenodo.org/) is automatically generated that provides a persistent means with which to cite the pipeline.
 
 ## After release

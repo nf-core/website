@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize 40: Software packaging'
+title: "Bytesize 40: Software packaging"
 subtitle: Alexander Peltzer - Boehringer Ingelheim Pharma GmbH & Co. KG, Germany
 type: talk
-startDate: '2022-04-05'
-startTime: '13:00+02:00'
-endDate: '2022-04-05'
-endTime: '13:30+02:00'
+startDate: "2022-04-05"
+startTime: "13:00+02:00"
+endDate: "2022-04-05"
+endTime: "13:30+02:00"
 youtubeEmbed: https://www.youtube.com/watch?v=0ZpcYtKDZrU
 locations:
   - name: Online

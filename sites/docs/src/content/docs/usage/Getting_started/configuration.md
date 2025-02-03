@@ -64,7 +64,7 @@ If you use a shared system with other people (such as a HPC or institutional ser
 These are shared config profiles loaded by all nf-core pipelines at run time.
 
 You may find that your system already has a shared profile available here (see [https://github.com/nf-core/configs](https://github.com/nf-core/configs)).
-If not, please follow the instructions in the repository README and/or the [tutorial](https://nf-co.re/docs/usage/tutorials/step_by_step_institutional_profile) to add your cluster.
+If not, please follow the instructions in the repository README and/or the [tutorial](https://nf-co.re/docs/tutorials/use_nf-core_pipelines/writing_institutional_profiles) to add your cluster.
 
 ## Custom configuration files
 

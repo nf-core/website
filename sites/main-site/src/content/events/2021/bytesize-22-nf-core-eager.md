@@ -1,12 +1,12 @@
 ---
-title: 'Bytesize 22: nf-core/eager'
+title: "Bytesize 22: nf-core/eager"
 subtitle: James Fellows Yates - MPI-EVA, Germany
 type: talk
-startDate: '2021-10-05'
-startTime: '13:00+02:00'
-endDate: '2021-10-05'
-endTime: '13:30+02:00'
-embedAt: 'eager'
+startDate: "2021-10-05"
+startTime: "13:00+02:00"
+endDate: "2021-10-05"
+endTime: "13:30+02:00"
+embedAt: "eager"
 youtubeEmbed: https://youtu.be/fObuLeGhQRo
 locations:
   - name: Online

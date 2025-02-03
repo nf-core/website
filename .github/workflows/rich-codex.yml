@@ -10,13 +10,27 @@ jobs:
         with:
           # Use @nf-core-bot token to check out so we can push without a PR
           token: ${{ secrets.NF_CORE_BOT_AUTH_TOKEN }}
+
+      # Add Node.js setup step
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
       - name: Set up Python
         uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b # v5
         with:
-          python-version: 3.x
+          python-version: 3.9
+
+      - name: Remove type:module from package.json
+        run: |
+          if [ -f "$GITHUB_WORKSPACE/package.json" ]; then
+            sed -i '/"type": "module"/d' "$GITHUB_WORKSPACE/package.json"
+            echo "Removed type:module from package.json"
+          fi
 
       - name: Install Nextflow
-        uses: nf-core/setup-nextflow@561fcfc7146dcb12e3871909b635ab092a781f34 # v2
+        uses: nf-core/setup-nextflow@v2
 
       - name: Install nf-test
         uses: nf-core/setup-nf-test@v1
@@ -25,13 +39,17 @@ jobs:
         run: pip install nf-core
 
       - name: Generate terminal images with rich-codex
-        uses: ewels/rich-codex@v1
+        uses: ewels/rich-codex@8ce988cc253c240a3027ba58e33e47640935dd8b # v1
         env:
           COLUMNS: 100
-          HIDE_PROGRESS: 'true'
+          HIDE_PROGRESS: "true"
           NXF_ANSI_LOG: false
         with:
-          commit_changes: 'true'
+          commit_changes: "true"
           terminal_width: 100
-          skip_git_checks: 'true'
-          search_include: '.github/workflows/rich-codex.yml'
+          skip_git_checks: "true"
+          search_include: ".github/workflows/rich-codex.yml"
+
+      - name: Restore package.json
+        run: |
+          git checkout "$GITHUB_WORKSPACE/package.json"

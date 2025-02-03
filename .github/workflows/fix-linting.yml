@@ -56,7 +56,7 @@ jobs:
         uses: peter-evans/create-or-update-comment@71345be0265236311c031f5c7866368bd1eff043 # v4
         with:
           comment-id: ${{ github.event.comment.id }}
-          reactions: '+1'
+          reactions: "+1"
 
       - name: Commit & push changes
         id: commit-and-push

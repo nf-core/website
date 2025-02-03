@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize: Using Wave Containers'
+title: "Bytesize: Using Wave Containers"
 subtitle: Marcel Ribeiro-Dantas, Seqera Labs
 type: talk
-startDate: '2023-09-19'
-startTime: '13:00+02:00'
-endDate: '2023-09-19'
-endTime: '13:30+02:00'
+startDate: "2023-09-19"
+startTime: "13:00+02:00"
+endDate: "2023-09-19"
+endTime: "13:30+02:00"
 youtubeEmbed: https://www.youtube.com/watch?v=u2ybsPe1O8o
 locations:
   - name: Online
