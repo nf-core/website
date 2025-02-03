@@ -35,6 +35,8 @@ const events = defineCollection({
                         links: z.string().url().or(z.string().startsWith('#')).or(z.array(z.string().url())).optional(),
                         geoCoordinates: z.array(z.number(), z.number()).optional(),
                         address: z.string().optional(),
+                        country: z.string().optional(),
+                        city: z.string().optional(),
                     }),
                 )
                 .optional(),
@@ -44,13 +46,15 @@ const events = defineCollection({
             duration: z.string().optional(),
             embedAt: z.string().optional(),
             importTypeform: z.boolean().optional(),
+            hackathonProjectListModals: z.string().optional(),
             youtubeEmbed: z.array(z.string().url()).optional().or(z.string().url()).optional(),
+            hideExportButton: z.boolean().optional(),
         })
         .refine((data) => {
             // create start and end date objects
             try {
-                data.start = new Date(data.startDate + 'T' + data.startTime);
-                data.end = new Date(data.endDate + 'T' + data.endTime);
+                data.start = data.start ?? new Date(data.startDate + 'T' + data.startTime);
+                data.end = data.end ?? new Date(data.endDate + 'T' + data.endTime);
             } catch (e) {
                 throw new Error('startDate and startTime must be in the format YYYY-MM-DD and HH:MM+|-HH:MM');
             }
@@ -68,6 +72,10 @@ const events = defineCollection({
             // check that announcement.start is set if announcement.text is
             if (data.announcement?.text && !data.announcement.start && !data.announcement.end) {
                 throw new Error('announcement.start and announcement.end must be set if announcement.text is');
+            }
+            // check that locations country is set if locations city is set
+            if (data.locations?.[0]?.city && !data.locations?.[0]?.country) {
+                throw new Error('locations.country must be set if locations.city is');
             }
             // Return true if the validation should pass
             return true;
@@ -179,6 +187,40 @@ const pipelines = defineCollection({});
 
 const api_reference = defineCollection({});
 
+const hackathonProjects = defineCollection({
+    type: 'content',
+    schema: z
+        .object({
+            title: z.string(),
+            category: z.enum(['pipelines', 'components', 'tooling', 'community']),
+            leaders: z.record(z.object({
+                name: z.string(),
+                slack: z.string().url().optional()
+            })),
+            color: z
+                .string()
+                .refine((data) => {
+                    if (data && !data.startsWith('#') && !data.startsWith("'#")) {
+                        throw new Error('`color` must start with "#"');
+                    }
+                    return true;
+                })
+                .optional(),
+            intro_video: z.string().optional(),
+            image: z.string().optional(),
+            image_alt: z.string().optional(),
+            slack: z.string().url().optional(),
+        })
+        .refine((data) => {
+            // Check if headerImage is present but headerImageAlt is not
+            if (data.image && !data.image_alt) {
+                throw new Error('Please provide alt text for your `image` in `image_alt`.');
+            }
+            // Return true if the validation should pass
+            return true;
+        }),
+});
+
 export const collections = {
     events: events,
     docs: docs,
@@ -187,4 +229,5 @@ export const collections = {
     blog: blog,
     api_reference: api_reference,
     'special-interest-groups': specialInterestGroups,
+    'hackathon-projects': hackathonProjects,
 };

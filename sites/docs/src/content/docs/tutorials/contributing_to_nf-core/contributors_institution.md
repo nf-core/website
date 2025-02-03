@@ -28,7 +28,8 @@ To add your institution to the contributors page:
    - `contact_email:` Your e-mail
    - `contact_github:` Your GitHub username
    - `location:` Institute location in [geocoordinates format](https://support.google.com/maps/answer/18539?hl=en&co=GENIE.Platform%3DDesktop) (`[<longitude>, <latitude>]`)
-   - `twitter:` Institution X (formerly twitter) handle (if available)
+   - `mastodon:` Mastodon handle (if available)
+   - `bluesky:` Bluesky handle (if available)
 
 3. Add a colour and a white SVG of your institutional logo to your fork:
 

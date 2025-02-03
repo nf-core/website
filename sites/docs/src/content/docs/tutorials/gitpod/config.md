@@ -2,7 +2,7 @@
 title: Configuration
 subtitle: Configuring your Gitpod environment
 weight: 3
-type: 'tutorial'
+type: "tutorial"
 ---
 
 ## Configuration of Gitpod

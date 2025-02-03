@@ -1,12 +1,12 @@
 ---
-title: 'Bytesize: nf-core/rnafusion'
+title: "Bytesize: nf-core/rnafusion"
 subtitle: Annick Renevey - Karolinska Institutet
 type: talk
-startDate: '2022-09-13'
-startTime: '13:00+02:00'
-endDate: '2022-09-13'
-endTime: '13:30+02:00'
-embedAt: 'rnafusion'
+startDate: "2022-09-13"
+startTime: "13:00+02:00"
+endDate: "2022-09-13"
+endTime: "13:30+02:00"
+embedAt: "rnafusion"
 youtubeEmbed: https://www.youtube.com/watch?v=iP47pokiPB4
 locations:
   - name: Online

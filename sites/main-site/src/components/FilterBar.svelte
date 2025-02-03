@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { CurrentFilter, Filters, SortBy, DisplayStyle, SearchQuery } from '@components/store';
-    import { onMount } from 'svelte';
+    import { CurrentFilter, Filters, SortBy, DisplayStyle, SearchQuery } from "@components/store";
+    import { onMount } from "svelte";
 
     export let filter: { name: string; class?: string }[] = [];
     export let sortBy: string[] = [];
@@ -64,10 +64,10 @@
                             data-bs-toggle="tooltip"
                             data-bs-placement="top"
                             data-bs-delay="500"
-                            title={'Double click to only show items from this category'}
+                            title={"Double click to only show items from this category"}
                             class={fil.class
-                                ? 'btn text-nowrap flex-fill btn-outline-' + fil.class
-                                : 'btn text-nowrap w-100 btn-outline-success'}
+                                ? "btn text-nowrap flex-fill btn-outline-" + fil.class
+                                : "btn text-nowrap w-100 btn-outline-success"}
                             class:active={$CurrentFilter.find((f) => f.name === fil.name)}
                             on:click={() => handleFilter(fil.name)}
                             on:dblclick={() => handleExlusiveFilter(fil.name)}
@@ -75,7 +75,7 @@
                             on:blur={() => event.target.blur()}
                         >
                             {#if fil.icon}
-                                <i class={fil.icon + ' me-1'} />
+                                <i class={fil.icon + " me-1"} />
                             {/if}
                             {fil.name}
                             {#if fil.count >= 0}
@@ -108,7 +108,7 @@
                                     tabindex="0"
                                 >
                                     {#if fil.icon}
-                                        <i class={fil.icon + ' fa-fw me-1'} />
+                                        <i class={fil.icon + " fa-fw me-1"} />
                                     {/if}
                                     {fil.name}
                                     {#if fil.count >= 0}
@@ -139,7 +139,7 @@
                                 <div
                                     class="dropdown-item"
                                     title="sort"
-                                    id={sor.replace(' ', '-')}
+                                    id={sor.replace(" ", "-")}
                                     class:active={sor === $SortBy}
                                     on:click={() => handleSort(sor)}
                                     on:keydown={() => handleSort(sor)}
@@ -163,7 +163,7 @@
                             class="btn btn-outline-success text-nowrap"
                             on:click={() => handleDisplayStyle(dis.name)}
                             class:active={$DisplayStyle === dis.name}
-                            title={dis.name + ' view'}
+                            title={dis.name + " view"}
                             data-bs-toggle="tooltip"
                             ><i class={dis.icon} />
                         </button>
@@ -176,6 +176,6 @@
 
 <style lang="scss">
     .searchbar {
-        font-family: 'Inter Variable', 'Inter override', sans-serif, 'Font Awesome 6 Pro';
+        font-family: "Inter Variable", "Inter override", sans-serif, "Font Awesome 6 Pro";
     }
 </style>

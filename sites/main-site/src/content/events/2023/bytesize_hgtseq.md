@@ -1,13 +1,13 @@
 ---
-title: 'Bytesize: nf-core/hgtseq'
+title: "Bytesize: nf-core/hgtseq"
 subtitle: Francesco Lescai - Department of Biology and Biotechnology, University of Pavia
 type: talk
-startDate: '2023-03-21'
-startTime: '13:30+01:00'
-endDate: '2023-03-21'
-endTime: '14:00+01:00'
+startDate: "2023-03-21"
+startTime: "13:30+01:00"
+endDate: "2023-03-21"
+endTime: "14:00+01:00"
 youtubeEmbed: https://www.youtube.com/watch?v=nDaRt2L-tRw&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=69
-embedAt: 'hgtseq'
+embedAt: "hgtseq"
 locations:
   - name: Online
     links:

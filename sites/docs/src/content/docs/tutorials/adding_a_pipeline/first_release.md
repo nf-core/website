@@ -2,8 +2,8 @@
 title: First release
 subtitle: Follow this walkthrough to add a new pipeline to nf-core.
 weight: 40
-type: 'tutorial'
-markdownPlugin: 'checklist'
+type: "tutorial"
+markdownPlugin: "checklist"
 ---
 
 # Making the first release
@@ -15,7 +15,8 @@ When the code is stable and ready for a release, set the default branch to `mast
 ## Bump the version
 
 Use `nf-core pipelines bump-version` to increment the version number on the `dev` branch to remove
-the `dev` suffix.
+the `dev` suffix. The first release of a pipeline should normally be version `1.0.0` (we discourage
+pre-releases).
 
 When developing the pipeline, the version numbers should be numeric with `dev` at the end,
 e.g. `0.0.0dev`. When making a release, version numbers should all be numeric. Pipeline

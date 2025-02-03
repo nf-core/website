@@ -3,10 +3,10 @@ title: Hackathon - March 2024 (Seattle)
 subtitle: Local node of the nf-core hackathon at the University of Washington
 shortTitle: Seattle, USA
 type: hackathon
-startDate: '2024-03-18'
-startTime: '09:00-06:00'
-endDate: '2024-03-20'
-endTime: '13:00-06:00'
+startDate: "2024-03-18"
+startTime: "09:00-06:00"
+endDate: "2024-03-20"
+endTime: "13:00-06:00"
 locations:
   - name: University of Washington
     address: 1607 NE Pacific St, Seattle, WA

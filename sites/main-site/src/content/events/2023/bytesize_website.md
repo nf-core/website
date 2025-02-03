@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize: The new nf-core website'
+title: "Bytesize: The new nf-core website"
 subtitle: Matthias Hörtenhuber, Scilifelab Data Center
 type: talk
-startDate: '2023-10-03'
-startTime: '13:00+02:00'
-endDate: '2023-10-03'
-endTime: '13:30+02:00'
+startDate: "2023-10-03"
+startTime: "13:00+02:00"
+endDate: "2023-10-03"
+endTime: "13:30+02:00"
 youtubeEmbed: https://www.youtube.com/watch?v=t7QcJ-iAlsA
 locations:
   - name: Online

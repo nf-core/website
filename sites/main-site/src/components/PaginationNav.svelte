@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { currentPage } from '@components/store';
-    import { onMount } from 'svelte';
+    import { currentPage } from "@components/store";
+    import { onMount } from "svelte";
 
     export let lastPage: number = 1;
 
