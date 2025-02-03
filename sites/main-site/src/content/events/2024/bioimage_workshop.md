@@ -2,10 +2,10 @@
 title: Bioimage Analysis Workshop - September 2024 (Tübingen)
 subtitle: An in-person and online bioimage analysis workshop in Tübingen
 type: hackathon
-startDate: '2024-09-26'
-startTime: '09:00+02:00'
-endDate: '2024-09-27'
-endTime: '18:00+02:00'
+startDate: "2024-09-26"
+startTime: "09:00+02:00"
+endDate: "2024-09-27"
+endTime: "18:00+02:00"
 locations:
   - name: Quantitative Biology Center (QBiC), University of Tübingen, Germany
     geoCoordinates: [48.532, 9.0457]

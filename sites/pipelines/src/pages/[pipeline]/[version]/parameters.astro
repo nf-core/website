@@ -1,10 +1,10 @@
 ---
-import SchemaListing from '@components/schema/SchemaListing.svelte';
-import SidebarToc from '@components/sidebar/SidebarToc.svelte';
-import { promises, existsSync } from 'fs';
-import SchemaListingTocButtons from '@components/schema/SchemaListingTocButtons.svelte';
-import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
-import pipelines_json from '@public/pipelines.json';
+import SchemaListing from "@components/schema/SchemaListing.svelte";
+import SidebarToc from "@components/sidebar/SidebarToc.svelte";
+import { promises, existsSync } from "fs";
+import SchemaListingTocButtons from "@components/schema/SchemaListingTocButtons.svelte";
+import PipelinePageLayout from "@layouts/PipelinePageLayout.astro";
+import pipelines_json from "@public/pipelines.json";
 
 export function getStaticPaths() {
     var paths: {
@@ -13,10 +13,10 @@ export function getStaticPaths() {
     }[] = [];
     pipelines_json.remote_workflows.forEach((pipeline) => {
         const releases = pipeline.releases;
-        const extended_releases = [...releases, { tag_name: 'latest', doc_files: releases[0].doc_files }];
+        const extended_releases = [...releases, { tag_name: "latest", doc_files: releases[0].doc_files }];
         extended_releases.forEach((release) => {
             const md_files = release.doc_files.map((file) =>
-                file.replace('docs/', '').replace('.mdx', '').replace('.md', ''),
+                file.replace("docs/", "").replace(".mdx", "").replace(".md", ""),
             );
             paths.push({
                 params: {
@@ -53,13 +53,13 @@ let schema: {
     properties: [],
     $defs: [],
 };
-const version_tag_name = version === 'latest' ? versions[0] : version;
+const version_tag_name = version === "latest" ? versions[0] : version;
 
 const cache_key = `.cache/${pipeline}/${version_tag_name}/nextflow_schema.json`;
 //check if the schema is cached
 
 if (existsSync(cache_key)) {
-    let schema_buffer = await promises.readFile(cache_key, 'utf-8');
+    let schema_buffer = await promises.readFile(cache_key, "utf-8");
     schema = JSON.parse(schema_buffer);
 }
 let schemaDefs =
@@ -71,7 +71,7 @@ let schemaDefs =
 if (schemaDefs && Object.keys(schemaDefs).length > 0) {
     headings = Object.entries(schemaDefs).map(([key, value]) => {
         return {
-            slug: key.replaceAll('_', '-'),
+            slug: key.replaceAll("_", "-"),
             text: value.title,
             depth: 1,
             fa_icon: value.fa_icon,
@@ -83,7 +83,7 @@ if (schemaDefs && Object.keys(schemaDefs).length > 0) {
 
 <PipelinePageLayout
     pipeline={pipeline}
-    meta_title={pipeline + ': Parameters'}
+    meta_title={pipeline + ": Parameters"}
     subtitle={description}
     headings={headings}
     version={version}

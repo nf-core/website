@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize 19: Setting up AWS megatests'
+title: "Bytesize 19: Setting up AWS megatests"
 subtitle: Gisela Gabernet - QBiC Tübingen, Germany
 type: talk
-startDate: '2021-09-14'
-startTime: '13:00+02:00'
-endDate: '2021-09-14'
-endTime: '13:30+02:00'
+startDate: "2021-09-14"
+startTime: "13:00+02:00"
+endDate: "2021-09-14"
+endTime: "13:30+02:00"
 youtubeEmbed: https://youtu.be/2-ekrRsYS00
 locations:
   - name: Online

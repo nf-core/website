@@ -1,5 +1,5 @@
 ---
-import Profile from '@components/GitHubProfilePicture.svelte';
+import Profile from "@components/GitHubProfilePicture.svelte";
 
 const { slug, title, color, category, leaders } = Astro.props;
 
@@ -12,12 +12,12 @@ export interface Props {
 }
 let this_color = color;
 if (!color && category) {
-    if (category == 'pipelines') this_color = '#377CF6';
-    if (category == 'components') this_color = '#D04791';
-    if (category == 'tooling') this_color = '#BE831A';
-    if (category == 'community') this_color = '#238636';
+    if (category == "pipelines") this_color = "#377CF6";
+    if (category == "components") this_color = "#D04791";
+    if (category == "tooling") this_color = "#BE831A";
+    if (category == "community") this_color = "#238636";
 }
-const border_col = this_color ? { 'border-left-color': this_color, 'border-left-width': '5px' } : {};
+const border_col = this_color ? { "border-left-color": this_color, "border-left-width": "5px" } : {};
 ---
 
 <div class="card mb-2" style={border_col}>
@@ -26,7 +26,7 @@ const border_col = this_color ? { 'border-left-color': this_color, 'border-left-
             type="button"
             class="btn btn-link text-start p-3 pe-0 d-flex align-items-center justify-content-between"
             data-bs-toggle="modal"
-            data-bs-target={'#' + slug}
+            data-bs-target={"#" + slug}
             style="text-decoration: none;"
         >
             {title}

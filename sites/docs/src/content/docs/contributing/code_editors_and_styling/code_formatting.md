@@ -34,7 +34,7 @@ Most nf-core repositories should already come with a `.pre-commit-config.yaml` c
 
 ```yaml
 - repo: https://github.com/pre-commit/mirrors-prettier
-  rev: '' # Use the sha or tag you want to point at
+  rev: "" # Use the sha or tag you want to point at
   hooks:
     - id: prettier
 ```
