@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize 20: Nextflow Tower'
+title: "Bytesize 20: Nextflow Tower"
 subtitle: Evan Floden - Seqera Labs, Spain
 type: talk
-startDate: '2021-09-21'
-startTime: '13:00+02:00'
-endDate: '2021-09-21'
-endTime: '13:30+02:00'
+startDate: "2021-09-21"
+startTime: "13:00+02:00"
+endDate: "2021-09-21"
+endTime: "13:30+02:00"
 youtubeEmbed: https://youtu.be/zS_hbXQmHbI
 locations:
   - name: Online

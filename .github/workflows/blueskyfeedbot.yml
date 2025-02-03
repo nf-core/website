@@ -2,7 +2,7 @@ name: Bluesky FeedBot
 on:
   schedule:
     # This will run every hour
-    - cron: '0 * * * *'
+    - cron: "0 * * * *"
   workflow_dispatch:
 jobs:
   rss-to-bluesky:
@@ -21,7 +21,7 @@ jobs:
           key: feed-cache-${{ steps.generate-key.outputs.cache-key }}
           restore-keys: feed-cache-
       - name: GitHub
-        uses: 'joschi/blueskyfeedbot@v0.0.3'
+        uses: "joschi/blueskyfeedbot@v0.0.3"
         with:
           # This is the RSS feed you want to publish
           rss-feed: https://nf-co.re/blog/rss.xml
@@ -32,7 +32,7 @@ jobs:
           # This is your service URL (optional)
           service-url: https://bsky.social
           # This is the Bluesky username (example: username.bsky.social)
-          username: 'nf-co.re'
+          username: "nf-co.re"
           # This is the app password you created earlier
           password: ${{ secrets.FEED_TO_BLUESKY }}
           # This is a path to the cache file, using the above cache path

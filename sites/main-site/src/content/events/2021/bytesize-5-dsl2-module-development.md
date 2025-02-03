@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize 5: DSL2 module development'
+title: "Bytesize 5: DSL2 module development"
 subtitle: Harshil Patel - Francis Crick Institiute, UK
 type: talk
-startDate: '2021-03-02'
-startTime: '13:00+01:00'
-endDate: '2021-03-02'
-endTime: '13:30+01:00'
+startDate: "2021-03-02"
+startTime: "13:00+01:00"
+endDate: "2021-03-02"
+endTime: "13:30+01:00"
 youtubeEmbed: https://youtu.be/ggGGhTMgyHI
 locations:
   - name: Online
