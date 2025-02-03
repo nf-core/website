@@ -1,6 +1,6 @@
 ---
-title: 'Meetings'
-subtitle: 'When and where the regulatory group meets'
+title: "Meetings"
+subtitle: "When and where the regulatory group meets"
 groupName: Regulatory
 ---
 

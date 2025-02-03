@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize: data science operations (DSO)'
+title: "Bytesize: data science operations (DSO)"
 subtitle: Gregor Sturm, Boehringer Ingelheim
 type: talk
-startDate: '2025-02-25'
-startTime: '13:00+01:00'
-endDate: '2025-02-25'
-endTime: '13:30+01:00'
+startDate: "2025-02-25"
+startTime: "13:00+01:00"
+endDate: "2025-02-25"
+endTime: "13:30+01:00"
 locations:
   - name: Online
     links:

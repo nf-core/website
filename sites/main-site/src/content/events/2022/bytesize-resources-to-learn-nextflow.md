@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize: resources to learn Nextflow'
+title: "Bytesize: resources to learn Nextflow"
 subtitle: Sateesh Peri - Bioinformatics Pipeline Engineer, Bluestar Genomics
 type: talk
-startDate: '2022-05-31'
-startTime: '13:00+02:00'
-endDate: '2022-05-31'
-endTime: '13:30+02:00'
+startDate: "2022-05-31"
+startTime: "13:00+02:00"
+endDate: "2022-05-31"
+endTime: "13:30+02:00"
 youtubeEmbed: https://www.youtube.com/watch?v=oO7rAp-QZOk
 locations:
   - name: Online

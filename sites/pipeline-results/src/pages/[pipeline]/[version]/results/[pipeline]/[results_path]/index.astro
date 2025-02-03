@@ -1,7 +1,7 @@
 ---
-import ResultsLayout from '@layouts/ResultsLayout.astro';
-import pipelines_json from '@public/pipelines.json';
-import cache from '@root/bin/cache';
+import ResultsLayout from "@layouts/ResultsLayout.astro";
+import pipelines_json from "@public/pipelines.json";
+import cache from "@root/bin/cache";
 
 export async function getStaticPaths() {
     let paths: {
@@ -19,14 +19,14 @@ export async function getStaticPaths() {
     const prefixes = pipelines_json.remote_workflows
         .map((pipeline) => {
             return pipeline.releases
-                .filter((rel) => rel.tag_name !== 'dev')
+                .filter((rel) => rel.tag_name !== "dev")
                 .map((release) => {
                     return `${pipeline.name}/results-${release.tag_sha}/`;
                 });
         })
         .flat();
     const awsResponse = await cache
-        .get('aws.json')
+        .get("aws.json")
         .catch((err) => {
             console.error(err);
         })
@@ -38,9 +38,9 @@ export async function getStaticPaths() {
     const bucketContents = awsResponse.bucketContents;
     pipelines_json.remote_workflows.forEach(async (pipeline) => {
         pipeline.releases
-            .filter((rel) => rel.tag_name !== 'dev')
+            .filter((rel) => rel.tag_name !== "dev")
             .forEach(async (release) => {
-                const results_path = 'results-' + release.tag_sha;
+                const results_path = "results-" + release.tag_sha;
                 const version = release.tag_name;
                 paths.push({
                     params: {
@@ -63,7 +63,7 @@ export async function getStaticPaths() {
 }
 const { pipeline, version, results_path } = Astro.params;
 const { content, commonPrefixes } = Astro.props;
-if (version === 'dev') {
+if (version === "dev") {
     return Astro.redirect(`/${pipeline}/`);
 }
 ---

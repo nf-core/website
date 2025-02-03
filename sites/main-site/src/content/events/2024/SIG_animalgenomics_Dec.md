@@ -1,12 +1,12 @@
 ---
-title: '#animal-genomics: December Meeting'
+title: "#animal-genomics: December Meeting"
 subtitle: Emily Clark (The Roslin Institute, University of Edinburgh, UK)
 
 type: talk
-startDate: '2024-12-18'
-startTime: '16:00+01:00'
-endDate: '2024-12-18'
-endTime: '17:00+01:00'
+startDate: "2024-12-18"
+startTime: "16:00+01:00"
+endDate: "2024-12-18"
+endTime: "17:00+01:00"
 youtubeEmbed: https://youtu.be/rpHk948ObZg
 locations:
   - name: Online

@@ -42,7 +42,7 @@
         title="Copy to clipboard"
         type="button"
         on:click={() => copyToClipboard(cmd)}
-        ><i class={'fa-regular px-1 fa-clipboard' + (copied ? '-check' : '')} /></button
+        ><i class={"fa-regular px-1 fa-clipboard" + (copied ? "-check" : "")} /></button
     >
 </div>
 

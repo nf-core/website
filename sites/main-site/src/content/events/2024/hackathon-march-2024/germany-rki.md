@@ -3,10 +3,10 @@ title: Hackathon - March 2024 (Berlin)
 subtitle: Local node of the nf-core hackathon at RKI, Berlin.
 shortTitle: Berlin, Germany
 type: hackathon
-startDate: '2024-03-18'
-startTime: '10:00+02:00'
-endDate: '2024-03-20'
-endTime: '18:00+02:00'
+startDate: "2024-03-18"
+startTime: "10:00+02:00"
+endDate: "2024-03-20"
+endTime: "18:00+02:00"
 locations:
   - name: RKI
     address: Seestraße 10, 13353 Berlin, Germany

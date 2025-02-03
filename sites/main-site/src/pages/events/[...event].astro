@@ -1,16 +1,16 @@
 ---
-import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
-import { getCollection } from 'astro:content';
-import { YouTube } from '@astro-community/astro-embed-youtube';
-import VideoTranscript from '@components/VideoTranscript.svelte';
-import Admonition from '@components/Admonition.astro';
-import ListModals from '@components/event/HackathonProjects/ListModals.astro';
-import type { CollectionEntry } from 'astro:content';
-import type { SidebarEntry } from '@utils/types';
-import { createLinkOrGroup } from '@utils/functions';
+import MarkdownTocLayout from "@layouts/MarkdownTocLayout.astro";
+import { getCollection } from "astro:content";
+import { YouTube } from "@astro-community/astro-embed-youtube";
+import VideoTranscript from "@components/VideoTranscript.svelte";
+import Admonition from "@components/Admonition.astro";
+import ListModals from "@components/event/HackathonProjects/ListModals.astro";
+import type { CollectionEntry } from "astro:content";
+import type { SidebarEntry } from "@utils/types";
+import { createLinkOrGroup } from "@utils/functions";
 
 export async function getStaticPaths() {
-    const events = await getCollection('events');
+    const events = await getCollection("events");
     return events.map((event) => ({
         params: {
             event: event.slug,
@@ -27,20 +27,20 @@ const subtitle = event.data.subtitle;
 let frontmatter = event.data;
 const { headings, Content } = await event.render();
 
-const md_github_url = 'https://github.com/nf-core/website/blob/main/sites/main-site/src/content/events/' + event.id;
+const md_github_url = "https://github.com/nf-core/website/blob/main/sites/main-site/src/content/events/" + event.id;
 
 let video = event.data.youtubeEmbed;
 // convert video to array if it is string
-if (typeof video === 'string') {
+if (typeof video === "string") {
     video = [video];
 }
 const ids = video?.map(
     (v) =>
         v
-            .replace('https://www.youtube.com/watch?v=', '')
-            .replace('https://youtu.be/', '')
-            .replace('https://www.youtube.com/embed/', '')
-            .split('&list')[0],
+            .replace("https://www.youtube.com/watch?v=", "")
+            .replace("https://youtu.be/", "")
+            .replace("https://www.youtube.com/embed/", "")
+            .split("&list")[0],
 );
 // Check if maxres thumbnail is available
 let posters = await Promise.all(
@@ -56,8 +56,8 @@ let posters = await Promise.all(
 
 events
     .map((event) => {
-        if (event.data.title.toLowerCase().match('bytesize')) {
-            event.data.type = 'bytesize';
+        if (event.data.title.toLowerCase().match("bytesize")) {
+            event.data.type = "bytesize";
         }
         return event;
     })
@@ -66,24 +66,24 @@ events
         return new Date(b.data.startDate).getTime() - new Date(a.data.startDate).getTime();
     });
 
-const addEntriesToSection = (sections, events: CollectionEntry<'events'>[]) => {
+const addEntriesToSection = (sections, events: CollectionEntry<"events">[]) => {
     events.forEach((event) => {
-        const parts = event.slug.split('/');
+        const parts = event.slug.split("/");
         let currentLevel = sections;
 
         parts.forEach((part, i) => {
-            part = part.replaceAll('_', ' ').replace(/(^)\S/g, (match) => match.toUpperCase());
+            part = part.replaceAll("_", " ").replace(/(^)\S/g, (match) => match.toUpperCase());
             const existingEntry = currentLevel.find(
                 (entry) => entry.label === part || entry.label === event.data.title,
             );
 
             if (existingEntry) {
-                if (existingEntry.type === 'group') {
+                if (existingEntry.type === "group") {
                     // workaround for index files in nested events, where another element could already have created the group
                     if (/index\.(md|mdx)$/.test(event.id) && i === parts.length - 1) {
-                        existingEntry.href = '/events/' + event.slug;
-                        existingEntry.isCurrent = Astro.url.pathname === '/events/' + event.slug;
-                        existingEntry.collapsed = Astro.url.pathname === '/events/' + event.slug;
+                        existingEntry.href = "/events/" + event.slug;
+                        existingEntry.isCurrent = Astro.url.pathname === "/events/" + event.slug;
+                        existingEntry.collapsed = Astro.url.pathname === "/events/" + event.slug;
                     }
                     currentLevel = existingEntry.entries;
                 }
@@ -91,15 +91,15 @@ const addEntriesToSection = (sections, events: CollectionEntry<'events'>[]) => {
                 const lastPart = i === parts.length - 1;
                 let title = lastPart ? event.data.shortTitle ?? event.data.title : part;
                 const newEntry = createLinkOrGroup(
-                    parts.slice(0, i + 1).join('_'),
+                    parts.slice(0, i + 1).join("_"),
                     title,
-                    '/events/' + event.slug,
+                    "/events/" + event.slug,
                     lastPart,
                     Astro.url.pathname,
                 );
                 currentLevel.push(newEntry);
 
-                if (newEntry.type === 'group' && newEntry.entries) {
+                if (newEntry.type === "group" && newEntry.entries) {
                     currentLevel = newEntry.entries;
                 }
             }
@@ -111,7 +111,7 @@ let sections: SidebarEntry[] = years.map((year) => {
     return {
         label: year.toString(),
         entries: [],
-        type: 'group',
+        type: "group",
         collapsed: true,
     };
 });
@@ -119,14 +119,14 @@ addEntriesToSection(sections, events);
 // sort .entries by date
 sections.forEach((year) => {
     year.entries.sort((a, b) => {
-        const eventA = events.find((event) => '/events/' + event.slug === a.href);
-        const eventB = events.find((event) => '/events/' + event.slug === b.href);
+        const eventA = events.find((event) => "/events/" + event.slug === a.href);
+        const eventB = events.find((event) => "/events/" + event.slug === b.href);
         return eventB.data.startDate - eventA.data.startDate;
     });
 });
 ---
 
-{frontmatter.importTypeform && <script async src="https://embed.typeform.com/next/embed.js" />}
+{frontmatter.importTypeform && <script src="https://embed.typeform.com/next/embed.js" />}
 <MarkdownTocLayout
     title={title}
     subtitle={subtitle}
@@ -136,13 +136,13 @@ sections.forEach((year) => {
     sections={sections}
     leftSidebar={true}
     docSearchTags={[
-        { name: 'page_type', content: 'Event' },
-        { name: 'page_subtype', content: frontmatter.type },
+        { name: "page_type", content: "Event" },
+        { name: "page_subtype", content: frontmatter.type },
     ]}
     viewTransitions={true}
 >
     {
-        title.trim().toLowerCase().startsWith('bytesize') && (
+        title.trim().toLowerCase().startsWith("bytesize") && (
             <Admonition
                 title="tip"
                 titleText="Join us for our <strong>weekly series</strong> of short talks: <strong>nf-core/bytesize</strong>."
@@ -151,10 +151,10 @@ sections.forEach((year) => {
                 <p class="small text-body-secondary">
                     Just <strong>15 minutes</strong> + questions, we focus on topics about using and developing nf-core
                     pipelines. These are recorded and made available at <a href="https://nf-co.re/">https://nf-co.re</a>
-                    , helping to build an archive of training material. Got an idea for a talk? Let us know on the{' '}
+                    , helping to build an archive of training material. Got an idea for a talk? Let us know on the{" "}
                     <a href="https://nfcore.slack.com/channels/bytesize">
                         <code>#bytesize</code>
-                    </a>{' '}
+                    </a>{" "}
                     Slack channel!
                 </p>
             </Admonition>
