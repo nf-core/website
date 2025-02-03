@@ -8827,6 +8827,26 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -33412,6 +33432,10 @@
         {
           "name": "molkart",
           "version": "1.0.0"
+        },
+        {
+          "name": "spatialxe",
+          "version": "dev"
         }
       ]
     },
@@ -105786,6 +105810,51 @@
                 "description": "Output format (one of axt, blast, blasttab, chain, gff, html, psl, sam, or tab)"
               }
             }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Genome file in FASTA format for CRAM conversion.  If compressed it must be done in BGZF format (like with the bgzip tool).",
+                "pattern": "*.{fasta,fasta.gz,fasta.bgz,fasta.bgzf}"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "Genome index file needed for CRAM conversion.",
+                "pattern": "*.fai"
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "gzi": {
+                "type": "file",
+                "description": "Genome index file needed for CRAM conversion when the genome file was compressed with the BGZF algorithm.",
+                "pattern": "*.gzi"
+              }
+            }
           ]
         ],
         "output": [
@@ -105802,6 +105871,23 @@
                   "type": "file",
                   "description": "Gzipped pairwise alignment in Axt (Blastz) format (optional)",
                   "pattern": "*.axt.gz"
+                }
+              }
+            ]
+          },
+          {
+            "bam": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.bam": {
+                  "type": "file",
+                  "description": "Pairwise alignment in BAM format (optional)",
+                  "pattern": "*.bam"
                 }
               }
             ]
@@ -105853,6 +105939,30 @@
                   "type": "file",
                   "description": "Gzipped pairwise alignment in UCSC chain format (optional)",
                   "pattern": "*.chain.gz"
+                }
+              }
+            ]
+          },
+          {
+            "cram": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.cram": {
+                  "type": "file",
+                  "description": "Pairwise alignment in CRAM format (optional)",
+                  "pattern": "*.cram"
+                }
+              },
+              {
+                "fasta": {
+                  "type": "file",
+                  "description": "Genome file to recover sequences from the CRAM file (optional)",
+                  "pattern": "*.{fasta,fasta.gz,fasta.bgz,fasta.bgzf}"
                 }
               }
             ]
@@ -106395,16 +106505,8 @@
             {
               "fasta": {
                 "type": "file",
-                "description": "Input sequences in FASTA format. May be gz-compressed or uncompressed.",
-                "pattern": "*.{fa,fasta}{.gz,}"
-              }
-            }
-          ],
-          [
-            {
-              "compress": {
-                "type": "boolean",
-                "description": "Flag representing whether the output MSA should be compressed. Set to true to enable/false to disable compression. Compression is done using pigz, and is multithreaded."
+                "description": "Input sequences in FASTA format.",
+                "pattern": "*.{fa,fasta}"
               }
             }
           ]
@@ -106419,10 +106521,10 @@
                 }
               },
               {
-                "*.aln{.gz,}": {
+                "*.aln": {
                   "type": "file",
-                  "description": "Alignment file, in FASTA format. May be gzipped or uncompressed.",
-                  "pattern": "*.aln{.gz,}"
+                  "description": "Alignment file, in FASTA format.",
+                  "pattern": "*.aln"
                 }
               }
             ]
@@ -110145,6 +110247,86 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
+        },
         {
           "name": "ampliseq",
           "version": "2.12.0"
@@ -137217,6 +137399,26 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
+        },
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
+        },
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
+        },
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
+        },
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
+        },
         {
           "name": "viralrecon",
           "version": "2.6.0"
@@ -165867,6 +166069,10 @@
           "version": "1.0.0"
         },
         {
+          "name": "sammyseq",
+          "version": "dev"
+        },
+        {
           "name": "scnanoseq",
           "version": "1.0.0"
         },
@@ -166400,6 +166606,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "sammyseq",
+          "version": "dev"
         },
         {
           "name": "sarek",
@@ -204304,7 +204514,13 @@
         "maintainers": [
           "@khersameesh24"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "spatialxe",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "xz_compress",
@@ -213399,6 +213615,26 @@
         {
           "name": "phageannotator",
           "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
         }
       ]
     },
@@ -217269,6 +217505,26 @@
         {
           "name": "riboseq",
           "version": "1.0.1"
+        },
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
+        },
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
+        },
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
+        },
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
+        },
+        {
+          "name": "riboseq",
+          "version": "1.0.1"
         }
       ]
     },
@@ -217815,6 +218071,10 @@
           "version": "dev"
         },
         {
+          "name": "spatialxe",
+          "version": "dev"
+        },
+        {
           "name": "taxprofiler",
           "version": "1.2.2"
         },
@@ -218132,6 +218392,10 @@
           "version": "dev"
         },
         {
+          "name": "spatialxe",
+          "version": "dev"
+        },
+        {
           "name": "taxprofiler",
           "version": "1.2.2"
         },
@@ -218366,6 +218630,10 @@
         },
         {
           "name": "spatialvi",
+          "version": "dev"
+        },
+        {
+          "name": "spatialxe",
           "version": "dev"
         },
         {

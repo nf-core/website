@@ -2,8 +2,8 @@
 title: First release
 subtitle: Follow this walkthrough to add a new pipeline to nf-core.
 weight: 40
-type: 'tutorial'
-markdownPlugin: 'checklist'
+type: "tutorial"
+markdownPlugin: "checklist"
 ---
 
 # Making the first release

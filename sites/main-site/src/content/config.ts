@@ -46,6 +46,7 @@ const events = defineCollection({
             duration: z.string().optional(),
             embedAt: z.string().optional(),
             importTypeform: z.boolean().optional(),
+            hackathonProjectListModals: z.string().optional(),
             youtubeEmbed: z.array(z.string().url()).optional().or(z.string().url()).optional(),
             hideExportButton: z.boolean().optional(),
         })
@@ -186,6 +187,40 @@ const pipelines = defineCollection({});
 
 const api_reference = defineCollection({});
 
+const hackathonProjects = defineCollection({
+    type: 'content',
+    schema: z
+        .object({
+            title: z.string(),
+            category: z.enum(['pipelines', 'components', 'tooling', 'community']),
+            leaders: z.record(z.object({
+                name: z.string(),
+                slack: z.string().url().optional()
+            })),
+            color: z
+                .string()
+                .refine((data) => {
+                    if (data && !data.startsWith('#') && !data.startsWith("'#")) {
+                        throw new Error('`color` must start with "#"');
+                    }
+                    return true;
+                })
+                .optional(),
+            intro_video: z.string().optional(),
+            image: z.string().optional(),
+            image_alt: z.string().optional(),
+            slack: z.string().url().optional(),
+        })
+        .refine((data) => {
+            // Check if headerImage is present but headerImageAlt is not
+            if (data.image && !data.image_alt) {
+                throw new Error('Please provide alt text for your `image` in `image_alt`.');
+            }
+            // Return true if the validation should pass
+            return true;
+        }),
+});
+
 export const collections = {
     events: events,
     docs: docs,
@@ -194,4 +229,5 @@ export const collections = {
     blog: blog,
     api_reference: api_reference,
     'special-interest-groups': specialInterestGroups,
+    'hackathon-projects': hackathonProjects,
 };

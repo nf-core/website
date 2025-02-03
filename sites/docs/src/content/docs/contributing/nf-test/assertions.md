@@ -1,5 +1,5 @@
 ---
-title: 'nf-test: Example assertions'
+title: "nf-test: Example assertions"
 subtitle: A guide to using nf-test assertions for testing nf-core pipelines.
 parentWeight: 20
 ---

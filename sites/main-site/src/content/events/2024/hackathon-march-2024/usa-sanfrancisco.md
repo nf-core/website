@@ -3,10 +3,10 @@ title: Hackathon - March 2024 (San Francisco)
 subtitle: Local node of the nf-core hackathon at the Superfluid office in South San Francisco
 shortTitle: San Francisco, USA
 type: hackathon
-startDate: '2024-03-18'
-startTime: '10:00-06:00'
-endDate: '2024-03-20'
-endTime: '17:00-06:00'
+startDate: "2024-03-18"
+startTime: "10:00-06:00"
+endDate: "2024-03-20"
+endTime: "17:00-06:00"
 locations:
   - name: Superfluid Dx Office
     address: 259 E. Grand Ave., South San Francisco, CA 94080

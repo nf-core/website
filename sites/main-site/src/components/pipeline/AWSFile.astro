@@ -1,21 +1,21 @@
 ---
-import * as icons from 'file-icons-js';
-import 'file-icons-js/css/style.css';
-import { formatDistanceToNow } from 'date-fns';
-import prettyBytes from 'pretty-bytes';
-import AWSExportButtons from '@components/pipeline/AWSExportButtons.astro';
+import * as icons from "file-icons-js";
+import "file-icons-js/css/style.css";
+import { formatDistanceToNow } from "date-fns";
+import prettyBytes from "pretty-bytes";
+import AWSExportButtons from "@components/pipeline/AWSExportButtons.astro";
 
 const { item } = Astro.props;
 const fileIcon = icons.getClass(item.name);
 
-const hrefPrefix = 'https://nf-core-awsmegatests.s3-eu-west-1.amazonaws.com/';
+const hrefPrefix = "https://nf-core-awsmegatests.s3-eu-west-1.amazonaws.com/";
 ---
 
 <span class="list-group-item list-group-item-action">
     <div class="row align-items-center">
         <div class="col">
-            <a href={'?file=' + item.name} class="text-decoration-none"
-                >{fileIcon ? <span class={fileIcon + ' file-icon me-2'} /> : <i class="fa-regular fa-file me-2" />}
+            <a href={"?file=" + item.name} class="text-decoration-none"
+                >{fileIcon ? <span class={fileIcon + " file-icon me-2"} /> : <i class="fa-regular fa-file me-2" />}
                 <span class="file-name">{item.name}</span></a
             >
         </div>
