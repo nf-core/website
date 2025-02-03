@@ -62,7 +62,7 @@ outputs:
     img_paths:
       - public/images/tools/nf-core-list-stars.svg
   - command: nf-core pipelines launch rnaseq -r 3.8.1
-    trim_after: 'Command line'
+    trim_after: "Command line"
     img_paths:
       - public/images/tools/nf-core-launch-rnaseq.svg
   - command: mkdir tmp && cd tmp && nf-core pipelines download rnaseq -r 3.8 --outdir nf-core-rnaseq -x none -s none -d
@@ -173,7 +173,7 @@ outputs:
   - command: cd tmp/modules && nf-core modules test fastqc --no-prompts
     timeout: 30
     extra_env:
-      PROFILE: 'conda'
+      PROFILE: "conda"
     fake_command: nf-core modules test fastqc --no-prompts
     img_paths:
       - public/images/tools/nf-core-modules-test.svg
@@ -233,13 +233,13 @@ outputs:
   - command: cd tmp/modules && nf-core subworkflows test bam_rseqc --no-prompts
     timeout: 30
     extra_env:
-      PROFILE: 'conda'
+      PROFILE: "conda"
     fake_command: nf-core subworkflows test bam_rseqc --no-prompts
     img_paths:
       - public/images/tools/nf-core-subworkflows-test.svg
   - command: cd tmp/modules && nf-core subworkflows lint bam_stats_samtools
     extra_env:
-      PROFILE: 'conda'
+      PROFILE: "conda"
     fake_command: nf-core subworkflows lint bam_stats_samtools
     img_paths:
       - public/images/tools/nf-core-subworkflows-lint.svg

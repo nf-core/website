@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize 18: Development environments & workflows II'
+title: "Bytesize 18: Development environments & workflows II"
 subtitle: Maxime Garcia - SciLifeLab / Karolinska Institutet, Sweden
 type: talk
-startDate: '2021-06-22'
-startTime: '13:00+02:00'
-endDate: '2021-06-22'
-endTime: '13:30+02:00'
+startDate: "2021-06-22"
+startTime: "13:00+02:00"
+endDate: "2021-06-22"
+endTime: "13:30+02:00"
 youtubeEmbed: https://youtu.be/OF55x-FT5WE
 locations:
   - name: Online

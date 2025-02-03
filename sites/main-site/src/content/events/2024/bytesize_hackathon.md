@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize: nf-core hackathons'
+title: "Bytesize: nf-core hackathons"
 subtitle: Friederike Hanssen, QBiC
 type: talk
-startDate: '2024-01-30'
-startTime: '13:00+01:00'
-endDate: '2024-01-30'
-endTime: '13:30+01:00'
+startDate: "2024-01-30"
+startTime: "13:00+01:00"
+endDate: "2024-01-30"
+endTime: "13:30+01:00"
 youtubeEmbed: https://youtu.be/nmp0pXL7GqQ
 locations:
   - name: Online

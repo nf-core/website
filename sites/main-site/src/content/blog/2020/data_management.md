@@ -3,9 +3,9 @@ title: Data management
 subtitle: How to plan your project, estimate resources, and share your results.
 pubDate: 2020-04-14T12:00:00+01:00
 authors:
-  - 'elinkronander'
+  - "elinkronander"
 label:
-  - 'best-practice'
+  - "best-practice"
 ---
 
 ## Data management
