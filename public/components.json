@@ -4671,7 +4671,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         }
       ]
     },
@@ -7119,6 +7119,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         },
         {
           "name": "rnafusion",
@@ -13835,7 +13839,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnaseq",
@@ -30969,7 +30973,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnadnavar",
@@ -44933,7 +44937,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnaseq",
@@ -45431,7 +45435,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnaseq",
@@ -46129,7 +46133,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnaseq",
@@ -46258,7 +46262,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         }
       ]
     },
@@ -58587,7 +58591,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnadnavar",
@@ -58900,7 +58904,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnadnavar",
@@ -61442,9 +61446,9 @@
                 }
               },
               {
-                "*": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n",
+                "ungzipped/*": {
+                  "type": "file",
+                  "description": "Files that have been decompressed\n",
                   "pattern": "*"
                 }
               }
@@ -62604,6 +62608,10 @@
       },
       "pipelines": [
         {
+          "name": "riboseq",
+          "version": "1.1.0"
+        },
+        {
           "name": "rnaseq",
           "version": "3.18.0"
         }
@@ -62692,7 +62700,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnaseq",
@@ -82893,7 +82901,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnadnavar",
@@ -89199,7 +89207,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnadnavar",
@@ -102320,7 +102328,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnaseq",
@@ -102494,7 +102502,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnaseq",
@@ -110247,6 +110255,22 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
+        },
         {
           "name": "ampliseq",
           "version": "2.12.0"
@@ -128197,7 +128221,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnadnavar",
@@ -137399,6 +137423,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
+        },
         {
           "name": "viralrecon",
           "version": "2.6.0"
@@ -157560,7 +157588,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         }
       ]
     },
@@ -157704,7 +157732,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         }
       ]
     },
@@ -157967,7 +157995,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         }
       ]
     },
@@ -158062,7 +158090,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         }
       ]
     },
@@ -159058,7 +159086,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnaseq",
@@ -161206,7 +161234,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnaseq",
@@ -161383,7 +161411,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnaseq",
@@ -164299,7 +164327,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnadnavar",
@@ -164569,7 +164597,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnadnavar",
@@ -164961,7 +164989,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnadnavar",
@@ -166046,7 +166074,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnadnavar",
@@ -166273,7 +166301,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnadnavar",
@@ -180337,7 +180365,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnaseq",
@@ -183170,7 +183198,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnadnavar",
@@ -183317,7 +183345,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnadnavar",
@@ -185178,7 +185206,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnaseq",
@@ -192292,7 +192320,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnaseq",
@@ -193833,7 +193861,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnaseq",
@@ -195164,6 +195192,10 @@
       },
       "pipelines": [
         {
+          "name": "riboseq",
+          "version": "1.1.0"
+        },
+        {
           "name": "rnaseq",
           "version": "3.18.0"
         },
@@ -195349,7 +195381,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnaseq",
@@ -195471,7 +195503,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnaseq",
@@ -195733,7 +195765,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnaseq",
@@ -196145,7 +196177,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnadnavar",
@@ -205773,6 +205805,10 @@
       },
       "pipelines": [
         {
+          "name": "riboseq",
+          "version": "1.1.0"
+        },
+        {
           "name": "rnaseq",
           "version": "3.18.0"
         }
@@ -205872,7 +205908,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnaseq",
@@ -206228,6 +206264,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "riboseq",
+          "version": "1.1.0"
+        },
         {
           "name": "rnaseq",
           "version": "3.18.0"
@@ -207174,7 +207214,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnadnavar",
@@ -207440,7 +207480,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnadnavar",
@@ -211337,7 +211377,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnadnavar",
@@ -211892,7 +211932,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnaseq",
@@ -212065,7 +212105,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnaseq",
@@ -212636,6 +212676,10 @@
       },
       "pipelines": [
         {
+          "name": "riboseq",
+          "version": "1.1.0"
+        },
+        {
           "name": "rnaseq",
           "version": "3.18.0"
         }
@@ -212755,7 +212799,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnaseq",
@@ -213172,6 +213216,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        },
         {
           "name": "phageannotator",
           "version": "dev"
@@ -217746,7 +217794,7 @@
       "pipelines": [
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnaseq",
@@ -218024,7 +218072,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnadnavar",
@@ -218345,7 +218393,7 @@
         },
         {
           "name": "riboseq",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "rnadnavar",
@@ -218601,6 +218649,10 @@
           "version": "0.1"
         },
         {
+          "name": "riboseq",
+          "version": "1.1.0"
+        },
+        {
           "name": "rnaseq",
           "version": "3.18.0"
         },
@@ -218801,10 +218853,6 @@
         },
         {
           "name": "reportho",
-          "version": "1.0.1"
-        },
-        {
-          "name": "riboseq",
           "version": "1.0.1"
         },
         {
