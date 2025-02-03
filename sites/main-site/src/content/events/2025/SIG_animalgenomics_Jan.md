@@ -1,12 +1,12 @@
 ---
-title: '#animal-genomics: January Meeting'
+title: "#animal-genomics: January Meeting"
 subtitle: ELIXIR Domestic Animals Genome & Phenome Focus Group white paper section round table
 
 type: talk
-startDate: '2025-01-22'
-startTime: '16:00+01:00'
-endDate: '2025-01-22'
-endTime: '17:00+01:00'
+startDate: "2025-01-22"
+startTime: "16:00+01:00"
+endDate: "2025-01-22"
+endTime: "17:00+01:00"
 locations:
   - name: Online
     links:

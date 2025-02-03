@@ -1,5 +1,5 @@
 ---
-import PageLayout from '@layouts/PageLayout.astro';
+import PageLayout from "@layouts/PageLayout.astro";
 ---
 
 <PageLayout title="Error 404: Page Not Found" subtitle="The page you were looking for has been moved or removed.">
@@ -17,8 +17,8 @@ import PageLayout from '@layouts/PageLayout.astro';
         Open an issue on GitHub
     </a>
     <script is:inline>
-        document.getElementById('url').textContent = document.referrer;
-        document.getElementById('url').attributes.href = document.referrer;
-        document.getElementById('report-issue').attributes.href.value += document.referrer;
+        document.getElementById("url").textContent = document.referrer;
+        document.getElementById("url").attributes.href = document.referrer;
+        document.getElementById("report-issue").attributes.href.value += document.referrer;
     </script>
 </PageLayout>

@@ -3,10 +3,10 @@ title: Hackathon - March 2024 (Leipzig)
 subtitle: Local node of the nf-core hackathon at MPI-EVA, Leipzig.
 shortTitle: Leipzig, Germany
 type: hackathon
-startDate: '2024-03-18'
-startTime: '10:00+02:00'
-endDate: '2024-03-20'
-endTime: '18:00+02:00'
+startDate: "2024-03-18"
+startTime: "10:00+02:00"
+endDate: "2024-03-20"
+endTime: "18:00+02:00"
 locations:
   - name: EVA
     address: Deutscher Platz 6, 04103 Leipzig, Germany

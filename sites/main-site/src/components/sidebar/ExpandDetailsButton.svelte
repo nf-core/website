@@ -4,12 +4,12 @@
     function ToggleDetails() {
         expanded = !expanded;
         if (expanded) {
-            document.querySelectorAll('details:not([open])').forEach((details) => {
-                details.setAttribute('open', '');
+            document.querySelectorAll("details:not([open])").forEach((details) => {
+                details.setAttribute("open", "");
             });
         } else {
-            document.querySelectorAll('details[open]').forEach((details) => {
-                details.removeAttribute('open');
+            document.querySelectorAll("details[open]").forEach((details) => {
+                details.removeAttribute("open");
             });
         }
     }
