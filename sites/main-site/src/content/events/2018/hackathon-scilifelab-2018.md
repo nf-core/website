@@ -2,10 +2,10 @@
 title: Hackathon @ SciLifeLab
 subtitle: The 2018 nf-core hackathon held at SciLifeLab, Stockholm
 type: hackathon
-startDate: '2018-08-06'
-startTime: '09:00+01:00'
-endDate: '2018-08-10'
-endTime: '17:00+01:00'
+startDate: "2018-08-06"
+startTime: "09:00+01:00"
+endDate: "2018-08-10"
+endTime: "17:00+01:00"
 address: Tomtebodavägen 23A, 17165 Solna, Sweden
 locations:
   - name: SciLifeLab

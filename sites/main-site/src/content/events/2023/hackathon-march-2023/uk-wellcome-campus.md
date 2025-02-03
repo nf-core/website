@@ -2,10 +2,10 @@
 title: Hackathon - March 2023 (Cambridge)
 subtitle: Local node of the nf-core hackathon at the Wellcome Genome Campus, Cambridge.
 type: hackathon
-startDate: '2023-03-27'
-startTime: '09:30+01:00'
-endDate: '2023-03-29'
-endTime: '16:30+01:00'
+startDate: "2023-03-27"
+startTime: "09:30+01:00"
+endDate: "2023-03-29"
+endTime: "16:30+01:00"
 locations:
   - name: Chestnut Suite, Hinxton Hall, Wellcome Genome Campus
     address: Wellcome Genome Campus, Hinxton CB10 1SA
