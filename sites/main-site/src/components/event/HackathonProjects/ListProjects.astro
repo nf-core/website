@@ -1,0 +1,10 @@
+---
+import Project from '@components/event/HackathonProjects/Project.astro';
+import { getCollection } from 'astro:content';
+
+let projects = await getCollection('hackathon-projects');
+---
+
+<div>
+    {projects.map((project) => <Project slug={project.slug} {...project.data} />)}
+</div>
