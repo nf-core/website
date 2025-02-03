@@ -1,6 +1,6 @@
 ---
 title: Introduction
-subtitle: 'Community of researchers with a shared interest in pipeline validation & qualification for clinical applications'
+subtitle: "Community of researchers with a shared interest in pipeline validation & qualification for clinical applications"
 groupName: Regulatory
 leads:
   - apeltzer: Alexander Peltzer

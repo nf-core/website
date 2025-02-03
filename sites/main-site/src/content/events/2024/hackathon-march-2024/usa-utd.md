@@ -3,10 +3,10 @@ title: Hackathon - March 2024 (Dallas)
 subtitle: Local node of the nf-core hackathon at the University of Texas at Dallas
 shortTitle: Dallas, USA
 type: hackathon
-startDate: '2024-03-18'
-startTime: '09:00-06:00'
-endDate: '2024-03-20'
-endTime: '13:00-06:00'
+startDate: "2024-03-18"
+startTime: "09:00-06:00"
+endDate: "2024-03-20"
+endTime: "13:00-06:00"
 locations:
   - name: University of Texas at Dallas
     address: 860 N Loop Rd, Richardson, TX 75080

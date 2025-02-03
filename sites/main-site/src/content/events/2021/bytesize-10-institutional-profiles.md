@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize 10: Making a new institutional profile'
+title: "Bytesize 10: Making a new institutional profile"
 subtitle: James A. Fellows Yates - LMU Munich / MPI-EVA
 type: talk
-startDate: '2021-04-27'
-startTime: '13:00+02:00'
-endDate: '2021-04-27'
-endTime: '13:30+02:00'
+startDate: "2021-04-27"
+startTime: "13:00+02:00"
+endDate: "2021-04-27"
+endTime: "13:30+02:00"
 youtubeEmbed: https://youtu.be/Ym1s6sKGzkw
 locations:
   - name: Online
