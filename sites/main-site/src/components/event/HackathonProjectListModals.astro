@@ -1,0 +1,17 @@
+---
+import HackathonGroupModal from '@components/event/HackathonGroupModal.astro';
+import { getCollection } from 'astro:content';
+import { Markdown } from '@astropub/md';
+
+let projects = await getCollection('hackathon-projects');
+---
+
+<div class="hackathon_project_list_modals">
+    {
+        projects.map((project) => (
+            <HackathonGroupModal slug={project.slug} {...project.data}>
+                <Markdown of={project.body} />
+            </HackathonGroupModal>
+        ))
+    }
+</div>
