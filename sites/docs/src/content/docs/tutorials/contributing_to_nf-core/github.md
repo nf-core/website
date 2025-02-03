@@ -1,12 +1,12 @@
 ---
-title: Using GitHub to contribute to nf-core
+title: Using GitHub to contribute to nf-core components
 subtitle: A guide to contributing to nf-core using GitHub
-shortTitle: Contributing on GitHub
+shortTitle: Contributing to components
 ---
 
 # Fork the nf-core/modules repository and branch
 
-The first step, to contribute a module to the community repository is to fork \*nf-core modules into your own account or organisation. To do this, you should click on the top-right of the nf-core modules repository, and choose "fork" as shown in the figure below.
+The first step, to contribute a module to the community repository is to fork _nf-core modules_ into your own account or organisation. To do this, you should click on the top-right of the nf-core modules repository, and choose "fork" as shown in the figure below.
 
 ![fork](/images/contributing/dsl2_modules_tutorial/dsl2-mod_01_fork.png)
 

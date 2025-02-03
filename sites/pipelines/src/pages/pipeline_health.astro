@@ -107,9 +107,15 @@ pipelines.sort((a, b) => {
                     >
                     <th
                         class="small fw-normal text-nowrap p-1"
-                        title="default branch master (released) or dev (no releases)"
+                        title="default branch ✅ `main` or ⚠️ `master` (released) or `dev` (no releases)"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top">Default branch</th
+                    >
+                    <th
+                        class="small fw-normal text-nowrap p-1"
+                        title="`defaultBranch` set in manifest of `nextflow.config` and matches default branch"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top">Branch in manifest</th
                     >
                     <th
                         class="small fw-normal text-nowrap p-1"
@@ -290,7 +296,19 @@ pipelines.sort((a, b) => {
                                 {getCell(
                                     pipeline.default_branch,
                                     pipeline.repository_url,
-                                    'default branch master (released) or dev (no releases)',
+                                    'default branch ✅ `main` or ⚠️ `master` (released) or `dev` (no releases)',
+                                    pipeline.default_branch === 'master' ? 'status--warning' : '',
+                                )}
+                                {/* Default branch set in nextflow.config manifest */}
+                                {getCell(
+                                    pipeline.master_nextflow_config_manifest.defaultBranch
+                                        ? pipeline.master_nextflow_config_manifest.defaultBranch ===
+                                          pipeline.default_branch
+                                            ? true
+                                            : false
+                                        : -1,
+                                    pipeline.repository_url + '/blob/' + pipeline.default_branch + '/nextflow.config',
+                                    'default branch set in manifest of nextflow.config and matches default branch',
                                 )}
                                 {/* Keywords */}
                                 {getCell(pipeline.has_required_topics, pipeline.repository_url, 'minimum keywords set')}
@@ -521,30 +539,42 @@ pipelines.sort((a, b) => {
         pointer: hand;
     }
     .status--healthy {
+        background-color: $success;
         i {
             color: $success-text-emphasis;
         }
-        background-color: $success;
     }
     .status--unhealthy {
+        background-color: $danger;
         i {
             color: $danger-text-emphasis;
         }
-        background-color: $danger;
+    }
+    .status--warning {
+        background-color: $warning;
+        i {
+            color: $warning-text-emphasis;
+        }
     }
 
     :global([data-bs-theme='dark']) {
         .status--healthy {
+            background-color: $success-border-subtle-dark;
             i {
                 color: $success-text-emphasis-dark;
             }
-            background-color: $success-border-subtle-dark;
         }
         .status--unhealthy {
+            background-color: $danger-border-subtle-dark;
             i {
                 color: $danger-text-emphasis-dark;
             }
-            background-color: $danger-border-subtle-dark;
+        }
+        .status--warning {
+            background-color: $warning-border-subtle-dark;
+            i {
+                color: $warning-text-emphasis-dark;
+            }
         }
     }
     .status--unknown {

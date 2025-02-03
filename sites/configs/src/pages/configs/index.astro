@@ -44,7 +44,7 @@ function parseConfig(fileContent) {
     }
     //remove double and quotes
     Object.keys(config).forEach((key) => {
-        config[key] = config[key].replace(/'|"/g, '');
+        config[key] = config[key]?.replace(/'|"/g, '');
     });
 
     //remove provided by nf-core/configs string from description

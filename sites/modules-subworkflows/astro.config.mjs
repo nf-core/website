@@ -2,7 +2,6 @@ import admonitionsPlugin from '../../bin/remark-admonitions';
 import mermaid from '../../bin/remark-mermaid';
 import { rehypeCheckboxParser } from '../../bin/rehype-checkbox-parser.ts';
 import { rehypeHeadingNumbers } from '../../bin/rehype-heading-numbers.ts';
-import pipelines_json from './public/pipelines.json';
 import mdx from '@astrojs/mdx';
 import netlify from '@astrojs/netlify';
 import partytown from '@astrojs/partytown';
@@ -27,22 +26,12 @@ import remarkDescription from 'astro-remark-description';
 import markdownIntegration from '@astropub/md';
 import icon from 'astro-icon';
 
-let latestPipelineReleases = {};
-pipelines_json.remote_workflows.map(
-    (pipeline) => (latestPipelineReleases[pipeline.name] = `/${pipeline.name}/${pipeline.releases[0].tag_name}/`),
-);
 // https://astro.build/config
 export default defineConfig({
     site: 'https://nf-co.re/',
     output: 'static',
     adapter: netlify(),
     prefetch: false,
-    redirects: {
-        ...latestPipelineReleases,
-    },
-    experimental: {
-        contentCollectionJsonSchema: true,
-    },
     integrations: [
         svelte(),
         icon({
@@ -62,7 +51,6 @@ export default defineConfig({
                 ],
                 fa: ['github'],
                 'fa-brands': ['github'],
-                'line-md': ['check-list-3-twotone'],
                 mdi: ['aws', 'slack', 'youtube'],
                 octicon: [
                     'chevron-right-16',
@@ -95,6 +83,14 @@ export default defineConfig({
         assetsPrefix: 'https://nf-core-modules-subworkflows.netlify.app/',
     },
     vite: {
+        css: {
+            preprocessorOptions: {
+                scss: {
+                    api: 'modern-compiler',
+                    silenceDeprecations: ['legacy-js-api','mixed-decls','color-functions'],
+                },
+            },
+        },
         plugins: [
             yaml(),
             FontaineTransform.vite({

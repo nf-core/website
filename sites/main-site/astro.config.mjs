@@ -59,8 +59,16 @@ export default defineConfig({
                 ],
                 fa: ['github'],
                 'fa-brands': ['github'],
-                'line-md': ['check-list-3-twotone'],
-                mdi: ['aws', 'slack', 'youtube'],
+                mdi: [
+                    'aws',
+                    'slack',
+                    'youtube',
+                    'cloud-outline',
+                    'timeline-check-outline',
+                    'book-information-variant',
+                    'package-variant',
+                    'progress-check',
+                ],
                 octicon: [
                     'chevron-right-16',
                     'git-pull-request-16',
@@ -74,6 +82,10 @@ export default defineConfig({
                     'tools-16',
                 ],
                 'simple-icons': ['bluesky'],
+                ri: ['open-source-line'],
+                'pepicons-print': ['t-shirt'],
+                fluent: ['paint-brush-sparkle-24-filled'],
+                bi: ['bag-heart-fill'],
             },
         }),
         sitemap(),
@@ -89,9 +101,20 @@ export default defineConfig({
     build: {
         inlineStylesheets: 'auto',
         format: 'file',
-        assetsPrefix: 'https://nf-core-main-site.netlify.app/',
+        assetsPrefix:
+            process.env.CONTEXT === 'production'
+                ? 'https://nf-core-main-site.netlify.app/'
+                : process.env.DEPLOY_PRIME_URL,
     },
     vite: {
+        css: {
+            preprocessorOptions: {
+                scss: {
+                    api: 'modern-compiler',
+                    silenceDeprecations: ['legacy-js-api','mixed-decls','color-functions'],
+                },
+            },
+        },
         plugins: [
             yaml(),
             FontaineTransform.vite({

@@ -55,7 +55,7 @@ const {
     sidebarTitle = '',
 } = Astro.props;
 
-const minNumHeadings = 3;
+const minNumHeadings = 2;
 const leftSidebarWidth = 3;
 const rightSidebarWidth = 3;
 const showRightSidebar = headings.length > minNumHeadings || rightSidebar;
@@ -160,6 +160,7 @@ if (showRightSidebar) {
         </div>
     </div>
     <slot name="pre-footer" slot="pre-footer" />
+    <slot name="post-footer" slot="post-footer" />
 </PageLayout>
 <style lang="scss">
     @import '@styles/_variables.scss';

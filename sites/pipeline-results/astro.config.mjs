@@ -59,7 +59,6 @@ export default defineConfig({
                 ],
                 fa: ['github'],
                 'fa-brands': ['github'],
-                'line-md': ['check-list-3-twotone'],
                 mdi: ['aws', 'slack', 'youtube'],
                 octicon: [
                     'chevron-right-16',
@@ -92,6 +91,14 @@ export default defineConfig({
         assetsPrefix: 'https://nf-core-pipeline-results.netlify.app/',
     },
     vite: {
+        css: {
+            preprocessorOptions: {
+                scss: {
+                    api: 'modern-compiler',
+                    silenceDeprecations: ['legacy-js-api','mixed-decls','color-functions'],
+                },
+            },
+        },
         plugins: [
             yaml(),
             FontaineTransform.vite({

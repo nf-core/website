@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 import { YouTube } from '@astro-community/astro-embed-youtube';
 import VideoTranscript from '@components/VideoTranscript.svelte';
 import Admonition from '@components/Admonition.astro';
+import HackathonProjectListModals from '@components/event/HackathonProjectListModals.astro';
 import type { CollectionEntry } from 'astro:content';
 import type { SidebarEntry } from '@utils/types';
 import { createLinkOrGroup } from '@utils/functions';
@@ -44,10 +45,10 @@ const ids = video?.map(
 // Check if maxres thumbnail is available
 let posters = await Promise.all(
     Array.from(ids || []).map(async (id) => {
-        const maxresPoster = `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+        const maxresPoster = `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
         const response = await fetch(maxresPoster);
         if (response.status === 404) {
-            return `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+            return `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
         }
         return maxresPoster;
     }),
@@ -58,13 +59,11 @@ events
         if (event.data.title.toLowerCase().match('bytesize')) {
             event.data.type = 'bytesize';
         }
-        event.data.start = new Date(event.data.startDate + 'T' + event.data.startTime);
-        event.data.end = new Date(event.data.endDate + 'T' + event.data.endTime);
         return event;
     })
     .filter((event) => event.data.type === frontmatter.type)
     .sort((a, b) => {
-        return new Date(b.data.startDate) - new Date(a.data.startDate);
+        return new Date(b.data.startDate).getTime() - new Date(a.data.startDate).getTime();
     });
 
 const addEntriesToSection = (sections, events: CollectionEntry<'events'>[]) => {
@@ -147,6 +146,7 @@ sections.forEach((year) => {
             <Admonition
                 title="tip"
                 titleText="Join us for our <strong>weekly series</strong> of short talks: <strong>nf-core/bytesize</strong>."
+                collapse={true}
             >
                 <p class="small text-body-secondary">
                     Just <strong>15 minutes</strong> + questions, we focus on topics about using and developing nf-core
@@ -168,5 +168,10 @@ sections.forEach((year) => {
                     <YouTube id={id} poster={posters[i]} />
                 </VideoTranscript>
             ))
+    }
+    {
+        frontmatter.hackathonProjectListModals && (
+            <HackathonProjectListModals slot="post-footer" eventPath={frontmatter.hackathonProjectListModals} />
+        )
     }
 </MarkdownTocLayout>

@@ -42,7 +42,7 @@ To run a pipeline:
      nextflow run hello
      ```
 
-2. Choose a pipeline to run. See the available [nf-core pipelines](https://nf-co.re/pipelines). If you have [nf-core tools](https://nf-co.re/tools) installed, run `nf-core list`.
+2. Choose a pipeline to run. See the available [nf-core pipelines](https://nf-co.re/pipelines). If you have [nf-core tools](https://nf-co.re/tools) installed, run `nf-core pipelines list`.
 
 3. Configure Nextflow to run on your system:
 
@@ -66,7 +66,7 @@ To run a pipeline:
 
    - Nextflow will pull the code from the GitHub repository and fetch the software requirements automatically, so there is no need to download anything first.
 
-   - If the pipeline fails, see [Troubleshooting](troubleshooting.md) or ask for help on the [nf-core Slack channel](https://nf-co.re/join) for your pipeline.
+   - If the pipeline fails, see [Troubleshooting](/docs/usage/troubleshooting/overview) or ask for help on the [nf-core Slack channel](https://nf-co.re/join) for your pipeline.
 
 5. Read the pipeline documentation to see which command-line parameters are required. This will be specific to your data type and usage.
 
