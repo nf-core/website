@@ -1,0 +1,17 @@
+name: Remove Canceled Deploy Previews
+on:
+  issue_comment:
+    types: [created, edited]
+jobs:
+  cleanup:
+    if: github.event.comment.user.login == 'netlify[bot]' && contains(github.event.comment.body, 'Deploy Preview for') && contains(github.event.comment.body, 'canceled.')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7
+        with:
+          script: |
+            github.rest.issues.deleteComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: context.payload.comment.id
+            })

@@ -1,13 +1,17 @@
 <script lang="ts">
-    import { currentHeading } from '@components/store';
-    import { db as icons } from 'file-icons-js';
+    import { currentHeading, Checkboxes } from '@components/store';
+    import * as icons from 'file-icons-js';
     import 'file-icons-js/css/style.css';
     import mermaid from 'mermaid';
     import { onMount } from 'svelte';
     import CopyButton from '@components/CopyButton.svelte';
 
     export let headings: { text: string; slug: string; depth: number; fa_icon?: string }[] = [];
+
     onMount(() => {
+        if (typeof window !== 'undefined' && window.location.pathname.includes('/events/') && !window.location.hash) {
+            window.scrollTo(0, 0);
+        }
         async function renderDiagrams(graphs) {
             mermaid.initialize({
                 startOnLoad: false,
@@ -28,7 +32,6 @@
             }
         }
         const graphs = document.getElementsByClassName('mermaid');
-        console.log('grpahs', graphs);
         if (document.getElementsByClassName('mermaid').length > 0) {
             renderDiagrams(graphs);
             window.addEventListener('theme-changed', (e) => {
@@ -60,7 +63,9 @@
         const copyButtonLabel = "<i class='fa-regular fa-clipboard'></i>";
         const copiedButtonLabel = `<span class='font-sans-serif'>Copied </span><i class='fa-regular fa-clipboard-check'></i>`;
         document
-            .querySelectorAll("figure[data-rehype-pretty-code-figure] pre:not([data-language='console'])")
+            .querySelectorAll(
+                "figure[data-rehype-pretty-code-figure] pre:not([data-language='console']):not([data-language='tree'])",
+            )
             .forEach((block) => {
                 block.classList.add('position-relative');
                 const copyText = block.querySelector('code')?.innerText;
@@ -96,6 +101,16 @@
                 icon.classList.add('fa-regular', 'fa-file-code', 'ms-1', 'me-2');
             }
             block.prepend(icon);
+        });
+
+        // Update Checkboxes store when checkboxes are clicked
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach((checkbox) => {
+            checkbox.addEventListener('change', () => {
+                const checked = Array.from(checkboxes).filter((checkbox) => (checkbox as HTMLInputElement).checked);
+
+                Checkboxes.set(checked);
+            });
         });
     });
 </script>

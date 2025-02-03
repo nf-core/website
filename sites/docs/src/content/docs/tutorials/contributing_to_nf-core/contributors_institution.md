@@ -1,40 +1,53 @@
 ---
-title: How to add yourself to the community page
-subtitle: Adding your institution to the contributor's list
-shortTitle: Adding your institution
+title: Add your institution to the contributor's list
+subtitle: A guide for adding your institution to the contributor's list
+shortTitle: Add your institution
 ---
 
-In case you couldn't find your institution / group of contributors on the [community pages](https://nf-co.re/contributors), please add yourself. All you need to add is a few lines of YAML and your institution's logo.
+nf-core is by design a collaborative effort and would not exist if its many dedicated contributors. nf-core contributors are welcome to add their institution to the [contributors page](https://nf-co.re/contributors) on the nf-core website.
 
-1. Fork the repository [nf-core/nf-core](https://github.com/nf-core/website) to your own GitHub account. Look [here](https://guides.github.com/activities/forking/) for advice on how to fork a GitHub project.
+To add your institution to the contributors page:
 
-2. In your own fork, modify the YAML file `contributors.yaml` in the text editor of your choice.
+1. Fork the [nf-core/website](https://github.com/nf-core/website) GitHub repository.
 
-3. Fill in the details about you and your institution directly into the YAML file:
+   :::tip
+   See [Contributing to a project](https://guides.github.com/activities/forking/) to learn how to contribute to a project through forking.
+   :::
 
-   - `full_name:` Full Name of the Institution
-   - `short_name:` Short Name of the Institution (e.g. an acronym)
-   - `description:` Short description of the main activities of the Institution (see [`contributors.yaml`](https://github.com/nf-core/website/blob/main/sites/main-site/src/config/contributors.yaml) for examples)
-   - `address:` Postal Address
+2. Add your details and your institutional details to [`contributors.yaml`](https://github.com/nf-core/website/blob/main/sites/main-site/src/config/contributors.yaml) on your fork:
+
+   - `full_name:` Full name of your institution
+   - `short_name:` Short name of your institution (e.g., an acronym)
+   - `description:` Short description of the main activities of your institution (see [`contributors.yaml`](https://github.com/nf-core/website/blob/main/sites/main-site/src/config/contributors.yaml) for examples)
+   - `address:` Postal address of your institution
    - `url:` Institution URL
-   - `affiliation:` Affiliation - could be the subunit or department of your institution where you work (if _Fancy University_ is the Institution, then Affiliation would be the _McFancyDepartment_)
-   - `affiliation_url:` Affiliation URL
+   - `affiliation:` Your affiliation (i.e., the department of your institution where you work)
+   - `affiliation_url:` Your affiliation URL
    - `image_fn:` Logo filename (see below)
-   - `contact`: Your Name
-   - `contact_email:` Your E-Mail
+   - `contact`: Your name
+   - `contact_email:` Your e-mail
    - `contact_github:` Your GitHub username
-   - `location:` Institute location in geocoordinates format (`[<longitude>, <latitude>]`)
-   - `twitter:` URL of the institutional twitter account, if available
+   - `location:` Institute location in [geocoordinates format](https://support.google.com/maps/answer/18539?hl=en&co=GENIE.Platform%3DDesktop) (`[<longitude>, <latitude>]`)
+   - `mastodon:` Mastodon handle (if available)
+   - `bluesky:` Bluesky handle (if available)
 
-4. Next, add two versions of your institutional logo in SVG format with the name that you have described in the YAML file under `image_fn:`
+3. Add a colour and a white SVG of your institutional logo to your fork:
 
-   - Upload a _white_ version to the folder `public_html/assets/img/contributors-white/`. It must be a single monochrome shape with no background colour.
-   - Upload a _colour_ version to the folder `public_html/assets/img/contributors-colour/`.
-   - See the website repository for examples in [white](https://github.com/nf-core/website/tree/main/public/images/contributors/white) and [colour](https://github.com/nf-core/website/tree/main/public/images/contributors/colour).
-   - Both images should have the **same name** - if you define `image_fn: foobar.svg` in the YAML file, then both files should be named `foobar.svg` in the respective folders.
-   - If you have only raster images available, please search for a SVG version. Ask for help in the nf-core Slack if in doubt (please do not add SVG files with embedded raster images - vector only).
-     - _Tip_: Wikipedia often uses the SVG format of displayed logos available for the download.
-     - If you were not successful at this point, skip it and let us know about it in the pull request.
-     - _Note:_ Please make sure that you have the permission to use logos of your institution in an open source project. Organizations often don't have any concerns about it, and just want to be notified.
+   - Add a _white_ SVG with no background to the `/public/images/contributors/white/` folder.
+   - Add a _colour_ SVG with no background to the `/public/images/contributors/colour/` folder.
 
-5. After you did the hardest part, please open a pull request from your fork. The modifications shall be compared to the master branch [nf-core/nf-core](https://github.com/nf-core/website). We will provide you feedback if anything looks weird or hasn't been properly done. Feel free to let us know on Slack in the [`#request-review` channel](https://nfcore.slack.com/archives/CQY2U5QU9).
+     :::note
+     Both SVG files must have the name that you defined in the `contributors.yaml` under `image_fn:` and must be vectors. Do not add a SVG file with an embedded raster image.
+     :::
+
+     :::note
+     You are responsible for making sure that you have the permission to use your institutional logos.
+     :::
+
+     :::tip
+     See the website repository for examples of [white](https://github.com/nf-core/website/tree/main/public/images/contributors/white) and [colour](https://github.com/nf-core/website/tree/main/public/images/contributors/colour) SVGs.
+     :::
+
+4. Open a pull request from your fork to the main branch of the [nf-core/website](https://github.com/nf-core/website).
+
+5. Share your PR on the nf-core [`#request-review`](https://nfcore.slack.com/archives/CQY2U5QU9) Slack channel and wait for approval.

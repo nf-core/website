@@ -1,79 +1,44 @@
 ---
-import { Icon } from 'astro-icon/components';
+import Profile from '@components/GitHubProfilePicture.svelte';
 
-import Profile from '@components/GitHubProfilePictureExtended.svelte';
-import { YouTube } from '@astro-community/astro-embed-youtube';
-
-const { title, color, proj_url, leaders, slack, intro_video } = Astro.props;
+const { slug, title, color, category, leaders } = Astro.props;
 
 export interface Props {
+    slug: string;
     title: string;
     color?: string;
-    proj_url?: URL;
+    category?: string;
     leaders: Object;
-    slack?: string;
-    intro_video?: string;
 }
-const border_col = color ? { 'border-left-color': color, 'border-left-width': '5px' } : {};
-const slack_clean = slack ? slack.replace('#', '') : '';
+let this_color = color;
+if (!color && category) {
+    if (category == 'pipelines') this_color = '#377CF6';
+    if (category == 'components') this_color = '#D04791';
+    if (category == 'tooling') this_color = '#BE831A';
+    if (category == 'community') this_color = '#238636';
+}
+const border_col = this_color ? { 'border-left-color': this_color, 'border-left-width': '5px' } : {};
 ---
 
-<div class="card mb-5" style={border_col}>
-    <div class="card-body">
-        <div class="row">
-            <div class={intro_video ? 'col-md-6' : 'col'}>
-                <h3>
-                    {title}
-                    {
-                        proj_url && (
-                            <a href={proj_url} target="_blank" class="btn btn-small btn-secondary ms-3">
-                                <Icon
-                                    name="octicon:table-16"
-                                    width="12pt"
-                                    class="me-1"
-                                    style={{ 'margin-top': '-3px' }}
-                                />
-                                Project Board
-                                <Icon
-                                    name="octicon:link-external-16"
-                                    width="12pt"
-                                    class="ms-1"
-                                    style={{ 'margin-top': '-3px' }}
-                                />
-                            </a>
-                        )
-                    }
-                </h3>
-                {
-                    slack && (
-                        <a
-                            href={`https://nfcore.slack.com/channels/${slack_clean}`}
-                            class="badge rounded-pill text-bg-success text-decoration-none d-inline-flex align-items-center"
-                        >
-                            <Icon name="mdi:slack" width="12pt" height="10pt" /> Slack:
-                            <code class="text-bg-success pb-0">#{slack_clean}</code>
-                        </a>
-                    )
-                }
-
-                <slot />
-
-                {leaders && <h4>Group Leaders</h4>}
-                {
-                    leaders &&
-                        Object.entries(leaders).map(([github, name]) => {
-                            return <Profile username={github}>{name}</Profile>;
-                        })
-                }
-            </div>
-
+<div class="card mb-2" style={border_col}>
+    <div class="card-body d-grid p-0">
+        <button
+            type="button"
+            class="btn btn-link text-start p-3 pe-0 d-flex align-items-center justify-content-between"
+            data-bs-toggle="modal"
+            data-bs-target={'#' + slug}
+            style="text-decoration: none;"
+        >
+            {title}
             {
-                intro_video && (
-                    <div class="col-md-6">
-                        <YouTube id={intro_video} poster={`https://img.youtube.com/vi/${intro_video}/hqdefault.jpg`} />
+                leaders && (
+                    <div class="d-flex flex-wrap">
+                        {Object.entries(leaders).map(([github, { name, slack }]) => (
+                            <Profile name={github} size={50} />
+                        ))}
                     </div>
                 )
             }
-        </div>
+        </button>
     </div>
 </div>

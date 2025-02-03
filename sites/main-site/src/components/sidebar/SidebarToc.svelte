@@ -111,6 +111,7 @@
                                             size={25}
                                             strokeWidth={7}
                                             isCurrent={true}
+                                            confetti={hCheckboxes.every((check) => check.checked)}
                                         />
                                     </span>
                                 {/if}
@@ -165,11 +166,11 @@
     }
 
     li.active {
+        border-left: 2pt solid var(--bs-success);
+        background-color: rgba(var(--bs-success), 0.85);
         a {
             color: var(--bs-green-800) !important;
         }
-        border-left: 2pt solid var(--bs-success);
-        background-color: rgba(var(--bs-success), 0.85);
     }
 
     :global([data-bs-theme='dark']) {

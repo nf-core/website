@@ -139,7 +139,7 @@ sections.forEach((section) => {
         sortEntries(section.entries);
     }
 });
-const title = subsection.replace(/(^|\s)\S/g, (match) => match.toUpperCase());
+const title = subsections.label;
 const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, '').split('/');
 ---
 

@@ -35,8 +35,6 @@
     let backgroundIcon = '';
 
     const event_duration = (event) => {
-        event.data.start = new Date(event.data.startDate + 'T' + event.data.startTime);
-        event.data.end = new Date(event.data.endDate + 'T' + event.data.endTime);
         event.data.eventCountDown = formatDistanceToNow(event.data.start);
         if (event.data.startDate === event.data.endDate) {
             event.data.duration =

@@ -1,6 +1,8 @@
 <script lang="ts">
     import { tileLayer, marker, map, Icon } from 'leaflet';
+    import 'leaflet-fullscreen';
     import 'leaflet/dist/leaflet.css';
+    import 'leaflet-fullscreen/dist/leaflet.fullscreen.css';
 
     export let locations: {
         location: [number, number];
@@ -11,7 +13,11 @@
 
     let m;
     function createMap(container) {
-        m = map(container, { minZoom: 2 }).setView([15.505, 10.09], 2);
+        m = map(container, {
+            minZoom: 1.4,
+            fullscreenControl: true,
+        }).setView([20, 25.09], 1.4); // Adjusted center point and zoom
+
         let greenIcon = new Icon({
             iconUrl: '/images/marker-icon-2x-green.png',
             shadowUrl: '/images/marker-shadow.png',
@@ -33,12 +39,11 @@
                 })
                     .addTo(m)
                     .bindPopup(
-                        '<h6><a href="#' +
-                            locationMarker.name.replaceAll('/[^a-z]+/', '-') +
-                            '">' +
-                            locationMarker.name +
-                            '</a></h6>' +
-                            image,
+                        `<h6><a href="${
+                            locationMarker.url.startsWith('/events/')
+                                ? locationMarker.url
+                                : locationMarker.name.replaceAll('/[^a-z]+/', '-')
+                        }">${locationMarker.name}</a></h6>${image}`,
                     );
             }
         });
@@ -67,7 +72,7 @@
 
 <style lang="scss">
     .map {
-        height: 480px;
+        height: 400px;
         width: 90%;
     }
     @media (max-width: 767.98px) {

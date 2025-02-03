@@ -39,13 +39,15 @@ emit:
 
 ### Name format of subworkflow files
 
-1The directory structure for the subworkflow name must be all lowercase e.g. [`subworkflows/nf-core/bam_sort_stats_samtools/`](https://github.com/nf-core/modules/tree/master/subworkflows/nf-core/bam_sort_stats_samtools/).
+Choose an appropriate name for your subworkflow related to its module composition.
 
-The naming convention should be of the format `<file_type>_<operation_1>_<operation_n>_<tool_1>_<tool_n>` e.g. `bam_sort_stats_samtools` where `bam` = `<file_type>`, `sort` = `<operation>` and `samtools` = `<tool>`.
-Not all operations are required in the name if they are routine (e.g. indexing after creation of a BAM). Operations can be collapsed to a general name if the steps are directly related to each other.
-For example if in a subworkflow, a binning tool has three required steps (e.g. `<tool> split`, `<tool> calculate`, `<tool> merge`) to perform an operation (contig binning) these can be collapsed into one (e.g. `fasta_binning_concoct`, rather than `fasta_split_calculate_merge_concoct`).
+For short chains of modules without conditional logic, the naming convention should be of the format `<file_type>_<operation_1>_<operation_n>_<tool_1>_<tool_n>` e.g. `bam_sort_stats_samtools` where `bam` = `<file_type>`, `sort` = `<operation>` and `samtools` = `<tool>`. Not all operations are required in the name if they are routine (e.g. indexing after creation of a BAM). Operations can be collapsed to a general name if the steps are directly related to each other. For example if in a subworkflow, a binning tool has three required steps (e.g. `<tool> split`, `<tool> calculate`, `<tool> merge`) to perform an operation (contig binning) these can be collapsed into one (e.g. `fasta_binning_concoct`, rather than `fasta_split_calculate_merge_concoct`).
 
-If in doubt regarding what to name your subworkflow, please contact us on the [nf-core Slack `#subworkflows` channel](https://nfcore.slack.com/channels/subworkflows) (you can join with [this invite](https://nf-co.re/join/slack)) to discuss possible options.
+If a subworkflow has a large number of steps discounting routine operations, if the sequence of steps differs dependent on input arguments, or if the module complement is likely to change over time, the above naming scheme will not be appropriate. In this case it will be more useful to potential users of your subworkflow to name the it according to its purpose and logical operations, rather than the module complement. For example, a subworkflow that takes FASTQ files, peforms multiple QC checks, applies a user defined trimming operation, filters and sets a strandedness, would be named something like 'fastq_qc_trim_filter_setstrandedness'. This tells users what the the input is, and the logical steps involved, without trying to shoehorn the conditional logic or very long sequences of modules into the name.
+
+Whatever name is used, the directory structure for the subworkflow name must be all lowercase e.g. [`subworkflows/nf-core/bam_sort_stats_samtools/`](https://github.com/nf-core/modules/tree/master/subworkflows/nf-core/bam_sort_stats_samtools/).
+
+If in doubt regarding what to name your subworkflow, and always for the more complex type of subworkflow described above, please contact us on the [nf-core Slack `#subworkflows` channel](https://nfcore.slack.com/channels/subworkflows) (you can join with [this invite](https://nf-co.re/join/slack)) to discuss possible options.
 
 ### Name format of subworkflow parameters
 
@@ -168,6 +170,53 @@ Input data SHOULD be referenced with the `modules_testdata_base_path` parameter:
 ```groovy
 file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
 ```
+
+### Configuration
+
+Subworkflow nf-tests SHOULD use a single `nextflow.config` to supply `ext.args` to a subworkflow. They can be defined in the `when` block of a test under the `params` scope.
+
+```groovy {4-7} title="main.nf.test"
+config './nextflow.config'
+
+when {
+  params {
+    moduleA_args = '--extra_opt1 --extra_opt2'
+    moduleB_args = '--extra_optX'
+  }
+  process {
+    """
+    input[0] = [
+      [ id:'test1', single_end:false ], // meta map
+      file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/genome/genome.fna.gz', checkIfExists: true)
+    ]
+    """
+  }
+}
+```
+
+```groovy {3,6} title="nextflow.config"
+process {
+  withName: 'MODULEA' {
+    ext.args = params.moduleA_args
+  }
+  withName: 'MODULEB' {
+    ext.args = params.moduleB_args
+  }
+}
+```
+
+No other settings should go into this file.
+
+:::tip
+Supply the config only to the tests that use `params`, otherwise define `params` for every test including the stub test.
+:::
+
+## Skipping CI test profiles
+
+If a subworkflow does not support a particular test profile, it can be skipped by adding the path to the corresponding section in `.github/skip_nf_test.json`.
+:::Note
+Please keep the file sorted alphabetically.
+:::
 
 ## Misc
 

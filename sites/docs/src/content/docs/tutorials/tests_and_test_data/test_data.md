@@ -1,6 +1,7 @@
 ---
 title: Guidelines for Test Data
 subtitle: Guidelines for adding test data to nf-core repositories
+weight: 20
 ---
 
 ## Overview
@@ -56,11 +57,6 @@ In contrast, if your module requires many tests, steps, or heavy CPU usage, you 
 10. You must update the README file under the `Data Description` section of the modules-branch of test-datasets repository to describe what the file is, and how it was generated (except for files added to `delete_me/`).
 
 11. The test data pull request requires a review to be merged.
-
-12. Once you've had your pull request merged in into `nf-core/test-datasets`, make another PR into [nf-core/modules](https://github.com/nf-core/modules), to add your file as a new entry to the [`modules/tests/config/test_data.config`](https://github.com/nf-core/modules/blob/master/tests/config/test_data.config).
-
-    - This only applies field-specific collections, `delete_me/` files are excluded from this, and raw github URLs should be used in tests.
-    - The 'key' for each URL should follow the style of the full file name with extensions but with underscores rather than full-stops e.g. `genome.fa.gz` would become `genome_fa_gz`.
 
 ### Field specific guidance
 

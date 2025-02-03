@@ -56,7 +56,12 @@ allTabItems = tabItems
                 return txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase();
             }),
             href: baseUrl + '/docs/' + file + '/',
-            active: url.includes(`/${pipeline}/`) && url.includes(`/${file}/`),
+            active:
+                // urls might be pipeline/version/docs/usage|output or pipeline/version/usage|output or pipeline/usage|output
+                (url.includes(`/${pipeline}/${version}/docs/${file}`) ||
+                    url.includes(`/${pipeline}/${version}/${file}`) ||
+                    url.includes(`/${pipeline}/${file}`)) &&
+                (file.includes('usage') || file.includes('output')),
             icon: tabItems.some((f) => f.startsWith(file + '/')) ? 'fa-regular fa-books' : '',
         };
     });
