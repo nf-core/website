@@ -1,15 +1,23 @@
 ---
-import Profile from '@components/GitHubProfilePicture.svelte';
+import { Icon } from 'astro-icon/components';
+import { Markdown } from '@astropub/md';
 
-const { slug, title, color, category, leaders } = Astro.props;
+import Profile from '@components/GitHubProfilePictureExtended.svelte';
+import { YouTube } from '@astro-community/astro-embed-youtube';
+
+const { title, color, category, proj_url, leaders, goal, slack, intro_video } = Astro.props;
 
 export interface Props {
-    slug: string;
     title: string;
     color?: string;
     category?: string;
+    proj_url?: URL;
     leaders: Object;
+    goal?: string;
+    slack?: string;
+    intro_video?: string;
 }
+const slack_clean = slack ? slack.replace('#', '') : '';
 let this_color = color;
 if (!color && category) {
     if (category == 'pipelines') this_color = '#377CF6';
@@ -20,25 +28,91 @@ if (!color && category) {
 const border_col = this_color ? { 'border-left-color': this_color, 'border-left-width': '5px' } : {};
 ---
 
-<div class="card mb-2" style={border_col}>
-    <div class="card-body d-grid p-0">
-        <button
-            type="button"
-            class="btn btn-link text-start p-3 pe-0 d-flex align-items-center justify-content-between"
-            data-bs-toggle="modal"
-            data-bs-target={'#' + slug}
-            style="text-decoration: none;"
-        >
-            {title}
+<div class="card mb-5" style={border_col}>
+    <div class="card-body">
+        <div class="row">
+            <div class={intro_video ? 'col-md-6' : 'col'}>
+                <div class="d-flex justify-content-between">
+                    <h3>
+                        {title}
+                        {
+                            proj_url && (
+                                <a href={proj_url} target="_blank" class="btn btn-small btn-secondary ms-3">
+                                    <Icon
+                                        name="octicon:table-16"
+                                        width="12pt"
+                                        class="me-1"
+                                        style={{ 'margin-top': '-3px' }}
+                                    />
+                                    Project Board
+                                    <Icon
+                                        name="octicon:link-external-16"
+                                        width="12pt"
+                                        class="ms-1"
+                                        style={{ 'margin-top': '-3px' }}
+                                    />
+                                </a>
+                            )
+                        }
+                    </h3>
+                    <div>
+                        {
+                            category && (
+                                <span class="small badge rounded-pill ms-2" style={`background-color: ${this_color}`}>
+                                    {category}
+                                </span>
+                            )
+                        }
+                    </div>
+                </div>
+                {
+                    slack && (
+                        <a
+                            href={`https://nfcore.slack.com/channels/${slack_clean}`}
+                            class="badge rounded-pill text-bg-success text-decoration-none d-inline-flex align-items-center"
+                        >
+                            <Icon name="mdi:slack" width="12pt" height="10pt" /> Slack:
+                            <code class="text-bg-success pb-0">#{slack_clean}</code>
+                        </a>
+                    )
+                }
+
+                <slot />
+
+                {
+                    goal && (
+                        <>
+                            <h4>Goal</h4>
+                            <p>
+                                <Markdown of={goal} />
+                            </p>
+                        </>
+                    )
+                }
+
+                {leaders && <h4>Group Leaders</h4>}
+                {
+                    leaders && (
+                        <div class="d-flex flex-wrap">
+                            {Object.entries(leaders).map(([github, name]) => {
+                                return (
+                                    <Profile username={github} wrapperClasses="me-2">
+                                        {name}
+                                    </Profile>
+                                );
+                            })}
+                        </div>
+                    )
+                }
+            </div>
+
             {
-                leaders && (
-                    <div class="d-flex flex-wrap">
-                        {Object.entries(leaders).map(([github, { name, slack }]) => (
-                            <Profile name={github} size={50} />
-                        ))}
+                intro_video && (
+                    <div class="col-md-6">
+                        <YouTube id={intro_video} poster={`https://i.ytimg.com/vi/${intro_video}/hqdefault.jpg`} />
                     </div>
                 )
             }
-        </button>
+        </div>
     </div>
 </div>

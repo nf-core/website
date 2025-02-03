@@ -7,7 +7,7 @@ import { YouTube } from '@astro-community/astro-embed-youtube';
 import { Image } from 'astro:assets';
 const { slug, title, color, category, proj_url, leaders, slack, intro_video, image, image_alt } = Astro.props;
 
-const images = import.meta.glob('../../assets/**');
+const images = import.meta.glob('../../../assets/**');
 export interface Props {
     slug: string;
     title: string;
@@ -20,7 +20,6 @@ export interface Props {
     image?: string;
     image_alt?: string;
 }
-const slack_clean = slack ? slack.replace('#', '') : '';
 let this_color = color;
 if (!color && category) {
     if (category == 'pipelines') this_color = '#377CF6';
@@ -112,7 +111,7 @@ if (!color && category) {
                         image && (
                             <div class="col-lg-4">
                                 <Image
-                                    src={images['../..' + image]()}
+                                    src={images['../../..' + image]()}
                                     width="600"
                                     alt={image_alt}
                                     style="object-fit: contain;"
