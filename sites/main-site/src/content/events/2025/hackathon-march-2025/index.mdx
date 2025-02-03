@@ -89,8 +89,36 @@ You don't need to commit to a single project and are free to move around groups 
 
 ## Submit a new project
 
-If you have an idea for a project that you think would be fun to do during the hackathon, please submit it by opening a pull-request to add it to the [hackathon-projects collection](https://github.com/nf-core/website/tree/main/sites/main-site/src/content/hackathon-projects/hackathon-march-2025.yml).
-The only required fields are `title`, `description` and `leaders`.
+If you have an idea for a project that you think would be fun to do during the hackathon,
+please add it to the website by submitting a pull-request to the `nf-core/website` repository.
+
+You need to add a new markdown file to the
+[`sites/main-site/src/content/hackathon-projects/hackathon-march-2025` directory](https://github.com/nf-core/website/tree/main/sites/main-site/src/content/hackathon-projects/hackathon-march-2025).
+
+See existing files for examples, if you're unsure about anything please ask in Slack or in the pull-request.
+A few things to note are:
+
+-   `title`: Short and self-descriptive name for the project
+-   `category`: One of `pipelines`, `components`, `tooling`
+-   `slack`: If your project already has an obvious Slack channel (eg. a pipeline) then right click
+    it and _Copy link_ and fill in here. Otherwise, leave blank as we will create a hackathon-specific
+    channel for your project.
+-   `intro_video`: This field is not required, however it's recommended to record a short video prior to the event
+    to help folks joining in other time zones to get started.
+    You can also do this by recording the kick-off meeting at the start of the hackathon and adding that.
+    We can help with uploading videos to the nf-core YouTube channel, just ask in Slack.
+-   `image`: A meme, silly picture or any other image to make your project more memorable.
+    Add to the []`sites/main-site/src/assets/images/events/2025/hackathon-march` directory](https://github.com/nf-core/website/tree/main/sites/main-site/src/assets/images/events/2025/hackathon-march)
+    as part of your PR.
+-   `image_alt`: Text description of your image.
+-   `leaders`: One or more contact people for your project (array)
+    -   Keys under `leaders`: GitHub username
+        -   `name`: Your name
+        -   `slack`: Link to your Slack user. Find this by right clicking your name in Slack and selecting _Copy link_
+
+The body text can provide any context and background.
+Projects should have at least one goal mentioned in the body text under a `## Goal` heading that you want to
+try to achieve by the end of the hackathon.
 
 ## Join a project
 
