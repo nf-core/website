@@ -1,13 +1,13 @@
 ---
 let { name, icon, params = [] } = Astro.props;
-import ComponentParamList from './ComponentParamList.astro';
+import ComponentParamList from "./ComponentParamList.astro";
 
 export interface Props {
     name: string;
     icon: string;
     params?: any[];
 }
-if (name == 'Input') {
+if (name == "Input") {
     params = params.map((param, i) => {
         param = Array.isArray(param) ? param : [param];
         return { [`input[${i}]`]: param };
@@ -18,7 +18,7 @@ if (name == 'Input') {
 <h2 id={name.toLowerCase()} class="text-success ms-n3">
     <i class={`fad ${icon} fa-fw`}></i>
     {name}
-    <a href={'#' + name.toLowerCase()} class="header-link scroll_to_link">
+    <a href={"#" + name.toLowerCase()} class="header-link scroll_to_link">
         <span class="fas fa-link" aria-hidden="true"></span>
     </a>
 </h2>

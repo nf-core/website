@@ -1,11 +1,11 @@
 ---
-title: 'Seqera Labs Cloud Webinar Series - Nextflow on Azure Batch'
+title: "Seqera Labs Cloud Webinar Series - Nextflow on Azure Batch"
 subtitle: An overview of Nextflow and its integration with Azure Batch
 type: talk
-startDate: '2021-04-22'
-startTime: '18:00+02:00'
-endDate: '2021-04-22'
-endTime: '19:00+02:00'
+startDate: "2021-04-22"
+startTime: "18:00+02:00"
+endDate: "2021-04-22"
+endTime: "19:00+02:00"
 locations:
   - name: Online
     links:

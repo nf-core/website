@@ -3,10 +3,10 @@ title: Hackathon - March 2024 (Bern)
 subtitle: Local site of the nf-core hackathon at the IBU, Bern.
 shortTitle: Bern, Switzerland
 type: hackathon
-startDate: '2024-03-18'
-startTime: '10:00+01:00'
-endDate: '2024-03-20'
-endTime: '17:00+01:00'
+startDate: "2024-03-18"
+startTime: "10:00+01:00"
+endDate: "2024-03-20"
+endTime: "17:00+01:00"
 locations:
   - name: IBU
     address: Baltzerstrasse 6, 3012 Bern, Switzerland

@@ -2,10 +2,10 @@
 title: 'Bytesize: Get your containers with "Nextflow inspect"'
 subtitle: Phil Ewels, Seqera
 type: talk
-startDate: '2024-05-28'
-startTime: '13:00+02:00'
-endDate: '2024-05-28'
-endTime: '13:30+02:00'
+startDate: "2024-05-28"
+startTime: "13:00+02:00"
+endDate: "2024-05-28"
+endTime: "13:30+02:00"
 locations:
   - links:
       - https://kth-se.zoom.us/j/68390542812

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { CurrentTab } from '@components/store';
+    import { CurrentTab } from "@components/store";
     export let name: string;
 </script>
 

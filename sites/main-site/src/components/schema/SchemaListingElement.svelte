@@ -1,24 +1,24 @@
 <script>
-    import { showHidden } from '@components/store';
-    import Collapsible from '@components/Collapsible.svelte';
-    import Markdown from '@components/markdown/Markdown.svelte';
+    import { showHidden } from "@components/store";
+    import Collapsible from "@components/Collapsible.svelte";
+    import Markdown from "@components/markdown/Markdown.svelte";
 
     export let title;
     export let property;
-    const id = title.replace(' ', '-');
+    const id = title.replace(" ", "-");
 
     const pattern = property.pattern;
     let longPattern = [];
     // explicitely handle patterns which are an enum work around, i.e. they have multiple values, eg. "^(foo|bar)$"
     if (
         pattern &&
-        pattern.startsWith('^(') &&
-        (pattern.endsWith(')$') || pattern.endsWith(')*$')) &&
-        pattern.includes('|')
+        pattern.startsWith("^(") &&
+        (pattern.endsWith(")$") || pattern.endsWith(")*$")) &&
+        pattern.includes("|")
     ) {
         longPattern = pattern.match(/\b(\w+)\b/g);
     }
-    longPattern = longPattern.length ? '<code>' + longPattern.join('</code>, <code>') + '</code>' : '';
+    longPattern = longPattern.length ? "<code>" + longPattern.join("</code>, <code>") + "</code>" : "";
 </script>
 
 <div
@@ -27,7 +27,7 @@
     class:show={$showHidden}
 >
     <div id={title} class="col-12 col-md-3 title border-right border-secondary text-nowrap p-0 pe-2">
-        <a class="text-decoration-none d-block overflow-x-scroll" aria-hidden="true" tabindex="-1" href={'#' + title}
+        <a class="text-decoration-none d-block overflow-x-scroll" aria-hidden="true" tabindex="-1" href={"#" + title}
             ><i class="ms-1 fas invisible" aria-hidden="true" />
             <span class="">
                 {#if property.fa_icon}
@@ -53,7 +53,7 @@
         {#if property.enum}
             <select class="form-select mt-2" value={property.default} aria-label="Parameter enum options">
                 {#each property.enum as value}
-                    <option {value}>{value + (value === property.default ? ' (default)' : '')}</option>
+                    <option {value}>{value + (value === property.default ? " (default)" : "")}</option>
                 {/each}
             </select>
         {/if}

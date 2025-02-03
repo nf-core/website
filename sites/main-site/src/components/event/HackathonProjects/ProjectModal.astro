@@ -1,13 +1,13 @@
 ---
-import { Icon } from 'astro-icon/components';
+import { Icon } from "astro-icon/components";
 
-import Profile from '@components/GitHubProfilePicture.svelte';
-import { YouTube } from '@astro-community/astro-embed-youtube';
+import Profile from "@components/GitHubProfilePicture.svelte";
+import { YouTube } from "@astro-community/astro-embed-youtube";
 
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 const { slug, title, color, category, proj_url, leaders, slack, intro_video, image, image_alt } = Astro.props;
 
-const images = import.meta.glob('../../../assets/**');
+const images = import.meta.glob("../../../assets/**");
 export interface Props {
     slug: string;
     title: string;
@@ -22,10 +22,10 @@ export interface Props {
 }
 let this_color = color;
 if (!color && category) {
-    if (category == 'pipelines') this_color = '#377CF6';
-    if (category == 'components') this_color = '#D04791';
-    if (category == 'tooling') this_color = '#BE831A';
-    if (category == 'community') this_color = '#238636';
+    if (category == "pipelines") this_color = "#377CF6";
+    if (category == "components") this_color = "#D04791";
+    if (category == "tooling") this_color = "#BE831A";
+    if (category == "community") this_color = "#238636";
 }
 ---
 
@@ -54,14 +54,14 @@ if (!color && category) {
                                             name="octicon:table-16"
                                             width="12pt"
                                             class="me-1"
-                                            style={{ 'margin-top': '-3px' }}
+                                            style={{ "margin-top": "-3px" }}
                                         />
                                         Project Board
                                         <Icon
                                             name="octicon:link-external-16"
                                             width="12pt"
                                             class="ms-1"
-                                            style={{ 'margin-top': '-3px' }}
+                                            style={{ "margin-top": "-3px" }}
                                         />
                                     </a>
                                 </h3>
@@ -111,7 +111,7 @@ if (!color && category) {
                         image && (
                             <div class="col-lg-4">
                                 <Image
-                                    src={images['../../..' + image]()}
+                                    src={images["../../.." + image]()}
                                     width="600"
                                     alt={image_alt}
                                     style="object-fit: contain;"

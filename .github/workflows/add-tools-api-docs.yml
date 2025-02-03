@@ -3,9 +3,9 @@ on:
   workflow_dispatch:
     inputs:
       ref_name:
-        description: 'The name of the release branch'
+        description: "The name of the release branch"
         required: true
-        default: 'dev'
+        default: "dev"
 
 jobs:
   api-docs:
@@ -16,14 +16,14 @@ jobs:
       - name: Checkout tools code
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
-          repository: 'nf-core/tools'
+          repository: "nf-core/tools"
           ref: ${{ inputs.ref_name }}
-          path: 'tools'
+          path: "tools"
 
       - name: setup node
         uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4
         with:
-          node-version: '20'
+          node-version: "20"
 
       - name: Install dependencies
         run: |
@@ -80,7 +80,7 @@ jobs:
           body: |
             This PR updates the nf-core/tools API docs for ${{inputs.ref_name}}.
             Please review the changes and merge if they look good.
-          branch: 'update-api-docs-${{inputs.ref_name}}'
+          branch: "update-api-docs-${{inputs.ref_name}}"
           delete-branch: true
-          base: 'main'
+          base: "main"
           draft: false

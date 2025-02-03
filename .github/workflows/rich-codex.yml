@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "20"
 
       - name: Set up Python
         uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b # v5
@@ -42,13 +42,13 @@ jobs:
         uses: ewels/rich-codex@8ce988cc253c240a3027ba58e33e47640935dd8b # v1
         env:
           COLUMNS: 100
-          HIDE_PROGRESS: 'true'
+          HIDE_PROGRESS: "true"
           NXF_ANSI_LOG: false
         with:
-          commit_changes: 'true'
+          commit_changes: "true"
           terminal_width: 100
-          skip_git_checks: 'true'
-          search_include: '.github/workflows/rich-codex.yml'
+          skip_git_checks: "true"
+          search_include: ".github/workflows/rich-codex.yml"
 
       - name: Restore package.json
         run: |

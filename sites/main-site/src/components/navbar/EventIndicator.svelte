@@ -1,5 +1,5 @@
 <script lang="ts">
-    export let type: 'event' | 'blog';
+    export let type: "event" | "blog";
     export let timeSpan: [number, number] = [0, 0];
 
     const now = new Date().getTime();
