@@ -1,8 +1,8 @@
 <script lang="ts">
-    import fuzzysort from 'fuzzysort';
+    import fuzzysort from "fuzzysort";
 
     export let possibleResults: { href: string; name: string }[] = [];
-    export let placeholder: string = 'Search';
+    export let placeholder: string = "Search";
 
     let results = [];
 
@@ -12,7 +12,7 @@
         if (value) {
             // search for the value
             results = fuzzysort.go(value, possibleResults, {
-                key: 'name',
+                key: "name",
             });
         } else {
             results = [];
@@ -35,7 +35,7 @@
             {#each results as result (result)}
                 <li>
                     <a href={result.obj.href} id={result.obj.name} class="text-decoration-none text-body dropdown-item">
-                        {@html fuzzysort.highlight(result, '<span class="text-success">', '</span>')}
+                        {@html fuzzysort.highlight(result, '<span class="text-success">', "</span>")}
                     </a>
                 </li>
             {/each}

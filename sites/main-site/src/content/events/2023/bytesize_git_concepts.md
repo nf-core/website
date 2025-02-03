@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize: git concepts'
+title: "Bytesize: git concepts"
 subtitle: Edmund Miller, The University of Texas at Dallas
 type: talk
-startDate: '2023-12-12'
-startTime: '14:30+01:00'
-endDate: '2023-12-12'
-endTime: '15:00+01:00'
+startDate: "2023-12-12"
+startTime: "14:30+01:00"
+endDate: "2023-12-12"
+endTime: "15:00+01:00"
 locations:
   - name: Online
     links:

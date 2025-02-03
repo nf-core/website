@@ -1,22 +1,22 @@
 ---
-import EventListing from '@components/event/EventListing.svelte';
-import PageLayout from '@layouts/PageLayout.astro';
-import SidebarNav from '@components/sidebar/SidebarNav.astro';
-import { type CollectionEntry } from 'astro:content';
-import type { SidebarEntry } from '@utils/types';
+import EventListing from "@components/event/EventListing.svelte";
+import PageLayout from "@layouts/PageLayout.astro";
+import SidebarNav from "@components/sidebar/SidebarNav.astro";
+import { type CollectionEntry } from "astro:content";
+import type { SidebarEntry } from "@utils/types";
 
 const { title, subtitle, events, currentFilters } = Astro.props;
 export interface Props {
     title: string;
     subtitle: string;
     currentFilters: { name: string }[];
-    events: CollectionEntry<'events'>[];
+    events: CollectionEntry<"events">[];
 }
 
 events
     .map((event) => {
-        if (event.data.title.toLowerCase().match('bytesize')) {
-            event.data.type = 'bytesize';
+        if (event.data.title.toLowerCase().match("bytesize")) {
+            event.data.type = "bytesize";
         }
         return event;
     })
@@ -26,7 +26,7 @@ events
     });
 
 const searchEvents = (search) => {
-    const searchTerms = search.toLowerCase().split(' ');
+    const searchTerms = search.toLowerCase().split(" ");
     return events.filter((event) => {
         const eventString = JSON.stringify(event.data).toLowerCase();
         return searchTerms.every((term) => eventString.includes(term));
@@ -47,17 +47,17 @@ const years = [...new Set(events.map((event) => event.data.start.getFullYear()))
 
 const sections: SidebarEntry[] = years.map((year) => {
     return {
-        type: 'group',
+        type: "group",
         label: year.toString(),
-        href: '#year-' + year,
+        href: "#year-" + year,
         collapsed: true,
         entries: events
             .filter((event) => event.data.start?.getFullYear() === year)
             .map((event) => {
                 return {
-                    type: 'link',
+                    type: "link",
                     label: event.data.title,
-                    href: '#event-' + event.slug,
+                    href: "#event-" + event.slug,
                     isCurrent: false,
                 };
             }),
@@ -66,8 +66,8 @@ const sections: SidebarEntry[] = years.map((year) => {
 ---
 
 <PageLayout
-    title={title || 'Events'}
-    subtitle={subtitle || 'Details of past and future events around nf-core.'}
+    title={title || "Events"}
+    subtitle={subtitle || "Details of past and future events around nf-core."}
     viewTransitions={true}
 >
     <div class="row">
