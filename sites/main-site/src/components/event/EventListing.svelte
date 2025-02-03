@@ -1,8 +1,8 @@
 <script lang="ts">
-    import FilterBar from '@components/FilterBar.svelte';
-    import EventCard from '@components/event/EventCard.svelte';
-    import { CurrentFilter, SearchQuery } from '@components/store';
-    import { onMount } from 'svelte';
+    import FilterBar from "@components/FilterBar.svelte";
+    import EventCard from "@components/event/EventCard.svelte";
+    import { CurrentFilter, SearchQuery } from "@components/store";
+    import { onMount } from "svelte";
 
     export let events = [];
     export let currentFilters: { name: string }[];
@@ -17,13 +17,13 @@
     };
 
     const searchEvents = (event) => {
-        if ($SearchQuery === '') {
+        if ($SearchQuery === "") {
             return true;
         }
         // return true if it is in any element of event.data
         if (
             Object.values(event.data).some((value) => {
-                if (typeof value === 'string') {
+                if (typeof value === "string") {
                     return value.toLowerCase().includes($SearchQuery.toLowerCase());
                 }
                 return false;
@@ -65,16 +65,16 @@
         return event.data.start < today && event.data.end > today;
     });
     const event_type_classes = {
-        bytesize: 'success',
-        hackathon: 'primary',
-        talk: 'info',
-        training: 'warning',
+        bytesize: "success",
+        hackathon: "primary",
+        talk: "info",
+        training: "warning",
     };
     const event_type_icons = {
-        bytesize: 'fa-solid fa-apple-core',
-        hackathon: 'fa-solid fa-laptop-code',
-        talk: 'fa-solid fa-presentation',
-        training: 'fa-solid fa-chalkboard-teacher',
+        bytesize: "fa-solid fa-apple-core",
+        hackathon: "fa-solid fa-laptop-code",
+        talk: "fa-solid fa-presentation",
+        training: "fa-solid fa-chalkboard-teacher",
     };
     const event_types = Object.keys(event_type_classes).map((type) => {
         return {
@@ -140,7 +140,7 @@
                     <h2><i class="fa-duotone fa-calendar-check me-3" />Past events</h2>
                     {#each pastEvents as event, idx (event.id)}
                         {#if hasYearChanged(pastEvents, idx)}
-                            <h3 id={'year-' + event.data.start.getFullYear()}>{event.data.start.getFullYear()}</h3>
+                            <h3 id={"year-" + event.data.start.getFullYear()}>{event.data.start.getFullYear()}</h3>
                         {/if}
                         <EventCard
                             frontmatter={event.data}

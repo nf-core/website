@@ -1,7 +1,7 @@
 <script>
-    import SchemaListingGroup from '@components/schema/SchemaListingGroup.svelte';
-    import { onMount } from 'svelte';
-    import { currentHeading } from '@components/store';
+    import SchemaListingGroup from "@components/schema/SchemaListingGroup.svelte";
+    import { onMount } from "svelte";
+    import { currentHeading } from "@components/store";
 
     export let schema;
 
@@ -16,14 +16,14 @@
                 });
             },
             {
-                rootMargin: '0px 0px -92% 0px',
+                rootMargin: "0px 0px -92% 0px",
             },
         );
         if (!schemaDefs) {
             return;
         }
         Object.entries(schemaDefs).forEach((heading) => {
-            const element = document.querySelector('#' + heading[0].replaceAll('_', '-'));
+            const element = document.querySelector("#" + heading[0].replaceAll("_", "-"));
             observer.observe(element);
         });
     });

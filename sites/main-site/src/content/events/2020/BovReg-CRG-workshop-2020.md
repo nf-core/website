@@ -2,10 +2,10 @@
 title: BovReg Workshop and hackathon
 subtitle: Reproducible genomics workflows using Nextflow and nf-core organized by The Center for Genomic Regulation (CRG), Barcelona
 type: training
-startDate: '2020-11-17'
-startTime: '09:30+01:00'
-endDate: '2020-11-20'
-endTime: '17:30+01:00'
+startDate: "2020-11-17"
+startTime: "09:30+01:00"
+endDate: "2020-11-20"
+endTime: "17:30+01:00"
 locations:
   - name: The Center for Genomic Regulation (CRG), Barcelona
     links:

@@ -1,12 +1,12 @@
 ---
-title: 'CANCELLED: #animal-genomics: November Meeting'
+title: "CANCELLED: #animal-genomics: November Meeting"
 subtitle: ~~Harris Lewin (Arizona State University, USA)~~
 
 type: talk
-startDate: '2024-11-20'
-startTime: '17:00+01:00'
-endDate: '2024-11-20'
-endTime: '18:00+01:00'
+startDate: "2024-11-20"
+startTime: "17:00+01:00"
+endDate: "2024-11-20"
+endTime: "18:00+01:00"
 locations:
   - name: Online
     links:
