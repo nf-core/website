@@ -8863,6 +8863,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -112130,6 +112134,22 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -137850,6 +137870,10 @@
         {
           "name": "viralrecon",
           "version": "2.6.0"
+        },
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
         }
       ]
     },
@@ -149860,10 +149884,6 @@
         {
           "name": "mag",
           "version": "3.3.0"
-        },
-        {
-          "name": "methylong",
-          "version": "dev"
         },
         {
           "name": "taxprofiler",
@@ -177152,13 +177172,13 @@
             {
               "genome_fasta": {
                 "type": "file",
-                "description": "FASTA file containing the genome sequence.\nIt conflicts with transcript_fasta.\nWhen transcript_fasta is provided, it must be empty (provided as []).\nWhen transcript_fasta is empty, it must be provided together with its corresponding genome_gtf file.\n"
+                "description": "FASTA file containing the genome sequence. It must be provided together with the corresponding genome_gtf file.\nWhen another input set is provided, it must be empty (provided as []).\n"
               }
             },
             {
               "genome_gtf": {
                 "type": "file",
-                "description": "GTF file containing gene annotations.\nIt conflicts with transcript_fasta.\nWhen transcript_fasta is provided, it must be empty (provided as []).\nWhen transcript_fasta is empty, it must be provided together with its corresponding genome_fasta file.\n"
+                "description": "GTF file containing gene annotations. It must be provided together with its corresponding genome_fasta file.\nWhen another input set rather than genome_fasta + genome_gtf is provided, it must be empty (provided as []).\n"
               }
             }
           ],
@@ -177172,7 +177192,35 @@
             {
               "transcript_fasta": {
                 "type": "file",
-                "description": "FASTA file containing the transcript sequences to build index directly on.\nIt conflicts with genome_gtf and genome_fasta.\nWhen genome_gtf and genome_fasta are provided, it must be empty (provided as []).\n"
+                "description": "FASTA file containing the transcript sequences to build index directly on.\nWhen another input set is provided, it must be empty (provided as []).\n"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing information on probe_csv.\n"
+              }
+            },
+            {
+              "probe_csv": {
+                "type": "file",
+                "description": "CSV file containing the reference probe sequences to build index directly on.\nWhen another input set is provided, it must be empty (provided as []).\n"
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing information on feature_csv.\n"
+              }
+            },
+            {
+              "feature_csv": {
+                "type": "file",
+                "description": "CSV file containing the reference feature barcodes to build index directly on.\nWhen another input set is provided, it must be empty (provided as []).\n"
               }
             }
           ]
@@ -213296,6 +213344,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        },
         {
           "name": "phageannotator",
           "version": "dev"
