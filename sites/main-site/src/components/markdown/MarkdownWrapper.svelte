@@ -1,13 +1,17 @@
 <script lang="ts">
-    import { currentHeading, Checkboxes } from "@components/store";
-    import * as icons from "file-icons-js";
-    import "file-icons-js/css/style.css";
-    import mermaid from "mermaid";
-    import { onMount } from "svelte";
-    import CopyButton from "@components/CopyButton.svelte";
+    import { currentHeading, Checkboxes } from '@components/store';
+    import * as icons from 'file-icons-js';
+    import 'file-icons-js/css/style.css';
+    import mermaid from 'mermaid';
+    import { onMount, mount } from 'svelte';
+    import CopyButton from '@components/CopyButton.svelte';
 
-    export let headings: { text: string; slug: string; depth: number; fa_icon?: string }[] = [];
+    interface Props {
+        headings?: { text: string; slug: string; depth: number; fa_icon?: string }[];
+        children?: import('svelte').Snippet;
+    }
 
+    let { headings = [], children }: Props = $props();
     onMount(() => {
         if (typeof window !== "undefined" && window.location.pathname.includes("/events/") && !window.location.hash) {
             window.scrollTo(0, 0);
@@ -71,8 +75,8 @@
                 const copyText = block.querySelector("code")?.innerText;
                 if (copyText) {
                     // check if block has only one child, i.e. is a single line code block, so we need less top and bottom margin for button
-                    const SingleLine = block.childElementCount === 1 ? "single-line" : "";
-                    new CopyButton({
+                    const SingleLine = block.childElementCount === 1 ? 'single-line' : '';
+                    mount(CopyButton, {
                         target: block, // Specify the target element for the Svelte component
                         props: {
                             text: copyText,
@@ -116,5 +120,5 @@
 </script>
 
 <div>
-    <slot />
+    {@render children?.()}
 </div>

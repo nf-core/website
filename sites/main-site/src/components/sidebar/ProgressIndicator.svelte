@@ -3,15 +3,29 @@
 
     import { Confetti } from "svelte-confetti";
 
-    export let progress: number = 0;
-    export let label: string | number = "";
-    export let size: number = 40;
-    export let strokeWidth: number = 10;
-    export let href: string = "#";
-    export let title: string = "";
-    export let isCurrent: boolean = false;
-    export let onScroll: boolean = false;
-    export let confetti: boolean = false;
+    interface Props {
+        progress?: number;
+        label?: string | number;
+        size?: number;
+        strokeWidth?: number;
+        href?: string;
+        title?: string;
+        isCurrent?: boolean;
+        onScroll?: boolean;
+        confetti?: boolean;
+    }
+
+    let {
+        progress = $bindable(0),
+        label = '',
+        size = 40,
+        strokeWidth = 10,
+        href = '#',
+        title = '',
+        isCurrent = $bindable(false),
+        onScroll = false,
+        confetti = false,
+    }: Props = $props();
 
     // Calculate the circumference of the circle
     const circumference = 2 * Math.PI * (size - strokeWidth);

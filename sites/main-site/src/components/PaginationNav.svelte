@@ -1,20 +1,20 @@
 <script lang="ts">
-    import { currentPage } from "@components/store";
-    import { onMount } from "svelte";
+    import { run } from 'svelte/legacy';
 
-    export let lastPage: number = 1;
+    import { currentPage } from '@components/store';
+    import { onMount } from 'svelte';
 
-    let pages: number[] = [];
-    let truncatedPages: number[] = [];
+    interface Props {
+        lastPage?: number;
+    }
+
+    let { lastPage = 1 }: Props = $props();
+
+    let pages: number[] = $state([]);
+    let truncatedPages: number[] = $state([]);
 
     const maxPages = 7;
-    let truncated = false;
-
-    $: {
-        if (lastPage > 0) {
-            generatePages();
-        }
-    }
+    let truncated = $state(false);
 
     function generatePages() {
         pages = [];
@@ -39,6 +39,11 @@
         $currentPage = page;
         generatePages();
     }
+    run(() => {
+        if (lastPage > 0) {
+            generatePages();
+        }
+    });
 </script>
 
 <div class="d-flex justify-content-center mt-2">
@@ -46,8 +51,8 @@
         <ul class="pagination">
             <li class="page-item" class:disabled={$currentPage === 1}>
                 <span
-                    on:click={() => handlePageChange($currentPage - 1)}
-                    on:keydown={() => handlePageChange($currentPage - 1)}
+                    onclick={() => handlePageChange($currentPage - 1)}
+                    onkeydown={() => handlePageChange($currentPage - 1)}
                     role="button"
                     class="page-link"
                     tabindex="0">Previous</span
@@ -66,8 +71,8 @@
                 {#each truncatedPages as page}
                     <li class="page-item" class:active={$currentPage === page}>
                         <span
-                            on:click={() => handlePageChange(page)}
-                            on:keydown={() => handlePageChange(page)}
+                            onclick={() => handlePageChange(page)}
+                            onkeydown={() => handlePageChange(page)}
                             role="button"
                             class="page-link"
                             tabindex="0">{page}</span
@@ -80,8 +85,8 @@
                     </li>
                     <li class="page-item" class:active={$currentPage === lastPage}>
                         <span
-                            on:click={() => handlePageChange(lastPage)}
-                            on:keydown={() => handlePageChange(lastPage)}
+                            onclick={() => handlePageChange(lastPage)}
+                            onkeydown={() => handlePageChange(lastPage)}
                             role="button"
                             tabindex="0"
                             class="page-link">{lastPage}</span
@@ -92,8 +97,8 @@
                 {#each pages as page}
                     <li class="page-item" class:active={$currentPage === page}>
                         <span
-                            on:click={() => handlePageChange(page)}
-                            on:keydown={() => handlePageChange(page)}
+                            onclick={() => handlePageChange(page)}
+                            onkeydown={() => handlePageChange(page)}
                             role="button"
                             tabindex="0"
                             class="page-link">{page}</span
@@ -104,8 +109,8 @@
 
             <li class="page-item" class:disabled={$currentPage === lastPage}>
                 <span
-                    on:click={() => handlePageChange($currentPage + 1)}
-                    on:keydown={() => handlePageChange($currentPage + 1)}
+                    onclick={() => handlePageChange($currentPage + 1)}
+                    onkeydown={() => handlePageChange($currentPage + 1)}
                     class="page-link"
                     role="button"
                     tabindex="0">Next</span

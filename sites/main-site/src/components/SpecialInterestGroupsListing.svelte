@@ -6,7 +6,11 @@
 
     import type { CollectionEntry } from "astro:content";
 
-    export let groups: CollectionEntry<"special-interest-groups">[] = [];
+    interface Props {
+        groups?: CollectionEntry<'special-interest-groups'>[];
+    }
+
+    let { groups = [] }: Props = $props();
 
     let filteredGroups = groups;
 </script>
@@ -24,10 +28,13 @@
                 {#each filteredGroups as group (group.id)}
                     <div class="g-col-12 g-col-lg-6 g-col-xl-6 g-col-xxl-4 g-col-xxxxl-2">
                         <ListingCard footer={true}>
-                            <a slot="card-header" href={"/special-interest-groups/" + group.slug} class="success"
+                            <!-- @migration-task: migrate this slot by hand, `card-header` is an invalid identifier -->
+                            <a slot="card-header" href={'/special-interest-groups/' + group.slug} class="success"
                                 >{group.data.groupName}</a
                             >
+                            <!-- @migration-task: migrate this slot by hand, `card-body` is an invalid identifier -->
                             <p slot="card-body">{group.data.subtitle}</p>
+                            <!-- @migration-task: migrate this slot by hand, `card-footer` is an invalid identifier -->
                             <div slot="card-footer" class="grid align-content-start">
                                 <div class="pipeline-badges small g-col-8">
                                     {#if group.data.pipelines && group.data.pipelines.length > 0}

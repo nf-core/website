@@ -1,9 +1,9 @@
-<script>
-    import SchemaListingGroup from "@components/schema/SchemaListingGroup.svelte";
-    import { onMount } from "svelte";
-    import { currentHeading } from "@components/store";
+<script lang="ts">
+    import SchemaListingGroup from '@components/schema/SchemaListingGroup.svelte';
+    import { onMount } from 'svelte';
+    import { currentHeading } from '@components/store';
 
-    export let schema;
+    let { schema } = $props();
 
     const schemaDefs = schema.definitions || schema.$defs || schema.properties;
     onMount(() => {

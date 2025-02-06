@@ -5,7 +5,7 @@ import { getCollection } from "astro:content";
 let events = await getCollection("events");
 
 events = events.filter((event) => {
-    return event.slug.split("/").length === 2;
+    return event.id.split('/').length === 2;
 });
 
 const title = "Events";

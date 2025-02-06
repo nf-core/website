@@ -1,7 +1,8 @@
 import { z, defineCollection } from 'astro:content';
+import { glob } from 'astro/loaders';
 
 const events = defineCollection({
-    type: 'content',
+    loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/events' }),
     schema: z
         .object({
             title: z.string(),
@@ -81,21 +82,9 @@ const events = defineCollection({
             return true;
         }),
 });
-const docs = defineCollection({
-    type: 'content',
-    schema: z.object({
-        title: z.string(),
-        subtitle: z.string().optional(),
-        shortTitle: z.string().optional(),
-        weight: z.number().optional(),
-        parent: z.string().optional(),
-        parentWeight: z.number().optional(),
-        type: z.enum(['tutorial']).optional(),
-        markdownPlugin: z.enum(['checklist', 'addNumbersToHeadings']).optional(),
-    }),
-});
+
 const about = defineCollection({
-    type: 'content',
+    loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/about' }),
     schema: z.object({
         title: z.string(),
         description: z.string(),
@@ -106,7 +95,7 @@ const about = defineCollection({
 });
 
 const blog = defineCollection({
-    type: 'content',
+    loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/blog' }),
     schema: z
         .object({
             title: z.string(),
@@ -156,7 +145,7 @@ const blog = defineCollection({
 });
 
 const specialInterestGroups = defineCollection({
-    type: 'content',
+    loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/special-interest-groups' }),
     schema: z
         .object({
             title: z.string(),
@@ -182,10 +171,6 @@ const specialInterestGroups = defineCollection({
             return true;
         }),
 });
-
-const pipelines = defineCollection({});
-
-const api_reference = defineCollection({});
 
 const hackathonProjects = defineCollection({
     type: 'content',
@@ -222,12 +207,9 @@ const hackathonProjects = defineCollection({
 });
 
 export const collections = {
-    events: events,
-    docs: docs,
-    about: about,
-    pipelines: pipelines,
-    blog: blog,
-    api_reference: api_reference,
+    events,
+    about,
+    blog,
     'special-interest-groups': specialInterestGroups,
     'hackathon-projects': hackathonProjects,
 };
