@@ -1,3 +1,4 @@
+<!-- @migration-task Error while migrating Svelte code: This migration would change the name of a slot making the component unusable -->
 <script lang="ts">
     import { currentHeading, showHidden, Checkboxes } from "@components/store";
     import { onMount } from "svelte";
@@ -94,7 +95,7 @@
                                 href={"#" + heading.slug}
                             >
                                 {#if heading.fa_icon}
-                                    <i class={heading.fa_icon + " fa-fw me-2"} aria-hidden="true" />
+                                    <i class={heading.fa_icon + ' fa-fw me-2'} aria-hidden="true"></i>
                                 {/if}
                                 {@html heading.text}
                                 {#if hCheckboxes.find((hc) => hc?.id.startsWith("checkbox-" + heading.slug))}
@@ -132,7 +133,7 @@
                         class="back-to-top text-body-secondary text-small mb-2"
                         on:click={() => window.scrollTo(0, 0)}
                     >
-                        <i class="fa-solid fa-arrow-up-to-line" aria-hidden="true" /> Back to top
+                        <i class="fa-solid fa-arrow-up-to-line" aria-hidden="true"></i> Back to top
                     </a>
                     <slot name="right-sidebar-link-bar" />
                 </div>

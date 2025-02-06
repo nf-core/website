@@ -1,38 +1,54 @@
+<!-- @migration-task Error while migrating Svelte code: This migration would change the name of a slot making the component unusable -->
 <script lang="ts">
-    import { CurrentFilter, Filters, SortBy, DisplayStyle, SearchQuery } from "@components/store";
-    import { onMount } from "svelte";
+    import { onMount } from 'svelte';
+    import { CurrentFilter, Filters, SortBy, DisplayStyle, SearchQuery } from '@components/store';
 
-    export let filter: { name: string; class?: string }[] = [];
-    export let sortBy: string[] = [];
-    export let displayStyle: { name: string; icon: string }[] = [];
+    let {
+        filter = [],
+        sortBy = [],
+        displayStyle = [],
+        filter_name,
+    } = $props<{
+        filter: { name: string; class?: string }[];
+        sortBy: string[];
+        displayStyle: { name: string; icon: string }[];
+        filter_name?: string;
+    }>();
 
-    let search = $SearchQuery;
+    let search = $state($SearchQuery);
 
-    function handleSearch(q) {
-        SearchQuery.set(q.target.value.trim());
+    function handleSearch(q: Event) {
+        const target = q.target as HTMLInputElement;
+        SearchQuery.set(target.value.trim());
     }
-    function handleFilter(fil) {
+
+    function handleFilter(fil: string) {
         // remove focus from button
-        event.target.blur();
+        (event.target as HTMLElement).blur();
         if ($CurrentFilter.find((f) => f.name === fil)) {
             CurrentFilter.set($CurrentFilter.filter((f) => f.name !== fil));
         } else {
             CurrentFilter.set([...$CurrentFilter, { name: fil }]);
         }
     }
-    function handleExlusiveFilter(fil) {
+
+    function handleExlusiveFilter(fil: string) {
         // remove focus from button
-        event.target.blur();
+        (event.target as HTMLElement).blur();
         CurrentFilter.set([{ name: fil }]);
     }
-    function handleSort(sor) {
+
+    function handleSort(sor: string) {
         SortBy.set(sor);
     }
 
-    function handleDisplayStyle(style) {
+    function handleDisplayStyle(style: string) {
         DisplayStyle.set(style);
     }
+
     onMount(() => {
+        $inspect(filter);
+        $inspect($CurrentFilter);
         if (filter.length > 0 && !$CurrentFilter.length) {
             CurrentFilter.set(filter);
         }
@@ -50,9 +66,9 @@
         <input
             type="text"
             class="form-control w-25 me-2 searchbar"
-            bind:value={search}
-            on:keyup={handleSearch}
-            placeholder="&#xF002;  Search"
+            value={search}
+            oninput={handleSearch}
+            placeholder="&#xf002; Search..."
         />
 
         {#if $Filters.length > 0 && $Filters[0].name}
@@ -69,13 +85,13 @@
                                 ? "btn text-nowrap flex-fill btn-outline-" + fil.class
                                 : "btn text-nowrap w-100 btn-outline-success"}
                             class:active={$CurrentFilter.find((f) => f.name === fil.name)}
-                            on:click={() => handleFilter(fil.name)}
-                            on:dblclick={() => handleExlusiveFilter(fil.name)}
-                            on:mouseout={() => event.target.blur()}
-                            on:blur={() => event.target.blur()}
+                            onclick={() => handleFilter(fil.name)}
+                            ondblclick={() => handleExlusiveFilter(fil.name)}
+                            onmouseout={() => event.target.blur()}
+                            onblur={() => event.target.blur()}
                         >
                             {#if fil.icon}
-                                <i class={fil.icon + " me-1"} />
+                                <i class={fil.icon + ' me-1'}></i>
                             {/if}
                             {fil.name}
                             {#if fil.count >= 0}
@@ -93,7 +109,11 @@
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
                     >
-                        <slot name="filter-name">Status</slot>
+                        {#if filter_name}
+                            {@render filter_name()}
+                        {:else}
+                            <span>Status</span>
+                        {/if}
                     </button>
                     <ul class="dropdown-menu">
                         {#each $Filters as fil}
@@ -102,13 +122,13 @@
                                     class="dropdown-item"
                                     title="Filter"
                                     class:active={$CurrentFilter.find((f) => f.name === fil.name)}
-                                    on:click={() => handleFilter(fil.name)}
-                                    on:keydown={() => handleFilter(fil.name)}
+                                    onclick={() => handleFilter(fil.name)}
+                                    onkeydown={() => handleFilter(fil.name)}
                                     role="button"
                                     tabindex="0"
                                 >
                                     {#if fil.icon}
-                                        <i class={fil.icon + " fa-fw me-1"} />
+                                        <i class={fil.icon + ' fa-fw me-1'}></i>
                                     {/if}
                                     {fil.name}
                                     {#if fil.count >= 0}
@@ -141,8 +161,8 @@
                                     title="sort"
                                     id={sor.replace(" ", "-")}
                                     class:active={sor === $SortBy}
-                                    on:click={() => handleSort(sor)}
-                                    on:keydown={() => handleSort(sor)}
+                                    onclick={() => handleSort(sor)}
+                                    onkeydown={() => handleSort(sor)}
                                     role="button"
                                     tabindex="0"
                                 >
@@ -161,11 +181,12 @@
                         <button
                             type="button"
                             class="btn btn-outline-success text-nowrap"
-                            on:click={() => handleDisplayStyle(dis.name)}
+                            onclick={() => handleDisplayStyle(dis.name)}
                             class:active={$DisplayStyle === dis.name}
                             title={dis.name + " view"}
                             data-bs-toggle="tooltip"
-                            ><i class={dis.icon} />
+                            aria-label={dis.name + ' view'}
+                            ><i class={dis.icon}></i>
                         </button>
                     {/each}
                 </div>

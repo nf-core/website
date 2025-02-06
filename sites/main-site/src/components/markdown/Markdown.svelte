@@ -17,6 +17,7 @@
     import type { Plugin } from "svelte-exmarkdown";
 
     import "../../../../../node_modules/highlight.js/styles/github-dark.css";
+    let { md = $bindable() } = $props();
 
     let plugins: Plugin[] = [];
     plugins.push({ remarkPlugin: [emoji] });
@@ -76,7 +77,6 @@
         rehypePlugin: [rehypeHighlight],
     });
 
-    export let md: string;
 </script>
 
 <Markdown {md} {plugins} />

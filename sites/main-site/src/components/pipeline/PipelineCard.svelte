@@ -1,10 +1,10 @@
-<script>
-    import ListingCard from "@components/ListingCard.svelte";
-    import Markdown from "@components/markdown/Markdown.svelte";
-    import { formatDistanceToNow, add } from "date-fns";
-    import { Confetti } from "svelte-confetti";
+<script lang="ts">
+    import ListingCard from '@components/ListingCard.svelte';
+    import Markdown from '@components/markdown/Markdown.svelte';
+    import { formatDistanceToNow, add } from 'date-fns';
+    import { Confetti } from 'svelte-confetti';
 
-    export let pipeline;
+    let { pipeline } = $props();
 
     const name = pipeline.name;
     const body = pipeline.description;
@@ -13,7 +13,10 @@
     const releases = pipeline.releases;
     const archived = pipeline.archived;
     const released = releases.length > 1;
-    let latestRelease, tagName, releaseDateAgo, recentRelease;
+    let latestRelease,
+        tagName = $state(),
+        releaseDateAgo = $state(),
+        recentRelease = $state();
     const lastChangesAge = formatDistanceToNow(new Date(releases[0].published_at), {
         addSuffix: true,
     });
@@ -30,20 +33,18 @@
 </script>
 
 <ListingCard {recentRelease}>
+    <!-- @migration-task: migrate this slot by hand, `card-header` is an invalid identifier -->
     <div slot="card-header">
         <div class="d-flex flex-wrap justify-content-between align-items-center">
             <a class="text-decoration-none" href={"/" + pipeline.name + "/" + (released ? tagName : "dev") + "/"}
                 >{name}
                 {#if archived}
-                    <i class="fa-solid fa-xs fa-archive text-info" title="archived" data-bs-toggle="tooltip" />
+                    <i class="fa-solid fa-xs fa-archive text-info" title="archived" data-bs-toggle="tooltip"></i>
                 {:else if released}
-                    <i class="fa-solid fa-xs fa-check text-success" title="released" data-bs-toggle="tooltip" />
+                    <i class="fa-solid fa-xs fa-check text-success" title="released" data-bs-toggle="tooltip"></i>
                 {:else}
-                    <i
-                        class="fa-solid fa-xs fa-wrench text-warning"
-                        title="under development"
-                        data-bs-toggle="tooltip"
-                    />
+                    <i class="fa-solid fa-xs fa-wrench text-warning" title="under development" data-bs-toggle="tooltip"
+                    ></i>
                 {/if}
             </a>
 
@@ -59,13 +60,14 @@
                     data-bs-original-title={stars + " stargazers on GitHub"}
                     style={{ cursor: "pointer" }}
                 >
-                    <i class="fa-regular fa-star" aria-hidden="true" />
+                    <i class="fa-regular fa-star" aria-hidden="true"></i>
 
                     {stars}
                 </a>
             </small>
         </div>
     </div>
+    <!-- @migration-task: migrate this slot by hand, `card-body` is an invalid identifier -->
     <div slot="card-body" class="d-flex flex-column justify-content-between h-100">
         <div class="recent-release-badge text-center">
             {#if recentRelease}
@@ -93,7 +95,7 @@
                     style={{ cursor: "pointer" }}
                     class="btn btn-outline-secondary"
                 >
-                    <i class="fa-regular fa-tag me-1" />
+                    <i class="fa-regular fa-tag me-1"></i>
                     {tagName}
                 </a>
                 <span class="text-body-secondary text-small"> released {releaseDateAgo}</span>

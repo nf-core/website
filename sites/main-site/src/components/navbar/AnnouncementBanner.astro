@@ -18,7 +18,7 @@ const eventAnnouncements: announcement[] = events.reduce((acc, event) => {
             start: event.data.announcement.start,
             end: event.data.announcement.end || event.data.start,
             text: event.data.announcement.text,
-            slug: "events/" + event.slug,
+            slug: 'events/' + event.id.replace(/\.[^/.]+$/, ''),
         });
     }
     return acc;
@@ -32,7 +32,7 @@ const blogPostAnnouncements: announcement[] = blogPosts.reduce((acc, post) => {
             start: post.data.announcement.start,
             end: post.data.announcement.end,
             text: post.data.announcement.text,
-            slug: `blog/${post.slug}`,
+            slug: `blog/${post.id.replace(/\.[^/.]+$/, '')}`,
         });
     }
     return acc;
@@ -55,7 +55,7 @@ const nextAnnouncement = sortedAnnouncements[0];
     nextAnnouncement && (
         <div class="announcement d-flex justify-content-center text-bg-success">
             <div class="p-2 text-center ">
-                <a class="text-white" href={nextAnnouncement.slug}>
+                <a class="text-white" href={nextAnnouncement.slug.replace(/\.[^/.]+$/, '')}>
                     {nextAnnouncement.text}
                 </a>
             </div>

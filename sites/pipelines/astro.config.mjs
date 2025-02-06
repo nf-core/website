@@ -44,10 +44,6 @@ export default defineConfig({
     output: 'static',
     adapter: netlify(),
     prefetch: false,
-    redirects: {
-        ...latestPipelineReleases,
-        ...pipelineResults,
-    },
     integrations: [
         svelte(),
         icon({
@@ -103,7 +99,7 @@ export default defineConfig({
             preprocessorOptions: {
                 scss: {
                     api: 'modern-compiler',
-                    silenceDeprecations: ['legacy-js-api','mixed-decls','color-functions'],
+                    silenceDeprecations: ['legacy-js-api', 'mixed-decls', 'color-functions'],
                 },
             },
         },

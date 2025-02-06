@@ -1,19 +1,19 @@
 ---
-import EventIndicator from "@components/navbar/EventIndicator.svelte";
-import NavbarToc from "@components/navbar/NavbarToc.svelte";
-import NavbarDocsNav from "@components/navbar/NavbarDocsNav.svelte";
-import NavbarDocsNavTitle from "@components/navbar/NavbarDocsNavTitle.astro";
-import SidebarNav from "@components/sidebar/SidebarNav.astro";
-import NfCoreLogoDarkbg from "/images/logo/nf-core-logo-darkbg.svg?raw";
-import NfCoreLogo from "/images/logo/nf-core-logo.svg?raw";
-import IconSocial from "@components/IconSocial.astro";
-import ThemeSwitch from "@components/ThemeSwitch.svelte";
-import { Icon } from "astro-icon/components";
-import Search from "@components/navbar/Search.svelte";
-import { findCurrentGroup } from "@utils/functions";
-import BlogPostLabel from "@components/navbar/BlogPostLabel.svelte";
-import type { SidebarEntry } from "@utils/types";
-import { getCollection, type CollectionEntry } from "astro:content";
+import EventIndicator from '@components/navbar/EventIndicator.svelte';
+import NavbarToc from '@components/navbar/NavbarToc.svelte';
+import NavbarDocsNav from '@components/navbar/NavbarDocsNav.svelte';
+import NavbarDocsNavTitle from '@components/navbar/NavbarDocsNavTitle.astro';
+import SidebarNav from '@components/sidebar/SidebarNav.astro';
+import NfCoreLogoDarkbg from '/images/logo/nf-core-logo-darkbg.svg?raw';
+import NfCoreLogo from '/images/logo/nf-core-logo.svg?raw';
+import IconSocial from '@components/IconSocial.astro';
+import ThemeSwitch from '@components/ThemeSwitch.svelte';
+import { Icon } from 'astro-icon/components';
+import Search from '@components/navbar/Search.svelte';
+import { findCurrentGroup } from '@utils/functions';
+import BlogPostLabel from '@components/navbar/BlogPostLabel.svelte';
+import type { SidebarEntry } from '@utils/types';
+import { getCollection } from 'astro:content';
 
 export interface Props {
     navTocHeadings?: object[];

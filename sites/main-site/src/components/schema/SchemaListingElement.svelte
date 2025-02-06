@@ -1,14 +1,13 @@
-<script>
-    import { showHidden } from "@components/store";
-    import Collapsible from "@components/Collapsible.svelte";
-    import Markdown from "@components/markdown/Markdown.svelte";
+<script lang="ts">
+    import { showHidden } from '@components/store';
+    import Collapsible from '@components/Collapsible.svelte';
+    import Markdown from '@components/markdown/Markdown.svelte';
 
-    export let title;
-    export let property;
-    const id = title.replace(" ", "-");
+    let { title, property } = $props();
+    const id = title.replace(' ', '-');
 
     const pattern = property.pattern;
-    let longPattern = [];
+    let longPattern = $state([]);
     // explicitely handle patterns which are an enum work around, i.e. they have multiple values, eg. "^(foo|bar)$"
     if (
         pattern &&
@@ -27,11 +26,11 @@
     class:show={$showHidden}
 >
     <div id={title} class="col-12 col-md-3 title border-right border-secondary text-nowrap p-0 pe-2">
-        <a class="text-decoration-none d-block overflow-x-scroll" aria-hidden="true" tabindex="-1" href={"#" + title}
-            ><i class="ms-1 fas invisible" aria-hidden="true" />
+        <a class="text-decoration-none d-block overflow-x-scroll" aria-hidden="true" tabindex="-1" href={'#' + title}
+            ><i class="ms-1 fas invisible" aria-hidden="true"></i>
             <span class="">
                 {#if property.fa_icon}
-                    <i class="fa fa-fw {property.fa_icon}" />
+                    <i class="fa fa-fw {property.fa_icon}"></i>
                 {/if}
                 <code>--{title}</code>
             </span>

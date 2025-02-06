@@ -4,7 +4,11 @@
     import "@docsearch/css";
     import { onMount } from "svelte";
 
-    export let id: string = "";
+    interface Props {
+        id?: string;
+    }
+
+    let { id = '' }: Props = $props();
     onMount(() => {
         docsearch({
             container: "#" + id,
@@ -16,7 +20,7 @@
     });
 </script>
 
-<div {id} />
+<div {id}></div>
 
 <style lang="scss">
     :global(:root) {

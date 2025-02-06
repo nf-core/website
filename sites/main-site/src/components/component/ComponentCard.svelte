@@ -1,16 +1,23 @@
 <script lang="ts">
     import ListingCard from "@components/ListingCard.svelte";
 
-    export let component: {
-        name: string;
-        path: string;
-        type: string;
-        meta: {
-            description: string;
+    interface Props {
+        component: {
             name: string;
-            keywords?: string[];
-            modules?: string[];
-            components?: string[];
+            path: string;
+            type: string;
+            meta: {
+                description: string;
+                name: string;
+                keywords?: string[];
+                modules?: string[];
+                components?: string[];
+            };
+            pipelines?: {
+                name: string;
+                version: string;
+            }[];
+            subworkflows?: string[];
         };
         pipelines?: {
             name: string;
@@ -18,15 +25,19 @@
         }[];
         subworkflows?: string[];
     };
-    const href = "/" + component.type + "s/" + component.name + "/";
-    $: collapsePipelines = true;
+
+    let { component }: Props = $props();
+    const href = '/' + component.type + 's/' + component.name + '/';
+    let collapsePipelines = $state(true);
 </script>
 
 <ListingCard>
+    <!-- @migration-task: migrate this slot by hand, `card-header` is an invalid identifier -->
     <div slot="card-header">
-        <a class="text-decoration-none" {href}>{@html component.name.replace("_", "_<wbr>")} </a>
-        <small class="gh-stats text-small" />
+        <a class="text-decoration-none" {href}>{@html component.name.replace('_', '_<wbr>')} </a>
+        <small class="gh-stats text-small"></small>
     </div>
+    <!-- @migration-task: migrate this slot by hand, `card-body` is an invalid identifier -->
     <div slot="card-body" class="d-flex flex-column justify-content-between h-100">
         <p class="description flex-grow-1 mb-3">{component.meta.description}</p>
         {#if component.meta.keywords}
@@ -50,8 +61,8 @@
                         <span
                             class="text-small cursor-pointer"
                             title="click to show all pipelines"
-                            on:click={() => (collapsePipelines = !collapsePipelines)}
-                            on:keydown={() => (collapsePipelines = !collapsePipelines)}
+                            onclick={() => (collapsePipelines = !collapsePipelines)}
+                            onkeydown={() => (collapsePipelines = !collapsePipelines)}
                             tabindex="0"
                             role="button"
                             data-bs-toggle="tooltip"

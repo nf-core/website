@@ -3,8 +3,12 @@
     import pkg from "file-saver";
     const { saveAs } = pkg;
 
-    export let frontmatter = {};
-    export let add_class = "btn-outline-success";
+    interface Props {
+        frontmatter?: any;
+        add_class?: string;
+    }
+
+    let { frontmatter = {}, add_class = 'btn-outline-success' }: Props = $props();
 
     let event_location = "";
     if (typeof frontmatter.locationURL === "string") {
@@ -74,10 +78,10 @@
         aria-haspopup="true"
         aria-expanded="false"
     >
-        <i class="far fa-calendar-plus me-1" aria-hidden="true" /> Export event
+        <i class="far fa-calendar-plus me-1" aria-hidden="true"></i> Export event
     </button>
     <div class="dropdown-menu">
-        <button class="dropdown-item" on:click={() => downloadIcal()}> Download iCal Event</button>
+        <button class="dropdown-item" onclick={() => downloadIcal()}> Download iCal Event</button>
         <a class="dropdown-item" href={googleCalendar} target="_blank" rel="noreferrer"> Add to Google Calendar</a>
         <a class="dropdown-item" href={outlookCalendar} target="_blank" rel="noreferrer"> Add to Microsoft Outlook</a>
     </div>

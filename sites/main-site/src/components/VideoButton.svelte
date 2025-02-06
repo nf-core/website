@@ -1,7 +1,11 @@
-<script>
-    export let urls;
-    export let btnClass = "btn-success";
-    if (typeof urls === "string") {
+<script lang="ts">
+    interface Props {
+        urls: any;
+        btnClass?: string;
+    }
+
+    let { urls = $bindable(), btnClass = 'btn-success' }: Props = $props();
+    if (typeof urls === 'string') {
         urls = [urls];
     }
 
@@ -22,14 +26,14 @@
 </script>
 
 <!-- the following two if clauses are needed because the initial recasting of `urls` into an array is sometimes ignored, no idea why-->
-{#if typeof urls === "string"}
-    <a class={"btn text-nowrap " + btnClass} href={urls}>
-        <i class={getIcon(urls) + " me-1"} aria-hidden="true" />
+{#if typeof urls === 'string'}
+    <a class={'btn text-nowrap ' + btnClass} href={urls}>
+        <i class={getIcon(urls) + ' me-1'} aria-hidden="true"></i>
         Join now
     </a>
 {:else if urls.length === 1}
-    <a class={"btn text-nowrap " + btnClass} href={urls[0]}>
-        <i class={getIcon(urls[0]) + " me-1"} aria-hidden="true" />
+    <a class={'btn text-nowrap ' + btnClass} href={urls[0]}>
+        <i class={getIcon(urls[0]) + ' me-1'} aria-hidden="true"></i>
         Join now
     </a>
 {:else if urls.length > 1}
@@ -47,7 +51,7 @@
             {#each urls as url}
                 <li>
                     <a class="dropdown-item" href={url}>
-                        <i class={getIcon(url) + " me-1"} aria-hidden="true" />
+                        <i class={getIcon(url) + ' me-1'} aria-hidden="true"></i>
                         {url}
                     </a>
                 </li>
