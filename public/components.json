@@ -8879,6 +8879,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -112216,6 +112220,22 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -137961,6 +137981,10 @@
         {
           "name": "viralrecon",
           "version": "2.6.0"
+        },
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
         }
       ]
     },
@@ -153937,6 +153961,96 @@
         ],
         "maintainers": [
           "@mahesh-panchal"
+        ]
+      }
+    },
+    {
+      "name": "pychopper",
+      "path": "modules/nf-core/pychopper/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "pychopper",
+        "description": "Identify, orient and trim nanopore cDNA reads",
+        "keywords": [
+          "sort",
+          "trimming",
+          "nanopore"
+        ],
+        "tools": [
+          {
+            "pychopper": {
+              "description": "A tool to identify, orient and rescue full length cDNA reads from nanopore data.",
+              "homepage": "https://github.com/epi2me-labs/pychopper",
+              "documentation": "https://github.com/epi2me-labs/pychopper",
+              "tool_dev_url": "https://github.com/epi2me-labs/pychopper",
+              "licence": [
+                "Oxford Nanopore Technologies PLC. Public License Version 1.0"
+              ],
+              "identifier": ""
+            }
+          },
+          {
+            "gzip": {
+              "description": "Gzip reduces the size of the named files using Lempel-Ziv coding (LZ77).",
+              "documentation": "https://linux.die.net/man/1/gzip",
+              "args_id": "$args3",
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "fastq": {
+                "type": "file",
+                "description": "FastQ with reads from long read sequencing e.g. nanopore",
+                "pattern": "*.{fastq.gz}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "fastq": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.{fastq.gz}"
+                }
+              },
+              {
+                "*.out.fastq.gz": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.{fastq.gz}"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@chriswyatt1"
+        ],
+        "maintainers": [
+          "@chriswyatt1"
         ]
       }
     },
@@ -187570,6 +187684,86 @@
       }
     },
     {
+      "name": "svtools_vcftobedpe",
+      "path": "modules/nf-core/svtools/vcftobedpe/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "svtools_vcftobedpe",
+        "description": "Convert a VCF file to a BEDPE file.",
+        "keywords": [
+          "structural",
+          "bedpe",
+          "vcf",
+          "conversion",
+          "variants"
+        ],
+        "tools": [
+          {
+            "svtools": {
+              "description": "Tools for processing and analyzing structural variants",
+              "tool_dev_url": "https://github.com/hall-lab/svtools",
+              "licence": [
+                "MIT License"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "Input VCF file containing structural variants",
+                "pattern": "*.{vcf,vcf.gz}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "bedpe": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.bedpe": {
+                  "type": "file",
+                  "description": "The converted BEDPE file",
+                  "pattern": "*.bedpe"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@nvnieuwk"
+        ],
+        "maintainers": [
+          "@nvnieuwk"
+        ]
+      }
+    },
+    {
       "name": "svtyper_svtyper",
       "path": "modules/nf-core/svtyper/svtyper/meta.yml",
       "type": "module",
@@ -213926,6 +214120,10 @@
         {
           "name": "phageannotator",
           "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
         }
       ]
     },
@@ -219111,6 +219309,29 @@
           "version": "1.0.0"
         }
       ]
+    },
+    {
+      "name": "utils_references",
+      "path": "subworkflows/nf-core/utils_references/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "utils_references",
+        "description": "Functionality for dealing with references that may be useful for any Nextflow pipeline",
+        "keywords": [
+          "utility",
+          "pipeline",
+          "references"
+        ],
+        "components": [],
+        "input": [],
+        "output": [],
+        "authors": [
+          "@maxulysse"
+        ],
+        "maintainers": [
+          "@maxulysse"
+        ]
+      }
     },
     {
       "name": "vcf_annotate_ensemblvep",
