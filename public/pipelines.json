@@ -5952,7 +5952,7 @@
             "has_wiki": false,
             "has_pages": false,
             "has_discussions": false,
-            "forks_count": 27,
+            "forks_count": 28,
             "archived": false,
             "disabled": false,
             "open_issues_count": 25,
@@ -5966,7 +5966,7 @@
                 "ngs"
             ],
             "visibility": "public",
-            "forks": 27,
+            "forks": 28,
             "open_issues": 25,
             "watchers": 37,
             "default_branch": "master",
@@ -6000,7 +6000,7 @@
                     "status": "disabled"
                 }
             },
-            "network_count": 27,
+            "network_count": 28,
             "subscribers_count": 147,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
@@ -27557,10 +27557,10 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/pangenome",
             "created_at": "2020-11-08T18:02:43Z",
-            "updated_at": "2025-01-22T19:00:28Z",
-            "pushed_at": "2025-02-07T13:36:32Z",
+            "updated_at": "2025-02-09T10:48:59Z",
+            "pushed_at": "2025-02-09T11:05:33Z",
             "homepage": "https://nf-co.re/pangenome",
-            "size": 4433,
+            "size": 4448,
             "stargazers_count": 80,
             "watchers_count": 80,
             "language": "Nextflow",
@@ -27573,7 +27573,7 @@
             "forks_count": 18,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 11,
+            "open_issues_count": 10,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -27582,7 +27582,7 @@
             ],
             "visibility": "public",
             "forks": 18,
-            "open_issues": 11,
+            "open_issues": 10,
             "watchers": 80,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -27685,13 +27685,18 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 2,
+            "open_pr_count": 1,
             "repository_url": "https://github.com/nf-core/pangenome",
             "contributors": [
                 {
                     "name": "subwaystation",
-                    "count": 605,
+                    "count": 629,
                     "avatar_url": "https://avatars.githubusercontent.com/u/10184961?v=4"
+                },
+                {
+                    "name": "heuermh",
+                    "count": 52,
+                    "avatar_url": "https://avatars.githubusercontent.com/u/35293?v=4"
                 },
                 {
                     "name": "Zethson",
@@ -27702,11 +27707,6 @@
                     "name": "AndreaGuarracino",
                     "count": 12,
                     "avatar_url": "https://avatars.githubusercontent.com/u/62253982?v=4"
-                },
-                {
-                    "name": "heuermh",
-                    "count": 7,
-                    "avatar_url": "https://avatars.githubusercontent.com/u/35293?v=4"
                 },
                 {
                     "name": "FriederikeHanssen",
@@ -27739,19 +27739,22 @@
                     "avatar_url": "https://avatars.githubusercontent.com/u/15126788?v=4"
                 }
             ],
-            "released_after_tools": false,
-            "head_sha": "af6d1ddca7db6714728c1c14dea4d3eca065e52c",
-            "last_release_is_head": false,
-            "last_release_vs_default_compare_url": "https://github.com/nf-core/pangenome/compare/af6d1ddca7db6714728c1c14dea4d3eca065e52c...0e8a38734ea3c0397f94416a0146a2972fe2db8b",
+            "released_after_tools": true,
+            "head_sha": "3d02bd1df79f48b4bfdb4ad95d4ca0d7f6aeb337",
+            "last_release_is_head": true,
+            "last_release_vs_default_compare_url": "https://github.com/nf-core/pangenome/compare/3d02bd1df79f48b4bfdb4ad95d4ca0d7f6aeb337...3d02bd1df79f48b4bfdb4ad95d4ca0d7f6aeb337",
             "commits_to_dev": 30,
             "is_DSL2": true,
             "has_nf_test": false,
             "has_nf_test_dev": false,
             "master_nextflow_config_plugins": [
-                "nf-validation@1.1.3"
+                "nf-schema@2.3.0"
             ],
             "master_nextflow_config_manifest": {
-                "defaultBranch": null
+                "defaultBranch": [
+                    "defaultBranch   = 'master'",
+                    "master"
+                ]
             },
             "dev_nextflow_config_plugins": [
                 "nf-schema@2.3.0"
@@ -27763,6 +27766,41 @@
                 ]
             },
             "releases": [
+                {
+                    "tag_name": "1.1.3",
+                    "published_at": "2025-02-09T10:51:43Z",
+                    "tag_sha": "3d02bd1df79f48b4bfdb4ad95d4ca0d7f6aeb337",
+                    "has_schema": true,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/usage.md"
+                    ],
+                    "components": {
+                        "modules": [
+                            "gfaffix",
+                            "multiqc",
+                            "odgi_build",
+                            "odgi_draw",
+                            "odgi_layout",
+                            "odgi_sort",
+                            "odgi_squeeze",
+                            "odgi_stats",
+                            "odgi_unchop",
+                            "odgi_view",
+                            "odgi_viz",
+                            "samtools_faidx",
+                            "seqwish_induce",
+                            "smoothxg",
+                            "tabix_bgzip",
+                            "wfmash"
+                        ],
+                        "subworkflows": [
+                            "utils_nextflow_pipeline",
+                            "utils_nfcore_pipeline",
+                            "utils_nfschema_plugin"
+                        ]
+                    }
+                },
                 {
                     "tag_name": "1.1.2",
                     "published_at": "2024-03-25T15:07:58Z",
@@ -27901,8 +27939,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2025-02-03T09:42:55Z",
-                    "tag_sha": "f2b63fe835463e71f2fc2ccb7261f1a0c1d430a4",
+                    "published_at": "2025-02-09T11:05:33Z",
+                    "tag_sha": "d9b8aea32925793e4941fcc3c85878d1f9663141",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -27962,14 +28000,14 @@
             "forks_count": 6,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 46,
+            "open_issues_count": 48,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
             "topics": [],
             "visibility": "public",
             "forks": 6,
-            "open_issues": 46,
+            "open_issues": 48,
             "watchers": 17,
             "default_branch": "dev",
             "temp_clone_token": "",
@@ -34252,9 +34290,9 @@
             "url": "https://api.github.com/repos/nf-core/rnafusion",
             "created_at": "2018-10-05T13:05:57Z",
             "updated_at": "2025-01-26T11:19:01Z",
-            "pushed_at": "2025-02-03T10:20:03Z",
+            "pushed_at": "2025-02-09T07:43:19Z",
             "homepage": "https://nf-co.re/rnafusion",
-            "size": 19947,
+            "size": 19948,
             "stargazers_count": 150,
             "watchers_count": 150,
             "language": "Nextflow",
