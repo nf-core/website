@@ -22,11 +22,11 @@ by providing brief summaries of the monthly team meetings.
 
 In the November meeting we discussed (amongst others) the following topics:
 
--   [Stricter SemVer versioning](#stricter-semver-versioning)
--   [Push for BAM to CRAM?](#push-for-bam-to-cram)
--   [Removal of `workflowCitation()`](#removal-of-workflowcitation)
--   [Recent CI approach changes](#recent-ci-approach-changes)
--   [Modules piling up](#modules-piling-up)
+- [Stricter SemVer versioning](#stricter-semver-versioning)
+- [Push for BAM to CRAM?](#push-for-bam-to-cram)
+- [Removal of `workflowCitation()`](#removal-of-workflowcitation)
+- [Recent CI approach changes](#recent-ci-approach-changes)
+- [Modules piling up](#modules-piling-up)
 
 ## Stricter SemVer versioning
 
@@ -107,19 +107,19 @@ Currently, nf-core/methylseq serves as a test case for these CI updates.
 
 The updated CI workflow involves two main github actions:
 
--   nf-test-shard:
-    -   Performs a dry run of nf-test with the `--changed-since` flag, filtering by tags.
-    -   It outputs the test shard and total number of shards.
--   nf-test:
-    -   Accepts inputs such as the profile, shard, and total shard count.
-    -   It filters by tags and runs the tests accordingly.
+- nf-test-shard:
+    - Performs a dry run of nf-test with the `--changed-since` flag, filtering by tags.
+    - It outputs the test shard and total number of shards.
+- nf-test:
+    - Accepts inputs such as the profile, shard, and total shard count.
+    - It filters by tags and runs the tests accordingly.
 
 There are now two YAML workflows in the repository:
 
--   `nf-test.yml`:
-    -   For non-GPU pipelines, running the nf-test-shard and nf-test actions.
--   `nf-test-gpu.yml`:
-    -   For GPU-dependent pipelines, combining the same shard and test actions but tailored for GPU testing.
+- `nf-test.yml`:
+    - For non-GPU pipelines, running the nf-test-shard and nf-test actions.
+- `nf-test-gpu.yml`:
+    - For GPU-dependent pipelines, combining the same shard and test actions but tailored for GPU testing.
 
 > The nf-core/methylseq CI updates are under review and will be included in the upcoming `v2.8.0` release.
 > In the meantime, the implementation PR can be viewed [here](https://github.com/nf-core/methylseq/pull/478)

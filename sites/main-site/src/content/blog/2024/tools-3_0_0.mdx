@@ -30,25 +30,25 @@ We promise, it's worth it! :pray:
 
 ## ✨ New features
 
--   Enhanced pipeline template customisation
-    -   The template has been divided into features that can be selectively included or excluded.
-        For example, you can now create a new pipeline without any traces of FastQC.
-    -   You can strip down the pipeline to the bare minimum and add only the tools you need.
-    -   For nf-core pipelines, certain core features (e.g., documentation, CI tests) remain mandatory, but you still have significant customisation flexibility.
--   New Text User Interface (TUI) for pipeline creation
-    -   A guided interface helps you through the process when running `nf-core pipelines create{:bash}` (don't worry - you can still use the CLI by providing all values as parameters).
-        {" "}
+- Enhanced pipeline template customisation
+    - The template has been divided into features that can be selectively included or excluded.
+      For example, you can now create a new pipeline without any traces of FastQC.
+    - You can strip down the pipeline to the bare minimum and add only the tools you need.
+    - For nf-core pipelines, certain core features (e.g., documentation, CI tests) remain mandatory, but you still have significant customisation flexibility.
+- New Text User Interface (TUI) for pipeline creation
+    - A guided interface helps you through the process when running `nf-core pipelines create{:bash}` (don't worry - you can still use the CLI by providing all values as parameters).
+      {" "}
         <YouTube id={"VwjXNXONHlY"} poster={`https://i.ytimg.com/vi/VwjXNXONHlY/maxresdefault.jpg`} />
--   Switch to [nf-schema](https://nextflow-io.github.io/nf-schema/latest/) for input validation
-    -   Replaces its predecessor nf-validation as a standard plugin in the template
--   CI tests now use the nf-core tools version matching the pipeline's template version
-    -   This will reduce errors in opened PRs with each new tools release
+- Switch to [nf-schema](https://nextflow-io.github.io/nf-schema/latest/) for input validation
+    - Replaces its predecessor nf-validation as a standard plugin in the template
+- CI tests now use the nf-core tools version matching the pipeline's template version
+    - This will reduce errors in opened PRs with each new tools release
 
 ## ⛓️‍💥 Breaking changes
 
--   All pipeline commands now require the `pipelines` prefix.
-    This change makes the commands more consistent with `nf-core modules{:bash}` and `nf-core subworkflows{:bash}` commands.
-    The commands which changed are:
+- All pipeline commands now require the `pipelines` prefix.
+  This change makes the commands more consistent with `nf-core modules{:bash}` and `nf-core subworkflows{:bash}` commands.
+  The commands which changed are:
 
     | old command                         | new command                                   |
     | ----------------------------------- | --------------------------------------------- |
@@ -66,16 +66,16 @@ We promise, it's worth it! :pray:
     | `nf-core schema validate{:bash}`    | `nf-core pipelines schema validate{:bash}`    |
     | `nf-core create-logo{:bash}`        | `nf-core pipelines create-logo{:bash}`        |
 
--   Some options have been changed for the `nf-core pipelines download{:bash}` command:
-    -   The `-t` / `--tower` flag has been renamed to `-p` / `--platform`.
-    -   We renamed the short flags for consistency, to always use the first letter of the second word in the long flag:
-        -   The `-d` / `--download-configuration` flag has been renamed to `-c` / `--download-configuration`.
-        -   The `-p` / `--parallel-downloads` flag has been renamed to `-d` / `--parallel-downloads`.
+- Some options have been changed for the `nf-core pipelines download{:bash}` command:
+    - The `-t` / `--tower` flag has been renamed to `-p` / `--platform`.
+    - We renamed the short flags for consistency, to always use the first letter of the second word in the long flag:
+        - The `-d` / `--download-configuration` flag has been renamed to `-c` / `--download-configuration`.
+        - The `-p` / `--parallel-downloads` flag has been renamed to `-d` / `--parallel-downloads`.
 
 ## 🫡 Deprecations
 
--   The `nf-core licences{:bash}` command is deprecated.
--   Python 3.8 reaches end of life in October 2024, so this will probably be the last release supporting Python 3.8.
+- The `nf-core licences{:bash}` command is deprecated.
+- Python 3.8 reaches end of life in October 2024, so this will probably be the last release supporting Python 3.8.
 
 # Tip: Avoiding Merge Conflicts
 
@@ -85,10 +85,10 @@ Doing so means less code will update in the template, and fewer merge conflicts 
 
 So - if you don't use any of these template features:
 
--   fastqc
--   multiqc
--   igenomes
--   nf_schema
+- fastqc
+- multiqc
+- igenomes
+- nf_schema
 
 you can minimize merge conflicts with a quick update and intermediate sync:
 
@@ -154,11 +154,11 @@ This plugin uses a new JSON schema draft (2020-12), requiring changes to the `ne
 
 The following validation parameters have been removed from `nextflow.config` and `nextflow_schema.json`:
 
--   `validationFailUnrecognisedParams`
--   `validationLenientMode`
--   `validationSchemaIgnoreParams`
--   `validationShowHiddenParams`
--   `validate_params`
+- `validationFailUnrecognisedParams`
+- `validationLenientMode`
+- `validationSchemaIgnoreParams`
+- `validationShowHiddenParams`
+- `validate_params`
 
 Instead, use the `validation` scope for `nf-schema` options.
 
@@ -172,9 +172,9 @@ The `UTILS_NFVALIDATION_PLUGIN` subworkflow has been replaced by `UTILS_NFSCHEMA
 
 To prepare for upcoming Nextflow syntax depreciations, for loops and try/catch blocks have been removed from the template config files:
 
--   nf-core configs are now included without try/catch blocks
--   Include statements have been moved after profile definitions to ensure correct profile overriding
--   For more information, see these Nextflow issues: [#1792](https://github.com/nextflow-io/nextflow/issues/1792) and [#5306](https://github.com/nextflow-io/nextflow/issues/5306)
+- nf-core configs are now included without try/catch blocks
+- Include statements have been moved after profile definitions to ensure correct profile overriding
+- For more information, see these Nextflow issues: [#1792](https://github.com/nextflow-io/nextflow/issues/1792) and [#5306](https://github.com/nextflow-io/nextflow/issues/5306)
 
 # Common Merge Conflicts and Solutions
 
