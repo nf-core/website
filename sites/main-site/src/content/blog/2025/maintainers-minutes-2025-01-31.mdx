@@ -35,7 +35,10 @@ In the January meeting we discussed (amongst others) the following topics:
 We decided that the spring cleaning that we planned to do before the hackathon should be done two weeks before the hackathon.
 So it will happen from March 10th to March 14th.
 We decided to extend the duration of the spring cleaning to a full week to give everyone enough time to participate.
-The idea is to clean up issues, PRs, have a look at the repos and open new issues if needed.
+The idea is to do some actual spring cleaning in the nf-core GitHub organization.
+We will go trough the common repos, update old Issues (fixed, still relevant or won't do...), close old PRs (with warning), delete branches that have already been merged...
+We will check if teams (GitHub/Slack) and make sure they are up to date.
+We will also look at pipelines and see if they are still active or need to be archive
 
 ## References
 
@@ -46,18 +49,18 @@ Since no one is really actually using it, he will move forward with his ideas, a
 
 ## Stubs
 
-The discussion about stubs was going a bit in circles and off topic.
-It all started because the Nextflow language server was complaining about unused args in the stub section of any modules.
+We discussed stubs and how we use it.
+One concern is that the Nextflow language server was complaining about unused args in the stub section of any modules
 So people started to remove them, but then we have a stub block that is widely different from the script block, and no really way of knowing if the args are passed correctly within stubs.
-
-We agreed that for now:
+The discussion about stubs was going a bit in circles and off topic, but we still managed to reach an agreement, and for now:
 
 -   We will echo args for now instead of removing them
 -   Talk with Ben, in particular in the static type PR and see if we can be smarter about it
 
 ## CI with latest-everything
 
-We widely agreed that since `latest-everything` can break a pipeline, it is important to test with it, because we want our code to be up to date with the latest update.
+We widely agreed that since the `latest-everything` Nextflow version we use in nf-core CI can sometimes break a pipeline due a change of syntax, behavior, infrastructure usage...
+It is important to test with it (I do think that was one of the primary reason why we started doing it), because we want our code to be up to date with the latest update.
 But we also agreed that we don't want failure in this tests to block PRs.
 The end idea is that we keep the `latest-everything` tests in the CI workflow, but we don't require them to merge the PR.
 
