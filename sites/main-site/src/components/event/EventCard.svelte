@@ -5,18 +5,18 @@
     import { onMount } from "svelte";
 
     export let frontmatter = {
-        title: '',
-        subtitle: '',
+        title: "",
+        subtitle: "",
         start: new Date(),
         startDate: new Date(),
         end: new Date(),
         endDate: new Date(),
-        type: '',
-        locationURL: [''],
+        type: "",
+        locationURL: [""],
     };
-    export let slug: string = '';
-    export let type: string = '';
-    export let time_category: string = '';
+    export let slug: string = "";
+    export let type: string = "";
+    export let time_category: string = "";
     export let showDescription: boolean = true;
     export let narrow: boolean = false;
 
@@ -27,7 +27,7 @@
         training: "warning",
     };
 
-    let event_date: string = '';
+    let event_date: string = "";
 
     const type_class = event_type_classes[type];
     const isSameDay = frontmatter.startDate === frontmatter.endDate;

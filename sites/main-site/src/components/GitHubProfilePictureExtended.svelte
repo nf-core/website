@@ -9,17 +9,17 @@
         labelClasses?: string;
         containerQuery?: boolean;
         imgClasses?: string;
-        children?: import('svelte').Snippet;
+        children?: import("svelte").Snippet;
     }
 
     let {
         username,
-        affiliation = '',
+        affiliation = "",
         size = 50,
-        wrapperClasses = '',
-        labelClasses = $bindable(''),
+        wrapperClasses = "",
+        labelClasses = $bindable(""),
         containerQuery = false,
-        imgClasses = '',
+        imgClasses = "",
         children,
     }: Props = $props();
 
@@ -40,8 +40,8 @@
     {containerQuery}
     {imgClasses}
 >
-    <div class={'ms-2 pe-2 text-start d-flex flex-column profile-name ' + labelClasses}>
-        <div class={'ps-2 pe-3 ' + labelClasses}>
+    <div class={"ms-2 pe-2 text-start d-flex flex-column profile-name " + labelClasses}>
+        <div class={"ps-2 pe-3 " + labelClasses}>
             {#if children}{@render children()}{:else}
                 @{username}
             {/if}

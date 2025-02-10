@@ -7,11 +7,11 @@
     let {
         date = $bindable(),
         date_options = {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: 'numeric',
-            minute: 'numeric',
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            hour: "numeric",
+            minute: "numeric",
             hour12: false,
         },
     }: Props = $props();

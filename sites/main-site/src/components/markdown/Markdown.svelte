@@ -76,7 +76,6 @@
     plugins.push({
         rehypePlugin: [rehypeHighlight],
     });
-
 </script>
 
 <Markdown {md} {plugins} />

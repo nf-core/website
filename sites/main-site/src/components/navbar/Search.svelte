@@ -8,7 +8,7 @@
         id?: string;
     }
 
-    let { id = '' }: Props = $props();
+    let { id = "" }: Props = $props();
     onMount(() => {
         docsearch({
             container: "#" + id,

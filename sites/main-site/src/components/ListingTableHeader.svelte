@@ -8,7 +8,7 @@
         textCenter?: boolean;
     }
 
-    let { name = '', title = 'Sort by ' + name.toLowerCase(), textEnd = false, textCenter = false }: Props = $props();
+    let { name = "", title = "Sort by " + name.toLowerCase(), textEnd = false, textCenter = false }: Props = $props();
     let sortInverse = false;
 
     function handleSort(sor) {
@@ -36,7 +36,7 @@
         class:fa-duotone={$SortBy.startsWith(name)}
         class:fa-regular={!$SortBy.startsWith(name)}
         class:text-muted={!$SortBy.startsWith(name)}
-        class:fa-swap-opacity={!$SortBy.endsWith(';inverse')}
+        class:fa-swap-opacity={!$SortBy.endsWith(";inverse")}
     ></i>
     {name}
 </th>

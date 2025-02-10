@@ -1,8 +1,8 @@
 <script lang="ts">
     interface Props {
-        type: 'event' | 'blog';
+        type: "event" | "blog";
         timeSpan?: [number, number];
-        children?: import('svelte').Snippet;
+        children?: import("svelte").Snippet;
     }
 
     let { type, timeSpan = [0, 0], children }: Props = $props();

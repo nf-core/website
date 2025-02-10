@@ -1,8 +1,8 @@
 <script lang="ts">
-    import ListingTableHeader from '@components/ListingTableHeader.svelte';
-    import PipelineCard from '@components/pipeline/PipelineCard.svelte';
-    import { CurrentFilter, SortBy, DisplayStyle, SearchQuery } from '@components/store';
-    import { onMount } from 'svelte';
+    import ListingTableHeader from "@components/ListingTableHeader.svelte";
+    import PipelineCard from "@components/pipeline/PipelineCard.svelte";
+    import { CurrentFilter, SortBy, DisplayStyle, SearchQuery } from "@components/store";
+    import { onMount } from "svelte";
 
     interface Pipeline {
         name: string;
@@ -29,10 +29,10 @@
     let displayStyle = $state($DisplayStyle);
     let searchQuery = $state($SearchQuery);
     let sortBy = $state($SortBy);
-    let sortInverse = $derived(sortBy.endsWith(';inverse'));
+    let sortInverse = $derived(sortBy.endsWith(";inverse"));
 
     const searchPipelines = (pipeline: Pipeline) => {
-        if (searchQuery === '') {
+        if (searchQuery === "") {
             return true;
         }
         if (pipeline.name.toLowerCase().includes(searchQuery.toLowerCase())) {
@@ -48,36 +48,36 @@
     };
 
     const filterPipelines = (pipeline: Pipeline) => {
-        if (currentFilter.find((f) => f.name === 'Released') && pipeline.releases.length > 1 && !pipeline.archived) {
+        if (currentFilter.find((f) => f.name === "Released") && pipeline.releases.length > 1 && !pipeline.archived) {
             return true;
         }
         if (
-            currentFilter.find((f) => f.name === 'Under development') &&
+            currentFilter.find((f) => f.name === "Under development") &&
             pipeline.releases.length === 1 &&
             !pipeline.archived
         ) {
             return true;
         }
-        if (currentFilter.find((f) => f.name === 'Archived') && pipeline.archived === true) {
+        if (currentFilter.find((f) => f.name === "Archived") && pipeline.archived === true) {
             return true;
         }
         return false;
     };
 
     const sortPipelines = (a: Pipeline, b: Pipeline) => {
-        if (sortBy.startsWith('Name')) {
+        if (sortBy.startsWith("Name")) {
             if (sortInverse) {
                 return b.name.localeCompare(a.name);
             } else {
                 return a.name.localeCompare(b.name);
             }
-        } else if (sortBy.startsWith('Stars')) {
+        } else if (sortBy.startsWith("Stars")) {
             if (sortInverse) {
                 return a.stargazers_count - b.stargazers_count;
             } else {
                 return b.stargazers_count - a.stargazers_count;
             }
-        } else if (sortBy.startsWith('Last release')) {
+        } else if (sortBy.startsWith("Last release")) {
             if (a.releases.length === 1 && b.releases.length === 1) {
                 if (sortInverse) {
                     return (
@@ -109,9 +109,9 @@
 </script>
 
 <div class="listing px-2 py-4">
-    {#if displayStyle === 'grid'}
+    {#if displayStyle === "grid"}
         <div class="grid">
-            {#if filteredPipelines.length === 0 && searchQuery !== ''}
+            {#if filteredPipelines.length === 0 && searchQuery !== ""}
                 <div class="g-col-12 g-col-md-8 g-start-md-3">
                     <div class="alert alert-secondary text-center" role="alert">
                         No pipelines found. Try changing your search query or filters.
@@ -143,7 +143,7 @@
                             <div class="position-relative p-3">
                                 <a
                                     class="stretched-link"
-                                    href={'/' + pipeline.name + '/' + pipeline.releases[0].tag_name + '/'}
+                                    href={"/" + pipeline.name + "/" + pipeline.releases[0].tag_name + "/"}
                                     >{pipeline.name}</a
                                 >
                             </div>
@@ -169,7 +169,7 @@
                         </td>
                         <td class="text-end">
                             <span>
-                                {pipeline.releases.length > 1 ? pipeline.releases[0].tag_name : '-'}
+                                {pipeline.releases.length > 1 ? pipeline.releases[0].tag_name : "-"}
                             </span>
                         </td>
                     </tr>

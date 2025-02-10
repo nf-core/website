@@ -1,7 +1,7 @@
 <!-- @migration-task Error while migrating Svelte code: This migration would change the name of a slot making the component unusable -->
 <script lang="ts">
-    import { onMount } from 'svelte';
-    import { CurrentFilter, Filters, SortBy, DisplayStyle, SearchQuery } from '@components/store';
+    import { onMount } from "svelte";
+    import { CurrentFilter, Filters, SortBy, DisplayStyle, SearchQuery } from "@components/store";
 
     let {
         filter = [],
@@ -91,7 +91,7 @@
                             onblur={() => event.target.blur()}
                         >
                             {#if fil.icon}
-                                <i class={fil.icon + ' me-1'}></i>
+                                <i class={fil.icon + " me-1"}></i>
                             {/if}
                             {fil.name}
                             {#if fil.count >= 0}
@@ -128,7 +128,7 @@
                                     tabindex="0"
                                 >
                                     {#if fil.icon}
-                                        <i class={fil.icon + ' fa-fw me-1'}></i>
+                                        <i class={fil.icon + " fa-fw me-1"}></i>
                                     {/if}
                                     {fil.name}
                                     {#if fil.count >= 0}
@@ -185,7 +185,7 @@
                             class:active={$DisplayStyle === dis.name}
                             title={dis.name + " view"}
                             data-bs-toggle="tooltip"
-                            aria-label={dis.name + ' view'}
+                            aria-label={dis.name + " view"}
                             ><i class={dis.icon}></i>
                         </button>
                     {/each}

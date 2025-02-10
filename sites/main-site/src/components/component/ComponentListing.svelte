@@ -1,9 +1,8 @@
 <script lang="ts">
-
-    import ListingTableHeader from '@components/ListingTableHeader.svelte';
-    import PaginationNav from '@components/PaginationNav.svelte';
-    import ComponentCard from '@components/component/ComponentCard.svelte';
-    import { SortBy, DisplayStyle, SearchQuery, currentPage } from '@components/store';
+    import ListingTableHeader from "@components/ListingTableHeader.svelte";
+    import PaginationNav from "@components/PaginationNav.svelte";
+    import ComponentCard from "@components/component/ComponentCard.svelte";
+    import { SortBy, DisplayStyle, SearchQuery, currentPage } from "@components/store";
 
     interface Props {
         components?: {

@@ -1,8 +1,8 @@
 <script lang="ts">
-    import { run } from 'svelte/legacy';
+    import { run } from "svelte/legacy";
 
-    import ListingTableHeader from '@components/ListingTableHeader.svelte';
-    import { SearchQuery, SortBy } from '@components/store';
+    import ListingTableHeader from "@components/ListingTableHeader.svelte";
+    import { SearchQuery, SortBy } from "@components/store";
 
     interface Props {
         configs?: {

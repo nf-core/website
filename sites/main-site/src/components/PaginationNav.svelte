@@ -1,8 +1,8 @@
 <script lang="ts">
-    import { run } from 'svelte/legacy';
+    import { run } from "svelte/legacy";
 
-    import { currentPage } from '@components/store';
-    import { onMount } from 'svelte';
+    import { currentPage } from "@components/store";
+    import { onMount } from "svelte";
 
     interface Props {
         lastPage?: number;

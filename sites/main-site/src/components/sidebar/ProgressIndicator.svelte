@@ -17,11 +17,11 @@
 
     let {
         progress = $bindable(0),
-        label = '',
+        label = "",
         size = 40,
         strokeWidth = 10,
-        href = '#',
-        title = '',
+        href = "#",
+        title = "",
         isCurrent = $bindable(false),
         onScroll = false,
         confetti = false,

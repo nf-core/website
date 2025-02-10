@@ -1,9 +1,9 @@
 ---
-import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
-import FooterPrevNext from '@components/footer/FooterPrevNext.astro';
-import SubFooter from '@components/footer/SubFooter.astro';
-import { getCollection, render } from 'astro:content';
-import type { SidebarEntry } from '@utils/types';
+import MarkdownTocLayout from "@layouts/MarkdownTocLayout.astro";
+import FooterPrevNext from "@components/footer/FooterPrevNext.astro";
+import SubFooter from "@components/footer/SubFooter.astro";
+import { getCollection, render } from "astro:content";
+import type { SidebarEntry } from "@utils/types";
 import {
     findCurrentGroup,
     addEntriesToSection,
@@ -18,7 +18,7 @@ export async function getStaticPaths() {
     const docs = await getCollection("docs");
     return docs.map((doc) => ({
         params: {
-            doc: doc.id.replace(/\.[^/.]+$/, ''),
+            doc: doc.id.replace(/\.[^/.]+$/, ""),
         },
         props: {
             doc: doc,

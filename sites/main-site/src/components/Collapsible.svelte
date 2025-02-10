@@ -1,18 +1,18 @@
 <script lang="ts">
-    import { run } from 'svelte/legacy';
+    import { run } from "svelte/legacy";
 
-    import { showHelp } from '@components/store';
+    import { showHelp } from "@components/store";
     interface Props {
         buttonText?: string;
         buttonClass?: string;
         textClass?: string;
-        children?: import('svelte').Snippet;
+        children?: import("svelte").Snippet;
     }
 
     let {
-        buttonText = 'Help text',
-        buttonClass = 'btn-outline-secondary me-auto',
-        textClass = '',
+        buttonText = "Help text",
+        buttonClass = "btn-outline-secondary me-auto",
+        textClass = "",
         children,
     }: Props = $props();
     let show;
@@ -23,11 +23,11 @@
 
 <div>
     <div class="d-flex">
-        <button class={'btn ' + buttonClass} class:open={show} type="button" onclick={() => (show = !show)}>
+        <button class={"btn " + buttonClass} class:open={show} type="button" onclick={() => (show = !show)}>
             {buttonText}
         </button>
     </div>
-    <div class={'collapse ' + textClass} class:show>
+    <div class={"collapse " + textClass} class:show>
         {@render children?.()}
     </div>
 </div>

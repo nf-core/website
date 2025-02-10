@@ -1,10 +1,10 @@
 <script lang="ts">
-    import { showHidden } from '@components/store';
-    import Collapsible from '@components/Collapsible.svelte';
-    import Markdown from '@components/markdown/Markdown.svelte';
+    import { showHidden } from "@components/store";
+    import Collapsible from "@components/Collapsible.svelte";
+    import Markdown from "@components/markdown/Markdown.svelte";
 
     let { title, property } = $props();
-    const id = title.replace(' ', '-');
+    const id = title.replace(" ", "-");
 
     const pattern = property.pattern;
     let longPattern = $state([]);
@@ -26,7 +26,7 @@
     class:show={$showHidden}
 >
     <div id={title} class="col-12 col-md-3 title border-right border-secondary text-nowrap p-0 pe-2">
-        <a class="text-decoration-none d-block overflow-x-scroll" aria-hidden="true" tabindex="-1" href={'#' + title}
+        <a class="text-decoration-none d-block overflow-x-scroll" aria-hidden="true" tabindex="-1" href={"#" + title}
             ><i class="ms-1 fas invisible" aria-hidden="true"></i>
             <span class="">
                 {#if property.fa_icon}

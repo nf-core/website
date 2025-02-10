@@ -1,7 +1,7 @@
 <script lang="ts">
-    import SchemaListingGroup from '@components/schema/SchemaListingGroup.svelte';
-    import { onMount } from 'svelte';
-    import { currentHeading } from '@components/store';
+    import SchemaListingGroup from "@components/schema/SchemaListingGroup.svelte";
+    import { onMount } from "svelte";
+    import { currentHeading } from "@components/store";
 
     let { schema } = $props();
 

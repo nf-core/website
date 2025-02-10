@@ -1,8 +1,8 @@
 <script lang="ts">
-    import ListingCard from '@components/ListingCard.svelte';
-    import Markdown from '@components/markdown/Markdown.svelte';
-    import { formatDistanceToNow, add } from 'date-fns';
-    import { Confetti } from 'svelte-confetti';
+    import ListingCard from "@components/ListingCard.svelte";
+    import Markdown from "@components/markdown/Markdown.svelte";
+    import { formatDistanceToNow, add } from "date-fns";
+    import { Confetti } from "svelte-confetti";
 
     let { pipeline } = $props();
 

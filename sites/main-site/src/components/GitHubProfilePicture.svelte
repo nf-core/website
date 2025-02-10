@@ -9,18 +9,18 @@
         wrapperClasses?: string;
         imgClasses?: string;
         containerQuery?: boolean;
-        children?: import('svelte').Snippet;
+        children?: import("svelte").Snippet;
     }
 
     let {
         name,
         count = 0,
-        image = 'https://github.com/' + name + '.png',
+        image = "https://github.com/" + name + ".png",
         size = 60,
         circle = false,
-        linkClasses = '',
-        wrapperClasses = '',
-        imgClasses = '',
+        linkClasses = "",
+        wrapperClasses = "",
+        imgClasses = "",
         containerQuery = false,
         children,
     }: Props = $props();

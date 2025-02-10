@@ -1,19 +1,19 @@
 ---
-import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
-import { getCollection, render } from 'astro:content';
-import { YouTube } from '@astro-community/astro-embed-youtube';
-import VideoTranscript from '@components/VideoTranscript.svelte';
-import Admonition from '@components/Admonition.astro';
-import type { CollectionEntry } from 'astro:content';
-import type { SidebarEntry } from '@utils/types';
-import { createLinkOrGroup } from '@utils/functions';
-import ListModals from '@components/event/HackathonProjects/ListModals.astro';
+import MarkdownTocLayout from "@layouts/MarkdownTocLayout.astro";
+import { getCollection, render } from "astro:content";
+import { YouTube } from "@astro-community/astro-embed-youtube";
+import VideoTranscript from "@components/VideoTranscript.svelte";
+import Admonition from "@components/Admonition.astro";
+import type { CollectionEntry } from "astro:content";
+import type { SidebarEntry } from "@utils/types";
+import { createLinkOrGroup } from "@utils/functions";
+import ListModals from "@components/event/HackathonProjects/ListModals.astro";
 
 export async function getStaticPaths() {
     const events = await getCollection("events");
     return events.map((event) => ({
         params: {
-            event: event.id.replace(/\.[^/.]+$/, ''),
+            event: event.id.replace(/\.[^/.]+$/, ""),
         },
         props: {
             event: event,
@@ -68,7 +68,7 @@ events
 
 const addEntriesToSection = (sections, events: CollectionEntry<"events">[]) => {
     events.forEach((event) => {
-        const parts = event.id.replace(/\.[^/.]+$/, '').split('/');
+        const parts = event.id.replace(/\.[^/.]+$/, "").split("/");
         let currentLevel = sections;
 
         parts.forEach((part, i) => {
@@ -81,9 +81,9 @@ const addEntriesToSection = (sections, events: CollectionEntry<"events">[]) => {
                 if (existingEntry.type === "group") {
                     // workaround for index files in nested events, where another element could already have created the group
                     if (/index\.(md|mdx)$/.test(event.id) && i === parts.length - 1) {
-                        existingEntry.href = '/events/' + event.id.replace(/\.[^/.]+$/, '');
-                        existingEntry.isCurrent = Astro.url.pathname === '/events/' + event.id.replace(/\.[^/.]+$/, '');
-                        existingEntry.collapsed = Astro.url.pathname === '/events/' + event.id.replace(/\.[^/.]+$/, '');
+                        existingEntry.href = "/events/" + event.id.replace(/\.[^/.]+$/, "");
+                        existingEntry.isCurrent = Astro.url.pathname === "/events/" + event.id.replace(/\.[^/.]+$/, "");
+                        existingEntry.collapsed = Astro.url.pathname === "/events/" + event.id.replace(/\.[^/.]+$/, "");
                     }
                     currentLevel = existingEntry.entries;
                 }
@@ -93,7 +93,7 @@ const addEntriesToSection = (sections, events: CollectionEntry<"events">[]) => {
                 const newEntry = createLinkOrGroup(
                     parts.slice(0, i + 1).join("_"),
                     title,
-                    '/events/' + event.id.replace(/\.[^/.]+$/, ''),
+                    "/events/" + event.id.replace(/\.[^/.]+$/, ""),
                     lastPart,
                     Astro.url.pathname,
                 );
@@ -119,8 +119,8 @@ addEntriesToSection(sections, events);
 // sort .entries by date
 sections.forEach((year) => {
     year.entries.sort((a, b) => {
-        const eventA = events.find((event) => '/events/' + event.id.replace(/\.[^/.]+$/, '') === a.href);
-        const eventB = events.find((event) => '/events/' + event.id.replace(/\.[^/.]+$/, '') === b.href);
+        const eventA = events.find((event) => "/events/" + event.id.replace(/\.[^/.]+$/, "") === a.href);
+        const eventB = events.find((event) => "/events/" + event.id.replace(/\.[^/.]+$/, "") === b.href);
         return eventB.data.startDate - eventA.data.startDate;
     });
 });
