@@ -305,7 +305,7 @@ code:not(pre code),
       padding-top: 0;
       padding-bottom: 0;
     }
-    &:not([data-line-numbers]) {
+    &:not([data-line-numbers]):not(.hljs) {
       & > span {
         padding-left: 1.5em;
         padding-right: 1.5em;
