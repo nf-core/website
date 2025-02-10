@@ -13,10 +13,9 @@ leaders:
 
 nf-core/seqinspector aims to be a pipeline for initial quality control of sequencing data. Input is either FASTQ files or a run folder, and output is planned to be a global MultiQC report and, if wished, MultiQC files of groups that are defined in the sample sheet. By joining this group you can
 
-1. Add existing modules to a pipeline (beginner friendly)
-2. Start with implementation of long read methods (advanced level, we have only limited experience in the group, so help would be more than appreciated!).
-3. Work on display of the data in the MultiQC reports (beginner - intermediate level)
-4. Write documentation
+1. Start with implementation of long read methods (advanced level, we have only limited experience in the group, so help would be more than appreciated!).
+1. Work on display of the data in the MultiQC reports (beginner - intermediate level)
+1. Write documentation
 
 ## Goal
 
