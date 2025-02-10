@@ -78,23 +78,23 @@ A few examples:
 
 1. A simple 2x150bp paired end run with no sample or molecular indices:
 
--   `150T150T`
--   `[+T, +T]`
+- `150T150T`
+- `[+T, +T]`
 
 2. A 2x75bp paired end run with an 8bp I1 index read:
 
--   `75T8B75T`
--   `[+T, 8B, +T]`
+- `75T8B75T`
+- `[+T, 8B, +T]`
 
 3. A 2x150bp paired end run with an 8bp I1 index read and an inline 6bp UMI in read 1:
 
--   `8M142T8B150T`
--   `[8M+T, 8B, +T]`
+- `8M142T8B150T`
+- `[8M+T, 8B, +T]`
 
 4. A 2x150bp duplex sequencing run with dual sample-barcoding (I1 and I2) and both a 10bp UMI and 5bp monotemplate at the start of both R1 and R2:
 
--   `10M5S135T8B8B10M5S135T`
--   `[10M5S+T, 8B, 8B, 10M5S+T]`
+- `10M5S135T8B8B10M5S135T`
+- `[10M5S+T, 8B, 8B, 10M5S+T]`
 
 By utilizing the [fgbio toolkit][fgbio-homepage-link] and the [Read Structure][read-structure-link] description, [nf-core/fastquorum][nf-core-fastquorum-link] is able to support the diversity of molecular barcoding schemes.
 A few that are commercially available are described below:
