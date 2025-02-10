@@ -18,7 +18,7 @@ To create the necessary files for nf-test and ensure a smooth transition, we wil
 
 Here are the steps to follow:
 
--   Use nf-core/tools to migrate the module/subworkflow with `--migrate-pytest`.
+- Use nf-core/tools to migrate the module/subworkflow with `--migrate-pytest`.
 
     <Tabs names={["modules","subworkflows"]} icons={['<i class="far fa-xs fa-code-commit me-2"></i>','<i class="far fa-code-fork fa-rotate-90 me-2"></i>']} client:idle>
 
@@ -55,9 +55,9 @@ Here are the steps to follow:
 
     </Tabs>
 
--   You will then be asked if you want to delete the old files or keep them. No worries, we will print the content of the old pytests in the terminal so you can copy the information to the new nf-test files.
+- You will then be asked if you want to delete the old files or keep them. No worries, we will print the content of the old pytests in the terminal so you can copy the information to the new nf-test files.
 
--   Copy the inputs from the pytests and provide them as positional inputs `input[0]` in the `main.nf.test` file
+- Copy the inputs from the pytests and provide them as positional inputs `input[0]` in the `main.nf.test` file
 
     ```groovy title="main.nf.test"
     input[0] = [
@@ -66,9 +66,9 @@ Here are the steps to follow:
             ]
     ```
 
--   Follow the steps in the tutorial for [writing nf-tests](/docs/tutorials/tests_and_test_data/nf-test_writing_tests) to update the contents of the `main.nf.test` file with the information from the pytest tests.
+- Follow the steps in the tutorial for [writing nf-tests](/docs/tutorials/tests_and_test_data/nf-test_writing_tests) to update the contents of the `main.nf.test` file with the information from the pytest tests.
 
--   Create the snapshot of your test with the following command.
+- Create the snapshot of your test with the following command.
 
     <Tabs names={["modules","subworkflows"]} icons={['<i class="far fa-xs fa-code-commit me-2"></i>','<i class="far fa-code-fork  fa-rotate-90 me-2"></i>']} client:idle>
 
@@ -85,9 +85,9 @@ Here are the steps to follow:
 
     </Tabs>
 
--   If you chose to not remove the old module directory with nf-core/tools:
+- If you chose to not remove the old module directory with nf-core/tools:
 
-    -   Remove the corresponding tags from `tests/config/pytest_modules.yml` so that py-tests for the module/subworkflow will be skipped during GitHub CI.
+    - Remove the corresponding tags from `tests/config/pytest_modules.yml` so that py-tests for the module/subworkflow will be skipped during GitHub CI.
 
     <Tabs names={["modules","subworkflows"]} icons={['<i class="far fa-xs fa-code-commit me-2"></i>','<i class="far fa-code-fork  fa-rotate-90 me-2"></i>']} client:idle>
 
@@ -134,4 +134,4 @@ Here are the steps to follow:
 
     </Tabs>
 
--   create a PR on the [nf-core/modules repo](https://github.com/nf-core/modules/) and add the `nf-test` label to it.
+- create a PR on the [nf-core/modules repo](https://github.com/nf-core/modules/) and add the `nf-test` label to it.
