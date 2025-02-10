@@ -331,17 +331,18 @@ _Motivation_: I want to snapshot all files with stable md5sums, but only snapsho
 
 ```bash
 then {
-    def stablefiles = []
-    file(process.out.db.get(0).get(1)).eachFileRecurse{ file -> if (!file.isDirectory() && !["database.log", "database.fastaid2LCAtaxid", "database.taxids_with_multiple_offspring"].find {file.toString().endsWith(it)}) {stablefiles.add(file)} }
-    def unstablefiles = []
-    file(process.out.db.get(0).get(1)).eachFileRecurse{ file -> if (["database.log", "database.fastaid2LCAtaxid", "database.taxids_with_multiple_offspring"].find {file.toString().endsWith(it)}) {unstablefiles.add(file.getName().toString())} }
+    def allFiles = file(process.out.db.get(0).get(1)).listFiles().sort()
+    def unstableNames = ["database.log", "database.fastaid2LCAtaxid", "database.taxids_with_multiple_offspring"]
+    def stableFiles = allFiles.grep { file -> ! unstableNames.contains(file.name) }
+    def stableNames = allFiles.grep { file -> unstableNames.contains(file.name.toString()) }
+
     assertAll(
-        { assert process.success },
         { assert snapshot(
-                stablefiles.sort(),
-                unstablefiles.sort(),
-                process.out.versions
-            ).match() }
+            stableFiles,
+            stableNames,
+            process.out.versions
+        ).match() },
+        { assert process.success }
     )
 }
 ```
