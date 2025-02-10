@@ -11,7 +11,7 @@ leaders:
     slack: "https://nfcore.slack.com/team/U07RHAG6D89"
 ---
 
-Looking into making more packages build natively for `linux/arm64` and improving performance of the important ones for faster and cheaper runs on ARM machines such as AWS Graviton. 
+Looking into making more packages build natively for `linux/arm64` and improving performance of the important ones for faster and cheaper runs on ARM machines such as AWS Graviton.
 Also - any help in deploying and testing `linux/arm64` on your favourite pipelines, or performance and cost benchmarking!
 
 See [current progress](https://github.com/ewels/nf-core-arm-discovery)
