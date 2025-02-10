@@ -1,6 +1,7 @@
 <script>
     import SchemaListingElement from "@components/schema/SchemaListingElement.svelte";
     import { showHidden } from "@components/store";
+    import Markdown from "@components/markdown/Markdown.svelte";
 
     export let definition;
     export let id;
@@ -40,7 +41,11 @@
         </h2>
     </div>
     <div class="card-body pb-0">
-        <p class="mb-0">{definition.description ? definition.description : ""}</p>
+        <p class="mb-0">
+            {#if definition.description}
+                <Markdown md={definition.description} />
+            {/if}
+        </p>
         {#if definition.properties}
             <div class="properties">
                 {#each Object.entries(definition.properties) as [title, property] (title)}
