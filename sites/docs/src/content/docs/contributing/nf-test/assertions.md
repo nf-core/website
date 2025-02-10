@@ -337,12 +337,12 @@ then {
     def stableNames = allFiles.grep { file -> unstableNames.contains(file.name.toString()) }
 
     assertAll(
+        { assert process.success },
         { assert snapshot(
-            stableFiles,
-            stableNames,
-            process.out.versions
-        ).match() },
-        { assert process.success }
+                stableFiles,
+                stableNames,
+                process.out.versions
+            ).match() }
     )
 }
 ```
