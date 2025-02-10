@@ -13,7 +13,7 @@ import yaml from '@rollup/plugin-yaml';
 import { defineConfig } from 'astro/config';
 import { FontaineTransform } from 'fontaine';
 import { h } from 'hastscript';
-import addClasses from 'rehype-add-classes';
+import addClasses from 'rehype-class-names';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeKatex from 'rehype-katex';
 import rehypePrettyCode from 'rehype-pretty-code';
