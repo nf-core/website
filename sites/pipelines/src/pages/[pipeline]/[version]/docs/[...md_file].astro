@@ -39,12 +39,12 @@ export async function getStaticPaths() {
                           }))
                         : entries.map((entry) => {
                               return {
-                                  slug: entry.slug
+                                  slug: entry?.slug
                                       .replace(`${pipeline.name}/${release.tag_name}/`, "")
                                       .replace("docs/", "")
                                       .replace(".mdx", "")
                                       .replace(".md", ""),
-                                  data: entry.data,
+                                  data: entry?.data,
                               };
                           });
 
@@ -53,7 +53,7 @@ export async function getStaticPaths() {
                             params: { pipeline: pipeline.name, version: release.tag_name, md_file: md_file.slug },
                             props: {
                                 versions: releases.map((r) => r.tag_name),
-                                md_files,
+                                md_files: md_files.filter((f) => f.slug),
                                 description: pipeline.description,
                             },
                         });
