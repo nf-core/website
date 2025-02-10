@@ -8,7 +8,7 @@
         add_class?: string;
     }
 
-    let { frontmatter = {}, add_class = 'btn-outline-success' }: Props = $props();
+    let { frontmatter = {}, add_class = "btn-outline-success" }: Props = $props();
 
     let event_location = "";
     if (typeof frontmatter.locationURL === "string") {

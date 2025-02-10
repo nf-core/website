@@ -5,15 +5,15 @@
         copiedLabel?: string;
         classes?: string;
         copiedClasses?: string;
-        children?: import('svelte').Snippet;
+        children?: import("svelte").Snippet;
     }
 
     let {
         text,
-        label = '',
+        label = "",
         copiedLabel = '<i class="fa-regular px-1 fa-clipboard-check" />',
-        classes = '',
-        copiedClasses = '',
+        classes = "",
+        copiedClasses = "",
         children,
     }: Props = $props();
 
@@ -31,7 +31,7 @@
 </script>
 
 <span
-    class={'copy-url ' + currentClasses}
+    class={"copy-url " + currentClasses}
     onclick={() => copyToClipboard(text)}
     onkeypress={() => copyToClipboard(text)}
     data-bs-toggle="tooltip"

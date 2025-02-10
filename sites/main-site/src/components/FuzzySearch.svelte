@@ -6,7 +6,7 @@
         placeholder?: string;
     }
 
-    let { possibleResults = [], placeholder = 'Search' }: Props = $props();
+    let { possibleResults = [], placeholder = "Search" }: Props = $props();
 
     let results = $state([]);
 

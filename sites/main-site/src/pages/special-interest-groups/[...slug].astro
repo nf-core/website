@@ -1,8 +1,8 @@
 ---
-import { getCollection, render } from 'astro:content';
-import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
-import SidebarStatsRow from '@components/sidebar/SidebarStatsRow.astro';
-import GitHubProfilePictureExtended from '@components/GitHubProfilePictureExtended.svelte';
+import { getCollection, render } from "astro:content";
+import MarkdownTocLayout from "@layouts/MarkdownTocLayout.astro";
+import SidebarStatsRow from "@components/sidebar/SidebarStatsRow.astro";
+import GitHubProfilePictureExtended from "@components/GitHubProfilePictureExtended.svelte";
 
 import type { SidebarEntry } from "@utils/types";
 
@@ -10,18 +10,18 @@ const groupEntries = await getCollection("special-interest-groups");
 export async function getStaticPaths() {
     const groupEntries = await getCollection("special-interest-groups");
     return groupEntries.map((entry) => ({
-        params: { slug: entry.id.replace(/\.[^/.]+$/, '') },
-        props: { entry: entry, section: entry.id.replace(/\.[^/.]+$/, '').split('/')[0] },
+        params: { slug: entry.id.replace(/\.[^/.]+$/, "") },
+        props: { entry: entry, section: entry.id.replace(/\.[^/.]+$/, "").split("/")[0] },
     }));
 }
 const { entry, section } = Astro.props;
 const { headings, Content } = await render(entry);
 const md_github_url =
-    'https://github.com/nf-core/website/blob/main/sites/main-site/src/content/special-interest-groups/' + entry.id;
-const current_section = groupEntries.filter((group) => group.id.replace(/\.[^/.]+$/, '').split('/')[0] === section);
+    "https://github.com/nf-core/website/blob/main/sites/main-site/src/content/special-interest-groups/" + entry.id;
+const current_section = groupEntries.filter((group) => group.id.replace(/\.[^/.]+$/, "").split("/")[0] === section);
 const indexPage =
-    '/special-interest-groups/' +
-    current_section.find((group) => group.id.includes('index.md'))?.id.replace(/\.[^/.]+$/, '');
+    "/special-interest-groups/" +
+    current_section.find((group) => group.id.includes("index.md"))?.id.replace(/\.[^/.]+$/, "");
 
 const sections: SidebarEntry[] = [
     {
@@ -39,10 +39,10 @@ const sections: SidebarEntry[] = [
                     type: "link",
                     id: group.data.title,
                     label: group.data.title,
-                    href: '/special-interest-groups/' + group.id.replace(/\.[^/.]+$/, ''),
+                    href: "/special-interest-groups/" + group.id.replace(/\.[^/.]+$/, ""),
                     isCurrent:
-                        Astro.url.pathname.replace('.html', '') ===
-                        '/special-interest-groups/' + group.id.replace(/\.[^/.]+$/, ''),
+                        Astro.url.pathname.replace(".html", "") ===
+                        "/special-interest-groups/" + group.id.replace(/\.[^/.]+$/, ""),
                 };
             }),
     },

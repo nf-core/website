@@ -1,9 +1,8 @@
 <script lang="ts">
-
-    import FilterBar from '@components/FilterBar.svelte';
-    import EventCard from '@components/event/EventCard.svelte';
-    import { CurrentFilter, SearchQuery } from '@components/store';
-    import { onMount } from 'svelte';
+    import FilterBar from "@components/FilterBar.svelte";
+    import EventCard from "@components/event/EventCard.svelte";
+    import { CurrentFilter, SearchQuery } from "@components/store";
+    import { onMount } from "svelte";
 
     interface Props {
         events?: any;

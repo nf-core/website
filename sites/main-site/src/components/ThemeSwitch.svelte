@@ -1,13 +1,13 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
+    import { onMount } from "svelte";
     interface Props {
-        light?: import('svelte').Snippet;
-        dark?: import('svelte').Snippet;
+        light?: import("svelte").Snippet;
+        dark?: import("svelte").Snippet;
     }
 
     let { light, dark }: Props = $props();
 
-    let theme = $state('dark');
+    let theme = $state("dark");
 
     function setTheme(theme) {
         //NOTE: same as in BaseHead.astro
@@ -53,10 +53,10 @@
         aria-expanded="false"
         title="Change theme button"
     >
-        <i class="theme-icon-light" class:d-none={theme !== 'light'}>
+        <i class="theme-icon-light" class:d-none={theme !== "light"}>
             {@render light?.()}
         </i>
-        <i class="theme-icon-dark" class:d-none={theme !== 'dark'}>
+        <i class="theme-icon-dark" class:d-none={theme !== "dark"}>
             {@render dark?.()}
         </i>
     </button>

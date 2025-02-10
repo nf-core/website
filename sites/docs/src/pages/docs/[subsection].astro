@@ -81,10 +81,10 @@ let sections: SidebarEntry[] = [
     },
 ];
 // sort docs first depth, then by weight, then by title
-const sortDocs = (a: CollectionEntry<'docs'>, b: CollectionEntry<'docs'>) => {
-    if (a.id.split('/').length < b.id.split('/').length) {
+const sortDocs = (a: CollectionEntry<"docs">, b: CollectionEntry<"docs">) => {
+    if (a.id.split("/").length < b.id.split("/").length) {
         return 1;
-    } else if (a.id.split('/').length > b.id.split('/').length) {
+    } else if (a.id.split("/").length > b.id.split("/").length) {
         return -1;
     } else {
         a.data.weight = a.data.weight || 100;
@@ -105,8 +105,8 @@ const sortDocs = (a: CollectionEntry<'docs'>, b: CollectionEntry<'docs'>) => {
     }
 };
 
-let subsectionDocs: CollectionEntry<'docs'>[] = docs.filter((doc) => doc.id.startsWith(subsection + '/'));
-const subsections = sections.find((section) => section.href?.startsWith('/docs/' + subsection));
+let subsectionDocs: CollectionEntry<"docs">[] = docs.filter((doc) => doc.id.startsWith(subsection + "/"));
+const subsections = sections.find((section) => section.href?.startsWith("/docs/" + subsection));
 
 subsectionDocs.sort(sortDocs);
 addEntriesToSection(sections, docs, Astro.url.pathname);
@@ -195,7 +195,7 @@ const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, "").split("/");
                                                     {
                                                         docs.find(
                                                             (doc) =>
-                                                                '/docs/' + doc.id.replace(/\.[^/.]+$/, '') ===
+                                                                "/docs/" + doc.id.replace(/\.[^/.]+$/, "") ===
                                                                 section.href,
                                                         )?.data.subtitle
                                                     }

@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { currentHeading } from '@components/store';
-    import SchemaListingTocButtons from '@components/schema/SchemaListingTocButtons.svelte';
+    import { currentHeading } from "@components/store";
+    import SchemaListingTocButtons from "@components/schema/SchemaListingTocButtons.svelte";
     interface Props {
         headings: {
             text: string;

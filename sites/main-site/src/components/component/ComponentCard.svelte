@@ -24,17 +24,17 @@
             version: string;
         }[];
         subworkflows?: string[];
-    };
+    }
 
     let { component }: Props = $props();
-    const href = '/' + component.type + 's/' + component.name + '/';
+    const href = "/" + component.type + "s/" + component.name + "/";
     let collapsePipelines = $state(true);
 </script>
 
 <ListingCard>
     <!-- @migration-task: migrate this slot by hand, `card-header` is an invalid identifier -->
     <div slot="card-header">
-        <a class="text-decoration-none" {href}>{@html component.name.replace('_', '_<wbr>')} </a>
+        <a class="text-decoration-none" {href}>{@html component.name.replace("_", "_<wbr>")} </a>
         <small class="gh-stats text-small"></small>
     </div>
     <!-- @migration-task: migrate this slot by hand, `card-body` is an invalid identifier -->

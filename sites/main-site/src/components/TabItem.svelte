@@ -1,8 +1,8 @@
 <script lang="ts">
-    import { CurrentTab } from '@components/store';
+    import { CurrentTab } from "@components/store";
     interface Props {
         name: string;
-        children?: import('svelte').Snippet;
+        children?: import("svelte").Snippet;
     }
 
     let { name, children }: Props = $props();

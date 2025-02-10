@@ -1,12 +1,12 @@
 ---
-import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
-import { getCollection, render } from 'astro:content';
+import MarkdownTocLayout from "@layouts/MarkdownTocLayout.astro";
+import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
     const about_files = await getCollection("about");
     return about_files.map((about) => ({
         params: {
-            about: about.id.replace(/\.[^/.]+$/, ''),
+            about: about.id.replace(/\.[^/.]+$/, ""),
         },
         props: {
             about: about,

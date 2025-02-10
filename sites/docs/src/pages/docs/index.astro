@@ -91,13 +91,13 @@ const findEntriesWithLabel = (sections: SidebarEntry[], label: string, parentLab
     let entries = [];
     sections.forEach((section) => {
         if (!parentLabel && section.label === label) {
-            section.metadata = docs.find((doc) => '/docs/' + doc.id.replace(/\.[^/.]+$/, '') === section.href);
+            section.metadata = docs.find((doc) => "/docs/" + doc.id.replace(/\.[^/.]+$/, "") === section.href);
             entries.push(section);
         }
         if (parentLabel && section.label === parentLabel) {
             section.entries.forEach((entry) => {
                 if (entry.label === label) {
-                    entry.metadata = docs.find((doc) => '/docs/' + doc.id.replace(/\.[^/.]+$/, '') === entry.href);
+                    entry.metadata = docs.find((doc) => "/docs/" + doc.id.replace(/\.[^/.]+$/, "") === entry.href);
                     entries.push(entry);
                 }
             });

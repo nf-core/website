@@ -1,9 +1,9 @@
 <script lang="ts">
-    import { CurrentTab } from '@components/store';
+    import { CurrentTab } from "@components/store";
     interface Props {
         names?: string[];
         icons?: string[];
-        children?: import('svelte').Snippet;
+        children?: import("svelte").Snippet;
     }
 
     let { names = [], icons = [], children }: Props = $props();
@@ -24,7 +24,7 @@
                 aria-selected={name === $CurrentTab}
                 onclick={() => CurrentTab.set(name)}
                 onkeydown={(e) => {
-                    if (e.key === 'Enter') {
+                    if (e.key === "Enter") {
                         CurrentTab.set(name);
                     }
                 }}>{@html icons[index]}{name}</button
