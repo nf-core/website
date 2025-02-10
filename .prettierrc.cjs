@@ -1,19 +1,19 @@
 module.exports = {
-    trailingComma: 'all',
+    trailingComma: "all",
     printWidth: 120,
 
-    plugins: ['prettier-plugin-astro', 'prettier-plugin-svelte'],
+    plugins: ["prettier-plugin-astro", "prettier-plugin-svelte"],
     overrides: [
         {
-            files: '*.astro',
+            files: "*.astro",
             options: {
-                parser: 'astro',
+                parser: "astro",
             },
         },
         {
-            files: '*.svelte',
+            files: "*.svelte",
             options: {
-                parser: 'svelte',
+                parser: "svelte",
             },
         },
     ],
