@@ -8903,6 +8903,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -54837,6 +54841,148 @@
       }
     },
     {
+      "name": "emu_abundance",
+      "path": "modules/nf-core/emu/abundance/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "emu_abundance",
+        "description": "A taxonomic profiler for metagenomic 16S data optimized for error prone long reads.",
+        "keywords": [
+          "metagenomics",
+          "16S",
+          "nanopore"
+        ],
+        "tools": [
+          {
+            "emu": {
+              "description": "Emu is a relative abundance estimator for 16s genomic data.",
+              "homepage": "https://gitlab.com/treangenlab/emu",
+              "documentation": "https://gitlab.com/treangenlab/emu",
+              "doi": "10.1038/s41592-022-01520-4",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:emu"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "fastq.gz file containing 16S metagenomics data",
+                "pattern": "*.{fastq.gz}"
+              }
+            }
+          ],
+          [
+            {
+              "db": {
+                "type": "directory",
+                "description": "Emu database"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "report": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*{.tsv}"
+                }
+              },
+              {
+                "results/*.tsv": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*{.tsv}"
+                }
+              }
+            ]
+          },
+          {
+            "assignment_report": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*{.tsv}"
+                }
+              },
+              {
+                "results/*read-assignment-distributions.tsv": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*{.tsv}"
+                }
+              }
+            ]
+          },
+          {
+            "samfile": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*{.sam}"
+                }
+              },
+              {
+                "results/*.sam": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*{.sam}"
+                }
+              }
+            ]
+          },
+          {
+            "unclassified_fa": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*{.fa}"
+                }
+              },
+              {
+                "results/*.fasta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*{.fa}"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@fwa93",
+          "@sofstam"
+        ]
+      }
+    },
+    {
       "name": "endorspy",
       "path": "modules/nf-core/endorspy/meta.yml",
       "type": "module",
@@ -58455,7 +58601,7 @@
             {
               "discard_trimmed_pass": {
                 "type": "boolean",
-                "description": "Specify true to not write any reads that pass trimming thresholds. | This can be used to use fastp for the output report only."
+                "description": "Specify true to not write any reads that pass trimming thresholds.\nThis can be used to use fastp for the output report only.\n"
               }
             }
           ],
@@ -112336,6 +112482,22 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -122969,6 +123131,10 @@
         {
           "name": "crisprseq",
           "version": "2.3.0"
+        },
+        {
+          "name": "genomeassembler",
+          "version": "dev"
         },
         {
           "name": "isoseq",
@@ -137706,6 +137872,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
+        },
         {
           "name": "viralrecon",
           "version": "2.6.0"
@@ -213745,6 +213915,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        },
         {
           "name": "phageannotator",
           "version": "dev"
