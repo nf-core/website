@@ -6,10 +6,9 @@
     import admonitionsPlugin from "@root/bin/remark-admonitions.js";
     import addClasses from "rehype-class-names";
     import rehypeAutolinkHeadings from "rehype-autolink-headings";
-    // import rehypePrettyCode from 'rehype-pretty-code'; // not working because svelte-exmarkdown is working only with sync
     import rehypeHighlight from "rehype-highlight";
     import rehypeSlug from "rehype-slug";
-    import urls from "rehype-urls";
+    import { visit } from "unist-util-visit";
     import rehypeWrap from "rehype-wrap-all";
     import { h } from "hastscript";
     import remarkMath from "remark-math";
@@ -54,18 +53,19 @@
     });
     plugins.push({
         rehypePlugin: [
-            urls,
-            (url) => {
-                const regex = /^https:\/\/(raw.)*github/;
-                if (!regex.test(url.href) && url.href?.endsWith(".md")) {
-                    url.href = url.href.replace(/\.md$/, "/");
-                    url.pathname = url.pathname.replace(/\.md$/, "/");
-                    url.path = url.path.replace(/\.md$/, "/");
-                } else if (!regex.test(url.href) && url.href?.endsWith(".mdx")) {
-                    url.href = url.href.replace(/\.mdx$/, "/");
-                    url.pathname = url.pathname.replace(/\.mdx$/, "/");
-                    url.path = url.path.replace(/\.mdx$/, "/");
-                }
+            () => (tree) => {
+                visit(tree, "element", (node) => {
+                    if (node.properties) {
+                        ["href", "src"].forEach((attr) => {
+                            if (node.properties[attr]) {
+                                const url = node.properties[attr];
+                                if (!/^https:\/\/(raw.)*github/.test(url)) {
+                                    node.properties[attr] = url.replace(/\.mdx?$/, "/");
+                                }
+                            }
+                        });
+                    }
+                });
             },
         ],
     });
