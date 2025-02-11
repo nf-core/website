@@ -1,5 +1,5 @@
 ---
-title: "Single Cell Expression Atlas to nf-core"
+title: "Single Cell Expression Atlas analysis workflow to nf-core"
 category: pipelines
 intro_video: ""
 image: "/assets/images/events/2025/hackathon-march/single-cell-atlas.png"
