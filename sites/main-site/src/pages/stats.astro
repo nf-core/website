@@ -7,7 +7,7 @@ import PageLayout from "@layouts/PageLayout.astro";
     subtitle="Measuring activity across the nf-core community"
     mainpage_container={false}
 >
-    <div class="iframe-container w-100 d-flex align-items-start vh-100">
+    <div class="iframe-container w-100 d-flex align-items-start">
         <i class="mt-5 m-auto text-success fa-regular fa-spinner-third fa-spin fa-3x"></i>
         <iframe
             class="d-none"
@@ -21,6 +21,6 @@ import PageLayout from "@layouts/PageLayout.astro";
 </PageLayout>
 <style>
     .iframe-container {
-        height: 1600px !important; /* TODO: Update if longer pages are added */
+        height: 1600px; /* TODO: Update if longer pages are added */
     }
 </style>
