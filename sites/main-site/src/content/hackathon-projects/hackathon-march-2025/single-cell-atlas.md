@@ -3,7 +3,7 @@ title: "Single Cell Expression Atlas to nf-core"
 category: pipelines
 intro_video: ""
 image: "/assets/images/events/2025/hackathon-march/single-cell-atlas.png"
-image_alt: Single Cell Expression Atlas logo (Expression Atlas team, EMBL-EBI)
+image_alt: EMBL-EBI Single Cell Expression Atlas logo
 leaders:
   dslarm:
     name: Pedro Madrigal
