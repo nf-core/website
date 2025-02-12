@@ -10,7 +10,7 @@ endTime: "18:00+01:00"
 locations:
   - name: Online
     links:
-      - https://rediris.zoom.us/j/96065549412?pwd=L2txanpQMEFTOWVLNmtIZyt6M3NnUT09
+      - https://rediris.zoom.us/j/99370728121
 ---
 
 February 2024 talk of the monthly meeting of the [_#animal-genomics_ special interest group](/special-interest-groups/animal-genomics).
