@@ -11,7 +11,7 @@ of every month, usually at 4 PM CET / 10 AM ET / 7 AM PT for 1h.
 
 |                     Date | Speaker                                                                                                                      | Event                                                        |
 | -----------------------: | :--------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-|             Feb 19, 2025 | Harris Lewin (Arizona State University, USA)                                                                                 | TBA                                                          |
+|             Feb 19, 2025 | Harris Lewin (Arizona State University, USA)                                                                                 | [February Meeting](/events/2025/SIG_animalgenomics_Feb) |
 |             Jan 22, 2025 | Round table for discussing the section of the ELIXIR Domestic Animals Genome & Phenome Focus Group                           | [January Meeting](/events/2025/SIG_animalgenomics_Jan)       |
 |             Dec 18, 2024 | Emily Clark (The Roslin Institute, University of Edinburgh, UK)                                                              | [December Meeting](/events/2024/SIG_animalgenomics_Dec)      |
 | Nov 20, 2024 (cancelled) | ~~Harris Lewin (Arizona State University, USA)~~                                                                             | [November Meeting](/events/2024/SIG_animalgenomics_Nov)      |
