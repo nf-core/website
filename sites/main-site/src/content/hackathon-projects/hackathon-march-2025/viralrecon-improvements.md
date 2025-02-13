@@ -11,7 +11,7 @@ leaders:
     slack: "https://nfcore.slack.com/archives/C08CY275C06"
 ---
 
-This project will focus on improving and optimizing the [nf-core/viralrecon](https://nf-co.re/viralrecon/dev) pipeline. This is a great opportunity to address open issues, enhance performance, and conduct benchmarking and testing.
+This project will focus on improving and optimizing the [nf-core/viralrecon](https://nf-co.re/viralrecon/dev) pipeline.
 
 We encourage both newcomers and experienced Nextflow developers to join!
 
