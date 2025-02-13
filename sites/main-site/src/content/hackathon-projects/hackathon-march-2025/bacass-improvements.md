@@ -4,19 +4,25 @@ category: pipelines
 slack: "https://nfcore.slack.com/channels/bacass"
 intro_video: ""
 image: "/assets/images/events/2025/hackathon-march/bacass-improvements.png"
-image_alt: Pipeline improvements - Bacass (by nf-core)
+image_alt: nf-core bacass logo
 leaders:
   daniel-vm:
     name: Daniel Valle-Millares
     slack: "https://nfcore.slack.com/archives/C08CPPSMTL7"
 ---
 
-This project will focus on improving and optimizing the [nf-core/bacass](https://nf-co.re/bacass/dev) pipeline. This is a great opportunity to address open issues, enhance performance, and conduct benchmarking and testing.
+This project aims to improve and optimize the [nf-core/bacass](https://nf-co.re/bacass/dev) pipeline by enhancing assembly strategies and exploring new analysis steps.
 
-We encourage both experienced Nextflow developers and newcomers to join!
+We will focus on:
+
+1. **Benchmarking and testing** new tools to improve genome assembly strategies.
+2. **Focusing on long-read and hybrid assembly** approaches to enhance the quality of results.
+3. **Identifying additional improvements** discussed in [this GitHub issue](https://github.com/nf-core/bacass/issues/57).
+
+We welcome contributors of all experience levels.
 
 ## Goal
 
-1. Address and resolve existing issues in the `nf-core/bacass` pipeline.
-2. Conduct benchmarking and testing to improve pipeline robustness and efficiency.
-3. Enhance documentation and usability of the pipeline.
+1. Optimize assembly strategies by integrating and testing new tools.
+2. Improve support for long-read and hybrid genome assembly.
+3. Explore additional enhancements based on community discussions.
