@@ -4,7 +4,12 @@ export const prerender = false;
 
 // navigate to subpages based on the current URL
 let { slug } = Astro.params;
-slug = slug?.replace("stats", "");
+// handle slug being undefined
+if (!slug || slug === "stats") {
+    slug = "";
+}
+
+slug = slug?.replace("stats/", "");
 ---
 
 <PageLayout
@@ -16,7 +21,7 @@ slug = slug?.replace("stats", "");
         <i class="mt-5 m-auto text-success fa-regular fa-spinner-third fa-spin fa-3x"></i>
         <iframe
             class="d-none"
-            src={`https://nf-core-stats.netlify.app${slug}`}
+            src={`https://nf-core-stats.netlify.app/${slug}`}
             onload="this.classList.remove('d-none'); this.previousElementSibling.classList.add('d-none');"
             title="stats"
             style="border:none;"
@@ -28,11 +33,13 @@ slug = slug?.replace("stats", "");
 <script>
     // Listen for messages from the iframe
     window.addEventListener("message", function (event) {
+        console.log("event", event);
         // Verify the origin of the message
         if (event.origin !== "https://nf-core-stats.netlify.app") return;
 
         // Check if the message contains URL information
         if (event.data && event.data.type === "urlChange" && event.data.path) {
+            console.log("event.data.path", event.data.path);
             // Update the browser URL without reloading the page
             const newPath = `/stats${event.data.path}`;
             if (window.location.pathname !== newPath) {
@@ -45,8 +52,8 @@ slug = slug?.replace("stats", "");
     window.addEventListener("popstate", function () {
         const iframe = document.querySelector("iframe");
         if (iframe) {
-            const path = window.location.pathname.replace("/stats", "");
-            iframe.src = `https://nf-core-stats.netlify.app${path}`;
+            const path = window.location.pathname.replace("stats/", "");
+            iframe.src = `https://nf-core-stats.netlify.app/${path}`;
         }
     });
 </script>
