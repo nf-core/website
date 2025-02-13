@@ -21,7 +21,7 @@ slug = slug?.replace("stats/", "");
         <i class="mt-5 m-auto text-success fa-regular fa-spinner-third fa-spin fa-3x"></i>
         <iframe
             class="d-none"
-            src={`https://nf-core-stats.netlify.app${slug}`}
+            src={`https://nf-core-stats.netlify.app/${slug}`}
             onload="this.classList.remove('d-none'); this.previousElementSibling.classList.add('d-none');"
             title="stats"
             style="border:none;"
