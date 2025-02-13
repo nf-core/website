@@ -24,12 +24,28 @@
 
     // Initialize filters once on mount
     onMount(() => {
-        if (filter.length > 0) {
+        // Reset stores if no filters provided
+        if (filter.length === 0) {
+            Filters.set([]);
+            CurrentFilter.set([]);
+        } else {
             Filters.set(filter);
         }
-        if (sortBy.length > 0 && !$SortBy) {
+
+        // Reset sort if no options provided
+        if (sortBy.length === 0) {
+            SortBy.set("");
+        } else if (!$SortBy) {
             SortBy.set(sortBy[0]);
         }
+
+        // Reset display style if no options provided
+        if (displayStyle.length === 0) {
+            DisplayStyle.set("");
+        }
+
+        // Always reset search
+        SearchQuery.set("");
     });
 
     let search = $state($SearchQuery);
@@ -51,7 +67,7 @@
         CurrentFilter.set(newFilters);
     }
 
-    function handleExlusiveFilter(fil: string, e: Event) {
+    function handleExclusiveFilter(fil: string, e: Event) {
         e.preventDefault();
         // remove focus from button
         (e.target as HTMLElement).blur();
@@ -92,7 +108,7 @@
                                 : "btn text-nowrap w-100 btn-outline-success"}
                             class:active={$CurrentFilter.some((f) => f.name === fil.name)}
                             onclick={(e) => handleFilter(fil.name, e)}
-                            ondblclick={(e) => handleExlusiveFilter(fil.name, e)}
+                            ondblclick={(e) => handleExclusiveFilter(fil.name, e)}
                         >
                             {#if fil.icon}
                                 <i class={fil.icon + " me-1"}></i>
