@@ -2,13 +2,14 @@
 title: Enhancing nf-core/bacass Pipeline
 category: pipelines
 slack: "https://nfcore.slack.com/channels/bacass"
+slack: "https://nfcore.slack.com/archives/C08CPPSMTL7"
 intro_video: ""
 image: "/assets/images/events/2025/hackathon-march/bacass-improvements.png"
 image_alt: nf-core bacass logo
 leaders:
   daniel-vm:
     name: Daniel Valle-Millares
-    slack: "https://nfcore.slack.com/archives/C08CPPSMTL7"
+    slack: "https://nfcore.slack.com/team/U0293V7GCCV"
 ---
 
 This project aims to improve and optimize the [nf-core/bacass](https://nf-co.re/bacass/dev) pipeline by enhancing assembly strategies and exploring new analysis steps.
