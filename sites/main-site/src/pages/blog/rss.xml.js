@@ -15,7 +15,7 @@ export async function GET(context) {
     items: blogPosts.map((post) => ({
       title: post.data.title,
       description: post.data.subtitle,
-      link: '/blog/' + post.slug,
+      link: '/blog/' + post.id.replace(/\.[^/.]+$/, ''),
       pubDate: post.data.pubDate,
       content: post.body,
     })),

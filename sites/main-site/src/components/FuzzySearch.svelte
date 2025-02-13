@@ -1,10 +1,14 @@
 <script lang="ts">
     import fuzzysort from "fuzzysort";
 
-    export let possibleResults: { href: string; name: string }[] = [];
-    export let placeholder: string = "Search";
+    interface Props {
+        possibleResults?: { href: string; name: string }[];
+        placeholder?: string;
+    }
 
-    let results = [];
+    let { possibleResults = [], placeholder = "Search" }: Props = $props();
+
+    let results = $state([]);
 
     function search(event: KeyboardEvent) {
         const input = event.target as HTMLInputElement;
@@ -21,14 +25,7 @@
 </script>
 
 <div class="search-container dropdown">
-    <input
-        id="fuzzy-search"
-        class="form-control"
-        type="text"
-        {placeholder}
-        aria-label={placeholder}
-        on:keyup={search}
-    />
+    <input id="fuzzy-search" class="form-control" type="text" {placeholder} aria-label={placeholder} onkeyup={search} />
 
     <ul class="search-results dropdown-menu" class:show={results.length > 0}>
         {#if results}
