@@ -4,7 +4,7 @@ category: pipelines
 slack: "https://nfcore.slack.com/channels/bacass"
 intro_video: ""
 image: "/assets/images/events/2025/hackathon-march/bacass-improvements.png"
-image_alt: Pipeline improvements - Bacass (by Sarai Varona)
+image_alt: Pipeline improvements - Bacass (by nf-core)
 leaders:
   daniel-vm:
     name: Daniel Valle-Millares
