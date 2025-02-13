@@ -1,19 +1,20 @@
 ---
 title: Implementing Viral Metagenomics Pipeline
 category: pipelines
-slack: ""
+slack: "https://nfcore.slack.com/archives/C08D4JXHFM1"
 intro_video: ""
 image: ""
 image_alt: ""
 leaders:
   saramonzon:
     name: Sara Monzon
-    slack: "https://nfcore.slack.com/archives/C08D4JXHFM1"
+    slack: "https://nfcore.slack.com/team/U010JMYDPJB"
 ---
 
-This project aims to develop and enhance the Viral Metagenomics pipeline, providing a structured framework for selecting tools, designing workflows, and improving documentation. The initiative offers a valuable opportunity to refine benchmarking strategies, optimize performance, and strengthen testing methodologies.
+This project aims to develop and enhance the Viral Metagenomics pipeline, providing a structured framework for selecting tools, designing workflows, and improving documentation. 
+The initiative offers a valuable opportunity to refine benchmarking strategies, optimize performance, and strengthen testing methodologies.
 
-We encourage both experienced Nextflow developers and newcomers to join!
+We encourage both newcomers and experienced Nextflow developers to join!
 
 ## Goal
 
