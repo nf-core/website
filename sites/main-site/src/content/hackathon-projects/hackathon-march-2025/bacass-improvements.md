@@ -1,7 +1,6 @@
 ---
 title: Enhancing nf-core/bacass Pipeline
 category: pipelines
-slack: "https://nfcore.slack.com/channels/bacass"
 slack: "https://nfcore.slack.com/archives/C08CPPSMTL7"
 intro_video: ""
 image: "/assets/images/events/2025/hackathon-march/bacass-improvements.png"
