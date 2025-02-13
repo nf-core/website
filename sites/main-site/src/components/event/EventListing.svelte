@@ -3,24 +3,25 @@
     import EventCard from "@components/event/EventCard.svelte";
     import { CurrentFilter, SearchQuery } from "@components/store";
     import { onMount } from "svelte";
+    import type { CollectionEntry } from "astro:content";
 
     interface Props {
-        events?: any;
+        events?: CollectionEntry<"events">[];
         currentFilters: { name: string }[];
-        currentEvents: any;
+        currentEvents: CollectionEntry<"events">[];
     }
 
     let { events = [], currentFilters, currentEvents = $bindable() }: Props = $props();
 
     let filteredEvents = $state(events);
-    const filterByType = (event) => {
+    const filterByType = (event: CollectionEntry<"events">) => {
         if ($CurrentFilter.find((f) => f.name === event.data.type)) {
             return true;
         }
         return false;
     };
 
-    const searchEvents = (event) => {
+    const searchEvents = (event: CollectionEntry<"events">) => {
         if ($SearchQuery === "") {
             return true;
         }
@@ -38,10 +39,15 @@
         return false;
     };
 
-    filteredEvents = events;
+    function hasRequiredDates(
+        event: CollectionEntry<"events">,
+    ): event is CollectionEntry<"events"> & { data: { start: Date; end: Date } } {
+        return event.data.start !== undefined && event.data.end !== undefined;
+    }
 
     let futureEvents = $derived(
         filteredEvents
+            .filter(hasRequiredDates)
             .filter((event) => {
                 const today = new Date();
                 return event.data.start > today;
@@ -58,20 +64,31 @@
         filteredEvents
             .filter((event) => {
                 const today = new Date();
-                return event.data.end < today;
+                return event.data.end && event.data.end < today;
             })
             .sort((a, b) => {
-                if (a.data.end < b.data.end) {
+                if (a.data.end && b.data.end && a.data.end < b.data.end) {
                     return 1;
                 }
                 return -1;
             }),
     );
 
-    currentEvents = filteredEvents.filter((event) => {
-        const today = new Date();
-        return event.data.start < today && event.data.end > today;
+    let currentEventsFiltered = $derived(
+        filteredEvents.filter((event) => {
+            const today = new Date();
+            return event.data.start && event.data.start < today && event.data.end && event.data.end > today;
+        }),
+    );
+
+    $effect(() => {
+        filteredEvents = events.filter(filterByType).filter(searchEvents);
     });
+
+    $effect(() => {
+        currentEvents = currentEventsFiltered;
+    });
+
     const event_type_classes = {
         bytesize: "success",
         hackathon: "primary",
@@ -100,23 +117,14 @@
     }
 
     onMount(() => {
-        CurrentFilter.set(currentFilters);
-
-        CurrentFilter.subscribe(() => {
-            filteredEvents = events.filter(filterByType).filter(searchEvents);
-        });
-
-        SearchQuery.subscribe(() => {
-            filteredEvents = events.filter(filterByType).filter(searchEvents);
-        });
+        if (currentFilters.length > 0) {
+            CurrentFilter.set(currentFilters);
+        }
     });
 </script>
 
 <div>
-    <FilterBar filter={event_types} displayStyle={[]} sortBy={[]}
-        ><!-- @migration-task: migrate this slot by hand, `filter-name` is an invalid identifier -->
-        <span slot="filter-name">Event type</span></FilterBar
-    >
+    <FilterBar filter={event_types} displayStyle={[]} sortBy={[]} filterName={() => "Event type"}></FilterBar>
     <div class="events">
         {#if currentEvents.length > 0}
             <div class="mb-3 col-12">
@@ -124,7 +132,7 @@
                 {#each currentEvents as event (event.id)}
                     <EventCard
                         frontmatter={event.data}
-                        slug={event.slug}
+                        slug={event.id}
                         type={event.data.type}
                         time_category="current"
                     />
@@ -139,7 +147,7 @@
                         {#each futureEvents as event (event.id)}
                             <EventCard
                                 frontmatter={event.data}
-                                slug={event.slug}
+                                slug={event.id}
                                 type={event.data.type}
                                 time_category="future"
                             />
@@ -152,11 +160,11 @@
                     <h2><i class="fa-duotone fa-calendar-check me-3"></i>Past events</h2>
                     {#each pastEvents as event, idx (event.id)}
                         {#if hasYearChanged(pastEvents, idx)}
-                            <h3 id={"year-" + event.data.start.getFullYear()}>{event.data.start.getFullYear()}</h3>
+                            <h3 id={"year-" + event.data.start?.getFullYear()}>{event.data.start?.getFullYear()}</h3>
                         {/if}
                         <EventCard
                             frontmatter={event.data}
-                            slug={event.slug}
+                            slug={event.id}
                             type={event.data.type}
                             time_category="past"
                         />

@@ -2,18 +2,9 @@
     import VideoButton from "@components/VideoButton.svelte";
     import ExportEventButton from "@components/event/ExportEventButton.svelte";
     import LocalDateTime from "@components/event/LocalDateTime.svelte";
-    import { onMount } from "svelte";
+    import type { CollectionEntry } from "astro:content";
 
-    export let frontmatter = {
-        title: "",
-        subtitle: "",
-        start: new Date(),
-        startDate: new Date(),
-        end: new Date(),
-        endDate: new Date(),
-        type: "",
-        locationURL: [""],
-    };
+    export let frontmatter: CollectionEntry<"events">["data"];
     export let slug: string = "";
     export let type: string = "";
     export let time_category: string = "";
@@ -40,9 +31,9 @@
                 <a class="text-center" class:text-decoration-none={narrow} href={/events/ + slug + "/"}>
                     {frontmatter.title}
                 </a>
-                {#if time_category === "current" && frontmatter.locationURL}
+                {#if time_category === "current" && frontmatter.locations?.[0]?.links}
                     <div class="float-end d-none d-md-inline">
-                        <VideoButton urls={frontmatter.locationURL} btnClass="btn-danger" />
+                        <VideoButton urls={frontmatter.locations?.[0]?.links} btnClass="btn-danger" />
                     </div>
                 {/if}
             </h4>
@@ -56,7 +47,7 @@
                 class:justify-content-md-end={!narrow}
             >
                 <p class="text-nowrap text-center text-md-start pe-3 mt-2 ms-1" class:d-md-none={!narrow}>
-                    <i class="fa-regular fa-calendar me-2" />{@html event_date}
+                    <i class="fa-regular fa-calendar me-2"></i>{@html event_date}
                 </p>
             </div>
         </div>
@@ -108,24 +99,26 @@
     @import "bootstrap/scss/functions";
     @import "bootstrap/scss/mixins";
     @import "bootstrap/scss/variables";
+
     .card.rounded-0 {
         border-left: 5px solid;
     }
+
     .narrow .btn:first-child {
         border-left: 0;
     }
+
     @include media-breakpoint-up(md) {
         .btn-group.float-end:not(.narrow) {
             .btn:first-child {
-                border-top-left-radius: $border-radius !important;
-                border-bottom-left-radius: $border-radius !important;
+                border-radius: var(--bs-border-radius) 0 0 var(--bs-border-radius) !important;
             }
             :global(.btn.dropdown-toggle) {
-                border-top-right-radius: $border-radius !important;
-                border-bottom-right-radius: $border-radius !important;
+                border-radius: 0 var(--bs-border-radius) var(--bs-border-radius) 0 !important;
             }
         }
     }
+
     @include media-breakpoint-down(md) {
         .btn-group.float-end {
             width: 100%;
