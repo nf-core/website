@@ -3,17 +3,34 @@
     import { onMount } from "svelte";
     import { CurrentFilter, Filters, SortBy, DisplayStyle, SearchQuery } from "@components/store";
 
+    interface FilterItem {
+        name: string;
+        class?: string;
+        icon?: string;
+        count?: number;
+    }
+
     let {
         filter = [],
         sortBy = [],
         displayStyle = [],
-        filter_name,
+        filterName = () => "Status",
     } = $props<{
-        filter: { name: string; class?: string }[];
+        filter: FilterItem[];
         sortBy: string[];
         displayStyle: { name: string; icon: string }[];
-        filter_name?: string;
+        filterName?: () => string;
     }>();
+
+    // Initialize filters once on mount
+    onMount(() => {
+        if (filter.length > 0) {
+            Filters.set(filter);
+        }
+        if (sortBy.length > 0 && !$SortBy) {
+            SortBy.set(sortBy[0]);
+        }
+    });
 
     let search = $state($SearchQuery);
 
@@ -22,19 +39,22 @@
         SearchQuery.set(target.value.trim());
     }
 
-    function handleFilter(fil: string) {
+    function handleFilter(fil: string, e: Event) {
+        e.preventDefault();
         // remove focus from button
-        (event.target as HTMLElement).blur();
-        if ($CurrentFilter.find((f) => f.name === fil)) {
-            CurrentFilter.set($CurrentFilter.filter((f) => f.name !== fil));
-        } else {
-            CurrentFilter.set([...$CurrentFilter, { name: fil }]);
-        }
+        (e.target as HTMLElement).blur();
+
+        const newFilters = $CurrentFilter.some((f) => f.name === fil)
+            ? $CurrentFilter.filter((f) => f.name !== fil)
+            : [...$CurrentFilter, { name: fil }];
+
+        CurrentFilter.set(newFilters);
     }
 
-    function handleExlusiveFilter(fil: string) {
+    function handleExlusiveFilter(fil: string, e: Event) {
+        e.preventDefault();
         // remove focus from button
-        (event.target as HTMLElement).blur();
+        (e.target as HTMLElement).blur();
         CurrentFilter.set([{ name: fil }]);
     }
 
@@ -45,20 +65,6 @@
     function handleDisplayStyle(style: string) {
         DisplayStyle.set(style);
     }
-
-    onMount(() => {
-        $inspect(filter);
-        $inspect($CurrentFilter);
-        if (filter.length > 0 && !$CurrentFilter.length) {
-            CurrentFilter.set(filter);
-        }
-        if (filter.length > 0) {
-            Filters.set(filter);
-        }
-        if (sortBy.length > 0) {
-            SortBy.set(sortBy[0]);
-        }
-    });
 </script>
 
 <div class="filter-bar mb-2 px-2">
@@ -71,7 +77,7 @@
             placeholder="&#xf002; Search..."
         />
 
-        {#if $Filters.length > 0 && $Filters[0].name}
+        {#if $Filters.length > 0 && $Filters[0] && $Filters[0].name}
             <div class="d-none d-xl-block ms-3 d-flex align-items-center">
                 <div class="btn-group ms-1 filter-buttons d-flex" role="group" aria-label="Filter listing">
                     {#each $Filters as fil}
@@ -80,15 +86,13 @@
                             data-bs-toggle="tooltip"
                             data-bs-placement="top"
                             data-bs-delay="500"
-                            title={"Double click to only show items from this category"}
+                            title="Double click to only show items from this category"
                             class={fil.class
                                 ? "btn text-nowrap flex-fill btn-outline-" + fil.class
                                 : "btn text-nowrap w-100 btn-outline-success"}
-                            class:active={$CurrentFilter.find((f) => f.name === fil.name)}
-                            onclick={() => handleFilter(fil.name)}
-                            ondblclick={() => handleExlusiveFilter(fil.name)}
-                            onmouseout={() => event.target.blur()}
-                            onblur={() => event.target.blur()}
+                            class:active={$CurrentFilter.some((f) => f.name === fil.name)}
+                            onclick={(e) => handleFilter(fil.name, e)}
+                            ondblclick={(e) => handleExlusiveFilter(fil.name, e)}
                         >
                             {#if fil.icon}
                                 <i class={fil.icon + " me-1"}></i>
@@ -109,11 +113,7 @@
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
                     >
-                        {#if filter_name}
-                            {@render filter_name()}
-                        {:else}
-                            <span>Status</span>
-                        {/if}
+                        {@render filterName()}
                     </button>
                     <ul class="dropdown-menu">
                         {#each $Filters as fil}
@@ -121,9 +121,9 @@
                                 <div
                                     class="dropdown-item"
                                     title="Filter"
-                                    class:active={$CurrentFilter.find((f) => f.name === fil.name)}
-                                    onclick={() => handleFilter(fil.name)}
-                                    onkeydown={() => handleFilter(fil.name)}
+                                    class:active={$CurrentFilter.some((f) => f.name === fil.name)}
+                                    onclick={(e) => handleFilter(fil.name, e)}
+                                    onkeydown={(e) => e.key === "Enter" && handleFilter(fil.name, e)}
                                     role="button"
                                     tabindex="0"
                                 >
@@ -161,8 +161,8 @@
                                     title="sort"
                                     id={sor.replace(" ", "-")}
                                     class:active={sor === $SortBy}
-                                    onclick={() => handleSort(sor)}
-                                    onkeydown={() => handleSort(sor)}
+                                    onclick={(e) => handleSort(sor)}
+                                    onkeydown={(e) => handleSort(sor)}
                                     role="button"
                                     tabindex="0"
                                 >
@@ -181,7 +181,7 @@
                         <button
                             type="button"
                             class="btn btn-outline-success text-nowrap"
-                            onclick={() => handleDisplayStyle(dis.name)}
+                            onclick={(e) => handleDisplayStyle(dis.name)}
                             class:active={$DisplayStyle === dis.name}
                             title={dis.name + " view"}
                             data-bs-toggle="tooltip"
