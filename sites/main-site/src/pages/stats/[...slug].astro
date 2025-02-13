@@ -4,7 +4,12 @@ export const prerender = false;
 
 // navigate to subpages based on the current URL
 let { slug } = Astro.params;
-slug = slug?.replace("stats", "");
+// handle slug being undefined
+if (!slug || slug === "stats") {
+    slug = "";
+}
+
+slug = slug?.replace("stats/", "");
 ---
 
 <PageLayout
