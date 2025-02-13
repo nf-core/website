@@ -60,7 +60,7 @@
     let ical = new ICalendar(calendar_event).render();
     if (calendar_event.allDay) {
         ical = removeTimeFromICSDate(ical);
-        googleCalendar = removeTimeFromCalendarURL(googleCalendar);
+        googleCalendar = removeTimeFromCalendarURL(googleCalendar, true);
         outlookCalendar = removeTimeFromCalendarURL(outlookCalendar);
     }
     const blob = new Blob([ical], { type: "text/calendar;charset=utf-8" });
