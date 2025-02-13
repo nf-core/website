@@ -4,7 +4,7 @@ category: pipelines
 slack: "https://nfcore.slack.com/channels/viralrecon"
 intro_video: ""
 image: "/assets/images/events/2025/hackathon-march/viralrecon-improvements.png"
-image_alt: Viralrecon (by nf-core)
+image_alt: nf-core viralrecon logo
 leaders:
   svarona:
     name: Sarai Varona
@@ -13,7 +13,7 @@ leaders:
 
 This project will focus on improving and optimizing the [nf-core/viralrecon](https://nf-co.re/viralrecon/dev) pipeline. This is a great opportunity to address open issues, enhance performance, and conduct benchmarking and testing.
 
-We encourage both experienced Nextflow developers and newcomers to join!
+We encourage both newcomers and experienced Nextflow developers to join!
 
 ## Goal
 
