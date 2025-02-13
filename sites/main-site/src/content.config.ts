@@ -80,6 +80,13 @@ const events = defineCollection({
             }
             // Return true if the validation should pass
             return true;
+        })
+        .transform((data) => {
+            return {
+                ...data,
+                start: data.start!,  // Assert dates are set after refinement
+                end: data.end!
+            };
         }),
 });
 
