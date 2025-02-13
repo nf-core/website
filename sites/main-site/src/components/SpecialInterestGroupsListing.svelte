@@ -29,7 +29,7 @@
                     <div class="g-col-12 g-col-lg-6 g-col-xl-6 g-col-xxl-4 g-col-xxxxl-2">
                         <ListingCard footer={true}>
                             <!-- @migration-task: migrate this slot by hand, `card-header` is an invalid identifier -->
-                            <a slot="card-header" href={"/special-interest-groups/" + group.slug} class="success"
+                            <a slot="card-header" href={"/special-interest-groups/" + group.id} class="success"
                                 >{group.data.groupName}</a
                             >
                             <!-- @migration-task: migrate this slot by hand, `card-body` is an invalid identifier -->
@@ -75,7 +75,7 @@
                     <tr>
                         <ListingTableHeader name="Name" />
                         <th scope="col">Description</th>
-                        <th scope="col-1">Included pipelines</th>
+                        <th scope="col">Included pipelines</th>
                         <th scope="col">Leads</th>
                     </tr>
                 </thead>
@@ -84,7 +84,7 @@
                         <tr>
                             <td class=" name p-0">
                                 <div class="position-relative p-3">
-                                    <a class="stretched-link" href={"/special-interest-groups/" + group.slug}
+                                    <a class="stretched-link" href={"/special-interest-groups/" + group.id}
                                         >{group.data.groupName}</a
                                     >
                                 </div>
