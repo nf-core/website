@@ -65,6 +65,7 @@ const sections: SidebarEntry[] = years.map((year) => {
             {
                 years.map((year) => (
                     <div id={"year-" + year} class="d-flex align-items-stretch flex-wrap">
+                        {year !== new Date().getFullYear() && <h2 class="w-100 mb-0 mt-3">{year}</h2>}
                         {blogPosts
                             .filter((post) => new Date(post.data.pubDate).getFullYear() === year)
                             .map((post) => (
