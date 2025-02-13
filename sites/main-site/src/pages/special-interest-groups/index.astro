@@ -4,7 +4,7 @@ import ListingLayout from "@layouts/ListingLayout.astro";
 import { getCollection } from "astro:content";
 let groups = await getCollection("special-interest-groups");
 groups = groups
-    .filter((group) => group.id.includes("index.md"))
+    .filter((group) => group.filePath?.includes("index.md"))
     .sort((a, b) => a.data.title.localeCompare(b.data.title));
 ---
 
