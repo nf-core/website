@@ -12,5 +12,5 @@ locations:
       - https://kth-se.zoom.us/j/68390542812
 ---
 
-In this nf-core bytesize talk, Luisa Santus ([@luisas](https://github.com/luisas)) will speak about why nf-core/multiplesequencealign was developed and what the pipeline can do for you. 
-She will also provide a tutorial on how to prepare the input files and use the different funcitonalities the pipeline offers.
+In this nf-core bytesize talk, Luisa Santus ([@luisas](https://github.com/luisas)) will speak about why nf-core/multiplesequencealign was developed and what the pipeline can do for you.
+She will also provide a tutorial on how to prepare the input files and use the different functionalities the pipeline offers.
