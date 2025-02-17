@@ -83,7 +83,7 @@ If you wish to make a publication based on the pipeline, make sure you [give cre
 :::
 
 Once you've finished your release - it's time to tell the world about it!
-Post on the [#bytesize](https://nfcore.slack.com/archives/C01LNCGJBMH) slack channel of your release, to begin arranging a 15 minute introductory bytesize talk about your shiny new pipeline!
+Post on the [#bytesize_suggestion](https://nfcore.slack.com/archives/C081F8J2X8R) slack channel of your release, to begin arranging a 15 minute introductory bytesize talk about your shiny new pipeline!
 
 # Subsequent releases
 
