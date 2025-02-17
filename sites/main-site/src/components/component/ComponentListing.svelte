@@ -82,6 +82,7 @@
     });
     SearchQuery.subscribe(() => {
         filteredComponents = searchFilterSortComponents(components);
+        $currentPage = 1;
         updatePageSize();
     });
     DisplayStyle.subscribe(() => {
