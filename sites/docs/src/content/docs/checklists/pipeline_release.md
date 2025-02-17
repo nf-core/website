@@ -37,7 +37,7 @@ If this is your first release, make sure to follow the [first release tutorial](
   - [ ] Request PR reviews from at least two people
   - [ ] Once approved by two reviewers, merge your PR into `master`
   - [ ] And finally delete any label of types: "under development", "under construction" or variants of these
-- [ ] (**First release only**) If this is a first release, ask a core team member to activate the Zenodo functionality for this repository, which will be used to generate a DOI.
+- [ ] (**First release only**) Ask a core team member to activate the Zenodo functionality for this repository, which will be used to generate a DOI.
 - [ ] Go to GitHub and [create a new release for your pipeline](https://help.github.com/en/articles/creating-releases)
       :::note
       Use _exactly_ the same version as in the code (e.g. `1.0.0`) - **do not prefix with v** (e.g. not `v1.0.0`).
@@ -69,4 +69,4 @@ The last step is to bump up the pipeline version number in the development branc
   - [ ] Ask a core member to copy the DOI information you added to dev via the PR above to the master branch. The core member will uncomment the Zenodo-related `TODO` statement in the `Citation` section of the main `README.md` and add the DOI, as well as as updating the badge for the Zenodo DOI at the top of the main `README.md` e.- [nf-core/atacseq](https://github.com/nf-core/atacseq/blob/fa1e3f8993cd20e249b9df09d29c5498eff311d2/README.md).
 - [ ] (**First release only**) Ask a core member to change default branch from `dev` to `master`.
 - [ ] (publication only) If a publication of the pipeline is being prepared, recommended [nf-core guidelines](/docs/guidelines/pipelines/recommendations/publication_credit) are followed.
-- [ ] Post on the [#bytesize](https://nfcore.slack.com/archives/C01LNCGJBMH) slack channel of your release, to begin arranging a 15m introductory bytesize talk about your shiny new pipeline!
+- [ ] Post on the [#bytesize_suggestion](https://nfcore.slack.com/archives/C081F8J2X8R) slack channel of your release, to begin arranging a 15m introductory bytesize talk about your shiny new pipeline!
