@@ -1,47 +1,26 @@
 ---
-import octokit from "@components/octokit";
 import ListingLayout from "@layouts/ListingLayout.astro";
 import ConfigListing from "@components/ConfigListing.svelte";
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 
 //get contents of markdown files in docs dir in https://github.com/nf-core/configs/tree/master/docs using request
 const files = await getCollection("configs");
+let configFiles = files.filter((file) => file.data.extension === "config");
+let generalConfigs: CollectionEntry<"configs">[] = [];
+let pipelineConfigs: CollectionEntry<"configs">[] = [];
+configFiles.map((file) => {
+    if (file.id.includes("pipeline/")) {
+        pipelineConfigs.push(file);
+    } else {
+        generalConfigs.push(file);
+    }
+});
 
-//filter out directories
-// let markdowns = files.data.filter((file) => file.type === "file");
-// exclude template file
-// markdowns = markdowns.filter((file) => file.name !== "template.md");
+// remove configs that don't have a matching md file
+generalConfigs = generalConfigs.filter((config) =>
+    files.find((file) => file.id.includes(config.id.replace("conf/", "")) && file.data.extension === "md"),
+);
 
-//get the markdown file contents
-// const configs = await Promise.all(
-//     markdowns.map(async (markdown) => {
-//         const content = await octokit.request("GET /repos/{owner}/{repo}/contents/{path}", {
-//             owner: "nf-core",
-//             repo: "configs",
-//             path: markdown.path,
-//         });
-//         const config = await octokit
-//             .request("GET /repos/{owner}/{repo}/contents/{path}", {
-//                 owner: "nf-core",
-//                 repo: "configs",
-//                 path: markdown.path.replace("docs/", "conf/").replace(".md", ".config"),
-//             })
-//             .catch((error) => {
-//                 console.log(error);
-//                 return {
-//                     data: {
-//                         content: Buffer.from("No config file found").toString("base64"),
-//                     },
-//                 };
-//             });
-//         return {
-//             name: markdown.name,
-//             content: Buffer.from((content.data as any).content, "base64").toString(),
-//             config: parseConfig(Buffer.from((config.data as any).content, "base64").toString()),
-//         };
-//     }),
-// );
-console.log(files.map((file) => file.rendered.metadata));
 const title = "nf-core/configs";
 const description =
     "Browse the " +
@@ -61,12 +40,8 @@ const description =
         The following configs are common Nextflow pipeline configurations and options for particular institutional
         clusters or compute environments.
     </p>
-
-    <ConfigListing
-        configs={files.filter((file) => file.data.extension === "config")}
-        slot="listing-components"
-        client:load
-    />
+    <h2>General configs</h2>
+    <ConfigListing configs={generalConfigs} pipelineConfigs={pipelineConfigs} slot="listing-components" client:load />
 </ListingLayout>
 
 <style></style>

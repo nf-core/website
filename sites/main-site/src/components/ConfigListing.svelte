@@ -5,9 +5,10 @@
 
     interface Props {
         configs?: CollectionEntry<"configs">[];
+        pipelineConfigs?: CollectionEntry<"configs">[];
     }
 
-    let { configs }: Props = $props();
+    let { configs, pipelineConfigs }: Props = $props();
     SortBy.set("Name");
 
     const searchconfigs = (config) => {
@@ -28,12 +29,10 @@
     let invertSort = false;
     const sortConfigs = (a, b) => {
         invertSort = $SortBy.endsWith(";inverse");
-        console.log(invertSort);
         if ($SortBy.startsWith("Name")) {
             return a.id.localeCompare(b.id) * (invertSort ? -1 : 1);
         } else if ($SortBy.startsWith("Executor")) {
             if (a.rendered.metadata.executor && b.rendered.metadata.executor) {
-                console.log(a.rendered.metadata.executor, b.rendered.metadata.executor);
                 return a.rendered.metadata.executor.localeCompare(b.rendered.metadata.executor) * (invertSort ? -1 : 1);
             } else if (a.rendered.metadata.executor) {
                 return -1;
@@ -49,7 +48,6 @@
     }
 
     let filteredConfigs = $derived(searchFilterSortConfigs(configs));
-    $inspect(filteredConfigs[2]);
 </script>
 
 <div class="listing d-flex flex-wrap w-100 justify-content-center">
@@ -59,6 +57,7 @@
                 <ListingTableHeader name="Name" />
                 <th class="description" scope="col">Description</th>
                 <ListingTableHeader name="Executor" textCenter={true} />
+                <th scope="col">Pipeline Configs</th>
             </tr>
         </thead>
         <tbody>
@@ -66,7 +65,9 @@
                 <tr>
                     <td class="name p-0">
                         <div class="position-relative p-3">
-                            <a class="stretched-link" href={"/configs/" + config.id + "/"}
+                            <a
+                                class="stretched-link"
+                                href={"/configs/" + config.id.replace("conf/", "").replace("(pipeline/.*)/", "") + "/"}
                                 >{@html config.id.replaceAll("_", "_<wbr>").replace("conf/", "")}</a
                             >
                         </div>
@@ -80,6 +81,18 @@
                                 <span class="badge border border-secondary-subtle text-body fw-normal ms-2">
                                     {executor}
                                 </span>
+                            {/each}
+                        {/if}
+                    </td>
+
+                    <td>
+                        {#if pipelineConfigs}
+                            {#each pipelineConfigs.filter( (pipelineConfig) => pipelineConfig.id.includes(config.id.replace("conf/", "")), ) as pipelineConfig}
+                                <a
+                                    class="badge bg-secondary me-2 fw-normal"
+                                    href={`/configs/${config.id.replace("conf/", "").replace("(pipeline/.*)/", "")}/#${pipelineConfig.id.split("/").slice(-2, -1).join("/")}`}
+                                    >{pipelineConfig.id.split("/").slice(-2, -1).join("/")}</a
+                                >
                             {/each}
                         {/if}
                     </td>
