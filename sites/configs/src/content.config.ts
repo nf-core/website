@@ -84,6 +84,8 @@ const configs = defineCollection({
     }),
     schema: z.object({
         extension: z.literal('md').or(z.literal('config')),
+        sha: z.string(),
+        lastCommit: z.string().datetime(),
     }),
 });
 

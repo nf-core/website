@@ -1,6 +1,7 @@
 // originally from https://github.com/gingerchew/astro-github-file-loader
 import type { AstroConfig, MarkdownHeading } from "astro";
 import type { Loader, LoaderContext } from "astro/loaders";
+import { octokit } from "@components/octokit.js";
 
 type GithubTreeLeaf = {
     path: string;
@@ -55,10 +56,15 @@ function createProcessors(processors: Processors) {
 
 export function githubFileLoader({ org, repo, ref, processors, path }: PolicyLoaderConfig): Loader {
     const baseUrl = `https://raw.githubusercontent.com/${org}/${repo}/${ref}`;
-    const apiUrl = `https://api.github.com/repos/${org}/${repo}/git/trees/${ref}?recursive=1`;
 
     const get = async <T>(filepath: string, type: "json" | "text"): Promise<T> => {
         try {
+            // If this is a GitHub API request, use octokit
+            if (filepath.startsWith('https://api.github.com')) {
+                const response = await octokit.request('GET ' + filepath.replace('https://api.github.com', ''));
+                return response.data as T;
+            }
+            // Otherwise use fetch for raw content
             const response = await fetch(filepath);
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
             return type === "json" ? await response.json() : await response.text();
@@ -76,9 +82,15 @@ export function githubFileLoader({ org, repo, ref, processors, path }: PolicyLoa
             // Get the last tree SHA we processed
             const lastTreeSha = meta.get('lastTreeSha');
 
-            // Fetch current tree data
-            const treeData = await get<GithubTreeData>(apiUrl, "json");
-            const currentTreeSha = treeData.hash;
+            // Fetch current tree data using octokit directly
+            const { data: treeData } = await octokit.rest.git.getTree({
+                owner: org,
+                repo: repo,
+                tree_sha: ref,
+                recursive: '1'
+            });
+
+            const currentTreeSha = treeData.sha;
 
             // If tree hasn't changed, we can skip processing
             if (lastTreeSha && lastTreeSha === currentTreeSha) {
@@ -93,14 +105,14 @@ export function githubFileLoader({ org, repo, ref, processors, path }: PolicyLoa
 
             for await (const leaf of treeData.tree) {
                 // Skip directories and .github files
-                if (leaf.type === "tree" || leaf.path.includes(".github/")) continue;
+                if (leaf.type === "tree" || leaf.path?.includes(".github/")) continue;
 
                 const pathMatch =
-                    (path && typeof path === "string" && leaf.path.includes(path)) ||
-                    (path && typeof path !== "string" && path.test(leaf.path));
+                    (path && typeof path === "string" && leaf.path?.includes(path)) ||
+                    (path && typeof path !== "string" && path.test(leaf.path ?? ""));
                 if (!pathMatch) continue;
 
-                const [id, extension] = leaf.path.split(".");
+                const [id, extension] = leaf.path?.split(".") ?? [];
                 processedIds.add(id);
 
                 // Check if we already have this file with the same SHA
@@ -117,6 +129,9 @@ export function githubFileLoader({ org, repo, ref, processors, path }: PolicyLoa
 
                 const { html, metadata } = await $[extension as keyof Processors](body, config);
 
+                // get the last commit date for the file using GitHub API
+                const lastCommit = await get<any>(`https://api.github.com/repos/${org}/${repo}/commits?path=${leaf.path}&sha=${ref}`, "json");
+
                 store.set({
                     id,
                     data: {
@@ -125,7 +140,8 @@ export function githubFileLoader({ org, repo, ref, processors, path }: PolicyLoa
                         org,
                         repo,
                         ref,
-                        sha: leaf.sha // Store SHA for future comparisons
+                        sha: leaf.sha, // Store SHA for future comparisons
+                        lastCommit: lastCommit[0].commit.committer.date,
                     },
                     body,
                     rendered: { html, metadata },
