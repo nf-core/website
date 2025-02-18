@@ -15,12 +15,16 @@ export const DisplayStyle = persistentAtom('DisplayStyle', 'grid', {
     },
 });
 
-export const Checkboxes = persistentAtom('Checkboxes', [], {
+export const Checkboxes = persistentAtom<Array<{id: string, checked: boolean}>>('Checkboxes', [], {
     encode(value) {
         return JSON.stringify(value);
     },
     decode(value) {
-        return JSON.parse(value);
+        try {
+            return JSON.parse(value);
+        } catch {
+            return [];
+        }
     },
 });
 export const currentHeading = atom('');

@@ -45,7 +45,8 @@ export default defineConfig({
 		schema: {
 			GITHUB_TOKEN: envField.string({
 				context: 'server',  // Keep as server-side only for security
-				required: true      // Make it required
+                access: 'secret',
+                optional: false
 			})
 		}
 	},

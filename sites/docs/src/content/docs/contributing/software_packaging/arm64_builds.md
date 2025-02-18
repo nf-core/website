@@ -1,6 +1,7 @@
 ---
 title: arm64 on Bioconda
 subtitle: Getting packages to build for ARM CPUs
+shortTitle: arm64 builds
 parentWeight: 10
 ---
 
