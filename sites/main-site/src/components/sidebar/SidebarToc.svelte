@@ -1,8 +1,12 @@
-<!-- @migration-task Error while migrating Svelte code: This migration would change the name of a slot making the component unusable -->
 <script lang="ts">
     import { currentHeading, showHidden, Checkboxes } from "@components/store";
     import { onMount } from "svelte";
     import ProgressIndicator from "@components/sidebar/ProgressIndicator.svelte";
+
+    // Add snippet props to replace slots
+    export let rightSidebarTop: () => any = () => null;
+    export let rightSidebarLinkBar: () => any = () => null;
+    export let defaultContent: () => any = () => null;
 
     export let headings: {
         text: string;
@@ -77,7 +81,7 @@
 
 <div class="nav flex-column sticky-top-under align-items-end pt-1">
     <div class="d-none d-xl-block w-100">
-        <slot name="right-sidebar-top" />
+        {@render rightSidebarTop()}
         {#if showToc}
             <strong class="h6 my-2 text-body">On this page</strong>
         {/if}
@@ -110,9 +114,9 @@
                                                 ).length) *
                                                 100}
                                             size={25}
-                                            strokeWidth={7}
+                                            strokeWidth={4}
                                             isCurrent={true}
-                                            confetti={hCheckboxes.every((check) => check.checked)}
+                                            confetti={true}
                                         />
                                     </span>
                                 {/if}
@@ -135,10 +139,10 @@
                     >
                         <i class="fa-solid fa-arrow-up-to-line" aria-hidden="true"></i> Back to top
                     </a>
-                    <slot name="right-sidebar-link-bar" />
+                    {@render rightSidebarLinkBar()}
                 </div>
             {/if}
-            <slot />
+            {@render defaultContent()}
         </nav>
     </div>
 </div>

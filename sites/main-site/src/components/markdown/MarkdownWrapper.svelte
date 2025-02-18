@@ -106,14 +106,33 @@
             }
             block.prepend(icon);
         });
+        // change stored Checkboxes to checked
+        $Checkboxes.forEach((checkbox) => {
+            const element = document.getElementById(checkbox.id);
+            if (element) {
+                (element as HTMLInputElement).checked = true;
+            }
+        });
 
         // Update Checkboxes store when checkboxes are clicked
         const checkboxes = document.querySelectorAll('input[type="checkbox"]');
         checkboxes.forEach((checkbox) => {
+            // First, set initial state from store, but only if not all checkboxes would be checked
+            if (!$Checkboxes.every((c) => c.checked)) {
+                const storedCheckbox = $Checkboxes.find((c) => c.id === checkbox.id);
+                if (storedCheckbox) {
+                    (checkbox as HTMLInputElement).checked = true;
+                }
+            }
             checkbox.addEventListener("change", () => {
-                const checked = Array.from(checkboxes).filter((checkbox) => (checkbox as HTMLInputElement).checked);
+                const checkedBoxes = Array.from(checkboxes)
+                    .filter((cb) => (cb as HTMLInputElement).checked)
+                    .map((cb) => ({
+                        id: cb.id,
+                        checked: true,
+                    }));
 
-                Checkboxes.set(checked);
+                Checkboxes.set(checkedBoxes);
             });
         });
     });

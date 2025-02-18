@@ -1,13 +1,26 @@
 import * as dotenv from 'dotenv';
 import { Octokit } from 'octokit';
+import { GITHUB_TOKEN } from 'astro:env/server';
 
+// For Node.js environment (when running directly with node)
 if (!import.meta.env) {
+  console.log("using process.env.GITHUB_TOKEN");
   dotenv.config();
 }
+
+// For Astro, we need to access the token through import.meta.env.GITHUB_TOKEN
+// Note that this needs to be available server-side
 export const octokit = new Octokit({
-  // different env vars for node (used for scripts in `bin/`) and astro
-  auth: import.meta.env ? import.meta.env.GITHUB_TOKEN : process.env.GITHUB_TOKEN,
+  auth: typeof process !== 'undefined' ? process.env.GITHUB_TOKEN : GITHUB_TOKEN
 });
+
+// Debug log
+const checkAuth = async () => {
+  const auth = await octokit.auth();
+  console.log('Auth status:', auth ? 'authenticated' : 'unauthenticated');
+};
+checkAuth();
+
 export default octokit;
 
 export async function getCurrentRateLimitRemaining() {
