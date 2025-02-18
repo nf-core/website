@@ -8967,6 +8967,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -28338,6 +28342,14 @@
                 "description": "Path to BUSCO config file."
               }
             }
+          ],
+          [
+            {
+              "clean_intermediates": {
+                "type": "boolean",
+                "description": "Flag to remove intermediate files."
+              }
+            }
           ]
         ],
         "output": [
@@ -28388,6 +28400,23 @@
                   "type": "file",
                   "description": "Short Busco summary in JSON format",
                   "pattern": "short_summary.*.json"
+                }
+              }
+            ]
+          },
+          {
+            "log": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*-busco/logs/busco.log": {
+                  "type": "file",
+                  "description": "BUSCO main log",
+                  "pattern": "*-busco/logs/busco.log"
                 }
               }
             ]
@@ -112964,6 +112993,22 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -138342,6 +138387,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
+        },
         {
           "name": "viralrecon",
           "version": "2.6.0"
@@ -210927,6 +210976,12 @@
               "type": "path",
               "description": "Path to BUSCO config. It is optional and can be set to `[]`\nStructure:val(busco_config)\n"
             }
+          },
+          {
+            "val_busco_cleanup": {
+              "type": "boolean",
+              "description": "Flag to indicate if intermediate BUSCO files should be removed\nStructure:val(busco_cleanup)\n"
+            }
           }
         ],
         "output": [
@@ -214782,6 +214837,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        },
         {
           "name": "phageannotator",
           "version": "dev"
