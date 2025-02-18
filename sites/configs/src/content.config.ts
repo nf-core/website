@@ -1,4 +1,4 @@
-import { z, defineCollection } from 'astro:content';
+import { z, defineCollection, type CollectionEntry } from 'astro:content';
 import { githubFileLoader, type RenderedContent } from "@utils/loaders";
 
 import { createMarkdownProcessor } from "@astrojs/markdown-remark";
@@ -70,6 +70,7 @@ const configProcessor = async (text: string, config: AstroConfig): Promise<Rende
 };
 
 
+
 const configs = defineCollection({
     loader: githubFileLoader({
         org: "nf-core",
@@ -77,12 +78,14 @@ const configs = defineCollection({
         ref: "master",
         path: /\.(md|mdx|config)$/,
         processors: {
-            md: md,
+            md,
             config: configProcessor,
         },
     }),
+    schema: z.object({
+        extension: z.literal('md').or(z.literal('config')),
+    }),
 });
-
 
 export const collections = {
     configs,
