@@ -81,6 +81,7 @@ const configs = defineCollection({
             md,
             config: configProcessor,
         },
+        getDates: true,
     }),
     schema: z.object({
         extension: z.literal('md').or(z.literal('config')),

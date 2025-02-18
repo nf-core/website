@@ -8,7 +8,7 @@ import partytown from '@astrojs/partytown';
 import sitemap from '@astrojs/sitemap';
 import svelte from '@astrojs/svelte';
 import yaml from '@rollup/plugin-yaml';
-import { defineConfig } from 'astro/config';
+import { defineConfig, envField } from 'astro/config';
 import { FontaineTransform } from 'fontaine';
 import { h } from 'hastscript';
 import addClasses from 'rehype-class-names';
@@ -40,6 +40,14 @@ export default defineConfig({
 	prefetch: false,
 	redirects: {
 		...pipelineRedirects
+	},
+	env: {
+		schema: {
+			GITHUB_TOKEN: envField.string({
+				context: 'server',  // Keep as server-side only for security
+				required: true      // Make it required
+			})
+		}
 	},
 	integrations: [
 		svelte(),
@@ -128,7 +136,8 @@ export default defineConfig({
 		},
 		resolve: {
 			preserveSymlinks: true
-		}
+		},
+		envPrefix: ['PUBLIC_', 'GITHUB_'],  // This allows GITHUB_ prefixed env vars
 	},
 	image: {
 		domains: [
