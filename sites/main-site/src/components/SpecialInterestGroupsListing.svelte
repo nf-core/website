@@ -28,42 +28,47 @@
                 {#each filteredGroups as group (group.id)}
                     <div class="g-col-12 g-col-lg-6 g-col-xl-6 g-col-xxl-4 g-col-xxxxl-2">
                         <ListingCard footer={true}>
-                            <!-- @migration-task: migrate this slot by hand, `card-header` is an invalid identifier -->
-                            <a slot="card-header" href={"/special-interest-groups/" + group.id} class="success"
-                                >{group.data.groupName}</a
-                            >
-                            <!-- @migration-task: migrate this slot by hand, `card-body` is an invalid identifier -->
-                            <p slot="card-body">{group.data.subtitle}</p>
-                            <!-- @migration-task: migrate this slot by hand, `card-footer` is an invalid identifier -->
-                            <div slot="card-footer" class="grid align-content-start">
-                                <div class="pipeline-badges small g-col-8">
-                                    {#if group.data.pipelines && group.data.pipelines.length > 0}
-                                        <p class="text-muted small mb-1">Pipelines:</p>
-                                        {#each group.data.pipelines as pipeline}
-                                            <span class={`badge me-2 pipeline-badge small`}>{pipeline}</span>
-                                        {/each}
-                                    {/if}
-                                </div>
-                                <div class="small g-col-4">
-                                    {#if group.data.leads}
-                                        <p class="text-muted small mb-2">Group leads:</p>
-                                        <div class="leads d-flex w-100 h-100 flex-wrap align-content-start">
-                                            {#each group.data.leads as lead}
-                                                {#if typeof lead === "string"}
-                                                    <GitHubProfilePicture name={lead} size={40} circle={true} />
-                                                {:else}
-                                                    <GitHubProfilePicture
-                                                        name={Object.keys(lead)[0]}
-                                                        size={40}
-                                                        circle={true}
-                                                    ></GitHubProfilePicture>
-                                                {/if}
+                            {#snippet cardHeader()}
+                                <a href={"/special-interest-groups/" + group.id} class="success">
+                                    {group.data.groupName}
+                                </a>
+                            {/snippet}
+
+                            {#snippet cardBody()}
+                                <p>{group.data.subtitle}</p>
+                            {/snippet}
+
+                            {#snippet cardFooter()}
+                                <div class="grid align-content-start">
+                                    <div class="pipeline-badges small g-col-8">
+                                        {#if group.data.pipelines && group.data.pipelines.length > 0}
+                                            <p class="text-muted small mb-1">Pipelines:</p>
+                                            {#each group.data.pipelines as pipeline}
+                                                <span class={`badge me-2 pipeline-badge small`}>{pipeline}</span>
                                             {/each}
-                                        </div>
-                                    {/if}
+                                        {/if}
+                                    </div>
+                                    <div class="small g-col-4">
+                                        {#if group.data.leads}
+                                            <p class="text-muted small mb-2">Group leads:</p>
+                                            <div class="leads d-flex w-100 h-100 flex-wrap align-content-start">
+                                                {#each group.data.leads as lead}
+                                                    {#if typeof lead === "string"}
+                                                        <GitHubProfilePicture name={lead} size={40} circle={true} />
+                                                    {:else}
+                                                        <GitHubProfilePicture
+                                                            name={Object.keys(lead)[0]}
+                                                            size={40}
+                                                            circle={true}
+                                                        />
+                                                    {/if}
+                                                {/each}
+                                            </div>
+                                        {/if}
+                                    </div>
                                 </div>
-                            </div></ListingCard
-                        >
+                            {/snippet}
+                        </ListingCard>
                     </div>
                 {/each}
             {/if}

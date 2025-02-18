@@ -3,9 +3,10 @@ import SpecialInterestGroupsListing from "@components/SpecialInterestGroupsListi
 import ListingLayout from "@layouts/ListingLayout.astro";
 import { getCollection } from "astro:content";
 let groups = await getCollection("special-interest-groups");
+
 groups = groups
     .filter((group) => group.filePath?.includes("index.md"))
-    .sort((a, b) => a.data.title.localeCompare(b.data.title));
+    .sort((a, b) => a.data.groupName.localeCompare(b.data.groupName));
 ---
 
 <ListingLayout

@@ -1,4 +1,3 @@
-<!-- @migration-task Error while migrating Svelte code: This migration would change the name of a slot making the component unusable -->
 <script lang="ts">
     import { onMount } from "svelte";
     import { CurrentFilter, Filters, SortBy, DisplayStyle, SearchQuery } from "@components/store";
@@ -129,7 +128,7 @@
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
                     >
-                        {@render filterName()}
+                        {filterName()}
                     </button>
                     <ul class="dropdown-menu">
                         {#each $Filters as fil}
