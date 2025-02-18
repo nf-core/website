@@ -33,8 +33,7 @@
 </script>
 
 <ListingCard {recentRelease}>
-    <!-- @migration-task: migrate this slot by hand, `card-header` is an invalid identifier -->
-    <div slot="card-header">
+    {#snippet cardHeader()}
         <div class="d-flex flex-wrap justify-content-between align-items-center">
             <a class="text-decoration-none" href={"/" + pipeline.name + "/" + (released ? tagName : "dev") + "/"}
                 >{name}
@@ -66,46 +65,48 @@
                 </a>
             </small>
         </div>
-    </div>
-    <!-- @migration-task: migrate this slot by hand, `card-body` is an invalid identifier -->
-    <div slot="card-body" class="d-flex flex-column justify-content-between h-100">
-        <div class="recent-release-badge text-center">
-            {#if recentRelease}
-                <a
-                    href={"https://github.com/nf-core/" + name + "/releases/tag/" + tagName}
-                    class="text-decoration-none badge text-bg-success fs-6 mb-0 rounded-top-0"
-                    >New release! <Confetti x={[-1.5, 1.75]} amount="100" rounded="true" /></a
-                >
+    {/snippet}
+
+    {#snippet cardBody()}
+        <div class="d-flex flex-column justify-content-between h-100">
+            <div class="recent-release-badge text-center">
+                {#if recentRelease}
+                    <a
+                        href={"https://github.com/nf-core/" + name + "/releases/tag/" + tagName}
+                        class="text-decoration-none badge text-bg-success fs-6 mb-0 rounded-top-0"
+                        >New release! <Confetti x={[-1.5, 1.75]} amount="100" rounded="true" /></a
+                    >
+                {/if}
+            </div>
+            {#if body}
+                <div class="description flex-grow-1" class:pt-1={recentRelease}><Markdown md={body} /></div>
+            {/if}
+            <p class="topics mb-3">
+                {#each topics as topic}
+                    <span class="badge fw-normal bg-body-tertiary text-success me-2">{topic}</span>
+                {/each}
+            </p>
+
+            {#if released}
+                <p class="release">
+                    <a
+                        role="button"
+                        href={"https://github.com/nf-core/" + name + "/releases/tag/" + tagName}
+                        style={{ cursor: "pointer" }}
+                        class="btn btn-outline-secondary"
+                    >
+                        <i class="fa-regular fa-tag me-1"></i>
+                        {tagName}
+                    </a>
+                    <span class="text-body-secondary text-small"> released {releaseDateAgo}</span>
+                </p>
+            {:else}
+                <p class="release">
+                    <span class="text-body-secondary text-small"> last changes {lastChangesAge}</span>
+                </p>
             {/if}
         </div>
-        {#if body}
-            <div class="description flex-grow-1" class:pt-1={recentRelease}><Markdown md={body} /></div>
-        {/if}
-        <p class="topics mb-3">
-            {#each topics as topic}
-                <span class="badge fw-normal bg-body-tertiary text-success me-2">{topic}</span>
-            {/each}
-        </p>
-
-        {#if released}
-            <p class="release">
-                <a
-                    role="button"
-                    href={"https://github.com/nf-core/" + name + "/releases/tag/" + tagName}
-                    style={{ cursor: "pointer" }}
-                    class="btn btn-outline-secondary"
-                >
-                    <i class="fa-regular fa-tag me-1"></i>
-                    {tagName}
-                </a>
-                <span class="text-body-secondary text-small"> released {releaseDateAgo}</span>
-            </p>
-        {:else}
-            <p class="release">
-                <span class="text-body-secondary text-small"> last changes {lastChangesAge}</span>
-            </p>
-        {/if}
-    </div>
+    {/snippet}
 </ListingCard>
 
 <style lang="scss">
