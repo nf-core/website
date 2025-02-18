@@ -11,11 +11,14 @@ type GithubTreeLeaf = {
     url: string;
 };
 
-type GithubTreeData = {
-    url: string;
-    hash: string;
-    tree: GithubTreeLeaf[];
-};
+type GitHubCommit = {
+    commit: {
+        committer: {
+            date: string;
+        };
+    };
+}[];
+
 // Taken from astro content.d.ts
 export interface RenderedContent {
     html: string;
@@ -37,6 +40,7 @@ interface PolicyLoaderConfig {
     ref: string;
     path: string | RegExp; // Change path type to allow RegExp
     processors: Processors;
+    getDates: boolean;
 }
 
 function createProcessors(processors: Processors) {
@@ -54,14 +58,14 @@ function createProcessors(processors: Processors) {
     });
 }
 
-export function githubFileLoader({ org, repo, ref, processors, path }: PolicyLoaderConfig): Loader {
+export function githubFileLoader({ org, repo, ref, processors, path, getDates = false }: PolicyLoaderConfig): Loader {
     const baseUrl = `https://raw.githubusercontent.com/${org}/${repo}/${ref}`;
 
     const get = async <T>(filepath: string, type: "json" | "text"): Promise<T> => {
         try {
             // If this is a GitHub API request, use octokit
-            if (filepath.startsWith('https://api.github.com')) {
-                const response = await octokit.request('GET ' + filepath.replace('https://api.github.com', ''));
+            if (filepath.startsWith("https://api.github.com")) {
+                const response = await octokit.request("GET " + filepath.replace("https://api.github.com", ""));
                 return response.data as T;
             }
             // Otherwise use fetch for raw content
@@ -80,14 +84,14 @@ export function githubFileLoader({ org, repo, ref, processors, path }: PolicyLoa
             logger.info(`Loading files from ${org}/${repo}@${ref}`);
 
             // Get the last tree SHA we processed
-            const lastTreeSha = meta.get('lastTreeSha');
+            const lastTreeSha = meta.get("lastTreeSha");
 
             // Fetch current tree data using octokit directly
             const { data: treeData } = await octokit.rest.git.getTree({
                 owner: org,
                 repo: repo,
                 tree_sha: ref,
-                recursive: '1'
+                recursive: "1",
             });
 
             const currentTreeSha = treeData.sha;
@@ -128,9 +132,14 @@ export function githubFileLoader({ org, repo, ref, processors, path }: PolicyLoa
                 const digest = generateDigest(body);
 
                 const { html, metadata } = await $[extension as keyof Processors](body, config);
-
-                // get the last commit date for the file using GitHub API
-                const lastCommit = await get<any>(`https://api.github.com/repos/${org}/${repo}/commits?path=${leaf.path}&sha=${ref}`, "json");
+                let lastCommit: GitHubCommit | null = null;
+                if (getDates) {
+                    // get the last commit date for the file using GitHub API
+                    lastCommit = await get<GitHubCommit>(
+                        `https://api.github.com/repos/${org}/${repo}/commits?path=${leaf.path}&sha=${ref}`,
+                        "json",
+                    );
+                }
 
                 store.set({
                     id,
@@ -141,11 +150,11 @@ export function githubFileLoader({ org, repo, ref, processors, path }: PolicyLoa
                         repo,
                         ref,
                         sha: leaf.sha, // Store SHA for future comparisons
-                        lastCommit: lastCommit[0].commit.committer.date,
+                        lastCommit: lastCommit?.[0].commit.committer.date || null,
                     },
                     body,
                     rendered: { html, metadata },
-                    digest
+                    digest,
                 });
             }
 
@@ -158,8 +167,8 @@ export function githubFileLoader({ org, repo, ref, processors, path }: PolicyLoa
             }
 
             // Update the stored tree SHA
-            meta.set('lastTreeSha', currentTreeSha);
-            logger.info('GitHub file loader completed successfully');
+            meta.set("lastTreeSha", currentTreeSha);
+            logger.info("GitHub file loader completed successfully");
         },
     };
 }
