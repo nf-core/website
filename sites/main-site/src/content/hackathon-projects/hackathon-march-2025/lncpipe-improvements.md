@@ -3,7 +3,7 @@ title: Enhancing and Updating nf-core/lncpipe Pipeline
 category: pipelines
 slack: "https://nfcore.slack.com/archives/CGC8LJE7K"
 intro_video: ""
-image: "/assets/images/events/2025/hackathon-march/lncpipe-improvements.png"
+image: "/assets/images/events/2025/hackathon-march/lncpipe-improvements.jpeg"
 image_alt: lncpipe meme
 leaders:
   ctuni:
