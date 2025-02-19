@@ -25,5 +25,4 @@ We welcome contributors of all experience levels.
 3. Improve compatibility with current reference genome annotations and transcriptomic datasets.
 4. Optimize integration with existing RNA-seq pipelines for seamless lncRNA analysis.
 
-
 Join us in improving lncpipe and making lncRNA analysis more accessible!
