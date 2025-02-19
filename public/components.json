@@ -8975,6 +8975,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -55039,9 +55043,9 @@
                 }
               },
               {
-                "results/*.tsv": {
+                "*.tsv": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "description": "Output file containing relative abundances for reads",
                   "pattern": "*{.tsv}"
                 }
               }
@@ -55052,14 +55056,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "description": "Groovy Map containing sample information e.g. [ id:'test', single_end:false ]",
                   "pattern": "*{.tsv}"
                 }
               },
               {
-                "results/*read-assignment-distributions.tsv": {
+                "*read-assignment-distributions.tsv": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "description": "Output file with read assignment distributions.",
                   "pattern": "*{.tsv}"
                 }
               }
@@ -55075,9 +55079,9 @@
                 }
               },
               {
-                "results/*.sam": {
+                "*.sam": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "description": "Sam alignment file",
                   "pattern": "*{.sam}"
                 }
               }
@@ -55093,9 +55097,9 @@
                 }
               },
               {
-                "results/*.fasta": {
+                "*.fasta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "description": "Output file with unclassified sequences",
                   "pattern": "*{.fa}"
                 }
               }
@@ -113029,6 +113033,22 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.0.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -138399,6 +138419,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
+        },
         {
           "name": "viralrecon",
           "version": "2.6.0"
@@ -212963,6 +212987,87 @@
       }
     },
     {
+      "name": "fastq_align_parabricks",
+      "path": "subworkflows/nf-core/fastq_align_parabricks/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "fastq_align_parabricks",
+        "description": "Align a fastq file using GPU-based acceleration",
+        "keywords": [
+          "fastq",
+          "align",
+          "parabricks",
+          "gpu",
+          "preprocessing"
+        ],
+        "components": [
+          "parabricks/fq2bam",
+          "parabricks/applybqsr"
+        ],
+        "input": [
+          {
+            "ch_reads": {
+              "type": "file",
+              "description": "Channel containing reads (either one file for se or two files for pe)\nStructure: [ val(meta), [ path(fastq1), path(fastq2) ] ]\n"
+            }
+          },
+          {
+            "ch_fasta": {
+              "type": "file",
+              "description": "Channel containing reference fasta file\nStructure: [ val(meta), path(fasta) ]\n"
+            }
+          },
+          {
+            "ch_index": {
+              "type": "file",
+              "description": "Channel containing reference BWA index\nStructure: [ val(meta), path(.{amb,ann,bwt,pac,sa}) ]\n"
+            }
+          },
+          {
+            "ch_interval_file": {
+              "type": "file",
+              "description": "(optional) file(s) containing genomic intervals for use in base\nquality score recalibration (BQSR)\nStructure: [ val(meta), path(.{bed,interval_list,picard,list,intervals}) ]\n"
+            }
+          },
+          {
+            "ch_known_sites": {
+              "type": "file",
+              "description": "(optional) known sites file(s) for calculating BQSR. markdups must\nbe true to perform BQSR.\nStructure [ path(vcf) ]\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "bam": {
+              "type": "file",
+              "description": "Channel containing BAM files\nStructure: [ val(meta), path(bam) ]\n",
+              "pattern": "*.bam"
+            }
+          },
+          {
+            "bai": {
+              "type": "file",
+              "description": "Channel containing indexed BAM (BAI) files\nStructure: [ val(meta), path(bai) ]\n",
+              "pattern": "*.bai"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@famosab"
+        ],
+        "maintainers": [
+          "@famosab"
+        ]
+      }
+    },
+    {
       "name": "fastq_align_star",
       "path": "subworkflows/nf-core/fastq_align_star/meta.yml",
       "type": "subworkflow",
@@ -214986,6 +215091,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        },
         {
           "name": "phageannotator",
           "version": "dev"
