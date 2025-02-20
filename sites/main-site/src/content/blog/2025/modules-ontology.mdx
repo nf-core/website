@@ -20,28 +20,29 @@ The initial structure of the `meta.yml` file did not represent the structure of 
 This structure was describing all channel elements at the top level, without grouping them by channel.
 This let to issues such as missing descriptions for multiple meta maps or difficulting the identification of different channels.
 
-<div class="d-flex"><div class="w-100 w-xl-50">
-```main.nf
-inputs:
-tuple val(meta), path(fasta)
-```
-</div><div class="w-100 w-xl-50">
-```meta.yml
-- meta:
-      type: map
-      description: |
-        Groovy Map containing sample information
-        e.g. [ id:'test', single_end:false ]
-  - assembly:
-      type: file
-      description: FASTA, GenBank or EMBL formatted file
-      pattern: "*.{fa,fasta,fna,fa.gz,fasta.gz,fna.gz,gbk,gbk.gz,embl,embl.gz}"
-```
-</div></div>
+<div class="row">
+    <div class="col-12 col-lg-6">
+    ```groovy title="main.nf"
+    inputs: tuple val(meta), path(fasta)
+    ```
+    </div>
+    <div class="col-12 col-lg-6">
+        ```yml title="meta.yml"
+        - meta:
+            type: map
+            description: |
+            Groovy Map containing sample information e.g. [ id:'test', single_end:false ]
+        - assembly:
+            type: file
+            description: |
+            FASTA, GenBank or EMBL formatted file pattern: "*.{(fa, fasta, fna, fa.gz, fasta.gz, fna.gz, gbk, gbk.gz, embl, embl.gz)}"
+
+        ```
+    </div>
+
+</div>
 
 Back in october 2024 we [updated all nf-core modules](https://github.com/nf-core/modules/pull/6674) to make sure that all of them specify the proper input and output channel structures.
-
-
 
 We also introduced linting checks to nf-core/tools to ensure the proper structure of `meta.yml` files.
 
