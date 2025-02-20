@@ -68,7 +68,7 @@
         const copiedButtonLabel = `<span class='font-sans-serif'>Copied </span><i class='fa-regular fa-clipboard-check'></i>`;
         document
             .querySelectorAll(
-                "figure[data-rehype-pretty-code-figure] pre:not([data-language='console']):not([data-language='tree'])",
+                "figure[data-rehype-pretty-code-figure] pre:not([data-language='console']):not([data-language='tree']):not([data-language='plaintext'])",
             )
             .forEach((block) => {
                 block.classList.add("position-relative");
