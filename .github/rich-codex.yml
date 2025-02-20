@@ -65,7 +65,7 @@ outputs:
     trim_after: "Command line"
     img_paths:
       - public/images/tools/nf-core-launch-rnaseq.svg
-  - command: mkdir tmp && cd tmp && nf-core pipelines download rnaseq -r 3.8 --outdir nf-core-rnaseq -x none -s none -d
+  - command: mkdir tmp && cd tmp && nf-core pipelines download rnaseq -r 3.8 --outdir nf-core-rnaseq -x none -s none
     img_paths:
       - public/images/tools/nf-core-download.svg
   - command: cd tmp && tree -L 2 nf-core-rnaseq/
@@ -85,9 +85,9 @@ outputs:
   - command: |
       cd tmp && \
       echo "{input: myfiles.csv, outdir: results}" > nf-params.json
-      nf-core pipelines schema validate nf-core/rnaseq nf-params.json
+      nf-core pipelines schema validate nf-core-rnaseq/3_8 nf-params.json
     timeout: 10
-    fake_command: nf-core pipelines schema validate nf-core/rnaseq nf-params.json
+    fake_command: nf-core pipelines schema validate nf-core-rnaseq/3_8 nf-params.json
     after_command: rm nf-params.json
     img_paths:
       - public/images/tools/nf-core-schema-validate.svg
