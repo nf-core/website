@@ -3,11 +3,15 @@
     import * as icons from "file-icons-js";
     import "file-icons-js/css/style.css";
     import mermaid from "mermaid";
-    import { onMount } from "svelte";
+    import { onMount, mount } from "svelte";
     import CopyButton from "@components/CopyButton.svelte";
 
-    export let headings: { text: string; slug: string; depth: number; fa_icon?: string }[] = [];
+    interface Props {
+        headings?: { text: string; slug: string; depth: number; fa_icon?: string }[];
+        children?: import("svelte").Snippet;
+    }
 
+    let { headings = [], children }: Props = $props();
     onMount(() => {
         if (typeof window !== "undefined" && window.location.pathname.includes("/events/") && !window.location.hash) {
             window.scrollTo(0, 0);
@@ -64,7 +68,7 @@
         const copiedButtonLabel = `<span class='font-sans-serif'>Copied </span><i class='fa-regular fa-clipboard-check'></i>`;
         document
             .querySelectorAll(
-                "figure[data-rehype-pretty-code-figure] pre:not([data-language='console']):not([data-language='tree'])",
+                "figure[data-rehype-pretty-code-figure] pre:not([data-language='console']):not([data-language='tree']):not([data-language='plaintext'])",
             )
             .forEach((block) => {
                 block.classList.add("position-relative");
@@ -72,7 +76,7 @@
                 if (copyText) {
                     // check if block has only one child, i.e. is a single line code block, so we need less top and bottom margin for button
                     const SingleLine = block.childElementCount === 1 ? "single-line" : "";
-                    new CopyButton({
+                    mount(CopyButton, {
                         target: block, // Specify the target element for the Svelte component
                         props: {
                             text: copyText,
@@ -102,19 +106,38 @@
             }
             block.prepend(icon);
         });
+        // change stored Checkboxes to checked
+        $Checkboxes.forEach((checkbox) => {
+            const element = document.getElementById(checkbox.id);
+            if (element) {
+                (element as HTMLInputElement).checked = true;
+            }
+        });
 
         // Update Checkboxes store when checkboxes are clicked
         const checkboxes = document.querySelectorAll('input[type="checkbox"]');
         checkboxes.forEach((checkbox) => {
+            // First, set initial state from store, but only if not all checkboxes would be checked
+            if (!$Checkboxes.every((c) => c.checked)) {
+                const storedCheckbox = $Checkboxes.find((c) => c.id === checkbox.id);
+                if (storedCheckbox) {
+                    (checkbox as HTMLInputElement).checked = true;
+                }
+            }
             checkbox.addEventListener("change", () => {
-                const checked = Array.from(checkboxes).filter((checkbox) => (checkbox as HTMLInputElement).checked);
+                const checkedBoxes = Array.from(checkboxes)
+                    .filter((cb) => (cb as HTMLInputElement).checked)
+                    .map((cb) => ({
+                        id: cb.id,
+                        checked: true,
+                    }));
 
-                Checkboxes.set(checked);
+                Checkboxes.set(checkedBoxes);
             });
         });
     });
 </script>
 
 <div>
-    <slot />
+    {@render children?.()}
 </div>
