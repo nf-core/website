@@ -2,7 +2,7 @@
 title: "Integrating ontologies into nf-core modules"
 subtitle: "Getting onto the right path"
 headerImage: "https://images.unsplash.com/photo-1530477765758-9fa34af23dad"
-headerImageAlt: "A wall of red, blue and green plastic crates"
+headerImageAlt: "A path in the middle of a gree forest"
 pubDate: 2025-02-28T14:00:00+01:00
 authors:
     - "mirpedrol"
@@ -227,7 +227,7 @@ tools:
           identifier: "biotools:bwa"
 ```
 
-This bio.tools ID opened new possibilities, such as being able to grab the inputs and outputs of that tool and find the ontologies for input and output files.
+This bio.tools ID opened new possibilities, such as being able to grab the inputs and outputs of that tool and find the ontology terms for input and output files.
 
 We now use this information to generate a suggestion of input and output channels when creating a module with `nf-core modules create`.
 (available as of February 2025 on the `dev` version of nf-core/tools)
@@ -301,7 +301,7 @@ input:
 
 The ontologies are specified under the key `ontologies` in a list of dictionaries.
 These dictionaries contain only one element, there is one dictionary for each ontology URL.
-The `key` describes the type of ontology (currently using [EDAM ontologies](https://edamontology.github.io/edam-browser/#topic_0091)),
+The `key` describes the type of ontology (currently using [EDAM ontology](https://edamontology.github.io/edam-browser/#topic_0091)),
 allowing the easy adoption of other ontologies in the future.
 And the value contains the ontology URL.
 
