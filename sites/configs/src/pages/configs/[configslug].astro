@@ -8,6 +8,10 @@ import { getCollection, type CollectionEntry } from "astro:content";
 export async function getStaticPaths() {
     const files = await getCollection("configs");
     return files
+        .filter((config) =>
+            // remove configs that don't have a matching md file
+            files.find((file) => file.id.includes(config.id.replace("conf/", "")) && file.data.extension === "md"),
+        )
         .filter((file) => file.data.extension === "config")
         .map((file) => {
             const name = file.id.replace("conf/", "");
@@ -54,7 +58,7 @@ const gh_url = `https://github.com/nf-core/configs/blob/master/docs/${configslug
 
 <PageLayout
     title={"nf-core/configs: " + configslug}
-    subtitle={metadata.config_profile_description?.toString()}
+    subtitle={metadata.config_profile_description?.toString().trim()}
     mainpage_container={true}
     md_github_url={gh_url}
     subfooter={true}
