@@ -24,12 +24,15 @@ We welcome contributors of all experience levels.
 1. **Expand documentation and user support to encourage wider adoption.**
 
    _A great entry point for first-time contributors—help make the pipeline more accessible!_
+
 2. **Update the pipeline to the latest nf-core and Nextflow standards.**
 
    _Perfect for those who enjoy working with Nextflow and want to contribute to pipeline modernization._
+
 3. **Improve compatibility with current reference genome annotations and transcriptomic datasets.**
 
    _A great challenge for contributors familiar with RNA-seq data and bioinformatics workflows._
+
 4. **Optimize integration with existing RNA-seq pipelines for seamless lncRNA analysis.**
 
    _Ideal for those with some experience in workflow development and RNA sequencing analysis._
