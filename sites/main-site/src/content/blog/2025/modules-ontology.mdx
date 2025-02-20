@@ -1,0 +1,55 @@
+---
+title: "Integrating ontologies into nf-core modules"
+subtitle: "Getting onto the right path"
+headerImage: "https://images.unsplash.com/photo-1530477765758-9fa34af23dad"
+headerImageAlt: "A wall of red, blue and green plastic crates"
+pubDate: 2025-02-28T14:00:00+01:00
+authors:
+    - "mirpedrol"
+label:
+    - "tools"
+    - "modules"
+maxHeadingDepth: 3
+---
+
+## Introduction
+
+Nf-core moduels come with a `meta.yml` file used to describe the structure of that module.
+
+The initial structure of the `meta.yml` file did not represent the structure of the modules input and output channels.
+This structure was describing all channel elements at the top level, without grouping them by channel.
+This let to issues such as missing descriptions for multiple meta maps or difficulting the identification of different channels.
+
+<div class="d-flex"><div class="w-100 w-xl-50">
+```main.nf
+inputs:
+tuple val(meta), path(fasta)
+```
+</div><div class="w-100 w-xl-50">
+```meta.yml
+- meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
+  - assembly:
+      type: file
+      description: FASTA, GenBank or EMBL formatted file
+      pattern: "*.{fa,fasta,fna,fa.gz,fasta.gz,fna.gz,gbk,gbk.gz,embl,embl.gz}"
+```
+</div></div>
+
+Back in october 2024 we [updated all nf-core modules](https://github.com/nf-core/modules/pull/6674) to make sure that all of them specify the proper input and output channel structures.
+
+
+
+We also introduced linting checks to nf-core/tools to ensure the proper structure of `meta.yml` files.
+
+Together with this linting checks, we also introduced a new flag to the `nf-core modules lint` command, `--fix`.
+This flag will try to fix all the possible lint failures related to the `meta.yml` file by updating it.
+
+## Specs
+
+## Using nf-core helper tools
+
+## Future potential
