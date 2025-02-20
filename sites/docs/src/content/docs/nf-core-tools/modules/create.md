@@ -21,6 +21,9 @@ It will start in the current working directory, or whatever is specified with `-
 
 The `nf-core modules create` command will prompt you with the relevant questions in order to create all of the necessary module files.
 
+If a bioconda entry is found, the command will populate the containers for you.
+If a bio.tools entry is found, the command will try to guess the correct input and output channels and ontologies for you. Make sure to check if the given information is correct.
+
 <!-- RICH-CODEX
 working_dir: tmp
 timeout: 10

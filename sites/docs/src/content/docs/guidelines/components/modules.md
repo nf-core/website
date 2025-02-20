@@ -620,7 +620,7 @@ Input/output types MUST only be of the following categories: `map`, `file`, `dir
 
 Input/output entries MUST match a corresponding channel in the module itself
 
-- There should be a one-to-one relationship between the module and the `meta.yaml`
+- There should be a one-to-one relationship between the module and the `meta.yml`
 - Input/output entries MUST NOT combine multiple output channels
 
 ### Useful input/output descriptions
@@ -632,6 +632,11 @@ Input/output descriptions SHOULD be descriptive of the contents of file
 ### Input/output glob pattern
 
 Input/output patterns (if present) MUST follow a [Java glob pattern](https://docs.oracle.com/javase/tutorial/essential/io/fileOps.html#glob)
+
+### Ontology
+
+- Moduels `meta.yml` files SHOULD contain a bio.tools ID when available.
+- Moduels `meta.yml` files SHOULD contain ontology URLs for files when relevant.
 
 ### Indication of input channel requirement
 
