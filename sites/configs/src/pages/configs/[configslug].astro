@@ -13,6 +13,7 @@ export async function getStaticPaths() {
             files.find((file) => file.id.includes(config.id.replace("conf/", "")) && file.data.extension === "md"),
         )
         .filter((file) => file.data.extension === "config")
+        .filter((file) => !file.id.includes("pipeline/"))
         .map((file) => {
             const name = file.id.replace("conf/", "");
             return {
