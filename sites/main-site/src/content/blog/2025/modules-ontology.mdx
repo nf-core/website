@@ -211,21 +211,19 @@ This flag will try to fix all the possible lint failures related to the `meta.ym
 
 Together with these changes, we also added the [`bio.tools`](https://bio.tools/) identifier of the tool.
 
-<div class="col-12 col-lg-12">
-    ```yml title="meta.yml" {11}
-    name: bwa_mem
-    ...
-    tools:
-        - bwa:
-            description: |
-                BWA is a software package for mapping DNA
-                sequences against a large reference genome, such as the human genome. homepage: http://bio-bwa.sourceforge.net/
-            documentation: https://bio-bwa.sourceforge.net/bwa.shtml
-            arxiv: arXiv:1303.3997
-            licence: ["GPL-3.0-or-later"]
-            identifier: "biotools:bwa"
-    ```
-</div>
+```yml title="meta.yml"
+name: bwa_mem
+---
+tools:
+    - bwa:
+          description: |
+              BWA is a software package for mapping DNA
+              sequences against a large reference genome, such as the human genome. homepage: http://bio-bwa.sourceforge.net/
+          documentation: https://bio-bwa.sourceforge.net/bwa.shtml
+          arxiv: arXiv:1303.3997
+          licence: ["GPL-3.0-or-later"]
+          identifier: "biotools:bwa"
+```
 
 This bio.tools ID opened new possibilities, such as being able to grab the inputs and outputs of that tool and find the ontologies for input and output files.
 
@@ -235,75 +233,69 @@ So modifying the freshly created template of a module will be easier.
 
 Here we show an example of the template generated when creating a module for the BWA tool, using the same example as before.
 
-<div class="col-12 col-lg-12">
-    ```yml title="main.nf"
-    process BWA_MEM {
-        tag "$meta.id"
-        label 'process_single'
+```yml title="main.nf"
+process BWA_MEM {
+    tag "$meta.id"
+    label 'process_single'
 
-        // TODO nf-core: See section in main README for further information regarding finding and adding container addresses to the section below.
-        conda "${moduleDir}/environment.yml"
-        container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-            'https://depot.galaxyproject.org/singularity/bwa:0.7.18--h577a1d6_2':
-            'biocontainers/bwa:0.7.18--h577a1d6_2' }"
+    // TODO nf-core: See section in main README for further information regarding finding and adding container addresses to the section below.
+    conda "${moduleDir}/environment.yml"
+    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+        'https://depot.galaxyproject.org/singularity/bwa:0.7.18--h577a1d6_2':
+        'biocontainers/bwa:0.7.18--h577a1d6_2' }"
 
-        input:
-        // TODO nf-core: Update the information obtained from bio.tools and make sure that it is correct
-        tuple val(meta), path(sequence)
-        tuple val(meta), path(genome_index)
+    input:
+    // TODO nf-core: Update the information obtained from bio.tools and make sure that it is correct
+    tuple val(meta), path(sequence)
+    tuple val(meta), path(genome_index)
 
-        output:
-        // TODO nf-core: Update the information obtained from bio.tools and make sure that it is correct
-        tuple val(meta), path("*.{}"), emit: genome_index
-        tuple val(meta), path("*.{}"), emit: alignment
-        tuple val(meta), path("*.{}"), emit: sequence_coordinates
-        tuple val(meta), path("*.{}"), emit: sequence_alignment
-        path "versions.yml"          , emit: versions
+    output:
+    // TODO nf-core: Update the information obtained from bio.tools and make sure that it is correct
+    tuple val(meta), path("*.{}"), emit: genome_index
+    tuple val(meta), path("*.{}"), emit: alignment
+    tuple val(meta), path("*.{}"), emit: sequence_coordinates
+    tuple val(meta), path("*.{}"), emit: sequence_alignment
+    path "versions.yml"          , emit: versions
 
-        ...
-    }
-    ```
-
-</div>
+    ...
+}
+```
 
 And we populate a section `ontologies` of files described in the `meta.yml`.
 
-<div class="col-12 col-lg-12">
-    ```yml title="meta.yaml" {15-17,30-31}
-    name: "bwa_mem"
-    ...
-    input:
-        - - meta:
-                type: map
-                description: |
-                Groovy Map containing sample information
-                e.g. `[ id:'sample1' ]`
+```yml title="meta.yaml" {15-17,30-31}
+name: "bwa_mem"
+...
+input:
+    - - meta:
+            type: map
+            description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
 
-            - sequence:
-                # TODO nf-core: Update the information obtained from bio.tools and make sure that it is correct
-                type: file
-                description: sequence file
-                pattern: "*.{fastq}"
-                ontologies:
-                - edam: "http://edamontology.org/data_2044" # Sequence
-                - edam: "http://edamontology.org/format_1930" # FASTQ
+        - sequence:
+            # TODO nf-core: Update the information obtained from bio.tools and make sure that it is correct
+            type: file
+            description: sequence file
+            pattern: "*.{fastq}"
+            ontologies:
+            - edam: "http://edamontology.org/data_2044" # Sequence
+            - edam: "http://edamontology.org/format_1930" # FASTQ
 
-        - - meta:
-                type: map
-                description: |
-                Groovy Map containing sample information
-                e.g. `[ id:'sample1' ]`
+    - - meta:
+            type: map
+            description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
 
-            - genome_index:
-                # TODO nf-core: Update the information obtained from bio.tools and make sure that it is correct
-                type: file
-                description: genome_index file
-                pattern: "*.{}"
-                ontologies:
-                - edam: "http://edamontology.org/data_3210" # Genome index
-    ```
-
-</div>
+        - genome_index:
+            # TODO nf-core: Update the information obtained from bio.tools and make sure that it is correct
+            type: file
+            description: genome_index file
+            pattern: "*.{}"
+            ontologies:
+            - edam: "http://edamontology.org/data_3210" # Genome index
+```
 
 The ontologies are specified under the key `ontologies` in a list of dictionaries.
 These dictionaries contain only one element, there is one dictionary for each ontology URL.
