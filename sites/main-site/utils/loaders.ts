@@ -85,7 +85,6 @@ export function githubFileLoader({ org, repo, ref, processors, path, getDates = 
 
             // Get the last tree SHA we processed
             const lastTreeSha = meta.get("lastTreeSha");
-
             // Fetch current tree data using octokit directly
             const { data: treeData } = await octokit.rest.git.getTree({
                 owner: org,
@@ -136,7 +135,7 @@ export function githubFileLoader({ org, repo, ref, processors, path, getDates = 
                 if (getDates) {
                     // get the last commit date for the file using GitHub API
                     lastCommit = await get<GitHubCommit>(
-                        `https://api.github.com/repos/${org}/${repo}/commits?path=${leaf.path}&sha=${ref}`,
+                        `https://api.github.com/repos/${org}/${repo}/commits?path=${leaf.path}&ref=${ref}`,
                         "json",
                     );
                 }

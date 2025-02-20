@@ -128,7 +128,10 @@ const gh_url = `https://github.com/nf-core/configs/blob/master/docs/${configslug
                                 </a>`
                                     : "",
                             },
-                            { title: "last updated", value: config.data.lastCommit?.toString() },
+                            {
+                                title: "Last modification",
+                                value: new Date(config.data.lastCommit?.toString()).toISOString().split("T")[0],
+                            },
                         ]}
                     />
                 )

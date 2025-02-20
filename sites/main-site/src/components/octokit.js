@@ -1,5 +1,7 @@
 import * as dotenv from 'dotenv';
 import { Octokit } from 'octokit';
+import { retry } from "@octokit/plugin-retry";
+import { throttling } from "@octokit/plugin-throttling";
 import { GITHUB_TOKEN } from 'astro:env/server';
 
 // For Node.js environment (when running directly with node)
@@ -10,31 +12,40 @@ if (!import.meta.env) {
 
 // For Astro, we need to access the token through import.meta.env.GITHUB_TOKEN
 // Note that this needs to be available server-side
-export const octokit = new Octokit({
-  auth: typeof process !== 'undefined' ? process.env.GITHUB_TOKEN : GITHUB_TOKEN
-});
+const MyOctokit = Octokit.plugin(retry, throttling);
+export const octokit = new MyOctokit({
+  auth: typeof process !== "undefined" ? process.env.GITHUB_TOKEN : GITHUB_TOKEN,
+  throttle: {
+    onRateLimit: (retryAfter, options, octokit, retryCount) => {
+      octokit.log.warn(`Request quota exhausted for request ${options.method} ${options.url}. Retrying in ${retryAfter} seconds. Retry count: ${retryCount}`);
 
-// Debug log
-const checkAuth = async () => {
-  const auth = await octokit.auth();
-  console.log('Auth status:', auth ? 'authenticated' : 'unauthenticated');
-};
-checkAuth();
+      if (retryCount < 1) {
+        // only retries once
+        octokit.log.info(`Retrying after ${retryAfter} seconds!`);
+        return true;
+      }
+    },
+    onSecondaryRateLimit: (retryAfter, options, octokit) => {
+      // does not retry, only logs a warning
+      octokit.log.warn(`Secondary quota detected for request ${options.method} ${options.url}`);
+    },
+  },
+  retry: {
+    doNotRetry: ["429"],
+  },
+});
 
 export default octokit;
 
 export async function getCurrentRateLimitRemaining() {
   try {
     // Make a request to any endpoint (e.g., get the authenticated user)
-    const response = await octokit.rest.repos.get({
-      owner: 'nf-core',
-      repo: 'nf-co.re',
+    const { data: response } = await octokit.request('GET /rate_limit', {
+      headers: {
+        'X-GitHub-Api-Version': '2022-11-28'
+      }
     });
-
-    // Get the 'x-ratelimit-remaining' header from the response headers
-    const rateLimitRemaining = response.headers['x-ratelimit-remaining'];
-
-    console.log(`Rate limit remaining: ${rateLimitRemaining}`);
+    console.log(`Rate limit remaining: ${JSON.stringify(response.core)}`);
   } catch (error) {
     console.error('Error occurred:', error);
   }
