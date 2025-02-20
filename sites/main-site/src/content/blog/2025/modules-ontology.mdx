@@ -2,10 +2,11 @@
 title: "Integrating ontologies into nf-core modules"
 subtitle: "Getting onto the right path"
 headerImage: "https://images.unsplash.com/photo-1530477765758-9fa34af23dad"
-headerImageAlt: "A path in the middle of a gree forest"
-pubDate: 2025-02-28T14:00:00+01:00
+headerImageAlt: "A path made out of wooden planks in the middle of a green forest."
+pubDate: 2025-02-21T14:00:00+01:00
 authors:
     - "mirpedrol"
+    - "mashehu"
 label:
     - "tools"
     - "modules"
@@ -14,7 +15,7 @@ maxHeadingDepth: 3
 
 ## Introduction
 
-Nf-core modules come with a `meta.yml` file used to describe the structure of that module.
+nf-core modules come with a `meta.yml` file used to describe the structure of that module.
 
 The initial structure of the `meta.yml` file did not represent the structure of the modules input and output channels.
 This structure was describing all channel elements at the top level, without grouping them by channel.
@@ -46,7 +47,7 @@ This led to issues such as missing descriptions for multiple meta maps or diffic
         ```
     </div>
     <div class="col-12 col-lg-7">
-        ```yml title="meta.yml"
+        ```yml title="meta.yml" caption="Old file structure"
         name: bwa_mem
         ...
         input:
@@ -128,7 +129,7 @@ Back in october 2024 we [updated all nf-core modules](https://github.com/nf-core
         ```
     </div>
     <div class="col-12 col-lg-7">
-        ```yml title="meta.yml"
+        ```yml title="meta.yml" caption="New file structure"
         name: bwa_mem
         ...
         input:
@@ -204,8 +205,8 @@ Back in october 2024 we [updated all nf-core modules](https://github.com/nf-core
 
 We also introduced linting checks to nf-core/tools to ensure the proper structure of `meta.yml` files.
 
-Together with this linting checks, we also introduced a new flag to the `nf-core modules lint` command, `--fix`.
-This flag will try to fix all the possible lint failures related to the `meta.yml` file by updating it.
+Together with these linting checks, we also introduced a new flag to the `nf-core modules lint` command: `--fix`.
+This flag will try to fix all the possible lint failures related to the `meta.yml` file.
 
 ### Introducing ontologies
 
@@ -227,10 +228,10 @@ tools:
           identifier: "biotools:bwa"
 ```
 
-This bio.tools ID opened new possibilities, such as being able to grab the inputs and outputs of that tool and find the ontology terms for input and output files.
+This bio.tools ID opened new possibilities, such as being able to know the inputs and outputs of the tool and the ontology terms for input and output files.
 
-We now use this information to generate a suggestion of input and output channels when creating a module with `nf-core modules create`.
-(available as of February 2025 on the `dev` version of nf-core/tools)
+We now use this information to generate a suggestion of input and output channels when creating a module with `nf-core modules create`
+(available as of February 2025 on the `dev` version of nf-core/tools and it will be released as part of nf-core/tools 3.3.0)
 So modifying the freshly created template of a module will be easier.
 
 Here we show an example of the template generated when creating a module for the BWA tool, using the same example as before.
@@ -315,9 +316,9 @@ As mentioned before, we updated the nf-core/tools package to make creating and u
   Will make sure that the channels defined in the `main.nf` are properly described in the `meta.yml`.
 - `nf-core modules lint --fix`:
   Will try to correct the inputs and outputs on `meta.yml` to match the `main.nf` file.
-  Will add ontology URLs if missing, guessing them from the `pattern`.
+  It will add ontology URLs if missing, guessing them from the `pattern` value.
 
 ## Future potential
 
-These additons open the door to new developements.
-The description of files using ontologies can be useful to identify the exact inputs and outputs of modules, subworkflows or workflows, allowing the automated chaining of these components.
+These additions open the door to new possibilities.
+For example knowing the exact inputs and outputs of modules, subworkflows and workflows, makes automated chaining of these components easier.
