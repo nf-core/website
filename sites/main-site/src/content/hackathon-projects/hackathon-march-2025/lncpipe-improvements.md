@@ -19,7 +19,7 @@ While development has slowed down, we aim to modernize the pipeline and bring it
 
 We welcome contributors of all experience levels.
 
-## Goal
+## Goals
 
 1. Update the pipeline to the latest nf-core and Nextflow standards.
 2. Expand documentation and user support to encourage wider adoption.
