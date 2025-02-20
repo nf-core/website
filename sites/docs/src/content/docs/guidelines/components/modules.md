@@ -635,7 +635,7 @@ Input/output patterns (if present) MUST follow a [Java glob pattern](https://doc
 
 ### Ontology
 
-- Moduels `meta.yml` files SHOULD contain a bio.tools ID when available.
+- Moduels `meta.yml` files SHOULD contain a [bio.tools](https://bio.tools/) when available.
 - Moduels `meta.yml` files SHOULD contain ontology URLs for files when relevant.
 
 ### Indication of input channel requirement
