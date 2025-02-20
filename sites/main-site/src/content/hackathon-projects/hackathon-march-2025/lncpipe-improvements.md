@@ -14,16 +14,20 @@ leaders:
     slack: "https://nfcore.slack.com/team/U0878KU3YA2"
 ---
 
-This project aims to build upon and update the [nf-core/lncpipe](https://github.com/nf-core/lncpipe) pipeline, originally designed for the analysis of long non-coding RNAs (lncRNAs). 
+This project aims to build upon and update the [nf-core/lncpipe](https://github.com/nf-core/lncpipe) pipeline, originally designed for the analysis of long non-coding RNAs (lncRNAs).
 While development has slowed down, we aim to modernize the pipeline and bring it to the current nf-core and Nextflow pipeline standards, improve its usability, and demonstrate its relevance for the scientific community.
 
 We welcome contributors of all experience levels.
 
 ## Goals
 
-1. Update the pipeline to the latest nf-core and Nextflow standards.
-2. Expand documentation and user support to encourage wider adoption.
-3. Improve compatibility with current reference genome annotations and transcriptomic datasets.
-4. Optimize integration with existing RNA-seq pipelines for seamless lncRNA analysis.
+1. **Update the pipeline to the latest nf-core and Nextflow standards.**
+   _Perfect for those who enjoy working with Nextflow and want to contribute to pipeline modernization._
+2. **Expand documentation and user support to encourage wider adoption.**
+   _A great entry point for first-time contributors—help make the pipeline more accessible!_
+3. **Improve compatibility with current reference genome annotations and transcriptomic datasets.**
+   _A great challenge for contributors familiar with RNA-seq data and bioinformatics workflows._
+4. **Optimize integration with existing RNA-seq pipelines for seamless lncRNA analysis.**
+   _Ideal for those with some experience in workflow development and RNA sequencing analysis._
 
 Join us in improving lncpipe and making lncRNA analysis more accessible!
