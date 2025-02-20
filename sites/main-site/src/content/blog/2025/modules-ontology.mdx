@@ -21,7 +21,7 @@ This structure was describing all channel elements at the top level, without gro
 This led to issues such as missing descriptions for multiple meta maps or difficulties in the identification of different channels.
 
 <div class="row">
-    <div class="col-12 col-lg-6">
+    <div class="col-12 col-lg-5">
         ```groovy title="main.nf"
         process BWA_MEM {
 
@@ -45,7 +45,7 @@ This led to issues such as missing descriptions for multiple meta maps or diffic
         }
         ```
     </div>
-    <div class="col-12 col-lg-6">
+    <div class="col-12 col-lg-7">
         ```yml title="meta.yml"
         name: bwa_mem
         ...
@@ -95,6 +95,7 @@ This led to issues such as missing descriptions for multiple meta maps or diffic
         ...
         ```
     </div>
+
 </div>
 
 _(All files shown in this post are a *simplified version* of `main.nf` and `meta.yml` files, to show the structure of input and output channels.)_
@@ -102,7 +103,7 @@ _(All files shown in this post are a *simplified version* of `main.nf` and `meta
 Back in october 2024 we [updated all nf-core modules](https://github.com/nf-core/modules/pull/6674) to make sure that all of them specify the proper input and output channel structures.
 
 <div class="row">
-    <div class="col-12 col-lg-6">
+    <div class="col-12 col-lg-5">
         ```groovy title="main.nf"
         process BWA_MEM {
 
@@ -126,7 +127,7 @@ Back in october 2024 we [updated all nf-core modules](https://github.com/nf-core
         }
         ```
     </div>
-    <div class="col-12 col-lg-6">
+    <div class="col-12 col-lg-7">
         ```yml title="meta.yml"
         name: bwa_mem
         ...
@@ -198,6 +199,7 @@ Back in october 2024 we [updated all nf-core modules](https://github.com/nf-core
         ...
         ```
     </div>
+
 </div>
 
 We also introduced linting checks to nf-core/tools to ensure the proper structure of `meta.yml` files.
@@ -210,20 +212,10 @@ This flag will try to fix all the possible lint failures related to the `meta.ym
 Together with these changes, we also added the [`bio.tools`](https://bio.tools/) identifier of the tool.
 
 <div class="col-12 col-lg-12">
-    ```yml title="meta.yml"
-    name: bwa_mem
-    ...
-    tools:
-    - bwa:
-        description: |
-            BWA is a software package for mapping DNA sequences against
-            a large reference genome, such as the human genome.
-        homepage: http://bio-bwa.sourceforge.net/
-        documentation: https://bio-bwa.sourceforge.net/bwa.shtml
-        arxiv: arXiv:1303.3997
-        licence: ["GPL-3.0-or-later"]
-        identifier: ""
-    ```
+    ```yml title="meta.yml" name: bwa_mem ... tools: - bwa: description: | BWA is a software package for mapping DNA
+    sequences against a large reference genome, such as the human genome. homepage: http://bio-bwa.sourceforge.net/
+    documentation: https://bio-bwa.sourceforge.net/bwa.shtml arxiv: arXiv:1303.3997 licence: ["GPL-3.0-or-later"]
+    identifier: "" ```
 </div>
 
 This bio.tools ID opened new possibilities, such as being able to grab the inputs and outputs of that tool and find the ontologies for input and output files.
@@ -262,6 +254,7 @@ Here we show an example of the template generated when creating a module for the
         ...
     }
     ```
+
 </div>
 
 And we populate a section `ontologies` of files described in the `meta.yml`.
@@ -300,6 +293,7 @@ And we populate a section `ontologies` of files described in the `meta.yml`.
                 ontologies:
                 - edam: "http://edamontology.org/data_3210" # Genome index
     ```
+
 </div>
 
 The ontologies are specified under the key `ontologies` in a list of dictionaries.
@@ -313,12 +307,12 @@ And the value contains the ontology URL.
 As mentioned before, we updated the nf-core/tools package to make creating and updating modules easier.
 
 - `nf-core modules create`:
-    Will automatically fetch a `bio.tools` ID when possible, and use the information provided by this to populate intput and output channels in the `main.nf` and `meta.yml`.
+  Will automatically fetch a `bio.tools` ID when possible, and use the information provided by this to populate intput and output channels in the `main.nf` and `meta.yml`.
 - `nf-core modules lint`:
-    Will make sure that the channels defined in the `main.nf` are properly described in the `meta.yml`.
+  Will make sure that the channels defined in the `main.nf` are properly described in the `meta.yml`.
 - `nf-core modules lint --fix`:
-    Will try to correct the inputs and outputs on `meta.yml` to match the `main.nf` file.
-    Will add ontology URLs if missing, guessing them from the `pattern`.
+  Will try to correct the inputs and outputs on `meta.yml` to match the `main.nf` file.
+  Will add ontology URLs if missing, guessing them from the `pattern`.
 
 ## Future potential
 
