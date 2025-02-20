@@ -212,10 +212,19 @@ This flag will try to fix all the possible lint failures related to the `meta.ym
 Together with these changes, we also added the [`bio.tools`](https://bio.tools/) identifier of the tool.
 
 <div class="col-12 col-lg-12">
-    ```yml title="meta.yml" name: bwa_mem ... tools: - bwa: description: | BWA is a software package for mapping DNA
-    sequences against a large reference genome, such as the human genome. homepage: http://bio-bwa.sourceforge.net/
-    documentation: https://bio-bwa.sourceforge.net/bwa.shtml arxiv: arXiv:1303.3997 licence: ["GPL-3.0-or-later"]
-    identifier: "" ```
+    ```yml title="meta.yml" {11}
+    name: bwa_mem
+    ...
+    tools:
+        - bwa:
+            description: |
+                BWA is a software package for mapping DNA
+                sequences against a large reference genome, such as the human genome. homepage: http://bio-bwa.sourceforge.net/
+            documentation: https://bio-bwa.sourceforge.net/bwa.shtml
+            arxiv: arXiv:1303.3997
+            licence: ["GPL-3.0-or-later"]
+            identifier: "biotools:bwa"
+    ```
 </div>
 
 This bio.tools ID opened new possibilities, such as being able to grab the inputs and outputs of that tool and find the ontologies for input and output files.
@@ -260,7 +269,7 @@ Here we show an example of the template generated when creating a module for the
 And we populate a section `ontologies` of files described in the `meta.yml`.
 
 <div class="col-12 col-lg-12">
-    ```yml title="meta.yaml"
+    ```yml title="meta.yaml" {15-17,30-31}
     name: "bwa_mem"
     ...
     input:
