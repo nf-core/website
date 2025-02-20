@@ -14,7 +14,7 @@ if (!import.meta.env) {
 // Note that this needs to be available server-side
 const MyOctokit = Octokit.plugin(retry, throttling);
 export const octokit = new MyOctokit({
-  auth: typeof process !== "undefined" ? process.env.GITHUB_TOKEN : GITHUB_TOKEN,
+  auth: GITHUB_TOKEN,
   throttle: {
     onRateLimit: (retryAfter, options, octokit, retryCount) => {
       octokit.log.warn(`Request quota exhausted for request ${options.method} ${options.url}. Retrying in ${retryAfter} seconds. Retry count: ${retryCount}`);
@@ -45,7 +45,7 @@ export async function getCurrentRateLimitRemaining() {
         'X-GitHub-Api-Version': '2022-11-28'
       }
     });
-    console.log(`Rate limit remaining: ${JSON.stringify(response.core)}`);
+    console.log(`Rate limit remaining: ${JSON.stringify(response)}`);
   } catch (error) {
     console.error('Error occurred:', error);
   }
