@@ -39,7 +39,7 @@ jobs:
         run: pip install nf-core
 
       - name: Generate terminal images with rich-codex
-        uses: ewels/rich-codex@8ce988cc253c240a3027ba58e33e47640935dd8b # v1
+        uses: ewels/rich-codex@01d0c612957f19aee84cf4d9643b6d0e231493d8 # v1
         env:
           COLUMNS: 100
           HIDE_PROGRESS: "true"
