@@ -14,7 +14,8 @@ leaders:
     slack: "https://nfcore.slack.com/team/U0878KU3YA2"
 ---
 
-This project aims to build upon and update the [nf-core/lncpipe](https://github.com/nf-core/lncpipe) pipeline, originally designed for the analysis of long non-coding RNAs (lncRNAs). While development has slowed down, we aim to modernize the pipeline and bring it to the current nf-core and Nextflow pipeline standards, improve its usability, and demonstrate its relevance for the scientific community.
+This project aims to build upon and update the [nf-core/lncpipe](https://github.com/nf-core/lncpipe) pipeline, originally designed for the analysis of long non-coding RNAs (lncRNAs). 
+While development has slowed down, we aim to modernize the pipeline and bring it to the current nf-core and Nextflow pipeline standards, improve its usability, and demonstrate its relevance for the scientific community.
 
 We welcome contributors of all experience levels.
 
