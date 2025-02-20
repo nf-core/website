@@ -101,77 +101,103 @@ _(All files shown in this post are a *simplified version* of `main.nf` and `meta
 
 Back in october 2024 we [updated all nf-core modules](https://github.com/nf-core/modules/pull/6674) to make sure that all of them specify the proper input and output channel structures.
 
-<div class="col-12 col-lg-6">
-    ```yml title="meta.yml"
-    name: bwa_mem
-    ...
-    input:
-        - - meta:
-                type: map
-                description: Groovy Map containing sample information
-            - reads:
-                type: file
-                description: |
-                List of input FastQ files of size 1 and 2 for single-end and paired-end data,
-                respectively.
-        - - meta2:
-                type: map
-                description: Groovy Map containing reference information.
-            - index:
-                type: file
-                description: BWA genome index files
-                pattern: "*.{amb,ann,bwt,pac,sa}"
-        - - meta3:
-                type: map
-                description: Groovy Map containing sample information
-            - fasta:
-                type: file
-                description: Reference genome in FASTA format
-                pattern: "*.{fasta,fa}"
-        - - sort_bam:
-                type: boolean
-                description: use samtools sort (true) or samtools view (false)
-                pattern: "true or false"
-    output:
-        - bam:
-            - meta:
-                type: file
-                description: Groovy Map containing sample information
-            - "*.bam":
-                type: file
-                description: Output BAM file containing read alignments
-                pattern: "*.{bam}"
-        - cram:
-            - meta:
-                type: file
-                description: Groovy Map containing sample information
-            - "*.cram":
-                type: file
-                description: Output CRAM file containing read alignments
-                pattern: "*.{cram}"
-        - csi:
-            - meta:
-                type: file
-                description: Groovy Map containing sample information
-            - "*.csi":
-                type: file
-                description: Optional index file for BAM file
-                pattern: "*.{csi}"
-        - crai:
-            - meta:
-                type: file
-                description: Groovy Map containing sample information
-            - "*.crai":
-                type: file
-                description: Optional index file for CRAM file
-                pattern: "*.{crai}"
-        - versions:
-            - versions.yml:
-                type: file
-                description: File containing software versions
-                pattern: "versions.yml"
-    ...
-    ```
+<div class="row">
+    <div class="col-12 col-lg-6">
+        ```groovy title="main.nf"
+        process BWA_MEM {
+
+            ...
+
+            input:
+            tuple val(meta) , path(reads)
+            tuple val(meta2), path(index)
+            tuple val(meta3), path(fasta)
+            val   sort_bam
+
+            output:
+            tuple val(meta), path("*.bam"),  emit: bam,     optional: true
+            tuple val(meta), path("*.cram"), emit: cram,    optional: true
+            tuple val(meta), path("*.csi"),  emit: csi,     optional: true
+            tuple val(meta), path("*.crai"), emit: crai,    optional: true
+            path "versions.yml",             emit: versions
+
+            ...
+
+        }
+        ```
+    </div>
+    <div class="col-12 col-lg-6">
+        ```yml title="meta.yml"
+        name: bwa_mem
+        ...
+        input:
+            - - meta:
+                    type: map
+                    description: Groovy Map containing sample information
+                - reads:
+                    type: file
+                    description: |
+                    List of input FastQ files of size 1 and 2 for single-end and paired-end data,
+                    respectively.
+            - - meta2:
+                    type: map
+                    description: Groovy Map containing reference information.
+                - index:
+                    type: file
+                    description: BWA genome index files
+                    pattern: "*.{amb,ann,bwt,pac,sa}"
+            - - meta3:
+                    type: map
+                    description: Groovy Map containing sample information
+                - fasta:
+                    type: file
+                    description: Reference genome in FASTA format
+                    pattern: "*.{fasta,fa}"
+            - - sort_bam:
+                    type: boolean
+                    description: use samtools sort (true) or samtools view (false)
+                    pattern: "true or false"
+        output:
+            - bam:
+                - meta:
+                    type: file
+                    description: Groovy Map containing sample information
+                - "*.bam":
+                    type: file
+                    description: Output BAM file containing read alignments
+                    pattern: "*.{bam}"
+            - cram:
+                - meta:
+                    type: file
+                    description: Groovy Map containing sample information
+                - "*.cram":
+                    type: file
+                    description: Output CRAM file containing read alignments
+                    pattern: "*.{cram}"
+            - csi:
+                - meta:
+                    type: file
+                    description: Groovy Map containing sample information
+                - "*.csi":
+                    type: file
+                    description: Optional index file for BAM file
+                    pattern: "*.{csi}"
+            - crai:
+                - meta:
+                    type: file
+                    description: Groovy Map containing sample information
+                - "*.crai":
+                    type: file
+                    description: Optional index file for CRAM file
+                    pattern: "*.{crai}"
+            - versions:
+                - versions.yml:
+                    type: file
+                    description: File containing software versions
+                    pattern: "versions.yml"
+        ...
+        ```
+    </div>
 </div>
 
 We also introduced linting checks to nf-core/tools to ensure the proper structure of `meta.yml` files.
@@ -183,7 +209,7 @@ This flag will try to fix all the possible lint failures related to the `meta.ym
 
 Together with these changes, we also added the [`bio.tools`](https://bio.tools/) identifier of the tool.
 
-<div class="col-12 col-lg-6">
+<div class="col-12 col-lg-12">
     ```yml title="meta.yml"
     name: bwa_mem
     ...
@@ -208,7 +234,7 @@ So modifying the freshly created template of a module will be easier.
 
 Here we show an example of the template generated when creating a module for the BWA tool, using the same example as before.
 
-<div class="col-12 col-lg-6">
+<div class="col-12 col-lg-12">
     ```yml title="main.nf"
     process BWA_MEM {
         tag "$meta.id"
@@ -240,7 +266,7 @@ Here we show an example of the template generated when creating a module for the
 
 And we populate a section `ontologies` of files described in the `meta.yml`.
 
-<div class="col-12 col-lg-6">
+<div class="col-12 col-lg-12">
     ```yml title="meta.yaml"
     name: "bwa_mem"
     ...
