@@ -223,9 +223,9 @@ Skip features. See <https://nf-co.re/docs/nf-core-tools/pipelines/create> for a 
 
 Pipeline version
 
-#### `get(item: str, default: Any = None) → Any{:python}`
-
 #### _`validator{:python}`_`outdir_to_str{:python}`_»_`{:python}`[_outdir_](#nf_core.utils.NFCoreTemplateConfig.outdir)
+
+#### `get(item: str, default: Any = None) → Any{:python}`
 
 #### `_abc_impl{:python}`_= <\_abc.\_abc_data object>_
 

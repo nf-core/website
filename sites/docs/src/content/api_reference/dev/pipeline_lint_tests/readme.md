@@ -29,5 +29,6 @@ To disable subsets of these tests, add the following to the pipeline’s `.nf-co
 lint:
   readme:
     - nextflow_badge
+    - nfcore_template_badge
     - zenodo_release
 ```
