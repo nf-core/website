@@ -7,7 +7,7 @@ outputs:
     head: 19
     img_paths:
       - public/images/contributing/creating_with_nf_core/nfcore_list.svg
-  - command: nf-core pipelines create --name demo --description "Pipeline for training" --author "Phil" --plain
+  - command: nf-core pipelines create --name demo --description "Pipeline for training" --author "Phil"
     fake_command: nf-core pipelines create
     img_paths:
       - public/images/contributing/creating_with_nf_core/nfcore_create.svg
