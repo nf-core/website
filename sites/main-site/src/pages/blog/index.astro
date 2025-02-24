@@ -1,6 +1,6 @@
 ---
 import PageLayout from "@layouts/PageLayout.astro";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import SidebarNav from "@components/sidebar/SidebarNav.astro";
 import GitHubProfilePictureExtended from "@components/GitHubProfilePictureExtended.svelte";
 import { Image } from "astro:assets";
@@ -37,7 +37,7 @@ const sections: SidebarEntry[] = years.map((year) => {
                 return {
                     type: "link",
                     label: post.data.title,
-                    href: "/blog/" + post.slug,
+                    href: "/blog/" + post.id.replace(/\.[^/.]+$/, ""),
                     isCurrent: false,
                 };
             }),
@@ -47,7 +47,6 @@ const sections: SidebarEntry[] = years.map((year) => {
 
 <PageLayout
     title="nf-core blog"
-    subtitle="News and updates from the nf-core community."
     mainpage_container={true}
     subfooter={false}
     docSearchTags={[{ name: "page_type", content: "Blog" }]}
@@ -66,6 +65,7 @@ const sections: SidebarEntry[] = years.map((year) => {
             {
                 years.map((year) => (
                     <div id={"year-" + year} class="d-flex align-items-stretch flex-wrap">
+                        {year !== new Date().getFullYear() && <h2 class="w-100 mb-0 mt-3">{year}</h2>}
                         {blogPosts
                             .filter((post) => new Date(post.data.pubDate).getFullYear() === year)
                             .map((post) => (
@@ -80,7 +80,7 @@ const sections: SidebarEntry[] = years.map((year) => {
                                 >
                                     <div class=" card-body p-0 position-relative">
                                         <a
-                                            href={"/blog/" + post.slug}
+                                            href={"/blog/" + post.id.replace(/\.[^/.]+$/, "")}
                                             class:list={[
                                                 "post-badge text-decoration-none badge text-bg-primary fs-6 mb-0  rounded-top-0 w-25 m-auto position-absolute top-0 start-0 end-0",
                                                 new Date(Date.now()) > new Date(post.data.pubDate) &&
@@ -104,21 +104,23 @@ const sections: SidebarEntry[] = years.map((year) => {
                                                 height={240}
                                                 width={512}
                                                 densities={[1.5, 2]}
-                                                transition:name="cover-image"
                                             />
                                         )}
                                         <div class="card-text px-3 pt-2">
-                                            <h2 transition:name="title">{post.data.title}</h2>
+                                            <h2>{post.data.title}</h2>
                                             <p class="lead">
                                                 <Markdown of={post.data.subtitle} />
                                             </p>
                                             <p class="small">
                                                 {async () => {
-                                                    const { remarkPluginFrontmatter } = await post.render();
+                                                    const { remarkPluginFrontmatter } = await render(post);
                                                     return remarkPluginFrontmatter.excerpt;
                                                 }}
                                             </p>
-                                            <a href={"/blog/" + post.slug} class="stretched-link" />
+                                            <a
+                                                href={"/blog/" + post.id.replace(/\.[^/.]+$/, "")}
+                                                class="stretched-link"
+                                            />
                                         </div>
                                     </div>
                                     <div class="card-footer d-flex justify-content-between">
