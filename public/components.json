@@ -8987,6 +8987,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -14754,7 +14758,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "dev"
+          "version": "v1.0.0"
         },
         {
           "name": "variantcatalogue",
@@ -15719,7 +15723,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "dev"
+          "version": "v1.0.0"
         },
         {
           "name": "viralrecon",
@@ -16102,7 +16106,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "dev"
+          "version": "v1.0.0"
         }
       ]
     },
@@ -16441,7 +16445,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "dev"
+          "version": "v1.0.0"
         },
         {
           "name": "variantcatalogue",
@@ -17503,7 +17507,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "dev"
+          "version": "v1.0.0"
         }
       ]
     },
@@ -17790,7 +17794,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "dev"
+          "version": "v1.0.0"
         },
         {
           "name": "viralrecon",
@@ -18071,7 +18075,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "dev"
+          "version": "v1.0.0"
         },
         {
           "name": "viralrecon",
@@ -18246,7 +18250,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "dev"
+          "version": "v1.0.0"
         }
       ]
     },
@@ -20437,7 +20441,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "dev"
+          "version": "v1.0.0"
         },
         {
           "name": "viralrecon",
@@ -38918,7 +38922,11 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.0.0"
+          "version": "1.1.0"
+        },
+        {
+          "name": "phyloplace",
+          "version": "2.0.0"
         }
       ]
     },
@@ -39008,7 +39016,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -44792,7 +44800,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "reportho",
@@ -44887,7 +44895,7 @@
         },
         {
           "name": "multiplesequencealign",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "reportho",
@@ -45312,10 +45320,6 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
-        },
-        {
-          "name": "phyloplace",
-          "version": "1.0.0"
         },
         {
           "name": "quantms",
@@ -47270,7 +47274,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "dev"
+          "version": "v1.0.0"
         }
       ]
     },
@@ -56126,7 +56130,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "1.0.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -56240,7 +56244,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "1.0.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -57129,7 +57133,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "proteinfamilies",
@@ -57223,7 +57227,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -58101,6 +58105,10 @@
         {
           "name": "genomeqc",
           "version": "dev"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.1.0"
         }
       ]
     },
@@ -59160,6 +59168,10 @@
           "version": "1.1.0"
         },
         {
+          "name": "drop",
+          "version": "dev"
+        },
+        {
           "name": "evexplorer",
           "version": "dev"
         },
@@ -59242,6 +59254,10 @@
         {
           "name": "mitodetect",
           "version": "dev"
+        },
+        {
+          "name": "multiplesequencealign",
+          "version": "1.1.0"
         },
         {
           "name": "nanoseq",
@@ -62395,7 +62411,13 @@
         "maintainers": [
           "@luisas"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "multiplesequencealign",
+          "version": "1.1.0"
+        }
+      ]
     },
     {
       "name": "foldmason_easymsa",
@@ -62522,7 +62544,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -62652,7 +62674,13 @@
         "maintainers": [
           "@luisas"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "multiplesequencealign",
+          "version": "1.1.0"
+        }
+      ]
     },
     {
       "name": "foldseek_createdb",
@@ -64937,7 +64965,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "1.0.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -65029,7 +65057,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "1.0.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -65207,7 +65235,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "1.0.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -91484,7 +91512,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "dev"
+          "version": "v1.0.0"
         }
       ]
     },
@@ -91608,7 +91636,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "dev"
+          "version": "v1.0.0"
         }
       ]
     },
@@ -91825,7 +91853,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "dev"
+          "version": "v1.0.0"
         }
       ]
     },
@@ -93866,7 +93894,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "1.0.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -93957,7 +93985,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "1.0.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -94062,7 +94090,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "1.0.0"
+          "version": "2.0.0"
         },
         {
           "name": "proteinfamilies",
@@ -94180,7 +94208,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "1.0.0"
+          "version": "2.0.0"
         },
         {
           "name": "proteinfamilies",
@@ -94417,7 +94445,13 @@
         "maintainers": [
           "@erikrikarddaniel"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phyloplace",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "hmmer_hmmsearch",
@@ -94585,6 +94619,10 @@
         {
           "name": "metatdenovo",
           "version": "1.0.1"
+        },
+        {
+          "name": "phyloplace",
+          "version": "2.0.0"
         },
         {
           "name": "proteinfamilies",
@@ -102732,7 +102770,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -107070,7 +107108,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -113115,6 +113153,14 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -113293,6 +113339,14 @@
       },
       "pipelines": [
         {
+          "name": "multiplesequencealign",
+          "version": "1.1.0"
+        },
+        {
+          "name": "phyloplace",
+          "version": "2.0.0"
+        },
+        {
           "name": "proteinfamilies",
           "version": "1.0.0"
         }
@@ -113378,7 +113432,13 @@
         "maintainers": [
           "@luisas"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "multiplesequencealign",
+          "version": "1.1.0"
+        }
+      ]
     },
     {
       "name": "mageck_count",
@@ -113835,7 +113895,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -113917,13 +113977,7 @@
         "authors": [
           "@lrauschning"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "multiplesequencealign",
-          "version": "1.0.0"
-        }
-      ]
+      }
     },
     {
       "name": "malt_build",
@@ -114411,7 +114465,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "dev"
+          "version": "v1.0.0"
         }
       ]
     },
@@ -128594,7 +128648,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -129102,6 +129156,10 @@
           "version": "1.1.0"
         },
         {
+          "name": "drop",
+          "version": "dev"
+        },
+        {
           "name": "epitopeprediction",
           "version": "2.3.1"
         },
@@ -129207,7 +129265,7 @@
         },
         {
           "name": "multiplesequencealign",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "nanoseq",
@@ -129251,7 +129309,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "1.0.0"
+          "version": "2.0.0"
         },
         {
           "name": "proteinfamilies",
@@ -129367,7 +129425,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "dev"
+          "version": "v1.0.0"
         },
         {
           "name": "variantcatalogue",
@@ -130139,7 +130197,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -138968,6 +139026,10 @@
         {
           "name": "viralrecon",
           "version": "2.6.0"
+        },
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
         }
       ]
     },
@@ -140067,6 +140129,23 @@
                   "type": "file",
                   "description": "variant file.",
                   "pattern": "*.vcf"
+                }
+              }
+            ]
+          },
+          {
+            "gvcf": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information.\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.g.vcf.gz": {
+                  "type": "file",
+                  "description": "genomic variant file, gzipped.",
+                  "pattern": "*.g.vcf.gz"
                 }
               }
             ]
@@ -144544,7 +144623,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "dev"
+          "version": "v1.0.0"
         }
       ]
     },
@@ -145236,7 +145315,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "dev"
+          "version": "v1.0.0"
         }
       ]
     },
@@ -146170,7 +146249,7 @@
         },
         {
           "name": "multiplesequencealign",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "scnanoseq",
@@ -146262,7 +146341,7 @@
         },
         {
           "name": "multiplesequencealign",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "scnanoseq",
@@ -161716,7 +161795,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "dev"
+          "version": "v1.0.0"
         }
       ]
     },
@@ -162241,7 +162320,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "dev"
+          "version": "v1.0.0"
         }
       ]
     },
@@ -175151,7 +175230,13 @@
         "maintainers": [
           "@sidorov-si"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phyloplace",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "seqtk_trim",
@@ -187013,7 +187098,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "dev"
+          "version": "v1.0.0"
         }
       ]
     },
@@ -187150,7 +187235,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "dev"
+          "version": "v1.0.0"
         }
       ]
     },
@@ -187460,7 +187545,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "dev"
+          "version": "v1.0.0"
         }
       ]
     },
@@ -188100,7 +188185,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "dev"
+          "version": "v1.0.0"
         }
       ]
     },
@@ -189434,7 +189519,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "dev"
+          "version": "v1.0.0"
         }
       ]
     },
@@ -189856,7 +189941,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "dev"
+          "version": "v1.0.0"
         },
         {
           "name": "viralrecon",
@@ -190005,7 +190090,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "dev"
+          "version": "v1.0.0"
         }
       ]
     },
@@ -190153,7 +190238,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "dev"
+          "version": "v1.0.0"
         },
         {
           "name": "variantcatalogue",
@@ -191202,7 +191287,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "reportho",
@@ -191307,7 +191392,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -191445,7 +191530,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -191525,7 +191610,13 @@
         "authors": [
           "@luisas"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "multiplesequencealign",
+          "version": "1.1.0"
+        }
+      ]
     },
     {
       "name": "tcoffee_irmsd",
@@ -191635,7 +191726,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -191772,7 +191863,13 @@
         "maintainers": [
           "@luisas"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "multiplesequencealign",
+          "version": "1.1.0"
+        }
+      ]
     },
     {
       "name": "tcoffee_seqreformat",
@@ -191855,7 +191952,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -191980,7 +192077,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -195023,7 +195120,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "dev"
+          "version": "v1.0.0"
         }
       ]
     },
@@ -196364,7 +196461,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "dev"
+          "version": "v1.0.0"
         }
       ]
     },
@@ -198002,7 +198099,7 @@
         },
         {
           "name": "multiplesequencealign",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "nanoseq",
@@ -198562,7 +198659,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -205843,7 +205940,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "dev"
+          "version": "v1.0.0"
         }
       ]
     },
@@ -211400,7 +211497,13 @@
         "maintainers": [
           "@erikrikarddaniel"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phyloplace",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "fasta_index_bismark_bwameth",
@@ -211744,7 +211847,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "1.0.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -215176,6 +215279,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        },
         {
           "name": "phageannotator",
           "version": "dev"
@@ -220023,6 +220130,10 @@
           "version": "1.5.0"
         },
         {
+          "name": "drop",
+          "version": "dev"
+        },
+        {
           "name": "drugresponseeval",
           "version": "1.0.0"
         },
@@ -220108,7 +220219,7 @@
         },
         {
           "name": "multiplesequencealign",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "nanostring",
@@ -220137,6 +220248,10 @@
         {
           "name": "phaseimpute",
           "version": "1.0.0"
+        },
+        {
+          "name": "phyloplace",
+          "version": "2.0.0"
         },
         {
           "name": "pixelator",
@@ -220240,7 +220355,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "dev"
+          "version": "v1.0.0"
         }
       ]
     },
@@ -220348,6 +220463,10 @@
           "version": "1.5.0"
         },
         {
+          "name": "drop",
+          "version": "dev"
+        },
+        {
           "name": "drugresponseeval",
           "version": "1.0.0"
         },
@@ -220433,7 +220552,7 @@
         },
         {
           "name": "multiplesequencealign",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "nanostring",
@@ -220462,6 +220581,10 @@
         {
           "name": "phaseimpute",
           "version": "1.0.0"
+        },
+        {
+          "name": "phyloplace",
+          "version": "2.0.0"
         },
         {
           "name": "pixelator",
@@ -220565,7 +220688,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "dev"
+          "version": "v1.0.0"
         }
       ]
     },
@@ -220721,6 +220844,10 @@
           "version": "dev"
         },
         {
+          "name": "multiplesequencealign",
+          "version": "1.1.0"
+        },
+        {
           "name": "nanostring",
           "version": "1.3.1"
         },
@@ -220743,6 +220870,10 @@
         {
           "name": "phaseimpute",
           "version": "1.0.0"
+        },
+        {
+          "name": "phyloplace",
+          "version": "2.0.0"
         },
         {
           "name": "pixelator",
@@ -220822,7 +220953,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "dev"
+          "version": "v1.0.0"
         }
       ]
     },
@@ -220908,6 +221039,10 @@
           "version": "1.5.0"
         },
         {
+          "name": "drop",
+          "version": "dev"
+        },
+        {
           "name": "epitopeprediction",
           "version": "2.3.1"
         },
@@ -220942,10 +221077,6 @@
         {
           "name": "mhcquant",
           "version": "2.6.0"
-        },
-        {
-          "name": "multiplesequencealign",
-          "version": "1.0.0"
         },
         {
           "name": "oncoanalyser",
