@@ -34,8 +34,8 @@ pipelines_json.remote_workflows.map((pipeline) => {
 });
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://nf-co.re/',
-    output: 'hybrid',
+    site: "https://nf-co.re/",
+    output: "hybrid",
     adapter: netlify(),
     prefetch: false,
     redirects: {
@@ -46,72 +46,72 @@ export default defineConfig({
         icon({
             include: {
                 // only include a subset of icons
-                'file-icons': ['nextflow'],
+                "file-icons": ["nextflow"],
                 logos: [
-                    'twitter',
-                    'mastodon-icon',
-                    'slack-icon',
-                    'aws',
-                    'microsoft-azure',
-                    'github-actions',
-                    'youtube-icon',
-                    'linkedin',
+                    "twitter",
+                    "mastodon-icon",
+                    "slack-icon",
+                    "aws",
+                    "microsoft-azure",
+                    "github-actions",
+                    "youtube-icon",
+                    "linkedin",
                 ],
-                fa: ['github'],
-                'fa-brands': ['github'],
+                fa: ["github"],
+                "fa-brands": ["github"],
                 mdi: [
-                    'aws',
-                    'slack',
-                    'youtube',
-                    'cloud-outline',
-                    'timeline-check-outline',
-                    'book-information-variant',
-                    'package-variant',
-                    'progress-check',
+                    "aws",
+                    "slack",
+                    "youtube",
+                    "cloud-outline",
+                    "timeline-check-outline",
+                    "book-information-variant",
+                    "package-variant",
+                    "progress-check",
                 ],
                 octicon: [
-                    'chevron-right-16',
-                    'git-pull-request-16',
-                    'law-16',
-                    'link-external-16',
-                    'mortar-board-16',
-                    'play-16',
-                    'table-16',
-                    'tasklist-16',
-                    'terminal-16',
-                    'tools-16',
+                    "chevron-right-16",
+                    "git-pull-request-16",
+                    "law-16",
+                    "link-external-16",
+                    "mortar-board-16",
+                    "play-16",
+                    "table-16",
+                    "tasklist-16",
+                    "terminal-16",
+                    "tools-16",
                 ],
-                'simple-icons': ['bluesky'],
-                ri: ['open-source-line'],
-                'pepicons-print': ['t-shirt'],
-                fluent: ['paint-brush-sparkle-24-filled'],
-                bi: ['bag-heart-fill'],
+                "simple-icons": ["bluesky"],
+                ri: ["open-source-line"],
+                "pepicons-print": ["t-shirt"],
+                fluent: ["paint-brush-sparkle-24-filled"],
+                bi: ["bag-heart-fill"],
             },
         }),
         sitemap(),
         partytown({
             // Adds dataLayer.push as a forwarding-event.
             config: {
-                forward: ['dataLayer.push'],
+                forward: ["dataLayer.push"],
             },
         }),
         mdx(),
         markdownIntegration(),
     ],
     build: {
-        inlineStylesheets: 'auto',
-        format: 'file',
+        inlineStylesheets: "auto",
+        format: "file",
         assetsPrefix:
-            process.env.CONTEXT === 'production'
-                ? 'https://nf-core-main-site.netlify.app/'
+            process.env.CONTEXT === "production"
+                ? "https://nf-core-main-site.netlify.app/"
                 : process.env.DEPLOY_PRIME_URL,
     },
     vite: {
         css: {
             preprocessorOptions: {
                 scss: {
-                    api: 'modern-compiler',
-                    silenceDeprecations: ['legacy-js-api','mixed-decls','color-functions'],
+                    api: "modern-compiler",
+                    silenceDeprecations: ["legacy-js-api", "mixed-decls", "color-functions"],
                 },
             },
         },
@@ -119,13 +119,13 @@ export default defineConfig({
             yaml(),
             FontaineTransform.vite({
                 // avoid flash of unstyled text by interjecting fallback system fonts https://developer.chrome.com/blog/framework-tools-font-fallback/#using-fontaine-library
-                fallbacks: ['BlinkMacSystemFont', 'Segoe UI', 'Helvetica Neue', 'Arial', 'Noto Sans'],
+                fallbacks: ["BlinkMacSystemFont", "Segoe UI", "Helvetica Neue", "Arial", "Noto Sans"],
                 resolvePath: (id) => new URL(`./public${id}`, import.meta.url),
-                skipFontFaceGeneration: (fallbackName) => fallbackName === 'Font Awesome 6 Pro fallback',
+                skipFontFaceGeneration: (fallbackName) => fallbackName === "Font Awesome 6 Pro fallback",
             }),
         ],
         ssr: {
-            noExternal: ['@popperjs/core', '../../bin/cache.js'],
+            noExternal: ["@popperjs/core", "../../bin/cache.mjs"],
         },
         resolve: {
             preserveSymlinks: true,
@@ -133,14 +133,14 @@ export default defineConfig({
     },
     image: {
         domains: [
-            'raw.githubusercontent.com',
-            'unsplash.com',
-            'netlify.app',
-            'nf-co.re',
-            'nf-core-main-site.netlify.app',
+            "raw.githubusercontent.com",
+            "unsplash.com",
+            "netlify.app",
+            "nf-co.re",
+            "nf-core-main-site.netlify.app",
         ],
         service: {
-            entrypoint: 'astro/assets/services/sharp',
+            entrypoint: "astro/assets/services/sharp",
         },
     },
     markdown: {
@@ -191,35 +191,35 @@ export default defineConfig({
             [
                 rehypeAutolinkHeadings,
                 {
-                    behavior: 'append',
-                    content: h('i.ms-1.fas.fa-link.fa-xs.invisible'),
+                    behavior: "append",
+                    content: h("i.ms-1.fas.fa-link.fa-xs.invisible"),
                 },
             ],
             [
                 addClasses,
                 {
-                    table: 'table table-hover table-sm small',
+                    table: "table table-hover table-sm small",
                 },
             ],
             [
                 rehypeWrap,
                 {
-                    selector: 'table',
-                    wrapper: 'div.table-responsive',
+                    selector: "table",
+                    wrapper: "div.table-responsive",
                 },
             ],
             [
                 urls,
                 (url) => {
                     const regex = /^https:\/\/(raw.)*github/;
-                    if (!regex.test(url.href) && url.href?.endsWith('.md')) {
-                        url.href = url.href.replace(/\.md$/, '/');
-                        url.pathname = url.pathname.replace(/\.md$/, '/');
-                        url.path = url.path.replace(/\.md$/, '/');
-                    } else if (!regex.test(url.href) && url.href?.endsWith('.mdx')) {
-                        url.href = url.href.replace(/\.mdx$/, '/');
-                        url.pathname = url.pathname.replace(/\.mdx$/, '/');
-                        url.path = url.path.replace(/\.mdx$/, '/');
+                    if (!regex.test(url.href) && url.href?.endsWith(".md")) {
+                        url.href = url.href.replace(/\.md$/, "/");
+                        url.pathname = url.pathname.replace(/\.md$/, "/");
+                        url.path = url.path.replace(/\.md$/, "/");
+                    } else if (!regex.test(url.href) && url.href?.endsWith(".mdx")) {
+                        url.href = url.href.replace(/\.mdx$/, "/");
+                        url.pathname = url.pathname.replace(/\.mdx$/, "/");
+                        url.path = url.path.replace(/\.mdx$/, "/");
                     }
                 },
             ],
@@ -228,11 +228,11 @@ export default defineConfig({
             [
                 rehypePrettyCode,
                 {
-                    defaultLang: 'plaintext',
+                    defaultLang: "plaintext",
                     keepBackground: true,
                     theme: {
-                        dark: 'github-dark',
-                        light: 'github-light',
+                        dark: "github-dark",
+                        light: "github-light",
                     },
                 },
             ],

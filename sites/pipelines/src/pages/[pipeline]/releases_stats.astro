@@ -2,7 +2,7 @@
 import PipelinePageLayout from "@layouts/PipelinePageLayout.astro";
 import pipelines_json from "@public/pipelines.json";
 import { formatDistance } from "date-fns";
-import cache from "@root/bin/cache.js";
+import cache from "@root/bin/cache.mjs";
 import { Markdown } from "@astropub/md";
 import PipelineSidebar from "@components/pipeline/PipelineSidebar.astro";
 export function getStaticPaths() {

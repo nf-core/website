@@ -4,7 +4,7 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 import path from 'path';
 import ProgressBar from 'progress';
 import { S3Client, ListObjectsV2Command } from '@aws-sdk/client-s3';
-import cache from './cache.js';
+import cache from "./cache.mjs";
 
 // get current path
 const __dirname = path.resolve();
