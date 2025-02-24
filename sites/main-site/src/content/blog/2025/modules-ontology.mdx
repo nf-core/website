@@ -15,11 +15,7 @@ maxHeadingDepth: 3
 
 ## Introduction
 
-nf-core modules come with a `meta.yml` file used to describe the structure of that module.
-
-The initial structure of the `meta.yml` file did not represent the structure of the modules input and output channels.
-This structure was describing all channel elements at the top level, without grouping them by channel.
-This led to issues such as missing descriptions for multiple meta maps or difficulties in the identification of different channels.
+Each nf-core module includes a `meta.yml` file that describes its structure. However, the initial design of this file didn't reflect the actual organization of the module's input and output channels. Instead of grouping elements by channel, they were all listed at the top level. This made it difficult to understand the channel structure and led to problems such as missing descriptions for multiple meta maps.
 
 <div class="row">
     <div class="col-12 col-lg-5">
@@ -101,7 +97,7 @@ This led to issues such as missing descriptions for multiple meta maps or diffic
 
 _(All files shown in this post are a *simplified version* of `main.nf` and `meta.yml` files, to show the structure of input and output channels.)_
 
-Back in october 2024 we [updated all nf-core modules](https://github.com/nf-core/modules/pull/6674) to make sure that all of them specify the proper input and output channel structures.
+In October 2024 we updated all nf-core modules ([Github Pull Request](https://github.com/nf-core/modules/pull/6674)) to ensure they properly define their input and output channel structures.
 
 <div class="row">
     <div class="col-12 col-lg-5">
@@ -250,7 +246,7 @@ process BWA_MEM {
     input:
     // TODO nf-core: Update the information obtained from bio.tools and make sure that it is correct
     tuple val(meta), path(sequence)
-    tuple val(meta), path(genome_index)
+    tuple val(meta2), path(genome_index)
 
     output:
     // TODO nf-core: Update the information obtained from bio.tools and make sure that it is correct
@@ -300,11 +296,7 @@ input:
             - edam: "http://edamontology.org/data_3210" # Genome index
 ```
 
-The ontologies are specified under the key `ontologies` in a list of dictionaries.
-These dictionaries contain only one element, there is one dictionary for each ontology URL.
-The `key` describes the type of ontology (currently using [EDAM ontology](https://edamontology.github.io/edam-browser/#topic_0091)),
-allowing the easy adoption of other ontologies in the future.
-And the value contains the ontology URL.
+Ontologies are specified under the ontologies key, which contains a list of dictionaries. Each dictionary represents a single ontology URL, with the key indicating the ontology type (currently [EDAM ontology](https://edamontology.github.io/edam-browser/#topic_0091)) and the value being the URL itself. This structure allows for easy adoption of other ontologies in the future.
 
 ## Using nf-core helper tools
 
