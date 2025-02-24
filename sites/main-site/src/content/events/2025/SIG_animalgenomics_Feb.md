@@ -7,10 +7,11 @@ startDate: "2025-02-19"
 startTime: "17:00+01:00"
 endDate: "2025-02-19"
 endTime: "18:00+01:00"
+youtubeEmbed: https://youtu.be/ZT2z9eKxUcc
 locations:
   - name: Online
     links:
-      - https://rediris.zoom.us/j/99370728121
+      - https://youtu.be/ZT2z9eKxUcc
 ---
 
 February 2024 talk of the monthly meeting of the [_#animal-genomics_ special interest group](/special-interest-groups/animal-genomics).
