@@ -620,7 +620,7 @@ Input/output types MUST only be of the following categories: `map`, `file`, `dir
 
 Input/output entries MUST match a corresponding channel in the module itself
 
-- There should be a one-to-one relationship between the module and the `meta.yml`
+- There should be a one-to-one relationship between the module inputs and outputs and the inputs and outputs described in the `meta.yml`
 - Input/output entries MUST NOT combine multiple output channels
 
 ### Useful input/output descriptions
@@ -635,8 +635,10 @@ Input/output patterns (if present) MUST follow a [Java glob pattern](https://doc
 
 ### Ontology
 
-- Moduels `meta.yml` files SHOULD contain a [bio.tools](https://bio.tools/) when available.
-- Moduels `meta.yml` files SHOULD contain ontology URLs for files when relevant.
+- Module `meta.yml` files SHOULD contain a [bio.tools](https://bio.tools/) when available.
+- Module `meta.yml` files SHOULD contain ontology URLs for files when relevant.
+
+Some tools on `bio.tools` have a list of inputs and outputs with their format. The EDAM ontology term can be obtained by clicking on that format or by searching the term in the [EDAM browser](https://edamontology.github.io/edam-browser/#topic_0091).
 
 ### Indication of input channel requirement
 
