@@ -1,7 +1,6 @@
 ---
 title: Adding, Moding, Menddling with the nf-core/ampliseq Pipeline
 category: pipelines
-slack: ""
 intro_video: ""
 image: "/assets/images/events/2025/hackathon-march/meddling_with_ampliseq.jpg"
 image_alt: Meddling with ampliseq
