@@ -19,7 +19,6 @@ Files that _must_ be present:
 .gitattributes
 .gitignore
 .nf-core.yml
-.editorconfig
 .prettierignore
 .prettierrc.yml
 .github/.dockstore.yml
