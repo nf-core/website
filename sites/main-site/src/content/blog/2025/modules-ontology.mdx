@@ -1,0 +1,316 @@
+---
+title: "Integrating ontologies into nf-core modules"
+subtitle: "Getting onto the right path"
+headerImage: "https://images.unsplash.com/photo-1530477765758-9fa34af23dad"
+headerImageAlt: "A path made out of wooden planks in the middle of a green forest."
+pubDate: 2025-02-24T16:30:00+01:00
+authors:
+    - "mirpedrol"
+    - "mashehu"
+label:
+    - "tools"
+    - "modules"
+maxHeadingDepth: 3
+---
+
+## Introduction
+
+Each nf-core module includes a `meta.yml` file that describes its structure. However, the initial design of this file didn't reflect the actual organization of the module's input and output channels. Instead of grouping elements by channel, they were all listed at the top level. This made it difficult to understand the channel structure and led to problems such as missing descriptions for multiple meta maps.
+
+<div class="row">
+    <div class="col-12 col-lg-5">
+        ```groovy title="main.nf"
+        process BWA_MEM {
+
+            ...
+
+            input:
+            tuple val(meta) , path(reads)
+            tuple val(meta2), path(index)
+            tuple val(meta3), path(fasta)
+            val   sort_bam
+
+            output:
+            tuple val(meta), path("*.bam"),  emit: bam,     optional: true
+            tuple val(meta), path("*.cram"), emit: cram,    optional: true
+            tuple val(meta), path("*.csi"),  emit: csi,     optional: true
+            tuple val(meta), path("*.crai"), emit: crai,    optional: true
+            path "versions.yml",             emit: versions
+
+            ...
+
+        }
+        ```
+    </div>
+    <div class="col-12 col-lg-7">
+        ```yml title="meta.yml" caption="Old file structure"
+        name: bwa_mem
+        ...
+        input:
+            - meta:
+                type: map
+                description: Groovy Map containing sample information
+            - reads:
+                type: file
+                description: List of input FastQ files.
+            - index:
+                type: file
+                description: BWA genome index files
+                pattern: "*.{amb,ann,bwt,pac,sa}"
+            - fasta:
+                type: file
+                description: Reference genome in FASTA format
+                pattern: "*.{fasta,fa}"
+            - sort_bam:
+                type: boolean
+                description: use samtools/sort (true) or samtools/view (false)
+        output:
+            - meta:
+                type: file
+                description: Output BAM file containing read alignments
+                pattern: "*.{bam}"
+            - bam:
+                type: file
+                description: Output BAM file containing read alignments
+                pattern: "*.{bam}"
+            - cram:
+                type: file
+                description: Output CRAM file containing read alignments
+                pattern: "*.{cram}"
+            - csi:
+                type: file
+                description: Optional index file for BAM file
+                pattern: "*.{csi}"
+            - crai:
+                type: file
+                description: Optional index file for CRAM file
+                pattern: "*.{crai}"
+            - versions:
+                type: file
+                description: File containing software versions
+                pattern: "versions.yml"
+        ...
+        ```
+    </div>
+
+</div>
+
+_(All files shown in this post are a *simplified version* of `main.nf` and `meta.yml` files, to show the structure of input and output channels.)_
+
+In October 2024 we updated all nf-core modules ([Github Pull Request](https://github.com/nf-core/modules/pull/6674)) to ensure they properly define their input and output channel structures.
+
+<div class="row">
+    <div class="col-12 col-lg-5">
+        ```groovy title="main.nf"
+        process BWA_MEM {
+
+            ...
+
+            input:
+            tuple val(meta) , path(reads)
+            tuple val(meta2), path(index)
+            tuple val(meta3), path(fasta)
+            val   sort_bam
+
+            output:
+            tuple val(meta), path("*.bam"),  emit: bam,     optional: true
+            tuple val(meta), path("*.cram"), emit: cram,    optional: true
+            tuple val(meta), path("*.csi"),  emit: csi,     optional: true
+            tuple val(meta), path("*.crai"), emit: crai,    optional: true
+            path "versions.yml",             emit: versions
+
+            ...
+
+        }
+        ```
+    </div>
+    <div class="col-12 col-lg-7">
+        ```yml title="meta.yml" caption="New file structure"
+        name: bwa_mem
+        ...
+        input:
+            - - meta:
+                    type: map
+                    description: Groovy Map containing sample information
+                - reads:
+                    type: file
+                    description: |
+                    List of input FastQ files of size 1 and 2 for single-end and paired-end data,
+                    respectively.
+            - - meta2:
+                    type: map
+                    description: Groovy Map containing reference information.
+                - index:
+                    type: file
+                    description: BWA genome index files
+                    pattern: "*.{amb,ann,bwt,pac,sa}"
+            - - meta3:
+                    type: map
+                    description: Groovy Map containing sample information
+                - fasta:
+                    type: file
+                    description: Reference genome in FASTA format
+                    pattern: "*.{fasta,fa}"
+            - - sort_bam:
+                    type: boolean
+                    description: use samtools sort (true) or samtools view (false)
+                    pattern: "true or false"
+        output:
+            - bam:
+                - meta:
+                    type: file
+                    description: Groovy Map containing sample information
+                - "*.bam":
+                    type: file
+                    description: Output BAM file containing read alignments
+                    pattern: "*.{bam}"
+            - cram:
+                - meta:
+                    type: file
+                    description: Groovy Map containing sample information
+                - "*.cram":
+                    type: file
+                    description: Output CRAM file containing read alignments
+                    pattern: "*.{cram}"
+            - csi:
+                - meta:
+                    type: file
+                    description: Groovy Map containing sample information
+                - "*.csi":
+                    type: file
+                    description: Optional index file for BAM file
+                    pattern: "*.{csi}"
+            - crai:
+                - meta:
+                    type: file
+                    description: Groovy Map containing sample information
+                - "*.crai":
+                    type: file
+                    description: Optional index file for CRAM file
+                    pattern: "*.{crai}"
+            - versions:
+                - versions.yml:
+                    type: file
+                    description: File containing software versions
+                    pattern: "versions.yml"
+        ...
+        ```
+    </div>
+
+</div>
+
+We also introduced linting checks to nf-core/tools to ensure the proper structure of `meta.yml` files.
+
+Together with these linting checks, we also introduced a new flag to the `nf-core modules lint` command: `--fix`.
+This flag will try to fix all the possible lint failures related to the `meta.yml` file.
+
+### Introducing ontologies
+
+Together with these changes, we also added the [`bio.tools`](https://bio.tools/) identifier of the tool. `bio.tools` is a community-driven registry of bioinformatics software and data resources. It provides information about software tools, databases, analysis workflows, and services that are used in bioinformatics and the life sciences.
+
+```yml title="meta.yml" {13}
+name: bwa_mem
+
+    ...
+
+tools:
+    - bwa:
+          description: |
+              BWA is a software package for mapping DNA
+              sequences against a large reference genome, such as the human genome. homepage: http://bio-bwa.sourceforge.net/
+          documentation: https://bio-bwa.sourceforge.net/bwa.shtml
+          arxiv: arXiv:1303.3997
+          licence: ["GPL-3.0-or-later"]
+          identifier: "biotools:bwa"
+```
+
+This bio.tools ID opened new possibilities, such as being able to know the inputs and outputs of the tool and the ontology terms for input and output files.
+
+We now use this information to generate a suggestion of input and output channels when creating a module with `nf-core modules create`
+(available as of February 2025 on the `dev` version of nf-core/tools and it will be released as part of nf-core/tools 3.3.0)
+So modifying the freshly created template of a module will be easier.
+
+Here we show an example of the template generated when creating a module for the BWA tool, using the same example as before.
+
+```yml title="main.nf"
+process BWA_MEM {
+    tag "$meta.id"
+    label 'process_single'
+
+    // TODO nf-core: See section in main README for further information regarding finding and adding container addresses to the section below.
+    conda "${moduleDir}/environment.yml"
+    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+        'https://depot.galaxyproject.org/singularity/bwa:0.7.18--h577a1d6_2':
+        'biocontainers/bwa:0.7.18--h577a1d6_2' }"
+
+    input:
+    // TODO nf-core: Update the information obtained from bio.tools and make sure that it is correct
+    tuple val(meta), path(sequence)
+    tuple val(meta2), path(genome_index)
+
+    output:
+    // TODO nf-core: Update the information obtained from bio.tools and make sure that it is correct
+    tuple val(meta), path("*.{}"), emit: genome_index
+    tuple val(meta), path("*.{}"), emit: alignment
+    tuple val(meta), path("*.{}"), emit: sequence_coordinates
+    tuple val(meta), path("*.{}"), emit: sequence_alignment
+    path "versions.yml"          , emit: versions
+
+    ...
+}
+```
+
+And we populate a section `ontologies` of files described in the `meta.yml`.
+
+```yml title="meta.yaml" {15-17,30-31}
+name: "bwa_mem"
+...
+input:
+    - - meta:
+            type: map
+            description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+
+        - sequence:
+            # TODO nf-core: Update the information obtained from bio.tools and make sure that it is correct
+            type: file
+            description: sequence file
+            pattern: "*.{fastq}"
+            ontologies:
+            - edam: "http://edamontology.org/data_2044" # Sequence
+            - edam: "http://edamontology.org/format_1930" # FASTQ
+
+    - - meta:
+            type: map
+            description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+
+        - genome_index:
+            # TODO nf-core: Update the information obtained from bio.tools and make sure that it is correct
+            type: file
+            description: genome_index file
+            pattern: "*.{}"
+            ontologies:
+            - edam: "http://edamontology.org/data_3210" # Genome index
+```
+
+Ontologies are specified under the ontologies key, which contains a list of dictionaries. Each dictionary represents a single ontology URL, with the key indicating the ontology type (currently [EDAM ontology](https://edamontology.github.io/edam-browser/#topic_0091)) and the value being the URL itself. This structure allows for easy adoption of other ontologies in the future.
+
+## Using nf-core helper tools
+
+As mentioned before, we updated the nf-core/tools package to make creating and updating modules easier.
+
+- `nf-core modules create`:
+  Will automatically fetch a `bio.tools` ID when possible, and use the information provided by this to populate intput and output channels in the `main.nf` and `meta.yml`.
+- `nf-core modules lint`:
+  Will make sure that the channels defined in the `main.nf` are properly described in the `meta.yml`.
+- `nf-core modules lint --fix`:
+  Will try to correct the inputs and outputs on `meta.yml` to match the `main.nf` file.
+  It will add ontology URLs if missing, guessing them from the `pattern` value.
+
+## Future potential
+
+These additions open the door to new possibilities.
+For example knowing the exact inputs and outputs of modules, subworkflows and workflows, makes automated chaining of these components easier.
