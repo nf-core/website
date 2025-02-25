@@ -9003,6 +9003,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -113197,6 +113201,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -139078,6 +139090,10 @@
         {
           "name": "viralrecon",
           "version": "2.6.0"
+        },
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
         }
       ]
     },
@@ -157135,6 +157151,13 @@
               }
             },
             {
+              "samplename": {
+                "type": "file",
+                "description": "(Optional) File with list of samples names in the same order as in bamlist to impute. One file per line.",
+                "pattern": "*.{txt}"
+              }
+            },
+            {
               "reference_haplotype_file": {
                 "type": "file",
                 "description": "(Mandatory) Reference haplotype file in IMPUTE format (file with no header and no rownames, one row per SNP, one column per reference haplotype, space separated, values must be 0 or 1)",
@@ -157146,6 +157169,27 @@
                 "type": "file",
                 "description": "(Mandatory) Reference haplotype legend file in IMPUTE format (file with one row per SNP, and a header including position for the physical position in 1 based coordinates, a0 for the reference allele, and a1 for the alternate allele).",
                 "pattern": "*.{legend.gz}"
+              }
+            },
+            {
+              "posfile": {
+                "type": "file",
+                "description": "(Optional) File with positions of where to impute, lining up one-to-one with genfile. File is tab separated with no header, one row per SNP, with col 1 = chromosome, col 2 = physical position (sorted from smallest to largest), col 3 = reference base, col 4 = alternate base. Bases are capitalized.",
+                "pattern": "*.{txt}"
+              }
+            },
+            {
+              "phasefile": {
+                "type": "file",
+                "description": "(Optional) File with truth phasing results. Supersedes genfile if both options given. File has a header row with a name for each sample, matching what is found in the bam file. Each subject is then a tab separated column, with 0 = ref and 1 = alt, separated by a vertical bar |, e.g. 0|0 or 0|1. Note therefore this file has one more row than posfile which has no header.",
+                "pattern": "*.{txt}"
+              }
+            },
+            {
+              "genfile": {
+                "type": "file",
+                "description": "(Optional) Path to gen file with high coverage results. Empty for no genfile. If both genfile and phasefile are given, only phasefile is used, as genfile (unphased genotypes) is derivative to phasefile (phased genotypes). File has a header row with a name for each sample, matching what is found in the bam file. Each subject is then a tab seperated column, with 0 = hom ref, 1 = het, 2 = hom alt and NA indicating missing genotype, with rows corresponding to rows of the posfile. Note therefore this file has one more row than posfile which has no header [default \\\"\\\"]",
+                "pattern": "*.{txt}"
               }
             },
             {
@@ -157189,28 +157233,6 @@
           [
             {
               "meta2": {
-                "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-              }
-            },
-            {
-              "posfile": {
-                "type": "file",
-                "description": "(Optional) File with positions of where to impute, lining up one-to-one with genfile. File is tab separated with no header, one row per SNP, with col 1 = chromosome, col 2 = physical position (sorted from smallest to largest), col 3 = reference base, col 4 = alternate base. Bases are capitalized.",
-                "pattern": "*.{txt}"
-              }
-            },
-            {
-              "phasefile": {
-                "type": "file",
-                "description": "(Optional) File with truth phasing results. Supersedes genfile if both options given. File has a header row with a name for each sample, matching what is found in the bam file. Each subject is then a tab separated column, with 0 = ref and 1 = alt, separated by a vertical bar |, e.g. 0|0 or 0|1. Note therefore this file has one more row than posfile which has no header.",
-                "pattern": "*.{txt}"
-              }
-            }
-          ],
-          [
-            {
-              "meta3": {
                 "type": "map",
                 "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
               }
@@ -185106,6 +185128,64 @@
       ]
     },
     {
+      "name": "star_indexversion",
+      "path": "modules/nf-core/star/indexversion/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "star_indexversion",
+        "description": "Get the minimal allowed index version from STAR",
+        "keywords": [
+          "index",
+          "version",
+          "rna"
+        ],
+        "tools": [
+          {
+            "star": {
+              "description": "STAR is a software package for mapping DNA sequences against\na large reference genome, such as the human genome.\n",
+              "homepage": "https://github.com/alexdobin/STAR",
+              "manual": "https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf",
+              "doi": "10.1093/bioinformatics/bts635",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:star"
+            }
+          }
+        ],
+        "output": [
+          {
+            "index_version": [
+              {
+                "*.txt": {
+                  "type": "file",
+                  "description": "File with the minimal index version",
+                  "pattern": "*.txt"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@nvnieuwk"
+        ],
+        "maintainers": [
+          "@nvnieuwk"
+        ]
+      }
+    },
+    {
       "name": "star_starsolo",
       "path": "modules/nf-core/star/starsolo/meta.yml",
       "type": "module",
@@ -185733,13 +185813,12 @@
                 "description": "Text file with the path to the cram files to use in imputation, one per line. Since the cram files are staged to the working directory for the process, this file should just contain the file names without any pre-pending path.\n",
                 "pattern": "*.txt"
               }
-            }
-          ],
-          [
+            },
             {
-              "meta2": {
-                "type": "map",
-                "description": "Groovy Map containing information about the set of positions to run the imputation over\ne.g. `[ id:'test' ]`\n"
+              "samplename": {
+                "type": "file",
+                "description": "(Optional) File with list of samples names in the same order as in bamlist to impute. One file per line.",
+                "pattern": "*.{txt}"
               }
             },
             {
@@ -185784,7 +185863,7 @@
           ],
           [
             {
-              "meta3": {
+              "meta2": {
                 "type": "map",
                 "description": "Groovy Map containing information about the reference genome used\ne.g. `[ id:'test' ]`\n"
               }
@@ -215327,6 +215406,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        },
         {
           "name": "phageannotator",
           "version": "dev"
