@@ -21,4 +21,4 @@ This project aims to enhance the [nf-core/ampliseq](https://nf-co.re/ampliseq/de
 - Benchmarking and validating the pipeline to ensure error-free performance.  
 - Improving documentation and user support to promote broader adoption.
 
-  *We welcome contributors of all experience levels.*
+*We welcome contributors of all experience levels.*
