@@ -264,7 +264,7 @@ The following schedule should display times in your local time zone:
                    <ul class="small list-unstyled">
                     <li>Topic: Customise MultiQC reports</li>
                     <li>Location: Lecture Theatre</li>
-
+                </td>
             </tr>
             <tr>
                 <td data-timestamp="1647439200" data-timeformat="HH:mm z">15:00</td>
@@ -274,9 +274,24 @@ The following schedule should display times in your local time zone:
             </tr>
            <tr>
                 <td data-timestamp="1647441000" data-timeformat="HH:mm z">15:30</td>
-                <td rowspan="1">Break<br><ul class="small list-unstyled"><li>Location: Cafeteria</li></ul</td>
-                <td rowspan="1">Break<br><ul class="small list-unstyled"><li>Location: Cafeteria</li></ul</td>
-                <td rowspan="1">Break<br><ul class="small list-unstyled"><li>Location: Cafeteria</li></ul</td>
+                <td rowspan="1">
+                  Break<br>
+                  <ul class="small list-unstyled">
+                  <li>Location: Cafeteria</li>
+                  </ul>
+                </td>
+                <td rowspan="1">
+                  Break<br>
+                  <ul class="small list-unstyled">
+                  <li>Location: Cafeteria</li>
+                  </ul>
+                </td>
+                <td rowspan="1">
+                  Break<br>
+                  <ul class="small list-unstyled">
+                  <li>Location: Cafeteria</li>
+                  </ul>
+                </td>
             </tr>
             <tr>
                 <td data-timestamp="1647442800" data-timeformat="HH:mm z">16:00</td>
