@@ -9011,6 +9011,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -50160,6 +50164,22 @@
             ]
           },
           {
+            "small_model_calls": [
+              {
+                "meta": {
+                  "type": "list",
+                  "description": "Tuple containing sample metadata\n"
+                }
+              },
+              {
+                "${prefix}_call_variant_outputs.examples.tfrecord-*-of-*.gz\",  arity: \"0..*": {
+                  "type": "list",
+                  "description": "Optional variant calls from the small model, if enabled, in tfrecord format\n"
+                }
+              }
+            ]
+          },
+          {
             "versions": [
               {
                 "versions.yml": {
@@ -50235,6 +50255,20 @@
                 "type": "file",
                 "description": "Sharded tfrecord file from DEEPVARIANT_MAKEEXAMPLES with the coverage information used for GVCF output\n",
                 "pattern": "*.gz"
+              }
+            },
+            {
+              "small_model_calls": {
+                "type": "file",
+                "description": "Sharded tfrecord file from DEEPVARIANT_MAKEEXAMPLES with variant calls from the small model\n",
+                "pattern": "*.gz"
+              }
+            },
+            {
+              "intervals": {
+                "type": "file",
+                "description": "Interval file for targeted regions",
+                "pattern": "*.bed"
               }
             }
           ],
@@ -113301,6 +113335,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -138683,6 +138725,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
+        },
         {
           "name": "viralrecon",
           "version": "2.6.0"
@@ -210734,7 +210780,8 @@
         ],
         "maintainers": [
           "@abhi18av",
-          "@ramprasadn"
+          "@ramprasadn",
+          "@fa2k"
         ]
       }
     },
@@ -215492,6 +215539,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        },
         {
           "name": "phageannotator",
           "version": "dev"
