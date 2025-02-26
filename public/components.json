@@ -9007,6 +9007,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -13436,7 +13440,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.1"
+          "version": "1.1.0"
         }
       ]
     },
@@ -13555,7 +13559,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "taxprofiler",
@@ -13800,7 +13804,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.1"
+          "version": "1.1.0"
         }
       ]
     },
@@ -14294,7 +14298,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.1"
+          "version": "1.1.0"
         }
       ]
     },
@@ -30984,7 +30988,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "nascent",
@@ -31150,7 +31154,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "methylseq",
@@ -45314,10 +45318,6 @@
           "version": "dev"
         },
         {
-          "name": "metatdenovo",
-          "version": "1.0.1"
-        },
-        {
           "name": "molkart",
           "version": "1.0.0"
         },
@@ -59257,7 +59257,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "methylarray",
@@ -94358,6 +94358,90 @@
       }
     },
     {
+      "name": "hmmer_hmmpress",
+      "path": "modules/nf-core/hmmer/hmmpress/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "hmmer_hmmpress",
+        "description": "compress and index profile database for hmmscan",
+        "keywords": [
+          "hidden Markov model",
+          "HMM",
+          "hmmer",
+          "hmmpress",
+          "hmmscan"
+        ],
+        "tools": [
+          {
+            "hmmer": {
+              "description": "Biosequence analysis using profile hidden Markov models",
+              "homepage": "http://hmmer.org",
+              "documentation": "http://hmmer.org/documentation.html",
+              "tool_dev_url": "https://github.com/EddyRivasLab/hmmer",
+              "doi": "10.1371/journal.pcbi.1002195",
+              "licence": [
+                "BSD"
+              ],
+              "identifier": "biotools:hmmer"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "hmmfile": {
+                "type": "file",
+                "description": "HMMER flatfile database of HMM profiles",
+                "pattern": "*"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "compressed_db": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.h3?": {
+                  "type": "list",
+                  "description": "Binary files with compressed profiles and their index",
+                  "pattern": "*.h3?"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@ochkalova"
+        ],
+        "maintainers": [
+          "@ochkalova"
+        ]
+      }
+    },
+    {
       "name": "hmmer_hmmrank",
       "path": "modules/nf-core/hmmer/hmmrank/meta.yml",
       "type": "module",
@@ -94634,7 +94718,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "phyloplace",
@@ -113209,6 +113293,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -129289,7 +129381,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "methylarray",
@@ -139094,6 +139186,10 @@
         {
           "name": "viralrecon",
           "version": "2.6.0"
+        },
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
         }
       ]
     },
@@ -146309,7 +146405,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "multiplesequencealign",
@@ -152255,7 +152351,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.1"
+          "version": "1.1.0"
         }
       ]
     },
@@ -152559,7 +152655,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.1"
+          "version": "1.1.0"
         }
       ]
     },
@@ -165861,7 +165957,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "methylong",
@@ -166143,7 +166239,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "nanoseq",
@@ -166507,7 +166603,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "methylong",
@@ -167600,7 +167696,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "methylong",
@@ -167839,7 +167935,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "methylseq",
@@ -174918,7 +175014,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.1"
+          "version": "1.1.0"
         }
       ]
     },
@@ -175203,7 +175299,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "radseq",
@@ -183422,7 +183518,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "pathogensurveillance",
@@ -186864,7 +186960,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "nascent",
@@ -190754,7 +190850,13 @@
         "maintainers": [
           "@erikrikarddaniel"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "metatdenovo",
+          "version": "1.1.0"
+        }
+      ]
     },
     {
       "name": "taxonkit_name2taxid",
@@ -193611,13 +193713,7 @@
         "maintainers": [
           "@Danilo2771"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "metatdenovo",
-          "version": "1.0.1"
-        }
-      ]
+      }
     },
     {
       "name": "transdecoder_predict",
@@ -193759,13 +193855,7 @@
         "maintainers": [
           "@Danilo2771"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "metatdenovo",
-          "version": "1.0.1"
-        }
-      ]
+      }
     },
     {
       "name": "trgt_genotype",
@@ -194397,7 +194487,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.0.1"
+          "version": "1.1.0"
         },
         {
           "name": "methylseq",
@@ -198219,6 +198309,10 @@
         {
           "name": "mag",
           "version": "3.3.1"
+        },
+        {
+          "name": "metatdenovo",
+          "version": "1.1.0"
         },
         {
           "name": "methylseq",
@@ -209290,10 +209384,6 @@
           "version": "dev"
         },
         {
-          "name": "metatdenovo",
-          "version": "1.0.1"
-        },
-        {
           "name": "nascent",
           "version": "2.2.0"
         },
@@ -209558,10 +209648,6 @@
         {
           "name": "magmap",
           "version": "dev"
-        },
-        {
-          "name": "metatdenovo",
-          "version": "1.0.1"
         },
         {
           "name": "nascent",
@@ -216029,6 +216115,10 @@
         {
           "name": "phageannotator",
           "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
         }
       ]
     },
@@ -220341,6 +220431,10 @@
           "version": "1.0.0"
         },
         {
+          "name": "metatdenovo",
+          "version": "1.1.0"
+        },
+        {
           "name": "methylarray",
           "version": "dev"
         },
@@ -220674,6 +220768,10 @@
           "version": "1.0.0"
         },
         {
+          "name": "metatdenovo",
+          "version": "1.1.0"
+        },
+        {
           "name": "methylarray",
           "version": "dev"
         },
@@ -220969,6 +221067,10 @@
         {
           "name": "metapep",
           "version": "1.0.0"
+        },
+        {
+          "name": "metatdenovo",
+          "version": "1.1.0"
         },
         {
           "name": "methylarray",
