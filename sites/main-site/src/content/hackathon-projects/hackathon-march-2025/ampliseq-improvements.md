@@ -1,5 +1,5 @@
 ---
-title: Adding, Moding, Menddling with the nf-core/ampliseq Pipeline
+title: Adding, modding, meddling with the nf-core/ampliseq pipeline
 category: pipelines
 intro_video: ""
 image: "/assets/images/events/2025/hackathon-march/meddling_with_ampliseq.jpg"
@@ -13,7 +13,8 @@ leaders:
     slack: "https://nfcore.slack.com/team/D08CT7DSN20"
 ---
 
-This project aims to enhance the [nf-core/ampliseq](https://nf-co.re/ampliseq/dev) pipeline to support plant metabarcoding analyses. By expanding the reference database, we will improve its functionality, fostering broader adoption and making plant metabarcoding more accessible to the scientific community.
+This project aims to enhance the [nf-core/ampliseq](https://nf-co.re/ampliseq/dev) pipeline to support plant metabarcoding analyses. 
+By expanding the reference database, we will improve its functionality, fostering broader adoption and making plant metabarcoding more accessible to the scientific community.
 
 ## Goals
 
