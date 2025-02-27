@@ -2,6 +2,13 @@ import { visit } from 'unist-util-visit';
 import { toString } from 'mdast-util-to-string';
 import { h } from 'hastscript';
 
+// Precompile regex patterns for better performance
+const SPECIAL_FILES_REGEX = /^(\.github\/CONTRIBUTING\.md|CITATIONS\.md|CHANGELOG\.md)$/;
+const MDX_ANCHOR_REGEX = /\.mdx?#/;
+const ADMONITION_REGEX = /^\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]\s*(.*)/;
+const IMG_SRC_REGEX = /<img(.*?)src="(.*?)"/g;
+const SOURCE_SRCSET_REGEX = /<source(.*?)srcset="(.*?)"/g;
+
 /**
  * Remark plugin to process GitHub markdown content
  * - Fixes image URLs
@@ -25,132 +32,127 @@ export default function remarkGitHubMarkdown(options = {}) {
 
     const baseRawUrl = `https://raw.githubusercontent.com/${org}/${fileRepo}/${fileRef}/`;
     const baseRepoUrl = `https://github.com/${org}/${fileRepo}/blob/${fileRef}/`;
-    console.debug(`Processing GitHub markdown - repo: ${fileRepo}, ref: ${fileRef}, parent_dir: ${fileParentDir}`);
-    console.debug(`Base URLs - raw: ${baseRawUrl}, repo: ${baseRepoUrl}`);
 
-    // Process image nodes
-    visit(tree, 'image', (node) => {
-      if (!node.url.startsWith('http')) {
-        node.url = `${baseRawUrl}${fileParentDir}/${node.url}`;
-      }
-    });
-
-    // Process link nodes
-    visit(tree, 'link', (node) => {
-      if (!node.url.startsWith('http')) {
-        // Handle special files
-        if (/^(\.github\/CONTRIBUTING\.md|CITATIONS\.md|CHANGELOG\.md)$/.test(node.url)) {
-          node.url = `${baseRepoUrl}${node.url}`;
-        }
-        // Handle assets
-        else if (node.url.includes('assets/')) {
-          node.url = `${baseRepoUrl}${node.url.replace('../assets/', 'assets/')}`;
-        }
-        // Handle .md/.mdx links with anchors
-        else if (/\.mdx?#/.test(node.url)) {
-          node.url = node.url.replace(/\.mdx?#/, '#');
-        }
-      }
-    });
-
-    // Process code blocks
-    visit(tree, 'code', (node) => {
-      if (node.lang === 'nextflow') {
-        node.lang = 'groovy';
-      }
-    });
-
-    // Process headings
-    visit(tree, 'heading', (node) => {
-      if (node.depth === 1) {
-        // Check if this is the title heading
-        const headingText = toString(node);
-        if (headingText.startsWith(`nf-core/${fileRepo}: `)) {
-          // Replace the first child's text content
-          if (node.children[0] && node.children[0].type === 'text') {
-            node.children[0].value = node.children[0].value.replace(`nf-core/${fileRepo}: `, '');
+    visit(tree, (node, index, parent) => {
+      switch (node.type) {
+        case 'image':
+          if (node.url && !node.url.startsWith('http')) {
+            node.url = `${baseRawUrl}${fileParentDir}/${node.url}`;
           }
-        }
-      }
-    });
+          break;
 
-    // Process blockquotes for GitHub-flavored admonitions
-    visit(tree, 'blockquote', (node, index, parent) => {
-      if (node.children && node.children.length > 0) {
-        const firstChild = node.children[0];
-
-        if (firstChild.type === 'paragraph' &&
-            firstChild.children &&
-            firstChild.children.length > 0) {
-
-          const firstText = firstChild.children[0];
-          if (firstText.type === 'text' && firstText.value.startsWith('[!')) {
-            const match = firstText.value.match(/^\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]\s*(.*)/);
-
-            if (match) {
-              // Get the admonition type and handle special cases
-              let type = match[1].toLowerCase();
-              if (type === 'important') type = 'info';
-              else if (type === 'caution') type = 'danger';
-
-              // Create a directive node
-              const directiveNode = {
-                type: 'containerDirective',
-                name: type,
-                attributes: {},
-                children: [],
-                data: {
-                  hName: 'div',
-                  hProperties: {}
-                }
-              };
-
-              // Add title attribute for special cases
-              if (match[1] === 'IMPORTANT') {
-                directiveNode.attributes.title = 'Important';
-              } else if (match[1] === 'CAUTION') {
-                directiveNode.attributes.title = 'Caution';
-              }
-
-              // If there's content on the same line as the admonition marker
-              if (match[2]) {
-                directiveNode.children.push({
-                  type: 'paragraph',
-                  children: [{
-                    type: 'text',
-                    value: match[2]
-                  }]
-                });
-              }
-
-              // Add the rest of the blockquote's content to the directive
-              for (let i = 1; i < node.children.length; i++) {
-                directiveNode.children.push(node.children[i]);
-              }
-
-              // Replace the blockquote with the directive node
-              parent.children[index] = directiveNode;
-              return [visit.SKIP, index];
+        case 'link':
+          if (node.url && !node.url.startsWith('http')) {
+            // Handle special files
+            if (SPECIAL_FILES_REGEX.test(node.url)) {
+              node.url = `${baseRepoUrl}${node.url}`;
+            }
+            // Handle assets
+            else if (node.url.includes('../assets/')) {
+              node.url = `${baseRepoUrl}${node.url.replace('../assets/', 'assets/')}`;
+            }
+            // Handle .md/.mdx links with anchors
+            else if (MDX_ANCHOR_REGEX.test(node.url)) {
+              node.url = node.url.replace(MDX_ANCHOR_REGEX, '#');
             }
           }
-        }
-      }
-    });
+          break;
 
-    // Process HTML nodes for images and source tags
-    visit(tree, 'html', (node) => {
-      if (node.value.includes('<img') && !node.value.includes('src="http')) {
-        node.value = node.value.replace(
-          /<img(.*?)src="(.*?)"/g,
-          (match, attrs, src) => `<img${attrs}src="${baseRawUrl}${fileParentDir}/${src}"`
-        );
-      }
+        case 'code':
+          if (node.lang === 'nextflow') {
+            node.lang = 'groovy';
+          }
+          break;
 
-      if (node.value.includes('<source') && !node.value.includes('srcset="http')) {
-        node.value = node.value.replace(
-          /<source(.*?)srcset="(.*?)"/g,
-          (match, attrs, src) => `<source${attrs}srcset="${baseRawUrl}${fileParentDir}/${src}"`
-        );
+        case 'heading':
+          if (node.depth === 1) {
+            const headingText = toString(node);
+            if (headingText.startsWith(`nf-core/${fileRepo}: `)) {
+              // Replace the first child's text content
+              if (node.children[0] && node.children[0].type === 'text') {
+                node.children[0].value = node.children[0].value.replace(`nf-core/${fileRepo}: `, '');
+              }
+            }
+          }
+          break;
+
+        case 'blockquote':
+          if (node.children && node.children.length > 0) {
+            const firstChild = node.children[0];
+
+            if (firstChild.type === 'paragraph' &&
+                firstChild.children &&
+                firstChild.children.length > 0) {
+
+              const firstText = firstChild.children[0];
+              if (firstText.type === 'text' && firstText.value.startsWith('[!')) {
+                const match = firstText.value.match(ADMONITION_REGEX);
+
+                if (match) {
+                  // Get the admonition type and handle special cases
+                  let type = match[1].toLowerCase();
+                  if (type === 'important') type = 'info';
+                  else if (type === 'caution') type = 'danger';
+
+                  // Create a directive node
+                  const directiveNode = {
+                    type: 'containerDirective',
+                    name: type,
+                    attributes: {},
+                    children: [],
+                    data: {
+                      hName: 'div',
+                      hProperties: {}
+                    }
+                  };
+
+                  // Add title attribute for special cases
+                  if (match[1] === 'IMPORTANT') {
+                    directiveNode.attributes.title = 'Important';
+                  } else if (match[1] === 'CAUTION') {
+                    directiveNode.attributes.title = 'Caution';
+                  }
+
+                  // If there's content on the same line as the admonition marker
+                  if (match[2]) {
+                    directiveNode.children.push({
+                      type: 'paragraph',
+                      children: [{
+                        type: 'text',
+                        value: match[2]
+                      }]
+                    });
+                  }
+
+                  // Add the rest of the blockquote's content to the directive
+                  for (let i = 1; i < node.children.length; i++) {
+                    directiveNode.children.push(node.children[i]);
+                  }
+
+                  // Replace the blockquote with the directive node
+                  parent.children[index] = directiveNode;
+                  return [visit.SKIP, index];
+                }
+              }
+            }
+          }
+          break;
+
+        case 'html':
+          if (node.value.includes('<img') && !node.value.includes('src="http')) {
+            node.value = node.value.replace(
+              IMG_SRC_REGEX,
+              (match, attrs, src) => `<img${attrs}src="${baseRawUrl}${fileParentDir}/${src}"`
+            );
+          }
+
+          if (node.value.includes('<source') && !node.value.includes('srcset="http')) {
+            node.value = node.value.replace(
+              SOURCE_SRCSET_REGEX,
+              (match, attrs, src) => `<source${attrs}srcset="${baseRawUrl}${fileParentDir}/${src}"`
+            );
+          }
+          break;
       }
     });
 
