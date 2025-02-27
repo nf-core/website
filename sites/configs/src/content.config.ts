@@ -1,25 +1,8 @@
-import { z, defineCollection, type CollectionEntry } from 'astro:content';
-import { githubFileLoader, type RenderedContent } from "@utils/loaders";
+import { z, defineCollection  } from 'astro:content';
+import { githubFileLoader, type RenderedContent, md } from "@utils/loaders";
 
-import { createMarkdownProcessor } from "@astrojs/markdown-remark";
-import type { MarkdownProcessor } from "@astrojs/markdown-remark";
 import type { AstroConfig } from "astro";
 
-const mdProcessors = new Map<AstroConfig, MarkdownProcessor>();
-const md = async (text: string, config: AstroConfig): Promise<RenderedContent> => {
-    const processor = (
-        mdProcessors.has(config)
-            ? mdProcessors.get(config)
-            : mdProcessors.set(config, await createMarkdownProcessor(config.markdown)).get(config)
-    )!;
-
-    const { code: html, metadata } = await processor.render(text);
-
-    return {
-        html,
-        metadata,
-    };
-};
 
 const configProcessor = async (text: string, config: AstroConfig): Promise<RenderedContent> => {
     let NFConfig = {

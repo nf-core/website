@@ -6,6 +6,7 @@ import { getCollection, type CollectionEntry } from "astro:content";
 //get contents of markdown files in docs dir in https://github.com/nf-core/configs/tree/master/docs using request
 const files = await getCollection("configs");
 let configFiles = files.filter((file) => file.data.extension === "config");
+
 let generalConfigs: CollectionEntry<"configs">[] = [];
 let pipelineConfigs: CollectionEntry<"configs">[] = [];
 configFiles.map((file) => {
