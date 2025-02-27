@@ -3,7 +3,7 @@ title: Adding, Moding, Menddling with the nf-core/ampliseq Pipeline
 category: pipelines
 intro_video: ""
 image: "/assets/images/events/2025/hackathon-march/meddling_with_ampliseq.jpg"
-image_alt: "Distracted boyfriend" meme for ampliseq pipeline improvements
+image_alt: "'Distracted boyfriend' meme, where the boyfriend in the middle is labeled 'us', they oblivious woman to the right is labeled 'leaving ampliseq alone and fine as it is'. The woman on the left, who the boyfriend is whistling after, is labeled 'meddle with it to suppoert metabarcoding'."
 leaders:
   npechl:
     name: Nikos Pechlivanis
