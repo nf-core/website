@@ -1,8 +1,9 @@
-import { z, defineCollection } from 'astro:content';
-import { glob } from 'astro/loaders';
+import { defineCollection } from 'astro:content';
+import { pipelineLoader} from '@utils/loaders'
+import pipelines_json from "@public/pipelines.json";
 
 const pipelines = defineCollection({
-    loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/pipelines' }),
+    loader: pipelineLoader(pipelines_json),
 });
 
 export const collections = {
