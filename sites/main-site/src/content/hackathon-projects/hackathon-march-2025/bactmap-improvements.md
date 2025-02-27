@@ -3,8 +3,8 @@ title: Updating nf-core/bactmap Pipeline
 category: pipelines
 slack: "https://nfcore.slack.com/archives/C08FN6XU3B3/"
 intro_video: ""
-image: "/assets/images/events/2025/hackathon-march/bactmap-improvements.png"
-image_alt: nf-core bactmap updating
+image: "/assets/images/events/2025/hackathon-march/bactmap-updating.png"
+image_alt: nf-core bactmap logo with the word 'updating' pasted over it
 leaders:
   avantonder:
     name: Andries van Tonder
