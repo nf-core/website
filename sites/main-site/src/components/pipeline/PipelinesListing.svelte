@@ -17,18 +17,12 @@
     }
 
     let { pipelines, filters } = $props();
+    CurrentFilter.set(filters);
 
-    // Initialize CurrentFilter with the provided filters on mount
-    onMount(() => {
-        if (filters && filters.length > 0) {
-            CurrentFilter.set(filters);
-        }
-    });
-
-    let currentFilter = $state($CurrentFilter);
-    let displayStyle = $state($DisplayStyle);
-    let searchQuery = $state($SearchQuery);
-    let sortBy = $state($SortBy);
+    let currentFilter = $derived($CurrentFilter);
+    let displayStyle = $derived($DisplayStyle);
+    let searchQuery = $derived($SearchQuery);
+    let sortBy = $derived($SortBy);
     let sortInverse = $derived(sortBy.endsWith(";inverse"));
 
     const searchPipelines = (pipeline: Pipeline) => {
@@ -104,7 +98,6 @@
         }
         return 0;
     };
-
     let filteredPipelines = $derived(pipelines.filter(filterPipelines).filter(searchPipelines).sort(sortPipelines));
 </script>
 
