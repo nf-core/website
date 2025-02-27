@@ -22,7 +22,7 @@ We will focus on:
 
 We welcome contributors of all experience levels.
 
-## Goal
+## Goals
 
 1. Update pipeline to current nf-core template and standards.
 2. Update all modules
