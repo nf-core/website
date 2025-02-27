@@ -12,7 +12,7 @@ locations:
       - https://kth-se.zoom.us/j/68390542812
 ---
 
-This week, Tommaso Mazza is going to introduce the nf-core pipeline [nf-core/fastqrepair](https://nf-co.re/fastqrepair/1.0.0/).
+This week, [Tommaso Mazza](https://github.com/tm4zza) is going to introduce the nf-core pipeline [nf-core/fastqrepair](https://nf-co.re/fastqrepair/1.0.0/).
 
-The nf-core/fastqrepair pipeline can be used to recover corrupted FASTQ.gz files, drop or fix uncompliant reads, remove unpaired reads, and settles reads that became disordered. 
+The nf-core/fastqrepair pipeline can be used to recover corrupted FASTQ.gz files, drop or fix uncompliant reads, remove unpaired reads, and settles reads that became disordered.
 It takes in a samplesheet with FASTQ/FASTQ.gz files (both single-end and paired-end) and produces clean FASTQ files and QC reports.
