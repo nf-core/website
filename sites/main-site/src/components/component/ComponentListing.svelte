@@ -26,19 +26,13 @@
         if ($SearchQuery === "") {
             return true;
         }
-        if (component.meta.name.toLowerCase().includes($SearchQuery.toLowerCase())) {
+        if (component.meta.name?.toLowerCase().includes($SearchQuery.toLowerCase())) {
             return true;
         }
-        if (
-            component.meta.description &&
-            component.meta.description.toLowerCase().includes($SearchQuery.toLowerCase())
-        ) {
+        if (component.meta.description?.toLowerCase().includes($SearchQuery.toLowerCase())) {
             return true;
         }
-        if (
-            component.meta.keywords &&
-            component.meta.keywords.some((keyword) => keyword.toLowerCase().includes($SearchQuery.toLowerCase()))
-        ) {
+        if (component.meta.keywords?.some((keyword) => keyword.toLowerCase().includes($SearchQuery.toLowerCase()))) {
             return true;
         }
         return false;
