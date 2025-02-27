@@ -167,7 +167,7 @@ class GitHubContentFetcher {
         // check if the file exists in the store
         const existingEntry = store.get(id);
         if (existingEntry && existingEntry.data.repo === this.repo && existingEntry.data.ref === this.ref) {
-            logger.info(`File ${filepath} unchanged, skipping`);
+            logger.debug(`File ${filepath} unchanged, skipping`);
             return;
         }
 
@@ -185,14 +185,14 @@ class GitHubContentFetcher {
         };
 
         try {
-            logger.info(`Processing ${filepath}, content length: ${body.length}`);
+            logger.debug(`Processing ${filepath}, content length: ${body.length}`);
             // Pass the filepath as the third argument
             const { html, metadata } = await createProcessors(processors)[extension as keyof Processors](
                 body,
                 processorConfig,
                 filepath,
             );
-            logger.info(`Successfully processed ${filepath}`);
+            logger.debug(`Successfully processed ${filepath}`);
 
             let lastCommit: GitHubCommit | null = null;
             if (getDates) {
@@ -202,7 +202,7 @@ class GitHubContentFetcher {
                 );
             }
 
-            logger.info(`Setting ${id} in store`);
+            logger.debug(`Setting ${id} in store`);
             store.set({
                 id,
                 data: {
@@ -236,7 +236,7 @@ class GitHubContentFetcher {
         getDates?: boolean;
     }) {
         const { logger, meta, store } = this.context;
-        logger.info(`Loading files from ${this.org}/${this.repo}@${this.ref}`);
+        logger.debug(`Loading files from ${this.org}/${this.repo}@${this.ref}`);
 
         const lastTreeSha = meta.get("lastTreeSha");
         const treeData = await this.get<{ sha: string; tree: GithubTreeLeaf[] }>(
@@ -290,11 +290,28 @@ export function githubFileLoader({ org, repo, ref, processors, path, getDates = 
     };
 }
 
-const schemaProcessor = async (text: string, config: AstroConfig): Promise<RenderedContent> => {
-    return {
-        html: text,
-        metadata: {},
-    };
+const schemaProcessor = {
+    json: async (text: string, config: AstroConfig): Promise<RenderedContent> => {
+        const schema = JSON.parse(text);
+        const definitions = schema.definitions || schema.$defs || schema.properties || {};
+        let headings: { slug: string; text: string; depth: number; fa_icon: string; hidden: boolean }[] = [];
+        if (Object.keys(definitions).length > 0) {
+            headings = Object.entries(definitions).map(([key, value]: [string, any]) => ({
+                slug: key.replaceAll("_", "-"),
+                text: value?.title || key,
+                depth: 1,
+                fa_icon: value?.fa_icon || "",
+                hidden: value?.properties && Object.values(value.properties).every((prop: any) => prop?.hidden),
+            }));
+        }
+        return {
+            html: text,
+            metadata: {
+                schema: schema["$schema"],
+                headings,
+            },
+        };
+    },
 };
 
 export function pipelineLoader(pipelines_json: {
@@ -315,51 +332,133 @@ export function pipelineLoader(pipelines_json: {
             for (const pipeline of pipelines_json.remote_workflows) {
                 // Process releases sequentially
                 for (const release of pipeline.releases) {
-
                     const fetcher = new GitHubContentFetcher("nf-core", pipeline.name, release.tag_name, context);
                     if (release.has_schema) {
                         // load the schema
-
-                        await fetcher.processFile(
-                            `nextflow.schema.json`,
-                            schemaProcessor,
-                            false,
-                            {
-                                name: pipeline.name,
-                            },
-                        );
-                    } else {
-                        release.doc_files.push("README.md");
-
-                        // Create processor and fetcher once per pipeline/release
-                        const processors = createGitHubMarkdownProcessor(pipeline.name, release.tag_name);
-
-                        // Common metadata for all files in this pipeline/release
-                        const metadata = {
+                        await fetcher.processFile(`nextflow_schema.json`, schemaProcessor, false, {
                             name: pipeline.name,
-                            archived: pipeline.archived,
-                            releases: pipeline.releases,
-                            description: pipeline.description,
-                            topics: pipeline.topics,
-                            stargazers_count: pipeline.stargazers_count,
-                        };
+                        });
+                    }
+                    release.doc_files.push("README.md");
 
-                        // Process files sequentially
-                        for (const doc_file of release.doc_files) {
-                            context.logger.info(`Loading ${pipeline.name}@${release.tag_name}/${doc_file}`);
-                            try {
-                                await fetcher.processFile(doc_file, processors, false, metadata);
-                            } catch (error) {
-                                context.logger.error(
-                                    `Error processing ${pipeline.name}@${release.tag_name}/${doc_file}: ${error.message}`,
-                                );
-                                // Continue with next file instead of failing the entire pipeline
-                            }
+                    // Create processor and fetcher once per pipeline/release
+                    const processors = createGitHubMarkdownProcessor(pipeline.name, release.tag_name);
+
+                    // Common metadata for all files in this pipeline/release
+                    const metadata = {
+                        name: pipeline.name,
+                        archived: pipeline.archived,
+                        releases: pipeline.releases,
+                        description: pipeline.description,
+                        topics: pipeline.topics,
+                        stargazers_count: pipeline.stargazers_count,
+                    };
+
+                    // Process files sequentially
+                    for (const doc_file of release.doc_files) {
+                        context.logger.debug(`Loading ${pipeline.name}@${release.tag_name}/${doc_file}`);
+                        try {
+                            await fetcher.processFile(doc_file, processors, false, metadata);
+                        } catch (error) {
+                            context.logger.error(
+                                `Error processing ${pipeline.name}@${release.tag_name}/${doc_file}: ${error.message}`,
+                            );
+                            // Continue with next file instead of failing the entire pipeline
                         }
                     }
                 }
             }
         },
+    };
+}
+
+export function releaseLoader(pipelines_json: {
+    remote_workflows: {
+        name: string;
+        releases: { tag_name: string; doc_files: string[]; has_schema: boolean }[];
+        archived: boolean;
+        description: string;
+        topics: string[];
+        stargazers_count: number;
+    }[];
+}): Loader {
+    return {
+        name: "release-notes-loader",
+        load: async (context: LoaderContext) => {
+            getCurrentRateLimitRemaining();
+            const { store, generateDigest, config, logger } = context;
+
+            // Process pipelines sequentially
+            for (const pipeline of pipelines_json.remote_workflows) {
+                logger.debug(`Loading release notes for ${pipeline.name}`);
+
+                try {
+                    // Fetch all releases for this pipeline
+                    const releases = await octokit.request(`GET /repos/nf-core/${pipeline.name}/releases`);
+
+                    // Process each release
+                    for (const release of releases.data) {
+                        const releaseId = `${pipeline.name}/${release.tag_name}/release-notes`;
+
+                        // Check if we already have this release in the store
+                        const existingEntry = store.get(releaseId);
+                        if (existingEntry && existingEntry.data.tag_name === release.tag_name) {
+                            logger.debug(`Release notes for ${pipeline.name}@${release.tag_name} unchanged, skipping`);
+                            continue;
+                        }
+
+                        // Get the release body (markdown content)
+                        const body = release.body || '';
+                        const digest = generateDigest(body);
+
+                        // Create a markdown processor for this content
+                        const processor = await createMarkdownProcessor(config.markdown);
+
+                        try {
+                            // Render the markdown
+                            const { code: html, metadata } = await processor.render(body);
+
+                            // Store the processed release notes
+                            store.set({
+                                id: releaseId,
+                                data: {
+                                    id: releaseId,
+                                    name: pipeline.name,
+                                    tag_name: release.tag_name,
+                                    published_at: release.published_at,
+                                    html_url: release.html_url,
+                                    prerelease: release.prerelease,
+                                    draft: release.draft,
+                                    author: release.author ? {
+                                        login: release.author.login,
+                                        avatar_url: release.author.avatar_url,
+                                        html_url: release.author.html_url
+                                    } : null,
+                                    // Include additional pipeline metadata
+                                    archived: pipeline.archived,
+                                    description: pipeline.description,
+                                    topics: pipeline.topics,
+                                    stargazers_count: pipeline.stargazers_count
+                                },
+                                body,
+                                rendered: { html, metadata },
+                                digest
+                            });
+
+                            logger.debug(`Successfully processed release notes for ${pipeline.name}@${release.tag_name}`);
+                        } catch (error) {
+                            logger.error(`Error processing release notes for ${pipeline.name}@${release.tag_name}: ${error.message}`);
+                            // Continue with next release instead of failing the entire pipeline
+                        }
+                    }
+                } catch (error) {
+                    logger.error(`Error fetching releases for ${pipeline.name}: ${error.message}`);
+                    // Continue with next pipeline instead of failing the entire process
+                }
+            }
+
+            logger.debug("GitHub release notes processing completed successfully");
+        }
     };
 }
 
@@ -374,5 +473,5 @@ export const md = {
             console.error(`Error processing markdown: ${error.message}`);
             throw error;
         }
-    }
+    },
 };
