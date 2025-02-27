@@ -153,22 +153,59 @@ export const writePipelinesJson = async () => {
       if (branch !== 'TEMPLATE') {
         // Get branch protection rules
         try {
-          const rules = await octokit.rest.repos.getBranchProtection({
+          const branchRules = await octokit.rest.repos.getBranchProtection({
             owner: 'nf-core',
             repo: name,
             branch: branch,
           });
-          data[`${branch}_branch_protection_up_to_date`] = rules?.data?.res;
-          data[`${branch}_branch_protection_status_checks`] = rules?.data?.required_status_checks ?? -1;
+
+          data[`${branch}_branch_protection_up_to_date`] = branchRules?.data?.res;
+          data[`${branch}_branch_protection_status_checks`] = branchRules?.data?.required_status_checks ?? -1;
           data[`${branch}_branch_protection_required_reviews`] =
-            rules?.data?.required_pull_request_reviews?.required_approving_review_count ?? -1;
+            branchRules?.data?.required_pull_request_reviews?.required_approving_review_count ?? -1;
           data[`${branch}_branch_protection_require_codeowner_review`] =
-            rules?.data?.required_pull_request_reviews?.require_code_owner_reviews ?? -1;
+            branchRules?.data?.required_pull_request_reviews?.require_code_owner_reviews ?? -1;
           data[`${branch}_branch_protection_require_non_stale_review`] =
-            rules?.data?.required_pull_request_reviews?.dismiss_stale_reviews ?? -1;
-          data[`${branch}_branch_protection_enforce_admins`] = rules?.data?.enforce_admins?.enabled ?? -1;
+            branchRules?.data?.required_pull_request_reviews?.dismiss_stale_reviews ?? -1;
+          data[`${branch}_branch_protection_enforce_admins`] = branchRules?.data?.enforce_admins?.enabled ?? -1;
         } catch (err) {
           console.log(`Failed to fetch ${branch} branch protection`, err);
+        }
+        try {
+          const ruleSet = await octokit.request('GET /repos/{owner}/{repo}/rules/branches/{branch}', {
+            owner: 'nf-core',
+            repo: name,
+            branch: branch,
+          });
+
+          if (ruleSet?.data?.length > 0) {
+            const pullRequestRule = ruleSet.data.find((rule) => rule.type === 'pull_request');
+            const statusCheckRule = ruleSet.data.find((rule) => rule.type === 'required_status_checks');
+
+            data[`${branch}_branch_protection_up_to_date`] = -1;
+
+            // Status checks
+            data[`${branch}_branch_protection_status_checks`] = statusCheckRule
+              ? statusCheckRule.parameters.required_status_checks?.some(
+                  (check) =>
+                    check.context === 'nf-core' || check.context === 'pre-commit'
+                )
+                ? 1
+                : 0
+              : 0;
+
+            // Pull request reviews
+            if (pullRequestRule) {
+              const params = pullRequestRule.parameters;
+              data[`${branch}_branch_protection_required_reviews`] = params.required_approving_review_count || 0;
+              data[`${branch}_branch_protection_require_codeowner_review`] = params.require_code_owner_review ? 1 : 0;
+              data[`${branch}_branch_protection_require_non_stale_review`] = params.dismiss_stale_reviews_on_push
+                ? 0
+                : 1;
+            }
+          }
+        } catch (err) {
+          console.log(`Failed to fetch ${branch} rulesets`, err);
         }
       } else {
         // Template branch protection rules
