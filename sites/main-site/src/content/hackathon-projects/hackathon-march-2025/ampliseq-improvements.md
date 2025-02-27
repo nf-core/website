@@ -3,7 +3,7 @@ title: Adding, Moding, Menddling with the nf-core/ampliseq Pipeline
 category: pipelines
 intro_video: ""
 image: "/assets/images/events/2025/hackathon-march/meddling_with_ampliseq.jpg"
-image_alt: Meddling with ampliseq
+image_alt: "Distracted boyfriend" meme for ampliseq pipeline improvements
 leaders:
   npechl:
     name: Nikos Pechlivanis
@@ -17,9 +17,13 @@ This project aims to enhance the [nf-core/ampliseq](https://nf-co.re/ampliseq/de
 
 ## Goals
 
-- Expanding the reference sequences for plant metabarcoding analyses.
-- Integrating the new references following the latest nf-core and Nextflow standards.
-- Benchmarking and validating the pipeline to ensure error-free performance.
-- Improving documentation and user support to promote broader adoption.
+- **Expanding the reference sequences for plant metabarcoding analyses.**
+  - *For people who enjoy working with Nextflow and are interested in plant metabarcoding.*
+- **Integrating the new references following the latest nf-core and Nextflow standards.**
+  - *For people with some experience in (nf-core) workflow development.*
+- **Benchmarking and validating the pipeline to ensure error-free performance.**
+  - *For people with some experience in using Nextflow/nf-core pipelines.*
+- **Improving documentation and user support to promote broader adoption.**
+  - *For first-time contributors interested in making the pipeline more accessible!*
 
 _We welcome contributors of all experience levels._
