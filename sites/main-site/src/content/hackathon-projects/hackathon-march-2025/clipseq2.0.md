@@ -12,10 +12,11 @@ leaders:
 nf-core/clipseq has been inching towards a very massive feature-packed 2.0.0 release on the [feat-2-0 branch](https://github.com/nf-core/clipseq/tree/feat-2-0).
 This would be a great opportunity to start crossing off tasks to get us over that sweet, sweet nf-core release line!
 Tasks include:
- - updating to the latest template,
- - adding tests,
- - improving documentation
- - pipeline tube map
+
+- updating to the latest template,
+- adding tests,
+- improving documentation
+- pipeline tube map
 
 ## Goal
 
