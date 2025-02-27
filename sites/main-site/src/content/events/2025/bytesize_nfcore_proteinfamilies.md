@@ -3,7 +3,7 @@ title: "Bytesize: nf-core/proteinfamilies"
 subtitle: Evangelos Karatzas, EMBL Cambridge
 type: talk
 startDate: "2025-04-08"
-startTime: "13:00+01:00"
+startTime: "13:00+02:00"
 endDate: "2025-04-08"
 endTime: "13:30+01:00"
 locations:
