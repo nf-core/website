@@ -2,8 +2,7 @@
 import PipelinePageLayout from "@layouts/PipelinePageLayout.astro";
 import pipelines_json from "@public/pipelines.json";
 import { formatDistance } from "date-fns";
-import cache from "@root/bin/cache.js";
-import { Markdown } from "@astropub/md";
+import { getEntry } from "astro:content";
 import PipelineSidebar from "@components/pipeline/PipelineSidebar.astro";
 
 export function getStaticPaths() {
@@ -45,18 +44,23 @@ const { pipeline } = Astro.params;
 let { releases, md_files, meta } = Astro.props;
 const version = releases[0].tag_name;
 const description = meta.description;
-// get all body content for this pipeline from the cache
-
-let gh_releases = [];
+let gh_releases: string[] = [];
 for (const release of releases) {
-    const cache_key = `${pipeline}/${release.tag_name}/body`;
-    const gh_release = await cache.get(cache_key).catch((err) => {
-        console.error(err);
-    });
-    if (gh_release) {
-        gh_releases.push(gh_release);
-    } else {
-        console.log(`No cache for ${cache_key}`);
+    if (release.tag_name !== "dev") {
+        const changelog = await getEntry("releases", `${pipeline}/${release.tag_name}/release-notes`);
+        if (changelog) {
+            let body = changelog.rendered?.html;
+            // add github links to PR links, i.e. links like <a href="#XXX">#XXX</a>
+            body = body?.replaceAll(/<a href="#(\d+)">#(\d+)</g, (match, p1, p2) => {
+                return `<a href="https://github.com/nf-core/${pipeline}/pull/${p1}">#${p2}</a>`;
+            });
+            // add github links to usernames
+            body = body?.replaceAll(/@(\w+([-]\w+)*)/g, (match, p1) => {
+                return `<a href="https://github.com/${p1}">${match}</a>`;
+            });
+
+            gh_releases.push(body || "");
+        }
     }
 }
 ---
@@ -127,7 +131,7 @@ for (const release of releases) {
                                                     View on GitHub
                                                 </a>
                                             </div>
-                                            {gh_releases[i] ? <Markdown of={gh_releases[i]} /> : ""}
+                                            {gh_releases[i] ? <Fragment set:html={gh_releases[i]} /> : ""}
                                         </div>
                                     </div>
                                 </div>

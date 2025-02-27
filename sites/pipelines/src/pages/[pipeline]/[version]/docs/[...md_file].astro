@@ -4,16 +4,16 @@ import SidebarToc from "@components/sidebar/SidebarToc.svelte";
 import SidebarNav from "@components/sidebar/SidebarNav.astro";
 import PipelinePageLayout from "@layouts/PipelinePageLayout.astro";
 import pipelines_json from "@public/pipelines.json";
-import { getEntry, type CollectionEntry } from "astro:content";
+import { getEntry, type CollectionEntry, getCollection } from "astro:content";
 import type { SidebarEntry } from "@utils/types";
-import { createLinkOrGroup } from "@utils/functions";
+import { addEntriesToSection } from "@utils/functions";
 
 import ExpandDetailsButton from "@components/sidebar/ExpandDetailsButton.svelte";
 
 export async function getStaticPaths() {
     const paths: {
         params: { pipeline: string; version: string; md_file: string };
-        props: { versions: string[]; md_files: { slug: string; data: {} }[]; description: string | null };
+        props: { versions: string[]; md_files: { id: string; data: {} }[]; description: string | null };
     }[] = [];
 
     for (const pipeline of pipelines_json.remote_workflows) {
@@ -26,13 +26,9 @@ export async function getStaticPaths() {
             for (const file of release.doc_files) {
                 const slug = file.replace("docs/", "").replace(".mdx", "").replace(".md", "");
 
-                // Get the entry if it exists
-                const entryId = `${pipeline.name}/${release.tag_name === "latest" ? releases[0].tag_name : release.tag_name}/${slug}`;
-                const entry = await getEntry("pipelines", entryId.toLowerCase());
-
                 // Create a simplified md_files array with just what we need
                 const md_files = release.doc_files.map((docFile) => ({
-                    slug: docFile.replace("docs/", "").replace(".mdx", "").replace(".md", ""),
+                    id: docFile.replace("docs/", "").replace(".mdx", "").replace(".md", ""),
                     data: {},
                 }));
 
@@ -44,7 +40,7 @@ export async function getStaticPaths() {
                     },
                     props: {
                         versions: releases.map((r) => r.tag_name),
-                        md_files: md_files.filter((f) => f.slug),
+                        md_files: md_files.filter((f) => f.id),
                         description: pipeline.description,
                     },
                 });
@@ -59,7 +55,7 @@ const { versions, md_files, description } = Astro.props;
 
 const section = md_file.split("/")[0];
 // check if there are multiple files in the section
-let leftSidebar = md_files.filter((file) => file.slug.split("/")[0] === section).length > 1;
+let leftSidebar = md_files.filter((file) => file.id.split("/")[0] === section).length > 1;
 
 let sections: SidebarEntry[] = [];
 
@@ -67,45 +63,45 @@ let sections: SidebarEntry[] = [];
 let url = Astro.url.pathname.endsWith("/") ? Astro.url.pathname : Astro.url.pathname + "/";
 url = url.replace(/\.html\/$/, "/");
 // drop everything after docs/
-// if (leftSidebar) {
-//     // Convert md_files to match the expected CollectionEntry<'docs'> structure
-//     const docsEntries = md_files
-//         .filter((f) => f.slug.startsWith(section))
-//         .map((file) => {
-//             return {
-//                 slug: `${file.slug}`,
-//                 data: {
-//                     weight: file.data?.order,
-//                     shortTitle: file.data?.shortTitle,
-//                 },
-//             };
-//         });
-//     addEntriesToSectionBase(sections, docsEntries, `${Astro.url.pathname}`, `/${pipeline}/${version}/docs/`);
-//     // if there is only one section, expand it, same for the children
-//     if (sections.length === 1 && sections[0].type === "group") {
-//         sections[0].collapsed = false;
-//         if (sections[0].entries.length === 1 && sections[0].entries[0].type === "group") {
-//             sections[0].entries.forEach((entry) => {
-//                 if (entry.type === "group") {
-//                     entry.collapsed = false;
-//                 }
-//             });
-//         }
-//     }
-//     // Add book icons to all group entries
-//     const addBookIcons = (entries: SidebarEntry[]) => {
-//         entries.forEach((entry) => {
-//             if (entry.type === "group") {
-//                 entry.icon = "fa-regular fa-book";
-//                 if (entry.entries) {
-//                     addBookIcons(entry.entries);
-//                 }
-//             }
-//         });
-//     };
+if (leftSidebar) {
+    // Convert md_files to match the expected CollectionEntry<'docs'> structure
+    const docsEntries = md_files
+        .filter((f) => f.id.startsWith(section))
+        .map((file) => {
+            return {
+                id: `${file.id}`,
+                data: {
+                    weight: file.data?.order,
+                    shortTitle: file.data?.shortTitle,
+                },
+            };
+        });
+    addEntriesToSection(sections, docsEntries, `${Astro.url.pathname}`, `/${pipeline}/${version}/docs/`);
+    // if there is only one section, expand it, same for the children
+    if (sections.length === 1 && sections[0].type === "group") {
+        sections[0].collapsed = false;
+        if (sections[0].entries.length === 1 && sections[0].entries[0].type === "group") {
+            sections[0].entries.forEach((entry) => {
+                if (entry.type === "group") {
+                    entry.collapsed = false;
+                }
+            });
+        }
+    }
+    // Add book icons to all group entries
+    const addBookIcons = (entries: SidebarEntry[]) => {
+        entries.forEach((entry) => {
+            if (entry.type === "group") {
+                entry.icon = "fa-regular fa-book";
+                if (entry.entries) {
+                    addBookIcons(entry.entries);
+                }
+            }
+        });
+    };
 
-//     addBookIcons(sections);
-// }
+    addBookIcons(sections);
+}
 const version_tag_name = version === "latest" ? versions[0] : version;
 let entry: CollectionEntry<"pipelines"> | undefined = await getEntry(
     "pipelines",
@@ -128,7 +124,7 @@ headings = headings.filter((h) => h.depth <= max_heading_depth);
     headings={headings as { text: string; slug: string; depth: number; fa_icon?: string }[]}
     version={version}
     versions={versions}
-    tabItems={md_files.map((file) => file.slug)}
+    tabItems={md_files.map((file) => file.id)}
     md_github_url={`https://github.com/nf-core/${pipeline}/blob/${version}/docs/${md_file}.md`}
     sections={sections}
     docSearchTags={[
