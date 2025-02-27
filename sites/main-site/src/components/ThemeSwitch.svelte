@@ -1,7 +1,13 @@
 <script lang="ts">
     import { onMount } from "svelte";
+    interface Props {
+        light?: import("svelte").Snippet;
+        dark?: import("svelte").Snippet;
+    }
 
-    let theme = "dark";
+    let { light, dark }: Props = $props();
+
+    let theme = $state("dark");
 
     function setTheme(theme) {
         //NOTE: same as in BaseHead.astro
@@ -48,10 +54,10 @@
         title="Change theme button"
     >
         <i class="theme-icon-light" class:d-none={theme !== "light"}>
-            <slot name="light" />
+            {@render light?.()}
         </i>
         <i class="theme-icon-dark" class:d-none={theme !== "dark"}>
-            <slot name="dark" />
+            {@render dark?.()}
         </i>
     </button>
     <ul class="dropdown-menu dropdown-menu-end">
@@ -61,12 +67,12 @@
                 class="text-decoration-none theme-option w-100"
                 id="theme-light"
                 title="light"
-                on:click={(e) => switchTheme(e)}
-                on:keydown={(e) => switchTheme(e)}
+                onclick={(e) => switchTheme(e)}
+                onkeydown={(e) => switchTheme(e)}
                 role="button"
                 tabindex="0"
             >
-                <slot name="light" /> <span class="ms-1">Light</span>
+                {@render light?.()} <span class="ms-1">Light</span>
             </div>
         </li>
         <li class="dropdown-item" class:active={theme === "dark"}>
@@ -74,12 +80,12 @@
                 class="text-decoration-none theme-option w-100"
                 id="theme-dark"
                 title="dark"
-                on:click={(e) => switchTheme(e)}
-                on:keydown={(e) => switchTheme(e)}
+                onclick={(e) => switchTheme(e)}
+                onkeydown={(e) => switchTheme(e)}
                 role="button"
                 tabindex="0"
             >
-                <slot name="dark" /> <span class="ms-1">Dark</span>
+                {@render dark?.()} <span class="ms-1">Dark</span>
             </div>
         </li>
         <li class="dropdown-item">
@@ -87,12 +93,12 @@
                 class="text-decoration-none theme-option w-100"
                 id="theme-auto"
                 title="auto"
-                on:click={(e) => switchTheme(e)}
-                on:keydown={(e) => switchTheme(e)}
+                onclick={(e) => switchTheme(e)}
+                onkeydown={(e) => switchTheme(e)}
                 role="button"
                 tabindex="0"
             >
-                <i class="fa-solid fa-adjust" /> <span class="ms-1">System</span>
+                <i class="fa-solid fa-adjust"></i> <span class="ms-1">System</span>
             </div>
         </li>
     </ul>
