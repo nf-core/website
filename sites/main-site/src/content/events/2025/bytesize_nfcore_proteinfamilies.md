@@ -12,7 +12,7 @@ locations:
       - https://kth-se.zoom.us/j/68390542812
 ---
 
-In this weeks bytesize talk, Evanglos ([@vagkaratzas](https://github.com/vagkaratzas)) is going to introduce the nf-core pipeline nf-core/proteinfamilies.
+In this week's bytesize talk, Evangelos ([@vagkaratzas](https://github.com/vagkaratzas)) is going to introduce the nf-core pipeline nf-core/proteinfamilies.
 
 The nf-core/proteinfamilies pipeline generates protein families from amino acid sequences and/or updates existing families with new sequences.
 It takes a protein fasta file as input, clusters the sequences and then generates protein family Hiden Markov Models (HMMs) along with their multiple sequence alignments (MSAs).
