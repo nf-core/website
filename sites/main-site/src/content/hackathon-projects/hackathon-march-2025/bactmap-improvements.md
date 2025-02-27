@@ -30,5 +30,3 @@ We welcome contributors of all experience levels.
 3. Add support for long-read mapping (intermediate experience).
 4. Update documentation (beginner experience)
 5. Explore additional enhancements based on community discussions (intermediate experience).
-
-
