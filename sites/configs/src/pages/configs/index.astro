@@ -4,7 +4,13 @@ import ConfigListing from "@components/ConfigListing.svelte";
 import { getCollection, type CollectionEntry } from "astro:content";
 
 //get contents of markdown files in docs dir in https://github.com/nf-core/configs/tree/master/docs using request
-const files = await getCollection("configs");
+let files = await getCollection("configs");
+files = files.map((file) => {
+    return {
+        ...file,
+        id: file.id.replace("configs/master/", ""),
+    };
+});
 let configFiles = files.filter((file) => file.data.extension === "config");
 
 let generalConfigs: CollectionEntry<"configs">[] = [];
