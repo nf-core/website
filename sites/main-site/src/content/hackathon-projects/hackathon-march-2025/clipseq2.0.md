@@ -2,6 +2,7 @@
 title: nf-core/clipseq v2.0.0!
 category: pipelines
 slack: https://nfcore.slack.com/archives/C01571V17PH
+image: /assets/images/events/2025/hackathon-march/bernie_clipseq_meme.png
 leaders:
   CharlotteAnne:
     name: Charlotte Capitanchik
