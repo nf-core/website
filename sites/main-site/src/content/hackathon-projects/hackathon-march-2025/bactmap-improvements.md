@@ -18,14 +18,17 @@ We will focus on:
 1. **Update to current nf-core template:** current template is very out of date.
 2. **Update modules to current versions:** many of the tools are old versions.
 3. **Potentially incorporating long read mapping as an option:** would improve pipeline if ONT and PacBio could also be mapped
-4. **Identifying additional improvements:** as discussed in [GitHub issues](https://github.com/nf-core/bactmap/issues).
+4. **Update documentation:** update documentation to reflect updates and improvements to pipeline 
+5. **Identifying additional improvements:** as discussed in [GitHub issues](https://github.com/nf-core/bactmap/issues).
 
 We welcome contributors of all experience levels.
 
 ## Goals
 
-1. Update pipeline to current nf-core template and standards.
-2. Update all modules
-3. Add support for long-read mapping.
-4. Explore additional enhancements based on community discussions.
+1. Update pipeline to current nf-core template and standards (intermediate experience).
+2. Update all modules (beginner experience)
+3. Add support for long-read mapping (intermediate experience).
+4. Update documentation (beginner experience)
+5. Explore additional enhancements based on community discussions (intermediate experience).
+
 
