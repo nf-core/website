@@ -1,8 +1,8 @@
 import { z, defineCollection  } from 'astro:content';
-import { githubFileLoader, type RenderedContent, md } from "@utils/loaders";
+import { githubFileLoader, type RenderedContent } from "@utils/loaders";
+import { createMarkdownProcessor } from "@astrojs/markdown-remark";
 
 import type { AstroConfig } from "astro";
-
 
 const configProcessor = async (text: string, config: AstroConfig): Promise<RenderedContent> => {
     let NFConfig = {
@@ -52,7 +52,20 @@ const configProcessor = async (text: string, config: AstroConfig): Promise<Rende
     };
 };
 
-
+// Create processors object with markdown and config processors
+const processors = {
+    md: async (text: string, config: AstroConfig): Promise<RenderedContent> => {
+        const processor = await createMarkdownProcessor(config.markdown);
+        try {
+            const { code: html, metadata } = await processor.render(text);
+            return { html, metadata };
+        } catch (error) {
+            console.error(`Error processing markdown: ${error.message}`);
+            throw error;
+        }
+    },
+    config: configProcessor
+};
 
 const configs = defineCollection({
     loader: githubFileLoader({
@@ -60,10 +73,7 @@ const configs = defineCollection({
         repo: "configs",
         ref: "master",
         path: /\.(md|mdx|config)$/,
-        processors: {
-            md,
-            config: configProcessor,
-        },
+        processors: processors,
         getDates: true,
     }),
     schema: z.object({

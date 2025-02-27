@@ -7,7 +7,13 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import SidebarToc from "@components/sidebar/SidebarToc.svelte";
 
 export async function getStaticPaths() {
-    const files = await getCollection("configs");
+    let files = await getCollection("configs");
+    files = files.map((file) => {
+        return {
+            ...file,
+            id: file.id.replace("configs/master/", ""),
+        };
+    });
     return files
         .filter((config) =>
             // remove configs that don't have a matching md file

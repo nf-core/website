@@ -39,7 +39,10 @@ export interface RenderedContent {
 type ProcessorFileExtension = string;
 
 // Update the type definition to include the optional filepath parameter
-type Processors = Record<ProcessorFileExtension, (str: string, config: AstroConfig, filepath?: string) => Promise<RenderedContent>>;
+type Processors = Record<
+    ProcessorFileExtension,
+    (str: string, config: AstroConfig, filepath?: string) => Promise<RenderedContent>
+>;
 
 interface PolicyLoaderConfig {
     org: string;
@@ -72,30 +75,36 @@ function createGitHubMarkdownProcessor(repo: string, ref: string) {
     return {
         md: async (text: string, config: AstroConfig, filepath?: string): Promise<RenderedContent> => {
             // Extract parent directory from the filepath if provided
-            const parent_directory = filepath ?
-                (filepath.includes('/') ? filepath.split('/').slice(0, -1).join('/') : '') :
-                '';
+            const parent_directory = filepath
+                ? filepath.includes("/")
+                    ? filepath.split("/").slice(0, -1).join("/")
+                    : ""
+                : "";
 
             // Get or create the markdown processor
             const processor = (
                 mdProcessors.has(config)
                     ? mdProcessors.get(config)
-                    : mdProcessors.set(config, await createMarkdownProcessor({
-                        ...config.markdown,
-                        remarkPlugins: [
-                            [
-                                remarkGitHubMarkdown,
-                                {
-                                    repo,
-                                    ref,
-                                    parent_directory
-                                }
-                            ],
-                            ...(config.markdown.remarkPlugins || []),
-                            // Use the imported function reference instead of a string
-
-                        ]
-                    })).get(config)
+                    : mdProcessors
+                          .set(
+                              config,
+                              await createMarkdownProcessor({
+                                  ...config.markdown,
+                                  remarkPlugins: [
+                                      [
+                                          remarkGitHubMarkdown,
+                                          {
+                                              repo,
+                                              ref,
+                                              parent_directory,
+                                          },
+                                      ],
+                                      ...(config.markdown.remarkPlugins || []),
+                                      // Use the imported function reference instead of a string
+                                  ],
+                              }),
+                          )
+                          .get(config)
             )!;
 
             try {
@@ -109,7 +118,7 @@ function createGitHubMarkdownProcessor(repo: string, ref: string) {
                 // Provide a fallback with error information
                 return {
                     html: `<div class="error">Error processing markdown: ${error.message}</div>`,
-                    metadata: {}
+                    metadata: {},
                 };
             }
         },
@@ -171,14 +180,18 @@ class GitHubContentFetcher {
             data: {
                 repo: this.repo,
                 ref: this.ref,
-                parent_directory: filepath.includes('/') ? filepath.split('/').slice(0, -1).join('/') : ''
-            }
+                parent_directory: filepath.includes("/") ? filepath.split("/").slice(0, -1).join("/") : "",
+            },
         };
 
         try {
             logger.info(`Processing ${filepath}, content length: ${body.length}`);
             // Pass the filepath as the third argument
-            const { html, metadata } = await createProcessors(processors)[extension as keyof Processors](body, processorConfig, filepath);
+            const { html, metadata } = await createProcessors(processors)[extension as keyof Processors](
+                body,
+                processorConfig,
+                filepath,
+            );
             logger.info(`Successfully processed ${filepath}`);
 
             let lastCommit: GitHubCommit | null = null;
@@ -277,11 +290,17 @@ export function githubFileLoader({ org, repo, ref, processors, path, getDates = 
     };
 }
 
-// Simplified pipeline loader
+const schemaProcessor = async (text: string, config: AstroConfig): Promise<RenderedContent> => {
+    return {
+        html: text,
+        metadata: {},
+    };
+};
+
 export function pipelineLoader(pipelines_json: {
     remote_workflows: {
         name: string;
-        releases: { tag_name: string; doc_files: string[] }[];
+        releases: { tag_name: string; doc_files: string[]; has_schema: boolean }[];
         archived: boolean;
         description: string;
         topics: string[];
@@ -296,30 +315,46 @@ export function pipelineLoader(pipelines_json: {
             for (const pipeline of pipelines_json.remote_workflows) {
                 // Process releases sequentially
                 for (const release of pipeline.releases) {
-                    release.doc_files.push("README.md");
 
-                    // Create processor and fetcher once per pipeline/release
-                    const processors = createGitHubMarkdownProcessor(pipeline.name, release.tag_name);
                     const fetcher = new GitHubContentFetcher("nf-core", pipeline.name, release.tag_name, context);
+                    if (release.has_schema) {
+                        // load the schema
 
-                    // Common metadata for all files in this pipeline/release
-                    const metadata = {
-                        name: pipeline.name,
-                        archived: pipeline.archived,
-                        releases: pipeline.releases,
-                        description: pipeline.description,
-                        topics: pipeline.topics,
-                        stargazers_count: pipeline.stargazers_count,
-                    };
+                        await fetcher.processFile(
+                            `nextflow.schema.json`,
+                            schemaProcessor,
+                            false,
+                            {
+                                name: pipeline.name,
+                            },
+                        );
+                    } else {
+                        release.doc_files.push("README.md");
 
-                    // Process files sequentially
-                    for (const doc_file of release.doc_files) {
-                        context.logger.info(`Loading ${pipeline.name}@${release.tag_name}/${doc_file}`);
-                        try {
-                            await fetcher.processFile(doc_file, processors, false, metadata);
-                        } catch (error) {
-                            context.logger.error(`Error processing ${pipeline.name}@${release.tag_name}/${doc_file}: ${error.message}`);
-                            // Continue with next file instead of failing the entire pipeline
+                        // Create processor and fetcher once per pipeline/release
+                        const processors = createGitHubMarkdownProcessor(pipeline.name, release.tag_name);
+
+                        // Common metadata for all files in this pipeline/release
+                        const metadata = {
+                            name: pipeline.name,
+                            archived: pipeline.archived,
+                            releases: pipeline.releases,
+                            description: pipeline.description,
+                            topics: pipeline.topics,
+                            stargazers_count: pipeline.stargazers_count,
+                        };
+
+                        // Process files sequentially
+                        for (const doc_file of release.doc_files) {
+                            context.logger.info(`Loading ${pipeline.name}@${release.tag_name}/${doc_file}`);
+                            try {
+                                await fetcher.processFile(doc_file, processors, false, metadata);
+                            } catch (error) {
+                                context.logger.error(
+                                    `Error processing ${pipeline.name}@${release.tag_name}/${doc_file}: ${error.message}`,
+                                );
+                                // Continue with next file instead of failing the entire pipeline
+                            }
                         }
                     }
                 }
@@ -327,3 +362,17 @@ export function pipelineLoader(pipelines_json: {
         },
     };
 }
+
+// Export a default markdown processor for use in other files
+export const md = {
+    md: async (text: string, config: AstroConfig, filepath?: string): Promise<RenderedContent> => {
+        const processor = await createMarkdownProcessor(config.markdown);
+        try {
+            const { code: html, metadata } = await processor.render(text);
+            return { html, metadata };
+        } catch (error) {
+            console.error(`Error processing markdown: ${error.message}`);
+            throw error;
+        }
+    }
+};
