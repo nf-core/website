@@ -18,12 +18,12 @@ This project aims to enhance the [nf-core/ampliseq](https://nf-co.re/ampliseq/de
 ## Goals
 
 - **Expanding the reference sequences for plant metabarcoding analyses.**
-  - *For people who enjoy working with Nextflow and are interested in plant metabarcoding.*
+  - _For people who enjoy working with Nextflow and are interested in plant metabarcoding._
 - **Integrating the new references following the latest nf-core and Nextflow standards.**
-  - *For people with some experience in (nf-core) workflow development.*
+  - _For people with some experience in (nf-core) workflow development._
 - **Benchmarking and validating the pipeline to ensure error-free performance.**
-  - *For people with some experience in using Nextflow/nf-core pipelines.*
+  - _For people with some experience in using Nextflow/nf-core pipelines._
 - **Improving documentation and user support to promote broader adoption.**
-  - *For first-time contributors interested in making the pipeline more accessible!*
+  - _For first-time contributors interested in making the pipeline more accessible!_
 
 _We welcome contributors of all experience levels._
