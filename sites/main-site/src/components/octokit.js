@@ -17,17 +17,17 @@ export const octokit = new MyOctokit({
   auth: GITHUB_TOKEN,
   throttle: {
     onRateLimit: (retryAfter, options, octokit, retryCount) => {
-      octokit.log.warn(`Request quota exhausted for request ${options.method} ${options.url}. Retrying in ${retryAfter} seconds. Retry count: ${retryCount}`);
+      console.log(`Request quota exhausted for request ${options.method} ${options.url}. Retrying in ${retryAfter} seconds. Retry count: ${retryCount}`);
 
       if (retryCount < 1) {
         // only retries once
-        octokit.log.info(`Retrying after ${retryAfter} seconds!`);
+        console.log(`Retrying after ${retryAfter} seconds!`);
         return true;
       }
     },
     onSecondaryRateLimit: (retryAfter, options, octokit) => {
       // does not retry, only logs a warning
-      octokit.log.warn(`Secondary quota detected for request ${options.method} ${options.url}`);
+      console.log(`Secondary quota detected for request ${options.method} ${options.url}`);
     },
   },
   retry: {
@@ -45,7 +45,7 @@ export async function getCurrentRateLimitRemaining() {
         'X-GitHub-Api-Version': '2022-11-28'
       }
     });
-    console.log(`Rate limit remaining: ${JSON.stringify(response)}`);
+    console.log(`Rate limit remaining: ${JSON.stringify(response, null, 2)}`);
   } catch (error) {
     console.error('Error occurred:', error);
   }
