@@ -9023,6 +9023,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -113367,6 +113371,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -139268,6 +139280,10 @@
         {
           "name": "viralrecon",
           "version": "2.6.0"
+        },
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
         }
       ]
     },
@@ -139899,10 +139915,25 @@
           ],
           [
             {
+              "meta5": {
+                "type": "map",
+                "description": "Groovy Map containing known sites information\n"
+              }
+            },
+            {
               "known_sites": {
                 "type": "file",
                 "description": "(optional) known sites file(s) for calculating BQSR. markdups must be true to perform BQSR.",
                 "pattern": "*.vcf.gz"
+              }
+            }
+          ],
+          [
+            {
+              "output_fmt": {
+                "type": "string",
+                "description": "Output format for the alignment. Options are 'bam' or 'cram'",
+                "pattern": "{bam,cram}"
               }
             }
           ]
@@ -139943,6 +139974,40 @@
             ]
           },
           {
+            "cram": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.cram": {
+                  "type": "file",
+                  "description": "Sorted CRAM file",
+                  "pattern": "*.cram"
+                }
+              }
+            ]
+          },
+          {
+            "crai": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.crai": {
+                  "type": "file",
+                  "description": "index corresponding to sorted CRAM file",
+                  "pattern": "*.crai"
+                }
+              }
+            ]
+          },
+          {
             "bqsr_table": [
               {
                 "meta": {
@@ -139960,23 +140025,18 @@
             ]
           },
           {
-            "versions": [
-              {
-                "versions.yml": {
-                  "type": "file",
-                  "description": "File containing software versions",
-                  "pattern": "versions.yml"
-                }
-              }
-            ]
-          },
-          {
             "qc_metrics": [
               {
-                "qc_metrics": {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n"
+                }
+              },
+              {
+                "*_qc_metrics": {
                   "type": "directory",
                   "description": "(optional) optional directory of qc metrics",
-                  "pattern": "qc_metrics"
+                  "pattern": "*_qc_metrics"
                 }
               }
             ]
@@ -139984,10 +140044,27 @@
           {
             "duplicate_metrics": [
               {
-                "duplicate-metrics.txt": {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n"
+                }
+              },
+              {
+                "*.duplicate-metrics.txt": {
                   "type": "file",
                   "description": "(optional) metrics calculated from marking duplicates in the bam file",
-                  "pattern": "*-duplicate-metrics.txt"
+                  "pattern": "*.duplicate-metrics.txt"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
                 }
               }
             ]
@@ -215571,6 +215648,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        },
         {
           "name": "phageannotator",
           "version": "dev"
