@@ -21,7 +21,8 @@ It's a good starting point for first timer to contribute and review Pull-Request
 
 ## More informations
 
-Pytest to nf-test migration: https://nf-co.re/docs/tutorials/tests_and_test_data/migrate_to_nf-test
+- Pytest to nf-test migration: https://nf-co.re/docs/tutorials/tests_and_test_data/migrate_to_nf-test
+- nf-test bitesize talk: https://www.youtube.com/watch?v=K9B7JRkMpQ4
 
 ## How to proceed
 
