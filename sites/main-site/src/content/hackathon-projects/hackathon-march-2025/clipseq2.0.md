@@ -7,7 +7,7 @@ image_alt: bernie once again asking for your support to make an nf-core release
 leaders:
   CharlotteAnne:
     name: Charlotte Capitanchik
-    slack: "Charlotte Capitanchik"
+    slack: "https://nfcore.slack.com/team/U011VU477V0"
 ---
 
 nf-core/clipseq has been inching towards a very massive feature-packed 2.0.0 release on the [feat-2-0 branch](https://github.com/nf-core/clipseq/tree/feat-2-0).
