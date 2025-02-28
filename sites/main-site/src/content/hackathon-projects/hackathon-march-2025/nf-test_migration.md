@@ -17,20 +17,24 @@ It's a good starting point for first timer to contribute and review Pull-Request
 ## Goal
 
 1. Move all nf-core/modules to nf-test
+  - [Batch 1](https://github.com/nf-core/modules/issues/7529)
+  - [Batch 2](https://github.com/nf-core/modules/issues/7654)
 2. Move all nf-core/subworkflows to nf-test
+  - [Batch 1](https://github.com/nf-core/modules/issues/7575)
 
 ## More informations
 
-- Pytest to nf-test migration: https://nf-co.re/docs/tutorials/tests_and_test_data/migrate_to_nf-test
-- nf-test bitesize talk: https://www.youtube.com/watch?v=K9B7JRkMpQ4
+- Pytest to nf-test migration [documentation](https://nf-co.re/docs/tutorials/tests_and_test_data/migrate_to_nf-test)
+- [nf-test bitesize talk](https://www.youtube.com/watch?v=K9B7JRkMpQ4)
+- [nf-test guidelines](https://nf-co.re/docs/tutorials/tests_and_test_data/nf-test_writing_tests)
 
 ## How to proceed
 
-As there is a lot of modules (i.e. 162) and subworkflows (i.e. 23) to migrate we need to stay organise to avoid duplicated work. To do so, we created a [project list](https://hackmd.io/@hljXJwNeRJyZ0ASh0LNKqw/Hk9lgmkoyg/edit) and a simple procedure as follow:
+As there is a lot of modules (i.e. 162) and subworkflows (i.e. 23) to migrate we need to stay organise to avoid duplicated work. To do so, we created a the three issue to track every contribution and a simple procedure as follow:
 
 - Check if no one is already assigned to the modules/subworkflow you want to work on.
-- Add your github username to the hackmd
+- Assign yourself to the sub-issue
 - Perform the migration
-- When your pull request is ready, ask for a review and add the PR number to the hackmd
-- When merged add the date to the hackmd
+- When your pull request is ready, ask for a review and link it to the sub-issue
+- When merged update the hackathon project
 - Rinse and repeat !
