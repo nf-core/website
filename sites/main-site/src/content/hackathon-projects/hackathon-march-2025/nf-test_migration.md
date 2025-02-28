@@ -25,7 +25,7 @@ Pytest to nf-test migration: https://nf-co.re/docs/tutorials/tests_and_test_data
 
 ## How to proceed
 
-As there is a lot of modules (i.e. 162) and subworkflows (i.e. 23) to migrate we need to stay organise to avoid duplicated work. To do so, we created a [project list](https://hackmd.io/bZ1dM18_TMqLPxFxg1NjGQ) and a simple procedure as follow:
+As there is a lot of modules (i.e. 162) and subworkflows (i.e. 23) to migrate we need to stay organise to avoid duplicated work. To do so, we created a [project list](https://hackmd.io/@hljXJwNeRJyZ0ASh0LNKqw/Hk9lgmkoyg/edit) and a simple procedure as follow:
 
 - Check if no one is already assigned to the modules/subworkflow you want to work on.
 - Add your github username to the hackmd
