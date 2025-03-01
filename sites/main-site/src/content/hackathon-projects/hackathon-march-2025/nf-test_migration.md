@@ -17,10 +17,13 @@ It's a good starting point for first timer to contribute and review Pull-Request
 ## Goal
 
 1. Move all nf-core/modules to nf-test
-  - [Batch 1](https://github.com/nf-core/modules/issues/7529)
-  - [Batch 2](https://github.com/nf-core/modules/issues/7654)
+
+- [Batch 1](https://github.com/nf-core/modules/issues/7529)
+- [Batch 2](https://github.com/nf-core/modules/issues/7654)
+
 2. Move all nf-core/subworkflows to nf-test
-  - [Batch 1](https://github.com/nf-core/modules/issues/7575)
+
+- [Batch 1](https://github.com/nf-core/modules/issues/7575)
 
 ## More informations
 
