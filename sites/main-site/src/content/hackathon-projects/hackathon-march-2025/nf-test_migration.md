@@ -40,4 +40,4 @@ As there are a lot of modules (i.e. 162) and subworkflows (i.e. 23) to migrate w
 - Perform the migration
 - When your pull request is ready, ask for a review and link it to the sub-issue
 - When merged update the hackathon project
-- Rinse and repeat !
+- Rinse and repeat!
