@@ -33,7 +33,7 @@ It's a good starting point for first timer to contribute and review Pull-Request
 
 ## How to proceed
 
-As there is a lot of modules (i.e. 162) and subworkflows (i.e. 23) to migrate we need to stay organise to avoid duplicated work. To do so, we created a the three issue to track every contribution and a simple procedure as follow:
+As there are a lot of modules (i.e. 162) and subworkflows (i.e. 23) to migrate we need to stay organised to avoid duplicated work. To do so, we created three issues to track every contribution and a simple procedure as follows:
 
 - Check if no one is already assigned to the modules/subworkflow you want to work on.
 - Assign yourself to the sub-issue
