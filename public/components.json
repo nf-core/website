@@ -9023,6 +9023,18 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -28740,7 +28752,7 @@
               "licence": [
                 "GPL-3.0-or-later"
               ],
-              "identifier": ""
+              "identifier": "biotools:bwa"
             }
           }
         ],
@@ -28755,7 +28767,15 @@
             {
               "reads": {
                 "type": "file",
-                "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data,\nrespectively.\n"
+                "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data,\nrespectively.\n",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_2044"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
               }
             }
           ],
@@ -28770,7 +28790,12 @@
               "index": {
                 "type": "file",
                 "description": "BWA genome index files",
-                "pattern": "Directory containing BWA index *.{amb,ann,bwt,pac,sa}"
+                "pattern": "Directory containing BWA index *.{amb,ann,bwt,pac,sa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_3210"
+                  }
+                ]
               }
             }
           ]
@@ -28847,7 +28872,7 @@
               "licence": [
                 "GPL-3.0-or-later"
               ],
-              "identifier": ""
+              "identifier": "biotools:bwa"
             }
           }
         ],
@@ -28862,7 +28887,15 @@
             {
               "fasta": {
                 "type": "file",
-                "description": "Input genome fasta file"
+                "description": "Input genome fasta file",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_2044"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ]
@@ -28873,15 +28906,19 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n",
-                  "pattern": "*.{amb,ann,bwt,pac,sa}"
+                  "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
                 "bwa": {
                   "type": "map",
                   "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n",
-                  "pattern": "*.{amb,ann,bwt,pac,sa}"
+                  "pattern": "*.{amb,ann,bwt,pac,sa}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_3210"
+                    }
+                  ]
                 }
               }
             ]
@@ -29017,7 +29054,7 @@
               "licence": [
                 "GPL-3.0-or-later"
               ],
-              "identifier": ""
+              "identifier": "biotools:bwa"
             }
           }
         ],
@@ -29032,7 +29069,15 @@
             {
               "reads": {
                 "type": "file",
-                "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data,\nrespectively.\n"
+                "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data,\nrespectively.\n",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_2044"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
               }
             }
           ],
@@ -29047,7 +29092,12 @@
               "index": {
                 "type": "file",
                 "description": "BWA genome index files",
-                "pattern": "Directory containing BWA index *.{amb,ann,bwt,pac,sa}"
+                "pattern": "Directory containing BWA index *.{amb,ann,bwt,pac,sa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_3210"
+                  }
+                ]
               }
             }
           ],
@@ -29062,7 +29112,15 @@
               "fasta": {
                 "type": "file",
                 "description": "Reference genome in FASTA format",
-                "pattern": "*.{fasta,fa}"
+                "pattern": "*.{fasta,fa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_2044"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -29082,15 +29140,19 @@
               {
                 "meta": {
                   "type": "file",
-                  "description": "Output BAM file containing read alignments",
-                  "pattern": "*.{bam}"
+                  "description": "Output BAM file containing read alignments"
                 }
               },
               {
                 "*.bam": {
                   "type": "file",
                   "description": "Output BAM file containing read alignments",
-                  "pattern": "*.{bam}"
+                  "pattern": "*.{bam}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
                 }
               }
             ]
@@ -29100,15 +29162,19 @@
               {
                 "meta": {
                   "type": "file",
-                  "description": "Output CRAM file containing read alignments",
-                  "pattern": "*.{cram}"
+                  "description": "Output CRAM file containing read alignments"
                 }
               },
               {
                 "*.cram": {
                   "type": "file",
                   "description": "Output CRAM file containing read alignments",
-                  "pattern": "*.{cram}"
+                  "pattern": "*.{cram}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3462"
+                    }
+                  ]
                 }
               }
             ]
@@ -29118,8 +29184,7 @@
               {
                 "meta": {
                   "type": "file",
-                  "description": "Optional index file for BAM file",
-                  "pattern": "*.{csi}"
+                  "description": "Optional index file for BAM file"
                 }
               },
               {
@@ -29136,8 +29201,7 @@
               {
                 "meta": {
                   "type": "file",
-                  "description": "Optional index file for CRAM file",
-                  "pattern": "*.{crai}"
+                  "description": "Optional index file for CRAM file"
                 }
               },
               {
@@ -29255,7 +29319,7 @@
               "licence": [
                 "GPL-3.0-or-later"
               ],
-              "identifier": ""
+              "identifier": "biotools:bwa"
             }
           }
         ],
@@ -29271,7 +29335,15 @@
               "reads": {
                 "type": "file",
                 "description": "FASTQ files specified alongside meta in input channel.",
-                "pattern": "*.{fastq,fq}.gz"
+                "pattern": "*.{fastq,fq}.gz",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_2044"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
               }
             },
             {
@@ -29293,7 +29365,12 @@
               "index": {
                 "type": "directory",
                 "description": "Directory containing BWA index files (amb,ann,bwt,pac,sa) from BWA_INDEX",
-                "pattern": "bwa/"
+                "pattern": "bwa/",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_3210"
+                  }
+                ]
               }
             }
           ]
@@ -29311,7 +29388,12 @@
                 "*.bam": {
                   "type": "file",
                   "description": "BAM file",
-                  "pattern": "*.bam"
+                  "pattern": "*.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
                 }
               }
             ]
@@ -29374,7 +29456,7 @@
               "licence": [
                 "GPL-3.0-or-later"
               ],
-              "identifier": ""
+              "identifier": "biotools:bwa"
             }
           }
         ],
@@ -29390,7 +29472,15 @@
               "reads": {
                 "type": "file",
                 "description": "FASTQ files specified alongside meta in input channel.",
-                "pattern": "*.{fastq,fq}.gz"
+                "pattern": "*.{fastq,fq}.gz",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_2044"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
               }
             },
             {
@@ -29412,7 +29502,12 @@
               "index": {
                 "type": "directory",
                 "description": "Directory containing BWA index files (amb,ann,bwt,pac,sa) from BWA_INDEX",
-                "pattern": "bwa/"
+                "pattern": "bwa/",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_3210"
+                  }
+                ]
               }
             }
           ]
@@ -29430,7 +29525,12 @@
                 "*.bam": {
                   "type": "file",
                   "description": "BAM file",
-                  "pattern": "*.bam"
+                  "pattern": "*.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
                 }
               }
             ]
@@ -29487,7 +29587,7 @@
               "licence": [
                 "MIT"
               ],
-              "identifier": ""
+              "identifier": "biotools:bwa-mem2"
             }
           }
         ],
@@ -29502,7 +29602,15 @@
             {
               "fasta": {
                 "type": "file",
-                "description": "Input genome fasta file"
+                "description": "Input genome fasta file",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_2044"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ]
@@ -29520,7 +29628,12 @@
                 "bwamem2": {
                   "type": "file",
                   "description": "BWA genome index files",
-                  "pattern": "*.{0123,amb,ann,bwt.2bit.64,pac}"
+                  "pattern": "*.{0123,amb,ann,bwt.2bit.64,pac}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_3210"
+                    }
+                  ]
                 }
               }
             ]
@@ -29613,7 +29726,7 @@
               "licence": [
                 "MIT"
               ],
-              "identifier": ""
+              "identifier": "biotools:bwa-mem2"
             }
           }
         ],
@@ -29628,7 +29741,15 @@
             {
               "reads": {
                 "type": "file",
-                "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data,\nrespectively.\n"
+                "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data,\nrespectively.\n",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_2044"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
               }
             }
           ],
@@ -29643,7 +29764,12 @@
               "index": {
                 "type": "file",
                 "description": "BWA genome index files",
-                "pattern": "Directory containing BWA index *.{0132,amb,ann,bwt.2bit.64,pac}"
+                "pattern": "Directory containing BWA index *.{0132,amb,ann,bwt.2bit.64,pac}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_3210"
+                  }
+                ]
               }
             }
           ],
@@ -29658,7 +29784,15 @@
               "fasta": {
                 "type": "file",
                 "description": "Reference genome in FASTA format",
-                "pattern": "*.{fa,fasta,fna}"
+                "pattern": "*.{fa,fasta,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_2044"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -29685,7 +29819,12 @@
                 "*.sam": {
                   "type": "file",
                   "description": "Output SAM file containing read alignments",
-                  "pattern": "*.{sam}"
+                  "pattern": "*.{sam}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2573"
+                    }
+                  ]
                 }
               }
             ]
@@ -29702,7 +29841,12 @@
                 "*.bam": {
                   "type": "file",
                   "description": "Output BAM file containing read alignments",
-                  "pattern": "*.{bam}"
+                  "pattern": "*.{bam}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
                 }
               }
             ]
@@ -29719,7 +29863,12 @@
                 "*.cram": {
                   "type": "file",
                   "description": "Output CRAM file containing read alignments",
-                  "pattern": "*.{cram}"
+                  "pattern": "*.{cram}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3462"
+                    }
+                  ]
                 }
               }
             ]
@@ -104691,6 +104840,15 @@
                 "pattern": "*.accession2taxid"
               }
             }
+          ],
+          [
+            {
+              "seqid2taxid": {
+                "type": "file",
+                "description": "optional premade 2 column seq2taxid map file. Must be named seq2taxid.map. If not supplied will be generated by kraken2 itself during upstream build step.",
+                "pattern": "seqit2taxid.map"
+              }
+            }
           ]
         ],
         "output": [
@@ -113295,6 +113453,30 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         },
         {
           "name": "ampliseq",
@@ -139268,6 +139450,18 @@
         {
           "name": "viralrecon",
           "version": "2.6.0"
+        },
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
+        },
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
+        },
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
         }
       ]
     },
@@ -139899,10 +140093,25 @@
           ],
           [
             {
+              "meta5": {
+                "type": "map",
+                "description": "Groovy Map containing known sites information\n"
+              }
+            },
+            {
               "known_sites": {
                 "type": "file",
                 "description": "(optional) known sites file(s) for calculating BQSR. markdups must be true to perform BQSR.",
                 "pattern": "*.vcf.gz"
+              }
+            }
+          ],
+          [
+            {
+              "output_fmt": {
+                "type": "string",
+                "description": "Output format for the alignment. Options are 'bam' or 'cram'",
+                "pattern": "{bam,cram}"
               }
             }
           ]
@@ -139943,6 +140152,40 @@
             ]
           },
           {
+            "cram": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.cram": {
+                  "type": "file",
+                  "description": "Sorted CRAM file",
+                  "pattern": "*.cram"
+                }
+              }
+            ]
+          },
+          {
+            "crai": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.crai": {
+                  "type": "file",
+                  "description": "index corresponding to sorted CRAM file",
+                  "pattern": "*.crai"
+                }
+              }
+            ]
+          },
+          {
             "bqsr_table": [
               {
                 "meta": {
@@ -139960,23 +140203,18 @@
             ]
           },
           {
-            "versions": [
-              {
-                "versions.yml": {
-                  "type": "file",
-                  "description": "File containing software versions",
-                  "pattern": "versions.yml"
-                }
-              }
-            ]
-          },
-          {
             "qc_metrics": [
               {
-                "qc_metrics": {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n"
+                }
+              },
+              {
+                "*_qc_metrics": {
                   "type": "directory",
                   "description": "(optional) optional directory of qc metrics",
-                  "pattern": "qc_metrics"
+                  "pattern": "*_qc_metrics"
                 }
               }
             ]
@@ -139984,10 +140222,27 @@
           {
             "duplicate_metrics": [
               {
-                "duplicate-metrics.txt": {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n"
+                }
+              },
+              {
+                "*.duplicate-metrics.txt": {
                   "type": "file",
                   "description": "(optional) metrics calculated from marking duplicates in the bam file",
-                  "pattern": "*-duplicate-metrics.txt"
+                  "pattern": "*.duplicate-metrics.txt"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
                 }
               }
             ]
@@ -215571,6 +215826,18 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        },
         {
           "name": "phageannotator",
           "version": "dev"
