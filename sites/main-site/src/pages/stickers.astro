@@ -1,78 +1,59 @@
 ---
-import PageLayout from '@layouts/PageLayout.astro';
-import HexSticker from '../components/HexSticker.astro';
+import PageLayout from "@layouts/PageLayout.astro";
+import HexStickerGallery from "../components/HexStickerGallery.astro";
 
-// Get all SVG files from the images directory
-const images = await import.meta.glob('/public/images/hex_stickers/*.svg', { eager: true });
+// Define pipeline names from the nf-core/logos repository
+const pipelineNames = [
+    "airrflow",
+    "createtaxdb",
+    "deepmodeloptim",
+    "eager",
+    "fetchngs",
+    "funcscan",
+    "mag",
+    "molkart",
+    "raredisease",
+    "reportho",
+    "sarek",
+    "taxprofiler"
+];
 
-// Convert object of modules to array of URLs
-const imageUrls = Object.keys(images).map(path => path.replace('/public', ''));
+// Create sticker data using GitHub URLs
+const stickers = pipelineNames.map(pipeline => {
+    return {
+        // Use raw.githubusercontent.com to get the direct image URL
+        imageUrl: `https://raw.githubusercontent.com/nf-core/logos/master/hexagon-stickers/${pipeline}/nfcore-${pipeline}-logo-hex-dark.png`,
+        alt: `${pipeline} pipeline`,
+        category: "pipeline-hexagon-stickers",
+        // Link to the GitHub repository
+        link: `https://github.com/nf-core/${pipeline}`
+    };
+});
 ---
 
-<PageLayout title="nf-core Stickers">
-	<main class="py-5">
-		<div class="container">
-			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center" id="gallery">
-				{imageUrls.map((imageUrl) => (
-					<div class="col d-flex justify-content-center">
-						<HexSticker
-							imageUrl={imageUrl}
-							alt={imageUrl.split('/').pop()?.replace('.svg', '') || 'nf-core pipeline'}
-						/>
-					</div>
-				))}
-			</div>
-		</div>
-	</main>
+<PageLayout
+    title="nf-core Stickers"
+    subtitle="Browse our collection of hex stickers. Filter by category to find specific stickers.">
+    <main class="py-5">
+        <div class="container">
+            <HexStickerGallery stickers={stickers} />
+        </div>
+    </main>
 </PageLayout>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5.3.8/dist/photoswipe.css">
-
 <style>
-	:global(.pswp) {
-		--pswp-bg: rgba(0, 0, 0, 0.9);
-	}
+    /* CSS variables for theming */
+    :root {
+        --theme-accent: #1a9655;
+        --theme-btn-bg: #fff;
+        --theme-btn-text: #222;
+        --theme-btn-hover-bg: #f0f0f0;
+        --select-arrow: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%231a9655"><path d="M7 10l5 5 5-5H7z"/></svg>');
+    }
 
-	:global(.pswp__img) {
-		object-fit: contain !important;
-		opacity: 1 !important;
-		transition: transform 0.3s ease;
-	}
+    :global(body.light-mode) {
+        --theme-btn-bg-light: #160f25;
+        --theme-btn-text-light: #fff;
+        --select-arrow-light: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23FFFFFF"><path d="M7 10l5 5 5-5H7z"/></svg>');
+    }
 </style>
-
-<script>
-	import PhotoSwipeLightbox from 'photoswipe/lightbox';
-
-	const lightbox = new PhotoSwipeLightbox({
-		gallery: '#gallery',
-		children: 'a',
-		pswpModule: () => import('photoswipe'),
-		padding: { top: 30, bottom: 30, left: 70, right: 70 },
-		bgOpacity: 0.9,
-		showHideAnimationType: 'fade',
-		showAnimationDuration: 300,
-		hideAnimationDuration: 300,
-		zoom: {
-			initialZoomLevel: 0.9,
-			secondaryZoomLevel: 1.5,
-			maxZoomLevel: 4
-		},
-		getClickedPswpElement: (clickedElement) => {
-			return clickedElement.querySelector('img');
-		},
-		preloadFirstSlide: true,
-		preload: [1, 2]
-	});
-
-	// Handle opening animation
-	lightbox.on('beforeOpen', () => {
-		document.documentElement.style.overflow = 'hidden';
-	});
-
-	// Handle closing
-	lightbox.on('close', () => {
-		document.documentElement.style.overflow = '';
-	});
-
-	lightbox.init();
-</script>
