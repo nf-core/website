@@ -3,12 +3,15 @@ title: GPU development / testing
 category: components
 slack: "https://nfcore.slack.com/archives/C07PPQR415W"
 intro_video: ""
-image: "/assets/images/events/2025/hackathon-march/gpu_slurm_tests_nvidia_h100.jpg"
+image: "/assets/images/events/2025/hackathon-march/nebius_sponsor_logo.png"
 image_alt: Picture of NVIDIA H100 Graphics card
 leaders:
-  Florian Wuennemann:
+  FloWuenne:
     name: Florian Wuennemann
     slack: "https://nfcore.slack.com/archives/DTZKT23D1"
+  alex000kim:
+    name: Alexander Kim
+    slack: "https://nfcore.slack.com/team/U08GDSB976U"
 ---
 
 Thanks to the generous sponsorship from [Nebius](https://nebius.com/), we have access to 16 powerful H100 GPUs for the duration of this hackathon. Nebius is providing these resources through their Slurm-based workload manager called [Soperator](https://nebius.com/services/soperator), enabling participants to test and develop GPU-accelerated tools with Nextflow using a familiar Slurm interface.
@@ -25,7 +28,7 @@ Once your public key has been added to the authorized_keys list on the cluster, 
 `ssh -i /path/to/your/private_key username@hostname`
 
 :::warning
-**Important information**: Access to the cluster and all data on the cluster will be wiped once the hackathon ends, so make sure to not put any critical data on the Slurm data storage!
+**Important information**: Access to the cluster and all data on the cluster will be wiped once the hackathon ends, make sure to transfer all important data from the Slurm cluster to your own storage before the hackathon ends!
 :::
 
 ## Goal
