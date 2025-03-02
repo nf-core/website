@@ -33,4 +33,4 @@ Once your public key has been added to the authorized_keys list on the cluster, 
 
 ## Goal
 
-Use GPUs via Slurm to test and develop GPU accelerated tools in Nextflow.
+Use GPUs via Slurm to test and develop GPU accelerated tools in Nextflow and nf-core.
