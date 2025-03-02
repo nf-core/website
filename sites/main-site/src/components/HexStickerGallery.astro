@@ -15,28 +15,28 @@ interface Props {
 const { stickers } = Astro.props;
 
 // Get unique categories for filter options
-const categories = [...new Set(stickers.map(sticker => sticker.category))].sort();
+const categories = [...new Set(stickers.map((sticker) => sticker.category))].sort();
 ---
 
 <div class="hex-gallery-container">
     <div class="controls">
         <select class="category-filter" id="categoryFilter">
             <option value="all">All Categories</option>
-            {categories.map(category => (
-                <option value={category}>{category}</option>
-            ))}
+            {categories.map((category) => <option value={category}>{category}</option>)}
         </select>
     </div>
 
     <div class="hex-gallery" id="hexGallery">
-        {stickers.map(sticker => (
-            <HexSticker
-                imageUrl={sticker.imageUrl}
-                alt={sticker.alt}
-                category={sticker.category}
-                link={sticker.link}
-            />
-        ))}
+        {
+            stickers.map((sticker) => (
+                <HexSticker
+                    imageUrl={sticker.imageUrl}
+                    alt={sticker.alt}
+                    category={sticker.category}
+                    link={sticker.link}
+                />
+            ))
+        }
     </div>
 </div>
 
@@ -63,7 +63,9 @@ const categories = [...new Set(stickers.map(sticker => sticker.category))].sort(
         font-size: 16px;
         outline: none;
         appearance: none;
-        transition: background 0.3s ease, color 0.3s ease;
+        transition:
+            background 0.3s ease,
+            color 0.3s ease;
         min-width: 200px;
     }
 
@@ -73,7 +75,10 @@ const categories = [...new Set(stickers.map(sticker => sticker.category))].sort(
 
     .category-filter {
         position: relative;
-        background-image: var(--select-arrow, url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%231a9655"><path d="M7 10l5 5 5-5H7z"/></svg>'));
+        background-image: var(
+            --select-arrow,
+            url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%231a9655"><path d="M7 10l5 5 5-5H7z"/></svg>')
+        );
         background-repeat: no-repeat;
         background-position: right 10px center;
         background-size: 24px;
@@ -108,7 +113,10 @@ const categories = [...new Set(stickers.map(sticker => sticker.category))].sort(
     }
 
     .hex-gallery .hex-container {
-        transition: opacity 0.3s ease, filter 0.3s ease, transform 0.3s ease;
+        transition:
+            opacity 0.3s ease,
+            filter 0.3s ease,
+            transform 0.3s ease;
     }
 
     .hex-gallery .hex-container:hover {
@@ -123,7 +131,10 @@ const categories = [...new Set(stickers.map(sticker => sticker.category))].sort(
     }
 
     :global(body.light-mode) .category-filter {
-        background-image: var(--select-arrow-light, url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23FFFFFF"><path d="M7 10l5 5 5-5H7z"/></svg>'));
+        background-image: var(
+            --select-arrow-light,
+            url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23FFFFFF"><path d="M7 10l5 5 5-5H7z"/></svg>')
+        );
         background-repeat: no-repeat;
         background-position: right 10px center;
         background-size: 24px;
@@ -132,33 +143,33 @@ const categories = [...new Set(stickers.map(sticker => sticker.category))].sort(
 
 <script>
     // Category filter functionality
-    const categoryFilter = document.getElementById('categoryFilter');
+    const categoryFilter = document.getElementById("categoryFilter");
 
-    categoryFilter?.addEventListener('change', (e) => {
+    categoryFilter?.addEventListener("change", (e) => {
         const target = e.target as HTMLSelectElement;
         const selectedCategory = target.value;
-        localStorage.setItem('selectedCategory', selectedCategory);
+        localStorage.setItem("selectedCategory", selectedCategory);
 
         // Filter stickers
-        const stickers = document.querySelectorAll('.hex-container');
-        stickers.forEach(sticker => {
-            const stickerCategory = sticker.getAttribute('data-category');
-            if (selectedCategory === 'all' || stickerCategory === selectedCategory) {
-                (sticker as HTMLElement).style.display = 'inline-block';
+        const stickers = document.querySelectorAll(".hex-container");
+        stickers.forEach((sticker) => {
+            const stickerCategory = sticker.getAttribute("data-category");
+            if (selectedCategory === "all" || stickerCategory === selectedCategory) {
+                (sticker as HTMLElement).style.display = "inline-block";
             } else {
-                (sticker as HTMLElement).style.display = 'none';
+                (sticker as HTMLElement).style.display = "none";
             }
         });
     });
 
     // Apply saved category filter on page load
-    document.addEventListener('DOMContentLoaded', () => {
-        const savedCategory = localStorage.getItem('selectedCategory') || 'all';
+    document.addEventListener("DOMContentLoaded", () => {
+        const savedCategory = localStorage.getItem("selectedCategory") || "all";
         if (categoryFilter) {
             (categoryFilter as HTMLSelectElement).value = savedCategory;
 
             // Trigger change event to apply filter
-            const event = new Event('change');
+            const event = new Event("change");
             categoryFilter.dispatchEvent(event);
         }
     });

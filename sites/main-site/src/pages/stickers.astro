@@ -15,25 +15,26 @@ const pipelineNames = [
     "raredisease",
     "reportho",
     "sarek",
-    "taxprofiler"
+    "taxprofiler",
 ];
 
 // Create sticker data using GitHub URLs
-const stickers = pipelineNames.map(pipeline => {
+const stickers = pipelineNames.map((pipeline) => {
     return {
         // Use raw.githubusercontent.com to get the direct image URL
         imageUrl: `https://raw.githubusercontent.com/nf-core/logos/master/hexagon-stickers/${pipeline}/nfcore-${pipeline}-logo-hex-dark.png`,
         alt: `${pipeline} pipeline`,
         category: "pipeline-hexagon-stickers",
         // Link to the GitHub repository
-        link: `https://github.com/nf-core/${pipeline}`
+        link: `https://github.com/nf-core/${pipeline}`,
     };
 });
 ---
 
 <PageLayout
     title="nf-core Stickers"
-    subtitle="Browse our collection of hex stickers. Filter by category to find specific stickers.">
+    subtitle="Browse our collection of hex stickers. Filter by category to find specific stickers."
+>
     <main class="py-5">
         <div class="container">
             <HexStickerGallery stickers={stickers} />
