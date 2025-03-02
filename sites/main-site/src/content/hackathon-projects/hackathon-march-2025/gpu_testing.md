@@ -27,7 +27,7 @@ Once your public key has been added to the authorized_keys list on the cluster, 
 
 `ssh -i /path/to/your/private_key username@hostname`
 
-:::warning
+:::info
 **Important information**: Access to the cluster and all data on the cluster will be wiped once the hackathon ends, make sure to transfer all important data from the Slurm cluster to your own storage before the hackathon ends!
 :::
 
