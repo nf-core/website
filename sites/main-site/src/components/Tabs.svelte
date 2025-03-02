@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { CurrentTab } from '@components/store';
+    import { CurrentTab } from "@components/store";
     export let names: string[] = [];
     export let icons: string[] = [];
 
@@ -19,7 +19,7 @@
                 aria-selected={name === $CurrentTab}
                 on:click={() => CurrentTab.set(name)}
                 on:keydown={(e) => {
-                    if (e.key === 'Enter') {
+                    if (e.key === "Enter") {
                         CurrentTab.set(name);
                     }
                 }}>{@html icons[index]}{name}</button

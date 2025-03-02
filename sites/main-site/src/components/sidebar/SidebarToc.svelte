@@ -1,7 +1,7 @@
 <script lang="ts">
-    import { currentHeading, showHidden, Checkboxes } from '@components/store';
-    import { onMount } from 'svelte';
-    import ProgressIndicator from '@components/sidebar/ProgressIndicator.svelte';
+    import { currentHeading, showHidden, Checkboxes } from "@components/store";
+    import { onMount } from "svelte";
+    import ProgressIndicator from "@components/sidebar/ProgressIndicator.svelte";
 
     export let headings: {
         text: string;
@@ -58,9 +58,9 @@
             activeHeading = heading?.slug || $currentHeading;
             // wait 1 second for sidebar selection animation to finish
 
-            const active = document.querySelector('.toc nav-item.active');
+            const active = document.querySelector(".toc nav-item.active");
             if (active) {
-                active.scrollIntoView({ block: 'nearest' });
+                active.scrollIntoView({ block: "nearest" });
             }
         });
         if (hCheckboxes) {
@@ -85,27 +85,27 @@
                 <ul class="mb-0 mt-1">
                     {#each headings as heading (heading)}
                         <li
-                            class={'nav-item heading-padding-' + (heading.depth - minHeadingDepth)}
+                            class={"nav-item heading-padding-" + (heading.depth - minHeadingDepth)}
                             class:active={heading.slug === activeHeading}
                             class:collapse={heading.hidden && !$showHidden}
                         >
                             <a
                                 class="nav-link py-1 ps-3 text-body-secondary small d-inline-flex align-items-center"
-                                href={'#' + heading.slug}
+                                href={"#" + heading.slug}
                             >
                                 {#if heading.fa_icon}
-                                    <i class={heading.fa_icon + ' fa-fw me-2'} aria-hidden="true" />
+                                    <i class={heading.fa_icon + " fa-fw me-2"} aria-hidden="true" />
                                 {/if}
                                 {@html heading.text}
-                                {#if hCheckboxes.find((hc) => hc?.id.startsWith('checkbox-' + heading.slug))}
+                                {#if hCheckboxes.find((hc) => hc?.id.startsWith("checkbox-" + heading.slug))}
                                     <span class="ms-2">
                                         <ProgressIndicator
                                             progress={(hCheckboxes.filter(
                                                 (check) =>
-                                                    check?.id.startsWith('checkbox-' + heading.slug) && check?.checked,
+                                                    check?.id.startsWith("checkbox-" + heading.slug) && check?.checked,
                                             ).length /
                                                 hCheckboxes.filter((check) =>
-                                                    check?.id.startsWith('checkbox-' + heading.slug),
+                                                    check?.id.startsWith("checkbox-" + heading.slug),
                                                 ).length) *
                                                 100}
                                             size={25}
@@ -173,7 +173,7 @@
         }
     }
 
-    :global([data-bs-theme='dark']) {
+    :global([data-bs-theme="dark"]) {
         li {
             &:hover {
                 & a {

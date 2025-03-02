@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize: community updates Sep 2022'
+title: "Bytesize: community updates Sep 2022"
 subtitle: Phil Ewels
 type: talk
-startDate: '2022-09-27'
-startTime: '13:00+02:00'
-endDate: '2022-09-27'
-endTime: '13:30+02:00'
+startDate: "2022-09-27"
+startTime: "13:00+02:00"
+endDate: "2022-09-27"
+endTime: "13:30+02:00"
 youtubeEmbed: https://www.youtube.com/watch?v=KXXeAcHnDBo
 locations:
   - name: Online

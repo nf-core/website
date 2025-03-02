@@ -1,12 +1,12 @@
 ---
-title: 'Bytesize 21: nf-core/mhcquant'
+title: "Bytesize 21: nf-core/mhcquant"
 subtitle: Leon Bichmann - University of Tuebingen, Germany
 type: talk
-startDate: '2021-09-28'
-startTime: '13:00+02:00'
-endDate: '2021-09-28'
-endTime: '13:30+02:00'
-embedAt: 'mhcquant'
+startDate: "2021-09-28"
+startTime: "13:00+02:00"
+endDate: "2021-09-28"
+endTime: "13:30+02:00"
+embedAt: "mhcquant"
 youtubeEmbed: https://youtu.be/NCKkSssE_4w
 locations:
   - name: Online

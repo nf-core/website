@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize: Content Addressable Data Storage'
+title: "Bytesize: Content Addressable Data Storage"
 subtitle: Rob Syme, Seqera
 type: talk
-startDate: '2025-01-14'
-startTime: '13:00+01:00'
-endDate: '2025-01-14'
-endTime: '13:30+01:00'
+startDate: "2025-01-14"
+startTime: "13:00+01:00"
+endDate: "2025-01-14"
+endTime: "13:30+01:00"
 youtubeEmbed: https://youtu.be/7wmaWU6-pYM
 locations:
   - name: Online

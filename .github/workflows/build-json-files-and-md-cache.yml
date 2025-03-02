@@ -2,7 +2,7 @@ name: build json files and md-cache
 
 on:
   schedule: # every day at 2am and 2pm
-    - cron: '0 2,14 * * *'
+    - cron: "0 2,14 * * *"
   workflow_dispatch:
   repository_dispatch:
     types: [update-website]
@@ -22,10 +22,10 @@ jobs:
 
       # install npm dependencies
       - name: Set up node.js
-        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4
+        uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a # v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci
@@ -90,9 +90,9 @@ jobs:
         uses: peter-evans/create-pull-request@67ccf781d68cd99b580ae25a5c18a1cc84ffff1f # v7
         with:
           token: ${{ secrets.CREATE_PR_TOKEN }}
-          commit-message: 'chore: update pipeline.json and component.json'
-          title: 'chore: update pipeline.json and component.json'
-          body: 'This PR was automatically created by a GitHub Action because there were too many lines changed in the pipeline.json and component.json files.'
-          branch: 'chore/update-pipeline-json-and-component-json'
+          commit-message: "chore: update pipeline.json and component.json"
+          title: "chore: update pipeline.json and component.json"
+          body: "This PR was automatically created by a GitHub Action because there were too many lines changed in the pipeline.json and component.json files."
+          branch: "chore/update-pipeline-json-and-component-json"
           delete-branch: true
           draft: false

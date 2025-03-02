@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize 4: GitHub contribution basics'
+title: "Bytesize 4: GitHub contribution basics"
 subtitle: Alexander Peltzer - Boehringer Ingelheim Pharma GmbH & Co. KG, Germany
 type: talk
-startDate: '2021-02-23'
-startTime: '13:00+01:00'
-endDate: '2021-02-23'
-endTime: '13:30+01:00'
+startDate: "2021-02-23"
+startTime: "13:00+01:00"
+endDate: "2021-02-23"
+endTime: "13:30+01:00"
 youtubeEmbed: https://youtu.be/gTEXDXWf4hE
 locations:
   - name: Online

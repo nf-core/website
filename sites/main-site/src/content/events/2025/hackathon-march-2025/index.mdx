@@ -2,20 +2,25 @@
 title: Hackathon - March 2025 (Online / Distributed)
 subtitle: A virtual hackathon with local sites to develop nf-core together
 type: hackathon
-startDate: '2025-03-24'
-startTime: '10:00+02:00'
-endDate: '2025-03-26'
-endTime: '17:00+02:00'
+startDate: "2025-03-24"
+startTime: "10:00+02:00"
+endDate: "2025-03-26"
+endTime: "17:00+02:00"
+start: 2025-03-24T00:00:00+00:00
+end: 2025-03-26T00:00:00+00:00
 locations:
     - name: Slack, and local sites.
 importTypeform: true
+hackathonProjectListModals: hackathon-march-2025
 announcement:
-    text: 'Registration for the online / distributed March hackathon is now open!'
+    text: "Registration for the online / distributed March hackathon is now open!"
     start: 2025-02-22T00:00:00+01:00
     end: 2025-03-23T00:00:00+01:00
 ---
 
-import EventMap from '@components/event/EventMap.astro';
+import EventMap from "@components/event/EventMap.astro";
+import EventLocationsTable from "@components/event/EventLocationsTable.astro";
+import HackathonModalProjectList from "@components/event/HackathonProjects/ListProjects.astro";
 
 # Welcome
 
@@ -26,13 +31,12 @@ to hack with other Nextflow / nf-core enthusiasts in person!
 
 :::info{title="Key dates"}
 
--   **December 2024**: Registration opens for hosting local sites
-    -   _Local site registration is possible until the event starts, but it's recommended
-        to do before the in-person registration opens._
--   **Jan 31st 2025**: Registration opens
--   **March 9th 2025**: Local site registration closes
-    -   _Online registration will remain open until the end of the event_
--   **March 24th - 26th 2025**: Hackathon
+- **December 2024**: Proposals open to host local sites
+    - _Local site proposals will remain open until the start of the event_
+- **Jan 31st 2025**: Registration opens
+- **March 9th 2025**: Local site registration closes
+    - _Online registration will remain open until the end of the event_
+- **March 24th - 26th 2025**: Hackathon
 
 :::
 
@@ -40,11 +44,22 @@ To get a feel for how the event will work, check out the similar style hackathon
 that we held in [2023](/events/2023/hackathon-march-2023) (16 local sites, 407 attendees)
 and [2024](/events/2024/hackathon-march-2024) (23 local sites, 466 attendees).
 
+:::tip{.fa-globe title="Time zones"}
+
+The hackathon runs from March 24-26, wherever you are.
+Event attendees will span the globe, so there should be some people online, wherever you are.
+Most people will work 9am - 5pm each day.
+
+:::
+
 ## Registration
 
-Registration to join the hackathon as a participant will open on Friday, January 31st.
+Registration to join the hackathon is now open!
+See below or [open in a new tab](https://seqera.typeform.com/nfcoremarch2025).
 
-{/* <div data-tf-live="01JFCDDYQRKKDWFVYDDZ6JQ54W" style="margin-bottom:2rem;"></div> */}
+<div data-tf-live="01JJVB8DRXB3JQCM32R2Q3WSD0" style="margin-bottom:2rem;">
+    ..loading..
+</div>
 
 ## Joining remotely
 
@@ -59,48 +74,72 @@ Attendees will be encouraged to use Slack huddle video calls, as well as asynchr
 If you have registered for a local site your local host will be in contact with you to outline site-specific information.
 For the most recent information about your site as well as the contact details of your organizer please check the event page specific to your local sites.
 
-<EventMap event={'2025/hackathon-march-2025'} />
+<EventMap event={"2025/hackathon-march-2025"} />
 
-<div class="table-responsive" markdown="1">
+<EventLocationsTable eventPath="2025/hackathon-march-2025" showCount={true} />
 
-| Country           | City          | Location                                       | Event page                                                                                         |
-| ----------------- | ------------- | ---------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| 🇦🇺 Australia      | Sydney        | University of Sydney                           | [Read more](/events/2025/hackathon-march-2025/biocommons_sydney)                                   |
-| 🇧🇪 Belgium        | Ghent         | Ghent University                               | [Read more](/events/2025/hackathon-march-2025/ghent-university)                                    |
-| 🇧🇷 Brazil         | Natal         | Federal University of Rio Grande do Norte      | [Read more](/events/2025/hackathon-march-2025/university-of-rio-grande-do-norte)                   |
-| 🇧🇷 Brazil         | Guarapuava    | Federal Technological University of Paraná     | [Read more](/events/2025/hackathon-march-2025/utfpr_brazil)                                        |
-| 🇨🇿 Czech Republic | Brno          | CEITEC MU                                      | [Read more](/events/2025/hackathon-march-2025/ceitec-mu)                                           |
-| 🇨🇴 Colombia       | Bogota        | University of the Andes                        | [Read more](/events/2025/hackathon-march-2025/bogota-colombia)                                     |
-| 🇩🇰 Denmark        | Copenhagen    | ZS Associates.                                 | [Read more](/events/2025/hackathon-march-2025/zs_cph)                                              |
-| 🇫🇷 France         | Rennes        | Institut of Genetics & Development of Rennes   | [Read more](/events/2025/hackathon-march-2025/institut-of-genetics-development-of-rennes)          |
-| 🇩🇪 Germany        | Berlin        | Robert Koch Institute                          | [Read more](/events/2025/hackathon-march-2025/robert-koch-institute)                               |
-| 🇩🇪 Germany        | Heidelberg    | DKFZ and GHGA                                  | [Read more](/events/2025/hackathon-march-2025/dkfz-and-ghga)                                       |
-| 🇩🇪 Germany        | Munich        | TUM/LMU Munich                                 | [Read more](/events/2025/hackathon-march-2025/tumlmu-munich)                                       |
-| 🇩🇪 Germany        | Tuebingen     | University of Tuebingen                        | [Read more](/events/2025/hackathon-march-2025/qbic-uni-of-tuebingen.mdx)                           |
-| 🇬🇭 Ghana          | Accra         | Noguchi Memorial Institute of Medical Research | [Read more](/events/2025/hackathon-march-2025/nmimr-ghana)                                         |
-| 🇬🇷 Greece         | Athens        | BSRC Alexander Fleming                         | [Read more](/events/2025/hackathon-march-2025/bsrc-alexander-fleming)                              |
-| 🇮🇳 India          | Hyderabad     | Corteva AgriScience & Perimatrix IT            | [Read more](/events/2025/hackathon-march-2025/corteva-perimatrix-hyderabad)                        |
-| 🇮🇹 Italy          | Pavia         | University of Pavia                            | [Read more](/events/2025/hackathon-march-2025/university-of-pavia)                                 |
-| 🇮🇹 Italy          | Salerno       | University of Salerno                          | [Read more](/events/2025/hackathon-march-2025/university-of-salerno)                               |
-| 🇳🇱 Netherlands    | Amsterdam     | Hartwig Medical Foundation                     | [Read more](/events/2025/hackathon-march-2025/hartwig-medical-foundation)                          |
-| 🇳🇿 New Zealand    | Hamilton      | NetValue Ltd                                   | [Read more](/events/2025/hackathon-march-2025/netvalue)                                            |
-| 🇵🇰 Pakistan       | Islamabad     | National University of Sciences and Technology | [Read more](/events/2025/hackathon-march-2025/national-university-of-sciences-and-technology-nust) |
-| 🇵🇱 Poland         | Kraków        | Ardigen                                        | [Read more](/events/2025/hackathon-march-2025/ardigen)                                             |
-| 🇿🇦 South Africa   | Cape Town     | Stellenbosch University                        | [Read more](/events/2025/hackathon-march-2025/stellenbosch-university-cape-town)                   |
-| 🇪🇸 Spain          | Barcelona     | CRG                                            | [Read more](/events/2025/hackathon-march-2025/crg)                                                 |
-| 🇪🇸 Spain          | Barcelona     | Seqera                                         | [Read more](/events/2025/hackathon-march-2025/seqera)                                              |
-| 🇸🇪 Sweden         | Uppsala       | Uppsala University                             | [Read more](/events/2025/hackathon-march-2025/uppsala-university)                                  |
-| 🇨🇭 Switzerland    | Zürich        | Kinderspital Zürich                            | [Read more](/events/2025/hackathon-march-2025/kinderspital-zurich)                                 |
-| 🇬🇧 United Kingdom | Dundee        | James Hutton Institute                         | [Read more](/events/2025/hackathon-march-2025/james-hutton-institute)                              |
-| 🇬🇧 United Kingdom | London        | University College London                      | [Read more](/events/2025/hackathon-march-2025/university-college-london)                           |
-| 🇺🇸 United States  | Boston        | Harvard Chan School                            | [Read more](/events/2025/hackathon-march-2025/harvard-chan-school)                                 |
-| 🇺🇸 United States  | Dallas        | UT Dallas                                      | [Read more](/events/2025/hackathon-march-2025/ut-dallas)                                           |
-| 🇺🇸 United States  | Miami         | Sylvester Comprehensive Cancer Center          | [Read more](/events/2025/hackathon-march-2025/university-of-miami)                                 |
-| 🇺🇸 United States  | San Francisco | Bay Area                                       | [Read more](/events/2025/hackathon-march-2025/san-francisco-bay-area)                              |
+# Projects
 
-</div>
+We'll work in projects during the hackathon. Projects can be anything from:
 
-## Host a local site
+- Adding new features to existing pipelines
+- Adding and improving components (modules / subworkflows)
+- Improving the website and nf-core tooling
+- Creating entirely new pipelines
+- Discussion and planning community initiatives
+- Working on special interest group topics
+- _...anything else_
+
+You can bring your own favourite topic or choose from a list of open issues in the community.
+Each project has a lead person who can point you in the right direction.
+
+You don't need to commit to a single project and are free to move around groups and projects throughout the event.
+
+## Submit a new project
+
+If you have an idea for a project that you think would be fun to do during the hackathon,
+please add it to the website by submitting a pull-request to the `nf-core/website` repository.
+
+You need to add a new markdown file to the
+[`sites/main-site/src/content/hackathon-projects/hackathon-march-2025` directory](https://github.com/nf-core/website/tree/main/sites/main-site/src/content/hackathon-projects/hackathon-march-2025).
+
+See existing files for examples, if you're unsure about anything please ask in Slack or in the pull-request.
+The front-matter YAML at the top of the file should be filled in as follows:
+
+- `title`: Short and self-descriptive name for the project
+- `category`: One of `pipelines`, `components`, `tooling`
+- `slack`: If your project already has an obvious Slack channel (eg. a pipeline) then right click
+  it and _Copy link_ and fill in here. Otherwise, leave blank as we will create a hackathon-specific
+  channel for your project.
+- `intro_video`: This field is not required, however it's recommended to record a short video prior to the event
+  to help folks joining in other time zones to get started.
+  You can also do this by recording the kick-off meeting at the start of the hackathon and adding that.
+  We can help with uploading videos to the nf-core YouTube channel, just ask in Slack.
+- `image`: A meme, silly picture or any other image to make your project more memorable.
+  Add to the [`sites/main-site/src/assets/images/events/2025/hackathon-march` directory](https://github.com/nf-core/website/tree/main/sites/main-site/src/assets/images/events/2025/hackathon-march)
+  as part of your PR.
+- `image_alt`: Text description of your image.
+- `leaders`: One or more contact people for your project (array)
+    - Each key under `leaders`: Your GitHub username
+        - `name`: Your name
+        - `slack`: Link to your Slack user. Find this by right clicking your name in Slack and selecting _Copy link_
+
+The body text can provide any context and background.
+Projects should have at least one goal mentioned in the body text under a `## Goal` heading that you want to
+try to achieve by the end of the hackathon.
+
+## Join a project
+
+Joining a project is as simple as turning up and getting in touch with the group.
+If you don't know where to find them in the room, ping the project lead on slack.
+
+You can move freely between projects throughout the event.
+
+## List of projects
+
+<HackathonModalProjectList eventPath="hackathon-march-2025" />
+
+# Hosting a local site
 
 We are now accepting registrations from organizers interested in hosting local hackathon sites :tada:
 
@@ -108,9 +147,9 @@ Anyone is welcome to host a site: you don't need to be an expert or have prior e
 
 What you'll need:
 
--   Access to a dedicated space for the duration of the event
--   Decent wifi and a bunch of extension cables
--   Enthusiasm!
+- Access to a dedicated space for the duration of the event
+- Decent wifi and a bunch of extension cables
+- Enthusiasm!
 
 Any space will do: be it a meeting room for 5-10 people through to larger spaces to accommodate more.
 
@@ -146,3 +185,30 @@ Also if we know about your site we'll have more time to help advertise and get f
 
 If you have any questions, jump into the [`#hackathon-mar-2025` channel](https://nfcore.slack.com/archives/C081XQ6T3M4)
 on the [nf-core Slack](https://nf-co.re/join#slack) and we'll be happy to help.
+
+# Social activities
+
+During the hackathon, we will have a bit of light-hearted fun and games for you to play!
+Special prizes are up for grabs for the winners!
+
+- Online quiz
+- Hackathon bingo
+- _more coming soon.._
+
+## Hackathon playlist
+
+A community Spotify playlist was created during the first ever nf-core hackathon, and many songs have been added since.
+Feel free to tune in and enjoy the somewhat eclectic mix!
+
+<a href="https://open.spotify.com/playlist/6LyhtB3bllSwNbK9iDNVgH">
+    <picture>
+        <source
+            media="(prefers-color-scheme: dark)"
+            srcset="https://raw.githubusercontent.com/nf-core/logos/master/nf-core-logos/nf-core-hackathon-playlist_dark.png"
+        ></source>
+        <img
+            alt="nf-core/hackathon playlist"
+            src="https://raw.githubusercontent.com/nf-core/logos/master/nf-core-logos/nf-core-hackathon-playlist_light.png"
+        ></img>
+    </picture>
+</a>

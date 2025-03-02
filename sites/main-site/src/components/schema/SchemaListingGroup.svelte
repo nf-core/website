@@ -1,6 +1,7 @@
 <script>
-    import SchemaListingElement from '@components/schema/SchemaListingElement.svelte';
-    import { showHidden } from '@components/store';
+    import SchemaListingElement from "@components/schema/SchemaListingElement.svelte";
+    import { showHidden } from "@components/store";
+    import Markdown from "@components/markdown/Markdown.svelte";
 
     export let definition;
     export let id;
@@ -26,12 +27,12 @@
 
 <div class="card my-2" class:collapse={hidden} class:show={$showHidden}>
     <div class="card-header position-sticky bg-body-secondary">
-        <h2 class="card-title text-success scroll-target my-1" id={id.replaceAll('_', '-')}>
+        <h2 class="card-title text-success scroll-target my-1" id={id.replaceAll("_", "-")}>
             <a
                 class="text-decoration-none text-success"
                 aria-hidden="true"
                 tabindex="-1"
-                href={'#' + id.replaceAll('_', '-')}
+                href={"#" + id.replaceAll("_", "-")}
                 ><i class="ms-1 fas fa-xs invisible" aria-hidden="true" />{#if definition.fa_icon}
                     <i class="fa fa-fw me-2 {definition.fa_icon}" />
                 {/if}
@@ -40,7 +41,11 @@
         </h2>
     </div>
     <div class="card-body pb-0">
-        <p class="mb-0">{definition.description ? definition.description : ''}</p>
+        <p class="mb-0">
+            {#if definition.description}
+                <Markdown md={definition.description} />
+            {/if}
+        </p>
         {#if definition.properties}
             <div class="properties">
                 {#each Object.entries(definition.properties) as [title, property] (title)}

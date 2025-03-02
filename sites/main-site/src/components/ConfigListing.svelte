@@ -1,6 +1,6 @@
 <script lang="ts">
-    import ListingTableHeader from '@components/ListingTableHeader.svelte';
-    import { SearchQuery, SortBy } from '@components/store';
+    import ListingTableHeader from "@components/ListingTableHeader.svelte";
+    import { SearchQuery, SortBy } from "@components/store";
 
     export let configs: {
         name: string;
@@ -8,10 +8,10 @@
         config: {};
     }[] = [];
 
-    SortBy.set('Name');
+    SortBy.set("Name");
 
     const searchconfigs = (config) => {
-        if ($SearchQuery === '') {
+        if ($SearchQuery === "") {
             return true;
         }
         if (config.name.toLowerCase().includes($SearchQuery.toLowerCase())) {
@@ -27,10 +27,10 @@
     };
     let invertSort = false;
     const sortConfigs = (a, b) => {
-        invertSort = $SortBy.endsWith(';inverse');
-        if ($SortBy.startsWith('Name')) {
+        invertSort = $SortBy.endsWith(";inverse");
+        if ($SortBy.startsWith("Name")) {
             return a.name.localeCompare(b.name) * (invertSort ? -1 : 1);
-        } else if ($SortBy.startsWith('Executor')) {
+        } else if ($SortBy.startsWith("Executor")) {
             if (a.config.executor && b.config.executor) {
                 return a.config.executor.localeCompare(b.config.executor) * (invertSort ? -1 : 1);
             } else if (a.config.executor) {
@@ -56,13 +56,13 @@
 
     $: filteredConfigs = searchFilterSortConfigs(configs);
     configs.map((config) => {
-        config.name = config.name.replace('.md', '');
+        config.name = config.name.replace(".md", "");
     });
 
     const executor_icons = {
-        slurm: 'slurm',
-        awsbatch: 'aws',
-        azurebatch: 'azure',
+        slurm: "slurm",
+        awsbatch: "aws",
+        azurebatch: "azure",
     };
 </script>
 
@@ -80,8 +80,8 @@
                 <tr>
                     <td class="name p-0">
                         <div class="position-relative p-3">
-                            <a class="stretched-link" href={'/configs/' + config.name + '/'}
-                                >{@html config.name.replace('_', '_<wbr>')}</a
+                            <a class="stretched-link" href={"/configs/" + config.name + "/"}
+                                >{@html config.name.replace("_", "_<wbr>")}</a
                             >
                         </div>
                     </td>
@@ -90,7 +90,7 @@
                     </td>
                     <td class="text-center">
                         {#if config.config.executor}
-                            {#each config.config.executor.split(',') as executor}
+                            {#each config.config.executor.split(",") as executor}
                                 <span class="badge border border-secondary-subtle text-body fw-normal ms-2">
                                     {executor}
                                 </span>

@@ -1,9 +1,9 @@
 <script lang="ts">
     export let text: string;
-    export let label: string = '';
+    export let label: string = "";
     export let copiedLabel: string = '<i class="fa-regular px-1 fa-clipboard-check" />';
-    export let classes: string = '';
-    export let copiedClasses: string = '';
+    export let classes: string = "";
+    export let copiedClasses: string = "";
 
     $: copied = false;
     $: currentClasses = copied ? copiedClasses : classes;
@@ -18,7 +18,7 @@
 </script>
 
 <span
-    class={'copy-url ' + currentClasses}
+    class={"copy-url " + currentClasses}
     on:click={() => copyToClipboard(text)}
     on:keypress={() => copyToClipboard(text)}
     data-bs-toggle="tooltip"

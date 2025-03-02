@@ -1,8 +1,8 @@
 <script lang="ts">
-    import ListingTableHeader from '@components/ListingTableHeader.svelte';
-    import PipelineCard from '@components/pipeline/PipelineCard.svelte';
-    import { CurrentFilter, Filters, SortBy, DisplayStyle, SearchQuery } from '@components/store';
-    import { onMount } from 'svelte';
+    import ListingTableHeader from "@components/ListingTableHeader.svelte";
+    import PipelineCard from "@components/pipeline/PipelineCard.svelte";
+    import { CurrentFilter, Filters, SortBy, DisplayStyle, SearchQuery } from "@components/store";
+    import { onMount } from "svelte";
 
     export let pipelines: {
         name: string;
@@ -16,12 +16,12 @@
         archived: boolean;
     }[] = [];
 
-    export let filters: { name: string }[] = [{ name: '' }];
+    export let filters: { name: string }[] = [{ name: "" }];
 
     let sortInverse = false;
 
     const searchPipelines = (pipeline) => {
-        if ($SearchQuery === '') {
+        if ($SearchQuery === "") {
             return true;
         }
         if (pipeline.name.toLowerCase().includes($SearchQuery.toLowerCase())) {
@@ -37,37 +37,37 @@
     };
 
     const filterPipelines = (pipeline) => {
-        if ($CurrentFilter.find((f) => f.name === 'Released') && pipeline.releases.length > 1 && !pipeline.archived) {
+        if ($CurrentFilter.find((f) => f.name === "Released") && pipeline.releases.length > 1 && !pipeline.archived) {
             return true;
         }
         if (
-            $CurrentFilter.find((f) => f.name === 'Under development') &&
+            $CurrentFilter.find((f) => f.name === "Under development") &&
             pipeline.releases.length === 1 &&
             !pipeline.archived
         ) {
             return true;
         }
-        if ($CurrentFilter.find((f) => f.name === 'Archived') && pipeline.archived === true) {
+        if ($CurrentFilter.find((f) => f.name === "Archived") && pipeline.archived === true) {
             return true;
         }
         return false;
     };
 
     const sortPipelines = (a, b) => {
-        sortInverse = $SortBy.endsWith(';inverse');
-        if ($SortBy.startsWith('Name')) {
+        sortInverse = $SortBy.endsWith(";inverse");
+        if ($SortBy.startsWith("Name")) {
             if (sortInverse) {
                 return b.name.localeCompare(a.name);
             } else {
                 return a.name.localeCompare(b.name);
             }
-        } else if ($SortBy.startsWith('Stars')) {
+        } else if ($SortBy.startsWith("Stars")) {
             if (sortInverse) {
                 return a.stargazers_count - b.stargazers_count;
             } else {
                 return b.stargazers_count - a.stargazers_count;
             }
-        } else if ($SortBy.startsWith('Last release')) {
+        } else if ($SortBy.startsWith("Last release")) {
             // handle case where a pipeline has no releases
             if (a.releases.length === 1 && b.releases.length === 1) {
                 if (sortInverse) {
@@ -94,19 +94,19 @@
         pipelines = pipelines.filter(filterPipelines).sort(sortPipelines).filter(searchPipelines);
         Filters.set(
             $Filters.map((filter) => {
-                if (filter.name === 'Released') {
+                if (filter.name === "Released") {
                     return {
                         name: filter.name,
                         count: pipelines.filter((p) => p.releases.length > 1 && !p.archived).length,
                     };
                 }
-                if (filter.name === 'Under development') {
+                if (filter.name === "Under development") {
                     return {
                         name: filter.name,
                         count: pipelines.filter((p) => p.releases.length === 1 && !p.archived).length,
                     };
                 }
-                if (filter.name === 'Archived') {
+                if (filter.name === "Archived") {
                     return { name: filter.name, count: pipelines.filter((p) => p.archived).length };
                 }
                 return filter;
@@ -131,9 +131,9 @@
 </script>
 
 <div class="listing px-2 py-4">
-    {#if $DisplayStyle === 'grid'}
+    {#if $DisplayStyle === "grid"}
         <div class="grid">
-            {#if filteredPipelines.length === 0 && $SearchQuery !== ''}
+            {#if filteredPipelines.length === 0 && $SearchQuery !== ""}
                 <div class="g-col-12 g-col-md-8 g-start-md-3">
                     <div class="alert alert-secondary text-center" role="alert">
                         No pipelines found. Try changing your search query or filters.
@@ -165,7 +165,7 @@
                             <div class="position-relative p-3">
                                 <a
                                     class="stretched-link"
-                                    href={'/' + pipeline.name + '/' + pipeline.releases[0].tag_name + '/'}
+                                    href={"/" + pipeline.name + "/" + pipeline.releases[0].tag_name + "/"}
                                     >{pipeline.name}</a
                                 >
                             </div>
@@ -191,7 +191,7 @@
                         </td>
                         <td class="text-end">
                             <span>
-                                {pipeline.releases.length > 1 ? pipeline.releases[0].tag_name : '-'}
+                                {pipeline.releases.length > 1 ? pipeline.releases[0].tag_name : "-"}
                             </span>
                         </td>
                     </tr>

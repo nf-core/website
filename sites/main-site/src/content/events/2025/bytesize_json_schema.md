@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize: using JSON schema in Nextflow pipelines '
+title: "Bytesize: using JSON schema in Nextflow pipelines "
 subtitle: Nicolas Vannieuwkerke, Center for Medical Genetics Ghent
 type: talk
-startDate: '2025-01-28'
-startTime: '13:00+01:00'
-endDate: '2025-01-28'
-endTime: '13:30+01:00'
+startDate: "2025-01-28"
+startTime: "13:00+01:00"
+endDate: "2025-01-28"
+endTime: "13:30+01:00"
 youtubeEmbed: https://youtu.be/OLu5FkzGCjs
 locations:
   - name: Online
