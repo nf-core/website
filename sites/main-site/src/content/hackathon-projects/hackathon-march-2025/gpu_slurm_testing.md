@@ -16,7 +16,6 @@ We welcome people from all other projects to use these resources if they need ac
 
 To enable participants access to the Slurm cluster with the GPU resources, we need to add your public key to the authorized_keys list on the Slurm cluster. If you want access, please contact [Florian](https://nfcore.slack.com/archives/DTZKT23D1) with your public key prior to the hackathon start.
 
-
 You can create a dedicated ssh keypair with ssh-keygen like this (store in a safe location):
 
 `ssh-keygen -t rsa -C "your_email@example.com"`
