@@ -12,13 +12,7 @@ const { imageUrl, alt, category = "uncategorized", link } = Astro.props;
 const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
 ---
 
-<a
-    href={link}
-    class="hex-container"
-    data-category={category}
-    target="_blank"
-    rel="noopener noreferrer"
->
+<a href={link} class="hex-container" data-category={category} target="_blank" rel="noopener noreferrer">
     <div class="hex-sticker">
         <img src={imageUrl} alt={alt} class="dark-mode-img" />
         <img src={lightModeUrl} alt={alt} class="light-mode-img" />
@@ -84,10 +78,8 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
 
     /* Light mode effect */
     :global(.light-mode) .hex-container:hover .hex-sticker {
-        filter: brightness(1.1) contrast(1.4) saturate(1.6)
-               drop-shadow(0 0 12px rgba(0, 255, 255, 0.6))
-               drop-shadow(0 0 18px rgba(255, 0, 150, 0.5))
-               drop-shadow(0 0 25px rgba(255, 255, 0, 0.5));
+        filter: brightness(1.1) contrast(1.4) saturate(1.6) drop-shadow(0 0 12px rgba(0, 255, 255, 0.6))
+            drop-shadow(0 0 18px rgba(255, 0, 150, 0.5)) drop-shadow(0 0 25px rgba(255, 255, 0, 0.5));
     }
 
     /* Holographic effect for light mode */
@@ -109,7 +101,9 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
         background-size: 300% 300%;
         mix-blend-mode: color-dodge;
         opacity: 0;
-        transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        transition:
+            opacity 0.5s ease-in-out,
+            transform 0.5s ease-in-out;
         animation: holographicMove 3s infinite linear;
         z-index: 1;
         pointer-events: none;
