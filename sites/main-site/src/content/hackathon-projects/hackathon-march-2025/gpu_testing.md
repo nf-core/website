@@ -8,7 +8,7 @@ image_alt: Picture of NVIDIA H100 Graphics card
 leaders:
   FloWuenne:
     name: Florian Wuennemann
-    slack: "https://nfcore.slack.com/archives/DTZKT23D1"
+    slack: "https://nfcore.slack.com/team/UU10KMQ1F"
   alex000kim:
     name: Alexander Kim
     slack: "https://nfcore.slack.com/team/U08GDSB976U"
