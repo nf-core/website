@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize: nf-core blog'
+title: "Bytesize: nf-core blog"
 subtitle: Matthias Hörtenhuber, SciLifeLab Data Centre
 type: talk
-startDate: '2024-01-23'
-startTime: '13:00+01:00'
-endDate: '2024-01-23'
-endTime: '13:30+01:00'
+startDate: "2024-01-23"
+startTime: "13:00+01:00"
+endDate: "2024-01-23"
+endTime: "13:30+01:00"
 youtubeEmbed: https://youtu.be/HjLCpDozPiw
 locations:
   - name: Online

@@ -1,18 +1,18 @@
 <script lang="ts">
-    import { showHelp } from '@components/store';
-    export let buttonText: string = 'Help text';
-    export let buttonClass: string = 'btn-outline-secondary me-auto';
-    export let textClass: string = '';
+    import { showHelp } from "@components/store";
+    export let buttonText: string = "Help text";
+    export let buttonClass: string = "btn-outline-secondary me-auto";
+    export let textClass: string = "";
     $: show = $showHelp;
 </script>
 
 <div>
     <div class="d-flex">
-        <button class={'btn ' + buttonClass} class:open={show} type="button" on:click={() => (show = !show)}>
+        <button class={"btn " + buttonClass} class:open={show} type="button" on:click={() => (show = !show)}>
             {buttonText}
         </button>
     </div>
-    <div class={'collapse ' + textClass} class:show>
+    <div class={"collapse " + textClass} class:show>
         <slot />
     </div>
 </div>

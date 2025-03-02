@@ -1,20 +1,20 @@
 <script lang="ts">
-    import ListingTableHeader from '@components/ListingTableHeader.svelte';
-    import ListingCard from './ListingCard.svelte';
-    import { DisplayStyle, SearchQuery } from '@components/store';
-    import GitHubProfilePicture from '@components/GitHubProfilePicture.svelte';
+    import ListingTableHeader from "@components/ListingTableHeader.svelte";
+    import ListingCard from "./ListingCard.svelte";
+    import { DisplayStyle, SearchQuery } from "@components/store";
+    import GitHubProfilePicture from "@components/GitHubProfilePicture.svelte";
 
-    import type { CollectionEntry } from 'astro:content';
+    import type { CollectionEntry } from "astro:content";
 
-    export let groups: CollectionEntry<'special-interest-groups'>[] = [];
+    export let groups: CollectionEntry<"special-interest-groups">[] = [];
 
     let filteredGroups = groups;
 </script>
 
 <div class="listing px-2 py-4">
-    {#if $DisplayStyle === 'grid'}
+    {#if $DisplayStyle === "grid"}
         <div class="grid">
-            {#if filteredGroups.length === 0 && $SearchQuery !== ''}
+            {#if filteredGroups.length === 0 && $SearchQuery !== ""}
                 <div class="g-col-12 g-col-md-8 g-start-md-3">
                     <div class="alert alert-secondary text-center" role="alert">
                         No Groups found. Try changing your search query or filters.
@@ -24,7 +24,7 @@
                 {#each filteredGroups as group (group.id)}
                     <div class="g-col-12 g-col-lg-6 g-col-xl-6 g-col-xxl-4 g-col-xxxxl-2">
                         <ListingCard footer={true}>
-                            <a slot="card-header" href={'/special-interest-groups/' + group.slug} class="success"
+                            <a slot="card-header" href={"/special-interest-groups/" + group.slug} class="success"
                                 >{group.data.groupName}</a
                             >
                             <p slot="card-body">{group.data.subtitle}</p>
@@ -42,7 +42,7 @@
                                         <p class="text-muted small mb-2">Group leads:</p>
                                         <div class="leads d-flex w-100 h-100 flex-wrap align-content-start">
                                             {#each group.data.leads as lead}
-                                                {#if typeof lead === 'string'}
+                                                {#if typeof lead === "string"}
                                                     <GitHubProfilePicture name={lead} size={40} circle={true} />
                                                 {:else}
                                                     <GitHubProfilePicture
@@ -77,7 +77,7 @@
                         <tr>
                             <td class=" name p-0">
                                 <div class="position-relative p-3">
-                                    <a class="stretched-link" href={'/special-interest-groups/' + group.slug}
+                                    <a class="stretched-link" href={"/special-interest-groups/" + group.slug}
                                         >{group.data.groupName}</a
                                     >
                                 </div>
@@ -93,7 +93,7 @@
                             <td class="">
                                 <div class="d-flex flex-wrap">
                                     {#each group.data.leads ?? [] as lead}
-                                        {#if typeof lead === 'string'}
+                                        {#if typeof lead === "string"}
                                             <GitHubProfilePicture name={lead} size={40} />
                                         {:else}
                                             <GitHubProfilePicture name={Object.keys(lead)[0]} size={40}

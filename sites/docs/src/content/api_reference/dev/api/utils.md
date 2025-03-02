@@ -223,9 +223,9 @@ Skip features. See <https://nf-co.re/docs/nf-core-tools/pipelines/create> for a 
 
 Pipeline version
 
-#### `get(item: str, default: Any = None) → Any{:python}`
-
 #### _`validator{:python}`_`outdir_to_str{:python}`_»_`{:python}`[_outdir_](#nf_core.utils.NFCoreTemplateConfig.outdir)
+
+#### `get(item: str, default: Any = None) → Any{:python}`
 
 #### `_abc_impl{:python}`_= <\_abc.\_abc_data object>_
 
@@ -707,6 +707,18 @@ Bases: `BaseModel`
                "default": null,
                "title": "Pipeline Todos"
             },
+            "pipeline_if_empty_null": {
+               "anyOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "null"
+                  }
+               ],
+               "default": null,
+               "title": "Pipeline If Empty Null"
+            },
             "plugin_includes": {
                "anyOf": [
                   {
@@ -862,6 +874,18 @@ Bases: `BaseModel`
                ],
                "default": null,
                "title": "Included Configs"
+            },
+            "local_component_structure": {
+               "anyOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "null"
+                  }
+               ],
+               "default": null,
+               "title": "Local Component Structure"
             }
          },
          "title": "NFCoreYamlLintConfig",
@@ -1168,6 +1192,18 @@ schema for linting config in .nf-core.yml should cover:
          "default": null,
          "title": "Pipeline Todos"
       },
+      "pipeline_if_empty_null": {
+         "anyOf": [
+            {
+               "type": "boolean"
+            },
+            {
+               "type": "null"
+            }
+         ],
+         "default": null,
+         "title": "Pipeline If Empty Null"
+      },
       "plugin_includes": {
          "anyOf": [
             {
@@ -1323,6 +1359,18 @@ schema for linting config in .nf-core.yml should cover:
          ],
          "default": null,
          "title": "Included Configs"
+      },
+      "local_component_structure": {
+         "anyOf": [
+            {
+               "type": "boolean"
+            },
+            {
+               "type": "null"
+            }
+         ],
+         "default": null,
+         "title": "Local Component Structure"
       }
    }
 }
@@ -1338,6 +1386,7 @@ schema for linting config in .nf-core.yml should cover:
   - [`files_exist (bool | List[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.files_exist)
   - [`files_unchanged (bool | List[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.files_unchanged)
   - [`included_configs (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.included_configs)
+  - [`local_component_structure (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.local_component_structure)
   - [`merge_markers (bool | List[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.merge_markers)
   - [`modules_config (bool | List[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.modules_config)
   - [`modules_json (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.modules_json)
@@ -1346,6 +1395,7 @@ schema for linting config in .nf-core.yml should cover:
   - [`nextflow_config (bool | List[str | Dict[str, List[str]]] | None)`](#nf_core.utils.NFCoreYamlLintConfig.nextflow_config)
   - [`nfcore_components (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.nfcore_components)
   - [`nfcore_yml (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.nfcore_yml)
+  - [`pipeline_if_empty_null (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.pipeline_if_empty_null)
   - [`pipeline_name_conventions (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.pipeline_name_conventions)
   - [`pipeline_todos (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.pipeline_todos)
   - [`plugin_includes (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.plugin_includes)
@@ -1389,6 +1439,10 @@ List of files that should not be changed
 
 Lint for included configs
 
+#### _`field{:python}`_`local_component_structure{:python}`_: bool | None_`{:python}`_= None_
+
+Lint local components use correct structure mirroring remote
+
 #### _`field{:python}`_`merge_markers{:python}`_: bool | List\[str] | None_`{:python}`_= None_
 
 List of files that should not contain merge markers
@@ -1420,6 +1474,10 @@ Lint all required files to use nf-core modules and subworkflows
 #### _`field{:python}`_`nfcore_yml{:python}`_: bool | None_`{:python}`_= None_
 
 Lint nf-core.yml
+
+#### _`field{:python}`_`pipeline_if_empty_null{:python}`_: bool | None_`{:python}`_= None_
+
+Lint for ifEmpty(null) statements
 
 #### _`field{:python}`_`pipeline_name_conventions{:python}`_: bool | None_`{:python}`_= None_
 

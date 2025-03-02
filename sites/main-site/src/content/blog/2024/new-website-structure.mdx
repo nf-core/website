@@ -2,20 +2,20 @@
 title: Faster nf-core website builds
 subtitle: Divide et impera
 pubDate: 2024-07-03T08:00:00.00+02:00
-headerImage: 'https://images.unsplash.com/photo-1591719316362-9b028d0df864'
-headerImageAlt: 'Photo of a apple being cut into wedges.'
+headerImage: "https://images.unsplash.com/photo-1591719316362-9b028d0df864"
+headerImageAlt: "Photo of a apple being cut into wedges."
 authors:
-    - 'mashehu'
-    - 'ewels'
+    - "mashehu"
+    - "ewels"
 label:
-    - 'website'
-    - 'infrastructure'
+    - "website"
+    - "infrastructure"
 ---
 
-import subsites from '@assets/images/blog/new-website-structure/sub-site-meme.png';
-import horsesizedduck from '@assets/images/blog/new-website-structure/horse-sized-duck.jpg';
-import harderstronger from '@assets/images/blog/new-website-structure/harder-stronger.gif';
-import { Image } from 'astro:assets';
+import subsites from "@assets/images/blog/new-website-structure/sub-site-meme.png";
+import horsesizedduck from "@assets/images/blog/new-website-structure/horse-sized-duck.jpg";
+import harderstronger from "@assets/images/blog/new-website-structure/harder-stronger.gif";
+import { Image } from "astro:assets";
 
 # Build big
 
@@ -39,11 +39,11 @@ The term "monorepo" typically refers to a setup where multiple code bases coexis
 
 The website is now really five separate websites:
 
--   [main-site](https://github.com/nf-core/website/tree/main/sites/main-site)
--   [pipelines](https://github.com/nf-core/website/tree/main/sites/pipelines)
--   [modules and subworkflows](https://github.com/nf-core/website/tree/main/sites/modules-subworkflows)
--   [documentation](https://github.com/nf-core/website/tree/main/sites/docs)
--   [configs](https://github.com/nf-core/website/tree/main/sites/configs)
+- [main-site](https://github.com/nf-core/website/tree/main/sites/main-site)
+- [pipelines](https://github.com/nf-core/website/tree/main/sites/pipelines)
+- [modules and subworkflows](https://github.com/nf-core/website/tree/main/sites/modules-subworkflows)
+- [documentation](https://github.com/nf-core/website/tree/main/sites/docs)
+- [configs](https://github.com/nf-core/website/tree/main/sites/configs)
 
 These are hosted in separate Netlify deployments which are stitched together with redirect rules. To the end user the experience is the same, but the build steps can now be handled independently from one another.
 

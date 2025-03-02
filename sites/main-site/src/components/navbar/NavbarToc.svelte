@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { currentHeading } from '@components/store';
-    import SchemaListingTocButtons from '@components/schema/SchemaListingTocButtons.svelte';
+    import { currentHeading } from "@components/store";
+    import SchemaListingTocButtons from "@components/schema/SchemaListingTocButtons.svelte";
     export let headings: {
         text: string;
         slug: string;
@@ -24,7 +24,7 @@
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             {#each headings as heading (heading)}
                 <li class:active={heading.slug === $currentHeading}>
-                    <a class="dropdown-item" href={'#' + heading.slug}>
+                    <a class="dropdown-item" href={"#" + heading.slug}>
                         {#if heading.fa_icon}
                             <i class={heading.fa_icon} aria-hidden="true" />
                         {/if}
@@ -53,7 +53,7 @@
         background-color: rgba(var(--bs-success), 0.75);
     }
 
-    :global([data-bs-theme='dark']) {
+    :global([data-bs-theme="dark"]) {
         li.active {
             background-color: rgba(var(--bs-success), 0.75);
         }
