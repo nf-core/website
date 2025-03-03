@@ -2,12 +2,28 @@ import * as dotenv from 'dotenv';
 import { Octokit } from 'octokit';
 import { retry } from "@octokit/plugin-retry";
 import { throttling } from "@octokit/plugin-throttling";
-import { GITHUB_TOKEN } from 'astro:env/server';
 
-// For Node.js environment (when running directly with node)
-if (!import.meta.env) {
-  console.log("using process.env.GITHUB_TOKEN");
-  dotenv.config();
+// Get GitHub token from the appropriate environment
+let GITHUB_TOKEN;
+
+// Load environment variables
+dotenv.config();
+
+try {
+  // Try to use Astro environment if available
+  if (typeof import.meta !== 'undefined' && import.meta.env) {
+    const astroEnv = await import('astro:env/server');
+    GITHUB_TOKEN = astroEnv.GITHUB_TOKEN;
+    console.log("Using GITHUB_TOKEN from Astro environment");
+  } else {
+    // Fall back to process.env
+    GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+    console.log("Using GITHUB_TOKEN from process.env");
+  }
+} catch (error) {
+  // Fall back to process.env if Astro import fails
+  GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+  console.log("Astro environment not detected, using process.env.GITHUB_TOKEN");
 }
 
 // For Astro, we need to access the token through import.meta.env.GITHUB_TOKEN
