@@ -20,7 +20,7 @@ To enable participants access to the Slurm cluster with the GPU resources, we ne
 
 You can create a dedicated ssh keypair with ssh-keygen like this, replacing the example email address with your own (store in a safe location):
 
-```bash 
+```bash
 ssh-keygen -t rsa -C "your_email@example.com"
 ```
 
