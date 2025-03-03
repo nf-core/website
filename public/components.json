@@ -9047,6 +9047,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -9596,69 +9600,44 @@
           ],
           [
             {
-              "fast5_dir": {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing model information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "model_dir": {
                 "type": "directory",
-                "description": "Directory containing MinION FAST5 files",
+                "description": "Path containing clair3 models, defaults to models packaged with conda installation",
                 "pattern": "*"
               }
-            }
-          ],
-          [
+            },
             {
-              "sequencing_summary": {
-                "type": "file",
-                "description": "Path to Guppy sequencing summary",
-                "pattern": "*.{txt}"
-              }
-            }
-          ],
-          [
-            {
-              "\"primer-schemes/${scheme}/V${scheme_version}/${scheme}.reference.fasta\"": {
-                "type": "file",
-                "description": "Scheme reference file"
-              }
-            }
-          ],
-          [
-            {
-              "\"primer-schemes/${scheme}/V${scheme_version}/${scheme}.scheme.bed\"": {
-                "type": "file",
-                "description": "Scheme BED file"
-              }
-            }
-          ],
-          [
-            {
-              "medaka_model_file": {
-                "type": "file",
-                "description": "Medaka model file to use (if option --medaka is set)\n",
-                "pattern": "*.hdf5"
-              }
-            }
-          ],
-          [
-            {
-              "medaka_model_string": {
+              "model": {
                 "type": "string",
-                "description": "Medaka model string to use (if option --medaka is set)\n",
-                "pattern": "*"
+                "description": "The model to use for clair3, if not provided the pipeline will try to figure\nit out the appropriate model from the read fastq\n"
               }
             }
           ],
           [
             {
-              "scheme": {
-                "type": "string",
-                "description": "Name of the primer scheme"
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing scheme information\ne.g. [ id:'test', single_end:false ]\n"
               }
-            }
-          ],
-          [
+            },
             {
-              "scheme_version": {
-                "type": "string",
-                "description": "Version of the primer scheme"
+              "fasta": {
+                "type": "file",
+                "description": "Scheme reference fasta file",
+                "pattern": "*.{fasta}"
+              }
+            },
+            {
+              "bed": {
+                "type": "file",
+                "description": "Scheme BED file",
+                "pattern": "*.{bed}"
               }
             }
           ]
@@ -113585,6 +113564,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -138967,6 +138954,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
+        },
         {
           "name": "viralrecon",
           "version": "2.6.0"
@@ -215874,6 +215865,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        },
         {
           "name": "phageannotator",
           "version": "dev"
