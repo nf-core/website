@@ -16,7 +16,7 @@ leaders:
 Thanks to the generous sponsorship from [Nebius](https://nebius.com/), we have access to 16 powerful H100 GPUs for the duration of this hackathon. Nebius is providing these resources through their Slurm-based workload manager called [Soperator](https://nebius.com/services/soperator), enabling participants to test and develop GPU-accelerated tools with Nextflow using a familiar Slurm interface.
 We welcome people from all other projects to use these resources if they need access to GPUs.
 
-To enable participants access to the Slurm cluster with the GPU resources, we need to add your public key to the authorized_keys list on the Slurm cluster. If you want access, please contact [Florian](https://nfcore.slack.com/archives/DTZKT23D1) with your public key prior to the hackathon start.
+To enable participants access to the Slurm cluster with the GPU resources, we need to add your public key to the authorized_keys list on the Slurm cluster. If you want access, please contact [Florian](https://nfcore.slack.com/archives/DTZKT23D1) with your public key.
 
 You can create a dedicated ssh keypair with ssh-keygen like this (store in a safe location):
 
