@@ -2,7 +2,6 @@
     import { currentHeading, Checkboxes } from "@components/store";
     import * as icons from "file-icons-js";
     import "file-icons-js/css/style.css";
-    import mermaid from "mermaid";
     import { onMount, mount } from "svelte";
     import CopyButton from "@components/CopyButton.svelte";
 
@@ -16,8 +15,8 @@
         if (typeof window !== "undefined" && window.location.pathname.includes("/events/") && !window.location.hash) {
             window.scrollTo(0, 0);
         }
-        async function renderDiagrams(graphs) {
-            mermaid.initialize({
+        async function renderDiagrams(graphs, mermaidModule) {
+            mermaidModule.initialize({
                 startOnLoad: false,
                 fontFamily: "var(--sans-font)",
                 // @ts-ignore This works, but TS expects a enum for some reason
@@ -30,16 +29,20 @@
                 let svg = document.createElement("svg");
                 const id = (svg.id = "mermaid-" + Math.round(Math.random() * 100000));
                 graph.appendChild(svg);
-                mermaid.render(id, content).then((result) => {
+                mermaidModule.render(id, content).then((result) => {
                     graph.innerHTML = result.svg;
                 });
             }
         }
         const graphs = document.getElementsByClassName("mermaid");
         if (document.getElementsByClassName("mermaid").length > 0) {
-            renderDiagrams(graphs);
-            window.addEventListener("theme-changed", (e) => {
-                renderDiagrams(graphs);
+            // Dynamically import mermaid only when needed
+            import("mermaid").then((mermaidModule) => {
+                console.log("imported mermaid module");
+                renderDiagrams(graphs, mermaidModule.default);
+                window.addEventListener("theme-changed", (e) => {
+                    renderDiagrams(graphs, mermaidModule.default);
+                });
             });
         }
 
