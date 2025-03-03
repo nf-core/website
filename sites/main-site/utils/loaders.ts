@@ -327,6 +327,7 @@ export function pipelineLoader(pipelines_json: {
     return {
         name: "pipeline-loader",
         load: async (context: LoaderContext) => {
+            console.log('Starting pipeline loader');
             getCurrentRateLimitRemaining();
             // Process pipelines sequentially
             for (const pipeline of pipelines_json.remote_workflows) {
@@ -357,6 +358,7 @@ export function pipelineLoader(pipelines_json: {
                     // Process files sequentially
                     for (const doc_file of release.doc_files) {
                         context.logger.debug(`Loading ${pipeline.name}@${release.tag_name}/${doc_file}`);
+                        console.log('.')
                         try {
                             await fetcher.processFile(doc_file, processors, false, metadata);
                         } catch (error) {
@@ -368,6 +370,7 @@ export function pipelineLoader(pipelines_json: {
                     }
                 }
             }
+            console.log('Pipeline loader completed successfully');
         },
     };
 }
@@ -385,6 +388,7 @@ export function releaseLoader(pipelines_json: {
     return {
         name: "release-notes-loader",
         load: async (context: LoaderContext) => {
+            console.log('Starting release notes loader');
             getCurrentRateLimitRemaining();
             const { store, generateDigest, config, logger } = context;
 
@@ -455,9 +459,10 @@ export function releaseLoader(pipelines_json: {
                     logger.error(`Error fetching releases for ${pipeline.name}: ${error.message}`);
                     // Continue with next pipeline instead of failing the entire process
                 }
+
             }
 
-            logger.debug("GitHub release notes processing completed successfully");
+            logger.info("GitHub release notes processing completed successfully");
         }
     };
 }

@@ -85,7 +85,6 @@ const sortEntries = (entries: SidebarEntry[]) => {
 };
 
 export const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[], url: string, url_prefix: string = '/docs/') => {
-    console.log('docs', docs);
     docs.sort((a, b) => a.id.localeCompare(b.id));
 
     docs.forEach((doc) => {
