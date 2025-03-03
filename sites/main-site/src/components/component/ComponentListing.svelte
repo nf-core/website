@@ -92,7 +92,18 @@
                 </div>
             {:else}
                 {#each paginatedItems as component (component.name)}
-                    <div class="g-col-12 g-col-md-6 g-col-xl-6 g-col-xxl-4 g-col-xxxl-3 g-col-xxxxl-2">
+                    <div
+                        class={[
+                            "g-col-12",
+                            "g-col-md-6",
+                            "g-col-xl-6",
+                            "g-col-xxl-4",
+                            components[0].type === "module" && "g-col-xxxl-3",
+                            components[0].type === "subworkflow" && "g-col-xxxl-4",
+                            components[0].type === "module" && "g-col-xxxxl-2",
+                            components[0].type === "subworkflow" && "g-col-xxxxl-3",
+                        ]}
+                    >
                         <ComponentCard {component} />
                     </div>
                 {/each}
