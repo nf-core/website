@@ -49,37 +49,6 @@ const categories = [...new Set(stickers.map((sticker) => sticker.category))].sor
         flex-wrap: wrap;
     }
 
-    .category-filter {
-        cursor: pointer;
-        padding: 10px 20px;
-        background: var(--theme-btn-bg, #fff);
-        color: var(--theme-btn-text, #222);
-        border: solid 1px var(--theme-accent, #1a9655);
-        border-radius: 5px;
-        font-size: 16px;
-        outline: none;
-        appearance: none;
-        transition:
-            background 0.3s ease,
-            color 0.3s ease;
-        min-width: 200px;
-    }
-
-    .category-filter:hover {
-        background: var(--theme-btn-hover-bg, #f0f0f0);
-    }
-
-    .category-filter {
-        position: relative;
-        background-image: var(
-            --select-arrow,
-            url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%231a9655"><path d="M7 10l5 5 5-5H7z"/></svg>')
-        );
-        background-repeat: no-repeat;
-        background-position: right 10px center;
-        background-size: 24px;
-        padding-right: 30px;
-    }
 
     .hex-gallery {
         display: flex;
