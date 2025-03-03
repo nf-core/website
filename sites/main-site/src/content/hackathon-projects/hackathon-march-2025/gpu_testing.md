@@ -20,7 +20,9 @@ To enable participants access to the Slurm cluster with the GPU resources, we ne
 
 You can create a dedicated ssh keypair with ssh-keygen like this (store in a safe location):
 
-`ssh-keygen -t rsa -C "your_email@example.com"`
+```bash 
+ssh-keygen -t rsa -C "your_email@example.com"
+```
 
 Once your public key has been added to the authorized_keys list on the cluster, you can connect to it with:
 
