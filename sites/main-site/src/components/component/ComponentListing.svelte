@@ -34,7 +34,7 @@
         if (searchQuery === "") {
             return true;
         }
-        if (component.meta.name.toLowerCase().includes(searchQuery.toLowerCase())) {
+        if (component.meta.name && component.meta.name.toLowerCase().includes(searchQuery.toLowerCase())) {
             return true;
         }
         if (
