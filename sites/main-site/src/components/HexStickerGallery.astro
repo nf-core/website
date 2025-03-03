@@ -20,7 +20,7 @@ const categories = [...new Set(stickers.map((sticker) => sticker.category))].sor
 
 <div class="w-100 p-2">
     <div class="controls">
-        <select class="category-filter" id="categoryFilter">
+        <select class="category-filter form-select" id="categoryFilter">
             <option value="all">All Categories</option>
             {categories.map((category) => <option value={category}>{category}</option>)}
         </select>
