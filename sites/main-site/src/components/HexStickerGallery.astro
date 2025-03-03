@@ -18,7 +18,7 @@ const { stickers } = Astro.props;
 const categories = [...new Set(stickers.map((sticker) => sticker.category))].sort();
 ---
 
-<div class="hex-gallery-container">
+<div class="w-100 p-2">
     <div class="controls">
         <select class="category-filter" id="categoryFilter">
             <option value="all">All Categories</option>
