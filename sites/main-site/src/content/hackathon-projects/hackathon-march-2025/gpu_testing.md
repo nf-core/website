@@ -2,7 +2,6 @@
 title: GPU development / testing
 category: components
 slack: "https://nfcore.slack.com/archives/C07PPQR415W"
-intro_video: ""
 image: "/assets/images/events/2025/hackathon-march/nebius_sponsor_logo.png"
 image_alt: Picture of NVIDIA H100 Graphics card
 leaders:
