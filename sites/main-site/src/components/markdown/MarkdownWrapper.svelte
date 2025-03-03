@@ -40,7 +40,7 @@
             import("mermaid").then((mermaidModule) => {
                 console.log("imported mermaid module");
                 renderDiagrams(graphs, mermaidModule.default);
-                window.addEventListener("theme-changed", (e) => {
+                window.addEventListener("theme-changed", () => {
                     renderDiagrams(graphs, mermaidModule.default);
                 });
             });

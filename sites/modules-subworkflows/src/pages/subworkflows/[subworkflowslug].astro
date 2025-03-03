@@ -23,9 +23,9 @@ const { subworkflow } = Astro.props;
 
 <ComponentPageLayout
     name={subworkflow.name}
-    description={subworkflow.meta.description}
+    description={subworkflow.meta.description || "nf-core subworkflow"}
     type="subworkflows"
-    topics={subworkflow.meta.keywords}
+    topics={subworkflow.meta.keywords || ["nf-core", "subworkflow"]}
 >
     <div class="row">
         <div class="col-12 col-md-10">
@@ -37,7 +37,7 @@ const { subworkflow } = Astro.props;
                     >
                 </h2>
                 <div class="">
-                    <Markdown of={subworkflow.meta.description} />
+                    <Markdown of={subworkflow.meta.description || "nf-core subworkflow"} />
                 </div>
             </div>
             <div class="subworkflow-params">
