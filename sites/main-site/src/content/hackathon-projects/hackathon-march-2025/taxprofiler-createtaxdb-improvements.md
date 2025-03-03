@@ -18,7 +18,7 @@ This project aims to enhance the:
 
 We welcome contributors of all experience levels.
 
-## Goal
+## Goals
 
 1. Add nanopore taxonomic classifiers
 2. (Optionally) Work on pipeline chaining approach
