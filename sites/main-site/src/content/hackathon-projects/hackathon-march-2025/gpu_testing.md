@@ -26,7 +26,9 @@ ssh-keygen -t rsa -C "your_email@example.com"
 
 Once your public key has been added to the authorized_keys list on the cluster, you can connect to it with:
 
-`ssh -i /path/to/your/private_key username@hostname`
+```
+ssh -i /path/to/your/private_key username@hostname
+```
 
 :::info
 **Important information**: Access to the cluster and all data on the cluster will be wiped once the hackathon ends, make sure to transfer all important data from the Slurm cluster to your own storage before the hackathon ends!
