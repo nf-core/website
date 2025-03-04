@@ -13,8 +13,9 @@ leaders:
 ---
 
 This project aims to enhance the:
-  * [nf-core/taxprofiler](https://nf-co.re/taxprofiler/dev) pipeline with a focus on the [1.3.0 - Crazy Corgi](https://github.com/nf-core/taxprofiler/milestone/4) milestone
-  * [nf-core/createtaxdb](https://nf-co.re/createtaxdb/dev) pipeline with a focus on the [first release milestone](https://github.com/nf-core/createtaxdb/milestone/1)
+
+- [nf-core/taxprofiler](https://nf-co.re/taxprofiler/dev) pipeline with a focus on the [1.3.0 - Crazy Corgi](https://github.com/nf-core/taxprofiler/milestone/4) milestone
+- [nf-core/createtaxdb](https://nf-co.re/createtaxdb/dev) pipeline with a focus on the [first release milestone](https://github.com/nf-core/createtaxdb/milestone/1)
 
 We welcome contributors of all experience levels.
 
@@ -22,12 +23,12 @@ We welcome contributors of all experience levels.
 
 1. Create modules for taxonomic classifiers (beginner friendly tasks):
 
-    a. metacache
-   
-    b. metabuli
-   
-    c. melon
-   
-3. Add the classifiers to the taxprofiler workflow
-4. (Optionally) Work on pipeline chaining approach
-5. Add support for KMCP databases
+   a. metacache
+
+   b. metabuli
+
+   c. melon
+
+2. Add the classifiers to the taxprofiler workflow
+3. (Optionally) Work on pipeline chaining approach
+4. Add support for KMCP databases
