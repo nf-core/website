@@ -180,7 +180,7 @@ const specialInterestGroups = defineCollection({
 });
 
 const hackathonProjects = defineCollection({
-    type: 'content',
+    loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/hackathon-projects' }),
     schema: z
         .object({
             title: z.string(),

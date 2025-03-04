@@ -5,11 +5,11 @@ import Profile from "@components/GitHubProfilePicture.svelte";
 import { YouTube } from "@astro-community/astro-embed-youtube";
 
 import { Image } from "astro:assets";
-const { slug, title, color, category, proj_url, leaders, slack, intro_video, image, image_alt } = Astro.props;
+const { id, title, color, category, proj_url, leaders, slack, intro_video, image, image_alt } = Astro.props;
 
 const images = import.meta.glob("../../../assets/**");
 export interface Props {
-    slug: string;
+    id: string;
     title: string;
     color?: string;
     category?: string;
@@ -29,11 +29,11 @@ if (!color && category) {
 }
 ---
 
-<div class="modal fade" id={slug} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id={id} tabindex="-1" aria-labelledby={`${id}-label`} aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title" id="exampleModalLabel">{title}</h1>
+            <div class="modal-header d-flex align-items-center">
+                <h1 class="modal-title" id={`${id}-label`}>{title}</h1>
                 {
                     category && (
                         <span class="fs-6 badge rounded-pill ms-4" style={`background-color: ${this_color}`}>
@@ -41,7 +41,8 @@ if (!color && category) {
                         </span>
                     )
                 }
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close align-self-start" data-bs-dismiss="modal" aria-label="Close"
+                ></button>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -76,7 +77,7 @@ if (!color && category) {
                                     <h4>Group Leaders</h4>
                                     <div class="d-flex flex-wrap">
                                         {Object.entries(leaders).map(([github, { name, slack }]) => (
-                                            <div class="d-flex align-items-center border rounded rounded-start-0 mb-2">
+                                            <div class="d-flex align-items-center border rounded rounded-start-0 mb-2 me-2">
                                                 <Profile name={github} size={50} />
                                                 {slack && (
                                                     <a href={slack} target="_blank" class="me-2 text-decoration-none">
@@ -113,7 +114,7 @@ if (!color && category) {
                                 <Image
                                     src={images["../../.." + image]()}
                                     width="600"
-                                    alt={image_alt}
+                                    alt={image_alt ?? ""}
                                     style="object-fit: contain;"
                                 />
                             </div>
