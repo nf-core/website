@@ -1,8 +1,8 @@
 {
     "name": "nf-co.re",
-    "type": "module",
     "version": "0.0.1",
     "private": true,
+    "type": "module",
     "scripts": {
         "build-cache": "npm run build-pipeline-json && npm run build-component-json && npm run build-md-cache",
         "build-md-cache": "node bin/build-cache.js && tar -cvJf .cache.tar.xz .cache && node bin/build-content-collection",

@@ -6,10 +6,9 @@
     import admonitionsPlugin from "@root/bin/remark-admonitions.js";
     import addClasses from "rehype-class-names";
     import rehypeAutolinkHeadings from "rehype-autolink-headings";
-    // import rehypePrettyCode from 'rehype-pretty-code'; // not working because svelte-exmarkdown is working only with sync
     import rehypeHighlight from "rehype-highlight";
     import rehypeSlug from "rehype-slug";
-    import urls from "rehype-urls";
+    import { visit } from "unist-util-visit";
     import rehypeWrap from "rehype-wrap-all";
     import { h } from "hastscript";
     import remarkMath from "remark-math";
