@@ -41,6 +41,7 @@
         class="btn btn-secondary border copy-txt"
         class:text-bg-success={copied}
         class:rounded-top-0={flatTop}
+        aria-label="Copy to clipboard"
         data-bs-toggle="tooltip"
         data-bs-placement="left"
         title="Copy to clipboard"

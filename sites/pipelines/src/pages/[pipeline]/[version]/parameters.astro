@@ -78,7 +78,7 @@ if (Object.keys(definitions).length > 0) {
         </div>
         <div class="col-12 col-md-2 toc order-first order-md-last pe-0">
             <SidebarToc {headings} client:idle>
-                <SchemaListingTocButtons client:visible />
+                <SchemaListingTocButtons client:visible slot="defaultContent" />
             </SidebarToc>
         </div>
     </div>
