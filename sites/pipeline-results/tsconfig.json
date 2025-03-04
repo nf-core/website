@@ -15,6 +15,7 @@
         },
         "strictNullChecks": true
     },
+    "include": [".astro/types.d.ts", "**/*"],
     "exclude": [
         "node_modules",
         "dist",

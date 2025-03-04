@@ -1,19 +1,19 @@
 ---
 import MarkdownTocLayout from "@layouts/MarkdownTocLayout.astro";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import { YouTube } from "@astro-community/astro-embed-youtube";
 import VideoTranscript from "@components/VideoTranscript.svelte";
 import Admonition from "@components/Admonition.astro";
-import ListModals from "@components/event/HackathonProjects/ListModals.astro";
 import type { CollectionEntry } from "astro:content";
 import type { SidebarEntry } from "@utils/types";
 import { createLinkOrGroup } from "@utils/functions";
+import ListModals from "@components/event/HackathonProjects/ListModals.astro";
 
 export async function getStaticPaths() {
     const events = await getCollection("events");
     return events.map((event) => ({
         params: {
-            event: event.slug,
+            event: event.id.replace(/\.[^/.]+$/, ""),
         },
         props: {
             event: event,
@@ -25,7 +25,7 @@ const { event, events } = Astro.props;
 const title = event.data.title;
 const subtitle = event.data.subtitle;
 let frontmatter = event.data;
-const { headings, Content } = await event.render();
+const { headings, Content } = await render(event);
 
 const md_github_url = "https://github.com/nf-core/website/blob/main/sites/main-site/src/content/events/" + event.id;
 
@@ -68,7 +68,7 @@ events
 
 const addEntriesToSection = (sections, events: CollectionEntry<"events">[]) => {
     events.forEach((event) => {
-        const parts = event.slug.split("/");
+        const parts = event.id.replace(/\.[^/.]+$/, "").split("/");
         let currentLevel = sections;
 
         parts.forEach((part, i) => {
@@ -81,9 +81,9 @@ const addEntriesToSection = (sections, events: CollectionEntry<"events">[]) => {
                 if (existingEntry.type === "group") {
                     // workaround for index files in nested events, where another element could already have created the group
                     if (/index\.(md|mdx)$/.test(event.id) && i === parts.length - 1) {
-                        existingEntry.href = "/events/" + event.slug;
-                        existingEntry.isCurrent = Astro.url.pathname === "/events/" + event.slug;
-                        existingEntry.collapsed = Astro.url.pathname === "/events/" + event.slug;
+                        existingEntry.href = "/events/" + event.id.replace(/\.[^/.]+$/, "");
+                        existingEntry.isCurrent = Astro.url.pathname === "/events/" + event.id.replace(/\.[^/.]+$/, "");
+                        existingEntry.collapsed = Astro.url.pathname === "/events/" + event.id.replace(/\.[^/.]+$/, "");
                     }
                     currentLevel = existingEntry.entries;
                 }
@@ -93,7 +93,7 @@ const addEntriesToSection = (sections, events: CollectionEntry<"events">[]) => {
                 const newEntry = createLinkOrGroup(
                     parts.slice(0, i + 1).join("_"),
                     title,
-                    "/events/" + event.slug,
+                    "/events/" + event.id.replace(/\.[^/.]+$/, ""),
                     lastPart,
                     Astro.url.pathname,
                 );
@@ -109,6 +109,7 @@ const addEntriesToSection = (sections, events: CollectionEntry<"events">[]) => {
 const years = [...new Set(events.map((event) => event.data.start.getFullYear()))].sort((a, b) => b - a);
 let sections: SidebarEntry[] = years.map((year) => {
     return {
+        id: year.toString(),
         label: year.toString(),
         entries: [],
         type: "group",
@@ -119,14 +120,14 @@ addEntriesToSection(sections, events);
 // sort .entries by date
 sections.forEach((year) => {
     year.entries.sort((a, b) => {
-        const eventA = events.find((event) => "/events/" + event.slug === a.href);
-        const eventB = events.find((event) => "/events/" + event.slug === b.href);
+        const eventA = events.find((event) => "/events/" + event.id.replace(/\.[^/.]+$/, "") === a.href);
+        const eventB = events.find((event) => "/events/" + event.id.replace(/\.[^/.]+$/, "") === b.href);
         return eventB.data.startDate - eventA.data.startDate;
     });
 });
 ---
 
-{frontmatter.importTypeform && <script src="https://embed.typeform.com/next/embed.js" />}
+{frontmatter.importTypeform && <script type="text/javascript" src="https://embed.typeform.com/next/embed.js" async />}
 <MarkdownTocLayout
     title={title}
     subtitle={subtitle}
