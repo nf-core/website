@@ -20,6 +20,13 @@ We welcome contributors of all experience levels.
 
 ## Goals
 
-1. Add nanopore taxonomic classifiers
-2. (Optionally) Work on pipeline chaining approach
-3. Add support for KMCP databases
+1. Add modules for taxonomic classifiers (beginner friendly tasks):
+
+    a. metacache
+   
+    b. metabuli
+   
+    c. melon
+2. Add the classifiers to the taxprofiler workflow
+3. (Optionally) Work on pipeline chaining approach
+4. Add support for KMCP databases
