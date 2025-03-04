@@ -1,0 +1,40 @@
+---
+import PageLayout from "@layouts/PageLayout.astro";
+import HexStickerGallery from "../components/HexStickerGallery.astro";
+
+// Define pipeline names from the nf-core/logos repository
+const pipelineNames = [
+    "airrflow",
+    "createtaxdb",
+    "deepmodeloptim",
+    "eager",
+    "fetchngs",
+    "funcscan",
+    "mag",
+    "molkart",
+    "raredisease",
+    "reportho",
+    "sarek",
+    "taxprofiler",
+];
+
+// Create sticker data using GitHub URLs
+const stickers = pipelineNames.map((pipeline) => {
+    return {
+        // Use raw.githubusercontent.com to get the direct image URL
+        imageUrl: `https://raw.githubusercontent.com/nf-core/logos/master/hexagon-stickers/${pipeline}/nfcore-${pipeline}-logo-hex-dark.png`,
+        alt: `${pipeline} pipeline`,
+        category: "pipeline-hexagon-stickers",
+        // Link to the GitHub repository
+        link: `https://github.com/nf-core/${pipeline}`,
+    };
+});
+---
+
+<PageLayout title="nf-core Stickers" subtitle="Browse our collection of hex stickers organized by category.">
+    <main class="py-5">
+        <div class="container">
+            <HexStickerGallery stickers={stickers} />
+        </div>
+    </main>
+</PageLayout>

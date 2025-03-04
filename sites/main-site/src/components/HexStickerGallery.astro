@@ -1,0 +1,219 @@
+---
+import HexSticker from "./HexSticker.astro";
+
+interface StickerData {
+    imageUrl: string;
+    alt: string;
+    category: string;
+    link?: string;
+}
+
+interface Props {
+    stickers: StickerData[];
+}
+
+const { stickers } = Astro.props;
+
+// Get unique categories for grouping stickers
+const categories = [...new Set(stickers.map((sticker) => sticker.category))].sort();
+
+// Group stickers by category
+const stickersByCategory = categories.reduce(
+    (acc, category) => {
+        acc[category] = stickers.filter((sticker) => sticker.category === category);
+        return acc;
+    },
+    {} as Record<string, StickerData[]>,
+);
+
+// Function to format category name for display
+function formatCategoryName(category: string): string {
+    return category
+        .split("-")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+}
+---
+
+<div class="w-100 p-2">
+    {
+        categories.map((category) => (
+            <div class="category-section mb-5">
+                <h2 class="category-heading mb-4">{formatCategoryName(category)}</h2>
+                <div class="hex-gallery" id={`hexGallery-${category}`} data-category={category}>
+                    {stickersByCategory[category].map((sticker) => (
+                        <HexSticker
+                            imageUrl={sticker.imageUrl}
+                            alt={sticker.alt}
+                            category={sticker.category}
+                            link={sticker.link}
+                        />
+                    ))}
+                </div>
+            </div>
+        ))
+    }
+</div>
+
+<style>
+    .category-heading {
+        text-align: center;
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: var(--theme-text, #fff);
+        margin-top: 1rem;
+    }
+
+    .hex-gallery {
+        --hex-size: 187.5px; /* Base size for large screens */
+        --hex-margin: 0.5rem;
+        min-height: 625px;
+        position: relative;
+        width: 100%;
+    }
+
+    /* Responsive sizing for different screen sizes */
+    @media (max-width: 1200px) {
+        .hex-gallery {
+            --hex-size: 175px;
+            min-height: 585px;
+        }
+    }
+
+    @media (max-width: 992px) {
+        .hex-gallery {
+            --hex-size: 150px;
+            min-height: 500px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .hex-gallery {
+            --hex-size: 125px;
+            min-height: 420px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .hex-gallery {
+            --hex-size: 100px;
+            min-height: 335px;
+        }
+    }
+
+    /* Hover effects for the gallery */
+    .hex-gallery:hover .hex-container:not(:hover) {
+        opacity: 0.7;
+        filter: grayscale(0.2);
+        transform: scale(0.95);
+    }
+
+    .hex-gallery .hex-container {
+        transition:
+            opacity 0.3s ease,
+            filter 0.3s ease,
+            transform 0.3s ease;
+    }
+
+    .hex-gallery .hex-container:hover {
+        z-index: 10;
+        transform: scale(1.05);
+    }
+</style>
+
+<script>
+    import { arrangeHexGrid, setupHexGridResizing, shouldRearrange } from "./hexGrid.js";
+
+    let cleanupResizeListeners = [];
+    let lastContainerWidths = new Map();
+
+    function updateHexLayouts() {
+        // Clean up previous resize listeners
+        cleanupResizeListeners.forEach((cleanup) => cleanup());
+        cleanupResizeListeners = [];
+
+        // Get all hex galleries
+        const hexGalleries = document.querySelectorAll(".hex-gallery");
+
+        hexGalleries.forEach((gallery) => {
+            const hexElements = Array.from(gallery.querySelectorAll(".hex-container"));
+
+            if (hexElements.length > 0) {
+                // Store initial width for comparison
+                lastContainerWidths.set(gallery.id, gallery.clientWidth);
+
+                // Add a class to enable CSS transitions
+                hexElements.forEach((hex) => {
+                    hex.classList.add("hex-positioned");
+                });
+
+                // Setup new hex grid with resize handling
+                const cleanup = setupHexGridResizing(gallery, hexElements, {
+                    spacing: 10,
+                    startingRow: window.innerWidth < 576 ? 2 : 3, // Adjust starting row for mobile
+                    minHexPerRow: 2, // Ensure at least 2 hexagons per row on small screens
+                    transitionDuration: "0.4s", // Smooth transition duration
+                });
+
+                cleanupResizeListeners.push(cleanup);
+            }
+        });
+    }
+
+    // Use Intersection Observer to only initialize visible galleries
+    function setupLazyInitialization() {
+        const hexGalleries = document.querySelectorAll(".hex-gallery");
+
+        if ("IntersectionObserver" in window) {
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            const gallery = entry.target;
+                            const hexElements = Array.from(gallery.querySelectorAll(".hex-container"));
+
+                            if (hexElements.length > 0) {
+                                // Setup hex grid for this gallery
+                                const cleanup = setupHexGridResizing(gallery, hexElements, {
+                                    spacing: 10,
+                                    startingRow: window.innerWidth < 576 ? 2 : 3,
+                                    minHexPerRow: 2,
+                                    transitionDuration: "0.4s",
+                                });
+
+                                cleanupResizeListeners.push(cleanup);
+
+                                // Stop observing once initialized
+                                observer.unobserve(gallery);
+                            }
+                        }
+                    });
+                },
+                {
+                    rootMargin: "200px", // Start loading before it's visible
+                    threshold: 0.01,
+                },
+            );
+
+            // Observe each gallery
+            hexGalleries.forEach((gallery) => {
+                observer.observe(gallery);
+            });
+        } else {
+            // Fallback for browsers without IntersectionObserver
+            updateHexLayouts();
+        }
+    }
+
+    // Initialize hex grids on page load
+    document.addEventListener("DOMContentLoaded", () => {
+        // Use lazy initialization for better performance
+        setupLazyInitialization();
+    });
+
+    // Handle orientation changes
+    window.addEventListener("orientationchange", () => {
+        // Small delay to ensure dimensions are updated after orientation change
+        setTimeout(updateHexLayouts, 200);
+    });
+</script>
