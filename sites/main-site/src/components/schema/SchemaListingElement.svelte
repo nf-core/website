@@ -4,20 +4,31 @@
     import Markdown from "@components/markdown/Markdown.svelte";
 
     let { title, property } = $props();
-    const id = title.replace(" ", "-");
+    const id = $derived(title.replace(" ", "-"));
 
-    const pattern = property.pattern;
-    let longPattern = $state([]);
-    // explicitely handle patterns which are an enum work around, i.e. they have multiple values, eg. "^(foo|bar)$"
-    if (
-        pattern &&
-        pattern.startsWith("^(") &&
-        (pattern.endsWith(")$") || pattern.endsWith(")*$")) &&
-        pattern.includes("|")
-    ) {
-        longPattern = pattern.match(/\b(\w+)\b/g);
-    }
-    longPattern = longPattern.length ? "<code>" + longPattern.join("</code>, <code>") + "</code>" : "";
+    let longPattern = $state<string[]>([]);
+    let formattedLongPattern = $derived(
+        longPattern.length ? "<code>" + longPattern.join("</code>, <code>") + "</code>" : "",
+    );
+
+    $effect(() => {
+        // Reset longPattern when property changes
+        longPattern = [];
+
+        const pattern = property.pattern;
+        // explicitly handle patterns which are an enum work around, i.e. they have multiple values, eg. "^(foo|bar)$"
+        if (
+            pattern &&
+            pattern.startsWith("^(") &&
+            (pattern.endsWith(")$") || pattern.endsWith(")*$")) &&
+            pattern.includes("|")
+        ) {
+            const matches = pattern.match(/\b(\w+)\b/g);
+            if (matches) {
+                longPattern = matches;
+            }
+        }
+    });
 </script>
 
 <div
@@ -74,7 +85,7 @@
                     <Markdown md={property.help_text} />
                     {#if longPattern.length}
                         This parameter must be a combination of the following values:
-                        {@html longPattern}
+                        {@html formattedLongPattern}
                     {/if}
                 </div>
             </Collapsible>

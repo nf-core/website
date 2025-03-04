@@ -358,7 +358,6 @@ export function pipelineLoader(pipelines_json: {
                     // Process files sequentially
                     for (const doc_file of release.doc_files) {
                         context.logger.debug(`Loading ${pipeline.name}@${release.tag_name}/${doc_file}`);
-                        console.log('.')
                         try {
                             await fetcher.processFile(doc_file, processors, false, metadata);
                         } catch (error) {
