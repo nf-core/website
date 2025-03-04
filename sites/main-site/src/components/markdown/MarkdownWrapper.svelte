@@ -78,7 +78,7 @@
                 const copyText = block.querySelector("code")?.innerText;
                 if (copyText) {
                     // check if block has only one child, i.e. is a single line code block, so we need less top and bottom margin for button
-                    const SingleLine = block.childElementCount === 1 ? "single-line" : "";
+                    const SingleLine = block.children[0].childElementCount === 1 ? "single-line" : "";
                     mount(CopyButton, {
                         target: block, // Specify the target element for the Svelte component
                         props: {
