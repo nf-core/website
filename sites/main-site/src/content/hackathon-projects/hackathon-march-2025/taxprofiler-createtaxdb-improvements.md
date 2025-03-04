@@ -20,7 +20,7 @@ We welcome contributors of all experience levels.
 
 ## Goals
 
-1. Add modules for taxonomic classifiers (beginner friendly tasks):
+1. Create modules for taxonomic classifiers (beginner friendly tasks):
 
     a. metacache
    
