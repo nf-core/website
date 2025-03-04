@@ -2,7 +2,7 @@
 import type { AstroConfig, MarkdownHeading } from "astro";
 import type { Loader, LoaderContext } from "astro/loaders";
 import { octokit, getCurrentRateLimitRemaining } from "@components/octokit.js";
-
+import ProgressBar from "progress";
 import { S3Client, ListObjectsV2Command } from "@aws-sdk/client-s3";
 import { createMarkdownProcessor } from "@astrojs/markdown-remark";
 import type { MarkdownProcessor } from "@astrojs/markdown-remark";
@@ -511,9 +511,13 @@ export function awsResultsLoader(pipelines_json: PipelineJson) {
                         secretAccessKey: '',
                     },
                 });
+                const progressBar = new ProgressBar('Processing pipeline: :pipeline [:bar] :percent :etas', {
+                    total: pipelines_json.remote_workflows.length,
 
+                });
                 // Process each pipeline and its releases
                 for (const pipeline of pipelines_json.remote_workflows) {
+                    progressBar.tick({pipeline: pipeline.name});
                     for (const release of pipeline.releases.filter((rel: any) => rel.tag_name !== "dev")) {
                         const results_path = `results-${release.tag_sha}`;
                         const version = release.tag_name;
@@ -531,7 +535,6 @@ export function awsResultsLoader(pipelines_json: PipelineJson) {
                         const prefix = `${pipelineName}/${results_path}/`;
 
                         // Fetch data from S3
-                        logger.info(`Fetching S3 data for prefix: ${prefix}`);
                         const { keys: bucketContents, commonPrefixes } = await getKeysWithPrefixes(client, [prefix]);
 
                         // Skip if no content or prefixes found
@@ -540,7 +543,7 @@ export function awsResultsLoader(pipelines_json: PipelineJson) {
                             continue;
                         }
 
-                        logger.info(`Found ${bucketContents.length} files and ${commonPrefixes.length} directories for ${prefix}`);
+
 
                         // Store the entry
                         store.set({
@@ -572,7 +575,6 @@ async function getKeysWithPrefixes(client: S3Client, prefixes: string[]) {
     const commonPrefixes: S3Prefix[] = [];
 
     for (const prefix of prefixes) {
-        console.log(`Fetching S3 data for prefix: ${prefix}`);
         let continuationToken: string | undefined = undefined;
         do {
             const command = new ListObjectsV2Command({
