@@ -9051,6 +9051,10 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.2"
         }
       ]
     },
@@ -113572,6 +113576,14 @@
         {
           "name": "pathogensurveillance",
           "version": "dev"
+        },
+        {
+          "name": "ampliseq",
+          "version": "2.12.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -138954,6 +138966,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "viralrecon",
+          "version": "2.6.0"
+        },
         {
           "name": "viralrecon",
           "version": "2.6.0"
@@ -207797,6 +207813,21 @@
       "path": "subworkflows/nf-core/abundance_differential_filter/meta.yml",
       "type": "subworkflow",
       "meta": {
+        "name": "abundance_differential_filter",
+        "description": "A subworkflow for filtering differential abundance results",
+        "keywords": [
+          "differential",
+          "abundance",
+          "expression",
+          "count matrix",
+          "fold-change"
+        ],
+        "components": [
+          "limma/differential",
+          "deseq2/differential",
+          "propr/propd",
+          "custom/filterdifferentialtable"
+        ],
         "input": [
           {
             "ch_input": {
@@ -215865,6 +215896,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        },
         {
           "name": "phageannotator",
           "version": "dev"
