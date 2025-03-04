@@ -3,7 +3,7 @@ title: GPU development / testing
 category: components
 slack: "https://nfcore.slack.com/archives/C07PPQR415W"
 image: "/assets/images/events/2025/hackathon-march/nebius_sponsor_logo.png"
-image_alt: Picture of NVIDIA H100 Graphics card
+image_alt: "Nebius logo"
 leaders:
   FloWuenne:
     name: Florian Wuennemann
