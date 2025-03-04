@@ -53,6 +53,10 @@ export default defineConfig({
             }),
         },
     },
+    redirects: {
+        ...latestPipelineReleases,
+        ...pipelineResults,
+    },
     integrations: [
         svelte(),
         icon({
