@@ -2,12 +2,23 @@
 import type { AstroConfig, MarkdownHeading } from "astro";
 import type { Loader, LoaderContext } from "astro/loaders";
 import { octokit, getCurrentRateLimitRemaining } from "@components/octokit.js";
-import { z } from "zod";
 
+import { S3Client, ListObjectsV2Command } from "@aws-sdk/client-s3";
 import { createMarkdownProcessor } from "@astrojs/markdown-remark";
 import type { MarkdownProcessor } from "@astrojs/markdown-remark";
 // Import the remark plugin directly
 import remarkGitHubMarkdown from "../../../bin/remark-github-markdown.js";
+type PipelineJson = {
+    remote_workflows: {
+        name: string;
+        releases: { tag_name: string; doc_files: string[]; has_schema: boolean; tag_sha: string }[];
+        archived: boolean;
+        description: string;
+        topics: string[];
+        stargazers_count: number;
+        string: any;
+    }[];
+};
 
 type GithubTreeLeaf = {
     path: string;
@@ -314,20 +325,11 @@ const schemaProcessor = {
     },
 };
 
-export function pipelineLoader(pipelines_json: {
-    remote_workflows: {
-        name: string;
-        releases: { tag_name: string; doc_files: string[]; has_schema: boolean }[];
-        archived: boolean;
-        description: string;
-        topics: string[];
-        stargazers_count: number;
-    }[];
-}): Loader {
+export function pipelineLoader(pipelines_json: PipelineJson): Loader {
     return {
         name: "pipeline-loader",
         load: async (context: LoaderContext) => {
-            console.log('Starting pipeline loader');
+            console.log("Starting pipeline loader");
             getCurrentRateLimitRemaining();
             // Process pipelines sequentially
             for (const pipeline of pipelines_json.remote_workflows) {
@@ -369,25 +371,16 @@ export function pipelineLoader(pipelines_json: {
                     }
                 }
             }
-            console.log('Pipeline loader completed successfully');
+            console.log("Pipeline loader completed successfully");
         },
     };
 }
 
-export function releaseLoader(pipelines_json: {
-    remote_workflows: {
-        name: string;
-        releases: { tag_name: string; doc_files: string[]; has_schema: boolean }[];
-        archived: boolean;
-        description: string;
-        topics: string[];
-        stargazers_count: number;
-    }[];
-}): Loader {
+export function releaseLoader(pipelines_json: PipelineJson): Loader {
     return {
         name: "release-notes-loader",
         load: async (context: LoaderContext) => {
-            console.log('Starting release notes loader');
+            console.log("Starting release notes loader");
             getCurrentRateLimitRemaining();
             const { store, generateDigest, config, logger } = context;
 
@@ -411,7 +404,7 @@ export function releaseLoader(pipelines_json: {
                         }
 
                         // Get the release body (markdown content)
-                        const body = release.body || '';
+                        const body = release.body || "";
                         const digest = generateDigest(body);
 
                         // Create a markdown processor for this content
@@ -432,25 +425,31 @@ export function releaseLoader(pipelines_json: {
                                     html_url: release.html_url,
                                     prerelease: release.prerelease,
                                     draft: release.draft,
-                                    author: release.author ? {
-                                        login: release.author.login,
-                                        avatar_url: release.author.avatar_url,
-                                        html_url: release.author.html_url
-                                    } : null,
+                                    author: release.author
+                                        ? {
+                                              login: release.author.login,
+                                              avatar_url: release.author.avatar_url,
+                                              html_url: release.author.html_url,
+                                          }
+                                        : null,
                                     // Include additional pipeline metadata
                                     archived: pipeline.archived,
                                     description: pipeline.description,
                                     topics: pipeline.topics,
-                                    stargazers_count: pipeline.stargazers_count
+                                    stargazers_count: pipeline.stargazers_count,
                                 },
                                 body,
                                 rendered: { html, metadata },
-                                digest
+                                digest,
                             });
 
-                            logger.debug(`Successfully processed release notes for ${pipeline.name}@${release.tag_name}`);
+                            logger.debug(
+                                `Successfully processed release notes for ${pipeline.name}@${release.tag_name}`,
+                            );
                         } catch (error) {
-                            logger.error(`Error processing release notes for ${pipeline.name}@${release.tag_name}: ${error.message}`);
+                            logger.error(
+                                `Error processing release notes for ${pipeline.name}@${release.tag_name}: ${error.message}`,
+                            );
                             // Continue with next release instead of failing the entire pipeline
                         }
                     }
@@ -458,12 +457,152 @@ export function releaseLoader(pipelines_json: {
                     logger.error(`Error fetching releases for ${pipeline.name}: ${error.message}`);
                     // Continue with next pipeline instead of failing the entire process
                 }
-
             }
 
             logger.info("GitHub release notes processing completed successfully");
-        }
+        },
     };
+}
+
+// Define types for AWS S3 responses
+export type S3Object = {
+    Key: string;
+    LastModified: Date;
+    ETag: string;
+    Size: number;
+    StorageClass: string;
+};
+
+export type S3Prefix = {
+    Prefix: string;
+};
+
+// Define entry type
+export type Entry = {
+    id: string;
+    data: {
+        pipeline: string;
+        version: string;
+        results_path: string;
+        content: S3Object[];
+        commonPrefixes: S3Prefix[];
+    };
+};
+
+/**
+ * AWS Results Loader
+ * Fetches pipeline results directly from AWS S3 and creates content collection entries
+ * Returns a function that matches Astro's expected format
+ */
+export function awsResultsLoader(pipelines_json: PipelineJson) {
+    return {
+        name: "aws-results-loader",
+        load: async (context: LoaderContext) => {
+            const { logger, store } = context;
+            logger.info('Starting AWS S3 results loader');
+
+            try {
+                // Create S3 client
+                const client = new S3Client({
+                    region: 'eu-west-1',
+                    signer: { sign: async (request) => request },
+                    credentials: {
+                        accessKeyId: '',
+                        secretAccessKey: '',
+                    },
+                });
+
+                // Process each pipeline and its releases
+                for (const pipeline of pipelines_json.remote_workflows) {
+                    for (const release of pipeline.releases.filter((rel: any) => rel.tag_name !== "dev")) {
+                        const results_path = `results-${release.tag_sha}`;
+                        const version = release.tag_name;
+                        const pipelineName = pipeline.name;
+                        const entryId = `${pipelineName}/${version}/${results_path}`;
+
+                        // Check if we already have this entry in the store
+                        // const existingEntry = store.get(entryId);
+                        // if (existingEntry) {
+                        //     logger.debug(`Entry for ${pipelineName}/${version}/${results_path} already exists, skipping`);
+                        //     continue;
+                        // }
+
+                        // Create the prefix for this pipeline/release
+                        const prefix = `${pipelineName}/${results_path}/`;
+
+                        // Fetch data from S3
+                        logger.info(`Fetching S3 data for prefix: ${prefix}`);
+                        const { keys: bucketContents, commonPrefixes } = await getKeysWithPrefixes(client, [prefix]);
+
+                        // Skip if no content or prefixes found
+                        if (bucketContents.length === 0 && commonPrefixes.length === 0) {
+                            logger.info(`No data found for ${prefix}`);
+                            continue;
+                        }
+
+                        logger.info(`Found ${bucketContents.length} files and ${commonPrefixes.length} directories for ${prefix}`);
+
+                        // Store the entry
+                        store.set({
+                            id: entryId,
+                            data: {
+                                pipeline: pipelineName,
+                                version: version,
+                                results_path: results_path,
+                                content: bucketContents,
+                                commonPrefixes: commonPrefixes
+                            }
+                        });
+                    }
+                }
+
+                logger.info('AWS results loader completed successfully');
+            } catch (error) {
+                logger.error(`Error in AWS results loader: ${error.message}`);
+            }
+        },
+    };
+}
+
+/**
+ * Helper function to get keys with prefixes from AWS S3
+ */
+async function getKeysWithPrefixes(client: S3Client, prefixes: string[]) {
+    const keys: S3Object[] = [];
+    const commonPrefixes: S3Prefix[] = [];
+
+    for (const prefix of prefixes) {
+        console.log(`Fetching S3 data for prefix: ${prefix}`);
+        let continuationToken: string | undefined = undefined;
+        do {
+            const command = new ListObjectsV2Command({
+                Bucket: "nf-core-awsmegatests",
+                Prefix: prefix,
+                ContinuationToken: continuationToken,
+                Delimiter: "/",
+            });
+            try {
+                const response = await client.send(command);
+                if (response.Contents) {
+                    for (const object of response.Contents) {
+                        keys.push(object as unknown as S3Object);
+                    }
+                }
+                if (response.CommonPrefixes) {
+                    for (const object of response.CommonPrefixes) {
+                        commonPrefixes.push(object as unknown as S3Prefix);
+                    }
+                }
+                // Type assertion for NextContinuationToken
+                continuationToken = (response as any).NextContinuationToken;
+            } catch (error) {
+                console.error(`Error retrieving keys for prefix ${prefix}:`, error);
+                return { keys: [], commonPrefixes: [] };
+            }
+        } while (continuationToken);
+    }
+
+    return { keys, commonPrefixes };
 }
 
 // Export a default markdown processor for use in other files
