@@ -1,7 +1,7 @@
 ---
 import PipelinePageLayout from "@layouts/PipelinePageLayout.astro";
 import pipelines_json from "@public/pipelines.json";
-import { getEntry } from "astro:content";
+import { getEntry, getCollection } from "astro:content";
 import PipelineSidebar from "@components/pipeline/PipelineSidebar.astro";
 export function getStaticPaths() {
     var paths: { params: { pipeline: string; version: string }; props: { versions: string[]; md_files; meta } }[] = [];
@@ -33,12 +33,11 @@ let { versions, md_files, meta } = Astro.props;
 const description = meta.description;
 const is_archived = meta.archived;
 const version_tag_name = version === "latest" ? versions[0] : version;
-const cache_key = `${pipeline}/${version_tag_name.replaceAll(".", "")}/readme`;
-const entry = await getEntry("pipelines", cache_key);
-if (!entry) {
-    throw new Error(`No entry found for ${pipeline} ${version}`);
-}
-const { Content, headings } = await entry.render();
+let entry = await getEntry("pipelines", pipeline + "/" + version_tag_name + "/README");
+entry = entry;
+const headings = entry?.rendered?.metadata?.headings;
+const Content = entry?.rendered?.html;
+
 const md_github_url = "https://github.com/nf-core/" + pipeline + "/blob/" + version + "/README.md";
 ---
 
@@ -56,7 +55,7 @@ const md_github_url = "https://github.com/nf-core/" + pipeline + "/blob/" + vers
 >
     <div class="row">
         <div class="col-12 col-md-8 col-xxl-9 pt-3 markdown-content">
-            <Content />
+            <Fragment set:html={Content} />
         </div>
         <div class="col-12 col-md-4 col-xxl-3 toc">
             <PipelineSidebar pipeline={pipeline} version={version} meta={meta} />

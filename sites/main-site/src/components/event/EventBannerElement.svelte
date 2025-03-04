@@ -4,35 +4,43 @@
     import VideoButton from "@components/VideoButton.svelte";
     import { onMount } from "svelte";
 
-    export let events: {
-        id: string;
-        slug: string;
-        body: string;
-        collections: string;
-        data: {
-            title: string;
-            subtitle: string;
-            type: string;
-            startDate: string;
-            startTime: string;
-            endDate: string;
-            endTime: string;
-            start: Date;
-            end: Date;
-            announcement?: {
-                start: string;
+    interface Props {
+        events?: {
+            id: string;
+            slug: string;
+            body: string;
+            collections: string;
+            data: {
+                title: string;
+                subtitle: string;
+                type: string;
+                startDate: string;
+                startTime: string;
+                endDate: string;
+                endTime: string;
+                start: Date;
+                end: Date;
+                announcement?: {
+                    start: string;
+                };
+                duration: string;
+                eventCountDown: string;
+                locationURL: string;
             };
-            duration: string;
-            eventCountDown: string;
-            locationURL: string;
-        };
-    }[] = [];
-    export let event_time_category: string = "";
+        }[];
+        event_time_category?: string;
+        event_type_classes?: {};
+        event_type_icons?: {};
+    }
 
-    export let event_type_classes: {} = {};
-    export let event_type_icons: {} = {};
+    let {
+        events = $bindable([]),
+        event_time_category = "",
+        event_type_classes = {},
+        event_type_icons = {},
+    }: Props = $props();
 
-    let backgroundIcon = "";
+    let backgroundIcon = $state("");
 
     const event_duration = (event) => {
         event.data.eventCountDown = formatDistanceToNow(event.data.start);
@@ -127,7 +135,7 @@
             });
     }
 
-    let heading_title = event_time_category.charAt(0).toUpperCase() + event_time_category.slice(1) + " event";
+    let heading_title = $state(event_time_category.charAt(0).toUpperCase() + event_time_category.slice(1) + " event");
     heading_title = events.length > 1 ? heading_title + "s" : heading_title;
     onMount(() => {
         events.map((event) => {
@@ -146,7 +154,7 @@
                     <i
                         class={`fad ${backgroundIcon} homepage-header-fa-background mt-5 ms-1 ms-xl-5`}
                         aria-hidden="true"
-                    />
+                    ></i>
                 </div>
                 <div class="flex-grow-1">
                     {#each events as event (event.slug)}
@@ -158,10 +166,8 @@
                                     >
                                     <span class="ms-1 my-auto">
                                         <span class={"badge bg-" + event_type_classes[event.data.type] + " small"}
-                                            ><i
-                                                class={event_type_icons[event.data.type] + " me-1"}
-                                                aria-hidden="true"
-                                            />
+                                            ><i class={event_type_icons[event.data.type] + " me-1"} aria-hidden="true"
+                                            ></i>
                                             {event.data.type}</span
                                         >
                                     </span>
@@ -234,7 +240,7 @@
                             <a href={"events/" + event.slug + "/"} class="text-body text-decoration-none"
                                 >{event.data.subtitle}</a
                             ><span class={"badge bg-" + event_type_classes[event.data.type] + " small ms-3"}
-                                ><i class={event_type_icons[event.data.type] + " me-1"} aria-hidden="true" />
+                                ><i class={event_type_icons[event.data.type] + " me-1"} aria-hidden="true"></i>
                                 {event.data.type}</span
                             >
                         </p>

@@ -2,10 +2,15 @@
     import { onMount } from "svelte";
     import YouTubePlayer from "youtube-player";
 
-    export let id: string = "";
+    interface Props {
+        id?: string;
+        children?: import("svelte").Snippet;
+    }
+
+    let { id = "", children }: Props = $props();
     let timer: any;
     let current_highlight: any;
-    let noTranscript = true;
+    let noTranscript = $state(true);
     onMount(async () => {
         // get details element
 
@@ -88,5 +93,5 @@
 </script>
 
 {#if noTranscript}
-    <slot />
+    {@render children?.()}
 {/if}
