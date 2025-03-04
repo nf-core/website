@@ -22,9 +22,11 @@ We welcome contributors of all experience levels.
 ## Goals
 
 1. Create modules for taxonomic classifiers (beginner friendly tasks):
-  - metacache
-  - metabuli
-  - melon
+
+- metacache
+- metabuli
+- melon
+
 2. Add the classifiers to the taxprofiler workflow
 3. (Optionally) Work on pipeline chaining approach
 4. Add support for KMCP databases
