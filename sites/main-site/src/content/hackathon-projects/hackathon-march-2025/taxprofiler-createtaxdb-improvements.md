@@ -27,6 +27,7 @@ We welcome contributors of all experience levels.
     b. metabuli
    
     c. melon
-2. Add the classifiers to the taxprofiler workflow
-3. (Optionally) Work on pipeline chaining approach
-4. Add support for KMCP databases
+   
+3. Add the classifiers to the taxprofiler workflow
+4. (Optionally) Work on pipeline chaining approach
+5. Add support for KMCP databases
