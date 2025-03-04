@@ -31,10 +31,7 @@ const stickers = pipelineNames.map((pipeline) => {
 });
 ---
 
-<PageLayout
-    title="nf-core Stickers"
-    subtitle="Browse our collection of hex stickers. Filter by category to find specific stickers."
->
+<PageLayout title="nf-core Stickers" subtitle="Browse our collection of hex stickers organized by category.">
     <main class="py-5">
         <div class="container">
             <HexStickerGallery stickers={stickers} />

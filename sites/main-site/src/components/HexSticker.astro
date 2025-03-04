@@ -14,6 +14,7 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
 
 <a href={link} class="hex-container" data-category={category} target="_blank" rel="noopener noreferrer">
     <div class="hex-sticker">
+        <div class="holographic-foil"></div>
         <img src={imageUrl} alt={alt} class="dark-mode-img" />
         <img src={lightModeUrl} alt={alt} class="light-mode-img" />
     </div>
@@ -26,12 +27,31 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
         cursor: pointer;
         text-decoration: none;
         transform-origin: center center;
-        display: inline-block;
+        display: block;
+        width: var(--hex-size, 150px);
+        height: calc(var(--hex-size, 150px) * 1.1547); /* Hexagon height ratio */
+        transition:
+            opacity 0.3s ease,
+            filter 0.3s ease,
+            transform 0.3s ease,
+            left 0.4s ease-out,
+            top 0.4s ease-out;
+        will-change: transform, left, top;
+    }
+
+    /* Add a class for positioned hexagons */
+    .hex-container.hex-positioned {
+        transition:
+            opacity 0.3s ease,
+            filter 0.3s ease,
+            transform 0.3s ease,
+            left 0.4s ease-out,
+            top 0.4s ease-out;
     }
 
     .hex-sticker {
-        width: var(--hex-size, 150px);
-        height: calc(var(--hex-size, 150px) * 1.1547); /* Hexagon height ratio */
+        width: 100%;
+        height: 100%;
         position: relative;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         background: transparent;
@@ -39,6 +59,59 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
         will-change: transform;
         clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
         overflow: hidden;
+        box-shadow:
+            0 1px 3px rgba(0, 0, 0, 0.12),
+            0 1px 2px rgba(0, 0, 0, 0.24);
+    }
+
+    .holographic-foil {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.2) 0%,
+            rgba(255, 0, 0, 0.15) 20%,
+            rgba(255, 255, 0, 0.15) 40%,
+            rgba(0, 255, 255, 0.15) 60%,
+            rgba(0, 0, 255, 0.15) 80%,
+            rgba(255, 0, 255, 0.15) 100%
+        );
+        mix-blend-mode: soft-light;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    /* Shimmer effect - balanced intensity */
+    .hex-container:hover .holographic-foil::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.2) 50%,
+            rgba(255, 255, 255, 0) 100%
+        );
+        transform: rotate(30deg);
+        animation: shimmer 4s infinite; /* Moderate animation speed */
+        pointer-events: none;
+    }
+
+    @keyframes shimmer {
+        0% {
+            transform: translateX(-100%) rotate(30deg);
+        }
+        100% {
+            transform: translateX(100%) rotate(30deg);
+        }
     }
 
     .hex-sticker img {
@@ -71,57 +144,153 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
         display: none;
     }
 
+    /* Base hover effect - will be overridden by JS */
     .hex-container:hover .hex-sticker {
-        transform: perspective(1000px) rotateX(10deg) rotateY(10deg);
-        filter: brightness(1.1) contrast(1.4) saturate(1.6) drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+        filter: brightness(1.08) contrast(1.08);
+        box-shadow:
+            0 8px 16px rgba(0, 0, 0, 0.16),
+            0 4px 6px rgba(0, 0, 0, 0.16),
+            0 0 15px rgba(255, 255, 255, 0.2);
+    }
+
+    .hex-container:hover .holographic-foil {
+        opacity: 0.7;
     }
 
     /* Light mode effect */
     :global(.light-mode) .hex-container:hover .hex-sticker {
-        filter: brightness(1.1) contrast(1.4) saturate(1.6) drop-shadow(0 0 12px rgba(0, 255, 255, 0.6))
-            drop-shadow(0 0 18px rgba(255, 0, 150, 0.5)) drop-shadow(0 0 25px rgba(255, 255, 0, 0.5));
+        filter: brightness(1.08) contrast(1.08);
+        box-shadow:
+            0 8px 16px rgba(0, 0, 0, 0.12),
+            0 4px 6px rgba(0, 0, 0, 0.12),
+            0 0 15px rgba(0, 0, 0, 0.12);
     }
 
-    /* Holographic effect for light mode */
-    :global(.light-mode) .hex-sticker::before {
-        content: "";
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
+    /* Light mode holographic effect adjustments */
+    :global(.light-mode) .holographic-foil {
+        mix-blend-mode: color-burn;
+    }
+
+    :global(.light-mode) .hex-container:hover .holographic-foil::after {
         background: linear-gradient(
-            135deg,
-            rgba(255, 0, 150, 0.8),
-            rgba(0, 255, 255, 0.8),
-            rgba(0, 150, 255, 0.8),
-            rgba(255, 255, 0, 0.8),
-            rgba(255, 0, 150, 0.8)
+            to right,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.3) 50%,
+            rgba(255, 255, 255, 0) 100%
         );
-        background-size: 300% 300%;
-        mix-blend-mode: color-dodge;
-        opacity: 0;
-        transition:
-            opacity 0.5s ease-in-out,
-            transform 0.5s ease-in-out;
-        animation: holographicMove 3s infinite linear;
-        z-index: 1;
-        pointer-events: none;
-    }
-
-    :global(.light-mode) .hex-container:hover .hex-sticker::before {
-        opacity: 0.6;
-    }
-
-    @keyframes holographicMove {
-        0% {
-            background-position: 0% 0%;
-        }
-        50% {
-            background-position: 100% 100%;
-        }
-        100% {
-            background-position: 0% 0%;
-        }
     }
 </style>
+
+<script>
+    // Mouse-following hover effect with balanced motion
+    document.addEventListener("DOMContentLoaded", () => {
+        const hexContainers = document.querySelectorAll(".hex-container");
+
+        // Check if user prefers reduced motion
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        hexContainers.forEach((container) => {
+            const hexSticker = container.querySelector(".hex-sticker");
+            const holographicFoil = container.querySelector(".holographic-foil");
+
+            // Variables for tilt effect - balanced
+            const maxTilt = prefersReducedMotion ? 0 : 8; // Moderate tilt, none for reduced motion
+
+            // Mouse enter event
+            container.addEventListener("mouseenter", () => {
+                // Remove transition to make movement immediate
+                if (hexSticker) {
+                    hexSticker.style.transition = "filter 0.3s ease, box-shadow 0.3s ease";
+                }
+            });
+
+            // Mouse move event
+            container.addEventListener("mousemove", (e) => {
+                if (!hexSticker) return;
+
+                // Skip tilt effect if user prefers reduced motion
+                if (prefersReducedMotion) {
+                    if (holographicFoil) {
+                        holographicFoil.style.opacity = "0.4";
+                    }
+                    return;
+                }
+
+                // Get position of cursor relative to the container
+                const rect = container.getBoundingClientRect();
+                const x = e.clientX - rect.left; // X position within the element
+                const y = e.clientY - rect.top; // Y position within the element
+
+                // Calculate percentage position
+                const xPercent = (x / rect.width - 0.5) * 2; // -1 to 1
+                const yPercent = (y / rect.height - 0.5) * 2; // -1 to 1
+
+                // Calculate tilt angles based on mouse position - balanced tilt
+                const tiltX = -yPercent * maxTilt; // Invert Y for natural tilt
+                const tiltY = xPercent * maxTilt;
+
+                // Apply the transform - balanced effect
+                hexSticker.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+
+                // Move the holographic effect based on mouse position
+                if (holographicFoil) {
+                    // Calculate angle based on mouse position
+                    const angle = Math.atan2(yPercent, xPercent) * (180 / Math.PI);
+                    const normalizedAngle = (angle + 360) % 360;
+
+                    // Check if we're in light mode
+                    const isLightMode = document.body.classList.contains("light-mode");
+
+                    // Create a balanced gradient that shifts with mouse position
+                    // Adjust colors based on theme
+                    if (isLightMode) {
+                        holographicFoil.style.background = `
+                            linear-gradient(
+                                ${normalizedAngle}deg,
+                                rgba(255, 255, 255, 0.3) 0%,
+                                rgba(255, 0, 0, 0.15) 20%,
+                                rgba(255, 255, 0, 0.15) 40%,
+                                rgba(0, 255, 255, 0.15) 60%,
+                                rgba(0, 0, 255, 0.15) 80%,
+                                rgba(255, 0, 255, 0.15) 100%
+                            )
+                        `;
+                        holographicFoil.style.mixBlendMode = "color-burn";
+                    } else {
+                        holographicFoil.style.background = `
+                            linear-gradient(
+                                ${normalizedAngle}deg,
+                                rgba(255, 255, 255, 0.3) 0%,
+                                rgba(255, 0, 0, 0.15) 20%,
+                                rgba(255, 255, 0, 0.15) 40%,
+                                rgba(0, 255, 255, 0.15) 60%,
+                                rgba(0, 0, 255, 0.15) 80%,
+                                rgba(255, 0, 255, 0.15) 100%
+                            )
+                        `;
+                        holographicFoil.style.mixBlendMode = "soft-light";
+                    }
+
+                    // Adjust opacity based on tilt for a more natural effect - balanced
+                    const tiltMagnitude = Math.sqrt(tiltX * tiltX + tiltY * tiltY) / maxTilt;
+                    holographicFoil.style.opacity = 0.3 + tiltMagnitude * 0.4; // Moderate opacity
+                }
+            });
+
+            // Mouse leave event
+            container.addEventListener("mouseleave", () => {
+                if (!hexSticker) return;
+
+                // Restore transition for smooth return to original position
+                hexSticker.style.transition = "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)";
+                hexSticker.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
+
+                // Reset holographic effect
+                if (holographicFoil) {
+                    holographicFoil.style.background = "";
+                    holographicFoil.style.opacity = "0";
+                }
+            });
+        });
+    });
+</script>
