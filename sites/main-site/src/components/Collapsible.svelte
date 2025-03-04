@@ -1,7 +1,6 @@
 <script lang="ts">
-    import { run } from "svelte/legacy";
-
     import { showHelp } from "@components/store";
+
     interface Props {
         buttonText?: string;
         buttonClass?: string;
@@ -15,15 +14,22 @@
         textClass = "",
         children,
     }: Props = $props();
-    let show;
-    run(() => {
+
+    let show = $state(false);
+
+    // Sync show state with the global showHelp store
+    $effect(() => {
         show = $showHelp;
     });
+
+    function toggleShow() {
+        show = !show;
+    }
 </script>
 
 <div>
     <div class="d-flex">
-        <button class={"btn " + buttonClass} class:open={show} type="button" onclick={() => (show = !show)}>
+        <button class={"btn " + buttonClass} class:open={show} type="button" onclick={toggleShow}>
             {buttonText}
         </button>
     </div>

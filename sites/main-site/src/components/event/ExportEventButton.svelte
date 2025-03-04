@@ -55,17 +55,25 @@
         return url.split("?")[0] + "?" + params.toString();
     };
 
-    let googleCalendar = new GoogleCalendar(calendar_event, true).render();
-    let outlookCalendar = new OutlookCalendar(calendar_event).render();
-    let ical = new ICalendar(calendar_event).render();
+    // Initialize the calendar objects
+    const calendarData = $state({
+        google: new GoogleCalendar(calendar_event, true).render(),
+        outlook: new OutlookCalendar(calendar_event).render(),
+        ical: new ICalendar(calendar_event).render(),
+    });
+
+    // Apply modifications if needed
     if (calendar_event.allDay) {
-        ical = removeTimeFromICSDate(ical);
-        googleCalendar = removeTimeFromCalendarURL(googleCalendar, true);
-        outlookCalendar = removeTimeFromCalendarURL(outlookCalendar);
+        calendarData.ical = removeTimeFromICSDate(calendarData.ical);
+        calendarData.google = removeTimeFromCalendarURL(calendarData.google, true);
+        calendarData.outlook = removeTimeFromCalendarURL(calendarData.outlook);
     }
-    const blob = new Blob([ical], { type: "text/calendar;charset=utf-8" });
+
+    // Create the blob from the ical data
+    const icalBlob = $state(new Blob([calendarData.ical], { type: "text/calendar;charset=utf-8" }));
+
     function downloadIcal() {
-        saveAs(blob, frontmatter.title.replace(/[^a-z0-9]/gi, "_").toLowerCase() + ".ics");
+        saveAs(icalBlob, frontmatter.title.replace(/[^a-z0-9]/gi, "_").toLowerCase() + ".ics");
     }
 </script>
 
@@ -73,7 +81,6 @@
     <button
         type="button"
         class={"btn dropdown-toggle " + add_class}
-        href="#"
         data-bs-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"
@@ -82,7 +89,9 @@
     </button>
     <div class="dropdown-menu">
         <button class="dropdown-item" onclick={() => downloadIcal()}> Download iCal Event</button>
-        <a class="dropdown-item" href={googleCalendar} target="_blank" rel="noreferrer"> Add to Google Calendar</a>
-        <a class="dropdown-item" href={outlookCalendar} target="_blank" rel="noreferrer"> Add to Microsoft Outlook</a>
+        <a class="dropdown-item" href={calendarData.google} target="_blank" rel="noreferrer"> Add to Google Calendar</a>
+        <a class="dropdown-item" href={calendarData.outlook} target="_blank" rel="noreferrer">
+            Add to Microsoft Outlook</a
+        >
     </div>
 </div>
