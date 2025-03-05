@@ -7,10 +7,10 @@ image_alt: ""
 leaders:
   natanast:
     name: Natasa Anastasiadou
-    slack: 
+    slack: https://nfcore.slack.com/team/U08CXPKUCRE
   sfragkoul:
-    name: 
-    slack: 
+    name: Stella Fragkouli
+    slack: https://nfcore.slack.com/team/U061WPTT35M
 
 ---
 
