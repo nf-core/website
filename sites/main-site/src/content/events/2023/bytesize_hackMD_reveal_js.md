@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize: HackMD and reveal.js'
+title: "Bytesize: HackMD and reveal.js"
 subtitle: Maxime Garcia, Seqera Labs
 type: talk
-startDate: '2023-04-18'
-startTime: '13:00+02:00'
-endDate: '2023-04-18'
-endTime: '13:30+02:00'
+startDate: "2023-04-18"
+startTime: "13:00+02:00"
+endDate: "2023-04-18"
+endTime: "13:30+02:00"
 youtubeEmbed: https://www.youtube.com/watch?v=OqAKuwwNFf0
 locations:
   - name: Online

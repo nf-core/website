@@ -12,7 +12,7 @@ import yaml from '@rollup/plugin-yaml';
 import { defineConfig } from 'astro/config';
 import { FontaineTransform } from 'fontaine';
 import { h } from 'hastscript';
-import addClasses from 'rehype-add-classes';
+import addClasses from 'rehype-class-names';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeKatex from 'rehype-katex';
 import rehypePrettyCode from 'rehype-pretty-code';
@@ -34,7 +34,7 @@ pipelines_json.remote_workflows.map(
 // https://astro.build/config
 export default defineConfig({
     site: 'https://nf-co.re/',
-    output: 'hybrid',
+    output: 'static',
     adapter: netlify(),
     prefetch: false,
     redirects: {
@@ -91,13 +91,21 @@ export default defineConfig({
         assetsPrefix: 'https://nf-core-pipeline-results.netlify.app/',
     },
     vite: {
+        css: {
+            preprocessorOptions: {
+                scss: {
+                    api: 'modern-compiler',
+                    silenceDeprecations: ['legacy-js-api', 'mixed-decls', 'color-functions'],
+                },
+            },
+        },
         plugins: [
             yaml(),
             FontaineTransform.vite({
                 // avoid flash of unstyled text by interjecting fallback system fonts https://developer.chrome.com/blog/framework-tools-font-fallback/#using-fontaine-library
                 fallbacks: ['BlinkMacSystemFont', 'Segoe UI', 'Helvetica Neue', 'Arial', 'Noto Sans'],
                 resolvePath: (id) => new URL(`./public${id}`, import.meta.url),
-                skipFontFaceGeneration: (fallbackName) => fallbackName === 'Font Awesome 6 Pro fallback',
+                skipFontFaceGeneration: (fallbackName) => fallbackName.includes('Font Awesome'),
             }),
         ],
         ssr: {

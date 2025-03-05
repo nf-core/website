@@ -2,8 +2,8 @@
 title: First release
 subtitle: Follow this walkthrough to add a new pipeline to nf-core.
 weight: 40
-type: 'tutorial'
-markdownPlugin: 'checklist'
+type: "tutorial"
+markdownPlugin: "checklist"
 ---
 
 # Making the first release
@@ -14,21 +14,22 @@ When the code is stable and ready for a release, set the default branch to `mast
 
 ## Bump the version
 
-Use `nf-core bump-version` to increment the version number on the `dev` branch to remove
-the `dev` suffix.
+Use `nf-core pipelines bump-version` to increment the version number on the `dev` branch to remove
+the `dev` suffix. The first release of a pipeline should normally be version `1.0.0` (we discourage
+pre-releases).
 
 When developing the pipeline, the version numbers should be numeric with `dev` at the end,
 e.g. `0.0.0dev`. When making a release, version numbers should all be numeric. Pipeline
 release numbers MUST use [Semantic Versioning](https://semver.org/).
 
 :::tip
-Instead of manually changing the version number, use the `nf-core bump-version` command to increment the version numbers. The version number
+Instead of manually changing the version number, use the `nf-core pipelines bump-version` command to increment the version numbers. The version number
 exists in many places in the codebase, and this tool consistently updates all of them.
 :::
 
 ## Lint the pipeline
 
-Use `nf-core lint --release`. This will check that your code conforms to nf-core expectations.
+Use `nf-core pipelines lint --release`. This will check that your code conforms to nf-core expectations.
 
 ## Core pipeline review
 
@@ -81,6 +82,9 @@ That's it, you're finished! Congratulations!
 If you wish to make a publication based on the pipeline, make sure you [give credit to nf-core](/docs/guidelines/pipelines/recommendations/publication_credit).
 :::
 
+Once you've finished your release - it's time to tell the world about it!
+Post on the [#bytesize_suggestion](https://nfcore.slack.com/archives/C081F8J2X8R) slack channel of your release, to begin arranging a 15 minute introductory bytesize talk about your shiny new pipeline!
+
 # Subsequent releases
 
 Once you've made your first release you can continue to work on your fork and make pull-requests
@@ -88,7 +92,7 @@ against the `dev` branch on the nf-core repository. Now that we have a stable `m
 there should be reviews of each PR against `dev` before merging.
 
 When ready to make new releases, make sure that the version number is increased with
-`nf-core bump-version` and create a pull-request against `master`. If tests pass, it
+`nf-core pipelines bump-version` and create a pull-request against `master`. If tests pass, it
 can be merged and a new release made.
 
 The `master` branch should always have only the commit from the latest release. This is important

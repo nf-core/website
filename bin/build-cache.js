@@ -16,6 +16,10 @@ async function getKeysWithPrefixes(prefixes) {
   let client = new S3Client({
     region: 'eu-west-1',
     signer: { sign: async (request) => request },
+    credentials: {
+      accessKeyId: '',
+      secretAccessKey: '',
+    },
   });
   const keys = [];
   const commonPrefixes = [];

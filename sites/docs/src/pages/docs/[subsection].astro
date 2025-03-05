@@ -1,13 +1,13 @@
 ---
-import PageLayout from '@layouts/PageLayout.astro';
-import { getCollection, type CollectionEntry } from 'astro:content';
-import { Icon } from 'astro-icon/components';
-import type { SidebarEntry } from '@utils/types';
-import { sanitizeNfCoreLabels, addEntriesToSection } from '@utils/functions';
-import SidebarSubNav from '@components/sidebar/SidebarSubNav.astro';
+import PageLayout from "@layouts/PageLayout.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+import { Icon } from "astro-icon/components";
+import type { SidebarEntry } from "@utils/types";
+import { sanitizeNfCoreLabels, addEntriesToSection } from "@utils/functions";
+import SidebarSubNav from "@components/sidebar/SidebarSubNav.astro";
 
 export async function getStaticPaths() {
-    return ['tutorials', 'usage', 'contributing', 'nf-core-tools', 'checklists', 'guidelines'].map((subsection) => ({
+    return ["tutorials", "usage", "contributing", "nf-core-tools", "checklists", "guidelines"].map((subsection) => ({
         params: {
             subsection: subsection,
         },
@@ -16,75 +16,75 @@ export async function getStaticPaths() {
 
 const { subsection } = Astro.params;
 
-let docs = await getCollection('docs');
-import SidebarNav from '@components/sidebar/SidebarNav.astro';
+let docs = await getCollection("docs");
+import SidebarNav from "@components/sidebar/SidebarNav.astro";
 let sections: SidebarEntry[] = [
     {
-        type: 'group',
-        id: 'usage',
-        label: 'Usage',
-        href: '/docs/usage',
+        type: "group",
+        id: "usage",
+        label: "Usage",
+        href: "/docs/usage",
         entries: [],
-        isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/usage',
-        collapsed: Astro.url.pathname !== '/docs/usage/',
-        icon: 'octicon:play-16',
+        isCurrent: Astro.url.pathname.replace(".html", "") === "/docs/usage",
+        collapsed: Astro.url.pathname !== "/docs/usage/",
+        icon: "octicon:play-16",
     },
     {
-        type: 'group',
-        id: 'contributing',
-        label: 'Contributing',
-        href: '/docs/contributing',
+        type: "group",
+        id: "contributing",
+        label: "Contributing",
+        href: "/docs/contributing",
         entries: [],
-        isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/contributing',
-        collapsed: Astro.url.pathname !== '/docs/contributing/',
-        icon: 'octicon:git-pull-request-16',
+        isCurrent: Astro.url.pathname.replace(".html", "") === "/docs/contributing",
+        collapsed: Astro.url.pathname !== "/docs/contributing/",
+        icon: "octicon:git-pull-request-16",
     },
     {
-        type: 'group',
-        id: 'tutorials',
-        label: 'Tutorials',
-        href: '/docs/tutorials',
+        type: "group",
+        id: "tutorials",
+        label: "Tutorials",
+        href: "/docs/tutorials",
         entries: [],
-        isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/tutorials',
-        collapsed: Astro.url.pathname !== '/docs/tutorials/',
-        icon: 'octicon:mortar-board-16',
+        isCurrent: Astro.url.pathname.replace(".html", "") === "/docs/tutorials",
+        collapsed: Astro.url.pathname !== "/docs/tutorials/",
+        icon: "octicon:mortar-board-16",
     },
     {
-        type: 'group',
-        id: 'guidelines',
-        label: 'Guidelines',
-        href: '/docs/guidelines',
+        type: "group",
+        id: "guidelines",
+        label: "Guidelines",
+        href: "/docs/guidelines",
         entries: [],
-        isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/guidelines',
-        collapsed: Astro.url.pathname !== '/docs/guidelines/',
-        icon: 'octicon:law-16',
+        isCurrent: Astro.url.pathname.replace(".html", "") === "/docs/guidelines",
+        collapsed: Astro.url.pathname !== "/docs/guidelines/",
+        icon: "octicon:law-16",
     },
     {
-        type: 'group',
-        id: 'checklists',
-        label: 'Checklists',
-        href: '/docs/checklists',
+        type: "group",
+        id: "checklists",
+        label: "Checklists",
+        href: "/docs/checklists",
         entries: [],
-        isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/checklists',
-        collapsed: Astro.url.pathname !== '/docs/checklists/',
-        icon: 'octicon:tasklist-16',
+        isCurrent: Astro.url.pathname.replace(".html", "") === "/docs/checklists",
+        collapsed: Astro.url.pathname !== "/docs/checklists/",
+        icon: "octicon:tasklist-16",
     },
     {
-        type: 'group',
-        id: 'nf-core-tools',
-        label: 'nf-core/tools',
-        href: '/docs/nf-core-tools',
+        type: "group",
+        id: "nf-core-tools",
+        label: "nf-core/tools",
+        href: "/docs/nf-core-tools",
         entries: [],
-        isCurrent: Astro.url.pathname.replace('.html', '') === '/docs/nf-core-tools',
-        collapsed: Astro.url.pathname !== '/docs/nf-core-tools/',
-        icon: 'octicon:tools-16',
+        isCurrent: Astro.url.pathname.replace(".html", "") === "/docs/nf-core-tools",
+        collapsed: Astro.url.pathname !== "/docs/nf-core-tools/",
+        icon: "octicon:tools-16",
     },
 ];
 // sort docs first depth, then by weight, then by title
-const sortDocs = (a: CollectionEntry<'docs'>, b: CollectionEntry<'docs'>) => {
-    if (a.slug.split('/').length < b.slug.split('/').length) {
+const sortDocs = (a: CollectionEntry<"docs">, b: CollectionEntry<"docs">) => {
+    if (a.id.split("/").length < b.id.split("/").length) {
         return 1;
-    } else if (a.slug.split('/').length > b.slug.split('/').length) {
+    } else if (a.id.split("/").length > b.id.split("/").length) {
         return -1;
     } else {
         a.data.weight = a.data.weight || 100;
@@ -105,8 +105,8 @@ const sortDocs = (a: CollectionEntry<'docs'>, b: CollectionEntry<'docs'>) => {
     }
 };
 
-let subsectionDocs: CollectionEntry<'docs'>[] = docs.filter((doc) => doc.slug.startsWith(subsection + '/'));
-const subsections = sections.find((section) => section.href?.startsWith('/docs/' + subsection));
+let subsectionDocs: CollectionEntry<"docs">[] = docs.filter((doc) => doc.id.startsWith(subsection + "/"));
+const subsections = sections.find((section) => section.href?.startsWith("/docs/" + subsection));
 
 subsectionDocs.sort(sortDocs);
 addEntriesToSection(sections, docs, Astro.url.pathname);
@@ -128,22 +128,22 @@ const sortEntries = (entries: SidebarEntry[]) => {
         }
     });
     entries.forEach((entry) => {
-        if (entry.type === 'group' && entry.entries) {
+        if (entry.type === "group" && entry.entries) {
             sortEntries(entry.entries);
         }
     });
 };
 
 sections.forEach((section) => {
-    if (section.type === 'group') {
+    if (section.type === "group") {
         sortEntries(section.entries);
     }
 });
 const title = subsections.label;
-const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, '').split('/');
+const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, "").split("/");
 ---
 
-<PageLayout title={title} subtitle={'Overview of sections about ' + title} mainpage_container={false}>
+<PageLayout title={title} subtitle={"Overview of sections about " + title} mainpage_container={false}>
     <div slot="header-top" class="d-none d-md-block">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -151,11 +151,11 @@ const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, '').split('/');
                     splitUrl.slice(0, -1).map((slug, i) => (
                         <>
                             <li class="breadcrumb-item">
-                                <a class="text-white" href={'/' + splitUrl.slice(0, i + 1).join('/')}>
-                                    {slug.replaceAll('_', ' ').replace(/(^|\s)\S/g, (match) => match.toUpperCase())}
+                                <a class="text-white" href={"/" + splitUrl.slice(0, i + 1).join("/")}>
+                                    {slug.replaceAll("_", " ").replace(/(^|\s)\S/g, (match) => match.toUpperCase())}
                                 </a>
                             </li>
-                            <Icon name="octicon:chevron-right-16" class={'mt-1'} />
+                            <Icon name="octicon:chevron-right-16" class={"mt-1"} />
                         </>
                     ))
                 }
@@ -180,8 +180,8 @@ const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, '').split('/');
                                                 <a
                                                     href={section.href}
                                                     class:list={[
-                                                        'text-decoration-none',
-                                                        { 'stretched-link': section.type === 'link' },
+                                                        "text-decoration-none",
+                                                        { "stretched-link": section.type === "link" },
                                                     ]}
                                                 >
                                                     {sanitizeNfCoreLabels(section.label)}
@@ -189,18 +189,21 @@ const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, '').split('/');
                                             )}
                                             {!section.href && sanitizeNfCoreLabels(section.label)}
                                         </span>
-                                        {section.type === 'link' && (
+                                        {section.type === "link" && (
                                             <div class="card-body">
                                                 <p>
                                                     {
-                                                        docs.find((doc) => '/docs/' + doc.slug === section.href)?.data
-                                                            .subtitle
+                                                        docs.find(
+                                                            (doc) =>
+                                                                "/docs/" + doc.id.replace(/\.[^/.]+$/, "") ===
+                                                                section.href,
+                                                        )?.data.subtitle
                                                     }
                                                 </p>
                                             </div>
                                         )}
 
-                                        <ul class="card-body mx-3 mb-0" id={section.label?.replace('/', '-')}>
+                                        <ul class="card-body mx-3 mb-0" id={section.label?.replace("/", "-")}>
                                             {section.entries && <SidebarSubNav items={section.entries} nested={true} />}
                                         </ul>
                                     </div>

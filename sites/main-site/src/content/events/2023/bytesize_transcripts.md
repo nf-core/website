@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize: transcripts of bytesize talks'
+title: "Bytesize: transcripts of bytesize talks"
 subtitle: Franziska Bonath - NGI, Stockholm
 type: talk
-startDate: '2023-01-31'
-startTime: '13:00+01:00'
-endDate: '2023-01-31'
-endTime: '13:30+01:00'
+startDate: "2023-01-31"
+startTime: "13:00+01:00"
+endDate: "2023-01-31"
+endTime: "13:30+01:00"
 youtubeEmbed: https://www.youtube.com/watch?v=amwwmFMwOYw
 locations:
   - name: Online

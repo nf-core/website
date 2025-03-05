@@ -5,7 +5,6 @@ import { promises as fs, writeFileSync, existsSync } from 'fs';
 import yaml from 'js-yaml';
 import path, { join } from 'path';
 import ProgressBar from 'progress';
-import cache from './cache.js';
 
 // get current path
 const __dirname = path.resolve();
@@ -330,6 +329,20 @@ export const writePipelinesJson = async () => {
           return [];
         },
       );
+      // get manifest from nextflow.config
+      data[`${branch}_nextflow_config_manifest`] = await getGitHubFile(name, 'nextflow.config', branch).then(
+        (response) => {
+          if (response) {
+            // use regex to find all plugins in nextflow.config
+            let parsedManifest = response.match(/manifest\s*{([^}]*)}/s)[0];
+            // convert to object
+            let manifest = {};
+            manifest['defaultBranch'] = parsedManifest.match(/defaultBranch\s*=\s*['"]([^'"]+)['"]/);
+            return manifest;
+          }
+          return {};
+        },
+      );
     }
 
     new_releases = await Promise.all(
@@ -391,31 +404,6 @@ export const writePipelinesJson = async () => {
           components.modules = components.modules.map((component) => {
             return component.replace('/', '_');
           });
-        }
-
-        // cache release body except for dev
-        if (release.tag_name !== 'dev') {
-          const cache_key = `${name}/${release.tag_name}/body`;
-          // const is_cached = cache.getSync(cache_key, false) && cache.getSync(cache_key, false).length > 0;
-          const is_cached = false;
-          if (!is_cached) {
-            // wrap github urls in markdown links if they are to the same repo and not already inside a link
-            release.body = release.body.replaceAll(
-              /(?<!\]\()https:\/\/github\.com\/nf-core\/([^\/]+)\/([^\/]+)\/([^\/\n]*)(?![\)\]])/g,
-              (match, p1, p2, p3) => {
-                if (p1 === name && ['pull', 'issues', 'compare'].includes(p2)) {
-                  const prefix = p2 !== 'compare' ? '#' : '';
-                  return `[${prefix}${p3}](${match})`;
-                }
-                return match;
-              },
-            );
-            // replace usernames with links to github profiles
-            release.body = release.body.replaceAll(/@(\w+([-]\w+)*)/g, (match, p1) => {
-              return `[${match}](https://github.com/${p1})`;
-            });
-            cache.set(cache_key, release.body);
-          }
         }
         return { tag_name, published_at, tag_sha, has_schema, doc_files, components };
       }),

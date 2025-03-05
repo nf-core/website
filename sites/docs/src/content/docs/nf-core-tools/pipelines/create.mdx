@@ -1,0 +1,88 @@
+---
+title: Creating a new pipeline
+shortTitle: create
+subtitle: Scaffolding a new pipeline using the nf-core template
+weight: 10
+---
+
+import Features from "@components/Features.astro";
+
+The `create` subcommand makes a new pipeline using the nf-core base template.
+With a given pipeline name, description and author, it makes a starter pipeline which follows nf-core best practices.
+
+After creating the files, the command initialises the folder as a git repository and makes an initial commit.
+This first "vanilla" commit which is identical to the output from the templating tool is important, as it allows us to keep your pipeline in sync with the base template in the future. A full description of the file structure and all files created in the initial pipeline setup can be found [here](https://nf-co.re/docs/contributing/pipelines/pipeline_file_structure). See the [nf-core syncing docs](https://nf-co.re/docs/tutorials/sync/overview) for more information on how the syncing works.
+
+![` nf-core pipelines create -n nextbigthing -d "This pipeline analyses data from the next big omics technique" -a "Big Steve" --plain`](/images/tools/nf-core-create.svg)
+
+Once you have run the command, create a new empty repository on GitHub under your username (not the `nf-core` organisation, yet) and push the commits from your computer using the example commands in the above log.
+You can then continue to edit, commit and push normally as you build your pipeline.
+
+Please see the [nf-core documentation](/docs/tutorials/adding_a_pipeline/overview) for a full walkthrough of how to create a new nf-core workflow.
+
+:::warning
+Remember to come and discuss your idea for a pipeline as early as possible!
+
+See the [documentation](/docs/tutorials/adding_a_pipeline/move_to_nf-core_org) for instructions.
+:::
+
+If you prefer, you can supply the pipeline metadata also as command line arguments. See `nf-core pipelines create --help` for more information.
+
+## Customization
+
+The `nf-core pipelines create` command comes with a number of options that allow you to customize the creation of a pipeline. This can be done in two ways: by using the graphical interface, or by supplying a `template.yml` file using the `--template-yaml <file>` option.
+Both options allow you to specify a custom pipeline prefix to use instead of the common `nf-core`, as well as selecting parts of the template to be excluded during pipeline creation.
+The interface will guide you through the pipeline creation process. Both nf-core and non-nf-core pipelines can be customised, but non-nf-core pipelines have more options which can be skipped. See the following example for a `template.yml` file:
+
+```yaml title="template.yml"
+name: coolpipe
+description: A cool pipeline
+author: me
+prefix: myorg
+skip:
+    - github
+    - ci
+    - github_badges
+    - igenomes
+    - nf_core_configs
+template:
+    author: me
+    description: A cool pipeline
+    force: false
+    is_nfcore: false
+    name: coolpipe
+    org: myorg
+    outdir: .
+    skip_features:
+        - github
+        - ci
+        - igenomes
+        - nf_core_configs
+        - code_linters
+        - citations
+        - gitpod
+        - codespaces
+        - multiqc
+        - fastqc
+        - modules
+        - changelog
+        - nf_schema
+        - license
+        - email
+        - adaptivecard
+        - slackreport
+        - documentation
+        - test_config
+        - seqera_platform
+    version: 1.0.0dev
+```
+
+This will create a pipeline called `coolpipe` in the directory `myorg-coolpipe` (`<prefix>-<name>`) with `me` as the author. It will exclude all possible parts of the template.
+
+A full list of possible features to skip from the template is described here:
+
+<Features />
+
+To run the pipeline creation silently (i.e. without the graphical interface), you can provide all the arguments. The required ones are `--name`, `--description` and `--author`.
+
+If you have an existing pipeline and you wish to add/exclude one fo the features. Don't use a `template.yml` file but modify the `.nf-core.yml` file from your pipeline and run `nf-core pipelines sync` to update the template.

@@ -2,7 +2,7 @@ name: build json files and md-cache
 
 on:
   schedule: # every day at 2am and 2pm
-    - cron: '0 2,14 * * *'
+    - cron: "0 2,14 * * *"
   workflow_dispatch:
   repository_dispatch:
     types: [update-website]
@@ -15,17 +15,17 @@ jobs:
 
     steps:
       # Set up the main website repo
-      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
           fetch-depth: 0 # Don't do a shallow clone
           token: ${{secrets.NF_CORE_BOT_AUTH_TOKEN}} # Needed for pushing back to the repo
 
       # install npm dependencies
       - name: Set up node.js
-        uses: actions/setup-node@0a44ba7841725637a19e28fa30b79a866c81b0a6 # v4
+        uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a # v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci
@@ -87,12 +87,12 @@ jobs:
       # Create a PR if there are too many lines changed
       - name: Create PR with changes
         if: ${{ steps.check_lines.outputs.changes }}
-        uses: peter-evans/create-pull-request@5e914681df9dc83aa4e4905692ca88beb2f9e91f # v7
+        uses: peter-evans/create-pull-request@67ccf781d68cd99b580ae25a5c18a1cc84ffff1f # v7
         with:
           token: ${{ secrets.CREATE_PR_TOKEN }}
-          commit-message: 'chore: update pipeline.json and component.json'
-          title: 'chore: update pipeline.json and component.json'
-          body: 'This PR was automatically created by a GitHub Action because there were too many lines changed in the pipeline.json and component.json files.'
-          branch: 'chore/update-pipeline-json-and-component-json'
+          commit-message: "chore: update pipeline.json and component.json"
+          title: "chore: update pipeline.json and component.json"
+          body: "This PR was automatically created by a GitHub Action because there were too many lines changed in the pipeline.json and component.json files."
+          branch: "chore/update-pipeline-json-and-component-json"
           delete-branch: true
           draft: false

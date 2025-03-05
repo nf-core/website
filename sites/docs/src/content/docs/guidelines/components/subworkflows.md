@@ -171,6 +171,53 @@ Input data SHOULD be referenced with the `modules_testdata_base_path` parameter:
 file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
 ```
 
+### Configuration
+
+Subworkflow nf-tests SHOULD use a single `nextflow.config` to supply `ext.args` to a subworkflow. They can be defined in the `when` block of a test under the `params` scope.
+
+```groovy {4-7} title="main.nf.test"
+config './nextflow.config'
+
+when {
+  params {
+    moduleA_args = '--extra_opt1 --extra_opt2'
+    moduleB_args = '--extra_optX'
+  }
+  process {
+    """
+    input[0] = [
+      [ id:'test1', single_end:false ], // meta map
+      file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/genome/genome.fna.gz', checkIfExists: true)
+    ]
+    """
+  }
+}
+```
+
+```groovy {3,6} title="nextflow.config"
+process {
+  withName: 'MODULEA' {
+    ext.args = params.moduleA_args
+  }
+  withName: 'MODULEB' {
+    ext.args = params.moduleB_args
+  }
+}
+```
+
+No other settings should go into this file.
+
+:::tip
+Supply the config only to the tests that use `params`, otherwise define `params` for every test including the stub test.
+:::
+
+## Skipping CI test profiles
+
+If a subworkflow does not support a particular test profile, it can be skipped by adding the path to the corresponding section in `.github/skip_nf_test.json`.
+:::Note
+Please keep the file sorted alphabetically.
+:::
+
 ## Misc
 
 ### General module code formatting

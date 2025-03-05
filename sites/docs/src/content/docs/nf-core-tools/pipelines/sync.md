@@ -15,18 +15,18 @@ Note that pipeline synchronisation happens automatically each time nf-core/tools
 **As such, you do not normally need to run this command yourself!**
 
 This command takes a pipeline directory and attempts to run this synchronisation.
-Usage is `nf-core sync`, eg:
+Usage is `nf-core pipelines sync`, eg:
 
 <!-- RICH-CODEX
 working_dir: tmp/nf-core-nextbigthing
 before_command: git config --global user.email "nf-core_bot@example.com" && git config --global user.name "nf-core_bot" &&  git commit -am "Bump version"
 -->
 
-![`nf-core sync`](/images/tools/nf-core-sync.svg)
+![`nf-core pipelines sync`](/images/tools/nf-core-sync.svg)
 
 The sync command tries to check out the `TEMPLATE` branch from the `origin` remote or an existing local branch called `TEMPLATE`.
 It will fail if it cannot do either of these things.
-The `nf-core create` command should make this template automatically when you first start your pipeline.
+The `nf-core pipelines create` command should make this template automatically when you first start your pipeline.
 Please see the [nf-core website sync documentation](https://nf-co.re/developers/sync) if you have difficulties.
 
 To specify a directory to sync other than the current working directory, use the `--dir <pipline_dir>`.
