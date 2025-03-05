@@ -2,7 +2,7 @@
 title: Adding module to nf-core/airrflow pipeline
 category: components
 intro_video: ""
-image: ""
+image: "/assets/images/events/2025/hackathon-march/airrflow-meme.png"
 image_alt: "" 
 leaders:
   natanast:
