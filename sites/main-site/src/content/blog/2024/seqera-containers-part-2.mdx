@@ -1,24 +1,24 @@
 ---
-title: 'Migration from Biocontainers to Seqera Containers: Part 2'
+title: "Migration from Biocontainers to Seqera Containers: Part 2"
 subtitle: "nf-core containers automation: how it'll all work behind the curtain"
 pubDate: 2024-10-02T09:16:00+01:00
 headerImage: https://images.unsplash.com/photo-1711109631679-c9e1094d3118
 headerImageAlt: Photo by Rafael Garcin on Unsplash
 authors:
-    - 'ewels'
-    - 'edmundmiller'
+    - "ewels"
+    - "edmundmiller"
 label:
-    - 'modules'
-    - 'wave'
-    - 'seqera containers'
+    - "modules"
+    - "wave"
+    - "seqera containers"
 embedHeaderImage: false
 ---
 
-import creation_flow from '@assets/images/blog/seqera-containers-part-2/creation_flow.excalidraw.svg?raw';
-import renovate_flow from '@assets/images/blog/seqera-containers-part-2/renovate_flow.excalidraw.svg?raw';
+import creation_flow from "@assets/images/blog/seqera-containers-part-2/creation_flow.excalidraw.svg?raw";
+import renovate_flow from "@assets/images/blog/seqera-containers-part-2/renovate_flow.excalidraw.svg?raw";
 
-import { Image } from 'astro:assets';
-import { YouTube } from '@astro-community/astro-embed-youtube';
+import { Image } from "astro:assets";
+import { YouTube } from "@astro-community/astro-embed-youtube";
 
 # Introduction
 
@@ -35,12 +35,12 @@ It's mostly to serve as an architectural plan for the nf-core maintainers and in
 
 :::tip{.fa-hourglass-clock title="Too Long; Didn't Read"}
 
--   Module contributors edit `environment.yml` files to update software dependencies
--   Containers are automatically build for Docker + Singularity, `linux/amd64` + `linux/arm64`
--   Conda lock-files are saved for more reproducible and faster conda environments
--   Details are stored in the module's `meta.yml`
--   Pipelines auto-generate Nextflow config files when modules are updated
--   Pipeline usage remains basically unchanged
+- Module contributors edit `environment.yml` files to update software dependencies
+- Containers are automatically build for Docker + Singularity, `linux/amd64` + `linux/arm64`
+- Conda lock-files are saved for more reproducible and faster conda environments
+- Details are stored in the module's `meta.yml`
+- Pipelines auto-generate Nextflow config files when modules are updated
+- Pipeline usage remains basically unchanged
 
 :::
 
@@ -50,12 +50,12 @@ Before we dig into how the details of how the automation will work, let's summar
 
 ## Glossary
 
--   [`linux/amd64`](https://en.wikipedia.org/wiki/X86-64): Regular intel CPUs (aka `x86_64`)
--   [`linux/arm64`](https://en.wikipedia.org/wiki/AArch64): ARM CPUs (eg. AWS Graviton, aka `AArch64`). Not Apple Silicon.
--   [Apptainer](https://apptainer.org/): Alternative to Singularity, uses same image format
--   [Mamba](https://mamba.readthedocs.io): Alternative to Conda, uses same conda environment files
--   [Conda lock files](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#identical-conda-envs):
-    Explicit lists of packages, used to recreate an environment exactly.
+- [`linux/amd64`](https://en.wikipedia.org/wiki/X86-64): Regular intel CPUs (aka `x86_64`)
+- [`linux/arm64`](https://en.wikipedia.org/wiki/AArch64): ARM CPUs (eg. AWS Graviton, aka `AArch64`). Not Apple Silicon.
+- [Apptainer](https://apptainer.org/): Alternative to Singularity, uses same image format
+- [Mamba](https://mamba.readthedocs.io): Alternative to Conda, uses same conda environment files
+- [Conda lock files](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#identical-conda-envs):
+  Explicit lists of packages, used to recreate an environment exactly.
 
 ## Usage summary
 
@@ -118,16 +118,16 @@ compliant registry to pull images.
 
 Using `oras` has some advantages:
 
--   Singularity handles pulls in the process task, rather than in the Nextflow head job
-    -   This means less resource usage on the head node, and more parallelisation
--   Singularity can use authentication to pull from private registries
-    (see [Singularity docs](https://docs.sylabs.io/guides/main/user-guide/cli/singularity_registry.html) for more information).
+- Singularity handles pulls in the process task, rather than in the Nextflow head job
+    - This means less resource usage on the head node, and more parallelisation
+- Singularity can use authentication to pull from private registries
+  (see [Singularity docs](https://docs.sylabs.io/guides/main/user-guide/cli/singularity_registry.html) for more information).
 
 However, there are some downsides:
 
--   Shared cache Nextflow options such as `$NXF_SINGULARITY_CACHEDIR` and `$NXF_SINGULARITY_LIBRARYDIR` are not used
--   Singularity must be installed when downloading images for offline use
--   `oras://` is only supported by recent versions of Singularity / Apptainer
+- Shared cache Nextflow options such as `$NXF_SINGULARITY_CACHEDIR` and `$NXF_SINGULARITY_LIBRARYDIR` are not used
+- Singularity must be installed when downloading images for offline use
+- `oras://` is only supported by recent versions of Singularity / Apptainer
 
 As such, we will continue to use `https` downloads for Singularity `SIF` images for now.
 However, we will start to provide new `-profile singularity_oras` profiles for anyone who
@@ -176,9 +176,9 @@ process FASTQC {
 We considered removing both `conda` and `container` declarations from the module `main.nf` file entirely.
 However, we see benefit in keeping these in this form because:
 
--   It's clearer to those exploring the code about what the module requires.
--   The container string is needed to tie the module to the pipeline config files
-    (see [Building config files](#building-config-files) below)
+- It's clearer to those exploring the code about what the module requires.
+- The container string is needed to tie the module to the pipeline config files
+  (see [Building config files](#building-config-files) below)
 
 Removing the container logic from the string should be a big win for readability.
 
@@ -366,13 +366,13 @@ singularity.registry = 'oras://community.wave.seqera.io/library'
 
 Note that there are a few changes here:
 
--   New profiles with `_arm` suffixes for `linux/arm64` architectures
--   New profiles for `_oras` suffixes for using the `oras://` protocol
--   The `apptainer` profiles now uses the `singularity` config files
--   The `conda` profiles now use Conda lock files instead of `environment.yml` files
--   New `conda_env` profiles for those wanting to keep the old behaviour
--   New `mamba` profiles, using the `conda` config files
--   Base registries set to Seqera Containers
+- New profiles with `_arm` suffixes for `linux/arm64` architectures
+- New profiles for `_oras` suffixes for using the `oras://` protocol
+- The `apptainer` profiles now uses the `singularity` config files
+- The `conda` profiles now use Conda lock files instead of `environment.yml` files
+- New `conda_env` profiles for those wanting to keep the old behaviour
+- New `mamba` profiles, using the `conda` config files
+- Base registries set to Seqera Containers
 
 Because we're only defining the image name and making use of the base container registry config option,
 it should still be simple to mirror containers to custom Docker registries and overwrite only
@@ -550,9 +550,9 @@ The trickiest part of this process is linking the module containers to the pipel
 Modules can be imported into pipelines with any alias or scope.
 We need to match this against the values that we find in the module `meta.yml` files:
 
--   Run `nextflow inspect` to generate default Docker `linux/arch64` config
--   Copy this file and replace the container names with the relevant container for each platform,
-    using the `meta.yml` files that match the Docker container name
+- Run `nextflow inspect` to generate default Docker `linux/arch64` config
+- Copy this file and replace the container names with the relevant container for each platform,
+  using the `meta.yml` files that match the Docker container name
 
 This is why we duplicate the default docker container in both `main.nf` and `meta.yml` files -
 it allows us to link the module to the pipeline.
@@ -631,16 +631,16 @@ including but not limited to:
 
 {/* TODO: Am I missing any? */}
 
--   Nextflow
-    -   Improve `nextflow inspect` to return all processes
--   nf-core/tools
-    -   [Add and lint module Renovate comments](https://github.com/nf-core/tools/issues/3184)
-    -   [Lint for nf-test snapshots](https://github.com/nf-core/tools/issues/2504)
-    -   Write automation for creating pipeline container config files
-    -   [Rewrite `nf-core download`](https://github.com/nf-core/tools/issues/3179)
--   nf-core/modules
-    -   [Add renovate comments to environment.yml](https://github.com/nf-core/modules/issues/6504)
-    -   [Bulk update modules to use Seqera Containers](https://github.com/nf-core/modules/issues/6698)
-    -   [Build automation for fetching Seqera Containers](https://github.com/nf-core/modules/issues/6694)
+- Nextflow
+    - Improve `nextflow inspect` to return all processes
+- nf-core/tools
+    - [Add and lint module Renovate comments](https://github.com/nf-core/tools/issues/3184)
+    - [Lint for nf-test snapshots](https://github.com/nf-core/tools/issues/2504)
+    - Write automation for creating pipeline container config files
+    - [Rewrite `nf-core download`](https://github.com/nf-core/tools/issues/3179)
+- nf-core/modules
+    - [Add renovate comments to environment.yml](https://github.com/nf-core/modules/issues/6504)
+    - [Bulk update modules to use Seqera Containers](https://github.com/nf-core/modules/issues/6698)
+    - [Build automation for fetching Seqera Containers](https://github.com/nf-core/modules/issues/6694)
 
 If all goes well, we hope to have the majority of this work completed by the end of 2024.

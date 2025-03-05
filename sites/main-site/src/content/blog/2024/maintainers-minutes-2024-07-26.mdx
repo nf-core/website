@@ -1,16 +1,15 @@
 ---
-title: 'Maintainers Minutes: August 2024'
-subtitle: 'Keeping you informed of the latest maintainers discussions'
+title: "Maintainers Minutes: August 2024"
+subtitle: "Keeping you informed of the latest maintainers discussions"
 pubDate: 2024-08-14T12:00:00+02:00
-headerImage: '/assets/images/blog/maintainers-minutes-2024-07-26/maintainers_duck.png'
+headerImage: "/assets/images/blog/maintainers-minutes-2024-07-26/maintainers-wide.png"
 headerImageAlt: "Cartoon yellow rubber duck with nf-core logo badge on it's body with the nf-core logo."
-headerImageDim: [250, 250]
 embedHeaderImage: true
 authors:
-    - 'jfy133'
-    - 'FriederikeHanssen'
+    - "jfy133"
+    - "FriederikeHanssen"
 label:
-    - 'maintainers'
+    - "maintainers"
 ---
 
 The 'Maintainers Minutes' aims to further give insight into the workings of the [nf-core maintainers team](/governance#maintainers)
@@ -25,10 +24,10 @@ We discussed several ideas.
 On the one hand we'd like to make sure everything works at all times, on the other hand running tons of essentially duplicate tests makes development slow, costs money, and is not great for the planet 🌳.
 As a compromise, we agreed on the following:
 
--   Singularity & conda tests are run on PR to master
--   Make singularity required
--   Conda optional opt-out
--   Add `workflow dispatch` button for easier manual testing during earlier stages of development
+- Singularity & conda tests are run on PR to master
+- Make singularity required
+- Conda optional opt-out
+- Add `workflow dispatch` button for easier manual testing during earlier stages of development
 
 ## Nf-test best practices
 
@@ -44,14 +43,14 @@ He will make updates to the guidelines that all assertions should go into a sing
 
 This will include a lot of new exciting things:
 
--   Improved `meta.yml` layout accounting for the channel structure (https://github.com/nf-core/modules/pull/5867)
--   Subworkflows
--   bio.tools identifiers (for better linked metadata across registries)
--   edam ontologies for all input/output files (for better standardisation of file types)
--   Removing defaults from conda channel (to reduce chances of ToS violations)
--   Adding lock files (for better conda dependency version stability)
--   Adding version topic channels (for simplified version reporting in pipelines)
--   Adding lint for stub tests for all modules (to help us move to having complete 'dry run' functionality in pipelines)
+- Improved `meta.yml` layout accounting for the channel structure (https://github.com/nf-core/modules/pull/5867)
+- Subworkflows
+- bio.tools identifiers (for better linked metadata across registries)
+- edam ontologies for all input/output files (for better standardisation of file types)
+- Removing defaults from conda channel (to reduce chances of ToS violations)
+- Adding lock files (for better conda dependency version stability)
+- Adding version topic channels (for simplified version reporting in pipelines)
+- Adding lint for stub tests for all modules (to help us move to having complete 'dry run' functionality in pipelines)
 
 ### Topic channels for `version`
 

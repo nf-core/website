@@ -11,7 +11,7 @@ import yaml from '@rollup/plugin-yaml';
 import { defineConfig } from 'astro/config';
 import { FontaineTransform } from 'fontaine';
 import { h } from 'hastscript';
-import addClasses from 'rehype-add-classes';
+import addClasses from 'rehype-class-names';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeKatex from 'rehype-katex';
 import rehypePrettyCode from 'rehype-pretty-code';
@@ -80,9 +80,17 @@ export default defineConfig({
     build: {
         inlineStylesheets: 'auto',
         format: 'file',
-        assetsPrefix: 'https://nf-core-modules-subworkflows.netlify.app/',
+        assetsPrefix: import.meta.env.NETLIFY_SITE_URL || 'https://nf-core-modules-subworkflows.netlify.app/',
     },
     vite: {
+        css: {
+            preprocessorOptions: {
+                scss: {
+                    api: 'modern-compiler',
+                    silenceDeprecations: ['legacy-js-api','mixed-decls','color-functions'],
+                },
+            },
+        },
         plugins: [
             yaml(),
             FontaineTransform.vite({

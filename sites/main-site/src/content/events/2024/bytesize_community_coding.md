@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize: Six tips for community-based pipeline development'
+title: "Bytesize: Six tips for community-based pipeline development"
 subtitle: James A. Fellows Yates, HKI Jena / MPI-EVA Leipzig
 type: talk
-startDate: '2024-07-16'
-startTime: '13:00+02:00'
-endDate: '2024-07-16'
-endTime: '13:30+02:00'
+startDate: "2024-07-16"
+startTime: "13:00+02:00"
+endDate: "2024-07-16"
+endTime: "13:30+02:00"
 youtubeEmbed: https://youtu.be/gA6oBjtRlJA
 locations:
   - name: Online

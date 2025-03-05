@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize 41: Code linting tools'
+title: "Bytesize 41: Code linting tools"
 subtitle: Phil Ewels - National Genomics Infrastructure / SciLifeLab, Sweden
 type: talk
-startDate: '2022-04-12'
-startTime: '13:00+02:00'
-endDate: '2022-04-12'
-endTime: '13:30+02:00'
+startDate: "2022-04-12"
+startTime: "13:00+02:00"
+endDate: "2022-04-12"
+endTime: "13:30+02:00"
 youtubeEmbed: https://www.youtube.com/watch?v=ZO4lSma3OA8
 locations:
   - name: Online

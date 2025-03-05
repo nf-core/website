@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize 2: How nf-core configs work'
+title: "Bytesize 2: How nf-core configs work"
 subtitle: Maxime Garcia - SciLifeLab / Karolinska Institutet, Sweden
 type: talk
-startDate: '2021-02-09'
-startTime: '13:00+01:00'
-endDate: '2021-02-09'
-endTime: '13:30+01:00'
+startDate: "2021-02-09"
+startTime: "13:00+01:00"
+endDate: "2021-02-09"
+endTime: "13:30+01:00"
 youtubeEmbed: https://youtu.be/cXBYusdjrc0
 locations:
   - name: Online
@@ -14,6 +14,12 @@ locations:
       - https://youtu.be/cXBYusdjrc0
       - https://www.bilibili.com/video/BV1M54y1a7Uy
 ---
+
+:::warning
+The information presented in this bytesize may not reflect the latest way of configuring Nextflow!
+
+Please check the Nextflow and nf-core docs for the most up-to-date information.
+:::
 
 This week, Maxime Garcia ([@MaxUlysse](http://github.com/MaxUlysse/)) will present: _**How nf-core configs work.**_ This talk will cover:
 

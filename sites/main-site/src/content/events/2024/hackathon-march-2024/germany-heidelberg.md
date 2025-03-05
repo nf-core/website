@@ -3,10 +3,10 @@ title: Hackathon - March 2024 (Heidelberg)
 subtitle: Local node of the nf-core hackathon at GHGA, Heidelberg.
 shortTitle: Heidelberg, Germany
 type: hackathon
-startDate: '2024-03-18'
-startTime: '10:00+02:00'
-endDate: '2024-03-20'
-endTime: '18:00+02:00'
+startDate: "2024-03-18"
+startTime: "10:00+02:00"
+endDate: "2024-03-20"
+endTime: "18:00+02:00"
 locations:
   - name: Heidelberg
     address: Business Development Center, Carl-Friedrich-Gauß-Ring 5, 69124, Heidelberg, Germany

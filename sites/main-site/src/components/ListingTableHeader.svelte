@@ -1,10 +1,14 @@
 <script lang="ts">
-    import { CurrentFilter, Filters, SortBy, DisplayStyle, SearchQuery } from '@components/store';
+    import { CurrentFilter, Filters, SortBy, DisplayStyle, SearchQuery } from "@components/store";
 
-    export let name: string = '';
-    export let title: string = 'Sort by ' + name.toLowerCase();
-    export let textEnd: boolean = false;
-    export let textCenter: boolean = false;
+    interface Props {
+        name?: string;
+        title?: string;
+        textEnd?: boolean;
+        textCenter?: boolean;
+    }
+
+    let { name = "", title = "Sort by " + name.toLowerCase(), textEnd = false, textCenter = false }: Props = $props();
     let sortInverse = false;
 
     function handleSort(sor) {
@@ -13,7 +17,7 @@
         } else {
             sortInverse = false;
         }
-        SortBy.set(sortInverse ? sor + ';inverse' : sor);
+        SortBy.set(sortInverse ? sor + ";inverse" : sor);
     }
 </script>
 
@@ -25,15 +29,15 @@
     data-bs-toggle="tooltip"
     data-bs-delay="500"
     {title}
-    on:click={() => handleSort(name)}
+    onclick={() => handleSort(name)}
 >
     <i
         class="fa-arrow-up-arrow-down me-2 fa-swap-opacity"
         class:fa-duotone={$SortBy.startsWith(name)}
         class:fa-regular={!$SortBy.startsWith(name)}
         class:text-muted={!$SortBy.startsWith(name)}
-        class:fa-swap-opacity={!$SortBy.endsWith(';inverse')}
-    />
+        class:fa-swap-opacity={!$SortBy.endsWith(";inverse")}
+    ></i>
     {name}
 </th>
 
@@ -43,7 +47,7 @@
         &:hover {
             background-color: var(--bs-secondary-bg-subtle);
         }
-        :global([data-bs-theme='dark']) &:hover {
+        :global([data-bs-theme="dark"]) &:hover {
             color: var(--bs-white);
             background-color: var(--bs-tertiary-bg);
         }
