@@ -1,1 +1,30 @@
+---
+title: Adding module to nf-core/airrflow pipeline
+category: components
+intro_video: ""
+image: ""
+image_alt: "" 
+leaders:
+  natanast:
+    name: Natasa Anastasiadou
+    slack: 
+  sfragkoul:
+    name: 
+    slack: 
 
+---
+
+This project focuses on integrating [arcasHLA](https://github.com/RabadanLab/arcasHLA) into the [nf-core/airrflow](https://nf-co.re/airrflow) pipeline to enable HLA typing. 
+With this addition, the pipeline will offer expanded support for immune repertoire studies, providing researchers with more comprehensive analysis capabilities in immunogenomics.
+
+
+## Goals
+
+- **Adding arcasHLA to nf-core/airrflow as a new module.**
+  - _For people interested in Nextflow module development and immune repertoire analysis._
+- **Ensuring smooth integration with existing pipeline components.**
+  - _For contributors with experience in nf-core module structure and dependencies._
+- **Validating and benchmarking the implementation for accuracy and efficiency.**
+  - _For users experienced with HLA typing and workflow validation._
+
+_We welcome contributors of all experience levels._
