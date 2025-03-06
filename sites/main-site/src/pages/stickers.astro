@@ -18,14 +18,6 @@ const pipelineNames = [
     "taxprofiler",
 ];
 
-// Define hackathon names
-const hackathonNames = [
-    "barcelona2023",
-    "boston2023",
-    "march2023",
-    "march2024",
-];
-
 // Define hero names
 const heroNames = [
     "bug_smasher_beard",
@@ -40,6 +32,23 @@ const heroNames = [
     "pipeline_angel",
     "pipeline_prodigy",
     "syntax_zombie",
+];
+
+// Define hackathon names
+const hackathonNames = [
+    "barcelona2023",
+    "boston2023",
+    "march2023",
+    "march2024",
+];
+
+// Define champion names
+const championNames = [
+    "bingo",
+    "modules",
+    "quiz",
+    "scavenger",
+    "sockhunt",
 ];
 
 // Define mentorship names
@@ -69,6 +78,16 @@ const pipelineStickers = pipelineNames.map((pipeline) => {
     };
 });
 
+// Create sticker data for hero
+const heroStickers = heroNames.map((hero) => {
+    return {
+        imageUrl: `https://github.com/nf-core/logos/blob/dd28509eff10855226abd84e880a0708a06b6ff4/hexagon-stickers/hero/HeroSticker_${hero}.png?raw=true`,
+        alt: `${hero}`,
+        category: "hero",
+        link: `https://nf-co.re/events/2025/hackathon-march-2025`,
+    };
+});
+
 // Create sticker data for hackathons
 const hackathonStickers = hackathonNames.map((hackathon) => {
     return {
@@ -79,13 +98,13 @@ const hackathonStickers = hackathonNames.map((hackathon) => {
     };
 });
 
-// Create sticker data for hero
-const heroStickers = heroNames.map((hero) => {
+// Create sticker data for champions
+const championStickers = championNames.map((champion) => {
     return {
-        imageUrl: `https://github.com/nf-core/logos/blob/dd28509eff10855226abd84e880a0708a06b6ff4/hexagon-stickers/hero/HeroSticker_${hero}.png?raw=true`,
-        alt: `${hero}`,
-        category: "hero",
-        link: `https://nf-co.re/events/2025/hackathon-march-2025`,
+        imageUrl: `https://github.com/nf-core/logos/blob/add_all_the_things/hexagon-stickers/champions/nf-core-${champion}.png?raw=true`,
+        alt: `${champion} champion`,
+        category: "champions",
+        link: `https://nf-co.re`,
     };
 });
 
@@ -109,11 +128,12 @@ const teamStickers = teamNames.map((team) => {
     };
 });
 
-// Combine all stickers
+// Combine all stickers in the specified order
 const allStickers = [
     ...pipelineStickers,
-    ...hackathonStickers,
     ...heroStickers,
+    ...hackathonStickers,
+    ...championStickers,
     ...mentorshipStickers,
     ...teamStickers,
 ];
@@ -121,8 +141,6 @@ const allStickers = [
 
 <PageLayout title="nf-core Stickers" subtitle="Browse our collection of hex stickers organized by category.">
     <main class="py-5">
-
-            <HexStickerGallery stickers={allStickers} />
-        </div>
+        <HexStickerGallery stickers={allStickers} />
     </main>
 </PageLayout>

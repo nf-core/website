@@ -14,8 +14,13 @@ interface Props {
 
 const { stickers } = Astro.props;
 
-// Get unique categories for grouping stickers
-const categories = [...new Set(stickers.map((sticker) => sticker.category))].sort();
+// Get unique categories while preserving the order they first appear in the stickers array
+const categories = [];
+stickers.forEach((sticker) => {
+    if (!categories.includes(sticker.category)) {
+        categories.push(sticker.category);
+    }
+});
 
 // Group stickers by category
 const stickersByCategory = categories.reduce(
@@ -28,24 +33,9 @@ const stickersByCategory = categories.reduce(
 
 // Function to format category name for display
 function formatCategoryName(category: string): string {
-    // Special case for specific categories
-    const specialCategories: Record<string, string> = {
-        "pipelines": "Pipeline Stickers",
-        "hackathons": "Hackathon Stickers",
-        "hero": "Hero Stickers",
-        "mentorships": "Mentorship Stickers",
-        "teams": "Team Stickers"
-    };
-
-    if (specialCategories[category]) {
-        return specialCategories[category];
-    }
-
-    // Default formatting for other categories
-    return category
-        .split("-")
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(" ");
+    // Ensure all category names end with "Stickers"
+    const baseName = category.charAt(0).toUpperCase() + category.slice(1);
+    return baseName.endsWith("Stickers") ? baseName : `${baseName} Stickers`;
 }
 ---
 
@@ -84,7 +74,7 @@ function formatCategoryName(category: string): string {
         text-align: center;
         font-size: 1.75rem;
         font-weight: 600;
-        color: var(--theme-text, #fff);
+        color: var(--bs-body-color);
         margin-top: 3rem; /* Consistent top margin */
         display: flex;
         align-items: center;
@@ -99,7 +89,7 @@ function formatCategoryName(category: string): string {
     .back-to-top {
         opacity: 0.5;
         transition: opacity 0.3s ease;
-        color: var(--theme-text, #fff);
+        color: var(--bs-body-color);
     }
 
     .back-to-top:hover {
@@ -107,7 +97,7 @@ function formatCategoryName(category: string): string {
     }
 
     .category-divider {
-        border-color: var(--theme-border, rgba(255, 255, 255, 0.1));
+        border-color: var(--bs-border-color);
         width: 50%;
         margin-left: auto;
         margin-right: auto;
