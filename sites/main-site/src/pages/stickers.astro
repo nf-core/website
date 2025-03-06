@@ -1,7 +1,7 @@
 ---
 import PageLayout from "@layouts/PageLayout.astro";
 import HexStickerGallery from "../components/HexStickerGallery.astro";
-import stickersData from "../data/stickers.json";
+import stickersData from "./stickers.json";
 
 // Convert the JSON data into the format expected by HexStickerGallery
 const allStickers = Object.entries(stickersData).flatMap(([category, stickers]) => {
