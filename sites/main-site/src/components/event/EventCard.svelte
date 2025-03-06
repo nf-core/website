@@ -18,8 +18,6 @@
         training: "warning",
     };
 
-    let event_date: string = "";
-
     const type_class = event_type_classes[type];
     const isSameDay = frontmatter.startDate === frontmatter.endDate;
 </script>
@@ -47,7 +45,20 @@
                 class:justify-content-md-end={!narrow}
             >
                 <p class="text-nowrap text-center text-md-start pe-3 mt-2 ms-1" class:d-md-none={!narrow}>
-                    <i class="fa-regular fa-calendar me-2"></i>{@html event_date}
+                    <i class="fa-regular fa-calendar me-2" />
+                    <LocalDateTime date={frontmatter.start} />
+                    <span>&nbsp;-&nbsp;</span>
+                    {#if isSameDay}
+                        <span
+                            >{new Date(frontmatter.end).toLocaleString("en-US", {
+                                hour: "numeric",
+                                minute: "numeric",
+                                hour12: false,
+                            })}</span
+                        >
+                    {:else}
+                        <LocalDateTime date={frontmatter.end} />
+                    {/if}
                 </p>
             </div>
         </div>
@@ -86,11 +97,15 @@
                 {/if}
             </div>
         </div>
-        {#if time_category === "current" && frontmatter.locationURL}
-            <VideoButton
-                urls={frontmatter.locationURL}
-                btnClass=" d-md-none btn-danger w-100 rounded-top-0 rounded-start-0"
-            />
+        {#if time_category === "current" && frontmatter.locations?.[0]?.links}
+            {#each frontmatter.locations as location}
+                {#if location.links}
+                    <VideoButton
+                        urls={location.links}
+                        btnClass=" d-md-none btn-danger w-100 rounded-top-0 rounded-start-0"
+                    />
+                {/if}
+            {/each}
         {/if}
     </div>
 </div>
