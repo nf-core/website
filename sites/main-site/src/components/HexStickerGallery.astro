@@ -1,11 +1,13 @@
 ---
 import HexSticker from "./HexSticker.astro";
+import StickerModal from "./StickerModal.astro";
 
 interface StickerData {
     imageUrl: string;
     alt: string;
     category: string;
     link?: string;
+    description?: string;
 }
 
 interface Props {
@@ -58,6 +60,7 @@ function formatCategoryName(category: string): string {
                             alt={sticker.alt}
                             category={sticker.category}
                             link={sticker.link}
+                            description={sticker.description}
                         />
                     ))}
                 </div>
@@ -68,6 +71,9 @@ function formatCategoryName(category: string): string {
         ))
     }
 </div>
+
+<!-- Include the sticker modal component -->
+<StickerModal />
 
 <style>
     .category-heading {
