@@ -3,7 +3,7 @@ title: Adding module to nf-core/airrflow pipeline
 category: components
 intro_video: ""
 image: "/assets/images/events/2025/hackathon-march/airrflow-meme.png"
-image_alt: "" 
+image_alt: "Heading: 'When you need to implement a new feature but the deadline is tomorrow' with two pictures beneath. On the left a closed elevator door. On the right the elevator door is open and revealing a stair case." 
 leaders:
   natanast:
     name: Natasa Anastasiadou
