@@ -14,7 +14,7 @@
         "build-pipeline-json": "tar -xf .cache.tar.xz && node bin/pipelines.json.js && tar -cvJf .cache.tar.xz .cache",
         "build-component-json": "node bin/components.json.js",
         "extract-cache": "tar -xf .cache.tar.xz && node bin/build-content-collection",
-        "update": "for dir in sites/*; do (cd $dir && npx ncu --interactive --format group); done",
+        "update": "for dir in sites/*; do (cd $dir && npx npm-check-updates --interactive --format group); done",
         "test-all": "for dir in sites/*; do (cd $dir && npm run test); done"
     },
     "workspaces": [

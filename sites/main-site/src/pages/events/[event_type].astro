@@ -5,7 +5,7 @@ import { getCollection } from "astro:content";
 export async function getStaticPaths() {
     let events = await getCollection("events");
     events = events.filter((event) => {
-        return event.slug.split("/").length === 2;
+        return event.id.replace(/\.[^/.]+$/, "").split("/").length === 2;
     });
     // reduce events to unique event types
     const event_types = [...new Set(events.map((event) => event.data.type)), "bytesize"];

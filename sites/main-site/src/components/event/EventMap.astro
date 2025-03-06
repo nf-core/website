@@ -4,8 +4,8 @@ import { getCollection } from "astro:content";
 
 const { event } = Astro.props;
 
-let events = await getCollection("events", ({ slug }) => {
-    return slug.startsWith(event);
+let events = await getCollection("events", ({ id }) => {
+    return id.startsWith(event);
 });
 
 let local_sites_map: {
@@ -18,7 +18,7 @@ let local_sites_map: {
         return {
             location: location.geoCoordinates,
             name: site.data.locations?.[0]?.name ?? site.data.title,
-            url: "/events/" + site.slug,
+            url: "/events/" + site.id.replace(/\.[^/.]+$/, ""),
         };
     }
     return null;

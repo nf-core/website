@@ -127,13 +127,9 @@ if (showRightSidebar) {
                             maxHeadingDepth={maxHeadingDepth}
                             client:idle
                         >
-                            <slot slot="right-sidebar-top" name="right-sidebar-top" />
-                            <slot name="right-sidebar-bottom" />
-                            <a
-                                class="text-small text-body-secondary"
-                                href={md_github_url}
-                                slot="right-sidebar-link-bar"
-                            >
+                            <slot slot="rightSidebarTop" name="right-sidebar-top" />
+                            <slot slot="defaultContent" name="right-sidebar-bottom" />
+                            <a class="text-small text-body-secondary" href={md_github_url} slot="rightSidebarLinkBar">
                                 <i class="fas fa-pencil-alt" /> Edit this page
                             </a>
                         </SidebarToc>

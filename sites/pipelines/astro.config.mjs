@@ -10,7 +10,7 @@ import partytown from '@astrojs/partytown';
 import sitemap from '@astrojs/sitemap';
 import svelte from '@astrojs/svelte';
 import yaml from '@rollup/plugin-yaml';
-import { defineConfig } from 'astro/config';
+import { defineConfig, envField } from 'astro/config';
 import { FontaineTransform } from 'fontaine';
 import { h } from 'hastscript';
 import addClasses from 'rehype-class-names';
@@ -40,10 +40,19 @@ pipelines_json.remote_workflows.map(
 );
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://nf-co.re/',
-    output: 'static',
+    site: "https://nf-co.re/",
+    output: "static",
     adapter: netlify(),
     prefetch: false,
+    env: {
+        schema: {
+            GITHUB_TOKEN: envField.string({
+                context: "server", // Keep as server-side only for security
+                access: "secret",
+                optional: false,
+            }),
+        },
+    },
     redirects: {
         ...latestPipelineReleases,
         ...pipelineResults,
@@ -51,59 +60,59 @@ export default defineConfig({
     integrations: [
         svelte(),
         icon({
-            iconDir: '../main-site/src/icons',
+            iconDir: "../main-site/src/icons",
             include: {
                 // only include a subset of icons
-                'file-icons': ['nextflow'],
+                "file-icons": ["nextflow"],
                 logos: [
-                    'twitter',
-                    'mastodon-icon',
-                    'slack-icon',
-                    'aws',
-                    'microsoft-azure',
-                    'github-actions',
-                    'youtube-icon',
-                    'linkedin',
+                    "twitter",
+                    "mastodon-icon",
+                    "slack-icon",
+                    "aws",
+                    "microsoft-azure",
+                    "github-actions",
+                    "youtube-icon",
+                    "linkedin",
                 ],
-                fa: ['github'],
-                'fa-brands': ['github'],
-                mdi: ['aws', 'slack', 'youtube'],
+                fa: ["github"],
+                "fa-brands": ["github"],
+                mdi: ["aws", "slack", "youtube"],
                 octicon: [
-                    'chevron-right-16',
-                    'git-pull-request-16',
-                    'law-16',
-                    'link-external-16',
-                    'mortar-board-16',
-                    'play-16',
-                    'table-16',
-                    'tasklist-16',
-                    'terminal-16',
-                    'tools-16',
+                    "chevron-right-16",
+                    "git-pull-request-16",
+                    "law-16",
+                    "link-external-16",
+                    "mortar-board-16",
+                    "play-16",
+                    "table-16",
+                    "tasklist-16",
+                    "terminal-16",
+                    "tools-16",
                 ],
-                'simple-icons': ['bluesky'],
+                "simple-icons": ["bluesky"],
             },
         }),
         sitemap(),
         partytown({
             // Adds dataLayer.push as a forwarding-event.
             config: {
-                forward: ['dataLayer.push'],
+                forward: ["dataLayer.push"],
             },
         }),
         mdx(),
         markdownIntegration(),
     ],
     build: {
-        inlineStylesheets: 'auto',
-        format: 'file',
-        assetsPrefix: 'https://nf-core-pipelines.netlify.app/',
+        inlineStylesheets: "auto",
+        format: "file",
+        assetsPrefix: "https://nf-core-pipelines.netlify.app/",
     },
     vite: {
         css: {
             preprocessorOptions: {
                 scss: {
-                    api: 'modern-compiler',
-                    silenceDeprecations: ['legacy-js-api','mixed-decls','color-functions'],
+                    api: "modern-compiler",
+                    silenceDeprecations: ["legacy-js-api", "mixed-decls", "color-functions"],
                 },
             },
         },
@@ -111,13 +120,13 @@ export default defineConfig({
             yaml(),
             FontaineTransform.vite({
                 // avoid flash of unstyled text by interjecting fallback system fonts https://developer.chrome.com/blog/framework-tools-font-fallback/#using-fontaine-library
-                fallbacks: ['BlinkMacSystemFont', 'Segoe UI', 'Helvetica Neue', 'Arial', 'Noto Sans'],
+                fallbacks: ["BlinkMacSystemFont", "Segoe UI", "Helvetica Neue", "Arial", "Noto Sans"],
                 resolvePath: (id) => new URL(`./public${id}`, import.meta.url),
-                skipFontFaceGeneration: (fallbackName) => fallbackName === 'Font Awesome 6 Pro fallback',
+                skipFontFaceGeneration: (fallbackName) => fallbackName === "Font Awesome 6 Pro fallback",
             }),
         ],
         ssr: {
-            noExternal: ['@popperjs/core', '../../bin/cache.js'],
+            noExternal: ["@popperjs/core", "../../bin/cache.js"],
         },
         resolve: {
             preserveSymlinks: true,
@@ -125,9 +134,9 @@ export default defineConfig({
         },
     },
     image: {
-        domains: ['raw.githubusercontent.com', 'unsplash.com'],
+        domains: ["raw.githubusercontent.com", "unsplash.com"],
         service: {
-            entrypoint: 'astro/assets/services/sharp',
+            entrypoint: "astro/assets/services/sharp",
         },
     },
     markdown: {
@@ -178,35 +187,35 @@ export default defineConfig({
             [
                 rehypeAutolinkHeadings,
                 {
-                    behavior: 'append',
-                    content: h('i.ms-1.fas.fa-link.fa-xs.invisible'),
+                    behavior: "append",
+                    content: h("i.ms-1.fas.fa-link.fa-xs.invisible"),
                 },
             ],
             [
                 addClasses,
                 {
-                    table: 'table table-hover table-sm small',
+                    table: "table table-hover table-sm small",
                 },
             ],
             [
                 rehypeWrap,
                 {
-                    selector: 'table',
-                    wrapper: 'div.table-responsive',
+                    selector: "table",
+                    wrapper: "div.table-responsive",
                 },
             ],
             [
                 urls,
                 (url) => {
                     const regex = /^https:\/\/(raw.)*github/;
-                    if (!regex.test(url.href) && url.href?.endsWith('.md')) {
-                        url.href = url.href.replace(/\.md$/, '/');
-                        url.pathname = url.pathname.replace(/\.md$/, '/');
-                        url.path = url.path.replace(/\.md$/, '/');
-                    } else if (!regex.test(url.href) && url.href?.endsWith('.mdx')) {
-                        url.href = url.href.replace(/\.mdx$/, '/');
-                        url.pathname = url.pathname.replace(/\.mdx$/, '/');
-                        url.path = url.path.replace(/\.mdx$/, '/');
+                    if (!regex.test(url.href) && url.href?.endsWith(".md")) {
+                        url.href = url.href.replace(/\.md$/, "/");
+                        url.pathname = url.pathname.replace(/\.md$/, "/");
+                        url.path = url.path.replace(/\.md$/, "/");
+                    } else if (!regex.test(url.href) && url.href?.endsWith(".mdx")) {
+                        url.href = url.href.replace(/\.mdx$/, "/");
+                        url.pathname = url.pathname.replace(/\.mdx$/, "/");
+                        url.path = url.path.replace(/\.mdx$/, "/");
                     }
                 },
             ],
@@ -215,11 +224,11 @@ export default defineConfig({
             [
                 rehypePrettyCode,
                 {
-                    defaultLang: 'plaintext',
+                    defaultLang: "plaintext",
                     keepBackground: true,
                     theme: {
-                        dark: 'github-dark',
-                        light: 'github-light',
+                        dark: "github-dark",
+                        light: "github-light",
                     },
                 },
             ],

@@ -2,7 +2,7 @@
 import MarkdownTocLayout from "@layouts/MarkdownTocLayout.astro";
 import FooterPrevNext from "@components/footer/FooterPrevNext.astro";
 import SubFooter from "@components/footer/SubFooter.astro";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import type { SidebarEntry } from "@utils/types";
 import {
     findCurrentGroup,
@@ -18,7 +18,7 @@ export async function getStaticPaths() {
     const docs = await getCollection("docs");
     return docs.map((doc) => ({
         params: {
-            doc: doc.slug,
+            doc: doc.id.replace(/\.[^/.]+$/, ""),
         },
         props: {
             doc: doc,
@@ -27,7 +27,7 @@ export async function getStaticPaths() {
 }
 const title = Astro.props.doc.data.title;
 const subtitle = Astro.props.doc.data.subtitle;
-const { headings, Content, remarkPluginFrontmatter } = await Astro.props.doc.render();
+const { headings, Content, remarkPluginFrontmatter } = await render(Astro.props.doc);
 
 let prev_page: { title: string; slug: string } | null = null;
 let next_page: { title: string; slug: string } | null = null;
