@@ -1069,7 +1069,13 @@
         "maintainers": [
           "@GallVp"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "circrna",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "agat_convertspgff2gtf",
@@ -22669,6 +22675,105 @@
         ],
         "maintainers": [
           "@GallVp"
+        ]
+      }
+    },
+    {
+      "name": "busco_phylogenomics",
+      "path": "modules/nf-core/busco/phylogenomics/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "busco_phylogenomics",
+        "description": "Construct species phylogenies using BUSCO proteins",
+        "keywords": [
+          "phylogenies",
+          "orthologs",
+          "alignment"
+        ],
+        "tools": [
+          {
+            "busco": {
+              "description": "Construct species phylogenies using BUSCO proteins",
+              "homepage": "https://github.com/jamiemcg/BUSCO_phylogenomics",
+              "documentation": "https://github.com/jamiemcg/BUSCO_phylogenomics",
+              "tool_dev_url": "https://github.com/jamiemcg/BUSCO_phylogenomics",
+              "doi": "10.1371/journal.pgen.1011512",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "busco": {
+                "type": "directory",
+                "description": "BUSCO lineage specific output",
+                "pattern": "*"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "gene_trees": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/gene_trees_single_copy/": {
+                  "type": "directory",
+                  "description": "Gene trees of BUSCO families",
+                  "pattern": "${prefix}/gene_trees_single_copy"
+                }
+              }
+            ]
+          },
+          {
+            "supermatrix": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/supermatrix/": {
+                  "type": "directory",
+                  "description": "Concatenated supermatrix alignments of BUSCO families",
+                  "pattern": "${prefix}/supermatrix"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
         ]
       }
     },
@@ -93678,7 +93783,7 @@
             {
               "keep_intermediate": {
                 "type": "boolean",
-                "description": "Keep intermediate files",
+                "description": "Keep intermediate files that are not used by the database itself",
                 "pattern": "true|false"
               }
             }
@@ -162707,6 +162812,401 @@
         ],
         "maintainers": [
           "@itrujnara"
+        ]
+      }
+    },
+    {
+      "name": "skani_dist",
+      "path": "modules/nf-core/skani/dist/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "skani_dist",
+        "description": "Simple ANI calculation between reference and query genomes.",
+        "keywords": [
+          "skani",
+          "metagenomics",
+          "genome",
+          "alignment",
+          "sketch",
+          "distance",
+          "dist"
+        ],
+        "tools": [
+          {
+            "skani": {
+              "description": "skani is a fast and robust tool for calculating ANI between metagenome assembled genomes and contigs.",
+              "homepage": "https://github.com/bluenote-1577/skani",
+              "documentation": "https://github.com/bluenote-1577/skani/wiki",
+              "tool_dev_url": "https://github.com/bluenote-1577/skani",
+              "doi": "10.1038/s41592-023-02018-3",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "query": {
+                "type": "file",
+                "description": "FASTA/skani sketch file to be used as query.\n",
+                "pattern": "*.{fasta,fasta.gz,fa,fa.gz,fna,fna.gz,sketch}"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "reference": {
+                "type": "file",
+                "description": "FASTA/skani sketch file to be used as reference.\n",
+                "pattern": "*.{fasta,fasta.gz,fa,fa.gz,fna,fna.gz,sketch}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "dist": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.tsv": {
+                  "type": "file",
+                  "description": "TSV file containing ANI and AF between query and reference as calculated by skani.\npattern: \"*.tsv\"\n"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@CarsonJM"
+        ],
+        "maintainers": [
+          "@CarsonJM"
+        ]
+      }
+    },
+    {
+      "name": "skani_search",
+      "path": "modules/nf-core/skani/search/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "skani_search",
+        "description": "Memory-efficient ANI database queries with skani.",
+        "keywords": [
+          "skani",
+          "metagenomics",
+          "genome",
+          "alignment",
+          "search"
+        ],
+        "tools": [
+          {
+            "skani": {
+              "description": "skani is a fast and robust tool for calculating ANI between metagenome assembled genomes and contigs.",
+              "homepage": "https://github.com/bluenote-1577/skani",
+              "documentation": "https://github.com/bluenote-1577/skani/wiki",
+              "tool_dev_url": "https://github.com/bluenote-1577/skani",
+              "doi": "10.1038/s41592-023-02018-3",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "query": {
+                "type": "file",
+                "description": "Input FASTA/skani sketch to search with.",
+                "pattern": "*.{fasta,fasta.gz,fa,fa.gz,fna,fna.gz}"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "sketch_dir": {
+                "type": "directory",
+                "description": "Directory containing the genome sketches and markers.",
+                "pattern": "*"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "search": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.tsv": {
+                  "type": "file",
+                  "description": "TSV file containing ANI and AF as predicted by skani.",
+                  "pattern": "*.tsv"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@CarsonJM"
+        ],
+        "maintainers": [
+          "@CarsonJM"
+        ]
+      }
+    },
+    {
+      "name": "skani_sketch",
+      "path": "modules/nf-core/skani/sketch/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "skani_sketch",
+        "description": "Storing skani sketches/indices on disk.",
+        "keywords": [
+          "skani",
+          "metagenomics",
+          "genome",
+          "alignment",
+          "sketch"
+        ],
+        "tools": [
+          {
+            "skani": {
+              "description": "skani is a fast and robust tool for calculating ANI between metagenome assembled genomes and contigs.",
+              "homepage": "https://github.com/bluenote-1577/skani",
+              "documentation": "https://github.com/bluenote-1577/skani/wiki",
+              "tool_dev_url": "https://github.com/bluenote-1577/skani",
+              "doi": "10.1038/s41592-023-02018-3",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Input FASTA file to be sketched",
+                "pattern": "*.{fasta,fasta.gz,fa,fa.gz,fna,fna.gz}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "sketch_dir": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}": {
+                  "type": "directory",
+                  "description": "Directory containing the genome sketches and markers."
+                }
+              }
+            ]
+          },
+          {
+            "sketch": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/${fasta}.sketch": {
+                  "type": "file",
+                  "description": "File containing the genome sketch that will be used downstream."
+                }
+              }
+            ]
+          },
+          {
+            "markers": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/markers.bin": {
+                  "type": "file",
+                  "description": "Sparse set of markers to filter distant genomes."
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@CarsonJM"
+        ],
+        "maintainers": [
+          "@CarsonJM"
+        ]
+      }
+    },
+    {
+      "name": "skani_triangle",
+      "path": "modules/nf-core/skani/triangle/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "skani_triangle",
+        "description": "All-to-all ANI computation.",
+        "keywords": [
+          "skani",
+          "metagenomics",
+          "genome",
+          "alignment",
+          "sketch",
+          "distance",
+          "dist"
+        ],
+        "tools": [
+          {
+            "skani": {
+              "description": "skani is a fast and robust tool for calculating ANI between metagenome assembled genomes and contigs.",
+              "homepage": "https://github.com/bluenote-1577/skani",
+              "documentation": "https://github.com/bluenote-1577/skani/wiki",
+              "tool_dev_url": "https://github.com/bluenote-1577/skani",
+              "doi": "10.1038/s41592-023-02018-3",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "queries": {
+                "type": "file",
+                "description": "Space-separated list of FASTA(s)/skani sketch(es) to be used as query.",
+                "pattern": "*.{fasta,fasta.gz,fa,fa.gz,fna,fna.gz,sketch}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "triangle": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.tsv": {
+                  "type": "file",
+                  "description": "TSV file containing ANIs and AFs calculated between queries."
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@CarsonJM"
+        ],
+        "maintainers": [
+          "@CarsonJM"
         ]
       }
     },
