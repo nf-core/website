@@ -39,7 +39,6 @@ let entry = await getEntry("pipelines", pipeline + "/" + version_tag_name + "/RE
 
 const headings = entry?.rendered?.metadata?.headings;
 const Content = entry?.rendered?.html;
-console.log("version_tag_name:", version_tag_name);
 if (version_tag_name !== "dev") {
     meta.doi = entry?.data?.doi;
 }
