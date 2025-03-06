@@ -190,7 +190,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -2503,7 +2503,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -2599,7 +2599,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -2913,7 +2913,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -3045,7 +3045,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -3142,7 +3142,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -3414,7 +3414,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -3479,7 +3479,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -5041,7 +5041,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -5156,7 +5156,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -5410,7 +5410,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -8492,7 +8492,7 @@
         },
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "pathogensurveillance",
@@ -8570,7 +8570,7 @@
         },
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "pathogensurveillance",
@@ -41506,7 +41506,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -41666,7 +41666,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -41738,7 +41738,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -42011,7 +42011,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -51692,7 +51692,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -68976,6 +68976,14 @@
                 "pattern": "*"
               }
             }
+          ],
+          [
+            {
+              "disable_redirect_output": {
+                "type": "boolean",
+                "description": "Disable the redirection of awk output to a given file. This is useful if you want to use awk's built-in redirect to write files instead of the shell's redirect."
+              }
+            }
           ]
         ],
         "output": [
@@ -68988,9 +68996,9 @@
                 }
               },
               {
-                "${prefix}.${suffix}": {
+                "*.${suffix}": {
                   "type": "file",
-                  "description": "The output file - specify the name of this file using `ext.prefix` and the extension using `ext.suffix`",
+                  "description": "The output file - if using shell redirection, specify the name of this file using `ext.prefix` and the extension using `ext.suffix`. Otherwise, ensure the awk program produces files with the extension in `ext.suffix`.",
                   "pattern": "*"
                 }
               }
@@ -69214,7 +69222,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -78527,7 +78535,7 @@
         },
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "genomeannotator",
@@ -78949,7 +78957,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -79083,7 +79091,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -79215,7 +79223,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -79349,7 +79357,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -79483,7 +79491,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -79589,7 +79597,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -83681,7 +83689,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "metatdenovo",
@@ -87246,7 +87254,13 @@
           "@vagkaratzas",
           "@mahesh-panchal"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "funcscan",
+          "version": "2.1.0"
+        }
+      ]
     },
     {
       "name": "iphop_download",
@@ -94695,13 +94709,11 @@
                 "description": "Multiple Alignment Format (MAF) file, optionally compressed with gzip",
                 "pattern": "*.{maf.gz,maf}"
               }
-            }
-          ],
-          [
+            },
             {
               "format": {
                 "type": "string",
-                "description": "Output format (one of axt, blast, blasttab, chain, gff, html, psl, sam, or tab)"
+                "description": "Output format (one of axt, bam, blast, blasttab, cram, chain, gff, html, psl, sam, or tab)"
               }
             }
           ],
@@ -98477,7 +98489,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -109930,7 +109942,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "proteinfamilies",
@@ -110144,7 +110156,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "proteinfamilies",
@@ -110223,7 +110235,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "mag",
@@ -110607,7 +110619,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -113218,7 +113230,7 @@
         },
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "genomeannotator",
@@ -135605,7 +135617,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "mag",
@@ -135909,7 +135921,7 @@
         },
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "mag",
@@ -139640,7 +139652,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -141897,7 +141909,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -142061,7 +142073,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -157465,7 +157477,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "genomeqc",
@@ -173398,7 +173410,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "nanoseq",
@@ -181566,7 +181578,7 @@
         },
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "hgtseq",
@@ -199186,7 +199198,7 @@
         },
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "genomeassembler",
@@ -199523,7 +199535,7 @@
         },
         {
           "name": "funcscan",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "genomeassembler",
@@ -199843,6 +199855,10 @@
           "version": "1.1.0"
         },
         {
+          "name": "funcscan",
+          "version": "2.1.0"
+        },
+        {
           "name": "genomeassembler",
           "version": "dev"
         },
@@ -200092,10 +200108,6 @@
         {
           "name": "fetchngs",
           "version": "1.12.0"
-        },
-        {
-          "name": "funcscan",
-          "version": "2.0.0"
         },
         {
           "name": "genomeqc",
