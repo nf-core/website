@@ -18,23 +18,111 @@ const pipelineNames = [
     "taxprofiler",
 ];
 
-// Create sticker data using GitHub URLs
-const stickers = pipelineNames.map((pipeline) => {
+// Define hackathon names
+const hackathonNames = [
+    "barcelona2023",
+    "boston2023",
+    "march2023",
+    "march2024",
+];
+
+// Define hero names
+const heroNames = [
+    "bug_smasher_beard",
+    "bug_smasher_no_beard",
+    "design_ninja",
+    "docu_hero",
+    "docu_robot",
+    "merge_cowboy",
+    "merge_cowgirl",
+    "module_king",
+    "module_queen",
+    "pipeline_angel",
+    "pipeline_prodigy",
+    "syntax_zombie",
+];
+
+// Define mentorship names
+const mentorshipNames = [
+    "round1",
+    "round2",
+    "round3",
+];
+
+// Define team names
+const teamNames = [
+    "infrastructure",
+    "outreach",
+    "safety",
+    "maintainers",
+];
+
+// Create sticker data for pipelines
+const pipelineStickers = pipelineNames.map((pipeline) => {
     return {
         // Use raw.githubusercontent.com to get the direct image URL
-        imageUrl: `https://raw.githubusercontent.com/nf-core/logos/master/hexagon-stickers/${pipeline}/nfcore-${pipeline}-logo-hex-dark.png`,
+        imageUrl: `https://raw.githubusercontent.com/nf-core/logos/add_all_the_things/hexagon-stickers/pipelines/${pipeline}/nfcore-${pipeline}-logo-hex-dark.png`,
         alt: `${pipeline} pipeline`,
-        category: "pipeline-hexagon-stickers",
+        category: "pipelines",
         // Link to the GitHub repository
         link: `https://github.com/nf-core/${pipeline}`,
     };
 });
+
+// Create sticker data for hackathons
+const hackathonStickers = hackathonNames.map((hackathon) => {
+    return {
+        imageUrl: `https://github.com/nf-core/logos/blob/dd28509eff10855226abd84e880a0708a06b6ff4/hexagon-stickers/hackathons/hackathon-${hackathon}.png?raw=true`,
+        alt: `${hackathon}`,
+        category: "hackathons",
+        link: `https://nf-co.re/events`,
+    };
+});
+
+// Create sticker data for hero
+const heroStickers = heroNames.map((hero) => {
+    return {
+        imageUrl: `https://github.com/nf-core/logos/blob/dd28509eff10855226abd84e880a0708a06b6ff4/hexagon-stickers/hero/HeroSticker_${hero}.png?raw=true`,
+        alt: `${hero}`,
+        category: "hero",
+        link: `https://nf-co.re/`,
+    };
+});
+
+// Create sticker data for mentorships
+const mentorshipStickers = mentorshipNames.map((mentorship) => {
+    return {
+        imageUrl: `https://github.com/nf-core/logos/blob/add_all_the_things/hexagon-stickers/mentorships/mentorship-${mentorship}.png?raw=true`,
+        alt: `${mentorship}`,
+        category: "mentorships",
+        link: `https://nf-co.re/mentorships`,
+    };
+});
+
+// Create sticker data for teams
+const teamStickers = teamNames.map((team) => {
+    return {
+        imageUrl: `https://github.com/nf-core/logos/blob/add_all_the_things/hexagon-stickers/teams/nf-core-${team}.png?raw=true`,
+        alt: `${team} team`,
+        category: "teams",
+        link: `https://nf-co.re/about`,
+    };
+});
+
+// Combine all stickers
+const allStickers = [
+    ...pipelineStickers,
+    ...hackathonStickers,
+    ...heroStickers,
+    ...mentorshipStickers,
+    ...teamStickers,
+];
 ---
 
 <PageLayout title="nf-core Stickers" subtitle="Browse our collection of hex stickers organized by category.">
     <main class="py-5">
-        <div class="container">
-            <HexStickerGallery stickers={stickers} />
+
+            <HexStickerGallery stickers={allStickers} />
         </div>
     </main>
 </PageLayout>

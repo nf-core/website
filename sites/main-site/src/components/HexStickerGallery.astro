@@ -28,6 +28,20 @@ const stickersByCategory = categories.reduce(
 
 // Function to format category name for display
 function formatCategoryName(category: string): string {
+    // Special case for specific categories
+    const specialCategories: Record<string, string> = {
+        "pipelines": "Pipeline Stickers",
+        "hackathons": "Hackathon Stickers",
+        "hero": "Hero Stickers",
+        "mentorships": "Mentorship Stickers",
+        "teams": "Team Stickers"
+    };
+
+    if (specialCategories[category]) {
+        return specialCategories[category];
+    }
+
+    // Default formatting for other categories
     return category
         .split("-")
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
@@ -37,9 +51,16 @@ function formatCategoryName(category: string): string {
 
 <div class="w-100 p-2">
     {
-        categories.map((category) => (
-            <div class="category-section mb-5">
-                <h2 class="category-heading mb-4">{formatCategoryName(category)}</h2>
+        categories.map((category, index) => (
+            <div class="category-section" id={`category-${category}`}>
+                <h2 class="category-heading mb-4">
+                    {formatCategoryName(category)}
+                    <a href="#top" class="back-to-top ms-2" title="Back to top">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+                        </svg>
+                    </a>
+                </h2>
                 <div class="hex-gallery" id={`hexGallery-${category}`} data-category={category}>
                     {stickersByCategory[category].map((sticker) => (
                         <HexSticker
@@ -50,6 +71,9 @@ function formatCategoryName(category: string): string {
                         />
                     ))}
                 </div>
+                {index < categories.length - 1 && (
+                    <hr class="category-divider my-4" />
+                )}
             </div>
         ))
     }
@@ -61,63 +85,98 @@ function formatCategoryName(category: string): string {
         font-size: 1.75rem;
         font-weight: 600;
         color: var(--theme-text, #fff);
+        margin-top: 3rem; /* Consistent top margin */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* First category heading should have less top margin */
+    .category-section:first-child .category-heading {
         margin-top: 1rem;
+    }
+
+    .back-to-top {
+        opacity: 0.5;
+        transition: opacity 0.3s ease;
+        color: var(--theme-text, #fff);
+    }
+
+    .back-to-top:hover {
+        opacity: 1;
+    }
+
+    .category-divider {
+        border-color: var(--theme-border, rgba(255, 255, 255, 0.1));
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .category-divider:last-child {
+        display: none;
     }
 
     .hex-gallery {
         --hex-size: 187.5px; /* Base size for large screens */
         --hex-margin: 0.5rem;
-        min-height: 625px;
         position: relative;
         width: 100%;
+        padding-bottom: 2rem; /* Consistent bottom padding */
     }
 
     /* Responsive sizing for different screen sizes */
     @media (max-width: 1200px) {
         .hex-gallery {
             --hex-size: 175px;
-            min-height: 585px;
         }
     }
 
     @media (max-width: 992px) {
         .hex-gallery {
             --hex-size: 150px;
-            min-height: 500px;
         }
     }
 
     @media (max-width: 768px) {
         .hex-gallery {
             --hex-size: 125px;
-            min-height: 420px;
         }
     }
 
     @media (max-width: 576px) {
         .hex-gallery {
             --hex-size: 100px;
-            min-height: 335px;
         }
     }
 
     /* Hover effects for the gallery */
     .hex-gallery:hover .hex-container:not(:hover) {
-        opacity: 0.7;
-        filter: grayscale(0.2);
-        transform: scale(0.95);
+        opacity: 0.55; /* Increased from 0.65 - even more contrast */
+        filter: grayscale(0.4); /* Increased from 0.25 - more grayscale */
+        transform: scale(0.9); /* Increased shrink effect from 0.94 */
+        transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1); /* Smooth easing */
     }
 
     .hex-gallery .hex-container {
         transition:
-            opacity 0.3s ease,
-            filter 0.3s ease,
-            transform 0.3s ease;
+            opacity 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), /* Bounce effect */
+            filter 0.4s ease,
+            transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), /* Bounce effect */
+            box-shadow 0.4s ease;
+        will-change: transform; /* Optimize for animations */
     }
 
     .hex-gallery .hex-container:hover {
         z-index: 10;
-        transform: scale(1.05);
+        transform: scale(1.18) rotate(3deg); /* Increased scale and rotation */
+        filter: brightness(1.08) contrast(1.05) saturate(1.1); /* Enhanced brightness, contrast and saturation */
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Deeper shadow for more depth */
+    }
+
+    /* Add alternating tilt directions for more natural feel */
+    .hex-gallery .hex-container:nth-child(even):hover {
+        transform: scale(1.18) rotate(-3deg); /* Increased scale and rotation */
     }
 </style>
 
@@ -149,10 +208,11 @@ function formatCategoryName(category: string): string {
 
                 // Setup new hex grid with resize handling
                 const cleanup = setupHexGridResizing(gallery, hexElements, {
-                    spacing: 10,
+                    spacing: 15, // Increased spacing between hexagons
                     startingRow: window.innerWidth < 576 ? 2 : 3, // Adjust starting row for mobile
                     minHexPerRow: 2, // Ensure at least 2 hexagons per row on small screens
                     transitionDuration: "0.4s", // Smooth transition duration
+                    forceEvenRows: true, // Try to make rows more even
                 });
 
                 cleanupResizeListeners.push(cleanup);
@@ -175,10 +235,11 @@ function formatCategoryName(category: string): string {
                             if (hexElements.length > 0) {
                                 // Setup hex grid for this gallery
                                 const cleanup = setupHexGridResizing(gallery, hexElements, {
-                                    spacing: 10,
+                                    spacing: 15, // Increased spacing between hexagons
                                     startingRow: window.innerWidth < 576 ? 2 : 3,
                                     minHexPerRow: 2,
                                     transitionDuration: "0.4s",
+                                    forceEvenRows: true, // Try to make rows more even
                                 });
 
                                 cleanupResizeListeners.push(cleanup);
@@ -205,10 +266,13 @@ function formatCategoryName(category: string): string {
         }
     }
 
-    // Initialize hex grids on page load
+    // Initialize when the document is ready
     document.addEventListener("DOMContentLoaded", () => {
-        // Use lazy initialization for better performance
-        setupLazyInitialization();
+        if (document.readyState === "complete" || document.readyState === "interactive") {
+            setupLazyInitialization();
+        } else {
+            document.addEventListener("DOMContentLoaded", setupLazyInitialization);
+        }
     });
 
     // Handle orientation changes
