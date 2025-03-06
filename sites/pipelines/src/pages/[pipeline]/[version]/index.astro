@@ -1,8 +1,10 @@
 ---
 import PipelinePageLayout from "@layouts/PipelinePageLayout.astro";
 import pipelines_json from "@public/pipelines.json";
-import { getEntry, getCollection } from "astro:content";
+import { getEntry } from "astro:content";
 import PipelineSidebar from "@components/pipeline/PipelineSidebar.astro";
+import MarkdownWrapper from "@components/markdown/MarkdownWrapper.svelte";
+
 export function getStaticPaths() {
     var paths: { params: { pipeline: string; version: string }; props: { versions: string[]; md_files; meta } }[] = [];
     pipelines_json.remote_workflows.forEach((pipeline) => {
@@ -34,9 +36,13 @@ const description = meta.description;
 const is_archived = meta.archived;
 const version_tag_name = version === "latest" ? versions[0] : version;
 let entry = await getEntry("pipelines", pipeline + "/" + version_tag_name + "/README");
-entry = entry;
+
 const headings = entry?.rendered?.metadata?.headings;
 const Content = entry?.rendered?.html;
+console.log("version_tag_name:", version_tag_name);
+if (version_tag_name !== "dev") {
+    meta.doi = entry?.data?.doi;
+}
 
 const md_github_url = "https://github.com/nf-core/" + pipeline + "/blob/" + version + "/README.md";
 ---
@@ -55,7 +61,9 @@ const md_github_url = "https://github.com/nf-core/" + pipeline + "/blob/" + vers
 >
     <div class="row">
         <div class="col-12 col-md-8 col-xxl-9 pt-3 markdown-content">
-            <Fragment set:html={Content} />
+            <MarkdownWrapper headings={headings} client:load>
+                <Fragment set:html={Content} />
+            </MarkdownWrapper>
         </div>
         <div class="col-12 col-md-4 col-xxl-3 toc">
             <PipelineSidebar pipeline={pipeline} version={version} meta={meta} />
