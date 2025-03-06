@@ -1,0 +1,484 @@
+<div id="stickerModal" class="sticker-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="stickerModalTitle" tabindex="-1">
+    <div class="sticker-modal-backdrop"></div>
+    <div class="sticker-modal-container">
+        <div class="sticker-modal-content">
+            <button type="button" class="sticker-modal-close" aria-label="Close">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                </svg>
+            </button>
+            <div class="sticker-modal-body">
+                <div class="sticker-modal-image-container">
+                    <div class="sticker-modal-hex">
+                        <div class="sticker-modal-holographic-foil"></div>
+                        <img src="" alt="" class="sticker-modal-img dark-mode-img">
+                        <img src="" alt="" class="sticker-modal-img light-mode-img">
+                    </div>
+                </div>
+                <div class="sticker-modal-info">
+                    <h3 class="sticker-modal-title" id="stickerModalTitle"></h3>
+                    <p class="sticker-modal-description"></p>
+                    <a href="#" class="sticker-modal-link btn btn-primary mt-3" target="_blank" rel="noopener noreferrer">
+                        View Details
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right ms-1" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                            <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .sticker-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1050;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .sticker-modal.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .sticker-modal-backdrop {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.75);
+        backdrop-filter: blur(5px);
+    }
+
+    :global(body.light-mode) .sticker-modal-backdrop {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .sticker-modal-container {
+        position: relative;
+        width: 95%;
+        max-width: 900px;
+        max-height: 95vh;
+        margin: 0 auto;
+        background-color: var(--bs-body-bg);
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        transform: scale(0.9);
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .sticker-modal.show .sticker-modal-container {
+        transform: scale(1);
+    }
+
+    .sticker-modal-content {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        padding: 2rem;
+    }
+
+    .sticker-modal-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: transparent;
+        border: none;
+        color: var(--bs-body-color);
+        opacity: 0.7;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+        z-index: 10;
+        padding: 0.5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .sticker-modal-close:hover,
+    .sticker-modal-close:focus {
+        opacity: 1;
+        transform: scale(1.1);
+        background-color: rgba(0, 0, 0, 0.1);
+        outline: none;
+    }
+
+    .sticker-modal-body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+        .sticker-modal-body {
+            flex-direction: row;
+            align-items: center;
+        }
+    }
+
+    .sticker-modal-image-container {
+        flex: 0 0 auto;
+        width: 100%;
+        max-width: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .sticker-modal-hex {
+        width: 100%;
+        aspect-ratio: 1 / 1.1547; /* Hexagon aspect ratio */
+        position: relative;
+        clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+        overflow: hidden;
+        box-shadow:
+            0 10px 25px rgba(0, 0, 0, 0.2),
+            0 5px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.5s ease;
+    }
+
+    .sticker-modal-hex:hover {
+        transform: rotate(5deg);
+    }
+
+    .sticker-modal-holographic-foil {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.2) 0%,
+            rgba(255, 0, 0, 0.15) 20%,
+            rgba(255, 255, 0, 0.15) 40%,
+            rgba(0, 255, 255, 0.15) 60%,
+            rgba(0, 0, 255, 0.15) 80%,
+            rgba(255, 0, 255, 0.15) 100%
+        );
+        mix-blend-mode: soft-light;
+        opacity: 0.5;
+        z-index: 2;
+        animation: rotate-gradient 10s linear infinite;
+    }
+
+    @keyframes rotate-gradient {
+        0% {
+            background-position: 0% 0%;
+        }
+        100% {
+            background-position: 100% 100%;
+        }
+    }
+
+    .sticker-modal-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    /* Show/hide images based on theme */
+    .sticker-modal .light-mode-img {
+        display: none;
+    }
+
+    .sticker-modal .dark-mode-img {
+        display: block;
+    }
+
+    :global(body.light-mode) .sticker-modal .light-mode-img {
+        display: block;
+    }
+
+    :global(body.light-mode) .sticker-modal .dark-mode-img {
+        display: none;
+    }
+
+    .sticker-modal-info {
+        flex: 1;
+        text-align: center;
+    }
+
+    @media (min-width: 768px) {
+        .sticker-modal-info {
+            text-align: left;
+        }
+    }
+
+    .sticker-modal-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        text-transform: capitalize;
+    }
+
+    .sticker-modal-description {
+        margin-bottom: 1.5rem;
+        color: var(--bs-secondary-color);
+    }
+
+    .sticker-modal-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem 1rem;
+        font-weight: 500;
+    }
+
+    .sticker-modal-link:focus {
+        box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.5);
+        outline: none;
+    }
+</style>
+
+<script>
+    import {
+        animateModalOpen,
+        animateModalClose,
+        addShineEffect,
+        injectAnimationStyles
+    } from './stickerModalAnimations.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Inject animation styles
+        injectAnimationStyles();
+
+        const modal = document.getElementById('stickerModal');
+        const modalContainer = modal?.querySelector('.sticker-modal-container');
+        const modalClose = modal?.querySelector('.sticker-modal-close');
+        const modalBackdrop = modal?.querySelector('.sticker-modal-backdrop');
+        const modalDarkImg = modal?.querySelector('.sticker-modal-img.dark-mode-img');
+        const modalLightImg = modal?.querySelector('.sticker-modal-img.light-mode-img');
+        const modalTitle = modal?.querySelector('.sticker-modal-title');
+        const modalDescription = modal?.querySelector('.sticker-modal-description');
+        const modalLink = modal?.querySelector('.sticker-modal-link');
+        const modalHex = modal?.querySelector('.sticker-modal-hex');
+        const modalImageContainer = modal?.querySelector('.sticker-modal-image-container');
+
+        // Store the element that had focus before the modal was opened
+        let previouslyFocusedElement = null;
+
+        // Get all focusable elements in the modal
+        const getFocusableElements = () => {
+            return Array.from(
+                modal.querySelectorAll(
+                    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+                )
+            ).filter(el => !el.hasAttribute('disabled') && el.offsetParent !== null);
+        };
+
+        // Function to open the modal with sticker data
+        function openStickerModal(stickerData) {
+            if (!modal || !modalDarkImg || !modalLightImg || !modalTitle || !modalLink || !modalContainer || !modalHex || !modalDescription) return;
+
+            // Store the currently focused element
+            previouslyFocusedElement = document.activeElement;
+
+            // Set modal content
+            modalDarkImg.src = stickerData.imageUrl;
+            modalLightImg.src = stickerData.lightImageUrl;
+            modalDarkImg.alt = stickerData.alt;
+            modalLightImg.alt = stickerData.alt;
+
+            // Format the title from the alt text
+            const formattedTitle = stickerData.alt
+                .replace(/-/g, ' ')
+                .replace(/_/g, ' ')
+                .replace(/\b\w/g, l => l.toUpperCase());
+
+            modalTitle.textContent = formattedTitle;
+
+            // Set description based on provided description or fallback to category
+            if (stickerData.description) {
+                modalDescription.textContent = stickerData.description;
+            } else {
+                const category = stickerData.category || 'uncategorized';
+                modalDescription.textContent = `This is a ${category} sticker from the nf-core collection.`;
+            }
+
+            // Set link if available
+            if (stickerData.link) {
+                modalLink.href = stickerData.link;
+                modalLink.style.display = 'inline-flex';
+            } else {
+                modalLink.style.display = 'none';
+            }
+
+            // Show the modal
+            modal.classList.add('show');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+
+            // Apply animations
+            animateModalOpen(modal, modalContainer, modalHex);
+
+            // Add shine effect after a short delay
+            setTimeout(() => {
+                addShineEffect(modalHex);
+            }, 800);
+
+            // Add 3D tilt effect to the hexagon
+            if (modalHex) {
+                const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+                if (!prefersReducedMotion) {
+                    modalHex.addEventListener('mousemove', handleTilt);
+                    modalHex.addEventListener('mouseleave', resetTilt);
+                }
+            }
+
+            // Focus the modal to enable keyboard navigation
+            modal.focus();
+        }
+
+        // Function to close the modal
+        function closeStickerModal() {
+            if (!modal || !modalHex || !modalContainer) return;
+
+            // Apply closing animations
+            animateModalClose(modal, modalContainer, modalHex, () => {
+                modal.classList.remove('show');
+                modal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = ''; // Restore scrolling
+
+                // Restore focus to the element that had it before the modal was opened
+                if (previouslyFocusedElement) {
+                    previouslyFocusedElement.focus();
+                }
+            });
+
+            // Remove event listeners
+            modalHex.removeEventListener('mousemove', handleTilt);
+            modalHex.removeEventListener('mouseleave', resetTilt);
+        }
+
+        // 3D tilt effect for the modal hexagon
+        function handleTilt(e) {
+            if (!modalHex) return;
+
+            const rect = modalHex.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const percentX = (x - centerX) / centerX;
+            const percentY = (y - centerY) / centerY;
+
+            const maxTilt = 15;
+            const tiltX = percentY * maxTilt;
+            const tiltY = -percentX * maxTilt;
+
+            modalHex.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+        }
+
+        // Reset tilt when mouse leaves
+        function resetTilt() {
+            if (!modalHex) return;
+            modalHex.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+        }
+
+        // Trap focus inside the modal when it's open
+        function trapFocus(e) {
+            if (!modal.classList.contains('show')) return;
+
+            const focusableElements = getFocusableElements();
+            if (focusableElements.length === 0) return;
+
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+
+            // If shift+tab pressed on first element, focus the last element
+            if (e.key === 'Tab' && e.shiftKey && document.activeElement === firstElement) {
+                e.preventDefault();
+                lastElement.focus();
+            }
+
+            // If tab pressed on last element, focus the first element
+            else if (e.key === 'Tab' && !e.shiftKey && document.activeElement === lastElement) {
+                e.preventDefault();
+                firstElement.focus();
+            }
+        }
+
+        // Close modal when clicking the close button
+        modalClose?.addEventListener('click', closeStickerModal);
+
+        // Close modal when clicking the backdrop
+        modalBackdrop?.addEventListener('click', closeStickerModal);
+
+        // Handle keyboard events
+        document.addEventListener('keydown', (e) => {
+            // Close modal when pressing Escape key
+            if (e.key === 'Escape' && modal?.classList.contains('show')) {
+                closeStickerModal();
+            }
+
+            // Trap focus inside modal
+            trapFocus(e);
+        });
+
+        // Prevent closing when clicking inside the modal content
+        modal?.querySelector('.sticker-modal-content')?.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+        // Expose the openStickerModal function globally
+        window.openStickerModal = openStickerModal;
+
+        // Add click event listeners to all sticker triggers
+        document.querySelectorAll('.sticker-trigger').forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const stickerData = {
+                    imageUrl: trigger.dataset.stickerImg,
+                    lightImageUrl: trigger.dataset.stickerLightImg,
+                    alt: trigger.dataset.stickerAlt,
+                    link: trigger.dataset.stickerLink,
+                    category: trigger.dataset.category,
+                    description: trigger.dataset.stickerDescription
+                };
+                openStickerModal(stickerData);
+            });
+
+            // Make stickers keyboard accessible
+            trigger.setAttribute('tabindex', '0');
+            trigger.setAttribute('role', 'button');
+            trigger.setAttribute('aria-label', `View ${trigger.dataset.stickerAlt} sticker`);
+
+            // Allow keyboard activation
+            trigger.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    const stickerData = {
+                        imageUrl: trigger.dataset.stickerImg,
+                        lightImageUrl: trigger.dataset.stickerLightImg,
+                        alt: trigger.dataset.stickerAlt,
+                        link: trigger.dataset.stickerLink,
+                        category: trigger.dataset.category,
+                        description: trigger.dataset.stickerDescription
+                    };
+                    openStickerModal(stickerData);
+                }
+            });
+        });
+    });
+</script>

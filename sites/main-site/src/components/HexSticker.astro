@@ -4,21 +4,22 @@ interface Props {
     alt: string;
     category?: string;
     link?: string;
+    description?: string;
 }
 
-const { imageUrl, alt, category = "uncategorized", link } = Astro.props;
+const { imageUrl, alt, category = "uncategorized", link, description } = Astro.props;
 
 // Create light mode URL variant by replacing -dark with -light in the filename
 const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
 ---
 
-<a href={link} class="hex-container" data-category={category} target="_blank" rel="noopener noreferrer">
+<div class="hex-container sticker-trigger" data-category={category} data-sticker-img={imageUrl} data-sticker-light-img={lightModeUrl} data-sticker-alt={alt} data-sticker-link={link} data-sticker-description={description}>
     <div class="hex-sticker">
         <div class="holographic-foil"></div>
         <img src={imageUrl} alt={alt} class="dark-mode-img" />
         <img src={lightModeUrl} alt={alt} class="light-mode-img" />
     </div>
-</a>
+</div>
 
 <style>
     .hex-container {
