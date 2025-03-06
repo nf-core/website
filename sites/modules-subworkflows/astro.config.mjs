@@ -80,7 +80,7 @@ export default defineConfig({
     build: {
         inlineStylesheets: 'auto',
         format: 'file',
-        assetsPrefix: 'https://nf-core-modules-subworkflows.netlify.app/',
+        assetsPrefix: import.meta.env.NETLIFY_SITE_URL || 'https://nf-core-modules-subworkflows.netlify.app/',
     },
     vite: {
         css: {

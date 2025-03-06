@@ -57,6 +57,7 @@ let sections: SidebarEntry[] = [
         weight: 6,
     },
 ];
+
 addEntriesToSection(sections, docs, Astro.url.pathname);
 // sort all entries by weight if available recursively
 const sortEntries = (entries: SidebarEntry[]) => {
@@ -90,19 +91,21 @@ const findEntriesWithLabel = (sections: SidebarEntry[], label: string, parentLab
     let entries = [];
     sections.forEach((section) => {
         if (!parentLabel && section.label === label) {
-            section.metadata = docs.find((doc) => "/docs/" + doc.slug === section.href);
+            section.metadata = docs.find((doc) => "/docs/" + doc.id.replace(/\.[^/.]+$/, "") === section.href);
             entries.push(section);
         }
         if (parentLabel && section.label === parentLabel) {
             section.entries.forEach((entry) => {
                 if (entry.label === label) {
-                    entry.metadata = docs.find((doc) => "/docs/" + doc.slug === entry.href);
+                    entry.metadata = docs.find((doc) => "/docs/" + doc.id.replace(/\.[^/.]+$/, "") === entry.href);
                     entries.push(entry);
                 }
             });
         }
         if (section.entries) {
             entries.push(...findEntriesWithLabel(section.entries, label, parentLabel));
+        } else {
+            // console.log('section.label', section);
         }
     });
     return entries;

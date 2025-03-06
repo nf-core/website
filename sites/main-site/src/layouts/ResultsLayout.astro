@@ -100,7 +100,7 @@ if (!isTruncated) {
 <PipelinePageLayout
     pipeline={pipeline}
     meta_title={pipeline + ": Results"}
-    subtitle={description}
+    subtitle={description ?? undefined}
     version={version}
     versions={versions}
     tabItems={md_files}

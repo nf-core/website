@@ -1,15 +1,31 @@
 <script lang="ts">
-    export let name: string;
-    export let count: number = 0;
-    export let image: string = "https://github.com/" + name + ".png";
-    export let size: number = 60;
-    export let circle: boolean = false;
-    export let linkClasses: string = "";
-    export let wrapperClasses: string = "";
-    export let imgClasses: string = "";
-    export let containerQuery: boolean = false;
+    interface Props {
+        name: string;
+        count?: number;
+        image?: string;
+        size?: number;
+        circle?: boolean;
+        linkClasses?: string;
+        wrapperClasses?: string;
+        imgClasses?: string;
+        containerQuery?: boolean;
+        children?: import("svelte").Snippet;
+    }
 
-    let tooltip = count > 0 ? `${name} (${count} commits)` : name;
+    let {
+        name,
+        count = 0,
+        image = "https://github.com/" + name + ".png",
+        size = 60,
+        circle = false,
+        linkClasses = "",
+        wrapperClasses = "",
+        imgClasses = "",
+        containerQuery = false,
+        children,
+    }: Props = $props();
+
+    let tooltip = $state(count > 0 ? `${name} (${count} commits)` : name);
     tooltip = count === 1 ? `${name} (1 commit)` : tooltip;
     tooltip = containerQuery ? "" : tooltip;
     const avatar_url = image.match(/\?/) ? `${image}&s=${size}` : `${image}?s=${size}`;
@@ -36,7 +52,7 @@
             class={" " + imgClasses}
         />
         <div class="profile-name text-nowrap overflow-x-auto">
-            <slot />
+            {@render children?.()}
         </div>
     </a>
 </div>
