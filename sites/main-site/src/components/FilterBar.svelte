@@ -40,7 +40,7 @@
 
         // Reset display style if no options provided
         if (displayStyle.length === 0) {
-            DisplayStyle.set("");
+            DisplayStyle.set("grid");
         }
 
         // Always reset search
