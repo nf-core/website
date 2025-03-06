@@ -17,6 +17,10 @@ export interface Props {
         open_pr_count: number;
         releases: {
             published_at: string;
+            components: {
+                modules: string[];
+                subworkflows: string[];
+            }
         }[];
         stargazers_count: number;
         subscribers_count: number;
@@ -33,6 +37,18 @@ if (typeof video === "string") {
 video = video?.filter((v) => v.includes("youtube.com") || v.includes("youtu.be"))[0];
 const id = video?.replace("https://www.youtube.com/watch?v=", "").replace("https://youtu.be/", "");
 ---
+
+<script>
+    const showMoreButton = document.getElementById("modules-show-more")
+    showMoreButton.addEventListener("click", () => {
+        document.getElementById("modules-list").classList.toggle("show")
+        showMoreButton.querySelector("i").classList.toggle("flipped")
+        if (showMoreButton.innerText.includes("more"))
+            showMoreButton.querySelector("span").innerText = showMoreButton.innerText.replace("more", "less")
+        else
+            showMoreButton.querySelector("span").innerText = showMoreButton.innerText.replace("less", "more")
+    })
+</script>
 
 <div class="sidebar mt-3 sticky-top-under">
     <SidebarStatsRow content={[{ title: "run with", icon: "fa-regular fa-terminal" }]}>
@@ -167,6 +183,37 @@ const id = video?.replace("https://www.youtube.com/watch?v=", "").replace("https
             >
         </div>
     </SidebarStatsRow>
+    {
+        meta.releases[0].components?.modules &&
+        <SidebarStatsRow content={[{ title: "included modules" }]}>
+            <div id="modules-list" class="mb-2">
+                {meta.releases[0].components?.modules?.map((module) => (
+                        <a
+                            href={"/modules/" + module.replace("/", "_") + "/"}
+                            class="badge fw-normal border border-info-subtle bg-info-subtle text-body me-2 text-decoration-none"
+                        >
+                            {module}
+                        </a>
+                ))}
+            </div>
+            <button id="modules-show-more" class="btn btn-outline-secondary container-fluid"><span>Show more</span><i class="fa-solid fa-caret-down m-1" /></button>
+        </SidebarStatsRow>
+    }
+    {
+        meta.releases[0].components?.subworkflows &&
+        <SidebarStatsRow content={[{ title: "included subworkflows" }]}>
+            <div class="mb-2">
+                {meta.releases[0].components?.subworkflows?.map((subworkflow) => (
+                        <a
+                            href={"/subworkflows/" + subworkflow.replace("/", "_") + "/"}
+                            class="badge fw-normal border border-info-subtle bg-info-subtle text-body me-2 text-decoration-none"
+                        >
+                            {subworkflow}
+                        </a>
+                ))}
+            </div>
+        </SidebarStatsRow>
+    }
     <SidebarStatsRow content={[{ title: "contributors" }]} lastChild={true}>
         {
             (
@@ -191,6 +238,24 @@ const id = video?.replace("https://www.youtube.com/watch?v=", "").replace("https
         .sidebar {
             max-height: calc(100vh - 5rem);
             overflow-y: auto;
+
+            #modules-list {
+                max-height: 6rem;
+                overflow-y: hidden;
+                transition: all 0.4s ease-in-out;
+
+                &.show {
+                    max-height: 80vh;
+                }
+            }
+            #modules-show-more i {
+                transition: all 0.4s ease-in-out;
+                rotate: 0deg;
+
+                &.flipped {
+                    rotate: 180deg;
+                }
+            }
         }
         .tab-content.border {
             margin-top: -1px;
