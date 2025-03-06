@@ -61,7 +61,7 @@ export async function getCurrentRateLimitRemaining() {
         'X-GitHub-Api-Version': '2022-11-28'
       }
     });
-    console.log(`Rate limit remaining: ${JSON.stringify(response, null, 2)}`);
+    console.log(`Rate limit remaining: ${response.resources.core.remaining} out of ${response.resources.core.limit}, reset at ${new Date(response.resources.core.reset * 1000).toLocaleString()}`);
   } catch (error) {
     console.error('Error occurred:', error);
   }
