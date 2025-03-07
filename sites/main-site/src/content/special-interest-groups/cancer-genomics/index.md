@@ -9,7 +9,6 @@ pipelines:
   - rnafusion
   - sarek
   - tumourevo
-
 ---
 
 # Introduction
