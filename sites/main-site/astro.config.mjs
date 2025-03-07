@@ -132,9 +132,6 @@ export default defineConfig({
 					fallbackName === 'Font Awesome 6 Pro fallback'
 			})
 		],
-		ssr: {
-			noExternal: ['../../bin/cache.js']
-		},
 		resolve: {
 			preserveSymlinks: true
 		},
