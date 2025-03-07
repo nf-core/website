@@ -374,8 +374,15 @@ _Context_: You have a tool that always produces a binary file that cannot be ass
 
 _Motivation_: You want to be able to still check that the binary file contains 'something' rather than just the existence of the file.
 
+To compare an exact file size (in bytes)
+
 ```nextflow
-file("$outputDir/malt/malt_index/ref.idx").length() >= 61616,
+"malt/malt_index/ref.idx - correct file size: ${file("$outputDir/malt/malt_index/ref.idx").length()}",
+```
+To check for a minimum size (in bytes)
+
+```nextflow
+"malt/malt_index/ref.idx - minimum file size: ${file("$outputDir/malt/malt_index/ref.idx").length() >= 61616}",
 ```
 
 _Explanation_: When you have a binary file that can have variable contents, you cannot check an md5sum (variability) the contents for plain text strings (as it's a binary file).
