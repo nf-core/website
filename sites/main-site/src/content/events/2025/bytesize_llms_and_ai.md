@@ -12,7 +12,7 @@ locations:
       - https://kth-se.zoom.us/j/68390542812
 ---
 
-In this weeks bytesize, Phil [[@ewels](https://github.com/ewels/)] is giving a talk originally held during a SciLifeLab seminar on Automation of research processes with LLMs and AI.
+In this weeks bytesize, Phil [[@ewels](https://github.com/ewels/)] is giving a talk originally held during a SciLifeLab seminar on [Automation of research processes with LLMs and AI](https://www.scilifelab.se/event/automation/).
 
 Nextflow has become the leading tool for scientific workflows in bioinformatics, but writing workflows can be challenging.
 This bytesize talk introduces Seqera AI, a new tool that helps generate Nextflow pipelines either from scratch, from existing scripts, or even other workflow languages.
