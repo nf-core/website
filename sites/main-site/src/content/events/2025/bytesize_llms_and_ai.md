@@ -1,5 +1,5 @@
 ---
-title: "Bytesize: Building and testing scientific workflow with LLMs and AI agents"
+title: "Bytesize: Building and testing Nextflow with LLMs and AI agents"
 subtitle: Phil Ewels, Seqera
 type: talk
 startDate: "2025-07-08"
