@@ -368,6 +368,21 @@ Therefore, even if you explicitly exclude the file during the `endFileRercurse` 
 Therefore, by excluding directories, you do not get an accidental 'double' listing of files you wish to exclude.
 :::
 
+### Snapshotting variable binary files with file size
+
+_Context_: You have a tool that always produces a binary file that cannot be asserted for valid contents such as a string.
+
+_Motivation_: You want to be able to still check that the binary file contains 'something' rather than just the existence of the file.
+
+```nextflow
+file("$outputDir/malt/malt_index/ref.idx").length() >= 61616,
+```
+
+_Explanation_: When you have a binary file that can have variable contents, you cannot check an md5sum (variability) the contents for plain text strings (as it's a binary file).
+
+While you could check simply for the existence of a file, it maybe some tools can produce binary files that have 'insufficent' contents for it to work.
+If you know that your tool produces a binary file _size_ that is stable (despite variability), or you know that a 'working' binary file exceeds a particular size, you can use the file size (in bytes) to assert the file is 'valid'.
+
 ## Useful nf-test operators and functions
 
 ### Regular Expressions
