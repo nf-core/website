@@ -19,4 +19,4 @@ TBD
 
 # How to join
 
-Join the [nf-core Slack](/join#slack) and find us in the _#sig_industry_adoption_ channel
+Join the [nf-core Slack](/join#slack) and find us in the _#industry_adoption_ channel
