@@ -379,6 +379,7 @@ To compare an exact file size (in bytes)
 ```nextflow
 "malt/malt_index/ref.idx - correct file size: ${file("$outputDir/malt/malt_index/ref.idx").length()}",
 ```
+
 To check for a minimum size (in bytes)
 
 ```nextflow
