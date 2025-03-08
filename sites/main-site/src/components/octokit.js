@@ -23,6 +23,7 @@ try {
 } catch (error) {
   // Fall back to process.env if Astro import fails
   GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+  console.log("error:", error);
   console.log("Astro environment not detected, using process.env.GITHUB_TOKEN");
 }
 
