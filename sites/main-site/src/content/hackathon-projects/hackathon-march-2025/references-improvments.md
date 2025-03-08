@@ -1,5 +1,5 @@
 ---
-title: Improvinf the References pipeline
+title: Improving the References pipeline
 category: pipelines
 slack: "https://nfcore.slack.com/channels/references"
 leaders:
