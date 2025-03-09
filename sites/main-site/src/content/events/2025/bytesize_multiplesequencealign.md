@@ -6,10 +6,11 @@ startDate: "2025-03-04"
 startTime: "13:00+01:00"
 endDate: "2025-03-04"
 endTime: "13:30+01:00"
+youtubeEmbed: https://youtu.be/iRY-Y1p5gtc
 locations:
   - name: Online
     links:
-      - https://kth-se.zoom.us/j/68390542812
+      - https://youtu.be/iRY-Y1p5gtc
 ---
 
 In this nf-core bytesize talk, Luisa Santus ([@luisas](https://github.com/luisas)) will speak about why nf-core/multiplesequencealign was developed and what the pipeline can do for you.
