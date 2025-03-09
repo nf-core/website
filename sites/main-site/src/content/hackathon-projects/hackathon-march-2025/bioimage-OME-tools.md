@@ -3,7 +3,7 @@ title: Bioimage processing modules based on OME tools
 category: components
 intro_video: ""
 image: "/assets/images/events/2025/hackathon-march/bioimage_meme.png"
-image_alt: "Heading: "
+image_alt: meme comparing traditional bioimage tools with OME tools for large scale processing
 leaders:
   skrakau:
     name: Sabrina Krakau
