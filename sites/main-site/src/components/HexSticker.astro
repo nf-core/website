@@ -13,11 +13,23 @@ const { imageUrl, alt, category = "uncategorized", link, description } = Astro.p
 const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
 ---
 
-<div class="hex-container sticker-trigger" data-category={category} data-sticker-img={imageUrl} data-sticker-light-img={lightModeUrl} data-sticker-alt={alt} data-sticker-link={link} data-sticker-description={description}>
+<div
+    class="hex-container sticker-trigger"
+    data-category={category}
+    data-sticker-img={imageUrl}
+    data-sticker-light-img={lightModeUrl}
+    data-sticker-alt={alt}
+    data-sticker-link={link}
+    data-sticker-description={description}
+    tabindex="0"
+    role="button"
+    aria-label={`View ${alt} sticker`}
+>
     <div class="hex-sticker">
         <div class="holographic-foil"></div>
-        <img src={imageUrl} alt={alt} class="dark-mode-img" />
-        <img src={lightModeUrl} alt={alt} class="light-mode-img" />
+        <div class="shine-effect"></div>
+        <img src={imageUrl} alt={alt} class="dark-mode-img" loading="lazy" />
+        <img src={lightModeUrl} alt={alt} class="light-mode-img" loading="lazy" />
     </div>
 </div>
 
@@ -34,20 +46,9 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
         transition:
             opacity 0.3s ease,
             filter 0.3s ease,
-            transform 0.3s ease,
-            left 0.4s ease-out,
-            top 0.4s ease-out;
-        will-change: transform, left, top;
-    }
-
-    /* Add a class for positioned hexagons */
-    .hex-container.hex-positioned {
-        transition:
-            opacity 0.3s ease,
-            filter 0.3s ease,
-            transform 0.3s ease,
-            left 0.4s ease-out,
-            top 0.4s ease-out;
+            transform 0.3s ease;
+        will-change: transform;
+        position: relative;
     }
 
     .hex-sticker {
@@ -65,6 +66,7 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
             0 1px 2px rgba(0, 0, 0, 0.24);
     }
 
+    /* Holographic foil effect */
     .holographic-foil {
         position: absolute;
         top: 0;
@@ -80,6 +82,7 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
             rgba(0, 0, 255, 0.15) 80%,
             rgba(255, 0, 255, 0.15) 100%
         );
+        background-size: 200% 200%;
         mix-blend-mode: soft-light;
         opacity: 0;
         transition: opacity 0.3s ease;
@@ -87,32 +90,25 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
         pointer-events: none;
     }
 
-    /* Shimmer effect - balanced intensity */
-    .hex-container:hover .holographic-foil::after {
-        content: "";
+    /* Shine effect element */
+    .shine-effect {
         position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
+        top: -100%;
+        left: -100%;
+        width: 250%;
+        height: 250%;
         background: linear-gradient(
             to right,
             rgba(255, 255, 255, 0) 0%,
-            rgba(255, 255, 255, 0.2) 50%,
+            rgba(255, 255, 255, 0.4) 50%,
             rgba(255, 255, 255, 0) 100%
         );
-        transform: rotate(30deg);
-        animation: shimmer 4s infinite; /* Moderate animation speed */
+        transform: rotate(30deg) translateY(0%);
+        opacity: 0;
+        z-index: 3;
         pointer-events: none;
-    }
-
-    @keyframes shimmer {
-        0% {
-            transform: translateX(-100%) rotate(30deg);
-        }
-        100% {
-            transform: translateX(100%) rotate(30deg);
-        }
+        transition: opacity 0.3s ease;
+        will-change: transform, opacity;
     }
 
     .hex-sticker img {
@@ -145,8 +141,9 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
         display: none;
     }
 
-    /* Base hover effect - will be overridden by JS */
-    .hex-container:hover .hex-sticker {
+    /* Hover effects for the sticker */
+    .hex-container:hover .hex-sticker,
+    .hex-container:focus .hex-sticker {
         filter: brightness(1.08) contrast(1.08);
         box-shadow:
             0 8px 16px rgba(0, 0, 0, 0.16),
@@ -154,12 +151,15 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
             0 0 15px rgba(255, 255, 255, 0.2);
     }
 
-    .hex-container:hover .holographic-foil {
+    .hex-container:hover .holographic-foil,
+    .hex-container:focus .holographic-foil {
         opacity: 0.7;
+        animation: rotate-gradient 3s linear infinite;
     }
 
-    /* Light mode effect */
-    :global(.light-mode) .hex-container:hover .hex-sticker {
+    /* Light mode effect adjustments */
+    :global(.light-mode) .hex-container:hover .hex-sticker,
+    :global(.light-mode) .hex-container:focus .hex-sticker {
         filter: brightness(1.08) contrast(1.08);
         box-shadow:
             0 8px 16px rgba(0, 0, 0, 0.12),
@@ -172,18 +172,39 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
         mix-blend-mode: color-burn;
     }
 
-    :global(.light-mode) .hex-container:hover .holographic-foil::after {
-        background: linear-gradient(
-            to right,
-            rgba(255, 255, 255, 0) 0%,
-            rgba(255, 255, 255, 0.3) 50%,
-            rgba(255, 255, 255, 0) 100%
-        );
+    /* Animations */
+    @keyframes rotate-gradient {
+        0% {
+            background-position: 0% 0%;
+        }
+        100% {
+            background-position: 100% 100%;
+        }
+    }
+
+    /* Reduced motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+        .hex-container:hover .hex-sticker,
+        .hex-container:focus .hex-sticker {
+            transform: scale(1.05);
+            transition: all 0.5s ease;
+        }
+
+        .hex-container:hover .holographic-foil,
+        .hex-container:focus .holographic-foil {
+            animation: none;
+        }
+
+        .hex-container:hover .shine-effect,
+        .hex-container:focus .shine-effect {
+            animation: none;
+            opacity: 0.5;
+        }
     }
 </style>
 
 <script>
-    // Mouse-following hover effect with balanced motion
+    // Minimal JavaScript for tilt effect and keyboard accessibility
     document.addEventListener("DOMContentLoaded", () => {
         const hexContainers = document.querySelectorAll(".hex-container");
 
@@ -193,103 +214,80 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
         hexContainers.forEach((container) => {
             const hexSticker = container.querySelector(".hex-sticker");
             const holographicFoil = container.querySelector(".holographic-foil");
+            const shineEffect = container.querySelector(".shine-effect");
 
-            // Variables for tilt effect - balanced
-            const maxTilt = prefersReducedMotion ? 0 : 8; // Moderate tilt, none for reduced motion
+            // Skip tilt effect if user prefers reduced motion
+            if (!prefersReducedMotion && hexSticker) {
+                // Variables for tilt effect
+                const maxTilt = 8; // Maximum tilt angle in degrees
 
-            // Mouse enter event
-            container.addEventListener("mouseenter", () => {
-                // Remove transition to make movement immediate
-                if (hexSticker) {
+                // Mouse enter event - remove transition for immediate response
+                container.addEventListener("mouseenter", () => {
                     hexSticker.style.transition = "filter 0.3s ease, box-shadow 0.3s ease";
-                }
-            });
+                    if (shineEffect) {
+                        shineEffect.style.opacity = "0.7";
+                    }
+                });
 
-            // Mouse move event
-            container.addEventListener("mousemove", (e) => {
-                if (!hexSticker) return;
+                // Mouse move event - calculate and apply tilt
+                container.addEventListener("mousemove", (e) => {
+                    // Get position of cursor relative to the container
+                    const rect = container.getBoundingClientRect();
+                    const x = e.clientX - rect.left; // X position within the element
+                    const y = e.clientY - rect.top; // Y position within the element
 
-                // Skip tilt effect if user prefers reduced motion
-                if (prefersReducedMotion) {
+                    // Calculate percentage position (-1 to 1)
+                    const xPercent = (x / rect.width - 0.5) * 2;
+                    const yPercent = (y / rect.height - 0.5) * 2;
+
+                    // Calculate tilt angles
+                    const tiltX = -yPercent * maxTilt; // Invert Y for natural tilt
+                    const tiltY = xPercent * maxTilt;
+
+                    // Apply transform
+                    hexSticker.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+
+                    // Adjust holographic effect opacity based on tilt
                     if (holographicFoil) {
-                        holographicFoil.style.opacity = "0.4";
-                    }
-                    return;
-                }
-
-                // Get position of cursor relative to the container
-                const rect = container.getBoundingClientRect();
-                const x = e.clientX - rect.left; // X position within the element
-                const y = e.clientY - rect.top; // Y position within the element
-
-                // Calculate percentage position
-                const xPercent = (x / rect.width - 0.5) * 2; // -1 to 1
-                const yPercent = (y / rect.height - 0.5) * 2; // -1 to 1
-
-                // Calculate tilt angles based on mouse position - balanced tilt
-                const tiltX = -yPercent * maxTilt; // Invert Y for natural tilt
-                const tiltY = xPercent * maxTilt;
-
-                // Apply the transform - balanced effect
-                hexSticker.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
-
-                // Move the holographic effect based on mouse position
-                if (holographicFoil) {
-                    // Calculate angle based on mouse position
-                    const angle = Math.atan2(yPercent, xPercent) * (180 / Math.PI);
-                    const normalizedAngle = (angle + 360) % 360;
-
-                    // Check if we're in light mode
-                    const isLightMode = document.body.classList.contains("light-mode");
-
-                    // Create a balanced gradient that shifts with mouse position
-                    // Adjust colors based on theme
-                    if (isLightMode) {
-                        holographicFoil.style.background = `
-                            linear-gradient(
-                                ${normalizedAngle}deg,
-                                rgba(255, 255, 255, 0.3) 0%,
-                                rgba(255, 0, 0, 0.15) 20%,
-                                rgba(255, 255, 0, 0.15) 40%,
-                                rgba(0, 255, 255, 0.15) 60%,
-                                rgba(0, 0, 255, 0.15) 80%,
-                                rgba(255, 0, 255, 0.15) 100%
-                            )
-                        `;
-                        holographicFoil.style.mixBlendMode = "color-burn";
-                    } else {
-                        holographicFoil.style.background = `
-                            linear-gradient(
-                                ${normalizedAngle}deg,
-                                rgba(255, 255, 255, 0.3) 0%,
-                                rgba(255, 0, 0, 0.15) 20%,
-                                rgba(255, 255, 0, 0.15) 40%,
-                                rgba(0, 255, 255, 0.15) 60%,
-                                rgba(0, 0, 255, 0.15) 80%,
-                                rgba(255, 0, 255, 0.15) 100%
-                            )
-                        `;
-                        holographicFoil.style.mixBlendMode = "soft-light";
+                        const tiltMagnitude = Math.sqrt(tiltX * tiltX + tiltY * tiltY) / maxTilt;
+                        holographicFoil.style.opacity = 0.3 + tiltMagnitude * 0.4;
                     }
 
-                    // Adjust opacity based on tilt for a more natural effect - balanced
-                    const tiltMagnitude = Math.sqrt(tiltX * tiltX + tiltY * tiltY) / maxTilt;
-                    holographicFoil.style.opacity = 0.3 + tiltMagnitude * 0.4; // Moderate opacity
-                }
-            });
+                    // Position shine effect based on mouse position
+                    if (shineEffect) {
+                        // Calculate angle based on mouse position
+                        const angle = Math.atan2(yPercent, xPercent) * (180 / Math.PI);
 
-            // Mouse leave event
-            container.addEventListener("mouseleave", () => {
-                if (!hexSticker) return;
+                        // Position shine effect opposite to mouse position for a natural reflection
+                        const shineX = -xPercent * 50; // Move shine opposite to mouse X
+                        const shineY = -yPercent * 50; // Move shine opposite to mouse Y
 
-                // Restore transition for smooth return to original position
-                hexSticker.style.transition = "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)";
-                hexSticker.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
+                        // Apply transform to shine effect
+                        shineEffect.style.transform = `rotate(${angle + 90}deg) translate(${shineX}%, ${shineY}%)`;
+                    }
+                });
 
-                // Reset holographic effect
-                if (holographicFoil) {
-                    holographicFoil.style.background = "";
-                    holographicFoil.style.opacity = "0";
+                // Mouse leave event - restore original state
+                container.addEventListener("mouseleave", () => {
+                    hexSticker.style.transition = "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)";
+                    hexSticker.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
+
+                    if (holographicFoil) {
+                        holographicFoil.style.opacity = "";
+                    }
+
+                    if (shineEffect) {
+                        shineEffect.style.opacity = "0";
+                        shineEffect.style.transform = "rotate(30deg) translateY(0%)";
+                    }
+                });
+            }
+
+            // Handle keyboard events for accessibility
+            container.addEventListener("keydown", (e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    container.click(); // Trigger the click event for the modal
                 }
             });
         });
