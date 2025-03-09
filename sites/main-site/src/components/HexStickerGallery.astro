@@ -1,6 +1,7 @@
 ---
 import HexSticker from "./HexSticker.astro";
 import StickerModal from "./StickerModal.astro";
+import HexGrid from "./HexGrid.astro";
 
 interface StickerData {
     imageUrl: string;
@@ -17,15 +18,10 @@ interface Props {
 const { stickers } = Astro.props;
 
 // Get unique categories while preserving the order they first appear in the stickers array
-const categories = [];
-stickers.forEach((sticker) => {
-    if (!categories.includes(sticker.category)) {
-        categories.push(sticker.category);
-    }
-});
+const uniqueCategories = [...new Set(stickers.map(sticker => sticker.category))];
 
 // Group stickers by category
-const stickersByCategory = categories.reduce(
+const stickersByCategory = uniqueCategories.reduce(
     (acc, category) => {
         acc[category] = stickers.filter((sticker) => sticker.category === category);
         return acc;
@@ -39,11 +35,19 @@ function formatCategoryName(category: string): string {
     const baseName = category.charAt(0).toUpperCase() + category.slice(1);
     return baseName.endsWith("Stickers") ? baseName : `${baseName} Stickers`;
 }
+
+// Create category IDs for navigation
+const categoryIds = uniqueCategories.map(category => ({
+    id: `category-${category}`,
+    name: formatCategoryName(category)
+}));
 ---
 
 <div class="w-100 p-2">
+    <!-- Category navigation bar removed -->
+
     {
-        categories.map((category, index) => (
+        uniqueCategories.map((category, index) => (
             <div class="category-section" id={`category-${category}`}>
                 <h2 class="category-heading mb-4">
                     {formatCategoryName(category)}
@@ -53,7 +57,7 @@ function formatCategoryName(category: string): string {
                         </svg>
                     </a>
                 </h2>
-                <div class="hex-gallery" id={`hexGallery-${category}`} data-category={category}>
+                <HexGrid class="hex-gallery" id={`hexGallery-${category}`} data-category={category}>
                     {stickersByCategory[category].map((sticker) => (
                         <HexSticker
                             imageUrl={sticker.imageUrl}
@@ -63,8 +67,8 @@ function formatCategoryName(category: string): string {
                             description={sticker.description}
                         />
                     ))}
-                </div>
-                {index < categories.length - 1 && (
+                </HexGrid>
+                {index < uniqueCategories.length - 1 && (
                     <hr class="category-divider my-4" />
                 )}
             </div>
@@ -76,6 +80,8 @@ function formatCategoryName(category: string): string {
 <StickerModal />
 
 <style>
+    /* Category navigation styles removed */
+
     .category-heading {
         text-align: center;
         font-size: 1.75rem;
@@ -116,8 +122,7 @@ function formatCategoryName(category: string): string {
     .hex-gallery {
         --hex-size: 187.5px; /* Base size for large screens */
         --hex-margin: 0.5rem;
-        position: relative;
-        width: 100%;
+        --hex-gap: 1rem;
         padding-bottom: 2rem; /* Consistent bottom padding */
     }
 
@@ -143,6 +148,7 @@ function formatCategoryName(category: string): string {
     @media (max-width: 576px) {
         .hex-gallery {
             --hex-size: 100px;
+            --hex-gap: 0.5rem;
         }
     }
 
@@ -175,105 +181,3 @@ function formatCategoryName(category: string): string {
         transform: scale(1.18) rotate(-3deg); /* Increased scale and rotation */
     }
 </style>
-
-<script>
-    import { arrangeHexGrid, setupHexGridResizing, shouldRearrange } from "./hexGrid.js";
-
-    let cleanupResizeListeners = [];
-    let lastContainerWidths = new Map();
-
-    function updateHexLayouts() {
-        // Clean up previous resize listeners
-        cleanupResizeListeners.forEach((cleanup) => cleanup());
-        cleanupResizeListeners = [];
-
-        // Get all hex galleries
-        const hexGalleries = document.querySelectorAll(".hex-gallery");
-
-        hexGalleries.forEach((gallery) => {
-            const hexElements = Array.from(gallery.querySelectorAll(".hex-container"));
-
-            if (hexElements.length > 0) {
-                // Store initial width for comparison
-                lastContainerWidths.set(gallery.id, gallery.clientWidth);
-
-                // Add a class to enable CSS transitions
-                hexElements.forEach((hex) => {
-                    hex.classList.add("hex-positioned");
-                });
-
-                // Setup new hex grid with resize handling
-                const cleanup = setupHexGridResizing(gallery, hexElements, {
-                    spacing: 15, // Increased spacing between hexagons
-                    startingRow: window.innerWidth < 576 ? 2 : 3, // Adjust starting row for mobile
-                    minHexPerRow: 2, // Ensure at least 2 hexagons per row on small screens
-                    transitionDuration: "0.4s", // Smooth transition duration
-                    forceEvenRows: true, // Try to make rows more even
-                });
-
-                cleanupResizeListeners.push(cleanup);
-            }
-        });
-    }
-
-    // Use Intersection Observer to only initialize visible galleries
-    function setupLazyInitialization() {
-        const hexGalleries = document.querySelectorAll(".hex-gallery");
-
-        if ("IntersectionObserver" in window) {
-            const observer = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach((entry) => {
-                        if (entry.isIntersecting) {
-                            const gallery = entry.target;
-                            const hexElements = Array.from(gallery.querySelectorAll(".hex-container"));
-
-                            if (hexElements.length > 0) {
-                                // Setup hex grid for this gallery
-                                const cleanup = setupHexGridResizing(gallery, hexElements, {
-                                    spacing: 15, // Increased spacing between hexagons
-                                    startingRow: window.innerWidth < 576 ? 2 : 3,
-                                    minHexPerRow: 2,
-                                    transitionDuration: "0.4s",
-                                    forceEvenRows: true, // Try to make rows more even
-                                });
-
-                                cleanupResizeListeners.push(cleanup);
-
-                                // Stop observing once initialized
-                                observer.unobserve(gallery);
-                            }
-                        }
-                    });
-                },
-                {
-                    rootMargin: "200px", // Start loading before it's visible
-                    threshold: 0.01,
-                },
-            );
-
-            // Observe each gallery
-            hexGalleries.forEach((gallery) => {
-                observer.observe(gallery);
-            });
-        } else {
-            // Fallback for browsers without IntersectionObserver
-            updateHexLayouts();
-        }
-    }
-
-    // Initialize when the document is ready
-    document.addEventListener("DOMContentLoaded", () => {
-        if (document.readyState === "complete" || document.readyState === "interactive") {
-            setupLazyInitialization();
-        } else {
-            document.addEventListener("DOMContentLoaded", setupLazyInitialization);
-        }
-    });
-
-    // Handle orientation changes
-    window.addEventListener("orientationchange", () => {
-        // Small delay to ensure dimensions are updated after orientation change
-        setTimeout(updateHexLayouts, 200);
-    });
-</script>
