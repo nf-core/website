@@ -70,6 +70,22 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
         position: relative;
     }
 
+    /* Center hex stickers when in single column layout */
+    @media (max-width: 400px) {
+        .hex-container {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    /* Adjust for two-column hex grid on mobile */
+    @media (min-width: 401px) and (max-width: 576px) {
+        .hex-container {
+            /* Ensure proper spacing for the hex grid pattern */
+            margin: var(--hex-margin, 0.4rem);
+        }
+    }
+
     .hex-sticker {
         width: 100%;
         height: 100%;

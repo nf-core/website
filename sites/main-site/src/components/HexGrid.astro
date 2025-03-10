@@ -85,7 +85,7 @@ const { class: className = "", id } = Astro.props;
             maxPerRow: null, // Maximum hexagons per row (calculated automatically if null)
             hexWidth: null, // Width of a hexagon (calculated from first element if null)
             hexHeight: null, // Height of a hexagon (calculated from first element if null)
-            minHexPerRow: 2, // Minimum hexagons per row for small screens
+            minHexPerRow: 1, // Minimum hexagons per row for small screens (changed from 2 to 1)
             transitionDuration: "0.4s", // Duration for smooth transitions
             forceEvenRows: false, // Try to make rows more even
         };
@@ -105,19 +105,40 @@ const { class: className = "", id } = Astro.props;
         // Calculate the maximum number of hexagons per row based on container width
         if (!settings.maxPerRow) {
             const containerWidth = container.clientWidth;
-            settings.maxPerRow = Math.max(Math.floor(containerWidth / settings.hexWidth), settings.minHexPerRow);
 
-            // Adjust starting row for very small screens
-            if (containerWidth < 576) {
-                // Bootstrap's sm breakpoint
-                settings.startingRow = Math.min(settings.startingRow, settings.minHexPerRow);
+            // For very narrow screens (mobile), use a single column layout
+            if (containerWidth < 400) {
+                settings.maxPerRow = 1;
+                settings.startingRow = 1;
+            } else if (containerWidth < 576) {
+                // For small screens, use a proper 2-column hex grid
+                settings.maxPerRow = 2;
+                settings.startingRow = 1; // Start with 1 hexagon in first row for proper hex pattern
+            } else {
+                // For larger screens, calculate based on available width
+                settings.maxPerRow = Math.max(Math.floor(containerWidth / settings.hexWidth), settings.minHexPerRow);
             }
         }
 
         // Calculate the horizontal offset for centering
         const hexHeight = settings.hexHeight;
         const hexWidth = settings.hexWidth;
-        const verticalOverlap = hexHeight * 0.25; // Original vertical overlap value
+
+        // Adjust vertical overlap for different screen sizes
+        let verticalOverlap = hexHeight * 0.25; // Default vertical overlap
+
+        // Reduce overlap on smaller screens to prevent excessive stacking
+        if (container.clientWidth < 576) {
+            verticalOverlap = hexHeight * 0.15;
+        }
+
+        // For single column layout, use minimal overlap
+        if (settings.maxPerRow === 1) {
+            verticalOverlap = hexHeight * 0.05;
+        }
+
+        // Special handling for 2-column hex grid on mobile
+        const isTwoColumnMobile = settings.maxPerRow === 2 && container.clientWidth < 576;
 
         // Arrange hexagons in a honeycomb pattern
         let currentRow = 0;
@@ -131,18 +152,40 @@ const { class: className = "", id } = Astro.props;
         let remainingHexagons = totalHexagons;
         let tempHexPerRow = settings.startingRow;
 
-        while (remainingHexagons > 0) {
-            remainingHexagons -= tempHexPerRow;
-            rowsCount++;
+        // For 2-column mobile layout, use alternating 1-2 pattern
+        if (isTwoColumnMobile) {
+            // Calculate rows for alternating 1-2 pattern
+            let isOddRow = true;
+            let rowHexCount = 0;
+            rowsCount = 0;
 
-            if (tempHexPerRow >= settings.maxPerRow) {
-                increasing = false;
-            } else if (tempHexPerRow <= settings.startingRow && rowsCount > 1) {
-                increasing = true;
+            for (let i = 0; i < totalHexagons; i++) {
+                if (rowHexCount === 0) {
+                    // Start a new row
+                    rowHexCount = isOddRow ? 1 : 2;
+                    rowsCount++;
+                }
+
+                rowHexCount--;
+                if (rowHexCount === 0) {
+                    isOddRow = !isOddRow;
+                }
             }
+        } else {
+            // Standard honeycomb calculation for other layouts
+            while (remainingHexagons > 0) {
+                remainingHexagons -= tempHexPerRow;
+                rowsCount++;
 
-            tempHexPerRow = increasing ? tempHexPerRow + 1 : tempHexPerRow - 1;
-            tempHexPerRow = Math.min(Math.max(tempHexPerRow, settings.startingRow), settings.maxPerRow);
+                if (tempHexPerRow >= settings.maxPerRow) {
+                    increasing = false;
+                } else if (tempHexPerRow <= settings.startingRow && rowsCount > 1) {
+                    increasing = true;
+                }
+
+                tempHexPerRow = increasing ? tempHexPerRow + 1 : tempHexPerRow - 1;
+                tempHexPerRow = Math.min(Math.max(tempHexPerRow, settings.startingRow), settings.maxPerRow);
+            }
         }
 
         // Set container height to accommodate all hexagons
@@ -166,45 +209,93 @@ const { class: className = "", id } = Astro.props;
         // Position each hexagon - use requestAnimationFrame to avoid layout thrashing
         requestAnimationFrame(() => {
             let hexIndex = 0;
-            currentRow = 0;
-            hexPerRow = settings.startingRow;
-            increasing = true;
 
-            while (hexIndex < hexElements.length) {
-                // Calculate the horizontal offset for centering the row
-                const rowWidth = hexPerRow * hexWidth;
-                const offsetX = (container.clientWidth - rowWidth) / 2;
+            if (isTwoColumnMobile) {
+                // Special layout for 2-column mobile: alternating 1-2 pattern
+                let currentRow = 0;
+                let isOddRow = true;
 
-                // Position hexagons in the current row
-                for (currentCol = 0; currentCol < hexPerRow && hexIndex < hexElements.length; currentCol++) {
-                    const hex = hexElements[hexIndex];
+                while (hexIndex < hexElements.length) {
+                    // Number of hexagons in this row (alternating 1-2 pattern)
+                    const hexInThisRow = isOddRow ? 1 : 2;
 
-                    // Calculate position
-                    const x = offsetX + currentCol * hexWidth;
-                    const y = currentRow * (hexHeight - verticalOverlap);
+                    // Calculate the horizontal offset for centering the row
+                    const rowWidth = hexInThisRow * hexWidth;
+                    const offsetX = (container.clientWidth - rowWidth) / 2;
 
-                    // Apply position
-                    hex.style.position = "absolute";
-                    hex.style.left = `${x}px`;
-                    hex.style.top = `${y}px`;
+                    // Position hexagons in the current row
+                    for (let col = 0; col < hexInThisRow && hexIndex < hexElements.length; col++) {
+                        const hex = hexElements[hexIndex];
 
-                    // Add row and column information for accessibility
-                    hex.setAttribute("data-row", currentRow.toString());
-                    hex.setAttribute("data-col", currentCol.toString());
+                        // Calculate position
+                        let x = offsetX + col * hexWidth;
+                        const y = currentRow * (hexHeight - verticalOverlap);
 
-                    hexIndex++;
+                        // Apply position
+                        hex.style.position = "absolute";
+                        hex.style.left = `${x}px`;
+                        hex.style.top = `${y}px`;
+
+                        // Add row and column information for accessibility
+                        hex.setAttribute("data-row", currentRow.toString());
+                        hex.setAttribute("data-col", col.toString());
+
+                        hexIndex++;
+                    }
+
+                    // Move to next row and toggle pattern
+                    currentRow++;
+                    isOddRow = !isOddRow;
                 }
+            } else {
+                // Standard honeycomb layout for other screen sizes
+                currentRow = 0;
+                hexPerRow = settings.startingRow;
+                increasing = true;
 
-                // Update hexagons per row for next row
-                if (hexPerRow >= settings.maxPerRow) {
-                    increasing = false;
-                } else if (hexPerRow <= settings.startingRow && currentRow > 0) {
-                    increasing = true;
+                // Track if we're on an odd or even row for the honeycomb pattern
+                let isOddRow = true;
+
+                while (hexIndex < hexElements.length) {
+                    // Calculate the horizontal offset for centering the row
+                    const rowWidth = hexPerRow * hexWidth;
+
+                    // For proper honeycomb pattern, offset every other row by half a hexagon width
+                    const rowOffsetX = isOddRow ? 0 : hexWidth / 2;
+                    const offsetX = (container.clientWidth - rowWidth) / 2;
+
+                    // Position hexagons in the current row
+                    for (currentCol = 0; currentCol < hexPerRow && hexIndex < hexElements.length; currentCol++) {
+                        const hex = hexElements[hexIndex];
+
+                        // Calculate position
+                        const x = offsetX + currentCol * hexWidth;
+                        const y = currentRow * (hexHeight - verticalOverlap);
+
+                        // Apply position
+                        hex.style.position = "absolute";
+                        hex.style.left = `${x}px`;
+                        hex.style.top = `${y}px`;
+
+                        // Add row and column information for accessibility
+                        hex.setAttribute("data-row", currentRow.toString());
+                        hex.setAttribute("data-col", currentCol.toString());
+
+                        hexIndex++;
+                    }
+
+                    // Update hexagons per row for next row
+                    if (hexPerRow >= settings.maxPerRow) {
+                        increasing = false;
+                    } else if (hexPerRow <= settings.startingRow && currentRow > 0) {
+                        increasing = true;
+                    }
+
+                    hexPerRow = increasing ? hexPerRow + 1 : hexPerRow - 1;
+                    hexPerRow = Math.min(Math.max(hexPerRow, settings.startingRow), settings.maxPerRow);
+                    currentRow++;
+                    isOddRow = !isOddRow;
                 }
-
-                hexPerRow = increasing ? hexPerRow + 1 : hexPerRow - 1;
-                hexPerRow = Math.min(Math.max(hexPerRow, settings.startingRow), settings.maxPerRow);
-                currentRow++;
             }
         });
     }
@@ -284,10 +375,21 @@ const { class: className = "", id } = Astro.props;
         hexGrids.forEach((grid) => {
             const hexElements = Array.from(grid.querySelectorAll(".hex-container"));
             if (hexElements.length > 0) {
+                // Determine appropriate starting row based on screen width
+                let startingRow = 3; // Default for larger screens
+
+                if (window.innerWidth < 400) {
+                    startingRow = 1; // Single column for very narrow screens
+                } else if (window.innerWidth < 576) {
+                    startingRow = 1; // Start with 1 for proper hex pattern on mobile
+                } else if (window.innerWidth < 768) {
+                    startingRow = 2; // Slightly smaller starting row for medium screens
+                }
+
                 setupHexGridResizing(grid, hexElements, {
                     spacing: 4, // Moderate spacing for a tighter grid without overlap
-                    startingRow: window.innerWidth < 576 ? 2 : 3, // Adjust starting row for mobile
-                    minHexPerRow: 2, // Ensure at least 2 hexagons per row on small screens
+                    startingRow: startingRow,
+                    minHexPerRow: 1, // Allow single column on very narrow screens
                     transitionDuration: "0.4s", // Smooth transition duration
                     forceEvenRows: true, // Try to make rows more even
                 });

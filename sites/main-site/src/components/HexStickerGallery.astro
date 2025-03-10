@@ -44,13 +44,23 @@ const categoryIds = uniqueCategories.map((category) => ({
 ---
 
 <div class="sticker-gallery w-100">
+    <!-- Information about source images and instructions -->
+    <div class="sticker-info text-center mb-4">
+        <p class="mb-0">
+            To find instructions on how to make your own hex sticker and for all the source images seen here, go to
+            <a href="https://github.com/nf-core/logos" target="_blank" rel="noopener noreferrer" class="fw-medium">
+                nf-core/logos <i class="fas fa-external-link-alt fa-xs ms-1"></i>
+            </a>
+        </p>
+    </div>
+
     <!-- Category navigation for better UX -->
     <nav class="category-nav mb-4" aria-label="Sticker categories">
         <div class="d-flex flex-wrap justify-content-center gap-2">
             {categoryIds.map(({ id, name }) => (
                 <a
                     href={`#${id}`}
-                    class="btn btn-outline-primary btn-sm"
+                    class="btn btn-outline-primary"
                     aria-label={`Jump to ${name}`}
                 >
                     {name}
@@ -102,14 +112,36 @@ const categoryIds = uniqueCategories.map((category) => ({
 <StickerModal />
 
 <style>
+    /* Information message styles */
+    .sticker-info {
+        font-size: 1.1rem;
+        line-height: 1.5;
+        color: var(--bs-body-color);
+    }
+
+    .sticker-info a {
+        color: var(--bs-primary);
+        text-decoration: none;
+    }
+
+    .sticker-info a:hover {
+        text-decoration: underline;
+    }
+
     /* Category navigation styles */
     .category-nav {
         position: sticky;
         top: 0;
         z-index: 10;
         background-color: var(--bs-body-bg);
-        padding: 0.5rem 0;
+        padding: 0.75rem 0;
         border-bottom: 1px solid var(--bs-border-color);
+    }
+
+    .category-nav .btn {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+        border-radius: 0.375rem;
     }
 
     .category-heading {
@@ -149,28 +181,75 @@ const categoryIds = uniqueCategories.map((category) => ({
     }
 
     /* Responsive sizing for different screen sizes */
-    @media (max-width: 1200px) {
+    @media (max-width: 1400px) {
         .hex-gallery {
             --hex-size: 175px;
         }
     }
 
+    @media (max-width: 1200px) {
+        .hex-gallery {
+            --hex-size: 160px;
+        }
+    }
+
     @media (max-width: 992px) {
         .hex-gallery {
-            --hex-size: 150px;
+            --hex-size: 140px;
+            --hex-margin: 0.45rem;
         }
     }
 
     @media (max-width: 768px) {
+        .sticker-info {
+            font-size: 1rem;
+        }
+
+        .category-nav .btn {
+            font-size: 0.9rem;
+            padding: 0.4rem 0.8rem;
+        }
+
         .hex-gallery {
-            --hex-size: 125px;
+            --hex-size: 120px;
+            --hex-margin: 0.4rem;
+            --hex-gap: 0.75rem;
         }
     }
 
     @media (max-width: 576px) {
         .hex-gallery {
-            --hex-size: 100px;
-            --hex-gap: 0.5rem;
+            --hex-size: 110px; /* Slightly larger for better visibility */
+            --hex-margin: 0.4rem;
+            --hex-gap: 0.4rem;
+        }
+
+        /* Adjust category navigation for small screens */
+        .category-nav .btn {
+            font-size: 0.85rem;
+            padding: 0.35rem 0.7rem;
+        }
+
+        .category-heading {
+            font-size: 1.6rem;
+        }
+    }
+
+    /* Additional responsive adjustments for very small screens */
+    @media (max-width: 400px) {
+        .hex-gallery {
+            --hex-size: 120px; /* Slightly larger for single column */
+            --hex-gap: 0.25rem;
+        }
+
+        /* Adjust category navigation for very small screens */
+        .category-nav .btn {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+        }
+
+        .category-heading {
+            font-size: 1.5rem;
         }
     }
 
