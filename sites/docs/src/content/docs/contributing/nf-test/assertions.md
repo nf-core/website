@@ -388,7 +388,7 @@ To check for a minimum size (in bytes)
 
 _Explanation_: When you have a binary file that can have variable contents, you cannot check an md5sum (variability) the contents for plain text strings (as it's a binary file).
 
-While you could check simply for the existence of a file, it maybe some tools can produce binary files that have 'insufficent' contents for it to work.
+While you could check simply for the existence of a file, it may be that some tools can produce binary files that have 'insufficent' contents for it to work.
 If you know that your tool produces a binary file _size_ that is stable (despite variability), or you know that a 'working' binary file exceeds a particular size, you can use the file size (in bytes) to assert the file is 'valid'.
 
 ## Useful nf-test operators and functions
