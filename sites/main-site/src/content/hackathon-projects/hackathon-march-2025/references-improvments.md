@@ -18,7 +18,7 @@ Follow @maxulysse in a deep dive down the rabbit hole.
 
 - Make the schema coherent (file names)
 - Complete rnaseq indexes generation
-- Complete sarek indexes generation
+- Complete sarek indices generation
 - Enhance schema to handle multiple files
 - Figure out how to deal with a variable base_path
 - Auto-generate params.yml for backwards compatibility for old rnaseq versions
