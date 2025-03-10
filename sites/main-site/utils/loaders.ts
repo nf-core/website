@@ -2,7 +2,6 @@
 import type { AstroConfig, MarkdownHeading } from "astro";
 import type { Loader, LoaderContext } from "astro/loaders";
 import { octokit, getCurrentRateLimitRemaining } from "@components/octokit.js";
-import { z } from "zod";
 
 import { createMarkdownProcessor } from "@astrojs/markdown-remark";
 import type { MarkdownProcessor } from "@astrojs/markdown-remark";
@@ -159,7 +158,7 @@ class GitHubContentFetcher {
         additionalData: Record<string, unknown> = {},
     ) {
         const { store, generateDigest, config, logger } = this.context;
-        logger.debug(`Processing ${this.org}/${this.repo}@${this.ref}/${filepath}`);
+        logger.info(`Processing ${this.org}/${this.repo}@${this.ref}/${filepath}`);
 
         let [id, extension] = filepath.split(".") ?? [];
         id = this.repo + "/" + this.ref + "/" + id;
@@ -167,7 +166,7 @@ class GitHubContentFetcher {
         // check if the file exists in the store
         const existingEntry = store.get(id);
         if (existingEntry && existingEntry.data.repo === this.repo && existingEntry.data.ref === this.ref) {
-            logger.debug(`File ${filepath} unchanged, skipping`);
+            logger.info(`File ${filepath} unchanged, skipping`);
             return;
         }
 
@@ -185,7 +184,7 @@ class GitHubContentFetcher {
         };
 
         try {
-            logger.debug(`Processing ${filepath}, content length: ${body.length}`);
+            logger.info(`Processing ${filepath}, content length: ${body.length}`);
             // Pass the filepath as the third argument
             const { html, metadata } = await createProcessors(processors)[extension as keyof Processors](
                 body,
@@ -327,7 +326,7 @@ export function pipelineLoader(pipelines_json: {
     return {
         name: "pipeline-loader",
         load: async (context: LoaderContext) => {
-            console.log('Starting pipeline loader');
+            console.log("Starting pipeline loader");
             getCurrentRateLimitRemaining();
             // Process pipelines sequentially
             for (const pipeline of pipelines_json.remote_workflows) {
@@ -369,7 +368,7 @@ export function pipelineLoader(pipelines_json: {
                     }
                 }
             }
-            console.log('Pipeline loader completed successfully');
+            console.log("Pipeline loader completed successfully");
         },
     };
 }
@@ -387,7 +386,7 @@ export function releaseLoader(pipelines_json: {
     return {
         name: "release-notes-loader",
         load: async (context: LoaderContext) => {
-            console.log('Starting release notes loader');
+            console.log("Starting release notes loader");
             getCurrentRateLimitRemaining();
             const { store, generateDigest, config, logger } = context;
 
@@ -411,7 +410,7 @@ export function releaseLoader(pipelines_json: {
                         }
 
                         // Get the release body (markdown content)
-                        const body = release.body || '';
+                        const body = release.body || "";
                         const digest = generateDigest(body);
 
                         // Create a markdown processor for this content
@@ -432,25 +431,31 @@ export function releaseLoader(pipelines_json: {
                                     html_url: release.html_url,
                                     prerelease: release.prerelease,
                                     draft: release.draft,
-                                    author: release.author ? {
-                                        login: release.author.login,
-                                        avatar_url: release.author.avatar_url,
-                                        html_url: release.author.html_url
-                                    } : null,
+                                    author: release.author
+                                        ? {
+                                              login: release.author.login,
+                                              avatar_url: release.author.avatar_url,
+                                              html_url: release.author.html_url,
+                                          }
+                                        : null,
                                     // Include additional pipeline metadata
                                     archived: pipeline.archived,
                                     description: pipeline.description,
                                     topics: pipeline.topics,
-                                    stargazers_count: pipeline.stargazers_count
+                                    stargazers_count: pipeline.stargazers_count,
                                 },
                                 body,
                                 rendered: { html, metadata },
-                                digest
+                                digest,
                             });
 
-                            logger.debug(`Successfully processed release notes for ${pipeline.name}@${release.tag_name}`);
+                            logger.debug(
+                                `Successfully processed release notes for ${pipeline.name}@${release.tag_name}`,
+                            );
                         } catch (error) {
-                            logger.error(`Error processing release notes for ${pipeline.name}@${release.tag_name}: ${error.message}`);
+                            logger.error(
+                                `Error processing release notes for ${pipeline.name}@${release.tag_name}: ${error.message}`,
+                            );
                             // Continue with next release instead of failing the entire pipeline
                         }
                     }
@@ -458,11 +463,10 @@ export function releaseLoader(pipelines_json: {
                     logger.error(`Error fetching releases for ${pipeline.name}: ${error.message}`);
                     // Continue with next pipeline instead of failing the entire process
                 }
-
             }
 
             logger.info("GitHub release notes processing completed successfully");
-        }
+        },
     };
 }
 
