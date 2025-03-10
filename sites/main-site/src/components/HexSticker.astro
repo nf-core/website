@@ -35,7 +35,7 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
 
 <style>
     .hex-container {
-        perspective: 1000px;
+        perspective: 800px;
         margin: var(--hex-margin, 0.5rem);
         cursor: pointer;
         text-decoration: none;
@@ -100,14 +100,16 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
         background: linear-gradient(
             to right,
             rgba(255, 255, 255, 0) 0%,
-            rgba(255, 255, 255, 0.3) 50%,
+            rgba(255, 255, 255, 0.2) 50%,
             rgba(255, 255, 255, 0) 100%
         );
         transform: rotate(30deg) translateY(0%);
         opacity: 0;
         z-index: 3;
         pointer-events: none;
-        transition: opacity 0.3s ease, transform 0.5s ease-out;
+        transition:
+            opacity 0.5s ease,
+            transform 0.5s ease-out;
         will-change: transform, opacity;
     }
 
@@ -144,27 +146,27 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
     /* Hover effects for the sticker */
     .hex-container:hover .hex-sticker,
     .hex-container:focus .hex-sticker {
-        filter: brightness(1.05) contrast(1.05);
+        filter: brightness(1.1) contrast(1.1);
         box-shadow:
-            0 4px 8px rgba(0, 0, 0, 0.12),
-            0 2px 4px rgba(0, 0, 0, 0.12),
-            0 0 8px rgba(255, 255, 255, 0.15);
+            0 6px 12px rgba(0, 0, 0, 0.18),
+            0 3px 6px rgba(0, 0, 0, 0.18),
+            0 0 12px rgba(255, 255, 255, 0.2);
     }
 
     .hex-container:hover .holographic-foil,
     .hex-container:focus .holographic-foil {
-        opacity: 0.4;
+        opacity: 0.5;
         animation: rotate-gradient 4s linear infinite;
     }
 
     /* Light mode effect adjustments */
     :global(.light-mode) .hex-container:hover .hex-sticker,
     :global(.light-mode) .hex-container:focus .hex-sticker {
-        filter: brightness(1.05) contrast(1.05);
+        filter: brightness(1.1) contrast(1.1);
         box-shadow:
-            0 4px 8px rgba(0, 0, 0, 0.08),
-            0 2px 4px rgba(0, 0, 0, 0.08),
-            0 0 8px rgba(0, 0, 0, 0.08);
+            0 6px 12px rgba(0, 0, 0, 0.12),
+            0 3px 6px rgba(0, 0, 0, 0.12),
+            0 0 12px rgba(0, 0, 0, 0.12);
     }
 
     /* Light mode holographic effect adjustments */
@@ -219,13 +221,14 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
             // Skip tilt effect if user prefers reduced motion
             if (!prefersReducedMotion && hexSticker) {
                 // Variables for tilt effect
-                const maxTilt = 4; // Reduced maximum tilt angle in degrees (was 8)
+                const maxTilt = 10; // Increased maximum tilt angle in degrees (was 4, originally 8)
 
                 // Mouse enter event - remove transition for immediate response
                 container.addEventListener("mouseenter", () => {
                     hexSticker.style.transition = "filter 0.3s ease, box-shadow 0.3s ease";
                     if (shineEffect) {
-                        shineEffect.style.opacity = "0.4"; // Reduced opacity (was 0.5)
+                        shineEffect.style.transition = "opacity 0.8s ease, transform 0.8s ease-out";
+                        shineEffect.style.opacity = "0.3"; // Reduced opacity for more subtle effect
                     }
                 });
 
@@ -245,12 +248,12 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
                     const tiltY = xPercent * maxTilt;
 
                     // Apply transform
-                    hexSticker.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+                    hexSticker.style.transform = `perspective(800px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
 
                     // Adjust holographic effect opacity based on tilt
                     if (holographicFoil) {
                         const tiltMagnitude = Math.sqrt(tiltX * tiltX + tiltY * tiltY) / maxTilt;
-                        holographicFoil.style.opacity = 0.2 + tiltMagnitude * 0.2; // Reduced opacity (was 0.3 + tiltMagnitude * 0.4)
+                        holographicFoil.style.opacity = 0.3 + tiltMagnitude * 0.4; // Increased opacity (was 0.2 + tiltMagnitude * 0.2)
                     }
 
                     // Position shine effect based on mouse position
@@ -261,9 +264,13 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
                         container.dataset.lastY = container.dataset.lastY || yPercent;
 
                         // Calculate smoothed position (interpolate between last position and current)
-                        const smoothFactor = 0.15; // Lower = smoother but slower response
-                        const smoothedX = parseFloat(container.dataset.lastX) + (xPercent - parseFloat(container.dataset.lastX)) * smoothFactor;
-                        const smoothedY = parseFloat(container.dataset.lastY) + (yPercent - parseFloat(container.dataset.lastY)) * smoothFactor;
+                        const smoothFactor = 0.08; // Lower value for smoother movement (was 0.15)
+                        const smoothedX =
+                            parseFloat(container.dataset.lastX) +
+                            (xPercent - parseFloat(container.dataset.lastX)) * smoothFactor;
+                        const smoothedY =
+                            parseFloat(container.dataset.lastY) +
+                            (yPercent - parseFloat(container.dataset.lastY)) * smoothFactor;
 
                         // Update stored position
                         container.dataset.lastX = smoothedX;
@@ -272,9 +279,13 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
                         // Calculate angle based on smoothed position
                         const angle = Math.atan2(smoothedY, smoothedX) * (180 / Math.PI);
 
-                        // Position shine effect with reduced movement
-                        const shineX = -smoothedX * 30; // Further reduced movement (was 40)
-                        const shineY = -smoothedY * 30; // Further reduced movement (was 40)
+                        // Position shine effect with reduced movement and limits
+                        // Limit the movement range to prevent erratic behavior
+                        const limitedX = Math.max(-1, Math.min(1, smoothedX));
+                        const limitedY = Math.max(-1, Math.min(1, smoothedY));
+
+                        const shineX = -limitedX * 25; // Reduced movement for more subtle effect
+                        const shineY = -limitedY * 25; // Reduced movement for more subtle effect
 
                         // Apply transform to shine effect with eased transition
                         shineEffect.style.transform = `rotate(${angle + 90}deg) translate(${shineX}%, ${shineY}%)`;
@@ -284,7 +295,7 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
                 // Mouse leave event - restore original state
                 container.addEventListener("mouseleave", () => {
                     hexSticker.style.transition = "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)";
-                    hexSticker.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
+                    hexSticker.style.transform = "perspective(800px) rotateX(0deg) rotateY(0deg)";
 
                     if (holographicFoil) {
                         holographicFoil.style.opacity = "";
@@ -292,7 +303,7 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
 
                     if (shineEffect) {
                         // Fade out the shine effect gradually
-                        shineEffect.style.transition = "opacity 0.5s ease-out, transform 0.5s ease-out";
+                        shineEffect.style.transition = "opacity 0.8s ease-out, transform 0.8s ease-out";
                         shineEffect.style.opacity = "0";
                         shineEffect.style.transform = "rotate(30deg) translateY(0%)";
                     }
