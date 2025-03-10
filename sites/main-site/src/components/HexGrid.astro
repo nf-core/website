@@ -19,7 +19,7 @@ interface Props {
 const { class: className = "", id } = Astro.props;
 ---
 
-<div class:list={["hex-grid-container", className]} id={id}>
+<div class:list={["hex-grid-container", className]} id={id} aria-label="Grid of hexagonal stickers">
     <slot />
 </div>
 
@@ -39,7 +39,7 @@ const { class: className = "", id } = Astro.props;
         margin-left: auto;
     }
 
-    /* Responsive adjustments */
+    /* Responsive adjustments using Bootstrap 5.3 breakpoints */
     @media (min-width: 576px) {
         .hex-grid-container {
             max-width: 540px;
@@ -149,6 +149,9 @@ const { class: className = "", id } = Astro.props;
         container.style.height = `${rowsCount * (hexHeight - verticalOverlap) + verticalOverlap}px`;
         container.style.position = "relative";
 
+        // Use a DocumentFragment for better performance
+        const fragment = document.createDocumentFragment();
+
         // Ensure all hexagons have transition property set for smooth movement
         hexElements.forEach((hex) => {
             if (
@@ -185,6 +188,10 @@ const { class: className = "", id } = Astro.props;
                     hex.style.left = `${x}px`;
                     hex.style.top = `${y}px`;
 
+                    // Add row and column information for accessibility
+                    hex.setAttribute("data-row", currentRow.toString());
+                    hex.setAttribute("data-col", currentCol.toString());
+
                     hexIndex++;
                 }
 
@@ -215,7 +222,7 @@ const { class: className = "", id } = Astro.props;
         let lastHeight = window.innerHeight;
         let ticking = false;
 
-        // More aggressive throttling for resize events
+        // Throttled resize handler
         function handleResize() {
             // Only process if dimensions actually changed significantly (at least 20px)
             const currentWidth = window.innerWidth;
@@ -271,23 +278,6 @@ const { class: className = "", id } = Astro.props;
         };
     }
 
-    /**
-     * Helper function to determine if a resize is significant enough to trigger rearrangement
-     * @param {number} oldWidth - Previous width
-     * @param {number} newWidth - New width
-     * @param {number} threshold - Threshold percentage (default: 0.05)
-     * @returns {boolean} Whether rearrangement should occur
-     */
-    function shouldRearrange(oldWidth, newWidth, threshold = 0.05) {
-        // Only rearrange if width changed by more than threshold percentage
-        return Math.abs(oldWidth - newWidth) / oldWidth > threshold;
-    }
-
-    // Export functions to window for use in other components
-    window.arrangeHexGrid = arrangeHexGrid;
-    window.setupHexGridResizing = setupHexGridResizing;
-    window.shouldRearrange = shouldRearrange;
-
     // Initialize any hex grids on the page
     document.addEventListener("DOMContentLoaded", () => {
         const hexGrids = document.querySelectorAll(".hex-grid-container");
@@ -295,7 +285,7 @@ const { class: className = "", id } = Astro.props;
             const hexElements = Array.from(grid.querySelectorAll(".hex-container"));
             if (hexElements.length > 0) {
                 setupHexGridResizing(grid, hexElements, {
-                    spacing: 8, // Moderate spacing reduction (from original 15) to make grid tighter without overlap
+                    spacing: 4, // Moderate spacing for a tighter grid without overlap
                     startingRow: window.innerWidth < 576 ? 2 : 3, // Adjust starting row for mobile
                     minHexPerRow: 2, // Ensure at least 2 hexagons per row on small screens
                     transitionDuration: "0.4s", // Smooth transition duration

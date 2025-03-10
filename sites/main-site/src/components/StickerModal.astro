@@ -1,6 +1,8 @@
 ---
-// StickerModal.astro
-// A reusable modal component for displaying sticker details with visual effects
+/**
+ * StickerModal.astro
+ * A reusable modal component for displaying sticker details with visual effects
+ */
 ---
 
 <div class="modal fade" id="stickerModal" tabindex="-1" aria-labelledby="stickerModalTitle" aria-hidden="true">
@@ -15,10 +17,22 @@
                     <div class="col-md-6 mb-4 mb-md-0">
                         <div class="sticker-hex-container">
                             <div class="sticker-modal-hex">
-                                <div class="sticker-modal-holographic-foil"></div>
-                                <div class="shine-effect"></div>
-                                <img src="" alt="" class="sticker-modal-img dark-mode-img" />
-                                <img src="" alt="" class="sticker-modal-img light-mode-img" />
+                                <div class="sticker-modal-holographic-foil" aria-hidden="true"></div>
+                                <div class="shine-effect" aria-hidden="true"></div>
+                                <img
+                                    src=""
+                                    alt=""
+                                    class="sticker-modal-img dark-mode-img"
+                                    width="300"
+                                    height="346"
+                                />
+                                <img
+                                    src=""
+                                    alt=""
+                                    class="sticker-modal-img light-mode-img"
+                                    width="300"
+                                    height="346"
+                                />
                             </div>
                         </div>
                     </div>
@@ -39,6 +53,7 @@
                                 fill="currentColor"
                                 class="bi bi-box-arrow-up-right ms-1"
                                 viewBox="0 0 16 16"
+                                aria-hidden="true"
                             >
                                 <path
                                     fill-rule="evenodd"
@@ -120,8 +135,6 @@
         mix-blend-mode: soft-light;
         opacity: 0; /* Set to 0 to match main page default state */
         z-index: 2;
-        /* Remove animation to match main page default state */
-        /* animation: rotate-gradient 10s linear infinite; */
     }
 
     /* Sticker images */
@@ -150,24 +163,6 @@
     :global(body.light-mode) .sticker-modal-img.dark-mode-img {
         display: none;
     }
-
-    /* Remove glossy overlay */
-    /* .sticker-modal-hex::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(
-            135deg,
-            rgba(255, 255, 255, 0.15) 0%,
-            rgba(255, 255, 255, 0.05) 50%,
-            rgba(255, 255, 255, 0) 100%
-        );
-        z-index: 5;
-        pointer-events: none;
-    } */
 
     /* Title styling */
     .sticker-modal-title {
@@ -227,8 +222,6 @@
         transition: transform 0.3s ease;
         transform-style: preserve-3d;
         perspective: 1000px;
-        /* Disable hover interactions */
-        pointer-events: none;
     }
 
     /* Animation keyframes */
@@ -319,8 +312,7 @@
     document.addEventListener("DOMContentLoaded", async () => {
         try {
             // Import Bootstrap's Modal functionality
-            const BootstrapModal = await import("bootstrap/js/dist/modal");
-            const Modal = BootstrapModal.default;
+            const { default: Modal } = await import("bootstrap/js/dist/modal");
 
             // DOM elements
             const modal = document.getElementById("stickerModal");
@@ -386,6 +378,12 @@
                     .replace(/\b\w/g, (l) => l.toUpperCase());
 
                 elements.title.textContent = formattedTitle;
+
+                // Update modal title for screen readers
+                const modalTitle = modal.querySelector("#stickerModalTitle");
+                if (modalTitle) {
+                    modalTitle.textContent = `${formattedTitle} Sticker`;
+                }
 
                 // Set description
                 if (stickerData.description) {
