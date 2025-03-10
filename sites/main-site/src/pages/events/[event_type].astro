@@ -1,12 +1,20 @@
 ---
 import EventLayout from "@layouts/EventLayout.astro";
 import { getCollection } from "astro:content";
+import { markdown } from "@astropub/md";
 
 export async function getStaticPaths() {
     let events = await getCollection("events");
     events = events.filter((event) => {
         return event.id.replace(/\.[^/.]+$/, "").split("/").length === 2;
     });
+
+    events = await Promise.all(
+        events.map(async (event) => {
+            event.data.subtitle = String(await markdown(event.data.subtitle));
+            return event;
+        }),
+    );
     // reduce events to unique event types
     const event_types = [...new Set(events.map((event) => event.data.type)), "bytesize"];
 
