@@ -38,14 +38,14 @@ In the next chapter, we will describe what you will need to have ready to make a
 
 This training has the following chapters
 
-- Chapter 1: [Introduction](/docs/tutorials/training/writing-nf-core-modules/chapter-1-introduction)
-- Chapter 2: [Getting started](/docs/tutorials/training/writing-nf-core-modules/chapter-2-getting-started)
-- Chapter 3: [What is a nf-core module?](/docs/tutorials/training/writing-nf-core-modules/chapter-3-what-is-a-nf-core-module)
-- Chapter 4: [Generating boilerplate files](/docs/tutorials/training/writing-nf-core-modules/chapter-4-generating-boilerplate-files)
-- Chapter 5: [Writing an nf-core module](/docs/tutorials/training/writing-nf-core-modules/chapter-5-writing-an-nf-core-module)
-- Chapter 6: [Testing an nf-core module](/docs/tutorials/training/writing-nf-core-modules/chapter-6-testing-an-nf-core-module)
-- Chapter 7: [Development workflow](/docs/tutorials/training/writing-nf-core-modules/chapter-7-development-workflow)
-- Chapter 8: [Using nf-core modules in pipelines](/docs/tutorials/training/writing-nf-core-modules/chapter-8-using-in-pipelines)
+- Chapter 1: [Introduction](/docs/tutorials/nf-core_training/writing-nf-core-modules/chapter-1-introduction)
+- Chapter 2: [Getting started](/docs/tutorials/nf-core_training/writing-nf-core-modules/chapter-2-getting-started)
+- Chapter 3: [What is a nf-core module?](/docs/tutorials/nf-core_training/writing-nf-core-modules/chapter-3-what-is-a-nf-core-module)
+- Chapter 4: [Generating boilerplate files](/docs/tutorials/nf-core_training/writing-nf-core-modules/chapter-4-generating-boilerplate-files)
+- Chapter 5: [Writing an nf-core module](/docs/tutorials/nf-core_training/writing-nf-core-modules/chapter-5-writing-an-nf-core-module)
+- Chapter 6: [Testing an nf-core module](/docs/tutorials/nf-core_training/writing-nf-core-modules/chapter-6-testing-an-nf-core-module)
+- Chapter 7: [Development workflow](/docs/tutorials/nf-core_training/writing-nf-core-modules/chapter-7-development-workflow)
+- Chapter 8: [Using nf-core modules in pipelines](/docs/tutorials/nf-core_training/writing-nf-core-modules/chapter-8-using-in-pipelines)
 
 We recommend reading chapters 2-7 once through _before_ developing the module.
 When you get to chapter 7, you can then go back to chapter 2 to start developing the module itself.

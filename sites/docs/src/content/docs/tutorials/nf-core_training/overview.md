@@ -9,4 +9,4 @@ These are typically aimed as material for use with a instructor lead researcher,
 
 The trainings currently available are:
 
-- [Writing nf-core modules](/docs/tutorials/training/writing-nf-core-modules/chapter-1-introduction)
+- [Writing nf-core modules](/docs/tutorials/nf-core_training/writing-nf-core-modules/chapter-1-introduction)
