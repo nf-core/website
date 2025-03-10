@@ -43,15 +43,28 @@ const categoryIds = uniqueCategories.map((category) => ({
 }));
 ---
 
-<div class="w-100 p-2">
-    <!-- Category navigation bar removed -->
+<div class="sticker-gallery w-100">
+    <!-- Category navigation for better UX -->
+    <nav class="category-nav mb-4" aria-label="Sticker categories">
+        <div class="d-flex flex-wrap justify-content-center gap-2">
+            {categoryIds.map(({ id, name }) => (
+                <a
+                    href={`#${id}`}
+                    class="btn btn-outline-primary btn-sm"
+                    aria-label={`Jump to ${name}`}
+                >
+                    {name}
+                </a>
+            ))}
+        </div>
+    </nav>
 
     {
         uniqueCategories.map((category, index) => (
-            <div class="category-section" id={`category-${category}`}>
-                <h2 class="category-heading mb-4">
+            <section class="category-section mb-5" id={`category-${category}`}>
+                <h2 class="category-heading mb-4 d-flex align-items-center justify-content-center">
                     {formatCategoryName(category)}
-                    <a href="#top" class="back-to-top ms-2" title="Back to top">
+                    <a href="#top" class="back-to-top ms-2" title="Back to top" aria-label="Back to top">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="16"
@@ -59,6 +72,7 @@ const categoryIds = uniqueCategories.map((category) => ({
                             fill="currentColor"
                             class="bi bi-arrow-up-circle"
                             viewBox="0 0 16 16"
+                            aria-hidden="true"
                         >
                             <path
                                 fill-rule="evenodd"
@@ -79,7 +93,7 @@ const categoryIds = uniqueCategories.map((category) => ({
                     ))}
                 </HexGrid>
                 {index < uniqueCategories.length - 1 && <hr class="category-divider my-4" />}
-            </div>
+            </section>
         ))
     }
 </div>
@@ -88,17 +102,21 @@ const categoryIds = uniqueCategories.map((category) => ({
 <StickerModal />
 
 <style>
-    /* Category navigation styles removed */
+    /* Category navigation styles */
+    .category-nav {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background-color: var(--bs-body-bg);
+        padding: 0.5rem 0;
+        border-bottom: 1px solid var(--bs-border-color);
+    }
 
     .category-heading {
-        text-align: center;
         font-size: 1.75rem;
         font-weight: 600;
         color: var(--bs-body-color);
         margin-top: 3rem; /* Consistent top margin */
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
 
     /* First category heading should have less top margin */
@@ -121,10 +139,6 @@ const categoryIds = uniqueCategories.map((category) => ({
         width: 50%;
         margin-left: auto;
         margin-right: auto;
-    }
-
-    .category-divider:last-child {
-        display: none;
     }
 
     .hex-gallery {
@@ -162,30 +176,45 @@ const categoryIds = uniqueCategories.map((category) => ({
 
     /* Hover effects for the gallery */
     .hex-gallery:hover .hex-container:not(:hover) {
-        opacity: 0.7; /* Less dramatic fade (changed from 0.55) */
-        filter: grayscale(0.25); /* Reduced grayscale effect (from 0.4) */
-        transform: scale(0.95); /* Less shrinking (from 0.9) */
-        transition: all 0.6s ease; /* Slower, simpler transition (from 0.4s cubic-bezier) */
+        opacity: 0.7; /* Less dramatic fade */
+        filter: grayscale(0.25); /* Reduced grayscale effect */
+        transform: scale(0.95); /* Less shrinking */
+        transition: all 0.6s ease; /* Slower, simpler transition */
     }
 
     .hex-gallery .hex-container {
         transition:
             opacity 0.6s ease,
-            /* Slower, simpler transition (from 0.4s cubic-bezier) */ filter 0.6s ease,
+            filter 0.6s ease,
             transform 0.6s ease,
-            /* Removed bounce effect for smoother transition */ box-shadow 0.6s ease;
+            box-shadow 0.6s ease;
         will-change: transform; /* Optimize for animations */
     }
 
     .hex-gallery .hex-container:hover {
         z-index: 10;
-        transform: scale(1.1) rotate(1deg); /* Reduced scale and rotation (from 1.18 and 3deg) */
+        transform: scale(1.1) rotate(1deg); /* Reduced scale and rotation */
         filter: brightness(1.05) contrast(1.02) saturate(1.05); /* Reduced filter effects */
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Lighter shadow (from 12px 24px 0.3) */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Lighter shadow */
     }
 
     /* Add alternating tilt directions for more natural feel */
     .hex-gallery .hex-container:nth-child(even):hover {
-        transform: scale(1.1) rotate(-1deg); /* Reduced scale and rotation (from 1.18 and -3deg) */
+        transform: scale(1.1) rotate(-1deg); /* Reduced scale and rotation */
+    }
+
+    /* Reduced motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+        .hex-gallery:hover .hex-container:not(:hover) {
+            opacity: 0.8;
+            filter: grayscale(0.1);
+            transform: scale(0.98);
+            transition: all 0.8s ease;
+        }
+
+        .hex-gallery .hex-container:hover {
+            transform: scale(1.05) rotate(0deg);
+            transition: all 0.8s ease;
+        }
     }
 </style>

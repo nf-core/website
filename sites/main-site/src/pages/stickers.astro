@@ -13,10 +13,22 @@ const allStickers = Object.entries(stickersData).flatMap(([category, stickers]) 
         description: sticker.description,
     }));
 });
+
+// SEO metadata
+const pageTitle = "nf-core Stickers";
+const pageDescription = "Browse our collection of hex stickers organized by category for nf-core pipelines, events, and more.";
 ---
 
-<PageLayout title="nf-core Stickers" subtitle="Browse our collection of hex stickers organized by category.">
-    <main class="py-5">
-        <HexStickerGallery stickers={allStickers} />
+<PageLayout
+    title={pageTitle}
+    subtitle="Browse our collection of hex stickers organized by category."
+    description={pageDescription}
+>
+    <main class="container py-5">
+        <div class="row">
+            <div class="col-12">
+                <HexStickerGallery stickers={allStickers} />
+            </div>
+        </div>
     </main>
 </PageLayout>

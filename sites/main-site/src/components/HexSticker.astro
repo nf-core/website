@@ -1,4 +1,9 @@
 ---
+/**
+ * HexSticker.astro
+ * A component for displaying hexagonal stickers with visual effects
+ */
+
 interface Props {
     imageUrl: string;
     alt: string;
@@ -26,10 +31,24 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
     aria-label={`View ${alt} sticker`}
 >
     <div class="hex-sticker">
-        <div class="holographic-foil"></div>
-        <div class="shine-effect"></div>
-        <img src={imageUrl} alt={alt} class="dark-mode-img" loading="lazy" />
-        <img src={lightModeUrl} alt={alt} class="light-mode-img" loading="lazy" />
+        <div class="holographic-foil" aria-hidden="true"></div>
+        <div class="shine-effect" aria-hidden="true"></div>
+        <img
+            src={imageUrl}
+            alt={alt}
+            class="dark-mode-img"
+            loading="lazy"
+            width="150"
+            height="173"
+        />
+        <img
+            src={lightModeUrl}
+            alt={alt}
+            class="light-mode-img"
+            loading="lazy"
+            width="150"
+            height="173"
+        />
     </div>
 </div>
 
@@ -203,6 +222,12 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
             opacity: 0.5;
         }
     }
+
+    /* Focus styles for accessibility */
+    .hex-container:focus-visible {
+        outline: 2px solid var(--bs-primary);
+        outline-offset: 4px;
+    }
 </style>
 
 <script>
@@ -221,7 +246,7 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
             // Skip tilt effect if user prefers reduced motion
             if (!prefersReducedMotion && hexSticker) {
                 // Variables for tilt effect
-                const maxTilt = 10; // Increased maximum tilt angle in degrees (was 4, originally 8)
+                const maxTilt = 10; // Maximum tilt angle in degrees
 
                 // Mouse enter event - remove transition for immediate response
                 container.addEventListener("mouseenter", () => {
@@ -253,18 +278,17 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
                     // Adjust holographic effect opacity based on tilt
                     if (holographicFoil) {
                         const tiltMagnitude = Math.sqrt(tiltX * tiltX + tiltY * tiltY) / maxTilt;
-                        holographicFoil.style.opacity = 0.3 + tiltMagnitude * 0.4; // Increased opacity (was 0.2 + tiltMagnitude * 0.2)
+                        holographicFoil.style.opacity = 0.3 + tiltMagnitude * 0.4;
                     }
 
                     // Position shine effect based on mouse position
                     if (shineEffect) {
-                        // Dampen the movement by using a smaller multiplier and adding smoothing
                         // Store the current mouse position
                         container.dataset.lastX = container.dataset.lastX || xPercent;
                         container.dataset.lastY = container.dataset.lastY || yPercent;
 
                         // Calculate smoothed position (interpolate between last position and current)
-                        const smoothFactor = 0.08; // Lower value for smoother movement (was 0.15)
+                        const smoothFactor = 0.08; // Lower value for smoother movement
                         const smoothedX =
                             parseFloat(container.dataset.lastX) +
                             (xPercent - parseFloat(container.dataset.lastX)) * smoothFactor;
@@ -279,7 +303,6 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
                         // Calculate angle based on smoothed position
                         const angle = Math.atan2(smoothedY, smoothedX) * (180 / Math.PI);
 
-                        // Position shine effect with reduced movement and limits
                         // Limit the movement range to prevent erratic behavior
                         const limitedX = Math.max(-1, Math.min(1, smoothedX));
                         const limitedY = Math.max(-1, Math.min(1, smoothedY));
