@@ -21,4 +21,4 @@ TBD
 
 # How to join
 
-Join the [nf-core Slack](/join#slack) and find us in the _#cancer-genomics_ channel
+Join the [nf-core Slack](/join#slack) and find us in the [#cancer-genomics](https://nfcore.slack.com/archives/C08GSRYDTV2) channel
