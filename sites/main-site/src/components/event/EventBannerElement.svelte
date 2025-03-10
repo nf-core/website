@@ -113,8 +113,12 @@
             });
     }
 
-    let heading_title = $state(event_time_category.charAt(0).toUpperCase() + event_time_category.slice(1) + " event");
-    heading_title = events.length > 1 ? heading_title + "s" : heading_title;
+    let heading_title = $derived(
+        event_time_category.charAt(0).toUpperCase() +
+            event_time_category.slice(1) +
+            " event" +
+            (events.length > 1 ? "s" : ""),
+    );
     onMount(() => {
         events.map((event) => {
             event_duration(event);
@@ -152,7 +156,7 @@
                                 </h5>
                                 <p class="lead mb-1">
                                     <a href={"events/" + event.id + "/"} class="text-body text-decoration-none"
-                                        >{event.data.subtitle}</a
+                                        >{@html event.data.subtitle}</a
                                     >
                                 </p>
                                 {#if event.data.duration}
@@ -191,7 +195,7 @@
                                                 href={"events/" + event.id + "/"}
                                                 class="btn btn-outline-success text-nowrap">Event Details</a
                                             >
-                                            {#if event.data.locations?.length > 0}
+                                            {#if Array.isArray(event.data?.locations) && event.data.locations.length > 0}
                                                 <VideoButton urls={event.data.locations} />
                                             {/if}
                                         </div>
@@ -216,7 +220,7 @@
                         </h4>
                         <p class="d-sm-none mb-1">
                             <a href={"events/" + event.id + "/"} class="text-body text-decoration-none"
-                                >{event.data.subtitle}</a
+                                >{@html event.data.subtitle}</a
                             ><span class={"badge bg-" + event_type_classes[event.data.type] + " small ms-3"}
                                 ><i class={event_type_icons[event.data.type] + " me-1"} aria-hidden="true"></i>
                                 {event.data.type}</span
@@ -232,7 +236,7 @@
                                 {#if event_time_category === "upcoming"}
                                     <ExportEventButton frontmatter={event.data} />
                                 {/if}
-                                {#if event_time_category === "ongoing" && event.data.locations?.length > 0}
+                                {#if event_time_category === "ongoing" && Array.isArray(event.data?.locations) && event.data.locations.length > 0}
                                     <VideoButton urls={event.data.locations} />
                                 {/if}
                             </div>

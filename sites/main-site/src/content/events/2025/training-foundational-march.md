@@ -1,6 +1,6 @@
 ---
 title: Nextflow Training Week - March 2025
-subtitle: Join new "Hello Nextflow" training and more online
+subtitle: Join the new `Hello Nextflow` training and more online
 type: training
 startDate: "2025-03-10"
 startTime: "09:00+01:00"
