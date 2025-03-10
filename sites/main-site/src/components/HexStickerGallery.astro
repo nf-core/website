@@ -45,7 +45,7 @@ const categoryIds = uniqueCategories.map((category) => ({
 
 <div class="sticker-gallery w-100">
     <!-- Information about source images and instructions -->
-    <div class="sticker-info text-center mb-4">
+    <div class="sticker-info text-center mb-2">
         <p class="mb-0">
             To find instructions on how to make your own hex sticker and for all the source images seen here, go to
             <a href="https://github.com/nf-core/logos" target="_blank" rel="noopener noreferrer" class="fw-medium">
@@ -55,7 +55,7 @@ const categoryIds = uniqueCategories.map((category) => ({
     </div>
 
     <!-- Category navigation for better UX -->
-    <nav class="category-nav mb-4" aria-label="Sticker categories">
+    <nav class="category-nav mb-2" aria-label="Sticker categories">
         <div class="d-flex flex-wrap justify-content-center gap-2">
             {categoryIds.map(({ id, name }) => (
                 <a
@@ -71,8 +71,8 @@ const categoryIds = uniqueCategories.map((category) => ({
 
     {
         uniqueCategories.map((category, index) => (
-            <section class="category-section mb-5" id={`category-${category}`}>
-                <h2 class="category-heading mb-4 d-flex align-items-center justify-content-center">
+            <section class="category-section mb-3" id={`category-${category}`}>
+                <h2 class="category-heading mb-1 d-flex align-items-center justify-content-center">
                     {formatCategoryName(category)}
                     <a href="#top" class="back-to-top ms-2" title="Back to top" aria-label="Back to top">
                         <svg
@@ -102,7 +102,7 @@ const categoryIds = uniqueCategories.map((category) => ({
                         />
                     ))}
                 </HexGrid>
-                {index < uniqueCategories.length - 1 && <hr class="category-divider my-4" />}
+                {index < uniqueCategories.length - 1 && <hr class="category-divider my-2" />}
             </section>
         ))
     }
@@ -115,7 +115,7 @@ const categoryIds = uniqueCategories.map((category) => ({
     /* Information message styles */
     .sticker-info {
         font-size: 1.1rem;
-        line-height: 1.5;
+        line-height: 1.4;
         color: var(--bs-body-color);
     }
 
@@ -134,13 +134,13 @@ const categoryIds = uniqueCategories.map((category) => ({
         top: 0;
         z-index: 10;
         background-color: var(--bs-body-bg);
-        padding: 0.75rem 0;
+        padding: 0.4rem 0;
         border-bottom: 1px solid var(--bs-border-color);
     }
 
     .category-nav .btn {
         font-size: 1rem;
-        padding: 0.5rem 1rem;
+        padding: 0.4rem 0.8rem;
         border-radius: 0.375rem;
     }
 
@@ -148,12 +148,12 @@ const categoryIds = uniqueCategories.map((category) => ({
         font-size: 1.75rem;
         font-weight: 600;
         color: var(--bs-body-color);
-        margin-top: 3rem; /* Consistent top margin */
+        margin-top: 0.75rem; /* Drastically reduced top margin */
     }
 
     /* First category heading should have less top margin */
     .category-section:first-child .category-heading {
-        margin-top: 1rem;
+        margin-top: 0.25rem; /* Minimal top margin for first heading */
     }
 
     .back-to-top {
@@ -177,7 +177,7 @@ const categoryIds = uniqueCategories.map((category) => ({
         --hex-size: 187.5px; /* Base size for large screens */
         --hex-margin: 0.5rem;
         --hex-gap: 1rem;
-        padding-bottom: 2rem; /* Consistent bottom padding */
+        padding-bottom: 1rem; /* Minimal bottom padding */
     }
 
     /* Responsive sizing for different screen sizes */
@@ -238,7 +238,8 @@ const categoryIds = uniqueCategories.map((category) => ({
     /* Additional responsive adjustments for very small screens */
     @media (max-width: 400px) {
         .hex-gallery {
-            --hex-size: 120px; /* Slightly larger for single column */
+            --hex-size: 90px; /* Smaller size for iPhone screens to fit 2-column hex grid */
+            --hex-margin: 0.25rem;
             --hex-gap: 0.25rem;
         }
 
@@ -250,6 +251,14 @@ const categoryIds = uniqueCategories.map((category) => ({
 
         .category-heading {
             font-size: 1.5rem;
+        }
+    }
+
+    /* iPhone-specific adjustments */
+    @media (max-width: 390px) {
+        .hex-gallery {
+            --hex-size: 80px; /* Even smaller for narrower iPhones */
+            --hex-margin: 0.2rem;
         }
     }
 

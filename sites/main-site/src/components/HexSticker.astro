@@ -70,19 +70,18 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
         position: relative;
     }
 
-    /* Center hex stickers when in single column layout */
-    @media (max-width: 400px) {
-        .hex-container {
-            margin-left: auto;
-            margin-right: auto;
-        }
-    }
-
-    /* Adjust for two-column hex grid on mobile */
-    @media (min-width: 401px) and (max-width: 576px) {
+    /* Adjust for mobile hex grid */
+    @media (max-width: 576px) {
         .hex-container {
             /* Ensure proper spacing for the hex grid pattern */
             margin: var(--hex-margin, 0.4rem);
+        }
+    }
+
+    /* Adjust for very small screens */
+    @media (max-width: 400px) {
+        .hex-container {
+            margin: var(--hex-margin, 0.25rem);
         }
     }
 
@@ -99,6 +98,16 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
         box-shadow:
             0 1px 3px rgba(0, 0, 0, 0.12),
             0 1px 2px rgba(0, 0, 0, 0.24);
+    }
+
+    /* Simplified hover effects for mobile */
+    @media (max-width: 576px) {
+        .hex-container:hover .hex-sticker,
+        .hex-container:focus .hex-sticker {
+            filter: brightness(1.05);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+            transform: scale(1.05);
+        }
     }
 
     /* Holographic foil effect */

@@ -106,12 +106,8 @@ const { class: className = "", id } = Astro.props;
         if (!settings.maxPerRow) {
             const containerWidth = container.clientWidth;
 
-            // For very narrow screens (mobile), use a single column layout
-            if (containerWidth < 400) {
-                settings.maxPerRow = 1;
-                settings.startingRow = 1;
-            } else if (containerWidth < 576) {
-                // For small screens, use a proper 2-column hex grid
+            // For all mobile screens, use a small hex grid with 2 columns max
+            if (containerWidth < 576) {
                 settings.maxPerRow = 2;
                 settings.startingRow = 1; // Start with 1 hexagon in first row for proper hex pattern
             } else {
@@ -132,13 +128,8 @@ const { class: className = "", id } = Astro.props;
             verticalOverlap = hexHeight * 0.15;
         }
 
-        // For single column layout, use minimal overlap
-        if (settings.maxPerRow === 1) {
-            verticalOverlap = hexHeight * 0.05;
-        }
-
-        // Special handling for 2-column hex grid on mobile
-        const isTwoColumnMobile = settings.maxPerRow === 2 && container.clientWidth < 576;
+        // Special handling for mobile hex grid
+        const isMobileHexGrid = container.clientWidth < 576;
 
         // Arrange hexagons in a honeycomb pattern
         let currentRow = 0;
@@ -152,8 +143,8 @@ const { class: className = "", id } = Astro.props;
         let remainingHexagons = totalHexagons;
         let tempHexPerRow = settings.startingRow;
 
-        // For 2-column mobile layout, use alternating 1-2 pattern
-        if (isTwoColumnMobile) {
+        // For mobile layout, use alternating 1-2 pattern
+        if (isMobileHexGrid) {
             // Calculate rows for alternating 1-2 pattern
             let isOddRow = true;
             let rowHexCount = 0;
@@ -210,8 +201,8 @@ const { class: className = "", id } = Astro.props;
         requestAnimationFrame(() => {
             let hexIndex = 0;
 
-            if (isTwoColumnMobile) {
-                // Special layout for 2-column mobile: alternating 1-2 pattern
+            if (isMobileHexGrid) {
+                // Special layout for mobile: alternating 1-2 pattern
                 let currentRow = 0;
                 let isOddRow = true;
 
@@ -378,9 +369,7 @@ const { class: className = "", id } = Astro.props;
                 // Determine appropriate starting row based on screen width
                 let startingRow = 3; // Default for larger screens
 
-                if (window.innerWidth < 400) {
-                    startingRow = 1; // Single column for very narrow screens
-                } else if (window.innerWidth < 576) {
+                if (window.innerWidth < 576) {
                     startingRow = 1; // Start with 1 for proper hex pattern on mobile
                 } else if (window.innerWidth < 768) {
                     startingRow = 2; // Slightly smaller starting row for medium screens
@@ -389,7 +378,7 @@ const { class: className = "", id } = Astro.props;
                 setupHexGridResizing(grid, hexElements, {
                     spacing: 4, // Moderate spacing for a tighter grid without overlap
                     startingRow: startingRow,
-                    minHexPerRow: 1, // Allow single column on very narrow screens
+                    minHexPerRow: 2, // Always maintain at least 2 hexagons per row for hex pattern
                     transitionDuration: "0.4s", // Smooth transition duration
                     forceEvenRows: true, // Try to make rows more even
                 });
