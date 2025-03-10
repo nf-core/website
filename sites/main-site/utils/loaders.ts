@@ -2,11 +2,23 @@
 import type { AstroConfig, MarkdownHeading } from "astro";
 import type { Loader, LoaderContext } from "astro/loaders";
 import { octokit, getCurrentRateLimitRemaining } from "@components/octokit.js";
-
+import ProgressBar from "progress";
+import { S3Client, ListObjectsV2Command } from "@aws-sdk/client-s3";
 import { createMarkdownProcessor } from "@astrojs/markdown-remark";
 import type { MarkdownProcessor } from "@astrojs/markdown-remark";
 // Import the remark plugin directly
 import remarkGitHubMarkdown from "../../../bin/remark-github-markdown.js";
+type PipelineJson = {
+    remote_workflows: {
+        name: string;
+        releases: { tag_name: string; doc_files: string[]; has_schema: boolean; tag_sha: string }[];
+        archived: boolean;
+        description: string;
+        topics: string[];
+        stargazers_count: number;
+        string: any;
+    }[];
+};
 
 type GithubTreeLeaf = {
     path: string;
@@ -313,16 +325,7 @@ const schemaProcessor = {
     },
 };
 
-export function pipelineLoader(pipelines_json: {
-    remote_workflows: {
-        name: string;
-        releases: { tag_name: string; doc_files: string[]; has_schema: boolean }[];
-        archived: boolean;
-        description: string;
-        topics: string[];
-        stargazers_count: number;
-    }[];
-}): Loader {
+export function pipelineLoader(pipelines_json: PipelineJson): Loader {
     return {
         name: "pipeline-loader",
         load: async (context: LoaderContext) => {
@@ -373,16 +376,7 @@ export function pipelineLoader(pipelines_json: {
     };
 }
 
-export function releaseLoader(pipelines_json: {
-    remote_workflows: {
-        name: string;
-        releases: { tag_name: string; doc_files: string[]; has_schema: boolean }[];
-        archived: boolean;
-        description: string;
-        topics: string[];
-        stargazers_count: number;
-    }[];
-}): Loader {
+export function releaseLoader(pipelines_json: PipelineJson): Loader {
     return {
         name: "release-notes-loader",
         load: async (context: LoaderContext) => {
@@ -468,6 +462,149 @@ export function releaseLoader(pipelines_json: {
             logger.info("GitHub release notes processing completed successfully");
         },
     };
+}
+
+// Define types for AWS S3 responses
+export type S3Object = {
+    Key: string;
+    LastModified: Date;
+    ETag: string;
+    Size: number;
+    StorageClass: string;
+};
+
+export type S3Prefix = {
+    Prefix: string;
+};
+
+// Define entry type
+export type Entry = {
+    id: string;
+    data: {
+        pipeline: string;
+        version: string;
+        results_path: string;
+        content: S3Object[];
+        commonPrefixes: S3Prefix[];
+    };
+};
+
+/**
+ * AWS Results Loader
+ * Fetches pipeline results directly from AWS S3 and creates content collection entries
+ * Returns a function that matches Astro's expected format
+ */
+export function awsResultsLoader(pipelines_json: PipelineJson) {
+    return {
+        name: "aws-results-loader",
+        load: async (context: LoaderContext) => {
+            const { logger, store } = context;
+            logger.info('Starting AWS S3 results loader');
+
+            try {
+                // Create S3 client
+                const client = new S3Client({
+                    region: 'eu-west-1',
+                    signer: { sign: async (request) => request },
+                    credentials: {
+                        accessKeyId: '',
+                        secretAccessKey: '',
+                    },
+                });
+                const progressBar = new ProgressBar('Processing pipeline: :pipeline [:bar] :percent :etas', {
+                    total: pipelines_json.remote_workflows.length,
+
+                });
+                // Process each pipeline and its releases
+                for (const pipeline of pipelines_json.remote_workflows) {
+                    progressBar.tick({pipeline: pipeline.name});
+                    for (const release of pipeline.releases.filter((rel: any) => rel.tag_name !== "dev")) {
+                        const results_path = `results-${release.tag_sha}`;
+                        const version = release.tag_name;
+                        const pipelineName = pipeline.name;
+                        const entryId = `${pipelineName}/${version}/${results_path}`;
+
+                        // Check if we already have this entry in the store
+                        // const existingEntry = store.get(entryId);
+                        // if (existingEntry) {
+                        //     logger.debug(`Entry for ${pipelineName}/${version}/${results_path} already exists, skipping`);
+                        //     continue;
+                        // }
+
+                        // Create the prefix for this pipeline/release
+                        const prefix = `${pipelineName}/${results_path}/`;
+
+                        // Fetch data from S3
+                        const { keys: bucketContents, commonPrefixes } = await getKeysWithPrefixes(client, [prefix]);
+
+                        // Skip if no content or prefixes found
+                        if (bucketContents.length === 0 && commonPrefixes.length === 0) {
+                            logger.info(`No data found for ${prefix}`);
+                            continue;
+                        }
+
+
+
+                        // Store the entry
+                        store.set({
+                            id: entryId,
+                            data: {
+                                pipeline: pipelineName,
+                                version: version,
+                                results_path: results_path,
+                                content: bucketContents,
+                                commonPrefixes: commonPrefixes
+                            }
+                        });
+                    }
+                }
+
+                logger.info('AWS results loader completed successfully');
+            } catch (error) {
+                logger.error(`Error in AWS results loader: ${error.message}`);
+            }
+        },
+    };
+}
+
+/**
+ * Helper function to get keys with prefixes from AWS S3
+ */
+async function getKeysWithPrefixes(client: S3Client, prefixes: string[]) {
+    const keys: S3Object[] = [];
+    const commonPrefixes: S3Prefix[] = [];
+
+    for (const prefix of prefixes) {
+        let continuationToken: string | undefined = undefined;
+        do {
+            const command = new ListObjectsV2Command({
+                Bucket: "nf-core-awsmegatests",
+                Prefix: prefix,
+                ContinuationToken: continuationToken,
+                Delimiter: "/",
+            });
+            try {
+                const response = await client.send(command);
+                if (response.Contents) {
+                    for (const object of response.Contents) {
+                        keys.push(object as unknown as S3Object);
+                    }
+                }
+                if (response.CommonPrefixes) {
+                    for (const object of response.CommonPrefixes) {
+                        commonPrefixes.push(object as unknown as S3Prefix);
+                    }
+                }
+                // Type assertion for NextContinuationToken
+                continuationToken = (response as any).NextContinuationToken;
+            } catch (error) {
+                console.error(`Error retrieving keys for prefix ${prefix}:`, error);
+                return { keys: [], commonPrefixes: [] };
+            }
+        } while (continuationToken);
+    }
+
+    return { keys, commonPrefixes };
 }
 
 // Export a default markdown processor for use in other files
