@@ -170,7 +170,7 @@ class GitHubContentFetcher {
         additionalData: Record<string, unknown> = {},
     ) {
         const { store, generateDigest, config, logger } = this.context;
-        logger.debug(`Processing ${this.org}/${this.repo}@${this.ref}/${filepath}`);
+        logger.info(`Processing ${this.org}/${this.repo}@${this.ref}/${filepath}`);
 
         let [id, extension] = filepath.split(".") ?? [];
         id = this.repo + "/" + this.ref + "/" + id;
@@ -178,7 +178,7 @@ class GitHubContentFetcher {
         // check if the file exists in the store
         const existingEntry = store.get(id);
         if (existingEntry && existingEntry.data.repo === this.repo && existingEntry.data.ref === this.ref) {
-            logger.debug(`File ${filepath} unchanged, skipping`);
+            logger.info(`File ${filepath} unchanged, skipping`);
             return;
         }
 
@@ -196,7 +196,7 @@ class GitHubContentFetcher {
         };
 
         try {
-            logger.debug(`Processing ${filepath}, content length: ${body.length}`);
+            logger.info(`Processing ${filepath}, content length: ${body.length}`);
             // Pass the filepath as the third argument
             const { html, metadata } = await createProcessors(processors)[extension as keyof Processors](
                 body,
