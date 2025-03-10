@@ -293,6 +293,16 @@ You never need to manually modify this file, as it will also be automatically up
 
 However it is important to manually inspect this file once it has been generated that you have no unexpected snapshot assertion outputs (e.g. empty file `md5sum`, or missing assertions etc.
 
+To inspect this, in the console when you're running each test, before the name of each test you should get a little 'hash' string:
+
+```bash
+│   Test [528b411a] 'candidatus_portiera_aleyrodidarum proteome [fasta]'       │
+│ PASSED (7.762s)
+```
+
+With this hash string you can change into `.nf-test/tests/528b411a<rest of the string>/work` and you can find a standard Nextflow working directory of the module's test run.
+Within here you should change into each directory until you find the one of the module itself, and check the contents of each output file are as expected to ensure your snapshot has been generated correctly.
+
 Note that you may have 'empty' entries when an optional channel does not emit a file in that given test - however you should double check that is expected for that test.
 Furthermore only assertions that are not included in the snapshot function will not be recorded in the snapshot (typically just evaluated by a boolean, if failed will be printed to console as an error).
 
