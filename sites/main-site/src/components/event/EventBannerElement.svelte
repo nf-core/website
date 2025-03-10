@@ -213,8 +213,8 @@
                                                 href={"events/" + event.slug + "/"}
                                                 class="btn btn-outline-success text-nowrap">Event Details</a
                                             >
-                                            {#if event.data.locationURL}
-                                                <VideoButton urls={event.data.locationURL} />
+                                            {#if event.data.locations?.length > 0}
+                                                <VideoButton urls={event.data.locations} />
                                             {/if}
                                         </div>
                                     </div>
@@ -256,8 +256,8 @@
                                 {#if event_time_category === "upcoming"}
                                     <ExportEventButton frontmatter={event.data} />
                                 {/if}
-                                {#if event_time_category === "ongoing" && event.data.locationURL}
-                                    <VideoButton urls={event.data.locationURL} />
+                                {#if event_time_category === "ongoing" && event.data.locations?.length > 0}
+                                    <VideoButton urls={event.data.locations} />
                                 {/if}
                             </div>
                         </div>
