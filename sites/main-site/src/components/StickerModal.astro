@@ -17,19 +17,37 @@
                             <div class="sticker-modal-hex">
                                 <div class="sticker-modal-holographic-foil"></div>
                                 <div class="shine-effect"></div>
-                                <img src="" alt="" class="sticker-modal-img dark-mode-img">
-                                <img src="" alt="" class="sticker-modal-img light-mode-img">
+                                <img src="" alt="" class="sticker-modal-img dark-mode-img" />
+                                <img src="" alt="" class="sticker-modal-img light-mode-img" />
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 d-flex flex-column justify-content-center">
                         <h3 class="sticker-modal-title display-title"></h3>
                         <p class="sticker-modal-description text-secondary mb-4"></p>
-                        <a href="#" class="sticker-modal-link btn btn-primary align-self-start" target="_blank" rel="noopener noreferrer">
+                        <a
+                            href="#"
+                            class="sticker-modal-link btn btn-primary align-self-start"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
                             View Details
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right ms-1" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
-                                <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                fill="currentColor"
+                                class="bi bi-box-arrow-up-right ms-1"
+                                viewBox="0 0 16 16"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"
+                                ></path>
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"
+                                ></path>
                             </svg>
                         </a>
                     </div>
@@ -241,15 +259,31 @@
     }
 
     @keyframes modalHexIn {
-        0% { transform: scale(0.5) rotate(-15deg); opacity: 0; }
-        40% { transform: scale(1.1) rotate(5deg); opacity: 1; }
-        70% { transform: scale(0.95) rotate(-2deg); }
-        100% { transform: scale(1) rotate(0); }
+        0% {
+            transform: scale(0.5) rotate(-15deg);
+            opacity: 0;
+        }
+        40% {
+            transform: scale(1.1) rotate(5deg);
+            opacity: 1;
+        }
+        70% {
+            transform: scale(0.95) rotate(-2deg);
+        }
+        100% {
+            transform: scale(1) rotate(0);
+        }
     }
 
     @keyframes modalHexOut {
-        0% { transform: scale(1) rotate(0); opacity: 1; }
-        100% { transform: scale(0.5) rotate(15deg); opacity: 0; }
+        0% {
+            transform: scale(1) rotate(0);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(0.5) rotate(15deg);
+            opacity: 0;
+        }
     }
 
     /* Reduced motion preferences */
@@ -282,44 +316,44 @@
 
 <script>
     // Wait for the DOM to be fully loaded
-    document.addEventListener('DOMContentLoaded', async () => {
+    document.addEventListener("DOMContentLoaded", async () => {
         try {
             // Import Bootstrap's Modal functionality
-            const BootstrapModal = await import('bootstrap/js/dist/modal');
+            const BootstrapModal = await import("bootstrap/js/dist/modal");
             const Modal = BootstrapModal.default;
 
             // DOM elements
-            const modal = document.getElementById('stickerModal');
+            const modal = document.getElementById("stickerModal");
             if (!modal) return;
 
             const elements = {
-                title: modal.querySelector('.sticker-modal-title'),
-                darkImg: modal.querySelector('.sticker-modal-img.dark-mode-img'),
-                lightImg: modal.querySelector('.sticker-modal-img.light-mode-img'),
-                description: modal.querySelector('.sticker-modal-description'),
-                link: modal.querySelector('.sticker-modal-link'),
-                hex: modal.querySelector('.sticker-modal-hex'),
-                holographicFoil: modal.querySelector('.sticker-modal-holographic-foil'),
-                hexContainer: modal.querySelector('.sticker-hex-container'),
-                shineEffect: modal.querySelector('.shine-effect')
+                title: modal.querySelector(".sticker-modal-title"),
+                darkImg: modal.querySelector(".sticker-modal-img.dark-mode-img"),
+                lightImg: modal.querySelector(".sticker-modal-img.light-mode-img"),
+                description: modal.querySelector(".sticker-modal-description"),
+                link: modal.querySelector(".sticker-modal-link"),
+                hex: modal.querySelector(".sticker-modal-hex"),
+                holographicFoil: modal.querySelector(".sticker-modal-holographic-foil"),
+                hexContainer: modal.querySelector(".sticker-hex-container"),
+                shineEffect: modal.querySelector(".shine-effect"),
             };
 
             // Initialize Bootstrap modal
             const bsModal = new Modal(modal);
 
             // Check if user prefers reduced motion
-            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
             // Function to play the shine effect once
             function playShineEffect() {
                 if (elements.shineEffect && !prefersReducedMotion) {
                     // Apply the shine effect animation
-                    elements.shineEffect.style.animation = 'shineEffect 2.5s ease-in-out forwards';
+                    elements.shineEffect.style.animation = "shineEffect 2.5s ease-in-out forwards";
 
                     // Reset the animation after it completes
                     setTimeout(() => {
-                        elements.shineEffect.style.animation = 'none';
-                        elements.shineEffect.style.opacity = '0';
+                        elements.shineEffect.style.animation = "none";
+                        elements.shineEffect.style.opacity = "0";
                     }, 2500);
                 }
             }
@@ -329,8 +363,15 @@
              * @param {Object} stickerData - Data for the sticker
              */
             function openStickerModal(stickerData) {
-                if (!modal || !elements.darkImg || !elements.lightImg ||
-                    !elements.title || !elements.link || !elements.description) return;
+                if (
+                    !modal ||
+                    !elements.darkImg ||
+                    !elements.lightImg ||
+                    !elements.title ||
+                    !elements.link ||
+                    !elements.description
+                )
+                    return;
 
                 // Set images
                 elements.darkImg.src = stickerData.imageUrl;
@@ -340,9 +381,9 @@
 
                 // Format and set title
                 const formattedTitle = stickerData.alt
-                    .replace(/-/g, ' ')
-                    .replace(/_/g, ' ')
-                    .replace(/\b\w/g, l => l.toUpperCase());
+                    .replace(/-/g, " ")
+                    .replace(/_/g, " ")
+                    .replace(/\b\w/g, (l) => l.toUpperCase());
 
                 elements.title.textContent = formattedTitle;
 
@@ -350,16 +391,16 @@
                 if (stickerData.description) {
                     elements.description.textContent = stickerData.description;
                 } else {
-                    const category = stickerData.category || 'uncategorized';
+                    const category = stickerData.category || "uncategorized";
                     elements.description.textContent = `This is a ${category} sticker from the nf-core collection.`;
                 }
 
                 // Set link
                 if (stickerData.link) {
                     elements.link.href = stickerData.link;
-                    elements.link.style.display = 'inline-flex';
+                    elements.link.style.display = "inline-flex";
                 } else {
-                    elements.link.style.display = 'none';
+                    elements.link.style.display = "none";
                 }
 
                 // Show modal
@@ -373,20 +414,20 @@
             }
 
             // Add closing animation when modal is hidden
-            modal.addEventListener('hide.bs.modal', () => {
+            modal.addEventListener("hide.bs.modal", () => {
                 if (elements.hex) {
-                    elements.hex.style.animation = 'modalHexOut 0.3s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards';
+                    elements.hex.style.animation = "modalHexOut 0.3s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards";
                 }
             });
 
             // Reset animation when modal is fully hidden
-            modal.addEventListener('hidden.bs.modal', () => {
+            modal.addEventListener("hidden.bs.modal", () => {
                 if (elements.hex) {
-                    elements.hex.style.animation = '';
+                    elements.hex.style.animation = "";
                 }
                 if (elements.shineEffect) {
-                    elements.shineEffect.style.animation = 'none';
-                    elements.shineEffect.style.opacity = '0';
+                    elements.shineEffect.style.animation = "none";
+                    elements.shineEffect.style.opacity = "0";
                 }
             });
 
@@ -394,7 +435,7 @@
             window.openStickerModal = openStickerModal;
 
             // Set up click handlers for all sticker triggers
-            document.querySelectorAll('.sticker-trigger').forEach(trigger => {
+            document.querySelectorAll(".sticker-trigger").forEach((trigger) => {
                 // Extract sticker data from data attributes
                 const getStickerData = () => ({
                     imageUrl: trigger.dataset.stickerImg,
@@ -402,16 +443,16 @@
                     alt: trigger.dataset.stickerAlt,
                     link: trigger.dataset.stickerLink,
                     category: trigger.dataset.category,
-                    description: trigger.dataset.stickerDescription
+                    description: trigger.dataset.stickerDescription,
                 });
 
                 // Click handler
-                trigger.addEventListener('click', () => {
+                trigger.addEventListener("click", () => {
                     openStickerModal(getStickerData());
                 });
             });
         } catch (error) {
-            console.error('Error initializing sticker modal:', error);
+            console.error("Error initializing sticker modal:", error);
         }
     });
 </script>

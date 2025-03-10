@@ -18,7 +18,7 @@ interface Props {
 const { stickers } = Astro.props;
 
 // Get unique categories while preserving the order they first appear in the stickers array
-const uniqueCategories = [...new Set(stickers.map(sticker => sticker.category))];
+const uniqueCategories = [...new Set(stickers.map((sticker) => sticker.category))];
 
 // Group stickers by category
 const stickersByCategory = uniqueCategories.reduce(
@@ -37,9 +37,9 @@ function formatCategoryName(category: string): string {
 }
 
 // Create category IDs for navigation
-const categoryIds = uniqueCategories.map(category => ({
+const categoryIds = uniqueCategories.map((category) => ({
     id: `category-${category}`,
-    name: formatCategoryName(category)
+    name: formatCategoryName(category),
 }));
 ---
 
@@ -52,8 +52,18 @@ const categoryIds = uniqueCategories.map(category => ({
                 <h2 class="category-heading mb-4">
                     {formatCategoryName(category)}
                     <a href="#top" class="back-to-top ms-2" title="Back to top">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            class="bi bi-arrow-up-circle"
+                            viewBox="0 0 16 16"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"
+                            />
                         </svg>
                     </a>
                 </h2>
@@ -68,9 +78,7 @@ const categoryIds = uniqueCategories.map(category => ({
                         />
                     ))}
                 </HexGrid>
-                {index < uniqueCategories.length - 1 && (
-                    <hr class="category-divider my-4" />
-                )}
+                {index < uniqueCategories.length - 1 && <hr class="category-divider my-4" />}
             </div>
         ))
     }
@@ -154,30 +162,30 @@ const categoryIds = uniqueCategories.map(category => ({
 
     /* Hover effects for the gallery */
     .hex-gallery:hover .hex-container:not(:hover) {
-        opacity: 0.55; /* Increased from 0.65 - even more contrast */
-        filter: grayscale(0.4); /* Increased from 0.25 - more grayscale */
-        transform: scale(0.9); /* Increased shrink effect from 0.94 */
-        transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1); /* Smooth easing */
+        opacity: 0.7; /* Less dramatic fade (changed from 0.55) */
+        filter: grayscale(0.25); /* Reduced grayscale effect (from 0.4) */
+        transform: scale(0.95); /* Less shrinking (from 0.9) */
+        transition: all 0.6s ease; /* Slower, simpler transition (from 0.4s cubic-bezier) */
     }
 
     .hex-gallery .hex-container {
         transition:
-            opacity 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), /* Bounce effect */
-            filter 0.4s ease,
-            transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), /* Bounce effect */
-            box-shadow 0.4s ease;
+            opacity 0.6s ease,
+            /* Slower, simpler transition (from 0.4s cubic-bezier) */ filter 0.6s ease,
+            transform 0.6s ease,
+            /* Removed bounce effect for smoother transition */ box-shadow 0.6s ease;
         will-change: transform; /* Optimize for animations */
     }
 
     .hex-gallery .hex-container:hover {
         z-index: 10;
-        transform: scale(1.18) rotate(3deg); /* Increased scale and rotation */
-        filter: brightness(1.08) contrast(1.05) saturate(1.1); /* Enhanced brightness, contrast and saturation */
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Deeper shadow for more depth */
+        transform: scale(1.1) rotate(1deg); /* Reduced scale and rotation (from 1.18 and 3deg) */
+        filter: brightness(1.05) contrast(1.02) saturate(1.05); /* Reduced filter effects */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Lighter shadow (from 12px 24px 0.3) */
     }
 
     /* Add alternating tilt directions for more natural feel */
     .hex-gallery .hex-container:nth-child(even):hover {
-        transform: scale(1.18) rotate(-3deg); /* Increased scale and rotation */
+        transform: scale(1.1) rotate(-1deg); /* Reduced scale and rotation (from 1.18 and -3deg) */
     }
 </style>
