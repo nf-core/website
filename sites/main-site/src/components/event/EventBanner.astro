@@ -2,8 +2,15 @@
 import EventBannerElement from "@components/event/EventBannerElement.svelte";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
+import { markdown } from "@astropub/md";
 
 let events: CollectionEntry<"events">[] = await getCollection("events");
+events = await Promise.all(
+    events.map(async (event) => {
+        event.data.subtitle = `${await markdown(event.data.subtitle)}`;
+        return event;
+    }),
+);
 let now = new Date().getTime();
 events = events.sort((a, b) => {
     if (!a.data.start || !b.data.start) return 0;
