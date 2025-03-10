@@ -54,6 +54,11 @@ Once you've checked the snapshot file looks good, there is one more step before 
 Another very important part of nf-core is standardisation and consistency (as much as we can).
 Therefore to help ensure you follow the specifications correctly, the nf-core tools package has a linting tool that can check your module for any issues.
 
+:::note
+You do not necessarily have to run linting if you're writing just a custom module for your own use, or for your own module repository.
+However it is still recommended to pick up on little issues that might occur.
+:::
+
 If you run the following command:
 
 ```bash
@@ -73,7 +78,7 @@ Therefore, it is always a good idea to check the specification yourself to ensur
 
 ### Submit
 
-If all is good, you can commit and push your new module to your fork:
+If all is good, and you want to share your module with the community, you can commit and push your new module to your fork:
 
 ```bash
 git commit -am "Add new module <toolname>/<subcommand>"

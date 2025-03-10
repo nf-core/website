@@ -46,3 +46,6 @@ This training has the following chapters
 - Chapter 6: [Testing an nf-core module](/docs/tutorials/training/writing-nf-core-modules/chapter-6-testing-an-nf-core-module)
 - Chapter 7: [Development workflow](/docs/tutorials/training/writing-nf-core-modules/chapter-7-development-workflow)
 - Chapter 8: [Using nf-core modules in pipelines](/docs/tutorials/training/writing-nf-core-modules/chapter-8-using-in-pipelines)
+
+We recommend reading chapters 2-7 once through _before_ developing the module.
+When you get to chapter 7, you can then go back to chapter 2 to start developing the module itself.

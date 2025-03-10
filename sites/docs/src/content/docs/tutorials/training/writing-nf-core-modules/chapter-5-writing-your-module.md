@@ -352,8 +352,9 @@ The boilerplate template already comes with an example samtools command for you 
 
 At the top of the block you have two standard variables that should not be removed.
 
-- the`args` variable is how a pipeline developer can 'inject' optional parameters into the command itself.
-  - the `ext.args` comes from a process scope of a nextflow configuration file - in nf-core pipelines this is in the `modules.config`
+- The`args` variable is how a pipeline developer can 'inject' optional parameters into the command itself.
+  - The `ext.args` comes from a process scope of a nextflow configuration file - in nf-core pipelines this is in the `modules.config`
+  - More information on this is described in the 'using in pipelines' chapter
 - The `prefix` variable corresponds to the default output file basename that all output files should use
   - The default corresponds to the default `id` value of the primary input channel's metamap that all nf-core pipelines use.
 
