@@ -74,13 +74,15 @@
         clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
         overflow: hidden;
         box-shadow:
-            0 10px 25px rgba(0, 0, 0, 0.2),
-            0 5px 10px rgba(0, 0, 0, 0.1);
+            0 1px 3px rgba(0, 0, 0, 0.12),
+            0 1px 2px rgba(0, 0, 0, 0.24);
         transition: transform 0.3s ease;
         animation: modalHexIn 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        /* Disable hover interactions */
+        pointer-events: none;
     }
 
-    /* Holographic effect */
+    /* Holographic effect - match main page default state */
     .sticker-modal-holographic-foil {
         position: absolute;
         top: 0;
@@ -98,9 +100,10 @@
         );
         background-size: 200% 200%;
         mix-blend-mode: soft-light;
-        opacity: 0.5;
+        opacity: 0; /* Set to 0 to match main page default state */
         z-index: 2;
-        animation: rotate-gradient 10s linear infinite;
+        /* Remove animation to match main page default state */
+        /* animation: rotate-gradient 10s linear infinite; */
     }
 
     /* Sticker images */
@@ -130,6 +133,24 @@
         display: none;
     }
 
+    /* Remove glossy overlay */
+    /* .sticker-modal-hex::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.15) 0%,
+            rgba(255, 255, 255, 0.05) 50%,
+            rgba(255, 255, 255, 0) 100%
+        );
+        z-index: 5;
+        pointer-events: none;
+    } */
+
     /* Title styling */
     .sticker-modal-title {
         font-size: 1.75rem;
@@ -141,21 +162,23 @@
     /* Shine effect */
     .shine-effect {
         position: absolute;
-        top: 0;
-        left: -100%;
-        width: 250%;
-        height: 250%;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
         background: linear-gradient(
-            to right,
+            135deg,
             rgba(255, 255, 255, 0) 0%,
-            rgba(255, 255, 255, 0.6) 50%,
+            rgba(255, 255, 255, 0) 30%,
+            rgba(255, 255, 255, 0.6) 47%,
+            rgba(255, 255, 255, 1) 50%,
+            rgba(255, 255, 255, 0.6) 53%,
+            rgba(255, 255, 255, 0) 70%,
             rgba(255, 255, 255, 0) 100%
         );
-        transform: rotate(30deg) translateY(0%);
         opacity: 0;
         z-index: 10;
         pointer-events: none;
-        transition: opacity 0.3s ease;
         will-change: transform, opacity;
     }
 
@@ -181,11 +204,13 @@
         transform: scale(1);
     }
 
-    /* 3D hover effect for the modal hex */
+    /* 3D effect for the modal hex */
     .sticker-modal-hex {
         transition: transform 0.3s ease;
         transform-style: preserve-3d;
         perspective: 1000px;
+        /* Disable hover interactions */
+        pointer-events: none;
     }
 
     /* Animation keyframes */
@@ -199,9 +224,20 @@
     }
 
     @keyframes shineEffect {
-        0% { left: -100%; opacity: 0; }
-        20% { opacity: 0.8; }
-        100% { left: 100%; opacity: 0; }
+        0% {
+            transform: translateY(-100%) translateX(-100%) rotate(25deg);
+            opacity: 0;
+        }
+        15% {
+            opacity: 1;
+        }
+        85% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(100%) translateX(100%) rotate(25deg);
+            opacity: 0;
+        }
     }
 
     @keyframes modalHexIn {
@@ -274,59 +310,17 @@
             // Check if user prefers reduced motion
             const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-            // Add tilt effect if motion is not reduced
-            if (!prefersReducedMotion && elements.hex && elements.hexContainer) {
-                // Variables for tilt effect
-                const maxTilt = 10; // Maximum tilt angle in degrees
+            // Function to play the shine effect once
+            function playShineEffect() {
+                if (elements.shineEffect && !prefersReducedMotion) {
+                    // Apply the shine effect animation
+                    elements.shineEffect.style.animation = 'shineEffect 2.5s ease-in-out forwards';
 
-                // Mouse move event handler
-                function handleTilt(e) {
-                    const rect = elements.hexContainer.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-
-                    // Calculate percentage position (-1 to 1)
-                    const xPercent = (x / rect.width - 0.5) * 2;
-                    const yPercent = (y / rect.height - 0.5) * 2;
-
-                    // Calculate tilt angles
-                    const tiltX = -yPercent * maxTilt; // Invert Y for natural tilt
-                    const tiltY = xPercent * maxTilt;
-
-                    // Apply transform
-                    elements.hex.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
-
-                    // Adjust holographic effect opacity based on tilt
-                    if (elements.holographicFoil) {
-                        const tiltMagnitude = Math.sqrt(tiltX * tiltX + tiltY * tiltY) / maxTilt;
-                        elements.holographicFoil.style.opacity = 0.5 + tiltMagnitude * 0.3;
-                    }
-
-                    // Position shine effect based on mouse position
-                    if (elements.shineEffect) {
-                        // Calculate angle based on mouse position
-                        const angle = Math.atan2(yPercent, xPercent) * (180 / Math.PI);
-
-                        // Position shine effect opposite to mouse position for a natural reflection
-                        const shineX = -xPercent * 70; // Move shine opposite to mouse X
-                        const shineY = -yPercent * 70; // Move shine opposite to mouse Y
-
-                        // Apply transform to shine effect
-                        elements.shineEffect.style.transform = `rotate(${angle + 90}deg) translate(${shineX}%, ${shineY}%)`;
-                        elements.shineEffect.style.opacity = "0.8";
-                    }
-                }
-
-                // Reset tilt effect
-                function resetTilt() {
-                    elements.hex.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
-                    if (elements.holographicFoil) {
-                        elements.holographicFoil.style.opacity = '0.5';
-                    }
-                    if (elements.shineEffect) {
+                    // Reset the animation after it completes
+                    setTimeout(() => {
+                        elements.shineEffect.style.animation = 'none';
                         elements.shineEffect.style.opacity = '0';
-                        elements.shineEffect.style.transform = 'rotate(30deg) translateY(0%)';
-                    }
+                    }, 2500);
                 }
             }
 
@@ -371,18 +365,10 @@
                 // Show modal
                 bsModal.show();
 
-                // Setup tilt effect after modal is shown
-                if (!prefersReducedMotion && elements.hexContainer) {
-                    // Add event listeners after a short delay to ensure modal is visible
-                    setTimeout(() => {
-                        // Stop any existing animation on the shine effect
-                        if (elements.shineEffect) {
-                            elements.shineEffect.style.animation = 'none';
-                        }
-
-                        elements.hexContainer.addEventListener('mousemove', handleTilt);
-                        elements.hexContainer.addEventListener('mouseleave', resetTilt);
-                    }, 300);
+                // Play shine effect after the bounce animation completes
+                if (!prefersReducedMotion) {
+                    // Wait for the bounce animation to complete (0.7s) before playing shine effect
+                    setTimeout(playShineEffect, 800);
                 }
             }
 
@@ -391,18 +377,16 @@
                 if (elements.hex) {
                     elements.hex.style.animation = 'modalHexOut 0.3s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards';
                 }
-
-                // Remove event listeners
-                if (!prefersReducedMotion && elements.hexContainer) {
-                    elements.hexContainer.removeEventListener('mousemove', handleTilt);
-                    elements.hexContainer.removeEventListener('mouseleave', resetTilt);
-                }
             });
 
             // Reset animation when modal is fully hidden
             modal.addEventListener('hidden.bs.modal', () => {
                 if (elements.hex) {
                     elements.hex.style.animation = '';
+                }
+                if (elements.shineEffect) {
+                    elements.shineEffect.style.animation = 'none';
+                    elements.shineEffect.style.opacity = '0';
                 }
             });
 
