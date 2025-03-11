@@ -9,7 +9,6 @@
         headings?: { text: string; slug: string; depth: number; fa_icon?: string }[];
         children?: import("svelte").Snippet;
     }
-
     let { headings = [], children }: Props = $props();
     onMount(() => {
         if (typeof window !== "undefined" && window.location.pathname.includes("/events/") && !window.location.hash) {
@@ -38,7 +37,6 @@
         if (document.getElementsByClassName("mermaid").length > 0) {
             // Dynamically import mermaid only when needed
             import("mermaid").then((mermaidModule) => {
-                console.log("imported mermaid module");
                 renderDiagrams(graphs, mermaidModule.default);
                 window.addEventListener("theme-changed", () => {
                     renderDiagrams(graphs, mermaidModule.default);

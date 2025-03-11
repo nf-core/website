@@ -113,15 +113,29 @@ export default function remarkGitHubMarkdown(options = {}) {
                     directiveNode.attributes.title = 'Caution';
                   }
 
+                  // Create a new paragraph for the admonition content
+                  const newParagraph = {
+                    type: 'paragraph',
+                    children: []
+                  };
+
                   // If there's content on the same line as the admonition marker
                   if (match[2]) {
-                    directiveNode.children.push({
-                      type: 'paragraph',
-                      children: [{
-                        type: 'text',
-                        value: match[2]
-                      }]
+                    newParagraph.children.push({
+                      type: 'text',
+                      value: match[2] + ' '
                     });
+                  }
+
+                  // Add the rest of the first paragraph's content (after the admonition marker)
+                  // This ensures links and other elements in the first line are preserved
+                  for (let i = 1; i < firstChild.children.length; i++) {
+                    newParagraph.children.push(firstChild.children[i]);
+                  }
+
+                  // Only add the paragraph if it has content
+                  if (newParagraph.children.length > 0) {
+                    directiveNode.children.push(newParagraph);
                   }
 
                   // Add the rest of the blockquote's content to the directive
