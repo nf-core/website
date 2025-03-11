@@ -2,7 +2,6 @@
 title: Improving the Nextflow CO2 plugin
 category: tooling
 slack: "https://nextflow.slack.com/archives/C060UBAQ5QF"
-intro_video: ""
 image: "/assets/images/events/2025/hackathon-march/globalcore-stripes.png"
 image_alt: The average annual global temperature over the years 1850-2017, known as the 'warming stripes' figure from the [climate lab book](https://www.climate-lab-book.ac.uk/2018/warming-stripes/) website
 leaders:
