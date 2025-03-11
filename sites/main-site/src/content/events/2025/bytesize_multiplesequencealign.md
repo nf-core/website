@@ -7,6 +7,7 @@ startTime: "13:00+01:00"
 endDate: "2025-03-04"
 endTime: "13:30+01:00"
 youtubeEmbed: https://youtu.be/iRY-Y1p5gtc
+embedAt: multiplesequencealign
 locations:
   - name: Online
     links:

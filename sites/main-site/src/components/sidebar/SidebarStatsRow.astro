@@ -13,10 +13,9 @@ export interface Props {
 
 <div class:list={["row g-0 w-100", { "border-bottom": !lastChild }]}>
     {
-        content.map(
-            (entry) =>
-                entry.title &&
-                entry.value && (
+        content.map((entry) => {
+            if (entry.title && entry.value) {
+                return (
                     <div class="col mb-1">
                         <h6 class="text-body-secondary my-1">
                             {entry.icon && <i class={entry.icon + " fa-fw me-1"} />}
@@ -26,8 +25,15 @@ export interface Props {
                             <slot />
                         </div>
                     </div>
-                ),
-        )
+                );
+            } else {
+                return (
+                    <div class="col mb-1">
+                        <slot />
+                    </div>
+                );
+            }
+        })
     }
 </div>
 
