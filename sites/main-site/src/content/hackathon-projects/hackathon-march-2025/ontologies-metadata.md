@@ -1,6 +1,6 @@
 ---
 title: Working on modules and subworkflows ontology and metadata
-category: components, tooling
+category: components
 leaders:
   mirpedrol:
     name: Júlia Mir Pedrol
