@@ -17,12 +17,12 @@ leaders:
     slack: "https://nextflow.slack.com/archives/D08GKGLC1LP"
 ---
 
-# CO2 estimation plugin project
+# CO2 footprint estimation plugin project
 
 ## Resources
-- (Website)[https://nextflow-io.github.io/nf-co2footprint/]
-- (Github)[https://github.com/nextflow-io/nf-co2footprint]
-- (Slack)[https://nextflow.slack.com/archives/C060UBAQ5QF]
+- [Website](https://nextflow-io.github.io/nf-co2footprint/)
+- [Github](https://github.com/nextflow-io/nf-co2footprint)
+- [Slack](https://nextflow.slack.com/archives/C060UBAQ5QF)
 
 ## Summary
 Help us to solve problems we encountered during the path to the first release of a CO2 estimation plugin for Nextflow runs.
@@ -34,6 +34,6 @@ Help us to solve problems we encountered during the path to the first release of
 ## Tasks
 - Add suggestions on how to reduce the CO2 footprint
 - Integrate Electricity Maps API as Carbon intensity values
-- Sync to nf-hello template?
+- Sync to nf-hello template
 - Accumulate CO2 Emission of several runs
 - `cpu_model` comparison to vendor info
