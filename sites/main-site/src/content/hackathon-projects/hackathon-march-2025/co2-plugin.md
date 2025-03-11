@@ -20,18 +20,22 @@ leaders:
 # nf-co2footprint plugin project
 
 ## Resources
+
 - [Website](https://nextflow-io.github.io/nf-co2footprint/)
 - [Github](https://github.com/nextflow-io/nf-co2footprint)
 - [Slack](https://nextflow.slack.com/archives/C060UBAQ5QF)
 
 ## Summary
+
 Help us to solve problems we encountered during the path to the first release of a CO2 estimation plugin for Nextflow runs.
 
 ## Goals
+
 - Address open issues in of the current plugin development process
 - Brainstorm for potential features
 
 ## Tasks
+
 - Add information on potential CO2 footprint optimization
   - [Issue](https://github.com/nextflow-io/nf-co2footprint/issues/110)
 - Accumulate CO2 Emission of several runs from cache
