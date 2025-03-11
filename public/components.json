@@ -3981,6 +3981,10 @@
         {
           "name": "scdownstream",
           "version": "dev"
+        },
+        {
+          "name": "scrnaseq",
+          "version": "4.0.0"
         }
       ]
     },
@@ -27731,7 +27735,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -27953,7 +27957,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -28199,7 +28203,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -28291,7 +28295,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -28401,7 +28405,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -28712,7 +28716,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -28933,7 +28937,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -29094,7 +29098,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -29212,7 +29216,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -53526,7 +53530,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "seqinspector",
@@ -72837,7 +72841,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -78882,7 +78886,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "taxprofiler",
@@ -91793,7 +91797,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -91945,7 +91949,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -107927,6 +107931,264 @@
       ]
     },
     {
+      "name": "minimac4_compressref",
+      "path": "modules/nf-core/minimac4/compressref/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "minimac4_compressref",
+        "description": "Compression of a reference panel for genotype imputation to `.msav` format",
+        "keywords": [
+          "haplotypes",
+          "reference compression",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "minimac4": {
+              "description": "Computationally efficient genotype imputation",
+              "homepage": "https://github.com/statgen/Minimac4",
+              "documentation": "https://github.com/statgen/Minimac4",
+              "tool_dev_url": "https://github.com/statgen/Minimac4",
+              "doi": "10.1038/ng.3656",
+              "licence": [
+                "GPL v3-or-later"
+              ],
+              "identifier": "biotools:minimac4"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "ref": {
+                "type": "file",
+                "description": "Variant reference panel file",
+                "pattern": "*.{vcf,vcf.gz,bcf}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3020"
+                  }
+                ]
+              }
+            },
+            {
+              "ref_index": {
+                "type": "file",
+                "description": "Index file for the reference panel",
+                "pattern": "*.{tbi,csi}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3700"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "msav": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.msav": {
+                  "type": "file",
+                  "description": "Multy-sample variant compressed file",
+                  "pattern": "*.{msav}"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@LouisLeNezet"
+        ],
+        "maintainers": [
+          "@LouisLeNezet"
+        ]
+      }
+    },
+    {
+      "name": "minimac4_impute",
+      "path": "modules/nf-core/minimac4/impute/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "minimac4_impute",
+        "description": "Imputation of genotypes using a reference panel",
+        "keywords": [
+          "impute",
+          "haploype",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "minimac4": {
+              "description": "Computationally efficient genotype imputation",
+              "homepage": "https://github.com/statgen/Minimac4",
+              "documentation": "https://github.com/statgen/Minimac4",
+              "tool_dev_url": "https://github.com/statgen/Minimac4",
+              "doi": "10.1038/ng.3656",
+              "licence": [
+                "GPL v3-or-later"
+              ],
+              "identifier": "biotools:minimac4"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "target_vcf": {
+                "type": "file",
+                "description": "Target VCF/BCF file",
+                "pattern": "*.{vcf,bcf,vcf.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3020"
+                  }
+                ]
+              }
+            },
+            {
+              "target_index": {
+                "type": "file",
+                "description": "Target VCF/BCF file index",
+                "pattern": "*.{csi,tbi}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3700"
+                  }
+                ]
+              }
+            },
+            {
+              "ref_msav": {
+                "type": "file",
+                "description": "Reference compressed MSAV file obtain through `minimac4 --compress-reference`",
+                "pattern": "*.{msav}"
+              }
+            },
+            {
+              "sites_vcf": {
+                "type": "file",
+                "description": "Sites VCF/BCF file containing the sites to impute",
+                "pattern": "*.{vcf,bcf,vcf.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3020"
+                  }
+                ]
+              }
+            },
+            {
+              "sites_index": {
+                "type": "file",
+                "description": "Sites VCF/BCF file index",
+                "pattern": "*.{csi,tbi}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3700"
+                  }
+                ]
+              }
+            },
+            {
+              "map": {
+                "type": "file",
+                "description": "Genetic map file",
+                "pattern": "*.map",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_1278"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "vcf": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.{bcf,sav,vcf.gz,vcf,ubcf,usav}": {
+                  "type": "file",
+                  "description": "Imputed variants file",
+                  "pattern": "*.{bcf,sav,vcf.gz,vcf,ubcf,usav}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3020"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@LouisLeNezet"
+        ],
+        "maintainers": [
+          "@LouisLeNezet"
+        ]
+      }
+    },
+    {
       "name": "minimap2_align",
       "path": "modules/nf-core/minimap2/align/meta.yml",
       "type": "module",
@@ -113694,7 +113956,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "seqinspector",
@@ -162624,7 +162886,13 @@
           "@pinin4fjords",
           "@dongzehe"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "scrnaseq",
+          "version": "4.0.0"
+        }
+      ]
     },
     {
       "name": "simpleaf_quant",
@@ -162809,7 +163077,13 @@
           "@pinin4fjords",
           "@dongzehe"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "scrnaseq",
+          "version": "4.0.0"
+        }
+      ]
     },
     {
       "name": "sistr",
@@ -169364,7 +169638,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "viralintegration",
@@ -182758,7 +183032,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -199458,7 +199732,13 @@
         "maintainers": [
           "@nictru"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "scrnaseq",
+          "version": "4.0.0"
+        }
+      ]
     },
     {
       "name": "homer_groseq",
@@ -200263,7 +200543,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "seqinspector",
@@ -200604,7 +200884,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "seqinspector",
@@ -200881,7 +201161,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "seqinspector",
