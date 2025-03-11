@@ -172,7 +172,7 @@ const categoryIds = uniqueCategories.map((category) => ({
     }
 
     .hex-gallery {
-        --hex-size: 187.5px; /* Base size for large screens */
+        --hex-size: 225px; /* Increased from 187.5px - Base size for large screens */
         --hex-margin: 0.5rem;
         --hex-gap: 1rem;
         padding-bottom: 1rem; /* Minimal bottom padding */
@@ -181,19 +181,19 @@ const categoryIds = uniqueCategories.map((category) => ({
     /* Responsive sizing for different screen sizes */
     @media (max-width: 1400px) {
         .hex-gallery {
-            --hex-size: 175px;
+            --hex-size: 210px; /* Increased from 175px */
         }
     }
 
     @media (max-width: 1200px) {
         .hex-gallery {
-            --hex-size: 160px;
+            --hex-size: 192px; /* Increased from 160px */
         }
     }
 
     @media (max-width: 992px) {
         .hex-gallery {
-            --hex-size: 140px;
+            --hex-size: 168px; /* Increased from 140px */
             --hex-margin: 0.45rem;
         }
     }
@@ -209,7 +209,7 @@ const categoryIds = uniqueCategories.map((category) => ({
         }
 
         .hex-gallery {
-            --hex-size: 120px;
+            --hex-size: 144px; /* Increased from 120px */
             --hex-margin: 0.4rem;
             --hex-gap: 0.75rem;
         }
@@ -217,7 +217,7 @@ const categoryIds = uniqueCategories.map((category) => ({
 
     @media (max-width: 576px) {
         .hex-gallery {
-            --hex-size: 110px; /* Slightly larger for better visibility */
+            --hex-size: 132px; /* Increased from 110px - Slightly larger for better visibility */
             --hex-margin: 0.4rem;
             --hex-gap: 0.4rem;
         }
@@ -236,7 +236,7 @@ const categoryIds = uniqueCategories.map((category) => ({
     /* Additional responsive adjustments for very small screens */
     @media (max-width: 400px) {
         .hex-gallery {
-            --hex-size: 90px; /* Smaller size for iPhone screens to fit 2-column hex grid */
+            --hex-size: 108px; /* Increased from 90px - Smaller size for iPhone screens to fit 2-column hex grid */
             --hex-margin: 0.25rem;
             --hex-gap: 0.25rem;
         }
@@ -255,7 +255,7 @@ const categoryIds = uniqueCategories.map((category) => ({
     /* iPhone-specific adjustments */
     @media (max-width: 390px) {
         .hex-gallery {
-            --hex-size: 80px; /* Even smaller for narrower iPhones */
+            --hex-size: 96px; /* Increased from 80px - Even smaller for narrower iPhones */
             --hex-margin: 0.2rem;
         }
     }
