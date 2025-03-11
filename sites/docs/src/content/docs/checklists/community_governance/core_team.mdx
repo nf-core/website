@@ -50,30 +50,30 @@ It's recommended that a core team member transfers the DOI to the nf-core Zenodo
 
 Before release:
 
-1. [ ] Sign up and log in to Zenodo.
-2. [ ] Select **Settings -> GitHub -> Connect Account** and connect your GitHub account.
-3. [ ] Select **Settings -> GitHub** once connected.
-4. [ ] Toggle the **On** switch to enable Zenodo archiving for all nf-core pipeline repositories.
-       :::note
-       It's a good idea to enable this for all active pipelines, as DOIs will only be assigned upon release.
-       :::
+1.  [ ] Sign up and log in to [Zenodo](https://zenodo.org/).
+2.  [ ] Select **GitHub -> Connect Account** in the dropdown menu of your account and connect your GitHub account.
+3.  [ ] Select **GitHub** in the dropdown menu of your account once connected.
+4.  [ ] Toggle the **On** switch of the pipeline to enable Zenodo archiving.
+        :::note
+        It's a good idea to enable this for all active pipelines, as DOIs will only be assigned upon release.
+        :::
 
     :::note
-    Some repositories (e.g., nf-core/exoseq) may not be activate as they are archived.
+    Some repositories (e.g., nf-core/exoseq) may not be activated as they are archived.
     :::
 
-5. [ ] Inform the pipeline developers to make a release.
+5.  [ ] Inform the pipeline developers to make a release.
 
 Post release:
 
-1. [ ] Select **Settings -> Github** in Zenodo and find the relevant repository.
-2. [ ] Click the Zenodo **Record** page for the release.
-3. [ ] Find the **Communities** box on the record page and submit the record to the nf-core community.
-4. [ ] Copy the DOI for **Cite all versions by using the DOI**.
-5. [ ] Update files on the pipeline master branch:
-    - `README.md`: Add the Zenodo Badge and update the **If you use this pipeline cite** section.
-    - `Nextflow.config`: Update the manifest block to include the DOI.
-    - Commit these changes with the message "Add Zenodo ID after first release".
+1.  [ ] Select **Github** in the dropdown menu of your account in Zenodo and find the relevant repository.
+2.  [ ] Click the Zenodo **Record** page for the release.
+3.  [ ] Find the **Communities** box on the record page and submit the record to the nf-core community.
+4.  [ ] Copy the DOI for **Cite all versions?** in the **Versions** tab.
+5.  [ ] Update files on the pipeline master branch:
+     - `README.md`: Add the Zenodo Badge and update the **If you use this pipeline cite** section.
+     - `Nextflow.config`: Update the manifest block to include the DOI.
+     - Commit these changes with the message "Add Zenodo ID after first release".
 
 ## Adding new community member to the GitHub organisation
 
