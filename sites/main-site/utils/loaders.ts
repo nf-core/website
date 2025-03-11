@@ -177,7 +177,7 @@ class GitHubContentFetcher {
 
         // check if the file exists in the store
         const existingEntry = store.get(id);
-        if (existingEntry && existingEntry.data.repo === this.repo && existingEntry.data.ref === this.ref && existingEntry.data.extension !== "config") {
+        if (existingEntry && existingEntry.data.repo === this.repo && existingEntry.data.ref === this.ref && existingEntry.id.startsWith("configs/")) {
             logger.info(`File ${filepath} unchanged, skipping`);
             return;
         }
