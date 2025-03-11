@@ -122,6 +122,22 @@ description: |
 
 ## Testing
 
+### Scope of testing
+
+Tests for subworkflows SHOULD be designed to be executable within the nf-core/modules GitHub repository CI with example test data.
+
+Tests for subworkflows MUST, at a minimum, run on the GitHub repository CI with a stub test that replicates the generation of (empty) output files.
+
+Subworkflows tests do not necessarily need to be able to execute 'standalone', i.e., run outside the nf-core/modules repository. For example, they don't need to be executable within a pipeline repository.
+
+:::info{title="Rationale" collapse}
+Some modules may require upstream modules or subworkflows to generate input files for the new module under construction if it is not possible or reasonable to upload those test data files to nf-core/test-datasets.
+
+If the test was to work 'standalone,' the pipeline would need to include all these upstream modules/subworkflows just to execute the module test—even if those modules are not used within the pipeline itself. This would lead to a lot of file 'pollution' within the pipeline repository.
+
+Subworkflows installed in the pipeline should already be tested to work correctly within the context of the pipeline with workflow- or pipeline-level tests. Thus, it is considered unnecessary to duplicate subworkflow tests again.
+:::
+
 ### All output channels must be tested
 
 All output channels SHOULD be present in the nf-test snapshot file, or at a minimum, it MUST be verified that the files exist.
