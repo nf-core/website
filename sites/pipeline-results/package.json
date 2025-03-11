@@ -5,7 +5,7 @@
     "private": true,
     "scripts": {
         "dev": "astro dev",
-        "build": "tar -xf ../../.cache.tar.xz && NODE_OPTIONS='--max-old-space-size=4096' astro build",
+        "build": "NODE_OPTIONS='--max-old-space-size=4096' astro build",
         "test": "playwright test"
     },
     "dependencies": {

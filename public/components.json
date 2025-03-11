@@ -47440,6 +47440,150 @@
       }
     },
     {
+      "name": "eagle2",
+      "path": "modules/nf-core/eagle2/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "eagle2",
+        "description": "Perform phasing of genotyped data with or without a reference panel",
+        "keywords": [
+          "phasing",
+          "haplotypes",
+          "reference panel",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "eagle2": {
+              "description": "The Eagle software estimates haplotype phase either within a genotyped cohort or using a phased reference panel.",
+              "homepage": "https://alkesgroup.broadinstitute.org/Eagle/",
+              "documentation": "https://alkesgroup.broadinstitute.org/Eagle/",
+              "tool_dev_url": "https://github.com/poruloh/Eagle",
+              "doi": "10.1038/ng.3679",
+              "licence": [
+                "GPL v3-or-later"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "input": {
+                "type": "file",
+                "description": "Vcf file containing genotyped cohort or target samples to phase",
+                "pattern": "*.{vcf,vcf.gz,bcf}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3020"
+                  }
+                ]
+              }
+            },
+            {
+              "index": {
+                "type": "file",
+                "description": "Input file index",
+                "pattern": "*.{csi,tbi}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3700"
+                  }
+                ]
+              }
+            },
+            {
+              "ref_vcf": {
+                "type": "file",
+                "description": "Reference panel to phase the genotyped cohort",
+                "pattern": "*.{vcf,vcf.gz,bcf}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3020"
+                  }
+                ]
+              }
+            },
+            {
+              "ref_index": {
+                "type": "file",
+                "description": "Reference panel index",
+                "pattern": "*.{csi,tbi}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3700"
+                  }
+                ]
+              }
+            },
+            {
+              "map": {
+                "type": "file",
+                "description": "Genetic map file",
+                "pattern": "*.{txt,txt.gz,map,map.gz}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "phased_variants": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.{vcf,vcf.gz,bcf}": {
+                  "type": "file",
+                  "description": "Input phased variants",
+                  "pattern": "*.{vcf,vcf.gz,bcf}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3020"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@LouisLeNezet"
+        ],
+        "maintainers": [
+          "@LouisLeNezet"
+        ]
+      }
+    },
+    {
       "name": "ectyper",
       "path": "modules/nf-core/ectyper/meta.yml",
       "type": "module",
@@ -122694,9 +122838,9 @@
             "parabricks": {
               "description": "NVIDIA Clara Parabricks GPU-accelerated genomics tools",
               "homepage": "https://www.nvidia.com/en-us/clara/genomics/",
-              "documentation": "https://docs.nvidia.com/clara/parabricks/",
+              "documentation": "https://docs.nvidia.com/clara/parabricks/latest/index.html",
               "licence": [
-                "https://docs.nvidia.com/clara/parabricks/3.8.0/gettingstarted.html#licensing"
+                "custom"
               ],
               "identifier": ""
             }
@@ -122852,7 +122996,7 @@
             "parabricks": {
               "description": "NVIDIA Clara Parabricks GPU-accelerated genomics tools",
               "homepage": "https://www.nvidia.com/en-us/clara/genomics/",
-              "documentation": "https://docs.nvidia.com/clara/parabricks/4.2.0/index.html",
+              "documentation": "https://docs.nvidia.com/clara/parabricks/latest/index.html",
               "licence": [
                 "custom"
               ],
@@ -122948,7 +123092,7 @@
             "parabricks": {
               "description": "NVIDIA Clara Parabricks GPU-accelerated genomics tools",
               "homepage": "https://www.nvidia.com/en-us/clara/genomics/",
-              "documentation": "https://docs.nvidia.com/clara/parabricks/4.0.1/documentation/",
+              "documentation": "https://docs.nvidia.com/clara/parabricks/latest/index.html",
               "licence": [
                 "custom"
               ],
@@ -123075,7 +123219,7 @@
             "parabricks": {
               "description": "NVIDIA Clara Parabricks GPU-accelerated genomics tools",
               "homepage": "https://www.nvidia.com/en-us/clara/genomics/",
-              "documentation": "https://docs.nvidia.com/clara/parabricks/4.0.1/Documentation/",
+              "documentation": "https://docs.nvidia.com/clara/parabricks/latest/index.html",
               "licence": [
                 "custom"
               ],
@@ -123332,7 +123476,7 @@
             "parabricks": {
               "description": "NVIDIA Clara Parabricks GPU-accelerated genomics tools",
               "homepage": "https://www.nvidia.com/en-us/clara/genomics/",
-              "documentation": "https://docs.nvidia.com/clara/parabricks/latest/documentation/tooldocs/man_fq2bam_meth.html#fq2bam-meth-reference",
+              "documentation": "https://docs.nvidia.com/clara/parabricks/latest/index.html",
               "licence": [
                 "custom"
               ],
@@ -123510,7 +123654,7 @@
             "parabricks": {
               "description": "NVIDIA Clara Parabricks GPU-accelerated genomics tools",
               "homepage": "https://www.nvidia.com/en-us/clara/genomics/",
-              "documentation": "https://docs.nvidia.com/clara/parabricks/4.2.0/index.html",
+              "documentation": "https://docs.nvidia.com/clara/parabricks/latest/index.html",
               "licence": [
                 "custom"
               ],
@@ -123607,7 +123751,7 @@
             "parabricks": {
               "description": "NVIDIA Clara Parabricks GPU-accelerated genomics tools",
               "homepage": "https://www.nvidia.com/en-us/clara/genomics/",
-              "documentation": "https://docs.nvidia.com/clara/parabricks/4.2.0/index.html",
+              "documentation": "https://docs.nvidia.com/clara/parabricks/latest/index.html",
               "licence": [
                 "custom"
               ],
@@ -123733,7 +123877,7 @@
             "parabricks": {
               "description": "NVIDIA Clara Parabricks GPU-accelerated genomics tools",
               "homepage": "https://www.nvidia.com/en-us/clara/genomics/",
-              "documentation": "https://docs.nvidia.com/clara/parabricks/",
+              "documentation": "https://docs.nvidia.com/clara/parabricks/latest/index.html",
               "licence": [
                 "custom"
               ],
@@ -123817,7 +123961,7 @@
             "parabricks": {
               "description": "NVIDIA Clara Parabricks GPU-accelerated genomics tools",
               "homepage": "https://www.nvidia.com/en-us/clara/genomics/",
-              "documentation": "https://docs.nvidia.com/clara/parabricks/4.0.1/index.html",
+              "documentation": "https://docs.nvidia.com/clara/parabricks/latest/index.html",
               "licence": [
                 "custom"
               ],
@@ -148773,11 +148917,12 @@
       "type": "module",
       "meta": {
         "name": "samtools_faidx",
-        "description": "Index FASTA file",
+        "description": "Index FASTA file, and optionally generate a file of chromosome sizes",
         "keywords": [
           "index",
           "fasta",
-          "faidx"
+          "faidx",
+          "chromosome"
         ],
         "tools": [
           {
@@ -148823,6 +148968,14 @@
                 "pattern": "*.{fai}"
               }
             }
+          ],
+          [
+            {
+              "get_sizes": {
+                "type": "boolean",
+                "description": "use cut to get the sizes of the index (true) or not (false)"
+              }
+            }
           ]
         ],
         "output": [
@@ -148856,6 +149009,23 @@
                   "type": "file",
                   "description": "FASTA index file",
                   "pattern": "*.{fai}"
+                }
+              }
+            ]
+          },
+          {
+            "sizes": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.sizes": {
+                  "type": "file",
+                  "description": "File containing chromosome lengths",
+                  "pattern": "*.{sizes}"
                 }
               }
             ]
@@ -148895,8 +149065,7 @@
           "@phue"
         ],
         "maintainers": [
-          "@drpatelh",
-          "@ewels",
+          "@maxulysse",
           "@phue"
         ]
       },
