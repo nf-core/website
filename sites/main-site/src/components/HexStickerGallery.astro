@@ -57,15 +57,13 @@ const categoryIds = uniqueCategories.map((category) => ({
     <!-- Category navigation for better UX -->
     <nav class="category-nav mb-2" aria-label="Sticker categories">
         <div class="d-flex flex-wrap justify-content-center gap-2">
-            {categoryIds.map(({ id, name }) => (
-                <a
-                    href={`#${id}`}
-                    class="btn btn-outline-primary"
-                    aria-label={`Jump to ${name}`}
-                >
-                    {name}
-                </a>
-            ))}
+            {
+                categoryIds.map(({ id, name }) => (
+                    <a href={`#${id}`} class="btn btn-outline-primary" aria-label={`Jump to ${name}`}>
+                        {name}
+                    </a>
+                ))
+            }
         </div>
     </nav>
 
