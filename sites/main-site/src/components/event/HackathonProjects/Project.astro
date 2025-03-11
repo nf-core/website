@@ -1,10 +1,10 @@
 ---
 import Profile from "@components/GitHubProfilePicture.svelte";
 
-const { slug, title, color, category, leaders } = Astro.props;
+const { id, title, color, category, leaders } = Astro.props;
 
 export interface Props {
-    slug: string;
+    id: string;
     title: string;
     color?: string;
     category?: string;
@@ -26,7 +26,7 @@ const border_col = this_color ? { "border-left-color": this_color, "border-left-
             type="button"
             class="btn btn-link text-start p-3 pe-0 d-flex align-items-center justify-content-between"
             data-bs-toggle="modal"
-            data-bs-target={"#" + slug}
+            data-bs-target={"#" + id}
             style="text-decoration: none;"
         >
             {title}

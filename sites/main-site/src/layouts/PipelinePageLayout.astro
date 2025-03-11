@@ -50,6 +50,7 @@ let allTabItems: { label: string; href: string; active: boolean; icon?: string }
 
 allTabItems = tabItems
     .filter((file) => file.split("/").length === 1)
+    .filter((file) => file.toLowerCase() !== "readme")
     .map((file) => {
         return {
             label: file.replace(/-|_/g, " ").replace(/\w\S*/g, (txt: string) => {

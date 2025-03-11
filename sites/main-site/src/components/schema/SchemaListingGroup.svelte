@@ -3,38 +3,44 @@
     import { showHidden } from "@components/store";
     import Markdown from "@components/markdown/Markdown.svelte";
 
-    export let definition;
-    export let id;
+    let { definition = $bindable(), id } = $props();
 
-    //go through definition.properities and check if all hidden are set to true
-    let hidden = true;
-    for (const [title, property] of Object.entries(definition.properties)) {
-        if (!property.hidden) {
-            hidden = false;
-            break;
-        }
-    }
-    //get definition.required and assign required=true to the corresponding defintion.properties
+    // Go through definition.properties and check if all hidden are set to true
+    let hidden = $state(true);
 
-    let required = definition.required;
-    if (!required) required = [];
-    required.forEach((item) => {
-        if (definition.properties[item]) {
-            definition.properties[item].required = true;
+    $effect(() => {
+        // Reset hidden state when definition changes
+        hidden = true;
+        console.log(definition);
+        if (definition.properties) {
+            for (const [title, property] of Object.entries(definition.properties)) {
+                if (!property.hidden) {
+                    hidden = false;
+                    break;
+                }
+            }
         }
+
+        // Get definition.required and assign required=true to the corresponding definition.properties
+        let required = definition.required || [];
+        required.forEach((item) => {
+            if (definition.properties && definition.properties[item]) {
+                definition.properties[item].required = true;
+            }
+        });
     });
 </script>
 
 <div class="card my-2" class:collapse={hidden} class:show={$showHidden}>
     <div class="card-header position-sticky bg-body-secondary">
-        <h2 class="card-title text-success scroll-target my-1" id={id.replaceAll("_", "-")}>
+        <h2 class="card-title text-success scroll-target my-1" id={id?.replaceAll("_", "-")}>
             <a
                 class="text-decoration-none text-success"
                 aria-hidden="true"
                 tabindex="-1"
-                href={"#" + id.replaceAll("_", "-")}
-                ><i class="ms-1 fas fa-xs invisible" aria-hidden="true" />{#if definition.fa_icon}
-                    <i class="fa fa-fw me-2 {definition.fa_icon}" />
+                href={"#" + id?.replaceAll("_", "-")}
+                ><i class="ms-1 fas fa-xs invisible" aria-hidden="true"></i>{#if definition.fa_icon}
+                    <i class="fa fa-fw me-2 {definition.fa_icon}"></i>
                 {/if}
                 {definition.title}
             </a>

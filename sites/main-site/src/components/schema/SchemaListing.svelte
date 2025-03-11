@@ -1,9 +1,9 @@
-<script>
+<script lang="ts">
     import SchemaListingGroup from "@components/schema/SchemaListingGroup.svelte";
     import { onMount } from "svelte";
     import { currentHeading } from "@components/store";
 
-    export let schema;
+    let { schema } = $props();
 
     const schemaDefs = schema.definitions || schema.$defs || schema.properties;
     onMount(() => {
@@ -24,22 +24,24 @@
         }
         Object.entries(schemaDefs).forEach((heading) => {
             const element = document.querySelector("#" + heading[0].replaceAll("_", "-"));
-            observer.observe(element);
+            if (element) {
+                observer.observe(element);
+            }
         });
     });
 </script>
 
 <div class="schema-listing">
-    {#if Object.entries(schemaDefs).length > 0}
+    {#if schema && schemaDefs && Object.entries(schemaDefs).length > 0}
         <div class="d-flex flex-column">
             {#each Object.entries(schemaDefs) as [id, definition] (id)}
                 <SchemaListingGroup {definition} {id} />
             {/each}
         </div>
     {:else}
-        <div class="alert alert-warning mt-3" role="alert">
+        <div class="alert alert-warning mt-3 mx-auto" role="alert">
             <h4 class="text-warning">No nextflow_schema.json file found!</h4>
-            <p>
+            <p class="mb-0">
                 It seems like there is no nextflow_schema.json file with parameters defined for this version of the
                 pipeline. Try a newer version.
             </p>
