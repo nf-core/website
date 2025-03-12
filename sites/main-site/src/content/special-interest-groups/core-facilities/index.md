@@ -12,7 +12,7 @@ pipelines:
   - rnaseq
   - sarek
   - scrnaseq
-  - smrnaseq 
+  - smrnaseq
 ---
 
 # Introduction
