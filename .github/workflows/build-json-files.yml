@@ -12,6 +12,10 @@ on:
   repository_dispatch:
     types: [update-website, update-pipeline]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.inputs.pipeline_name || github.event.client_payload.pipeline_name || 'all' }}
+  cancel-in-progress: true
+
 jobs:
   build-component-json:
     runs-on: ubuntu-latest
