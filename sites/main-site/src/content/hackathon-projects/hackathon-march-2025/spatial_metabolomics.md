@@ -12,16 +12,22 @@ leaders:
 
 ## Introduction
 
-**METASPACE** is the cloud computing engine for annotating metabolites, lipids, and glycans in imaging mass spectrometry data, and hosts a knowledgebase of over 13.000 public annotated datasets from over 200 labs.
+[METASPACE](https://metaspace2020.org/) is the cloud computing engine for annotating metabolites, lipids, and glycans in imaging mass spectrometry data, and hosts a knowledgebase of over 13.000 public annotated datasets from over 200 labs.
 
-Most [METASPACE](https://metaspace2020.org/) users access the platform through the web app, which offers core functionalities for uploading, processing, and visualizing results. However, bioinformaticians looking to integrate METASPACE into their workflows must develop custom scripts to interact with the METASPACE Python client and submit datasets.
+Most METASPACE users access the platform through the web app, which offers core functionalities for uploading, processing, and visualizing results.
 
-Developing Nextflow modules will streamline this process, enabling scalable and reproducible integration of METASPACE into existing bioinformatics pipelines. This will also support METASPACE in-the-loop applications, particularly in spatial multi-omics integration workflows.
+However, bioinformaticians looking to integrate METASPACE into their workflows must develop custom scripts to interact with the METASPACE Python client and submit datasets.
+
+Developing nf-core modules will streamline this process, enabling scalable and reproducible integration of METASPACE into existing bioinformatics pipelines.
+
+This will also support METASPACE in-the-loop applications, particularly in spatial multi-omics integration workflows.
 
 ## Goal
+
 1. Create the following nf-core modules using [Cardinal](https://www.bioconductor.org/packages/release/bioc/html/Cardinal.html):
+
     1. Data import (creating MSImagingExperiment object)
-    2. Preprocessing (Mainly peak picking) to generate a centroided dataset -> input for METASPACE.
+    2. Preprocessing (Primarily peak picking) to generate a centroided dataset -> input for METASPACE.
 
 2. Create an API module to submit datasets to METASPACE using [METASPACE python client](https://metaspace2020.readthedocs.io/en/latest/)
 
