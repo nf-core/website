@@ -1,0 +1,51 @@
+---
+title: "Maintainers Minutes: May 2024"
+subtitle: "Keeping you informed of the latest maintainers discussions"
+pubDate: 2024-05-13T17:00:00+02:00
+headerImage: "/assets/images/blog/maintainers-minutes-2024-05-03/maintainers-meme-2024-05-03.jpg"
+headerImageAlt: "Drake meme, with top image showing Drake with his hand in his face in a 'don't bother me gesture' next to the text 'Actual programming', then the bottom image of him pointing like 'now that's more like it' with 'Debating for 30 minutes on how to name a subworkflow' text next to it."
+authors:
+    - "jfy133"
+label:
+    - "maintainers"
+---
+
+import drake_meme from "@assets/images/blog/maintainers-minutes-2024-05-03/maintainers-meme-2024-05-03.jpg";
+import { Image } from "astro:assets";
+
+In this new initiative, the 'Maintainers Minutes' aims to further give insight into the workings of the [nf-core maintainers team](/governance#maintainers) by providing brief summaries of the monthly Maintainer's team meetings.
+
+If you're not familiar, the maintainers team takes an active role in managing nf-core repositories in collaboration with the wider nf-core community.
+The team is made up of regular contributors to the initiative, their expertise is additionally used to help guide design decisions on various areas of nf-core, from code to community development.
+
+## Keeping up with the community
+
+nf-core is a growing community. This is particularly highlighted with the 170 open pull requests on the [nf-core/modules](https://github.com/nf-core/modules) repository.
+
+Keeping on top of such activity can be difficult for volunteers.
+We had discussions on how to better distribute reviewing tasks among the maintainers teams, such as including the most popular notification systems, the upcoming concept of nf-core 'office hours', and how to get the contributors to make more atomic pull requests (and thus make reviewing more palatable for all)
+
+## The hardest part of writing code is naming things
+
+<Image
+    src={drake_meme}
+    class="d-block m-auto"
+    width={400}
+    density={[1.5, 2]}
+    alt="Drake meme, with top image showing Drake with his hand in his face in a 'don't bother me gesture' next to the text 'Actual programming', then the bottom image of him pointing like 'now that's more like it' with 'Debating for 30 minutes on how to name a subworkflow' text next to it."
+/>
+
+Keeping in line with coding stereotypes, we had a discussion on the current naming scheme of subworkflows.
+In many PR reviews, comments often arise regarding the naming of the subworkflow.
+Some in the community find that the current naming scheme is overly restrictive, resulting in overly long names and also sometimes not being possible for complex subworkflows with many inputs or steps.
+
+The pros and cons of the current scheme was discussed, with pros of being clearly defined, enforceable, prevents developers being 'lazy' with naming, and discoverability of the purpose is still relatively high through reading the name.
+Cons included points such that it does not _actually_ fit well with complex subworkflows, as in some cases 'free text' can be much more understandable in a more concise manner.
+
+The team also discussed about issues with renaming of existing subworkflows, deprecations, and sizes of subworkflows (and how this influences naming).
+
+## Upcoming discussions
+
+Points for the next agenda will be updating of maintainers team roster, confirming the nf-core office hours trial, and the next nf-core 'spring cleaning' week.
+
+\- :heart: from your #maintainers team!

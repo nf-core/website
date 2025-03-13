@@ -1,0 +1,58 @@
+---
+import ListingLayout from "@layouts/ListingLayout.astro";
+import ConfigListing from "@components/ConfigListing.svelte";
+import { getCollection, type CollectionEntry } from "astro:content";
+
+//get contents of markdown files in docs dir in https://github.com/nf-core/configs/tree/master/docs using request
+let files = await getCollection("configs");
+files = files.map((file) => {
+    return {
+        ...file,
+        id: file.id.replace("configs/master/", ""),
+    };
+});
+let configFiles = files.filter((file) => file.data.extension === "config");
+
+let generalConfigs: CollectionEntry<"configs">[] = [];
+let pipelineConfigs: CollectionEntry<"configs">[] = [];
+configFiles.map((file) => {
+    if (file.id.includes("pipeline/")) {
+        pipelineConfigs.push(file);
+    } else {
+        generalConfigs.push(file);
+    }
+});
+
+// remove configs that don't have a matching md file
+generalConfigs = generalConfigs.filter((config) =>
+    files.find((file) => file.id.includes(config.id.replace("conf/", "")) && file.data.extension === "md"),
+);
+
+if (generalConfigs.length === 0) {
+    // throw an error
+    throw new Error("No general configs found");
+}
+const title = "nf-core/configs";
+const description =
+    "Browse the " +
+    files.filter((file) => file.data.extension === "config").length +
+    " configs that are currently available as part of nf-core.";
+---
+
+<ListingLayout
+    title={title}
+    description={description}
+    filter={[]}
+    sortBy={["Name", "Executor"]}
+    displayStyle={[]}
+    mainpage_container={true}
+>
+    <p class="container">
+        The following configs are common Nextflow pipeline configurations and options for particular institutional
+        clusters or compute environments.
+    </p>
+    <h2>General configs</h2>
+    <ConfigListing configs={generalConfigs} pipelineConfigs={pipelineConfigs} slot="listing-components" client:load />
+</ListingLayout>
+
+<style></style>

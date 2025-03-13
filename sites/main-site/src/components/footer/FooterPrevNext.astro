@@ -1,0 +1,57 @@
+---
+import { Icon } from "astro-icon/components";
+export interface Props {
+    prev_page: { title: string; slug: string } | null;
+    next_page: { title: string; slug: string } | null;
+}
+const { prev_page, next_page } = Astro.props;
+---
+
+<footer class="mb-3 mt-5 d-flex justify-content-between m-auto">
+    {
+        prev_page && (
+            <div class="">
+                <a
+                    class="btn btn-outline-secondary d-inline-flex align-items-center py-md-3 py-2 px-3  text-decoration-none text-end"
+                    href={prev_page.slug}
+                >
+                    <i class="fa-solid fa-arrow-left me-auto pe-3 pe-md-5" />
+
+                    <span class="d-flex flex-column">
+                        <span class="d-none d-md-inline">Previous: </span>
+                        <span class="fw-semibold text-secondary-emphasis" set:html={prev_page.title} />
+                    </span>
+                </a>
+            </div>
+        )
+    }
+    {
+        next_page && (
+            <div class="ms-auto">
+                <a
+                    class="btn btn-outline-secondary  d-inline-flex align-items-center py-md-3 py-2 px-3 text-decoration-none text-start"
+                    href={next_page.slug}
+                >
+                    <span class="d-flex flex-column">
+                        <span class="d-none d-md-inline">Next: </span>
+                        <span class="fw-semibold text-secondary-emphasis" set:html={next_page.title} />
+                    </span>
+                    <i class="fa-solid fa-arrow-right ms-auto ps-3 ps-md-5" />
+                </a>
+            </div>
+        )
+    }
+</footer>
+<style lang="scss">
+    @import "@styles/_variables.scss";
+    svg {
+        fill: currentColor;
+        width: 2rem;
+    }
+    footer {
+        max-width: $content-width;
+    }
+    .btn-outline-secondary:hover .text-secondary-emphasis {
+        color: var(--bs-btn-hover-color) !important;
+    }
+</style>
