@@ -2,7 +2,6 @@
 title: Reviving nf-core/hlatyping
 category: pipelines
 slack: "https://nfcore.slack.com/archives/CFVDZCA23"
-intro_video: ""
 image: "/assets/images/events/2025/hackathon-march/airrflow-meme.png"
 image_alt: "Heading: 'When you need to implement a new feature but the deadline is tomorrow' with two pictures beneath. On the left a closed elevator door. On the right the elevator door is open and revealing a stair case."
 leaders:
