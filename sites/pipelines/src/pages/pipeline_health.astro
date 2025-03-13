@@ -155,11 +155,18 @@ pipelines.sort((a, b) => {
                         data-bs-placement="top">T push</th
                     >
                     <th
-                        colspan="4"
+                        colspan="2"
                         class="small fw-normal text-nowrap text-center p-1 px-3"
-                        title="nf-validation plugin in nextflow.config"
+                        title="nf-validation plugin should not be in nextflow.config"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top">Plugins: nf-validation</th
+                    >
+                    <th
+                        colspan="4"
+                        class="small fw-normal text-nowrap text-center p-1 px-3"
+                        title="nf-schema plugin in nextflow.config"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top">Plugins: nf-schema</th
                     >
                     <th
                         colspan="4"
@@ -446,34 +453,55 @@ pipelines.sort((a, b) => {
                                     "restrict push to TEMPLATE to @nf-core-bot",
                                 )}
                                 {/* Plugins */}
+                                {
+                                    // nf-validation should be in the nextflow.config
+                                    getCell(
+                                        pipeline.master_nextflow_config_plugins?.some((plugin) =>
+                                            plugin.startsWith("nf-validation"),
+                                        )
+                                            ? 0
+                                            : 1,
+                                        pipeline.repository_url + "/blob/master/nextflow.config",
+                                        `nf-validation plugin not in nextflow.config in master`,
+                                    )
+                                }
+                                {getCell(
+                                    pipeline.dev_nextflow_config_plugins?.some((plugin) =>
+                                        plugin.startsWith("nf-validation"),
+                                    )
+                                        ? 0
+                                        : 1,
+                                    pipeline.repository_url + "/blob/dev/nextflow.config",
+                                    "nf-validation plugin not in nextflow.config in dev",
+                                )}
                                 {getCell(
                                     pipeline.master_nextflow_config_plugins?.some((plugin) =>
-                                        plugin.startsWith("nf-validation"),
+                                        plugin.startsWith("nf-schema"),
                                     ) ?? 0,
                                     pipeline.repository_url + "/blob/master/nextflow.config",
-                                    `nf-validation plugin version ${pipeline.master_nextflow_config_plugins?.filter((plugin) => plugin.startsWith("nf-validation"))[0]?.split("@")[1] ?? "unpinned"} in nextflow.config in master`,
+                                    `nf-schema plugin version ${pipeline.master_nextflow_config_plugins?.filter((plugin) => plugin.startsWith("nf-schema"))[0]?.split("@")[1] ?? "unpinned"} in nextflow.config in master`,
                                     " border-start ",
                                 )}
                                 {getCell(
                                     pipeline.master_nextflow_config_plugins?.some((plugin) =>
-                                        plugin.startsWith("nf-validation"),
+                                        plugin.startsWith("nf-schema"),
                                     ) ?? 0,
                                     pipeline.repository_url + "/blob/master/nextflow.config",
-                                    "nf-validation plugin must be pinned",
+                                    "nf-schema plugin must be pinned",
                                 )}
                                 {getCell(
                                     pipeline.dev_nextflow_config_plugins?.some((plugin) =>
-                                        plugin.startsWith("nf-validation"),
+                                        plugin.startsWith("nf-schema"),
                                     ) ?? 0,
                                     pipeline.repository_url + "/blob/dev/nextflow.config",
-                                    "nf-validation plugin in nextflow.config in dev",
+                                    "nf-schema plugin in nextflow.config in dev",
                                 )}
                                 {getCell(
                                     pipeline.dev_nextflow_config_plugins?.some((plugin) =>
-                                        plugin.startsWith("nf-validation"),
+                                        plugin.startsWith("nf-schema"),
                                     ) ?? 0,
                                     pipeline.repository_url + "/blob/dev/nextflow.config",
-                                    "nf-validation plugin must be pinned",
+                                    "nf-schema plugin must be pinned",
                                 )}
                                 {getCell(
                                     pipeline.master_nextflow_config_plugins?.some((plugin) =>
