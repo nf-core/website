@@ -72,7 +72,7 @@
     }
 </script>
 
-<div class="pipeline-trigger d-flex align-items-center">
+<div class="pipeline-trigger d-flex align-items-center ms-2">
     <button
         on:click={triggerPipelineUpdate}
         disabled={isLoading}
