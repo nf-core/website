@@ -1,0 +1,28 @@
+---
+layout: "@layouts/MarkdownTocLayout.astro"
+title: Weekly Helpdesks
+subtitle: Join us to get help with your nf-core pipelines
+md_github_url: https://github.com/nf-core/website/blob/main/sites/main-site/src/pages/weekly_helpdesk.md
+---
+
+import LocalDateTime from "@components/event/LocalDateTime.svelte";
+
+# Regular time slots
+
+We run 3 weekly helpdesk slots for different regions / time zones:
+
+- AMER: Tuesdays 2pm ET
+- APAC: Wednesdays 3pm NZDT
+- EMEA: Thursdays 10am CET
+
+:::tip
+
+In theory, this should show the above times in your local time zone,
+but take with a pinch of salt as it often doesn't work (eg. daylight savings) -
+if in doubt, believe the times above!
+
+- Tuesdays <LocalDateTime date={new Date(1741716000000)} date_options={{ hour: "2-digit", minute: "2-digit" }} client:visible />
+- Wednesdays <LocalDateTime date={new Date(1741744800000)} date_options={{ hour: "2-digit", minute: "2-digit" }} client:visible />
+- Thursdays <LocalDateTime date={new Date(1741856400000)} date_options={{ hour: "2-digit", minute: "2-digit" }} client:visible />
+
+:::
