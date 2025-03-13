@@ -37,4 +37,4 @@ This will also support METASPACE in-the-loop applications, particularly in spati
 
 5. If time permits, combine the above modules in one pipeline
 
-We welcome contributors of all experience levels.
+We welcome contributors of all experience levels. All of the above goals are suitable for beginners.
