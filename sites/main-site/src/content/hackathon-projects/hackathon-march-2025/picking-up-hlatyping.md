@@ -23,9 +23,9 @@ This project aims to get nf-core/hlatyping back on track.
 
 1. Template update (last touched 2022 :o)
 2. Add new modules
-  - arcasHLA
-  - HLA-LA
-  - ...
 
+- arcasHLA
+- HLA-LA
+- ...
 
 _We welcome contributors of all experience levels._
