@@ -1,5 +1,5 @@
 ---
-title: Reviving nf-core/hlatyping
+title: HLA Typing Modules and Pipeline
 category: pipelines
 slack: "https://nfcore.slack.com/archives/CFVDZCA23"
 image: "/assets/images/events/2025/hackathon-march/airrflow-meme.png"
