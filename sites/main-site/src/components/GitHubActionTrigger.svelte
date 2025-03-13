@@ -1,4 +1,5 @@
 <script>
+    import { Octokit } from "octokit";
     export let pipelineName = ""; // Optional pipeline name to update
 
     let isLoading = false;
@@ -10,19 +11,20 @@
         result = null;
         alreadyRunning = false;
 
+        const octokit = new Octokit({
+            auth: import.meta.env.GITHUB_TOKEN,
+        });
+
         try {
             // First check if workflow is already running
-            const checkResponse = await fetch(
-                "https://api.github.com/repos/nf-core/website/actions/runs?status=in_progress&event=workflow_dispatch",
-                {
-                    headers: {
-                        Accept: "application/vnd.github.v3+json",
-                        Authorization: `token ${import.meta.env.GITHUB_TOKEN}`, // Use public env var
-                    },
-                },
-            );
-
-            const runningWorkflows = await checkResponse.json();
+            const { data: runningWorkflows } = await octokit.rest.actions.listWorkflowRuns({
+                owner: "nf-core",
+                repo: "website",
+                workflow_id: "build-json-files.yml",
+                status: "in_progress",
+                event: "workflow_dispatch",
+            });
+            console.log(runningWorkflows);
 
             // Check if our specific workflow is already running with the same pipeline
             const duplicateRun = runningWorkflows.workflow_runs?.find(
@@ -43,29 +45,30 @@
             }
 
             // If not already running, trigger the workflow
-            const response = await fetch("https://api.github.com/repos/nf-core/website/dispatches", {
-                method: "POST",
-                headers: {
-                    Accept: "application/vnd.github.v3+json",
-                    Authorization: `token ${import.meta.env.PUBLIC_GITHUB_TOKEN}`,
-                    "Content-Type": "application/json",
+            await octokit.rest.repos.createDispatchEvent({
+                owner: "nf-core",
+                repo: "website",
+                event_type: "update-pipeline",
+                ref: "main",
+                client_payload: {
+                    pipeline_name: pipelineName,
                 },
-                body: JSON.stringify({
-                    event_type: "update-pipeline",
-                    client_payload: {
-                        pipeline_name: pipelineName,
-                    },
-                }),
             });
 
-            if (response.status === 204) {
-                result = { success: true, message: "Pipeline update triggered successfully!" };
-            } else {
-                result = { success: false, message: `Failed to trigger pipeline update. Status: ${response.status}` };
-            }
+            result = { success: true, message: "Pipeline update triggered successfully!" };
         } catch (error) {
             console.error("Error:", error);
-            result = { success: false, message: "Error triggering pipeline update" };
+            if (error.status === 401) {
+                result = {
+                    success: false,
+                    message: "Authentication failed - please check the GitHub token configuration",
+                };
+            } else {
+                result = {
+                    success: false,
+                    message: `Error triggering pipeline update: ${error.message}`,
+                };
+            }
         } finally {
             isLoading = false;
         }
@@ -74,7 +77,7 @@
 
 <div class="pipeline-trigger d-flex align-items-center ms-2">
     <button
-        on:click={triggerPipelineUpdate}
+        onclick={triggerPipelineUpdate}
         disabled={isLoading}
         class:loading={isLoading}
         class="btn btn-sm btn-outline-secondary"
@@ -89,7 +92,7 @@
     </button>
 
     {#if result}
-        <div class="result" class:success={result.success} class:error={!result.success}>
+        <div class="result small" class:success={result.success} class:error={!result.success}>
             {result.message}
             {#if alreadyRunning && result.url}
                 <a href={result.url} target="_blank" rel="noopener noreferrer">View running workflow</a>
