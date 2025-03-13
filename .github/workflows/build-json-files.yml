@@ -55,4 +55,5 @@ jobs:
           git config user.name "nf-core-bot"
           git config push.default upstream
           git status
+          git pull
           git diff --quiet || (git commit -am "[automated] Update json files" && git push)
