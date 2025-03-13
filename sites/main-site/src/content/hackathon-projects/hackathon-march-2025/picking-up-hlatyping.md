@@ -20,7 +20,7 @@ This project aims to get nf-core/hlatyping back on track.
 
 ## Goals
 
-1. Template update (last touched 2022 :o)
+1. Template update (last touched 2022 😬 )
 2. Add new modules
 
 - arcasHLA
