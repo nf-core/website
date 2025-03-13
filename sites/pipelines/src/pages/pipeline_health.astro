@@ -200,7 +200,7 @@ pipelines.sort((a, b) => {
                         );
                         return (
                             <tr class:list={[{ archived: pipeline.archived, collapse: pipeline.archived }]}>
-                                <td class="text-nowrap">
+                                <td class="text-nowrap d-flex align-items-center justify-content-between">
                                     {pipeline.name}
                                     {pipeline.archived && (
                                         <i
@@ -223,7 +223,7 @@ pipelines.sort((a, b) => {
                                             data-bs-toggle="tooltip"
                                         />
                                     )}
-                                    <GitHubActionTrigger client:idle />
+                                    <GitHubActionTrigger client:idle pipelineName={pipeline.name} />
                                 </td>
                                 {/* Released */}
                                 {getCell(
