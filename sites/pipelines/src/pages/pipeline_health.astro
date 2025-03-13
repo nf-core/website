@@ -537,6 +537,9 @@ pipelines.sort((a, b) => {
                 }
             </tbody>
         </table>
+        <span class="text-muted archived show">
+            and {pipelines.filter((pipeline) => pipeline.archived).length} archived pipelines
+        </span>
     </div>
 
     <div class="btn-row">
