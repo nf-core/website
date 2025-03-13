@@ -26,8 +26,8 @@ This will also support METASPACE in-the-loop applications, particularly in spati
 
 1. Create the following nf-core modules using [Cardinal](https://www.bioconductor.org/packages/release/bioc/html/Cardinal.html):
 
-    1. Data import (creating MSImagingExperiment object)
-    2. Preprocessing (Primarily peak picking) to generate a centroided dataset -> input for METASPACE.
+   1. Data import (creating MSImagingExperiment object).
+   2. Preprocessing (Primarily peak picking) to generate a centroided dataset -> input for METASPACE.
 
 2. Create an API module to submit datasets to METASPACE using [METASPACE python client](https://metaspace2020.readthedocs.io/en/latest/)
 
