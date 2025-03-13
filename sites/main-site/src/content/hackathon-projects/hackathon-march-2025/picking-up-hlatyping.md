@@ -25,6 +25,5 @@ This project aims to get nf-core/hlatyping back on track.
 
 - arcasHLA
 - HLA-LA
-- ...
 
 _We welcome contributors of all experience levels._
