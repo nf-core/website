@@ -1,6 +1,7 @@
 ---
 import PageLayout from "@layouts/PageLayout.astro";
 import { remote_workflows as pipelines } from "@public/pipelines.json";
+import GitHubActionTrigger from "@components/GitHubActionTrigger.svelte";
 
 // sort pipelines by name
 pipelines.sort((a, b) => a.name.localeCompare(b.name));
@@ -222,6 +223,7 @@ pipelines.sort((a, b) => {
                                             data-bs-toggle="tooltip"
                                         />
                                     )}
+                                    <GitHubActionTrigger client:idle />
                                 </td>
                                 {/* Released */}
                                 {getCell(
