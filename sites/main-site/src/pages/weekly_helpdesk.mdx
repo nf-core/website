@@ -7,11 +7,12 @@ md_github_url: https://github.com/nf-core/website/blob/main/sites/main-site/src/
 
 import LocalDateTime from "@components/event/LocalDateTime.svelte";
 import { nextTuesday, nextWednesday, nextThursday } from "date-fns";
+import { TZDate } from "@date-fns/tz";
 
 # Regular time slots
 
 We run 3 weekly helpdesk slots for different regions / time zones:
 
-- AMER: Tuesdays 2pm ET (Tuesdays <LocalDateTime date={(() => { const d = nextTuesday(new Date()); d.setHours(14, 0); return d; })()} date_options={{ hour: "2-digit", minute: "2-digit", timeZone: "America/New_York" }} client:visible /> in your local time zone)
-- APAC: Wednesdays 3pm NZDT (Wednesdays <LocalDateTime date={(() => { const d = nextWednesday(new Date()); d.setHours(15, 0); return d; })()} date_options={{ hour: "2-digit", minute: "2-digit", timeZone: "Pacific/Auckland" }} client:visible /> in your local time zone)
-- EMEA: Thursdays 10am CET (Thursdays <LocalDateTime date={(() => { const d = nextThursday(new Date()); d.setHours(10, 0); return d; })()} date_options={{ hour: "2-digit", minute: "2-digit", timeZone: "Europe/Paris" }} client:visible /> in your local time zone)
+- AMER: Tuesdays 2pm ET (Tuesdays <LocalDateTime date={(() => { const d = nextTuesday(new Date()); return new TZDate(d.getFullYear(), d.getMonth(), d.getDate(), 14, 0, 'America/New_York'); })()} date_options={{ hour: "2-digit", minute: "2-digit" }} client:visible /> in your local time zone)
+- APAC: Wednesdays 3pm NZDT (Wednesdays <LocalDateTime date={(() => { const d = nextWednesday(new Date()); return new TZDate(d.getFullYear(), d.getMonth(), d.getDate(), 15, 0, 'Pacific/Auckland'); })()} date_options={{ hour: "2-digit", minute: "2-digit" }} client:visible /> in your local time zone)
+- EMEA: Thursdays 10am CET (Thursdays <LocalDateTime date={(() => { const d = nextThursday(new Date()); return new TZDate(d.getFullYear(), d.getMonth(), d.getDate(), 10, 0, 'Europe/Paris'); })()} date_options={{ hour: "2-digit", minute: "2-digit" }} client:visible /> in your local time zone)
