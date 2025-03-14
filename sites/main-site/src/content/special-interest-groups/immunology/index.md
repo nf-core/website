@@ -1,6 +1,6 @@
 ---
 title: Immunology
-subtitle: "The Immunology Special Interest Immunology should bring together members of the nf-core community who are working on immunology-related research."
+subtitle: "The Immunology Special Interest Group brings together members of the nf-core community who are working on immunology-related research."
 groupName: Immunology
 leads:
   - mapo9: Mark Polster
