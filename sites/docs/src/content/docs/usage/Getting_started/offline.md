@@ -40,7 +40,7 @@ Add the argument `--container-system singularity` to also fetch the singularity 
 
 The pipeline and requirements will be downloaded and configured with their relative paths. With `--compress tar.gz` the files can be packaged into a `.tar.gz` archive. This can then be transferred to your offline system and unpacked.
 
-Inside, you will see a directory named after the selected release or branch  (e.g. `nf-core-sarek_3.5.0` or `dev`) wich contains the pipeline files, `config` (a copy of [nf-core/configs](https://github.com/nf-core/configs) if you used `--download-configuration yes`), and (if you used `--container-system singularity` and did't specify another shared singularity image download folder) a directory called `singularity-images`.
+Inside, you will see a directory named after the selected release or branch (e.g. `nf-core-sarek_3.5.0` or `dev`) which contains the pipeline files, `configs` (a copy of [nf-core/configs](https://github.com/nf-core/configs) if you used `--download-configuration yes`), and a directory called `singularity-images` (if you used `--container-system singularity` and did't specify another shared singularity image download folder).
 The pipeline code is adjusted by the download tool to expect these relative paths, so as long as you keep them together it should work as is.
 
 To run the pipeline, simply use `nextflow run <download_directory>/workflow [pipeline flags]`.
