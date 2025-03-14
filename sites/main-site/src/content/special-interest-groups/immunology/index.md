@@ -4,6 +4,7 @@ subtitle: "The Immunology Special Interest Group brings together members of the 
 groupName: Immunology
 leads:
   - mapo9: Mark Polster
+  - jonasscheid: Jonas Scheid
 pipelines:
   - airflow
   - epitopeprediction
