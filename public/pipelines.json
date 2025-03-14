@@ -2100,9 +2100,9 @@
             "url": "https://api.github.com/repos/nf-core/bacass",
             "created_at": "2019-01-31T08:03:31Z",
             "updated_at": "2025-02-11T18:25:11Z",
-            "pushed_at": "2025-01-27T14:44:37Z",
+            "pushed_at": "2025-03-14T12:35:00Z",
             "homepage": "https://nf-co.re/bacass",
-            "size": 5175,
+            "size": 5225,
             "stargazers_count": 68,
             "watchers_count": 68,
             "language": "Nextflow",
@@ -2229,7 +2229,7 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 2,
+            "open_pr_count": 1,
             "repository_url": "https://github.com/nf-core/bacass",
             "contributors": [
                 {
@@ -2318,10 +2318,13 @@
                 "defaultBranch": null
             },
             "dev_nextflow_config_plugins": [
-                "nf-schema@2.1.1"
+                "nf-schema@2.3.0"
             ],
             "dev_nextflow_config_manifest": {
-                "defaultBranch": null
+                "defaultBranch": [
+                    "defaultBranch   = 'master'",
+                    "master"
+                ]
             },
             "releases": [
                 {
@@ -2569,8 +2572,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2024-11-22T13:55:15Z",
-                    "tag_sha": "ad892edcdba8974c37ca3b6934a3c8df5271aed7",
+                    "published_at": "2025-03-14T12:35:00Z",
+                    "tag_sha": "6a7948e5f63b46dc1180ea3fb7640f9ee2010f6a",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -7910,12 +7913,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/deepmodeloptim",
             "created_at": "2024-03-04T11:37:13Z",
-            "updated_at": "2025-03-12T14:55:23Z",
-            "pushed_at": "2025-03-13T10:08:44Z",
+            "updated_at": "2025-03-14T11:39:39Z",
+            "pushed_at": "2025-03-14T09:33:51Z",
             "homepage": "https://nf-co.re/deepmodeloptim",
-            "size": 4318,
-            "stargazers_count": 25,
-            "watchers_count": 25,
+            "size": 4325,
+            "stargazers_count": 26,
+            "watchers_count": 26,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": true,
@@ -7926,7 +7929,7 @@
             "forks_count": 12,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 23,
+            "open_issues_count": 21,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -7941,8 +7944,8 @@
             ],
             "visibility": "public",
             "forks": 12,
-            "open_issues": 23,
-            "watchers": 25,
+            "open_issues": 21,
+            "watchers": 26,
             "default_branch": "dev",
             "temp_clone_token": "",
             "allow_squash_merge": true,
@@ -8017,7 +8020,7 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": -1,
             "has_required_topics": false,
-            "open_pr_count": 2,
+            "open_pr_count": 0,
             "repository_url": "https://github.com/nf-core/deepmodeloptim",
             "contributors": [
                 {
@@ -8037,7 +8040,7 @@
                 },
                 {
                     "name": "JoseEspinosa",
-                    "count": 53,
+                    "count": 55,
                     "avatar_url": "https://avatars.githubusercontent.com/u/6224346?v=4"
                 },
                 {
@@ -8062,30 +8065,36 @@
                 }
             ],
             "released_after_tools": false,
-            "head_sha": "f1d175fc12c33b4c0ed0dc4577c43311e2e1dcc7",
+            "head_sha": "90d90dc0bc44ce0fd1bb5e4b20a0f0aca3649cd0",
             "last_release_is_head": false,
-            "last_release_vs_default_compare_url": "https://github.com/nf-core/deepmodeloptim/compare/f1d175fc12c33b4c0ed0dc4577c43311e2e1dcc7...undefined",
+            "last_release_vs_default_compare_url": "https://github.com/nf-core/deepmodeloptim/compare/90d90dc0bc44ce0fd1bb5e4b20a0f0aca3649cd0...undefined",
             "commits_to_dev": 30,
             "is_DSL2": true,
             "has_nf_test": true,
             "has_nf_test_dev": true,
             "master_nextflow_config_plugins": [
-                "nf-schema@2.1.1"
+                "nf-schema@2.3.0"
             ],
             "master_nextflow_config_manifest": {
-                "defaultBranch": null
+                "defaultBranch": [
+                    "defaultBranch   = 'master'",
+                    "master"
+                ]
             },
             "dev_nextflow_config_plugins": [
-                "nf-schema@2.1.1"
+                "nf-schema@2.3.0"
             ],
             "dev_nextflow_config_manifest": {
-                "defaultBranch": null
+                "defaultBranch": [
+                    "defaultBranch   = 'master'",
+                    "master"
+                ]
             },
             "releases": [
                 {
                     "tag_name": "dev",
-                    "published_at": "2025-03-12T14:55:18Z",
-                    "tag_sha": "f1d175fc12c33b4c0ed0dc4577c43311e2e1dcc7",
+                    "published_at": "2025-03-14T09:33:51Z",
+                    "tag_sha": "90d90dc0bc44ce0fd1bb5e4b20a0f0aca3649cd0",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -12033,9 +12042,9 @@
             "url": "https://api.github.com/repos/nf-core/eager",
             "created_at": "2018-06-03T15:52:24Z",
             "updated_at": "2025-02-27T20:13:10Z",
-            "pushed_at": "2025-03-12T06:41:33Z",
+            "pushed_at": "2025-03-14T11:57:58Z",
             "homepage": "https://nf-co.re/eager",
-            "size": 66895,
+            "size": 66930,
             "stargazers_count": 160,
             "watchers_count": 160,
             "language": "Nextflow",
@@ -12048,7 +12057,7 @@
             "forks_count": 82,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 44,
+            "open_issues_count": 45,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -12063,7 +12072,7 @@
             ],
             "visibility": "public",
             "forks": 82,
-            "open_issues": 44,
+            "open_issues": 45,
             "watchers": 160,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -12166,7 +12175,7 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 7,
+            "open_pr_count": 8,
             "repository_url": "https://github.com/nf-core/eager",
             "contributors": [
                 {
@@ -17496,7 +17505,7 @@
             "forks_count": 31,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 10,
+            "open_issues_count": 12,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -17511,7 +17520,7 @@
             ],
             "visibility": "public",
             "forks": 31,
-            "open_issues": 10,
+            "open_issues": 12,
             "watchers": 64,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -27816,12 +27825,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/pacvar",
             "created_at": "2024-09-17T21:39:08Z",
-            "updated_at": "2025-03-06T19:01:32Z",
+            "updated_at": "2025-03-14T11:17:43Z",
             "pushed_at": "2025-03-06T21:30:45Z",
             "homepage": "https://nf-co.re/pacvar",
             "size": 362204,
-            "stargazers_count": 7,
-            "watchers_count": 7,
+            "stargazers_count": 8,
+            "watchers_count": 8,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": true,
@@ -27847,7 +27856,7 @@
             "visibility": "public",
             "forks": 5,
             "open_issues": 6,
-            "watchers": 7,
+            "watchers": 8,
             "default_branch": "master",
             "temp_clone_token": "",
             "allow_squash_merge": true,
@@ -31204,7 +31213,7 @@
             "forks_count": 50,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 38,
+            "open_issues_count": 36,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -31219,7 +31228,7 @@
             ],
             "visibility": "public",
             "forks": 50,
-            "open_issues": 38,
+            "open_issues": 36,
             "watchers": 73,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -31519,7 +31528,7 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/proteomicslfq",
             "created_at": "2019-04-10T12:23:59Z",
-            "updated_at": "2025-01-13T10:44:10Z",
+            "updated_at": "2025-03-14T07:31:47Z",
             "pushed_at": "2025-01-13T10:44:07Z",
             "homepage": "https://nf-co.re/proteomicslfq",
             "size": 3766,
@@ -31535,7 +31544,7 @@
             "forks_count": 20,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 37,
+            "open_issues_count": 28,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -31546,7 +31555,7 @@
             ],
             "visibility": "public",
             "forks": 20,
-            "open_issues": 37,
+            "open_issues": 28,
             "watchers": 33,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -31580,7 +31589,7 @@
                 }
             },
             "network_count": 20,
-            "subscribers_count": 139,
+            "subscribers_count": 138,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
             "team_core_permission_push": true,
@@ -35650,7 +35659,7 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/rnafusion",
             "created_at": "2018-10-05T13:05:57Z",
-            "updated_at": "2025-01-26T11:19:01Z",
+            "updated_at": "2025-03-14T12:39:00Z",
             "pushed_at": "2025-03-12T12:25:35Z",
             "homepage": "https://nf-co.re/rnafusion",
             "size": 19922,
@@ -35666,7 +35675,7 @@
             "forks_count": 105,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 47,
+            "open_issues_count": 52,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -35679,7 +35688,7 @@
             ],
             "visibility": "public",
             "forks": 105,
-            "open_issues": 47,
+            "open_issues": 52,
             "watchers": 150,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -36410,12 +36419,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/rnaseq",
             "created_at": "2018-03-29T13:10:58Z",
-            "updated_at": "2025-03-14T03:03:01Z",
+            "updated_at": "2025-03-14T10:20:21Z",
             "pushed_at": "2025-03-07T15:01:00Z",
             "homepage": "https://nf-co.re/rnaseq",
             "size": 75124,
-            "stargazers_count": 992,
-            "watchers_count": 992,
+            "stargazers_count": 993,
+            "watchers_count": 993,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": false,
@@ -36437,7 +36446,7 @@
             "visibility": "public",
             "forks": 731,
             "open_issues": 87,
-            "watchers": 992,
+            "watchers": 993,
             "default_branch": "master",
             "temp_clone_token": "",
             "allow_squash_merge": false,
@@ -46341,10 +46350,10 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/spatialvi",
             "created_at": "2022-02-23T20:44:38Z",
-            "updated_at": "2025-03-13T13:31:42Z",
-            "pushed_at": "2025-03-12T14:49:23Z",
+            "updated_at": "2025-03-14T12:26:57Z",
+            "pushed_at": "2025-03-14T12:26:56Z",
             "homepage": "https://nf-co.re/spatialvi",
-            "size": 7392,
+            "size": 7349,
             "stargazers_count": 59,
             "watchers_count": 59,
             "language": "Nextflow",
@@ -46357,7 +46366,7 @@
             "forks_count": 20,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 8,
+            "open_issues_count": 7,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -46376,7 +46385,7 @@
             ],
             "visibility": "public",
             "forks": 20,
-            "open_issues": 8,
+            "open_issues": 7,
             "watchers": 59,
             "default_branch": "dev",
             "temp_clone_token": "",
@@ -46479,12 +46488,12 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 2,
+            "open_pr_count": 1,
             "repository_url": "https://github.com/nf-core/spatialvi",
             "contributors": [
                 {
                     "name": "fasterius",
-                    "count": 472,
+                    "count": 475,
                     "avatar_url": "https://avatars.githubusercontent.com/u/12528765?v=4"
                 },
                 {
@@ -46509,9 +46518,9 @@
                 }
             ],
             "released_after_tools": false,
-            "head_sha": "7dadf08f9f35ea8981b9d48fa6cfd07ca359636a",
+            "head_sha": "09620211fb38e48dd3370e9e380957374f50ef0a",
             "last_release_is_head": false,
-            "last_release_vs_default_compare_url": "https://github.com/nf-core/spatialvi/compare/7dadf08f9f35ea8981b9d48fa6cfd07ca359636a...undefined",
+            "last_release_vs_default_compare_url": "https://github.com/nf-core/spatialvi/compare/09620211fb38e48dd3370e9e380957374f50ef0a...undefined",
             "commits_to_dev": 30,
             "is_DSL2": true,
             "has_nf_test": true,
@@ -46521,7 +46530,7 @@
                 "defaultBranch": null
             },
             "dev_nextflow_config_plugins": [
-                "nf-schema@2.1.1"
+                "nf-schema@2.3.0"
             ],
             "dev_nextflow_config_manifest": {
                 "defaultBranch": [
@@ -46532,8 +46541,8 @@
             "releases": [
                 {
                     "tag_name": "dev",
-                    "published_at": "2025-03-12T14:46:42Z",
-                    "tag_sha": "7dadf08f9f35ea8981b9d48fa6cfd07ca359636a",
+                    "published_at": "2025-03-14T12:26:52Z",
+                    "tag_sha": "09620211fb38e48dd3370e9e380957374f50ef0a",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -46724,12 +46733,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/spinningjenny",
             "created_at": "2023-03-27T09:54:15Z",
-            "updated_at": "2024-09-03T10:13:18Z",
+            "updated_at": "2025-03-14T12:27:51Z",
             "pushed_at": "2025-01-27T14:49:07Z",
             "homepage": "https://nf-co.re/spinningjenny",
             "size": 2666,
-            "stargazers_count": 2,
-            "watchers_count": 2,
+            "stargazers_count": 3,
+            "watchers_count": 3,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": true,
@@ -46748,7 +46757,7 @@
             "visibility": "public",
             "forks": 4,
             "open_issues": 3,
-            "watchers": 2,
+            "watchers": 3,
             "default_branch": "dev",
             "temp_clone_token": "",
             "allow_squash_merge": false,
@@ -47272,12 +47281,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/taxprofiler",
             "created_at": "2022-02-18T06:56:10Z",
-            "updated_at": "2025-03-13T08:21:40Z",
+            "updated_at": "2025-03-14T08:38:56Z",
             "pushed_at": "2025-03-13T10:44:50Z",
             "homepage": "https://nf-co.re/taxprofiler",
             "size": 16572,
-            "stargazers_count": 137,
-            "watchers_count": 137,
+            "stargazers_count": 138,
+            "watchers_count": 138,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": true,
@@ -47308,7 +47317,7 @@
             "visibility": "public",
             "forks": 44,
             "open_issues": 44,
-            "watchers": 137,
+            "watchers": 138,
             "default_branch": "master",
             "temp_clone_token": "",
             "allow_squash_merge": false,
@@ -50603,7 +50612,7 @@
             "forks_count": 117,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 40,
+            "open_issues_count": 39,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -50626,7 +50635,7 @@
             ],
             "visibility": "public",
             "forks": 117,
-            "open_issues": 40,
+            "open_issues": 39,
             "watchers": 133,
             "default_branch": "master",
             "temp_clone_token": "",
