@@ -38,7 +38,7 @@ We have created a helper tool as part of the _nf-core_ package to automate this 
 On a computer with an internet connection, run `nf-core pipelines download <pipeline>` to download the pipeline.
 Add the argument `--container-system singularity` to also fetch the singularity container(s), and the argument `--download-configuration yes` to also include configuration profiles.
 
-The pipeline and requirements will be downloaded and configured with their relative paths. With `--compress tar.gz` the files can be packaged into a `.tar.gz` archive. This can then be transferred to your offline system and unpacked.
+The pipeline and requirements will be downloaded. If you used `--download-configuration yes` or `--container-system singularity` together with `container-cache-utilisation copy` the pipeline will be configured with the relative configuration and singularity image paths. However if you defined a shared Singularity image download folder, this configuration will be wrong. With `--compress tar.gz` the files can be packaged into a `.tar.gz` archive. This can then be transferred to your offline system and unpacked.
 
 Inside, you will see a directory named after the selected release or branch (e.g. `3_5_1` or `dev`) which contains the pipeline files, `configs` (a copy of [nf-core/configs](https://github.com/nf-core/configs) if you used `--download-configuration yes`), and a directory called `singularity-images` (if you used `--container-system singularity` and did't specify another shared singularity image download folder).
 The pipeline code is adjusted by the download tool to expect these relative paths, so as long as you keep them together it should work as is.
