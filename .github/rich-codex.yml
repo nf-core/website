@@ -7,7 +7,8 @@ outputs:
     head: 19
     img_paths:
       - public/images/contributing/creating_with_nf_core/nfcore_list.svg
-  - command: mkdir tmp && cd tmp && \
+  - command: |
+      mkdir tmp && cd tmp && \
       nf-core pipelines create --name demo --description "Pipeline for training" --author "Phil"
     fake_command: nf-core pipelines create
     img_paths:
@@ -66,7 +67,7 @@ outputs:
     trim_after: "Command line"
     img_paths:
       - public/images/tools/nf-core-launch-rnaseq.svg
-  - command: mkdir tmp && cd tmp && nf-core pipelines download rnaseq -r 3.8 --outdir nf-core-rnaseq -x none -s none
+  - command: cd tmp && nf-core pipelines download rnaseq -r 3.8 --outdir nf-core-rnaseq -x none -s none
     img_paths:
       - public/images/tools/nf-core-download.svg
   - command: cd tmp && tree -L 2 nf-core-rnaseq/
