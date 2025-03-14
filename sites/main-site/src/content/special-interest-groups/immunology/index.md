@@ -7,6 +7,7 @@ leads:
 pipelines:
   - airflow
   - epitopeprediction
+  - hlatyping
   - metapep
   - mhcquant
   - rnaseq
