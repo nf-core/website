@@ -1,0 +1,162 @@
+---
+title: "Spring cleaning"
+subtitle: "Keeping you informed of the latest maintainers actions"
+headerImage: "/assets/images/blog/springcleaning2025/spring-cleaning-broom-with-sakura.jpg"
+headerImageAlt: "A scenic spring cleaning scene with a broom sweeping dust into the air. Delicate cherry blossoms are floating around in the background."
+headerImageDim: [800, 457]
+embedHeaderImage: true
+authors:
+    - "maxulysse"
+    - "jfy133"
+label:
+    - "maintainers"
+---
+
+import Profile from "@components/GitHubProfilePictureExtended.svelte";
+import { Image } from "astro:assets";
+
+As decided during the last maintainers meeting, the whole week was dedicated to spring cleaning.
+We would first like to thank everyone that was involved and help clean any of the nf-core github repository by closing issues, updating, merging or closing PRs.
+It was a tremendous effort, and thanks to all of you, the nf-core/hackathon should be facilitated by being able to start with repositories less crowded by issues.
+
+## Overview
+
+We were dedicated in a multitude of groups that were focused on particular tasks:
+
+- nf-core/pipelines
+- nf-core/modules
+- nf-core/documentation
+- nf-core/configs
+- nf-core/test-dataset
+- Hackathon preparation
+- Core Team
+
+### Pipelines:
+
+- Stats
+  - 50 pipelines out of 116 were checked out
+  - 5 DSL1
+  - 8 not maintained
+  - 2/3 will not continue to be maintained
+  - Majority of pipelines was all good
+  - Couple of problems and issues were found, so issues were created for this
+  - James pestered every proposal that was not started
+  - Maxime will archive pipelines that needs archiving in a couple of weeks
+- Discussions
+    - ⚒️ Need more people on pipelines team next time (quite large, domain-specific knowledge would help speed up) or 1 extra week
+    - ⚒️ We should push people to develop on nf-core
+    - A yearly check should be enough
+    - ⚒️ Last update of the dev branch should be featured on the pipeline health page
+
+### Modules:
+
+- Stats
+  - PRs:
+    - Bumped PRs: 51
+    - Closed PRs: 62
+    - Needs help: 10
+    - Stay open: 19
+    - In progress: 25
+  - Issues:
+    - To do: 192
+    - Bumped: 66
+    - Closed: 72
+    - In Progress: 49
+    - Suggestion: 26
+- Discussions
+  - Famke and Luisa are MVP (53 PRs reviewed by Famke, 108/106 Issues)
+  - Luisa DMed Maxime because he never check GitHub
+  - Everything tagged
+  - ⚒️ Prepare some boilerplate messages for posting on issues/PRs/channels
+    - We could have pre-saved messages even -> DUMP 2025 MESSAGES HERE: https://hackmd.io/OE_WueP2SD6XCeALyH-VUw
+  - Is 'new issue' thing really necessary
+    - Lots of 'junk' / abandoned
+    - Used as a wishlist
+  - ⚒️ We should automate tagging things prior spring cleaning?
+    - Be smarter with automatic replies / tags / types(!?)
+    -  Replace tags with types
+    - Auto add stuff to hackathon boards?
+  - Let's continue yearly
+  - Additional stuff from Simon
+    -  Standardise metadata tags formatting
+    - Clean up old subworkflows to match current guidelines
+    - Flag modules with custom meta fields
+    - params usage
+
+### Configs:
+
+  - Stats
+    - 11 Done
+    - 16 In progress
+  - Discussion
+    - Mostly Edmund
+    - ⚒️ Quite a few issues/PRs set up but the abandoned - this repo is not something we can test/someone can come and return - Stalebot
+    - ⚒️ Can we add a tag so stalebot ignore stuff that should not be closed?
+      - ⚒️ Tools will only have stalebot work if 'waiting feedback' tag
+
+- Discussion:
+    - Regular cleanup is done more or less regularly by James and Maxime
+    - So there was less of an effort
+
+### Test-datasets
+
+  - No major activity (requires a bigger overhaul)
+  - James/Maxime wants to REDO it all
+
+### Hackathon preparation
+
+- Ongoing - pestering people to add tasks to project board (300-400 issues)
+
+### Core team
+
+- Stats
+  - Slack team update: no update
+  - Github groups: updated
+  - Core team checklist: updated
+  - Slack channels: most public investigated, 3 closed, 1 renamed, a few assigned to others
+  - Pipeline proposals: 100 checkeed, 37 proposals timed out, 16 flagged for archiving
+  - All accepted special interest groups now have websites (immunology, core facilities, other)
+  - Pipeline archiving: will do soon now has list from pipeline time/core
+  - AWS cleaning: checked all pipeliens have megatests, cleaning up CEs, cleaning up AWS account (will continue longer - needs core team discussion)
+  - Non-pipeline repos:
+- Discussion
+  - Can we link github team with slack teams to reduce manual
+  - >200 proposals (of all status), but hard to search
+    - ⚒️ Add keywords to proposals?
+    - ⚒️ Move from slack board to a github repository
+  -  Lots of suggestions from Maxime
+      - ⚒️ https://github.com/nf-core/.github
+          - Should we add a member page?
+          - My guess is that all is covered or should be by website
+      -⚒️  https://github.com/nf-core/basic_training :white_check_mark:
+          - Leave as is for now, we will see with Nextflow training team how to migrate and unify content
+      - ⚒️ https://github.com/nf-core/gh-actions-lint
+          - To archive?
+      - ⚒️ https://github.com/nf-core/hackathon
+          - To pipeline?
+      - https://github.com/nf-core/ops :question:
+      - ⚒️ https://github.com/nf-core/prettier-plugin-nextflow
+          - To archive?
+      - ⚒️ https://github.com/nf-core/stats
+          - Better README?
+      - ⚒️ https://github.com/nf-core/testpipeline
+          - To pipeline?
+      - https://github.com/nf-core/vale :question:
+
+### tools
+
+- Stats
+  - deleted 34/55 branches (55->21)
+  - closed 8 PRs
+  - closed 29 issues (3 from 2020 2 from 2021!)
+- Discussion
+  - ⚒️ Should we auto-delete merged branches everywhere?
+
+
+### General
+
+- Modules: Simon very pro adding 'waiting feedback' stale bot system like in tools
+- Modules: module requests should NOT be on modules, but should be on a pipeline - and linked back somewhere
+  - For wishlist modules -> a single issue with a list of requests, rather than one issue per
+  - Maybe auto close after 6 months if you don't plan to work on it?
+
