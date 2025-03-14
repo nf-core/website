@@ -13,7 +13,7 @@ leaders:
     slack: "https://nfcore.slack.com/team/U03CKGEU3LZ"
 ---
 
-This project is intended to help anyone who needs help or advise with their illustration needs. 
+This project is intended to help anyone who needs help or advise with their illustration needs.
 This could be advise on how to create pipeline logos or tub maps or help with a conference poster that features nf-core.
 
 Shout out in the #graphics Slack channel and we will find you someone to answer your questions.
