@@ -6,7 +6,7 @@ leads:
   - mapo9: Mark Polster
   - jonasscheid: Jonas Scheid
 pipelines:
-  - airflow
+  - airrflow
   - epitopeprediction
   - hlatyping
   - metapep
