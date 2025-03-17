@@ -1,0 +1,55 @@
+---
+let { name, icon, params = [] } = Astro.props;
+import ComponentParamList from "./ComponentParamList.astro";
+
+export interface Props {
+    name: string;
+    icon: string;
+    params?: any[];
+}
+if (name == "Input") {
+    params = params.map((param, i) => {
+        param = Array.isArray(param) ? param : [param];
+        return { [`input[${i}]`]: param };
+    });
+}
+---
+
+<h2 id={name.toLowerCase()} class="text-success ms-n3">
+    <i class={`fad ${icon} fa-fw`}></i>
+    {name}
+    <a href={"#" + name.toLowerCase()} class="header-link scroll_to_link">
+        <span class="fas fa-link" aria-hidden="true"></span>
+    </a>
+</h2>
+
+{
+    params.length > 0 && (
+        <div class="row border-bottom border-3 d-none d-md-flex">
+            <div class="col-12 col-md-4 col-xxl-3">
+                <span class="text-body-secondary ps-3">
+                    name<span class="ps-0 font-monospace opacity-75 small">:type</span>
+                </span>
+            </div>
+            <div class="col-12 col-md-7">
+                <span class="text-body-secondary text-start ps-3">description</span>
+            </div>
+            <div class="col-12 col-md">
+                <span class="text-body-secondary float-end">pattern</span>
+            </div>
+        </div>
+    )
+}
+{params.length > 0 ? <ComponentParamList params={params} /> : <p class="text-body-secondary">No input parameters</p>}
+
+<style>
+    h4 {
+        overflow: hidden;
+    }
+    .description :global(p) {
+        margin-bottom: 0;
+    }
+    .pattern {
+        line-break: anywhere;
+    }
+</style>

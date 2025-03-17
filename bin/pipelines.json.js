@@ -1,14 +1,17 @@
 #! /usr/bin/env node
-import octokit, { getDocFiles, getGitHubFile, githubFolderExists } from '../src/components/octokit.js';
+import { octokit, getDocFiles, getGitHubFile, githubFolderExists } from '../sites/main-site/src/components/octokit.js';
 
 import { promises as fs, writeFileSync, existsSync } from 'fs';
 import yaml from 'js-yaml';
 import path, { join } from 'path';
 import ProgressBar from 'progress';
-import cache from './cache.js';
 
 // get current path
 const __dirname = path.resolve();
+
+// Get pipeline name from command line argument if provided
+const args = process.argv.slice(2);
+const singlePipelineName = args[0] || null;
 
 //check if pipelines.json exists
 if (!existsSync(join(__dirname, 'public/pipelines.json'))) {
@@ -20,7 +23,7 @@ if (!existsSync(join(__dirname, 'public/pipelines.json'))) {
 // write the pipelines.json file
 export const writePipelinesJson = async () => {
   const pipelinesJsonPromise = fs.readFile(join(__dirname, 'public/pipelines.json'), 'utf8');
-  const ignoredTopicsPromise = fs.readFile(join(__dirname, 'src/config/ignored_repos.yaml'), 'utf8');
+  const ignoredTopicsPromise = fs.readFile(join(__dirname, 'sites/main-site/src/config/ignored_repos.yaml'), 'utf8');
   const [pipelinesJson, ignoredTopicsYaml] = await Promise.all([pipelinesJsonPromise, ignoredTopicsPromise]);
 
   const pipelines = JSON.parse(pipelinesJson);
@@ -28,40 +31,60 @@ export const writePipelinesJson = async () => {
   // get ignored_repos from ignored_reops.yml
   const ignored_repos = yaml.load(ignoredTopicsYaml).ignore_repos;
 
-  // get all repos for the nf-core org
+  // get all repos for the nf-core org or use the specified pipeline
   let names = [];
   let active_names = [];
 
-  await octokit
-    .paginate(octokit.rest.repos.listForOrg, {
-      org: 'nf-core',
-      type: 'public',
-      per_page: 100,
-    })
-    .then((response) => {
-      names.push(
-        response
-          .filter((repo) => !ignored_repos.includes(repo.name))
-          .map((repo) => repo.name)
-          .sort(),
-      );
-      active_names.push(
-        response
-          .filter((repo) => !ignored_repos.includes(repo.name) && !repo.archived)
-          .map((repo) => repo.name)
-          .sort(),
-      );
-    });
-  names = names.flat();
-  active_names = active_names.flat();
-  // write pipeline_names.json
-  await fs.writeFile(
-    join(__dirname, '/public/pipeline_names.json'),
-    JSON.stringify({ pipeline: active_names }, null),
-    'utf8',
-  );
+  if (singlePipelineName) {
+    names = [singlePipelineName];
+    // Check if the pipeline exists
+    try {
+      await octokit.rest.repos.get({
+        owner: 'nf-core',
+        repo: singlePipelineName,
+      });
+      active_names = [singlePipelineName];
+    } catch (err) {
+      console.error(`Pipeline ${singlePipelineName} not found in nf-core organization`);
+      process.exit(1);
+    }
+    console.log(`Processing single pipeline: ${singlePipelineName}`);
+  } else {
+    await octokit
+      .paginate(octokit.rest.repos.listForOrg, {
+        org: 'nf-core',
+        type: 'public',
+        per_page: 100,
+      })
+      .then((response) => {
+        names.push(
+          response
+            .filter((repo) => !ignored_repos.includes(repo.name))
+            .map((repo) => repo.name)
+            .sort(),
+        );
+        active_names.push(
+          response
+            .filter((repo) => !ignored_repos.includes(repo.name) && !repo.archived)
+            .map((repo) => repo.name)
+            .sort(),
+        );
+      });
+    names = names.flat();
+    active_names = active_names.flat();
+  }
 
-  // get ignored_topics from ignored_reops.yml
+  // Only update pipeline_names.json if processing all pipelines
+  if (!singlePipelineName) {
+    // write pipeline_names.json
+    await fs.writeFile(
+      join(__dirname, '/public/pipeline_names.json'),
+      JSON.stringify({ pipeline: active_names }, null),
+      'utf8',
+    );
+  }
+
+  // get ignored_topics from ignored_repos.yml
   const ignored_topics = yaml.load(ignoredTopicsYaml).ignore_topics;
 
   // Get latest tools release
@@ -222,7 +245,7 @@ export const writePipelinesJson = async () => {
     });
 
     // remove empty values from releases (usually from draft releases)
-    releases = releases.filter((release) => release.tag_name !== '');
+    releases = releases.filter((release) => release.tag_name !== '' && release.draft === false);
 
     // remove releases that are already in the pipelines.json file
     const index = pipelines.remote_workflows.findIndex((workflow) => workflow.name === name);
@@ -330,6 +353,20 @@ export const writePipelinesJson = async () => {
           return [];
         },
       );
+      // get manifest from nextflow.config
+      data[`${branch}_nextflow_config_manifest`] = await getGitHubFile(name, 'nextflow.config', branch).then(
+        (response) => {
+          if (response) {
+            // use regex to find all plugins in nextflow.config
+            let parsedManifest = response.match(/manifest\s*{([^}]*)}/s)[0];
+            // convert to object
+            let manifest = {};
+            manifest['defaultBranch'] = parsedManifest.match(/defaultBranch\s*=\s*['"]([^'"]+)['"]/);
+            return manifest;
+          }
+          return {};
+        },
+      );
     }
 
     new_releases = await Promise.all(
@@ -391,31 +428,6 @@ export const writePipelinesJson = async () => {
           components.modules = components.modules.map((component) => {
             return component.replace('/', '_');
           });
-        }
-
-        // cache release body except for dev
-        if (release.tag_name !== 'dev') {
-          const cache_key = `${name}/${release.tag_name}/body`;
-          // const is_cached = cache.getSync(cache_key, false) && cache.getSync(cache_key, false).length > 0;
-          const is_cached = false;
-          if (!is_cached) {
-            // wrap github urls in markdown links if they are to the same repo and not already inside a link
-            release.body = release.body.replaceAll(
-              /(?<!\]\()https:\/\/github\.com\/nf-core\/([^\/]+)\/([^\/]+)\/([^\/\n]*)(?![\)\]])/g,
-              (match, p1, p2, p3) => {
-                if (p1 === name && ['pull', 'issues', 'compare'].includes(p2)) {
-                  const prefix = p2 !== 'compare' ? '#' : '';
-                  return `[${prefix}${p3}](${match})`;
-                }
-                return match;
-              },
-            );
-            // replace usernames with links to github profiles
-            release.body = release.body.replaceAll(/@(\w+([-]\w+)*)/g, (match, p1) => {
-              return `[${match}](https://github.com/${p1})`;
-            });
-            cache.set(cache_key, release.body);
-          }
         }
         return { tag_name, published_at, tag_sha, has_schema, doc_files, components };
       }),

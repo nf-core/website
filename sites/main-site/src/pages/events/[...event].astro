@@ -1,0 +1,179 @@
+---
+import MarkdownTocLayout from "@layouts/MarkdownTocLayout.astro";
+import { getCollection, render } from "astro:content";
+import { YouTube } from "@astro-community/astro-embed-youtube";
+import VideoTranscript from "@components/VideoTranscript.svelte";
+import Admonition from "@components/Admonition.astro";
+import type { CollectionEntry } from "astro:content";
+import type { SidebarEntry } from "@utils/types";
+import { createLinkOrGroup } from "@utils/functions";
+import ListModals from "@components/event/HackathonProjects/ListModals.astro";
+
+export async function getStaticPaths() {
+    const events = await getCollection("events");
+    return events.map((event) => ({
+        params: {
+            event: event.id.replace(/\.[^/.]+$/, ""),
+        },
+        props: {
+            event: event,
+            events: events,
+        },
+    }));
+}
+const { event, events } = Astro.props;
+const title = event.data.title;
+const subtitle = event.data.subtitle;
+let frontmatter = event.data;
+const { headings, Content } = await render(event);
+
+const md_github_url =
+    "https://github.com/nf-core/website/blob/main/sites/main-site/src/content/events/" + event.id + ".md";
+
+let video = event.data.youtubeEmbed;
+// convert video to array if it is string
+if (typeof video === "string") {
+    video = [video];
+}
+const ids = video?.map(
+    (v) =>
+        v
+            .replace("https://www.youtube.com/watch?v=", "")
+            .replace("https://youtu.be/", "")
+            .replace("https://www.youtube.com/embed/", "")
+            .split("&list")[0],
+);
+// Check if maxres thumbnail is available
+let posters = await Promise.all(
+    Array.from(ids || []).map(async (id) => {
+        const maxresPoster = `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
+        const response = await fetch(maxresPoster);
+        if (response.status === 404) {
+            return `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+        }
+        return maxresPoster;
+    }),
+);
+
+events
+    .map((event) => {
+        if (event.data.title.toLowerCase().match("bytesize")) {
+            event.data.type = "bytesize";
+        }
+        return event;
+    })
+    .filter((event) => event.data.type === frontmatter.type)
+    .sort((a, b) => {
+        return new Date(b.data.startDate).getTime() - new Date(a.data.startDate).getTime();
+    });
+
+const addEntriesToSection = (sections, events: CollectionEntry<"events">[]) => {
+    events.forEach((event) => {
+        const parts = event.id.replace(/\.[^/.]+$/, "").split("/");
+        let currentLevel = sections;
+
+        parts.forEach((part, i) => {
+            part = part.replaceAll("_", " ").replace(/(^)\S/g, (match) => match.toUpperCase());
+            const existingEntry = currentLevel.find(
+                (entry) => entry.label === part || entry.label === event.data.title,
+            );
+
+            if (existingEntry) {
+                if (existingEntry.type === "group") {
+                    // workaround for index files in nested events, where another element could already have created the group
+                    if (/index\.(md|mdx)$/.test(event.id) && i === parts.length - 1) {
+                        existingEntry.href = "/events/" + event.id.replace(/\.[^/.]+$/, "");
+                        existingEntry.isCurrent = Astro.url.pathname === "/events/" + event.id.replace(/\.[^/.]+$/, "");
+                        existingEntry.collapsed = Astro.url.pathname === "/events/" + event.id.replace(/\.[^/.]+$/, "");
+                    }
+                    currentLevel = existingEntry.entries;
+                }
+            } else {
+                const lastPart = i === parts.length - 1;
+                let title = lastPart ? (event.data.shortTitle ?? event.data.title) : part;
+                const newEntry = createLinkOrGroup(
+                    parts.slice(0, i + 1).join("_"),
+                    title,
+                    "/events/" + event.id.replace(/\.[^/.]+$/, ""),
+                    lastPart,
+                    Astro.url.pathname,
+                );
+                currentLevel.push(newEntry);
+
+                if (newEntry.type === "group" && newEntry.entries) {
+                    currentLevel = newEntry.entries;
+                }
+            }
+        });
+    });
+};
+const years = [...new Set(events.map((event) => event.data.start.getFullYear()))].sort((a, b) => b - a);
+let sections: SidebarEntry[] = years.map((year) => {
+    return {
+        id: year.toString(),
+        label: year.toString(),
+        entries: [],
+        type: "group",
+        collapsed: true,
+    };
+});
+addEntriesToSection(sections, events);
+// sort .entries by date
+sections.forEach((year) => {
+    year.entries.sort((a, b) => {
+        const eventA = events.find((event) => "/events/" + event.id.replace(/\.[^/.]+$/, "") === a.href);
+        const eventB = events.find((event) => "/events/" + event.id.replace(/\.[^/.]+$/, "") === b.href);
+        return eventB.data.startDate - eventA.data.startDate;
+    });
+});
+---
+
+{frontmatter.importTypeform && <script type="text/javascript" src="https://embed.typeform.com/next/embed.js" async />}
+<MarkdownTocLayout
+    title={title}
+    subtitle={subtitle}
+    md_github_url={md_github_url}
+    event_header={frontmatter}
+    headings={headings}
+    sections={sections}
+    leftSidebar={true}
+    docSearchTags={[
+        { name: "page_type", content: "Event" },
+        { name: "page_subtype", content: frontmatter.type },
+    ]}
+    viewTransitions={true}
+>
+    {
+        title.trim().toLowerCase().startsWith("bytesize") && (
+            <Admonition
+                title="tip"
+                titleText="Join us for our <strong>weekly series</strong> of short talks: <strong>nf-core/bytesize</strong>."
+                collapse={true}
+            >
+                <p class="small text-body-secondary">
+                    Just <strong>15 minutes</strong> + questions, we focus on topics about using and developing nf-core
+                    pipelines. These are recorded and made available at <a href="https://nf-co.re/">https://nf-co.re</a>
+                    , helping to build an archive of training material. Got an idea for a talk? Let us know on the{" "}
+                    <a href="https://nfcore.slack.com/channels/bytesize">
+                        <code>#bytesize</code>
+                    </a>{" "}
+                    Slack channel!
+                </p>
+            </Admonition>
+        )
+    }
+    <Content />
+    {
+        ids &&
+            ids.map((id, i) => (
+                <VideoTranscript id={id} client:idle>
+                    <YouTube id={id} poster={posters[i]} />
+                </VideoTranscript>
+            ))
+    }
+    {
+        frontmatter.hackathonProjectListModals && (
+            <ListModals slot="post-footer" eventPath={frontmatter.hackathonProjectListModals} />
+        )
+    }
+</MarkdownTocLayout>
