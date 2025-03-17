@@ -3,7 +3,7 @@ title: Workflows to go - nf-core pipelines download
 category: tooling
 intro_video: "https://youtu.be/5TceBWlltoE"
 image: "/assets/images/events/2025/hackathon-march/workflows-to-go.png"
-image_alt: Packing everything you need to run your workflows offline.
+image_alt: A hexagonal photo of a hiking backpack in a rocky landscape, captioned with "nf-core to go" above it.
 leaders:
   MatthiasZepper:
     name: Matthias Zepper
@@ -32,7 +32,7 @@ The [full backlog](https://github.com/nf-core/tools/issues?q=is%3Aissue%20state%
 
 ## Who might like this project?
 
-Feels like cheating, but is totally legal - dodge Nextflow at a Nextflow Hackathon!
+Feels like cheating, but is totally legal - dodge Nextflow at a Nextflow Hackathon and work with Python instead!
 
 This project is perfect for participants looking to dip their toes into the nf-core ecosystem without diving deep into Nextflow itself! The nf-core tools are implemented in Python, making them an ideal entry point e.g. for scientists who already use the language to analyze their data and want to leverage their skills to contribute to nf-core.
 
