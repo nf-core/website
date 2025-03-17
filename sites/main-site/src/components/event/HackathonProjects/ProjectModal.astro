@@ -46,7 +46,7 @@ if (!color && category) {
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-lg-8">
+                    <div class={intro_video || image ? "col-lg-8" : "col"}>
                         {
                             proj_url && (
                                 <h3>
@@ -98,30 +98,32 @@ if (!color && category) {
                             )
                         }
                     </div>
-                    <div class="col-lg-4">
-                        {
-                            intro_video && (
-                                <div class="mb-4">
-                                    <YouTube
-                                        id={intro_video}
-                                        poster={`https://i.ytimg.com/vi/${intro_video}/hqdefault.jpg`}
-                                    />
-                                </div>
-                            )
-                        }
-                        {
-                            image && (
-                                <div>
-                                    <Image
-                                        src={images["../../.." + image]()}
-                                        width="600"
-                                        alt={image_alt ?? ""}
-                                        style="object-fit: contain;"
-                                    />
-                                </div>
-                            )
-                        }
-                    </div>
+                    {(intro_video || image) && (
+                        <div class="col-lg-4">
+                            {
+                                intro_video && (
+                                    <div class="mb-4">
+                                        <YouTube
+                                            id={intro_video}
+                                            poster={`https://i.ytimg.com/vi/${intro_video}/hqdefault.jpg`}
+                                        />
+                                    </div>
+                                )
+                            }
+                            {
+                                image && (
+                                    <div>
+                                        <Image
+                                            src={images["../../.." + image]()}
+                                            width="600"
+                                            alt={image_alt ?? ""}
+                                            style="object-fit: contain;"
+                                        />
+                                    </div>
+                                )
+                            }
+                        </div>
+                    )}
                 </div>
             </div>
             <div class="modal-footer">
