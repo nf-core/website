@@ -98,20 +98,18 @@ if (!color && category) {
                             )
                         }
                     </div>
-                    {(intro_video || image) && (
-                        <div class="col-lg-4">
-                            {
-                                intro_video && (
+                    {
+                        (intro_video || image) && (
+                            <div class="col-lg-4">
+                                {intro_video && (
                                     <div class="mb-4">
                                         <YouTube
                                             id={intro_video}
                                             poster={`https://i.ytimg.com/vi/${intro_video}/hqdefault.jpg`}
                                         />
                                     </div>
-                                )
-                            }
-                            {
-                                image && (
+                                )}
+                                {image && (
                                     <div>
                                         <Image
                                             src={images["../../.." + image]()}
@@ -120,10 +118,10 @@ if (!color && category) {
                                             style="object-fit: contain;"
                                         />
                                     </div>
-                                )
-                            }
-                        </div>
-                    )}
+                                )}
+                            </div>
+                        )
+                    }
                 </div>
             </div>
             <div class="modal-footer">
