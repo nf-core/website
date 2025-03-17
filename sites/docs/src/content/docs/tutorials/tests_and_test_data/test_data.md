@@ -58,7 +58,7 @@ In contrast, if your module requires many tests, steps, or heavy CPU usage, you 
 
 11. The test data pull request requires a review to be merged.
 
-12. Once you've had your pull request merged in into `nf-core/test-datasets`, you are good to go and you can refer to the newly uploaded file(s) for your test(s). Use `params.modules_testdata_base_path` to point to the test data directory in your module, and append to it the path to the file(s) you need. Here is an example using the `fasta` file from `sarscov2`:
+12. Once you've had your pull request merged in into `nf-core/test-datasets`, you are good to go and you can refer to the newly uploaded file(s) for your test(s). `params.modules_testdata_base_path` points to `https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/` in the modules repo, and refers to the `data/` folder in the `modules` branch. Append to it the path to the file(s) you need. Here is an example using the `fasta` file from `sarscov2`:
 
 ```groovy
     file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta', checkIfExists: true)
