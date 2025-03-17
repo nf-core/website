@@ -1,7 +1,6 @@
 ---
 title: Continuation of nft-tiff
 category: components
-slack: ""
 intro_video: ""
 image: "/assets/images/events/2025/hackathon-march/nft-tiff_meme.jpg"
 image_alt: Remote sensing pipelines without nft-tiff are a pain to test!
