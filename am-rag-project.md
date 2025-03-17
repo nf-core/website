@@ -30,4 +30,3 @@ Diabetic retinopathy (DR) remains a leading cause of blindness, necessitating ea
 ## Expected Outcome
 A working multimodal AI-based system capable of providing interpretable DR progression insights, facilitating more accurate diagnosis and risk stratification.
 
----
