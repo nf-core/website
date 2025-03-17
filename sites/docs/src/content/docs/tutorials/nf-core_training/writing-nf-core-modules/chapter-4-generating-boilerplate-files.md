@@ -1,6 +1,7 @@
 ---
 title: "Chapter 4: Generating boilerplate files"
 subtitle: "How to generate all the file skeletons you need for writing your module"
+shortTitle: "Chapter 4: Boilerplate files"
 ---
 
 In this chapter, we will explain how to generate and what template files you will need to help you start writing your nf-core module.
@@ -41,7 +42,7 @@ You can also provide some of this information by dedicated command-line flags, a
 
 Once the command has completed, you should see the following files and directories.
 
-```tree
+```tree {8-13}
 modules/nf-core/drep/compare/
 ├── environment.yml
 ├── main.nf

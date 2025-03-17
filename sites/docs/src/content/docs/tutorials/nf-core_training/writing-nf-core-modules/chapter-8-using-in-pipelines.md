@@ -1,6 +1,7 @@
 ---
 title: "Chapter 8: Using nf-core modules in pipelines"
-subtitle: ""
+subtitle: "How to effectively install and use an nf-core module in nf-core and non-nf-core pipelines"
+shortTitle: "Chapter 8: Using"
 ---
 
 By this chapter, you have written and tested your nf-core module and are ready to use it in a pipeline.

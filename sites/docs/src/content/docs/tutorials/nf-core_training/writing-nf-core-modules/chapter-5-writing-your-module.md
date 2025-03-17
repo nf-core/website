@@ -1,6 +1,7 @@
 ---
 title: "Chapter 5: Writing your module"
 subtitle: "How to fill in the primary files of an nf-core module"
+shortTitle: "Chapter 5: Writing"
 ---
 
 Once you have generated the boilerplate template files for your module, you can start updating these to make your module work.
@@ -32,8 +33,6 @@ You only need to modify this if your tool does not use tools from bioconda (e.g.
 However, the nf-core guidelines strongly recommends conda support (as the most accessible software management system), so if your tool is not on bioconda or conda-forge, we strongly recommend you add this to the appropriate repository.
 
 :::info{title="Behind the scenes" collapse}
-
-:::spoiler
 nf-core uses a separate conda file rather than defining within the `main.nf` script file's conda directive, for [TODO] reason.
 :::
 

@@ -1,6 +1,7 @@
 ---
 title: "Chapter 7: Development workflow"
 subtitle: "A summary of the development workflow for contributing to the community"
+shortTitle: "Chapter 7: Dev. Workflow"
 ---
 
 In this chapter, we are going to give you an overview into the development workflow for contributing to the nf-core/modules repository.

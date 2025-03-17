@@ -1,6 +1,7 @@
 ---
 title: "Chapter 3: What is a nf-core module?"
 subtitle: "Understanding the different file components of an nf-core/module"
+shortTitle: "Chapter 3: What is a module?"
 ---
 
 An nf-core module is an opinionated open-source Nextflow 'wrapper' around command-line tool or script.
