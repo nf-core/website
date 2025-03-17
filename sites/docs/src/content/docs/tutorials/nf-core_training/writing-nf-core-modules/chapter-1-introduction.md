@@ -9,10 +9,11 @@ shortTitle: "Chapter 1: Introduction"
 nf-core modules are a large step towards 'plug and play' Nextflow pipeline development.
 
 An nf-core module is an 'atomic', standardised, reproducible, and already tested [Nextflow DSL2 module](https://www.nextflow.io/docs/latest/module.html) process.
-You can install an nf-core module from a central community repository into a Nextflow pipeline with a single command.
-Then you can quickly integrate the Nextflow process into your own workflow due to the standardised internal structure of the module; matching upstream process outputs and downstream inputs.
 
-By using these pre-made community contributed modules, you can vastly reduce your workflow development time by reducing the need to 're-invent' the wheel for many common bioinformatics tasks.
+You can install an nf-core module from a central community repository into a Nextflow pipeline with a single command.
+You can then quickly integrate the Nextflow process into your own workflow due to the standardised internal structure of the module, matching upstream process outputs and downstream inputs.
+
+By using these pre-made community-contributed modules, you can vastly reduce your workflow development time by reducing the need to 're-invent' the wheel for many common bioinformatics tasks.
 
 ### Scope
 
@@ -26,7 +27,7 @@ The scope of this training covers:
 By the end of this training, you will:
 
 - Understand the different file components of an nf-core/module
-- Understand the standard of nf-core modules
+- Understand the standards specification behind nf-core modules
 - Know where to find documentation of developing nf-core modules
 - Know how to write an nf-core module
 - Know how to write nf-test tests for your nf-core module
@@ -48,5 +49,7 @@ This training has the following chapters
 - Chapter 7: [Development workflow](/docs/tutorials/nf-core_training/writing-nf-core-modules/chapter-7-development-workflow)
 - Chapter 8: [Using nf-core modules in pipelines](/docs/tutorials/nf-core_training/writing-nf-core-modules/chapter-8-using-in-pipelines)
 
+:::tip
 We recommend reading chapters 2-7 once through _before_ developing the module.
 When you get to chapter 7, you can then go back to chapter 2 to start developing the module itself.
+:::
