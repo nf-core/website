@@ -1,0 +1,258 @@
+---
+title: Hackathon - May 2024 (Boston)
+subtitle: An in-person hackathon held in Boston
+type: hackathon
+announcement:
+    start: 2024-04-22T12:00:00-05:00
+startDate: "2024-05-21"
+startTime: "10:00-04:00"
+endDate: "2024-05-22"
+endTime: "13:00-04:00"
+locations:
+    - name: Aloft Boston Seaport District, Boston, America
+      geoCoordinates: [42.34347, -71.04489]
+---
+
+import Profile from "@components/GitHubProfilePictureExtended.svelte";
+import HackathonGroup from "@components/event/HackathonGroup.astro";
+import { YouTube } from "@astro-community/astro-embed-youtube";
+
+# Welcome
+
+Join us in person for the May 2024 nf-core hackathon!
+
+This hackathon will be held in advance of the _**Nextflow Summit 2024**_ in Boston, America 🇺🇸.
+You can find out more information about the summit at https://summit.nextflow.io/2024/boston/.
+
+The Boston nf-core hackathon will be in-person only, without the hybrid / online features that we have used in other events (e.g., Gather Town).
+Anyone is free to join remotely, as we will be using the same GitHub Project boards and Slack communication as usual.
+However, please be aware, we won't actively be trying to run this as a hybrid event.
+
+# Venue: Aloft Boston Seaport District
+
+The hackathon will be taking place in at the [Aloft Boston Seaport District](https://maps.app.goo.gl/5MggV9yLqsTqoSgXA)
+
+More information about this venue can be found on the [Nextflow Summit website](https://summit.nextflow.io/2024/boston/).
+
+<a class="btn btn-success btn-lg mb-3" href="https://maps.app.goo.gl/5MggV9yLqsTqoSgXA">
+    <span>
+        <i class="fa-solid fa-map-pin me-2"></i>
+        <span>Google Maps</span>
+    </span>
+</a>
+
+# Schedule
+
+The hackathon will run from **Tuesday May 21** to **Wednesday May 22**.
+
+<div class="table-responsive">
+    <table class="table table-hover table-sm table-bordered">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Tuesday, May 21</th>
+                <th>Wednesday, May 22</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>09.00 AM</td>
+                <td>Registration and pastries</td>
+                <td>Arrivals and pastries</td>
+            </tr>
+            <tr>
+                <td>10.00 AM</td>
+                <td>Hackathon welcome</td>
+                <td rowspan="2">Hackathon Session 3</td>
+            </tr>
+            <tr>
+                <td>10.30 AM</td>
+                <td>Hackathon Session 1</td>
+            </tr>
+            <tr>
+                <td>01.00 PM</td>
+                <td>Lunch</td>
+                <td>Lunch</td>
+            </tr>
+            <tr>
+                <td>02.00 PM</td>
+                <td>Hackathon Session 2</td>
+                <td>Hackathon Session 4</td>
+            </tr>
+            <tr>
+                <td>04.45 PM</td>
+                <td>Hackathon daily sync</td>
+                <td>Hackathon wrap-up</td>
+            </tr>
+            <tr>
+                <td>05.00 PM</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>06.00 PM</td>
+                <td>Social event</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+# Pre-hackathon checklist
+
+Ensure you have read/signed up/joined/installed the following resources before the hackathon.
+
+- Check you agree with the [Code of Conduct](https://nf-co.re/code_of_conduct) of the event
+- If you haven't already, set up a GitHub account and [join the nf-core GitHub organization](https://nf-co.re/join#github)
+- Join the nf-core slack and the [#hackathon-may-2024 channel](https://nfcore.slack.com/archives/C074MJ1PLKA)
+- Have [Nextflow](https://nextflow.io/), [nf-core/tools](https://nf-co.re/tools/#installation), and one of [Docker](https://docs.docker.com/get-docker/), Singularity, or [Conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)/[Mamba](https://mamba.readthedocs.io/en/latest/installation.html) installed on your computer
+- Familiarize yourself with the [documentation on the nf-core website](https://nf-co.re/docs)
+
+# How to hack!
+
+We will be a lot of people working in parallel during this hackathon, so to stay organized we have a recommended workflow:
+
+1. :speech_balloon: Chat with your group to get an overview of what is going on.
+2. <i class="fab fa-slack"></i> Join the relevant Slack channel(s) to stay up to date and discuss with your project
+   members.
+
+    - [#hackathon-may-2024](https://nfcore.slack.com/archives/C074MJ1PLKA) **(everyone should join this channel)**
+    - [#hackathon-may-2024-nf-test](https://nfcore.slack.com/archives/C074BEKHFMF)
+    - [#hackathon-may-2024-pipelines](https://nfcore.slack.com/archives/C074BETFN0H)
+    - [#hackathon-may-2024-modules](https://nfcore.slack.com/archives/C073YLY2YQK)
+    - [#hackathon-may-2024-infrastructure](https://nfcore.slack.com/archives/C073S5Z9YNA)
+
+3. <i class="fab fa-github"></i> Find a task to work on using the [GitHub Project
+   Board](https://github.com/orgs/nf-core/projects/65/views/1). - If you have something you want to do that's not there,
+   please make an issue and add it to the board.
+4. 🙋 Assign yourself to the issue that you're currently working on (preferably one issue at a time).
+    - This is so that multiple people don't accidentally work on the same task.
+5. :fast_forward: When you're done, make a pull request with your changes.
+    - Link it to the issue so that the issue closes when merged.
+6. :page_facing_up: Describe your work on the Google slides for the project and tell the group! :tada:
+7. :memo: While waiting to receive a review - try reviewing someone else's PR!
+    - [Module review checklist](https://nf-co.re/docs/contributing/modules#new-module-guidelines-and-pr-review-checklist)
+    - [Subworkflow review checklist](https://nf-co.re/docs/contributing/subworkflows#new-subworkflow-guidelines-and-pr-review-checklist)
+8. :recycle: Repeat!
+
+# Topics
+
+The hackathon is a great opportunity to work on any nf-core related work that you have been putting off or didn't have time for.
+To help you find like-minded people or possible things to work on, we will have the following topics (formally known as groups):
+
+<HackathonGroup title="nf-test" color="#238636" leaders={{
+    'adamrtalbot': 'Adam Talbot'
+}}>
+    The nf-test group will focus on implementing nf-test within nf-core modules, subworkflows, and pipelines.
+
+    Suggested projects / teams:
+
+    - Adding nf-test to existing pipelines
+    - Adding nf-test to modules
+    - Adding nf-test to subworkflows
+    - Improving nf-test documentation and the nf-core documentation on testing
+
+</HackathonGroup>
+
+<HackathonGroup title="Pipelines" color="#bf4b8a" leaders={{
+    'maxulysse': 'Maxime Garcia'
+}}>
+    The pipelines group will focus on any pipeline-related work.
+    This could be a DSL2 conversion of a pipeline, a new or improved feature for a pipeline,
+    or an entirely new pipeline
+    (please let us register a new pipeline already before the hackathon,
+    following [our guidelines](https://nf-co.re/docs/contributing/adding_pipelines#before-you-start)).
+    These are typically led by the main pipeline developers if they also attend the hackathon.
+
+    Suggested projects / teams:
+
+    - Implementing nf-test within pipelines
+    - Adding new functionality to existing pipelines
+    - Updating pipelines to use the latest nf-core template, via template syncs
+    - Teams formed around work on specific pipelines
+
+</HackathonGroup>
+
+<HackathonGroup title="Modules & Subworkflows" color="#1f6feb" leaders={{
+    'FloWuenne': 'Florian Wuennemann'
+}}>
+    The modules group welcomes anyone who wants to work on current or new modules + subworkflows
+    at [nf-core/modules](https://github.com/nf-core/modules).
+
+    Suggested projects / teams:
+
+    - Implementing nf-test for modules
+    - Creating new modules, see issue list
+    - Stubs for all modules
+
+</HackathonGroup>
+
+<HackathonGroup title="Infrastructure" color="#9e6a03" leaders={{
+    'edmundmiller': 'Edmund Miller'
+}}>
+    The nf-core website and central tooling are always being improved.
+    If you'd like to make a difference to nf-core without writing any Nextflow code,
+    this is the group for you!
+
+    Suggested projects / teams:
+
+    - Subworkflows nf-core/tools infrastructure
+    - Template customisation with feature flags
+    - Stripped down/customisable nf-core pipeline template
+    - New nf-core website features (if you have some expierence with modern JavaScript or want to learn)
+    - Improve the devOps for nf-core (GitHub actions, CI/CD, etc.)
+    - Add Bioconda ARM support
+
+</HackathonGroup>
+
+# Socials activities
+
+During the hackathon, we will have light-hearted fun and games!
+Special prizes are up for grabs for the winners!
+
+- 🏌️ Puttschack mini golf (Tuesday, May 21, 06:00 PM – 09:00 PM)
+    - Join us for an evening of tech-infused mini golf, networking, food and drinks at Puttschack!
+    - Connect with fellow participants of the Nextflow nf-core hackathon and training while enjoying a relaxed and entertaining atmosphere.
+    - Complimentary food and drinks will be provided.
+- ❓ Quiz (Wednesday, May 22, 02:00 PM – 02:30 PM)
+    - Join us for the nf-core hackathon quiz.
+    - Questions will test your nf-core and general knowledge.
+    - Winners will receive a prize!
+
+All social activities are of course optional, but we hope to see as many people joining in as possible.
+
+# Other helpful resources
+
+## Bytesize talks
+
+There are many talks about Nextflow and nf-core on the [nf-core Bytesize playlist](https://www.youtube.com/watch?v=2hEYtrGXrKo&list=PL3xpfTVZLcNiF4hgkW0yXeNzr0d35qlIB&ab_channel=nf-core).
+In particular, the talk about [using git and GitHub](https://www.youtube.com/watch?v=gTEXDXWf4hE&list=PL3xpfTVZLcNiJTzhWPUY4HmP-YpiAcdNo&ab_channel=nf-core) in an nf-core environment may be useful.
+
+## Tutorials and docs on the nf-core website
+
+**Help with coding and nf-core tools**
+
+- Learn how to use the [Gitpod environment](https://nf-co.re/docs/tutorials/gitpod/overview)
+- [Install nf-core/tools ](https://nf-co.re/docs/nf-core-tools/installation)
+- Overview of all nf-core/tools command for [pipelines](https://nf-co.re/docs/nf-core-tools/pipelines/list), [modules](https://nf-co.re/docs/nf-core-tools/modules/list) and [subworkflows](https://nf-co.re/docs/nf-core-tools/subworkflows/list)
+
+**Adding to pipelines**
+
+- [Adding new modules to a pipeline](https://nf-co.re/docs/tutorials/nf-core_components/adding_modules_to_pipelines) to an existing pipeline.
+- How to write [new modules / subworkflows](https://nf-co.re/docs/tutorials/nf-core_components/components).
+
+**Creating a new pipeline**
+
+- [How to create a new pipeline that won't be added to nf-core](https://nf-co.re/docs/tutorials/adding_a_pipeline/creating_a_pipeline)
+- [Guidelines for developing a pipeline for external use](https://nf-co.re/docs/guidelines/external_use)
+- [Guide for adding a new pipeline to nf-core](https://nf-co.re/docs/tutorials/adding_a_pipeline/overview)
+
+# Code of conduct
+
+Please note that our [Code of Conduct](https://nf-co.re/code_of_conduct) applies to the Hackathon, and all participants need to abide by our guidelines to participate.
+We should all feel responsible for making nf-core events safe and fun for everyone.
+
+You can also report any CoC violations directly to [safety@nf-co.re](mailto:safety@nf-co.re).
+Our safety officers will contact you to follow up on your report.
+
+In case of an immediate perceived threat at the hackathon, please reach out to any of staff or organizers on site.

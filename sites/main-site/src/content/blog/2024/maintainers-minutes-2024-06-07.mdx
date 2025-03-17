@@ -1,0 +1,87 @@
+---
+title: "Maintainers Minutes: June 2024"
+subtitle: "Keeping you informed of the latest maintainers discussions"
+pubDate: 2024-06-07T17:00:00+02:00
+headerImage: "/assets/images/blog/maintainers-minutes-2024-06-07/maintainers-wide-sad.png"
+headerImageAlt: "Sad looking cartoon yellow rubber duck with nf-core logo badge on it's body, with a large blue tear coming out of it's eye."
+authors:
+    - "jfy133"
+label:
+    - "maintainers"
+---
+
+import Profile from "@components/GitHubProfilePictureExtended.svelte";
+import sad_maintainers_duck from "@assets/images/blog/maintainers-minutes-2024-06-07/sad-maintainers-duck.png";
+import { Image } from "astro:assets";
+
+In this new initiative, the 'Maintainers Minutes' aims to further give insight into the workings of the [nf-core maintainers team](/governance#maintainers) by providing brief summaries of the monthly Maintainer's team meetings.
+
+## Goodbyes and welcomes!
+
+<Image
+    src={sad_maintainers_duck}
+    class="d-block m-auto"
+    width={400}
+    density={[1.5, 2]}
+    alt="Sad looking cartoon yellow rubber duck with nf-core logo badge on its body, with a large blue tear coming out of its eye."
+/>
+
+The maintainers team has been now running for over a year and half, and it is time to expand the team to keep up with the community!
+
+We first would like to say thank you to the following people for their service and contributions during their terms, and will be becoming maintainers team alumni:
+
+- Louisa Perelo
+- Daniel Lundin
+- Matthieu Muffato
+- Alex Peltzer
+
+And we are happy to announce that the following people were nominated by current members of the team as being highly active community members, and have accepted to join in keeping the community healthy:
+
+<Profile username="CarsonJM">Carson Miller</Profile>
+<Profile username="FloWuenne">Florian Wuennemann</Profile>
+<Profile username="itrujnara">Igor Trujnara</Profile>
+<Profile username="Joon-Klaps">Joon Klaps</Profile>
+<Profile username="LilyAnderssonLee">Lili Andersson-Li</Profile>
+<Profile username="luisas">Luisa Santus</Profile>
+<Profile username="mahesh-panchal">Mahesh Binzer-Panchal</Profile>
+<Profile username="nictru">Nico Trummer</Profile>
+
+## Still naming things...
+
+We once again again spent some time talking about the naming of subworkflows, talking about the tricky balance of keeping findability but conciseness in understanding what a particular subworkflow does.
+
+There was general agreement that actually the _length_ of the subworkflow name isn't as important as ensuring knowing exactly what the subworkflow does.
+In some cases it was argued that describing every operation and tool of the subworkflow was unnecessary and made it harder to understand.
+
+One factor brought up is in complex subworkflows the current '\_$tool` suffix can make subworkflow names very long, and doesn't provide much information compared to active 'verbs'.
+However it was countered that you may have multiple subworkflows that do similar things (e.g. deduplication), so having the tool name performing the activity can be useful.
+
+We agreed as 'homework' for each team member to independently rename the '[preprocess_rnaseq](https://github.com/nf-core/modules/blob/master/subworkflows/nf-core/preprocess_rnaseq/main.nf)', in their preferred manner, and see if we can find a majority consensus of a naming specification..
+
+If you also want to participate, please let us know of your own ideas on the [#subworkflow](https://nfcore.slack.com/archives/C03D38JNFNJ) channel on the nf-core slack!
+
+## Improving new pipeline proposals experience
+
+A point recently raised by a few of core team members has been that the experiences of people submitting new pipeline proposals can be quite variable.
+Currently new proposals require two core team members to approve the proposal (and you guessed it, the name!).
+However, as the community grows so does the number of proposals. As the number of proposals increase, so does the diversity of the types of analyses the proposals are addressing.
+This increased workload, coupled with the backgrounds of the core team not being able to cover all areas of biology, has lead to a slow down and somtimes 'stalling' of proposals while waiting for core team members to make a decision.
+
+To improve the experience of proposers by decreasing turnaround time, and reducing the load on the core team on evaluating proposals outside their 'comfort zone', the maintainers team has agreed to help monitor the #new-pipelines-proposal channel and evaluate each new submission.
+From now one each proposal can have one core-team member and one maintainer approval for a pipeline to be accepted!
+
+## Infrastructure Team Updates
+
+Júlia updated us on a couple of developments happening from the infrastructure team.
+
+Since the recent `2.14.0` release, both the version of nf-core tools used for setting up a pipeline and which version of the nf-core template is currently being used will be recorded in each pipeline.
+
+A discussion on how to reformat the nf-core modules `meta.yml` file was had, mainly in regards to better displaying metadata associated to input channels with tuples.
+
+Maxime brought up a long running request to have additional fields for better recording publication information (e.g. bibtex information), to potentially allow auto-generation of methods texts with proper attribution of tools.
+
+## Upcoming discussions
+
+Points for the next agenda will to confirm the experience of the first office hours and do our 'preprocess_rna' subworkflow renaming homework.
+
+\- :heart: from your #maintainers team!

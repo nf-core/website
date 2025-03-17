@@ -6,26 +6,50 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
-        uses: actions/checkout@1d96c772d19495a3b5c517cd2bc0cb401ea0529f # v4
-      - name: Set up Python
-        uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d # v5
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
-          python-version: 3.x
+          # Use @nf-core-bot token to check out so we can push without a PR
+          token: ${{ secrets.NF_CORE_BOT_AUTH_TOKEN }}
+
+      # Add Node.js setup step
+      - name: Setup Node.js
+        uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a # v4
+        with:
+          node-version: "20"
+
+      - name: Set up Python
+        uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38 # v5
+        with:
+          python-version: 3.9
+
+      - name: Remove type:module from package.json
+        run: |
+          if [ -f "$GITHUB_WORKSPACE/package.json" ]; then
+            sed -i '/"type": "module"/d' "$GITHUB_WORKSPACE/package.json"
+            echo "Removed type:module from package.json"
+          fi
 
       - name: Install Nextflow
-        uses: nf-core/setup-nextflow@561fcfc7146dcb12e3871909b635ab092a781f34 # v2
+        uses: nf-core/setup-nextflow@v2
+
+      - name: Install nf-test
+        uses: nf-core/setup-nf-test@v1
 
       - name: Install nf-core/tools
         run: pip install nf-core
 
       - name: Generate terminal images with rich-codex
-        # Change back to @v1 when v1.2.7 is released
-        uses: ewels/rich-codex@main
+        uses: ewels/rich-codex@b3dfc37dd668b24d9a00ca52f1cbc4ac6e7d0991 # v1
         env:
           COLUMNS: 100
-          HIDE_PROGRESS: 'true'
+          HIDE_PROGRESS: "true"
           NXF_ANSI_LOG: false
         with:
-          commit_changes: 'true'
+          commit_changes: "true"
           terminal_width: 100
-          skip_git_checks: 'true'
+          skip_git_checks: "true"
+          search_include: ".github/workflows/rich-codex.yml"
+
+      - name: Restore package.json
+        run: |
+          git checkout "$GITHUB_WORKSPACE/package.json"

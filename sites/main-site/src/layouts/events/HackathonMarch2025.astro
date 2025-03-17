@@ -1,0 +1,43 @@
+---
+import Admonition from "@components/Admonition.astro";
+import Leaflet from "@components/Leaflet.svelte";
+
+const { frontmatter } = Astro.props;
+
+const map_location = frontmatter.locations?.[0]
+    ? [
+          {
+              location: frontmatter.locations[0].geoCoordinates,
+              name: frontmatter.locations[0].name,
+              url: frontmatter.url,
+          },
+      ]
+    : [];
+---
+
+<h1>{frontmatter.shortTitle}</h1>
+
+<Admonition title="tip" titleText="Hackathon - March 2025">
+    <p class="small text-body-secondary">
+        This is a subpage of the main event page: <a href="/events/2025/hackathon-march-2025">Hackathon - March 2025</a
+        >.
+    </p>
+    <p class="small text-body-secondary">
+        See the main event page for event registration and information about the event.
+    </p>
+</Admonition>
+
+{
+    frontmatter.locations?.[0] && (
+        <Admonition title="info" titleText="Location">
+            <h5 class="mt-0">{frontmatter.locations[0].name}</h5>
+            <p>{frontmatter.locations[0].address}</p>
+            <p>
+                <a href={frontmatter.locations[0].links[0]}>{frontmatter.locations[0].links[0]}</a>
+            </p>
+            {/* <Leaflet locations={map_location} client:only="svelte" /> */}
+        </Admonition>
+    )
+}
+
+<slot />

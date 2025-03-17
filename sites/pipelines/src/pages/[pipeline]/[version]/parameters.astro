@@ -1,0 +1,87 @@
+---
+import SchemaListing from "@components/schema/SchemaListing.svelte";
+import SidebarToc from "@components/sidebar/SidebarToc.svelte";
+import SchemaListingTocButtons from "@components/schema/SchemaListingTocButtons.svelte";
+import PipelinePageLayout from "@layouts/PipelinePageLayout.astro";
+import pipelines_json from "@public/pipelines.json";
+import { getEntry } from "astro:content";
+
+export function getStaticPaths() {
+    var paths: {
+        params: { pipeline: string; version: string };
+        props: { versions: string[]; md_files: string[]; description: string | null };
+    }[] = [];
+    pipelines_json.remote_workflows.forEach((pipeline) => {
+        const releases = pipeline.releases;
+        const extended_releases = [
+            ...releases,
+            { tag_name: "latest", doc_files: releases[0].doc_files, has_schema: releases[0].has_schema },
+        ];
+        extended_releases.forEach((release) => {
+            const md_files = release.doc_files.map((file) =>
+                file.replace("docs/", "").replace(".mdx", "").replace(".md", ""),
+            );
+            paths.push({
+                params: {
+                    pipeline: pipeline.name,
+                    version: release.tag_name,
+                },
+                props: {
+                    versions: releases.map((release) => release.tag_name),
+                    md_files: md_files,
+                    description: pipeline.description,
+                },
+            });
+        });
+    });
+    return paths;
+}
+const { pipeline, version } = Astro.params;
+
+let { versions, md_files, description } = Astro.props;
+
+const version_tag_name = version === "latest" ? versions[0] : version;
+
+// Simply await the getEntry result directly
+const schemaEntry = await getEntry("pipelines", `${pipeline}/${version_tag_name}/nextflow_schema`);
+const schema = schemaEntry ? JSON.parse(schemaEntry.rendered?.html ?? "{}") : {};
+
+// Create properly typed headings array
+let headings: { slug: string; text: string; depth: number; fa_icon?: string; hidden?: boolean }[] = [];
+
+// Check if we have definitions in the schema
+const definitions = schema.definitions || schema.$defs || schema.properties || {};
+if (Object.keys(definitions).length > 0) {
+    headings = Object.entries(definitions).map(([key, value]: [string, any]) => ({
+        slug: key.replaceAll("_", "-"),
+        text: value?.title || key,
+        depth: 1,
+        fa_icon: value?.fa_icon || "",
+        hidden: value?.properties && Object.values(value.properties).every((prop: any) => prop?.hidden),
+    }));
+}
+---
+
+<PipelinePageLayout
+    pipeline={pipeline}
+    meta_title={pipeline + ": Parameters"}
+    subtitle={String(description || "")}
+    headings={headings}
+    version={version}
+    versions={versions}
+    tabItems={md_files}
+    showHiddenBtn={true}
+>
+    <div class="row">
+        <div class="col-12 col-md-10">
+            <SchemaListing {schema} client:load />
+        </div>
+        <div class="col-12 col-md-2 toc order-first order-md-last pe-0">
+            <SidebarToc {headings} client:idle>
+                <SchemaListingTocButtons client:visible slot="defaultContent" />
+            </SidebarToc>
+        </div>
+    </div>
+</PipelinePageLayout>
+
+<style lang="scss"></style>

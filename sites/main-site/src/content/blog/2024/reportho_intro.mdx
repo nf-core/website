@@ -1,0 +1,70 @@
+---
+title: "A gentle introduction to nf-core/reportho"
+subtitle: "The nf-core pipeline for comparing ortholog predictions"
+headerImage: "/assets/images/blog/reportho_intro/reportho_tube_map_wide.png"
+headerImageAlt: "Tube map of the reportho pipeline"
+pubDate: 2024-07-19T00:19:00+01:00
+authors:
+    - "itrujnara"
+label:
+    - "pipeline"
+    - "bioinformatics"
+    - "genomics"
+    - "orthologs"
+    - "public databases"
+---
+
+import reportho_tube_map from "@assets/images/blog/reportho_intro/reportho_tube_map.png";
+import train_tracks from "@assets/images/blog/reportho_intro/train_tracks.png";
+import the_world_if from "@assets/images/blog/reportho_intro/the_world_if.png";
+
+import { Image } from "astro:assets";
+
+# Orthologs matter
+
+Orthologs matter. We need them for a variety of reasons. They are key to understanding taxonomy, protein function, evolutionary constraints, and probably more. We would like to have a universal predictor of orthologs. However, the reality could be more bright. Even though we have a wide variety of good ortholog predictors, their results are quite different in real scenarios.
+
+# The Nightmare
+
+<Image
+    class="d-block m-auto"
+    src={train_tracks}
+    alt="A very complicated layout of railway tracks with multiple signs and signals"
+/>
+Imagine you need to find the orthologs of a protein for your study. What do you do? You might decide to get them from
+OMA because you heard it is good. Or maybe EggNOG because your boss said so. If you want to be accurate, you might try
+to get the predictions from multiple sources and compare them. However, you will probably run into problems. The
+interfaces are different, the lists are hard to obtain, and the output formats are tricky to compare. Just looking at
+this might make you go home and cry.
+
+# The Dream
+
+<Image
+    class="d-block m-auto"
+    src={the_world_if}
+    alt="A futuristic city with flying vehicles, captioned in boldface with 'The world if reportho'"
+/>
+Now imagine you could get all the results you need at the click of a button. Just type in an identifier, press “Go” and
+get a neat comparison of all the public predictions. That’s how we imagine nf-core/reportho. We want to isolate all the
+complexity of queries, access modes, and data formats, all while giving you maximum flexibility.
+
+# How does it work?
+
+<Image class="d-block m-auto" src={reportho_tube_map} alt="A tube map presenting the steps of the pipeline" />
+The workflow is quite straightforward. The pipeline takes a UniProt identifier as input, queries all available databases
+for ortholog predictions, puts them in a homogeneous format, and performs comparisons. Working with a new sequence not
+annotated in UniProt? No problem! We will run BLAST for you and find a close match in the databases. Once you get a list
+of orthologs, you can perform MSA and phylogeny reconstruction with some of the most popular tools on the market. And,
+to top it all off, you get a bunch of useful and tidy reports: [a detailed
+one](https://nf-co.re/reportho/1.0.1/results/reportho/results-42b305199b903365b71e7a8554cfcc6a822da8a8/report/BicD2_dist/index.html)
+for each query protein (NB: works better if you download the folder and use `run.sh`), plus [a summary
+report](https://nf-core-awsmegatests.s3-eu-west-1.amazonaws.com/reportho/results-42b305199b903365b71e7a8554cfcc6a822da8a8/multiqc/multiqc_report.html)
+of all the queries you used.
+
+# Supported databases
+
+Even though we can combine many formats, there are cases where the task becomes too difficult. As of writing, we support 4 databases: [EggNOG](https://eggnog5.embl.de), [OMA](https://omabrowser.org), [OrthoInspector](https://lbgi.fr/orthoinspector/), and [PANTHER](https://pantherdb.org). We offer two ways to access databases. If you’re working with a small number of queries, you can use API calls, limiting the amount of data saved on your machine. This is currently possible for OMA, OrthoInspector, and PANTHER. If you need to analyze large-scale data or you have doubts about runtime internet access, it is possible to provide the pipeline with local snapshots of the databases instead. These are available for EggNOG, OMA, and PANTHER.
+
+# The present and the future
+
+The pipeline has already had its first release and is available on [the nf-core website](nf-co.re/reportho). We have many ideas to expand the pipeline, but we need your feedback to make it exactly what you need. Try the pipeline today, enjoy hassle-free ortholog research, and make sure to send us your thoughts!

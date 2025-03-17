@@ -1,0 +1,73 @@
+---
+import ResultsLayout from "@layouts/ResultsLayout.astro";
+import { getCollection } from "astro:content";
+
+// Define the entry type to match the new structure
+type PipelineResultEntry = {
+    id: string;
+    data: {
+        pipeline: string;
+        version: string;
+        results_path: string;
+        content: {
+            Key: string;
+            LastModified: Date;
+            ETag: string;
+            Size: number;
+            StorageClass: string;
+        }[];
+        commonPrefixes: {
+            Prefix: string;
+        }[];
+    };
+    collection: string;
+};
+
+export async function getStaticPaths() {
+    try {
+        // Get all entries from the pipeline-results collection
+        // Use type assertion to bypass TypeScript checking
+        const entries = (await getCollection("pipeline-results" as any)) as PipelineResultEntry[];
+        // Map each entry to a path and props
+        return entries.map((entry) => {
+            // Access data directly from entry.data (no nested data property)
+            const { pipeline, version, results_path, content, commonPrefixes } = entry.data;
+            console.debug(
+                `Creating path for ${pipeline}/${version}/${results_path} with ${content.length} files and ${commonPrefixes.length} directories`,
+            );
+
+            return {
+                params: {
+                    pipeline,
+                    version,
+                    results_path,
+                },
+                props: {
+                    content,
+                    commonPrefixes,
+                },
+            };
+        });
+    } catch (error) {
+        console.error("Error generating static paths:", error);
+        return [];
+    }
+}
+
+// Get the params and props
+const { pipeline, version, results_path } = Astro.params;
+const { content, commonPrefixes } = Astro.props;
+
+// Redirect dev version to pipeline page
+if (version === "dev") {
+    return Astro.redirect(`/${pipeline}/`);
+}
+---
+
+<ResultsLayout
+    pipeline={pipeline || ""}
+    version={version || ""}
+    path={results_path || ""}
+    bucketContents={content}
+    commonPrefixes={commonPrefixes}
+/>
