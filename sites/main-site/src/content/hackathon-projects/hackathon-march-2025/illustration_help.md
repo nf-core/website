@@ -9,7 +9,7 @@ leaders:
     name: Franziska Bonath
     slack: "https://nfcore.slack.com/team/UGP9YUCKD"
   nvnieuwk:
-    name:Nicolas Vannieuwkerke
+    name: Nicolas Vannieuwkerke
     slack: "https://nfcore.slack.com/team/U03CKGEU3LZ"
 ---
 
