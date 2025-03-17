@@ -22568,6 +22568,40 @@
             ]
           },
           {
+            "single_copy_faa": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*-busco/*/run_*/busco_sequences/single_copy_busco_sequences/*.faa": {
+                  "type": "file",
+                  "description": "Single copy .faa sequence files",
+                  "pattern": "*-busco/*/run_*/busco_sequences/single_copy_busco_sequences/*.faa"
+                }
+              }
+            ]
+          },
+          {
+            "single_copy_fna": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*-busco/*/run_*/busco_sequences/single_copy_busco_sequences/*.fna": {
+                  "type": "file",
+                  "description": "Single copy .fna sequence files",
+                  "pattern": "*-busco/*/run_*/busco_sequences/single_copy_busco_sequences/*.fna"
+                }
+              }
+            ]
+          },
+          {
             "versions": [
               {
                 "versions.yml": {
@@ -67752,6 +67786,21 @@
                 "type": "file",
                 "description": "Sequence dictionary of fastea file",
                 "pattern": "*.dict"
+              }
+            }
+          ],
+          [
+            {
+              "meta5": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+              }
+            },
+            {
+              "gzi": {
+                "type": "file",
+                "description": "Genome index file only needed when the genome file was compressed with the BGZF algorithm.",
+                "pattern": "*.gzi"
               }
             }
           ]
@@ -131150,7 +131199,7 @@
                 }
               },
               {
-                "results/*": {
+                "${prefix}_results/*": {
                   "type": "directory",
                   "description": "Directory containing PIRATE result files",
                   "pattern": "*/*"
@@ -131167,7 +131216,7 @@
                 }
               },
               {
-                "results/core_alignment.fasta": {
+                "${prefix}_results/core_alignment.fasta": {
                   "type": "file",
                   "description": "Core-genome alignment produced by PIRATE (Optional)",
                   "pattern": "*.{fasta}"
@@ -131188,7 +131237,8 @@
           }
         ],
         "authors": [
-          "@rpetit3"
+          "@rpetit3",
+          "@zachary-foster"
         ],
         "maintainers": [
           "@rpetit3"
