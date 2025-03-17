@@ -30,9 +30,7 @@ It also assumes:
 - You have a command-line based tool in mind to make an nf-core module
 - This tool is already installable via bioconda
 
-:::info
-
-## Note
+:::note
 
 This training document was written and tested with
 
