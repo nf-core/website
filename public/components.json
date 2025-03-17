@@ -9945,7 +9945,7 @@
         ],
         "output": [
           {
-            "fields": [
+            "profiles": [
               {
                 "meta": {
                   "type": "map",
@@ -9953,10 +9953,17 @@
                 }
               },
               {
-                "*.tiff": {
+                "*-dfp.tiff": {
                   "type": "file",
-                  "description": "Tiff fields for dark and flat field illumination correction",
-                  "pattern": "*.{tiff,tif}"
+                  "description": "Tiff fields for dark field illumination correction",
+                  "pattern": "*.{tiff}"
+                }
+              },
+              {
+                "*-ffp.tiff": {
+                  "type": "file",
+                  "description": "Tiff fields for flat field illumination correction",
+                  "pattern": "*.{tiff}"
                 }
               }
             ]
@@ -32240,6 +32247,201 @@
       }
     },
     {
+      "name": "clair3",
+      "path": "modules/nf-core/clair3/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "clair3",
+        "description": "Clair3 is a germline small variant caller for long-reads",
+        "keywords": [
+          "germline",
+          "variant",
+          "Indel",
+          "SNV"
+        ],
+        "tools": [
+          {
+            "clair3": {
+              "description": "Clair3 is a small variant caller for long-reads. Compare to PEPPER (r0.4), Clair3 (v0.1) shows a better SNP F1-score with ≤30-fold of ONT data (precisionFDA Truth Challenge V2), and a better Indel F1-score, while runs generally four times faster. Clair3 makes the best of both worlds of using pileup or full-alignment as input for deep-learning based long-read small variant calling. Clair3 is simple and modular for easy deployment and integration.",
+              "homepage": "https://github.com/HKU-BAL/Clair3",
+              "documentation": "https://github.com/HKU-BAL/Clair3",
+              "tool_dev_url": "https://github.com/HKU-BAL/Clair3",
+              "doi": "10.1038/s43588-022-00387-x",
+              "licence": [
+                "BSD-3-clause"
+              ],
+              "identifier": "biotools:clair3"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Sorted BAM/CRAM/SAM file",
+                "pattern": "*.{bam,cram,sam}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_25722"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2573"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3462"
+                  }
+                ]
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "BAM index file",
+                "pattern": "*.bai"
+              }
+            },
+            {
+              "model": {
+                "type": "directory",
+                "description": "collection of files used in a trained Clair3 model"
+              }
+            },
+            {
+              "platform": {
+                "type": "string",
+                "description": "val in ['hifi','ont', 'ilmn'] to indicate pacbio, ONT, or illumina respectively"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "reference": {
+                "type": "file",
+                "description": "reference fasta file",
+                "pattern": "*.fasta"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "index": {
+                "type": "file",
+                "description": "reference index file",
+                "pattern": "*.fai"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "vcf": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n",
+                  "pattern": "*.{vcf,vcf.gz}"
+                }
+              },
+              {
+                "*merge_output.vcf.gz": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n",
+                  "pattern": "*.{vcf,vcf.gz}"
+                }
+              }
+            ]
+          },
+          {
+            "tbi": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*merge_output.vcf.gz.tbi": {
+                  "type": "file",
+                  "description": "index for vcf files",
+                  "pattern": "*.{vcf.tbi,vcf.tbi.gz}"
+                }
+              }
+            ]
+          },
+          {
+            "phased_vcf": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*phased_merge_output.vcf.gz": {
+                  "type": "file",
+                  "description": "phased vcf",
+                  "pattern": "*.{vcf,vcf.gz}"
+                }
+              }
+            ]
+          },
+          {
+            "phased_tbi": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*phased_merge_output.vcf.gz.tbi": {
+                  "type": "file",
+                  "description": "index for vcf files",
+                  "pattern": "*.{vcf.tbi,vcf.tbi.gz}"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@robert-a-forsyth"
+        ],
+        "maintainers": [
+          "@robert-a-forsyth"
+        ]
+      }
+    },
+    {
       "name": "clame",
       "path": "modules/nf-core/clame/meta.yml",
       "type": "module",
@@ -38114,8 +38316,8 @@
             {
               "image": {
                 "type": "file",
-                "description": "ome.tif/tif file",
-                "pattern": "*.{ome.tif,tif}"
+                "description": "OME-TIFF or TIFF file for core detection and extraction.",
+                "pattern": "*.{ome.tif,tif,tiff}"
               }
             }
           ]
@@ -38125,9 +38327,8 @@
             "cores": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "Complete/Incomplete tissue cores",
-                  "pattern": "*.{tif}"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -38143,13 +38344,12 @@
             "masks": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "Binary masks for the Complete/Incomplete tissue cores",
-                  "pattern": "./masks/*.{tif}"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
-                "./masks/": {
+                "masks/*.tif": {
                   "type": "file",
                   "description": "Binary masks for the Complete/Incomplete tissue cores",
                   "pattern": "./masks/*.{tif}"
@@ -38161,9 +38361,8 @@
             "tma_map": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "A TMA map showing labels and outlines",
-                  "pattern": "TMA_MAP.tif"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -38179,9 +38378,8 @@
             "centroids": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "A text file listing centroids of each core in format Y, X",
-                  "pattern": "centroidsY-X.txt"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -76023,7 +76221,7 @@
                 }
               },
               {
-                "*.vcf.gz": {
+                "${prefix}.vcf.gz": {
                   "type": "file",
                   "description": "Concatenated VCF file",
                   "pattern": "*.{vcf.gz}"
@@ -76040,7 +76238,7 @@
                 }
               },
               {
-                "*.tbi": {
+                "${prefix}.vcf.gz.tbi": {
                   "type": "file",
                   "description": "Concatenated VCF file index",
                   "pattern": "*.{tbi}"
@@ -86873,7 +87071,7 @@
             {
               "meta": {
                 "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
               }
             },
             {
@@ -86882,42 +87080,28 @@
                 "description": "h5 file containing image stack to classify file",
                 "pattern": "*.{h5,hdf5}"
               }
-            }
-          ],
-          [
-            {
-              "meta2": {
-                "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-              }
-            },
-            {
-              "ilp": {
-                "type": "file",
-                "description": "Trained ilastik .ilp project file",
-                "pattern": "*.{ilp}"
-              }
-            }
-          ],
-          [
-            {
-              "meta3": {
-                "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-              }
             },
             {
               "probs": {
                 "type": "file",
-                "description": "Probability map for boundary based segmentation",
-                "pattern": "*.{h5,,hdf5}"
+                "description": "Probability map for boundary based segmentation as exported by the pixel classification workflow.",
+                "pattern": "*.{h5,hdf5}"
+              }
+            }
+          ],
+          [
+            {
+              "ilp": {
+                "type": "file",
+                "description": "Trained 'Boundary-based Segmentation with Multicut' .ilp project file",
+                "pattern": "*.{ilp}"
               }
             }
           ]
         ],
         "output": [
           {
-            "out_tiff": [
+            "mask": [
               {
                 "meta": {
                   "type": "map",
@@ -160468,13 +160652,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "${prefix}/severus.log"
                 }
               },
               {
                 "${prefix}/severus.log": {
                   "type": "file",
-                  "description": "Severus log file",
+                  "description": "log file\n",
                   "pattern": "${prefix}/severus.log"
                 }
               }
@@ -160485,13 +160670,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "${prefix}/read_qual.txt"
                 }
               },
               {
                 "${prefix}/read_qual.txt": {
                   "type": "file",
-                  "description": "Severus read_qual file",
+                  "description": "txt file containing read quality information\n",
                   "pattern": "${prefix}/read_qual.txt"
                 }
               }
@@ -160502,13 +160688,13 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                  "description": "Groovy Map containing sample information\n"
                 }
               },
               {
                 "${prefix}/breakpoints_double.csv": {
                   "type": "file",
-                  "description": "Severus breakpoints_double file",
+                  "description": "Detailed info about the detected breakpoints for all samples in text format, intended for an advanced user.\n",
                   "pattern": "${prefix}/breakpoints_double.csv"
                 }
               }
@@ -160519,13 +160705,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "${prefix}/read_alignments"
                 }
               },
               {
                 "${prefix}/read_alignments": {
                   "type": "file",
-                  "description": "read alignments file",
+                  "description": "",
                   "pattern": "${prefix}/read_alignments"
                 }
               }
@@ -160536,13 +160723,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "${prefix}/read_ids"
                 }
               },
               {
                 "${prefix}/read_ids.csv": {
                   "type": "file",
-                  "description": "read IDs for support reads",
+                  "description": "Contains supporting read IDs for each SV\n",
                   "pattern": "${prefix}/read_ids"
                 }
               }
@@ -160553,13 +160741,13 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                  "description": "Groovy Map containing sample information\n"
                 }
               },
               {
                 "${prefix}/severus_collaped_dup.bed": {
                   "type": "file",
-                  "description": "a bed file with identified collapsed duplication regions",
+                  "description": "",
                   "pattern": "${prefix}/severus_collaped_dup"
                 }
               }
@@ -160570,13 +160758,13 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                  "description": "Groovy Map containing sample information\n"
                 }
               },
               {
                 "${prefix}/severus_LOH.bed": {
                   "type": "file",
-                  "description": "a bed file with predicted LOH regions",
+                  "description": "BED file containing loss of heterozygosity information\n",
                   "pattern": "${prefix}/severus_LOH.bed"
                 }
               }
@@ -160587,13 +160775,13 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                  "description": "Groovy Map containing sample information\n"
                 }
               },
               {
                 "${prefix}/all_SVs/severus_all.vcf": {
-                  "type": "file",
-                  "description": "VCF file with all SVs (somatic + germline)",
+                  "type": "map",
+                  "description": "VCF file containing somatic and germline structural variants\n",
                   "pattern": "${prefix}/all_SVs/severus_all.vcf"
                 }
               }
@@ -160604,13 +160792,13 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                  "description": "Groovy Map containing sample information\n"
                 }
               },
               {
                 "${prefix}/all_SVs/breakpoints_clusters_list.tsv": {
                   "type": "file",
-                  "description": "Severus breakpoints clusters list file",
+                  "description": "a TSV containing a list of all breakpoint clusters\n",
                   "pattern": "${prefix}/all_SVs/breakpoints_clusters_list.tsv"
                 }
               }
@@ -160621,13 +160809,13 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                  "description": "Groovy Map containing sample information\n"
                 }
               },
               {
                 "${prefix}/all_SVs/breakpoints_clusters.tsv": {
                   "type": "file",
-                  "description": "Severus breakpoints clusters file",
+                  "description": "TSV file listing meta information in breakpoint clusters\n",
                   "pattern": "${prefix}/all_SVs/breakpoints_clusters.tsv"
                 }
               }
@@ -160638,13 +160826,13 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                  "description": "Groovy Map containing sample information\n"
                 }
               },
               {
                 "${prefix}/all_SVs/plots/severus_*.html": {
                   "type": "file",
-                  "description": "Severus plots",
+                  "description": "Plotly graph containing of somatic and germline breakpoint clusters\n",
                   "pattern": "${prefix}/all_SVs/plots/*.html"
                 }
               }
@@ -160655,13 +160843,13 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                  "description": "Groovy Map containing sample information\n"
                 }
               },
               {
-                "${prefix}/somatic_SVs/severus_all.vcf": {
+                "${prefix}/somatic_SVs/severus_somatic.vcf": {
                   "type": "file",
-                  "description": "VCF file with somatic SVs",
+                  "description": "VCF file containing somatic structural variants (SV)\n",
                   "pattern": "${prefix}/somatic_SVs/severus_all.vcf"
                 }
               }
@@ -160672,13 +160860,13 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                  "description": "Groovy Map containing sample information\n"
                 }
               },
               {
                 "${prefix}/somatic_SVs/breakpoints_clusters_list.tsv": {
                   "type": "file",
-                  "description": "Severus somatic breakpoints clusters list file",
+                  "description": "TSV file containing full list of somatic breakpoint clusters\n",
                   "pattern": "${prefix}/somatic_SVs/breakpoints_clusters_list.tsv"
                 }
               }
@@ -160689,13 +160877,13 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                  "description": "Groovy Map containing sample information\n"
                 }
               },
               {
                 "${prefix}/somatic_SVs/breakpoints_clusters.tsv": {
                   "type": "file",
-                  "description": "Severus somatic breakpoints clusters file",
+                  "description": "TSV file containing meta information of somatic breakpoint clusters\n",
                   "pattern": "${prefix}/somatic_SVs/breakpoints_clusters.tsv"
                 }
               }
@@ -160706,13 +160894,13 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                  "description": "Groovy Map containing sample information\n"
                 }
               },
               {
                 "${prefix}/somatic_SVs/plots/severus_*.html": {
                   "type": "file",
-                  "description": "Severus somatic plots",
+                  "description": "Plotly graph of somatic breakpoint clusters\n",
                   "pattern": "${prefix}/somatic_SVs/plots/*.html"
                 }
               }
