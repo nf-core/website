@@ -1,6 +1,7 @@
 ---
 title: "Chapter 6: Testing your module"
 subtitle: "How to write and generate the files needed for testing your module"
+shortTitle: "Chapter 6: Testing"
 ---
 
 In this chapter we will describe how nf-core modules used for unit testing the modules with the `nf-test` framework.

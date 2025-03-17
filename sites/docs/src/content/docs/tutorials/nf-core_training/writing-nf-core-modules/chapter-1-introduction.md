@@ -1,6 +1,7 @@
 ---
 title: "Training: writing nf-core modules"
 subtitle: Workshop material for writing an nf-core module
+shortTitle: "Chapter 1: Introduction"
 ---
 
 ## Introduction

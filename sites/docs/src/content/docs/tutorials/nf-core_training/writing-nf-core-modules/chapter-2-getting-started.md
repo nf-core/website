@@ -1,6 +1,7 @@
 ---
 title: "Chapter 2: getting started"
 subtitle: "Everything you need to have for writing nf-core modules"
+shortTitle: "Chapter 2: Setup"
 ---
 
 In this chapter, we will describe what you will need to successfully complete this training.
