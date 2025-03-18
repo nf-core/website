@@ -16,7 +16,7 @@ This project aims to update the [nf-core/proteinfamilies](https://nf-co.re/prote
 ## Goals
 
 - **Creating nf-tests for local modules.**
-  - _For anyone interested._
+  - _For anyone interested. Beginners welcome!_
 - **Creating nf-tests for local subworkflows.**
   - _For people with some experience in Nextflow/nf-core pipelines._
 - **Replace SeqIO with pyfastx in custom python scripts and benchmark**
