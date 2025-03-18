@@ -15,58 +15,98 @@ label:
 import Profile from "@components/GitHubProfilePictureExtended.svelte";
 import { Image } from "astro:assets";
 
-As decided during the last maintainers meeting, the whole week was dedicated to spring cleaning.
-We would first like to thank everyone that was involved and help clean any of the nf-core github repository by closing issues, updating, merging or closing PRs.
-It was a tremendous effort, and thanks to all of you, the nf-core/hackathon should be facilitated by being able to start with repositories less crowded by issues.
+Last week, the maintainers team volunteered their time to spring clean the whole of nf-core for the community in preparation for the upcoming hackathon!
+
+**We would first like to thank everyone** that was involved, and helped to clean many of the nf-core github repositories by closing issues, updating, merging or closing PRs.
+It was a tremendous effort, and thanks to all of you, the state of nf-core/hackathon is in a much better and cleaner state than before.
+
+In this blog post we want to briefly summarise the outcome of the spring cleaning, and describe some of the proposals put forward by the maintainers team participants to improve our processes and procedures.
 
 ## Overview
 
-We were dedicated in a multitude of groups that were focused on particular tasks:
+Prior the spring cleaning, we split up into different groups that were focused on particular tasks:
 
 - nf-core/pipelines
 - nf-core/modules
 - nf-core/documentation
 - nf-core/configs
-- nf-core/test-dataset
 - Hackathon preparation
 - Core Team
 
-### Pipelines:
+The teams were extremely productive throughout the week, as can be seen just with merged PRs alone from this [pulpo.io](https://pullpo.io/) graph:
 
-Half of the nf-core pipelines were assessed, most of them were in good shape.
-Around 10 of them are not maintained and will need further assessment from the core team about their status.
-Such a yearly check seemed to be enough, and we do hope to have either more time or more people to work on this task next year.
+![Bar chart of number of PRs merged by the maintainers team between March 10th-16th, with a total of 77 merged PRs throughout the week](src/assests/images/content/springcleaning2025/maintainers-team-merged-stats.png)
 
-### Modules:
+## Progress
 
-An astounding number of issues and PRs were reviewed and closed.
-Famke and Luisa were the MVP.
-Using more automation would really help cleaning up all the issues and PRs, as well as using the new `types` from GitHub.
-Such a yearly check seemed to be enough, but will definitively benefit from more automation.
+### Pipelines
 
-### Configs:
+The pipelines cleaning team were tasked with checking the state of each pipeline's repository.
+This involved assessing the number of stale issues, branches, PRs etc, as well as checking minor things such as tags and descriptions were all present and correct.
+The pipelines team were also evaluating the development status of the pipeline, and if a pipeline seemed to be very 'quiet', began to contact the lead developers whether the pipeline is still under active development or maintainence.
 
-Regular cleanup is done more or less regularly by James and Maxime, and this repo is smaller, so this was less of an effort
+By the end of the spring cleaning, almost half of the nf-core pipelines were assessed, most of them were in good shape.
+Fun fact: of the 50 assessed, 5 were still written in Nextflow DSL1!
+Around 10 of them appear to be no longer maintained, and this list was passed to the the core team for further evaluation about their status and whether they should be possible archived.
 
-### Test-datasets
+A yearly check seemed to be enough even if not all pipelines were checked this time round.
+For next year's spring cleaning, we will ensure the team has more maintainers to work on this task next year.
 
-No major activity, as this requires a bigger overhaul.
+### Modules
+
+The modules team were tasked with tackling the 🦣 modules repository of more than 1400 modules, and hundreds of open issues and PRs.
+
+An **astounding** number of issues and PRs were reviewed and closed.
+Throughout the week this team reviewed 162 PRs, closing at least 62 of them, they also reviewed 213 issues, closing 72.
+Special shout-out to the MVPs of Famke (52 PRs and 108 issues!), Luisa, and Simon who started _early_ and powered through the huge number of issues and PRs.
+
+During our wrap up session we discussed a number of options to better handle the modules repository using automation.
+For example, we discussed potentially making better use of GitHub tags and [types](https://docs.github.com/en/issues/tracking-your-work-with-issues/configuring-issues/managing-issue-types-in-an-organization), to help both prepare spring-cleaning task boards, but also potentially to 'auto close' stale PRs and issues after a certain amount of time.
+We also discussed maybe requiring all new modules proposals/issues to be made on pipeline repositories and linked to the modules repository, to ensure the module has a direct application, and thus the repository issues does not get filled up with just 'ideas'.
+The modules maintainers maestros also pointed out there were inconsistencies in some places where modules were not following nf-core guidelines, so potentially we will ask the infrastructure team to add more linting rules.
+They also suggested a good hackathon task to bring older nf-core subworkflows up to speed to the latest [specifications](https://nf-co.re/docs/guidelines/components/subworkflows).
+
+### Configs
+
+In comparison, the nf-core/configs team of Maxime, Joon, and James had an easier time due to the smaller nature of the repository.
+
+During the week 4 issues were closed and in 9 the authors were bumped, 17 stale branches deleted, and 7 PRs merged or closed with 10 outstanding.
+
+So while regular clean up is done more or less regularly by James and Maxime, and this repo is smaller, so this was less of an effort - but thanks to Joon for going beyond his normal responsibilities for this one!
+We did discuss setting up 'stale-bot' automation to remove abandoned PRs and issues - as there was a tendency of this to happen, but given the community volunteers don't have access to all HPCs, it is not something we can finalise.
 
 ### Hackathon preparation
 
-Still an ongoing project, we will continue asking people to add tasks to project board.
+Nicolas lead a team to try and add more tasks and issues to the [March 2025 hackathon project board](https://github.com/orgs/nf-core/projects/99) - currently somewhere between 300-400 issues!
+
+This is still an ongoing project, and we will continue asking people to add tasks to project board!
+So keep adding what you plan to work on - or if you are looking for help on something, add an issue so community volunteers can help you out!
 
 ### Core team
 
-Megatests have been investigated, and all CEs have been cleared on the nf-core Platform workspace.
-The new pipelines procedure has been assessed, and the core team will be investigating another solution to allow for better search, retrieval and tracking of all the proposals.
+The core team did their routine checks and overhauls of our ['internal' documentation](https://nf-co.re/docs/checklists/community_governance/core_team), and other places that only people with the keys can clean up.
 
-### tools
+The GitHub and Slack were checked and updated where necessary, as well as the core-team and maintainer-checklists by nicolas.
+Issues with the AWS megatests on the nf-core's Seqera Platform workspace were investigated, and all older and broken computing environments were been cleared by Rike.
+All recent [proposals](https://nfcore.slack.com/archives/C06L02SNLVA) for [special interest groups](https://nf-co.re/special-interest-groups) were reviewed and website PRs opened by Jose - if you're interested in 'Core facilities', 'Cancer Genomics', or 'Immunology' then you might be interested in these newly accepted groups!
+Maxime went through all slack channels and closed unused channels.
+We also reviewed over 100 new pipeline proposals from the last 3 years! Of these, 37 proposals were moved to 'timed out', and 16 accepted proposals were flagged for archiving due to a lack of development.
 
-29 issues and 8 PRs were closed.
-34 branches were deleted, so we're thinking about enabling auto-delete merged branches everywhere.
+We discussed the current new pipelines proposal procedure, as we had many abandoned proposals and also the current GitHub board for it is not really copying with the history of 200 proposals.
+The core team will be investigating another solution to allow for better search, retrieval and tracking of all the proposals, possibly via a dedicated github repository (which can also use more automation).
 
-### General
+### Tools
 
-Simon, our very own modules master, is very pro adding 'waiting feedback' stale bot system like in tools.
-We're thinking of a better way to managed requests for new modules (the whishlist should be on the pipeline side).
+Finally Júlia and Matthias lead some standard nf-core/tools repo clean up.
+During the week, 29 issues and 8 PRs were closed.
+Furthermore 34 branches were deleted.
+
+During the report we discussed how to automate clean-up of merged branches (those pesky template merge PRs anyone?!), and everyone was pro- enabling auto-deletion merged branches everywhere in all repositories across nf-core.
+
+## Summary
+
+This was by far the best and most active spring cleaning to date - and the maintainers team leads would like to say thank you on behalf of the whole community for the efforts of the maintainers members for taking the time and effort to do this.
+
+We hope this [TLC](https://en.wikipedia.org/wiki/Tender_loving_care) will set the community up for it's strongest year yet!
+
+\- :heart: from your @maintainers-team
