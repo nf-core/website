@@ -22,11 +22,12 @@ Suggestions about documentation, code readability, or anything you can think of 
 ## Goals
 
 - **Add FCS decontamination subworkflow**:
-  - Merge decontamination [PR](https://github.com/nf-core/genomeqc/pull/72)
+  - Merge decontamination [PR](https://github.com/nf-core/genomeqc/pull/72).
 - **Update template for nf-core/tools v3.2.0**:
-  - Merge update [PR](https://github.com/nf-core/genomeqc/pull/110)
-- **Expand nf-core/genomeqc** with new modules and workflows
-- **Solve issues**. Check out the open [issues](https://github.com/nf-core/genomeqc/issues). We will label good first issues for those less experienced with nf-core
+  - Merge update [PR](https://github.com/nf-core/genomeqc/pull/110).
+- **Expand nf-core/genomeqc** with new modules and workflows.
+- **Solve issues**:
+  - Check out the open [issues](https://github.com/nf-core/genomeqc/issues). We will label good first issues for those less experienced with nf-core.
 - **Check first release [PR](https://github.com/nf-core/genomeqc/pull/53)**:
-   - Revise comments, commit suggestions
-   
+  - Revise comments, commit suggestions.
+
