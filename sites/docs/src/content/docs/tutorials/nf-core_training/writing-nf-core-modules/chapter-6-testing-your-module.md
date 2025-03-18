@@ -4,11 +4,15 @@ subtitle: "How to write and generate the files needed for testing your module"
 shortTitle: "Chapter 6: Testing"
 ---
 
+## Introduction
+
 In this chapter we will describe how nf-core modules used for unit testing the modules with the `nf-test` framework.
+
+Now we have the Nextflow files themselves written, we want to make sure the module itself actually works as intended.
 
 ## The `main.nf.test` file
 
-In this file we have X main sections
+In this file we have 3 main sections
 
 - File paths and tags
 - Test block
@@ -88,7 +92,7 @@ nextflow_process {
 
 This section is initially propagated with the basic information for the test file.
 
-```
+```nextflow
 nextflow_process {
 
     name "Test Process DREP_COMPARE"
@@ -101,25 +105,25 @@ nextflow_process {
     tag "drep/compare"
 ```
 
-It includes the umbrella name of the tests based on the names of the module, and the location and name of the module script itself.
+It includes an 'umbrella' name for the collection of tests based on the name of the module, the location of the script, and name of the module's process.
 It also includes automatically generated tags that are used by nf-test to run the tests in different configurations.
 
 In most cases you do not need to edit this section.
 
-You may however have to extend this section based on how you set up the test later in the file (see below).
-These extensions typically are to either add a path to a `nextflow.config`, or add additional tags of modules used in the setup block (see below).
+You may however need to extend this section based on how you set up the test later in the file (see below).
+These extensions are typically to either add a path to an optional `nextflow.config`, or add additional tags of modules used in the setup block (for both see below).
 The latter is to ensure if an 'upstream' module to your module changes, it does not break the test of your new module.
 
 ### The `test` block
 
-This section is the main part of the test file, where you specify inputs to the test, and how to compare the differences of the module outputs between two test runs.
+This section is the main part of the test file.
+Here you specify inputs to the test, and how to compare the differences of the module outputs between two test runs.
 
 ```nextflow
 test("sarscov2 - bam") {
     when {
         process {
             """
-
             input[0] = [
                 [ id:'test', single_end:false ], // meta map
                 file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true),
@@ -139,25 +143,61 @@ test("sarscov2 - bam") {
 ```
 
 This section is the part of the file you will edit the most.
-The test block declaration consists of three main sections: the title of the test, the when block (defining inputs), and the then block (defining outputs).
+The test block declaration consists of three main sections:
 
-The boilerplate template comes with example code for a single input file as input, and tests both that the module successfully passes with no errors, and generate a 'snapshot' of md5sums of the contents of all output channels of the module.
+- The title of the test
+- The when block (defining inputs)
+- The then block (defining outputs)
+
+The boilerplate template comes with example code for a single input file as input, and tests both that the module successfully passes with no errors, and generates a 'snapshot' of md5sums of the contents of all output channels of the module.
 In addition, the boilerplate template also includes a stub runs test.
 All nf-core modules require a stub-run test, however you do not need to change this except for the test title, and the inputs (the 'then' block) so they match that the first test.
 
+For writing the test, you need to follow the following steps.
+
 First, you must update the name of the test to make it distinct.
 Typically, at a minimum this will consist of the organism of the test data you will use, and the file format of the primary input file.
-You can then also provide an additional keyword or short sentence of what configuration the given test will be testing, for example `test("sarscov2 - fastq - pairedend")`or `test("sarscov2 - fastq - bakta annotation input")`
+You can then also provide an additional keyword or short sentence of what configuration the given test will be testing, for example:
 
-Within the 'when' block, you then need to specify each input channel to your module using the notation of `input[0]` for the first input channel, `input[1]`, for the second, and so forth.
+```nextflow
+test("sarscov2 - fastq - pairedend")
+```
+
+or
+
+```nextflow
+test("sarscov2 - fastq - bakta annotation input")
+```
+
+Second, within the 'when' block you then need to specify each input channel to your module using the notation of `input[0]` for the first input channel, `input[1]`, for the second, and so forth.
 This 'when' block can be filled with standard Nextflow code - e.g. using a `Channel` factory to create a channel, use operators, and so on, as you normally would in an Nextflow pipeline.
-Make sure that the input into each channel `input[]` variable matches the channel restructure of your module (e.g. if there is a metamap)
+Make sure that the input into each channel `input[]` variable matches the channel restructure of your module (e.g. if there is a meta map)
+
+```nextflow
+when {
+    process {
+        """
+        ch_samplesheet = Channel.of([
+            [ id:'test' ],
+            file(params.modules_testdata_base_path + 'genomics/homo_sapiens/array_expression/GSE38751.csv', checkIfExists: true)
+            ]
+        )
+        input[0] = ch_samplesheet.join(UNTAR.out.untar)
+        input[1] = [[],[]]
+        """
+    }
+}
+```
+
 All file inputs should be referred to by utilising files hosted on the [nf-core/test-datasets GitHub repository](https://github.com/nf-core/test-datasets).
 You can then load these with the syntax as in the example above (i.e., with `params.modules_testdata_base_path` + the file path as within the nf-core/testdatasets repository), with the `checkIfExists` option.
+
+<!-- TO HERE -->
+
 For optional input channels, these can just be given to the relevant `input` variable with `[]`, e.g. `input[3] = []`, or if it requires a meta map `input[3] = [[:],[]]`.
 To refer to the output modules run in a setup block (see below), you can refer to these as you would in a Nextflow pipeline, e.g. `PROCESS_NAME.out.foo`.
 
-Once you have completed the input declarations, you can move onto the 'then' block.
+Third, once you have completed the input declarations, you can move onto the 'then' block.
 This is where you will need to write 'assertions', i.e., telling nf-test what to compare for.
 By default, the example in the boilerplate template code will check the contents of every single output file of the channel.
 However, very often you may find some tools produce variable output files between runs (a common one is logs which include timestamps).
@@ -183,7 +223,7 @@ For a more comprehensive list of different nf-test assertions, see the dedicated
 
 If you have to vary the types of tests per channel, make sure to always include testing of the `process.out.versions` channel!
 
-Once you've completed both the `then` and `when` blocks, you can copy the structure and update the name test and contents for every subsequent tests.
+Finally, once you've completed both the `then` and `when` blocks, you can copy the structure and update the name test and contents for every subsequent tests.
 As a guide, you should try and have as many tests so you test as many configurations as possible, but at a minimum at least a test so you test input files for all input and output channels (mandatory and optional) at least once.
 
 ### The `setup` block (optional)
