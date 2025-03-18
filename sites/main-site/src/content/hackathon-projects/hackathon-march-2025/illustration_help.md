@@ -3,7 +3,7 @@ title: Get help with your illustration issues
 category: pipelines
 intro_video: ""
 image: "https://scontent-arn2-1.xx.fbcdn.net/v/t39.30808-6/277673159_353227013494533_5259819674694840186_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=tgVdEp5-pNcQ7kNvgHeUTcA&_nc_oc=AdjSwq3BL9NVZKW11JLpCf_CtvHi3oifO4Unz_8Q05Jlp9F1qu6Yf847JNBn2eaDXhQ&_nc_zt=23&_nc_ht=scontent-arn2-1.xx&_nc_gid=AUwALhxvLbSkF2_HYqXONPf&oh=00_AYGDQse6fI8s-NudO_vWtFidBcAAW5fW2Tur1Ct3Flx_2Q&oe=67DA1C3F"
-image_alt: ""
+image_alt: "crayon corner image"
 leaders:
   FranBonath:
     name: Franziska Bonath
