@@ -29,3 +29,4 @@ Suggestions about documentation, code readability, or anything you can think of 
 - **Solve issues**. Check out the open [issues](https://github.com/nf-core/genomeqc/issues). We will label good first issues for those less experienced with nf-core
 - **Check first release [PR](https://github.com/nf-core/genomeqc/pull/53)**:
    - Revise comments, commit suggestions
+   
