@@ -36,7 +36,8 @@ This specifications span multiple areas, such as:
 
 and many more.
 
-Furthermore, the nf-core specifications also expands the number files from just a single Nextflow `.nf` script file to at least 5 files. This is due to the nf-core initiative's focus on standardisation, reproducibility, and high quality documentation.
+Furthermore, the nf-core specifications also expands the number files from just a single Nextflow `.nf` script file to at least 5 files.
+This is due to the nf-core initiative's focus on standardisation, reproducibility, and high quality documentation.
 
 For example, a 'complete' nf-core/module directory can consist of the following 6 files:
 

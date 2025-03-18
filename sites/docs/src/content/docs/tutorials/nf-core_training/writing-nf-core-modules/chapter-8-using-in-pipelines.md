@@ -86,11 +86,11 @@ SAMTOOLS_FASTA (ch_input_for_samtoolsfasta, val_interleave)
 ```
 
 where we have taken the input channel that just contains FASTA files.
-We then use the `.map{}` operator to make a new metamap and export this with the FASTA file.
+We then use the `.map{}` operator to make a new meta map and export this with the FASTA file.
 When making the meta map, we make it with single attribute `id`, which is a standard nf-core meta map attribute used in almost all modules.
 In this example, we simply assign to `id` attribute the [`simpleName`](https://www.nextflow.io/docs/latest/reference/stdlib.html#stdlib-types-path) of the file (i.e., the file name without the full path and without the last file suffix)
 
-By reconfiguring the channel to include a valid metamap, we ensure the input channel is compatible with the nf-core module.
+By reconfiguring the channel to include a valid meta map, we ensure the input channel is compatible with the nf-core module.
 
 ### Tags and labels
 
