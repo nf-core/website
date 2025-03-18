@@ -11277,7 +11277,13 @@
         "maintainers": [
           "@phanhung2"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "bcftools_annotate",
@@ -81783,13 +81789,15 @@
             {
               "long_reads": {
                 "type": "file",
-                "description": "Long reads PacBio HiFi reads or ONT reads (requires ext.arg '--ont')."
+                "description": "Long reads PacBio HiFi reads or ONT reads (requires ext.arg '--ont').",
+                "ontologies": []
               }
             },
             {
               "ul_reads": {
                 "type": "file",
-                "description": "ONT long reads to use with --ul."
+                "description": "ONT long reads to use with --ul.",
+                "ontologies": []
               }
             }
           ],
@@ -81803,13 +81811,15 @@
             {
               "paternal_kmer_dump": {
                 "type": "file",
-                "description": "Yak kmer dump file for paternal reads (can be used for haplotype resolution). It can have an arbitrary extension."
+                "description": "Yak kmer dump file for paternal reads (can be used for haplotype resolution). It can have an arbitrary extension.",
+                "ontologies": []
               }
             },
             {
               "maternal_kmer_dump": {
                 "type": "file",
-                "description": "Yak kmer dump file for maternal reads (can be used for haplotype resolution). It can have an arbitrary extension."
+                "description": "Yak kmer dump file for maternal reads (can be used for haplotype resolution). It can have an arbitrary extension.",
+                "ontologies": []
               }
             }
           ],
@@ -81823,13 +81833,30 @@
             {
               "hic_read1": {
                 "type": "file",
-                "description": "Hi-C data Forward reads."
+                "description": "Hi-C data Forward reads.",
+                "ontologies": []
               }
             },
             {
               "hic_read2": {
                 "type": "file",
-                "description": "Hi-C data Reverse reads."
+                "description": "Hi-C data Reverse reads.",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing information about the input bin files\n"
+              }
+            },
+            {
+              "bin_files": {
+                "type": "file",
+                "description": "bin files produced during a previous Hifiasm run",
+                "ontologies": []
               }
             }
           ]
@@ -81853,7 +81880,7 @@
             ]
           },
           {
-            "corrected_reads": [
+            "bin_files": [
               {
                 "meta": {
                   "type": "map",
@@ -81861,61 +81888,10 @@
                 }
               },
               {
-                "*.ec.bin": {
+                "*.bin": {
                   "type": "file",
-                  "description": "Corrected reads",
-                  "pattern": "*.ec.bin"
-                }
-              }
-            ]
-          },
-          {
-            "source_overlaps": [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.ovlp.source.bin": {
-                  "type": "file",
-                  "description": "Source overlaps",
-                  "pattern": "*.ovlp.source.bin"
-                }
-              }
-            ]
-          },
-          {
-            "reverse_overlaps": [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.ovlp.reverse.bin": {
-                  "type": "file",
-                  "description": "Reverse overlaps",
-                  "pattern": "*.ovlp.reverse.bin"
-                }
-              }
-            ]
-          },
-          {
-            "processed_contigs": [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.bp.p_ctg.gfa": {
-                  "type": "file",
-                  "description": "Processed contigs",
-                  "pattern": "*.bp.p_ctg.gfa"
+                  "description": "Binary files containing processed data for hifiasm, including\nerror-corrected reads, read overlaps, and Hi-C alignments. Can\nbe re-used as an input for subsequent re-runs of hifiasm with new\ninputs or modified parameters in order to save recomputation of\ninitial results, which are the most computationally-expensive\nsteps.\n",
+                  "pattern": "*.bin"
                 }
               }
             ]
@@ -81946,10 +81922,10 @@
                 }
               },
               {
-                "*.asm.p_ctg.gfa": {
+                "${prefix}.{p_ctg,bp.p_ctg,hic.p_ctg}.gfa": {
                   "type": "file",
-                  "description": "Primary contigs",
-                  "pattern": "*.asm.p_ctg.gfa"
+                  "description": "Contigs representing the primary assembly",
+                  "pattern": "${prefix}.{p_ctg,bp.p_ctg,hic.p_ctg}.gfa"
                 }
               }
             ]
@@ -81963,16 +81939,52 @@
                 }
               },
               {
-                "*.asm.a_ctg.gfa": {
+                "${prefix}.{a_ctg,hic.a_ctg}.gfa": {
                   "type": "file",
-                  "description": "Alternative contigs",
-                  "pattern": "*.asm.a_ctg.gfa"
+                  "description": "Contigs representing the alternative assembly",
+                  "pattern": "${prefix}.{a_ctg,hic.a_ctg}.gfa"
                 }
               }
             ]
           },
           {
-            "paternal_contigs": [
+            "hap1_contigs": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "${prefix}.*.hap1.p_ctg.gfa"
+                }
+              },
+              {
+                "${prefix}.*.hap1.p_ctg.gfa": {
+                  "type": "file",
+                  "description": "Contigs for the first haplotype. How the haplotypes are represented\ndepends on the input mode; in standard HiFi-only mode, these\nare partially-phased parental contigs. In Hi-C mode, they\nare fully phased parental contigs, but the phasing is not maintained\nbetween contigs. In trio mode, they are fully phased paternal contigs\nall originating from a single parental haplotype.\n",
+                  "pattern": "${prefix}.*.hap1.p_ctg.gfa"
+                }
+              }
+            ]
+          },
+          {
+            "hap2_contigs": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "${prefix}.*.hap2.p_ctg.gfa"
+                }
+              },
+              {
+                "${prefix}.*.hap2.p_ctg.gfa": {
+                  "type": "file",
+                  "description": "Contigs for the second haplotype. How the haplotypes are represented\ndepends on the input mode; in standard HiFi-only mode, these\nare partially-phased parental contigs. In Hi-C mode, they\nare fully phased parental contigs, but the phasing is not maintained\nbetween contigs. In trio mode, they are fully phased paternal contigs\nall originating from a single parental haplotype.\n",
+                  "pattern": "${prefix}.*.hap2.p_ctg.gfa"
+                }
+              }
+            ]
+          },
+          {
+            "corrected_reads": [
               {
                 "meta": {
                   "type": "map",
@@ -81980,16 +81992,16 @@
                 }
               },
               {
-                "*.hap1.p_ctg.gfa": {
+                "*.ec.fa.gz": {
                   "type": "file",
-                  "description": "Paternal contigs",
-                  "pattern": "*.hap1.p_ctg.gfa"
+                  "description": "If option --write-ec specified, a gzipped fasta file containing the error corrected\nreads produced by the hifiasm error correction module\n",
+                  "pattern": "*.ec.fa.gz"
                 }
               }
             ]
           },
           {
-            "maternal_contigs": [
+            "read_overlaps": [
               {
                 "meta": {
                   "type": "map",
@@ -81997,10 +82009,10 @@
                 }
               },
               {
-                "*.hap2.p_ctg.gfa": {
+                "*.ovlp.paf.gz": {
                   "type": "file",
-                  "description": "Maternal contigs",
-                  "pattern": "*.hap2.p_ctg.gfa"
+                  "description": "If option --write-paf specified, a gzipped paf file describing the overlaps\namong all error-corrected reads\n",
+                  "pattern": "*.ovlp.paf.gz"
                 }
               }
             ]
@@ -82010,14 +82022,15 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.stderr.log"
                 }
               },
               {
-                "*.log": {
+                "${prefix}.stderr.log": {
                   "type": "file",
                   "description": "Stderr log",
-                  "pattern": "*.log"
+                  "pattern": "*.stderr.log"
                 }
               }
             ]
@@ -82028,7 +82041,8 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": []
                 }
               }
             ]
@@ -82038,7 +82052,8 @@
           "@sidorov-si",
           "@scorreard",
           "@mbeavitt",
-          "@schmytzi"
+          "@schmytzi",
+          "@prototaxites"
         ],
         "maintainers": [
           "@sidorov-si",
@@ -99685,6 +99700,10 @@
         {
           "name": "multiplesequencealign",
           "version": "1.1.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         },
         {
           "name": "phyloplace",
@@ -158242,6 +158261,103 @@
       ]
     },
     {
+      "name": "seqkit_head",
+      "path": "modules/nf-core/seqkit/head/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "seqkit_head",
+        "description": "Subset FASTA/FASTQ files to some number of sequences",
+        "keywords": [
+          "filter",
+          "subset",
+          "reads",
+          "fasta",
+          "fastq",
+          "seqkit"
+        ],
+        "tools": [
+          {
+            "seqkit": {
+              "description": "A cross-platform and ultrafast toolkit for FASTA/Q file manipulation",
+              "homepage": "https://bioinf.shenwei.me/seqkit/",
+              "documentation": "https://bioinf.shenwei.me/seqkit/usage/",
+              "tool_dev_url": "https://github.com/shenwei356/seqkit",
+              "doi": "10.1371/journal.pone.0163962",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:seqkit"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "fastqs": {
+                "type": "file",
+                "description": "FASTA or FASTQ files to subset",
+                "pattern": "*.{fa,fasta,fq,fastq}"
+              }
+            },
+            {
+              "seq_count": {
+                "type": "integer",
+                "description": "The number of sequences to include in the subset"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "subset": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}_subset_*": {
+                  "type": "file",
+                  "description": "Subset FASTA/FASTQ files",
+                  "pattern": "*.{fa,fasta,fq,fastq}"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@zachary-foster"
+        ],
+        "maintainers": [
+          "@zachary-foster"
+        ]
+      },
+      "pipelines": [
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        }
+      ]
+    },
+    {
       "name": "seqkit_pair",
       "path": "modules/nf-core/seqkit/pair/meta.yml",
       "type": "module",
@@ -168921,6 +169037,10 @@
         {
           "name": "fetchngs",
           "version": "1.12.0"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -174992,6 +175112,10 @@
         {
           "name": "pangenome",
           "version": "1.1.3"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         },
         {
           "name": "phaseimpute",
