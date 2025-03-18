@@ -129,8 +129,8 @@ We also thank the following organisations for supporting nf-core through providi
     </a>
   </div>
   <div class="col" style="align-self:center;">
-    <a href="https://gitpod.io/" target="_blank">
-      <img src="/images/contributors/colour/gitpod.svg" alt="Gitpod" class="darkmode-image w-75">
+    <a href="https://runs-on.com/" target="_blank">
+      <img src="/images/runs-on.png" alt="RunsOn" class="w-50">
     </a>
   </div>
   <div class="col" style="align-self:center;">
