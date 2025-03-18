@@ -1,5 +1,5 @@
 ---
-title: Enhancing nf-core/proteinfold Pipeline
+title: Working towards release 1.2.0 of the nf-core/proteinfold Pipeline
 category: pipelines
 slack: "https://nfcore.slack.com/archives/C0351A8S487"
 intro_video: ""
