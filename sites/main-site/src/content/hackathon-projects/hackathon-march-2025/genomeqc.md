@@ -3,7 +3,7 @@ title: Adding modules, ideas and messing with nf-core/genomeqc
 category: pipelines
 slack: "https://nfcore.slack.com/archives/C07LY51P4S2"
 image: "/assets/images/events/2025/hackathon-march/nf-core-genomeqc_logo_light.png"
-image_alt: "Please release genomeqc"
+image_alt: "A man holding a smaller crocodile in his hands. The caption above them: 'Man, please release me'"
 leaders:
   FernandoDuarteF:
     name: Fernando Duarte
