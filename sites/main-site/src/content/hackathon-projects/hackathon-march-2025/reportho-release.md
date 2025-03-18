@@ -18,11 +18,11 @@ This project aims to close open PRs and issues of the [nf-core/reportho](https:/
 - **Update custom report**
 
 We need to update the custom report to include the sequence-based merging step results (if run) and exclude alignment/phylogeny results.
-The code for this part is partially in a separate repo, so contact me before you work on this.
+The code for this part is partially in a [separate repo](https://github.com/itrujnara/orthologs-report/tree/main), so contact me before you work on this.
 
 - **Update MultiQC report**
 
-We need to make sure that the MultiQC report contains all required information and no more.
+We need to make sure that the MultiQC report contains all required information and no more (i.e. no references to alignment or phylogeny).
 
 - **Update metro map**
 
