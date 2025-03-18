@@ -38,4 +38,4 @@ We need to verify that all documentation files are up to date. I have already ma
 
 I will not be available on Monday (March 24). Feel free to work on your forks and submit PRs during that day. I will review all changes on Tuesday morning (CET).
 
-_We welcome contributors of all experience levels. Feel free to get in touch on the Slack channel if you have any questions or comments._
+_We welcome contributors of all experience levels. Feel free to get in touch on the [Slack channel](https://nfcore.slack.com/archives/C06R4FC4C1E) if you have any questions or comments._
