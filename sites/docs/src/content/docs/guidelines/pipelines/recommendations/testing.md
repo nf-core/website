@@ -47,7 +47,7 @@ tests
 The same guidelines for test profiles, test data and nf-test also apply to pipeline tests.
 In addition, the following guidelines apply:
 
-- To ensure all output files are caught, the `params.outdir` should be set the the nf-test variable `outputDir`
+- To ensure all output files are caught, the `params.outdir` should be set to the nf-test variable `outputDir`
 - To ensure all output files are caught, it is highly recommended to use the `nft-utils` plugin to parse the output of the pipeline.
 - To ensure a proper execution of the pipeline is captured, it is recommended to capture the number of successful tasks.
 - To ensure that all output files are captured, it is recommended to run the tests once, and rerun to verify they're stable.
