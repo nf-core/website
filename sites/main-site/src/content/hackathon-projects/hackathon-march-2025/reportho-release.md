@@ -3,7 +3,7 @@ title: Finalizing nf-core/reportho 1.1.0
 category: pipelines
 slack: "https://nfcore.slack.com/archives/C06R4FC4C1E"
 intro_video: ""
-image: "/assets/images/events/2025/hackathon-march/reportho_meme.jpg"
+image: "/assets/images/events/2025/hackathon-march/reportho_world.jpg"
 image_alt: "A drawing of a beautiful futuristic city, captioned with the words 'the world if reportho'"
 leaders:
   itrujnara:
