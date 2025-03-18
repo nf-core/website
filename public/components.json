@@ -17429,6 +17429,148 @@
       }
     },
     {
+      "name": "bedtools_shuffle",
+      "path": "modules/nf-core/bedtools/shuffle/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "bedtools_shuffle",
+        "description": "bedtools shuffle will randomly permute the genomic locations of a feature file among a genome defined in a genome file",
+        "keywords": [
+          "bed",
+          "shuffleBed",
+          "region",
+          "fai",
+          "sizes",
+          "genome",
+          "bases"
+        ],
+        "tools": [
+          {
+            "bedtools": {
+              "description": "A set of tools for genomic analysis tasks, specifically enabling genome arithmetic (merge, count, complement) on various file types.\n",
+              "documentation": "https://bedtools.readthedocs.io/en/latest/content/tools/slop.html",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:bedtools"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing interval information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "intervals": {
+                "type": "file",
+                "description": "Input interval (BED/GFF/VCF) file",
+                "pattern": "*.{bed,gff,gff3,vcf}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2305"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing genome information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "chrom_sizes": {
+                "type": "file",
+                "description": "Chromosome sizes file",
+                "pattern": "*{.genome,.sizes,.txt,.fai}"
+              }
+            }
+          ],
+          [
+            {
+              "exclude_file": {
+                "type": "file",
+                "description": "BED file containing regions to exclude",
+                "pattern": "*.{bed}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "include_file": {
+                "type": "file",
+                "description": "BED file containing regions to include",
+                "pattern": "*.{bed}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "bed": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing interval information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.bed": {
+                  "type": "file",
+                  "description": "BED file with shuffled intervals",
+                  "pattern": "*.{bed}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@itrujnara"
+        ],
+        "maintainers": [
+          "@itrujnara"
+        ]
+      }
+    },
+    {
       "name": "bedtools_slop",
       "path": "modules/nf-core/bedtools/slop/meta.yml",
       "type": "module",
@@ -68558,13 +68700,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.{bam}"
                 }
               },
               {
-                "*.bam": {
-                  "type": "file",
-                  "description": "Recalibrated BAM file",
+                "${prefix}.bam": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*.{bam}"
                 }
               }
@@ -68575,13 +68718,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.{cram}"
                 }
               },
               {
-                "*.cram": {
-                  "type": "file",
-                  "description": "Recalibrated CRAM file",
+                "${prefix}.cram": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*.{cram}"
                 }
               }
@@ -192682,6 +192826,97 @@
         "maintainers": [
           "@pinin4fjords",
           "@suzannejin"
+        ]
+      }
+    },
+    {
+      "name": "archive_extract",
+      "path": "subworkflows/nf-core/archive_extract/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "archive_extract",
+        "description": "Extract archive(s) from any format\nCurrently supported format are .gz, .tar.gz, .zip\n",
+        "keywords": [
+          "archive",
+          "gzip",
+          "tar",
+          "zip"
+        ],
+        "components": [
+          "gunzip",
+          "untar",
+          "unzip"
+        ],
+        "input": [
+          {
+            "archive": {
+              "description": "Channel with archive to extract",
+              "structure": [
+                {
+                  "meta": {
+                    "type": "map",
+                    "description": "Metadata map"
+                  }
+                },
+                {
+                  "archive": {
+                    "type": "file",
+                    "description": "Structure: [path(archive)]\nFile containing the archive to extract\n",
+                    "pattern": "*{.tar.gz, .gz, .zip}"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "output": [
+          {
+            "extracted": {
+              "description": "Channel with extracted archive",
+              "structure": [
+                {
+                  "meta": null,
+                  "type": "map",
+                  "description": "Metadata map"
+                },
+                {
+                  "*": null,
+                  "type": "file",
+                  "description": "Structure: [path]\nFolder or file(s) extracted\n"
+                }
+              ]
+            }
+          },
+          {
+            "not_extracted": {
+              "description": "Channel with any not extracted (ie not recognized) archive",
+              "structure": [
+                {
+                  "meta": null,
+                  "type": "map",
+                  "description": "Metadata map"
+                },
+                {
+                  "*": null,
+                  "type": "file",
+                  "description": "Structure: [path]\nFile(s) not extracted\n"
+                }
+              ]
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@maxulysse"
+        ],
+        "maintainers": [
+          "@maxulysse"
         ]
       }
     },
