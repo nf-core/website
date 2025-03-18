@@ -1,5 +1,5 @@
 ---
-title: Updating the nf-core/proteinfamilies pipeline, mainly with local nf-tests
+title: Adding nf-test to nf-core/proteinfamilies
 category: pipelines
 slack: "https://nfcore.slack.com/archives/C07URFZF074"
 intro_video: ""
