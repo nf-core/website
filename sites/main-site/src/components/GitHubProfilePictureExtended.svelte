@@ -1,13 +1,27 @@
 <script lang="ts">
     import GitHubProfilePicture from "./GitHubProfilePicture.svelte";
 
-    export let username: string;
-    export let affiliation: string = "";
-    export let size: number = 50;
-    export let wrapperClasses: string = "";
-    export let labelClasses: string = "";
-    export let containerQuery: boolean = false;
-    export let imgClasses: string = "";
+    interface Props {
+        username: string;
+        affiliation?: string;
+        size?: number;
+        wrapperClasses?: string;
+        labelClasses?: string;
+        containerQuery?: boolean;
+        imgClasses?: string;
+        children?: import("svelte").Snippet;
+    }
+
+    let {
+        username,
+        affiliation = "",
+        size = 50,
+        wrapperClasses = "",
+        labelClasses = $bindable(""),
+        containerQuery = false,
+        imgClasses = "",
+        children,
+    }: Props = $props();
 
     const affiliation_str =
         affiliation.length > 0
@@ -28,9 +42,9 @@
 >
     <div class={"ms-2 pe-2 text-start d-flex flex-column profile-name " + labelClasses}>
         <div class={"ps-2 pe-3 " + labelClasses}>
-            <slot>
+            {#if children}{@render children()}{:else}
                 @{username}
-            </slot>
+            {/if}
             {@html affiliation_str}
         </div>
     </div></GitHubProfilePicture

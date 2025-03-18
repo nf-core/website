@@ -82,9 +82,9 @@ let sections: SidebarEntry[] = [
 ];
 // sort docs first depth, then by weight, then by title
 const sortDocs = (a: CollectionEntry<"docs">, b: CollectionEntry<"docs">) => {
-    if (a.slug.split("/").length < b.slug.split("/").length) {
+    if (a.id.split("/").length < b.id.split("/").length) {
         return 1;
-    } else if (a.slug.split("/").length > b.slug.split("/").length) {
+    } else if (a.id.split("/").length > b.id.split("/").length) {
         return -1;
     } else {
         a.data.weight = a.data.weight || 100;
@@ -105,7 +105,7 @@ const sortDocs = (a: CollectionEntry<"docs">, b: CollectionEntry<"docs">) => {
     }
 };
 
-let subsectionDocs: CollectionEntry<"docs">[] = docs.filter((doc) => doc.slug.startsWith(subsection + "/"));
+let subsectionDocs: CollectionEntry<"docs">[] = docs.filter((doc) => doc.id.startsWith(subsection + "/"));
 const subsections = sections.find((section) => section.href?.startsWith("/docs/" + subsection));
 
 subsectionDocs.sort(sortDocs);
@@ -193,8 +193,11 @@ const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, "").split("/");
                                             <div class="card-body">
                                                 <p>
                                                     {
-                                                        docs.find((doc) => "/docs/" + doc.slug === section.href)?.data
-                                                            .subtitle
+                                                        docs.find(
+                                                            (doc) =>
+                                                                "/docs/" + doc.id.replace(/\.[^/.]+$/, "") ===
+                                                                section.href,
+                                                        )?.data.subtitle
                                                     }
                                                 </p>
                                             </div>

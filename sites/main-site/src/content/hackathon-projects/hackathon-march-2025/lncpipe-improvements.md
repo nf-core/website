@@ -12,6 +12,9 @@ leaders:
   jekoltes:
     name: James Koltes
     slack: "https://nfcore.slack.com/team/U0878KU3YA2"
+  emeerdink:
+    name: Eelco Meerdink
+    slack: "https://nfcore.slack.com/team/U087R0DKBEK"
 ---
 
 This project aims to build upon and update the [nf-core/lncpipe](https://github.com/nf-core/lncpipe) pipeline, originally designed for the analysis of long non-coding RNAs (lncRNAs).
