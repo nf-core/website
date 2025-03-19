@@ -19,6 +19,7 @@ If this is your first release, make sure to follow the [first release tutorial](
 - [ ] Finalize the description of the pipeline in the GitHub repository and ensure that you remove any "under development" labels in the description. This wording will be used when a new pipeline gets announced on our socials ([Bluesky](https://bsky.app/profile/nf-co.re) and [Mastodon](https://mstdn.science/@nf_core)).
 - [ ] If there is a [release milestone](https://help.github.com/en/github/managing-your-work-on-github/about-milestones), have a look and see if all issues are closed, or can be resolved
   - [ ] It's fine to decide that some things should be postponed until the next release - just move them on to the next milestone
+  - [ ] Check that the full-size tests have successfully completed within the `dev` branch
 
 ## Steps to release
 
