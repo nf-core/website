@@ -13,4 +13,4 @@ locations:
       - https://rediris.zoom.us/j/99370728121
 ---
 
-For the March 2025 Talk of the Monthly Meeting of the #animal-genomics special interest group it is a pleasure to announce Damir Baranasic from MRC, London Institute of Medical Sciences, UK who will introduce the [DANIO-CODE](https://danio-code.zfin.org/) project .
+For the March 2025 Talk of the Monthly Meeting of the #animal-genomics special interest group it is a pleasure to announce Damir Baranasic from MRC, London Institute of Medical Sciences, UK who will introduce the [DANIO-CODE](https://danio-code.zfin.org/) project an international collaborative effort that aimed to annotate the functional elements of the zebrafish genome.
