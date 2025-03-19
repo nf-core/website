@@ -1,6 +1,7 @@
 ---
 title: Workflows to go - nf-core pipelines download
 category: tooling
+slack: "https://nfcore.slack.com/archives/C08JHLV9QRJ"
 intro_video: "https://youtu.be/5TceBWlltoE"
 image: "/assets/images/events/2025/hackathon-march/workflows-to-go.png"
 image_alt: A hexagonal photo of a hiking backpack in a rocky landscape, captioned with "nf-core to go" above it.
