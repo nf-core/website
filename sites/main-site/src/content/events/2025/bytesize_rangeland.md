@@ -2,10 +2,10 @@
 title: "Bytesize: nf-core/rangeland"
 subtitle: Felix Kummer, Humboldt-Universität zu Berlin
 type: talk
-startDate: "2025-06-17"
-startTime: "13:00+01:00"
-endDate: "2025-06-17"
-endTime: "13:30+01:00"
+startDate: "2025-06-10"
+startTime: "13:00+02:00"
+endDate: "2025-06-10"
+endTime: "13:30+02:00"
 locations:
   - name: Online
     links:
