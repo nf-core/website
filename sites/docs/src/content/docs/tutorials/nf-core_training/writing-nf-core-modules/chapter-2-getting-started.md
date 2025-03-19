@@ -4,7 +4,11 @@ subtitle: "Everything you need to have for writing nf-core modules"
 shortTitle: "Chapter 2: Setup"
 ---
 
+## Introduction
+
 In this chapter, we will describe what you will need to successfully complete this training.
+
+## Preparation
 
 For this training, you must already be familiar with:
 
@@ -41,5 +45,9 @@ This training document was written and tested with
 - nf-core/tools 3.2.0
 - Nextflow 24.10.4
   :::
+
+## Summary
+
+In this chapter, we have outlined what you need to have installed and prepared to successfully complete this training.
 
 In the next chapter we will give an introduction to what defines an nf-core module is.
