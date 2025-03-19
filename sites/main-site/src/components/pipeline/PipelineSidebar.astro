@@ -12,6 +12,7 @@ export interface Props {
         contributors: {
             name: string;
             count: number;
+            avatar_url?: string;
         }[];
         open_issues_count: number;
         open_pr_count: number;
@@ -29,13 +30,26 @@ export interface Props {
     pipeline: string;
     version: string;
 }
-const events = await getCollection("events");
-let video = events && events.find((event) => event.data.embedAt === pipeline)?.data.locationURL;
-if (typeof video === "string") {
-    video = [video];
+const events = await getCollection("events", ({ data }) => data.embedAt === pipeline);
+const event = events[0];
+
+// Get YouTube video URL from event data
+let videoUrl: string | undefined = undefined;
+if (event) {
+    // Check if the event has a youtubeEmbed property
+    if (event.data.youtubeEmbed) {
+        videoUrl = Array.isArray(event.data.youtubeEmbed) ? event.data.youtubeEmbed[0] : event.data.youtubeEmbed;
+    }
 }
-video = video?.filter((v) => v.includes("youtube.com") || v.includes("youtu.be"))[0];
-const id = video?.replace("https://www.youtube.com/watch?v=", "").replace("https://youtu.be/", "");
+
+// Extract YouTube video ID
+const videoId = videoUrl
+    ? videoUrl
+          .replace("https://www.youtube.com/watch?v=", "")
+          .replace("https://youtu.be/", "")
+          .replace("https://youtube.com/watch?v=", "")
+    : "";
+console.log(event);
 ---
 
 <script>
@@ -138,9 +152,9 @@ const id = video?.replace("https://www.youtube.com/watch?v=", "").replace("https
         </div>
     </SidebarStatsRow>
     {
-        id && (
+        videoId && (
             <SidebarStatsRow content={[{ title: "video introduction", icon: "fa-brands fa-youtube" }]}>
-                <YouTube id={id} poster={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`} />
+                <YouTube id={videoId} poster={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`} />
             </SidebarStatsRow>
         )
     }
