@@ -9,7 +9,7 @@ leaders:
     name: Margherita Mutarelli
     slack: "https://nfcore.slack.com/team/U018GB2CSGK"
   ugoiannacchero:
-    name: Ugo Iannacchero
+    name: Ugo Maria Iannacchero
     slack: "https://nfcore.slack.com/team/U073H3NAY57"
 ---
 
@@ -21,5 +21,6 @@ Open to contributors of all experience levels.
 ## Goals
 - Add compartment analysis subworkflow and components
 - Add bwa-mem alignment
+- Update the schema figure (metro map) to accurately represent the current analysis workflow
 - Solve as many open [issues](https://github.com/nf-core/sammyseq/issues) as we can
-- Check what what is needed for the first release
+- Check what is needed for the first release
