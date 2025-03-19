@@ -192,13 +192,11 @@ when {
 All file inputs should be referred to by utilising files hosted on the [nf-core/test-datasets GitHub repository](https://github.com/nf-core/test-datasets).
 You can then load these with the syntax as in the example above (i.e., with `params.modules_testdata_base_path` + the file path as within the nf-core/testdatasets repository), with the `checkIfExists` option.
 
-<!-- TO HERE -->
-
-For optional input channels, these can just be given to the relevant `input` variable with `[]`, e.g. `input[3] = []`, or if it requires a meta map `input[3] = [[:],[]]`.
+For optional input channels, these can just be given to the relevant `input` variable with `[]`, e.g. `input[3] = []`, or if it requires a meta map `input[3] = [[],[]]`.
 To refer to the output modules run in a setup block (see below), you can refer to these as you would in a Nextflow pipeline, e.g. `PROCESS_NAME.out.foo`.
 
 Third, once you have completed the input declarations, you can move onto the 'then' block.
-This is where you will need to write 'assertions', i.e., telling nf-test what to compare for.
+This is where you will need to write 'assertions', i.e., telling nf-test what to compare between test runs.
 By default, the example in the boilerplate template code will check the contents of every single output file of the channel.
 However, very often you may find some tools produce variable output files between runs (a common one is logs which include timestamps).
 You can expand the `snapshot()` function to explicitly refer to specific channels, and test each one in different ways.
@@ -218,18 +216,28 @@ then {
 ```
 
 For example, in the example above you can see that the `metrics` and `versions` output channels do not vary in their md5sum content.
-However the `qc_report` does, therefore instead of `md5sums` we change the 'assertion' so that the name of the files in that channel does not change between runs.
+However the `qc_report` does, therefore instead of using the (default) `md5sums` check, we change the 'assertion' so that we compare that name of the files in that channel does not change between runs.
+
+There are many different `assert` methods.
 For a more comprehensive list of different nf-test assertions, see the dedicated [nf-core documenation](https://nf-co.re/docs/contributing/nf-test/assertions) page.
+
+We generally recommend the to test files with the following methods in order of preference:
+
+1. 😃 `md5sum`s
+2. 🙂 String contents within a file
+3. 🫤 File name / file existence
 
 If you have to vary the types of tests per channel, make sure to always include testing of the `process.out.versions` channel!
 
-Finally, once you've completed both the `then` and `when` blocks, you can copy the structure and update the name test and contents for every subsequent tests.
-As a guide, you should try and have as many tests so you test as many configurations as possible, but at a minimum at least a test so you test input files for all input and output channels (mandatory and optional) at least once.
+Finally, once you've completed both the `then` and `when` blocks, you can copy the structure of this first test to each subsequent test case you need to cover - updating the name test and contents.
+
+As a guide, you should try and have as many tests so you test as many configurations as possible, but at a minimum at least enough tests so that you test input files for every input and output channel (mandatory and optional) at least once.
 
 ### The `setup` block (optional)
 
-This optional section is where you can specify module(s) to execute _before_ your new module itself, to use the outputs of this upstream module as input for your module.
-It is not included by default in the boilerplate template code.
+This optional section is where you can specify module(s) to execute _before_ your new module itself
+The outputs of this upstream module can then be used as input for your new module.
+Note that it is not included by default in the boilerplate template code.
 
 ```nextflow
     setup {
@@ -249,31 +257,162 @@ You can either specify this before all tests, so you can re-use the same output 
 Alternatively you can place it before the 'when' block of each test within the test block themselves.
 In this case the the setup block will only be executed when the given test is executed.
 
-The difference between this and the test block (see below) is that output of modules in the setup block will not be evaluated by the test.
+The difference between setup block and the test block (see above) is that the output of modules in the setup block will _not_ be evaluated by the test.
 
-You can fill this block in just the same way as the `test` block, except you explicitly specify the script path of the upstream module.
+You can fill this block in just the same way as the `test` block, except you must explicitly specify the script path of the upstream module in each setup block.
 
-Otherwise you specify the inputs in the same `input[0]`, `input[1]` etc channel syntax, and using the URLs to the nf-core test-dataset repository.
+Otherwise you specify the inputs wotj the same `input[0]`, `input[1]` etc. channel syntax, and using the URLs to the nf-core test-dataset repository as before.
 
-Note that we generally discourage use of setup blocks unless necessary to reduce runtime of tests.
-However it can be useful when a module requires inputs with large file-sizes, or the upstream module is extremely quick.
+Note that we generally discourage the use of setup blocks as they increase the runtime of tests.
+However it can be useful when a module requires inputs with large file-sizes that are too large for the nf-core/test-datasets repository, or the upstream module is extremely quick.
+
+:::tip{title="Examples" collapse}
+Example of a global setup block, the output of which can be reused in every test:
+
+```nextflow
+nextflow_process {
+
+    name "Test Process ADAPTERREMOVALFIXPREFIX"
+    script "../main.nf"
+    process "ADAPTERREMOVALFIXPREFIX"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "adapterremoval"
+    tag "adapterremovalfixprefix"
+
+    setup {
+        run("ADAPTERREMOVAL") {
+            script "../../adapterremoval/main.nf"
+            config "./nextflow.config"
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
+                    ]
+                ]
+                input[1] = []
+                """
+            }
+        }
+    }
+
+    test("paired-end - sarscov2 - [fastq]") {
+
+        when {
+
+            process {
+                """
+                input[0] = ADAPTERREMOVAL.out.collapsed
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+...
+```
+
+Example of setup blocks used for a a specific test:
+
+```nextflow
+nextflow_process {
+
+    name "Test Process BCFTOOLS_PLUGINIMPUTEINFO"
+    script "../main.nf"
+    process "BCFTOOLS_PLUGINIMPUTEINFO"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "bcftools"
+    tag "bcftools/pluginimputeinfo"
+    tag "bcftools/plugintag2tag"
+
+    test("sarscov2 - [vcf, tbi], [], []") {
+
+        config "./nextflow.config"
+
+        setup {
+            run("BCFTOOLS_PLUGINTAG2TAG") {
+                script "../../plugintag2tag/main.nf"
+                process {
+                    """
+                    input[0] = [
+                        [ id:'out', single_end:false ], // meta map
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/vcf/test.vcf.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/vcf/test.vcf.gz.tbi', checkIfExists: true)
+                    ]
+                    input[1] = []
+                    input[2] = []
+                    """
+                }
+            }
+        }
+
+        when {
+            process {
+                """
+                input[0] = BCFTOOLS_PLUGINTAG2TAG.out.vcf.join(BCFTOOLS_PLUGINTAG2TAG.out.tbi)
+                input[1] = []
+                input[2] = []
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.success },
+                { assert snapshot(
+                    process.out.vcf,
+                    process.out.versions
+                ).match() }
+            )
+        }
+
+    }
+```
+
+:::
 
 ## The `nextflow.config` file (optional)
 
 This is an optional file that is _not_ automatically generated with the boilerplate template files.
 It sits alongside the `main.nf.test` and `main.nf.test.snap` file within the `tests/` directory.
 
-The purpose of this file is to provide additional settings, e.g. specifying `ext.args` for modules when you want to expand the number of tests are run.
-This could be for example if you need to give an optional parameter to produce an additional optional output file.
+The purpose of this file is to provide additional settings, e.g. specifying `ext.args` for modules when you want to expand the number of configurations to test.
+For example, you could use it if you need to give an optional parameter to produce an additional optional output file.
 This can also be use to set up different options for when you need to import a module multiple times (typically in `setup` blocks).
 
-If you create such a file, this file you will need to specify the test to use this file, by adding this line:
+If you need this functionality, you will need to create the file yourself.
+The file should sit alongside in the same directory as `tests/main.nf.test`:
+
+```tree {7}
+├── environment.yml
+├── main.nf
+├── meta.yml
+└── tests/
+    ├── main.nf.test
+    ├── main.nf.test.snap
+    └── nextflow.config
+```
+
+You can then specify to use the file within the test by adding this line in your `main.nf.test`:
 
 ```nextflow
 config './nextflow.config'
 ```
 
-Either next to the `script` and `tags` declaration. or within each test's scope before the `when` scope.
+It should be placed next to the `script` and `tags` declaration. or within each test's scope before the `when` scope (see examples).
 
 :::tip{title="Examples" collapse}
 An example of a 'global' nextflow.config file used for all tests:
@@ -320,19 +459,40 @@ or loaded for a specific named test
 This file is _not_ automatically generated with the boilerplate template files.
 It sits alongside the `main.nf.test` and file within the `tests/` directory, and is automatically generated for you when you run the `main.nf.test` script file with `nf-test` the first time.
 
+```tree {6}
+├── environment.yml
+├── main.nf
+├── meta.yml
+└── tests/
+    ├── main.nf.test
+    ├── main.nf.test.snap
+    └── nextflow.config
+```
+
 You can generate the file by running nf-core tools command:
 
 ```bash
 nf-core modules test <tool>/<subcommand>
 ```
 
-and after setting the options via the dialogue, the tests will run twice and tell you if the results of the tests were the same or not, in addition to generating the snapshot file (in the first time)
+and after setting the options via the prompts, the tests will run twice and tell you if the output of each tests were the same or not, in addition to generating the snapshot file (in the first time)
 
-The generated file includes the 'snapshot' output results of nf-test, that are compared against against each subsequent test (e.g., compared the `md5sum` or presence of a string in the output between two tests runs).
+The generated file includes the 'snapshot' output of nf-test.
+This snapshot is what will be compared against for each subsequent test run (e.g., comparing the `md5sum` or presence of a string in the output between two given tests).
 
 You never need to manually modify this file, as it will also be automatically updated by nf-test.
+If you find variability or an issue in your snapshot, you can re-run with
 
-However it is important to manually inspect this file once it has been generated that you have no unexpected snapshot assertion outputs (e.g. empty file `md5sum`, or missing assertions etc.
+```bash
+nf-core modules test <tool>/<subcommand> --update
+```
+
+If you need more information about the test run, you can also provide `--debug` to see the full nf-test stdout log.
+
+It is important to manually inspect the snapshot file once it has been generated.
+You need to make sure you have no unexpected snapshot assertion outputs, even if the tests 'pass' (e.g. empty file `md5sum`, or missing assertions etc.).
+
+If you find issues, and need to inspect the output files of the module itself, we can check the working directory of the module during the test.
 
 To inspect this, in the console when you're running each test, before the name of each test you should get a little 'hash' string:
 
@@ -341,11 +501,13 @@ To inspect this, in the console when you're running each test, before the name o
 │ PASSED (7.762s)
 ```
 
-With this hash string you can change into `.nf-test/tests/528b411a<rest of the string>/work` and you can find a standard Nextflow working directory of the module's test run.
+With this hash string you can change into `.nf-test/tests/<hash string>/work` (make sure to autocomplete with your TAB key to get the full hash) and you can find all the standard Nextflow working directories of the module's test run.
 Within here you should change into each directory until you find the one of the module itself, and check the contents of each output file are as expected to ensure your snapshot has been generated correctly.
 
-Note that you may have 'empty' entries when an optional channel does not emit a file in that given test - however you should double check that is expected for that test.
-Furthermore only assertions that are not included in the snapshot function will not be recorded in the snapshot (typically just evaluated by a boolean, if failed will be printed to console as an error).
+Note that you may have 'empty' entries in the snapshot file when an optional channel does not emit a file in that given test - however you should double check that is expected for that test.
+Furthermore only assertions that are not included in the `snapshot()` function of the `when` block of `main.nf.test` will not be recorded in the snapshot.
+Assertions outside the `snapshot()` functions are typically just boolean checks (e.g. existence of a file).
+If this type of assertion fails, nf-test will simply fail and be printed to console as an error - not recorded in the snapshot file itself.
 
 :::tip{title="Examples" collapse}
 
@@ -466,7 +628,7 @@ Furthermore only assertions that are not included in the snapshot function will 
 
 :::
 
-Once your snapshot is generated, your module is ready for use!
+Once your snapshot is generated and stable, your module is ready for use!
 
 ## Summary
 
