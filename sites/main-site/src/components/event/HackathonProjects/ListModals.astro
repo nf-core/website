@@ -9,8 +9,8 @@ let projects = await getCollection("hackathon-projects");
 <div class="hackathon_project_list_modals">
     {
         projects.map((project) => (
-            <ProjectModal slug={project.slug} {...project.data}>
-                <Markdown of={project.body} />
+            <ProjectModal id={project.id} {...project.data}>
+                <Markdown of={project.body ?? ""} />
             </ProjectModal>
         ))
     }

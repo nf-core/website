@@ -2,8 +2,15 @@
 import EventBannerElement from "@components/event/EventBannerElement.svelte";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
+import { markdown } from "@astropub/md";
 
 let events: CollectionEntry<"events">[] = await getCollection("events");
+events = await Promise.all(
+    events.map(async (event) => {
+        event.data.subtitle = `${await markdown(event.data.subtitle)}`;
+        return event;
+    }),
+);
 let now = new Date().getTime();
 events = events.sort((a, b) => {
     if (!a.data.start || !b.data.start) return 0;
@@ -11,7 +18,7 @@ events = events.sort((a, b) => {
 });
 
 events = events.filter((event) => {
-    return event.slug.split("/").length === 2;
+    return event.id.split("/").length === 2;
 });
 const currentEvents = events.filter((event) => {
     let time_window = 2 * 24 * 60 * 60 * 1000; // 1 day longer as the time_window in UpcomingEvents.svelte to be sure to have all events created during the daily static build

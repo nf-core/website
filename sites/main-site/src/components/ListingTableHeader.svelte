@@ -1,10 +1,14 @@
 <script lang="ts">
     import { CurrentFilter, Filters, SortBy, DisplayStyle, SearchQuery } from "@components/store";
 
-    export let name: string = "";
-    export let title: string = "Sort by " + name.toLowerCase();
-    export let textEnd: boolean = false;
-    export let textCenter: boolean = false;
+    interface Props {
+        name?: string;
+        title?: string;
+        textEnd?: boolean;
+        textCenter?: boolean;
+    }
+
+    let { name = "", title = "Sort by " + name.toLowerCase(), textEnd = false, textCenter = false }: Props = $props();
     let sortInverse = false;
 
     function handleSort(sor) {
@@ -25,7 +29,7 @@
     data-bs-toggle="tooltip"
     data-bs-delay="500"
     {title}
-    on:click={() => handleSort(name)}
+    onclick={() => handleSort(name)}
 >
     <i
         class="fa-arrow-up-arrow-down me-2 fa-swap-opacity"
@@ -33,7 +37,7 @@
         class:fa-regular={!$SortBy.startsWith(name)}
         class:text-muted={!$SortBy.startsWith(name)}
         class:fa-swap-opacity={!$SortBy.endsWith(";inverse")}
-    />
+    ></i>
     {name}
 </th>
 
