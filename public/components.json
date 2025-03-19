@@ -16395,6 +16395,10 @@
           "version": "dev"
         },
         {
+          "name": "deepmodeloptim",
+          "version": "dev"
+        },
+        {
           "name": "readsimulator",
           "version": "1.0.1"
         },
@@ -17426,7 +17430,13 @@
         "maintainers": [
           "@ekushele"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "deepmodeloptim",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "bedtools_shuffle",
@@ -17661,6 +17671,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "deepmodeloptim",
+          "version": "dev"
+        },
         {
           "name": "raredisease",
           "version": "2.4.0"
@@ -17967,6 +17981,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "deepmodeloptim",
+          "version": "dev"
+        },
         {
           "name": "tfactivity",
           "version": "dev"
@@ -22792,7 +22810,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "genomeqc",
@@ -40104,6 +40122,10 @@
           "version": "3.2.2"
         },
         {
+          "name": "deepmodeloptim",
+          "version": "dev"
+        },
+        {
           "name": "hic",
           "version": "2.1.0"
         },
@@ -53838,7 +53860,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "genomeqc",
@@ -56826,7 +56848,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "pathogensurveillance",
@@ -69769,6 +69791,10 @@
           "version": "dev"
         },
         {
+          "name": "deepmodeloptim",
+          "version": "dev"
+        },
+        {
           "name": "denovotranscript",
           "version": "1.2.0"
         },
@@ -82283,7 +82309,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -96981,7 +97007,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -97283,7 +97309,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "isoseq",
@@ -105014,7 +105040,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "genomeqc",
@@ -106020,7 +106046,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "genomeqc",
@@ -106208,7 +106234,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "genomeqc",
@@ -109014,7 +109040,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "isoseq",
@@ -131139,7 +131165,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -135788,7 +135814,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "mag",
@@ -150372,7 +150398,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "hgtseq",
@@ -150599,7 +150625,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "hgtseq",
@@ -150881,7 +150907,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "hgtseq",
@@ -151245,7 +151271,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "hgtseq",
@@ -152338,7 +152364,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "hgtseq",
@@ -152577,7 +152603,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "hgtseq",
@@ -179670,7 +179696,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "hgtseq",
@@ -194678,7 +194704,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "magmap",
@@ -194944,7 +194970,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "magmap",
@@ -201230,7 +201256,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "genomeqc",
@@ -201575,7 +201601,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "genomeqc",
@@ -201904,7 +201930,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "mag",
