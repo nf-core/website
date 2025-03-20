@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize: nft-bam'
+title: "Bytesize: nft-bam"
 subtitle: Nicolas Vannieuwkerke, Center For Medical Genetics Ghent
 type: talk
-startDate: '2024-07-30'
-startTime: '13:00+02:00'
-endDate: '2024-07-30'
-endTime: '13:30+02:00'
+startDate: "2024-07-30"
+startTime: "13:00+02:00"
+endDate: "2024-07-30"
+endTime: "13:30+02:00"
 youtubeEmbed: https://youtu.be/wyIpQLg7JxM
 locations:
   - name: Online

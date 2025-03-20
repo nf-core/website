@@ -1,13 +1,13 @@
 ---
-title: 'Bytesize: nf-core/mag'
+title: "Bytesize: nf-core/mag"
 subtitle: Sabrina Krakau - University Tübingen, QBiC
 type: talk
-startDate: '2023-02-28'
-startTime: '13:00+01:00'
-endDate: '2023-02-28'
-endTime: '13:30+01:00'
+startDate: "2023-02-28"
+startTime: "13:00+01:00"
+endDate: "2023-02-28"
+endTime: "13:30+01:00"
 youtubeEmbed: https://www.youtube.com/watch?v=IiorfDHeoLo
-embedAt: 'mag'
+embedAt: "mag"
 locations:
   - name: Online
     links:

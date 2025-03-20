@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize: Special Interest Group - Animal Genomics'
+title: "Bytesize: Special Interest Group - Animal Genomics"
 subtitle: Cedric Notredame (CRG, Barcelona), Björn Langer (CRG, Barcelona), Francesca Bernini (UNIMI, Milan), Jose Espinosa-Carrasco (CRG, Barcelona)
 type: talk
-startDate: '2024-11-12'
-startTime: '13:00+01:00'
-endDate: '2024-11-12'
-endTime: '13:30+01:00'
+startDate: "2024-11-12"
+startTime: "13:00+01:00"
+endDate: "2024-11-12"
+endTime: "13:30+01:00"
 locations:
   - name: Online
     links:

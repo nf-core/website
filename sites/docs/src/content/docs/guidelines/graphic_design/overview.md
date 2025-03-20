@@ -21,3 +21,4 @@ This includes:
 - How to make metro-map-like diagrams for pipeline diagrams
 - Examples of various types of pipeline diagrams
 - How to make a custom logo for nf-core pipelines
+- Examples of how the community can present nf-core in various ways

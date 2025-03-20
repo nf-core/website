@@ -13,10 +13,13 @@
             "@main-site/*": ["../main-site/src/*"],
             "@utils/*": ["../main-site/utils/*"]
         },
-        "strictNullChecks": true
+        "strictNullChecks": true,
+        "verbatimModuleSyntax": false,
+        "types": ["astro/client"]
     },
+    "include": [".astro/types.d.ts", "**/*"],
     "exclude": [
         "node_modules",
-        "dist",
+        "dist"
     ]
 }

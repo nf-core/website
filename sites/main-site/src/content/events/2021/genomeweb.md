@@ -1,11 +1,11 @@
 ---
-title: 'GenomeWeb Webinar'
+title: "GenomeWeb Webinar"
 subtitle: Managing Bioinformatics Pipelines in the Cloud to Do More Science
 type: talk
-startDate: '2021-12-01'
-startTime: '17:00+01:00'
-endDate: '2021-12-01'
-endTime: '18:00+01:00'
+startDate: "2021-12-01"
+startTime: "17:00+01:00"
+endDate: "2021-12-01"
+endTime: "18:00+01:00"
 locations:
   - name: Online
     links:

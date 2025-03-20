@@ -1,16 +1,18 @@
 ---
-import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
-import pipelines_json from '@public/pipelines.json';
-import { getEntry } from 'astro:content';
-import PipelineSidebar from '@components/pipeline/PipelineSidebar.astro';
+import PipelinePageLayout from "@layouts/PipelinePageLayout.astro";
+import pipelines_json from "@public/pipelines.json";
+import { getEntry } from "astro:content";
+import PipelineSidebar from "@components/pipeline/PipelineSidebar.astro";
+import MarkdownWrapper from "@components/markdown/MarkdownWrapper.svelte";
+
 export function getStaticPaths() {
     var paths: { params: { pipeline: string; version: string }; props: { versions: string[]; md_files; meta } }[] = [];
     pipelines_json.remote_workflows.forEach((pipeline) => {
         const releases = pipeline.releases;
-        const extended_releases = [...releases, { tag_name: 'latest', doc_files: releases[0].doc_files }];
+        const extended_releases = [...releases, { tag_name: "latest", doc_files: releases[0].doc_files }];
         extended_releases.forEach((release) => {
             const md_files = release.doc_files.map((file) =>
-                file.replace('docs/', '').replace('.mdx', '').replace('.md', ''),
+                file.replace("docs/", "").replace(".mdx", "").replace(".md", ""),
             );
             paths.push({
                 params: {
@@ -32,31 +34,35 @@ let { pipeline, version } = Astro.params;
 let { versions, md_files, meta } = Astro.props;
 const description = meta.description;
 const is_archived = meta.archived;
-const version_tag_name = version === 'latest' ? versions[0] : version;
-const cache_key = `${pipeline}/${version_tag_name.replaceAll('.', '')}/readme`;
-const entry = await getEntry('pipelines', cache_key);
-if (!entry) {
-    throw new Error(`No entry found for ${pipeline} ${version}`);
+const version_tag_name = version === "latest" ? versions[0] : version;
+let entry = await getEntry("pipelines", pipeline + "/" + version_tag_name + "/README");
+
+const headings = entry?.rendered?.metadata?.headings;
+const Content = entry?.rendered?.html;
+if (version_tag_name !== "dev") {
+    meta.doi = entry?.data?.doi;
 }
-const { Content, headings } = await entry.render();
-const md_github_url = 'https://github.com/nf-core/' + pipeline + '/blob/' + version + '/README.md';
+
+const md_github_url = "https://github.com/nf-core/" + pipeline + "/blob/" + version + "/README.md";
 ---
 
 <PipelinePageLayout
     pipeline={pipeline}
     subtitle={description}
-    meta_title={pipeline + ': Introduction'}
+    meta_title={pipeline + ": Introduction"}
     headings={headings}
     version={version}
     versions={versions}
     is_archived={is_archived}
     tabItems={md_files}
     md_github_url={md_github_url}
-    docSearchTags={[{ name: 'page_rank', content: (meta.stargazers_count / 100 + 10).toString() }]}
+    docSearchTags={[{ name: "page_rank", content: (meta.stargazers_count / 100 + 10).toString() }]}
 >
     <div class="row">
         <div class="col-12 col-md-8 col-xxl-9 pt-3 markdown-content">
-            <Content />
+            <MarkdownWrapper headings={headings} client:load>
+                <Fragment set:html={Content} />
+            </MarkdownWrapper>
         </div>
         <div class="col-12 col-md-4 col-xxl-3 toc">
             <PipelineSidebar pipeline={pipeline} version={version} meta={meta} />
@@ -65,7 +71,7 @@ const md_github_url = 'https://github.com/nf-core/' + pipeline + '/blob/' + vers
 </PipelinePageLayout>
 
 <style lang="scss">
-    @import '@styles/_variables.scss';
+    @import "@styles/_variables.scss";
     .nav-link {
         &:hover {
             border: 0;

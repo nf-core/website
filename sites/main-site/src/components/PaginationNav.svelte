@@ -1,20 +1,17 @@
 <script lang="ts">
-    import { currentPage } from '@components/store';
-    import { onMount } from 'svelte';
+    import { currentPage } from "@components/store";
 
-    export let lastPage: number = 1;
+    interface Props {
+        lastPage?: number;
+    }
 
-    let pages: number[] = [];
-    let truncatedPages: number[] = [];
+    let { lastPage = 1 }: Props = $props();
+
+    let pages: number[] = $state([]);
+    let truncatedPages: number[] = $state([]);
 
     const maxPages = 7;
-    let truncated = false;
-
-    $: {
-        if (lastPage > 0) {
-            generatePages();
-        }
-    }
+    let truncated = $state(false);
 
     function generatePages() {
         pages = [];
@@ -39,6 +36,15 @@
         $currentPage = page;
         generatePages();
     }
+
+    function handleKeydown(e, page) {
+        if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            handlePageChange(page);
+        }
+    }
+
+    generatePages();
 </script>
 
 <div class="d-flex justify-content-center mt-2">
@@ -46,8 +52,8 @@
         <ul class="pagination">
             <li class="page-item" class:disabled={$currentPage === 1}>
                 <span
-                    on:click={() => handlePageChange($currentPage - 1)}
-                    on:keydown={() => handlePageChange($currentPage - 1)}
+                    onclick={() => handlePageChange($currentPage - 1)}
+                    onkeydown={(e) => handleKeydown(e, $currentPage - 1)}
                     role="button"
                     class="page-link"
                     tabindex="0">Previous</span
@@ -57,7 +63,13 @@
             {#if truncated}
                 {#if truncatedPages[0] > 1}
                     <li class="page-item">
-                        <span class="page-link">1</span>
+                        <span
+                            class="page-link"
+                            onclick={() => handlePageChange(1)}
+                            onkeydown={(e) => handleKeydown(e, 1)}
+                            role="button"
+                            tabindex="0">1</span
+                        >
                     </li>
                     <li class="page-item disabled">
                         <span class="page-link">...</span>
@@ -66,8 +78,8 @@
                 {#each truncatedPages as page}
                     <li class="page-item" class:active={$currentPage === page}>
                         <span
-                            on:click={() => handlePageChange(page)}
-                            on:keydown={() => handlePageChange(page)}
+                            onclick={() => handlePageChange(page)}
+                            onkeydown={(e) => handleKeydown(e, page)}
                             role="button"
                             class="page-link"
                             tabindex="0">{page}</span
@@ -80,8 +92,8 @@
                     </li>
                     <li class="page-item" class:active={$currentPage === lastPage}>
                         <span
-                            on:click={() => handlePageChange(lastPage)}
-                            on:keydown={() => handlePageChange(lastPage)}
+                            onclick={() => handlePageChange(lastPage)}
+                            onkeydown={(e) => handleKeydown(e, lastPage)}
                             role="button"
                             tabindex="0"
                             class="page-link">{lastPage}</span
@@ -92,8 +104,8 @@
                 {#each pages as page}
                     <li class="page-item" class:active={$currentPage === page}>
                         <span
-                            on:click={() => handlePageChange(page)}
-                            on:keydown={() => handlePageChange(page)}
+                            onclick={() => handlePageChange(page)}
+                            onkeydown={(e) => handleKeydown(e, page)}
                             role="button"
                             tabindex="0"
                             class="page-link">{page}</span
@@ -104,8 +116,8 @@
 
             <li class="page-item" class:disabled={$currentPage === lastPage}>
                 <span
-                    on:click={() => handlePageChange($currentPage + 1)}
-                    on:keydown={() => handlePageChange($currentPage + 1)}
+                    onclick={() => handlePageChange($currentPage + 1)}
+                    onkeydown={(e) => handleKeydown(e, $currentPage + 1)}
                     class="page-link"
                     role="button"
                     tabindex="0">Next</span
