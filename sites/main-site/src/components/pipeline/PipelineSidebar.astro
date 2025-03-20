@@ -3,6 +3,7 @@ import InstallCmd from "@components/InstallCmd.svelte";
 import SidebarStatsRow from "@components/sidebar/SidebarStatsRow.astro";
 import { formatDistance } from "date-fns";
 import GitHubProfilePicture from "@components/GitHubProfilePicture.svelte";
+import TagSection from "@components/TagSection.svelte";
 import { getCollection } from "astro:content";
 import { YouTube } from "@astro-community/astro-embed-youtube";
 
@@ -18,10 +19,10 @@ export interface Props {
         open_pr_count: number;
         releases: {
             published_at: string;
-            components: {
-                modules: string[];
-                subworkflows: string[];
-            }
+            components?: {
+                modules?: string[];
+                subworkflows?: string[];
+            };
         }[];
         stargazers_count: number;
         subscribers_count: number;
@@ -50,19 +51,10 @@ const videoId = videoUrl
           .replace("https://youtube.com/watch?v=", "")
     : "";
 console.log(event);
----
 
-<script>
-    const showMoreButton = document.getElementById("modules-show-more")
-    showMoreButton.addEventListener("click", () => {
-        document.getElementById("modules-list").classList.toggle("show")
-        showMoreButton.querySelector("i").classList.toggle("flipped")
-        if (showMoreButton.innerText.includes("more"))
-            showMoreButton.querySelector("span").innerText = showMoreButton.innerText.replace("more", "less")
-        else
-            showMoreButton.querySelector("span").innerText = showMoreButton.innerText.replace("less", "more")
-    })
-</script>
+const modules: string[] = meta.releases[0].components?.modules || [];
+const subworkflows: string[] = meta.releases[0].components?.subworkflows || [];
+---
 
 <div class="sidebar mt-3 sticky-top-under">
     <SidebarStatsRow content={[{ title: "run with", icon: "fa-regular fa-terminal" }]}>
@@ -198,35 +190,18 @@ console.log(event);
         </div>
     </SidebarStatsRow>
     {
-        meta.releases[0].components?.modules &&
-        <SidebarStatsRow content={[{ title: "included modules" }]}>
-            <div id="modules-list" class="mb-2">
-                {meta.releases[0].components?.modules?.map((module) => (
-                        <a
-                            href={"/modules/" + module.replace("/", "_") + "/"}
-                            class="badge fw-normal border border-info-subtle bg-info-subtle text-body me-2 text-decoration-none"
-                        >
-                            {module}
-                        </a>
-                ))}
-            </div>
-            <button id="modules-show-more" class="btn btn-outline-secondary container-fluid"><span>Show more</span><i class="fa-solid fa-caret-down m-1" /></button>
-        </SidebarStatsRow>
+        modules.length > 0 && (
+            <SidebarStatsRow content={[{ title: "included modules" }]}>
+                <TagSection tags={modules} type="modules" maxShown={5} client:load />
+            </SidebarStatsRow>
+        )
     }
     {
-        meta.releases[0].components?.subworkflows &&
-        <SidebarStatsRow content={[{ title: "included subworkflows" }]}>
-            <div class="mb-2">
-                {meta.releases[0].components?.subworkflows?.map((subworkflow) => (
-                        <a
-                            href={"/subworkflows/" + subworkflow.replace("/", "_") + "/"}
-                            class="badge fw-normal border border-info-subtle bg-info-subtle text-body me-2 text-decoration-none"
-                        >
-                            {subworkflow}
-                        </a>
-                ))}
-            </div>
-        </SidebarStatsRow>
+        subworkflows.length > 0 && (
+            <SidebarStatsRow content={[{ title: "included subworkflows" }]}>
+                <TagSection tags={subworkflows} type="subworkflows" client:load />
+            </SidebarStatsRow>
+        )
     }
     <SidebarStatsRow content={[{ title: "contributors" }]} lastChild={true}>
         {
