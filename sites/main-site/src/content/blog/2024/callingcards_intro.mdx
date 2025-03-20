@@ -1,27 +1,27 @@
 ---
-title: 'nf-core/callingcards - first release!'
-subtitle: 'The nf-core callingcards workflow'
-headerImage: '/assets/images/blog/callingcards/callingcards_metromap.png'
-headerImageAlt: 'Subway diagram of the calingcards pipeline'
+title: "nf-core/callingcards - first release!"
+subtitle: "The nf-core callingcards workflow"
+headerImage: "/assets/images/blog/callingcards/callingcards_metromap_wide.png"
+headerImageAlt: "Subway diagram of the calingcards pipeline"
 pubDate: 2024-07-18T00:19:00+01:00
 authors:
-    - 'cmatKhan'
+    - "cmatKhan"
 label:
-    - 'pipeline'
-    - 'bioinformatics'
-    - 'genomics'
-    - 'callingcards'
-    - 'transcription factors'
+    - "pipeline"
+    - "bioinformatics"
+    - "genomics"
+    - "callingcards"
+    - "transcription factors"
 ---
 
-import { YouTube } from '@astro-community/astro-embed-youtube';
+import { YouTube } from "@astro-community/astro-embed-youtube";
 
-import alf_gif from '@assets/images/blog/callingcards/alf_what_is_this.webp';
-import callingcards_vs_chip from '@assets/images/blog/callingcards/callingcards_vs_chip_white.png';
-import callingcards_metro from '@assets/images/blog/callingcards/callingcards_metromap.png';
-import callingcards_mammals from '@assets/images/blog/callingcards/callingcards_mammals.png';
+import alf_gif from "@assets/images/blog/callingcards/alf_what_is_this.webp";
+import callingcards_vs_chip from "@assets/images/blog/callingcards/callingcards_vs_chip_white.png";
+import callingcards_metro from "@assets/images/blog/callingcards/callingcards_metromap.png";
+import callingcards_mammals from "@assets/images/blog/callingcards/callingcards_mammals.png";
 
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 
 The [`nf-core/callingcards`][nf-core-callingcards-link] workflow is here!
 
@@ -48,12 +48,12 @@ genome, to deposit a molecular barcode into the genome when a TF binds.
     <Image class="d-block m-auto" src={callingcards_vs_chip} alt="A graphic comparing Calling Cards to ChIP-seq" />
     <figcaption>
         Figure 1: A comparison of Calling Cards to the more familiar method of interrogating transcription factors,
-        ChIP-Seq. The calling cards figure is from{' '}
+        ChIP-Seq. The calling cards figure is from{" "}
         <a href="http://www.genome.org/cgi/doi/10.1101/gr.6510207">Calling cards for DNA-binding-proteins</a> by Wang et
-        al., which originally described calling cards. The ChIP-seq diagram is from{' '}
+        al., which originally described calling cards. The ChIP-seq diagram is from{" "}
         <a href="https://doi.org/10.4161/15384101.2014.949201">
             Role of ChIP-seq in the discovery of transcription factor binding sites
-        </a>{' '}
+        </a>{" "}
         by Mundade et al.
     </figcaption>
 </figure>

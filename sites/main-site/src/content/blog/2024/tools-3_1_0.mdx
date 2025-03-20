@@ -1,0 +1,98 @@
+---
+title: "nf-core/tools - 3.1.0"
+subtitle: "Everything is going crate"
+headerImage: "https://images.unsplash.com/photo-1655874835023-02d7371fbe90"
+headerImageAlt: "A wall of red, blue and green plastic crates"
+pubDate: 2024-12-10T14:00:00+01:00
+authors:
+    - "mashehu"
+    - "mirpedrol"
+    - "ewels"
+label:
+    - "tools"
+maxHeadingDepth: 3
+---
+
+This release comes with some new features and smaller pipeline template, which shouldn't cause too much of a headache.
+As always, if you have any problems or run into any bugs, reach out on the [#tools slack channel](https://nfcore.slack.com/archives/CE5LG7WMB).
+
+# Highlights
+
+## Research Object (RO) Crates in nf-core pipelines
+
+    RO Crate is an open-source standard which we use to describe our pipelines and their components in a structured way and helps with automated provenance tracking.
+    In our case, it describes all files that are in the pipeline template, as well as the pipeline authors, besides some general metadata.
+    More information about RO Crates can be found [here](https://www.researchobject.org/ro-crate/).
+    Thanks to [Phil Ewels](https://github.com/ewels), [Stian Soiland-Reyes](https://github.com/stain) and [Simone Leo ](https://github.com/simleo) for kicking off this effort and providing useful feedback!
+
+    :::note
+    This RO Crate describes the pipeline as a whole, not pipeline runs.
+    For that kind of provenance, use the new [nf-prov plugin](https://github.com/nextflow-io/nf-prov), which is currently in development.
+    :::
+
+    If you want to update the RO Crate for your pipeline, run `nf-core pipelines rocrate` (automatically run with `nf-core pipelines sync`).
+
+    For more information about the command and how it generates the RO Crate, see [the docs](https://nf-co.re/docs/nf-core-tools/pipelines/rocrate).
+
+## ORAS container URI support in `nf-core pipelines download`
+
+    Previously, you needed to use a `https://` prefix, but thanks to the work by [@MatthiasZepper](https://github.com/MatthiasZepper) we can now use the `oras://` prefix.
+    This requires singularity to be installed on your system.
+
+## `main` as optional default branch
+
+    With this release we extended the template and tooling to support either `main` or `master` as the default release branch for pipelines.
+
+If you want to use the `main` branch in your pipeline, make sure to set `defaultBranch = main` on the `manifest` section from the `nextflow.config` file. Afterwards, you can change the GitHub repository default branch to `main`.
+
+Then, you can run `nf-core pipelines sync` again. This will automatically change all the required links from `master` to `main`.
+
+## `nf-core subworkflows patch`
+
+    This new commandallows you to patch subworkflows in the same way as you would patch modules.
+
+# Miscellaneous
+
+- When running `nf-core pipelines create` you can now toggle all pipelines features on and off with one switch.
+- The template now includes an expanded contributors section in the manifest, as introduced in [Nextflow 24.10.0](https://www.nextflow.io/docs/latest/reference/config.html#manifest) for details.
+  We added a new `TODO nf-core` comment, so please add the missing information to these fields.
+  Completing these fields will allow us for example to improve the data in the RO crate, especially the ORCID.
+
+    The newly added fields are:
+
+    ```groovy title="nextflow.config" {2-11}
+    manifest {
+        contributors = [
+            [
+                name: '',
+                affiliation: '',
+                email: '',
+                github: '',
+                contribution: [], // List of contribution types ('author', 'maintainer' or 'contributor')
+                orcid: ''
+            ],
+        ]
+    }
+    ```
+
+- We moved `includeConfig 'conf/modules.config'` next to `includeConfig 'conf/base.config'` to not overwrite tests profiles configurations.
+  Thanks to [Louis Le Nézet](https://github.com/LouisLeNezet) for adding this change.
+
+# Possible merge conflicts and how to resolve them
+
+## `.nf-core.yml`
+
+We started to clean null values from the `.nf-core.yml` file, so if you get something like the following, you can accept this change.
+
+```diff
+<<<<<<< nf-core-template-merge-3.1.0
++ nf_core_version: 3.1.0
+=======
+- nf_core_version: 3.0.1
+- org_path: null
+>>>>>>> dev
+```
+
+### Resolution
+
+You can just accept the changes that don't include null values, i.e. the ones coming from `nf-core-template-merge-3.1.0`.

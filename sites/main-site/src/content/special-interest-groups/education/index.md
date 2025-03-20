@@ -1,6 +1,6 @@
 ---
 title: Introduction
-subtitle: 'Community of researchers promoting the inclusion of Nextflow into academic curricula, developing open-source educational materials'
+subtitle: "Community of researchers promoting the inclusion of Nextflow into academic curricula, developing open-source educational materials"
 groupName: Education
 leads:
   - lescai: Francesco Lescai

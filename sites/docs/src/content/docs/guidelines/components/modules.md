@@ -191,7 +191,7 @@ END_VERSIONS
 resulting in, for instance,
 
 ```yaml
-'FASTQC':
+"FASTQC":
   fastqc: 0.11.9
   samtools: 1.12
 ```
@@ -323,6 +323,73 @@ tool \\
 See the [Bash manual on file operators](https://tldp.org/LDP/abs/html/fto.html) for examples of properties of files which could be tested.
 
 Alternate suggestions include using `grep -c` to search for a valid string match, or other tool which will appropriately error when the expected output is not successfully created.
+
+### Script inclusion
+
+Using module templates helps distinguish between changes made to the scientific logic within the script and those affecting the workflow-specific logic in the module. This separation improves the code's clarity and maintainability.
+If a module's `script:` block contains a script rather than command invocations, regardless of the language (e.g., Bash, R, Python), and the content is more than a readable length (as a rule of thumb, approximately 20 lines), it MUST be provided through a [Nextflow module template](https://www.nextflow.io/docs/latest/module.html#module-templates).
+
+:::note
+We recommend use of Nextflow templates as they are the most portable method of separating custom script content and execution across all execution contexts
+:::
+
+:::note
+Where script content in a module becomes particularly extensive, we strongly encourage packaging and hosting the code externally and provisioning via Conda/Docker as a standalone tool(kit).
+:::
+
+#### Inline script code
+
+If the script content remains at a readable length, the code MAY be embedded directly in the module without a dedicated template file. However, they should still follow the guidance content as with a template.
+
+#### Module template location
+
+The template MUST go into a directory called `templates/` in the same directory as the module `main.nf`.
+
+The template file MUST be named after the module itself with a language-appropriate file suffix. For example, the `deseq2/differential` nf-core module will use the `deseq2_differential.R`.
+
+The template file can then be referred to within the module using the template function:
+
+    ```nextflow
+    script:
+    template 'deseq2_differential.R'
+    ```
+
+See [`deseq2/differential`](https://github.com/nf-core/modules/blob/master/modules/nf-core/deseq2/differential/main.nf#L47) for an example of a template in an nf-core pipeline.
+
+The resulting structure would look like this.
+
+    ```tree
+    deseq2
+    └── differential
+        ├── environment.yml
+        ├── main.nf
+        ├── meta.yml
+        ├── templates
+        │   └── deqseq2_differential.R
+        └── tests
+            ├── main.nf.test
+            ├── main.nf.test.snap
+            └── tags.yml
+    ```
+
+#### Template or inline script-code contents
+
+:::warning
+Be aware that in any script template that Nextflow needs to be escaped in the same way you would in a standard bash `script:` block!
+:::
+
+The script template file or inline script code (used when at a readable length) MUST generate a `versions.yml` file in the language-appropriate way that contains versions of the base language and all relevant libraries and packages.
+
+The generated `versions.yml` MUST have the same structure as a standard nf-core module `versions.yml`.
+
+See the [`deseq2/differential` module](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/templates/deseq_de.R#L509-L534) for an example using R.
+
+#### Stubs in templated modules
+
+A templated module MUST have a stub block in the same way as any other module. For example, using `touch` to generate empty files and versions. See [`deseq2/differential` module](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/main.nf#L34-L49) for an example in an nf-core module.
+
+An inline command to call the version for libraries for the `versions.yml` MAY be used in this case.
+For an R example see [deseq2/differential](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/main.nf#L47).
 
 ### Stubs
 
@@ -687,6 +754,22 @@ If the software is not available on Bioconda a `Dockerfile` MUST be provided wit
 
 ## Testing
 
+### Scope of testing
+
+Tests for modules SHOULD be executable within the nf-core/modules GitHub repository CI with example test data.
+
+Tests for modules MUST, at a minimum, run on the GitHub repository CI with a stub test that replicates the generation of (empty) output files and a `versions` file.
+
+Module tests do not necessarily need to be able to execute 'standalone', i.e., run outside the nf-core/modules repository. For example, they don't need to be executable within a pipeline repository.
+
+:::info{title="Rationale" collapse}
+Some modules may require upstream modules to generate input files for the new module under construction if it is not possible or reasonable to upload those test data files to nf-core/test-datasets.
+
+If the test were to work 'standalone,' the pipeline would need to include all these upstream modules just to execute the module test—even if those modules are not used within the pipeline itself. This would lead to a lot of file 'pollution' within the pipeline repository.
+
+Modules installed in the pipeline should already be tested to work correctly within the context of the pipeline with workflow- or pipeline-level tests. Thus, it is considered unnecessary to duplicate module tests again.
+:::
+
 ### Snapshots
 
 Only one snapshot is allowed per module test, which SHOULD contain all assertions present in this test. Having multiple snapshots per test will make the snapshot file less readable.
@@ -784,6 +867,13 @@ No other settings should go into this file.
 
 :::tip
 Supply the config only to the tests that use `params`, otherwise define `params` for every test including the stub test.
+:::
+
+### Skipping CI test profiles
+
+If a module does not support a particular test profile, it can be skipped by adding the path to corresponding section in `.github/skip_nf_test.json`.
+:::Note
+Please keep the file sorted alphabetically.
 :::
 
 ## Misc

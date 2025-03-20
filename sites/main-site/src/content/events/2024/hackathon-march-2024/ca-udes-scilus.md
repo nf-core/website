@@ -3,10 +3,10 @@ title: Hackathon - March 2024 (Sherbrooke, QC, Canada)
 subtitle: Local node of the nf-core hackathon at Université de Sherbrooke, QC, Canada.
 shortTitle: Sherbrooke, QC, Canada
 type: hackathon
-startDate: '2024-03-18'
-startTime: '10:00-05:00'
-endDate: '2024-03-20'
-endTime: '17:00-05:00'
+startDate: "2024-03-18"
+startTime: "10:00-05:00"
+endDate: "2024-03-20"
+endTime: "17:00-05:00"
 locations:
   - name: Sherbrooke Connectivity Imaging Lab (SCIL), Université de Sherbrooke
     address: 2500 Bd de l'Université, Sherbrooke, QC J1K 2R1
