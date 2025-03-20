@@ -21,4 +21,3 @@ This project will work on improving the [nf-core/sarek](https://nf-co.re/sarek/)
 ## Goals
 
 Improve sarek stability.
-
