@@ -17,7 +17,7 @@ For this training, you must already be familiar with:
 - ✅ How Nextflow modules/processes work
   - Not yet familiar? Read the official [Nextflow documentation on modules](https://nextflow.io/docs/latest/module.html)
 - ✅ Have some knowledge of Git and GitHub
-  - Not yet familiar with git? Try the official [git tutorial](https://git-scm.com/docs/gittutorialgithub)
+  - Not yet familiar with git? Try the official [git tutorial](https://git-scm.com/docs/gittutorial)
   - Not yet familiar? Try the [GitHub Skills](https://skills.github.com/) documentation
 
 You will need to already have the following installed or created:

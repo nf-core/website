@@ -41,7 +41,7 @@ If you do this, the first time you will be asked:
 3. If you are OK with creating a `modules.json`: select `yes`
    - This file is used by nf-core tools to inform you of any updates to the modules you have installed
 
-This will create a directory and subdirectories within your pipeline repository called `modules/nf-core/<modulename>` where you can see all the files you created.
+This will create a directory and subdirectories within your pipeline repository called `modules/nf-core/<toolname>/<subcommand>` where you can see all the files you created.
 You will also see the `modules.json` for recording the module versions of all nf-core modules you've installed, and also a `.nf-core.yml` configuration file required by nf-core tools.
 
 The console output will also handily give you a line you can copy and paste into your pipeline script to include the module 💪.
@@ -52,7 +52,7 @@ If you install a second module, and get an error of `ERROR    'manifest.name`, e
 
 ## Utilising nf-core/modules
 
-Once your module is created, you can pretty much use it as with any form of Nextflow DSL2 module.
+Once your module is created, you can pretty much use it as with any form of Nextflow module.
 
 Copy and paste the line that the install command printed to console into the relevant `.nf` file you want to use the module in:
 
@@ -68,7 +68,7 @@ You can invoke the module as you would with any Nextflow module:
 SAMTOOLS_FASTA (ch_input_for_samtoolsfasta, val_interleave)
 ```
 
-However you may need to make some additional additional tweaks to your existing pipeline logic and files to make the module work correctly. These changes are described in the remaining sections of this chapter.
+However, you may need to make some additional additional tweaks to your existing pipeline logic and files to make the module work correctly. These changes are described in the remaining sections of this chapter.
 
 ### Module channel structures
 
@@ -82,7 +82,7 @@ A very simple example would be:
 ```nextflow
 def val_interleave = false
 ch_input_for_samtoolsfasta = ch_input
-                              .map{fasta -> [[id: fasta.simpleName] ,fasta]}
+                              .map {fasta -> [[id: fasta.simpleName] ,fasta]}
 
 SAMTOOLS_FASTA (ch_input_for_samtoolsfasta, val_interleave)
 ```
@@ -90,9 +90,9 @@ SAMTOOLS_FASTA (ch_input_for_samtoolsfasta, val_interleave)
 Here, the pipeline originally had input channel that just contains FASTA files.
 However the module requires a meta map to be passed with the FASTA file.
 
-To add a meta map, we use the `.map{}` operator to make a new meta map and emit this with the FASTA file.
+To add a meta map, we use the `.map {}` operator to make a new meta map and emit this with the FASTA file.
 When making the meta map, we make it with a single nf-core standard attribute `id`, which used in almost all nf-core modules.
-In this example, we simply assign to the `id` attribute the [`simpleName`](https://www.nextflow.io/docs/latest/reference/stdlib.html#stdlib-types-path) of the file (i.e., the file name without the full path and without the last file suffix).
+In this example, we simply assign to the `id` attribute the [`simpleName`](https://www.nextflow.io/docs/latest/reference/stdlib.html#stdlib-types-path) of the file (i.e., the file name without the full path and without any file suffix).
 
 By reconfiguring the channel to include a valid meta map, we ensure the input channel is compatible with the nf-core module.
 
@@ -104,7 +104,7 @@ Most nf-core modules also include a `tag` directive as you will have seen in the
 This is used for providing a more 'human readable' process description when Nextflow prints the progress of a pipeline run.
 
 By default, all nf-core modules assume there is a meta attribute called `id` (see above), and this is used as the `tag` value.
-We highly recommend specifying the `meta.id` attributes in all meta maps of all the input channels for all nf-core modules that use meta map.
+We highly recommend specifying the `id` attribute in all meta maps of all the input channels for all nf-core modules that use meta map.
 
 #### Label
 
@@ -119,7 +119,7 @@ Therefore you don't have to make any additional changes to your pipeline, except
 If you are using a custom pipeline, you will need to ensure you have a Nextflow config file somewhere in your repository, and that it is loaded somewhere in your pipeline script (either implicitly such as a `nextflow.config` file or explicitly imported via an `include` as appropriate).
 This config needs to have a process scope with default resources for the label of your installed module specified.
 
-For example, if your installed nf-core module has a label of `process-low`, one of the configs in your pipeline should have:
+For example, if your installed nf-core module has a label of `process_low`, one of the configs in your pipeline should have:
 
 ```nextflow
 process {
@@ -195,6 +195,6 @@ process{
 ## Summary
 
 In summary, at it's core using nf-core modules in your pipeline is as simple as installing the module and then invoking it in your pipeline script.
-That said are a couple of additional considerations for non-nf-core template pipelines to take into account regarding input channels and additional configuration options to specify in Nextflow configuration files, which we have described here.
+That said, there are a couple of additional considerations for non-nf-core template pipelines to take into account regarding input channels and additional configuration options to specify in Nextflow configuration files, which we have described here.
 
-With these steps, you can now use nf-core modules in your pipeline, and benefit from the standardised, reproducible, and tested processes that the nf-core community has to offer.
+With these steps, you can now use nf-core modules in your pipeline, and benefit from the standardised, reproducible, and tested modules that the nf-core community has to offer.
