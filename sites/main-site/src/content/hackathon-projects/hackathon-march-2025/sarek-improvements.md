@@ -12,10 +12,13 @@ leaders:
 
 This project will work on improving the [nf-core/sarek](https://nf-co.re/sarek/) pipeline with a focus on maintenance like.
 
-## Goals
-
 - Add nf-tests to subworkflows
 - Improve input validation
 - Improve documentation
-- Update Sentieon version
+- Update modules to latest tool version (sentieon, gatk,...)
 - New additions welcome!
+
+## Goals
+
+Improve sarek stability.
+
