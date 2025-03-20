@@ -37,8 +37,12 @@ However, the nf-core guidelines strongly recommend conda support, as conda is th
 So if your tool is not on Bioconda or conda-forge, we strongly recommend you add it to the appropriate repository.
 
 :::info{title="Behind the scenes" collapse}
-nf-core uses a separate conda file rather than defining within the `main.nf` script file's conda directive, for [TODO] reason.
-:::
+nf-core uses a separate conda file rather than defining within the `main.nf` script file's conda directive, for two main reasons:
+
+- It will facilitate more [automated container building with Seqera's `wave` infrastructure](https://nf-co.re/blog/2024/seqera-containers-part-1)
+- It makes multi-tool environments much easier to read and manage (vs. having multiple conda declarations on a single line)
+
+  :::
 
 ## The `main.nf` file
 
