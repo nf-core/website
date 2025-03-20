@@ -7,10 +7,11 @@ startDate: "2025-03-19"
 startTime: "16:00+01:00"
 endDate: "2025-03-19"
 endTime: "17:00+01:00"
+youtubeEmbed: https://youtu.be/hSp4MOpiMkY
 locations:
   - name: Online
     links:
-      - https://rediris.zoom.us/j/99370728121
+      - https://youtu.be/hSp4MOpiMkY
 ---
 
-For the March 2024 Talk of the Monthly Meeting of the #animal-genomics special interest group it is a pleasure to announce Christopher Tuggle (Iowa State University, USA) a leader researcher in the field of functional genomics, with a strong focus on understanding gene regulation and single-cell transcriptomics in animal models. His research has contributed significantly to functional annotation efforts, particularly through the use of single-cell and spatial transcriptomics to identify key regulatory elements in the genomes of pigs and other farm animals. These studies have provided critical insights into disease resistance, immune function, and economically important traits, ultimately aiding in the improvement of animal health and productivity, aspects that he will discuss during his talk.
+For the March 2025 talk of the Monthly Meeting of the #animal-genomics Special Interest Group, we had the pleasure of hosting Christopher Tuggle (Iowa State University, USA), a leading researcher in functional genomics. His talk focused on understanding gene regulation and single-cell transcriptomics in animal models. He shared insights from his significant contributions to functional annotation efforts, particularly through using single-cell technologies to identify key regulatory elements in the genomes of pigs and other farm animals. His research has provided valuable knowledge on disease resistance, immune function, and economically important traits, ultimately aiding in the improvement of animal health and productivity.
