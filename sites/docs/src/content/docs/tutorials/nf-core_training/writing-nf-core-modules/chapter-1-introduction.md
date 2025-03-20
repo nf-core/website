@@ -14,10 +14,10 @@ Duration: **4hr**
 
 nf-core modules are a large step towards 'plug and play' Nextflow pipeline development.
 
-An nf-core module is an 'atomic', standardised, reproducible, and already tested [Nextflow DSL2 module](https://www.nextflow.io/docs/latest/module.html) process.
+An nf-core module is an 'atomic', standardised, reproducible, and already tested [Nextflow DSL2 module](https://www.nextflow.io/docs/latest/module.html).
 
 You can install an nf-core module from a central community repository into a Nextflow pipeline with a single command.
-You can then quickly integrate the Nextflow process into your own workflow due to the standardised internal structure of the module, matching upstream process outputs and downstream inputs.
+You can then quickly integrate the Nextflow process into your own workflow due to the standardised internal structure of the module, matching upstream outputs and downstream inputs.
 
 By using these pre-made community-contributed modules, you can vastly reduce your workflow development time by reducing the need to 're-invent' the wheel for many common bioinformatics tasks.
 
@@ -32,13 +32,13 @@ The scope of this training covers:
 
 By the end of this training, you will:
 
-- Understand the different file components of an nf-core/module
-- Understand the standards specification behind nf-core modules
-- Know where to find documentation of developing nf-core modules
+- Understand the different file components of an nf-core module
+- Understand the standards specification behind an nf-core module
+- Know where to find documentation about developing an nf-core module
 - Know how to write an nf-core module
-- Know how to write nf-test tests for your nf-core module
+- Know how to write nf-test tests for an nf-core module
 - Understand the workflow development for contributing nf-core modules to the community repository
-- Know how to use an nf-core pipeline in any Nextflow pipeline
+- Know how to use an nf-core module in any Nextflow pipeline
 
 In the next chapter, we will describe what you will need to have ready to make an nf-core module.
 

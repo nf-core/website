@@ -6,7 +6,7 @@ shortTitle: "Chapter 4: Boilerplate files"
 
 ## Introduction
 
-In this chapter, we will explain how to generate and what template files you will need to help you start writing your nf-core module.
+In this chapter, we will explain how to generate an nf-core module template and what template files you will need, to help you start writing your nf-core module.
 
 ## Preparation
 
@@ -59,8 +59,6 @@ You will then be prompted to provide a few bits of information that will be adde
 - ❓ Whether the module should use a [meta map](https://nf-co.re/docs/contributing/components/meta_map)
   - In most cases, we recommend you say 'yes' for this as this allows you carry additional meta information about the sample of file that is being processed
   - This meta information can then be used for more automated additional processing decisions by the pipeline
-- ❓ Whether the module should use a stub
-  - We strongly recommend you say 'yes' to this as it allows for `-dry-run` usage of a pipeline
 
 :::tip
 You can also provide some of this information by dedicated command-line flags, allowing you to skip interacting with your console.

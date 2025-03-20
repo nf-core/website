@@ -6,9 +6,9 @@ shortTitle: "Chapter 6: Testing"
 
 ## Introduction
 
-In this chapter we will describe how nf-core modules used for unit testing the modules with the `nf-test` framework.
+In this chapter we will describe how nf-core modules are used for unit testing the modules with the `nf-test` framework.
 
-Now we have the Nextflow files themselves written, we want to make sure the module itself actually works as intended.
+Once we have the Nextflow files written, we want to make sure the module actually works as intended.
 
 ## The `main.nf.test` file
 
@@ -169,7 +169,7 @@ or
 test("sarscov2 - fastq - bakta annotation input")
 ```
 
-Second, within the 'when' block you then need to specify each input channel to your module using the notation of `input[0]` for the first input channel, `input[1]`, for the second, and so forth.
+Second, within the 'when' block you need to specify each input channel to your module using the notation of `input[index]`, i.e. `input[0]` for the first input channel, `input[1]`, for the second, and so forth.
 This 'when' block can be filled with standard Nextflow code - e.g. using a `Channel` factory to create a channel, use operators, and so on, as you normally would in an Nextflow pipeline.
 Make sure that the input into each channel `input[]` variable matches the channel restructure of your module (e.g. if there is a meta map)
 
@@ -219,7 +219,7 @@ For example, in the example above you can see that the `metrics` and `versions` 
 However the `qc_report` does, therefore instead of using the (default) `md5sums` check, we change the 'assertion' so that we compare that name of the files in that channel does not change between runs.
 
 There are many different `assert` methods.
-For a more comprehensive list of different nf-test assertions, see the dedicated [nf-core documenation](https://nf-co.re/docs/contributing/nf-test/assertions) page.
+For a more comprehensive list of different nf-test assertions, see the dedicated [nf-core documentation](https://nf-co.re/docs/contributing/nf-test/assertions) page.
 
 We generally recommend the to test files with the following methods in order of preference:
 
@@ -235,7 +235,7 @@ As a guide, you should try and have as many tests so you test as many configurat
 
 ### The `setup` block (optional)
 
-This optional section is where you can specify module(s) to execute _before_ your new module itself
+This optional section is where you can specify module(s) to execute _before_ your new module.
 The outputs of this upstream module can then be used as input for your new module.
 Note that it is not included by default in the boilerplate template code.
 
@@ -257,14 +257,14 @@ You can either specify this before all tests, so you can re-use the same output 
 Alternatively you can place it before the 'when' block of each test within the test block themselves.
 In this case the the setup block will only be executed when the given test is executed.
 
-The difference between setup block and the test block (see above) is that the output of modules in the setup block will _not_ be evaluated by the test.
+The difference between the setup block and the test block (see above) is that the output of modules in the setup block will _not_ be asserted by the test.
 
 You can fill this block in just the same way as the `test` block, except you must explicitly specify the script path of the upstream module in each setup block.
 
-Otherwise you specify the inputs wotj the same `input[0]`, `input[1]` etc. channel syntax, and using the URLs to the nf-core test-dataset repository as before.
+Otherwise you specify the inputs with the same `input[0]`, `input[1]` etc. channel syntax, and using the URLs to the nf-core test-dataset repository as before.
 
 Note that we generally discourage the use of setup blocks as they increase the runtime of tests.
-However it can be useful when a module requires inputs with large file-sizes that are too large for the nf-core/test-datasets repository, or the upstream module is extremely quick.
+However they can be useful when a module requires inputs with large file-sizes that are too large for the nf-core/test-datasets repository, or the upstream module is extremely quick.
 
 :::tip{title="Examples" collapse}
 Example of a global setup block, the output of which can be reused in every test:
@@ -394,7 +394,6 @@ For example, you could use it if you need to give an optional parameter to produ
 This can also be use to set up different options for when you need to import a module multiple times (typically in `setup` blocks).
 
 If you need this functionality, you will need to create the file yourself.
-The file should sit alongside in the same directory as `tests/main.nf.test`:
 
 ```tree {7}
 ├── environment.yml
@@ -502,7 +501,7 @@ To inspect this, in the console when you're running each test, before the name o
 ```
 
 With this hash string you can change into `.nf-test/tests/<hash string>/work` (make sure to autocomplete with your TAB key to get the full hash) and you can find all the standard Nextflow working directories of the module's test run.
-Within here you should change into each directory until you find the one of the module itself, and check the contents of each output file are as expected to ensure your snapshot has been generated correctly.
+Here, you should change into each directory until you find the one of the module itself, and check the contents of each output file are as expected to ensure your snapshot has been generated correctly.
 
 Note that you may have 'empty' entries in the snapshot file when an optional channel does not emit a file in that given test - however you should double check that is expected for that test.
 Furthermore only assertions that are not included in the `snapshot()` function of the `when` block of `main.nf.test` will not be recorded in the snapshot.

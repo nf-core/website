@@ -6,7 +6,7 @@ shortTitle: "Chapter 5: Writing"
 
 ## Introduction
 
-Once you have generated the boilerplate template files for your module, you can start updating these to make your module fucntion.
+Once you have generated the boilerplate template files for your module, you can start updating these to make your module function.
 The boilerplate template files have lots of `TODO` comments that can help you give pointers how to write the module, as well example contents.
 
 In this chapter we will go through each one, explaining what each section of each file is doing and why some bits are the way they are, as defined by the nf-core specifications.
@@ -33,7 +33,8 @@ The tool and version specified in this file will in most cases have a correspond
 
 You only need to modify the `environment.yaml` if your tool does not use tools from Bioconda (e.g. a more generic tool that is only on [`conda-forge`](https://conda-forge.org/)), and there is not an existing Bioconda recipe for the tool.
 
-However, the nf-core guidelines strongly recommends conda support (as the most accessible software management system), so if your tool is not on Bioconda or conda-forge, we strongly recommend you add this to the appropriate repository.
+However, the nf-core guidelines strongly recommend conda support, as conda is the most accessible software management system.
+So if your tool is not on Bioconda or conda-forge, we strongly recommend you add it to the appropriate repository.
 
 :::info{title="Behind the scenes" collapse}
 nf-core uses a separate conda file rather than defining within the `main.nf` script file's conda directive, for [TODO] reason.
@@ -41,7 +42,7 @@ nf-core uses a separate conda file rather than defining within the `main.nf` scr
 
 ## The `main.nf` file
 
-This is the main file of the nf-core module, which is where the Nextflow module code itself is defined.
+This is the main file of the nf-core module, where the Nextflow module code itself is defined.
 
 When you first generate the file, some parts of the module will already be filled in for you, and there will be many `TODO` comments to help guide you through writing the module.
 
@@ -139,10 +140,12 @@ nf-core defines a preset set of labels with associated default resources, as spe
 You should have selected from one of these standard labels that approximately matches the typical requirements of the tool you are creating the module for.
 If you change your mind after the initial boilerplate file generation, you can always modify it to one of the other standard labels.
 
-You should not use custom label names, as the default resource specifications for that label can be modified by a pipeline developer at a pipeline level (in nf-core pipelines, this happens in the `conf/base.config` file).
-Furthermore a user can also override these within their own Nextflow custom config `process` block by specifying the module name
+You should not use custom label names to specify other 'custom' requirements if you feel your module's typical resource requirements do not match those of set in the nf-core pipeline template's standard labels.
+The default resource specifications that are set for the standard labels can be modified by a pipeline developer when developing a pipeline level (in nf-core pipelines, this happens in the `conf/base.config` file).
+Thus, you should stick with the standard labels, and let pipeline developers 'tune' the modules resources within the pipeline.
+Furthermore a user can also override and refine these resource requirements even further for specific modules within a custom custom config file, by specifying in a `process` block by the module name with `withName:`.
 
-This flexibility at the pipeline level means that it is unnecessary to change away from standard labels specified here, and provides the benefit of 'familiarity' between all modules and nf-core pipelines on how each default resource is defined.
+This flexibility at the pipeline level means that it is unnecessary to use any non-standard labels, and provides the benefit of 'consistency' between all nf-core modules and nf-core pipelines on how each standard resource is defined.
 
 ### The `conda` block
 
@@ -156,7 +159,7 @@ You should not modify this, except in the very rare exceptional cases where a gi
 
 ### The `container` block
 
-The `container` tells Nextflow where to pull the tool's docker and singularity containers.
+The `container` block tells Nextflow where to pull the tool's docker and singularity containers from.
 
 ```nextflow
 container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
@@ -164,7 +167,7 @@ container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity
     'biocontainers/drep:3.5.0--pyhdfd78af_0' }"
 ```
 
-In most cases the nf-core tool's module create command should have auto-detected the name and versions of each container based on the tool's name, version, and build of the given container on Bioconda/biocontainers, as with the conda `environment.yml` file.
+In most cases the `nf-core modules create` command should have auto-detected the name and versions of each container based on the tool's name, version, and build of the given container on Bioconda/biocontainers, as with the conda `environment.yml` file.
 
 You should not modify this, except in the very rare exceptional cases where a given tool does not have a Bioconda recipe nor biocontainer (typically proprietary tools), in which case you may manually modify these lines to point to the corresponding container.
 
@@ -177,20 +180,20 @@ input:
 tuple val(meta), path(bam)
 ```
 
-The boilerplate template comes with an example of a common bioinformatic file format (`.bam`) and an associated `meta` map (the meta map may be missing if you did not specify this during the boilerplate template file creation).
+The boilerplate template comes with an example of a common bioinformatic file format (`.bam`) and an associated [`meta` map](https://nf-co.re/docs/contributing/components/meta_map) (the meta map may be missing if you did not specify this during the boilerplate template file creation).
 
 You should edit this section of the `main.nf` to define all the files your module will require.
 
-The input block of an nf-core module should include **all possible files** via a `path()` declaration for each input file a given tool(/subcommand) can accept - this covers both mandatory **and** optional files.
+The input block of an nf-core module should include **all possible files** via a `path()` declaration for each input file a given tool or tool subcommand can accept - this covers both mandatory **and** optional files.
 You should make sure to check the documentation of your tool to ensure you capture all of these!
 
 :::info{title="Behind the scenes" collapse}
 
 We require _all_ files to be specified here because Nextflow processes _must_ receive files via this route to correctly 'stage' the files in a jobs working directory.
 
-Furthermore, you cannot assume that your use case of the module will cover what other future pipeline developers may need to use it for (if you feel you only need a few files), thus you should try to be as comprehensive as possible.
+Furthermore, you cannot assume that your use case of the module will cover what other pipeline developers may need to use it for, thus you should try to be as comprehensive as possible.
 
-While there is no 'native' Nextflow way to specify optional inputs, a pipeline developer can instead use an empty list `[]` to the module to indicate that file is not being provided.
+While there is no 'native' Nextflow way to specify optional inputs, a pipeline developer can instead pass an empty list `[]` to the module to indicate that input is not being provided.
 :::
 
 In addition to files, mandatory tool argument/parameters (non-file) should also be specified here as a `val` input channel (in most cases without a meta map).
@@ -211,8 +214,8 @@ We also require all mandatory non-file arguments to ensure that a particular mod
 Input channels names generally follow the convention of using the file format as the variable name or the tool's argument name that is used in the command to refer to the input object.
 
 If the tool has multiple input files, you should make one channel per input file.
-Each new channel can have their own `meta`, with each subsequent one being called `meta2`, `meta3`.
-Generally we recommend all input channels should have a meta, except if you can guarantee that you would never have more than a single version of given input file (e.g., a configuration file that applies to every single sample/input data file).
+Each new channel can have its own meta map, with each subsequent one being called `meta2`, `meta3`.
+Generally we recommend all input channels should have a `meta`, except if you can guarantee that you would never have more than a single version of given input file (e.g., a configuration file that applies to every single sample/input data file).
 
 In a few exceptional cases, multiple very closely related files can be specified 'inline' with a single tuple channel, such as index files with the main file (e.g. `.bai` file with a `.bam` file), where the index file cannot be used by itself without the main file.
 
@@ -272,7 +275,7 @@ This is because all nf-core pipelines must report the versions of every tool use
 
 Above the `versions.yml` output channel line you can include the output definitions of all files your tool(/subcommand) will produce.
 You should already define as many output files as possible (whether produced by default, or optionally), to make as much functionality available to future users as possible.
-If your module uses a meta map, you should emit all files with a meta map.
+If your module uses a meta map, you should emit all files with a meta map, except for `versions.yml`.
 
 ```nextflow
 output:
@@ -378,7 +381,7 @@ END_VERSIONS
 """
 ```
 
-The boilerplate template already comes with an example samtools command for you, as well a second versionsc command in the `versions.yml` HEREDOC, both of which you will need to replace for your respective tool.
+The boilerplate template already comes with an example samtools command for you, as well a second versions command creating the `versions.yml` HEREDOC, both of which you will need to replace for your respective tool.
 
 At the top of the block you have two standard variables that should not be removed.
 
@@ -402,7 +405,7 @@ def single_end  = meta.single_end ? "--single" : ""
 """
 elprep merge \\
        input/ \\
-       output/${prefix}.${suffix} \\
+       output/${prefix}.bam \\
        $args \\
        ${single_end} \\
 ...
@@ -615,8 +618,7 @@ For the module description (i.e., second line after the first `name:` line), you
 For the keywords, you need to have a minimum of 3 - all lower case - and should include things such as the tool's name, subcommand, words to describe the 'action' the module is performing such as 'sort' or 'filter', but can also be words describing the research field the module used - such as genomics, metagenomics, earth sciences, and the file formats the action is used on.
 Ultimately, the more keywords the better.
 
-Sometimes you may need to fill in the URLs to the tool's own source code and documentation.
-You can just copy and paste these in after a quick Google search.
+Sometimes you may need to fill in the URLs to the tool's source code and documentation.
 It is OK to leave these empty or duplicate URLs if the tool does not have a dedicated documentation page, for example.
 
 Note that if you are using more than one tool in your module (e.g. the tool and gzip), you will need to fill in the tool description URLs for each tool.
@@ -666,7 +668,7 @@ You can use the `nf-core modules lint` command (described later) to automaticall
 :::
 
 :::tip{title="Examples" collapse}
-Example of a `meta.yaml` using ontologies and multiple meta entries
+Example of a complete `meta.yaml` using ontologies and multiple meta entries (see below for `outputs:`)
 
 ```yml
 name: bwamem2_mem
