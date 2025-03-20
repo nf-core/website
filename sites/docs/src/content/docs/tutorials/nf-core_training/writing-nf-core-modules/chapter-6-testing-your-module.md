@@ -10,6 +10,12 @@ In this chapter we will describe how nf-core modules are used for unit testing t
 
 Once we have the Nextflow files written, we want to make sure the module actually works as intended.
 
+:::warning
+Setting up of and debugging of tests is a whole topic in it's own right, and thus could have a dedicated workshop to it.
+This chapter provides aims to give you a sufficient introduction to you get started, as tests are _required_ for nf-core modules.
+While this step may take a bit of time to get right, don't be discouraged if you don't get it right the first time.
+:::
+
 ## The `main.nf.test` file
 
 In this file we have 3 main sections
