@@ -84,7 +84,7 @@
             {/if}
 
             <div class="mb-2">
-                <TagSection tags={topics} type="keywords" client:load />
+                <TagSection tags={topics} type="keywords" />
             </div>
 
             {#if released}
