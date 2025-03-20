@@ -9326,7 +9326,7 @@
       "pipelines": [
         {
           "name": "scnanoseq",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -16395,6 +16395,10 @@
           "version": "dev"
         },
         {
+          "name": "deepmodeloptim",
+          "version": "dev"
+        },
+        {
           "name": "readsimulator",
           "version": "1.0.1"
         },
@@ -17426,6 +17430,154 @@
         "maintainers": [
           "@ekushele"
         ]
+      },
+      "pipelines": [
+        {
+          "name": "deepmodeloptim",
+          "version": "dev"
+        }
+      ]
+    },
+    {
+      "name": "bedtools_shuffle",
+      "path": "modules/nf-core/bedtools/shuffle/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "bedtools_shuffle",
+        "description": "bedtools shuffle will randomly permute the genomic locations of a feature file among a genome defined in a genome file",
+        "keywords": [
+          "bed",
+          "shuffleBed",
+          "region",
+          "fai",
+          "sizes",
+          "genome",
+          "bases"
+        ],
+        "tools": [
+          {
+            "bedtools": {
+              "description": "A set of tools for genomic analysis tasks, specifically enabling genome arithmetic (merge, count, complement) on various file types.\n",
+              "documentation": "https://bedtools.readthedocs.io/en/latest/content/tools/slop.html",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:bedtools"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing interval information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "intervals": {
+                "type": "file",
+                "description": "Input interval (BED/GFF/VCF) file",
+                "pattern": "*.{bed,gff,gff3,vcf}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2305"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing genome information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "chrom_sizes": {
+                "type": "file",
+                "description": "Chromosome sizes file",
+                "pattern": "*{.genome,.sizes,.txt,.fai}"
+              }
+            }
+          ],
+          [
+            {
+              "exclude_file": {
+                "type": "file",
+                "description": "BED file containing regions to exclude",
+                "pattern": "*.{bed}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "include_file": {
+                "type": "file",
+                "description": "BED file containing regions to include",
+                "pattern": "*.{bed}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "bed": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing interval information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.bed": {
+                  "type": "file",
+                  "description": "BED file with shuffled intervals",
+                  "pattern": "*.{bed}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@itrujnara"
+        ],
+        "maintainers": [
+          "@itrujnara"
+        ]
       }
     },
     {
@@ -17519,6 +17671,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "deepmodeloptim",
+          "version": "dev"
+        },
         {
           "name": "raredisease",
           "version": "2.4.0"
@@ -17825,6 +17981,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "deepmodeloptim",
+          "version": "dev"
+        },
         {
           "name": "tfactivity",
           "version": "dev"
@@ -22650,12 +22810,88 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "genomeqc",
           "version": "dev"
         },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        }
+      ]
+    },
+    {
+      "name": "busco_download",
+      "path": "modules/nf-core/busco/download/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "busco_download",
+        "description": "Download database for BUSCO",
+        "keywords": [
+          "quality control",
+          "genome",
+          "transcriptome",
+          "proteome"
+        ],
+        "tools": [
+          {
+            "busco": {
+              "description": "BUSCO provides measures for quantitative assessment of genome assembly, gene set, and transcriptome completeness based on evolutionarily informed expectations of gene content from near-universal single-copy orthologs selected from OrthoDB.",
+              "homepage": "https://busco.ezlab.org/",
+              "documentation": "https://busco.ezlab.org/busco_userguide.html",
+              "tool_dev_url": "https://gitlab.com/ezlab/busco",
+              "doi": "10.1007/978-1-4939-9173-0_14",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:busco"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "lineage": {
+                "type": "string",
+                "description": "The BUSCO lineage to use, or \"auto\", \"auto_prok\" or \"auto_euk\" to automatically select lineage"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "download_dir": [
+              {
+                "busco_downloads": {
+                  "type": "file",
+                  "description": "Directory with busco database",
+                  "pattern": "busco_downloads"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@zachary-foster"
+        ],
+        "maintainers": [
+          "@zachary-foster"
+        ]
+      },
+      "pipelines": [
         {
           "name": "pathogensurveillance",
           "version": "dev"
@@ -25286,7 +25522,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "tfactivity",
@@ -25468,7 +25704,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "smrnaseq",
@@ -39600,7 +39836,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "spatialxe",
@@ -39884,6 +40120,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "deepmodeloptim",
+          "version": "dev"
         },
         {
           "name": "hic",
@@ -53620,7 +53860,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "genomeqc",
@@ -53764,7 +54004,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "scrnaseq",
@@ -56608,7 +56848,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "pathogensurveillance",
@@ -68558,13 +68798,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.{bam}"
                 }
               },
               {
-                "*.bam": {
-                  "type": "file",
-                  "description": "Recalibrated BAM file",
+                "${prefix}.bam": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*.{bam}"
                 }
               }
@@ -68575,13 +68816,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.{cram}"
                 }
               },
               {
-                "*.cram": {
-                  "type": "file",
-                  "description": "Recalibrated CRAM file",
+                "${prefix}.cram": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*.{cram}"
                 }
               }
@@ -69546,6 +69788,10 @@
       "pipelines": [
         {
           "name": "circrna",
+          "version": "dev"
+        },
+        {
+          "name": "deepmodeloptim",
           "version": "dev"
         },
         {
@@ -82063,7 +82309,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -96761,7 +97007,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -97063,7 +97309,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "isoseq",
@@ -104794,7 +105040,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "genomeqc",
@@ -105800,7 +106046,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "genomeqc",
@@ -105988,7 +106234,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "genomeqc",
@@ -108794,7 +109040,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "isoseq",
@@ -108806,7 +109052,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "taxprofiler",
@@ -108905,7 +109151,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "taxprofiler",
@@ -114378,7 +114624,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "scrnaseq",
@@ -116261,7 +116507,7 @@
       "pipelines": [
         {
           "name": "scnanoseq",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -116839,7 +117085,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "viralrecon",
@@ -129902,6 +130148,10 @@
           "version": "dev"
         },
         {
+          "name": "scnanoseq",
+          "version": "1.1.0"
+        },
+        {
           "name": "ssds",
           "version": "dev"
         },
@@ -130631,7 +130881,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -130723,7 +130973,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -130915,7 +131165,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -135564,7 +135814,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "mag",
@@ -145984,7 +146234,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -149853,7 +150103,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "tfactivity",
@@ -150148,7 +150398,7 @@
       "pipelines": [
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "hgtseq",
@@ -150375,7 +150625,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "hgtseq",
@@ -150447,7 +150697,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "smrnaseq",
@@ -150657,7 +150907,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "hgtseq",
@@ -150717,7 +150967,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "smrnaseq",
@@ -151021,7 +151271,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "hgtseq",
@@ -151117,7 +151367,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "smrnaseq",
@@ -151494,7 +151744,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "tbanalyzer",
@@ -152114,7 +152364,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "hgtseq",
@@ -152198,7 +152448,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "smrnaseq",
@@ -152353,7 +152603,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "hgtseq",
@@ -152425,7 +152675,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "smrnaseq",
@@ -152750,7 +153000,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "ssds",
@@ -178539,7 +178789,7 @@
       "pipelines": [
         {
           "name": "scnanoseq",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -179446,7 +179696,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "hgtseq",
@@ -182535,7 +182785,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -192686,6 +192936,97 @@
       }
     },
     {
+      "name": "archive_extract",
+      "path": "subworkflows/nf-core/archive_extract/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "archive_extract",
+        "description": "Extract archive(s) from any format\nCurrently supported format are .gz, .tar.gz, .zip\n",
+        "keywords": [
+          "archive",
+          "gzip",
+          "tar",
+          "zip"
+        ],
+        "components": [
+          "gunzip",
+          "untar",
+          "unzip"
+        ],
+        "input": [
+          {
+            "archive": {
+              "description": "Channel with archive to extract",
+              "structure": [
+                {
+                  "meta": {
+                    "type": "map",
+                    "description": "Metadata map"
+                  }
+                },
+                {
+                  "archive": {
+                    "type": "file",
+                    "description": "Structure: [path(archive)]\nFile containing the archive to extract\n",
+                    "pattern": "*{.tar.gz, .gz, .zip}"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "output": [
+          {
+            "extracted": {
+              "description": "Channel with extracted archive",
+              "structure": [
+                {
+                  "meta": null,
+                  "type": "map",
+                  "description": "Metadata map"
+                },
+                {
+                  "*": null,
+                  "type": "file",
+                  "description": "Structure: [path]\nFolder or file(s) extracted\n"
+                }
+              ]
+            }
+          },
+          {
+            "not_extracted": {
+              "description": "Channel with any not extracted (ie not recognized) archive",
+              "structure": [
+                {
+                  "meta": null,
+                  "type": "map",
+                  "description": "Metadata map"
+                },
+                {
+                  "*": null,
+                  "type": "file",
+                  "description": "Structure: [path]\nFile(s) not extracted\n"
+                }
+              ]
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@maxulysse"
+        ],
+        "maintainers": [
+          "@maxulysse"
+        ]
+      }
+    },
+    {
       "name": "bam_cnv_wisecondorx",
       "path": "subworkflows/nf-core/bam_cnv_wisecondorx/meta.yml",
       "type": "subworkflow",
@@ -194363,7 +194704,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "magmap",
@@ -194399,7 +194740,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "smrnaseq",
@@ -194629,7 +194970,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "magmap",
@@ -194665,7 +195006,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "smrnaseq",
@@ -200915,7 +201256,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "genomeqc",
@@ -201079,7 +201420,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "scrnaseq",
@@ -201260,7 +201601,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "genomeqc",
@@ -201424,7 +201765,7 @@
         },
         {
           "name": "scnanoseq",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "scrnaseq",
@@ -201589,7 +201930,7 @@
         },
         {
           "name": "genomeassembler",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "mag",
@@ -201706,6 +202047,10 @@
         {
           "name": "scdownstream",
           "version": "dev"
+        },
+        {
+          "name": "scnanoseq",
+          "version": "1.1.0"
         },
         {
           "name": "scrnaseq",
@@ -201889,10 +202234,6 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
-        },
-        {
-          "name": "scnanoseq",
-          "version": "1.0.0"
         }
       ]
     },
