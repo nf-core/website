@@ -111,7 +111,7 @@ allTabItems.push({
     href: `/${pipeline}/modules/`,
     active: url.includes(`/${pipeline}/modules`),
     icon: "fa-regular fa-gear",
-})
+});
 const sortOrder = ["Introduction", "Usage", "Parameters", "Output", "Results", "Releases", "Modules"];
 allTabItems.sort((a, b) => sortOrder.indexOf(a.label) - sortOrder.indexOf(b.label));
 
