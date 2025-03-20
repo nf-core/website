@@ -1,5 +1,5 @@
 ---
-title: 'Using subworkflows with modules from multiple organisations'
+title: "Using subworkflows with modules from multiple organisations"
 subtitle: Guidance on how to use nf-core/tools with subworkflows that use modules from more than one organisation.
 ---
 
@@ -13,7 +13,7 @@ In order to have this subworkflow, with a FastQC module from your organisation a
 components section of this subworkflow's `meta.yml` file as such:
 
 ```yaml title="meta.yml" {11-12}
-name: 'fastq_trim_fastp_fastqc'
+name: "fastq_trim_fastp_fastqc"
 description: Read QC, fastp trimming and read qc
 keywords:
   - qc
