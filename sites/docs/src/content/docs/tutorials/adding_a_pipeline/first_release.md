@@ -2,8 +2,8 @@
 title: First release
 subtitle: Follow this walkthrough to add a new pipeline to nf-core.
 weight: 40
-type: 'tutorial'
-markdownPlugin: 'checklist'
+type: "tutorial"
+markdownPlugin: "checklist"
 ---
 
 # Making the first release
@@ -15,7 +15,8 @@ When the code is stable and ready for a release, set the default branch to `mast
 ## Bump the version
 
 Use `nf-core pipelines bump-version` to increment the version number on the `dev` branch to remove
-the `dev` suffix.
+the `dev` suffix. The first release of a pipeline should normally be version `1.0.0` (we discourage
+pre-releases).
 
 When developing the pipeline, the version numbers should be numeric with `dev` at the end,
 e.g. `0.0.0dev`. When making a release, version numbers should all be numeric. Pipeline
@@ -80,6 +81,19 @@ That's it, you're finished! Congratulations!
 :::note{title=Publications}
 If you wish to make a publication based on the pipeline, make sure you [give credit to nf-core](/docs/guidelines/pipelines/recommendations/publication_credit).
 :::
+
+Once you've finished your release - it's time to tell the world about it!
+Post on the [#bytesize_suggestion](https://nfcore.slack.com/archives/C081F8J2X8R) slack channel of your release, to begin arranging a 15 minute introductory bytesize talk about your shiny new pipeline!
+
+### Developing nf-core pipelines privately
+
+Generally we would like everyone to develop nf-core pipelines in the open, but we understand that this is not always possible. If you are developing a pipeline privately, you can still release it through nf-core, but you will need to be aware of a few things.
+
+Pipelines developed in private won't be given any special treatment and will be reviewed in the same way as other new pipelines. As such, we recommend that you follow the same steps as above, but with a private repository. Once the pipeline is ready for release, you can make it public and follow the steps above. If you can not make it public until after release, you can request community members to review the pipeline in the nf-core Slack channel `#request-review` before making it public.
+
+Additionally, private pipelines will not be given preference over another pipeline that has been developed in the open. If you are developing a pipeline privately, please be aware that another pipeline may be released before yours. In this case, we may not be able to accept your pipeline into nf-core and you may need to release it independently or merge it with the pipeline that has already been released.
+
+If you are considering developing a pipeline in private that you hope to release it through nf-core, please contact the nf-core core-team on Slack so we can discuss a pre-release strategy.
 
 # Subsequent releases
 

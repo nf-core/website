@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize: the `nf-core download` command'
+title: "Bytesize: the `nf-core download` command"
 subtitle: Matthias Zepper, National Genomics Infrastructure, Stockholm
 type: talk
-startDate: '2024-07-09'
-startTime: '13:00+02:00'
-endDate: '2024-07-09'
-endTime: '13:30+02:00'
+startDate: "2024-07-09"
+startTime: "13:00+02:00"
+endDate: "2024-07-09"
+endTime: "13:30+02:00"
 youtubeEmbed: https://youtu.be/5TceBWlltoE
 locations:
   - name: Online

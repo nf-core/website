@@ -1,5 +1,9 @@
 <script lang="ts">
-    export let timeSpan: [number, number] = [0, 0];
+    interface Props {
+        timeSpan?: [number, number];
+    }
+
+    let { timeSpan = [0, 0] }: Props = $props();
 
     const now = new Date().getTime();
     const show = timeSpan[0] < now && timeSpan[1] > now;

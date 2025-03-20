@@ -1,48 +1,85 @@
 <script lang="ts">
-    import { CurrentFilter, Filters, SortBy, DisplayStyle, SearchQuery } from '@components/store';
-    import { onMount } from 'svelte';
+    import { onMount } from "svelte";
+    import { CurrentFilter, Filters, SortBy, DisplayStyle, SearchQuery } from "@components/store";
 
-    export let filter: { name: string; class?: string }[] = [];
-    export let sortBy: string[] = [];
-    export let displayStyle: { name: string; icon: string }[] = [];
-
-    let search = $SearchQuery;
-
-    function handleSearch(q) {
-        SearchQuery.set(q.target.value.trim());
+    interface FilterItem {
+        name: string;
+        class?: string;
+        icon?: string;
+        count?: number;
     }
-    function handleFilter(fil) {
-        // remove focus from button
-        event.target.blur();
-        if ($CurrentFilter.find((f) => f.name === fil)) {
-            CurrentFilter.set($CurrentFilter.filter((f) => f.name !== fil));
+
+    let {
+        filter = [],
+        sortBy = [],
+        displayStyle = [],
+        filterName = () => "Status",
+    } = $props<{
+        filter: FilterItem[];
+        sortBy: string[];
+        displayStyle: { name: string; icon: string }[];
+        filterName?: () => string;
+    }>();
+
+    // Initialize filters once on mount
+    onMount(() => {
+        // Reset stores if no filters provided
+        if (filter.length === 0) {
+            Filters.set([]);
+            CurrentFilter.set([]);
         } else {
-            CurrentFilter.set([...$CurrentFilter, { name: fil }]);
+            Filters.set(filter);
         }
+
+        // Reset sort if no options provided
+        if (sortBy.length === 0) {
+            SortBy.set("");
+        } else if (!$SortBy) {
+            SortBy.set(sortBy[0]);
+        }
+
+        // Reset display style if no options provided
+        if (displayStyle.length === 0) {
+            DisplayStyle.set("grid");
+        }
+
+        // Always reset search
+        SearchQuery.set("");
+    });
+
+    let search = $state($SearchQuery);
+
+    function handleSearch(q: Event) {
+        const target = q.target as HTMLInputElement;
+        SearchQuery.set(target.value.trim());
     }
-    function handleExlusiveFilter(fil) {
+
+    function handleFilter(fil: string, e: Event) {
+        e.preventDefault();
         // remove focus from button
-        event.target.blur();
+        (e.target as HTMLElement).blur();
+
+        const newFilters = $CurrentFilter.some((f) => f.name === fil)
+            ? $CurrentFilter.filter((f) => f.name !== fil)
+            : [...$CurrentFilter, { name: fil }];
+
+        CurrentFilter.set(newFilters);
+    }
+
+    function handleExclusiveFilter(fil: string, e: Event) {
+        e.preventDefault();
+        // remove focus from button
+        (e.target as HTMLElement).blur();
         CurrentFilter.set([{ name: fil }]);
     }
-    function handleSort(sor) {
+
+    function handleSort(sor: string) {
         SortBy.set(sor);
     }
 
-    function handleDisplayStyle(style) {
+    function handleDisplayStyle(style: string) {
         DisplayStyle.set(style);
     }
-    onMount(() => {
-        if (filter.length > 0 && !$CurrentFilter.length) {
-            CurrentFilter.set(filter);
-        }
-        if (filter.length > 0) {
-            Filters.set(filter);
-        }
-        if (sortBy.length > 0) {
-            SortBy.set(sortBy[0]);
-        }
-    });
 </script>
 
 <div class="filter-bar mb-2 px-2">
@@ -50,12 +87,12 @@
         <input
             type="text"
             class="form-control w-25 me-2 searchbar"
-            bind:value={search}
-            on:keyup={handleSearch}
-            placeholder="&#xF002;  Search"
+            value={search}
+            oninput={handleSearch}
+            placeholder="&#xf002; Search..."
         />
 
-        {#if $Filters.length > 0 && $Filters[0].name}
+        {#if $Filters.length > 0 && $Filters[0] && $Filters[0].name}
             <div class="d-none d-xl-block ms-3 d-flex align-items-center">
                 <div class="btn-group ms-1 filter-buttons d-flex" role="group" aria-label="Filter listing">
                     {#each $Filters as fil}
@@ -64,18 +101,16 @@
                             data-bs-toggle="tooltip"
                             data-bs-placement="top"
                             data-bs-delay="500"
-                            title={'Double click to only show items from this category'}
+                            title="Double click to only show items from this category"
                             class={fil.class
-                                ? 'btn text-nowrap flex-fill btn-outline-' + fil.class
-                                : 'btn text-nowrap w-100 btn-outline-success'}
-                            class:active={$CurrentFilter.find((f) => f.name === fil.name)}
-                            on:click={() => handleFilter(fil.name)}
-                            on:dblclick={() => handleExlusiveFilter(fil.name)}
-                            on:mouseout={() => event.target.blur()}
-                            on:blur={() => event.target.blur()}
+                                ? "btn text-nowrap flex-fill btn-outline-" + fil.class
+                                : "btn text-nowrap w-100 btn-outline-success"}
+                            class:active={$CurrentFilter.some((f) => f.name === fil.name)}
+                            onclick={(e) => handleFilter(fil.name, e)}
+                            ondblclick={(e) => handleExclusiveFilter(fil.name, e)}
                         >
                             {#if fil.icon}
-                                <i class={fil.icon + ' me-1'} />
+                                <i class={fil.icon + " me-1"}></i>
                             {/if}
                             {fil.name}
                             {#if fil.count >= 0}
@@ -93,7 +128,7 @@
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
                     >
-                        <slot name="filter-name">Status</slot>
+                        {filterName()}
                     </button>
                     <ul class="dropdown-menu">
                         {#each $Filters as fil}
@@ -101,14 +136,14 @@
                                 <div
                                     class="dropdown-item"
                                     title="Filter"
-                                    class:active={$CurrentFilter.find((f) => f.name === fil.name)}
-                                    on:click={() => handleFilter(fil.name)}
-                                    on:keydown={() => handleFilter(fil.name)}
+                                    class:active={$CurrentFilter.some((f) => f.name === fil.name)}
+                                    onclick={(e) => handleFilter(fil.name, e)}
+                                    onkeydown={(e) => e.key === "Enter" && handleFilter(fil.name, e)}
                                     role="button"
                                     tabindex="0"
                                 >
                                     {#if fil.icon}
-                                        <i class={fil.icon + ' fa-fw me-1'} />
+                                        <i class={fil.icon + " fa-fw me-1"}></i>
                                     {/if}
                                     {fil.name}
                                     {#if fil.count >= 0}
@@ -139,10 +174,10 @@
                                 <div
                                     class="dropdown-item"
                                     title="sort"
-                                    id={sor.replace(' ', '-')}
+                                    id={sor.replace(" ", "-")}
                                     class:active={sor === $SortBy}
-                                    on:click={() => handleSort(sor)}
-                                    on:keydown={() => handleSort(sor)}
+                                    onclick={(e) => handleSort(sor)}
+                                    onkeydown={(e) => handleSort(sor)}
                                     role="button"
                                     tabindex="0"
                                 >
@@ -161,11 +196,12 @@
                         <button
                             type="button"
                             class="btn btn-outline-success text-nowrap"
-                            on:click={() => handleDisplayStyle(dis.name)}
+                            onclick={(e) => handleDisplayStyle(dis.name)}
                             class:active={$DisplayStyle === dis.name}
-                            title={dis.name + ' view'}
+                            title={dis.name + " view"}
                             data-bs-toggle="tooltip"
-                            ><i class={dis.icon} />
+                            aria-label={dis.name + " view"}
+                            ><i class={dis.icon}></i>
                         </button>
                     {/each}
                 </div>
@@ -176,6 +212,6 @@
 
 <style lang="scss">
     .searchbar {
-        font-family: 'Inter Variable', 'Inter override', sans-serif, 'Font Awesome 6 Pro';
+        font-family: "Inter Variable", "Inter override", sans-serif, "Font Awesome 6 Pro";
     }
 </style>

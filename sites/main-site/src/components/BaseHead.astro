@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
+import { ViewTransitions } from "astro:transitions";
 export interface Props {
     title: string;
     description: string;
@@ -11,7 +11,7 @@ export interface Props {
     }[];
 }
 
-const { title, description, image = '/social_img.png', docSearchTags = [], viewTransitions = false } = Astro.props;
+const { title, description, image = "/social_img.png", docSearchTags = [], viewTransitions = false } = Astro.props;
 ---
 
 <!-- Global Metadata -->
@@ -21,12 +21,12 @@ const { title, description, image = '/social_img.png', docSearchTags = [], viewT
 <meta name="theme-color" content="#1d9655" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 {
-    Astro.url.pathname.includes('events') && (
+    Astro.url.pathname.includes("events") && (
         <link rel="alternate" type="application/rss+xml" title="nf-core bv Events" href="/events/rss.xml" />
     )
 }
 {
-    Astro.url.pathname.includes('blog') && (
+    Astro.url.pathname.includes("blog") && (
         <link rel="alternate" type="application/rss+xml" title="nf-core Blog" href="/blog/rss.xml" />
     )
 }
@@ -55,43 +55,43 @@ const { title, description, image = '/social_img.png', docSearchTags = [], viewT
 {viewTransitions && <ViewTransitions fallback="none" />}
 
 <!-- DocSearch -->
-{docSearchTags.map(({ name, content }) => <meta name={'docsearch:' + name} content={content} />)}
+{docSearchTags.map(({ name, content }) => <meta name={"docsearch:" + name} content={content} />)}
 
 <!-- Theme -->
 <script is:inline>
     if (!window.theme) {
         const theme = (() => {
-            if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-                return localStorage.getItem('theme');
+            if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+                return localStorage.getItem("theme");
             }
-            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                return 'dark';
+            if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                return "dark";
             }
-            return 'light';
+            return "light";
         })();
         function setTheme(theme) {
             //NOTE: same as in ThemeSwitch.svelte
             const root = document.documentElement;
-            if (theme === 'auto') {
-                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                    root.setAttribute('data-bs-theme', 'dark');
+            if (theme === "auto") {
+                if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                    root.setAttribute("data-bs-theme", "dark");
                 } else {
-                    root.setAttribute('data-bs-theme', 'light');
+                    root.setAttribute("data-bs-theme", "light");
                 }
             } else {
-                root.setAttribute('data-bs-theme', theme);
+                root.setAttribute("data-bs-theme", theme);
             }
         }
 
         setTheme(theme);
 
-        document.addEventListener('astro:after-swap', () => {
+        document.addEventListener("astro:after-swap", () => {
             setTheme(theme);
         });
     }
 </script>
 <script>
-    import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
+    import bootstrap from "bootstrap/dist/js/bootstrap.bundle.min.js";
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
     [...tooltipTriggerList].map((tooltipTriggerEl) => {
         const tooltip = bootstrap.Tooltip.getInstance(tooltipTriggerEl);
@@ -99,7 +99,7 @@ const { title, description, image = '/social_img.png', docSearchTags = [], viewT
             new bootstrap.Tooltip(tooltipTriggerEl);
         }
     });
-    document.addEventListener('astro:after-swap', () => {
+    document.addEventListener("astro:after-swap", () => {
         const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
         [...tooltipTriggerList].map((tooltipTriggerEl) => {
             const tooltip = bootstrap.Tooltip.getInstance(tooltipTriggerEl);
@@ -116,6 +116,6 @@ const { title, description, image = '/social_img.png', docSearchTags = [], viewT
     function gtag() {
         dataLayer.push(arguments);
     }
-    gtag('js', new Date());
-    gtag('config', 'G-1J32LEB1KZ');
+    gtag("js", new Date());
+    gtag("config", "G-1J32LEB1KZ");
 </script>

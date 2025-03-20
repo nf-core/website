@@ -4,7 +4,7 @@ import { atom } from 'nanostores';
 export const CurrentFilter = atom([{ name: '' }]);
 export const Filters = atom([]);
 export const SortBy = atom('');
-// add persistnatome for dipslay style to be either table or grid
+// add persistentatom for display style to be either table or grid
 
 export const DisplayStyle = persistentAtom('DisplayStyle', 'grid', {
     encode(value) {
@@ -15,12 +15,16 @@ export const DisplayStyle = persistentAtom('DisplayStyle', 'grid', {
     },
 });
 
-export const Checkboxes = persistentAtom('Checkboxes', [], {
+export const Checkboxes = persistentAtom<Array<{id: string, checked: boolean}>>('Checkboxes', [], {
     encode(value) {
         return JSON.stringify(value);
     },
     decode(value) {
-        return JSON.parse(value);
+        try {
+            return JSON.parse(value);
+        } catch {
+            return [];
+        }
     },
 });
 export const currentHeading = atom('');

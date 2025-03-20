@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize: nf-test'
+title: "Bytesize: nf-test"
 subtitle: Edmund Miller, University of Texas at Dallas
 type: talk
-startDate: '2022-12-06'
-startTime: '14:00+01:00'
-endDate: '2022-12-06'
-endTime: '14:30+01:00'
+startDate: "2022-12-06"
+startTime: "14:00+01:00"
+endDate: "2022-12-06"
+endTime: "14:30+01:00"
 youtubeEmbed: https://www.youtube.com/watch?v=K9B7JRkMpQ4
 locations:
   - name: Online

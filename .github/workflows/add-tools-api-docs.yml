@@ -3,9 +3,9 @@ on:
   workflow_dispatch:
     inputs:
       ref_name:
-        description: 'The name of the release branch'
+        description: "The name of the release branch"
         required: true
-        default: 'dev'
+        default: "dev"
 
 jobs:
   api-docs:
@@ -16,21 +16,21 @@ jobs:
       - name: Checkout tools code
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
-          repository: 'nf-core/tools'
+          repository: "nf-core/tools"
           ref: ${{ inputs.ref_name }}
-          path: 'tools'
+          path: "tools"
 
       - name: setup node
-        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4
+        uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a # v4
         with:
-          node-version: '20'
+          node-version: "20"
 
       - name: Install dependencies
         run: |
           npm install remark unist-util-visit
 
       # Install pre-commit
-      - uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b # v5
+      - uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38 # v5
         with:
           python-version: 3.11
 
@@ -72,7 +72,7 @@ jobs:
           git commit -m "[automated] Update nf-core/tools API docs for ${{ inputs.ref_name }}"
 
       - name: Create PR
-        uses: peter-evans/create-pull-request@5e914681df9dc83aa4e4905692ca88beb2f9e91f # v7
+        uses: peter-evans/create-pull-request@67ccf781d68cd99b580ae25a5c18a1cc84ffff1f # v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: Update nf-core/tools API docs for ${{inputs.ref_name}}
@@ -80,7 +80,7 @@ jobs:
           body: |
             This PR updates the nf-core/tools API docs for ${{inputs.ref_name}}.
             Please review the changes and merge if they look good.
-          branch: 'update-api-docs-${{inputs.ref_name}}'
+          branch: "update-api-docs-${{inputs.ref_name}}"
           delete-branch: true
-          base: 'main'
+          base: "main"
           draft: false

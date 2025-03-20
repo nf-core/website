@@ -64,7 +64,7 @@ If you use a shared system with other people (such as a HPC or institutional ser
 These are shared config profiles loaded by all nf-core pipelines at run time.
 
 You may find that your system already has a shared profile available here (see [https://github.com/nf-core/configs](https://github.com/nf-core/configs)).
-If not, please follow the instructions in the repository README and/or the [tutorial](https://nf-co.re/docs/usage/tutorials/step_by_step_institutional_profile) to add your cluster.
+If not, please follow the instructions in the repository README and/or the [tutorial](https://nf-co.re/docs/tutorials/use_nf-core_pipelines/writing_institutional_profiles) to add your cluster.
 
 ## Custom configuration files
 
@@ -350,7 +350,7 @@ Sometimes tool developers change how tool versions are reported between updates.
 
 In some cases you may wish to understand which tool arguments or options a pipeline uses, or even update or change these for your own analyses.
 
-You can sometimes find out what parameters are used in a tool in by checking the longer 'help' description of different pipeline parameters, e.g. by pressing the 'help' button next to [this parameter](https://nf-co.re/funcscan/1.0.1/parameters#annotation_bakta_mincontig) in [nf-core/funcscan](https://nf-co.re/funcscan).
+You can sometimes find out what parameters are used in a tool in by checking the longer 'help' description of different pipeline parameters, e.g. by pressing the 'help' button next to [this parameter](https://nf-co.re/funcscan/2.0.0/parameters#annotation_bakta_mincontiglen) in [nf-core/funcscan](https://nf-co.re/funcscan).
 
 ### Finding already used arguments
 

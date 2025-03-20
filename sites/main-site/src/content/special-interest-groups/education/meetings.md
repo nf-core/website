@@ -1,6 +1,6 @@
 ---
-title: 'Meetings'
-subtitle: 'When and where the Education group meets'
+title: "Meetings"
+subtitle: "When and where the Education group meets"
 groupName: Education
 ---
 

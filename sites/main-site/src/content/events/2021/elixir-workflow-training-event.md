@@ -1,11 +1,11 @@
 ---
-title: 'ELIXIR Reproducible Research Workshop - Nextflow and nf-core'
+title: "ELIXIR Reproducible Research Workshop - Nextflow and nf-core"
 subtitle: Trainings on Nextflow and nf-core as part of the ELIXIR workshop
 type: training
-startDate: '2021-12-01'
-startTime: '09:30+02:00'
-endDate: '2021-12-01'
-endTime: '15:00+02:00'
+startDate: "2021-12-01"
+startTime: "09:30+02:00"
+endDate: "2021-12-01"
+endTime: "15:00+02:00"
 locations:
   - name: Online
     links:

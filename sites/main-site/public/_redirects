@@ -1,5 +1,5 @@
 # Slack invite URL
-/join/slack https://join.slack.com/t/nfcore/shared_invite/zt-2sko8ih1f-mlWCjWJQwGEE3viotyQM7Q
+/join/slack https://join.slack.com/t/nfcore/shared_invite/zt-311oxm45d-vlRDmfo6YjbM0oorcJOS2g
 
 # Force a 404 header on custom 404 page
 # See https://answers.netlify.com/t/bug-and-workaround-404-page-returns-http-200/21154
@@ -97,3 +97,6 @@
 /modules/* https://nf-core-modules-subworkflows.netlify.app/modules/:splat 200!
 /subworkflows/* https://nf-core-modules-subworkflows.netlify.app/subworkflows/:splat 200!
 /configs/* https://nf-core-configs.netlify.app/configs/:splat 200!
+
+# temporary redirecs due to updated event URL #TODO: remove after 19th Feb 2025
+/events/2025/sig_animalgenomics_february /events/2025/sig_animalgenomics_feb

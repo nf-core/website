@@ -3,10 +3,10 @@ title: Hackathon - March 2024 (Seqera HQ)
 subtitle: Local node at the Seqera offices in Barcelona
 shortTitle: Seqera, Barcelona, Spain
 type: hackathon
-startDate: '2024-03-18'
-startTime: '10:00+02:00'
-endDate: '2024-03-20'
-endTime: '18:00+02:00'
+startDate: "2024-03-18"
+startTime: "10:00+02:00"
+endDate: "2024-03-20"
+endTime: "18:00+02:00"
 locations:
   - name: Seqera
     address: C/de Marià Aguiló, 28, Sant Martí, 08005 Barcelona, Spain

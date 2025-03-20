@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize: nf-core modules patch'
+title: "Bytesize: nf-core modules patch"
 subtitle: Phil Ewels - Seqera Labs
 type: talk
-startDate: '2023-03-07'
-startTime: '13:00+01:00'
-endDate: '2023-03-07'
-endTime: '13:30+01:00'
+startDate: "2023-03-07"
+startTime: "13:00+01:00"
+endDate: "2023-03-07"
+endTime: "13:30+01:00"
 youtubeEmbed: https://www.youtube.com/watch?v=7pu6Ikhi1eU
 locations:
   - name: Online
