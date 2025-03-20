@@ -9,6 +9,10 @@ import ProgressBar from 'progress';
 // get current path
 const __dirname = path.resolve();
 
+// Get pipeline name from command line argument if provided
+const args = process.argv.slice(2);
+const singlePipelineName = args[0] || null;
+
 //check if pipelines.json exists
 if (!existsSync(join(__dirname, 'public/pipelines.json'))) {
   // create empty pipelines.json with empty remote_workflows array
@@ -27,40 +31,60 @@ export const writePipelinesJson = async () => {
   // get ignored_repos from ignored_reops.yml
   const ignored_repos = yaml.load(ignoredTopicsYaml).ignore_repos;
 
-  // get all repos for the nf-core org
+  // get all repos for the nf-core org or use the specified pipeline
   let names = [];
   let active_names = [];
 
-  await octokit
-    .paginate(octokit.rest.repos.listForOrg, {
-      org: 'nf-core',
-      type: 'public',
-      per_page: 100,
-    })
-    .then((response) => {
-      names.push(
-        response
-          .filter((repo) => !ignored_repos.includes(repo.name))
-          .map((repo) => repo.name)
-          .sort(),
-      );
-      active_names.push(
-        response
-          .filter((repo) => !ignored_repos.includes(repo.name) && !repo.archived)
-          .map((repo) => repo.name)
-          .sort(),
-      );
-    });
-  names = names.flat();
-  active_names = active_names.flat();
-  // write pipeline_names.json
-  await fs.writeFile(
-    join(__dirname, '/public/pipeline_names.json'),
-    JSON.stringify({ pipeline: active_names }, null),
-    'utf8',
-  );
+  if (singlePipelineName) {
+    names = [singlePipelineName];
+    // Check if the pipeline exists
+    try {
+      await octokit.rest.repos.get({
+        owner: 'nf-core',
+        repo: singlePipelineName,
+      });
+      active_names = [singlePipelineName];
+    } catch (err) {
+      console.error(`Pipeline ${singlePipelineName} not found in nf-core organization`);
+      process.exit(1);
+    }
+    console.log(`Processing single pipeline: ${singlePipelineName}`);
+  } else {
+    await octokit
+      .paginate(octokit.rest.repos.listForOrg, {
+        org: 'nf-core',
+        type: 'public',
+        per_page: 100,
+      })
+      .then((response) => {
+        names.push(
+          response
+            .filter((repo) => !ignored_repos.includes(repo.name))
+            .map((repo) => repo.name)
+            .sort(),
+        );
+        active_names.push(
+          response
+            .filter((repo) => !ignored_repos.includes(repo.name) && !repo.archived)
+            .map((repo) => repo.name)
+            .sort(),
+        );
+      });
+    names = names.flat();
+    active_names = active_names.flat();
+  }
 
-  // get ignored_topics from ignored_reops.yml
+  // Only update pipeline_names.json if processing all pipelines
+  if (!singlePipelineName) {
+    // write pipeline_names.json
+    await fs.writeFile(
+      join(__dirname, '/public/pipeline_names.json'),
+      JSON.stringify({ pipeline: active_names }, null),
+      'utf8',
+    );
+  }
+
+  // get ignored_topics from ignored_repos.yml
   const ignored_topics = yaml.load(ignoredTopicsYaml).ignore_topics;
 
   // Get latest tools release

@@ -61,9 +61,9 @@ const metadata = config.rendered.metadata;
 // Format the raw config for display
 const raw_config = '```groovy title="' + config.id + '"\n' + config.body + "\n```";
 
-// Extract GitHub username from contact
-const contact = metadata.config_profile_contact?.match(/@([A-Za-z0-9-]+)/)
-    ? metadata.config_profile_contact.match(/@([A-Za-z0-9-]+)/)[1]
+// Extract GitHub username from contact but only if it not an email
+const contact = metadata.config_profile_contact?.match(/[\s,\(,\',\"]@([A-Za-z0-9_-]+)/)
+    ? metadata.config_profile_contact.match(/[\s,\(,\',\"]@([A-Za-z0-9_-]+)/)[1]
     : "";
 
 const gh_url = `https://github.com/nf-core/configs/blob/master/docs/${configslug}.md`;
@@ -163,7 +163,7 @@ if (pipelineConfigs.length > 0) {
                                 content={[
                                     { title: "executor", value: metadata.executor?.toString() },
                                     {
-                                        title: "contact",
+                                        title: contact ? "contact" : "",
                                         value: contact
                                             ? `<a
                                     href="https://github.com/${contact}"
@@ -171,7 +171,7 @@ if (pipelineConfigs.length > 0) {
                                     rel="noopener noreferrer"
                                     slot="contact"
                                 >
-                                    <img class="me-2 pb-2" src="https://github.com/${contact}.png?size=50" alt="${contact}" />
+                                    <img class="me-2 pb-2" src="https://github.com/${contact}.png?size=50" height="50" alt="${contact}" />
                                 </a>`
                                             : "",
                                     },
@@ -205,9 +205,11 @@ if (pipelineConfigs.length > 0) {
                         !metadata.executor && contact && (
                             <SidebarStatsRow
                                 content={[
-                                    {
-                                        title: "contact",
-                                        value: `<a
+                                    ...(contact
+                                        ? [
+                                              {
+                                                  title: "contact",
+                                                  value: `<a
                                     href="https://github.com/${contact}"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -215,7 +217,9 @@ if (pipelineConfigs.length > 0) {
                                 >
                                     <img class="me-2 pb-2" src="https://github.com/${contact}.png?size=50" alt="${contact}" />
                                 </a>`,
-                                    },
+                                              },
+                                          ]
+                                        : []),
                                 ]}
                             />
                         )
