@@ -227,24 +227,6 @@ const subworkflows: string[] = meta.releases[0].components?.subworkflows || [];
         .sidebar {
             max-height: calc(100vh - 5rem);
             overflow-y: auto;
-
-            #modules-list {
-                max-height: 6rem;
-                overflow-y: hidden;
-                transition: all 0.4s ease-in-out;
-
-                &.show {
-                    max-height: 80vh;
-                }
-            }
-            #modules-show-more i {
-                transition: all 0.4s ease-in-out;
-                rotate: 0deg;
-
-                &.flipped {
-                    rotate: 180deg;
-                }
-            }
         }
         .tab-content.border {
             margin-top: -1px;
