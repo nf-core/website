@@ -1,5 +1,5 @@
 ---
-title: Adding, modding, meddling with the nf-core/sarek pipeline
+title: Improving the nf-core/sarek pipeline
 category: pipelines
 intro_video: ""
 image: "/assets/images/events/2025/hackathon-march/sarek_bounce.gif"
