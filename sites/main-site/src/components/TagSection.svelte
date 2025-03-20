@@ -55,8 +55,7 @@
         >
             {#if expanded}
                 hide
-            {/if}
-            {#if !expanded}
+            {:else}
                 +{additionalTagsCount} more {type}
             {/if}
         </span>
