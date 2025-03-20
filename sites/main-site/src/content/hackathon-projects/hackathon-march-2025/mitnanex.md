@@ -7,7 +7,7 @@ image_alt: "Drake rejects manually sorting mitochondrial reads but approves auto
 leaders:
   JelPej:
     name: Jelena Pejovic 
-    slack: ""
+    slack: "https://nfcore.slack.com/team/U044UT1HV7D"
 ---
 
 ## Introduction
