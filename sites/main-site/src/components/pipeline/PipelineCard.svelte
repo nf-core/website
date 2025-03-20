@@ -110,9 +110,6 @@
 </ListingCard>
 
 <style lang="scss">
-    .badge.text-success {
-        font-weight: 400;
-    }
     .gh-stats {
         float: right;
     }
