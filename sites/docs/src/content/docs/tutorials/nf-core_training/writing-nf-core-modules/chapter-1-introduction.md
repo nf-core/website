@@ -8,6 +8,8 @@ shortTitle: "Chapter 1: Introduction"
 Material originally written for the **A practical introduction to nf-core components for Nextflow developers** training at the nf-core Hackathon March 2024, Berlin local site _(see [event](https://nf-co.re/events/2025/hackathon-march-2025/robert-koch-institute))_
 
 Duration: **4hr**
+
+Original author: James A. Fellows Yates (@jfy133), with corrections and improvements from Niklas Schandry (@nschan) and Alexandru Mizeranschi (@amizeranschi)
 :::
 
 ## Introduction
