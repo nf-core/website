@@ -150,11 +150,11 @@
                                 {component.meta.description}
                             </td>
                             <td class="topics">
-                                <TagSection tags={component.meta.keywords} type="keywords" client:load />
+                                <TagSection tags={component.meta.keywords} type="keywords" />
                             </td>
                             {#if component.type !== "module"}
                                 <td class="components">
-                                    <TagSection tags={component.meta.components} type="modules" client:load />
+                                    <TagSection tags={component.meta.components} type="modules" />
                                 </td>
                             {/if}
                             <td class="text-end">
