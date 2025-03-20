@@ -1,6 +1,6 @@
 ---
 title: Animal Genomics
-subtitle: 'The Animal Genomics Special Interest Group is a community of researchers and practitioners interested in the application of genomics to animal breeding and genetics.'
+subtitle: "The Animal Genomics Special Interest Group is a community of researchers and practitioners interested in the application of genomics to animal breeding and genetics."
 groupName: Animal Genomics
 leads:
   - joseespinosa: Jose Espinosa-Carrasco
@@ -41,6 +41,6 @@ The discussion will often be a follow-up on the talk.
 
 Join the [nf-core Slack](/join#slack) and find us in the _#animal-genomics_ channel
 
-# Alumni:
+# Alumni
 
-- bjlang: Björn Langer
+- Björn Langer

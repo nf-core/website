@@ -191,7 +191,7 @@ END_VERSIONS
 resulting in, for instance,
 
 ```yaml
-'FASTQC':
+"FASTQC":
   fastqc: 0.11.9
   samtools: 1.12
 ```
@@ -753,6 +753,22 @@ It is also possible for a new multi-tool container to be built and added to BioC
 If the software is not available on Bioconda a `Dockerfile` MUST be provided within the module directory. We will use GitHub Actions to auto-build the containers on the [GitHub Packages registry](https://github.com/features/packages).
 
 ## Testing
+
+### Scope of testing
+
+Tests for modules SHOULD be executable within the nf-core/modules GitHub repository CI with example test data.
+
+Tests for modules MUST, at a minimum, run on the GitHub repository CI with a stub test that replicates the generation of (empty) output files and a `versions` file.
+
+Module tests do not necessarily need to be able to execute 'standalone', i.e., run outside the nf-core/modules repository. For example, they don't need to be executable within a pipeline repository.
+
+:::info{title="Rationale" collapse}
+Some modules may require upstream modules to generate input files for the new module under construction if it is not possible or reasonable to upload those test data files to nf-core/test-datasets.
+
+If the test were to work 'standalone,' the pipeline would need to include all these upstream modules just to execute the module test—even if those modules are not used within the pipeline itself. This would lead to a lot of file 'pollution' within the pipeline repository.
+
+Modules installed in the pipeline should already be tested to work correctly within the context of the pipeline with workflow- or pipeline-level tests. Thus, it is considered unnecessary to duplicate module tests again.
+:::
 
 ### Snapshots
 
