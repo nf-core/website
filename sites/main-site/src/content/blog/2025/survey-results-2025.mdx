@@ -1,5 +1,5 @@
 ---
-title: "nf-core survey 2025 results"
+title: "nf-core survey 2025: the results"
 subtitle: "Results summary from the nf-core community survey 2025 "
 pubDate: 2025-03-26T12:00:00+01:00
 headerImage: "/assets/images/blog/survey-results-2025/nfcore-survey_logo.png"
@@ -12,26 +12,139 @@ label:
     - "community"
 ---
 
+import worldmap from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-worldmap.png";
+import locationdistribution from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-locationdistribution.png";
+import respondertype from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-respondertype.png";
+import confidence from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-confidence.png";
+import happiness from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-happiness.png";
+
+import { Image } from "astro:assets";
+
 ## Introduction
 
-On...
+nf-core has a huge community of 11,000 members (based on Slack users), and this number does not seem appear to be diminishing.
+As the community gets bigger, it is getting harder to keep track of all the discussions happening across all of our Slack channels, and increasingly in face-to-face talks on Slack huddles and gather.town.
+Therefore the core team has decided to hold a yearly community survey to help provide us with an overview of the mood of community and in which ways the 'wind is blowing' in terms of needs and requirements.
 
-## Key Findings
+With this information, we plan to develop a roadmap for the continued development and progress the nf-core ecosystem and community over the next few years.
 
--
--
+## Key points
+
+- We had 209 responders, representing 1.8% of our Slack community.
+- nf-core has a responder NPS score of 54, representing a very positive opinion of nf-core, and are likely to recommend the communtiy to colleagues and peers.
 -
 
 ## Methodology
 
-## Results
+In mid-february 2025, we sent out on Slack a simple survey for all community members, regardless of whether they are users, developers, newcomers, or veterans of nf-core.
+This short 7 question survey asked the following main questions
 
-### Demographics
+1. Community member type (user, developer, or both)
+2. Experience within nf-core (1 newcomer - 5 advanced)
+3. What country based in (country list)
+4. How likely to recommend nf-core (0-10 scale)
+5. What is liked the most about nf-core (free text)
+6. What difficulties have been encountered (free text)
+7. Any other feedback (free) text
 
-### User Feedback
+The survey was open for approximately a month, with one reminder halfway through.
 
-### Developer Feedback
+The answers from first four questions responses were aggregated and summarised as distributions.
+
+The free text answers from the latter three questions were assigned with one or more of various types of tags to group the response points into similar feedback topics.
+This tagging was independently performed by two core members and compared.
+
+Tagging was performed within Google Drive, and then all data was cleaned up, processed, and visualised R with the tidyverse set of packages.
+The code in the form of a Quarto markdown notebook can be seen [here](https://github.com/jfy133/nf-core-simplesurvey-2025/)
+
+## Response statistics
+
+In total, we received 209 responses.
+Assuming these were all unique responders (the survey was anonymous), and with a maximum community size of 11,640 people based on Slack numbers in mid-March 2025, this corresponds to an approximate response rate of 1.8% of the community providing feedback.
+
+## Geographic Distribution
+
+We had responders based in 36 different countries, spanning the Americas, Europe, Africa, Asia and Oceania.
+
+<Image
+    src={worldmap}
+    class="d-block m-auto"
+    width={600}
+    density={[1.5, 2]}
+    alt="World map with countries that the survey received at least response from filled in green."
+/>
+
+The top 5 countries with the greatest number of responders came from the USA, UK, Germany, Sweden, and Spain.
+Other than the USA, all other countries in the top 10 countries by of responders are in Europe, emphasising the origins of the community.
+
+<Image
+    src={locationdistribution}
+    class="d-block m-auto"
+    width={600}
+    density={[1.5, 2]}
+    alt="Barchart of countries on Y axis and responder counts on the X axis"
+/>
+
+## Responder type and experience
+
+To get a better idea of the type of experience or interaction the responders may have had of nf-core, we can look at how they classified themselves.
+
+<Image
+    src={respondertype}
+    class="d-block m-auto"
+    width={600}
+    density={[1.5, 2]}
+    alt="Barchart of type of responder (user, developer, both, snakemake developer, no feedback) on Y axis and responder counts on the X axis"
+/>
+
+We received a relatively equal spread of users, developers, those who both use and develop nf-core pipelines, and one apparently disgruntled Snakemake developer.
+
+We also wanted to understand the level of experience each of these groups felt they had by asking them to score their confidence in using or developing pipelines.
+
+<Image
+    src={confidence}
+    class="d-block m-auto"
+    width={600}
+    density={[1.5, 2]}
+    alt="Three barcharts for each type of responder (user, developer, both), with count on the Y axis and the self-reported confidence as a user or developer on the X axis"
+/>
+
+After excluding the responses with no responder type and the snakemake developer, we can see that the developer and user/developer responders mostly felt relatively confident with developing within nf-core, users were more evenly spread but with a skew towards being feeling less confident in using nf-core pipelines.
+
+## Overall happiness with nf-core
+
+The first feedback question we asked was a general 'how satisfied' or 'happy' are you with the initiative and community as a whole on a scale of 0-10.
+
+Based on the values, we can calculate a ['net promoter score'](https://en.wikipedia.org/wiki/Net_promoter_score) or NPS, which is a market research metric to evaluate the general satisfaction and approximate loyalty responders have.
+This is calculated by subtracting the percentage of 'low score' responders (0-6) from the percentage of 'high score' responders (9-10).
+Negative values are normally evaluated as general dissatisfaction amongst the responders, and scores of 60-100 represent strong loyalty and happiness of the responders.
+
+The NPS score from the survey is 54.
+
+<Image
+    src={happiness}
+    class="d-block m-auto"
+    width={600}
+    density={[1.5, 2]}
+    alt="Three barcharts for each type of responder (user, developer, both), with count on the Y axis and the likely to recommend to a peer score on the X axis"
+/>
+
+When looking at the likelihood to recommend nf-core to a colleague score distribution across each of our responder types, we see that developers and user developers - both likely to be more comfortable bioinformatically have a strong skew towards being very likely to recommend nf-core.
+The general trend of recommendations by users is similar, but there are slightly higher numbers of less happy users giving only middling scores (between a score of 4-7).
+
+Overall, the responders are mostly positive and happy with the nf-core initiative and community.
+
+## User Feedback
+
+## Developer Feedback
 
 ## What's next?
 
-Core team will make roadmap, in discussion with steering and maintainers
+So what's next?
+
+The core team will take some time process the results, including holding discussions with steering and maintainers teams.
+We aim to develop a roadmap with priority areas where coordination efforts will be driven towards to address the feedback.
+
+Once this roadmap is ready, we will present it to the community via another blog post for feedback and implementation.
+
+Thank you to all the responders to the survey, and we hope the results of this survey and future ones will make the community even more proud of our collective efforts to making user-friendly, powerful, and reproducible workflows.
