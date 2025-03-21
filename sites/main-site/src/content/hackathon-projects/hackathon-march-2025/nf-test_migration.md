@@ -42,7 +42,7 @@ As there are a lot of modules (i.e. 162) and subworkflows (i.e. 23) to migrate w
 - Assign yourself to the sub-issue
 - Perform the migration
   - Fork [`nf-core/modules`](https://github.com/nf-core/modules/fork) repository to your Github account
-  - Clone locally or use gitpod
+  - Clone locally or use gitpod/codespaces
   - Clone [pytest2nf-test](https://github.com/GallVp/pytest2nf-test) `git clone https://github.com/GallVp/pytest2nf-test`
     - Install it `./gradlew installDist`
     - Create alias or add to `PATH`: `alias pytest2nf-test=${PWD}/build/install/pytest2nf-test/bin/pytest2nf-test`
