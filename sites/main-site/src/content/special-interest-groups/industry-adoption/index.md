@@ -1,6 +1,6 @@
 ---
 title: Industry adoption
-subtitle: "The special interest group Industry adoption will aim to improve nf-core to make it easy to adopt it's pipelines in an industry setting. Mixing of open-source and proprietary code."
+subtitle: "The special interest group Industry adoption will aim to improve nf-core to make it easy to adopt its pipelines in an industry setting. Mixing of open-source and proprietary code."
 groupName: Industry Adoption
 leads:
   - edmundmiller: Edmund Miller
