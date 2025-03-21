@@ -42,3 +42,7 @@ Help us to solve problems we encountered during the path to the first release of
   - One value for included cached footprint, one for real execution value
 - `cpu_model` comparison to vendor info
   - [Issue](https://github.com/nextflow-io/nf-co2footprint/issues/61)
+- Compare the Plugin results to the AWS Report
+- Run plugin on AWS; make it applicable for AWS
+  - Info about server and server location accessible?
+  - Does AWS use special AWS servers? 
