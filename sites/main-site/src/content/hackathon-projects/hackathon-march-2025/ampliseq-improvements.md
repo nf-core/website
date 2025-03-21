@@ -1,6 +1,7 @@
 ---
 title: Adding, modding, meddling with the nf-core/ampliseq pipeline
 category: pipelines
+slack: https://nfcore.slack.com/archives/CEA7TBJGJ
 intro_video: ""
 image: "/assets/images/events/2025/hackathon-march/meddling_with_ampliseq.jpg"
 image_alt: "'Distracted boyfriend' meme, where the boyfriend in the middle is labeled 'us', they oblivious woman to the right is labeled 'leaving ampliseq alone and fine as it is'. The woman on the left, who the boyfriend is whistling after, is labeled 'meddle with it to suppoert metabarcoding'."
