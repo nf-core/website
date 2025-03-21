@@ -17,6 +17,9 @@ import locationdistribution from "@assets/images/blog/survey-results-2025/nfcore
 import respondertype from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-respondertype.png";
 import confidence from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-confidence.png";
 import happiness from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-happiness.png";
+import cloudglobalimprove from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-cloudglobalimprove.png";
+import cloudglobalpositive from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-cloudglobalpositive.png";
+import cloudglobalrequests from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-cloudglobalrequests.png";
 
 import { Image } from "astro:assets";
 
@@ -31,8 +34,9 @@ With this information, we plan to develop a roadmap for the continued developmen
 ## Key points
 
 - We had 209 responders, representing 1.8% of our Slack community.
-- nf-core has a responder NPS score of 54, representing a very positive opinion of nf-core, and are likely to recommend the communtiy to colleagues and peers.
--
+- nf-core has a responder NPS score of 54, representing a very positive opinion of nf-core, and are likely to recommend the community to colleagues and peers.
+- The community itself was the biggest positive aspect of nf-core, with responders finding it a welcoming, friendly, and helpful group of people.
+- While the existing amount of documentation was appreciated, it remains the biggest target for improvement primarily in terms of discoverability and consistency.
 
 ## Methodology
 
@@ -134,13 +138,61 @@ The general trend of recommendations by users is similar, but there are slightly
 
 Overall, the responders are mostly positive and happy with the nf-core initiative and community.
 
+## General Feedback
+
+So let's start with what the community likes most about nf-core across both users, developers, and user/developers?
+
+<Image
+    src={cloudglobalpositive}
+    class="d-block m-auto"
+    width={600}
+    density={[1.5, 2]}
+    alt="Word cloud with different words corresponding to positive feedback category types as evaluated by the reviewers at different sizes"
+/>
+
+By far the most common feedback was the community 'feel' itself.
+Responders often mentioned that the community was just a nice place to be, with people being friendly and helpful (as reflected by other categories such as references to inclusivity, expertise, and speed of responses).
+furthermore people also appreciated that the diverse number of pipelines are generally of high quality, are reproducible, and the infrastructure around them.
+Other appreciated factors were the ease of use of the pipelines and the documentation, as well as the consistency and familiarity of the pipelines (derived from the common template), and the ability to share and re-use components such as nf-core modules in other contexts.
+
+Next let's look what people felt was their biggest difficulties in using or developing within nf-core.
+
+<Image
+    src={cloudglobalimprove}
+    class="d-block m-auto"
+    width={600}
+    density={[1.5, 2]}
+    alt="Word cloud with different words corresponding to improvement feedback category types as evaluated by the reviewers at different sizes"
+/>
+
+Interestingly, by far the largest feedback was documentation - despite other responders saying they really appreciated the documentation!
+There were so many comments on this the reviewers end up splitting this into multiple different categories, and these are still some of the most commented on issues encountered when working with nf-core.
+These categories spanned from finding the whole ecosystem very overwhelming to get started with or it being unclear how to get involved (for both users or developers), and setting up nf-core pipelines on infrastructure.
+Another curious discordance with the positive feedback is that while people appreciate the consistency within pipelines due to the common template, people often felt the template was too complex.
+A related feedback was some users finding the pipelines were too large and complicated to get started with.
+Other common categories were related to release speed of pipelines and tools/template (typically that they are too fast and there are too many, although sometimes _not fast enough_)
+Communication in terms of how and who decisions within nf-core get made was also sometimes brought up, as well as problems with setting up and debugging the recently implemented nf-test tooling.
+Finally, confusingly a common issue was also Nextflow itself, however the reviewers felt this appears to be either to be due to a misunderstanding that `Nextflow != nf-core`, and the strength of the feelings of Python developers.
+
+So what were the most common requests?
+
+<Image
+    src={cloudglobalpositive}
+    class="d-block m-auto"
+    width={600}
+    density={[1.5, 2]}
+    alt="Word cloud with different words corresponding to requests feedback category types as evaluated by the reviewers at different sizes"
+/>
+
+The answers from this question had a much greater diversity than the other two questions, except for the most common one - unsurprisingly - better documentation.
+Another request was better communication - either through more transparent procedures, clearer standards, and more external advertising to pull in a wider diversity of research software engineers.
+A few people also requested pipeline chaining functionality, new pipelines, more merchandise on the [nf-core/shop](https://nf-co.re/shop) and memes (feed the obsession by posting [#nf-core-memes](https://nfcore.slack.com/archives/C03EZ806PFT)!)
+
 ## User Feedback
 
 ## Developer Feedback
 
-## What's next?
-
-So what's next?
+## So what's next?
 
 The core team will take some time process the results, including holding discussions with steering and maintainers teams.
 We aim to develop a roadmap with priority areas where coordination efforts will be driven towards to address the feedback.
