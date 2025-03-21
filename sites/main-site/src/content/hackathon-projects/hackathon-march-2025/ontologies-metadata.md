@@ -1,6 +1,7 @@
 ---
 title: Working on modules and subworkflows ontology and metadata
 category: components
+slack: https://nfcore.slack.com/archives/C08FKRKPDFV
 leaders:
   mirpedrol:
     name: Júlia Mir Pedrol
