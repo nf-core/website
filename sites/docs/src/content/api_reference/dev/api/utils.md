@@ -659,7 +659,7 @@ Bases: `BaseModel`
                "default": null,
                "title": "Nfcore Components"
             },
-            "actions_ci": {
+            "actions_nf_test": {
                "anyOf": [
                   {
                      "type": "boolean"
@@ -669,7 +669,7 @@ Bases: `BaseModel`
                   }
                ],
                "default": null,
-               "title": "Actions Ci"
+               "title": "Actions Nf Test"
             },
             "actions_awstest": {
                "anyOf": [
@@ -1144,7 +1144,7 @@ schema for linting config in .nf-core.yml should cover:
          "default": null,
          "title": "Nfcore Components"
       },
-      "actions_ci": {
+      "actions_nf_test": {
          "anyOf": [
             {
                "type": "boolean"
@@ -1154,7 +1154,7 @@ schema for linting config in .nf-core.yml should cover:
             }
          ],
          "default": null,
-         "title": "Actions Ci"
+         "title": "Actions Nf Test"
       },
       "actions_awstest": {
          "anyOf": [
@@ -1380,7 +1380,7 @@ schema for linting config in .nf-core.yml should cover:
 * **Fields:**
   - [`actions_awsfulltest (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.actions_awsfulltest)
   - [`actions_awstest (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.actions_awstest)
-  - [`actions_ci (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.actions_ci)
+  - [`actions_nf_test (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.actions_nf_test)
   - [`actions_schema_validation (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.actions_schema_validation)
   - [`base_config (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.base_config)
   - [`files_exist (bool | List[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.files_exist)
@@ -1415,7 +1415,7 @@ Lint all required files to run full tests on AWS
 
 Lint all required files to run tests on AWS
 
-#### _`field{:python}`_`actions_ci{:python}`_: bool | None_`{:python}`_= None_
+#### _`field{:python}`_`actions_nf_test{:python}`_: bool | None_`{:python}`_= None_
 
 Lint all required files to use GitHub Actions CI
 
