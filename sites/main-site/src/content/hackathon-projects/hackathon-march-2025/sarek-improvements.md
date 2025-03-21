@@ -2,6 +2,7 @@
 title: Improving the nf-core/sarek pipeline
 category: pipelines
 intro_video: ""
+slack: https://nfcore.slack.com/archives/C05V9FRJYMV
 image: "/assets/images/events/2025/hackathon-march/sarek_bounce.gif"
 image_alt: "Sarek Logo bouncing up and down."
 leaders:
