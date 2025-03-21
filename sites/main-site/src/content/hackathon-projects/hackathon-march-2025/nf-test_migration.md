@@ -50,7 +50,7 @@ As there are a lot of modules (i.e. 162) and subworkflows (i.e. 23) to migrate w
   - Run `pytest2nf-test --nfcore-modules <tool_name>`
   - Run `nf-core modules test <tool_name> -profile <singularity/docker/conda>` and `nf-core modules lint <tool_name>`
   - Fix nf-test if necessary
-  - Check if modules follows the [guidelines](https://nf-co.re/docs/tutorials/tests_and_test_data/nf-test_writing_tests)
+  - Check if the module follows the [guidelines](https://nf-co.re/docs/tutorials/tests_and_test_data/nf-test_writing_tests)
   - Commit change and create PR
 - Link to sub-issue : Add `#75XX` in the details
 - When your pull request is ready, ask for a review and review someone else's pull request
