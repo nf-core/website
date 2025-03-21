@@ -52,15 +52,15 @@ When you first generate the file, some parts of the module will already be fille
 
 There are 9 main Nextflow process blocks of an nf-core module
 
-- `tag`
-- `label`
-- `conda`
-- `container`
-- `input`
-- `output`
-- `when`
-- `script`
-- `stub`
+- `tag:`
+- `label:`
+- `conda:`
+- `container:`
+- `input:`
+- `output:`
+- `when:`
+- `script:`
+- `stub:`
 
 :::info{title="Click here to see full 'raw' file example" collapse}
 

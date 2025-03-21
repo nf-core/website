@@ -28,7 +28,7 @@ These specifications are designed based on the consensus opinions of the wider n
 - Naming and formatting conventions
 - What software environment to use
 - Use of standardised tags
-- What input and output files are allowed
+- What input and output channels are used
 - How to allow pipeline developers to use specific tool parameters
 - Use of ['meta maps'](https://nf-co.re/docs/contributing/components/meta_map)
 - Use of [stubs](https://www.nextflow.io/docs/latest/process.html#stub)
