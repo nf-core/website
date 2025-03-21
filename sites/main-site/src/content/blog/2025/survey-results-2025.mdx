@@ -81,9 +81,11 @@ We had responders based in 36 different countries, spanning the Americas, Europe
 <Image
     src={worldmap}
     class="d-block m-auto"
-    width={600}
+    height={600}
+
     density={[1.5, 2]}
     alt="World map with countries that the survey received at least response from filled in green."
+
 />
 
 The top 5 countries with the greatest number of responders came from the USA, UK, Germany, Sweden, and Spain.
@@ -92,9 +94,11 @@ Other than the USA, all other countries in the top 10 countries by of responders
 <Image
     src={locationdistribution}
     class="d-block m-auto"
-    width={600}
+    height={600}
+
     density={[1.5, 2]}
     alt="Barchart of countries on Y axis and responder counts on the X axis"
+
 />
 
 ## Responder type and experience
@@ -104,9 +108,11 @@ To get a better idea of the type of experience or interaction the responders may
 <Image
     src={respondertype}
     class="d-block m-auto"
-    width={600}
+    height={600}
+
     density={[1.5, 2]}
     alt="Barchart of type of responder (user, developer, both, snakemake developer, no feedback) on Y axis and responder counts on the X axis"
+
 />
 
 We received a relatively equal spread of users, developers, those who both use and develop nf-core pipelines, and one apparently disgruntled Snakemake developer.
@@ -116,9 +122,11 @@ We also wanted to understand the level of experience each of these groups felt t
 <Image
     src={confidence}
     class="d-block m-auto"
-    width={600}
+    height={600}
+
     density={[1.5, 2]}
     alt="Three barcharts for each type of responder (user, developer, both), with count on the Y axis and the self-reported confidence as a user or developer on the X axis"
+
 />
 
 After excluding the responses with no responder type and the snakemake developer, we can see that the developer and user/developer responders mostly felt relatively confident with developing within nf-core, users were more evenly spread but with a skew towards being feeling less confident in using nf-core pipelines.
@@ -136,9 +144,11 @@ The NPS score from the survey is 54.
 <Image
     src={happiness}
     class="d-block m-auto"
-    width={600}
+    height={600}
+
     density={[1.5, 2]}
     alt="Three barcharts for each type of responder (user, developer, both), with count on the Y axis and the likely to recommend to a peer score on the X axis"
+
 />
 
 When looking at the likelihood to recommend nf-core to a colleague score distribution across each of our responder types, we see that developers and user developers - both likely to be more comfortable bioinformatically have a strong skew towards being very likely to recommend nf-core.
@@ -153,9 +163,11 @@ So let's start with what the community likes most about nf-core across both user
 <Image
     src={cloudglobalpositive}
     class="d-block m-auto"
-    width={600}
+    height={600}
+
     density={[1.5, 2]}
     alt="Word cloud with different words corresponding to positive feedback category types as evaluated by the reviewers at different sizes"
+
 />
 
 By far the most common feedback was the community 'feel' itself.
@@ -170,9 +182,11 @@ Next let's look what people felt was their biggest difficulties in using or deve
 <Image
     src={cloudglobalimprove}
     class="d-block m-auto"
-    width={600}
+    height={600}
+
     density={[1.5, 2]}
     alt="Word cloud with different words corresponding to improvement feedback category types as evaluated by the reviewers at different sizes"
+
 />
 
 Interestingly, by far the largest feedback was documentation - despite other responders saying they really appreciated the documentation!
@@ -189,9 +203,9 @@ Finally, confusingly a common issue was also Nextflow itself, however the review
 So what were the most common requests?
 
 <Image
-    src={cloudglobalpositive}
+    src={cloudglobalrequests}
     class="d-block m-auto"
-    width={600}
+    height={800}
     density={[1.5, 2]}
     alt="Word cloud with different words corresponding to requests feedback category types as evaluated by the reviewers at different sizes"
 />
@@ -207,9 +221,11 @@ Interested in the actual numbers? See the image below.
 <Image
     src={barglobaldetails}
     class="d-block m-auto"
-    width={600}
+    height={600}
+
     density={[1.5, 2]}
     alt="Bar chart of counts of feedback category types as evaluated by the two reviewers"
+
 />
 :::
 
@@ -224,9 +240,11 @@ Users mostly appreciate the ease of use of pipelines, the community feel and exp
 <Image
     src={fineuserpositive}
     class="d-block m-auto"
-    width={600}
+    height={800}
+
     density={[1.5, 2]}
     alt="Bar chart of counts of feedback category types as evaluated by the two reviewers for users and positive tags"
+
 />
 
 Even though many are happy with the documentation, much of the difficulties encountered were to related documentation - particularly for new users on how to run pipelines and how to install and configure for their infrastructure.
@@ -235,9 +253,11 @@ Furthermore some user-only responders were somewhat concerned about the variable
 <Image
     src={fineuserimprove}
     class="d-block m-auto"
-    width={600}
+    height={600}
+
     density={[1.5, 2]}
     alt="Bar chart of counts of feedback category types as evaluated by the two reviewers for users and improve tags"
+
 />
 
 Most users-only responders did not feel they needed anything more and only had positive sentiments about the community.
@@ -246,9 +266,11 @@ But as with the the above - documentation and training improvements was the most
 <Image
     src={fineuserrequest}
     class="d-block m-auto"
-    width={600}
+    height={600}
+
     density={[1.5, 2]}
     alt="Bar chart of counts of feedback category types as evaluated by the two reviewers for users and request tags"
+
 />
 
 ## Developer Feedback
@@ -259,9 +281,11 @@ The high quality of the open-source pipelines, modules, and infrastructure was a
 <Image
     src={finedevpositive}
     class="d-block m-auto"
-    width={600}
+    height={600}
+
     density={[1.5, 2]}
     alt="Bar chart of counts of feedback category types as evaluated by the two reviewers for developers and positive tags"
+
 />
 
 The biggest issues encountered by developer-only responders were related to onboarding of new developers as well as documentation in regards to handling the complexity of the pipeline template.
@@ -270,9 +294,11 @@ Another issue was tool release speed - some people complained there were too man
 <Image
     src={finedevimprove}
     class="d-block m-auto"
-    width={600}
+    height={600}
+
     density={[1.5, 2]}
     alt="Bar chart of counts of feedback category types as evaluated by the two reviewers for developers and improve tags"
+
 />
 
 Finally, as with users - in terms of extra feedback the strongest category of feedback comments were just positive vibes.
@@ -281,9 +307,11 @@ More merchandise ideas were requested, as well as few people requesting clearer 
 <Image
     src={finedevrequest}
     class="d-block m-auto"
-    width={600}
+    height={600}
+
     density={[1.5, 2]}
     alt="Bar chart of counts of feedback category types as evaluated by the two reviewers for developers and requests tags"
+
 />
 
 ## So what's next?
