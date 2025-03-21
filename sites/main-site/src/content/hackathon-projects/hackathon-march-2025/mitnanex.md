@@ -2,6 +2,7 @@
 title: MITNANEX - MITochondrial NANopore reads EXtractor
 category: pipelines
 intro_video: ""
+slack: https://nfcore.slack.com/archives/C08JU0M99EF
 image: "/assets/images/events/2025/hackathon-march/mito_meme.jpg"
 image_alt: "Drake rejects manually sorting mitochondrial reads but approves automating it with MITNANEX & Nextflow."
 leaders:
