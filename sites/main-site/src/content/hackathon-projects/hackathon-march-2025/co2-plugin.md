@@ -1,8 +1,8 @@
 ---
 title: Improving the Nextflow CO2 plugin
 category: tooling
-slack: "https://nextflow.slack.com/archives/C060UBAQ5QF"
-image: "/assets/images/events/2025/hackathon-march/globalcore-stripes.png"
+slack: https://nfcore.slack.com/archives/C060UBAQ5QF
+image: /assets/images/events/2025/hackathon-march/globalcore-stripes.png
 image_alt: The average annual global temperature over the years 1850-2017, known as the 'warming stripes' figure from the [climate lab book](https://www.climate-lab-book.ac.uk/2018/warming-stripes/) website
 leaders:
   skrakau:
@@ -10,10 +10,10 @@ leaders:
     slack: https://nfcore.slack.com/team/UMLKFJ264
   JosuaCarl:
     name: Josua Carl
-    slack: "https://nextflow.slack.com/team/U08BEK783FZ"
+    slack: https://nfcore.slack.com/archives/D08JJNCQ4SJ
   nadnein:
     name: Nadja Volkmann
-    slack: "https://nextflow.slack.com/archives/D08GKGLC1LP"
+    slack: https://nfcore.slack.com/archives/D08KCG9SRSL
 ---
 
 # nf-co2footprint plugin project
