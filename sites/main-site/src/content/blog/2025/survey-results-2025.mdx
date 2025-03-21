@@ -20,6 +20,14 @@ import happiness from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-
 import cloudglobalimprove from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-cloudglobalimprove.png";
 import cloudglobalpositive from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-cloudglobalpositive.png";
 import cloudglobalrequests from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-cloudglobalrequests.png";
+import barglobaldetails from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-barglobaldetails.png";
+
+import fineuserpositive from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-fineuserpositive.png";
+import fineuserimprove from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-fineuserimprove.png";
+import fineuserrequest from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-fineuserrequest.png";
+import finedevpositive from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-finedevpositive.png";
+import finedevimprove from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-finedevimprove.png";
+import finedevrequest from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-finedevrequest.png";
 
 import { Image } from "astro:assets";
 
@@ -151,8 +159,10 @@ So let's start with what the community likes most about nf-core across both user
 />
 
 By far the most common feedback was the community 'feel' itself.
+
 Responders often mentioned that the community was just a nice place to be, with people being friendly and helpful (as reflected by other categories such as references to inclusivity, expertise, and speed of responses).
-furthermore people also appreciated that the diverse number of pipelines are generally of high quality, are reproducible, and the infrastructure around them.
+Furthermore people also appreciated that the diverse number of pipelines are generally of high quality, are reproducible, and the infrastructure around them.
+
 Other appreciated factors were the ease of use of the pipelines and the documentation, as well as the consistency and familiarity of the pipelines (derived from the common template), and the ability to share and re-use components such as nf-core modules in other contexts.
 
 Next let's look what people felt was their biggest difficulties in using or developing within nf-core.
@@ -167,9 +177,11 @@ Next let's look what people felt was their biggest difficulties in using or deve
 
 Interestingly, by far the largest feedback was documentation - despite other responders saying they really appreciated the documentation!
 There were so many comments on this the reviewers end up splitting this into multiple different categories, and these are still some of the most commented on issues encountered when working with nf-core.
+
 These categories spanned from finding the whole ecosystem very overwhelming to get started with or it being unclear how to get involved (for both users or developers), and setting up nf-core pipelines on infrastructure.
 Another curious discordance with the positive feedback is that while people appreciate the consistency within pipelines due to the common template, people often felt the template was too complex.
 A related feedback was some users finding the pipelines were too large and complicated to get started with.
+
 Other common categories were related to release speed of pipelines and tools/template (typically that they are too fast and there are too many, although sometimes _not fast enough_)
 Communication in terms of how and who decisions within nf-core get made was also sometimes brought up, as well as problems with setting up and debugging the recently implemented nf-test tooling.
 Finally, confusingly a common issue was also Nextflow itself, however the reviewers felt this appears to be either to be due to a misunderstanding that `Nextflow != nf-core`, and the strength of the feelings of Python developers.
@@ -188,9 +200,91 @@ The answers from this question had a much greater diversity than the other two q
 Another request was better communication - either through more transparent procedures, clearer standards, and more external advertising to pull in a wider diversity of research software engineers.
 A few people also requested pipeline chaining functionality, new pipelines, more merchandise on the [nf-core/shop](https://nf-co.re/shop) and memes (feed the obsession by posting [#nf-core-memes](https://nfcore.slack.com/archives/C03EZ806PFT)!)
 
-## User Feedback
+Interested in the actual numbers? See the image below.
+
+:::info{collapse title="Actual numbers"}
+
+<Image
+    src={barglobaldetails}
+    class="d-block m-auto"
+    width={600}
+    density={[1.5, 2]}
+    alt="Bar chart of counts of feedback category types as evaluated by the two reviewers"
+/>
+:::
+
+## Closer Feedback
+
+But what about the feedback from just users or just developers of nf-core?
+
+## Users
+
+Users mostly appreciate the ease of use of pipelines, the community feel and expertise, and documentation and training.
+
+<Image
+    src={fineuserpositive}
+    class="d-block m-auto"
+    width={600}
+    density={[1.5, 2]}
+    alt="Bar chart of counts of feedback category types as evaluated by the two reviewers for users and positive tags"
+/>
+
+Even though many are happy with the documentation, much of the difficulties encountered were to related documentation - particularly for new users on how to run pipelines and how to install and configure for their infrastructure.
+Furthermore some user-only responders were somewhat concerned about the variable pipeline quality encountered between pipelines.
+
+<Image
+    src={fineuserimprove}
+    class="d-block m-auto"
+    width={600}
+    density={[1.5, 2]}
+    alt="Bar chart of counts of feedback category types as evaluated by the two reviewers for users and improve tags"
+/>
+
+Most users-only responders did not feel they needed anything more and only had positive sentiments about the community.
+But as with the the above - documentation and training improvements was the most important.
+
+<Image
+    src={fineuserrequest}
+    class="d-block m-auto"
+    width={600}
+    density={[1.5, 2]}
+    alt="Bar chart of counts of feedback category types as evaluated by the two reviewers for users and request tags"
+/>
 
 ## Developer Feedback
+
+For developers-only, once again the community feel and inclusivity alongside expertise was a big draw.
+The high quality of the open-source pipelines, modules, and infrastructure was also a big plus point
+
+<Image
+    src={finedevpositive}
+    class="d-block m-auto"
+    width={600}
+    density={[1.5, 2]}
+    alt="Bar chart of counts of feedback category types as evaluated by the two reviewers for developers and positive tags"
+/>
+
+The biggest issues encountered by developer-only responders were related to onboarding of new developers as well as documentation in regards to handling the complexity of the pipeline template.
+Another issue was tool release speed - some people complained there were too many changes too quickly, and others wanted new features faster.
+
+<Image
+    src={finedevimprove}
+    class="d-block m-auto"
+    width={600}
+    density={[1.5, 2]}
+    alt="Bar chart of counts of feedback category types as evaluated by the two reviewers for developers and improve tags"
+/>
+
+Finally, as with users - in terms of extra feedback the strongest category of feedback comments were just positive vibes.
+More merchandise ideas were requested, as well as few people requesting clearer and more consistent standards and specifications when developing.
+
+<Image
+    src={finedevrequest}
+    class="d-block m-auto"
+    width={600}
+    density={[1.5, 2]}
+    alt="Bar chart of counts of feedback category types as evaluated by the two reviewers for developers and requests tags"
+/>
 
 ## So what's next?
 
