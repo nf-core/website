@@ -9,13 +9,13 @@ leaders:
     name: Fred Jaya
     slack: "https://nfcore.slack.com/team/U01RK82HVM5"
   Mitchob:
-    name: Mitchell O'Brien 
+    name: Mitchell O'Brien
     slack: "https://nfcore.slack.com/team/U068B9WTAGZ"
 ---
 
 Some of us develop and maintain Nextflow pipelines that require ongoing maintenance. As these pipelines get updated, it’s crucial to ensure they continue working as intended.
 
-We are running an nf-test working group during the hackathon where we collaborate on writing and applying unit tests to existing institutional pipelines. 
+We are running an nf-test working group during the hackathon where we collaborate on writing and applying unit tests to existing institutional pipelines.
 
 ## Goals
 
