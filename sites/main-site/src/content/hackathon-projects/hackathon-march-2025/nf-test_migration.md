@@ -51,8 +51,7 @@ As there are a lot of modules (i.e. 162) and subworkflows (i.e. 23) to migrate w
   - Run `nf-core modules test <tool_name> -profile <singularity/docker/conda>` and `nf-core modules lint <tool_name>`
   - Fix nf-test if necessary
   - Check if the module follows the [guidelines](https://nf-co.re/docs/tutorials/tests_and_test_data/nf-test_writing_tests)
-  - Commit changes and create PR
-- Link to sub-issue : Add `#75XX` in the details
-- When your pull request is ready, ask for a review and review someone else's pull request
+  - Commit changes and create Pull Request (PR) and link it to the sub-issue
+- When your PR is ready, ask for a review and review someone else's PR
 - When merged update the Hackathon project
 - Rinse and repeat!
