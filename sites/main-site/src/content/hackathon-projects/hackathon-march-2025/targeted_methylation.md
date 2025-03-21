@@ -18,7 +18,7 @@ This project focuses on developing a targeted analysis for methylseq data in the
 We’re planning to contribute to the methylseq pipeline and have come up with the following feature ideas:
 
 - `--targeted` parameter: Currently, all detected methylation signals are included in the final results. However, some enrichment protocols target specific genomic regions. To address this, we propose adding a `--targeted` parameter that allows filtering results to retain only on-target methylation signals. The input would be a BED file specifying the target regions.
-- Enrichment metrics: Building on this idea, we propose adding a job to calculate on-target vs. off-target fractions of aligned reads, along with other enrichment metrics. A tool like `CollectHsMetrics` from Picard could be used for this purpose. There’s already an open PR related to this, which we’d be happy to contribute to.
+- Enrichment metrics: Building on this idea, we propose adding a job to calculate on-target vs. off-target fractions of aligned reads, along with other enrichment metrics. A tool like `CollectHsMetrics` from Picard could be used for this purpose. There’s already an open [PR](https://github.com/nf-core/methylseq/pull/313) related to this, which we’d be happy to contribute to.
 
 ## Goals
 
