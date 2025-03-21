@@ -4,8 +4,17 @@ on:
   schedule: # every day at 2am and 2pm
     - cron: "0 2,14 * * *"
   workflow_dispatch:
+    inputs:
+      pipeline_name:
+        description: "Pipeline name to update (leave empty for all pipelines)"
+        required: false
+        type: string
   repository_dispatch:
-    types: [update-website]
+    types: [update-website, update-pipeline]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.inputs.pipeline_name || github.event.client_payload.pipeline_name || 'all' }}
+  cancel-in-progress: true
 
 jobs:
   build-component-json:
@@ -31,12 +40,12 @@ jobs:
         run: npm ci
 
       - name: create pipeline.json
-        run: npm run build-pipeline-json
+        run: npm run build-pipeline-json -- ${{ github.event.inputs.pipeline_name || github.event.client_payload.pipeline_name || '' }}
         env:
           GITHUB_TOKEN: ${{ secrets.PIPLINE_JSON_BUILD_TOKEN }}
 
       - name: create component.json
-        run: npm run  build-component-json
+        run: npm run build-component-json
         env:
           GITHUB_TOKEN: ${{ secrets.PIPLINE_JSON_BUILD_TOKEN }}
 
@@ -46,4 +55,5 @@ jobs:
           git config user.name "nf-core-bot"
           git config push.default upstream
           git status
+          git pull
           git diff --quiet || (git commit -am "[automated] Update json files" && git push)
