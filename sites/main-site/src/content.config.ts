@@ -201,7 +201,7 @@ const hackathonProjects = defineCollection({
             intro_video: z.string().optional(),
             image: z.string().optional(),
             image_alt: z.string().optional(),
-            slack: z.string().url().optional(),
+            slack: z.string().url(),
         })
         .refine((data) => {
             // Check if headerImage is present but headerImageAlt is not
