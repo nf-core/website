@@ -45,4 +45,4 @@ Help us to solve problems we encountered during the path to the first release of
 - Compare the Plugin results to the AWS Report
 - Run plugin on AWS; make it applicable for AWS
   - Info about server and server location accessible?
-  - Does AWS use special AWS servers? 
+  - Does AWS use special AWS servers?
