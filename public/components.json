@@ -53895,6 +53895,10 @@
           "version": "dev"
         },
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "mag",
           "version": "3.3.1"
         },
@@ -105049,6 +105053,136 @@
       ]
     },
     {
+      "name": "merquryfk_hapmaker",
+      "path": "modules/nf-core/merquryfk/hapmaker/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "merquryfk_hapmaker",
+        "description": "Produces maternal and paternal FastK kmer tables from maternal, paternal and child\nFastK tables\n",
+        "keywords": [
+          "k-mer frequency",
+          "trio binning",
+          "reference-free",
+          "assembly evaluation"
+        ],
+        "tools": [
+          {
+            "merquryfk": {
+              "description": "FastK based version of Merqury",
+              "homepage": "https://github.com/thegenemyers/MERQURY.FK",
+              "tool_dev_url": "https://github.com/thegenemyers/MERQURY.FK",
+              "license": [
+                "https://github.com/thegenemyers/MERQURY.FK/blob/main/LICENSE"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing maternal sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "matktab": {
+                "type": "file",
+                "description": "maternal ktab files from the program FastK",
+                "pattern": "*.ktab*"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing paternal sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "patktab": {
+                "type": "file",
+                "description": "paternal ktab files from the program FastK",
+                "pattern": "*.ktab*"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing child sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "childktab": {
+                "type": "file",
+                "description": "child ktab files from the program FastK",
+                "pattern": "*.ktab*"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "mat_hap_ktab": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing maternal sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*${input_mat}.hap.ktab*\", hidden: true": {
+                  "type": "map",
+                  "description": "FastK kmer table containing the maternal kmers\npresent in the child\n",
+                  "pattern": "*${input_mat}.hap.ktab*"
+                }
+              }
+            ]
+          },
+          {
+            "pat_hap_ktab": [
+              {
+                "meta2": {
+                  "type": "map",
+                  "description": "Groovy Map containing paternal sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*${input_pat}.hap.ktab*\", hidden: true": {
+                  "type": "map",
+                  "description": "FastK kmer table containing the paternal kmers\npresent in the child\n",
+                  "pattern": "*${input_pat}.hap.ktab*"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@prototaxites",
+          "@yumisims"
+        ],
+        "maintainers": [
+          "@prototaxites",
+          "@yumisims"
+        ]
+      }
+    },
+    {
       "name": "merquryfk_katcomp",
       "path": "modules/nf-core/merquryfk/katcomp/meta.yml",
       "type": "module",
@@ -105113,103 +105247,55 @@
         ],
         "output": [
           {
-            "filled_png": [
+            "filled": [
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.fi.{png,pdf}"
                 }
               },
               {
-                "*.fi.png": {
+                "*.fi.{png,pdf}": {
                   "type": "file",
-                  "description": "Comparison of Kmers between sample 1 and 2 in filled PNG format.",
-                  "pattern": "*.fi.png"
+                  "description": "Comparison of Kmers between sample 1 and 2 in filled PNG or PDF format.\n",
+                  "pattern": "*.fi.{png,pdf}"
                 }
               }
             ]
           },
           {
-            "line_png": [
+            "line": [
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.ln.{png,pdf}"
                 }
               },
               {
-                "*.ln.png": {
+                "*.ln.{png,pdf}": {
                   "type": "file",
-                  "description": "Comparison of Kmers between sample 1 and 2 in line PNG format.",
-                  "pattern": "*.ln.png"
+                  "description": "Comparison of Kmers between sample 1 and 2 in line PNG or PDF format.\n",
+                  "pattern": "*.ln.{png,pdf}"
                 }
               }
             ]
           },
           {
-            "stacked_png": [
+            "stacked": [
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.st.{png,pdf}"
                 }
               },
               {
-                "*.st.png": {
+                "*.st.{png,pdf}": {
                   "type": "file",
-                  "description": "Comparison of Kmers between sample 1 and 2 in stacked PNG format.",
-                  "pattern": "*.st.png"
-                }
-              }
-            ]
-          },
-          {
-            "filled_pdf": [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.fi.pdf": {
-                  "type": "file",
-                  "description": "Comparison of Kmers between sample 1 and 2 in filled PDF format.",
-                  "pattern": "*.fi.pdf"
-                }
-              }
-            ]
-          },
-          {
-            "line_pdf": [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.ln.pdf": {
-                  "type": "file",
-                  "description": "Comparison of Kmers between sample 1 and 2 in line PDF format.",
-                  "pattern": "*.ln.pdf"
-                }
-              }
-            ]
-          },
-          {
-            "stacked_pdf": [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.st.pdf": {
-                  "type": "file",
-                  "description": "Comparison of Kmers between sample 1 and 2 in stacked PDF format.",
-                  "pattern": "*.st.pdf"
+                  "description": "Comparison of Kmers between sample 1 and 2 in stacked PNG or PDF format.\n",
+                  "pattern": "*.st.{png,pdf}"
                 }
               }
             ]
@@ -105286,103 +105372,55 @@
         ],
         "output": [
           {
-            "filled_gc_plot_png": [
+            "filled_gc_plot": [
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.fi.{png,pdf}"
                 }
               },
               {
-                "*.fi.png": {
+                "*.fi.{png,pdf}": {
                   "type": "file",
-                  "description": "A filled GC content plot in PNG format",
-                  "pattern": "*.fi.png"
+                  "description": "A filled GC content plot in PNG or PDF format\n",
+                  "pattern": "*.fi.{png,pdf}"
                 }
               }
             ]
           },
           {
-            "filled_gc_plot_pdf": [
+            "line_gc_plot": [
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.ln.{png,pdf}"
                 }
               },
               {
-                "*.fi.pdf": {
+                "*.ln.{png,pdf}": {
                   "type": "file",
-                  "description": "A filled GC content plot in PDF format",
-                  "pattern": "*.fi.pdf"
+                  "description": "A filled GC content plot in PNG or PDF format\n",
+                  "pattern": "*.ln.{png,pdf}"
                 }
               }
             ]
           },
           {
-            "line_gc_plot_png": [
+            "stacked_gc_plot": [
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.st.{png,pdf}"
                 }
               },
               {
-                "*.ln.png": {
-                  "type": "file",
-                  "description": "A line GC content plot in PNG format",
-                  "pattern": "*.ln.png"
-                }
-              }
-            ]
-          },
-          {
-            "line_gc_plot_pdf": [
-              {
-                "meta": {
+                "*.st.{png,pdf}": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.ln.pdf": {
-                  "type": "file",
-                  "description": "A line GC content plot in PDF format",
-                  "pattern": "*.ln.pdf"
-                }
-              }
-            ]
-          },
-          {
-            "stacked_gc_plot_png": [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.st.png": {
-                  "type": "file",
-                  "description": "A stacked GC content plot in PNG format",
-                  "pattern": "*.st.png"
-                }
-              }
-            ]
-          },
-          {
-            "stacked_gc_plot_pdf": [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.st.pdf": {
-                  "type": "file",
-                  "description": "A stacked GC content plot in PDF format",
-                  "pattern": "*.st.pdf"
+                  "description": "A stacked GC content plot in PNG or PDF format\n",
+                  "pattern": "*.st.{png,pdf}"
                 }
               }
             ]
@@ -105471,7 +105509,13 @@
           ],
           [
             {
-              "matktab": {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing maternal sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "mathaptab": {
                 "type": "file",
                 "description": "trio maternal histogram ktab files from the program FastK (option -t)",
                 "pattern": "*.ktab*"
@@ -105480,7 +105524,13 @@
           ],
           [
             {
-              "patktab": {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing paternal sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "pathaptab": {
                 "type": "file",
                 "description": "trio paternal histogram ktab files from the program FastK (option -t)",
                 "pattern": "*.ktab*"
@@ -105834,7 +105884,7 @@
         ],
         "output": [
           {
-            "filled_ploidy_plot_png": [
+            "filled_ploidy_plot": [
               {
                 "meta": {
                   "type": "map",
@@ -105842,16 +105892,16 @@
                 }
               },
               {
-                "*.fi.png": {
+                "*.fi.{png,pdf}": {
                   "type": "file",
-                  "description": "A filled ploidy plot in PNG format",
-                  "pattern": "*.fi.png"
+                  "description": "A filled ploidy plot in or PDF format",
+                  "pattern": "*.fi.{png,pdf}"
                 }
               }
             ]
           },
           {
-            "filled_ploidy_plot_pdf": [
+            "line_ploidy_plot": [
               {
                 "meta": {
                   "type": "map",
@@ -105859,16 +105909,16 @@
                 }
               },
               {
-                "*.fi.pdf": {
+                "*.ln.{png,pdf}": {
                   "type": "file",
-                  "description": "A filled ploidy plot in PDF format",
-                  "pattern": "*.fi.pdf"
+                  "description": "A line ploidy plot in PNG or PDF format",
+                  "pattern": "*.ln.{png,pdf}"
                 }
               }
             ]
           },
           {
-            "line_ploidy_plot_png": [
+            "stacked_ploidy_plot": [
               {
                 "meta": {
                   "type": "map",
@@ -105876,61 +105926,10 @@
                 }
               },
               {
-                "*.ln.png": {
+                "*.st.{png,pdf}": {
                   "type": "file",
-                  "description": "A line ploidy plot in PNG format",
-                  "pattern": "*.ln.png"
-                }
-              }
-            ]
-          },
-          {
-            "line_ploidy_plot_pdf": [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.ln.pdf": {
-                  "type": "file",
-                  "description": "A lin4 ploidy plot in PDF format",
-                  "pattern": "*.ln.pdf"
-                }
-              }
-            ]
-          },
-          {
-            "stacked_ploidy_plot_png": [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.st.png": {
-                  "type": "file",
-                  "description": "A stacked ploidy plot in PNG format",
-                  "pattern": "*.st.png"
-                }
-              }
-            ]
-          },
-          {
-            "stacked_ploidy_plot_pdf": [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.st.pdf": {
-                  "type": "file",
-                  "description": "A stacked ploidy plot in PDF format",
-                  "pattern": "*.st.pdf"
+                  "description": "A stacked ploidy plot in PNG or PDFformat",
+                  "pattern": "*.st.{png,pdf}"
                 }
               }
             ]
@@ -114448,6 +114447,10 @@
         },
         {
           "name": "liverctanalysis",
+          "version": "dev"
+        },
+        {
+          "name": "lncpipe",
           "version": "dev"
         },
         {
@@ -171416,6 +171419,177 @@
       ]
     },
     {
+      "name": "strdust",
+      "path": "modules/nf-core/strdust/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "STRdust",
+        "description": "Tandem repeat genotyper for long reads",
+        "keywords": [
+          "long read",
+          "tandem repeats",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "STRdust": {
+              "description": "Tandem repeat genotyper for long reads.",
+              "homepage": "https://github.com/wdecoster/STRdust/",
+              "documentation": "https://github.com/wdecoster/STRdust/blob/main/README.md",
+              "tool_dev_url": "https://github.com/wdecoster/STRdust",
+              "doi": "10.1101/gr.279265.124 ",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Sorted (and preferably phased) BAM/CRAM file.\nAdd command line argument `--unphased` if reads are not phased.\n",
+                "pattern": "*.{bam,cram}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2573"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3462"
+                  }
+                ]
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "Index of BAM/CRAM file",
+                "pattern": "*.{bai,crai,csi}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3327"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. `[ id: 'GRCh38' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome",
+                "pattern": "*.{fa,fasta,fna}?(.gz)",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. `[ id: 'GRCh38' ]`\n"
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "Index of reference genome",
+                "pattern": "*.{fai,gzi}"
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing interval information\ne.g. `[ id: \"GRCh38_strs\" ] `\n"
+              }
+            },
+            {
+              "bed": {
+                "type": "file",
+                "description": "BED file containing STR regions to genotype (optional)",
+                "pattern": "*.bed"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "vcf": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.vcf.gz": {
+                  "type": "file",
+                  "description": "Called tandem repeats as VCF file.\nSorted if `--sorted` command line argument was specified.\n",
+                  "pattern": "*.vcf.gz"
+                }
+              }
+            ]
+          },
+          {
+            "tbi": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.tbi": {
+                  "type": "file",
+                  "description": "Index of output VCF.\nOutput only if VCF is sorted (i.e. `--sorted` was specified).\n",
+                  "pattern": "*.tbi"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@Schmytzi"
+        ],
+        "maintainers": [
+          "@Schmytzi"
+        ]
+      }
+    },
+    {
       "name": "strelka_germline",
       "path": "modules/nf-core/strelka/germline/meta.yml",
       "type": "module",
@@ -201267,6 +201441,10 @@
           "version": "2.0.0"
         },
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "mag",
           "version": "3.3.1"
         },
@@ -201612,6 +201790,10 @@
           "version": "2.0.0"
         },
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "mag",
           "version": "3.3.1"
         },
@@ -201931,6 +202113,10 @@
         {
           "name": "genomeassembler",
           "version": "1.0.1"
+        },
+        {
+          "name": "lncpipe",
+          "version": "dev"
         },
         {
           "name": "mag",
