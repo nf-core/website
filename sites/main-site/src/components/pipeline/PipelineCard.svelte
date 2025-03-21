@@ -1,5 +1,6 @@
 <script lang="ts">
     import ListingCard from "@components/ListingCard.svelte";
+    import TagSection from "@components/TagSection.svelte";
     import Markdown from "@components/markdown/Markdown.svelte";
     import { formatDistanceToNow, add } from "date-fns";
     import { Confetti } from "svelte-confetti";
@@ -81,11 +82,10 @@
             {#if body}
                 <div class="description flex-grow-1" class:pt-1={recentRelease}><Markdown md={body} /></div>
             {/if}
-            <p class="topics mb-3">
-                {#each topics as topic}
-                    <span class="badge fw-normal bg-body-tertiary text-success me-2">{topic}</span>
-                {/each}
-            </p>
+
+            <div class="mb-2">
+                <TagSection tags={topics} type="keywords" />
+            </div>
 
             {#if released}
                 <p class="release">
@@ -110,9 +110,6 @@
 </ListingCard>
 
 <style lang="scss">
-    .badge.text-success {
-        font-weight: 400;
-    }
     .gh-stats {
         float: right;
     }
