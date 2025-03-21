@@ -2,7 +2,7 @@
 title: Nextflow for HPC training in Australia
 category: components
 slack: ""
-image: "/assets/images/events/2025/Australian-BioCommons-Logo.png"
+image: "/assets/images/events/2025/hackathon-march/Australian-Biocommons-Logo.png"
 image_alt: "Australian BioCommons logo"
 leaders:
   georgiesamaha:
