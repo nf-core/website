@@ -2,7 +2,7 @@
 title: Nf-test playground and working group
 category: components
 slack: ""
-image: "/assets/images/events/2025/Australian-BioCommons-Logo.png"
+image: "/assets/images/events/2025/hackathon-march/Australian-Biocommons-Logo.png"
 image_alt: "Australian BioCommons logo"
 leaders:
   fredjaya:
