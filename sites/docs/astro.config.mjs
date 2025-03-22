@@ -182,17 +182,13 @@ export default defineConfig({
             [
                 urls,
                 (url) => {
-                    const regex = /^https:\/\/(raw.)*github/;
-                    if (!regex.test(url.href) && url.href?.endsWith('.md')) {
-                        url.href = url.href.replace(/\.md$/, '/');
-                        url.pathname = url.pathname.replace(/\.md$/, '/');
-                        url.path = url.path.replace(/\.md$/, '/');
-                    } else if (!regex.test(url.href) && url.href?.endsWith('.mdx')) {
-                        url.href = url.href.replace(/\.mdx$/, '/');
-                        url.pathname = url.pathname.replace(/\.mdx$/, '/');
-                        url.path = url.path.replace(/\.mdx$/, '/');
-                    }
-                },
+                     const regex = /^https:\/\/(raw.)*github\/getting_started*;
+                     if (regex.test(url.href)) {
+                         url.href = url.href.replace(/\getting_started/, '/Getting_started/');
+                         url.pathname = url.pathname.replace(/\getting_started/, '/Getting_started/');
+                         url.path = url.path.replace(/\getting_started/, '/Getting_started/');
+                     }
+                 },
             ],
             rehypeCheckboxParser,
             rehypeHeadingNumbers,

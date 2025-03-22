@@ -186,18 +186,6 @@ export default defineConfig({
             ],
             [
                 urls,
-                (url) => {
-                    const regex = /^https:\/\/(raw.)*github/;
-                    if (!regex.test(url.href) && url.href?.endsWith('.md')) {
-                        url.href = url.href.replace(/\.md$/, '/');
-                        url.pathname = url.pathname.replace(/\.md$/, '/');
-                        url.path = url.path.replace(/\.md$/, '/');
-                    } else if (!regex.test(url.href) && url.href?.endsWith('.mdx')) {
-                        url.href = url.href.replace(/\.mdx$/, '/');
-                        url.pathname = url.pathname.replace(/\.mdx$/, '/');
-                        url.path = url.path.replace(/\.mdx$/, '/');
-                    }
-                },
             ],
             rehypeCheckboxParser,
             rehypeHeadingNumbers,
