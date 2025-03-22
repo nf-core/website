@@ -181,6 +181,14 @@ export default defineConfig({
             ],
             [
                 urls,
+                (url) => {
+                     const regex = /^https:\/\/(raw.)*github\/getting_started*;
+                     if (regex.test(url.href)) {
+                         url.href = url.href.replace(/\getting_started/, '/Getting_started/');
+                         url.pathname = url.pathname.replace(/\getting_started/, '/Getting_started/');
+                         url.path = url.path.replace(/\getting_started/, '/Getting_started/');
+                     }
+                 },
             ],
             rehypeCheckboxParser,
             rehypeHeadingNumbers,
