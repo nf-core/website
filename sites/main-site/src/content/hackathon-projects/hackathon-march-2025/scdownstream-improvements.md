@@ -29,14 +29,6 @@ By expanding the range of available tools, we will improve its functionality, fo
   - _For people who have experience with mouse or other model organism's scRNA-seq data analysis_
   - _Datasets like Tabula Muris (Senis) will be explored for support integration._
 
-- **(Optional but valuable) Adding basic R support to allow broader tool integration.**
-
-  - _Even minimal support for R-based tools like scDblFinder will help expand the pipeline’s reach._
-
-- **Benchmarking and validating the added modules to the pipeline to ensure error-free performance.**
-
-  - _For people with some experience in using Nextflow/nf-core pipelines._
-
 - **Improving documentation and user support to promote broader adoption.**
   - _For first-time contributors interested in making the pipeline more accessible!_
 
