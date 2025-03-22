@@ -6,15 +6,17 @@ menu:
     weight: 10
 ---
 
-> Material originally written for the Nextflow Camp 2019, Barcelona 2019-09-19: **_"Getting started with nf-core"_** _(see [programme](https://www.nextflow.io/nfcamp/2019/phil2.html))._
->
-> Duration: **1hr 30min**
->
-> Updated for the nf-core Hackathon 2020, London 2020-03 _(see [event](https://nf-co.re/events#hackathon-francis-crick-2020))_.
->
-> Updated for the Elixir workshop on November 2021 _(see [event](https://nf-co.re/events/2021/elixir-workflow-training-event))_.
->
-> Updated during the March 2022 hackathon.
+:::warning{title = "Last updated"}
+Material originally written for the Nextflow Camp 2019, Barcelona 2019-09-19: **_"Getting started with nf-core"_** _(see [programme](https://www.nextflow.io/nfcamp/2019/phil2.html))._
+
+Duration: **1hr 30min**
+
+Updated:
+
+- nf-core Hackathon March 2020, London 2020-03 _(see [event](https://nf-co.re/events#hackathon-francis-crick-2020))_.
+- Elixir workshop November 2021 _(see [event](https://nf-co.re/events/2021/elixir-workflow-training-event))_.
+- nf-core Hackathon March 2022, Online _(see [event](https://nf-co.re/events/2022/hackathon-march-2022/))_.
+  :::
 
 <iframe src="https://www.slideshare.net/slideshow/embed_code/key/v7hOzFwZTgD7o0?hostedIn=slideshare&page=upload" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
 
