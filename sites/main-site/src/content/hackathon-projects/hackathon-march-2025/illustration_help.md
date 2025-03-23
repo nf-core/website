@@ -2,6 +2,7 @@
 title: Get help with your illustration issues
 category: pipelines
 intro_video: ""
+slack: https://nfcore.slack.com/archives/C021QHJRJE8
 image: "/assets/images/events/2025/hackathon-march/Crayon_corner.jpg"
 image_alt: "crayon corner image"
 leaders:
