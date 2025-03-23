@@ -144,7 +144,6 @@ test("sarscov2 - bam") {
             { assert snapshot(process.out).match() }
         )
     }
-
 }
 ```
 
@@ -160,6 +159,8 @@ In addition, the boilerplate template also includes a stub runs test.
 All nf-core modules require a stub-run test, however you do not need to change this except for the test title, and the inputs (the 'then' block) so they match that the first test.
 
 For writing the test, you need to follow the following steps.
+
+#### `then` block
 
 First, you must update the name of the test to make it distinct.
 Typically, at a minimum this will consist of the organism of the test data you will use, and the file format of the primary input file.
@@ -200,6 +201,8 @@ You can then load these with the syntax as in the example above (i.e., with `par
 
 For optional input channels, these can just be given to the relevant `input` variable with `[]`, e.g. `input[3] = []`, or if it requires a meta map `input[3] = [[],[]]`.
 To refer to the output modules run in a setup block (see below), you can refer to these as you would in a Nextflow pipeline, e.g. `PROCESS_NAME.out.foo`.
+
+#### `when` block
 
 Third, once you have completed the input declarations, you can move onto the 'then' block.
 This is where you will need to write 'assertions', i.e., telling nf-test what to compare between test runs.
