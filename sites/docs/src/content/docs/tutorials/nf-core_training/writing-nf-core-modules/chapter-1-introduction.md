@@ -21,7 +21,15 @@ An nf-core module is an 'atomic', standardised, reproducible, and already tested
 You can install an nf-core module from a central community repository into a Nextflow pipeline with a single command.
 You can then quickly integrate the Nextflow process into your own workflow due to the standardised internal structure of the module, matching upstream outputs and downstream inputs.
 
-By using these pre-made community-contributed modules, you can vastly reduce your workflow development time by reducing the need to 're-invent' the wheel for many common bioinformatics tasks.
+So why write or use nf-core modules?
+
+- Efficiency : reduce the number of Nextflow modules you have to make yourself
+- Consistency: each module follows the same rules and structure, making it easy to connect with others
+- Documentation: every module comes with documentation making it easy to understand to use
+- Future-proofing: nf-core modules required to cover all input and output files from the beginning, no more having to re-write your own module when you realise you need extra functionality!
+- Automation: consistency and documentation will in the future help automate workflow development
+
+By using these pre-made community-contributed modules, you can vastly e your workflow development time by reducing the need to 're-invent' the wheel for many common bioinformatics tasks.
 
 ### Scope
 
