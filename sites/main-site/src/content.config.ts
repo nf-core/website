@@ -187,7 +187,12 @@ const hackathonProjects = defineCollection({
             category: z.enum(['pipelines', 'components', 'tooling', 'community']),
             leaders: z.record(z.object({
                 name: z.string(),
-                slack: z.string().url().optional()
+                slack: z.string().url().refine((url) => {
+                    if (url && !url.startsWith('https://nfcore.slack.com/')) {
+                        throw new Error('leaders `slack` must be a nf-core or Nextflow slack URL: '+url);
+                    }
+                    return true;
+                }).optional()
             })),
             color: z
                 .string()
@@ -201,7 +206,12 @@ const hackathonProjects = defineCollection({
             intro_video: z.string().optional(),
             image: z.string().optional(),
             image_alt: z.string().optional(),
-            slack: z.string().url().optional(),
+            slack: z.string().url().refine((url) => {
+                    if (!url.startsWith('https://nfcore.slack.com/')) {
+                        throw new Error('`slack` must be a nf-core slack URL: '+url);
+                    }
+                    return true;
+                }),
         })
         .refine((data) => {
             // Check if headerImage is present but headerImageAlt is not
