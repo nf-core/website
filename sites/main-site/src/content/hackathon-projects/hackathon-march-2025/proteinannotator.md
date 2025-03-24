@@ -3,7 +3,7 @@ title: Inaugural work for nf-core/proteinannotator Pipeline
 category: pipelines
 slack: "https://nfcore.slack.com/archives/C084HP11VPF"
 intro_video: ""
-image: "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3JhcDNlcWR4N3czMTI4ajhvcXNvNXdmZWt3enlnc216M3lveXZqOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xUOxfjsW9fWPqEWouI/giphy.gif"
+image: "/assets/images/events/2025/hackathon-march/proteinannotator_question_mark_mario.gif"
 image_alt: nf-core proteinannotator hack
 leaders:
   olgabot:
