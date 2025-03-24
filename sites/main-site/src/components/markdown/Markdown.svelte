@@ -16,6 +16,7 @@
     import type { Plugin } from "svelte-exmarkdown";
 
     import "../../../../../node_modules/highlight.js/styles/github-dark.css";
+    let { md = $bindable() } = $props();
 
     let plugins: Plugin[] = [];
     plugins.push({ remarkPlugin: [emoji] });
@@ -51,32 +52,29 @@
             },
         ],
     });
-    plugins.push({
-        rehypePlugin: [
-            () => (tree) => {
-                visit(tree, "element", (node) => {
-                    if (node.properties) {
-                        ["href", "src"].forEach((attr) => {
-                            if (node.properties[attr]) {
-                                const url = node.properties[attr];
-                                if (!/^https:\/\/(raw.)*github/.test(url)) {
-                                    node.properties[attr] = url.replace(/\.mdx?$/, "/");
-                                }
-                            }
-                        });
-                    }
-                });
-            },
-        ],
-    });
+    // plugins.push({
+    //     rehypePlugin: [
+    //         urls,
+    //         (url) => {
+    //             const regex = /^https:\/\/(raw.)*github/;
+    //             if (!regex.test(url.href) && url.href?.endsWith(".md")) {
+    //                 url.href = url.href.replace(/\.md$/, "/");
+    //                 url.pathname = url.pathname.replace(/\.md$/, "/");
+    //                 url.path = url.path.replace(/\.md$/, "/");
+    //             } else if (!regex.test(url.href) && url.href?.endsWith(".mdx")) {
+    //                 url.href = url.href.replace(/\.mdx$/, "/");
+    //                 url.pathname = url.pathname.replace(/\.mdx$/, "/");
+    //                 url.path = url.path.replace(/\.mdx$/, "/");
+    //             }
+    //         },
+    //     ],
+    // });
     plugins.push({
         rehypePlugin: [rehypeKatex],
     });
     plugins.push({
         rehypePlugin: [rehypeHighlight],
     });
-
-    export let md: string;
 </script>
 
 <Markdown {md} {plugins} />
