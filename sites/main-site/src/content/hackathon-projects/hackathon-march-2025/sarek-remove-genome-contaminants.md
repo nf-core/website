@@ -15,7 +15,7 @@ This project will work on adding a module to filter out genomic contaminants to 
 
 - finishing off the xengsort module
 - making a subworkflow to run xengsort
-- integrating this subworkflow into sarek 
+- integrating this subworkflow into sarek
 
 All skill levels welcome.
 
