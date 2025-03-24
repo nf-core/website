@@ -1478,6 +1478,144 @@
       ]
     },
     {
+      "name": "agat_spfilterbyorfsize",
+      "path": "modules/nf-core/agat/spfilterbyorfsize/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "agat_spfilterbyorfsize",
+        "description": "The script reads a gff annotation file, and create two output files, one contains the gene models with ORF passing the test, the other contains the rest. By default the test is \"> 100\" that means all gene models that have ORF longer than 100 Amino acids, will pass the test.",
+        "keywords": [
+          "genomics",
+          "GFF/GTF",
+          "filter",
+          "annotation"
+        ],
+        "tools": [
+          {
+            "agat": {
+              "description": "Another Gff Analysis Toolkit (AGAT). Suite of tools to handle gene annotations in any GTF/GFF format.",
+              "homepage": "https://agat.readthedocs.io/en/latest/",
+              "documentation": "https://agat.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/NBISweden/AGAT",
+              "doi": "10.5281/zenodo.3552717",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:AGAT"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "gxf": {
+                "type": "file",
+                "description": "Input GFF3/GTF file",
+                "pattern": "*.{gff,gff3,gtf}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2305"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1975"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2306"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "config": {
+                "type": "file",
+                "description": "Input agat config file. By default AGAT takes as input agat_config.yaml file from the working directory if any,\notherwise it takes the orignal agat_config.yaml shipped with AGAT. To get the agat_config.yaml locally type: \"agat config --expose\".\nThe --config option gives you the possibility to use your own AGAT config file (located elsewhere or named differently).\n",
+                "pattern": "*.{yaml}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "passed_gff": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]\n",
+                  "ontologies": []
+                }
+              },
+              {
+                "*.passed.gff": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]\n",
+                  "pattern": "*.passed.{gff}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2305"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "failed_gff": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]\n",
+                  "ontologies": []
+                }
+              },
+              {
+                "*.failed.gff": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]\n",
+                  "pattern": "*.failed.{gff}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2305"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml",
+                  "ontologies": []
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@GallVp"
+        ],
+        "maintainers": [
+          "@GallVp"
+        ]
+      }
+    },
+    {
       "name": "agat_spfilterfeaturefromkilllist",
       "path": "modules/nf-core/agat/spfilterfeaturefromkilllist/meta.yml",
       "type": "module",
@@ -103914,6 +104052,99 @@
       ]
     },
     {
+      "name": "mdust",
+      "path": "modules/nf-core/mdust/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "mdust",
+        "description": "mdust from DFCI Gene Indices Software Tools for masking low-complexity DNA sequences",
+        "keywords": [
+          "genomics",
+          "dna",
+          "low-complexity",
+          "masking"
+        ],
+        "tools": [
+          {
+            "mdust": {
+              "description": "mdust from DFCI Gene Indices Software Tools for masking low-complexity DNA sequences",
+              "homepage": "https://github.com/lh3/mdust",
+              "documentation": "https://github.com/lh3/mdust",
+              "tool_dev_url": "https://github.com/lh3/mdust",
+              "licence": [
+                "The Artistic License"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Input fasta file",
+                "pattern": "*.{fa,fsa,faa,fas,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "fasta": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.fasta": {
+                  "type": "file",
+                  "description": "Output fasta file",
+                  "pattern": "*.{fasta}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml",
+                  "ontologies": []
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@GallVp"
+        ],
+        "maintainers": [
+          "@GallVp"
+        ]
+      }
+    },
+    {
       "name": "medaka",
       "path": "modules/nf-core/medaka/meta.yml",
       "type": "module",
@@ -142763,6 +142994,181 @@
       }
     },
     {
+      "name": "repeatmasker_repeatmasker",
+      "path": "modules/nf-core/repeatmasker/repeatmasker/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "repeatmasker_repeatmasker",
+        "description": "Screening DNA sequences for interspersed repeats and low complexity DNA sequences\n",
+        "keywords": [
+          "genome",
+          "annotation",
+          "repeat",
+          "mask"
+        ],
+        "tools": [
+          {
+            "repeatmasker": {
+              "description": "RepeatMasker is a program that screens DNA sequences for interspersed\nrepeats and low complexity DNA sequences\n",
+              "homepage": "https://www.repeatmasker.org/",
+              "documentation": "https://www.repeatmasker.org/webrepeatmaskerhelp.html",
+              "tool_dev_url": "https://github.com/rmhubley/RepeatMasker",
+              "licence": [
+                "Open Software License v. 2.1"
+              ],
+              "identifier": "biotools:repeatmasker"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Genome assembly",
+                "pattern": "*.{fasta,fa,fas,fsa,faa,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "lib": {
+                "type": "file",
+                "description": "Custom library (e.g. from another species)",
+                "pattern": "*.{fasta,fa,fas,fsa,faa,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "masked": [
+              {
+                "meta": {
+                  "type": "file",
+                  "description": "Masked fasta",
+                  "pattern": "*.{masked}",
+                  "ontologies": []
+                }
+              },
+              {
+                "${prefix}.masked": {
+                  "type": "file",
+                  "description": "Masked fasta",
+                  "pattern": "*.{masked}",
+                  "ontologies": []
+                }
+              }
+            ]
+          },
+          {
+            "out": [
+              {
+                "meta": {
+                  "type": "file",
+                  "description": "Out file",
+                  "pattern": "*.{out}",
+                  "ontologies": []
+                }
+              },
+              {
+                "${prefix}.out": {
+                  "type": "file",
+                  "description": "Out file",
+                  "pattern": "*.{out}",
+                  "ontologies": []
+                }
+              }
+            ]
+          },
+          {
+            "tbl": [
+              {
+                "meta": {
+                  "type": "file",
+                  "description": "tbl file",
+                  "pattern": "*.{tbl}",
+                  "ontologies": []
+                }
+              },
+              {
+                "${prefix}.tbl": {
+                  "type": "file",
+                  "description": "tbl file",
+                  "pattern": "*.{tbl}",
+                  "ontologies": []
+                }
+              }
+            ]
+          },
+          {
+            "gff": [
+              {
+                "meta": {
+                  "type": "file",
+                  "description": "GFF file",
+                  "pattern": "*.{gff}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2305"
+                    }
+                  ]
+                }
+              },
+              {
+                "${prefix}.gff": {
+                  "type": "file",
+                  "description": "GFF file",
+                  "pattern": "*.{gff}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2305"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml",
+                  "ontologies": []
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@kherronism",
+          "@gallvp"
+        ],
+        "maintainers": [
+          "@kherronism",
+          "@gallvp"
+        ]
+      }
+    },
+    {
       "name": "repeatmodeler_builddatabase",
       "path": "modules/nf-core/repeatmodeler/builddatabase/meta.yml",
       "type": "module",
@@ -150568,10 +150974,21 @@
               }
             },
             {
-              "bam": {
+              "input": {
                 "type": "file",
                 "description": "BAM/CRAM/SAM file, must be sorted by name, not coordinate",
-                "pattern": "*.{bam,cram,sam}"
+                "pattern": "*.{bam,cram,sam}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3462"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2573"
+                  }
+                ]
               }
             }
           ]
@@ -150582,14 +150999,81 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.{bam}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
                 }
               },
               {
-                "*.bam": {
-                  "type": "file",
-                  "description": "A BAM/CRAM/SAM file with mate information added and/or proper pairs recalled",
-                  "pattern": "*.{bam,cram,sam}"
+                "${prefix}.bam": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.{bam}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "cram": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.{cram}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3462"
+                    }
+                  ]
+                }
+              },
+              {
+                "${prefix}.cram": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.{cram}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3462"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "sam": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.{sam}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2573"
+                    }
+                  ]
+                }
+              },
+              {
+                "${prefix}.sam": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.{sam}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2573"
+                    }
+                  ]
                 }
               }
             ]
@@ -150600,7 +151084,8 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": []
                 }
               }
             ]
@@ -150610,7 +151095,8 @@
           "@sppearce"
         ],
         "maintainers": [
-          "@sppearce"
+          "@sppearce",
+          "@GallVp"
         ]
       }
     },
