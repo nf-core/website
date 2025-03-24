@@ -6,28 +6,27 @@ markdownPlugin: checklist
 
 ## New pipeline proposals and onboarding
 
-Instructions for nf-core pipeline approval:
+Instructions for [nf-core pipeline](https://github.com/nf-core/proposals) approval:
 
-1. [ ] Core: Before leaving your feedback(!), add to the [proposal tracking board](https://github.com/orgs/nf-core/projects/35/views/1) under 'Under discussion'.
-2. [ ] Core: Add :plus: icon on proposal to know it's on the board.
-3. [ ] Community: Discuss benefits/drawbacks of the proposal.
+1. [ ] Core: Before leaving your feedback(!), update the _project status_ on the issue to 'Proposed'.
+2. [ ] Community: Discuss benefits/drawbacks of the proposal.
     - Emphasise collaboration (prefer to have more developers on one pipeline rather than one developer).
     - Ensure proposal follows [nf-core pipeline guidelines](/docs/guidelines/pipelines/overview).
     - In some cases, promote 'partial acceptance', i.e., if upstream steps already covered in another pipeline, propose new pipeline of just non-overlapping steps
-4. [ ] Core: Make final decision
-    - If accepted: update proposal tracking board, moving proposal to 'Accepted' section
-    - If not accepted: update proposal tracking board, moving proposal to 'Turned down'
-5. [ ] Core: Check proposal has received approval in #new-pipelines from either:
+3. [ ] Core: Make final decision
+    - If accepted: update the Project status on the issue 'Accepted' section
+    - If not accepted: update the project status to 'turned down'
+4. [ ] Core: Check proposal has received approval in [nf-core/proposals](https://github.com/nf-core/proposals) from either:
     - Two members of the core team.
     - One member of the core team and one member of the maintainers team.
-6. [ ] Core: Verify that the pipeline name follows the [pipeline naming guidelines](/docs/guidelines/pipelines/requirements/workflow_name).
-7. [ ] Core: Create a slack channel with approved pipeline name.
-8. [ ] Core: Ask the developers to join #pipeline-maintainers channel.
-9. [ ] Core/Dev: Create the git repository using `nf-core pipelines create` and push it to GitHub.
-10. [ ] Core/Dev: Transfer the repository to nf-core GitHub organisation and delete the repository on local the machine/user account.
-11. [ ] Core/Dev: Sync the nf-co.re pipelines page by triggering the [GitHub action](https://github.com/nf-core/website/actions/workflows/build-json-files.yml)
+5. [ ] Core: Verify that the pipeline name follows the [pipeline naming guidelines](/docs/guidelines/pipelines/requirements/workflow_name).
+6. [ ] Core: Create a slack channel with approved pipeline name.
+7. [ ] Core: Add the main developers to [#pipeline-maintainers](https://nfcore.slack.com/archives/C04QR0T3G3H) and [#release-review-trading](https://nfcore.slack.com/archives/C08K66XCZSL) channel.
+8. [ ] Core/Dev: Create the git repository using `nf-core pipelines create` and push it to GitHub.
+9. [ ] Core/Dev: Transfer the repository to nf-core GitHub organisation and delete the repository on local the machine/user account.
+10. [ ] Core/Dev: Sync the nf-co.re pipelines page by triggering the [GitHub action](https://github.com/nf-core/website/actions/workflows/build-json-files.yml)
     - Website repo > Actions > Build json files and md-cache > Run workflow > From main.
-12. [ ] Core: Create a branch with the pipeline name in the [nf-core/test-datasets](https://github.com/nf-core/test-datasets) repository.
+11. [ ] Core: Create a branch with the pipeline name in the [nf-core/test-datasets](https://github.com/nf-core/test-datasets) repository.
 
 ## Uploading test data to s3 bucket
 

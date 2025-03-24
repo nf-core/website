@@ -1,0 +1,35 @@
+---
+import PageLayout from "@layouts/PageLayout.astro";
+import HexStickerGallery from "../components/HexStickerGallery.astro";
+import stickersData from "./stickers.json";
+
+// Convert the JSON data into the format expected by HexStickerGallery
+const allStickers = Object.entries(stickersData).flatMap(([category, stickers]) => {
+    return stickers.map((sticker) => ({
+        imageUrl: sticker.imageUrl,
+        alt: sticker.alt,
+        category: sticker.category,
+        link: sticker.link,
+        description: sticker.description,
+    }));
+});
+
+// SEO metadata
+const pageTitle = "nf-core Stickers";
+const pageDescription =
+    "Browse our collection of hex stickers organized by category for nf-core pipelines, events, and more.";
+---
+
+<PageLayout
+    title={pageTitle}
+    subtitle="Browse our collection of hex stickers organized by category."
+    description={pageDescription}
+>
+    <main class="container py-5">
+        <div class="row">
+            <div class="col-12">
+                <HexStickerGallery stickers={allStickers} />
+            </div>
+        </div>
+    </main>
+</PageLayout>
