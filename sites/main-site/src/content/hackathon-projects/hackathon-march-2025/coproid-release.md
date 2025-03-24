@@ -1,5 +1,5 @@
 ---
-title: Release CoproID 2.0
+title: Release nf-core/coproID 2.0
 category: pipelines
 slack: https://nfcore.slack.com/archives/CHTCE9K8B
 intro_video: ""
