@@ -3,15 +3,15 @@ title: Adding PacBio Demultiplex Support to nf-core Pipelines
 category: pipelines
 slack: https://nfcore.slack.com/archives/CL88J906S
 intro_video: ""
-image: "/assets/images/events/2025/hackathon-march/pacbio-demultiplex.jpg"
-image_alt: "Illustration of PacBio sequencing with long-read (lima) and short-read (obc2fastq) support."
+image: ""
+image_alt: ""
 leaders:
   glicht:
     name: Gabriel Lichtenstein
     slack: "https://nfcore.slack.com/team/U043QKAUR2T"
 ---
 
-This project proposes the integration of PacBio demultiplex support into nf-core pipelines—addressing both long-read and short-read sequencing. We plan to use [lima](https://github.com/PacificBiosciences/barcoding) for long-reads and [obc2fastq](https://www.pacb.com/onso/software-downloads) for short-reads. Designed as an innovative hackathon project, this initiative expands nf-core's capabilities to meet the evolving needs of sequencing analyses.
+This project proposes the integration of PacBio demultiplex support into nf-core pipelines—addressing both long-read and short-read sequencing. We plan to re-use [lima](https://github.com/nf-core/modules/tree/master/modules/nf-core/lima) from the already available nf-core/modules for long-reads and aim to depict a plan for an [obc2fastq](https://www.pacb.com/onso/software-downloads) module used for short-reads.
 
 ## Goals
 
