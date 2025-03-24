@@ -6,10 +6,10 @@ slack: https://nfcore.slack.com/archives/C08K2FQ61K6
 image: "/assets/images/events/2025/hackathon-march/rtg.png"
 image_alt: RTG logo
 leaders:
-  danwithaplan:
+  danwiththeplan:
     name: Dan Jones
     slack: "https://nfcore.slack.com/team/U08CVQPAA9G"
-  Jen-Reeve:
+  jen-reeve:
     name: Jen Reeve
     slack: "https://nfcore.slack.com/team/U07K4674Z5E"
 ---
