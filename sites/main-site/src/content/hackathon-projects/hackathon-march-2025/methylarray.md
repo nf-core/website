@@ -21,21 +21,15 @@ A pipeline for processing Illumina DNA Methylation array datasets: 450k, EPIC an
 
 ## Goals
 
-From 03 Oct 2024:
-
 1. tidy up whatever has been written now and write custom containers for the whole pipeline (3 processes for now)
 2. attach the Dockerfile to the pipeline itself (cellranger in scrnaseq cannot be run with conda so I think this pipeline could rely on containers only until we find a fix)
 3. scripts rely on the directory access/path rather than the file access/paths (difficulty in fetching the directory itself from the test-data repo: perhaps add module for creating the CSV file with the input path as the scripts currently are expecting it and align with the requirements for proper -profile test setup.
-
-From  22 Oct 2024:
-
 4. tidy up the R scripts and parametrize hardcoded options
 5. add a disclaimer that this will not run with conda
 6. update docs
 7. coordinate if the output of the pipeline generates same results using previously analyzed projects (align with @Ghada Nouairia)
-8. remove FastQC module
-9. remove MultiQC module or add custom QC plots with versions to the report
-10. currently two tests are failing on GitHub actions which are related to the pipeline logos, but at the same time these tests pass using nf-core/tools version 3.0.2 locally 
+8. remove FastQC module and remove MultiQC module or add custom QC plots with versions to the report
+9. currently two tests are failing on GitHub actions which are related to the pipeline logos, but at the same time these tests pass using nf-core/tools version 3.0.2 locally 
 
 ## Motivation
 
