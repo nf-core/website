@@ -9,14 +9,13 @@ type: "tutorial"
 
 ## Request a new pipeline
 
-Before you get too carried away, the first task is to request the new pipeline in the nf-core Slack.
-We have a Slack channel dedicated to this: `#new-pipelines`.
+Before you get too carried away, the first task is to propose the pipeline on [nf-core/proposals](https://github.com/nf-core/proposals).
 
-There, you will find a _Workflow_ bookmarked to top of the Slack window called _Pipeline proposal_.
+There, you will find a dedicated _Issue_ template for you to fill out.
 This gives you a form to fill in with key information about the pipeline you want to write.
 
 The proposal will be discussed and checked for uniqueness (not too much overlap with any existing pipelines)
-and added to our [new pipeline tracking board](https://github.com/orgs/nf-core/projects/35/) on GitHub.
+and added to our [new pipeline tracking board](https://github.com/orgs/nf-core/projects/104) on GitHub.
 
 Once accepted, someone from the core team will create a Slack channel for your pipeline and you can get started on the next steps.
 

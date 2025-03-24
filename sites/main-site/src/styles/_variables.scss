@@ -9,6 +9,7 @@ $nf-tower-color: #335eea;
 
 // overwrite standard bootstrap colors
 $green: $nf-core-color;
+$primary: $nf-core-color;
 
 $info: #17a2b8; // old info color is not so harsh
 $light: #e9ecef; // =$gray-200, because we already set body to $gray-100 which is the default light color value
@@ -52,6 +53,7 @@ $breadcrumb-divider-color-dark: $gray-100;
 
 // make greens darker for dark mode
 $green: $nf-core-color-dark;
+$primary: $nf-core-color-dark;
 $green-100: tint-color($green, 80%);
 $green-200: tint-color($green, 60%);
 $green-300: tint-color($green, 40%);
