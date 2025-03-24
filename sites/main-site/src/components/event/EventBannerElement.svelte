@@ -3,31 +3,9 @@
     import ExportEventButton from "@components/event/ExportEventButton.svelte";
     import VideoButton from "@components/VideoButton.svelte";
     import { onMount } from "svelte";
-
+    import type { CollectionEntry } from "astro:content";
     interface Props {
-        events?: {
-            id: string;
-            slug: string;
-            body: string;
-            collections: string;
-            data: {
-                title: string;
-                subtitle: string;
-                type: string;
-                startDate: string;
-                startTime: string;
-                endDate: string;
-                endTime: string;
-                start: Date;
-                end: Date;
-                announcement?: {
-                    start: string;
-                };
-                duration: string;
-                eventCountDown: string;
-                locationURL: string;
-            };
-        }[];
+        events?: CollectionEntry<"events">[];
         event_time_category?: string;
         event_type_classes?: {};
         event_type_icons?: {};
@@ -135,8 +113,12 @@
             });
     }
 
-    let heading_title = $state(event_time_category.charAt(0).toUpperCase() + event_time_category.slice(1) + " event");
-    heading_title = events.length > 1 ? heading_title + "s" : heading_title;
+    let heading_title = $derived(
+        event_time_category.charAt(0).toUpperCase() +
+            event_time_category.slice(1) +
+            " event" +
+            (events.length > 1 ? "s" : ""),
+    );
     onMount(() => {
         events.map((event) => {
             event_duration(event);
@@ -157,11 +139,11 @@
                     ></i>
                 </div>
                 <div class="flex-grow-1">
-                    {#each events as event (event.slug)}
+                    {#each events as event (event.id)}
                         <div class="w-100 row align-items-center">
                             <div class="col-8 py-lg-2 text-lg-start">
                                 <h5 class="pt-2 pb-0 pb-lg-1">
-                                    <a href={"events/" + event.slug + "/"} class="text-success text-decoration-none"
+                                    <a href={"events/" + event.id + "/"} class="text-success text-decoration-none"
                                         >{event.data.title}</a
                                     >
                                     <span class="ms-1 my-auto">
@@ -173,14 +155,14 @@
                                     </span>
                                 </h5>
                                 <p class="lead mb-1">
-                                    <a href={"events/" + event.slug + "/"} class="text-body text-decoration-none"
-                                        >{event.data.subtitle}</a
+                                    <a href={"events/" + event.id + "/"} class="text-body text-decoration-none"
+                                        >{@html event.data.subtitle}</a
                                     >
                                 </p>
                                 {#if event.data.duration}
                                     <p class="mb-1">
                                         <a
-                                            href={"events/" + event.slug + "/"}
+                                            href={"events/" + event.id + "/"}
                                             class="text-secondary-emphasis text-decoration-none"
                                             >{event.data.duration}</a
                                         >
@@ -198,7 +180,7 @@
                                     </div>
                                     <div class="btn-group my-2" role="group" aria-label="Event details">
                                         <a
-                                            href={"events/" + event.slug + "/"}
+                                            href={"events/" + event.id + "/"}
                                             class="btn btn-outline-success text-nowrap"
                                         >
                                             Event Details
@@ -210,11 +192,11 @@
                                     <div class="">
                                         <div class="btn-group" role="group" aria-label="Event details">
                                             <a
-                                                href={"events/" + event.slug + "/"}
+                                                href={"events/" + event.id + "/"}
                                                 class="btn btn-outline-success text-nowrap">Event Details</a
                                             >
-                                            {#if event.data.locationURL}
-                                                <VideoButton urls={event.data.locationURL} />
+                                            {#if Array.isArray(event.data?.locations) && event.data.locations.length > 0}
+                                                <VideoButton urls={event.data.locations} />
                                             {/if}
                                         </div>
                                     </div>
@@ -229,16 +211,16 @@
                 <div class="pt-2 pb-1 mb-2 overflow-hidden mainpage-subheader-heading-header bg-body-tertiary">
                     <h5 class="pt-2 font-weight-light text-center text-sucess">{heading_title}</h5>
                 </div>
-                {#each events as event (event.slug)}
+                {#each events as event (event.id)}
                     <div class="text-center">
                         <h4 class="pt-2 pb-0">
-                            <a href={"events/" + event.slug + "/"} class="text-success text-decoration-none"
+                            <a href={"events/" + event.id + "/"} class="text-success text-decoration-none"
                                 >{event.data.title}</a
                             >
                         </h4>
                         <p class="d-sm-none mb-1">
-                            <a href={"events/" + event.slug + "/"} class="text-body text-decoration-none"
-                                >{event.data.subtitle}</a
+                            <a href={"events/" + event.id + "/"} class="text-body text-decoration-none"
+                                >{@html event.data.subtitle}</a
                             ><span class={"badge bg-" + event_type_classes[event.data.type] + " small ms-3"}
                                 ><i class={event_type_icons[event.data.type] + " me-1"} aria-hidden="true"></i>
                                 {event.data.type}</span
@@ -246,18 +228,16 @@
                         </p>
                         <div class="small mb-1 mx-3 d-flex flex-column">
                             <a
-                                href={"events/" + event.slug + "/"}
+                                href={"events/" + event.id + "/"}
                                 class="text-secondary-emphasis text-decoration-none mb-2">{event.data.duration}</a
                             >
                             <div class="btn-group text-nowrap" role="group" aria-label="Event details">
-                                <a href={"events/" + event.slug + "/"} class="btn btn-outline-success">
-                                    Event Details
-                                </a>
+                                <a href={"events/" + event.id + "/"} class="btn btn-outline-success"> Event Details </a>
                                 {#if event_time_category === "upcoming"}
                                     <ExportEventButton frontmatter={event.data} />
                                 {/if}
-                                {#if event_time_category === "ongoing" && event.data.locationURL}
-                                    <VideoButton urls={event.data.locationURL} />
+                                {#if event_time_category === "ongoing" && Array.isArray(event.data?.locations) && event.data.locations.length > 0}
+                                    <VideoButton urls={event.data.locations} />
                                 {/if}
                             </div>
                         </div>

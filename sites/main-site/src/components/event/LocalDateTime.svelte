@@ -15,11 +15,11 @@
             hour12: false,
         },
     }: Props = $props();
-    date = new Date(date);
-    // don't show time if it date includes "00:00:00"
+    // don't show time and don't convert to local time if it date includes "00:00:00"
     if (date.toISOString().includes("00:00:00")) {
         date_options.hour = undefined;
         date_options.minute = undefined;
+        date_options.timeZone = "UTC";
     }
 </script>
 
