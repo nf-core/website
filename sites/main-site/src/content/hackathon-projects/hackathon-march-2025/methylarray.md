@@ -29,7 +29,7 @@ A pipeline for processing Illumina DNA Methylation array datasets: 450k, EPIC an
 6. update docs
 7. coordinate if the output of the pipeline generates same results using previously analyzed projects (align with @Ghada Nouairia)
 8. remove FastQC module and remove MultiQC module or add custom QC plots with versions to the report
-9. currently two tests are failing on GitHub actions which are related to the pipeline logos, but at the same time these tests pass using nf-core/tools version 3.0.2 locally 
+9. currently two tests are failing on GitHub actions related to pipeline logos, but these pass the nfcore tools repo.
 
 ## Motivation
 
