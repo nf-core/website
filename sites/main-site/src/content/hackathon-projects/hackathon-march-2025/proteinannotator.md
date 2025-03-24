@@ -23,7 +23,7 @@ Protein fasta -> ??? -> Profit!
 - We want to build the pipeline of choice by the people sequencing the genomes of new creatures to annotate protein fasta files with function
 - Future options include using synteny of genes, but that is beyond the 1.0.0 release
 
-BEFORE WRITING ANY CODE, we will first draw out the metromap for
+BEFORE WRITING ANY CODE, we will first draw out the metromap for the pipeline.
 
 ## Similar pipelines
 
