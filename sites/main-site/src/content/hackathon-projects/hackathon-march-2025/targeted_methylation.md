@@ -14,7 +14,7 @@ leaders:
     slack: https://nfcore.slack.com/team/U08AYP59MD5
 ---
 
-This project focuses on developing a targeted analysis for methylseq data in the [methylseq](https://github.com/nf-core/methylseq) nf-core pipeline.
+This project focuses on developing a targeted analysis for methylseq data in the [nf-ccore/methylseq](https://github.com/nf-core/methylseq) pipeline.
 We’re planning to contribute to the methylseq pipeline and have come up with the following feature ideas:
 
 - `--targeted` parameter: Currently, all detected methylation signals are included in the final results. However, some enrichment protocols target specific genomic regions. To address this, we propose adding a `--targeted` parameter that allows filtering results to retain only on-target methylation signals. The input would be a BED file specifying the target regions.
