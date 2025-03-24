@@ -1,10 +1,10 @@
 ---
-title: NF-PCGR Enhancements
+title: Personal Cancer Genome Reporter (PCGR)
 category: pipelines
 slack: "https://nfcore.slack.com/archives/C05URH17X5Z"
 image_alt: "sites/main-site/src/assets/images/events/2025/hackathon-march/nf-pcgr.png"
 leaders:
-  YussAb:
+  yussab:
     name: Youssef Abili
     slack: "https://nfcore.slack.com/team/U07SJDR1GAF"
   pdiakumis:
