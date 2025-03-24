@@ -438,6 +438,7 @@ nextflow_process {
 
     name "Test Process BCFTOOLS_INDEX"
     script "../main.nf"
+    config "./nextflow.config"
     process "BCFTOOLS_INDEX"
 
     tag "modules"
