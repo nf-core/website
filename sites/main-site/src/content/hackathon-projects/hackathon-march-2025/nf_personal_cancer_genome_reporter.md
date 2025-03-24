@@ -1,5 +1,5 @@
 ---
-title: nf-core - Personal Cancer Genome Reporter (PCGR)
+title: Personal Cancer Genome Reporter (PCGR)
 category: pipelines
 slack: "https://nfcore.slack.com/archives/C05URH17X5Z"
 image_alt: "sites/main-site/src/assets/images/events/2025/hackathon-march/nf-pcgr.png"
