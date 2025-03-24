@@ -22,4 +22,4 @@ Tools like [VIPER](https://static1.squarespace.com/static/5697c2e5e0327ca6778bc4
 
 ### Goal
 
-Create a new pipeline for the computational inference of protein activity network and its interactions.
+Create a new pipeline for the computational inference of protein activity network and its interactions, useful for precision medicine to understand how drugs are involved in protein pathways.
