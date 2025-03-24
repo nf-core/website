@@ -1,9 +1,10 @@
 ---
-title: nanoseq pipeline improvements
+title: nanoseq pipeline
 category: pipelines
 intro_video: ""
 slack: https://nfcore.slack.com/archives/C08JM4PA2NT
 image: "/assets/images/events/2025/hackathon-march/nanoseq.png"
+image_alt: "nf-core/nanoseq"
 leaders:
   graeme:
     name: Graeme Smith
