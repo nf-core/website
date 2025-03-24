@@ -4,12 +4,16 @@
     import "leaflet/dist/leaflet.css";
     import "leaflet-fullscreen/dist/leaflet.fullscreen.css";
 
-    export let locations: {
-        location: [number, number];
-        name: string;
-        url: string;
-        image?: string;
-    }[] = [];
+    interface Props {
+        locations?: {
+            location: [number, number];
+            name: string;
+            url: string;
+            image?: string;
+        }[];
+    }
+
+    let { locations = [] }: Props = $props();
 
     let m;
     function createMap(container) {
@@ -30,10 +34,10 @@
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         }).addTo(m);
         locations.map(function (locationMarker) {
-            const image = locationMarker.image
-                ? `<img src="/images/contributors/colour/${locationMarker.image}" title="${locationMarker.name}" class="contributor_map_logo"></img>`
-                : "";
             if (locationMarker != null) {
+                const image = locationMarker.image
+                    ? `<img src="/images/contributors/colour/${locationMarker.image}" title="${locationMarker.name}" class="contributor_map_logo"></img>`
+                    : "";
                 marker(locationMarker.location, {
                     icon: greenIcon,
                 })
@@ -66,9 +70,9 @@
     }
 </script>
 
-<svelte:window on:resize={resizeMap} />
+<svelte:window onresize={resizeMap} />
 
-<div class="map m-auto" use:mapAction />
+<div class="map m-auto" use:mapAction></div>
 
 <style lang="scss">
     .map {
