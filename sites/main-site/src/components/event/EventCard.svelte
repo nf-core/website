@@ -18,8 +18,6 @@
         training: "warning",
     };
 
-    let event_date: string = "";
-
     const type_class = event_type_classes[type];
     const isSameDay = frontmatter.startDate === frontmatter.endDate;
 </script>
@@ -31,23 +29,36 @@
                 <a class="text-center" class:text-decoration-none={narrow} href={/events/ + slug + "/"}>
                     {frontmatter.title}
                 </a>
-                {#if time_category === "current" && frontmatter.locations?.[0]?.links}
+                {#if time_category === "current" && frontmatter.locations}
                     <div class="float-end d-none d-md-inline">
-                        <VideoButton urls={frontmatter.locations?.[0]?.links} btnClass="btn-danger" />
+                        <VideoButton urls={frontmatter.locations} btnClass="btn-danger" />
                     </div>
                 {/if}
             </h4>
         </div>
         <div class="card-text">
             {#if showDescription}
-                <p class="mb-0">{frontmatter.subtitle}</p>
+                <p class="mb-0">{@html frontmatter.subtitle}</p>
             {/if}
             <div
                 class="d-flex align-items-center mt-2 flex-wrap justify-content-start"
                 class:justify-content-md-end={!narrow}
             >
                 <p class="text-nowrap text-center text-md-start pe-3 mt-2 ms-1" class:d-md-none={!narrow}>
-                    <i class="fa-regular fa-calendar me-2"></i>{@html event_date}
+                    <i class="fa-regular fa-calendar me-2" aria-hidden="true"></i>
+                    <LocalDateTime date={frontmatter.start} />
+                    <span>&nbsp;-&nbsp;</span>
+                    {#if isSameDay}
+                        <span
+                            >{new Date(frontmatter.end).toLocaleString("en-US", {
+                                hour: "numeric",
+                                minute: "numeric",
+                                hour12: false,
+                            })}</span
+                        >
+                    {:else}
+                        <LocalDateTime date={frontmatter.end} />
+                    {/if}
                 </p>
             </div>
         </div>
@@ -79,19 +90,13 @@
                 <a
                     href={"/events/" + slug + "/"}
                     class="btn btn-outline-success text-nowrap rounded-start-0"
-                    class:rounded-0={["current", "future"].includes(time_category)}>See details</a
+                    class:rounded-0={["future"].includes(time_category)}>See details</a
                 >
                 {#if time_category === "future"}
                     <ExportEventButton {frontmatter} add_class={"btn-outline-success " + " rounded-top-0"} />
                 {/if}
             </div>
         </div>
-        {#if time_category === "current" && frontmatter.locationURL}
-            <VideoButton
-                urls={frontmatter.locationURL}
-                btnClass=" d-md-none btn-danger w-100 rounded-top-0 rounded-start-0"
-            />
-        {/if}
     </div>
 </div>
 
