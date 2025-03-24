@@ -5,7 +5,7 @@ shortTitle: "Chapter 1: Introduction"
 ---
 
 :::tip{title = "Last updated"}
-Material originally written for the **A practical introduction to nf-core components for Nextflow developers** training at the nf-core Hackathon March 2025 Berlin local site _(see [event](https://nf-co.re/events/2025/hackathon-march-2025/robert-koch-institute))_
+Material originally written for the **A practical introduction to nf-core components for Nextflow developers** training at the nf-core Hackathon March 2025, Berlin local site _(see [event](https://nf-co.re/events/2025/hackathon-march-2025/robert-koch-institute))_
 
 Duration: **4hr**
 
