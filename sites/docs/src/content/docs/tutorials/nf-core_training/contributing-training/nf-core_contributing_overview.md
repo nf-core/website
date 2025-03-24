@@ -48,7 +48,7 @@ _nf-core_ is a community-led project to develop a set of best-practice pipelines
 The aim of _nf-core_ is to develop with the community over GitHub and other communication channels to build a pipeline to solve a particular analysis task.
 We therefore encourage cooperation and adding new features to existing pipelines.
 Before considering starting a new pipeline, have a look if a pipeline already exists performing a similar task and consider contributing to that one instead.
-If there is no pipeline for the analysis task at hand, let us know about your new pipeline plans on Slack in the [`#new-pipelines`](https://nfcore.slack.com/channels/new-pipelines) channel.
+If there is no pipeline for the analysis task at hand, let us know about your new pipeline plans on Slack in the [nf-core/proposals](https://github.com/nf-core/proposals) repository.
 
 Pipelines are governed by a set of guidelines, enforced by community code reviews and automatic linting (code testing).
 A suite of helper tools aim to help people run and develop pipelines.
@@ -397,7 +397,7 @@ Subworkflows should be shipped with the pipeline implementation and if required 
 
 Your pipeline is written and ready to go!
 Before you can release it with _nf-core_ there are a few steps that need to be done.
-First, tell everyone about it on Slack in the [`#new-pipelines`](https://nfcore.slack.com/channels/new-pipelines) channel.
+First, tell everyone about it on Slack in your dedicated pipeline channel on Slack.
 Hopefully you've already done this before you spent lots of time on your pipeline, to check that there aren't other similar efforts happening elsewhere.
 Next, you need to be a member of the [nf-core GitHub organisation](https://github.com/nf-core/).
 You can find instructions for how to do this at [https://nf-co.re/join](https://nf-co.re/join).

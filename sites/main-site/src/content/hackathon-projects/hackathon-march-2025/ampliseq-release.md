@@ -1,6 +1,7 @@
 ---
 title: Working towards release 2.13.0 of the nf-core/ampliseq pipeline
 category: pipelines
+slack: https://nfcore.slack.com/archives/CEA7TBJGJ
 intro_video: ""
 image: ""
 image_alt: ""

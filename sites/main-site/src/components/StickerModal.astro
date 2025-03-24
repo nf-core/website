@@ -1,0 +1,444 @@
+---
+/**
+ * StickerModal.astro
+ * A reusable modal component for displaying sticker details with visual effects
+ */
+---
+
+<div class="modal fade" id="stickerModal" tabindex="-1" aria-labelledby="stickerModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title visually-hidden" id="stickerModalTitle">Sticker Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6 mb-4 mb-md-0">
+                        <div class="sticker-hex-container">
+                            <div class="sticker-modal-hex">
+                                <div class="sticker-modal-holographic-foil" aria-hidden="true"></div>
+                                <div class="shine-effect" aria-hidden="true"></div>
+                                <img src="" alt="" class="sticker-modal-img dark-mode-img" width="300" height="346" />
+                                <img src="" alt="" class="sticker-modal-img light-mode-img" width="300" height="346" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 d-flex flex-column justify-content-center">
+                        <h3 class="sticker-modal-title display-title"></h3>
+                        <p class="sticker-modal-description text-secondary mb-4"></p>
+                        <a
+                            href="#"
+                            class="sticker-modal-link btn btn-primary align-self-start"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            View Details
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                fill="currentColor"
+                                class="bi bi-box-arrow-up-right ms-1"
+                                viewBox="0 0 16 16"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"
+                                ></path>
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"
+                                ></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Modal styling */
+    .modal-content {
+        border-radius: 1rem;
+        border: none;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+    }
+
+    .modal-header {
+        padding-bottom: 0;
+    }
+
+    .modal-body {
+        padding: 1.5rem 2rem 2rem;
+    }
+
+    /* Hexagon container and styling */
+    .sticker-hex-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    .sticker-modal-hex {
+        width: 100%;
+        aspect-ratio: 1 / 1.1547; /* Hexagon aspect ratio */
+        position: relative;
+        clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+        overflow: hidden;
+        box-shadow:
+            0 1px 3px rgba(0, 0, 0, 0.12),
+            0 1px 2px rgba(0, 0, 0, 0.24);
+        transition: transform 0.3s ease;
+        animation: modalHexIn 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        /* Disable hover interactions */
+        pointer-events: none;
+    }
+
+    /* Holographic effect - match main page default state */
+    .sticker-modal-holographic-foil {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.2) 0%,
+            rgba(255, 0, 0, 0.15) 20%,
+            rgba(255, 255, 0, 0.15) 40%,
+            rgba(0, 255, 255, 0.15) 60%,
+            rgba(0, 0, 255, 0.15) 80%,
+            rgba(255, 0, 255, 0.15) 100%
+        );
+        background-size: 200% 200%;
+        mix-blend-mode: soft-light;
+        opacity: 0; /* Set to 0 to match main page default state */
+        z-index: 2;
+    }
+
+    /* Sticker images */
+    .sticker-modal-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    /* Theme-based image display */
+    .sticker-modal-img.light-mode-img {
+        display: none;
+    }
+
+    .sticker-modal-img.dark-mode-img {
+        display: block;
+    }
+
+    :global(body.light-mode) .sticker-modal-img.light-mode-img {
+        display: block;
+    }
+
+    :global(body.light-mode) .sticker-modal-img.dark-mode-img {
+        display: none;
+    }
+
+    /* Title styling */
+    .sticker-modal-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        text-transform: capitalize;
+    }
+
+    /* Shine effect */
+    .shine-effect {
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0) 30%,
+            rgba(255, 255, 255, 0.6) 47%,
+            rgba(255, 255, 255, 1) 50%,
+            rgba(255, 255, 255, 0.6) 53%,
+            rgba(255, 255, 255, 0) 70%,
+            rgba(255, 255, 255, 0) 100%
+        );
+        opacity: 0;
+        z-index: 10;
+        pointer-events: none;
+        will-change: transform, opacity;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 767.98px) {
+        .sticker-modal-title,
+        .sticker-modal-description {
+            text-align: center;
+        }
+
+        .sticker-modal-link {
+            align-self: center !important;
+        }
+    }
+
+    /* Modal animation overrides */
+    .modal.fade .modal-dialog {
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        transform: scale(0.8);
+    }
+
+    .modal.show .modal-dialog {
+        transform: scale(1);
+    }
+
+    /* 3D effect for the modal hex */
+    .sticker-modal-hex {
+        transition: transform 0.3s ease;
+        transform-style: preserve-3d;
+        perspective: 1000px;
+    }
+
+    /* Animation keyframes */
+    @keyframes rotate-gradient {
+        0% {
+            background-position: 0% 0%;
+        }
+        100% {
+            background-position: 100% 100%;
+        }
+    }
+
+    @keyframes shineEffect {
+        0% {
+            transform: translateY(-100%) translateX(-100%) rotate(25deg);
+            opacity: 0;
+        }
+        15% {
+            opacity: 1;
+        }
+        85% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(100%) translateX(100%) rotate(25deg);
+            opacity: 0;
+        }
+    }
+
+    @keyframes modalHexIn {
+        0% {
+            transform: scale(0.5) rotate(-15deg);
+            opacity: 0;
+        }
+        40% {
+            transform: scale(1.1) rotate(5deg);
+            opacity: 1;
+        }
+        70% {
+            transform: scale(0.95) rotate(-2deg);
+        }
+        100% {
+            transform: scale(1) rotate(0);
+        }
+    }
+
+    @keyframes modalHexOut {
+        0% {
+            transform: scale(1) rotate(0);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(0.5) rotate(15deg);
+            opacity: 0;
+        }
+    }
+
+    /* Reduced motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+        .sticker-modal-hex {
+            animation: none;
+            transform: scale(1);
+        }
+
+        .shine-effect {
+            animation: none;
+            opacity: 0;
+        }
+
+        .sticker-modal-holographic-foil {
+            animation: none;
+        }
+
+        .modal.fade .modal-dialog {
+            transition: opacity 0.3s ease;
+            transform: scale(1);
+            opacity: 0;
+        }
+
+        .modal.show .modal-dialog {
+            opacity: 1;
+        }
+    }
+</style>
+
+<script>
+    // Wait for the DOM to be fully loaded
+    document.addEventListener("DOMContentLoaded", async () => {
+        try {
+            // Import Bootstrap's Modal functionality
+            const { default: Modal } = await import("bootstrap/js/dist/modal");
+
+            // DOM elements
+            const modal = document.getElementById("stickerModal");
+            if (!modal) return;
+
+            const elements = {
+                title: modal.querySelector(".sticker-modal-title"),
+                darkImg: modal.querySelector(".sticker-modal-img.dark-mode-img"),
+                lightImg: modal.querySelector(".sticker-modal-img.light-mode-img"),
+                description: modal.querySelector(".sticker-modal-description"),
+                link: modal.querySelector(".sticker-modal-link"),
+                hex: modal.querySelector(".sticker-modal-hex"),
+                holographicFoil: modal.querySelector(".sticker-modal-holographic-foil"),
+                hexContainer: modal.querySelector(".sticker-hex-container"),
+                shineEffect: modal.querySelector(".shine-effect"),
+            };
+
+            // Initialize Bootstrap modal
+            const bsModal = new Modal(modal);
+
+            // Check if user prefers reduced motion
+            const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+            // Function to play the shine effect once
+            function playShineEffect() {
+                if (elements.shineEffect && !prefersReducedMotion) {
+                    // Apply the shine effect animation
+                    elements.shineEffect.style.animation = "shineEffect 2.5s ease-in-out forwards";
+
+                    // Reset the animation after it completes
+                    setTimeout(() => {
+                        elements.shineEffect.style.animation = "none";
+                        elements.shineEffect.style.opacity = "0";
+                    }, 2500);
+                }
+            }
+
+            /**
+             * Opens the sticker modal with the provided data
+             * @param {Object} stickerData - Data for the sticker
+             */
+            function openStickerModal(stickerData) {
+                if (
+                    !modal ||
+                    !elements.darkImg ||
+                    !elements.lightImg ||
+                    !elements.title ||
+                    !elements.link ||
+                    !elements.description
+                )
+                    return;
+
+                // Set images
+                elements.darkImg.src = stickerData.imageUrl;
+                elements.lightImg.src = stickerData.lightImageUrl || stickerData.imageUrl;
+                elements.darkImg.alt = stickerData.alt;
+                elements.lightImg.alt = stickerData.alt;
+
+                // Format and set title
+                const formattedTitle = stickerData.alt
+                    .replace(/-/g, " ")
+                    .replace(/_/g, " ")
+                    .replace(/\b\w/g, (l) => l.toUpperCase());
+
+                elements.title.textContent = formattedTitle;
+
+                // Update modal title for screen readers
+                const modalTitle = modal.querySelector("#stickerModalTitle");
+                if (modalTitle) {
+                    modalTitle.textContent = `${formattedTitle} Sticker`;
+                }
+
+                // Set description
+                if (stickerData.description) {
+                    elements.description.textContent = stickerData.description;
+                } else {
+                    const category = stickerData.category || "uncategorized";
+                    elements.description.textContent = `This is a ${category} sticker from the nf-core collection.`;
+                }
+
+                // Set link
+                if (stickerData.link) {
+                    elements.link.href = stickerData.link;
+                    elements.link.style.display = "inline-flex";
+                } else {
+                    elements.link.style.display = "none";
+                }
+
+                // Show modal
+                bsModal.show();
+
+                // Play shine effect after the bounce animation completes
+                if (!prefersReducedMotion) {
+                    // Wait for the bounce animation to complete (0.7s) before playing shine effect
+                    setTimeout(playShineEffect, 800);
+                }
+            }
+
+            // Add closing animation when modal is hidden
+            modal.addEventListener("hide.bs.modal", () => {
+                if (elements.hex) {
+                    elements.hex.style.animation = "modalHexOut 0.3s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards";
+                }
+            });
+
+            // Reset animation when modal is fully hidden
+            modal.addEventListener("hidden.bs.modal", () => {
+                if (elements.hex) {
+                    elements.hex.style.animation = "";
+                }
+                if (elements.shineEffect) {
+                    elements.shineEffect.style.animation = "none";
+                    elements.shineEffect.style.opacity = "0";
+                }
+            });
+
+            // Expose the openStickerModal function globally
+            window.openStickerModal = openStickerModal;
+
+            // Set up click handlers for all sticker triggers
+            document.querySelectorAll(".sticker-trigger").forEach((trigger) => {
+                // Extract sticker data from data attributes
+                const getStickerData = () => ({
+                    imageUrl: trigger.dataset.stickerImg,
+                    lightImageUrl: trigger.dataset.stickerLightImg,
+                    alt: trigger.dataset.stickerAlt,
+                    link: trigger.dataset.stickerLink,
+                    category: trigger.dataset.category,
+                    description: trigger.dataset.stickerDescription,
+                });
+
+                // Click handler
+                trigger.addEventListener("click", () => {
+                    openStickerModal(getStickerData());
+                });
+            });
+        } catch (error) {
+            console.error("Error initializing sticker modal:", error);
+        }
+    });
+</script>
