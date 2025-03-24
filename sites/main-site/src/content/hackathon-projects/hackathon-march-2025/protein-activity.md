@@ -8,13 +8,13 @@ image_alt: "Buzz looking at the protein activity interactions to the infinity an
 leaders:
   arangooj:
     name: Juan E. Arango Ossa
-    slack: "https://nfcore.slack.com/team/U07ABAY61SS"
+    slack: "https://nfcore.slack.com/team/U04LMD2LPB6"
   domenicd:
     name: Dylan Domenico
     slack: "https://nfcore.slack.com/team/U08JZQY91JR"
   liosisk:
     name: Konstantinos Liossis
-    slack: "https://nfcore.slack.com/team/U07ABAY61SS"
+    slack: "https://nfcore.slack.com/team/U08J7L7E0T1"
 ---
 
 Tools like [VIPER](https://static1.squarespace.com/static/5697c2e5e0327ca6778bc453/t/56f40934f8baf3727f8e7e78/1458833718573/Viper.pdf) and [ARACne](https://github.com/califano-lab/ARACNe3) from [the Califano Lab](https://califano.c2b2.columbia.edu) are useful in understanding the protein-activity interactions, on an individual sample basis, from gene expression profile data:
