@@ -16,13 +16,9 @@ With the last major release in 2020, CoproID version 2.0 is an entire rewrite of
 
 ## Goals
 
-- **Adressing any open issue and open a PR.**
-  - _For anyone interested._
-- **Finishing and merging any open PRs.**
-  - _For people with some experience in Nextflow/nf-core pipelines._
-- **Updating the nf-core template to version 3.2.0.**
-  - _For people with experience with the pipeline and template updates._
-- **Final touches before release 2.13.0.**
-  - _For people with experience with the pipeline._
+- Try the rewrite of the pipeline (on the dev branch)
+- Find bugs
+- Merge dev into master
+- Release 🎆
 
 _We welcome contributors of all experience levels._
