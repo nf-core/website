@@ -496,7 +496,7 @@ If you find variability or an issue in your snapshot, you can re-run with
 nf-core modules test <tool>/<subcommand> --update
 ```
 
-If you need more information about the test run, you can also provide `--debug` to see the full nf-test stdout log.
+If you need more information about the test run, you can also provide `--verbose` to see the full nf-test stdout log.
 
 It is important to manually inspect the snapshot file once it has been generated.
 You need to make sure you have no unexpected snapshot assertion outputs, even if the tests 'pass' (e.g. empty file `md5sum`, or missing assertions etc.).
