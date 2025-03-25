@@ -34,9 +34,14 @@ export interface Props {
     image?: string;
     doubleNavbar?: boolean;
     sidebarTitle?: string;
+    frontmatter?: {
+        title?: string;
+        subtitle?: string;
+        md_github_url?: string;
+    };
 }
 
-const {
+let {
     title,
     subtitle,
     md_github_url,
@@ -53,7 +58,18 @@ const {
     image,
     doubleNavbar = true,
     sidebarTitle = "",
+    frontmatter,
 } = Astro.props;
+
+if (frontmatter?.title) {
+    title = frontmatter.title;
+}
+if (frontmatter?.subtitle) {
+    subtitle = frontmatter.subtitle;
+}
+if (frontmatter?.md_github_url) {
+    md_github_url = frontmatter.md_github_url;
+}
 
 const minNumHeadings = 2;
 const leftSidebarWidth = 3;
