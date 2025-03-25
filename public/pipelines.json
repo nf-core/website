@@ -19639,6 +19639,161 @@
             ]
         },
         {
+            "id": 801010243,
+            "node_id": "R_kgDOL75yQw",
+            "name": "lsmquant",
+            "full_name": "nf-core/lsmquant",
+            "private": false,
+            "description": null,
+            "fork": false,
+            "url": "https://api.github.com/repos/nf-core/lsmquant",
+            "created_at": "2024-05-15T12:29:25Z",
+            "updated_at": "2025-03-25T16:10:13Z",
+            "pushed_at": "2025-03-25T15:23:30Z",
+            "homepage": null,
+            "size": 1025,
+            "stargazers_count": 0,
+            "watchers_count": 0,
+            "language": "Nextflow",
+            "has_issues": true,
+            "has_projects": true,
+            "has_downloads": true,
+            "has_wiki": false,
+            "has_pages": false,
+            "has_discussions": false,
+            "forks_count": 1,
+            "archived": false,
+            "disabled": false,
+            "open_issues_count": 0,
+            "allow_forking": true,
+            "is_template": false,
+            "web_commit_signoff_required": false,
+            "topics": [],
+            "visibility": "public",
+            "forks": 1,
+            "open_issues": 0,
+            "watchers": 0,
+            "default_branch": "dev",
+            "temp_clone_token": "",
+            "allow_squash_merge": true,
+            "allow_merge_commit": true,
+            "allow_rebase_merge": true,
+            "allow_auto_merge": false,
+            "delete_branch_on_merge": false,
+            "allow_update_branch": false,
+            "use_squash_pr_title_as_default": false,
+            "squash_merge_commit_message": "COMMIT_MESSAGES",
+            "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
+            "merge_commit_message": "PR_TITLE",
+            "merge_commit_title": "MERGE_MESSAGE",
+            "custom_properties": {},
+            "security_and_analysis": {
+                "secret_scanning": {
+                    "status": "disabled"
+                },
+                "secret_scanning_push_protection": {
+                    "status": "disabled"
+                },
+                "dependabot_security_updates": {
+                    "status": "disabled"
+                },
+                "secret_scanning_non_provider_patterns": {
+                    "status": "disabled"
+                },
+                "secret_scanning_validity_checks": {
+                    "status": "disabled"
+                }
+            },
+            "network_count": 1,
+            "subscribers_count": 285,
+            "team_contributors_permission_push": true,
+            "team_contributors_permission_admin": false,
+            "team_core_permission_push": true,
+            "team_core_permission_admin": true,
+            "master_branch_exists": true,
+            "master_branch_protection_up_to_date": -1,
+            "master_branch_protection_status_checks": -1,
+            "master_branch_protection_required_reviews": -1,
+            "master_branch_protection_require_codeowner_review": -1,
+            "master_branch_protection_require_non_stale_review": -1,
+            "master_branch_protection_enforce_admins": -1,
+            "master_restrict_push": -1,
+            "dev_branch_exists": true,
+            "dev_branch_protection_up_to_date": -1,
+            "dev_branch_protection_status_checks": -1,
+            "dev_branch_protection_required_reviews": -1,
+            "dev_branch_protection_require_codeowner_review": -1,
+            "dev_branch_protection_require_non_stale_review": -1,
+            "dev_branch_protection_enforce_admins": -1,
+            "dev_restrict_push": -1,
+            "TEMPLATE_branch_exists": true,
+            "TEMPLATE_branch_protection_up_to_date": -1,
+            "TEMPLATE_branch_protection_status_checks": -1,
+            "TEMPLATE_branch_protection_required_reviews": -1,
+            "TEMPLATE_branch_protection_require_codeowner_review": -1,
+            "TEMPLATE_branch_protection_require_non_stale_review": -1,
+            "TEMPLATE_branch_protection_enforce_admins": -1,
+            "TEMPLATE_restrict_push": -1,
+            "has_required_topics": false,
+            "open_pr_count": 0,
+            "repository_url": "https://github.com/nf-core/lsmquant",
+            "contributors": [
+                {
+                    "name": "CaroAMN",
+                    "count": 56,
+                    "avatar_url": "https://avatars.githubusercontent.com/u/64986570?v=4"
+                }
+            ],
+            "released_after_tools": false,
+            "head_sha": "e466eca6c1294431a5d85f90bed2938e6fc98f19",
+            "last_release_is_head": false,
+            "last_release_vs_default_compare_url": "https://github.com/nf-core/lsmquant/compare/e466eca6c1294431a5d85f90bed2938e6fc98f19...undefined",
+            "commits_to_dev": 30,
+            "is_DSL2": true,
+            "has_nf_test": true,
+            "has_nf_test_dev": true,
+            "master_nextflow_config_plugins": [
+                "nf-validation@1.1.3"
+            ],
+            "master_nextflow_config_manifest": {
+                "defaultBranch": null
+            },
+            "dev_nextflow_config_plugins": [
+                "nf-schema@2.3.0"
+            ],
+            "dev_nextflow_config_manifest": {
+                "defaultBranch": [
+                    "defaultBranch   = 'master'",
+                    "master"
+                ]
+            },
+            "releases": [
+                {
+                    "tag_name": "dev",
+                    "published_at": "2025-03-24T20:11:53Z",
+                    "tag_sha": "e466eca6c1294431a5d85f90bed2938e6fc98f19",
+                    "has_schema": true,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/usage.md"
+                    ],
+                    "components": {
+                        "modules": [
+                            "basicpy",
+                            "fastqc",
+                            "multiqc",
+                            "unzip"
+                        ],
+                        "subworkflows": [
+                            "utils_nextflow_pipeline",
+                            "utils_nfcore_pipeline",
+                            "utils_nfschema_plugin"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
             "id": 134368131,
             "node_id": "MDEwOlJlcG9zaXRvcnkxMzQzNjgxMzE=",
             "name": "mag",
