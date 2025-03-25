@@ -18,12 +18,17 @@ pipelines:
 
 # Introduction
 
-TBD
+The nf-core SIG Immunology aims to connect researchers and developers working on immunology-related pipelines within the nf-core community. While several pipelines relevant to immunology already exist, the community around them remains fragmented. This SIG seeks to bring together users and contributors to foster collaboration and knowledge exchange.
+Our goals include facilitating discussions on current nf-core immunology pipelines, identifying gaps in existing workflows, and defining requirements for new pipelines and tools. By creating a dedicated space for questions and idea-sharing, we hope to strengthen the nf-core immunology community and support the development of high-quality, reusable bioinformatics solutions.
+Contact: @Mark Polster & @Jonas Scheid
 
 # Activities
 
-TBD
+The SIG Immunology will host regular meetings to facilitate discussions on immunology-related nf-core pipelines and tools. Each session will feature a pre-selected topic and a presentation to encourage in-depth discussions. Community input is highly valued, and everyone is welcome to suggest topics and provide feedback.
+The first meeting will focus on gathering insights from the community to identify key challenges, define future discussion topics, and shape the direction of the SIG. Through these activities, we aim to foster collaboration and ensure that the SIG aligns with the needs of immunology researchers using nf-core.
 
 # How to join
 
-Join the [nf-core Slack](/join#slack) and find us in the [#immunology](https://nfcore.slack.com/archives/C08HRS8DKNX) channel
+Join the [nf-core Slack](/join#slack), subscribe to the [Google Calendar](https://calendar.google.com/calendar/u/0?cid=YTRhN2Y5NWI5NTQxZDJhNDY3YmZmOTYxZTNiMGFhYmZhY2Q2N2M5Njc5OWE4NjAyMTlkY2M0ODcyMzI0ZGQwY0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t), and find us in the [#immunology](https://nfcore.slack.com/archives/C08HRS8DKNX) channel!
+
+![sig-meme](https://github.com/user-attachments/assets/1b80c267-806d-4a69-b722-5ee835bf67fd)
