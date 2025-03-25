@@ -134,7 +134,7 @@ As you can see the `meta map` is a quite flexible way for storing meta data in c
 
 ### Multimaping
 
-It is possible with `multiMap` to split a channel in to and to call them separately afterwards.
+It is possible with `multiMap` to split a channel into two and to call them separately afterwards.
 
 ```groovy
 ch_input = reads.combine(db).multiMap{ it ->
