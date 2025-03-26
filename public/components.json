@@ -10919,6 +10919,10 @@
       },
       "pipelines": [
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "references",
           "version": "0.1"
         },
@@ -16007,7 +16011,13 @@
         "authors": [
           "@davidecarlson"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "sammyseq",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "bedtools_bamtobed",
@@ -40079,6 +40089,10 @@
       },
       "pipelines": [
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "references",
           "version": "0.1"
         },
@@ -40567,6 +40581,10 @@
         {
           "name": "hic",
           "version": "2.1.0"
+        },
+        {
+          "name": "lncpipe",
+          "version": "dev"
         },
         {
           "name": "nascent",
@@ -46297,7 +46315,12 @@
               "fasta": {
                 "type": "file",
                 "description": "Input fasta file containing query sequences",
-                "pattern": "*.{fa,fasta,fa.gz,fasta.gz}"
+                "pattern": "*.{fa,fasta,fa.gz,fasta.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -46312,7 +46335,8 @@
               "db": {
                 "type": "file",
                 "description": "File of the indexed DIAMOND database",
-                "pattern": "*.dmnd"
+                "pattern": "*.dmnd",
+                "ontologies": []
               }
             }
           ],
@@ -46340,15 +46364,19 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
-                  "pattern": "*.{blast,blast.gz}"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
                 "*.{blast,blast.gz}": {
-                  "type": "map",
+                  "type": "file",
                   "description": "File containing blastp hits",
-                  "pattern": "*.{blast,blast.gz}"
+                  "pattern": "*.{blast,blast.gz}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3836"
+                    }
+                  ]
                 }
               }
             ]
@@ -46358,15 +46386,19 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
-                  "pattern": "*.{xml,xml.gz}"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
                 "*.{xml,xml.gz}": {
-                  "type": "map",
+                  "type": "file",
                   "description": "File containing blastp hits",
-                  "pattern": "*.{xml,xml.gz}"
+                  "pattern": "*.{xml,xml.gz}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2332"
+                    }
+                  ]
                 }
               }
             ]
@@ -46376,15 +46408,19 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
-                  "pattern": "*.{txt,txt.gz}"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
                 "*.{txt,txt.gz}": {
-                  "type": "map",
+                  "type": "file",
                   "description": "File containing hits in tabular BLAST format.",
-                  "pattern": "*.{txt,txt.gz}"
+                  "pattern": "*.{txt,txt.gz}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1333"
+                    }
+                  ]
                 }
               }
             ]
@@ -46394,15 +46430,15 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
-                  "pattern": "*.{daa,daa.gz}"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
                 "*.{daa,daa.gz}": {
-                  "type": "map",
+                  "type": "file",
                   "description": "File containing hits DAA format",
-                  "pattern": "*.{daa,daa.gz}"
+                  "pattern": "*.{daa,daa.gz}",
+                  "ontologies": []
                 }
               }
             ]
@@ -46412,15 +46448,19 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
-                  "pattern": "*.{sam,sam.gz}"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
                 "*.{sam,sam.gz}": {
-                  "type": "map",
+                  "type": "file",
                   "description": "File containing aligned reads in SAM format",
-                  "pattern": "*.{sam,sam.gz}"
+                  "pattern": "*.{sam,sam.gz}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2573"
+                    }
+                  ]
                 }
               }
             ]
@@ -46430,15 +46470,19 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
-                  "pattern": "*.{tsv,tsv.gz}"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
                 "*.{tsv,tsv.gz}": {
-                  "type": "map",
+                  "type": "file",
                   "description": "Tab separated file containing taxonomic classification of hits",
-                  "pattern": "*.{tsv,tsv.gz}"
+                  "pattern": "*.{tsv,tsv.gz}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
                 }
               }
             ]
@@ -46448,15 +46492,15 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
-                  "pattern": "*.{paf,paf.gz}"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
                 "*.{paf,paf.gz}": {
-                  "type": "map",
+                  "type": "file",
                   "description": "File containing aligned reads in pairwise mapping format format",
-                  "pattern": "*.{paf,paf.gz}"
+                  "pattern": "*.{paf,paf.gz}",
+                  "ontologies": []
                 }
               }
             ]
@@ -46467,7 +46511,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -46524,7 +46573,12 @@
               "fasta": {
                 "type": "file",
                 "description": "Input fasta file containing query sequences",
-                "pattern": "*.{fa,fasta,fa.gz,fasta.gz}"
+                "pattern": "*.{fa,fasta,fa.gz,fasta.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -46539,7 +46593,8 @@
               "db": {
                 "type": "file",
                 "description": "File of the indexed DIAMOND database",
-                "pattern": "*.dmnd"
+                "pattern": "*.dmnd",
+                "ontologies": []
               }
             }
           ],
@@ -46574,7 +46629,12 @@
                 "*.blast": {
                   "type": "file",
                   "description": "File containing blastp hits",
-                  "pattern": "*.{blast}"
+                  "pattern": "*.{blast}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3836"
+                    }
+                  ]
                 }
               }
             ]
@@ -46591,7 +46651,12 @@
                 "*.xml": {
                   "type": "file",
                   "description": "File containing blastp hits",
-                  "pattern": "*.{xml}"
+                  "pattern": "*.{xml}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2332"
+                    }
+                  ]
                 }
               }
             ]
@@ -46608,7 +46673,8 @@
                 "*.txt": {
                   "type": "file",
                   "description": "File containing hits in tabular BLAST format.",
-                  "pattern": "*.{txt}"
+                  "pattern": "*.{txt}",
+                  "ontologies": []
                 }
               }
             ]
@@ -46625,7 +46691,8 @@
                 "*.daa": {
                   "type": "file",
                   "description": "File containing hits DAA format",
-                  "pattern": "*.{daa}"
+                  "pattern": "*.{daa}",
+                  "ontologies": []
                 }
               }
             ]
@@ -46642,7 +46709,12 @@
                 "*.sam": {
                   "type": "file",
                   "description": "File containing aligned reads in SAM format",
-                  "pattern": "*.{sam}"
+                  "pattern": "*.{sam}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2573"
+                    }
+                  ]
                 }
               }
             ]
@@ -46659,7 +46731,12 @@
                 "*.tsv": {
                   "type": "file",
                   "description": "Tab separated file containing taxonomic classification of hits",
-                  "pattern": "*.{tsv}"
+                  "pattern": "*.{tsv}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
                 }
               }
             ]
@@ -46676,7 +46753,8 @@
                 "*.paf": {
                   "type": "file",
                   "description": "File containing aligned reads in pairwise mapping format format",
-                  "pattern": "*.{paf}"
+                  "pattern": "*.{paf}",
+                  "ontologies": []
                 }
               }
             ]
@@ -46693,7 +46771,8 @@
                 "*.log": {
                   "type": "file",
                   "description": "Log file containing stdout information",
-                  "pattern": "*.{log}"
+                  "pattern": "*.{log}",
+                  "ontologies": []
                 }
               }
             ]
@@ -46704,7 +46783,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -46769,7 +46853,12 @@
               "db": {
                 "type": "file",
                 "description": "The input sequence database. Supported formats are FASTA and DIAMOND (.dmnd) format.",
-                "pattern": "*.{dmnd,fa,faa,fasta}(.gz)"
+                "pattern": "*.{dmnd,fa,faa,fasta}(.gz)",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ]
@@ -46787,7 +46876,8 @@
                 "*.tsv": {
                   "type": "file",
                   "description": "a 2-column tabular file with the representative accession as the first column and the member sequence accession as the second column",
-                  "pattern": "*.tsv"
+                  "pattern": "*.tsv",
+                  "ontologies": []
                 }
               }
             ]
@@ -46798,7 +46888,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -46852,7 +46947,12 @@
               "fasta": {
                 "type": "file",
                 "description": "Input fasta file",
-                "pattern": "*.{fa,fasta,fa.gz,fasta.gz}"
+                "pattern": "*.{fa,fasta,fa.gz,fasta.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -46861,7 +46961,8 @@
               "taxonmap": {
                 "type": "file",
                 "description": "Optional mapping file of NCBI protein accession numbers to taxon ids (gzip compressed), required for taxonomy functionality.",
-                "pattern": "*.gz"
+                "pattern": "*.gz",
+                "ontologies": []
               }
             }
           ],
@@ -46870,7 +46971,8 @@
               "taxonnodes": {
                 "type": "file",
                 "description": "Optional NCBI taxonomy nodes.dmp file, required for taxonomy functionality.",
-                "pattern": "*.dmp"
+                "pattern": "*.dmp",
+                "ontologies": []
               }
             }
           ],
@@ -46879,7 +46981,8 @@
               "taxonnames": {
                 "type": "file",
                 "description": "Optional NCBI taxonomy names.dmp file, required for taxonomy functionality.",
-                "pattern": "*.dmp"
+                "pattern": "*.dmp",
+                "ontologies": []
               }
             }
           ]
@@ -46897,7 +47000,8 @@
                 "*.dmnd": {
                   "type": "file",
                   "description": "File of the indexed DIAMOND database",
-                  "pattern": "*.dmnd"
+                  "pattern": "*.dmnd",
+                  "ontologies": []
                 }
               }
             ]
@@ -46908,7 +47012,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -54415,10 +54524,6 @@
         },
         {
           "name": "phageannotator",
-          "version": "dev"
-        },
-        {
-          "name": "proteinannotator",
           "version": "dev"
         },
         {
@@ -73806,6 +73911,10 @@
           "version": "1.0.0"
         },
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "nascent",
           "version": "2.2.0"
         },
@@ -79803,6 +79912,10 @@
           "version": "2.0.0"
         },
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "mag",
           "version": "3.3.1"
         },
@@ -83203,6 +83316,10 @@
           "version": "dev"
         },
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "references",
           "version": "0.1"
         },
@@ -83302,6 +83419,10 @@
       "pipelines": [
         {
           "name": "circrna",
+          "version": "dev"
+        },
+        {
+          "name": "lncpipe",
           "version": "dev"
         },
         {
@@ -88529,7 +88650,12 @@
               "fasta": {
                 "type": "file",
                 "description": "Input fasta file containing the amino acid or dna query sequences",
-                "pattern": "*.{fa,fasta,fa.gz,fasta.gz}"
+                "pattern": "*.{fa,fasta,fa.gz,fasta.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -88549,14 +88675,24 @@
                 "meta": {
                   "type": "file",
                   "description": "Tab separated file containing with detailed hits",
-                  "pattern": "*.{tsv}"
+                  "pattern": "*.{tsv}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
                 }
               },
               {
                 "*.tsv": {
                   "type": "file",
                   "description": "Tab separated file containing with detailed hits",
-                  "pattern": "*.{tsv}"
+                  "pattern": "*.{tsv}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
                 }
               }
             ]
@@ -88567,14 +88703,24 @@
                 "meta": {
                   "type": "file",
                   "description": "XML file containing with detailed hits",
-                  "pattern": "*.{xml}"
+                  "pattern": "*.{xml}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2332"
+                    }
+                  ]
                 }
               },
               {
                 "*.xml": {
                   "type": "file",
                   "description": "XML file containing with detailed hits",
-                  "pattern": "*.{xml}"
+                  "pattern": "*.{xml}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2332"
+                    }
+                  ]
                 }
               }
             ]
@@ -88585,14 +88731,24 @@
                 "meta": {
                   "type": "file",
                   "description": "GFF3 file containing with detailed hits",
-                  "pattern": "*.{gff3}"
+                  "pattern": "*.{gff3}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1975"
+                    }
+                  ]
                 }
               },
               {
                 "*.gff3": {
                   "type": "file",
                   "description": "GFF3 file containing with detailed hits",
-                  "pattern": "*.{gff3}"
+                  "pattern": "*.{gff3}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1975"
+                    }
+                  ]
                 }
               }
             ]
@@ -88603,14 +88759,24 @@
                 "meta": {
                   "type": "file",
                   "description": "JSON file containing with detailed hits",
-                  "pattern": "*.{json}"
+                  "pattern": "*.{json}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
                 }
               },
               {
                 "*.json": {
                   "type": "file",
                   "description": "JSON file containing with detailed hits",
-                  "pattern": "*.{json}"
+                  "pattern": "*.{json}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
                 }
               }
             ]
@@ -88621,7 +88787,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -92587,6 +92758,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "lncpipe",
+          "version": "dev"
+        },
         {
           "name": "references",
           "version": "0.1"
@@ -131289,18 +131464,6 @@
                   }
                 ]
               }
-            },
-            {
-              "bai": {
-                "type": "file",
-                "description": "BAM indexing file",
-                "pattern": "*.bai",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3327"
-                  }
-                ]
-              }
             }
           ],
           [
@@ -146392,6 +146555,10 @@
       },
       "pipelines": [
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "references",
           "version": "0.1"
         },
@@ -148538,6 +148705,10 @@
         {
           "name": "denovotranscript",
           "version": "1.2.0"
+        },
+        {
+          "name": "lncpipe",
+          "version": "dev"
         },
         {
           "name": "references",
@@ -168474,6 +168645,10 @@
           "version": "1.2.0"
         },
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "references",
           "version": "0.1"
         },
@@ -171450,6 +171625,10 @@
         },
         {
           "name": "evexplorer",
+          "version": "dev"
+        },
+        {
+          "name": "lncpipe",
           "version": "dev"
         },
         {
@@ -184769,6 +184948,10 @@
           "version": "1.1.0"
         },
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "mag",
           "version": "3.3.1"
         },
@@ -185064,6 +185247,10 @@
         {
           "name": "scrnaseq",
           "version": "4.0.0"
+        },
+        {
+          "name": "spatialxe",
+          "version": "dev"
         }
       ]
     },
@@ -185475,6 +185662,101 @@
         ],
         "maintainers": [
           "@nvnieuwk"
+        ]
+      }
+    },
+    {
+      "name": "variancepartition_dream",
+      "path": "modules/nf-core/variancepartition/dream/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "variancepartition_dream",
+        "description": "Runs a differential expression analysis with dream() from variancePartition R package",
+        "keywords": [
+          "rnaseq",
+          "dream",
+          "variancepartition"
+        ],
+        "tools": [
+          {
+            "dream": {
+              "description": "Differential expression for repeated measures",
+              "homepage": "https://www.bioconductor.org/packages/release/bioc/html/variancePartition.html",
+              "documentation": "https://www.bioconductor.org/packages/release/bioc/manuals/variancePartition/man/variancePartition.pdf",
+              "tool_dev_url": "https://github.com/DiseaseNeuroGenomics/variancePartition",
+              "doi": "10.1093/bioinformatics/btaa687",
+              "licence": [
+                "GPL >=2"
+              ],
+              "identifier": "biotools:dream_database"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing run and contrast information. This can be used at the\nworkflow level to pass optional parameters to the module, e.g.\n[\n  contrast_id: 'treatment_mCherry_hND6',\n  contrast_variable: 'treatment',\n  contrast_reference: 'mCherry',\n  contrast_target: 'hND6',\n  formula: '~ treatment + (1 | sample_number)'\n]\nPlus mandatory `id` and other fields created along the run.\n"
+              }
+            },
+            {
+              "samplesheet": {
+                "type": "file",
+                "description": "Sample sheet file containing sample metadata.",
+                "ontologies": []
+              }
+            },
+            {
+              "counts": {
+                "type": "file",
+                "description": "Raw TSV or CSV format expression matrix with count data by row and samples\nby column\n",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "results": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "groovy array with metadata information for the contrast generated\n"
+                }
+              },
+              {
+                "*.dream.results.tsv": {
+                  "type": "file",
+                  "description": "TSV-format table of differential expression information as output by Dream\n",
+                  "pattern": "*.dream.results.tsv",
+                  "ontologies": []
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml",
+                  "ontologies": []
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@alanmmobbs03",
+          "@nschcolnicov",
+          "@atrigila"
+        ],
+        "maintainers": [
+          "@alanmmobbs03",
+          "@nschcolnicov",
+          "@atrigila"
         ]
       }
     },
@@ -193904,7 +194186,8 @@
           "limma/differential",
           "deseq2/differential",
           "propr/propd",
-          "custom/filterdifferentialtable"
+          "custom/filterdifferentialtable",
+          "variancepartition/dream"
         ],
         "input": [
           {
