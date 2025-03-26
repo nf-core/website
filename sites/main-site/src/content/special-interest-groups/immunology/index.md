@@ -33,7 +33,5 @@ Join the [nf-core Slack](/join#slack), subscribe to the [Google Calendar](https:
 
 <div style="display: flex; align-items: flex-start; gap: 22px;">
   <img src="https://github.com/user-attachments/assets/927195b3-4911-4f80-a23a-5fed0e23a8f7" alt="sig-meme" width="500" height="500"/>
-  <img src="https://github.com/user-attachments/assets/88c8b083-51b4-43b8-9952-40f8d15ca156" alt="Screenshot 2025-03-26 at 11 04 44" width="500" height="500"/>
+  <img src="https://github.com/user-attachments/assets/88c8b083-51b4-43b8-9952-40f8d15ca156" alt="sig-meme2" width="500" height="500"/>
 </div>
-
-
