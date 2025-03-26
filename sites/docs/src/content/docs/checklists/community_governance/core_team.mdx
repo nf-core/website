@@ -21,12 +21,15 @@ Instructions for [nf-core pipeline](https://github.com/nf-core/proposals) approv
     - One member of the core team and one member of the maintainers team.
 5. [ ] Core: Verify that the pipeline name follows the [pipeline naming guidelines](/docs/guidelines/pipelines/requirements/workflow_name).
 6. [ ] Core: Create a slack channel with approved pipeline name.
-7. [ ] Core: Add the main developers to [#pipeline-maintainers](https://nfcore.slack.com/archives/C04QR0T3G3H) and [#release-review-trading](https://nfcore.slack.com/archives/C08K66XCZSL) channel.
-8. [ ] Core/Dev: Create the git repository using `nf-core pipelines create` and push it to GitHub.
-9. [ ] Core/Dev: Transfer the repository to nf-core GitHub organisation and delete the repository on local the machine/user account.
-10. [ ] Core/Dev: Sync the nf-co.re pipelines page by triggering the [GitHub action](https://github.com/nf-core/website/actions/workflows/build-json-files.yml)
+    - [ ] Inform the new developer of the [next steps](https://nf-co.re/docs/tutorials/adding_a_pipeline/creating_a_pipeline#create-the-pipeline)
+7. [ ] Core: Add the main developers to
+    - [ ] [#pipeline-maintainers](https://nfcore.slack.com/archives/C04QR0T3G3H)
+    - [ ] [#release-review-trading](https://nfcore.slack.com/archives/C08K66XCZSL) channel.
+8. [ ] Core: Create a branch with the pipeline name in the [nf-core/test-datasets](https://github.com/nf-core/test-datasets) repository.
+9. [ ] Core/Dev: Create the git repository using `nf-core pipelines create` and push it to GitHub.
+10. [ ] Core/Dev: Once first release (mostly) ready: transfer the repository to nf-core GitHub organisation and delete the repository on local the machine/user account.
+11. [ ] Core/Dev: Sync the nf-co.re pipelines page by triggering the [GitHub action](https://github.com/nf-core/website/actions/workflows/build-json-files.yml)
     - Website repo > Actions > Build json files and md-cache > Run workflow > From main.
-11. [ ] Core: Create a branch with the pipeline name in the [nf-core/test-datasets](https://github.com/nf-core/test-datasets) repository.
 
 ## Uploading test data to s3 bucket
 
