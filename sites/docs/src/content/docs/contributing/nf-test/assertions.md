@@ -354,13 +354,10 @@ _Motivation_: I want to snapshot all files with stable md5sums, but only snapsho
 
 ```bash
 then {
-    def allFiles = file(process.out.db.get(0).get(1)).listFiles().sort()
-    // Defile all files that have unstable content (ie: timestamp, non-deterministic or any other variable content)
-    def unstableNames = ["database.log", "database.fastaid2LCAtaxid", "database.taxids_with_multiple_offspring"]
-    // Filter out the unstable files
-    def stableFiles = allFiles.grep { file -> !unstableNames.contains(file.name) }
-    // Collect the stable file names
-    def stableNames = allFiles.grep { file -> unstableNames.contains(file.name) }.collect { file -> file.name }
+    def stablefiles = []
+    file(process.out.db.get(0).get(1)).eachFileRecurse{ file -> if (!file.isDirectory() && !["database.log", "database.fastaid2LCAtaxid", "database.taxids_with_multiple_offspring"].find {file.toString().endsWith(it)}) {stablefiles.add(file)} }
+    def unstablefiles = []
+    file(process.out.db.get(0).get(1)).eachFileRecurse{ file -> if (["database.log", "database.fastaid2LCAtaxid", "database.taxids_with_multiple_offspring"].find {file.toString().endsWith(it)}) {unstablefiles.add(file.getName().toString())} }
 
     assertAll(
         { assert process.success },
