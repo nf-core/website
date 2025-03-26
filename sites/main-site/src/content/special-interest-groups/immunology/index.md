@@ -20,7 +20,7 @@ pipelines:
 
 The nf-core Special Interest Group Immunology aims to connect researchers and developers working on immunology-related pipelines within the nf-core community. While several pipelines relevant to immunology already exist, the community around them remains fragmented. This SIG seeks to bring together users and contributors to foster collaboration and knowledge exchange.
 Our goals include facilitating discussions on current nf-core immunology pipelines, identifying gaps in existing workflows, and defining requirements for new pipelines and tools. By creating a dedicated space for questions and idea-sharing, we hope to strengthen the nf-core immunology community and support the development of high-quality, reusable bioinformatics solutions.
-Contact: @Mark Polster & @Jonas Scheid
+Contact: [Mark Polster](https://nfcore.slack.com/team/U05SAA3HHL3) & [Jonas Scheid](https://nfcore.slack.com/team/U03DN4C1JQ5)
 
 # Activities
 
