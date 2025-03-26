@@ -31,7 +31,7 @@ The first meeting will focus on gathering insights from the community to identif
 
 Join the [nf-core Slack](/join#slack), subscribe to the [Google Calendar](https://calendar.google.com/calendar/u/0?cid=YTRhN2Y5NWI5NTQxZDJhNDY3YmZmOTYxZTNiMGFhYmZhY2Q2N2M5Njc5OWE4NjAyMTlkY2M0ODcyMzI0ZGQwY0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t), and find us in the [#immunology](https://nfcore.slack.com/archives/C08HRS8DKNX) channel!
 
-<div style="display: flex; align-items: flex-start; gap: 22px;">
-  <img src="https://github.com/user-attachments/assets/927195b3-4911-4f80-a23a-5fed0e23a8f7" alt="sig-meme" width="500" height="500"/>
-  <img src="https://github.com/user-attachments/assets/88c8b083-51b4-43b8-9952-40f8d15ca156" alt="sig-meme2" width="500" height="500"/>
+<div style="display: flex; align-items: flex-start; gap: 30px;">
+  <img src="https://github.com/user-attachments/assets/927195b3-4911-4f80-a23a-5fed0e23a8f7" alt="sig-meme" width="200" height="200"/>
+  <img src="https://github.com/user-attachments/assets/88c8b083-51b4-43b8-9952-40f8d15ca156" alt="sig-meme2" width="200" height="200"/>
 </div>
