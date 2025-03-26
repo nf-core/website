@@ -17,9 +17,9 @@ This gives you a form to fill in with key information about the pipeline you wan
 The proposal will be discussed and checked for uniqueness (not too much overlap with any existing pipelines)
 and added to our [new pipeline tracking board](https://github.com/orgs/nf-core/projects/104) on GitHub.
 
-Once accepted, someone from the core team will create a Slack channel for your pipeline and you can get started on the next steps.
+**Once accepted**, someone from the core team will create a Slack channel for your pipeline and you can get started on the next steps.
 
-You should also at this point additionally join the [#pipeline-maintainers](https://nfcore.slack.com/channels/pipeline-maintainers) channel for major change announcements as well as general discussion on pipeline development related topics.
+You should also at this point additionally join the [#pipeline-maintainers](https://nfcore.slack.com/channels/pipeline-maintainers) channel for major change announcements as well as general discussion on pipeline development related topics, and [#release-review-trading](https://nfcore.slack.com/channels/release-review-trading) to help you get your two reviews for you eventual first release.
 
 ## Create the pipeline
 
