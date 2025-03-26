@@ -137048,6 +137048,144 @@
       }
     },
     {
+      "name": "polypolish_polish",
+      "path": "modules/nf-core/polypolish/polish/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "polypolish_polish",
+        "description": "Polishing genome assemblies with short reads.",
+        "keywords": [
+          "assembly polishing",
+          "genome polishing",
+          "ont"
+        ],
+        "tools": [
+          {
+            "polypolish": {
+              "description": "Polishing genome assemblies with short reads.",
+              "homepage": "https://github.com/rrwick/Polypolish",
+              "documentation": "https://github.com/rrwick/Polypolish/wiki",
+              "tool_dev_url": "https://github.com/rrwick/Polypolish",
+              "doi": "10.1099/mgen.0.001254",
+              "licence": [
+                "GPL3"
+              ],
+              "identifier": "biotools:polypolish"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "FASTA file with draft assembly of ONT data",
+                "pattern": "*.{fasta,fna,fa,fas}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "sam": {
+                "type": "file",
+                "description": "List of SAM files of short reads mapped against the FASTA input file",
+                "pattern": "*.sam",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2573"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "save_debug": {
+                "type": "boolean",
+                "description": "Turn debug output on",
+                "pattern": "true|false"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "fasta": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.fasta": {
+                  "type": "file",
+                  "description": "FASTA file with polished draft assembly",
+                  "pattern": "*.{fasta,fna,fa,fas}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          },
+          {
+            "debug": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.txt": {
+                  "type": "file",
+                  "description": "File with debug base information",
+                  "pattern": "*.txt"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@ktrappe"
+        ],
+        "maintainers": [
+          "@ktrappe"
+        ]
+      }
+    },
+    {
       "name": "poolsnp",
       "path": "modules/nf-core/poolsnp/meta.yml",
       "type": "module",
@@ -162093,6 +162231,87 @@
       }
     },
     {
+      "name": "seqtk_comp",
+      "path": "modules/nf-core/seqtk/comp/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "seqtk_comp",
+        "description": "Computes sequence statistics from FASTQ or FASTA files",
+        "keywords": [
+          "seqtk",
+          "comp",
+          "fastx"
+        ],
+        "tools": [
+          {
+            "seqtk_comp": {
+              "description": "Seqtk is a fast and lightweight tool for processing sequences in the FASTA or FASTQ format. \nThe seqtk comp command computes base composition, sequence length, and GC content for quality control.\n",
+              "homepage": "https://github.com/lh3/seqtk",
+              "documentation": "https://docs.csc.fi/apps/seqtk/",
+              "tool_dev_url": "https://github.com/lh3/seqtk",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:seqtk"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+              }
+            },
+            {
+              "fastx": {
+                "type": "file",
+                "description": "A FASTQ or FASTA file",
+                "pattern": "*.{fastq,fq,fasta,fa,fas,fna}{,.gz}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "seqtk_stats": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1', single_end:false ]\n"
+                }
+              },
+              {
+                "*.seqtk_stats.tsv": {
+                  "type": "file",
+                  "description": "The output TSV file summarizing sequence statistics with columns for sequence name, length, counts of A, C, G, T, and N bases, and GC content percentage.\"",
+                  "pattern": "*.seqtk_stats.tsv"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@sainsachiko"
+        ],
+        "maintainers": [
+          "@sainsachiko"
+        ]
+      }
+    },
+    {
       "name": "seqtk_cutn",
       "path": "modules/nf-core/seqtk/cutn/meta.yml",
       "type": "module",
@@ -167739,7 +167958,9 @@
           "@matthdsm"
         ],
         "maintainers": [
-          "@matthdsm"
+          "@matthdsm",
+          "@delfiterradas",
+          "@sofiromano"
         ]
       },
       "pipelines": [
