@@ -25,4 +25,4 @@ TBD
 
 # How to join
 
-Join the [nf-core Slack](/join#slack) and find us in the [#corexcore](https://nfcore.slack.com/archives/C08J1R63EUQ) channel
+Join the [nf-core Slack](/join#slack) and find us in the [#core-facilities](https://nfcore.slack.com/archives/C08J1R63EUQ) channel

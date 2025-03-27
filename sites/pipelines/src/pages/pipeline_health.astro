@@ -1,6 +1,7 @@
 ---
 import PageLayout from "@layouts/PageLayout.astro";
 import { remote_workflows as pipelines } from "@public/pipelines.json";
+import GitHubActionTrigger from "@components/GitHubActionTrigger.svelte";
 
 // sort pipelines by name
 pipelines.sort((a, b) => a.name.localeCompare(b.name));
@@ -206,29 +207,32 @@ pipelines.sort((a, b) => {
                         );
                         return (
                             <tr class:list={[{ archived: pipeline.archived, collapse: pipeline.archived }]}>
-                                <td class="text-nowrap">
+                                <td class="text-nowrap d-flex align-items-center justify-content-between">
                                     {pipeline.name}
-                                    {pipeline.archived && (
-                                        <i
-                                            class="fa-solid fa-xs fa-fw fa-archive text-info"
-                                            title="archived"
-                                            data-bs-toggle="tooltip"
-                                        />
-                                    )}
-                                    {pipeline.releases?.length > 1 && (
-                                        <i
-                                            class="fa-solid fa-xs fa-fw fa-check text-success"
-                                            title="released"
-                                            data-bs-toggle="tooltip"
-                                        />
-                                    )}
-                                    {pipeline.releases?.length === 1 && !pipeline.archived && (
-                                        <i
-                                            class="fa-solid fa-xs fa-fw fa-wrench text-warning"
-                                            title="under development"
-                                            data-bs-toggle="tooltip"
-                                        />
-                                    )}
+                                    <span class="d-flex align-items-center">
+                                        {pipeline.archived && (
+                                            <i
+                                                class="fa-solid fa-xs fa-fw fa-archive text-info"
+                                                title="archived"
+                                                data-bs-toggle="tooltip"
+                                            />
+                                        )}
+                                        {pipeline.releases?.length > 1 && (
+                                            <i
+                                                class="fa-solid fa-xs fa-fw fa-check text-success"
+                                                title="released"
+                                                data-bs-toggle="tooltip"
+                                            />
+                                        )}
+                                        {pipeline.releases?.length === 1 && !pipeline.archived && (
+                                            <i
+                                                class="fa-solid fa-xs fa-fw fa-wrench text-warning"
+                                                title="under development"
+                                                data-bs-toggle="tooltip"
+                                            />
+                                        )}
+                                        {/* <GitHubActionTrigger client:idle pipelineName={pipeline.name} /> */}
+                                    </span>
                                 </td>
                                 {/* Released */}
                                 {getCell(
@@ -533,6 +537,9 @@ pipelines.sort((a, b) => {
                 }
             </tbody>
         </table>
+        <span class="text-muted archived show">
+            and {pipelines.filter((pipeline) => pipeline.archived).length} archived pipelines
+        </span>
     </div>
 
     <div class="btn-row">
