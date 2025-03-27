@@ -330,7 +330,7 @@
                 }
               },
               {
-                "${prefix}.summary_matches.txt": {
+                "*.summary_matches.txt": {
                   "type": "file",
                   "description": "Tab-delimited file, with a row per sequence, and columns representing functional drug classes",
                   "pattern": "*.summary_matches.txt"
@@ -348,7 +348,7 @@
                 }
               },
               {
-                "${prefix}.summary_partials.txt": {
+                "*.summary_partials.txt": {
                   "type": "file",
                   "description": "Tab-delimited file, with a row per sequence, and columns representing partial hits to functional drug classes",
                   "pattern": "*.summary_partials.txt"
@@ -366,7 +366,7 @@
                 }
               },
               {
-                "${prefix}.summary_virulence.txt": {
+                "*.summary_virulence.txt": {
                   "type": "string",
                   "description": "Tab-delimited file, with a row per sequence, and columns representing AMRFinderPlus virulence gene classification",
                   "pattern": "*.summary_virulence.txt"
@@ -384,7 +384,7 @@
                 }
               },
               {
-                "${prefix}.amrfinder.out": {
+                "*.amrfinder.out": {
                   "type": "string",
                   "description": "raw output from AMRFinder plus (per sequence)",
                   "pattern": "*.amrfinder.txt"
@@ -402,7 +402,7 @@
                 }
               },
               {
-                "${prefix}.abritamr.txt": {
+                "*.abritamr.txt": {
                   "type": "string",
                   "description": "Tab-delimited file, combining non-empty summary files",
                   "pattern": "*.abritamr.txt"
@@ -426,7 +426,8 @@
           "@rpetit3"
         ],
         "maintainers": [
-          "@rpetit3"
+          "@rpetit3",
+          "@sateeshperi"
         ]
       }
     },
@@ -4425,6 +4426,121 @@
         ],
         "maintainers": [
           "@LeonHafner"
+        ]
+      }
+    },
+    {
+      "name": "annosine",
+      "path": "modules/nf-core/annosine/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "annosine",
+        "description": "Accelerating de novo SINE annotation in plant and animal genomes",
+        "keywords": [
+          "genomics",
+          "SINE",
+          "annotation",
+          "plant"
+        ],
+        "tools": [
+          {
+            "annosine": {
+              "description": "AnnoSINE_v2 - SINE Annotation Tool for Plant and Animal Genomes",
+              "homepage": "https://github.com/liaoherui/AnnoSINE_v2",
+              "documentation": "https://github.com/liaoherui/AnnoSINE_v2",
+              "tool_dev_url": "https://github.com/liaoherui/AnnoSINE_v2",
+              "doi": "10.1101/2024.03.01.582874",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:annosine"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Input genome assembly",
+                "pattern": "*.{fasta,fa,fsa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "mode": {
+                "type": "integer",
+                "description": "Choose the running mode of the program.\n1--Homology-based method;\n2--Structure-based method;\n3--Hybrid of homology-based and structure-based method.\n"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "log": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.log": {
+                  "type": "file",
+                  "description": "AnnoSINE_v2 log file\n",
+                  "pattern": "*.{log}",
+                  "ontologies": []
+                }
+              }
+            ]
+          },
+          {
+            "fa": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.fa": {
+                  "type": "map",
+                  "description": "Non-redundant SINE library with serial number\n",
+                  "pattern": "*.{fa}"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml",
+                  "ontologies": []
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@GallVp"
+        ],
+        "maintainers": [
+          "@GallVp"
         ]
       }
     },
@@ -31704,6 +31820,300 @@
       }
     },
     {
+      "name": "chewbbaca_allelecall",
+      "path": "modules/nf-core/chewbbaca/allelecall/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "chewbbaca_allelecall",
+        "description": "Determine the allelic profiles of a genome using a pre-defined schema",
+        "keywords": [
+          "cgMLST",
+          "WGS",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "chewbbaca": {
+              "description": "A complete suite for gene-by-gene schema creation and strain identification.",
+              "homepage": "https://chewbbaca.readthedocs.io/en/latest/index.html",
+              "documentation": "https://chewbbaca.readthedocs.io/en/latest/index.html",
+              "tool_dev_url": "https://github.com/B-UMMI/chewBBACA",
+              "doi": "10.1099/mgen.0.000166",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:chewbbaca"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test']`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "FASTA file(s) to be staged in a directory for allele calling",
+                "pattern": "*.{fasta,fa,fna}",
+                "stageAs": "input_dir/*",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing scheme information\ne.g. `[ id:'scheme' ]`\n"
+              }
+            },
+            {
+              "scheme": {
+                "type": "directory",
+                "description": "Directory containing the schema files",
+                "pattern": "*/"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "stats": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "*_results_statistics.tsv": {
+                  "type": "file",
+                  "description": "File contains the total number of exact matches",
+                  "pattern": "*_results_statistics.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "contigs_info": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "*_results_contigsInfo.tsv": {
+                  "type": "file",
+                  "description": "File contains the loci coordinates in the genomes analyzed",
+                  "pattern": "*_results_contigsInfo.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "alleles": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "*_results_alleles.tsv": {
+                  "type": "file",
+                  "description": "File contains the allelic profiles determined for the input sample",
+                  "pattern": "*_results_alleles.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "log": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "*_logging_info.txt": {
+                  "type": "file",
+                  "description": "File contains the log information",
+                  "pattern": "*_logging_info.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "paralogous_counts": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "*_paralogous_counts.tsv": {
+                  "type": "file",
+                  "description": "File contains the list of paralogous loci and the number of times those loci matched a CDS that was also similar to other loci in the schema",
+                  "pattern": "*_paralogous_counts.tsv",
+                  "ontologies": []
+                }
+              }
+            ]
+          },
+          {
+            "paralogous_loci": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "*_paralogous_loci.tsv": {
+                  "type": "file",
+                  "description": "File contains the sets of paralogous loci identified in the input sample",
+                  "pattern": "*_paralogous_loci.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "cds_coordinates": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "*_cds_coordinates.tsv": {
+                  "type": "file",
+                  "description": "File contains the coordinates of the CDS in the input sample",
+                  "pattern": "*_cds_coordinates.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "invalid_cds": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "*_invalid_cds.txt": {
+                  "type": "file",
+                  "description": "File contains the list of alleles predicted by Prodigal that were excluded",
+                  "pattern": "*_invalid_cds.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              },
+              {
+                "id_cds": {
+                  "type": "file",
+                  "description": "File contains the list of alleles predicted by Prodigal that were excluded",
+                  "pattern": "*_invalid_cds.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "loci_summary_stats": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "*_loci_summary_stats.tsv": {
+                  "type": "file",
+                  "description": "File contains summary statistics for each locus",
+                  "pattern": "*_loci_summary_stats.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@anwarMZ"
+        ]
+      }
+    },
+    {
       "name": "chewbbaca_createschema",
       "path": "modules/nf-core/chewbbaca/createschema/meta.yml",
       "type": "module",
@@ -39679,6 +40089,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "deepmodeloptim",
+          "version": "dev"
+        },
         {
           "name": "multiplesequencealign",
           "version": "1.1.0"
@@ -58632,9 +59046,16 @@
               }
             },
             {
+              "fastq_folder": {
+                "type": "file",
+                "description": "Directory containing fastq files that will be staged as 'input' folder",
+                "pattern": "*"
+              }
+            },
+            {
               "fastq_readstructure_pairs": {
                 "type": "map",
-                "description": "List of lists i.e. [[<fastq file name>, <read structure>, <absolute path to fastq directory>],...]"
+                "description": "List of lists i.e. [[<fastq file name>, <read structure>],...]"
               }
             }
           ]
@@ -83412,6 +83833,10 @@
           "version": "dev"
         },
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "rnadnavar",
           "version": "dev"
         },
@@ -105542,6 +105967,140 @@
           "version": "1.2.3"
         }
       ]
+    },
+    {
+      "name": "melon",
+      "path": "modules/nf-core/melon/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "melon",
+        "description": "Performs taxonomic profiling of long metagenomic reads against the melon database",
+        "keywords": [
+          "profile",
+          "metagenomics",
+          "melon",
+          "classification",
+          "long reads",
+          "nanopore"
+        ],
+        "tools": [
+          {
+            "melon": {
+              "description": "Melon: metagenomic long-read-based taxonomic identification and quantification using marker genes",
+              "homepage": "https://github.com/xinehc/melon",
+              "documentation": "https://github.com/xinehc/melon",
+              "tool_dev_url": "https://github.com/xinehc/melon",
+              "doi": "10.1186/s13059-024-03363-y",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:true ]`.\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "Quality-controlled long reads.",
+                "pattern": "*.{fa,fasta,fas,fna,fq,fastq}{,.gz}"
+              }
+            }
+          ],
+          [
+            {
+              "database": {
+                "type": "directory",
+                "description": "Melon database."
+              }
+            }
+          ],
+          [
+            {
+              "k2_db": {
+                "type": "directory",
+                "description": "Kraken2 database for pre-filtering of non-prokaryotic reads (needs to include at least human and fungi)."
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "tsv_output": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:true ]`.\n"
+                }
+              },
+              {
+                "${prefix}/*.tsv": {
+                  "type": "file",
+                  "description": "Melon output tsv file containing taxonomic profiling results.",
+                  "pattern": "*.tsv"
+                }
+              }
+            ]
+          },
+          {
+            "json_output": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:true ]`.\n"
+                }
+              },
+              {
+                "${prefix}/*.json": {
+                  "type": "file",
+                  "description": "Melon output json file containing per-read taxonomic classification results.",
+                  "pattern": "*.json"
+                }
+              }
+            ]
+          },
+          {
+            "log": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:true ]`.\n"
+                }
+              },
+              {
+                "${prefix}.log": {
+                  "type": "file",
+                  "description": "Log file containing Melon standard output.\n"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions.",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@eparisis"
+        ],
+        "maintainers": [
+          "@eparisis"
+        ]
+      }
     },
     {
       "name": "meningotype",
@@ -153236,6 +153795,10 @@
           "version": "1.0.0"
         },
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "magmap",
           "version": "dev"
         },
@@ -153516,6 +154079,10 @@
         {
           "name": "hicar",
           "version": "1.0.0"
+        },
+        {
+          "name": "lncpipe",
+          "version": "dev"
         },
         {
           "name": "magmap",
@@ -153880,6 +154447,10 @@
         {
           "name": "hicar",
           "version": "1.0.0"
+        },
+        {
+          "name": "lncpipe",
+          "version": "dev"
         },
         {
           "name": "magmap",
@@ -154975,6 +155546,10 @@
           "version": "1.0.0"
         },
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "magmap",
           "version": "dev"
         },
@@ -155212,6 +155787,10 @@
         {
           "name": "hicar",
           "version": "1.0.0"
+        },
+        {
+          "name": "lncpipe",
+          "version": "dev"
         },
         {
           "name": "magmap",
@@ -172937,6 +173516,10 @@
           "version": "dev"
         },
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "marsseq",
           "version": "1.0.3"
         },
@@ -174753,6 +175336,10 @@
       },
       "pipelines": [
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "nanoseq",
           "version": "3.1.0"
         },
@@ -174903,6 +175490,10 @@
       "pipelines": [
         {
           "name": "circrna",
+          "version": "dev"
+        },
+        {
+          "name": "lncpipe",
           "version": "dev"
         },
         {
@@ -185466,6 +186057,10 @@
       },
       "pipelines": [
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "riboseq",
           "version": "1.1.0"
         },
@@ -185645,6 +186240,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "lncpipe",
+          "version": "dev"
+        },
         {
           "name": "nascent",
           "version": "2.2.0"
@@ -186041,6 +186640,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "lncpipe",
+          "version": "dev"
+        },
         {
           "name": "riboseq",
           "version": "1.1.0"
@@ -196385,6 +196988,10 @@
       },
       "pipelines": [
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "riboseq",
           "version": "1.1.0"
         },
@@ -196482,6 +197089,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "lncpipe",
+          "version": "dev"
+        },
         {
           "name": "nascent",
           "version": "2.2.0"
@@ -196844,6 +197455,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "lncpipe",
+          "version": "dev"
+        },
         {
           "name": "riboseq",
           "version": "1.1.0"
@@ -197777,6 +198392,10 @@
           "version": "1.0.1"
         },
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "magmap",
           "version": "dev"
         },
@@ -198041,6 +198660,10 @@
         {
           "name": "genomeassembler",
           "version": "1.0.1"
+        },
+        {
+          "name": "lncpipe",
+          "version": "dev"
         },
         {
           "name": "magmap",
@@ -201664,6 +202287,10 @@
       },
       "pipelines": [
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "rnadnavar",
           "version": "dev"
         },
@@ -201988,6 +202615,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "lncpipe",
+          "version": "dev"
+        },
         {
           "name": "riboseq",
           "version": "1.1.0"
