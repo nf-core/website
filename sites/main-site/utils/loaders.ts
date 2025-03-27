@@ -177,7 +177,7 @@ class GitHubContentFetcher {
 
         // check if the file exists in the store
         const existingEntry = store.get(id);
-        if (existingEntry && existingEntry.data.repo === this.repo && existingEntry.data.ref === this.ref && !existingEntry.id.startsWith("configs/")) {
+        if (existingEntry && !existingEntry.id.startsWith("configs/")) {
             logger.info(`File ${filepath} unchanged, skipping`);
             return;
         }
@@ -196,7 +196,7 @@ class GitHubContentFetcher {
         };
 
         try {
-            logger.info(`Processing ${filepath}, content length: ${body.length}`);
+            logger.debug(`Processing ${filepath}, content length: ${body.length}`);
             // Pass the filepath as the third argument
             const { html, metadata } = await createProcessors(processors)[extension as keyof Processors](
                 body,
