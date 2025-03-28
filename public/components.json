@@ -330,7 +330,7 @@
                 }
               },
               {
-                "${prefix}.summary_matches.txt": {
+                "*.summary_matches.txt": {
                   "type": "file",
                   "description": "Tab-delimited file, with a row per sequence, and columns representing functional drug classes",
                   "pattern": "*.summary_matches.txt"
@@ -348,7 +348,7 @@
                 }
               },
               {
-                "${prefix}.summary_partials.txt": {
+                "*.summary_partials.txt": {
                   "type": "file",
                   "description": "Tab-delimited file, with a row per sequence, and columns representing partial hits to functional drug classes",
                   "pattern": "*.summary_partials.txt"
@@ -366,7 +366,7 @@
                 }
               },
               {
-                "${prefix}.summary_virulence.txt": {
+                "*.summary_virulence.txt": {
                   "type": "string",
                   "description": "Tab-delimited file, with a row per sequence, and columns representing AMRFinderPlus virulence gene classification",
                   "pattern": "*.summary_virulence.txt"
@@ -384,7 +384,7 @@
                 }
               },
               {
-                "${prefix}.amrfinder.out": {
+                "*.amrfinder.out": {
                   "type": "string",
                   "description": "raw output from AMRFinder plus (per sequence)",
                   "pattern": "*.amrfinder.txt"
@@ -402,7 +402,7 @@
                 }
               },
               {
-                "${prefix}.abritamr.txt": {
+                "*.abritamr.txt": {
                   "type": "string",
                   "description": "Tab-delimited file, combining non-empty summary files",
                   "pattern": "*.abritamr.txt"
@@ -426,7 +426,8 @@
           "@rpetit3"
         ],
         "maintainers": [
-          "@rpetit3"
+          "@rpetit3",
+          "@sateeshperi"
         ]
       }
     },
@@ -1829,6 +1830,102 @@
         ],
         "maintainers": [
           "@GallVp"
+        ]
+      }
+    },
+    {
+      "name": "agat_spkeeplongestisoform",
+      "path": "modules/nf-core/agat/spkeeplongestisoform/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "agat_spkeeplongestisoform",
+        "description": "Filters GFF records to keep only the longest isoform per gene",
+        "keywords": [
+          "gff",
+          "gtf",
+          "filter",
+          "isoform",
+          "gene",
+          "longest",
+          "agat"
+        ],
+        "tools": [
+          {
+            "agat": {
+              "description": "Another Gff Analysis Toolkit (AGAT). Suite of tools to handle gene annotations in any GTF/GFF format.",
+              "homepage": "https://agat.readthedocs.io/en/latest/",
+              "documentation": "https://agat.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/NBISweden/AGAT",
+              "doi": "10.5281/zenodo.3552717",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:AGAT"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "gxf": {
+                "type": "file",
+                "description": "Annotation file in GFF/GTF format",
+                "pattern": "*.{gff, gtf}"
+              }
+            }
+          ],
+          [
+            {
+              "config": {
+                "type": "file",
+                "description": "Input agat config file. By default AGAT takes as input agat_config.yaml file from the working directory if any,\notherwise it takes the original agat_config.yaml shipped with AGAT. To get the agat_config.yaml\nlocally type: \"agat config --expose\". The --config option gives you the possibility to use your\nown AGAT config file (located elsewhere or named differently).\n",
+                "pattern": "*.yaml"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "gff": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n",
+                  "pattern": "*.gff"
+                }
+              },
+              {
+                "${output}": {
+                  "type": "file",
+                  "description": "Output GFF3 file",
+                  "pattern": "*.longest.gff"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@Juke34"
+        ],
+        "maintainers": [
+          "@Juke34"
         ]
       }
     },
@@ -4329,6 +4426,121 @@
         ],
         "maintainers": [
           "@LeonHafner"
+        ]
+      }
+    },
+    {
+      "name": "annosine",
+      "path": "modules/nf-core/annosine/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "annosine",
+        "description": "Accelerating de novo SINE annotation in plant and animal genomes",
+        "keywords": [
+          "genomics",
+          "SINE",
+          "annotation",
+          "plant"
+        ],
+        "tools": [
+          {
+            "annosine": {
+              "description": "AnnoSINE_v2 - SINE Annotation Tool for Plant and Animal Genomes",
+              "homepage": "https://github.com/liaoherui/AnnoSINE_v2",
+              "documentation": "https://github.com/liaoherui/AnnoSINE_v2",
+              "tool_dev_url": "https://github.com/liaoherui/AnnoSINE_v2",
+              "doi": "10.1101/2024.03.01.582874",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:annosine"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Input genome assembly",
+                "pattern": "*.{fasta,fa,fsa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "mode": {
+                "type": "integer",
+                "description": "Choose the running mode of the program.\n1--Homology-based method;\n2--Structure-based method;\n3--Hybrid of homology-based and structure-based method.\n"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "log": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.log": {
+                  "type": "file",
+                  "description": "AnnoSINE_v2 log file\n",
+                  "pattern": "*.{log}",
+                  "ontologies": []
+                }
+              }
+            ]
+          },
+          {
+            "fa": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.fa": {
+                  "type": "map",
+                  "description": "Non-redundant SINE library with serial number\n",
+                  "pattern": "*.{fa}"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml",
+                  "ontologies": []
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@GallVp"
+        ],
+        "maintainers": [
+          "@GallVp"
         ]
       }
     },
@@ -17850,7 +18062,13 @@
         "maintainers": [
           "@itrujnara"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "deepmodeloptim",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "bedtools_slop",
@@ -23895,6 +24113,10 @@
           "version": "dev"
         },
         {
+          "name": "sammyseq",
+          "version": "dev"
+        },
+        {
           "name": "sarek",
           "version": "3.5.1"
         },
@@ -24568,6 +24790,10 @@
         },
         {
           "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
+          "name": "sammyseq",
           "version": "dev"
         },
         {
@@ -25916,6 +26142,10 @@
         },
         {
           "name": "genomeannotator",
+          "version": "dev"
+        },
+        {
+          "name": "lncpipe",
           "version": "dev"
         },
         {
@@ -31596,6 +31826,300 @@
       }
     },
     {
+      "name": "chewbbaca_allelecall",
+      "path": "modules/nf-core/chewbbaca/allelecall/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "chewbbaca_allelecall",
+        "description": "Determine the allelic profiles of a genome using a pre-defined schema",
+        "keywords": [
+          "cgMLST",
+          "WGS",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "chewbbaca": {
+              "description": "A complete suite for gene-by-gene schema creation and strain identification.",
+              "homepage": "https://chewbbaca.readthedocs.io/en/latest/index.html",
+              "documentation": "https://chewbbaca.readthedocs.io/en/latest/index.html",
+              "tool_dev_url": "https://github.com/B-UMMI/chewBBACA",
+              "doi": "10.1099/mgen.0.000166",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:chewbbaca"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test']`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "FASTA file(s) to be staged in a directory for allele calling",
+                "pattern": "*.{fasta,fa,fna}",
+                "stageAs": "input_dir/*",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing scheme information\ne.g. `[ id:'scheme' ]`\n"
+              }
+            },
+            {
+              "scheme": {
+                "type": "directory",
+                "description": "Directory containing the schema files",
+                "pattern": "*/"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "stats": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "*_results_statistics.tsv": {
+                  "type": "file",
+                  "description": "File contains the total number of exact matches",
+                  "pattern": "*_results_statistics.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "contigs_info": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "*_results_contigsInfo.tsv": {
+                  "type": "file",
+                  "description": "File contains the loci coordinates in the genomes analyzed",
+                  "pattern": "*_results_contigsInfo.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "alleles": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "*_results_alleles.tsv": {
+                  "type": "file",
+                  "description": "File contains the allelic profiles determined for the input sample",
+                  "pattern": "*_results_alleles.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "log": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "*_logging_info.txt": {
+                  "type": "file",
+                  "description": "File contains the log information",
+                  "pattern": "*_logging_info.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "paralogous_counts": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "*_paralogous_counts.tsv": {
+                  "type": "file",
+                  "description": "File contains the list of paralogous loci and the number of times those loci matched a CDS that was also similar to other loci in the schema",
+                  "pattern": "*_paralogous_counts.tsv",
+                  "ontologies": []
+                }
+              }
+            ]
+          },
+          {
+            "paralogous_loci": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "*_paralogous_loci.tsv": {
+                  "type": "file",
+                  "description": "File contains the sets of paralogous loci identified in the input sample",
+                  "pattern": "*_paralogous_loci.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "cds_coordinates": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "*_cds_coordinates.tsv": {
+                  "type": "file",
+                  "description": "File contains the coordinates of the CDS in the input sample",
+                  "pattern": "*_cds_coordinates.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "invalid_cds": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "*_invalid_cds.txt": {
+                  "type": "file",
+                  "description": "File contains the list of alleles predicted by Prodigal that were excluded",
+                  "pattern": "*_invalid_cds.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              },
+              {
+                "id_cds": {
+                  "type": "file",
+                  "description": "File contains the list of alleles predicted by Prodigal that were excluded",
+                  "pattern": "*_invalid_cds.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "loci_summary_stats": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "*_loci_summary_stats.tsv": {
+                  "type": "file",
+                  "description": "File contains summary statistics for each locus",
+                  "pattern": "*_loci_summary_stats.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@anwarMZ"
+        ]
+      }
+    },
+    {
       "name": "chewbbaca_createschema",
       "path": "modules/nf-core/chewbbaca/createschema/meta.yml",
       "type": "module",
@@ -33592,7 +34116,15 @@
               "fasta": {
                 "type": "file",
                 "description": "Input sequences in FASTA format",
-                "pattern": "*.{fa,fasta,faa,fna}"
+                "pattern": "*.{fa,fasta,faa,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -33607,7 +34139,12 @@
               "tree": {
                 "type": "file",
                 "description": "Input guide tree in Newick format",
-                "pattern": "*.{dnd}"
+                "pattern": "*.{dnd}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2006"
+                  }
+                ]
               }
             }
           ],
@@ -33616,7 +34153,12 @@
               "hmm_in": {
                 "type": "file",
                 "description": "HMM file for profile alignment",
-                "pattern": "*.hmm"
+                "pattern": "*.hmm",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1391"
+                  }
+                ]
               }
             }
           ],
@@ -33625,7 +34167,12 @@
               "hmm_batch": {
                 "type": "file",
                 "description": "specify HMMs for individual sequences",
-                "pattern": "*"
+                "pattern": "*.hmm",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1391"
+                  }
+                ]
               }
             }
           ],
@@ -33634,7 +34181,21 @@
               "profile1": {
                 "type": "file",
                 "description": "Pre-aligned multiple sequence file 1",
-                "pattern": "*.{alnfaa,faa,fa,fasta}"
+                "pattern": "*.{alnfaa,faa,fa,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2554"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1921"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1984"
+                  }
+                ]
               }
             }
           ],
@@ -33643,7 +34204,21 @@
               "profile2": {
                 "type": "file",
                 "description": "Pre-aligned multiple sequence file 2",
-                "pattern": "*.{alnfaa,faa,fa,fasta}"
+                "pattern": "*.{alnfaa,faa,fa,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2554"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1921"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1984"
+                  }
+                ]
               }
             }
           ],
@@ -33669,7 +34244,18 @@
                 "*.aln{.gz,}": {
                   "type": "file",
                   "description": "Alignment file, in gzipped fasta format",
-                  "pattern": "*.aln{.gz,}"
+                  "pattern": "*.aln{.gz,}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2554"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1921"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1984"
+                    }
+                  ]
                 }
               }
             ]
@@ -33680,7 +34266,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -33746,7 +34337,15 @@
               "fasta": {
                 "type": "file",
                 "description": "Input sequences in FASTA format",
-                "pattern": "*.{fa,fasta}"
+                "pattern": "*.{fa,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ]
@@ -33764,7 +34363,12 @@
                 "*.dnd": {
                   "type": "file",
                   "description": "Guide tree file in Newick format",
-                  "pattern": "*.{dnd}"
+                  "pattern": "*.{dnd}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2006"
+                    }
+                  ]
                 }
               }
             ]
@@ -33775,7 +34379,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -39571,6 +40180,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "deepmodeloptim",
+          "version": "dev"
+        },
         {
           "name": "multiplesequencealign",
           "version": "1.1.0"
@@ -47356,6 +47969,10 @@
           "version": "dev"
         },
         {
+          "name": "sammyseq",
+          "version": "dev"
+        },
+        {
           "name": "sarek",
           "version": "3.5.1"
         }
@@ -47620,6 +48237,105 @@
           "version": "2.4.0"
         }
       ]
+    },
+    {
+      "name": "drep_compare",
+      "path": "modules/nf-core/drep/compare/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "drep_compare",
+        "description": "Performs rapid genome comparisons for a group of genomes and visualize their relatedness",
+        "keywords": [
+          "drep",
+          "genome",
+          "fasta",
+          "compare",
+          "comparison",
+          "visualisation",
+          "metagenomics",
+          "assembly",
+          "microbial genomics",
+          "dereplication"
+        ],
+        "tools": [
+          {
+            "drep": {
+              "description": "De-replication of microbial genomes assembled from multiple samples",
+              "homepage": "https://drep.readthedocs.io/en/latest/",
+              "documentation": "https://drep.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/MrOlm/drep",
+              "doi": "10.1038/ismej.2017.126",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:drep"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "\"fastas/*\"": {
+                "type": "file",
+                "description": "List of fasta files to compare",
+                "pattern": "*.{fasta,fa,fna,.fas}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "directory": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}": {
+                  "type": "directory",
+                  "description": "Directory containing output files, such as PDF figures and intermediate tables for use in dRep dereplicate",
+                  "pattern": "${prefix}/",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_1049"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@jfy133"
+        ],
+        "maintainers": [
+          "@jfy133"
+        ]
+      }
     },
     {
       "name": "dshbio_exportsegments",
@@ -52298,7 +53014,15 @@
               "fasta": {
                 "type": "file",
                 "description": "Input sequences in FASTA format",
-                "pattern": "*.{fa,fasta}"
+                "pattern": "*.{fa,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -52313,7 +53037,12 @@
               "tree": {
                 "type": "file",
                 "description": "Input guide tree in Newick format",
-                "pattern": "*.{dnd}"
+                "pattern": "*.{dnd}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2006"
+                  }
+                ]
               }
             }
           ],
@@ -52339,7 +53068,18 @@
                 "*.aln{.gz,}": {
                   "type": "file",
                   "description": "Alignment file, in FASTA format. May be gzipped or uncompressed, depending on if compress is set to true or false",
-                  "pattern": "*.aln{.gz,}"
+                  "pattern": "*.aln{.gz,}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2554"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1921"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1984"
+                    }
+                  ]
                 }
               }
             ]
@@ -52350,7 +53090,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -52415,7 +53160,15 @@
               "fasta": {
                 "type": "file",
                 "description": "Input sequences in FASTA format",
-                "pattern": "*.{fa,fasta}"
+                "pattern": "*.{fa,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ]
@@ -52433,7 +53186,12 @@
                 "*.dnd": {
                   "type": "file",
                   "description": "Guide tree file in Newick format",
-                  "pattern": "*.{dnd}"
+                  "pattern": "*.{dnd}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2006"
+                    }
+                  ]
                 }
               }
             ]
@@ -52444,7 +53202,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -54184,6 +54947,10 @@
         {
           "name": "detaxizer",
           "version": "1.1.0"
+        },
+        {
+          "name": "lncpipe",
+          "version": "dev"
         },
         {
           "name": "mag",
@@ -57714,7 +58481,15 @@
               "pdbs": {
                 "type": "file",
                 "description": "Input protein structures in PDB format.",
-                "pattern": "*.{pdb,mmcif}"
+                "pattern": "*.{pdb,mmcif}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1747"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1477"
+                  }
+                ]
               }
             }
           ],
@@ -57729,7 +58504,15 @@
               "tree": {
                 "type": "file",
                 "description": "Input guide tree in Newick format.",
-                "pattern": "*.{dnd,nwk}"
+                "pattern": "*.{dnd,nwk}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2006"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1910"
+                  }
+                ]
               }
             }
           ],
@@ -57755,7 +58538,18 @@
                 "${prefix}_3di.fa${compress ? '.gz' : ''}": {
                   "type": "file",
                   "description": "Fasta file containing the multiple sequence alignment with 3Di alphabet",
-                  "pattern": "*.{fa}"
+                  "pattern": "*.{fa}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2554"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1921"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1984"
+                    }
+                  ]
                 }
               }
             ]
@@ -57772,7 +58566,18 @@
                 "${prefix}_aa.fa${compress ? '.gz' : ''}": {
                   "type": "file",
                   "description": "Fasta file containing the multiple sequence alignment with Amino Acid alphabet",
-                  "pattern": "*.{fa}"
+                  "pattern": "*.{fa}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2554"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1921"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1984"
+                    }
+                  ]
                 }
               }
             ]
@@ -57783,7 +58588,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -58268,6 +59078,10 @@
       },
       "pipelines": [
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "riboseq",
           "version": "1.1.0"
         },
@@ -58359,6 +59173,10 @@
       },
       "pipelines": [
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "riboseq",
           "version": "1.1.0"
         },
@@ -58409,9 +59227,16 @@
               }
             },
             {
+              "fastq_folder": {
+                "type": "file",
+                "description": "Directory containing fastq files that will be staged as 'input' folder",
+                "pattern": "*"
+              }
+            },
+            {
               "fastq_readstructure_pairs": {
                 "type": "map",
-                "description": "List of lists i.e. [[<fastq file name>, <read structure>, <absolute path to fastq directory>],...]"
+                "description": "List of lists i.e. [[<fastq file name>, <read structure>],...]"
               }
             }
           ]
@@ -58573,7 +59398,7 @@
           ],
           [
             {
-              "ref_meta": {
+              "meta2": {
                 "type": "map",
                 "description": "Groovy Map containing reference information.\ne.g. [ id:'test_reference' ]\n"
               }
@@ -58588,7 +59413,7 @@
           ],
           [
             {
-              "ref_idx_meta": {
+              "meta3": {
                 "type": "map",
                 "description": "Groovy Map containing reference information.\ne.g. [ id:'test_reference' ]\n"
               }
@@ -58603,7 +59428,7 @@
           ],
           [
             {
-              "samples_meta": {
+              "meta4": {
                 "type": "map",
                 "description": "Groovy Map containing meta information for the samples file.\ne.g. [ id:'test_samples' ]\n"
               }
@@ -58618,7 +59443,7 @@
           ],
           [
             {
-              "populations_meta": {
+              "meta5": {
                 "type": "map",
                 "description": "Groovy Map containing meta information for the populations file.\ne.g. [ id:'test_populations' ]\n"
               }
@@ -58633,7 +59458,7 @@
           ],
           [
             {
-              "cnv_meta": {
+              "meta6": {
                 "type": "map",
                 "description": "Groovy Map containing meta information for the cnv file.\ne.g. [ id:'test_cnv' ]\n"
               }
@@ -73762,7 +74587,13 @@
           "@jemten",
           "@gallvp"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "lncpipe",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "gffread",
@@ -83189,6 +84020,10 @@
           "version": "dev"
         },
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "rnadnavar",
           "version": "dev"
         },
@@ -88031,15 +88866,21 @@
                 "type": "file",
                 "description": "Input img file containing image stack to classify"
               }
+            },
+            {
+              "output_format": {
+                "type": "string",
+                "description": "String specifying the output format passed as the file extension to the output file specified with the `output_filename_format` parameter."
+              }
+            },
+            {
+              "export_source": {
+                "type": "string",
+                "description": "String passed to the `export_source` parameter - valid options are 'probabilities', '\"simple segmentation\"', 'uncertainty', 'features', 'labels']"
+              }
             }
           ],
           [
-            {
-              "meta2": {
-                "type": "map",
-                "description": "Groovy Map containing sample information for ilp file\ne.g. [ id:'test', single_end:false ]\n"
-              }
-            },
             {
               "ilp": {
                 "type": "file",
@@ -88059,7 +88900,7 @@
                 }
               },
               {
-                "*.${suffix}": {
+                "*.${output_format}": {
                   "type": "file",
                   "description": "Output file from ilastik pixel classification."
                 }
@@ -88212,6 +89053,173 @@
         "maintainers": [
           "@grst",
           "@nschcolnicov"
+        ]
+      }
+    },
+    {
+      "name": "infernal_cmsearch",
+      "path": "modules/nf-core/infernal/cmsearch/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "infernal_cmsearch",
+        "description": "Search covariance models against a sequence database",
+        "keywords": [
+          "rrna",
+          "covariance model",
+          "sequence search"
+        ],
+        "tools": [
+          {
+            "infernal": {
+              "description": "Infernal is for searching DNA sequence databases for RNA structure and sequence similarities.",
+              "homepage": "http://eddylab.org/infernal/Userguide.pdf",
+              "documentation": "http://eddylab.org/infernal/Userguide.pdf",
+              "tool_dev_url": "https://github.com/EddyRivasLab/infernal",
+              "doi": "10.1093/bioinformatics/btt509",
+              "licence": [
+                "BSD-3-clause"
+              ],
+              "identifier": "biotools:infernal"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "cmfile": {
+                "type": "file",
+                "description": "A calibrated Infernal covariance model file\n",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_1364"
+                  }
+                ]
+              }
+            },
+            {
+              "seqdb": {
+                "type": "file",
+                "description": "A FASTA file of sequences to search the covariance models\nagainst. Can be gzipped.\n",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "write_align": {
+                "type": "boolean",
+                "description": "Flag to save optional alignment output in Stockholm\nformat. Specify with 'true' to save.\n"
+              }
+            }
+          ],
+          [
+            {
+              "write_target": {
+                "type": "boolean",
+                "description": "Flag to save optional per target summary in a tabular\nformat. Specify with 'true' to save.\n"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "output": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.txt.gz": {
+                  "type": "file",
+                  "description": "Human readable output summarizing hmmsearch results",
+                  "pattern": "*.{txt.gz}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_3671"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "alignments": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.sto.gz": {
+                  "type": "file",
+                  "description": "Optional multiple sequence alignment (MSA) in Stockholm format",
+                  "pattern": "*.{sto.gz}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1961"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "target_summary": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.tbl.gz": {
+                  "type": "file",
+                  "description": "Optional tabular (space-delimited) summary of per-target output",
+                  "pattern": "*.{tbl.gz}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@prototaxites"
+        ],
+        "maintainers": [
+          "@prototaxites"
         ]
       }
     },
@@ -92618,7 +93626,15 @@
               "fasta": {
                 "type": "file",
                 "description": "Input sequences in FASTA format. May be gzipped or uncompressed.",
-                "pattern": "*.{fa,fasta}{.gz,}"
+                "pattern": "*.{fa,fasta}{.gz,}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -92644,7 +93660,18 @@
                 "*.aln{.gz,}": {
                   "type": "file",
                   "description": "Alignment file. May be gzipped or uncompressed, depending on if `compress` is set to `true` or `false`.",
-                  "pattern": "*.{aln}{.gz,}"
+                  "pattern": "*.{aln}{.gz,}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2554"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1921"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1984"
+                    }
+                  ]
                 }
               }
             ]
@@ -92655,7 +93682,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -97083,7 +98115,15 @@
               "fasta": {
                 "type": "file",
                 "description": "Input sequences in FASTA format.",
-                "pattern": "*.{fa,fasta}"
+                "pattern": "*.{fa,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ]
@@ -97101,7 +98141,18 @@
                 "*.aln": {
                   "type": "file",
                   "description": "Alignment file, in FASTA format.",
-                  "pattern": "*.aln"
+                  "pattern": "*.aln",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2554"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1921"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1984"
+                    }
+                  ]
                 }
               }
             ]
@@ -97112,7 +98163,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -100561,7 +101617,15 @@
               "fasta": {
                 "type": "file",
                 "description": "FASTA file containing the sequences to align. May be gzipped or uncompressed.",
-                "pattern": "*.{fa,fasta}{.gz,}"
+                "pattern": "*.{fa,fasta}{.gz,}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -100576,7 +101640,15 @@
               "add": {
                 "type": "file",
                 "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--add`. May be gzipped or uncompressed.",
-                "pattern": "*.{fa,fasta}{.gz,}"
+                "pattern": "*.{fa,fasta}{.gz,}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -100591,7 +101663,15 @@
               "addfragments": {
                 "type": "file",
                 "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--addfragments`. May be gzipped or uncompressed.",
-                "pattern": "*.{fa,fasta}{.gz,}"
+                "pattern": "*.{fa,fasta}{.gz,}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -100606,7 +101686,15 @@
               "addfull": {
                 "type": "file",
                 "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--addfull`. May be gzipped or uncompressed.",
-                "pattern": "*.{fa,fasta}{.gz,}"
+                "pattern": "*.{fa,fasta}{.gz,}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -100621,7 +101709,15 @@
               "addprofile": {
                 "type": "file",
                 "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--addprofile`. May be gzipped or uncompressed.",
-                "pattern": "*.{fa,fasta}{.gz,}"
+                "pattern": "*.{fa,fasta}{.gz,}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -100636,7 +101732,15 @@
               "addlong": {
                 "type": "file",
                 "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--addlong`. May be gzipped or uncompressed.",
-                "pattern": "*.{fa,fasta}{.gz,}"
+                "pattern": "*.{fa,fasta}{.gz,}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -100662,7 +101766,18 @@
                 "*.fas{.gz,}": {
                   "type": "file",
                   "description": "Aligned sequences in FASTA format. May be gzipped or uncompressed.",
-                  "pattern": "*.fas{.gz,}"
+                  "pattern": "*.fas{.gz,}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2554"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1921"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1984"
+                    }
+                  ]
                 }
               }
             ]
@@ -100673,7 +101788,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -100745,7 +101865,15 @@
               "fasta": {
                 "type": "file",
                 "description": "FASTA file containing the sequences to be used to render the guidetree.",
-                "pattern": "*.{fa,fasta}"
+                "pattern": "*.{fa,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ]
@@ -100763,7 +101891,12 @@
                 "*.dnd": {
                   "type": "file",
                   "description": "Guide tree in Newick format.",
-                  "pattern": "*.dnd"
+                  "pattern": "*.dnd",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2006"
+                    }
+                  ]
                 }
               }
             ]
@@ -100774,7 +101907,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -101184,7 +102322,15 @@
               "fasta": {
                 "type": "file",
                 "description": "Input sequences in FASTA format.",
-                "pattern": "*.{fa,fna,fasta}"
+                "pattern": "*.{fa,fna,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -101199,7 +102345,12 @@
               "tree": {
                 "type": "file",
                 "description": "Optional path to a file containing a guide tree in newick format to use as input. If empty, or overwritten by passing `-t [fasttree|fasttree-noml|clustal|parttree]`, MAGUS will construct its own guide tree. If empty, `fasttree` is used as a default.",
-                "pattern": "*.{dnd,tree}"
+                "pattern": "*.{dnd,tree}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2006"
+                  }
+                ]
               }
             }
           ],
@@ -101225,7 +102376,18 @@
                 "*.aln{.gz,}": {
                   "type": "file",
                   "description": "File containing the output alignment, in FASTA format containing gaps. The sequences may be in a different order than in the input FASTA. The output file may or may not be gzipped, depending on the value supplied to `compress`.",
-                  "pattern": "*.aln{.gz,}"
+                  "pattern": "*.aln{.gz,}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2554"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1921"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1984"
+                    }
+                  ]
                 }
               }
             ]
@@ -101236,7 +102398,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -101293,7 +102460,15 @@
               "fasta": {
                 "type": "file",
                 "description": "Input sequences in FASTA format.",
-                "pattern": "*.{fa,fna,fasta}"
+                "pattern": "*.{fa,fna,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ]
@@ -101311,7 +102486,12 @@
                 "*.tree": {
                   "type": "file",
                   "description": "File containing the output guidetree, in newick format.",
-                  "pattern": "*.tree"
+                  "pattern": "*.tree",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2006"
+                    }
+                  ]
                 }
               }
             ]
@@ -101322,7 +102502,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -105146,6 +106331,140 @@
           "version": "1.2.3"
         }
       ]
+    },
+    {
+      "name": "melon",
+      "path": "modules/nf-core/melon/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "melon",
+        "description": "Performs taxonomic profiling of long metagenomic reads against the melon database",
+        "keywords": [
+          "profile",
+          "metagenomics",
+          "melon",
+          "classification",
+          "long reads",
+          "nanopore"
+        ],
+        "tools": [
+          {
+            "melon": {
+              "description": "Melon: metagenomic long-read-based taxonomic identification and quantification using marker genes",
+              "homepage": "https://github.com/xinehc/melon",
+              "documentation": "https://github.com/xinehc/melon",
+              "tool_dev_url": "https://github.com/xinehc/melon",
+              "doi": "10.1186/s13059-024-03363-y",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:true ]`.\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "Quality-controlled long reads.",
+                "pattern": "*.{fa,fasta,fas,fna,fq,fastq}{,.gz}"
+              }
+            }
+          ],
+          [
+            {
+              "database": {
+                "type": "directory",
+                "description": "Melon database."
+              }
+            }
+          ],
+          [
+            {
+              "k2_db": {
+                "type": "directory",
+                "description": "Kraken2 database for pre-filtering of non-prokaryotic reads (needs to include at least human and fungi)."
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "tsv_output": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:true ]`.\n"
+                }
+              },
+              {
+                "${prefix}/*.tsv": {
+                  "type": "file",
+                  "description": "Melon output tsv file containing taxonomic profiling results.",
+                  "pattern": "*.tsv"
+                }
+              }
+            ]
+          },
+          {
+            "json_output": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:true ]`.\n"
+                }
+              },
+              {
+                "${prefix}/*.json": {
+                  "type": "file",
+                  "description": "Melon output json file containing per-read taxonomic classification results.",
+                  "pattern": "*.json"
+                }
+              }
+            ]
+          },
+          {
+            "log": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:true ]`.\n"
+                }
+              },
+              {
+                "${prefix}.log": {
+                  "type": "file",
+                  "description": "Log file containing Melon standard output.\n"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions.",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@eparisis"
+        ],
+        "maintainers": [
+          "@eparisis"
+        ]
+      }
     },
     {
       "name": "meningotype",
@@ -114646,7 +115965,12 @@
               "pdbs": {
                 "type": "file",
                 "description": "Input protein structures in PDB format. Files may be gzipped or uncompressed. They should contain exactly one chain!",
-                "pattern": "*.{pdb}"
+                "pattern": "*.{pdb}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1747"
+                  }
+                ]
               }
             }
           ],
@@ -114672,7 +115996,18 @@
                 "${prefix}.aln${compress ? '.gz' : ''}": {
                   "type": "file",
                   "description": "Alignment in FASTA format. May be gzipped or uncompressed.",
-                  "pattern": "*.aln{.gz,}"
+                  "pattern": "*.aln{.gz,}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2554"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1921"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1984"
+                    }
+                  ]
                 }
               }
             ]
@@ -114689,7 +116024,12 @@
                 "${prefix}.pdb${compress ? '.gz' : ''}": {
                   "type": "file",
                   "description": "Overlaid structures in PDB format. May be gzipped or uncompressed.",
-                  "pattern": "${prefix}.pdb{.gz,}"
+                  "pattern": "${prefix}.pdb{.gz,}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1747"
+                    }
+                  ]
                 }
               }
             ]
@@ -114700,7 +116040,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -116221,7 +117566,15 @@
               "fasta": {
                 "type": "file",
                 "description": "Input sequences for alignment must be in FASTA format",
-                "pattern": "*.{fasta,fa,fna}"
+                "pattern": "*.{fasta,fa,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -116247,7 +117600,18 @@
                 "*.aln{.gz,}": {
                   "type": "file",
                   "description": "Multiple sequence alignment produced in gzipped FASTA format. If '-perm all' is passed in ext.args, this will be multiple files per input!",
-                  "pattern": "*.{aln.gz}"
+                  "pattern": "*.{aln.gz}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2554"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1921"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1984"
+                    }
+                  ]
                 }
               }
             ]
@@ -116258,7 +117622,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -127703,18 +129072,24 @@
               "vcf": {
                 "type": "file",
                 "description": "VCF file",
-                "pattern": "*.{vcf.gz}"
+                "pattern": "*.vcf.gz"
               }
             },
             {
               "vcf_tbi": {
                 "type": "file",
                 "description": "TBI file",
-                "pattern": "*.{vcf.gz.tbi}"
+                "pattern": "*.vcf.gz.tbi"
               }
             }
           ],
           [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
             {
               "ped": {
                 "type": "file",
@@ -127722,9 +129097,41 @@
                 "pattern": "*.{ped,fam}"
               }
             }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "sites": {
+                "type": "file",
+                "description": "sites file. By defaults peddy uses hg19/GRCh37, \"--sites hg38\" can be specified in the process argument or a custom file following syntax https://github.com/brentp/peddy/blob/master/peddy/GRCH37.sites can be provided",
+                "pattern": "*.sites"
+              }
+            }
           ]
         ],
         "output": [
+          {
+            "vs_html": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "${prefix}.vs.html": {
+                  "type": "file",
+                  "description": "HTML file comparison between reported and inferred sex",
+                  "pattern": "*.vs.html"
+                }
+              }
+            ]
+          },
           {
             "html": [
               {
@@ -127734,27 +129141,10 @@
                 }
               },
               {
-                "*.html": {
+                "${prefix}.html": {
                   "type": "file",
-                  "description": "HTML file",
-                  "pattern": "*.{html}"
-                }
-              }
-            ]
-          },
-          {
-            "csv": [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.csv": {
-                  "type": "file",
-                  "description": "CSV file",
-                  "pattern": "*.{csv}"
+                  "description": "HTML report",
+                  "pattern": "*.html"
                 }
               }
             ]
@@ -127770,14 +129160,14 @@
               {
                 "*.peddy.ped": {
                   "type": "file",
-                  "description": "PED/FAM file",
-                  "pattern": "*.peddy.{ped}"
+                  "description": "Inferred PED file",
+                  "pattern": "*.peddy.ped"
                 }
               }
             ]
           },
           {
-            "png": [
+            "het_check_png": [
               {
                 "meta": {
                   "type": "map",
@@ -127785,10 +129175,112 @@
                 }
               },
               {
-                "*.png": {
+                "*.het_check.png": {
                   "type": "file",
-                  "description": "PNG file",
-                  "pattern": "*.{png}"
+                  "description": "PNG file containing heterozygosity check.\nRate of het calls, allele-balance at het calls,\nmean and median depth, and a PCA projection onto thousand\ngenomes.\n",
+                  "pattern": "*.het_check.png"
+                }
+              }
+            ]
+          },
+          {
+            "ped_check_png": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.ped_check.png": {
+                  "type": "file",
+                  "description": "PNG file containing pedigree check between reported\nand inferred  sex\n",
+                  "pattern": "*.het_check.png"
+                }
+              }
+            ]
+          },
+          {
+            "sex_check_png": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.sex_check.png": {
+                  "type": "file",
+                  "description": "PNG file with sex check performs a comparison\nbetween the sex reported in the ped file and that\ninferred from the genotypes on the non-PAR regions\nof the X chromosome.\n",
+                  "pattern": "*.sex_check.png"
+                }
+              }
+            ]
+          },
+          {
+            "het_check_csv": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.het_check.csv": {
+                  "type": "file",
+                  "description": "CSV file containing heterozygosity check.\nRate of het calls, allele-balance at het calls,\nmean and median depth, and a PCA projection onto thousand\ngenomes.\n",
+                  "pattern": "*.het_check.csv"
+                }
+              }
+            ]
+          },
+          {
+            "ped_check_csv": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.ped_check.csv": {
+                  "type": "file",
+                  "description": "CSV file containing pedigree check between reported\nand inferred  sex\n",
+                  "pattern": "*.het_check.csv"
+                }
+              }
+            ]
+          },
+          {
+            "sex_check_csv": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.sex_check.csv": {
+                  "type": "file",
+                  "description": "CSV file with sex check performs a comparison\nbetween the sex reported in the ped file and that\ninferred from the genotypes on the non-PAR regions\nof the X chromosome.\n",
+                  "pattern": "*.sex_check.csv"
+                }
+              }
+            ]
+          },
+          {
+            "ped_check_rel_difference_csv": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.ped_check.rel-difference.csv": {
+                  "type": "file",
+                  "description": "CSV file with the comparison between inferred and given relatedness\n",
+                  "pattern": "*.ped_check.rel-difference.csv"
                 }
               }
             ]
@@ -133350,6 +134842,397 @@
       }
     },
     {
+      "name": "plink2_het",
+      "path": "modules/nf-core/plink2/het/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "plink2_het",
+        "description": "Calculate Inbreeding data with plink2",
+        "keywords": [
+          "plink2",
+          "inbreeding",
+          "heterozygous genotypes",
+          "homozygous genotypes",
+          "f coefficient",
+          "population genomics"
+        ],
+        "tools": [
+          {
+            "plink2": {
+              "description": "Whole genome association analysis toolset, designed to perform a range\nof basic, large-scale analyses in a computationally efficient manner\n",
+              "homepage": "http://www.cog-genomics.org/plink/2.0/",
+              "documentation": "http://www.cog-genomics.org/plink/2.0/general_usage",
+              "doi": "10.1186/s13742-015-0047-8",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "plink_genotype_file": {
+                "type": "file",
+                "description": "PLINK binary genotype table file or PLINK 2 binary genotype table file",
+                "pattern": "*.{bed,pgen}"
+              }
+            },
+            {
+              "plink_variant_file": {
+                "type": "file",
+                "description": "PLINK extended MAP file or PLINK 2 variant information file",
+                "pattern": "*.{bim,pvar}"
+              }
+            },
+            {
+              "plink_sample_file": {
+                "type": "file",
+                "description": "PLINK sample information file or PLINK 2 sample information file",
+                "pattern": "*.{fam,psam}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "het": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.het": {
+                  "type": "file",
+                  "description": "observed and expected homozygous/heterozygous genotype counts for each sample and method-of-moments F coefficient estimates",
+                  "pattern": "*.het"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@RuthEberhardt"
+        ],
+        "maintainers": [
+          "@RuthEberhardt"
+        ]
+      }
+    },
+    {
+      "name": "plink2_indeppairwise",
+      "path": "modules/nf-core/plink2/indeppairwise/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "plink2_indeppairwise",
+        "description": "Produce pruned set of variants in approximatelinkage equilibrium",
+        "keywords": [
+          "plink2",
+          "linkage equilibrium",
+          "pruning"
+        ],
+        "tools": [
+          {
+            "plink2": {
+              "description": "Whole genome association analysis toolset, designed to perform a range\nof basic, large-scale analyses in a computationally efficient manner\n",
+              "homepage": "http://www.cog-genomics.org/plink/2.0/",
+              "documentation": "http://www.cog-genomics.org/plink/2.0/general_usage",
+              "doi": "10.1186/s13742-015-0047-8",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "plink_genotype_file": {
+                "type": "file",
+                "description": "PLINK binary genotype table file or PLINK 2 binary genotype table file",
+                "pattern": "*.{bed,pgen}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            },
+            {
+              "plink_variant_file": {
+                "type": "file",
+                "description": "PLINK extended MAP file or PLINK 2 variant information file",
+                "pattern": "*.{bim,pvar}",
+                "ontologies": []
+              }
+            },
+            {
+              "plink_sample_file": {
+                "type": "file",
+                "description": "PLINK sample information file or PLINK 2 sample information file",
+                "pattern": "*.{fam,psam}",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "win": {
+                "type": "integer",
+                "description": "Window size in variant count or kilobase (if the 'kb' modifier is present) units, a variant count to shift the window at the end of each step, and a variance inflation factor (VIF) threshold.",
+                "pattern": "*.{}"
+              }
+            }
+          ],
+          [
+            {
+              "step": {
+                "type": "integer",
+                "description": "Variant count to shift the window at the end of each step.",
+                "pattern": "*.{}"
+              }
+            }
+          ],
+          [
+            {
+              "r2": {
+                "type": "float",
+                "description": "R squared threshold",
+                "pattern": "*.{}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "prune_in": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.prune.in": {
+                  "type": "file",
+                  "description": "Variants in linkage equilibrium",
+                  "pattern": "*.prune.in",
+                  "ontologies": []
+                }
+              }
+            ]
+          },
+          {
+            "prune_out": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.prune.out": {
+                  "type": "file",
+                  "description": "Excluded variants",
+                  "pattern": "*.prune.out",
+                  "ontologies": []
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml",
+                  "ontologies": []
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@tdkaliki"
+        ],
+        "maintainers": [
+          "@tdkaliki"
+        ]
+      }
+    },
+    {
+      "name": "plink2_pca",
+      "path": "modules/nf-core/plink2/pca/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "plink2_pca",
+        "description": "Perform PCA analysis using PLINK",
+        "keywords": [
+          "plink2",
+          "pca",
+          "plink2_pca"
+        ],
+        "tools": [
+          {
+            "plink2": {
+              "description": "Whole genome association analysis toolset, designed to perform a range\nof basic, large-scale analyses in a computationally efficient manner\n",
+              "homepage": "http://www.cog-genomics.org/plink/2.0/",
+              "documentation": "http://www.cog-genomics.org/plink/2.0/general_usage",
+              "doi": "10.1186/s13742-015-0047-8",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "npcs": {
+                "type": "integer",
+                "description": "Number of PCs to compute"
+              }
+            },
+            {
+              "use_approx": {
+                "type": "boolean",
+                "description": "If true, use the approximate method"
+              }
+            },
+            {
+              "pgen": {
+                "type": "file",
+                "description": "PLINK 2 binary genotype table",
+                "pattern": "*.{pgen}"
+              }
+            },
+            {
+              "psam": {
+                "type": "file",
+                "description": "PLINK 2 sample information file",
+                "pattern": "*.{psam}"
+              }
+            },
+            {
+              "pvar": {
+                "type": "file",
+                "description": "PLINK 2 variant information file",
+                "pattern": "*.{pvar}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "evecfile": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "*.eigenvec"
+                }
+              },
+              {
+                "*.eigenvec": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "*.eigenvec"
+                }
+              }
+            ]
+          },
+          {
+            "evfile": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "*.eigenval"
+                }
+              },
+              {
+                "*.eigenval": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "*.eigenval"
+                }
+              }
+            ]
+          },
+          {
+            "logfile": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "*.log"
+                }
+              },
+              {
+                "*.log": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "*.log"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing the version of the program\n",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@bruno-ariano"
+        ],
+        "maintainers": [
+          "@bruno-ariano"
+        ]
+      }
+    },
+    {
       "name": "plink2_score",
       "path": "modules/nf-core/plink2/score/meta.yml",
       "type": "module",
@@ -133581,6 +135464,140 @@
         ],
         "maintainers": [
           "@nebfield"
+        ]
+      }
+    },
+    {
+      "name": "plink2_vcf2bgen",
+      "path": "modules/nf-core/plink2/vcf2bgen/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "plink2_vcf2bgen",
+        "description": "Convert from VCF file to BGEN file version 1.2 format preserving dosages.",
+        "keywords": [
+          "plink2",
+          "bgen file",
+          "vcf file",
+          "genotype dosages"
+        ],
+        "tools": [
+          {
+            "plink2": {
+              "description": "Whole genome association analysis toolset, designed to perform a range\nof basic, large-scale analyses in a computationally efficient manner\n",
+              "homepage": "http://www.cog-genomics.org/plink/2.0/",
+              "documentation": "http://www.cog-genomics.org/plink/2.0/general_usage",
+              "doi": "10.1186/s13742-015-0047-8",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "A vcf or vcf.gz file with genetic variants",
+                "pattern": "*.{vcf,vcf.gz}"
+              }
+            },
+            {
+              "dosage_field": {
+                "type": "string",
+                "description": "The FORMAT field that contains the dosage information. Set to DS to when a dosage field is not present."
+              }
+            },
+            {
+              "bgen_reffirst": {
+                "type": "boolean",
+                "description": "Set true to write BGEN file with ref-first flag. With this option the first allele in the BGEN correspond to the REF allele."
+              }
+            },
+            {
+              "sample_name_mode": {
+                "type": "string",
+                "description": "Option to use to set IID/FID in the BGEN file. Allowed values are double-id, const-fid <char>, or id-delim <char>."
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "bgen_file": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.bgen": {
+                  "type": "file",
+                  "description": "BGEN file version 1.2",
+                  "pattern": "*.bgen"
+                }
+              }
+            ]
+          },
+          {
+            "sample_file": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.sample": {
+                  "type": "file",
+                  "description": "Sample file defining samples in the BGEN",
+                  "pattern": "*.sample"
+                }
+              }
+            ]
+          },
+          {
+            "log_file": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.log": {
+                  "type": "file",
+                  "description": "Log file generated by plink2 with information on the process applied",
+                  "pattern": "*.log"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@edg1983"
+        ],
+        "maintainers": [
+          "@edg1983"
         ]
       }
     },
@@ -136000,6 +138017,144 @@
         ],
         "maintainers": [
           "@rpetit3"
+        ]
+      }
+    },
+    {
+      "name": "polypolish_polish",
+      "path": "modules/nf-core/polypolish/polish/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "polypolish_polish",
+        "description": "Polishing genome assemblies with short reads.",
+        "keywords": [
+          "assembly polishing",
+          "genome polishing",
+          "ont"
+        ],
+        "tools": [
+          {
+            "polypolish": {
+              "description": "Polishing genome assemblies with short reads.",
+              "homepage": "https://github.com/rrwick/Polypolish",
+              "documentation": "https://github.com/rrwick/Polypolish/wiki",
+              "tool_dev_url": "https://github.com/rrwick/Polypolish",
+              "doi": "10.1099/mgen.0.001254",
+              "licence": [
+                "GPL3"
+              ],
+              "identifier": "biotools:polypolish"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "FASTA file with draft assembly of ONT data",
+                "pattern": "*.{fasta,fna,fa,fas}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "sam": {
+                "type": "file",
+                "description": "List of SAM files of short reads mapped against the FASTA input file",
+                "pattern": "*.sam",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2573"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "save_debug": {
+                "type": "boolean",
+                "description": "Turn debug output on",
+                "pattern": "true|false"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "fasta": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.fasta": {
+                  "type": "file",
+                  "description": "FASTA file with polished draft assembly",
+                  "pattern": "*.{fasta,fna,fa,fas}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          },
+          {
+            "debug": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.txt": {
+                  "type": "file",
+                  "description": "File with debug base information",
+                  "pattern": "*.txt"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@ktrappe"
+        ],
+        "maintainers": [
+          "@ktrappe"
         ]
       }
     },
@@ -148892,6 +151047,10 @@
           "version": "1.2.0"
         },
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "riboseq",
           "version": "1.1.0"
         },
@@ -149802,6 +151961,179 @@
           "version": "3.5.1"
         }
       ]
+    },
+    {
+      "name": "samtools_bedcov",
+      "path": "modules/nf-core/samtools/bedcov/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "samtools_bedcov",
+        "description": "reports coverage over regions in a supplied BED file",
+        "keywords": [
+          "bedcov",
+          "samtools",
+          "coverage",
+          "bed",
+          "bam",
+          "cram",
+          "sam",
+          "regions"
+        ],
+        "tools": [
+          {
+            "samtools": {
+              "description": "Tools for dealing with SAM, BAM and CRAM files",
+              "homepage": "http://www.htslib.org/",
+              "documentation": "http://www.htslib.org/doc/samtools-bedcov.html",
+              "tool_dev_url": "https://github.com/samtools/samtools",
+              "doi": "10.1093/bioinformatics/btp352",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:samtools"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "input": {
+                "type": "file",
+                "description": "Sorted BAM/CRAM/SAM file",
+                "pattern": "*.{bam,cram,sam}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2573"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3462"
+                  }
+                ]
+              }
+            },
+            {
+              "input_index": {
+                "type": "file",
+                "description": "BAM/CRAM index file",
+                "pattern": "*.{bai,crai}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3327"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'bed']`\n"
+              }
+            },
+            {
+              "bed": {
+                "type": "file",
+                "description": "Interval BED file",
+                "pattern": "*.bed",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'genome']`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome file",
+                "pattern": "*.{fa,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_2044"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'genome_index']`\n"
+              }
+            },
+            {
+              "fasta_index": {
+                "type": "file",
+                "description": "Reference genome index file",
+                "pattern": "*.fai"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "coverage": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.tsv": {
+                  "type": "file",
+                  "description": "Reports the total read base count (i.e. the sum of per base read depths)\nfor each genomic region specified in the supplied BED file.\nThe regions are output as they appear in the BED file and are 0-based.\nColumns 1-3 are chrom/start/end as per the input BED file, followed by N columns of coverages (for N input BAMs),\nthen (if given -d), N columns of bases-at-depth-X, then (if given -c) N columns of read counts.\n",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@ToonRosseel"
+        ],
+        "maintainers": [
+          "@ToonRosseel"
+        ]
+      }
     },
     {
       "name": "samtools_calmd",
@@ -151877,6 +154209,10 @@
           "version": "1.0.0"
         },
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "magmap",
           "version": "dev"
         },
@@ -152157,6 +154493,10 @@
         {
           "name": "hicar",
           "version": "1.0.0"
+        },
+        {
+          "name": "lncpipe",
+          "version": "dev"
         },
         {
           "name": "magmap",
@@ -152521,6 +154861,10 @@
         {
           "name": "hicar",
           "version": "1.0.0"
+        },
+        {
+          "name": "lncpipe",
+          "version": "dev"
         },
         {
           "name": "magmap",
@@ -153616,6 +155960,10 @@
           "version": "1.0.0"
         },
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "magmap",
           "version": "dev"
         },
@@ -153853,6 +156201,10 @@
         {
           "name": "hicar",
           "version": "1.0.0"
+        },
+        {
+          "name": "lncpipe",
+          "version": "dev"
         },
         {
           "name": "magmap",
@@ -160587,7 +162939,13 @@
           "@Midnighter",
           "@heuermh"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "proteinannotator",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "seqkit_tab2fx",
@@ -160868,6 +163226,87 @@
         ],
         "maintainers": [
           "@rpetit3"
+        ]
+      }
+    },
+    {
+      "name": "seqtk_comp",
+      "path": "modules/nf-core/seqtk/comp/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "seqtk_comp",
+        "description": "Computes sequence statistics from FASTQ or FASTA files",
+        "keywords": [
+          "seqtk",
+          "comp",
+          "fastx"
+        ],
+        "tools": [
+          {
+            "seqtk_comp": {
+              "description": "Seqtk is a fast and lightweight tool for processing sequences in the FASTA or FASTQ format. \nThe seqtk comp command computes base composition, sequence length, and GC content for quality control.\n",
+              "homepage": "https://github.com/lh3/seqtk",
+              "documentation": "https://docs.csc.fi/apps/seqtk/",
+              "tool_dev_url": "https://github.com/lh3/seqtk",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:seqtk"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+              }
+            },
+            {
+              "fastx": {
+                "type": "file",
+                "description": "A FASTQ or FASTA file",
+                "pattern": "*.{fastq,fq,fasta,fa,fas,fna}{,.gz}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "seqtk_stats": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1', single_end:false ]\n"
+                }
+              },
+              {
+                "*.seqtk_stats.tsv": {
+                  "type": "file",
+                  "description": "The output TSV file summarizing sequence statistics with columns for sequence name, length, counts of A, C, G, T, and N bases, and GC content percentage.\"",
+                  "pattern": "*.seqtk_stats.tsv"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@sainsachiko"
+        ],
+        "maintainers": [
+          "@sainsachiko"
         ]
       }
     },
@@ -166518,9 +168957,17 @@
           "@matthdsm"
         ],
         "maintainers": [
-          "@matthdsm"
+          "@matthdsm",
+          "@delfiterradas",
+          "@sofiromano"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "sammyseq",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "snapaligner_index",
@@ -166953,7 +169400,9 @@
           }
         ],
         "authors": [
-          "@rpetit3"
+          "@rpetit3",
+          "@delfiterradas",
+          "@sofiromano"
         ],
         "maintainers": [
           "@rpetit3"
@@ -167315,7 +169764,8 @@
           }
         ],
         "authors": [
-          "@rpetit3"
+          "@rpetit3",
+          "@delfiterradas"
         ],
         "maintainers": [
           "@rpetit3"
@@ -171489,6 +173939,10 @@
           "version": "dev"
         },
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "marsseq",
           "version": "1.0.3"
         },
@@ -173305,6 +175759,10 @@
       },
       "pipelines": [
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "nanoseq",
           "version": "3.1.0"
         },
@@ -173455,6 +175913,10 @@
       "pipelines": [
         {
           "name": "circrna",
+          "version": "dev"
+        },
+        {
+          "name": "lncpipe",
           "version": "dev"
         },
         {
@@ -177395,7 +179857,13 @@
         "maintainers": [
           "@jfy133"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "createtaxdb",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "taxonkit_lineage",
@@ -178045,7 +180513,15 @@
               "fasta": {
                 "type": "file",
                 "description": "Input sequences in FASTA format",
-                "pattern": "*.{fa,fasta}"
+                "pattern": "*.{fa,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -178060,7 +180536,12 @@
               "tree": {
                 "type": "file",
                 "description": "Input guide tree in Newick format",
-                "pattern": "*.{dnd}"
+                "pattern": "*.{dnd}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2006"
+                  }
+                ]
               }
             }
           ],
@@ -178075,14 +180556,22 @@
               "template": {
                 "type": "file",
                 "description": "T_coffee template file that maps sequences to the accessory information files to be used.",
-                "pattern": "*"
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1476"
+                  }
+                ]
               }
             },
             {
               "accessory_information": {
                 "type": "file",
                 "description": "Accessory files to be used in the alignment. For example, it could be protein structures or secondary structures.",
-                "pattern": "*"
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1476"
+                  }
+                ]
               }
             }
           ],
@@ -178108,7 +180597,18 @@
                 "*.aln{.gz,}": {
                   "type": "file",
                   "description": "Alignment file in FASTA format. May be gzipped.",
-                  "pattern": "*.aln{.gz,}"
+                  "pattern": "*.aln{.gz,}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2554"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1921"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1984"
+                    }
+                  ]
                 }
               }
             ]
@@ -178125,7 +180625,8 @@
                 "*.*lib": {
                   "type": "file",
                   "description": "optional output, the library generated from the MSA file.",
-                  "pattern": "*.*lib"
+                  "pattern": "*.*lib",
+                  "ontologies": []
                 }
               }
             ]
@@ -178136,7 +180637,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -178212,14 +180718,36 @@
               "msa": {
                 "type": "file",
                 "description": "fasta file containing the alignment to be evaluated. Can be gzipped or uncompressed",
-                "pattern": "*.{aln,fa,fasta,fas}{.gz,}"
+                "pattern": "*.{aln,fa,fasta,fas}{.gz,}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             },
             {
               "ref_msa": {
                 "type": "file",
                 "description": "fasta file containing the reference alignment used for the evaluation. Can be gzipped or uncompressed",
-                "pattern": "*.{aln,fa,fasta,fas}{.gz,}"
+                "pattern": "*.{aln,fa,fasta,fas}{.gz,}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2554"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1921"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1984"
+                  }
+                ]
               }
             }
           ]
@@ -178237,7 +180765,8 @@
                 "*.scores": {
                   "type": "file",
                   "description": "a file containing the score of the alignment",
-                  "pattern": "*.scores"
+                  "pattern": "*.scores",
+                  "ontologies": []
                 }
               }
             ]
@@ -178248,7 +180777,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -178534,7 +181068,21 @@
             {
               "msa": {
                 "type": "file",
-                "description": "Multiple Sequence Alignment File\n"
+                "description": "Multiple Sequence Alignment File\n",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2554"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1921"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1984"
+                  }
+                ]
               }
             }
           ],
@@ -178548,13 +181096,23 @@
             {
               "template": {
                 "type": "file",
-                "description": "Template file\n"
+                "description": "Template file\n",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1476"
+                  }
+                ]
               }
             },
             {
               "structures": {
                 "type": "file",
-                "description": "Structure file\n"
+                "description": "Structure file\n",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1476"
+                  }
+                ]
               }
             }
           ]
@@ -178572,7 +181130,7 @@
                 "${prefix}.irmsd": {
                   "type": "file",
                   "description": "File containing the irmsd of the alignment",
-                  "pattern": "*"
+                  "ontologies": []
                 }
               }
             ]
@@ -178583,7 +181141,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -178873,7 +181436,21 @@
               "msa": {
                 "type": "file",
                 "description": "fasta file containing the alignment to be evaluated. May be gzipped or uncompressed.",
-                "pattern": "*.{aln,fa,fasta,fas}{.gz,}"
+                "pattern": "*.{aln,fa,fasta,fas}{.gz,}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2554"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1921"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1984"
+                  }
+                ]
               }
             }
           ],
@@ -178888,7 +181465,8 @@
               "lib": {
                 "type": "file",
                 "description": "lib file containing the alignment library of the given msa.",
-                "pattern": "*{.tc_lib,*_lib}"
+                "pattern": "*{.tc_lib,*_lib}",
+                "ontologies": []
               }
             }
           ]
@@ -178906,7 +181484,8 @@
                 "*.tcs": {
                   "type": "file",
                   "description": "The msa represented in tcs format, prepended with TCS scores",
-                  "pattern": "*.tcs"
+                  "pattern": "*.tcs",
+                  "ontologies": []
                 }
               }
             ]
@@ -178923,7 +181502,8 @@
                 "*.scores": {
                   "type": "file",
                   "description": "a file containing the score of the alignment in csv format",
-                  "pattern": "*.scores"
+                  "pattern": "*.scores",
+                  "ontologies": []
                 }
               }
             ]
@@ -178934,7 +181514,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -181121,6 +183706,10 @@
         {
           "name": "hgtseq",
           "version": "1.1.0"
+        },
+        {
+          "name": "lncpipe",
+          "version": "dev"
         },
         {
           "name": "magmap",
@@ -184008,6 +186597,10 @@
       },
       "pipelines": [
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "riboseq",
           "version": "1.1.0"
         },
@@ -184188,6 +186781,10 @@
       },
       "pipelines": [
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "nascent",
           "version": "2.2.0"
         },
@@ -184316,6 +186913,10 @@
         {
           "name": "chipseq",
           "version": "2.1.0"
+        },
+        {
+          "name": "lncpipe",
+          "version": "dev"
         },
         {
           "name": "riboseq",
@@ -184579,6 +187180,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "lncpipe",
+          "version": "dev"
+        },
         {
           "name": "riboseq",
           "version": "1.1.0"
@@ -187113,13 +189718,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.vcf.gz"
                 }
               },
               {
-                "*.gz": {
-                  "type": "file",
-                  "description": "Compressed VCF file",
+                "*.vcf.gz": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
                   "pattern": "*.vcf.gz"
                 }
               }
@@ -191335,6 +193941,85 @@
       ]
     },
     {
+      "name": "wget",
+      "path": "modules/nf-core/wget/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "wget",
+        "description": "The non-interactive network downloader",
+        "keywords": [
+          "wget",
+          "download",
+          "network"
+        ],
+        "tools": [
+          {
+            "wget": {
+              "description": "wget is a free utility for non-interactive download of files from the Web.",
+              "homepage": "https://www.gnu.org/software/wget/",
+              "documentation": "https://www.gnu.org/software/wget/manual/wget.html",
+              "licence": [
+                "GPL"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "url": {
+                "type": "string",
+                "description": "URL to download",
+                "pattern": "^https?://*.*"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "outfile": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.${suffix}": {
+                  "type": "file",
+                  "description": "Downloaded file",
+                  "pattern": "*.*"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@itrujnara"
+        ],
+        "maintainers": [
+          "@itrujnara"
+        ]
+      }
+    },
+    {
       "name": "wgsim",
       "path": "modules/nf-core/wgsim/meta.yml",
       "type": "module",
@@ -194843,6 +197528,10 @@
       },
       "pipelines": [
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "riboseq",
           "version": "1.1.0"
         },
@@ -194940,6 +197629,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "lncpipe",
+          "version": "dev"
+        },
         {
           "name": "nascent",
           "version": "2.2.0"
@@ -195302,6 +197995,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "lncpipe",
+          "version": "dev"
+        },
         {
           "name": "riboseq",
           "version": "1.1.0"
@@ -196235,6 +198932,10 @@
           "version": "1.0.1"
         },
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "magmap",
           "version": "dev"
         },
@@ -196499,6 +199200,10 @@
         {
           "name": "genomeassembler",
           "version": "1.0.1"
+        },
+        {
+          "name": "lncpipe",
+          "version": "dev"
         },
         {
           "name": "magmap",
@@ -199968,7 +202673,13 @@
         "maintainers": [
           "@matthdsm"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "sammyseq",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "fastq_align_hisat2",
@@ -200115,6 +202826,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "lncpipe",
+          "version": "dev"
+        },
         {
           "name": "rnadnavar",
           "version": "dev"
@@ -200440,6 +203155,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "lncpipe",
+          "version": "dev"
+        },
         {
           "name": "riboseq",
           "version": "1.1.0"
@@ -200996,6 +203715,10 @@
       },
       "pipelines": [
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "riboseq",
           "version": "1.1.0"
         },
@@ -201167,6 +203890,10 @@
         {
           "name": "chipseq",
           "version": "2.1.0"
+        },
+        {
+          "name": "lncpipe",
+          "version": "dev"
         },
         {
           "name": "riboseq",
@@ -201741,6 +204468,10 @@
       },
       "pipelines": [
         {
+          "name": "lncpipe",
+          "version": "dev"
+        },
+        {
           "name": "riboseq",
           "version": "1.1.0"
         },
@@ -201862,6 +204593,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "lncpipe",
+          "version": "dev"
+        },
         {
           "name": "riboseq",
           "version": "1.1.0"
