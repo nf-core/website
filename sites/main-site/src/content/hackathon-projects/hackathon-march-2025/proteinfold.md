@@ -12,6 +12,9 @@ leaders:
   ziadbkh:
     name: Ziad Al-Bkhetan
     slack: "https://nfcore.slack.com/archives/D07F382KXLL"
+  abotlp:
+    name: Patri Bota
+    slack: "https://nfcore.slack.com/archives/D088H59JNMV"
   joseespinosa:
     name: Jose Espinosa-Carrasco
     slack: "https://nfcore.slack.com/archives/DTBAM1ZJS"
