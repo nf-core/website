@@ -18062,7 +18062,13 @@
         "maintainers": [
           "@itrujnara"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "deepmodeloptim",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "bedtools_slop",
@@ -34110,7 +34116,15 @@
               "fasta": {
                 "type": "file",
                 "description": "Input sequences in FASTA format",
-                "pattern": "*.{fa,fasta,faa,fna}"
+                "pattern": "*.{fa,fasta,faa,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -34125,7 +34139,12 @@
               "tree": {
                 "type": "file",
                 "description": "Input guide tree in Newick format",
-                "pattern": "*.{dnd}"
+                "pattern": "*.{dnd}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2006"
+                  }
+                ]
               }
             }
           ],
@@ -34134,7 +34153,12 @@
               "hmm_in": {
                 "type": "file",
                 "description": "HMM file for profile alignment",
-                "pattern": "*.hmm"
+                "pattern": "*.hmm",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1391"
+                  }
+                ]
               }
             }
           ],
@@ -34143,7 +34167,12 @@
               "hmm_batch": {
                 "type": "file",
                 "description": "specify HMMs for individual sequences",
-                "pattern": "*"
+                "pattern": "*.hmm",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1391"
+                  }
+                ]
               }
             }
           ],
@@ -34152,7 +34181,21 @@
               "profile1": {
                 "type": "file",
                 "description": "Pre-aligned multiple sequence file 1",
-                "pattern": "*.{alnfaa,faa,fa,fasta}"
+                "pattern": "*.{alnfaa,faa,fa,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2554"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1921"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1984"
+                  }
+                ]
               }
             }
           ],
@@ -34161,7 +34204,21 @@
               "profile2": {
                 "type": "file",
                 "description": "Pre-aligned multiple sequence file 2",
-                "pattern": "*.{alnfaa,faa,fa,fasta}"
+                "pattern": "*.{alnfaa,faa,fa,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2554"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1921"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1984"
+                  }
+                ]
               }
             }
           ],
@@ -34187,7 +34244,18 @@
                 "*.aln{.gz,}": {
                   "type": "file",
                   "description": "Alignment file, in gzipped fasta format",
-                  "pattern": "*.aln{.gz,}"
+                  "pattern": "*.aln{.gz,}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2554"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1921"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1984"
+                    }
+                  ]
                 }
               }
             ]
@@ -34198,7 +34266,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -34264,7 +34337,15 @@
               "fasta": {
                 "type": "file",
                 "description": "Input sequences in FASTA format",
-                "pattern": "*.{fa,fasta}"
+                "pattern": "*.{fa,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ]
@@ -34282,7 +34363,12 @@
                 "*.dnd": {
                   "type": "file",
                   "description": "Guide tree file in Newick format",
-                  "pattern": "*.{dnd}"
+                  "pattern": "*.{dnd}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2006"
+                    }
+                  ]
                 }
               }
             ]
@@ -34293,7 +34379,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -52923,7 +53014,15 @@
               "fasta": {
                 "type": "file",
                 "description": "Input sequences in FASTA format",
-                "pattern": "*.{fa,fasta}"
+                "pattern": "*.{fa,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -52938,7 +53037,12 @@
               "tree": {
                 "type": "file",
                 "description": "Input guide tree in Newick format",
-                "pattern": "*.{dnd}"
+                "pattern": "*.{dnd}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2006"
+                  }
+                ]
               }
             }
           ],
@@ -52964,7 +53068,18 @@
                 "*.aln{.gz,}": {
                   "type": "file",
                   "description": "Alignment file, in FASTA format. May be gzipped or uncompressed, depending on if compress is set to true or false",
-                  "pattern": "*.aln{.gz,}"
+                  "pattern": "*.aln{.gz,}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2554"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1921"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1984"
+                    }
+                  ]
                 }
               }
             ]
@@ -52975,7 +53090,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -53040,7 +53160,15 @@
               "fasta": {
                 "type": "file",
                 "description": "Input sequences in FASTA format",
-                "pattern": "*.{fa,fasta}"
+                "pattern": "*.{fa,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ]
@@ -53058,7 +53186,12 @@
                 "*.dnd": {
                   "type": "file",
                   "description": "Guide tree file in Newick format",
-                  "pattern": "*.{dnd}"
+                  "pattern": "*.{dnd}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2006"
+                    }
+                  ]
                 }
               }
             ]
@@ -53069,7 +53202,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -58343,7 +58481,15 @@
               "pdbs": {
                 "type": "file",
                 "description": "Input protein structures in PDB format.",
-                "pattern": "*.{pdb,mmcif}"
+                "pattern": "*.{pdb,mmcif}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1747"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1477"
+                  }
+                ]
               }
             }
           ],
@@ -58358,7 +58504,15 @@
               "tree": {
                 "type": "file",
                 "description": "Input guide tree in Newick format.",
-                "pattern": "*.{dnd,nwk}"
+                "pattern": "*.{dnd,nwk}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2006"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1910"
+                  }
+                ]
               }
             }
           ],
@@ -58384,7 +58538,18 @@
                 "${prefix}_3di.fa${compress ? '.gz' : ''}": {
                   "type": "file",
                   "description": "Fasta file containing the multiple sequence alignment with 3Di alphabet",
-                  "pattern": "*.{fa}"
+                  "pattern": "*.{fa}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2554"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1921"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1984"
+                    }
+                  ]
                 }
               }
             ]
@@ -58401,7 +58566,18 @@
                 "${prefix}_aa.fa${compress ? '.gz' : ''}": {
                   "type": "file",
                   "description": "Fasta file containing the multiple sequence alignment with Amino Acid alphabet",
-                  "pattern": "*.{fa}"
+                  "pattern": "*.{fa}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2554"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1921"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1984"
+                    }
+                  ]
                 }
               }
             ]
@@ -58412,7 +58588,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -74406,7 +74587,13 @@
           "@jemten",
           "@gallvp"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "lncpipe",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "gffread",
@@ -93439,7 +93626,15 @@
               "fasta": {
                 "type": "file",
                 "description": "Input sequences in FASTA format. May be gzipped or uncompressed.",
-                "pattern": "*.{fa,fasta}{.gz,}"
+                "pattern": "*.{fa,fasta}{.gz,}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -93465,7 +93660,18 @@
                 "*.aln{.gz,}": {
                   "type": "file",
                   "description": "Alignment file. May be gzipped or uncompressed, depending on if `compress` is set to `true` or `false`.",
-                  "pattern": "*.{aln}{.gz,}"
+                  "pattern": "*.{aln}{.gz,}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2554"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1921"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1984"
+                    }
+                  ]
                 }
               }
             ]
@@ -93476,7 +93682,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -97904,7 +98115,15 @@
               "fasta": {
                 "type": "file",
                 "description": "Input sequences in FASTA format.",
-                "pattern": "*.{fa,fasta}"
+                "pattern": "*.{fa,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ]
@@ -97922,7 +98141,18 @@
                 "*.aln": {
                   "type": "file",
                   "description": "Alignment file, in FASTA format.",
-                  "pattern": "*.aln"
+                  "pattern": "*.aln",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2554"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1921"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1984"
+                    }
+                  ]
                 }
               }
             ]
@@ -97933,7 +98163,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -101382,7 +101617,15 @@
               "fasta": {
                 "type": "file",
                 "description": "FASTA file containing the sequences to align. May be gzipped or uncompressed.",
-                "pattern": "*.{fa,fasta}{.gz,}"
+                "pattern": "*.{fa,fasta}{.gz,}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -101397,7 +101640,15 @@
               "add": {
                 "type": "file",
                 "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--add`. May be gzipped or uncompressed.",
-                "pattern": "*.{fa,fasta}{.gz,}"
+                "pattern": "*.{fa,fasta}{.gz,}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -101412,7 +101663,15 @@
               "addfragments": {
                 "type": "file",
                 "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--addfragments`. May be gzipped or uncompressed.",
-                "pattern": "*.{fa,fasta}{.gz,}"
+                "pattern": "*.{fa,fasta}{.gz,}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -101427,7 +101686,15 @@
               "addfull": {
                 "type": "file",
                 "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--addfull`. May be gzipped or uncompressed.",
-                "pattern": "*.{fa,fasta}{.gz,}"
+                "pattern": "*.{fa,fasta}{.gz,}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -101442,7 +101709,15 @@
               "addprofile": {
                 "type": "file",
                 "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--addprofile`. May be gzipped or uncompressed.",
-                "pattern": "*.{fa,fasta}{.gz,}"
+                "pattern": "*.{fa,fasta}{.gz,}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -101457,7 +101732,15 @@
               "addlong": {
                 "type": "file",
                 "description": "FASTA file containing sequences to align to the sequences in `fasta` using `--addlong`. May be gzipped or uncompressed.",
-                "pattern": "*.{fa,fasta}{.gz,}"
+                "pattern": "*.{fa,fasta}{.gz,}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -101483,7 +101766,18 @@
                 "*.fas{.gz,}": {
                   "type": "file",
                   "description": "Aligned sequences in FASTA format. May be gzipped or uncompressed.",
-                  "pattern": "*.fas{.gz,}"
+                  "pattern": "*.fas{.gz,}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2554"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1921"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1984"
+                    }
+                  ]
                 }
               }
             ]
@@ -101494,7 +101788,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -101566,7 +101865,15 @@
               "fasta": {
                 "type": "file",
                 "description": "FASTA file containing the sequences to be used to render the guidetree.",
-                "pattern": "*.{fa,fasta}"
+                "pattern": "*.{fa,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ]
@@ -101584,7 +101891,12 @@
                 "*.dnd": {
                   "type": "file",
                   "description": "Guide tree in Newick format.",
-                  "pattern": "*.dnd"
+                  "pattern": "*.dnd",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2006"
+                    }
+                  ]
                 }
               }
             ]
@@ -101595,7 +101907,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -102005,7 +102322,15 @@
               "fasta": {
                 "type": "file",
                 "description": "Input sequences in FASTA format.",
-                "pattern": "*.{fa,fna,fasta}"
+                "pattern": "*.{fa,fna,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -102020,7 +102345,12 @@
               "tree": {
                 "type": "file",
                 "description": "Optional path to a file containing a guide tree in newick format to use as input. If empty, or overwritten by passing `-t [fasttree|fasttree-noml|clustal|parttree]`, MAGUS will construct its own guide tree. If empty, `fasttree` is used as a default.",
-                "pattern": "*.{dnd,tree}"
+                "pattern": "*.{dnd,tree}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2006"
+                  }
+                ]
               }
             }
           ],
@@ -102046,7 +102376,18 @@
                 "*.aln{.gz,}": {
                   "type": "file",
                   "description": "File containing the output alignment, in FASTA format containing gaps. The sequences may be in a different order than in the input FASTA. The output file may or may not be gzipped, depending on the value supplied to `compress`.",
-                  "pattern": "*.aln{.gz,}"
+                  "pattern": "*.aln{.gz,}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2554"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1921"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1984"
+                    }
+                  ]
                 }
               }
             ]
@@ -102057,7 +102398,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -102114,7 +102460,15 @@
               "fasta": {
                 "type": "file",
                 "description": "Input sequences in FASTA format.",
-                "pattern": "*.{fa,fna,fasta}"
+                "pattern": "*.{fa,fna,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ]
@@ -102132,7 +102486,12 @@
                 "*.tree": {
                   "type": "file",
                   "description": "File containing the output guidetree, in newick format.",
-                  "pattern": "*.tree"
+                  "pattern": "*.tree",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2006"
+                    }
+                  ]
                 }
               }
             ]
@@ -102143,7 +102502,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -115601,7 +115965,12 @@
               "pdbs": {
                 "type": "file",
                 "description": "Input protein structures in PDB format. Files may be gzipped or uncompressed. They should contain exactly one chain!",
-                "pattern": "*.{pdb}"
+                "pattern": "*.{pdb}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1747"
+                  }
+                ]
               }
             }
           ],
@@ -115627,7 +115996,18 @@
                 "${prefix}.aln${compress ? '.gz' : ''}": {
                   "type": "file",
                   "description": "Alignment in FASTA format. May be gzipped or uncompressed.",
-                  "pattern": "*.aln{.gz,}"
+                  "pattern": "*.aln{.gz,}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2554"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1921"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1984"
+                    }
+                  ]
                 }
               }
             ]
@@ -115644,7 +116024,12 @@
                 "${prefix}.pdb${compress ? '.gz' : ''}": {
                   "type": "file",
                   "description": "Overlaid structures in PDB format. May be gzipped or uncompressed.",
-                  "pattern": "${prefix}.pdb{.gz,}"
+                  "pattern": "${prefix}.pdb{.gz,}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1747"
+                    }
+                  ]
                 }
               }
             ]
@@ -115655,7 +116040,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -117176,7 +117566,15 @@
               "fasta": {
                 "type": "file",
                 "description": "Input sequences for alignment must be in FASTA format",
-                "pattern": "*.{fasta,fa,fna}"
+                "pattern": "*.{fasta,fa,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -117202,7 +117600,18 @@
                 "*.aln{.gz,}": {
                   "type": "file",
                   "description": "Multiple sequence alignment produced in gzipped FASTA format. If '-perm all' is passed in ext.args, this will be multiple files per input!",
-                  "pattern": "*.{aln.gz}"
+                  "pattern": "*.{aln.gz}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2554"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1921"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1984"
+                    }
+                  ]
                 }
               }
             ]
@@ -117213,7 +117622,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -168986,7 +169400,9 @@
           }
         ],
         "authors": [
-          "@rpetit3"
+          "@rpetit3",
+          "@delfiterradas",
+          "@sofiromano"
         ],
         "maintainers": [
           "@rpetit3"
@@ -169348,7 +169764,8 @@
           }
         ],
         "authors": [
-          "@rpetit3"
+          "@rpetit3",
+          "@delfiterradas"
         ],
         "maintainers": [
           "@rpetit3"
@@ -180096,7 +180513,15 @@
               "fasta": {
                 "type": "file",
                 "description": "Input sequences in FASTA format",
-                "pattern": "*.{fa,fasta}"
+                "pattern": "*.{fa,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -180111,7 +180536,12 @@
               "tree": {
                 "type": "file",
                 "description": "Input guide tree in Newick format",
-                "pattern": "*.{dnd}"
+                "pattern": "*.{dnd}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2006"
+                  }
+                ]
               }
             }
           ],
@@ -180126,14 +180556,22 @@
               "template": {
                 "type": "file",
                 "description": "T_coffee template file that maps sequences to the accessory information files to be used.",
-                "pattern": "*"
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1476"
+                  }
+                ]
               }
             },
             {
               "accessory_information": {
                 "type": "file",
                 "description": "Accessory files to be used in the alignment. For example, it could be protein structures or secondary structures.",
-                "pattern": "*"
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1476"
+                  }
+                ]
               }
             }
           ],
@@ -180159,7 +180597,18 @@
                 "*.aln{.gz,}": {
                   "type": "file",
                   "description": "Alignment file in FASTA format. May be gzipped.",
-                  "pattern": "*.aln{.gz,}"
+                  "pattern": "*.aln{.gz,}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2554"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1921"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1984"
+                    }
+                  ]
                 }
               }
             ]
@@ -180176,7 +180625,8 @@
                 "*.*lib": {
                   "type": "file",
                   "description": "optional output, the library generated from the MSA file.",
-                  "pattern": "*.*lib"
+                  "pattern": "*.*lib",
+                  "ontologies": []
                 }
               }
             ]
@@ -180187,7 +180637,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -180263,14 +180718,36 @@
               "msa": {
                 "type": "file",
                 "description": "fasta file containing the alignment to be evaluated. Can be gzipped or uncompressed",
-                "pattern": "*.{aln,fa,fasta,fas}{.gz,}"
+                "pattern": "*.{aln,fa,fasta,fas}{.gz,}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             },
             {
               "ref_msa": {
                 "type": "file",
                 "description": "fasta file containing the reference alignment used for the evaluation. Can be gzipped or uncompressed",
-                "pattern": "*.{aln,fa,fasta,fas}{.gz,}"
+                "pattern": "*.{aln,fa,fasta,fas}{.gz,}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2554"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1921"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1984"
+                  }
+                ]
               }
             }
           ]
@@ -180288,7 +180765,8 @@
                 "*.scores": {
                   "type": "file",
                   "description": "a file containing the score of the alignment",
-                  "pattern": "*.scores"
+                  "pattern": "*.scores",
+                  "ontologies": []
                 }
               }
             ]
@@ -180299,7 +180777,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -180585,7 +181068,21 @@
             {
               "msa": {
                 "type": "file",
-                "description": "Multiple Sequence Alignment File\n"
+                "description": "Multiple Sequence Alignment File\n",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2554"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1921"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1984"
+                  }
+                ]
               }
             }
           ],
@@ -180599,13 +181096,23 @@
             {
               "template": {
                 "type": "file",
-                "description": "Template file\n"
+                "description": "Template file\n",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1476"
+                  }
+                ]
               }
             },
             {
               "structures": {
                 "type": "file",
-                "description": "Structure file\n"
+                "description": "Structure file\n",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1476"
+                  }
+                ]
               }
             }
           ]
@@ -180623,7 +181130,7 @@
                 "${prefix}.irmsd": {
                   "type": "file",
                   "description": "File containing the irmsd of the alignment",
-                  "pattern": "*"
+                  "ontologies": []
                 }
               }
             ]
@@ -180634,7 +181141,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -180924,7 +181436,21 @@
               "msa": {
                 "type": "file",
                 "description": "fasta file containing the alignment to be evaluated. May be gzipped or uncompressed.",
-                "pattern": "*.{aln,fa,fasta,fas}{.gz,}"
+                "pattern": "*.{aln,fa,fasta,fas}{.gz,}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2554"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1921"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1984"
+                  }
+                ]
               }
             }
           ],
@@ -180939,7 +181465,8 @@
               "lib": {
                 "type": "file",
                 "description": "lib file containing the alignment library of the given msa.",
-                "pattern": "*{.tc_lib,*_lib}"
+                "pattern": "*{.tc_lib,*_lib}",
+                "ontologies": []
               }
             }
           ]
@@ -180957,7 +181484,8 @@
                 "*.tcs": {
                   "type": "file",
                   "description": "The msa represented in tcs format, prepended with TCS scores",
-                  "pattern": "*.tcs"
+                  "pattern": "*.tcs",
+                  "ontologies": []
                 }
               }
             ]
@@ -180974,7 +181502,8 @@
                 "*.scores": {
                   "type": "file",
                   "description": "a file containing the score of the alignment in csv format",
-                  "pattern": "*.scores"
+                  "pattern": "*.scores",
+                  "ontologies": []
                 }
               }
             ]
@@ -180985,7 +181514,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
