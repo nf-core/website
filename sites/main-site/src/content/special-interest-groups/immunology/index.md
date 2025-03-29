@@ -33,5 +33,4 @@ Join the [nf-core Slack](/join#slack), subscribe to the [Google Calendar](https:
 
 <div class="d-flex justify-content-center align-items-start gap-3 flex-wrap">
   <img src="https://github.com/user-attachments/assets/739f72b6-6186-4e06-9c64-8aeca3d2a82a" alt="sig-meme" width="250" height="250" class="img-fluid"/>
-  <img src="https://github.com/user-attachments/assets/88c8b083-51b4-43b8-9952-40f8d15ca156" alt="sig-meme2" width="250" height="250" class="img-fluid"/>
 </div>
