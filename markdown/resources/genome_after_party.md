@@ -2,9 +2,9 @@
 
 Genome After Party is a suite of pipelines to standardise the downstream analyses performed on all genomes produced by the Tree of Life. These include:
 
-- **[sanger-tol/insdcdownload](/insdcdownload)** downloads assemblies from INSDC into a Tree of Life directory structure.
-- **[sanger-tol/ensemblrepeatdownload](/ensemblrepeatdownload)** downloads repeat annotations from Ensembl into a Tree of Life directory structure.
-- **[sanger-tol/ensemblgenedownload](/ensemblgenedownload)** downloads gene annotations from Ensembl into the Tree of Life directory structure.
+- **[sanger-tol/insdcdownload](/insdcdownload)** downloads assemblies from the NCBI.
+- **[sanger-tol/ensemblrepeatdownload](/ensemblrepeatdownload)** downloads repeat annotations from Ensembl.
+- **[sanger-tol/ensemblgenedownload](/ensemblgenedownload)** downloads gene annotations from Ensembl.
 - **[sanger-tol/readmapping](/readmapping)** for aligning reads generated using Illumina, HiC, PacBio and Nanopore technologies against a genome assembly.
 - **[sanger-tol/genomenote](/genomenote)** creates HiC contact maps and collates (1) assembly information, statistics and chromosome details, (2) PacBio consensus quality and k-mer completeness, and (3) HiC mapping statistics.
 - **[sanger-tol/blobtoolkit](/blobtoolkit)** is used to identify and analyse non-target DNA for eukaryotic genomes.
