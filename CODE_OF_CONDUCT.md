@@ -18,9 +18,11 @@ In the interest of fostering an open, collaborative, and welcoming environment, 
 - Gender identity and expression
 - Geographical location
 - Level of experience
+- Mental disability
 - Nationality and national origins
 - Native language
 - Neurodiversity
+- Physical disability
 - Race or ethnicity
 - Religion
 - Sexual identity and orientation
@@ -177,6 +179,10 @@ Actions taken by the nf-core’s Safety Team may include, but are not limited to
 - The [Mozilla Community Participation Guidelines v3.1](https://www.mozilla.org/en-US/about/governance/policies/participation/) (version 3.1, CC BY-SA 3.0 Mozilla)
 
 ## Changelog
+
+### v1.5 - April 1st, 2025
+
+- Added 'mental disability' and 'physical disability' to the list of aspects, identities, and experiences respected under the non-discrimination pledge.
 
 ### v1.4 - February 8th, 2022
 
