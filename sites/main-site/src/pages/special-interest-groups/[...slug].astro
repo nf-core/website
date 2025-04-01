@@ -42,10 +42,10 @@ const sections: SidebarEntry[] = [
                     type: "link",
                     id: group.data.title,
                     label: group.data.title,
-                    href: "/special-interest-groups/" + group.filePath?.replace(/\.[^/.]+$/, ""),
+                    href: "/special-interest-groups/" + group.id?.replace(/\.[^/.]+$/, ""),
                     isCurrent:
                         Astro.url.pathname.replace(".html", "") ===
-                        "/special-interest-groups/" + group.filePath?.replace(/\.[^/.]+$/, ""),
+                        "/special-interest-groups/" + group.id?.replace(/\.[^/.]+$/, ""),
                 };
             }),
     },
